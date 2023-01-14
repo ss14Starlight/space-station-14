@@ -1,0 +1,32 @@
+- type: entity
+  id: ComputerShipyard
+  parent: BaseComputer
+  name: shipyard console
+  description: Used to purchase and sell shuttles
+  components:
+  - type: Appearance
+    visuals:
+    - type: ComputerVisualizer
+      key: tech_key
+      screen: request
+  - type: ShipyardConsole
+  - type: AccessReader
+    access:
+    - [ Command ]
+    - [ ChiefEngineer ]
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Shipyard
+  - type: UserInterface
+    interfaces:
+    - key: enum.ShipyardConsoleUiKey.Shipyard
+      type: ShipyardConsoleBoundUserInterface
+  - type: Computer
+    board: ShipyardComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      
