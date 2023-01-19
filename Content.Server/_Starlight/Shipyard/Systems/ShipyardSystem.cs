@@ -13,6 +13,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Utility;
 using Content.Shared.Starlight.CCVar;
 using Robust.Shared.Configuration;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 
@@ -105,7 +106,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var price = _pricing.AppraiseGrid(shuttleUid.Value, null);
 
-        _shuttle.TryFTLDock(shuttleUid.Value, shuttle, targetGrid.Value);
+        Timer.Spawn(TimeSpan.FromSeconds(60), () =>
+        {
+            if (!Deleted(shuttleUid.Value) && shuttle != null)
+            {
+                _shuttle.TryFTLDock(shuttleUid.Value, shuttle, targetGrid.Value);
+            }
+        });
 
         vessel = shuttle;
 
@@ -113,7 +120,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
 
     /// <summary>
-    /// Loads a paused shuttle into the ShipyardMap from a file path
+    /// Loads a shuttle into the ShipyardMap from a file path
     /// </summary>
     private EntityUid? AddShuttle(string shuttlePath)
     {
@@ -170,6 +177,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         ShipyardMapId = mapComp.MapId;
 
-        _mapSystem.SetPaused(ShipyardMapEntity.Value, true);
+        _mapSystem.SetPaused(ShipyardMapEntity.Value, false);
     }
 }

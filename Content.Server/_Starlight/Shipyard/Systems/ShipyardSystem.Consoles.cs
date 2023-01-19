@@ -17,6 +17,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Audio.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Radio;
+using Content.Shared._Starlight.Speech;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 
@@ -85,6 +86,14 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         }
 
         _cargo.UpdateBankAccount((station, bank), -vessel.Price, bank.PrimaryAccount);
+        var channel = new ProtoId<RadioChannelPrototype>("Command");
+
+        var message = new SpeechMessage
+        {
+            Text = Loc.GetString("shipyard-console-docking", ("vessel", vessel.Name.ToString()))
+        };
+
+        _radio.SendRadioMessage(uid, message, channel, uid);
         PlayConfirmSound(uid, component);
 
         var newState = new ShipyardConsoleInterfaceState(
