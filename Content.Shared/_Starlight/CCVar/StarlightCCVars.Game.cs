@@ -45,4 +45,10 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> AutogammaRiftEnabled =
         CVarDef.Create("game.autogamma_enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Whether the Shipyard is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> Shipyard =
+        CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
 }

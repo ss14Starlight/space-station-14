@@ -11,11 +11,14 @@ using Content.Shared.Station.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Utility;
+using Content.Shared.Starlight.CCVar;
+using Robust.Shared.Configuration;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 
 public sealed partial class ShipyardSystem : SharedShipyardSystem
 {
+    [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
@@ -29,26 +32,56 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     private float _shuttleIndex;
     private const float ShuttleSpawnBuffer = 1f;
     private ISawmill _sawmill = default!;
+    private bool _enabled;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        _enabled = _configManager.GetCVar(StarlightCCVars.Shipyard);
+        _configManager.OnValueChanged(StarlightCCVars.Shipyard, SetShipyardEnabled);
         _sawmill = Logger.GetSawmill("shipyard");
         _shipyardConsole.InitializeConsole();
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentInit>(OnShipyardStartup);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
-    private void OnShipyardStartup(EntityUid uid, ShipyardConsoleComponent component, ComponentInit args) =>
-        SetupShipyard();
+    private void OnShipyardStartup(EntityUid uid, ShipyardConsoleComponent component, ComponentInit args)
+    {
+        if (!_enabled)
+            return;
 
-    private void OnRoundRestart(RoundRestartCleanupEvent ev) =>
+        SetupShipyard();
+    }
+
+    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        _configManager.UnsubValueChanged(StarlightCCVars.Shipyard, SetShipyardEnabled);
         CleanupShipyard();
+    }
+
+        private void SetShipyardEnabled(bool value)
+        {
+            if (_enabled == value)
+                return;
+
+            _enabled = value;
+
+            if (value)
+            {
+                SetupShipyard();
+            }
+            else
+            {
+                CleanupShipyard();
+            }
+        }
 
     /// <summary>
     /// Adds a ship to the shipyard, calculates its price, and attempts to ftl-dock it to the given station
     /// </summary>
+    /// <param name="stationUid">The ID of the station to dock the shuttle to</param>
+    /// <param name="shuttlePath">The path to the shuttle file to load. Must be a grid file!</param>
     public void PurchaseShuttle(EntityUid? stationUid, string shuttlePath, out ShuttleComponent? vessel)
     {
         vessel = null;

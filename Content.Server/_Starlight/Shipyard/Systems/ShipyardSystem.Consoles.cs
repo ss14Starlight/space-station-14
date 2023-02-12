@@ -2,7 +2,6 @@ using Content.Server.Popups;
 using Content.Server.Cargo.Systems;
 using Content.Server._Starlight.Shipyard.Components;
 using Content.Server.Station.Systems;
-using Content.Shared.GameTicking;
 using Content.Shared._Starlight.Shipyard.Events;
 using Content.Shared._Starlight.Shipyard.BUI;
 using Content.Shared._Starlight.Shipyard.Prototypes;
@@ -16,18 +15,21 @@ using Content.Shared.Cargo.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Utility;
 using Robust.Shared.Audio.Systems;
+using Content.Server.Radio.EntitySystems;
+using Content.Shared.Radio;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 
 public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessSystem = default!;
+    [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ShipyardSystem _shipyard = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public void InitializeConsole()
@@ -43,7 +45,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 
         if (TryComp<AccessReaderComponent>(uid, out var accessReaderComponent) &&
             accessReaderComponent.Enabled &&
-            !_accessSystem.IsAllowed(player, uid, accessReaderComponent))
+            !_access.IsAllowed(player, uid, accessReaderComponent))
         {
             ConsolePopup(player, Loc.GetString("comms-console-permission-denied"));
             PlayDenySound(uid, component);
@@ -89,7 +91,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             balance - vessel.Price,
             true);
 
-        _uiSystem.SetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
+        _ui.SetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
     }
 
     private void OnConsoleUIOpened(EntityUid uid, SharedShipyardConsoleComponent component, BoundUIOpenedEvent args)
@@ -106,7 +108,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             balance,
             true);
 
-        _uiSystem.SetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
+        _ui.SetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
     }
 
     private void ConsolePopup(EntityUid player, string text) =>
