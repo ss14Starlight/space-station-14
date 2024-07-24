@@ -19,7 +19,12 @@
     MagbootsStealObjective: 1
     CorgiMeatStealObjective: 1
     ClipboardStealObjective: 1
+    CaptainGunStealObjective: 0.5
+    CaptainJetpackStealObjective: 0.5
+    HandTeleporterStealObjective: 0.5
+    SecretDocumentsStealObjective: 0.5
     KnuckleDustersStealObjective: 1
+    DocInterceptObjective: 2.75 #Starlight closed upstream PR
     CaptainGunStealObjective: 0.75  #Starlight edit
     CaptainJetpackStealObjective: 0.75  #Starlight edit
     HandTeleporterStealObjective: 1  #Starlight edit
@@ -48,6 +53,8 @@
   weights:
 #    RandomTraitorAliveObjective: 1 - Removed because the objective was boring and didn't progress the round.
     RandomTraitorProgressObjective: 1
+    DocTradeObjective: 3 # this is 3 because we want the DocHoldObjective to have a high chance of getting a pair.
+    DocHoldObjective: 1.75
 
 #Thief groups
 - type: weightedRandom

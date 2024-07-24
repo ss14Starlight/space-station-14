@@ -1,17 +1,20 @@
+using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Content.Server.Objectives.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stacks;
+using Content.Server.Chat.Managers;
+using Content.Shared.Chat;
+using Content.Shared.Objectives;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -24,7 +27,9 @@ public sealed class StealConditionSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
 
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // REMOVE ONE OF THESE!!!!!!!
     private EntityQuery<ContainerManagerComponent> _containerQuery;
 
     private HashSet<Entity<TransformComponent>> _nearestEnts = new();
@@ -76,6 +81,10 @@ public sealed class StealConditionSystem : EntitySystem
     //Set the visual, name, icon for the objective.
     private void OnAfterAssign(Entity<StealConditionComponent> condition, ref ObjectiveAfterAssignEvent args)
     {
+        if (condition.Comp.ObjectiveText == null || condition.Comp.ObjectiveNoOwnerText == null
+            || condition.Comp.DescriptionText == null || condition.Comp.DescriptionMultiplyText == null)
+            return;
+
         var group = _proto.Index(condition.Comp.StealGroup);
         string localizedName = Loc.GetString(group.Name);
 
@@ -204,5 +213,32 @@ public sealed class StealConditionSystem : EntitySystem
         _countedItems.Add(entity);
 
         return TryComp<StackComponent>(entity, out var stack) ? stack.Count : 1;
+    }
+
+    public void UpdateStealCondition(Entity<StealConditionComponent> entity, string stealGroup)
+    {
+        if (!_prototypeManager.TryIndex<StealTargetGroupPrototype>(stealGroup, out var stealGroupPrototype))
+        {
+            Log.Error($"Unknown steal prototype: {stealGroupPrototype}");
+            return;
+        }
+
+        entity.Comp.StealGroup = stealGroup;
+    }
+
+    public void UpdateStealConditionNotify(Entity<StealConditionComponent> entity, string stealGroup, EntityUid mind)
+    {
+        UpdateStealCondition(entity, stealGroup);
+
+        if (!TryComp<MindComponent>(mind, out var mindComp))
+            return;
+
+        var session = mindComp.Session;
+        if (session == null)
+            return;
+
+        var msg = Loc.GetString("objective-condition-trade-updated-notification-message");
+        var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
+        _chatManager.ChatMessageToOne(ChatChannel.Server, msg, wrappedMessage, default, false, session.Channel, colorOverride: Color.Red);
     }
 }
