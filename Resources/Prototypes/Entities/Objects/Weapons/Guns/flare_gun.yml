@@ -4,6 +4,11 @@
   id: WeaponFlareGun
   description: A compact, single-shot pistol that fires shotgun shells.
   components:
+  - type: RestrictByUserTag
+    doestContain:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/flaregun.rsi
     layers:
