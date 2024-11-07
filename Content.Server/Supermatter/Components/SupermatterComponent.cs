@@ -115,7 +115,7 @@ public sealed partial class SupermatterComponent : Component
     ///     The time in seconds for crystal to delaminate.
     /// </summary>
     [DataField("countdownTimer")]
-    public float DelamCountdownTimerRaw = 120f;
+    public float DelamCountdownTimerRaw = 45f;
     public float DelamCountdownTimer => SliverRemoved ? DelamCountdownTimerRaw / 2 : DelamCountdownTimerRaw;
     public bool DelamAnnouncementHappened = false;
 
@@ -164,7 +164,7 @@ public sealed partial class SupermatterComponent : Component
     public float DamageEmergencyPoint = 75f;
 
     [DataField("damageDelaminationPoint")]
-    public float DelaminationPoint = 100f;
+    public float DelaminationPoint = 95f;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool AreWeDelaming = false;
