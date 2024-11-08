@@ -297,7 +297,6 @@
 # station's property
 
 - type: entity
-  noSpawn: true
   parent: BaseTraitorStealObjective
   id: StealSupermatterSliverObjective
   components:
@@ -305,5 +304,5 @@
     difficulty: 2.5
   - type: StealCondition
     stealGroup: SupermatterSliver
-    objectiveNoOwnerText: Cut off a sliver from the supermatter crystal.
-    descriptionText: Use any cutting tool that comes in handy. A scalpel is more recommended. Also, don't die of radiation poisoning.
+    objectiveNoOwnerText: objective-no-owner-traitor-sliver-text
+    descriptionText: objective-description-traitor-sliver-text
