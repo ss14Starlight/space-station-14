@@ -87,6 +87,24 @@
       Steel: 100
   - type: StaticPrice
     price: 30
+    
+- type: entity
+  name: abductor's screwdriver
+  parent: Screwdriver
+  id: ScrewdriverAbductor
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    layers:
+      - state: abductor
+        map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Tool
+    speedModifier: 0.5
+    qualities:
+      - Screwing
+    useSound:
+      collection: Screwdriver
+  - type: RandomSprite
 
 - type: entity
   name: wrench
