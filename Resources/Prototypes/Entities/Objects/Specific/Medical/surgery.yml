@@ -105,6 +105,20 @@
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+      
+- type: entity
+  name: abductor's scalpel
+  id: ScalpelAbductor
+  parent: Scalpel
+  components:
+  - type: Sprite
+    state: abductor
+  - type: SurgeryTool
+    speed: 1.8
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
 
 - type: entity
   name: shiv
