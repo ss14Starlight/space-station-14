@@ -219,6 +219,24 @@
       path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
+      
+- type: entity
+  name: abductor's retractor
+  id: RetractorAbductor
+  parent: Retractor
+  description: A surgical tool used to hold open incisions.
+  components:
+  - type: Sprite
+    state: abductor-retractor
+  - type: Item
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    storedRotation: 45
+  - type: SurgeryTool
+    speed: 0.4
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
 
 - type: entity
   name: hemostat
@@ -246,6 +264,19 @@
     state: advanced-hemostat
   - type: SurgeryTool
     speed: 0.6
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
+      
+- type: entity
+  name: abductor's hemostat
+  id: HemostatAbductor
+  parent: Hemostat
+  description: A surgical tool used to compress blood vessels to prevent bleeding.
+  components:
+  - type: Sprite
+    state: abductor-hemostat
+  - type: SurgeryTool
+    speed: 0.4
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
 
@@ -282,6 +313,22 @@
     storedRotation: 45  
   - type: SurgeryTool
     speed: 0.6
+    startSound:
+      path: /Audio/Effects/hit_kick.ogg
+      
+- type: entity
+  name: abductor's bone setter
+  id: BoneSetterAbductor
+  parent: BoneSetter
+  description: A surgical tool used for setting bones. It also breaks them quite well.
+  components:
+  - type: Sprite
+    state: abductor-setter
+  - type: Item
+    heldPrefix: setter
+    storedRotation: 45
+  - type: SurgeryTool
+    speed: 0.4
     startSound:
       path: /Audio/Effects/hit_kick.ogg
 
@@ -380,6 +427,23 @@
     speedModifier: 2.0
   - type: SurgeryTool
     speed: 0.2
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+    endSound:
+      path: /Audio/Items/drill_hit.ogg
+      
+- type: entity
+  name: abductor's circular saw
+  id: SawAbductor
+  parent: SawElectric
+  description: You think you can cut anything with it.
+  components:
+  - type: Sprite
+    state: abductor
+  - type: Tool
+    speedModifier: 0.4
+  - type: SurgeryTool
+    speed: 0.1
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/saw.ogg
     endSound:
