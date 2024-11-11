@@ -43,6 +43,24 @@
       Steel: 100
   - type: StaticPrice
     price: 30
+    
+- type: entity
+  name: abductor's wirecutter
+  parent: Wirecutter
+  id: WirecutterAbductor
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/wirecutters.rsi
+    layers:
+    - state: abductor
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: Tool
+    speedModifier: 0.5
+    qualities:
+      - Cutting
+    useSound:
+      path: /Audio/Items/wirecutter.ogg
+  - type: RandomSprite
 
 - type: entity
   name: screwdriver
