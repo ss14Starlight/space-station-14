@@ -38,6 +38,20 @@
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: Cautery
+  
+- type: entity
+  name: abductor's cautery
+  id: CauteryAbductor
+  parent: Cautery
+  components:
+  - type: Sprite
+    state: abductor
+  - type: SurgeryTool
+    speed: 0.5
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
 # Drill
 
 - type: entity
@@ -66,6 +80,18 @@
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/saw.ogg
   - type: SurgicalDrill
+  
+- type: entity
+  name: abductor's drill
+  id: DrillAbductor
+  parent: Drill
+  components:
+  - type: Sprite
+    state: abductor
+  - type: SurgeryTool
+    speed: 0.5
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
 
 # Scalpel
 
@@ -460,3 +486,12 @@
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel
   - type: BoneGel
+  
+- type: entity
+  name: abductor's bottle of bone gel
+  id: BoneGelAbductor
+  parent: BoneGel
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: abductor
