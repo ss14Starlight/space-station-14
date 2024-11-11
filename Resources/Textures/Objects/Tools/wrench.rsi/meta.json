@@ -11,6 +11,9 @@
       "name": "icon"
     },
     {
+      "name": "abductor"
+    },
+    {
       "name": "inhand-left",
       "directions": 4
     },
@@ -20,6 +23,18 @@
     },
     {
       "name": "equipped-BELT",
+      "directions": 4
+    },
+    {
+      "name": "abductor-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "abductor-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "abductor-equipped-BELT",
       "directions": 4
     },
     {
