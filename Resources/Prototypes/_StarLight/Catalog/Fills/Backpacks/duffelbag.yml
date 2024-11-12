@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingBackpackDuffelAbductorBundle
+  id: ClothingBackpackDuffelAbductorFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: HemostatAbductor
+      - id: SawAbductor
+      - id: DrillAbductor
+      - id: CauteryAbductor
+      - id: RetractorAbductor
+      - id: ScalpelAbductor
+      - id: BoneGelAbductor
+      - id: BoneSetterAbductor
