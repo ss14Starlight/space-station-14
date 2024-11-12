@@ -12,6 +12,12 @@
     },
     {
       "name": "abductor"
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
     },
     {
       "name": "inhand-left",

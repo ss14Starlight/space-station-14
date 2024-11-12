@@ -123,7 +123,7 @@
   - type: RandomSprite
   - type: Item
     sprite: Objects/Tools/screwdriver.rsi
-    storedOffset: 0, 2
+    storedOffset: 2, 0
     storedRotation: 90
 
 - type: entity
@@ -173,6 +173,12 @@
   - type: Sprite
     sprite: Objects/Tools/wrench.rsi
     state: abductor
+  - type: Item
+    sprite: Objects/Tools/wrench.rsi
+    storedRotation: 45
+    storedSprite:
+      sprite: Objects/Tools/wrench.rsi
+      state: abductor
   - type: Tool
     speedModifier: 2
     qualities:

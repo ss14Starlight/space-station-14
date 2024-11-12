@@ -196,7 +196,7 @@
   - type: Item
     storedSprite:
       sprite: Objects/Tools/crowbar.rsi
-      state: storage
+      state: abductor
   - type: Tool
     speedModifier: 2
     qualities:
