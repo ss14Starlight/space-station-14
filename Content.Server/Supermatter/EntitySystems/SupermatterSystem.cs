@@ -124,8 +124,8 @@ public sealed class SupermatterSystem : EntitySystem
         var gasPercentages = new float[Enum.GetValues(typeof(Gas)).Length];
 
         var thermalСonductivity = 0f;
-        var heatModifier = 0f;
-        var heatResistance = 0f;
+        var stabilizationMinimum = 0f;
+        var radiationAbsorption = 0f;
         var heatPowerGeneration = 0f;
         var powerlossInhibition = 0f;
 
@@ -145,8 +145,8 @@ public sealed class SupermatterSystem : EntitySystem
             var smGas = sm.GasFacts[i];
 
             thermalСonductivity += smGas.ThermalСonductivity * gasPercentages[i];
-            heatModifier += smGas.HeatModifier * gasPercentages[i];
-            heatResistance += smGas.HeatResistance * gasPercentages[i];
+            stabilizationMinimum += smGas.StabilizationMinimum * gasPercentages[i];
+            radiationAbsorption += smGas.RadiationAbsorption * gasPercentages[i];
             heatPowerGeneration += smGas.HeatPowerGeneration * gasPercentages[i];
             powerlossInhibition += smGas.PowerlossInhibition * gasPercentages[i];
         }
@@ -155,9 +155,9 @@ public sealed class SupermatterSystem : EntitySystem
         powerlossInhibition = Math.Clamp(powerlossInhibition, 0, 1);
 
         sm.AbsorbedGasMix = absorbedMix;
-        sm.ThermalСonductivity = thermalСonductivity;
-        sm.GasHeatModifier = heatModifier;
-        sm.GasHeatResistance = heatResistance;
+        sm.ThermalСonductivity = MathF.Max(thermalСonductivity, 1.01f);
+        sm.StabilizationMinimum = stabilizationMinimum;
+        sm.RadiationAbsorption = MathF.Max(radiationAbsorption, 1.01f);
         sm.HeatPowerGeneration = heatPowerGeneration;
         sm.GasPowerlossInhibition = powerlossInhibition;
     }
@@ -175,25 +175,25 @@ public sealed class SupermatterSystem : EntitySystem
         var damageExternal = sm.AVExternalDamage + strength;
         sm.AVExternalDamage = 0f;
 
-        sm.AVHeatAccumulator = Math.Clamp(sm.AVHeatAccumulator + (damageExternal * sm.HeatAccumulatorRate), 0, 10);
+        sm.AVHeatAccumulator = Math.Clamp(sm.AVHeatAccumulator + (damageExternal * sm.HeatAccumulatorRate * (10 - sm.ThermalСonductivity)), 0, 200);
         sm.AVRadiationAccumulator = Math.Clamp(sm.AVRadiationAccumulator + (damageExternal * sm.RadiationAccumulatorRate), 0, 20);
         sm.AVLightingAccumulator = Math.Clamp(sm.AVLightingAccumulator + (damageExternal * sm.LightingAccumulatorRate), 0, 10);
-        sm.InternalEnergy = Math.Clamp(sm.InternalEnergy + (damageExternal * sm.InternalEnergyAccumulatorRate), 0, 10);
+        sm.InternalEnergy = Math.Clamp(sm.InternalEnergy + (damageExternal * sm.InternalEnergyAccumulatorRate), 0, 20);
 
         if (sm.AVLightingAccumulator > sm.LightingAccumulatorThreshold)
         {
-            var lightningProto = sm.LightningPrototypeIDs[(int)Math.Clamp(sm.AVLightingAccumulator, 0, 3)];
-            _lightning.ShootRandomLightnings(uid, 3, (int)sm.AVLightingAccumulator, lightningProto);
+            var lightningProto = sm.LightningPrototypeIDs[(int)Math.Clamp(sm.InternalEnergy, 0, 3)];
+            _lightning.ShootRandomLightnings(uid, 5, (int)sm.AVLightingAccumulator, lightningProto);
             sm.AVLightingAccumulator = 0;
         }
 
         Comp<RadiationSourceComponent>(uid).Intensity = 1 + sm.AVRadiationAccumulator;
-        sm.AVRadiationAccumulator /= 1.5f;
-        sm.InternalEnergy /= 2;
+        sm.AVRadiationAccumulator /= sm.RadiationAbsorption;
+        sm.InternalEnergy /= 1.5f;
+        sm.AVHeatAccumulator /= sm.ThermalСonductivity;
 
         var mix = _atmos.GetContainingMixture((uid, Transform(uid)), true, true) ?? new();
-        mix.Temperature += sm.AVHeatAccumulator * 4;
-        sm.AVHeatAccumulator /= sm.ThermalСonductivity;
+        mix.Temperature += sm.AVHeatAccumulator;
     }
     /// <summary>
     ///     React to damage dealt by all doodads.
@@ -201,18 +201,13 @@ public sealed class SupermatterSystem : EntitySystem
     private void ProcessDamage(EntityUid uid, SupermatterComponent sm)
     {
         var additiveTempBase = Atmospherics.T0C + SupermatterComponent.HeatPenaltyThreshold;
-        var tempLimitBase = additiveTempBase;
-        var tempLimitGas = sm.GasHeatResistance * additiveTempBase;
-        var tempLimitMoles = Math.Clamp(2 - sm.AbsorbedGasMix.TotalMoles / 100, 0, 1) * additiveTempBase;
 
-        sm.TempLimit = Math.Max(tempLimitBase + tempLimitGas + tempLimitMoles, Atmospherics.TCMB);
-
-        var damageHeat = Math.Clamp((sm.AbsorbedGasMix.Temperature - additiveTempBase) / SupermatterComponent.HeatPenaltyThreshold, -.3f, .3f);
+        var damageHeat = Math.Clamp((sm.AbsorbedGasMix.Temperature - additiveTempBase) / SupermatterComponent.HeatPenaltyThreshold, sm.StabilizationMinimum, .3f);
         var damagePower = Math.Clamp(sm.InternalEnergy - SupermatterComponent.PowerPenaltyThreshold, 0, .3f);
-        var damageMaxMoles = Math.Clamp((sm.AbsorbedGasMix.TotalMoles - SupermatterComponent.MolePenaltyMaxThreshold) / SupermatterComponent.MolePenaltyMaxThreshold, -0.1f, .25f);
-        var damageMinMoles = Math.Clamp((SupermatterComponent.MolePenaltyMinThreshold - sm.AbsorbedGasMix.TotalMoles) / SupermatterComponent.MolePenaltyMinThreshold, -0.1f, .25f);
-        var damageMaxPresure = Math.Clamp((sm.AbsorbedGasMix.Pressure - SupermatterComponent.PresureMaxPenaltyThreshold) / (SupermatterComponent.PresureMaxPenaltyThreshold * 10), 0, .25f);
-        var damageMinPresure = Math.Clamp((SupermatterComponent.PresureMinPenaltyThreshold - sm.AbsorbedGasMix.Pressure) / (SupermatterComponent.PresureMinPenaltyThreshold * 10), 0, .25f);
+        var damageMaxMoles = Math.Clamp((sm.AbsorbedGasMix.TotalMoles - SupermatterComponent.MolePenaltyMaxThreshold) / SupermatterComponent.MolePenaltyMaxThreshold, 0, .3f);
+        var damageMinMoles = Math.Clamp((SupermatterComponent.MolePenaltyMinThreshold - sm.AbsorbedGasMix.TotalMoles) / SupermatterComponent.MolePenaltyMinThreshold, 0, .3f);
+        var damageMaxPresure = Math.Clamp((sm.AbsorbedGasMix.Pressure - SupermatterComponent.PresureMaxPenaltyThreshold) / (SupermatterComponent.PresureMaxPenaltyThreshold * 10), 0, .3f);
+        var damageMinPresure = Math.Clamp((SupermatterComponent.PresureMinPenaltyThreshold - sm.AbsorbedGasMix.Pressure) / (SupermatterComponent.PresureMinPenaltyThreshold * 10), 0, .3f);
 
         var totalDamage = damageHeat + damagePower + damageMaxMoles + damageMinMoles + damageMaxPresure + damageMinPresure;
 
@@ -233,15 +228,14 @@ public sealed class SupermatterSystem : EntitySystem
     /// </summary>
     private void ProcessWaste(EntityUid uid, SupermatterComponent sm)
     {
-        sm.WasteMultiplier = Math.Clamp(1f + sm.GasHeatModifier, .5f, float.PositiveInfinity);
         var mix = _atmos.GetContainingMixture((uid, Transform(uid)), true, true) ?? new();
         var mergeMix = sm.AbsorbedGasMix;
 
-        mergeMix.Temperature += .65f * sm.WasteMultiplier * SupermatterComponent.ThermalReleaseModifier;
-        mergeMix.Temperature = Math.Clamp(mergeMix.Temperature, Atmospherics.TCMB, 2500 * sm.WasteMultiplier);
+        mergeMix.Temperature += .65f * SupermatterComponent.ThermalReleaseModifier;
+        mergeMix.Temperature = Math.Clamp(mergeMix.Temperature, Atmospherics.TCMB, 2500);
 
-        mergeMix.AdjustMoles(Gas.Plasma, Math.Max(.65f * sm.InternalEnergy * sm.WasteMultiplier * SupermatterComponent.PlasmaReleaseModifier, 0));
-        mergeMix.AdjustMoles(Gas.Oxygen, Math.Max(.65f * sm.InternalEnergy * sm.WasteMultiplier * SupermatterComponent.OxygenReleaseModifier, 0));
+        mergeMix.AdjustMoles(Gas.Tritium, Math.Max(.65f * sm.InternalEnergy * SupermatterComponent.PlasmaReleaseModifier, 0));
+        mergeMix.AdjustMoles(Gas.Oxygen, Math.Max(.65f * sm.InternalEnergy * SupermatterComponent.OxygenReleaseModifier, 0));
 
         _atmos.Merge(mix, mergeMix);
     }
@@ -467,7 +461,7 @@ public sealed class SupermatterSystem : EntitySystem
         if (!sm.Activated)
             sm.Activated = true;
 
-        sm.AVExternalDamage += args.DamageDelta?.GetTotal().Value / 100 ?? 0;
+        sm.AVExternalDamage += args.DamageDelta?.GetTotal().Value / 50 ?? 0;
     }
 
     private void OnExamine(EntityUid uid, SupermatterComponent sm, ExaminedEvent args)
