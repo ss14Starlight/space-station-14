@@ -14,7 +14,7 @@ public sealed partial class SupermatterComponent : Component
 
     //
     [ViewVariables(VVAccess.ReadOnly)]
-    public float HeatAccumulatorRate = 0.820f;
+    public float HeatAccumulatorRate = 0.840f;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public float AVHeatAccumulator = 0f;
@@ -29,7 +29,7 @@ public sealed partial class SupermatterComponent : Component
     public float LightingAccumulatorThreshold = 1.5f;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public float LightingAccumulatorRate = 0.035f;
+    public float LightingAccumulatorRate = 0.015f;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public float AVLightingAccumulator = 0f;
@@ -145,18 +145,6 @@ public sealed partial class SupermatterComponent : Component
     /// </summary>
     public float DamageArchive = 0f;
 
-    /// <summary>
-    ///     The temperature at which the supermatter crystal will begin to take damage.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float TempLimit = Atmospherics.T0C + HeatPenaltyThreshold;
-
-    /// <summary>
-    ///     Multiplies our gas waste amount and temperature.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float WasteMultiplier = 0f;
-
     [DataField("damageDangerPoint")]
     public float DamageDangerPoint = 50f;
 
@@ -173,12 +161,12 @@ public sealed partial class SupermatterComponent : Component
     ///     Affects the heat SM makes.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public float GasHeatModifier = 0f;
+    public float StabilizationMinimum = 0f;
     /// <summary>
     ///     Affters the minimum point at which SM takes damage.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public float GasHeatResistance = 0f;
+    public float RadiationAbsorption = 0f;
     /// <summary>
     ///     How much power decay is negated. Complete power decay negation at 1.
     /// </summary>
@@ -215,15 +203,15 @@ public sealed partial class SupermatterComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public GasFact[] GasFacts =
     {
-        new (thermalConductivity: 2.4f, heatPowerGeneration: 1f), // o2
-        new (thermalConductivity: 2.0f, heatModifier: -2.5f, heatPowerGeneration: -1), // n2
-        new (thermalConductivity: 1.2f, heatModifier: 1f, heatPowerGeneration: 1f, powerlossInhibition: 1f), // co2
-        new (thermalConductivity: 6.0f, heatModifier: 14f, heatPowerGeneration: 1f), // plasma
-        new (thermalConductivity: 3.0f, heatModifier: 9f, heatPowerGeneration: 1f), // tritium
-        new (thermalConductivity: 1.4f, heatModifier: 11f, heatPowerGeneration: 1f), // vapor
-        new (thermalConductivity: 1.6f, heatPowerGeneration: .5f), // ommonium
-        new (thermalConductivity: 1.3f, heatResistance: 5f), // n2o
-        new (thermalConductivity: 9.9f, heatModifier: 9f, heatResistance: 1f, heatPowerGeneration: 1f), // frezon
+        new (thermalConductivity: 2.2f, radiationAbsorption: 2.00f, stabilizationMinimum: -0.4f, heatPowerGeneration: 1f), // o2
+        new (thermalConductivity: 2.0f, radiationAbsorption: 2.10f, stabilizationMinimum: -0.3f, heatPowerGeneration: -1), // n2
+        new (thermalConductivity: 1.2f, radiationAbsorption: 3.50f, stabilizationMinimum: -0.3f, heatPowerGeneration: 1f, powerlossInhibition: 1f), // co2
+        new (thermalConductivity: 6.0f, radiationAbsorption: 1.45f, stabilizationMinimum: -0.4f, heatPowerGeneration: 1f), // plasma
+        new (thermalConductivity: 3.0f, radiationAbsorption: 1.30f, stabilizationMinimum: -0.5f, heatPowerGeneration: 1f), // tritium
+        new (thermalConductivity: 1.4f, radiationAbsorption: 4.00f, stabilizationMinimum: -0.2f, heatPowerGeneration: 1f), // vapor
+        new (thermalConductivity: 1.6f, radiationAbsorption: 2.80f, stabilizationMinimum: -0.1f,heatPowerGeneration: .5f), // ommonium
+        new (thermalConductivity: 1.3f, radiationAbsorption: 2.30f, stabilizationMinimum: -0.1f), // n2o
+        new (thermalConductivity: 9.9f, radiationAbsorption: 1.15f, stabilizationMinimum: -0.8f, heatPowerGeneration: 1f), // frezon
     };
 }
 
@@ -243,12 +231,12 @@ public sealed partial class GasFact
     ///     Affects the heat SM makes.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float HeatModifier;
+    public float StabilizationMinimum;
     /// <summary>
     ///     Affters the minimum point at which SM takes damage.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float HeatResistance;
+    public float RadiationAbsorption;
     /// <summary>
     ///     Affects the power gain the SM experiences from heat.
     /// </summary>
@@ -260,11 +248,11 @@ public sealed partial class GasFact
     [ViewVariables(VVAccess.ReadWrite)]
     public float PowerlossInhibition;
 
-    public GasFact(float? thermalConductivity = null, float? heatModifier = null, float? heatResistance = null, float? heatPowerGeneration = null, float? powerlossInhibition = null)
+    public GasFact(float? thermalConductivity = null, float? radiationAbsorption = null, float? stabilizationMinimum = null, float? heatPowerGeneration = null, float? powerlossInhibition = null)
     {
         ThermalСonductivity = thermalConductivity ?? 1;
-        HeatModifier = heatModifier ?? 1;
-        HeatResistance = heatResistance ?? 0;
+        StabilizationMinimum = stabilizationMinimum ?? 1;
+        RadiationAbsorption = radiationAbsorption ?? 1;
         HeatPowerGeneration = heatPowerGeneration ?? 0;
         PowerlossInhibition = powerlossInhibition ?? 0;
     }
