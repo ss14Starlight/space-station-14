@@ -198,7 +198,7 @@
       sprite: Objects/Tools/crowbar.rsi
       state: storage
   - type: Tool
-    speedModifier: 0.5
+    speedModifier: 2
     qualities:
       - Prying
     useSound:

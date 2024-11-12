@@ -52,10 +52,9 @@
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
     layers:
-    - state: abductor
-      map: [ "enum.DamageStateVisualLayers.Base" ]
+      - state: abductor
   - type: Tool
-    speedModifier: 0.5
+    speedModifier: 2
     qualities:
       - Cutting
     useSound:
@@ -115,14 +114,17 @@
     sprite: Objects/Tools/screwdriver.rsi
     layers:
       - state: abductor
-        map: [ "enum.DamageStateVisualLayers.Base" ]
   - type: Tool
-    speedModifier: 0.5
+    speedModifier: 2
     qualities:
       - Screwing
     useSound:
       collection: Screwdriver
   - type: RandomSprite
+  - type: Item
+    sprite: Objects/Tools/screwdriver.rsi
+    storedOffset: 0, 2
+    storedRotation: 90
 
 - type: entity
   name: wrench
@@ -172,7 +174,7 @@
     sprite: Objects/Tools/wrench.rsi
     state: abductor
   - type: Tool
-    speedModifier: 0.5
+    speedModifier: 2
     qualities:
       - Anchoring
     useSound:
