@@ -162,6 +162,21 @@
       Steel: 100
   - type: StaticPrice
     price: 22
+    
+- type: entity
+  name: abductor's wrench
+  parent: Wrench
+  id: WrenchAbductor
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/wrench.rsi
+    state: abductor
+  - type: Tool
+    speedModifier: 0.5
+    qualities:
+      - Anchoring
+    useSound:
+      path: /Audio/Items/ratchet.ogg
 
 - type: entity
   name: multitool
