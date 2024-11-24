@@ -12,7 +12,12 @@ public sealed partial class StarlightCCVars
         
     public static readonly CVarDef<string> ServerName =
         CVarDef.Create("lobby.server_name", "☆ Starlight ☆", CVar.SERVER | CVar.REPLICATED);
-        
+    
+    /// <summary>
+    /// Increases character slots limit to 30
+    /// </summary>
+    public static readonly CVarDef<int>
+            GameMaxCharacterSlots = CVarDef.Create("game.maxcharacterslots", 30, CVar.ARCHIVE | CVar.SERVERONLY);    
     /// <summary>
     /// Making everyone a pacifist at the end of a round.
     /// </summary>
