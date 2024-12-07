@@ -82,8 +82,3 @@
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
     - type: ShowSyndicateIcons
-    - type: ShowJobIcons
-    - type: ShowMindShieldIcons
-    - type: ShowCriminalRecordIcons
-    - type: FlashImmunity
-    - type: EyeProtection
