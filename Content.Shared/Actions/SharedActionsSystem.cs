@@ -520,7 +520,7 @@ public abstract class SharedActionsSystem : EntitySystem
                 break;
             }
             case InstantActionComponent instantAction:
-                var hasNoSpecificComponents = !HasComp<StationAiOverlayComponent>(user) && !HasComp<AbductorScientistComponent>(user);
+                var hasNoSpecificComponents = !HasComp<StationAiOverlayComponent>(user) && !HasComp<AbductorScientistComponent>(user) && !HasComp<AbductorAgentComponent>(user);
                 if (action.CheckCanInteract && !_actionBlockerSystem.CanInteract(user, null) && hasNoSpecificComponents)
                     return;
 
@@ -566,7 +566,8 @@ public abstract class SharedActionsSystem : EntitySystem
         if (_whitelistSystem.IsWhitelistFail(whitelist, target))
             return false;
 
-        if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, target))
+        var hasNoSpecificComponents = !HasComp<StationAiOverlayComponent>(user) && !HasComp<AbductorScientistComponent>(user) && !HasComp<AbductorAgentComponent>(user);
+        if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, target) && hasNoSpecificComponents)
             return false;
 
         if (user == target)
@@ -611,7 +612,7 @@ public abstract class SharedActionsSystem : EntitySystem
         if (entityCoordinates is not { } coords)
             return false;
 
-        var hasNoSpecificComponents = !HasComp<StationAiOverlayComponent>(user) && !HasComp<AbductorScientistComponent>(user);
+        var hasNoSpecificComponents = !HasComp<StationAiOverlayComponent>(user) && !HasComp<AbductorScientistComponent>(user) && !HasComp<AbductorAgentComponent>(user);
         if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, null) && hasNoSpecificComponents)
             return false;
 

@@ -2330,3 +2330,279 @@ Entries:
   id: 327
   time: '2025-01-16T19:33:08.826765+00:00'
   url: 'null'
+- author: Rinary
+  changes:
+  - message: Added abductor extractor for fust extracting hearts.
+    type: Add
+  id: 328
+  time: '2025-01-17T21:33:27.338312+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Added silencer for silence humans.
+    type: Add
+  id: 329
+  time: '2025-01-17T21:33:39.368367+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Now abductor has their own blood.
+    type: Tweak
+  id: 330
+  time: '2025-01-17T21:33:54.644411+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Updated ROBUST TOOLBOX to V240.
+    type: Tweak
+  id: 331
+  time: '2025-01-17T21:41:09.727323+00:00'
+  url: 'null'
+- author: Miracula
+  changes:
+  - message: Added plushie mime lizard
+    type: Add
+  id: 332
+  time: '2025-01-19T09:32:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/249
+- author: Miracula
+  changes:
+  - message: Added new lobby art "Positivity"
+    type: Add
+  id: 333
+  time: '2025-01-19T09:32:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/249
+- author: Conflee
+  changes:
+  - message: Blue Shield Officer's room and Nanotrasen Representative's room
+    type: Add
+  id: 334
+  time: '2025-01-19T09:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/246
+- author: Conflee
+  changes:
+  - message: Redesigned the entire former Chapel area. Moved Library to the far east
+      side of Chapel, and Detective's Office to the west side of Chapel across the
+      hall from where it formerly was
+    type: Tweak
+  id: 335
+  time: '2025-01-19T09:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/246
+- author: Conflee
+  changes:
+  - message: Replaced former Detective's Office with a shop. Ran a maints tunnel to
+      connect Slums Hall with the Viewing Deck below Bar, as well as the Viewing Deck
+      to the Tree Room. This allows for alternative maints navigation from the west
+      side of the station to the east without having to go down 'proper' hallways
+    type: Tweak
+  id: 336
+  time: '2025-01-19T09:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/246
+- author: Conflee
+  changes:
+  - message: Turned the old Library into an extension of dorms, built more like an
+      apartment with 2 rooms, a kitchen, and a living room. Good spot to RP now I
+      hope
+    type: Tweak
+  id: 337
+  time: '2025-01-19T09:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/246
+- author: Conflee
+  changes:
+  - message: Redesigned Brigmed room to be more to standards. Empty Chem Dispenser,
+      Chem Master, Hot Plate, Blender, Morgue, and a bedroom
+    type: Tweak
+  id: 338
+  time: '2025-01-19T09:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/246
+- author: Conflee
+  changes:
+  - message: In Medical. Replaced old Reception with Chemistry, old Chemistry with
+      CMO, and old CMO with Reception. This gives CMO proper space so they don't live
+      in a closet, and gives Chemistry a public front desk
+    type: Tweak
+  id: 339
+  time: '2025-01-19T09:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/246
+- author: Conflee
+  changes:
+  - message: More Meteor Shielding around Tesla. Comes round-start with Meteors embedded
+      into it, to reflect the average Cog round
+    type: Tweak
+  id: 340
+  time: '2025-01-19T09:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/246
+- author: Conflee
+  changes:
+  - message: Added all Starlight Venders and ATMs, so Starlight's economy now works
+      on Cog
+    type: Tweak
+  id: 341
+  time: '2025-01-19T09:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/246
+- author: Killer Tamashi
+  changes:
+  - message: Added Elite BSO Jumpsuit/Skirt
+    type: Add
+  id: 342
+  time: '2025-01-19T09:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/248
+- author: Killer Tamashi
+  changes:
+  - message: Added BSO Satchel
+    type: Add
+  id: 343
+  time: '2025-01-19T09:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/248
+- author: Killer Tamashi
+  changes:
+  - message: Added BSO Elite Cape. Spawns in BSO Hardsuit locker due to missing BSO
+      locker definitions.
+    type: Add
+  id: 344
+  time: '2025-01-19T09:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/248
+- author: Killer Tamashi
+  changes:
+  - message: Added BSO Webbing
+    type: Add
+  id: 345
+  time: '2025-01-19T09:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/248
+- author: Killer Tamashi
+  changes:
+  - message: Added BSO Gasmask
+    type: Add
+  id: 346
+  time: '2025-01-19T09:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/248
+- author: Killer Tamashi
+  changes:
+  - message: Changed BSO hardsuit locker, it now gets the new security magboots.
+    type: Tweak
+  id: 347
+  time: '2025-01-19T09:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/248
+- author: Killer Tamashi
+  changes:
+  - message: Changed BSO's hardsuit helmet, it now looks less flat.
+    type: Tweak
+  id: 348
+  time: '2025-01-19T09:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/248
+- author: Killer Tamashi
+  changes:
+  - message: Fixed missing BSO clothing definitions, everything should now be classified
+      as command contraband.
+    type: Fix
+  id: 349
+  time: '2025-01-19T09:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/248
+- author: Killer Tamashi
+  changes:
+  - message: Fixed missing BSO clothing descriptions, everything should now have at
+      least SOME description when examined.
+    type: Fix
+  id: 350
+  time: '2025-01-19T09:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/248
+- author: Rinary
+  changes:
+  - message: Added abductor objectives synchronization.
+    type: Add
+  id: 351
+  time: '2025-01-19T17:23:29.225523+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: fixed abductor objectives synchronization.
+    type: Fix
+  id: 352
+  time: '2025-01-21T10:49:04.907461+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Now abductors can mark abductors in observation console(needs to be gizmo
+      in pockets).
+    type: Tweak
+  id: 353
+  time: '2025-01-21T10:49:56.483048+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Added store to abductor console.
+    type: Add
+  id: 354
+  time: '2025-01-21T14:12:45.588776+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Removed alien pistol from roundstart abductor agent gear.
+    type: Tweak
+  id: 355
+  time: '2025-01-21T14:13:05.949929+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Removed extractor from roundstart abductor scientist gear.
+    type: Tweak
+  id: 356
+  time: '2025-01-21T14:13:27.648990+00:00'
+  url: 'null'
+- author: Conflee
+  changes:
+  - message: Added a new Pirate Shuttle for Admemes, "The Lance", based on the Evac
+      Shuttle 'Lance' from SS13
+    type: Add
+  id: 357
+  time: '2025-01-21T14:17:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/256
+- author: Conflee
+  changes:
+  - message: Added event to spawn the new Pirate Shuttle for Admins
+    type: Add
+  id: 358
+  time: '2025-01-22T10:00:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/257
+- author: Darkrell
+  changes:
+  - message: Fixed guns shooting.
+    type: Fix
+  id: 359
+  time: '2025-01-22T15:42:13.009131+00:00'
+  url: 'null'
+- author: Darkrell
+  changes:
+  - message: Fixed reflective vest and shield, now they reflects only lasers.
+    type: Fix
+  id: 360
+  time: '2025-01-22T15:42:50.720791+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Fixed abductor abuse, now wonderprod and silencer has limit(20u).
+    type: Fix
+  id: 361
+  time: '2025-01-22T15:43:26.542954+00:00'
+  url: 'null'
+- author: Sadie
+  changes:
+  - message: New song for when the nuclear bomb is armed.
+    type: Add
+  id: 362
+  time: '2025-01-22T22:42:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/258
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added ghost themes for customization.
+    type: Add
+  id: 363
+  time: '2025-01-23T10:41:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/260
+- author: Rinary
+  changes:
+  - message: Fixed ghost theme synchronization. Now all themes shows to all players.
+    type: Fix
+  id: 364
+  time: '2025-01-23T15:51:22.487446+00:00'
+  url: 'null'

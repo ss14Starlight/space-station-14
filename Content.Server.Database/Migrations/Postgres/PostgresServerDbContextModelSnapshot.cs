@@ -766,6 +766,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("integer")
                         .HasColumnName("flags");
 
+                    b.Property<string>("GhostTheme")
+                        .HasColumnType("text")
+                        .HasColumnName("ghost_theme");
+
                     b.Property<string>("Title")
                         .HasColumnType("text")
                         .HasColumnName("title");
