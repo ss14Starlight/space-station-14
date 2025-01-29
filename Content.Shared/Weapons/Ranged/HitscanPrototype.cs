@@ -7,6 +7,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Combat.Ranged.Pierce;
 
 namespace Content.Shared.Weapons.Ranged;
 
@@ -47,7 +48,27 @@ public sealed partial class HitscanPrototype : IPrototype, IShootable, IInheriti
     // 🌟Starlight🌟
     [ViewVariables(VVAccess.ReadWrite), DataField("slowdownAmount")]
     public float SlowdownAmount;
-    
+
+    // 🌟Starlight🌟
+    [ViewVariables(VVAccess.ReadWrite), DataField("reflectChance")]
+    public float ReflectChance = 1f;
+
+    // 🌟Starlight🌟
+    [ViewVariables(VVAccess.ReadWrite), DataField("pierceChance")]
+    public float PierceChance = 0.10f;
+
+    // 🌟Starlight🌟
+    [ViewVariables(VVAccess.ReadWrite), DataField("pierceLevel")]
+    public PierceLevel PierceLevel = PierceLevel.Flesh;
+
+    // 🌟Starlight🌟
+    [ViewVariables(VVAccess.ReadWrite), DataField("armorPenetration")]
+    public float ArmorPenetration = 0f;
+
+    // 🌟Starlight🌟
+    [ViewVariables(VVAccess.ReadWrite), DataField("speed")]
+    public float Speed = 315f; // 9mm bullet speed
+
     [ViewVariables(VVAccess.ReadWrite), DataField("walkSpeedMultiplier")]
     public float WalkSpeedMultiplier = 1f;
 

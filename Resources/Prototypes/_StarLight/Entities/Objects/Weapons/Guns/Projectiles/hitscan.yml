@@ -257,7 +257,8 @@
   damage:
     types:
       Blunt: 10
-  staminaDamage: 40   
+  staminaDamage: 40
+  pierceChance: 0   
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -269,6 +270,7 @@
   damage:
     types:
       Piercing: 28
+  pierceChance: 0.08
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -280,6 +282,7 @@
   damage:
     types:
       Piercing: 28
+  pierceChance: 0.08
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -290,8 +293,9 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 10
-  count: 6
+      Piercing: 5
+  pierceChance: 0.03
+  count: 12
   spread: 15
   bullet:
     sprite:
@@ -303,10 +307,11 @@
   parent: BulletTrace
   damage:
     types:
-      Blunt: 3
-      Heat: 7
+      Blunt: 2
+      Heat: 3
+  pierceChance: 0.02
   igniteOnCollision: true
-  count: 6
+  count: 12
   spread: 15
   bullet:
     sprite:
@@ -319,7 +324,8 @@
   damage:
     types:
       Blunt: 1
-  count: 6
+  pierceChance: 0
+  count: 12
   spread: 15
   bullet:
     sprite:
@@ -331,9 +337,10 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 3
-      Slash: 3
-  count: 10
+      Piercing: 2
+      Slash: 2
+  pierceChance: 0
+  count: 14
   spread: 45
   bullet:
     sprite:
@@ -345,9 +352,10 @@
   parent: BulletTrace
   damage:
     types:
-      Radiation: 5
-      Piercing: 5
-  count: 5
+      Radiation: 2
+      Piercing: 3
+  pierceChance: 0.05
+  count: 10
   spread: 6
   bullet:
     sprite:

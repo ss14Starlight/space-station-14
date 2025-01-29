@@ -56,6 +56,8 @@
   id: WallBrick
   name: brick wall
   components:
+  - type: Pierceable
+    level: Metal
   - type: Tag
     tags:
       - Wall
@@ -583,6 +585,8 @@
   id: WallReinforced
   name: reinforced wall
   components:
+  - type: Pierceable
+    level: HardenedMetal
   - type: Sprite
     sprite: Structures/Walls/solid.rsi
   - type: Icon
