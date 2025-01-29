@@ -175507,7 +175507,7 @@ entities:
     - type: Transform
       pos: 35.578094,20.991646
       parent: 13329
-- proto: MagazineRifle
+- proto: MagazineRifleSP
   entities:
   - uid: 10669
     components:
