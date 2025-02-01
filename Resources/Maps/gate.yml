@@ -163223,7 +163223,7 @@ entities:
     - type: Transform
       pos: -32.5,7.5
       parent: 2
-- proto: SpeedLoaderMagnum
+- proto: SpeedLoaderMagnumSP
   entities:
   - uid: 3542
     components:
