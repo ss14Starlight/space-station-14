@@ -1,0 +1,34 @@
+- type: entity
+  name: marriage axe 
+  parent: [BaseMeleeWeaponEnergy, BaseSyndicateContraband]
+  id: MarriageAxe
+  description: A charmingl subtle instrument of chaos—perfect for when diplomacy fails. Screams like a banshee, cuts like a demon, and turns people into regrettable memories. Handle with enthusiasm.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/marriage_axe.rsi
+    layers:
+    - state: e_sword
+    - state: e_sword_blade
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/marriage_axe-inhands.rsi
+  - type: MultiHandedItem
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  - type: Tool
+    qualities:
+      - Prying
+  - type: ToolTileCompatible
+  - type: Prying
+  - type: UseDelay
+    delay: 1
+
+# Todo pry doors
