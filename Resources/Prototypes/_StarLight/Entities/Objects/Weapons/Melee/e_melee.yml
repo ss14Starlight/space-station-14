@@ -2,33 +2,48 @@
   name: marriage axe 
   parent: [BaseMeleeWeaponEnergy, BaseSyndicateContraband]
   id: MarriageAxe
-  description: A charmingl subtle instrument of chaos—perfect for when diplomacy fails. Screams like a banshee, cuts like a demon, and turns people into regrettable memories. Handle with enthusiasm.
+  description: A charming subtle instrument of chaos—perfect for when diplomacy fails. Screams like a banshee, cuts like a demon, and turns people into regrettable memories. Handle with enthusiasm.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/marriage_axe.rsi
     layers:
-    - state: e_sword
-    - state: e_sword_blade
+    - state: marriage
+    - state: marriage_blade
       color: "#FFFFFF"
       visible: false
       shader: unshaded
       map: [ "blade" ]
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/_Starlight/Weapons/marriage_hum.ogg
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/_Starlight/Weapons/marriage_swing.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/_Starlight/Weapons/marriage_swing.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/_Starlight/Weapons/marriage_swing.ogg
+      params:
+        variation: 0.125
+    activatedDamage:
+      types:
+        Slash: 25
+        Heat: 25
+        Structural: 30
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/marriage_axe-inhands.rsi
   - type: MultiHandedItem
-  - type: Scalpel
-  - type: SurgeryTool
-    successRate: 0.6
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
   - type: Tool
     qualities:
       - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
   - type: ToolTileCompatible
   - type: Prying
   - type: UseDelay
     delay: 1
-
-# Todo pry doors
