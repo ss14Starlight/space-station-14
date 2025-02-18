@@ -3439,4 +3439,89 @@ Entries:
   id: 476
   time: '2025-02-15T13:24:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/326
-
+- author: Killer Tamashi
+  changes:
+  - message: Added Corpsman hat/jacket/uniform.
+    type: Add
+  id: 477
+  time: '2025-02-16T09:22:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/332
+- author: Rinary
+  changes:
+  - message: Added Mech Night Vision Camera(allows to enable night vision) as new
+      passive equipment.
+    type: Add
+  id: 478
+  time: '2025-02-16T16:26:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/334
+- author: PubliclyExecutedPig
+  changes:
+  - message: Re-added Saltern to the map pool
+    type: Add
+  id: 479
+  time: '2025-02-16T17:09:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/331
+- author: Rinary
+  changes:
+  - message: Added Salvage Ticket Machine.
+    type: Add
+  id: 480
+  time: '2025-02-16T19:27:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/335
+- author: Rinary
+  changes:
+  - message: Added Salvage Tickets.
+    type: Add
+  id: 481
+  time: '2025-02-16T19:27:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/335
+- author: Rinary
+  changes:
+  - message: Now Salvage has MindShield and can't be antag.
+    type: Tweak
+  id: 482
+  time: '2025-02-17T09:43:09.650707+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Added Access Lock to juggernaut suit, now if you wear juggernaut suit
+      without Nukeops access, you will die(copy it using agent id from basic card).
+    type: Tweak
+  id: 483
+  time: '2025-02-17T09:44:07.545890+00:00'
+  url: 'null'
+- author: PubliclyExecutedPig
+  changes:
+  - message: Added an admeme only ERT Shuttle - Admins rejoice!
+    type: Add
+  id: 484
+  time: '2025-02-17T09:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/336
+- author: Rinary
+  changes:
+  - message: Removed objective "Die A Glorious Death".
+    type: Remove
+  id: 485
+  time: '2025-02-17T10:43:24.445429+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Removed Juggernaut suit from AGENT Uplink.
+    type: Remove
+  id: 486
+  time: '2025-02-17T10:43:43.217051+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: DAGD Returned.
+    type: Tweak
+  id: 487
+  time: '2025-02-17T15:33:39.761457+00:00'
+  url: 'null'
+- author: Rinary
+  changes:
+  - message: Locked version of the jug suit in bundle replaced with default.
+    type: Tweak
+  id: 488
+  time: '2025-02-17T15:34:07.337923+00:00'
+  url: 'null'
