@@ -46,7 +46,7 @@
       - Biological
     damage:
       groups:
-        Brute: -4
+        Brute: -6
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
@@ -81,9 +81,9 @@
     delay: 0.5
     damage:
       types:
-        Heat: -3.5
-        Cold: -3.5
-        Shock: -3.5
+        Heat: -5.5
+        Cold: -5.5
+        Shock: -5.5
         Caustic: -1
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
