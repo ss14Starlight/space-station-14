@@ -8,7 +8,7 @@ public sealed partial class CCVars
     ///     Link to Discord server to show in the launcher.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksDiscord =
-        CVarDef.Create("infolinks.discord", "", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("infolinks.discord", "https://discord.gg/HyDhPwAmUq", CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Link to website to show in the launcher.
@@ -20,19 +20,19 @@ public sealed partial class CCVars
     ///     Link to GitHub page to show in the launcher.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksGithub =
-        CVarDef.Create("infolinks.github", "", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("infolinks.github", "https://github.com/ss14Starlight/space-station-14/", CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Link to website to show in the launcher.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksWebsite =
-        CVarDef.Create("infolinks.website", "", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("infolinks.website", "https://ss14-starlight.online/", CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Link to wiki to show in the launcher.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksWiki =
-        CVarDef.Create("infolinks.wiki", "", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("infolinks.wiki", "https://ss14-starlight.wiki/", CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Link to Patreon. Not shown in the launcher currently.
@@ -44,7 +44,7 @@ public sealed partial class CCVars
     ///     Link to the bug report form.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksBugReport =
-        CVarDef.Create("infolinks.bug_report", "", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("infolinks.bug_report", "https://github.com/ss14Starlight/space-station-14/issues", CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Link to site handling ban appeals. Shown in ban disconnect messages.
