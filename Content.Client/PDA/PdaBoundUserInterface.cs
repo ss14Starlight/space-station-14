@@ -20,6 +20,8 @@ namespace Content.Client.PDA
             _pdaSystem = EntMan.System<PdaSystem>();
         }
 
+        public PdaMenu? GetMenu() => _menu;
+
         protected override void Open()
         {
             base.Open();
@@ -31,6 +33,11 @@ namespace Content.Client.PDA
         private void CreateMenu()
         {
             _menu = this.CreateWindowCenteredLeft<PdaMenu>();
+
+            _menu.PopoutButton.OnPressed += _ =>
+            {
+                _pdaSystem.OnPdaPopout(_menu);
+            };
 
             _menu.FlashLightToggleButton.OnToggled += _ =>
             {
