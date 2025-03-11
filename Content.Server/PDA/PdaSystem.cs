@@ -4,30 +4,24 @@ using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Managers;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.Instruments;
-using Content.Server.Light.EntitySystems;
 using Content.Server.PDA.Ringer;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
-using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Server.Traitor.Uplink;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
 using Content.Shared.Light;
-using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.PDA;
-using Content.Shared.Store.Components;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
-using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Shared.CCVar;
 using Robust.Shared.Timing;
 
 namespace Content.Server.PDA
@@ -56,7 +50,6 @@ namespace Content.Server.PDA
 
             // UI Events:
             SubscribeLocalEvent<PdaComponent, BoundUIOpenedEvent>(OnPdaOpen);
-            SubscribeLocalEvent<PdaComponent, PdaRequestUpdateInterfaceMessage>(OnUiMessage);
             SubscribeLocalEvent<PdaComponent, PdaToggleFlashlightMessage>(OnUiMessage);
             SubscribeLocalEvent<PdaComponent, PdaShowRingtoneMessage>(OnUiMessage);
             SubscribeLocalEvent<PdaComponent, PdaShowMusicMessage>(OnUiMessage);
@@ -236,13 +229,6 @@ namespace Content.Server.PDA
             UpdatePdaUi(ent.Owner, ent.Comp);
         }
 
-        private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaRequestUpdateInterfaceMessage msg)
-        {
-            if (!PdaUiKey.Key.Equals(msg.UiKey))
-                return;
-
-            UpdatePdaUi(uid, pda);
-        }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaToggleFlashlightMessage msg)
         {
