@@ -3,6 +3,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using System.Linq;
+using Robust.Shared.Log;
 
 namespace Content.Client.PDA;
 
@@ -43,6 +44,8 @@ public sealed class PdaSystem : SharedPdaSystem
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     
+    private readonly ISawmill _sawmill = Logger.GetSawmill("PdaSystem");
+
     private PdaMenu? _popoutMenu;
     private IClydeWindow? ClydeWindow;
     private WindowRoot? WindowRoot;
@@ -104,14 +107,24 @@ public sealed class PdaSystem : SharedPdaSystem
         if (_popoutMenu == null || ClydeWindow == null || WindowRoot == null)
             return;
         
-        // Remove the menu from the window root
-        _popoutMenu.Orphan();
-        
-        // Dispose the window
-        ClydeWindow.Dispose();
-        ClydeWindow = null;
-        WindowRoot = null;
-        _popoutMenu = null;
+        try
+        {
+            // Remove the menu from the window root
+            _popoutMenu.Orphan();
+            
+            // Dispose the window
+            ClydeWindow.Dispose();
+        }
+        catch (Exception e)
+        {
+            _sawmill.Error("Error closing popout window: {Error}", e);    
+        }
+        finally
+        {
+            ClydeWindow = null;
+            WindowRoot = null;
+            _popoutMenu = null;
+        }
     }
     // Starlight-end
 }
