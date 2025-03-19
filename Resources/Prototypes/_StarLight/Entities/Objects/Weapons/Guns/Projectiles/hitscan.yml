@@ -631,7 +631,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 28
+      Piercing: 40
   pierceChance: 0.08
   bullet:
     sprite:
@@ -655,7 +655,8 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 5
+      Piercing: 6
+  armorPenetration: -1
   pierceChance: 0.03
   count: 12
   spread: 15
@@ -670,7 +671,8 @@
   damage:
     types:
       Blunt: 2
-      Heat: 3
+      Heat: 4
+  armorPenetration: -1
   pierceChance: 0.02
   igniteOnCollision: true
   count: 12
@@ -701,6 +703,7 @@
     types:
       Piercing: 2
       Slash: 2
+  armorPenetration: -1
   pierceChance: 0
   count: 14
   spread: 45
