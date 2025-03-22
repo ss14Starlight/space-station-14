@@ -14,7 +14,7 @@
       - ExtRoles
       - Retiree
   startingGear: NanoTrasenRepresentativeGear
-  icon: JobIconNanotrasen
+  icon: JobIconNTRep
   supervisors: job-supervisors-centcom
   canBeAntag: false
   access:
