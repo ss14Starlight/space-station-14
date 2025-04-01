@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 247.2.0
+  engineVersion: 248.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/26/2025 01:28:50
-  entityCount: 37721
+  time: 03/11/2025 05:03:59
+  entityCount: 37722
 maps:
 - 353
 grids:
@@ -86603,6 +86603,13 @@ entities:
     components:
     - type: Transform
       pos: 65.5,143.5
+      parent: 1
+- proto: CargoMailTeleporter
+  entities:
+  - uid: 37375
+    components:
+    - type: Transform
+      pos: 153.5,102.5
       parent: 1
 - proto: Carpet
   entities:
@@ -189473,25 +189480,25 @@ entities:
       parent: 1
 - proto: MaintsRoomMarker
   entities:
-  - uid: 5567
-    components:
-    - type: Transform
-      pos: 149.5,79.5
-      parent: 1
   - uid: 5646
     components:
     - type: Transform
-      pos: 18.5,90.5
+      pos: 151.5,81.5
       parent: 1
-  - uid: 6102
+  - uid: 19414
     components:
     - type: Transform
-      pos: 57.5,36.5
+      pos: 59.5,38.5
       parent: 1
   - uid: 23938
     components:
     - type: Transform
-      pos: 127.5,150.5
+      pos: 20.5,92.5
+      parent: 1
+  - uid: 30588
+    components:
+    - type: Transform
+      pos: 129.5,152.5
       parent: 1
 - proto: MakeshiftShield
   entities:
@@ -194828,6 +194835,12 @@ entities:
     - type: Transform
       pos: 51.5,107.5
       parent: 1
+  - uid: 6102
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 58.5,33.5
+      parent: 1
   - uid: 10753
     components:
     - type: Transform
@@ -195297,11 +195310,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 139.5,126.5
       parent: 1
-  - uid: 30588
-    components:
-    - type: Transform
-      pos: 59.5,40.5
-      parent: 1
   - uid: 30829
     components:
     - type: Transform
@@ -195419,7 +195427,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 131.5,152.5
+      pos: 153.5,81.5
       parent: 1
   - uid: 35414
     components:
@@ -195483,12 +195491,6 @@ entities:
     - type: Transform
       pos: 21.5,102.5
       parent: 1
-  - uid: 37375
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 153.5,81.5
-      parent: 1
   - uid: 37423
     components:
     - type: Transform
@@ -195511,6 +195513,12 @@ entities:
     components:
     - type: Transform
       pos: 47.5,108.5
+      parent: 1
+  - uid: 37722
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 125.5,151.5
       parent: 1
 - proto: PoweredStrobeLightEmpty
   entities:
@@ -238830,10 +238838,10 @@ entities:
     - type: Transform
       pos: 131.5,94.5
       parent: 1
-  - uid: 19414
+  - uid: 5567
     components:
     - type: Transform
-      pos: 153.5,102.5
+      pos: 137.5,110.5
       parent: 1
   - uid: 19868
     components:

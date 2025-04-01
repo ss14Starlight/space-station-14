@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 247.2.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/07/2025 20:05:06
+  entityCount: 36004
+maps:
+- 1
+grids:
+- 13329
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   1: FloorArcadeBlue
@@ -62,7 +73,6 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
   - uid: 13329
     components:
     - type: MetaData
@@ -19508,7 +19518,7 @@ entities:
       pos: -15.5,-4.5
       parent: 13329
     - type: Door
-      secondsUntilStateChange: -10469.685
+      secondsUntilStateChange: -10532.307
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -79214,6 +79224,13 @@ entities:
     components:
     - type: Transform
       pos: 72.5,-18.5
+      parent: 13329
+- proto: CargoMailTeleporter
+  entities:
+  - uid: 36004
+    components:
+    - type: Transform
+      pos: 15.5,-14.5
       parent: 13329
 - proto: Carpet
   entities:
