@@ -283,7 +283,7 @@
 - type: entity
   id: LeftArmCyberMantisBlade
   name: "left mantis blade arm"
-  parent: [PartCyber, BaseLeftArm, BaseSyndicateContraband]
+  parent: [PartCyber, BaseLeftArm, BaseAdvancedCyberlimbContraband]
   components:
     - type: BaseLayerId
       layer: CyberLArmMantisBlade
@@ -305,7 +305,7 @@
 - type: entity
   id: RightArmCyberMantisBlade
   name: "right mantis blade arm"
-  parent: [PartCyber, BaseRightArm, BaseSyndicateContraband]
+  parent: [PartCyber, BaseRightArm, BaseAdvancedCyberlimbContraband]
   components:
     - type: BaseLayerId
       layer: CyberRArmMantisBlade
