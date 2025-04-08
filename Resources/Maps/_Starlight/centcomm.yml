@@ -1,17 +1,11 @@
 meta:
   format: 7
-  category: Map
+  category: Grid
   engineVersion: 250.0.0
   forkId: Starlight
   forkVersion: 1732131340
   time: 04/04/2025 13:08:47
   entityCount: 8898
-maps:
-- 1
-grids:
-- 2
-orphans: []
-nullspace: []
 tilemap:
   0: Space
   15: FloorAsphalt
@@ -55,21 +49,9 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: PhysicsMap
-    - type: GridTree
-    - type: MovedGrids
-    - type: Broadphase
-    - type: OccluderTree
-  - uid: 2
-    components:
-    - type: MetaData
       name: Central Command
     - type: Transform
-      parent: 1
+      parent: invalid
     - type: MapGrid
       chunks:
         -1,-1:
@@ -3744,8 +3726,6 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
   - uid: 7283
-    mapInit: true
-    paused: true
     components:
     - type: MetaData
       name: solution - food
@@ -3807,8 +3787,6 @@ entities:
 - proto: ActionToggleLight
   entities:
   - uid: 10
-    mapInit: true
-    paused: true
     components:
     - type: Transform
       parent: 9
@@ -3816,8 +3794,6 @@ entities:
       originalIconColor: '#FFFFFFFF'
       container: 9
   - uid: 12
-    mapInit: true
-    paused: true
     components:
     - type: Transform
       parent: 11
@@ -23099,8 +23075,6 @@ entities:
 - proto: ClothingShoesTourist
   entities:
   - uid: 3646
-    mapInit: true
-    paused: true
     components:
     - type: MetaData
       desc: These sandals look surprisingly comfortable.
