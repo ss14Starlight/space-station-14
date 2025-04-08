@@ -83,4 +83,4 @@
     useSound: /Audio/Items/jaws_pry.ogg
   - type: Sharp
   - type: Reflect
-    reflectprob: 0.2
+    reflectProb: 0.2
