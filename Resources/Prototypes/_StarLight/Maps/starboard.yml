@@ -55,7 +55,7 @@
             CargoTechnician: [ 6, 8 ]
             MiningSpecialist: [ 1, 2]
             #civillian
-            Passenger: [ -1, -1 ]
+            Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 3 ]   
