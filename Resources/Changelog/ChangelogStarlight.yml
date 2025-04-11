@@ -4713,4 +4713,55 @@ Entries:
   id: 652
   time: '2025-04-10T18:32:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/436
+- author: Happyrobot33
+  changes:
+  - message: Fixed shuttle FTL UI being unusable.
+    type: Fix
+  id: 653
+  time: '2025-04-10T21:51:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/475
+- author: walksanatora
+  changes:
+  - message: Adopted Borgis from upstream april fools as they were too precious to
+      be left behind.
+    type: Add
+  id: 654
+  time: '2025-04-11T08:34:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/438
+- author: Sparlight
+  changes:
+  - message: Borgis can be made in the bio generator
+    type: Add
+  id: 655
+  time: '2025-04-11T08:34:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/438
+- author: Sparlight
+  changes:
+  - message: Syndicate borgis can be bought in the uplink.
+    type: Add
+  id: 656
+  time: '2025-04-11T08:34:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/438
+- author: Rinary
+  changes:
+  - message: Added oven as new coocking device.
+    type: Add
+  id: 657
+  time: '2025-04-11T10:28:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/477
+- author: Rinary
+  changes:
+  - message: Now cooking recipes also needs correct device type. (You can check this
+      in in-game guidebook)
+    type: Tweak
+  id: 658
+  time: '2025-04-11T10:28:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/477
+- author: Rinary
+  changes:
+  - message: Added oven machine board bounty & oven machine board.
+    type: Add
+  id: 659
+  time: '2025-04-11T10:28:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/477
 
