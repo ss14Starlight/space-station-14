@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 250.0.0
+  forkId: Starlight
+  forkVersion: 1732131340
+  time: 04/11/2025 17:59:40
+  entityCount: 798
+maps:
+- 1
+grids:
+- 2
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   1: FloorBar
@@ -22,6 +33,18 @@ tilemap:
 entities:
 - proto: ""
   entities:
+  - uid: 1
+    components:
+    - type: MetaData
+      name: Map Entity
+    - type: Transform
+    - type: Map
+      mapPaused: True
+    - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
+    - type: Broadphase
+    - type: OccluderTree
   - uid: 2
     components:
     - type: MetaData
@@ -1493,6 +1516,11 @@ entities:
     - type: Transform
       pos: 23.5,8.5
       parent: 2
+  - uid: 798
+    components:
+    - type: Transform
+      pos: 20.5,-3.5
+      parent: 2
 - proto: CableHV
   entities:
   - uid: 158
@@ -1529,6 +1557,11 @@ entities:
     components:
     - type: Transform
       pos: 17.5,2.5
+      parent: 2
+  - uid: 796
+    components:
+    - type: Transform
+      pos: 16.5,0.5
       parent: 2
 - proto: CableMV
   entities:
@@ -3437,6 +3470,20 @@ entities:
     - type: Transform
       pos: 23.5,8.5
       parent: 2
+- proto: PortableGeneratorPacman
+  entities:
+  - uid: 797
+    components:
+    - type: Transform
+      anchored: True
+      pos: 16.5,0.5
+      parent: 2
+    - type: MaterialStorage
+      storage:
+        Plasma: 3000
+    - type: Physics
+      bodyType: Static
+    - type: InsertingMaterialStorage
 - proto: PosterContrabandTools
   entities:
   - uid: 442
@@ -4187,7 +4234,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,9.5
       parent: 2
-- proto: SMESBasic
+- proto: SMESAdvanced
   entities:
   - uid: 559
     components:
