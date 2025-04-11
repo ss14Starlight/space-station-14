@@ -11,7 +11,7 @@
           mapNameTemplate: '{0} Starboard {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+            prefixCreator: 'DS'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_starboard.yml
         - type: StationJobs
@@ -38,6 +38,7 @@
             MedicalIntern: [ 2, 4 ]
             Paramedic: [ 2, 2 ]
             Surgeon: [ 2, 3 ]
+            Psychologist: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 4, 7 ]
@@ -60,9 +61,10 @@
             Mime: [ 1, 1 ]
             Musician: [ 2, 3 ]   
             Boxer: [ 2, 2 ]
+            Reporter: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 3, 3 ]  
+            Borg: [ 4, 4 ]  
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]      
