@@ -1,17 +1,6 @@
 meta:
-  format: 7
-  category: Map
-  engineVersion: 250.0.0
-  forkId: Starlight
-  forkVersion: 1732131340
-  time: 04/11/2025 17:59:40
-  entityCount: 798
-maps:
-- 1
-grids:
-- 2
-orphans: []
-nullspace: []
+  format: 6
+  postmapinit: false
 tilemap:
   0: Space
   1: FloorBar
