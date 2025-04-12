@@ -165079,8 +165079,6 @@ entities:
       pos: 75.5,-20.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 34797
     - type: VentCrawTube
@@ -165092,8 +165090,6 @@ entities:
       pos: 74.5,-20.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 34797
     - type: VentCrawTube
@@ -165105,8 +165101,6 @@ entities:
       pos: 75.5,-21.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 34797
     - type: VentCrawTube
