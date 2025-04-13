@@ -4764,4 +4764,46 @@ Entries:
   id: 659
   time: '2025-04-11T10:28:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/477
+- author: PubliclyExecutedPig
+  changes:
+  - message: Added an admin-only CBURN Shuttle
+    type: Add
+  id: 660
+  time: '2025-04-11T21:02:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/478
+- author: ScorchFollower
+  changes:
+  - message: Bug fix on Elkridge Station.
+    type: Fix
+  id: 661
+  time: '2025-04-12T06:11:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/480
+- author: PubliclyExecutedPig
+  changes:
+  - message: Added an admeme only Radio Tower
+    type: Add
+  id: 662
+  time: '2025-04-12T06:11:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/479
+- author: Happyrobot33
+  changes:
+  - message: Fixed Meta Station.
+    type: Fix
+  id: 663
+  time: '2025-04-13T06:31:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/484
+- author: Happyrobot33
+  changes:
+  - message: Fixed Saltern Station.
+    type: Fix
+  id: 664
+  time: '2025-04-13T06:31:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/484
+- author: PubliclyExecutedPig
+  changes:
+  - message: Removed Saltern from the map pool.
+    type: Remove
+  id: 665
+  time: '2025-04-13T06:32:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/482
 
