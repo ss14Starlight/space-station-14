@@ -1630,32 +1630,12 @@ entities:
   - uid: 165
     components:
     - type: Transform
-      pos: 17.5,0.5
+      pos: 16.5,-3.5
       parent: 2
   - uid: 166
     components:
     - type: Transform
-      pos: 16.5,0.5
-      parent: 2
-  - uid: 167
-    components:
-    - type: Transform
-      pos: 15.5,0.5
-      parent: 2
-  - uid: 168
-    components:
-    - type: Transform
-      pos: 15.5,-0.5
-      parent: 2
-  - uid: 169
-    components:
-    - type: Transform
-      pos: 15.5,-1.5
-      parent: 2
-  - uid: 170
-    components:
-    - type: Transform
-      pos: 15.5,-2.5
+      pos: 17.5,-3.5
       parent: 2
   - uid: 171
     components:
