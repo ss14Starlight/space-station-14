@@ -8,6 +8,7 @@
   <GuideEntityEmbed Entity="MobDiona" Caption="Diona"/>
   <GuideEntityEmbed Entity="MobDwarf" Caption="Dwarf"/>
   <GuideEntityEmbed Entity="MobHuman" Caption="Human"/>
+  <GuideEntityEmbed Entity="MobSmartCorgiDummy" Caption="Borgi"/>
   <GuideEntityEmbed Entity="MobMoth" Caption="Moth Person"/>
   </Box>
   <Box>
@@ -18,7 +19,6 @@
   <GuideEntityEmbed Entity="MobFelionoid" Caption="Felionoid"/>
   <GuideEntityEmbed Entity="MobVulpkanin" Caption="Vulpkanin"/>
   <GuideEntityEmbed Entity="MobResomi" Caption="Resomi"/>
-  <GuideEntityEmbed Entity="MobSmartCorgiDummy" Caption="Borgi"/>
   </Box>
 
 </Document>
