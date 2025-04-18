@@ -1,0 +1,50 @@
+- type: species
+  id: Borgi
+  name: species-name-borgi
+  roundStart: true
+  prototype: SmartBorgiVulnerable
+  sprites: MobSmartCorgiSprites
+  defaultSkinTone: "#385878"
+  markingLimits: MobArachnidMarkingLimits
+  dollPrototype: MobSmartCorgiDummy
+  skinColoration: Hues
+  maleFirstNames: NamesBorgi
+  femaleFirstNames: NamesBorgi
+  lastNames: NamesBorgi
+  naming: First
+  sexes:
+    - Unsexed
+
+- type: speciesBaseSprites
+  id: MobSmartCorgiSprites
+  sprites:
+    Chest: TorsoAdmemeCorgi
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobSmartCorgiDummy
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: HumanoidAppearance
+      species: Borgi
+    - type: Inventory
+      speciesId: dog
+      templateId: smartpetborgi
+
+- type: humanoidBaseSprite
+  id: TorsoAdmemeCorgi
+  baseSprite:
+    sprite: Mobs/Pets/corgi.rsi
+    state: corgi
+    
+- type: humanoidBaseSprite
+  id: TorsoAdmemeCorgiMale
+  baseSprite:
+    sprite: Mobs/Pets/corgi.rsi
+    state: corgi
+
+- type: humanoidBaseSprite
+  id: TorsoAdmemeCorgiFemale
+  baseSprite:
+    sprite: Mobs/Pets/corgi.rsi
+    state: corgi

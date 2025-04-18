@@ -189,6 +189,7 @@
   - type: Emoting
   - type: GuideHelp
     guides:
+    - Borgi
     - Cyborgs
   # Borgis by-and-large can't wear space suits so this helps mitigate that trouble somewhat where needed
   - type: Barotrauma
