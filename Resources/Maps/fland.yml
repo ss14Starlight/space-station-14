@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 250.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 03/29/2025 03:57:17
+  entityCount: 36017
+maps:
+- 1
+grids:
+- 13329
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   1: FloorArcadeBlue
@@ -62,7 +73,6 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
-    - type: LoadedMap
   - uid: 13329
     components:
     - type: MetaData
@@ -19508,7 +19518,7 @@ entities:
       pos: -15.5,-4.5
       parent: 13329
     - type: Door
-      secondsUntilStateChange: -10469.685
+      secondsUntilStateChange: -11435.99
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -30914,6 +30924,17 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 127.5,-2.5
+      parent: 13329
+  - uid: 36010
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 91.5,-13.5
+      parent: 13329
+  - uid: 36011
+    components:
+    - type: Transform
+      pos: 91.5,-13.5
       parent: 13329
 - proto: ButtonFrameCautionSecurity
   entities:
@@ -46434,6 +46455,11 @@ entities:
     - type: Transform
       pos: 101.5,-31.5
       parent: 13329
+  - uid: 25543
+    components:
+    - type: Transform
+      pos: 30.5,37.5
+      parent: 13329
   - uid: 25626
     components:
     - type: Transform
@@ -47303,6 +47329,16 @@ entities:
     components:
     - type: Transform
       pos: 47.5,-55.5
+      parent: 13329
+  - uid: 26179
+    components:
+    - type: Transform
+      pos: 29.5,37.5
+      parent: 13329
+  - uid: 26180
+    components:
+    - type: Transform
+      pos: 28.5,37.5
       parent: 13329
   - uid: 26356
     components:
@@ -54692,22 +54728,7 @@ entities:
   - uid: 35387
     components:
     - type: Transform
-      pos: 31.5,37.5
-      parent: 13329
-  - uid: 35388
-    components:
-    - type: Transform
-      pos: 30.5,37.5
-      parent: 13329
-  - uid: 35389
-    components:
-    - type: Transform
-      pos: 29.5,37.5
-      parent: 13329
-  - uid: 35390
-    components:
-    - type: Transform
-      pos: 28.5,37.5
+      pos: 27.5,37.5
       parent: 13329
   - uid: 35481
     components:
@@ -54903,6 +54924,21 @@ entities:
     components:
     - type: Transform
       pos: 124.5,57.5
+      parent: 13329
+  - uid: 36005
+    components:
+    - type: Transform
+      pos: 26.5,37.5
+      parent: 13329
+  - uid: 36006
+    components:
+    - type: Transform
+      pos: 25.5,37.5
+      parent: 13329
+  - uid: 36007
+    components:
+    - type: Transform
+      pos: 24.5,37.5
       parent: 13329
 - proto: CableApcStack
   entities:
@@ -68620,6 +68656,21 @@ entities:
     - type: Transform
       pos: 39.5,0.5
       parent: 13329
+  - uid: 36015
+    components:
+    - type: Transform
+      pos: 98.5,-37.5
+      parent: 13329
+  - uid: 36016
+    components:
+    - type: Transform
+      pos: 98.5,-38.5
+      parent: 13329
+  - uid: 36017
+    components:
+    - type: Transform
+      pos: 98.5,-39.5
+      parent: 13329
 - proto: CableHVStack
   entities:
   - uid: 26657
@@ -79214,6 +79265,13 @@ entities:
     components:
     - type: Transform
       pos: 72.5,-18.5
+      parent: 13329
+- proto: CargoMailTeleporter
+  entities:
+  - uid: 36004
+    components:
+    - type: Transform
+      pos: 15.5,-14.5
       parent: 13329
 - proto: Carpet
   entities:
@@ -97646,6 +97704,12 @@ entities:
     components:
     - type: Transform
       pos: -31.5,62.5
+      parent: 13329
+  - uid: 36014
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 98.5,-39.5
       parent: 13329
 - proto: ComputerRadar
   entities:
@@ -116416,12 +116480,16 @@ entities:
     - type: Transform
       pos: 131.71098,-3.6476665
       parent: 13329
+    - type: CollisionWake
+      enabled: False
     - type: Conveyed
   - uid: 34758
     components:
     - type: Transform
       pos: 131.32036,-3.2101665
       parent: 13329
+    - type: CollisionWake
+      enabled: False
     - type: Conveyed
 - proto: FoodBoxDonkpocketPizza
   entities:
@@ -116728,6 +116796,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 130.64848,-3.0851665
       parent: 13329
+    - type: CollisionWake
+      enabled: False
     - type: Conveyed
 - proto: FoodTinMRETrash
   entities:
@@ -166402,7 +166472,7 @@ entities:
     - type: Transform
       pos: 28.5,58.5
       parent: 13329
-- proto: MagazinePistol
+- proto: MagazinePistolSP
   entities:
   - uid: 10651
     components:
@@ -166486,7 +166556,7 @@ entities:
     - type: Transform
       pos: 35.578094,20.991646
       parent: 13329
-- proto: MagazineRifle
+- proto: MagazineRifleSP
   entities:
   - uid: 10597
     components:
@@ -169023,6 +169093,13 @@ entities:
     - type: Transform
       pos: 5.4847407,11.716763
       parent: 13329
+- proto: PlushieArachind
+  entities:
+  - uid: 36012
+    components:
+    - type: Transform
+      pos: 99.55299,-39.23832
+      parent: 13329
 - proto: PlushieBee
   entities:
   - uid: 12133
@@ -169417,6 +169494,11 @@ entities:
     components:
     - type: Transform
       pos: 99.5,-51.5
+      parent: 13329
+  - uid: 36008
+    components:
+    - type: Transform
+      pos: 29.5,38.5
       parent: 13329
 - proto: PosterContrabandVoteWeh
   entities:
@@ -170587,6 +170669,20 @@ entities:
     components:
     - type: Transform
       pos: 53.51421,-41.376694
+      parent: 13329
+- proto: PoweredDimSmallLight
+  entities:
+  - uid: 35388
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 95.5,-16.5
+      parent: 13329
+  - uid: 35389
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 91.5,-16.5
       parent: 13329
 - proto: Poweredlight
   entities:
@@ -174672,22 +174768,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 89.5,-15.5
-      parent: 13329
-    - type: ApcPowerReceiver
-      powerLoad: 0
-  - uid: 26179
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 95.5,-16.5
-      parent: 13329
-    - type: ApcPowerReceiver
-      powerLoad: 0
-  - uid: 26180
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 91.5,-16.5
       parent: 13329
     - type: ApcPowerReceiver
       powerLoad: 0
@@ -185081,19 +185161,6 @@ entities:
         - Pressed: Toggle
         24021:
         - Pressed: Toggle
-  - uid: 25543
-    components:
-    - type: Transform
-      pos: 91.5,-13.5
-      parent: 13329
-    - type: DeviceLinkSource
-      linkedPorts:
-        25540:
-        - Pressed: Toggle
-        25541:
-        - Pressed: Toggle
-        25542:
-        - Pressed: Toggle
   - uid: 25903
     components:
     - type: Transform
@@ -185520,6 +185587,22 @@ entities:
       currentLabel: Cell Blast Doors
     - type: NameModifier
       baseName: Switch (Cell Blast Doors)
+  - uid: 35390
+    components:
+    - type: Transform
+      pos: 91.5,-13.5
+      parent: 13329
+    - type: DeviceLinkSource
+      linkedPorts:
+        25540:
+        - On: Open
+        - Off: Close
+        25541:
+        - On: Open
+        - Off: Close
+        25542:
+        - On: Open
+        - Off: Close
   - uid: 35971
     components:
     - type: MetaData
@@ -185590,6 +185673,23 @@ entities:
       currentLabel: Cell Blast Doors
     - type: NameModifier
       baseName: Switch (Cell Blast Doors)
+  - uid: 36009
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 91.5,-13.5
+      parent: 13329
+    - type: DeviceLinkSource
+      linkedPorts:
+        25540:
+        - On: Open
+        - Off: Close
+        25541:
+        - Off: Close
+        - On: Open
+        25542:
+        - On: Open
+        - Off: Close
 - proto: SignAnomaly
   entities:
   - uid: 20083
@@ -190674,7 +190774,7 @@ entities:
     - type: Transform
       pos: 5.5,49.5
       parent: 13329
-- proto: SpawnPointPassenger
+- proto: SpawnPointAssistant
   entities:
   - uid: 6981
     components:
@@ -191674,6 +191774,12 @@ entities:
     components:
     - type: Transform
       pos: 48.5,-50.5
+      parent: 13329
+  - uid: 36013
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 99.49049,-39.26957
       parent: 13329
 - proto: StoolBar
   entities:
@@ -200583,7 +200689,7 @@ entities:
     - type: Transform
       pos: 115.47477,35.418278
       parent: 13329
-- proto: ToyFigurinePassenger
+- proto: ToyFigurineAssistant
   entities:
   - uid: 6985
     components:
