@@ -333,7 +333,7 @@
   id: BookSpaceLaw
   parent: BaseGuidebook
   name: corporate law
-  description: A set of Nanotrasen guidelines for keeping law and order on their space stations.
+  description: A set of Nanotrasen guidelines for keeping law and order on their space stations. 
   components:
   - type: Sprite
     layers:
