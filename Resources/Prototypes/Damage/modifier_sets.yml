@@ -192,10 +192,14 @@
 - type: damageModifierSet
   id: Diona
   coefficients:
-    Blunt: 0.7
-    Slash: 0.8
-    Heat: 1.5
+    Blunt: 0.5 # punching a tree is not wise.
+    Slash: 2.0 # an strong hit with an axe hurts like hell 
+    Heat: 2.0 # they also have increased fire stacks. basicly cancels out firesuit.
     Shock: 1.2
+  flatReductions:
+    Blunt: 5 # same as wood.
+    Slash: 5 # (12-5)*2 = 14 so combat knife do a bit more damage then before, fire axes do ~50 per hit to a diona.
+    Piercing: 5 # now you can play darts with a diona without killing them. about a 20% reduction from most powerful guns.
 
 - type: damageModifierSet
   id: Moth # Slightly worse at everything but cold
