@@ -28,11 +28,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.0
     baseSprintSpeed : 3.5
-    # the wood damage modifier set doubles the damage taken from fire + slash
-    # and keeps getting shot take same amout
-    # also takes structual damage
-    # blunt at half normal. punching a tree is pointless.
-    # double the total health so shooting a diona with a gun is the same as shooting a human
   - type: MobThresholds
     thresholds:
       0: Alive
