@@ -5190,4 +5190,120 @@ Entries:
   id: 719
   time: '2025-04-25T04:53:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/528
+- author: Happyrobot33
+  changes:
+  - message: Fixed Wielding guns also changing firing modes.
+    type: Fix
+  id: 720
+  time: '2025-04-26T07:27:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/547
+- author: PubliclyExecutedPig
+  changes:
+  - message: Made Orwell's armoury actually good! Sec mains rejoice! (I also added
+      a medfab).
+    type: Tweak
+  id: 721
+  time: '2025-04-26T07:29:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/543
+- author: Happyrobot33
+  changes:
+  - message: Fixed Mail Tech PDA UI Color.
+    type: Fix
+  id: 722
+  time: '2025-04-26T07:35:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/545
+- author: Happyrobot33
+  changes:
+  - message: Fixed Mail Tech NanoTask missing.
+    type: Fix
+  id: 723
+  time: '2025-04-26T07:35:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/545
+- author: PubliclyExecutedPig
+  changes:
+  - message: Badassified Warden's Hardsuit
+    type: Tweak
+  id: 724
+  time: '2025-04-26T07:39:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/541
+- author: PubliclyExecutedPig
+  changes:
+  - message: Mirrored Warden's Hardsuit's stats to Wizden's stat update
+    type: Tweak
+  id: 725
+  time: '2025-04-26T07:39:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/541
+- author: neurovermi
+  changes:
+  - message: Ling store text now reflects armblade absorption requirements
+    type: Fix
+  id: 726
+  time: '2025-04-26T07:39:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/540
+- author: Happyrobot33
+  changes:
+  - message: Fixed Boxcutter being dropped on toggle.
+    type: Fix
+  id: 727
+  time: '2025-04-26T07:55:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/538
+- author: Happyrobot33
+  changes:
+  - message: Added CommandFriend™ X-02 for BSO.
+    type: Add
+  id: 728
+  time: '2025-04-26T08:20:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/546
+- author: Happyrobot33
+  changes:
+  - message: Added health analyzer to BSO PDA.
+    type: Add
+  id: 729
+  time: '2025-04-26T08:20:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/546
+- author: Happyrobot33
+  changes:
+  - message: X-01 now has a slow battery recharge rate.
+    type: Tweak
+  id: 730
+  time: '2025-04-26T08:20:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/546
+- author: aedler
+  changes:
+  - message: Stripping is now dependent on the number of hands available. (With exception
+      to inserting items if hands are full)
+    type: Tweak
+  id: 731
+  time: '2025-04-26T10:01:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/517
+- author: aedler
+  changes:
+  - message: Stripping is now faster if the person is cuffed or under stamina crit/stun.
+    type: Tweak
+  id: 732
+  time: '2025-04-26T10:01:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/517
+- author: Happyrobot33
+  changes:
+  - message: Fixed TTS Announce/Radio volume slider logic. Both should work properly
+      now.
+    type: Fix
+  id: 733
+  time: '2025-04-26T15:23:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/549
+- author: ''
+  changes:
+  - message: Added Organ Tree
+    type: Add
+  id: 734
+  time: '2025-04-26T15:24:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/427
+- author: Happyrobot33
+  changes:
+  - message: Nukie gas masks and Ninja visors will no longer block special vision
+      effects.
+    type: Tweak
+  id: 735
+  time: '2025-04-26T15:25:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/508
 
