@@ -25,6 +25,13 @@
   - type: Body
     prototype: Diona
     requiredLegs: 2
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.0
+    baseSprintSpeed : 3.5
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureModifier: 100
+  - type: NoSlip
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Diona
@@ -86,7 +93,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 300 #weighs more than humans because wood
+        density: 600 #weighs more than humans because wood
         restitution: 0.0
         mask:
           - MobMask
