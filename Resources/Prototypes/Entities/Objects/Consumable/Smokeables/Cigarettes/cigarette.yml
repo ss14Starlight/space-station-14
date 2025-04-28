@@ -411,3 +411,16 @@
             Quantity: 10
           - ReagentId: THC
             Quantity: 5
+
+- type: entity
+  id: CigaretteWeh
+  parent: SoakedCigarette
+  name: Weh Smoke
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      smokable:
+        maxVol: 40
+        reagents:
+          - ReagentId: JuiceThatMakesYouWeh
+            Quantity: 40

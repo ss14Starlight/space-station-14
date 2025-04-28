@@ -78,6 +78,8 @@
         orGroup: Cigars
       - id: Matchbox
         amount: 2
+      - id: CigCartonWeh
+        prob: 0.25
 
 - type: entity
   id: CrateServiceTheatre

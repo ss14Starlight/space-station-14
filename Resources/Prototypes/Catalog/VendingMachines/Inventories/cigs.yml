@@ -18,5 +18,6 @@
     GroundTobacco: 3
     CigarGold: 2
     Igniter: 1
+    CigPackWeh: 2 #Weh! Command like's to keep these expensive cigeretes hidden from the rest of the peasants, so they can enjoy them in peace.
   emaggedInventory:
     CigPackSyndicate: 1
