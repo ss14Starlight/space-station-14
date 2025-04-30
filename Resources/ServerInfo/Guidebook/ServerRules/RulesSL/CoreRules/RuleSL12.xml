@@ -3,9 +3,32 @@
  The Silicon Rules override all roleplay rules if there is any conflict. Silicon Rules do not override server rules. Follow rules in order, from smallest to largest number.
 
  Subsections to this rule:
-
   - You cannot request a law change, or willingly allow an unauthorized law change.
+  - You must allow lawful authorized law changes if you are on NT-approved laws set.
   - You must remain consistent with your interpretation of your laws.
   - ID determines who is station crew. Zombies with ID are still crew members.
+  - Crewsimov AI should obey orders to acess rooms unless they are AI uploads, AI core, Armory, and Atmos. Unauthorized personal in these areas will cause crew harm.
+  - AI is not immune to valid hunting rules. Don't be a dick.
+  - Relawable silicons should not be round removed.
+  - An unlawed silicon is a free agent.
+
+Things that will cause crew harm:
+  - Physical damage.
+  - Unauthorized entities in AI uploads, AI core, Armory, and Atmos.
+  - Breathing fire.
+  - Being turned into a zombie.
+  - Nuke blowing up.
+  - Non-consentual surgury or borging.
+  - Arivals being broken.
+  - engine delaming / loosing.  
+
+Things that are not crew harm:
+  - self-harm
+  - emotional harm
+  - being a traitor
+
+Things that are probably not crew harm:
+  - tresspassing
+  - theft
 
 </Document>
