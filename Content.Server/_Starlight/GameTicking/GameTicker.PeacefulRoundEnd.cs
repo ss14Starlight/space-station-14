@@ -12,17 +12,19 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     private bool _isEnabled = false;
+    private bool _roundedEnded = false;
 
     public override void Initialize()
     {
         base.Initialize();
         _cfg.OnValueChanged(StarlightCCVars.PeacefulRoundEnd, v => _isEnabled = v, true);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnded);
+        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
     }
-
-    private void OnRoundEnded(RoundEndTextAppendEvent ev)
+    
+    private void SpreadPeace()
     {
-        if (!_isEnabled) return;
+        if (!_isEnabled || !_roundedEnded) return;
         foreach (var mob in EntityQuery<MobMoverComponent>())
         {
             EnsureComp<PacifiedComponent>(mob.Owner);
@@ -31,5 +33,16 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         {
             EnsureComp<PacifiedComponent>(mob.Owner);
         }
+    }
+    
+    private void OnSpawnComplete(PlayerSpawnCompleteEvent ev)
+    {
+        SpreadPeace();
+    }
+
+    private void OnRoundEnded(RoundEndTextAppendEvent ev)
+    {
+        _roundedEnded = true;
+        SpreadPeace();
     }
 }
