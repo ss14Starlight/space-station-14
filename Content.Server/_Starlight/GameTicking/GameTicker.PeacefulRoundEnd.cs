@@ -21,6 +21,7 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         _cfg.OnValueChanged(StarlightCCVars.PeacefulRoundEnd, v => _isEnabled = v, true);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnded);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
+        SubscribeLocalEvent<Content.Shared.Chemistry.Components.GotRehydratedEvent>(OnSpawnComplete);
     }
     
     private void SpreadPeace()
@@ -36,7 +37,7 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         }
     }
     
-    private void OnSpawnComplete(PlayerSpawnCompleteEvent ev)
+    private void OnSpawnComplete(object ev)
     {
         SpreadPeace();
     }
