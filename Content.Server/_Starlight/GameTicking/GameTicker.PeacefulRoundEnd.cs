@@ -5,6 +5,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Mech.Components;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Content.Shared.GameTicking;
 
 namespace Content.Server.Starlight.GameTicking;
 
