@@ -86,3 +86,49 @@
   - type: Appearance
   - type: Ricochetable
     chance: 1
+
+- type: entity
+  parent: BaseWall
+  id: WallRocky
+  name: rocky wall
+  components:
+  - type: Ricochetable
+    chance: 0.2
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/rocky_wall.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/rocky_wall.rsi
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Rock
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+
+  - type: IconSmooth
+    key: walls
+    base: rocky
+  - type: OreVein
+    oreChance: 0.2
+    oreRarityPrototypeId: RandomOreDistributionStandard
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+        - Pickaxe
