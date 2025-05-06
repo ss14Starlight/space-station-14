@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "StarLight",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "full"
+      },
+      {
+        "name": "rocky0",
+        "directions": 4
+      },
+      {
+        "name": "rocky1",
+        "directions": 4
+      },
+      {
+        "name": "rocky2",
+        "directions": 4
+      },
+      {
+        "name": "rocky3",
+        "directions": 4
+      },
+      {
+        "name": "rocky4",
+        "directions": 4
+      },
+      {
+        "name": "rocky5",
+        "directions": 4
+      },
+      {
+        "name": "rocky6",
+        "directions": 4
+      },
+      {
+        "name": "rocky7",
+        "directions": 4
+      }
+    ]
+  }
+  
