@@ -1,0 +1,10 @@
+objective-condition-disrupt-department = Disrupt the {$targetName} department
+objective-condition-sabotage-department = Sabotage the {$targetName} department
+objective-condition-infiltrate-department = Infiltrate the {$targetName} department
+objective-condition-jailbreak = Jailbreak prisoners
+objective-condition-distract-sec = Distract Security
+objective-condition-teach-lesson = Teach {$targetName}, {CAPITALIZE($job)} a lesson
+objective-condition-incriminate = Incriminate {$targetName}, {CAPITALIZE($job)}
+objective-condition-steal-everything = Steal everything of value.
+objective-condition-steal-money = Steal money.
+objective-condition-rob-department = Steal from the {$targetName} department

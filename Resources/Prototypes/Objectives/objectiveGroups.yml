@@ -88,6 +88,17 @@
   weights:
     ThiefObjectiveGroupCollection: 1
     ThiefObjectiveGroupItem: 1
+    ThiefObjectiveOpenEnded: 2  # Moffstation - open ended objectives
+
+# Moffstation - Start - Open ended objectives
+- type: weightedRandom
+  id: ThiefObjectiveOpenEnded
+  weights:
+    StealEverythingObjective: 1
+    StealMoneyObjective: 1
+    RobDepartmentObjective: 1
+    InfiltrateThiefObjective: 1
+# Moffstation - End
 
 - type: weightedRandom
   id: ThiefBigObjectiveGroups
