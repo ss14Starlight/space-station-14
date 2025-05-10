@@ -52,6 +52,9 @@
   id: OvenMachineBoard
   
 - type: Tag
+  id: StoveMachineBoard
+  
+- type: Tag
   id: Patch
 
 - type: Tag
@@ -83,3 +86,6 @@
   
 - type: Tag
   id: Table
+
+- type: Tag
+  id: DockEscape
