@@ -1,0 +1,8 @@
+# borgi borg
+- type: borgType
+  id: borgi
+
+  # Description
+  dummyPrototype: SmartSubWooferVulnerable
+
+  polymorph: PermanentSmartSubwooferMorph

@@ -1,0 +1,8 @@
+﻿- type: entity
+  id: BorgChassisBorgi
+  parent: BorgChassisSelectable
+  name: borgi
+  components:
+    - type: TextToSpeech
+    - type: BorgSwitchableType
+      selectedBorgType: borgi

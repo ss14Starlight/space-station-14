@@ -41,6 +41,17 @@
     revertOnCrit: false
     revertOnDeath: false
     allowRepeatedMorphs: false
+    
+- type: polymorph
+  id: PermanentSmartSubwooferMorph
+  configuration:
+    entity: SmartSubWooferVulnerable
+    forced: true
+    inventory: Drop
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: false
 
 - type: polymorph
   id: WizardForcedCarp

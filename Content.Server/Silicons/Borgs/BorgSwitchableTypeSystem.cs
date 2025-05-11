@@ -1,4 +1,6 @@
 ﻿using Content.Server.Inventory;
+using Content.Server.Polymorph.Components;
+using Content.Server.Polymorph.Systems;
 using Content.Server.Radio.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Silicons.Borgs;
@@ -15,11 +17,23 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
 {
     [Dependency] private readonly BorgSystem _borgSystem = default!;
     [Dependency] private readonly ServerInventorySystem _inventorySystem = default!;
-
+    [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
+    
     protected override void SelectBorgModule(Entity<BorgSwitchableTypeComponent> ent, ProtoId<BorgTypePrototype> borgType)
     {
         var prototype = Prototypes.Index(borgType);
 
+        //#region Starlight
+        if (prototype.Polymorph is not null)
+        {
+            EntityUid borgEuid = ent.AsType();
+            EntityManager.EnsureComponent<PolymorphableComponent>(borgEuid);
+            borgEuid = _polymorphSystem.PolymorphEntity(borgEuid, prototype.Polymorph.Value) ?? borgEuid;
+            EntityManager.RemoveComponent<PolymorphedEntityComponent>(borgEuid);
+            return;
+        }
+        //#endregion
+        
         // Assign radio channels
         string[] radioChannels = [.. ent.Comp.InherentRadioChannels, .. prototype.RadioChannels];
         if (TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter))

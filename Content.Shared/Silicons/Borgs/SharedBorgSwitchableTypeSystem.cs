@@ -20,7 +20,7 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
     [Dependency] protected readonly IPrototypeManager Prototypes = default!;
     [Dependency] private readonly InteractionPopupSystem _interactionPopup = default!;
-
+    
     [ValidatePrototypeId<EntityPrototype>]
     public const string ActionId = "ActionSelectBorgType";
 

@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Polymorph;
 using Content.Shared.Radio;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Whitelist;
@@ -20,7 +21,7 @@ public sealed partial class BorgTypePrototype : IPrototype
 
     [IdDataField]
     public required string ID { get; set; }
-
+    
     //
     // Description info (name/desc) is configured via localization strings directly.
     //
@@ -35,6 +36,15 @@ public sealed partial class BorgTypePrototype : IPrototype
     // Functional information
     //
 
+    //#region Starlight
+    /// <summary>
+    /// The polymorph that should be applied if this borg chasis is selected. warning this skips ALL OTHER FIELDS
+    /// Functional, Visual, Minor, Sounds all of these are SKIPPED if you specify this.
+    /// </summary>
+    [DataField]
+    public ProtoId<PolymorphPrototype>? Polymorph { get; set; }
+    //#endregion Starlight
+    
     /// <summary>
     /// The amount of free module slots this borg type has.
     /// </summary>
