@@ -1,0 +1,10 @@
+- type: entity
+  id: BorgChassisPilot
+  parent: BorgChassisSelectable
+  name: pilot cyborg
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: pilot
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/chassis.rsi

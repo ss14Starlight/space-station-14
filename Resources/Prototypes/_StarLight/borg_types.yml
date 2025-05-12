@@ -1,0 +1,33 @@
+# Pilot borg
+- type: borgType
+  id: pilot
+
+  # Description
+  dummyPrototype: BorgChassisPilot
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+  addComponents:
+    - type: Tag
+      tags:
+        - IndustrialMechPilot
+        - SpecialMechPilot
+        - CombatMechPilot
+
+  radioChannels:
+  - Science
+  - Security
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: pilot
+  spriteHasMindState: pilot_e
+  spriteNoMindState: pilot_e_r
+  spriteToggleLightState: pilot_l
+
+  # Pet
+  petSuccessString: petting-success-pilot-cyborg
+  petFailureString: petting-failure-pilot-cyborg
