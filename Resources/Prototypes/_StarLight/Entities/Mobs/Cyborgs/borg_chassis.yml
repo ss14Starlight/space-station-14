@@ -1,10 +1,117 @@
 - type: entity
-  id: BorgChassisPilot
-  parent: BorgChassisSelectable
-  name: pilot cyborg
+  id: BorgChassisCustomQuadrupedSelectable
+  parent: BaseBorgChassisCustomQuadrupedNT
+  components:
+  - type: TextToSpeech
+  - type: Sprite
+    layers:
+    - state: quadsprite
+      map: ["enum.BorgVisualLayers.Body", "movement"]
+    - state: quadsprite_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: quadsprite_l
+      shader: unshaded
+      map: ["light","enum.BorgVisualLayers.LightStatus"]
+      visible: false
+  - type: BorgChassis
+    # Default borg can take no modules until selected type.
+    maxModules: 0
+    hasMindState: quadsprite_e
+    noMindState: quadsprite_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: _Starlight/Mobs/Silicon/quad.rsi
+      state: quadsprite
+    name: canine cyborg
+  - type: InteractionPopup
+    interactSuccessString: petting-success-generic-cyborg-doggo
+    interactFailureString: petting-failure-generic-cyborg-doggo
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - Common
+    - Binary
+  
+- type: entity
+  id: BorgChassisSecurityDoggo
+  parent: BorgChassisCustomQuadrupedSelectable
+  name: security cyborg
   components:
   - type: TextToSpeech
   - type: BorgSwitchableType
-    selectedBorgType: pilot
+    selectedBorgType: security
+
+- type: entity
+  id: BorgChassisRescueDoggo
+  parent: BorgChassisCustomQuadrupedSelectable
+  name: rescue cyborg
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: rescue
+
+- type: entity
+  id: BorgChassisSyndicateAssaultDoggo
+  parent: BaseBorgChassisCustomQuadrupedSyndicate
+  name: syndicate canine assault cyborg
+  description: A leaner, meaner killing machine with access to a variety of deadly modules and a very cute exterior.
+  components:
+    - type: TextToSpeech
+    - type: Sprite
+      layers:
+        - state: quadspriteserv
+        - state: quadspriteserv_e
+          map: ["enum.BorgVisualLayers.Light"]
+          shader: unshaded
+          visible: false
+        - state: quadspriteserv_l
+          shader: unshaded
+          map: ["light"]
+          visible: false
+    - type: BorgChassis
+      maxModules: 3
+      moduleWhitelist:
+        tags:
+          - BorgModuleGeneric
+          - BorgModuleSyndicate
+          - BorgModuleSyndicateAssault
+      hasMindState: quadspriteserv_e
+      noMindState: quadspriteserv_e_r
+    - type: InteractionPopup
+      interactSuccessString: petting-success-syndicate-cyborg-doggo
+      interactFailureString: petting-failure-syndicate-cyborg-doggo
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+
+- type: entity
+  id: BorgChassisDerelictDoggo
+  parent: BaseBorgChassisCustomQuadrupedDerelict
+  name: derelict canine cyborg
+  description: A man-machine hybrid that assists in station activity. This one is in a state of great disrepair.
+  components:
   - type: Sprite
-    sprite: _Starlight/Mobs/Silicon/chassis.rsi
+    layers:
+    - state: quadspritesalv
+    - state: quadspritesalv_e
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: quadspritesalv_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: BorgChassis
+    maxModules: 5 # the sixth one broke lol
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+    hasMindState: quadspritesalv_e
+    noMindState: quadspritesalv_e_r
+  - type: Construction
+    node: derelictcyborgdoggo
+  - type: InteractionPopup
+    interactSuccessString: petting-success-derelict-cyborg-doggo
+    interactFailureString: petting-failure-derelict-cyborg-doggo
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg

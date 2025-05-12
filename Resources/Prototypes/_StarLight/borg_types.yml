@@ -1,33 +1,82 @@
-# Pilot borg
+#Security Canine
 - type: borgType
-  id: pilot
+  id: security
 
   # Description
-  dummyPrototype: BorgChassisPilot
+  dummyPrototype: BorgChassisSecurityDoggo
 
   # Functional
   extraModuleCount: 3
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
-  addComponents:
-    - type: Tag
-      tags:
-        - IndustrialMechPilot
-        - SpecialMechPilot
-        - CombatMechPilot
+    - BorgModuleSyndicateWeapon
+
+  defaultModules:
+  - BorgModuleL6C
 
   radioChannels:
   - Science
   - Security
 
   # Visual
-  inventoryTemplateId: borgTall
-  spriteBodyState: pilot
-  spriteHasMindState: pilot_e
-  spriteNoMindState: pilot_e_r
-  spriteToggleLightState: pilot_l
+  inventoryTemplateId: borgShort
+  spriteBodyState: quadsprite
+  spriteBodyMovementState: quadsprite_moving
+  spriteHasMindState: quadsprite_e
+  spriteNoMindState: quadsprite_e_r
+  spriteToggleLightState: quadsprite_l
 
   # Pet
-  petSuccessString: petting-success-pilot-cyborg
-  petFailureString: petting-failure-pilot-cyborg
+  petSuccessString: petting-success-security-cyborg-doggo
+  petFailureString: petting-failure-security-cyborg-doggo
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepHull
+
+#Medical Canine
+- type: borgType
+  id: rescue
+
+  # Description
+  dummyPrototype: BorgChassisRescueDoggo
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleMedical
+
+  defaultModules:
+  - BorgModuleTreatment
+
+  radioChannels:
+  - Science
+  - Medical
+
+  addComponents:
+  - type: SolutionScanner
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spriteBodyState: quadspritemed
+  spriteBodyMovementState: quadspritemed_moving
+  spriteHasMindState: quadspritemed_e
+  spriteNoMindState: quadspritemed_e_r
+  spriteToggleLightState: quadspritemed_l
+
+  # Pet
+  petSuccessString: petting-success-rescue-cyborg-doggo
+  petFailureString: petting-failure-rescue-cyborg-doggo
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepCatwalk
