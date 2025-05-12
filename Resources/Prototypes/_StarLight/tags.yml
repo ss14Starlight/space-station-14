@@ -89,3 +89,12 @@
 
 - type: Tag
   id: DockEscape
+
+- type: Tag
+  id: IndustrialMechPilot
+
+- type: Tag
+  id: CombatMechPilot
+
+- type: Tag
+  id: SpecialMechPilot

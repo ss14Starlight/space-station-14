@@ -11,6 +11,10 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleScience #until sciborgs are added
+  addComponents:
+    - type: Tag
+      tags:
+        - IndustrialMechPilot
 
   defaultModules:
   - BorgModuleTool
@@ -79,6 +83,10 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleCargo
+  addComponents:
+    - type: Tag
+      tags:
+        - IndustrialMechPilot
 
   defaultModules:
   - BorgModuleGrapplingGun
@@ -115,6 +123,10 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleJanitor
+  addComponents:
+    - type: Tag
+      tags:
+        - CombatMechPilot
 
   defaultModules:
   - BorgModuleLightReplacer
@@ -198,6 +210,10 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleService
+  addComponents:
+    - type: Tag
+      tags:
+        - SpecialMechPilot
 
   defaultModules:
   - BorgModuleMusique

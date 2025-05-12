@@ -1,0 +1,26 @@
+{
+   "license" : "These are testing files, copy them if you really want",
+   "size" : {
+      "x" : 32,
+      "y" : 32
+   },
+   "states" : [
+      {
+         "directions" : 4,
+         "name" : "pilot"
+      },
+      {
+         "directions" : 4,
+         "name" : "pilot_e"
+      },
+      {
+         "directions" : 4,
+         "name" : "pilot_e_r"
+      },
+      {
+         "directions" : 4,
+         "name" : "pilot_l"
+      }
+   ],
+   "version" : 1
+}

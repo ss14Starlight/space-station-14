@@ -1,0 +1,346 @@
+# Ripley Mk I
+- type: entity
+  id: MechRipleyBorgPilotable
+  parent: MechRipley
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - IndustrialMechPilot
+        
+- type: entity
+  id: MechRipleyBorgPilotableBattery
+  parent: MechRipleyBattery
+  suffix: Borg-Pilotable, Battery
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - IndustrialMechPilot
+
+# Ripley Mk II
+- type: entity
+  id: MechRipley2BorgPilotable
+  parent: MechRipley2
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - IndustrialMechPilot
+      
+- type: entity
+  id: MechRipley2BorgPilotableBattery
+  parent: MechRipley2Battery
+  suffix: Borg-Pilotable, Battery, Air
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - IndustrialMechPilot
+
+# Paddy
+- type: entity
+  id: MechPaddyBorgPilot
+  parent: MechPaddy
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechPaddyBorgPilotBattery
+  parent: MechPaddyBattery
+  suffix: Borg-Pilotable, Battery, Air
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechPaddyBorgPilotFilled
+  parent: MechPaddyFilled
+  suffix: Borg-Pilotable, Filled
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+
+# Clarke
+- type: entity
+  id: MechClarkeBorgPilot
+  parent: MechClarke
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - IndustrialMechPilot
+      
+- type: entity
+  id: MechClarkeBorgPilotBattery
+  parent: MechClarkeBattery
+  suffix: Borg-Pilotable, Battery, Air
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - IndustrialMechPilot
+
+# H.O.N.K
+- type: entity
+  id: MechHonkerBorgPilot
+  parent: MechHonker
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - SpecialMechPilot
+      
+- type: entity
+  id: MechHonkerBorgPilotBattery
+  parent: MechHonkerBattery
+  suffix: Borg-Pilotable, Battery, Air
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - SpecialMechPilot
+      
+- type: entity
+  id: MechHonkerBorgPilotFilled
+  parent: MechHonkerFilled
+  suffix: Borg-Pilotable, Filled
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - SpecialMechPilot
+
+# Gygax
+- type: entity
+  id: MechGygaxBorgPilot
+  parent: MechGygax
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechGygaxBorgPilotBattery
+  parent: MechGygaxBattery
+  suffix: Borg-Pilotable, Battery, Air
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+
+# Durand
+- type: entity
+  id: MechDurandBorgPilot
+  parent: MechDurand
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechDurandBorgPilotBattery
+  parent: MechDurandBattery
+  suffix: Borg-Pilotable, Battery, Air
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+
+# Marauder
+- type: entity
+  id: MechMarauderBorgPilot
+  parent: MechMarauder
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechMarauderBorgPilotBattery
+  parent: MechMarauderBattery
+  suffix: Borg-Pilotable, Battery, Air
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechMarauderBorgPilotFilled
+  parent: MechMarauderFilled
+  suffix: Borg-Pilotable, Filled
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+
+# Seraph
+- type: entity
+  id: MechSeraphBorgPilot
+  parent: MechSeraph
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechSeraphBorgPilotBattery
+  parent: MechSeraphBattery
+  suffix: Borg-Pilotable, Battery, Air
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechSeraphBorgPilotFilled
+  parent: MechSeraphFilled
+  suffix: Borg-Pilotable, Filled
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+
+# GygaxSyndie
+- type: entity
+  id: MechGygaxSyndieBorgPilot
+  parent: MechGygaxSyndie
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechGygaxSyndieBorgPilotBattery
+  parent: MechGygaxSyndieBattery
+  suffix: Borg-Pilotable, Battery, Air
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechGygaxSyndieBorgPilotFilled
+  parent: MechGygaxSyndieFilled
+  suffix: Borg-Pilotable, Filled
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+
+# Mauler
+- type: entity
+  id: MechMaulerSyndieBorgPilot
+  parent: MechMaulerSyndie
+  suffix: Borg-Pilotable
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechMaulerSyndieBorgPilotBattery
+  parent: MechMaulerSyndieBattery
+  suffix: Borg-Pilotable, Battery, Air
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
+      
+- type: entity
+  id: MechMaulerSyndieBorgPilotFilled
+  parent: MechMaulerSyndieFilled
+  suffix: Borg-Pilotable, Filled
+  components:
+  - type: Mech
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+      tags:
+        - CombatMechPilot
