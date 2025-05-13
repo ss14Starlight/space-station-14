@@ -13,7 +13,7 @@
     - BorgModuleSyndicateWeapon
 
   defaultModules:
-  - BorgModuleL6C
+  - BorgModuleEsword
 
   radioChannels:
   - Science

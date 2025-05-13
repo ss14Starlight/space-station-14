@@ -75,6 +75,38 @@
         tags:
           - BorgModuleGeneric
           - BorgModuleSyndicate
+      hasMindState: quadspriteserv_e
+      noMindState: quadspriteserv_e_r
+    - type: InteractionPopup
+      interactSuccessString: petting-success-syndicate-cyborg-doggo
+      interactFailureString: petting-failure-syndicate-cyborg-doggo
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+
+- type: entity
+  id: BorgChassisSyndicateHeavyAssaultDoggo
+  parent: BaseBorgChassisCustomQuadrupedSyndicate
+  name: syndicate canine heavy assault cyborg
+  description: A large, bulky killing machine with access to a variety of deadly modules and a scary exterior.
+  components:
+    - type: TextToSpeech
+    - type: Sprite
+      layers:
+        - state: Apex
+        - state: quadspriteserv_e
+          map: ["enum.BorgVisualLayers.Light"]
+          shader: unshaded
+          visible: false
+        - state: quadspriteserv_l
+          shader: unshaded
+          map: ["light"]
+          visible: false
+    - type: BorgChassis
+      maxModules: 3
+      moduleWhitelist:
+        tags:
+          - BorgModuleGeneric
+          - BorgModuleSyndicate
           - BorgModuleSyndicateAssault
       hasMindState: quadspriteserv_e
       noMindState: quadspriteserv_e_r
@@ -83,6 +115,29 @@
       interactFailureString: petting-failure-syndicate-cyborg-doggo
       interactSuccessSound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
+
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 2.5
+      baseSprintSpeed : 4.5
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.7
+          density: 150
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: DamageOnInteractProtection
+      damageProtection:
+        flatReductions:
+          Heat: 10
+          Blunt: 10
+          Slash: 10
+          Piercing: 10
+
 
 - type: entity
   id: BorgChassisDerelictDoggo

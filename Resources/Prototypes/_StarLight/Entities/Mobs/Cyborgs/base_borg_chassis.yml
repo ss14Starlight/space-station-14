@@ -20,7 +20,6 @@
     soundHit:
       collection: MetalThud
   - type: CombatMode
-  #- type: NoSlip
   - type: StaticPrice
     price: 1250
   - type: Fixtures
@@ -157,6 +156,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
+    allowedEmotes: ['Howl', 'Growl', 'Bark']
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
