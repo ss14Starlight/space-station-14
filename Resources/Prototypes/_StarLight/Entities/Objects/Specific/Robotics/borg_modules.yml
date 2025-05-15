@@ -1,0 +1,41 @@
+- type: entity
+  id: BaseBorgModuleSecurity
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModuleSecurity
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#FF0000"
+      - state: base-module-inhand-left
+        color: "#753186"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#404040"
+      right:
+      - state: base-icon-inhand-right
+        color: "#FF0000"
+      - state: base-module-inhand-right
+        color: "#753186"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#404040"
+
+- type: entity
+  id: BorgModuleStunbaton
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: Stun baton cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-pen
+  - type: ItemBorgModule
+    items:
+    - Stunbaton
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }

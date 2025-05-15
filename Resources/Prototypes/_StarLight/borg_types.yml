@@ -11,9 +11,10 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleSyndicateWeapon
+    - BorgModuleSecurity
 
   defaultModules:
-  - BorgModuleEsword
+  - BorgModuleStunbaton
 
   radioChannels:
   - Science
