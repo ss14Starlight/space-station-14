@@ -65,6 +65,16 @@
       - Heat
       - Shock
     locPrefix: silicon
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Slash: 5
+        Piercing: 5
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:

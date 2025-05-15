@@ -19,3 +19,93 @@
     layers:
     - state: stunbaton_off
       map: [ "enum.ToggleVisuals.Layer" ]
+
+#Secborg Gear
+- type: entity
+  name: stunning bite
+  parent: [BaseItem, BaseSecurityContraband]
+  id: StunBite
+  description: Special teeth for hindering people with. Injects small amounts of impedrizine with each bite.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/needle.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Shock: 0
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Impedrezene
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: StaminaDamageOnHit
+    damage: 15
+    sound: /Audio/Weapons/egloves.ogg
+  - type: GuideHelp
+    guides:
+    - Security
+    - Antagonists
+
+- type: entity
+  name: cyborg flash
+  parent: [BaseItem, BaseSecurityScienceCommandContraband]
+  id: BorgFlash
+  description: Ultrabright flashbulb built into the chassis, which causes the victim to be dazed and lose their eyesight for a moment. Unfortunately, it also overwhelms the visual sensors of the unit it is built into.
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Melee/flash.rsi
+      layers:
+      - state: flash
+        map: [ "enum.FlashVisuals.BaseLayer" ]
+      - state: flashing
+        map: [ "enum.FlashVisuals.LightLayer" ]
+        visible: false
+        shader: unshaded
+    - type: Flash
+    - type: LimitedCharges
+      maxCharges: 3
+      charges: 3
+    - type: AutoRecharge
+      rechargeDuration: 15
+    - type: MeleeWeapon
+      wideAnimationRotation: 180
+      damage:
+        types:
+          Blunt: 0 # melee weapon to allow flashing individual targets
+      angle: 10
+    - type: Item
+      size: Small
+      sprite: Objects/Weapons/Melee/flash.rsi
+    - type: UseDelay
+    - type: StaticPrice
+      price: 40
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.FlashVisuals.Burnt:
+          enum.FlashVisuals.BaseLayer:
+            True: {state: burnt}
+        enum.FlashVisuals.Flashing:
+          enum.FlashVisuals.LightLayer:
+            True: {visible: true}
+            False: {visible: false}
+    - type: GuideHelp
+      guides:
+      - Security
+      - Antagonists

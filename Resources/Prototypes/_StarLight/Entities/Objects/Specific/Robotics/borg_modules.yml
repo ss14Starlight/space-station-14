@@ -26,9 +26,9 @@
         color: "#404040"
 
 - type: entity
-  id: BorgModuleStunbaton
+  id: BorgModulePursuit
   parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
-  name: Stun baton cyborg module
+  name: pursuit cyborg module
   components:
   - type: Sprite
     layers:
@@ -36,6 +36,25 @@
     - state: icon-pen
   - type: ItemBorgModule
     items:
-    - Stunbaton
+    - StunBite
+    - BorgFlash
+    - HoloprojectorSecBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
+
+- type: entity
+  id: BorgModuleAdvancedForensics
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: advanced forensics cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-pen
+  - type: ItemBorgModule
+    items:
+    - ForensicScanner
+    - GasAnalyzer
+    - HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }

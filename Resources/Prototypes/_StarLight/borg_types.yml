@@ -10,15 +10,19 @@
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
-    - BorgModuleSyndicateWeapon
+    - BorgModuleSyndicate
     - BorgModuleSecurity
 
   defaultModules:
-  - BorgModuleStunbaton
+  - BorgModulePursuit
 
   radioChannels:
   - Science
   - Security
+
+  addComponents:
+  - type: SolutionScanner
+  - type: ShowCriminalRecordIcons
 
   # Visual
   inventoryTemplateId: borgShort
