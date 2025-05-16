@@ -83,3 +83,99 @@
     stateDoorClosed: miner_door
   - type: AccessReader
     access: [["Salvage"]]
+
+# Research Coordinator
+- type: entity
+  id: LockerResearchCoordinator
+  parent: LockerBaseSecure
+  name: research coordinator's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: coordinator
+    stateDoorOpen: coordinator_open
+    stateDoorClosed: coordinator_door
+  - type: AccessReader
+    access: [["Research"]]
+
+# Personnel Liaison
+- type: entity
+  id: LockerPersonnelLiaison
+  parent: LockerBaseSecure
+  name: personnel liaison's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: liaison
+    stateDoorOpen: liaison_open
+    stateDoorClosed: liaison_door
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+
+# Principal Engineer
+- type: entity
+  id: LockerPrincipalEngineer
+  parent: LockerBaseSecure
+  name: principal engineer's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: principal
+    stateDoorOpen: principal_open
+    stateDoorClosed: principal_door
+  - type: AccessReader
+    access: [["Atmospherics"]]
+
+# Brig Lieutenant
+- type: entity
+  id: LockerBrigLieutenant
+  parent: LockerBaseSecure
+  name: brig lieutenant's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: lieutenant
+    stateDoorOpen: lieutenant_open
+    stateDoorClosed: lieutenant_door
+  - type: AccessReader
+    access: [["Armory"]]
+
+# Executive Nursing Officer
+- type: entity
+  id: LockerExecutiveNursingOfficer
+  parent: LockerBaseSecure
+  name: executive nursing officer's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: nurse
+    stateDoorOpen: nurse_open
+    stateDoorClosed: nurse_door
+  - type: AccessReader
+    access: [["Chemistry"]]
+
+# Logistics Manager
+- type: entity
+  id: LockerLogisticsManager
+  parent: LockerBaseSecure
+  name: logistics manager's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: logistics
+    stateDoorOpen: logistics_open
+    stateDoorClosed: logistics_door
+  - type: AccessReader
+    access: [["Salvage"]]
