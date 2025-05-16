@@ -1,0 +1,33 @@
+- type: job
+  id: LogisticsManager
+  name: job-name-logisticsmanager
+  description: job-description-logisticsmanager
+  playTimeTracker: JobLogisticsManager
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 36000 # 10 hours
+    - !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 18000 # 5 hours
+  startingGear: LogisticsManagerGear
+  icon: "JobIconLogisticsManager"
+  supervisors: job-supervisors-qm
+  access:
+  - Cargo
+  - Salvage
+  - Maintenance
+  - External
+
+- type: startingGear
+  id: LogisticsManagerGear
+  equipment:
+    id: LogisticsManagerPDA
+    ears: ClothingHeadsetMining
+    belt: ClothingBeltUtilityFilled
+    head: ClothingHeadHatQMsoft
+  storage:
+    back:
+    - ClothingMaskGasExplorer
+  inhand:
+    - BoxFolderClipboard
