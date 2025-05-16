@@ -8,3 +8,5 @@ objective-condition-incriminate = Incriminate {$targetName}, {CAPITALIZE($job)}
 objective-condition-steal-everything = Steal everything of value.
 objective-condition-steal-money = Steal money.
 objective-condition-rob-department = Steal from the {$targetName} department
+objective-condition-leave-card = Leave a calling card.
+objective-condition-leave-card-on-person = Leave a calling card on {$targetName}, {CAPITALIZE($job)}.
