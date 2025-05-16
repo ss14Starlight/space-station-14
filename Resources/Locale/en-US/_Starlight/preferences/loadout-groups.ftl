@@ -47,5 +47,6 @@ loadout-group-personnelliaison-shoes = Personnel Liaison shoes
 
 #Engineering
 
+loadout-group-principalengineer-head = Principal Engineer head
 loadout-group-principalengineer-jumpsuit = Principal Engineer jumpsuit
 loadout-group-principalengineer-shoes = Principal Engineer shoes
