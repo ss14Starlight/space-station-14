@@ -110,3 +110,81 @@
     - state: idmailtech
   - type: PresetIdCard
     job: MailTech
+   
+- type: entity
+  parent: IDCardStandard
+  id: BrigLieutenantIDCard
+  name: brig lieutenant ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idbriglieutenant
+  - type: PresetIdCard
+    job: BrigLieutenant
+
+- type: entity
+  parent: IDCardStandard
+  id: PersonnelLiaisonIDCard
+  name: personnel liaison ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idpersonnelliaison
+  - type: PresetIdCard
+    job: PersonnelLiaison
+
+- type: entity
+  parent: IDCardStandard
+  id: ResearchCoordinatorIDCard
+  name: research coordinator ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idresearchcoordinator
+  - type: PresetIdCard
+    job: ResearchCoordinator
+
+- type: entity
+  parent: IDCardStandard
+  id: LogisticsManagerIDCard
+  name: logistics manager ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idlogisticsmanager
+  - type: PresetIdCard
+    job: LogisticsManager
+
+- type: entity
+  parent: IDCardStandard
+  id: ExecutiveNursingOfficerIDCard
+  name: executive nursing officer ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idexecutivenursingofficer
+  - type: PresetIdCard
+    job: ExecutiveNursingOfficer
+
+- type: entity
+  parent: IDCardStandard
+  id: PrincipalEngineerIDCard
+  name: principal engineer ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idprincipalengineer
+  - type: PresetIdCard
+    job: PrincipalEngineer
