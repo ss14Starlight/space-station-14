@@ -1,0 +1,54 @@
+- type: job
+  id: PersonnelLiaison
+  name: job-name-personnelliaison
+  description: job-description-personnelliaison
+  playTimeTracker: JobPersonnelLiaison
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 36000 # 10 hours
+    - !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 10800 # 3 hours
+    - !type:RoleTimeRequirement
+      role: JobChef
+      time: 10800 # 3 hours
+    - !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 10800 # 3 hours
+
+  weight: 20
+  startingGear: PersonnelLiaisonGear
+  icon: "JobIconPersonnelLiaison"
+  supervisors: job-supervisors-hop
+  canBeAntag: false
+  access:
+  - Command
+  - HeadOfPersonnel
+  - Bar
+  - Service
+  - Maintenance
+  - Janitor
+  - Theatre
+  - Kitchen
+  - Chapel
+  - Hydroponics
+  - External
+  - Cryogenics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: PersonnelLiaisonGear
+  equipment:
+    id: PersonnelLiaisonPDA
+    ears: ClothingHeadsetHoP
+    pocket1: HarmonicaInstrument
+  inhand:
+    - BoxFolderClipboard
+  storage:
+    back:
+    - Flash
+    - RubberStampApproved
+    - RubberStampDenied

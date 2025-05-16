@@ -1,0 +1,33 @@
+- type: job
+  id: PrincipalEngineer
+  name: job-name-principalengineer
+  description: job-description-principalengineer
+  playTimeTracker: JobPrincipalEngineer
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 36000 # 10 hours
+    - !type:RoleTimeRequirement
+      role: JobAtmosphericTechnician
+      time: 25200 # 7 hrs
+    - !type:RoleTimeRequirement
+      role: JobStationEngineer
+      time: 25200 # 7 hrs
+  startingGear: PrincipalEngineerGear
+  icon: "JobIconPrincipalEngineer"
+  supervisors: job-supervisors-ce
+  access:
+  - Maintenance
+  - Engineering
+  - External
+  - Atmospherics
+
+- type: startingGear
+  id: PrincipalEngineerGear
+  equipment:
+    id: PrincipalEngineerPDA
+    eyes: ClothingEyesGlassesMeson
+    ears: ClothingHeadsetEngineering
+    belt: ClothingBeltUtilityEngineering
+  inhand:
+    - BoxFolderClipboard
