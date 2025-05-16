@@ -1,0 +1,16 @@
+# Jumpsuit
+- type: loadout
+  id: WaiterUniform
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSuitWaiter
+
+- type: loadout
+  id: TanPencilJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPencilTan
+
+#Shoes
+- type: loadout
+  id: TouristShoes
+  equipment:
+    shoes: ClothingShoesTourist

@@ -1,0 +1,47 @@
+# Jumpsuit
+- type: loadout
+  id: CargoTechnicianFormalJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoFormal
+
+- type: loadout
+  id: CargoTechnicianFormalJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCargoFormal
+
+- type: loadout
+  id: SalvagerFormalJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageFormal
+
+- type: loadout
+  id: SalvagerFormalJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCargoSalvageFormal
+
+- type: loadout
+  id: CargoAltJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoAlt
+
+#Gloves
+- type: loadout
+  id: FingerlessBlackGloves
+  equipment:
+    gloves: ClothingHandsGlovesFingerless
+
+- type: loadout
+  id: GlovesBrown
+  equipment:
+    gloves: ClothingHandsGlovesColorBrown
+
+- type: loadout
+  id: GlovesLightBrown
+  equipment:
+    gloves: ClothingHandsGlovesColorLightBrown
+
+#Shoes
+- type: loadout
+  id: LaceupShoes
+  equipment:
+    shoes: ClothingShoesBootsLaceup

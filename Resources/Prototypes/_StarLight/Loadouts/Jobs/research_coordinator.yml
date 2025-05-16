@@ -1,0 +1,16 @@
+# Jumpsuit
+- type: loadout
+  id: FormalScientistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientistFormal
+
+- type: loadout
+  id: FormalScientistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtScientistFormal
+
+#Shoes
+- type: loadout
+  id: PurpleShoes
+  equipment:
+    shoes: ClothingShoesColorPurple

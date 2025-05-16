@@ -1,0 +1,11 @@
+# Jumpsuit
+- type: loadout
+  id: NurseUniform
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSuitNurse
+
+#Shoes
+- type: loadout
+  id: LeatherShoes
+  equipment:
+    shoes: ClothingShoesLeather
