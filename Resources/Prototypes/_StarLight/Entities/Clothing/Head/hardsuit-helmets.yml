@@ -81,3 +81,55 @@
           Slash: 0.9
           Piercing: 0.9
           Heat: 0.9
+          
+ #Brig Lieutenant Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitBrigLieutenant
+  name: brig lieutenant's 'Tortuga' hardsuit helmet
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hardsuits/brig_lieutenant.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hardsuits/brig_lieutenant.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.5
+      lowPressureMultiplier: 1000
+    - type: PointLight
+      color: "#ffeead"
+      radius: 6
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+    - type: ExplosionResistance
+      damageCoefficient: 0.95
+ #Hazard Firesuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitHazardFiresuit
+  name: hazard fire suit helmet
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hardsuits/principal_engineer.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hardsuits/principal_engineer.rsi
+    - type: TemperatureProtection
+      heatingCoefficient: 0.01
+      coolingCoefficient: 0.2
+    - type: FireProtection
+      reduction: 0.2
+    - type: PressureProtection
+      highPressureMultiplier: 0.25
+    - type: PointLight
+      color: "#fcae1e"
+      radius: 8
+      energy: 4
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
