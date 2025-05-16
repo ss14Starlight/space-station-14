@@ -171,3 +171,176 @@
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-mailtech
+
+- type: entity
+  parent: BasePDA
+  id: PersonnelLiaisonPDA
+  name: personnel liaison PDA
+  description: Reeks of dried ink and cheap cigarettes.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi  
+  - type: Pda
+    id: PersonnelLiaisonIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-liaison
+  - type: PdaBorderColor
+    borderColor: "#3F3F74"
+    accentHColor: "#3C94C5"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-liaison
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
+  name: logistics manager PDA
+  parent: BasePDA
+  id: LogisticsManagerPDA
+  description: The best HR, is no HR.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi  
+  - type: Pda
+    id: LogisticsManagerIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-logistics
+  - type: PdaBorderColor
+    borderColor: "#E39751"
+    accentVColor: "#8F36C6"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-logistics
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - NanoTaskCartridge
+    - AstroNavCartridge
+
+- type: entity
+  parent: BasePDA
+  id: PrincipalEngineerPDA
+  name: principal engineer PDA
+  description: So old that it probably runs on welding fuel and oil.
+  components:
+  - type: Pda
+    id: PrincipalEngineerIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorengineer
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentVColor: "#CD6900"
+  - type: Icon
+    state: pda-seniorengineer
+
+- type: entity
+  parent: BasePDA
+  id: ResearchCoordinatorPDA
+  name: research coordinator PDA
+  description: Has a light coating of plasma dust and ash.
+  components:
+  - type: Pda
+    id: ResearchCoordinatorIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorresearcher
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentHColor: "#8900c9"
+    accentVColor: "#8900c9"
+  - type: Icon
+    state: pda-seniorresearcher
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: ExecutiveNursingOfficerPDA
+  name: executive nursing officer PDA
+  description: You'd think by this point they'd be more advanced than this.
+  components:
+  - type: Pda
+    id: ExecutiveNursingOfficerIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorphysician
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentHColor: "#447987"
+    accentVColor: "#B34200"
+  - type: Icon
+    state: pda-seniorphysician
+
+- type: entity
+  parent: BaseSecurityPDA
+  id: BrigLieutenantPDA
+  name: brig lieutenant PDA
+  description: So covered in scratches that it's barely usable.
+  components:
+  - type: Pda
+    id: BrigLieutenantIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorofficer
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    state: pda-seniorofficer
