@@ -1,33 +1,51 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Starlight, IAA/Magistrate Icons by Chim | CentComm Icon by Happyrobot33 | MailTech Icon by Happyrobot33",
+    "copyright": "Starlight, IAA/Magistrate Icons by Chim | CentComm Icon by Happyrobot33 | MailTech Icon by Happyrobot33 | BrigLieutenant, PersonnelLiaison, PrincipalEngineer, LogisticsManager, ResearchCoordinator and ChiefNursingOfficer Icons by choccy4",
 
     "size": {
         "x": 8,
         "y": 8
     },
-    "states": [
-        {
-            "name": "Magistrate"
-        },
-        {
-            "name": "IAA"
-        },
-        {
-            "name": "BlueShield"
-        },
-        {
-            "name": "Vampire"
-        },
-        {
-            "name": "Surgeon"
-        },
-        {
-            "name": "MailTech"
-         },
-        {
-            "name": "CentComm"
-        }
-    ]
+  "states": [
+    {
+      "name": "Magistrate"
+    },
+    {
+      "name": "IAA"
+    },
+    {
+      "name": "BlueShield"
+    },
+    {
+      "name": "Vampire"
+    },
+    {
+      "name": "Surgeon"
+    },
+    {
+      "name": "MailTech"
+    },
+    {
+      "name": "CentComm"
+    },
+    {
+      "name": "BrigLieutenant"
+    },
+    {
+      "name": "ExecutiveNursingOfficer"
+    },
+    {
+      "name": "PersonnelLiaison"
+    },
+    {
+      "name": "PrincipalEngineer"
+    },
+    {
+      "name": "LogisticsManager"
+    },
+    {
+      "name": "ResearchCoordinator"
+    }
+  ]
 }
