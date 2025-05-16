@@ -13,20 +13,38 @@
     {
       "name": "gold"
     },
-	{
-	  "name": "silver"
-	},
-	{
-	  "name": "idmagistrate"
-	},
-	{
-	  "name": "idiaa"
-	},
-	{
-	  "name": "idblueshield"
-	},
+    {
+      "name": "silver"
+    },
+    {
+      "name": "idmagistrate"
+    },
+    {
+      "name": "idiaa"
+    },
+    {
+      "name": "idblueshield"
+    },
     {
       "name": "idstationminer"
+    },
+    {
+      "name": "idbriglieutenant"
+    },
+    {
+      "name": "idpersonnelliaison"
+    },
+    {
+      "name": "idprincipalengineer"
+    },
+    {
+      "name": "idexecutivenursingofficer"
+    },
+    {
+      "name": "idresearchcoordinator"
+    },
+    {
+      "name": "idlogisticsmanager"
     },
     {
       "name": "idmailtech"
