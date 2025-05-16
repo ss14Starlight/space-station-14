@@ -12,17 +12,20 @@
     BlueShield: 110
     NanoTrasenRepresentative: 165
 
+    ChiefNursingOfficer: 98
     Chemist: 90
     Paramedic: 50
     MedicalDoctor: 58
     MedicalIntern: 23
     Surgeon: 90
 
+    PrincipalEngineer: 98
     AtmosphericTechnician: 90
     StationEngineer: 54
     TechnicalAssistant: 23
 
     Warden: 90
+    BrigLieutenant: 85
     Detective: 80
     Brigmedic: 73
     SecurityOfficer: 64
@@ -31,6 +34,7 @@
     StationAi: 155
     Borg: 85
 
+    PersonnelLiaison: 100
     Chaplain: 50
     Chef: 50
     Janitor: 30
@@ -43,10 +47,12 @@
     ServiceWorker: 23
     Assistant: 15
 
+    ResearchCoordinator: 98
     Scientist: 65
     Roboticist: 56
     ResearchAssistant: 23
 
+    LogisticsManager: 90
     SalvageSpecialist: 60
     MiningSpecialist: 60
     CargoTechnician: 45
