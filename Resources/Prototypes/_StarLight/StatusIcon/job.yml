@@ -45,3 +45,51 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: CentComm
   jobName: job-name-centcomm
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconBrigLieutenant
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: BrigLieutenant
+  jobName: job-name-briglieutenant
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconExecutiveNursingOfficer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: ExecutiveNursingOfficer
+  jobName: job-name-executivenursingofficer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconPersonnelLiaison
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: PersonnelLiaison
+  jobName: job-name-personnelliaison
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconResearchCoordinator
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: ResearchCoordinator
+  jobName: job-name-researchcoordinator
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconPrincipalEngineer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: PrincipalEngineer
+  jobName: job-name-principalengineer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconLogisticsManager
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: LogisticsManager
+  jobName: job-name-logisticsmanager
