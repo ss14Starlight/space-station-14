@@ -6,48 +6,102 @@
     },
     "copyright": "Taken from tgstation. Resprite BlueShield Closet by CatBG (Discord:catbg), Miner by Conflee",
     "license": "CC-BY-SA-3.0",
-    "states": [
-        {
-            "name": "generic"
-        },
-        {
-            "name": "generic_door"
-        },
-        {
-            "name": "generic_icon"
-        },
-        {
-            "name": "generic_open"
-        },
-        {
-            "name": "bssecure_door"
-        },
-        {
-            "name": "bssecure"
-        },
-        {
-            "name": "bssecure_open"
-        },
-        {
-            "name": "welded"
-        },
-        {
-            "name": "unlocked"
-        },
-        {
-            "name": "locked"
-        },
-        {
-            "name": "sparking"
-        },
-        {
-            "name": "miner"
-        },
-        {
-            "name": "miner_door"
-        },
-        {
-            "name": "miner_open"
-        }
-    ]
+  "states": [
+    {
+      "name": "generic"
+    },
+    {
+      "name": "generic_door"
+    },
+    {
+      "name": "generic_icon"
+    },
+    {
+      "name": "generic_open"
+    },
+    {
+      "name": "bssecure_door"
+    },
+    {
+      "name": "bssecure"
+    },
+    {
+      "name": "bssecure_open"
+    },
+    {
+      "name": "welded"
+    },
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "sparking"
+    },
+    {
+      "name": "miner"
+    },
+    {
+      "name": "miner_door"
+    },
+    {
+      "name": "miner_open"
+    },
+    {
+      "name": "coordinator"
+    },
+    {
+      "name": "coordinator_door"
+    },
+    {
+      "name": "liaison"
+    },
+    {
+      "name": "liaison_door"
+    },
+    {
+      "name": "lieutenant_door"
+    },
+    {
+      "name": "lieutenant"
+    },
+    {
+      "name": "logistics"
+    },
+    {
+      "name": "logistics_door"
+    },
+    {
+      "name": "nurse"
+    },
+    {
+      "name": "nurse_door"
+    },
+    {
+      "name": "principal"
+    },
+    {
+      "name": "principal_door"
+    },
+    {
+      "name": "logistics_open"
+    },
+    {
+      "name": "coordinator_open"
+    },
+    {
+      "name": "liaison_open"
+    },
+    {
+      "name": "lieutenant_open"
+    },
+    {
+      "name": "principal_open"
+    },
+    {
+      "name": "nurse_open"
+    }
+  ]
 }
