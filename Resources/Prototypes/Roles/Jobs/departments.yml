@@ -4,6 +4,7 @@
   description: department-Cargo-description
   color: "#A46106"
   roles:
+  - LogisticsManager
   - CargoTechnician
   - MailTech
   - Quartermaster
@@ -17,6 +18,7 @@
   color: "#9FED58"
   weight: -10
   roles:
+  - PersonnelLiaison
   - Bartender
   - Botanist
   - Boxer
@@ -85,6 +87,7 @@
   description: department-Engineering-description
   color: "#EFB341"
   roles:
+  - PrincipalEngineer
   - AtmosphericTechnician
   - ChiefEngineer
   - StationEngineer
@@ -96,6 +99,7 @@
   description: department-Medical-description
   color: "#52B4E9"
   roles:
+  - ExecutiveNursingOfficer
   - Chemist
   - ChiefMedicalOfficer
   - MedicalDoctor
@@ -111,6 +115,7 @@
   color: "#DE3A3A"
   weight: 20
   roles:
+  - BrigLieutenant
   - HeadOfSecurity
   - SecurityCadet
   - SecurityOfficer
@@ -124,6 +129,7 @@
   description: department-Science-description
   color: "#D381C9"
   roles:
+  - ResearchCoordinator
   - ResearchDirector
   - Scientist
   - ResearchAssistant
