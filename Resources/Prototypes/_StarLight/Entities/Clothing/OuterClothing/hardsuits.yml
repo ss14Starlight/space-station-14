@@ -131,3 +131,75 @@
       damageCoefficient: 0.75
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitMercenary
+      #Brig Lieutenant Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
+  id: ClothingOuterHardsuitBrigLieutenant
+  name: brig lieutenant's 'Tortuga' hardsuit
+  description: A hardsuit specifically designed for the defense of brigs, against the prisoners. Created to stop knives, bats and bombs; it's deceptively light, but probably won't stop a bullet.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/brig_lieutenant.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/brig_lieutenant.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.5
+      lowPressureMultiplier: 1000
+    - type: ClothingSpeedModifier
+      walkModifier: 1
+      sprintModifier: 0.9
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.55
+          Slash: 0.55
+          Piercing: 0.75
+          Caustic: 0.5
+          Heat: 0.85
+          Radiation: 0.75
+      staminaModifier: 0.6
+    - type: ExplosionResistance
+      damageCoefficient: 0.15
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitBrigLieutenant
+      #Hazard Firesuit
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseEngineeringContraband]
+  id: ClothingOuterHardsuitHazardFiresuit
+  name: hazard fire suit
+  description: White engineering hardsuits are a bit expensive, so R&D stripped all the lining out of this one, making it not space-faring. Still, makes the station 5% less likely to be destroyed by a loose singularity!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/principal_engineer.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/principal_engineer.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.02
+    - type: ClothingSpeedModifier
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.8
+          Piercing: 0.9
+          Caustic: 0.6
+          Heat: 0.4
+          Radiation: 0.01
+          Shock: 0.7
+      staminaModifier: 0.9
+    - type: ExplosionResistance
+      damageCoefficient: 0.2
+    - type: FireProtection
+      reduction: 0.8
+    - type: TemperatureProtection
+      heatingCoefficient: 0.001
+      coolingCoefficient: 0.05
+    - type: HeldSpeedModifier
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitHazardFiresuit
