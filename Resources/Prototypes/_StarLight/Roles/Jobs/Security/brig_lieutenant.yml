@@ -1,0 +1,47 @@
+- type: job
+  id: BrigLieutenant
+  name: job-name-briglieutenant
+  description: job-description-briglieutenant
+  playTimeTracker: JobBrigLieutenant
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 36000 # 10 hrs
+    - !type:RoleTimeRequirement
+      role: JobDetective
+      time: 3600 # 1 hr
+  weight: 5
+  startingGear: BrigLieutenantGear
+  icon: "JobIconBrigLieutenant"
+  supervisors: job-supervisors-warden
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Armory
+  - Maintenance
+  - Service
+  - External
+  - Detective
+  - Cryogenics
+  - Brigmedic
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: BrigLieutenantGear
+  equipment:
+    id: BrigLieutenantPDA
+    ears: ClothingHeadsetBrigmedic
+    pocket1: WeaponShotgunGA12
+    belt: ClothingBeltBrigmedicFilled
+    eyes: ClothingEyesGlassesBrigmedic
+    shoes: ClothingShoesBootsCowboyBlackFilled
+
+
+  inhand:
+    - BoxFolderClipboard
+  storage:
+    back:
+    - Flash
