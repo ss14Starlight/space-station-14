@@ -1,0 +1,28 @@
+- type: job
+  id: ResearchCoordinator
+  name: job-name-researchcoordinator
+  description: job-description-researchcoordinator
+  playTimeTracker: JobResearchCoordinator
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 36000 # 10 hours
+    - !type:RoleTimeRequirement
+      role: JobRoboticist
+      time: 18000 # 5 hours
+  startingGear: ResearchCoordinatorGear
+  icon: JobIconResearchCoordinator
+  supervisors: job-supervisors-rd
+  access:
+    - Research
+    - Maintenance
+
+- type: startingGear
+  id: ResearchCoordinatorGear
+  equipment:
+    id: ResearchCoordinatorPDA
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetRobotics
+    eyes: ClothingEyesWeldingGoggles
+  inhand:
+    - BoxFolderClipboard
