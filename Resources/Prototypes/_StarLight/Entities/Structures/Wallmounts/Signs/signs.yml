@@ -67,3 +67,13 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: yessmoking
+
+- type: entity
+  parent: BaseSign
+  id: SignManager
+  name: manager sign
+  description: A sign indicating a manager's office'.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: manager
