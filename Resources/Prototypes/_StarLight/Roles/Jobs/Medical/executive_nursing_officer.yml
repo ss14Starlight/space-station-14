@@ -1,0 +1,32 @@
+- type: job
+  id: ExecutiveNursingOfficer
+  name: job-name-executivenursingofficer
+  description: job-description-executivenursingofficer
+  playTimeTracker: JobChiefNursingOfficer
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 36000 # 10 hours
+    - !type:RoleTimeRequirement
+      role: JobChemist
+      time: 25200 # 7 hrs
+    - !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 25200 # 7 hrs
+  startingGear: ExecutiveNursingOfficerGear
+  icon: "JobIconExecutiveNursingOfficer"
+  supervisors: job-supervisors-cmo
+  canBeAntag: true
+  access:
+  - Medical
+  - Chemistry
+  - Maintenance
+
+- type: startingGear
+  id: ExecutiveNursingOfficerGear
+  equipment:
+    id: ExecutiveNursingOfficerPDA
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
+  inhand:
+    - BoxFolderClipboard
