@@ -1,0 +1,102 @@
+- type: entity
+  id: LockerBrigLieutenantFilled
+  suffix: Filled
+  parent: LockerBrigLieutenant
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxBeanbag
+      - id: ClothingHeadsetBrigmedic
+      - id: ClothingOuterHardsuitBrigLieutenant
+      - id: ClothingMaskBreathMedicalSecurity
+      - id: ClothingOuterArmorBasicSlim
+      - id: ClothingShoesBootsMagSec
+      - id: OxygenTankFilled
+      - id: ClothingUniformJumpsuitSeniorOfficer
+      - id: ClothingUniformJumpskirtSeniorOfficer
+  
+- type: entity
+  id: LockerExecutiveNursingOfficerFilled
+  suffix: Filled
+  parent: LockerExecutiveNursingOfficer
+  components:
+  - type: StorageFill
+    contents:
+      - id: MedkitBruteFilled
+      - id: HandheldHealthAnalyzer
+      - id: ClothingMaskSterile
+      - id: GoldenBeaker
+      - id: ClothingUniformJumpsuitSeniorPhysician
+      - id: ClothingUniformJumpskirtSeniorPhysician
+      - id: ClothingOuterCoatLabSeniorPhysician
+  
+- type: entity
+  id: LockerPrincipalEngineerFilled
+  suffix: Filled
+  parent: LockerPrincipalEngineer
+  components:
+  - type: StorageFill
+    contents:
+      - id: GasAnalyzer
+      - id: HolofanProjector
+      - id: ClothingShoesBootsMag
+      - id: RCD
+      - id: RCDAmmo
+      - id: ClothingHandsGlovesColorYellow
+      - id: ClothingHeadHatHardhatArmored
+      - id: ClothingMaskGasAtmos
+      - id: OxygenTankFilled
+      - id: ClothingOuterHardsuitHazardFiresuit
+      - id: ClothingUniformJumpsuitSeniorEngineer
+      - id: ClothingUniformJumpskirtSeniorEngineer
+      - id: trayScanner
+  
+- type: entity
+  id: LockerPersonnelLiaisonFilled
+  suffix: Filled
+  parent: LockerPersonnelLiaison
+  components:
+  - type: StorageFill
+    contents:
+      - id: DrinkShaker
+      - id: SynthesizerInstrument
+      - id: Multitool
+      - id: ClothingEyesHudCommand
+      - id: MegaSprayBottle
+      - id: ClothingHandsGlovesColorWhite
+      - id: ClothingNeckTieRed
+      - id: ClothingNeckTieDet
+      - id: ClothingUniformJumpsuitSuitWaiter
+      - id: ClothingUniformJumpskirtPencilTan
+  
+- type: entity
+  id: LockerResearchCoordinatorFilled
+  suffix: Filled
+  parent: LockerResearchCoordinator
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingShoesBootsMagSci
+      - id: ClothingOuterHardsuitBasic
+      - id: PowerCellHigh
+      - id: NodeScanner
+      - id: AnomalyScanner
+      - id: NodeScanner
+      - id: ClothingUniformJumpsuitSeniorResearcher
+      - id: ClothingUniformJumpskirtSeniorResearcher
+      - id: ClothingOuterCoatLabSeniorResearcher
+  
+- type: entity
+  id: LockerLogisticsManagerFilled
+  suffix: Filled
+  parent: LockerLogisticsManager
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitLuxury
+      - id: ClothingShoesBootsMag
+      - id: ClothingMaskGasExplorer
+      - id: JetpackMiniFilled
+      - id: OxygenTankFilled
+      - id: ClothingUniformJumpsuitCargoFormal
+      - id: ClothingUniformJumpskirtCargoFormal
