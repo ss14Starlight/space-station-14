@@ -5,6 +5,11 @@
   name: Urist McHands
   abstract: true
   components:
+  #starlight
+  - type: Speech
+    speechVerb: Felionoid
+    allowedEmotes: ['Mew', 'Hisses', 'Meow', 'Growl', 'Purr', 'Trill']
+  #starlight
   - type: Absorbable
   - type: Hunger
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
