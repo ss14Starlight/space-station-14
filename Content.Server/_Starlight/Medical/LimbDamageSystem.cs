@@ -26,6 +26,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Medical;
 public sealed class LimbDamageSystem : EntitySystem
+{
 
     public override void Initialize()
     {
