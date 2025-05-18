@@ -35,7 +35,6 @@ public sealed partial class SalarySystem : SharedSalarySystem
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IChatManager _chat = default!;
@@ -68,8 +67,8 @@ public sealed partial class SalarySystem : SharedSalarySystem
                     _lastSalary.Add(query.Current.Session, _time.CurTime);
                     continue;
                 }
-                if (!_entityManager.TryGetComponent<MobStateComponent>(query.Current.Session.AttachedEntity, out var state) 
-                    || state.CurrentState == MobState.Critical 
+                if (!_entityManager.TryGetComponent<MobStateComponent>(query.Current.Session.AttachedEntity, out var state)
+                    || state.CurrentState == MobState.Critical
                     || state.CurrentState == MobState.Dead)
                     continue;
                 if (_time.CurTime - lastTime > TimeSpan.FromMinutes(15)
