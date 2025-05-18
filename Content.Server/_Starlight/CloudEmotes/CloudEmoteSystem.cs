@@ -7,10 +7,8 @@ namespace Content.Server._Starlight.CloudEmotes;
 
 public sealed class CloudEmoteSystem : SharedCloudEmoteSystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly EntityManager _entMan = default!;
-    private float offset = 0.7f;
 
     public const string EmpPulseEffectPrototype = "EffectEmpPulse";
     private ISawmill _sawmill = default!;
@@ -18,7 +16,7 @@ public sealed class CloudEmoteSystem : SharedCloudEmoteSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<CloudEmotePhaseComponent, TimedDespawnEvent>(OnChangePhase); 
+        SubscribeLocalEvent<CloudEmotePhaseComponent, TimedDespawnEvent>(OnChangePhase);
         _sawmill = Logger.GetSawmill("cloud_emotes_server");
     }
 
@@ -49,11 +47,11 @@ public sealed class CloudEmoteSystem : SharedCloudEmoteSystem
             Dirty(player.Value, comp);
             return;
         }
-        
+
 
         string phase_entity_to_spawn = "";
         comp.Phase += 1;
-        switch (comp.Phase) 
+        switch (comp.Phase)
         {
             case 1:
                 phase_entity_to_spawn = comp.EmoteName;

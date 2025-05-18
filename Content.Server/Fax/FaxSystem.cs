@@ -58,8 +58,6 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly EmagSystem _emag = default!;
     //starlight
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly EntityStorageSystem _storage = default!;
     //end
 
     private const string PaperSlotId = "Paper";
@@ -642,7 +640,7 @@ public sealed class FaxSystem : EntitySystem
             //check if attached
             if (client.AttachedEntity == null)
                 continue;
-            
+
             //check if they are a ghost
             if (!TryComp<GhostComponent>(client.AttachedEntity.Value, out var ghostComp))
                 continue;

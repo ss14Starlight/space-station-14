@@ -34,7 +34,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IAfkManager _afk = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!; //🌟Starlight🌟
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly MindSystem _minds = default!;

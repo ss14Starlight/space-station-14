@@ -25,8 +25,6 @@ public sealed class CluwneSystem : EntitySystem
 {
     [Dependency] private readonly AutoEmoteSystem _emote = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
-    [Dependency] private readonly NameModifierSystem _nameMod = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -73,7 +71,7 @@ public sealed class CluwneSystem : EntitySystem
         if (component.EmoteSoundsId == null)
             return;
         _proto.TryIndex(component.EmoteSoundsId, out EmoteSounds);
-        
+
         var meta = MetaData(uid);
         var name = meta.EntityName;
 

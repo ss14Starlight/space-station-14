@@ -46,7 +46,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private readonly PathfindingSystem _pathfindingSystem = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _recoilSystem = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
     [Dependency] private readonly PvsOverrideSystem _pvsSys = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -346,9 +345,9 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         // camera shake
         CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity * 10f);
-        
+
         // smoke
-        
+
         SpawnSmokeInRadius(iterationIntensity.Count, pos, queued.TotalIntensity);
 
         //For whatever bloody reason, sound system requires ENTITY coordinates.
@@ -400,7 +399,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             queued.Cause,
             _map);
     }
-    
+
     private void SpawnSmokeInRadius(float range, MapCoordinates epicenter, float totalIntensity)
     {
         var smokeCount = (int)(range / 2);

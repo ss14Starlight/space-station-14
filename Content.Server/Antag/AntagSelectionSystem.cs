@@ -19,7 +19,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Station.Events;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Antag;
-using Content.Server.Bible.Components; 
+using Content.Server.Bible.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Database;
@@ -57,7 +57,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly IBanManager _banManager = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
 
     // arbitrary random number to give late joining some mild interest.
@@ -307,14 +306,14 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                     Log.Warning($"Somehow picked {session} for an antag when this rule already selected them previously");
                     continue;
                 }
-                
+
                 if (session != null && HasComp<VampireRuleComponent>(ent))
                 {
                     var playerEntity = session.AttachedEntity;
-                    
-                    if (playerEntity == null 
+
+                    if (playerEntity == null
                         || HasComp<BibleUserComponent>(playerEntity)
-                        || !TryComp<BodyComponent>(playerEntity, out var body) 
+                        || !TryComp<BodyComponent>(playerEntity, out var body)
                         || !_body.TryGetBodyOrganEntityComps<StomachComponent>((playerEntity.Value, body), out var stomachs))
                         continue;
                 }

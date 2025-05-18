@@ -18,12 +18,11 @@ namespace Content.Server.Maps;
 /// </summary>
 public sealed class MapMigrationSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IResourceManager _resMan = default!;
 
     private static readonly List<string> MigrationFiles = new()
     {
-        "/migration.yml", 
+        "/migration.yml",
         "/_Starlight/migration.yml"
     }; // Starlight-edit
 
@@ -63,13 +62,13 @@ public sealed class MapMigrationSystem : EntitySystem
 
             if (documents == null)
                 continue;
-            
+
             if (mappings == null)
                 mappings = new List<MappingDataNode>();
-            
+
             mappings.Add((MappingDataNode) documents.Root);
         }
-        
+
         if (mappings != null)
             return true;
         else
