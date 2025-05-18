@@ -25,6 +25,9 @@
   id: ElderArena
 
 - type: Tag
+  id: EnergySabre
+
+- type: Tag
   id: Felionoid
   
 - type: Tag

@@ -1,0 +1,31 @@
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
+  id: ClothingBeltPhoronicSheath
+  name: energy sabre's phoronic sheath
+  description: Due to the nature of the reverse engineered energy sabre being slim in design to keep its classical fit, it should usually be sheathed in this device, fit for cooling it down after usage.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/e_sheath.rsi
+    state: e-sheath
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/e_sheath.rsi
+  - type: Item
+    size: Huge
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/flashlight_off.ogg
+        ejectSound: /Audio/Items/flashlight_on.ogg
+        whitelist:
+          tags:
+          - EnergySabre
+  - type: ItemMapper
+    mapLayers:
+      e-sheath-sabre:
+        whitelist:
+          tags:
+          - EnergySabre
+  - type: Appearance

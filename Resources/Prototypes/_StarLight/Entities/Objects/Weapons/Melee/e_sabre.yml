@@ -1,0 +1,28 @@
+- type: entity
+  name: energy sabre
+  parent: [BaseMeleeWeaponEnergy, BaseCommandContraband]
+  id: EnergySabre
+  description: Prospects through redspace research into other dimensions have yielded new knowledge on the design of plasma or phoron-based blades, this devestating sabre would be the first of many reverse-engineered by Central Command's Research Division.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/e_sabre.rsi
+    layers:
+    - state: e_sabre
+    - state: e_sabre_blade
+      color: "#FFFFFF"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Weapons/Melee/e_sabre_inhand.rsi
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  - type: Tag
+    tags:
+      - EnergySabre
