@@ -1,17 +1,6 @@
 meta:
-  format: 7
-  category: Map
-  engineVersion: 255.0.0
-  forkId: Starlight
-  forkVersion: 1732131340
-  time: 05/19/2025 23:12:33
-  entityCount: 39862
-maps:
-- 1
-grids:
-- 2
-orphans: []
-nullspace: []
+  format: 6
+  postmapinit: false
 tilemap:
   1: Space
   60: FloorAsteroidSand
