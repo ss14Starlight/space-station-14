@@ -116,6 +116,7 @@
       - EncryptionKeyScience
       - EncryptionKeyCommand
       - EncryptionKeyCommon
+      - EncryptionKeyBinary #starlight
   - type: Sprite
     sprite: Clothing/Ears/Headsets/science.rsi
   - type: Clothing

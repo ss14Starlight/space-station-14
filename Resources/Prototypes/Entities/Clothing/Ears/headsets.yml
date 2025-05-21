@@ -224,6 +224,7 @@
       - EncryptionKeyScience
       - EncryptionKeyCommand
       - EncryptionKeyCommon
+      - EncryptionKeyBinary #starlight
 
 - type: entity
   parent: [ClothingHeadset, BaseSecurityLawyerContraband]
