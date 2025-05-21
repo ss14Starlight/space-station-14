@@ -1,0 +1,18 @@
+- type: entity
+  name: nt-cc authentication key
+  parent: [BaseItem, BaseGrandTheftContraband]
+  id: NTCCAuthKey
+  description: An authentication key utilized by NT-CC staff for various sectorial operations. Usually requires two of these for anything NT-CC related to function. 
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ntcc_authkey.rsi
+    state: nt-cc_authkey
+  - type: StaticPrice
+    price: 1000000
+  - type: ArrivalsBlacklist
+  - type: WarpPoint
+    follow: true
+    location: NT-CC Authentication Key
+  - type: Tag
+    tags:
+    - HighRiskItem
