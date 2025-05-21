@@ -30,3 +30,14 @@
     sprite: _Starlight/Clothing/Head/Hats/beret_corpsman.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/beret_corpsman.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatCentcomAdminIntern
+  name: administration intern's hat
+  description: Only the greenest for Central Command's greenest.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/hat_centcomadmintern.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/hat_centcomadmintern.rsi
