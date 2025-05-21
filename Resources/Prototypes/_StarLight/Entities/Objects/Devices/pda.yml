@@ -200,3 +200,11 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+
+- type: entity
+  parent: CentcomPDA
+  id: AdmInternCentralCommandPDA
+  suffix: Administration Intern
+  components:
+  - type: Pda
+    id: AdmInternCentcomIDCard

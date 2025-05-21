@@ -38,6 +38,19 @@
 
 - type: entity
   parent: IDCardStandard
+  id: AdmInternCentcomIDCard
+  name: central administration intern ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: AdmInternCentralCommand
+
+- type: entity
+  parent: IDCardStandard
   id: RoboticistIDCard
   name: roboticist ID card
   components:

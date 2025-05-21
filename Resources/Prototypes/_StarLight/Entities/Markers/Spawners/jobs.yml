@@ -105,3 +105,17 @@
       - state: green
       - state: surgeon
       - state: jobicon
+
+- type: entity
+  id: SpawnPointAdmInternCentralCommand
+  parent: SpawnPointJobBase
+  name: central administration intern
+  components:
+  - type: SpawnPoint
+    job_id: AdmInternCentralCommand
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: centcom
+      - state: jobicon
