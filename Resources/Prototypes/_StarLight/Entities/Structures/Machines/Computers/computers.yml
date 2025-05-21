@@ -145,3 +145,40 @@
   - type: Tag
     tags:
     - CantInteract
+
+# DO NOT UNCOMMENT UNTIL SPRITING & PROTOTYPING IS COMPLETE
+# - type: entity
+#  parent: BaseComputer
+#  id: CentralManagementConsole
+#  name: central management console
+#  description: The eyes of the sector are upon you, and this computer.
+#  components:
+#  - type: AccessReader
+#    access: [[ "CentralCommand" ]]
+#  - type: Sprite
+#    layers:
+#    - map: ["computerLayerBody"]
+#      state: computer
+#    - map: ["computerLayerKeyboard"]
+#      state: generic_keyboard
+#    - map: ["computerLayerScreen"]
+#      state: comm_sectoral
+#    - map: ["computerLayerKeys"]
+#      state: generic_keys
+#    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+#  - type: ItemSlots
+#    slots:
+#      disk_slot:
+#        name: Auth Key
+#        insertSound:
+#          path: /Audio/Machines/terminal_insert_disc.ogg
+#        ejectSound:
+#          path: /Audio/Machines/terminal_insert_disc.ogg
+#        whitelist:
+#          tags:
+#          - AuthKey
+#  - type: ContainerContainer
+#    containers:
+#      board: !type:Container
+#        ents: []
+#      disk_slot: !type:ContainerSlot {}

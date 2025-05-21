@@ -4,6 +4,9 @@
   id: Arachnid
   
 - type: Tag
+  id: AuthKey
+
+- type: Tag
   id: CantInteract
   
 - type: Tag
