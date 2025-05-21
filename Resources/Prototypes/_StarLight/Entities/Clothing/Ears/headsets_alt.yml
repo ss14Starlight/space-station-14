@@ -12,7 +12,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Ears/Headsets/abductor.rsi
 
-    
+
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetHoP
@@ -21,9 +21,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyService
-      - EncryptionKeyCommand
-      - EncryptionKeyCommon
+      - EncryptionKeyStationMaster
   - type: Sprite
     sprite: Clothing/Ears/Headsets/command.rsi
   - type: Clothing
