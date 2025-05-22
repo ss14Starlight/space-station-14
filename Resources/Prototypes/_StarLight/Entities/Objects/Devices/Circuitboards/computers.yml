@@ -13,3 +13,19 @@
     - type: Tag
       tags:
       - HighRiskItem
+
+#- type: entity
+#  parent: [BaseComputerCircuitboard, BaseGrandTheftContraband]
+#  id: CentralManagementComputerCircuitboard
+#  name: central management console board
+#  description: A computer printed circuit board for a central management console.
+#  components:
+#    - type: Sprite
+#      state: cpu_centcomm
+#    - type: ComputerBoard
+#      prototype: CentralManagementConsole
+#    - type: StaticPrice
+#      price: 750
+#    - type: Tag
+#      tags:
+#      - HighRiskItem

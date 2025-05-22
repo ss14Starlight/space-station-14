@@ -162,8 +162,13 @@
 #    - map: ["computerLayerKeyboard"]
 #      state: generic_keyboard
 #    - map: ["computerLayerScreen"]
-#      state: comm_sectoral
+#      state: cc_management
 #    - map: ["computerLayerKeys"]
+#      state: cc_management_key
+#    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+#      state: generic_panel_open
+#  - type: Computer
+#    board: CentralManagementComputerCircuitboard
 #      state: generic_keys
 #    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
 #  - type: ItemSlots
