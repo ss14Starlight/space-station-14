@@ -9,9 +9,11 @@ using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
+using Content.Shared.Traits.Assorted;
 using Microsoft.CodeAnalysis;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
+
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -131,7 +133,12 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     }
 
     private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
-        => _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
+    {
+        if (!HasComp<PainNumbnessComponent>(args.Body))
+        {
+             _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
+        }
+    }
 
     private void OnStepSpawnComplete(Entity<SurgeryStepSpawnEffectComponent> ent, ref SurgeryStepEvent args)
     {
