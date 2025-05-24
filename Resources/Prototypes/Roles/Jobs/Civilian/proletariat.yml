@@ -19,7 +19,7 @@
 - type: startingGear
   id: ProletariatGear
   equipment:
-    id: ProletariatPDA
+    id: AssistantPDA
     ears: ClothingHeadsetAssistant
     #storage:
     #back:
