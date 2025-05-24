@@ -33,6 +33,7 @@
   - Visitor
   - Zookeeper
   - ServiceWorker
+  - Proletariat
 
 - type: department
   id: CentralCommand
