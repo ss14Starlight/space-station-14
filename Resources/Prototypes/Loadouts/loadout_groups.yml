@@ -205,9 +205,9 @@
   id: ProletariatJumpsuit
   name: loadout-group-proletariat-jumpsuit
   loadouts:
-  - BasicJumpsuit
-  - BasicJumpskirt
-  - AncientJumpsuit
+  - ProletariatJumpsuit
+  - ProletariatJumpskirt
+  - ProletariatAncient
 
 - type: loadoutGroup
   id: AssistantFace
@@ -242,20 +242,20 @@
   id: CommonBackpack
   name: loadout-group-backpack
   loadouts:
-  - CommonBackpack
-  - CommonSatchel
-  - CommonDuffel
-  - SmugglerSatchel
+  - ProletariatBackpack
+  - ProletariatSatchel
+  - ProletariatDuffel
+  - ProletariatSmuggler
 
 - type: loadoutGroup
   id: ProletariatEyeProtection
   name: loadout-group-proletariat-eye-protection
   loadouts:
-    - ProletariatGoggles
-    - ProletariatMaskDefault
-    - ProletariatMaskFlame
-    - ProletariatMaskBlue
-    - ProletariatMaskPainted
+  - ProletariatGoggles
+  - ProletariatMaskDefault
+  - ProletariatMaskFlame
+  - ProletariatMaskBlue
+  - ProletariatMaskPainted
 
 - type: loadoutGroup
   id: AssistantNeck

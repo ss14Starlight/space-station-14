@@ -1,26 +1,41 @@
 ﻿# Jumpsuits
 # Basic
 - type: loadout
-  id: BasicJumpsuit
+  id: ProletariatJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorGrey
 
 - type: loadout
-  id: BasicJumpskirt
+  id: ProletariatJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorGrey
 
 # Ancient
 - type: loadout
-  id: AncientJumpsuit
+  id: ProletariatAncient
   equipment:
     jumpsuit: ClothingUniformJumpsuitAncient
 
 # Back
 - type: loadout
-  id: SmugglerSatchel
+  id: ProletariatSmuggler
   equipment:
     back: ClothingBackpackSmuggler
+    
+- type: loadout
+  id: ProletariatBackpack
+  equipment:
+    back: ClothingBackpack
+
+- type: loadout
+  id: ProletariatSatchel
+  equipment:
+    back: ClothingBackpackSatchel
+
+- type: loadout
+  id: ProletariatDuffel
+  equipment:
+    back: ClothingBackpackDuffel
 
 # Gloves
 - type: loadout
