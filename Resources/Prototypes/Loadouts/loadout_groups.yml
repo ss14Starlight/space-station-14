@@ -202,6 +202,14 @@
   - RainbowJumpsuit
 
 - type: loadoutGroup
+  id: ProletariatJumpsuit
+  name: loadout-group-proletariat-jumpsuit
+  loadouts:
+  - BasicJumpsuit
+  - BasicJumpskirt
+  - AncientJumpsuit
+
+- type: loadoutGroup
   id: AssistantFace
   name: loadout-group-assistant-mask
   minLimit: 0
@@ -216,12 +224,38 @@
   - AssistantGloves
 
 - type: loadoutGroup
+  id: ProletariatGloves
+  name: loadout-group-proletariat-gloves
+  minLimit: 0
+  loadouts:
+  - ProletariatGloves
+
+- type: loadoutGroup
   id: CommonBackpack
   name: loadout-group-backpack
   loadouts:
   - CommonBackpack
   - CommonSatchel
   - CommonDuffel
+
+- type: loadoutGroup
+  id: CommonBackpack
+  name: loadout-group-backpack
+  loadouts:
+  - CommonBackpack
+  - CommonSatchel
+  - CommonDuffel
+  - SmugglerSatchel
+
+- type: loadoutGroup
+  id: ProletariatEyeProtection
+  name: loadout-group-proletariat-eye-protection
+  loadouts:
+    - ProletariatGoggles
+    - ProletariatMaskDefault
+    - ProletariatMaskFlame
+    - ProletariatMaskBlue
+    - ProletariatMaskPainted
 
 - type: loadoutGroup
   id: AssistantNeck

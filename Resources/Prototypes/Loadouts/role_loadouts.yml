@@ -198,6 +198,23 @@
   - Instruments
   - GroupSpeciesBreathTool
 
+- type: roleLoadout
+  id: JobProletariat
+  groups: 
+  - GroupTankHarness
+  - ProletariatJumpsuit
+  - ProletariatBackpack
+  - AssistantNeck
+  - AssistantFace
+  - ProletariatGloves
+  - AssistantOuterClothing
+  - AssistantShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - ProletariatEyeProtection
+
 # Cargo
 - type: roleLoadout
   id: JobQuartermaster
