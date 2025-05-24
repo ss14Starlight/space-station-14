@@ -1,6 +1,6 @@
 ﻿# Face
 - type: loadout
-  id: ProletariatFace
+  id: AssistantFace
   equipment:
     mask: ClothingMaskGas
 
@@ -52,7 +52,7 @@
 - type: loadout
   id: SmugglerSatchel
   equipment:
-    back:ClothingBackpackSmuggler
+    back: ClothingBackpackSmuggler
 
 # Gloves
 - type: loadout
@@ -63,7 +63,7 @@
 
 # Outerclothing
 - type: loadout
-  id: ProletariatWintercoat
+  id: AssistantWintercoat
   equipment:
     outerClothing: ClothingOuterWinterCoat
 

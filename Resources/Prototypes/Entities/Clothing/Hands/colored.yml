@@ -341,6 +341,22 @@
     fiberMaterial: fibers-insulative
     fiberColor: fibers-yellow
 
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesWellWornInsuls
+  name: well worn insulated gloves
+  description: These have been your trusty pair since your early days.
+  components:
+    - type: FingerprintMask
+    - type: Sprite
+      sprite: Clothing/Hands/Gloves/wellworninsuls.rsi
+    - type: Clothing
+      sprite: Clothing/Hands/Gloves/wellworninsuls.rsi
+    - type: Insulated
+    - type: Fiber
+      fiberMaterial: fibers-insulative
+      fiberColor: fibers-yellow
+
 # Budget Insulated Gloves
 - type: entity
   parent: ClothingHandsGlovesColorYellow
