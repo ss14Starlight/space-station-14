@@ -1,3 +1,4 @@
+job-name-proletariat = Proletariat
 job-name-assistant = Assistant
 job-name-atmostech = Atmospheric Technician
 job-name-bartender = Bartender
