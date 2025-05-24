@@ -247,6 +247,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconProletariat
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Proletariat
+  jobName: job-name-Proletariat
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconChiefEngineer
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
