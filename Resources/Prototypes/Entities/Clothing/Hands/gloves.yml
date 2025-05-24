@@ -261,18 +261,32 @@
       - type: CriminalRecordsHacker
 
 - type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesWellWornInsuls
+  name: well worn insulated gloves
+  description: These have been your trusty pair since your early days.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/wellworninsuls.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/wellworninsuls.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+
+- type: entity
   parent: [ ClothingHandsGlovesColorBlack, BaseSecurityEngineeringContraband ]
   id: ClothingHandsGlovesCombat
   name: combat gloves
   description: These tactical gloves are fireproof and shock resistant.
   components:
-  - type: Sprite
-    sprite: Clothing/Hands/Gloves/combat.rsi
-  - type: Clothing
-    sprite: Clothing/Hands/Gloves/combat.rsi
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-insulative
+    - type: Sprite
+      sprite: Clothing/Hands/Gloves/combat.rsi
+    - type: Clothing
+      sprite: Clothing/Hands/Gloves/combat.rsi
+    - type: Insulated
+    - type: Fiber
+      fiberMaterial: fibers-insulative
 
 # can't parent combat gloves since they are butcherable
 - type: entity

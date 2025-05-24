@@ -1,0 +1,83 @@
+﻿# Face
+- type: loadout
+  id: ProletariatFace
+  equipment:
+    mask: ClothingMaskGas
+
+# Jumpsuits
+# Basic
+- type: loadout
+  id: BasicJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+
+- type: loadout
+  id: BasicJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtColorGrey
+
+# Ancient
+- type: loadout
+  id: AncientJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAncient
+
+# Neck
+- type: loadout
+  id: Mantle
+  equipment:
+    neck: ClothingNeckMantle
+  
+- type: startingGear
+  id: Mantle
+  equipment:
+    neck: ClothingNeckMantle
+
+# Back
+- type: loadout
+  id: CommonBackpack
+  equipment:
+    back: ClothingBackpack
+
+- type: loadout
+  id: CommonSatchel
+  equipment:
+    back: ClothingBackpackSatchel
+
+- type: loadout
+  id: CommonDuffel
+  equipment:
+    back: ClothingBackpackDuffel
+    
+- type: loadout
+  id: SmugglerSatchel
+  equipment:
+    back:ClothingBackpackSmuggler
+
+# Gloves
+- type: loadout
+  id: ProletariatGloves
+  effects:
+  equipment:
+    gloves: ClothingHandsGlovesWellWornInsuls
+
+# Outerclothing
+- type: loadout
+  id: ProletariatWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterCoat
+
+# Shoes
+- type: loadout
+  id: BlackShoes
+  equipment:
+    shoes: ClothingShoesColorBlack
+
+- type: loadout
+  id: WinterBoots
+  equipment:
+    shoes: ClothingShoesBootsWinter
+
+# eye protection
+#- type: loadout
+ # id: 

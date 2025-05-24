@@ -1,0 +1,26 @@
+﻿- type: job
+  id: Proletariat
+  name: job-name-proletariat
+  description: job-description-proletariat
+  playTimeTracker: JobProletariat
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobAssistant
+      time: 90000 # 25 hours
+    - !type:OverallPlaytimeRequirement
+      time: 180000 # 50 hours
+  weight: 7
+  startingGear: ProletariatGear
+  icon: "JobIconProletariat"
+  supervisors: job-supervisors-hop
+  access:
+    - Maintenance
+
+- type: startingGear
+  id: ProletariatGear
+  equipment:
+    id: ProletariatPDA
+    ears: ClothingHeadsetAssistant
+    #storage:
+    #back:
+    #- Stuff
