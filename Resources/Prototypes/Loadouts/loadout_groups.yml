@@ -239,8 +239,8 @@
   - CommonDuffel
 
 - type: loadoutGroup
-  id: CommonBackpack
-  name: loadout-group-backpack
+  id: ProletariatBackpack
+  name: loadout-group-proletariat-backpack
   loadouts:
   - ProletariatBackpack
   - ProletariatSatchel

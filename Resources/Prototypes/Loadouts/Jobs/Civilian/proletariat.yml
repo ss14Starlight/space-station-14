@@ -40,37 +40,31 @@
 # Gloves
 - type: loadout
   id: ProletariatGloves
-  effects:
   equipment:
     gloves: ClothingHandsGlovesWellWornInsuls
 
 # eye protection
 - type: loadout
   id: ProletariatGoggles
-  effects:
   equipment:
     eyes: ClothingEyesWeldingGoggles
 
 - type: loadout
   id: ProletariatMaskDefault
-  effects:
   equipment:
     head: ClothingHeadHatWelding
     
 - type: loadout
   id: ProletariatMaskFlame
-  effects:
   equipment:
     head: ClothingHeadHatWeldingMaskFlame
 
 - type: loadout
   id: ProletariatMaskBlue
-  effects:
   equipment:
     head: ClothingHeadHatWeldingMaskFlameBlue
     
 - type: loadout
   id: ProletariatMaskPainted
-  effects:
   equipment:
     head: ClothingHeadHatWeldingMaskPainted
