@@ -26,6 +26,9 @@
   id: JobCargoTechnician
 
 - type: playTimeTracker
+  id: JobCargoAssistant
+
+- type: playTimeTracker
   id: JobCentralCommandOfficial
 
 - type: playTimeTracker
