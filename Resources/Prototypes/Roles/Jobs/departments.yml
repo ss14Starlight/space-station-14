@@ -9,6 +9,7 @@
   - Quartermaster
   - SalvageSpecialist
   - MiningSpecialist
+  - CargoAssistant
 
 - type: department
   id: Civilian
