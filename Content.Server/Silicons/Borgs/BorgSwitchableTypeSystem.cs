@@ -56,7 +56,10 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
                 chassisChecks = false;
             }
             if (!chassisChecks)
+            {
+                Del(newChasis);
                 return;
+            }
             
             
             if (borgChassis == null || newBorgChassis == null || powerCellSlot == null || newPowerCellSlot == null)
