@@ -5,4 +5,4 @@
   # Description
   dummyPrototype: SmartSubWooferVulnerable
 
-  polymorph: PermanentSmartSubwooferMorph
+  transformation: SmartSubWooferVulnerable

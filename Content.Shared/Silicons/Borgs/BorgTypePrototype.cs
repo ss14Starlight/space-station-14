@@ -38,11 +38,11 @@ public sealed partial class BorgTypePrototype : IPrototype
 
     //#region Starlight
     /// <summary>
-    /// The polymorph that should be applied if this borg chasis is selected. warning this skips ALL OTHER FIELDS
-    /// Functional, Visual, Minor, Sounds all of these are SKIPPED if you specify this.
+    /// What entity shall this borg be transformed into. it will attempt to move over the brain, battery, and modules from the old borg to the new borg.
+    /// specifying this field will skip all other fields on this prototype as they should allready be handled by the spawned entity.
     /// </summary>
     [DataField]
-    public ProtoId<PolymorphPrototype>? Polymorph { get; set; }
+    public ProtoId<EntityPrototype>? Transformation { get; set; }
     //#endregion Starlight
     
     /// <summary>

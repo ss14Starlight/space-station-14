@@ -1,10 +1,13 @@
-﻿using Content.Server.Inventory;
-using Content.Server.Polymorph.Components;
-using Content.Server.Polymorph.Systems;
+﻿using System.Linq; //Starlight
+using Content.Server.Inventory;
 using Content.Server.Radio.Components;
+using Content.Shared.Coordinates; //Starlight
 using Content.Shared.Inventory;
+using Content.Shared.PowerCell.Components; //Starlight
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
+using Robust.Server.Containers; //Starlight
+using Robust.Shared.Containers; //Starlight
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -17,19 +20,57 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
 {
     [Dependency] private readonly BorgSystem _borgSystem = default!;
     [Dependency] private readonly ServerInventorySystem _inventorySystem = default!;
-    [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
+    [Dependency] private readonly ContainerSystem _containerSystem = default!; //Starlight
     
     protected override void SelectBorgModule(Entity<BorgSwitchableTypeComponent> ent, ProtoId<BorgTypePrototype> borgType)
     {
         var prototype = Prototypes.Index(borgType);
 
         //#region Starlight
-        if (prototype.Polymorph is not null)
+        if (prototype.Transformation is not null)
         {
-            EntityUid borgEuid = ent.AsType();
-            EntityManager.EnsureComponent<PolymorphableComponent>(borgEuid);
-            borgEuid = _polymorphSystem.PolymorphEntity(borgEuid, prototype.Polymorph.Value) ?? borgEuid;
-            EntityManager.RemoveComponent<PolymorphedEntityComponent>(borgEuid);
+            
+
+            if (!TryComp(ent.Owner, out BorgChassisComponent? borgChassis))
+            {
+                Logger.Warning($"Borg {ent} did not have a borg chassis component? Aborting transformation into {borgType.Id}");
+                return;
+            }
+            if (!TryComp(ent.Owner, out PowerCellSlotComponent? powerCellSlot))
+            {
+                Logger.Warning($"Borg {ent} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
+                return;
+            }
+            
+            var newChasis = SpawnAtPosition(prototype.Transformation, ent.Owner.ToCoordinates());
+
+            var chassisChecks = true
+            if (!TryComp(newChasis, out BorgChassisComponent? newBorgChassis))
+            {
+                Logger.Warning($"Borg prototype {prototype.Transformation} did not have a borg chassis component? Aborting transformation into {borgType.Id}");
+                chassisChecks = false;
+            }
+            if (!TryComp(ent.Owner, out PowerCellSlotComponent? newPowerCellSlot))
+            {
+                Logger.Warning($"Borg prototype {prototype.Transformation} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
+                chassisChecks = false;
+            }
+            if (!chassisChecks)
+                return;
+            
+            
+            if (borgChassis == null || newBorgChassis == null || powerCellSlot == null || newPowerCellSlot == null)
+                {
+                    Logger.Warning($"required comps were found but returned null. this is a engine bug as they should not be null if previous checks passed.");
+                    return;
+                }
+            
+            TryTransferContainerContents(ent.Owner, newChasis, borgChassis.BrainContainerId, newBorgChassis.BrainContainer);
+            //why do I manually get the container? cause for some reason the power cell is NOT on the PowerCellSlotComponent. cause WHY would it...
+            TryTransferContainerContents(ent.Owner, newChasis, powerCellSlot.CellSlotId, _containerSystem.GetContainer(newChasis, newPowerCellSlot.CellSlotId));
+            //if I pray to god hard enough un-selected borgs wont be able to have modules inserted early at any point in the future.
+            
+            Del(ent.Owner);
             return;
         }
         //#endregion
@@ -93,4 +134,33 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
 
         base.SelectBorgModule(ent, borgType);
     }
+
+    //#region starlight
+    //copied almost verbatim from BuildMech.cs
+    private void TryTransferContainerContents(EntityUid from, EntityUid to, string sourceContainer,
+        BaseContainer destContainer)
+    {
+            if (!TryComp(from, out ContainerManagerComponent? containerManager))
+            {
+                Logger.Warning($"Borg entity {from} did not have a container manager! Aborting transformation");
+                return;
+            }
+            
+            if (!_containerSystem.TryGetContainer(from, sourceContainer, out var originalContainer, containerManager))
+            {
+                return;
+            }
+
+            List<EntityUid> entitiesToTransfer = originalContainer.ContainedEntities.ToList(); //we need to copy the list, as we are modifying the original container.
+
+            foreach (var entity in entitiesToTransfer)
+            {
+                if (_containerSystem.TryRemoveFromContainer(entity, true, out bool wasInContainer))
+                {
+                    //all other items except the last that we process will just end up on the ground
+                    _containerSystem.Insert(entity, destContainer);
+                }
+            }
+    }
+    //#endregion
 }
