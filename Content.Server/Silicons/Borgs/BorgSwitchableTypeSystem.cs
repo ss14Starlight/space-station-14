@@ -44,7 +44,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
             
             var newChasis = SpawnAtPosition(prototype.Transformation, ent.Owner.ToCoordinates());
 
-            var chassisChecks = true
+            var chassisChecks = true;
             if (!TryComp(newChasis, out BorgChassisComponent? newBorgChassis))
             {
                 Logger.Warning($"Borg prototype {prototype.Transformation} did not have a borg chassis component? Aborting transformation into {borgType.Id}");
