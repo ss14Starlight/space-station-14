@@ -175,14 +175,6 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconCargoAssistant
-  icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: CargoAssistant
-  jobName: job-name-cargoassistant
-
-- type: jobIcon
-  parent: JobIcon
   id: JobIconScientist
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
@@ -364,6 +356,14 @@
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: MedicalIntern
   jobName: job-name-intern
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCargoAssistant
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: CargoAssistant
+  jobName: job-name-cargo-assistant
 
 - type: jobIcon
   parent: JobIcon
