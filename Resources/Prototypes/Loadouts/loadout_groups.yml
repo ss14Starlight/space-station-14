@@ -657,10 +657,10 @@
 
 - type: loadoutGroup
   id: CargoAssistantJumpsuit
-  name: loadout-group-cargo-sssistant-jumpsuit
+  name: loadout-group-cargo-assistant-jumpsuit
   loadouts:
-  - RedJumpsuit
-  - RedJumpskirt
+  - LightBrownJumpsuit
+  - LightBrownJumpskirt
 
 - type: loadoutGroup
   id: CargoTechnicianBackpack
