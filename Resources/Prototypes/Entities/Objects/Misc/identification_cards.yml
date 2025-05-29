@@ -54,6 +54,18 @@
 
 - type: entity
   parent: AssistantIDCard
+  id: CargoAssistantIDCard
+  name: cargo assistant ID card
+  components:
+  - type: PresetIdCard
+    job: CargoAssistant
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idintern-cargo
+
+- type: entity
+  parent: AssistantIDCard
   id: MedicalInternIDCard
   name: medical intern ID card
   components:
