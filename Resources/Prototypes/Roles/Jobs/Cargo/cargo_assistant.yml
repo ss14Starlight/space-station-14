@@ -20,8 +20,8 @@
 - type: startingGear
   id: CargoAssistantGear
   equipment:
-    id: CargoPDA
-    shoes: 
+    id: CargoPDA #todo: sprite & prototype cargo assistant pda
+    shoes: ClothingShoesColorBlack
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
   #storage:
