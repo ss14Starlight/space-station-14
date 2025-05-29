@@ -2,9 +2,9 @@
 - type: loadout
   id: LightBrownJumpsuit
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorRed
+    jumpsuit: ClothingUniformJumpsuitColorLightBrown
 
 - type: loadout
   id: LightBrownJumpskirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtColorRed
+    jumpsuit: ClothingUniformJumpskirtColorLightBrown
