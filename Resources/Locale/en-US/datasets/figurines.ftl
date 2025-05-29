@@ -20,6 +20,13 @@ figurines-clown-7 = I'm a clown, but you're the whole circus!
 
 figurines-Noah-1 = Sure man!
 figurines-Noah-2 = Don't mind me just a handsome service worker
+figurines-Noah-3 = I'm too handsome to Die!
+figurines-Noah-4 = Freeze unhandsome criminal!!!
+figurines-Noah-5 = Prepare for handsome justice!!!
+figurines-Noah-6 = Grow!!!
+figurines-Noah-7 = Grow faster!!!
+figurines-Noah-8 = Cool man
+figurines-Noah-9 = I didn't choose the handsome life. the handsome life chose me
 
 figurines-holoclown-1 = I'm helping my older brother.
 figurines-holoclown-2 = Hello, officer!
