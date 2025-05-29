@@ -21,6 +21,7 @@
   id: CargoAssistantGear
   equipment:
     id: CargoPDA
+    shoes: 
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
   #storage:
