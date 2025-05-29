@@ -221,6 +221,26 @@
     - Medical Doctor
 
 - type: entity
+  parent: BaseWidePDA
+  id: CargoAssistantPDA
+  name: Cargo Assistant PDA
+  description: Why isn't it beige?
+  components:
+  - type: Pda
+    id: CargoAssistantIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-interncargo
+  - type: PdaBorderColor
+    borderColor: "#717059"
+    accentVColor: "#447987"
+  - type: Icon
+    state: pda-interncargo
+
+
+- type: entity
   parent: BaseSecurityPDA
   id: SecurityCadetPDA
   name: security cadet PDA
