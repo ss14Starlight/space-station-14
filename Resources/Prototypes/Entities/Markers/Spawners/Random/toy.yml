@@ -88,6 +88,7 @@
       - ToyFigurineNukieCommander
       rareChance: 0.05
       prototypes:
+      - ToyFigurineNoah
       - ToyFigurineAssistant
       - ToyFigurineClown
       - ToyFigurineMime

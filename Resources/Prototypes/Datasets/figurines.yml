@@ -17,6 +17,12 @@
     count: 7
 
 - type: localizedDataset
+  id: FigurinesNoah
+  values:
+    prefix: figurines-Noah-
+    count: 4
+
+- type: localizedDataset
   id: FigurinesHoloClown
   values:
     prefix: figurines-holoclown-

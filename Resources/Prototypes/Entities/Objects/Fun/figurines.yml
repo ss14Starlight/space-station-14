@@ -57,6 +57,18 @@
     pack: FigurinesAssistant
 
 - type: entity
+  id: ToyFigurineNoah
+  parent: BaseFigurine
+  name: Noah Figure
+  description: A small figurine of Noah. The most handsome service worker in the galaxy.
+  components:
+    - type: Sprite
+      state: Noah
+    - type: SpeakOnTrigger
+      pack: FigurinesNoah
+      
+
+- type: entity
   parent: BaseFigurine
   id: ToyFigurineClown
   name: clown figure
