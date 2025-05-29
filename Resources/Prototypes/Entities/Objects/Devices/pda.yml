@@ -235,7 +235,7 @@
        pda-interncargo
   - type: PdaBorderColor
     borderColor: "#717059"
-    accentVColor: "#447987"
+    accentVColor: "#e39751"
   - type: Icon
     state: pda-interncargo
 
