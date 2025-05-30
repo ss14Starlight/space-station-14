@@ -504,3 +504,64 @@
   - type: Tag
     tags:
     - Medkit
+
+
+- type: entity
+  name: emergency medipen
+  parent: ChemicalMedipen
+  id: BorgMedipen
+  description: A rapid and safe way to stabilize patients in critical condition for personnel without advanced medical knowledge. Beware, as it's easy to overdose on epinephrine and tranexamic acid.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: medipen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: true
+    emptySpriteName: medipen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 12
+        - ReagentId: TranexamicAcid
+          Quantity: 3
+  - type: RefillableSolution
+    solution: pen
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+    onlyAffectsMobs: true
+    injectOnly: false
+  - type: Tag
+    tags: []
+
+
+- type: entity
+  id: BorgBottleMedipen
+  suffix: medipen
+  parent: BaseChemistryEmptyBottle
+  components:
+  - type: Label
+    currentLabel: reagent-name-epinephrine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 45
+        reagents:
+        - ReagentId: Epinephrine
+          Quantity: 36
+        - ReagentId: TranexamicAcid
+          Quantity: 9
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 1.2
+      - ReagentId: TranexamicAcid
+        Quantity: 0.3

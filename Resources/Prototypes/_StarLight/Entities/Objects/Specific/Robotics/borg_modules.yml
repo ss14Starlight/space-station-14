@@ -58,3 +58,19 @@
     - HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
+
+- type: entity
+  id: BorgModuleSearchAndRescue
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: search and rescue cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-treatment
+  - type: ItemBorgModule
+    items:
+    - BorgMedipen
+    - BorgBottleMedipen
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }

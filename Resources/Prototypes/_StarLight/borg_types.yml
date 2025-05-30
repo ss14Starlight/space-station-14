@@ -55,7 +55,7 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleTreatment
+  - BorgModuleSearchAndRescue
 
   radioChannels:
   - Science
