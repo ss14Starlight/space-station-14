@@ -229,7 +229,7 @@
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
-  id: JobCargoTechnician
+  id: JobCargoAssistant
   groups:
   - GroupTankHarness
   - CargoAssistantJumpsuit
