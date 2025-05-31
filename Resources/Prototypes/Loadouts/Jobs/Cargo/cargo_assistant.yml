@@ -1,10 +1,10 @@
 # Jumpsuit
 - type: loadout
-  id: OrangeJumpsuit
+  id: LightBrownJumpsuit
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorOrange
+    jumpsuit: ClothingUniformJumpsuitColorLightBrown
 
 - type: loadout
-  id: OrangeJumpskirt
+  id: LightBrownJumpskirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtColorOrange
+    jumpsuit: ClothingUniformJumpskirtColorLightBrown

@@ -664,8 +664,8 @@
   id: CargoAssistantJumpsuit
   name: loadout-group-cargo-assistant-jumpsuit
   loadouts:
-  - OrangeJumpsuit
-  - OrangeJumpskirt
+  - LightBrownJumpsuit
+  - LightBrownJumpskirt
 
 - type: loadoutGroup
   id: CargoTechnicianBackpack
