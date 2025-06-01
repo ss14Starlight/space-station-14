@@ -32,6 +32,8 @@
         orGroup: SpacemenFig
       - id: ToyFigurineClown
         orGroup: SpacemenFig
+      - id: ToyFigurineNoah
+        orGroup: SpacemenFig
       - id: ToyFigurineMime
         orGroup: SpacemenFig
       - id: ToyFigurineMusician
