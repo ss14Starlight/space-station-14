@@ -45,11 +45,6 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
                 Logger.Warning($"Borg {ent} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
                 return;
             }
-            if (!TryComp(ent.Owner, out SiliconLawProviderComponent? siliconLawProvider))
-            {
-                Logger.Warning($"Borg {ent} did not have a silicon law bound component? Aborting transformation into {borgType.Id}");
-                return;
-            }
             
             var newChasis = SpawnAtPosition(prototype.Transformation, ent.Owner.ToCoordinates());
 
@@ -66,7 +61,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
             }
             if (!TryComp(ent.Owner, out SiliconLawProviderComponent? newSiliconLawProvider))
             {
-                Logger.Warning($"Borg prototype {prototype.Transformation} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
+                Logger.Warning($"Borg prototype {prototype.Transformation} did not have a silicon law provider component? Aborting transformation into {borgType.Id}");
                 chassisChecks = false;
             }
             if (!chassisChecks)
@@ -75,7 +70,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
                 return;
             }
             
-            if (borgChassis == null || newBorgChassis == null || powerCellSlot == null || newPowerCellSlot == null || siliconLawProvider == null || newSiliconLawProvider == null)
+            if (borgChassis == null || newBorgChassis == null || powerCellSlot == null || newPowerCellSlot == null || newSiliconLawProvider == null)
             {
                 Logger.Error($"required comps were found but returned null. this is a engine bug as they should not be null if previous checks passed.");
                 return;
