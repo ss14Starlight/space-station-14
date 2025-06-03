@@ -17,6 +17,9 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Body.Components; // 🌟Starlight🌟
+using Content.Shared.Body.Part; // 🌟Starlight🌟
+using Content.Shared.Body.Systems; // 🌟Starlight🌟
 
 namespace Content.Shared.Inventory;
 
@@ -34,6 +37,7 @@ public abstract partial class InventorySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedStrippableSystem _strippable = default!;
+    [Dependency] private readonly SharedBodySystem _bodySystem = default!; // 🌟Starlight🌟
 
     [ValidatePrototypeId<ItemSizePrototype>]
     private const string PocketableItemSize = "Small";
@@ -239,6 +243,50 @@ public abstract partial class InventorySystem
             return false;
 
         DebugTools.Assert(slotDefinition.Name == slot);
+
+        // 🌟Starlight🌟 start
+        // Limb checks fr slot access restrictions
+        if (TryComp(target, out BodyComponent? body))
+        {
+            var slotFlags = slotDefinition.SlotFlags;
+            // GLOVES: requires at least one hand/arm
+            if (slotFlags.HasFlag(SlotFlags.GLOVES))
+            {
+                var hasHand = _bodySystem.BodyHasPartType(target, BodyPartType.Hand, body);
+                var hasArm = _bodySystem.BodyHasPartType(target, BodyPartType.Arm, body);
+                if (!hasHand && !hasArm)
+                {
+                    return false;
+                }
+            }
+            // FEET: requires at least one foot/leg
+            if (slotFlags.HasFlag(SlotFlags.FEET))
+            {
+                var hasLeg = _bodySystem.BodyHasPartType(target, BodyPartType.Leg, body);
+                if (!hasLeg)
+                {
+                    reason = "inventory-component-can-equip-no-legs";
+                    return false;
+                }
+                var hasFoot = _bodySystem.BodyHasPartType(target, BodyPartType.Foot, body);
+                if (!hasFoot)
+                {
+                    reason = "inventory-component-can-equip-no-feet-or-legs";
+                    return false;
+                }
+            }
+            // HEAD;EYES;EARS;MASK;NECK: require head
+            if (slotFlags.HasFlag(SlotFlags.HEAD) || slotFlags.HasFlag(SlotFlags.EYES) || slotFlags.HasFlag(SlotFlags.EARS) || slotFlags.HasFlag(SlotFlags.MASK) || slotFlags.HasFlag(SlotFlags.NECK))
+            {
+                var hasHead = _bodySystem.BodyHasPartType(target, BodyPartType.Head, body);
+                if (!hasHead)
+                {
+                    return false;
+                }
+            }
+            // 🌟Starlight🌟 end
+        }
+
         if (slotDefinition.DependsOn != null)
         {
             if (!TryGetSlotEntity(target, slotDefinition.DependsOn, out EntityUid? slotEntity, inventory))

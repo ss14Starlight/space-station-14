@@ -78,6 +78,28 @@ public sealed partial class LimbSystem : SharedLimbSystem
             RemoveLimbVisual(body, limb);
             RemoveLimb(body, limb);
         }
+
+        // Drop clothing from slots if no limbs left
+        if (TryComp<BodyComponent>(body, out var bodyComp))
+        {
+            // (GLOVES)
+            if (!_body.BodyHasPartType(body, BodyPartType.Hand, bodyComp) &&
+                !_body.BodyHasPartType(body, BodyPartType.Arm, bodyComp))
+            {
+                DropClothingFromSlot(body, "gloves");
+            }
+            //(FEET)
+            if (!_body.BodyHasPartType(body, BodyPartType.Leg, bodyComp))
+            {
+                DropClothingFromSlot(body, "shoes");
+            }
+            //(EARS, NECK)
+            if (!_body.BodyHasPartType(body, BodyPartType.Head, bodyComp))
+            {
+                DropClothingFromSlot(body, "ears");
+                DropClothingFromSlot(body, "neck");
+            }
+        }
     }
 
     private void AddItemLimb(EntityUid body, string slot, Entity<MetaDataComponent> item)
@@ -127,5 +149,15 @@ public sealed partial class LimbSystem : SharedLimbSystem
         RemComp<UnremoveableComponent>(itemId);
         _hands.DoDrop(itemId, hand);
         _hands.RemoveHand(bodyId, handId);
+    }
+
+    // Drop clothing from slot, who would have thought :)
+    private void DropClothingFromSlot(EntityUid body, string slot)
+    {
+        var inventorySystem = EntityManager.System<Content.Shared.Inventory.InventorySystem>();
+        if (inventorySystem.TryGetSlotEntity(body, slot, out var item))
+        {
+            inventorySystem.TryUnequip(body, slot, out _, silent: false, force: true);
+        }
     }
 }
