@@ -1,11 +1,14 @@
 ﻿using System.Linq; //Starlight
 using Content.Server.Inventory;
 using Content.Server.Radio.Components;
+using Content.Server.Silicons.Laws;
 using Content.Shared.Coordinates; //Starlight
 using Content.Shared.Inventory;
 using Content.Shared.PowerCell.Components; //Starlight
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Silicons.Laws;
+using Content.Shared.Silicons.Laws.Components;
 using Robust.Server.Containers; //Starlight
 using Robust.Shared.Containers; //Starlight
 using Robust.Shared.Prototypes;
@@ -21,6 +24,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
     [Dependency] private readonly BorgSystem _borgSystem = default!;
     [Dependency] private readonly ServerInventorySystem _inventorySystem = default!;
     [Dependency] private readonly ContainerSystem _containerSystem = default!; //Starlight
+    [Dependency] private readonly SiliconLawSystem _siliconLawSystem = default!; //Starlight
     
     protected override void SelectBorgModule(Entity<BorgSwitchableTypeComponent> ent, ProtoId<BorgTypePrototype> borgType)
     {
@@ -41,6 +45,11 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
                 Logger.Warning($"Borg {ent} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
                 return;
             }
+            if (!TryComp(ent.Owner, out SiliconLawProviderComponent? siliconLawProvider))
+            {
+                Logger.Warning($"Borg {ent} did not have a silicon law bound component? Aborting transformation into {borgType.Id}");
+                return;
+            }
             
             var newChasis = SpawnAtPosition(prototype.Transformation, ent.Owner.ToCoordinates());
 
@@ -55,24 +64,34 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
                 Logger.Warning($"Borg prototype {prototype.Transformation} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
                 chassisChecks = false;
             }
+            if (!TryComp(ent.Owner, out SiliconLawProviderComponent? newSiliconLawProvider))
+            {
+                Logger.Warning($"Borg prototype {prototype.Transformation} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
+                chassisChecks = false;
+            }
             if (!chassisChecks)
             {
                 Del(newChasis);
                 return;
             }
             
+            if (borgChassis == null || newBorgChassis == null || powerCellSlot == null || newPowerCellSlot == null || siliconLawProvider == null || newSiliconLawProvider == null)
+            {
+                Logger.Error($"required comps were found but returned null. this is a engine bug as they should not be null if previous checks passed.");
+                return;
+            }
             
-            if (borgChassis == null || newBorgChassis == null || powerCellSlot == null || newPowerCellSlot == null)
-                {
-                    Logger.Warning($"required comps were found but returned null. this is a engine bug as they should not be null if previous checks passed.");
-                    return;
-                }
             
+
             TryTransferContainerContents(ent.Owner, newChasis, borgChassis.BrainContainerId, newBorgChassis.BrainContainer);
             //why do I manually get the container? cause for some reason the power cell is NOT on the PowerCellSlotComponent. cause WHY would it...
             TryTransferContainerContents(ent.Owner, newChasis, powerCellSlot.CellSlotId, _containerSystem.GetContainer(newChasis, newPowerCellSlot.CellSlotId));
             //if I pray to god hard enough un-selected borgs wont be able to have modules inserted early at any point in the future.
-            
+
+            var ev = new GetSiliconLawsEvent(ent.Owner);
+            RaiseLocalEvent(ent.Owner, ref ev);
+            _siliconLawSystem.SetLaws(ev.Laws.Laws, newChasis, null);
+
             Del(ent.Owner);
             return;
         }
