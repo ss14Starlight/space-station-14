@@ -6666,7 +6666,7 @@ entities:
       shakeTimes: 10
     - type: GasTileOverlay
     - type: BecomesStation
-      id: Retro
+      id: StarlightRetro
     - type: NavMap
     - type: RadiationGridResistance
     - type: GridAtmosphere

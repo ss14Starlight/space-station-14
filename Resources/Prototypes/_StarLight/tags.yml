@@ -77,6 +77,9 @@
   
 - type: Tag
   id: SovietDungeon
+    
+- type: Tag
+  id: SovietWarehouse
 
 - type: Tag
   id: SpeedLoaderShotgun
@@ -86,3 +89,6 @@
   
 - type: Tag
   id: Table
+
+- type: Tag
+  id: DockEscape
