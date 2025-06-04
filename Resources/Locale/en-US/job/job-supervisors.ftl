@@ -13,4 +13,4 @@ job-supervisors-medicine = Medical Doctors, Paramedics, Chemists, and the Chief 
 job-supervisors-security = Security Officers, the Warden, and the Head of Security
 job-supervisors-science = Scientists and the Research Director
 job-supervisors-hire = whoever hires you
-job-supervisors-everyone = absolutely everyone (all hail The Lord of the Tide)
+job-supervisors-everyone = absolutely everyone
