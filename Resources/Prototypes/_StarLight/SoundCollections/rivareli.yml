@@ -1,0 +1,29 @@
+- type: soundCollection
+  id: RivareliLaugh
+  files:
+  - /Audio/_Starlight/Voice/Rivareli/rivareli_mock.ogg
+
+- type: soundCollection
+  id: RivareliLaugh
+  files:
+  - /Audio/_Starlight/Voice/Rivareli/rivareli_mock.ogg
+
+- type: soundCollection
+  id: RivareliSneeze
+  files:
+  - /Audio/_Starlight/Voice/Rivareli/rivareli_achoo.ogg
+
+- type: soundCollection
+  id: RivareliSigh
+  files:
+  - /Audio/_Starlight/Voice/Rivareli/rivareli_depression.ogg
+
+- type: soundCollection
+  id: RivareliScream
+  files:
+  - /Audio/_Starlight/Voice/Rivareli/rivareli_protest.ogg
+
+- type: soundCollection
+  id: RivareliWah
+  files:
+  - /Audio/_Starlight/Voice/Rivareli/wawa.wav

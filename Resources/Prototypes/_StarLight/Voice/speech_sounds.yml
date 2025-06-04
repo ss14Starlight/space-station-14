@@ -1,0 +1,8 @@
+- type: speechSounds
+  id: Rivareli
+  saySound:
+    path: /Audio/_Starlight/Voice/Rivareli/rivareli_statement.ogg
+  askSound:
+    path: /Audio/_Starlight/Voice/Rivareli/rivareli_question.ogg
+  exclaimSound:
+    path: /Audio/_Starlight/Voice/Rivareli/rivareli_exclaim.ogg

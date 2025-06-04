@@ -9,6 +9,7 @@ chat-emote-name-growl = Growl
 chat-emote-name-bark = Bark
 chat-emote-name-yip = Yip
 chat-emote-name-whine = Whine
+chat-emote-name-wah = Wah
 
 # Emote Messages
 chat-emote-msg-mew = mews
@@ -21,3 +22,4 @@ chat-emote-msg-growl = growls
 chat-emote-msg-bark = barks
 chat-emote-msg-yip = yips
 chat-emote-msg-whine = whines
+chat-emote-name-wah = Wahs

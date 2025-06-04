@@ -6,3 +6,12 @@
   - chat-speech-verb-felionoid-2
   - chat-speech-verb-felionoid-3
   - chat-speech-verb-felionoid-4
+
+- type: speechVerb
+  id: Rivareli
+  name: chat-speech-verb-name-rivareli
+  speechVerbStrings:
+  - chat-speech-verb-rivareli-1
+  - chat-speech-verb-rivareli-2
+  - chat-speech-verb-rivareli-3
+  - chat-speech-verb-rivareli-4

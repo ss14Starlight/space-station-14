@@ -234,3 +234,29 @@
     - trilling.
     - trilling!
     - trilling?
+
+- type: emote
+  id: Wah
+  name: chat-emote-name-wah
+  category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-wah"]
+  chatTriggers:
+    - wah
+    - wah.
+    - wah!
+    - wah?
+    - wahs
+    - wahs.
+    - wahs!
+    - wahs?
+    - wawa
+    - wawa.
+    - wawa!
+    - wawa?

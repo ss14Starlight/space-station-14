@@ -178,3 +178,59 @@
       collection: CycloriteWhistle
     Yawn:
       collection: CycloriteYawn
+
+- type: emoteSounds
+  id: MaleRivareli
+  params:
+    variation: 0.125
+  sounds:
+    Laugh:
+      collection: RivareliLaugh
+    Sneeze:
+      collection: RivareliSneeze
+    Cough:
+      collection: MaleCoughs
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: RivareliSigh
+    Scream:
+      collection: RivareliScream
+    Hisses:
+      collection: FelionoidHisses
+    Purr:
+      collection: FelionoidPurrs
+    Growl:
+      collection: FelionoidGrowls
+    Trill:
+      collection: FelionoidTrills
+    Wah:
+      collection: RivareliWah
+
+- type: emoteSounds
+  id: FemaleRivareli
+  params:
+    variation: 0.125
+  sounds:
+    Laugh:
+      collection: RivareliLaugh
+    Sneeze:
+      collection: RivareliSneeze
+    Cough:
+      collection: FemaleCoughs
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: RivareliSigh
+    Scream:
+      collection: RivareliScream
+    Hisses:
+      collection: FelionoidHisses
+    Purr:
+      collection: FelionoidPurrs
+    Growl:
+      collection: FelionoidGrowls
+    Trill:
+      collection: FelionoidTrills
+    Wah:
+      collection: RivareliWah

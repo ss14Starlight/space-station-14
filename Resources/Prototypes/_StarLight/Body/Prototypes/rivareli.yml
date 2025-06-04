@@ -1,0 +1,31 @@
+- type: body
+  id: Rivareli
+  name: "rivareli"
+  root: torso
+  slots:
+    head:
+      part: HeadRivareli
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    torso:
+      part: TorsoAnimal
+      connections:
+      - hands
+      - legs
+      organs:
+        lungs: OrganAnimalLungs
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        heart: OrganAnimalHeart
+        kidneys: OrganAnimalKidneys
+    hands:
+      part: HandsAnimal
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal

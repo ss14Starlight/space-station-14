@@ -1,0 +1,128 @@
+- type: species
+  id: Rivareli
+  name: species-name-rivareli
+  roundStart: true
+  prototype: MobRivareli
+  sprites: MobRivareliSprites
+  defaultSkinTone: "#FFFFFF"
+  markingLimits: MobRivareliMarkingLimits
+  dollPrototype: MobRivareliDummy
+  skinColoration: Hues
+
+- type: speciesBaseSprites
+  id: MobRivareliSprites
+  sprites:
+    Head: MobRivareliHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    Chest: MobRivareliTorso
+    Eyes: MobRivareliEyes
+    LArm: MobRivareliLArm
+    RArm: MobRivareliRArm
+    LHand: MobRivareliLHand
+    RHand: MobRivareliRHand
+    LLeg: MobRivareliLLeg
+    RLeg: MobRivareliRLeg
+    LFoot: MobRivareliLFoot
+    RFoot: MobRivareliRFoot
+    Tail: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobRivareliMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ RivareliTail ]
+
+- type: humanoidBaseSprite
+  id: MobRivareliEyes
+  baseSprite:
+    sprite: _Starlight/Mobs/Customization/rivareli_parts.rsi
+    state: eyes
+
+- type: humanoidBaseSprite
+  id: MobRivareliHead
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: MobRivareliHeadMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: MobRivareliHeadFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: MobRivareliTorso
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: MobRivareliTorsoMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: MobRivareliTorsoFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: MobRivareliLLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: legs
+
+- type: humanoidBaseSprite
+  id: MobRivareliLArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: legs
+
+- type: humanoidBaseSprite
+  id: MobRivareliLHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: legs
+
+- type: humanoidBaseSprite
+  id: MobRivareliLFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: legs
+
+- type: humanoidBaseSprite
+  id: MobRivareliRLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: legs
+
+- type: humanoidBaseSprite
+  id: MobRivareliRArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: arms
+
+- type: humanoidBaseSprite
+  id: MobRivareliRHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: arms
+
+- type: humanoidBaseSprite
+  id: MobRivareliRFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: arms

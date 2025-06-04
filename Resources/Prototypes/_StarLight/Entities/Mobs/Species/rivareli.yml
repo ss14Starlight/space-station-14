@@ -1,0 +1,156 @@
+- type: entity
+  save: false
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
+  id: BaseMobRivareli
+  abstract: true
+  components:
+    - type: VentCrawler # TODO: Add Variables so Rivareli can only crawl in vents if not wearing anything.
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.2
+          density: 120
+          restitution: 0.0
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
+    - type: HumanoidAppearance
+      species: Rivareli
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+      state: full
+    - type: Body
+      prototype: Rivareli
+      requiredLegs: 1
+    - type: Absorbable
+    - type: Hunger
+    - type: Thirst
+    - type: Speech
+      speechSounds: Rivareli
+      speechVerb: Rivareli
+      allowedEmotes: ["Hisses", "Growl", "Purr", "Trill", "Wah"]
+    - type: Vocal
+      sounds:
+        Male: MaleRivareli
+        Female: FemaleRivareli
+        Unsexed: MaleRivareli
+    - type: Tag
+      tags:
+        - CanPilot
+        - FootstepSound
+        - DoorBumpOpener
+        - AnomalyHost
+    - type: Inventory
+      templateId: rivareli
+      speciesId: rivareli
+      displacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: jumpsuit
+        id:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: id
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: gloves
+        neck:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: neck
+        ears:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: ears
+        eyes:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: eyes
+        head:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: head
+        mask:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: mask
+    - type: Hands
+      HandDisplacement:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+            state: hand
+    - type: InventorySlots
+
+- type: entity
+  save: false
+  parent: BaseSpeciesDummy
+  id: MobRivareliDummy
+  categories: [HideSpawnMenu]
+  components:
+    - type: HumanoidAppearance
+      species: Rivareli
+    - type: Body
+      prototype: Rivareli
+    - type: Inventory
+      templateId: rivareli
+      speciesId: rivareli
+      displacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: jumpsuit
+        id:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: id
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: gloves
+        neck:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: neck
+        ears:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: ears
+        eyes:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: eyes
+        head:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: head
+        mask:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+              state: mask
+    - type: Hands
+      HandDisplacement:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
+            state: hand

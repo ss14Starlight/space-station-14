@@ -1,0 +1,18 @@
+- files:
+  - rivareli-achoo.ogg
+  - rivareli-chatter.ogg
+  - rivareli-chillin.ogg
+  - rivareli-depression.ogg
+  - rivareli-exclaim.ogg
+  - rivareli-mock.ogg
+  - rivareli-protest.ogg
+  - rivareli-question.ogg
+  - rivareli-statement.ogg
+  copyright: "created by FairlySadPanda"
+  license: "CC-BY-4.0"
+  source: "https://github.com/space-wizards/space-station-14/pull/37936"
+
+- files: ["wawa.wav"]
+  license: "Custom"
+  copyright: "GPL-3.0 license // andreweathan"
+  source: "https://github.com/Andrew-Eathan/push-to-meow"

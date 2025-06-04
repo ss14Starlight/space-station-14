@@ -1,0 +1,8 @@
+- type: entity
+  id: HeadRivareli
+  name: "Rivareli head"
+  parent: HeadHuman
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Rivareli/parts.rsi
+    state: head

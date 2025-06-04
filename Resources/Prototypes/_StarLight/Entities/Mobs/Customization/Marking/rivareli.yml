@@ -1,0 +1,9 @@
+- type: marking
+  id: RivareliTail
+  bodyPart: Chest
+  markingCategory: Tail
+  speciesRestriction: [Rivareli]
+  forcedColoring: true
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/rivareli_parts.rsi
+    state: tail
