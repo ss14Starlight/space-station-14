@@ -7,7 +7,6 @@ job-name-boxer = Boxer
 job-name-brigmedic = Brigmedic
 job-name-cadet = Security Cadet
 job-name-captain = Captain
-job-name-cargo-assistant = Cargo Assistant
 job-name-cargotech = Cargo Technician
 job-name-cburn = Centcomm Quarantine Officer
 job-name-ce = Chief Engineer
