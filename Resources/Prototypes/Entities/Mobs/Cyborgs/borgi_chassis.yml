@@ -249,6 +249,22 @@
     receiveFrequencyId: CyborgControl
     transmitFrequencyId: RoboticsConsole
     savableAddress: false
+  - type: AutomatedTimer
+  - type: ExplodeOnTrigger #bad borgis get exploded.
+  - type: Explosive
+    explosionType: Minibomb
+    deleteAfterExplosion: false # let damage threshold gib the borgi
+    totalIntensity: 200
+    intensitySlope: 100
+    maxIntensity: 60
+    canCreateVacuum: false # its for killing the borg not the station
+  - type: OnUseTimerTrigger
+    delay: 10
+    examinable: false
+    beepSound:
+      path: /Audio/Effects/Cargo/buzz_two.ogg
+      params:
+        volume: -4
   - type: EmagSiliconLaw
     stunTime: 5
   - type: ReplacementAccent
