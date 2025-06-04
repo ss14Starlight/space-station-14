@@ -14,6 +14,10 @@ loadout-group-blueshield-backpack = Blueshield backpack
 loadout-group-blueshield-jumpsuit = Blueshield jumpsuit
 loadout-group-blueshield-eyewear = Blueshield eyewear
 
+# Cargo
+
+loadout-group-cargo-assistant-jumpsuit = Cargo Assistant Jumpsuit
+
 # Security
 
 loadout-group-brigmedic-gloves = Brigmedic gloves
