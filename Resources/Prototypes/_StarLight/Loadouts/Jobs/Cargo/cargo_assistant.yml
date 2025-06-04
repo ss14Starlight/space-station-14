@@ -1,0 +1,10 @@
+# Jumpsuit
+- type: loadout
+  id: LightBrownJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorLightBrown
+
+- type: loadout
+  id: LightBrownJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtColorLightBrown
