@@ -1,4 +1,14 @@
 - type: roleLoadout
+  id: JobCargoAssistant
+  groups:
+  - GroupTankHarness
+  - CargoAssistantJumpsuit
+  - CargoTechnicianBackpack
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
   id: JobRoboticist
   groups:
   - RoboticistHead
