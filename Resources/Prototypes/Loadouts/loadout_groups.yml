@@ -661,13 +661,6 @@
   - CargoTechnicianJumpskirt
 
 - type: loadoutGroup
-  id: CargoAssistantJumpsuit
-  name: loadout-group-cargo-assistant-jumpsuit
-  loadouts:
-  - LightBrownJumpsuit
-  - LightBrownJumpskirt
-
-- type: loadoutGroup
   id: CargoTechnicianBackpack
   name: loadout-group-cargo-technician-backpack
   loadouts:
