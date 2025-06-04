@@ -1,4 +1,11 @@
 - type: loadoutGroup
+  id: CargoAssistantJumpsuit
+  name: loadout-group-cargo-assistant-jumpsuit
+  loadouts:
+  - LightBrownJumpsuit
+  - LightBrownJumpskirt
+
+- type: loadoutGroup
   id: RoboticistJumpsuit
   name: loadout-group-roboticist-jumpsuit
   loadouts:
