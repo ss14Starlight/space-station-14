@@ -231,16 +231,6 @@
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
-  id: JobCargoAssistant
-  groups:
-  - GroupTankHarness
-  - CargoAssistantJumpsuit
-  - CargoTechnicianBackpack
-  - Survival
-  - Trinkets
-  - GroupSpeciesBreathTool
-
-- type: roleLoadout
   id: JobSalvageSpecialist
   groups:
   - GroupTankHarness
