@@ -122,16 +122,6 @@
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   - type: SiliconLawBound
-  - type: BorgTransponder
-    sprite: 
-      sprite: Mobs/Pets/corgi.rsi
-      state: corgi
-    name: borgi
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: CyborgControl
-    transmitFrequencyId: RoboticsConsole
-    savableAddress: false
   - type: IonStormTarget
   - type: InteractionPopup
     interactSuccessString: petting-success-dog
@@ -249,6 +239,16 @@
   components:
   - type: SiliconLawProvider
     laws: BorgiLawset
+  - type: BorgTransponder
+    sprite: 
+      sprite: Mobs/Pets/corgi.rsi
+      state: corgi
+    name: borgi
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CyborgControl
+    transmitFrequencyId: RoboticsConsole
+    savableAddress: false
   - type: EmagSiliconLaw
     stunTime: 5
   - type: ReplacementAccent
@@ -268,14 +268,10 @@
     - Binary
 
 - type: entity
-  parent: BaseBorgiChassis
+  parent: BorgiVulnerable
   id: SmartBorgiVulnerable
   name: Smart Borgi
   components:
-  - type: SiliconLawProvider
-    laws: BorgiLawset
-  - type: EmagSiliconLaw
-    stunTime: 5
   - type: RandomMetadata
     nameSegments:
     - NamesBorgi
@@ -291,15 +287,11 @@
     - Binary
 
 - type: entity
-  parent: BaseBorgiChassis
+  parent: BorgiVulnerable
   id: SubWooferVulnerable
   name: SubWoofer
   description: A smart dog, with an obsession for sick bass beats.
   components:
-  - type: SiliconLawProvider
-    laws: BorgiLawset
-  - type: EmagSiliconLaw
-    stunTime: 5
   - type: ReplacementAccent
     accent: dog
   - type: RandomMetadata
@@ -318,15 +310,11 @@
     - Binary
 
 - type: entity
-  parent: BaseBorgiChassis
+  parent: BorgiVulnerable
   id: SmartSubWooferVulnerable
   name: Smart SubWoofer
   description: An unusually smart dog, with an obsession for sick bass beats.
   components:
-  - type: SiliconLawProvider
-    laws: BorgiLawset
-  - type: EmagSiliconLaw
-    stunTime: 5
   - type: RandomMetadata
     nameSegments:
     - NamesBorgi
