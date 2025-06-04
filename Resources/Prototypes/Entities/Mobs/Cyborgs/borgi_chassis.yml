@@ -122,6 +122,16 @@
   - type: ActivatableUI
     key: enum.BorgUiKey.Key
   - type: SiliconLawBound
+  - type: BorgTransponder
+    sprite: 
+      sprite: Mobs/Pets/corgi.rsi
+      state: corgi
+    name: borgi
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CyborgControl
+    transmitFrequencyId: RoboticsConsole
+    savableAddress: false
   - type: IonStormTarget
   - type: InteractionPopup
     interactSuccessString: petting-success-dog
