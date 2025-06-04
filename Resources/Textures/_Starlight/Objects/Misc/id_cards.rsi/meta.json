@@ -39,6 +39,8 @@
     { "name": "idsyndiagent"
     },
     { "name": "idoperative"
+    },
+    { "name": "idintern-cargo"
     }
   ]
 }
