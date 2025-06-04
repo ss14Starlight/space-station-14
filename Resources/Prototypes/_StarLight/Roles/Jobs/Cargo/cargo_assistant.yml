@@ -1,0 +1,29 @@
+- type: job
+  id: CargoAssistant
+  name: job-name-cargo-assistant
+  description: job-description-cargo-assistant
+  playTimeTracker: JobCargoAssistant
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 54000 #15 hrs
+      inverted: true # stop playing assistant if you're good at cargo!
+  weight: -1
+  startingGear: CargoAssistantGear
+  icon: "JobIconCargoAssistant"
+  supervisors: job-supervisors-cargo
+  canBeAntag: false
+  access:
+  - Cargo
+  - Maintenance
+
+- type: startingGear
+  id: CargoAssistantGear
+  equipment:
+    id: CargoPDA #todo: sprite & prototype cargo assistant pda
+    shoes: ClothingShoesColorBlack
+    ears: ClothingHeadsetCargo
+    pocket1: AppraisalTool
+  #storage:
+    #back:
+    #- Stuff
