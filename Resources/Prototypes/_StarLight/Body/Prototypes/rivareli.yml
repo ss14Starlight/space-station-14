@@ -10,10 +10,13 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
+        tongue: OrganHumanTongue
+        eye_implant: null
     torso:
       part: TorsoAnimal
       connections:
-      - hands
+      - righthand
+      - lefthand
       - legs
       organs:
         lungs: OrganAnimalLungs
@@ -21,8 +24,11 @@
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart
         kidneys: OrganAnimalKidneys
-    hands:
-      part: HandsAnimal
+        cavity: null
+    lefthand:
+      part: LeftHandSmartCorgi
+    righthand:
+      part: RightHandSmartCorgi
     legs:
       part: LegsAnimal
       connections:

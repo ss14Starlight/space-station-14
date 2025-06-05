@@ -16,6 +16,16 @@
             - MobMask
           layer:
             - MobLayer
+    - type: Butcherable
+      butcheringType: Spike
+      spawned:
+      - id: FoodMeatHuman
+        amount: 3
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        75: Critical
+        150: Dead
     - type: HumanoidAppearance
       species: Rivareli
     - type: Icon
@@ -87,7 +97,7 @@
               sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi
               state: mask
     - type: Hands
-      HandDisplacement:
+      handDisplacement:
         sizeMaps:
           32:
             sprite: _Starlight/Mobs/Species/Rivareli/displacement.rsi

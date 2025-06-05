@@ -4,11 +4,6 @@
   - /Audio/_Starlight/Voice/Rivareli/rivareli_mock.ogg
 
 - type: soundCollection
-  id: RivareliLaugh
-  files:
-  - /Audio/_Starlight/Voice/Rivareli/rivareli_mock.ogg
-
-- type: soundCollection
   id: RivareliSneeze
   files:
   - /Audio/_Starlight/Voice/Rivareli/rivareli_achoo.ogg
