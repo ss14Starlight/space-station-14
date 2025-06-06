@@ -264,8 +264,9 @@
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
   - type: Strap
-    position: None
-    buckleOffset: "0,0.05"
+    position: Down
+    rotation: -90
+    buckleOffset: "0,-0.15"
 
 - type: entity
   id: BaseBorgChassisCustomQuadrupedNT
