@@ -1,0 +1,12 @@
+# Blood brother Moffstation objectives
+- type: weightedRandom
+  id: BloodBrotherObjectiveGroupOpenEnded
+  weights:
+    BloodBrotherDisruptDepartmentObjective: 1
+    BloodBrotherInfiltrateObjective: 0.5
+    BloodBrotherJailbreakObjective: 0.5
+    BloodBrotherLeaveCallingCardObjective: 0.2
+    BloodBrotherRobDepartmentObjective: 1
+    BloodBrotherSabotageObjective: 1
+    BloodBrotherStealEverythingObjective: 0.2
+    BloodBrotherStealMoneyObjective: 1

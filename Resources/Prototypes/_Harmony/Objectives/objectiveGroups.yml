@@ -1,0 +1,42 @@
+- type: weightedRandom
+  id: BloodBrotherObjectiveGroups
+  weights:
+    BloodBrotherObjectiveGroupState: 1
+    BloodBrotherObjectiveGroupSteal: 1
+    BloodBrotherObjectiveGroupKill: 1
+    BloodBrotherObjectiveGroupOpenEnded: 1 # Moffstation - Added our own open-ended objectives - See Prototypes/_Moffstation/Objectives/objectiveGroups.yml for this definition.
+
+- type: weightedRandom
+  id: BloodBrotherObjectiveGroupState
+  weights:
+    # Blood brothers are expected to be usually trying to be stealthy, so low DAGD chance.
+    BloodBrotherEscapeShuttleObjective: 0.90 # Moffstation - Since we had to remove "survive" bump up the escape shuttle objective.
+    BloodBrotherDieObjective: 0.10
+    # BloodBrotherSurviveObjective: 0.65 # Moffstation - Removed survive objecitve since it doesn't exist in our branch (yet, we could just make it)
+
+# TODO: figure out how to make the converted brother holding the objective item also count towards the objective
+- type: weightedRandom
+  id: BloodBrotherObjectiveGroupSteal
+  weights:
+    BloodBrotherCaptainIDStealObjective: 1
+    BloodBrotherCMOHyposprayStealObjective: 1
+    BloodBrotherCMOCrewMonitorStealObjective: 1
+    BloodBrotherRDHardsuitStealObjective: 1
+    BloodBrotherNukeDiskStealObjective: 1
+    BloodBrotherMagbootsStealObjective: 1
+    BloodBrotherCorgiMeatStealObjective: 1
+    BloodBrotherClipboardStealObjective: 1
+    BloodBrotherCaptainGunStealObjective: 0.5
+    BloodBrotherCaptainJetpackStealObjective: 0.5
+    BloodBrotherHandTeleporterStealObjective: 0.5
+    BloodBrotherEnergyShotgunStealObjective: 0.5
+
+- type: weightedRandom
+  id: BloodBrotherObjectiveGroupKill
+  weights:
+    BloodBrotherKillRandomPersonObjective: 0.85
+    BloodBrotherKillRandomHeadObjective: 0.25
+    # Moffstation - Start - Replace Harmony's Teach a lesson with our own
+    #BloodBrotherTeachLessonRandomPersonObjective: 1
+    BloodBrotherTeachLessonObjective: 1
+    # Moffstation - End

@@ -1,0 +1,36 @@
+# Open-ended blood brother objectives
+- type: entity
+  parent: [BaseBloodBrotherObjective, DisruptDepartmentObjective]
+  id: BloodBrotherDisruptDepartmentObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, InfiltrateObjective]
+  id: BloodBrotherInfiltrateObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, JailbreakObjective]
+  id: BloodBrotherJailbreakObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, LeaveCallingCardObjective]
+  id: BloodBrotherLeaveCallingCardObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, RobDepartmentObjective]
+  id: BloodBrotherRobDepartmentObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, SabotageObjective]
+  id: BloodBrotherSabotageObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, StealEverythingObjective]
+  id: BloodBrotherStealEverythingObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, StealMoneyObjective]
+  id: BloodBrotherStealMoneyObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, TeachLessonObjective]
+  id: BloodBrotherTeachLessonObjective

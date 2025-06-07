@@ -34,6 +34,10 @@
       prob: 0.20 #0.4 -> 0.25 to account for more subgamemodes existing now
     - id: VampireLess # Starlight reworked
       prob: 0.20 # Starlight
+    # Harmony start
+    - id: BloodBrothers
+      prob: 0.5
+    # Harmony end
     - id: SubWizard
       prob: 0.05 # Starlight. We can go back down to 0.05, since they scale now.
     #- id: SubXenoborgs
@@ -97,6 +101,10 @@
     #  prob: 0.05
     - id: SiliconLiberation
       prob: 0.2 #Starlight end
+    # Moffstation start
+    - id: BloodBrothers
+      prob: 0.5
+    # Moffstation end
 
 - type: entity
   parent: BaseGameRule
