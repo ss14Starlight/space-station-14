@@ -5,22 +5,6 @@
     - /Audio/Voice/Human/manlaugh2.ogg
 
 - type: soundCollection
-  id: ResomiLaugh
-  files:
-    - /Audio/Voice/Resomi/resomi_laugh1.ogg
-    - /Audio/Voice/Resomi/resomi_laugh2.ogg
-    - /Audio/Voice/Resomi/resomi_laugh3.ogg
-  
-- type: soundCollection
-  id: ResomiChirp
-  files:
-    - /Audio/Voice/Resomi/resomi_chirp1.ogg
-    - /Audio/Voice/Resomi/resomi_chirp2.ogg
-    - /Audio/Voice/Resomi/resomi_chirp3.ogg
-    - /Audio/Voice/Resomi/resomi_chirp4.ogg
-    - /Audio/Voice/Resomi/resomi_chirp5.ogg
-
-- type: soundCollection
   id: FemaleLaugh
   files:
     - /Audio/Voice/Human/womanlaugh.ogg
@@ -156,3 +140,32 @@
   id: XenoborgPing
   files:
   - /Audio/Voice/Xenoborg/xenoborg_ping.ogg
+
+- type: soundCollection
+  id: ResomiLaugh
+  files:
+    - /Audio/Voice/Resomi/avali_laugh.ogg
+  
+- type: soundCollection
+  id: ResomiChirp
+  files:
+    - /Audio/Voice/Resomi/resomi_chirp1.ogg
+    - /Audio/Voice/Resomi/resomi_chirp2.ogg
+    - /Audio/Voice/Resomi/resomi_chirp3.ogg
+    - /Audio/Voice/Resomi/resomi_chirp4.ogg
+    - /Audio/Voice/Resomi/resomi_chirp5.ogg
+
+- type: soundCollection
+  id: Chirrup
+  files:
+    - /Audio/Voice/Resomi/trill.ogg
+
+- type: soundCollection
+  id: Warble
+  files:
+    - /Audio/Voice/Resomi/warble.ogg
+
+- type: soundCollection
+  id: Wurble
+  files:
+    - /Audio/Voice/Resomi/wurble.ogg

@@ -177,3 +177,22 @@
     path: /Audio/Animals/goat_bah.ogg
   exclaimSound:
     path: /Audio/Animals/goat_bah.ogg
+
+- type: speechSounds
+  id: MaleResomi
+  saySound:
+    path: /Audio/Voice/Resomi/avali_1.ogg
+  askSound:
+    path: /Audio/Voice/Resomi/avali_1_ask.ogg
+  exclaimSound:
+    path: /Audio/Voice/Resomi/avali_1_exclaim.ogg
+
+# Unused but if we get diff supprot for it can add in
+- type: speechSounds 
+  id: FemaleResomi  #still unused in starlight but anyway
+  saySound:
+    path: /Audio/Voice/Resomi/avali_2.ogg
+  askSound:
+    path: /Audio/Voice/Resomi/avali_2_ask.ogg
+  exclaimSound:
+    path: /Audio/Voice/Resomi/avali_2_exclaim.ogg

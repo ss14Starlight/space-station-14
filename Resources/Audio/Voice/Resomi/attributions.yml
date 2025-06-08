@@ -1,0 +1,24 @@
+- files: ["avali_scream"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Taken from Steam mod / Starbound. Made by Steam user: https://steamcommunity.com/id/wonky2 with permission."
+  source: "https://steamcommunity.com/sharedfiles/filedetails/?id=3001955034"
+
+- files: ["avali_1, avali_1_ask, avali_1_exclaim, avali_2, avali_2_ask, avali_2_exclaim, avali_laugh"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Taken from Steam 'Avali sounds' mod / Starbound. Made by Steam user: https://steamcommunity.com/id/Nefuki with permission. - avali_laugh is RMC_14 edit of these sounds by Vermidia/@Randomposter (discord) with permission from original."
+  source: "https://steamcommunity.com/sharedfiles/filedetails/?id=3164757879"
+
+- files: [resomi_whistle.ogg]
+  copyright: "CanaryArtie-3.wav by ReadeOnly, Taken from https://freesound.org/"
+  license: "CC0-1.0"
+  source: https://freesound.org/s/85403/
+
+- files: [resomi_chirp1.ogg, resomi_chirp2.ogg, resomi_chirp3.ogg, resomi_chirp4.ogg, resomi_chirp5.ogg]
+  copyright: "Bird Chirps by whiskeyecho, Taken from https://freesound.org/"
+  license: "CC0-1.0"
+  source: https://freesound.org/s/727256/
+
+- files: ["trill, warble, wurble"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Taken from 'FD-NewBay' - Other places link to freesound.org"
+  source: "https://github.com/RepoStash/FD-NewBay/tree/dev-sierra/mods/_fd/resomi_fd/sound" 

@@ -442,7 +442,7 @@
     variation: 0.125
   sounds:
     Scream:
-      path: /Audio/Voice/Resomi/resomi_scream.ogg
+      path: /Audio/Voice/Resomi/avali_scream.ogg
     Laugh:
       collection: ResomiLaugh
     Honk:
@@ -465,6 +465,12 @@
       collection: FelionoidPurrs
     Growl:
       collection: FelionoidGrowls
+    Chirrup:
+      collection: Chirrup
+    Warble:
+      collection: Warble
+    Wurble:
+      collection: Wurble
 
 - type: emoteSounds
   id: UnisexSiliconXenoborg

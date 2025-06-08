@@ -1,6 +1,6 @@
 - type: marking
   id: ResomiTail
-  bodyPart: Chest
+  bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Resomi]
   forcedColoring: true
@@ -10,7 +10,7 @@
 
 - type: marking
   id: ResomiTailFeathers
-  bodyPart: Chest
+  bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:

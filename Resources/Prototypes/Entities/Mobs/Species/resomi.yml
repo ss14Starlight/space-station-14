@@ -217,8 +217,9 @@
       Female: UnisexResomi
       Unsexed: UnisexResomi
   - type: Speech
-    speechVerb: Resomi
-    allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl']
+    speechVerb: Parrot   # This refers to the SPEAKING verb i.e. humans speak vulpanakin bark and birds chirp or in this case parrot cause there isnt a 'resomi' verb and im not making one they're birds..
+    allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl', 'Chirrup', 'Warble', 'Wurble']
+    speechSounds: MaleResomi #No support for distinction so consider unsexedd
   - type: Tag
     tags:
     - CanPilot
@@ -226,9 +227,52 @@
     - DoorBumpOpener
     - AnomalyHost
     - Resomi
-  - type: NightVision
+  - type: NightVision   # the original species that resomi off-brand from supposedly have bad eyesight and insane hearing so maybe change in future.
   - type: FlashModifier
     modifier: 2
+  - type: Sprite #in game visuals
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "belt" ]                             # Above leg
+    - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.LHand" ]  # Hands below jumpsuit since its bigger-than-usual sprite and this allows jumpsuits to have better-looking sleeves
+    - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]   # Tail changed to be below outerclothing and above limbs
+    - map: [ "jumpsuit" ]                         # Jumpsuit above tail & limbs
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2-resomi
+      visible: false
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "outerClothing" ]
+    - map: [ "eyes" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "mask" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "suitstorage" ] 
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_resomi"
+      visible: false
     
 - type: entity
   parent: BaseSpeciesDummy
@@ -362,3 +406,46 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: belt
+  - type: Sprite #Char edit visuals to stay consistent
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "belt" ]                             # Above leg
+    - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.LHand" ]  # Hands below jumpsuit since its bigger-than-usual sprite and this allows jumpsuits to have better-looking sleeves
+    - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]   # Tail changed to be below outerclothing and above limbs
+    - map: [ "jumpsuit" ]                         # Jumpsuit above tail & limbs
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2-resomi
+      visible: false
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "outerClothing" ]
+    - map: [ "eyes" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "mask" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "suitstorage" ] 
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_resomi"
+      visible: false
