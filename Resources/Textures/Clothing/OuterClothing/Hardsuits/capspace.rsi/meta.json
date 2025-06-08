@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Made by Emisse for SS14. Vox state made by Flareguy for SS14.  Dog state worked on in parts by both casilius and RCOI for SS14.",
+  "copyright": "Made by Emisse for SS14. Vox state made by Flareguy for SS14.  Dog state worked on in parts by both casilius and RCOI for SS14. - equipped-OUTERCLOTHING-resomi made by svarshiksatanist (Discord){porters note - Needs adjustment to fit starlight}",
   "size": {
     "x": 32,
     "y": 32
@@ -28,6 +28,10 @@
     },
     {
       "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-resomi",
       "directions": 4
     }
   ]

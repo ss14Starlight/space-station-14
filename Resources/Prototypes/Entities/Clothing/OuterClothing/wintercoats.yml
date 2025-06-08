@@ -75,6 +75,10 @@
     clothingVisuals:
       outerClothing:
       - state: ATMOS-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: ATMOS-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: ATMOS-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterEngineer
 
@@ -107,6 +111,10 @@
     clothingVisuals:
       outerClothing:
       - state: BAR-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: BAR-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: BAR-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterBartender
 
@@ -139,6 +147,10 @@
     clothingVisuals:
       outerClothing:
       - state: CAP-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: CAP-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: CAP-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterCaptain
 
@@ -162,6 +174,10 @@
     clothingVisuals:
       outerClothing:
       - state: CARGO-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: CARGO-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: CARGO-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterCargo
 
@@ -185,6 +201,10 @@
     clothingVisuals:
       outerClothing:
       - state: CE-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: CE-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: CE-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterCE
 
@@ -208,6 +228,10 @@
     clothingVisuals:
       outerClothing:
       - state: CENTCOM-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: CENTCOM-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: CENTCOM-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterCentcom
 
@@ -232,6 +256,10 @@
     clothingVisuals:
       outerClothing:
       - state: CHEF-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: CHEF-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: CHEF-equipped-OUTERCLOTHING-resomi
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
@@ -253,6 +281,10 @@
     clothingVisuals:
       outerClothing:
       - state: CHEM-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: CHEM-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: CHEM-equipped-OUTERCLOTHING-resomi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -285,6 +317,10 @@
     clothingVisuals:
       outerClothing:
       - state: CMO-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: CMO-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: CMO-equipped-OUTERCLOTHING-resomi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -327,6 +363,10 @@
     clothingVisuals:
       outerClothing:
       - state: ENGI-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: ENGI-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: ENGI-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterEngineer
 
@@ -350,6 +390,10 @@
     clothingVisuals:
       outerClothing:
       - state: GENE-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: GENE-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: GENE-equipped-OUTERCLOTHING-resomi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -382,6 +426,10 @@
     clothingVisuals:
       outerClothing:
       - state: HOP-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: HOP-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: HOP-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterHOP
 
@@ -422,6 +470,10 @@
     clothingVisuals:
       outerClothing:
       - state: HOS-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: HOS-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: HOS-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterHOS
 
@@ -445,6 +497,10 @@
     clothingVisuals:
       outerClothing:
       - state: HYDRO-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: HYDRO-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: HYDRO-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterHydro
 
@@ -468,6 +524,10 @@
     clothingVisuals:
       outerClothing:
       - state: JANI-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: JANI-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: JANI-equipped-OUTERCLOTHING-resomi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -500,6 +560,10 @@
     clothingVisuals:
       outerClothing:
       - state: MED-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: MED-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: MED-equipped-OUTERCLOTHING-resomi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -532,6 +596,10 @@
     clothingVisuals:
       outerClothing:
       - state: MIME-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: MIME-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: MIME-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterMime
 
@@ -555,6 +623,10 @@
     clothingVisuals:
       outerClothing:
       - state: MINER-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: MINER-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: MINER-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterMiner
 
@@ -578,6 +650,10 @@
     clothingVisuals:
       outerClothing:
       - state: PARA-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: PARA-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: PARA-equipped-OUTERCLOTHING-resomi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -610,6 +686,10 @@
     clothingVisuals:
       outerClothing:
       - state: QM-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: QM-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: QM-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterQM
 
@@ -634,6 +714,10 @@
     clothingVisuals:
       outerClothing:
       - state: RD-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: RD-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: RD-equipped-OUTERCLOTHING-resomi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -666,6 +750,10 @@
     clothingVisuals:
       outerClothing:
       - state: ROBO-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: ROBO-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: ROBO-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterRobo
 
@@ -690,6 +778,10 @@
     clothingVisuals:
       outerClothing:
       - state: SCI-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: SCI-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: SCI-equipped-OUTERCLOTHING-resomi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -731,6 +823,10 @@
     clothingVisuals:
       outerClothing:
       - state: SEC-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: SEC-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: SEC-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSec
 
@@ -754,6 +850,10 @@
     clothingVisuals:
       outerClothing:
       - state: VIRO-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: VIRO-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: VIRO-equipped-OUTERCLOTHING-resomi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -802,6 +902,10 @@
     clothingVisuals:
       outerClothing:
       - state: WARD-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: WARD-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: WARD-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWarden
 
@@ -826,6 +930,10 @@
     clothingVisuals:
       outerClothing:
       - state: SYNDIECAP-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: SYNDIECAP-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: SYNDIECAP-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSyndie
 
@@ -865,6 +973,10 @@
     clothingVisuals:
       outerClothing:
       - state: SYNDIE-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: SYNDIE-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: SYNDIE-equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSyndie
 
@@ -900,6 +1012,10 @@
     clothingVisuals:
       outerClothing:
       - state: WEB-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: WEB-equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+      - state: WEB-equipped-OUTERCLOTHING-resomi
   - type: Construction
     graph: WebObjects
     node: coat
@@ -950,6 +1066,10 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#1d1d1d"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#1d1d1d"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorBlack
 
@@ -981,6 +1101,10 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#9C0DE1"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#9C0DE1"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorPurple
 
@@ -1012,6 +1136,10 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#940000"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#940000"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorRed
 
@@ -1043,6 +1171,10 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#0089EF"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#0089EF"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorBlue
 
@@ -1074,6 +1206,10 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#723A02"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#723A02"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorBrown
 
@@ -1105,6 +1241,10 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#999999"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#999999"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorGray
 
@@ -1136,6 +1276,10 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#5ABF2F"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#5ABF2F"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorGreen
 
@@ -1167,6 +1311,10 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#C09F72"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#C09F72"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorLightBrown
 
@@ -1198,6 +1346,10 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#EF8100"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#EF8100"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorOrange
 
@@ -1229,6 +1381,10 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#EAE8E8"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#EAE8E8"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorWhite
 
@@ -1260,5 +1416,9 @@
       - state: coatybits-equipped-OUTERCLOTHING
         color: "#EBE216"
       - state: winterbits-equipped-OUTERCLOTHING
+      outerClothing-vox:
+      - state: coatybits-equipped-OUTERCLOTHING-vox
+        color: "#EBE216"
+      - state: winterbits-equipped-OUTERCLOTHING-vox
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterColorYellow
