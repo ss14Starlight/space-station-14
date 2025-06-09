@@ -2,7 +2,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Original by Emisse, modified by EmoGarbage404. Vox state made by Flareguy for SS14.  Dog state made by Sparlight.",
+  "copyright": "Original by Emisse, modified by EmoGarbage404. Vox state made by Flareguy for SS14.  Dog state made by Sparlight., equipped-OUTERCLOTHING-resomi made by svarshiksatanist (Discord)",
 
   "size": {
     "x": 32,
@@ -22,6 +22,10 @@
     },
     {
       "name": "equipped-OUTERCLOTHING-dog",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-resomi",
       "directions": 4
     },
     {
