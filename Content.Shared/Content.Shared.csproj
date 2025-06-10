@@ -8,9 +8,6 @@
     <WarningsAsErrors>nullable</WarningsAsErrors>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <PropertyGroup>
-    <NoWarn>$(NoWarn);CS0414;CS0168</NoWarn>
-  </PropertyGroup>    
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
   </ItemGroup>
