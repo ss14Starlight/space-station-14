@@ -5,6 +5,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
+using Content.Shared.Starlight.Antags.Abductor; // Starlight
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -106,19 +107,37 @@ namespace Content.Server.GameTicking
                         // Instead of allowing them to spawn in, we will dump and their existing mind in an observer ghost.
                         SpawnObserverWaitDb();
                     }
+                    // Starlight start
                     else
-                    {
-                        if (_playerManager.SetAttachedEntity(session, mind.CurrentEntity))
                         {
-                            PlayerJoinGame(session);
+                            if (HasComp<AbductorComponent>(mind.CurrentEntity))
+                            {
+                                if (_playerManager.SetAttachedEntity(session, mind.CurrentEntity))
+                                {
+                                    PlayerJoinGame(session);
+                                }
+                                else
+                                {
+                                    Log.Error(
+                                        $"Failed to attach abductor player {session} with mind {ToPrettyString(mindId)} to its current entity {ToPrettyString(mind.CurrentEntity)}");
+                                    SpawnObserverWaitDb();
+                                }
+                            }
+                    // Starlight end
+                            else
+                            {
+                                if (_playerManager.SetAttachedEntity(session, mind.CurrentEntity))
+                                {
+                                    PlayerJoinGame(session);
+                                }
+                                else
+                                {
+                                    Log.Error(
+                                        $"Failed to attach player {session} with mind {ToPrettyString(mindId)} to its current entity {ToPrettyString(mind.CurrentEntity)}");
+                                    SpawnObserverWaitDb();
+                                }
+                            }
                         }
-                        else
-                        {
-                            Log.Error(
-                                $"Failed to attach player {session} with mind {ToPrettyString(mindId)} to its current entity {ToPrettyString(mind.CurrentEntity)}");
-                            SpawnObserverWaitDb();
-                        }
-                    }
 
                     break;
                 }
