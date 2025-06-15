@@ -37,8 +37,7 @@
     baseWalkSpeed : 2.5
     baseSprintSpeed : 6.0
   - type: Sprite
-    sprite: _Starlight/Mobs/Silicon/quad.rsi
-    scale: 0.5, 0.5
+    sprite: _Starlight/Mobs/Silicon/cybork.rsi
   - type: RotationVisuals
     horizontalRotation: 180
   - type: MobState
