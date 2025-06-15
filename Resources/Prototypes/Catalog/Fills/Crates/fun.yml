@@ -8,6 +8,7 @@
     - id: PlushieRatvar
       weight: 0.5
     - id: PlushieNuke
+
     - id: PlushieSlime
     - id: PlushieSnake
     - id: PlushieExperiment
@@ -50,6 +51,8 @@
       - id: OddDeerPlushie
         weight: 1
     - id: VikaPviPlushie
+    - id: bso_plushie
+    
 #STARLIGHT-End
 
 - type: entity
