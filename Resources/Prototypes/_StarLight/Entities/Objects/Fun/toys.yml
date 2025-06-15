@@ -868,15 +868,10 @@
   parent: BasePlushie
   id: BSOkneesplushie
   name: BSO 'Knees' plushie
-  description: Your least favorite protector.
-
-Dont blame him... He is just a lil guy! 
+  description: Your least favorite protector. Dont blame him... He is just a lil guy! 
   components:
   - type: Sprite
-    state: plushie_nuke
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Items/Handcuffs/cuff_start.ogg
+    state: bso_plushie
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/Handcuffs/cuff_start.ogg
@@ -887,6 +882,3 @@ Dont blame him... He is just a lil guy!
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: NukiePlushie
