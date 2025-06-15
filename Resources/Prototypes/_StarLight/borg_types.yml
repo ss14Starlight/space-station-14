@@ -26,11 +26,10 @@
 
   # Visual
   inventoryTemplateId: borgShort
-  spriteBodyState: quadsprite
-  spriteBodyMovementState: quadsprite_moving
-  spriteHasMindState: quadsprite_e
-  spriteNoMindState: quadsprite_e_r
-  spriteToggleLightState: quadsprite_l
+  spriteBodyState: cybork
+  spriteHasMindState: cybork_e
+  spriteNoMindState: cybork_e_r
+  spriteToggleLightState: cybork_l
 
   # Pet
   petSuccessString: petting-success-security-cyborg-doggo
@@ -72,11 +71,10 @@
 
   # Visual
   inventoryTemplateId: borgShort
-  spriteBodyState: quadspritemed
-  spriteBodyMovementState: quadspritemed_moving
-  spriteHasMindState: quadspritemed_e
-  spriteNoMindState: quadspritemed_e_r
-  spriteToggleLightState: quadspritemed_l
+  spriteBodyState: cyborkmed
+  spriteHasMindState: cyborkmed_e
+  spriteNoMindState: cybork_e_r
+  spriteToggleLightState: cybork_l
 
   # Pet
   petSuccessString: petting-success-rescue-cyborg-doggo

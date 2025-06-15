@@ -72,5 +72,6 @@
     items:
     - BorgMedipen
     - BorgBottleMedipen
+    - HandheldGPSBasic
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
