@@ -58,6 +58,7 @@
     containers:
       part-container: !type:Container
       cell_slot: !type:Container
+      law_board_slot: !type:Container
   - type: PartAssembly
     parts:
       generic:
@@ -74,6 +75,7 @@
     containers:
     - part-container
     - cell_slot
+    - law_board_slot
   - type: Pullable
   - type: GuideHelp
     guides:

@@ -29,6 +29,13 @@
           sprite: Objects/Weapons/Melee/flash.rsi
           state: flash
 
+      - component: CyborgLawBoard
+        name: construction-graph-tag-cyborg-law-board
+        store: law_board_slot
+        icon:
+          sprite: Objects/Misc/module.rsi
+          state: std_mod
+
       - tool: Screwing
         doAfter: 0.5
 

@@ -13,14 +13,14 @@
 - type: entity
   id: AsimovCircuitBoard
   parent: BaseElectronics
-  name: law board (Crewsimov)
-  description: An electronics board containing the Crewsimov lawset.
+  name: law board (Crewsimov AI)
+  description: An electronics board containing the Crewsimov AI lawset.
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: Crewsimov
+    laws: CrewsimovAI
 
 - type: entity
   id: CorporateCircuitBoard

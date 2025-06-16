@@ -123,6 +123,10 @@
       cell_slot: !type:ContainerSlot { }
       borg_module: !type:Container { }
       part-container: !type:Container
+      law_board_slot: !type:Container #starlight
+  - type: SiliconLawUpdater
+    components:
+    - type: StationAiHeld
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: true
@@ -139,6 +143,16 @@
   # no ToggleCellDraw since dont want to lose access when power is gone
   - type: ItemSlots
     slots:
+      # region starlight
+      law_board_slot:
+        name: circuit-holder
+        insertSuccessPopup: silicon-laws-updated
+        whitelist:
+          requireAll: true
+          components:
+          - SiliconLawProvider
+          - Item
+      # end region
       cell_slot:
         name: power-cell-slot-component-slot-name-default
   - type: Body
