@@ -63,3 +63,23 @@
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/panda_noise2.ogg
+      
+- type: entity
+  parent: BasePlushie
+  id: BSOkneesplushie
+  name: BSO 'Knees' plushie
+  description: Your least favorite protector. Dont blame him... He is just a lil guy! 
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/toys.rsi
+    state: bso_plushie
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Handcuffs/cuff_start.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
