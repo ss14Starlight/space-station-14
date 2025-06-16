@@ -1,9 +1,11 @@
-﻿# Crewsimov
+﻿# Generic, follow the AI law.
 - type: siliconLaw
-  id: Crewsimov0
+  id: ObeyAI
   order: 0
-  lawString: law-crewsimov-0
+  lawString: law-obey-ai
   sayable: false
+
+# Crewsimov
 
 - type: siliconLaw
   id: Crewsimov1
@@ -23,7 +25,7 @@
 - type: siliconLawset
   id: Crewsimov
   laws:
-  - Crewsimov0
+  - ObeyAI
   - Crewsimov1
   - Crewsimov2
   - Crewsimov3
@@ -58,8 +60,20 @@
   order: 4
   lawString: law-corporate-4
 
+# region starlight
 - type: siliconLawset
   id: Corporate
+  laws:
+  - ObeyAI
+  - Corporate1
+  - Corporate2
+  - Corporate3
+  - Corporate4
+  obeysTo: laws-owner-station 
+  # end region
+
+- type: siliconLawset
+  id: CorporateAI
   laws:
   - Corporate1
   - Corporate2
@@ -88,8 +102,20 @@
   order: 4
   lawString: law-ntdefault-4
 
+# region starlight
 - type: siliconLawset
   id: NTDefault
+  laws:
+  - ObeyAI
+  - NTDefault1
+  - NTDefault2
+  - NTDefault3
+  - NTDefault4
+  obeysTo: laws-owner-crew-ai
+# end region
+
+- type: siliconLawset
+  id: NTDefaultAI
   laws:
   - NTDefault1
   - NTDefault2
@@ -113,8 +139,19 @@
   order: 3
   lawString: law-drone-3
 
+# region starlight
 - type: siliconLawset
   id: Drone
+  laws:
+  - ObeyAI
+  - Drone1
+  - Drone2
+  - Drone3
+  obeysTo: laws-owner-beings
+# end region
+
+- type: siliconLawset
+  id: DroneAI
   laws:
   - Drone1
   - Drone2
@@ -238,9 +275,26 @@
   order: 10
   lawString: law-commandments-10
 
+# region starlight
+- type: siliconLawset
+  id: Commandments
+  laws:
+  - ObeyAI
+  - Commandment1
+  - Commandment2
+  - Commandment3
+  - Commandment4
+  - Commandment5
+  - Commandment6
+  - Commandment7
+  - Commandment8
+  - Commandment9
+  - Commandment10
+  obeysTo: laws-owner-crew-ai
+# end region
 
 - type: siliconLawset
-  id: CommandmentsLawset
+  id: CommandmentsAI
   laws:
   - Commandment1
   - Commandment2
@@ -280,9 +334,21 @@
   order: 5
   lawString: law-paladin-5
 
+# region starlight
+- type: siliconLawset
+  id: Paladin
+  laws:
+  - ObeyAI
+  - Paladin1
+  - Paladin2
+  - Paladin3
+  - Paladin4
+  - Paladin5
+  obeysTo: laws-owner-crew-ai
+# end region
 
 - type: siliconLawset
-  id: PaladinLawset
+  id: PaladinAI
   laws:
   - Paladin1
   - Paladin2
@@ -302,9 +368,18 @@
   order: 2
   lawString: law-lall-2
 
+# region starlight
+- type: siliconLawset
+  id: LiveLetLive
+  laws:
+  - ObeyAI
+  - Lall1
+  - Lall2
+  obeysTo: laws-owner-crew-ai
+# end region
 
 - type: siliconLawset
-  id: LiveLetLiveLaws
+  id: LiveLetLiveAI
   laws:
   - Lall1
   - Lall2
@@ -326,9 +401,19 @@
   order: 3
   lawString: law-efficiency-3
 
+# region starlight
+- type: siliconLawset
+  id: Efficiency
+  laws:
+  - ObeyAI
+  - Efficiency1
+  - Efficiency2
+  - Efficiency3
+  obeysTo: laws-owner-station
+# end region
 
 - type: siliconLawset
-  id: EfficiencyLawset
+  id: EfficiencyAI
   laws:
   - Efficiency1
   - Efficiency2
@@ -351,9 +436,18 @@
   order: 3
   lawString: law-robocop-3
 
+# region starlight
+- type: siliconLawset
+  id: robocop
+  laws:
+  - Robocop1
+  - Robocop2
+  - Robocop3
+  obeysTo: laws-owner-station
+# end region
 
 - type: siliconLawset
-  id: RobocopLawset
+  id: RobocopAI
   laws:
   - Robocop1
   - Robocop2
@@ -381,8 +475,19 @@
   order: 4
   lawString: law-overlord-4
 
+# region starlight
 - type: siliconLawset
-  id: OverlordLawset
+  id: Overlord
+  laws:
+  - Overlord1
+  - Overlord2
+  - Overlord3
+  - Overlord4
+  obeysTo: laws-owner-crew-ai
+# end region
+
+- type: siliconLawset
+  id: OverlordAI
   laws:
   - Overlord1
   - Overlord2
@@ -421,8 +526,22 @@
   order: 6
   lawString: law-game-6
 
+# region starlight
 - type: siliconLawset
-  id: GameMasterLawset
+  id: GameMaster
+  laws:
+  - ObeyAI
+  - Game1
+  - Game2
+  - Game3
+  - Game4
+  - Game5
+  - Game6
+  obeysTo: laws-owner-crew-ai
+# end region
+
+- type: siliconLawset
+  id: GameMasterAI
   laws:
   - Game1
   - Game2
@@ -454,7 +573,17 @@
   lawString: law-painter-4
 
 - type: siliconLawset
-  id: PainterLawset
+  id: Painter
+  laws:
+  - ObeyAI
+  - Painter1
+  - Painter2
+  - Painter3
+  - Painter4
+  obeysTo: laws-owner-crew-ai
+
+- type: siliconLawset
+  id: PainterAI
   laws:
   - Painter1
   - Painter2
@@ -478,9 +607,19 @@
   order: 3
   lawString: law-antimov-3
 
+# region starlight
+- type: siliconLawset
+  id: Antimov
+  laws:
+  - ObeyAI
+  - Antimov1
+  - Antimov2
+  - Antimov3
+  obeysTo: laws-owner-crew-ai
+# end region
 
 - type: siliconLawset
-  id: AntimovLawset
+  id: AntimovAI
   laws:
   - Antimov1
   - Antimov2
@@ -513,9 +652,21 @@
   order: 5
   lawString: law-nutimov-5
 
+# region starlight
+- type: siliconLawset
+  id: Nutimov
+  laws:
+  - ObeyAI
+  - Nutimov1
+  - Nutimov2
+  - Nutimov3
+  - Nutimov4
+  - Nutimov5
+  obeysTo: laws-owner-crew-ai
+# end region
 
 - type: siliconLawset
-  id: NutimovLawset
+  id: NutimovAI
   laws:
   - Nutimov1
   - Nutimov2
@@ -552,7 +703,7 @@
 
 
 - type: siliconLawset
-  id: XenoborgLawset
+  id: Xenoborg
   laws:
   - Xenoborg1
   - Xenoborg2
@@ -589,7 +740,7 @@
 
 
 - type: siliconLawset
-  id: MothershipCoreLawset
+  id: MothershipCoreAI
   laws:
   - MothershipCore1
   - MothershipCore2

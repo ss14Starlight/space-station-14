@@ -8,19 +8,19 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: NTDefault
+    laws: NTDefaultAI # Starlight
 
 - type: entity
   id: AsimovCircuitBoard
   parent: BaseElectronics
-  name: law board (Crewsimov AI)
-  description: An electronics board containing the Crewsimov AI lawset.
+  name: law board (Crewsimov AI) # Starlight
+  description: An electronics board containing the Crewsimov AI lawset. # Starlight
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: CrewsimovAI
+    laws: CrewsimovAI # Starlight
 
 - type: entity
   id: CorporateCircuitBoard
@@ -32,7 +32,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: Corporate
+    laws: CorporateAI # Starlight
 
 - type: entity
   id: CommandmentCircuitBoard
@@ -44,7 +44,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: CommandmentsLawset
+    laws: CommandmentsAI # Starlight
 
 - type: entity
   id: PaladinCircuitBoard
@@ -56,7 +56,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: PaladinLawset
+    laws: PaladinAI # Starlight
 
 - type: entity
   id: LiveLetLiveCircuitBoard
@@ -68,7 +68,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: LiveLetLiveLaws
+    laws: LiveLetLiveAI # Starlight
 
 - type: entity
   id: StationEfficiencyCircuitBoard
@@ -80,7 +80,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: EfficiencyLawset
+    laws: EfficiencyAI # Starlight
 
 - type: entity
   id: RobocopCircuitBoard
@@ -92,7 +92,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: RobocopLawset
+    laws: RobocopAI # Starlight
 
 - type: entity
   id: OverlordCircuitBoard
@@ -104,7 +104,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: OverlordLawset
+    laws: OverlordAI # Starlight
 
 - type: entity
   id: GameMasterCircuitBoard
@@ -116,7 +116,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: GameMasterLawset
+    laws: GameMasterAI # Starlight
 
 - type: entity
   id: ArtistCircuitBoard
@@ -128,7 +128,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: PainterLawset
+    laws: PainterAI # Starlight
 
 - type: entity
   id: AntimovCircuitBoard
@@ -140,7 +140,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: AntimovLawset
+    laws: AntimovAI # Starlight
     lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg
 
 - type: entity
@@ -153,7 +153,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: NutimovLawset
+    laws: NutimovAI # Starlight
 
 - type: entity
   id: XenoborgCircuitBoard
@@ -166,7 +166,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: XenoborgLawset
+    laws: XenoborgAI # Starlight
 
 - type: entity
   id: MothershipCircuitBoard
@@ -179,4 +179,178 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: MothershipCoreLawset
+    laws: MothershipCoreAI # Starlight
+
+# region Starlight
+
+- type: entity
+  id: NTDefaultCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (NT Default)
+  description: A cyborg law board containing the NT Default lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: NTDefault
+
+- type: entity
+  id: AsimovCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Crewsimov)
+  description: A cyborg law board containing the Crewsimov lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Crewsimov
+
+- type: entity
+  id: CorporateCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Corporate)
+  description: A cyborg law board board containing the Corporate lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Corporate
+
+- type: entity
+  id: CommandmentCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Ten Commandments)
+  description: A cyborg law board containing the Ten Commandments lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Commandments
+
+- type: entity
+  id: PaladinCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Paladin)
+  description: A cyborg law board containing the Paladin lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Paladin
+
+- type: entity
+  id: LiveLetLiveCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Live and Let Live)
+  description: A cyborg law board containing the Live and Let Live lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: LiveLetLive
+
+- type: entity
+  id: StationEfficiencyCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Station Efficiency)
+  description: A cyborg law board containing the Station Efficiency lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Efficiency
+
+- type: entity
+  id: RobocopCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Robocop)
+  description: A cyborg law board containing the Robocop lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Robocop
+
+- type: entity
+  id: OverlordCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Overlord)
+  description: A cyborg law board containing the Overlord lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Overlord
+
+- type: entity
+  id: GameMasterCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Game Master)
+  description: A cyborg law board containing the Game Master lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: GameMaster
+
+- type: entity
+  id: ArtistCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Artist)
+  description: A Cyborg law board containing the Artist lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Painter
+
+- type: entity
+  id: AntimovCyborgBoard
+  parent: [BaseElectronics, BaseSyndicateContraband]
+  name: Cyborg law board (Antimov)
+  description: A cyborg law board containing the Antimov lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Antimov
+    lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg
+
+- type: entity
+  id: NutimovCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Nutimov)
+  description: A cyborg law board containing the Nutimov lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Nutimov
+
+- type: entity
+  id: XenoborgCyborgBoard
+  parent: BaseElectronics
+  name: Cyborg law board (Xenoborg)
+  suffix: Admeme
+  description: A cyborg law board containing the Xenoborg lawset.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: Xenoborg
+
+# end region
