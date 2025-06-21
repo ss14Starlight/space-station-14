@@ -93,3 +93,13 @@
   - type: RuleGrids
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/Shuttles/VoxATS.yml
+
+Eclipse ERT Shuttle
+- type: entity
+  parent: BaseGameRule
+  id: ERTRapidDeployment
+  components:
+  - type: RuleGrids
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/Shuttles/ERTRapidInsterion.yml
+
