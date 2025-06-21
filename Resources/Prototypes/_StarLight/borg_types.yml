@@ -71,9 +71,9 @@
 
   # Visual
   inventoryTemplateId: borgShort
-  spriteBodyState: cyborkmed
-  spriteHasMindState: cyborkmed_e
-  spriteNoMindState: cybork_e_r
+  spriteBodyState: medcat
+  spriteHasMindState: medcat_e
+  spriteNoMindState: medcat_e_r
   spriteToggleLightState: cybork_l
 
   # Pet

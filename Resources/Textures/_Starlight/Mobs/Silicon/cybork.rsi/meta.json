@@ -24,11 +24,15 @@
       "directions": 4
     },
     {
-      "name": "cyborkmed",
+      "name": "medcat",
       "directions": 4
     },
     {
-      "name": "cyborkmed_e",
+      "name": "medcat_e",
+      "directions": 4
+    },
+	{
+      "name": "medcat_e_r",
       "directions": 4
     }
   ]
