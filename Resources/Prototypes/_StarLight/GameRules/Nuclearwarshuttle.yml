@@ -3,6 +3,5 @@
   id: ScarletNukieWarShip
   components:
     - type: RuleGrids
-      startAnnouncement: null # It should be silent.
     - type: LoadMapRule
       gridPath: /Maps/_Starlight/Shuttles/scarletNUKIEWARSHIP2.yml # Made by scarlet!
