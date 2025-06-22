@@ -2,7 +2,7 @@
   parent: BaseGameRule
   id: ScarletNukieWarShip
   components:
-    - type: StationEvent
+    - type: RuleGrids
       startAnnouncement: null # It should be silent.
     - type: LoadMapRule
       gridPath: /Maps/_Starlight/Shuttles/scarletNUKIEWARSHIP2.yml # Made by scarlet!
