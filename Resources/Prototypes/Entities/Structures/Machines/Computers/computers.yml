@@ -1138,7 +1138,7 @@
     key: enum.FundingAllocationConsoleUiKey.Key
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["Captain"]] #Starlight Change from HoP access
   - type: UserInterface
     interfaces:
       enum.FundingAllocationConsoleUiKey.Key:

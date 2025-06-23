@@ -25,6 +25,7 @@
     EnergyShotgunStealObjective: 0.5
     RDDiplomaStealObjective: 1 #Starlight Unique Targets
     CMOLicenseStealObjective: 1 #Starlight Unique Targets
+    HoPBoardStealObjective: 1 #Starlight Unique Targets
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill

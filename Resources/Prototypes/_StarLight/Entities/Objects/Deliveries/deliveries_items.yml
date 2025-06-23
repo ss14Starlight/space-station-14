@@ -86,6 +86,7 @@
         - MagbootsStealObjective
         - RDDiplomaStealObjective
         - CMOLicenseStealObjective
+        - HoPBoardStealObjective
         # no ian meat because you are a pacifist and need them alive
         - ClipboardStealObjective #QM's digiboard
         - CaptainGunStealObjective

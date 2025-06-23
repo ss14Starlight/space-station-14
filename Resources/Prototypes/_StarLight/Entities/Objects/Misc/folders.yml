@@ -23,3 +23,71 @@
       contents:
         - id: Paper
           amount: 20
+
+- type: entity
+  id: BoxFolderFundingClipboard
+  parent: [BoxFolderClipboard, BaseGrandTheftContraband]
+  name: Funding Allocation Digi-board
+  description: An unassuming digital clipboard. Controls the station's fund allocations, vulnerable to assistants.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/qm_clipboard.rsi
+    layers:
+    - state: qm_clipboard
+    - state: qm_clipboard_paper
+      map: ["qm_clipboard_paper"]
+      visible: false
+    - state: qm_clipboard_pen
+      map: ["qm_clipboard_pen"]
+      visible: false
+    - state: qm_clipboard_over
+  - type: ItemSlots
+    slots:
+      pen_slot:
+        name: clipboard-slot-component-slot-name-pen
+        whitelist:
+          tags:
+          - Write
+        insertOnInteract: true
+  - type: Item
+    sprite: Objects/Misc/qm_clipboard.rsi
+    size: Normal
+  - type: Clothing
+    sprite: Objects/Misc/qm_clipboard.rsi
+  - type: Storage
+    grid:
+    - 0,0,4,3
+    quickInsert: true
+  - type: StorageFill
+    contents: [] #to override base clipboard fill
+  - type: ItemMapper
+    mapLayers:
+      qm_clipboard_paper:
+        whitelist:
+          tags:
+          - Document
+      qm_clipboard_pen:
+        whitelist:
+          tags:
+          - Write
+  - type: FundingAllocationConsole
+  - type: ActivatableUI
+    key: enum.FundingAllocationConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.FundingAllocationConsoleUiKey.Key:
+        type: FundingAllocationConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+  - type: Tag
+    tags:
+    - Folder
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: HoPBoardSteal
