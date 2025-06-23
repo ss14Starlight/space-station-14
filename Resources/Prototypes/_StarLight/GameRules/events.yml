@@ -174,7 +174,7 @@
     - type: LoadMapRule
       mapPath: /Maps/_Starlight/EventMaps/research_outpost_map.yml
 
-Eclipse ERT Rapid Deployment Shuttle
+#Eclipse ERT Rapid Deployment Shuttle
 - type: entity
   parent: BaseGameRule
   id: ERTRapidDeployment
@@ -182,3 +182,13 @@ Eclipse ERT Rapid Deployment Shuttle
     - type: RuleGrids
     - type: LoadMapRule
       mapPath: /Maps/_Starlight/Shuttles/ERTRapidInsertion
+
+#Eclipe ARKANGEL
+- type: entity
+  parent: BaseGameRule
+  id: ARKANGEL
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      mapPath: /Maps/_Starlight/EventMaps/Arkangel.yml
+
