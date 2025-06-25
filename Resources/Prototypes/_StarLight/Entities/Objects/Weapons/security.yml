@@ -31,7 +31,7 @@
     sprite: Objects/Weapons/Melee/xeno_claw.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: MeleeWeapon
     altDisarm: false
     angle: 0

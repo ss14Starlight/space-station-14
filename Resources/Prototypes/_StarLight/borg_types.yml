@@ -54,7 +54,7 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleSearchAndRescue
+  - BorgModuleRescue
 
   radioChannels:
   - Science
@@ -68,6 +68,14 @@
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+  - type: Drain
+    autoDrain: false
+  - type: SolutionContainerManager
+    solutions:
+      drainBuffer:
+        maxVol: 10
+  - type: InjectableSolution
+    solution: drainBuffer
 
   # Visual
   inventoryTemplateId: borgShort

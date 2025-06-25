@@ -60,9 +60,9 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
 
 - type: entity
-  id: BorgModuleSearchAndRescue
+  id: BorgModuleEmergencyStabilisation
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
-  name: search and rescue cyborg module
+  name: emergency stabilisation cyborg module
   components:
   - type: Sprite
     layers:
@@ -71,8 +71,10 @@
   - type: ItemBorgModule
     items:
     - HandheldHealthAnalyzerUnpowered
-    - BorgMedipen
+    - BorgHypo
     - BorgBottleMedipen
+    - BorgBottleCharcoal
+    - BorgBottleIpecac
     - HandheldGPSBasic
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }

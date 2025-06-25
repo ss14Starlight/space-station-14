@@ -507,44 +507,45 @@
 
 
 - type: entity
-  name: emergency medipen
-  parent: ChemicalMedipen
-  id: BorgMedipen
-  description: A rapid and safe way to stabilize patients in critical condition for personnel without advanced medical knowledge. Beware, as it's easy to overdose on epinephrine and tranexamic acid.
+  name: bottle
+  parent: BaseItem
+  id: BaseBorgBottle
+  abstract: true
+  description: A small bottle, integrated into a cyborg chassis.
   components:
+  - type: Tag
+    tags:
+    - Bottle
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
+    sprite: Objects/Specific/Chemistry/bottle.rsi
     layers:
-    - state: medipen
+    - state: bottle-1
+    - state: bottle-1-1
       map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Appearance
   - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: true
-    emptySpriteName: medipen_empty
+    maxFillLevels: 6
+    fillBaseName: bottle-1-
   - type: SolutionContainerManager
     solutions:
-      pen:
-        maxVol: 15
-        reagents:
-        - ReagentId: Epinephrine
-          Quantity: 12
-        - ReagentId: TranexamicAcid
-          Quantity: 3
-  - type: RefillableSolution
-    solution: pen
-  - type: Hypospray
-    solutionName: pen
-    transferAmount: 15
-    onlyAffectsMobs: true
-    injectOnly: false
-  - type: Tag
-    tags: []
-
+      drink: # This solution name and target volume is hard-coded in ChemMasterComponent
+        maxVol: 30
+  - type: ExaminableSolution
+    solution: drink
+  - type: DrawableSolution
+    solution: drink
+  - type: SolutionItemStatus
+    solution: drink
+  - type: Item
+    size: Tiny
+    sprite: Objects/Specific/Chemistry/beaker.rsi
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   id: BorgBottleMedipen
-  suffix: medipen
-  parent: BaseChemistryEmptyBottle
+  parent: BaseBorgBottle
   components:
   - type: Label
     currentLabel: reagent-name-epinephrine
@@ -565,3 +566,43 @@
         Quantity: 1.2
       - ReagentId: TranexamicAcid
         Quantity: 0.3
+
+- type: entity
+  id: BorgBottleCharcoal
+  parent: BaseBorgBottle
+  components:
+  - type: Label
+    currentLabel: reagent-name-charcoal
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 15
+        reagents:
+        - ReagentId: Charcoal
+          Quantity: 15
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Charcoal
+        Quantity: 0.5
+
+- type: entity
+  id: BorgBottleIpecac
+  parent: BaseBorgBottle
+  components:
+  - type: Label
+    currentLabel: reagent-name-ipecac
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 15
+        reagents:
+        - ReagentId: Ipecac
+          Quantity: 15
+  - type: SolutionRegeneration
+    solution: drink
+    generated:
+      reagents:
+      - ReagentId: Ipecac
+        Quantity: 0.5

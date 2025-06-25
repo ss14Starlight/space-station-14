@@ -2,37 +2,13 @@
 #TODO: Find out if the base values can just be overwritten somehow
 
 - type: entity
-  parent: [BaseMob, StripableInventoryBase]
+  parent: [BaseBorgChassis, StripableInventoryBase]
   id: BaseBorgChassisCustomQuadruped
   name: cybork
   description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
   save: false
   abstract: true
   components:
-  - type: TextToSpeech
-  - type: Reactive
-    groups:
-      Acidic: [Touch]
-  - type: DamageOnHighSpeedImpact
-    damage:
-      types:
-        Blunt: 5
-    soundHit:
-      collection: MetalThud
-  - type: CombatMode
-  - type: StaticPrice
-    price: 1250
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 150
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
     baseSprintSpeed : 6.0
@@ -40,30 +16,17 @@
     sprite: _Starlight/Mobs/Silicon/cybork.rsi
   - type: RotationVisuals
     horizontalRotation: 180
-  - type: MobState
-    allowedStates:
-    - Alive
-    - Critical
-    - Dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      200: Dead
+      85: Critical
+      170: Dead
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
       Dead: BorgDead
     showOverlays: false
     allowRevives: true
-  - type: HealthExaminable
-    examinableTypes:
-      - Blunt
-      - Slash
-      - Piercing
-      - Heat
-      - Shock
-    locPrefix: silicon
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -74,122 +37,18 @@
       types:
         Slash: 5
         Piercing: 5
-  - type: UserInterface
-    interfaces:
-      enum.SiliconLawsUiKey.Key:
-        type: SiliconLawBoundUserInterface
-        requireInputValidation: false
-      enum.BorgUiKey.Key:
-        type: BorgBoundUserInterface
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
-      # Only used for NT borgs that can switch type, defined here to avoid copy-pasting the rest of this component.
-      enum.BorgSwitchableTypeUiKey.SelectBorgType:
-        type: BorgSelectTypeUserInterface
-  - type: ActivatableUI
-    key: enum.BorgUiKey.Key
-  - type: SiliconLawBound
-  - type: ActionGrant
-    actions:
-    - ActionViewLaws
-  - type: EmagSiliconLaw
-    stunTime: 5
-  - type: SiliconLawProvider
-    laws: Crewsimov
-  - type: IonStormTarget
-  - type: Inventory
-    templateId: borg
-  - type: Hands
-    showInHands: false
-    disableExplosionRecursion: true
-    canBeStripped: false
-  - type: ComplexInteraction
-  - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
-    - Common
-    - Science
-  - type: ActiveRadio
-    channels:
-    - Binary
-    - Common
-    - Science
-  - type: ZombieImmune
-  - type: Repairable
-    doAfterDelay: 10
-    allowSelfRepair: false
-  - type: BorgChassis
-  - type: LockingWhitelist
-    blacklist:
-      components:
-      - BorgChassis
-      - RoboticsConsole
-  - type: WiresPanel
-  - type: ActivatableUIRequiresPanel
-  - type: NameIdentifier
-    group: Silicon
-  - type: ContainerContainer
-    containers:
-      borg_brain: !type:ContainerSlot { }
-      cell_slot: !type:ContainerSlot { }
-      borg_module: !type:Container { }
-      part-container: !type:Container
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-    fitsInCharger: true
-  - type: ItemToggle
-    onActivate: false # You should not be able to turn off a borg temporarily.
-    activated: false # gets activated when a mind is added
-    onUse: false # no item-borg toggling sorry
-  - type: ItemTogglePointLight
-  - type: AccessToggle
-  # TODO: refactor movement to just be based on toggle like speedboots but for the boots themselves
-  # TODO: or just have sentient speedboots be fast idk
   - type: PowerCellDraw
     drawRate: 0.7
   # no ToggleCellDraw since dont want to lose access when power is gone
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-  - type: Body
-  - type: StatusEffects
-    allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Flashed
-  - type: TypingIndicator
-    proto: robot
-  - type: Vocal
-    sounds:
-      Unsexed: UnisexSilicon
-    screamAction: null
-  - type: DamagedSiliconAccent
-  - type: UnblockableSpeech
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepHull
       #Hull Catwalk Plating
-  - type: Construction
-    graph: Cyborg
-    node: cyborg
-    containers:
-    - part-container
-    - cell_slot
-  - type: Lock
-    locked: true
-    unlockOnClick: false
-  - type: ActivatableUIRequiresLock
-  - type: LockedWiresPanel
-  - type: Damageable
-    damageContainer: Silicon
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 55
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -198,7 +57,7 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 250
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -210,54 +69,6 @@
         - cell_slot
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: HandheldLight
-    toggleOnInteract: false
-    wattage: 0.2
-    blinkingBehaviourId: blinking
-    radiatingBehaviourId: radiating
-  - type: LightBehaviour
-    behaviours:
-    - !type:FadeBehaviour
-      id: radiating
-      maxDuration: 2.0
-      startValue: 3.0
-      endValue: 2.0
-      isLooped: true
-      reverseWhenFinished: true
-    - !type:PulseBehaviour
-      id: blinking
-      interpolate: Nearest
-      maxDuration: 1.0
-      minValue: 0.1
-      maxValue: 2.0
-      isLooped: true
-  - type: ToggleableLightVisuals
-  - type: PointLight
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    radius: 4
-    netsync: false
-  - type: Pullable
-  - type: Puller
-    needsHands: false
-  - type: StandingState
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - FootstepSound
-    - CanPilot
-    - Unimplantable
-  - type: Emoting
-  - type: GuideHelp
-    guides:
-    - Cyborgs
-    - Robotics
-  - type: ProtectedFromStepTriggers
-  - type: DamageOnInteractProtection
-    damageProtection:
-      flatReductions:
-        Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
   - type: Strap
     position: Down
     rotation: -90
