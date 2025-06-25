@@ -31,3 +31,14 @@
     Steel: 2050
     Plastic: 500
     Plasma: 500
+
+
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModuleEmergencyStabilisation
+  result: BorgModuleEmergencyStabilisation
+
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModuleCyborkWeaponisation
+  result: BorgModuleCyborkWeaponisation

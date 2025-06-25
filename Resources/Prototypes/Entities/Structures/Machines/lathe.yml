@@ -443,6 +443,7 @@
     - SecurityDisablers
     - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
+    - StarlightSecurityBorgModules
   - type: MaterialStorage
     whitelist:
       tags:

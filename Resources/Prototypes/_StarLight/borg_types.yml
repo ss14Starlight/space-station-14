@@ -15,6 +15,7 @@
 
   defaultModules:
   - BorgModulePursuit
+  - BorgModuleForensics
 
   radioChannels:
   - Science
@@ -23,6 +24,8 @@
   addComponents:
   - type: SolutionScanner
   - type: ShowCriminalRecordIcons
+  - type: Jump
+    action: JumpJetBorg
 
   # Visual
   inventoryTemplateId: borgShort

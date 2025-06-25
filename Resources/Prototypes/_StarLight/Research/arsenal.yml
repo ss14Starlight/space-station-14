@@ -140,6 +140,20 @@
   radioChannels:
   - Security
 
+- type: technology
+  id: CyborkWeaponisationTechnology
+  name: research-technology-cybork-weaponisation
+  icon:
+    sprite: _Starlight/Mobs/Silicon/cybork.rsi
+    state: cybork
+  discipline: Arsenal
+  tier: 3
+  cost: 10000
+  recipeUnlocks:
+  - BorgModuleCyborkWeaponisation
+  radioChannels:
+  - Security
+
  # Tier 4 
 
 - type: technology
@@ -155,4 +169,3 @@
   - WeaponDecloner
   radioChannels:
   - Security
-  

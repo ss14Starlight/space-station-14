@@ -271,3 +271,8 @@
   recipes:
   - LeftArmCyberBulwark
   - RightArmCyberBulwark
+
+- type: latheRecipePack
+  id: StarlightSecurityBorgModules
+  recipes:
+  - BorgModuleCyborkWeaponisation

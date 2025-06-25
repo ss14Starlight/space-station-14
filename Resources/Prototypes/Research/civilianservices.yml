@@ -141,6 +141,7 @@
   cost: 5000
   recipeUnlocks:
   - BorgModuleAdvancedChemical
+  - BorgModuleEmergencyStabilisation # 🌟Starlight🌟
 
 - type: technology
   id: AdvancedCleaning

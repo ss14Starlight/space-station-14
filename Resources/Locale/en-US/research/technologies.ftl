@@ -19,6 +19,7 @@ research-technology-paddy = Paddy
 research-technology-clarke = Clarke
 research-technology-gygax = Gygax
 research-technology-durand = Durand
+research-technology-cybork-weaponisation = Cybork Weaponisation
 research-technology-advanced-atmospherics = Advanced Atmospherics
 research-technology-advanced-tools = Advanced Tools
 research-technology-super-powercells = Super Powercells

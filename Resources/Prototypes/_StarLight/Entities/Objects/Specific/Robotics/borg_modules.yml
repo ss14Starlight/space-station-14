@@ -33,31 +33,46 @@
   - type: Sprite
     layers:
     - state: security
-    - state: icon-pen
+    - state: icon-template
   - type: ItemBorgModule
     items:
     - StunBite
     - BorgFlash
     - HoloprojectorSecBorg
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
 
 - type: entity
-  id: BorgModuleAdvancedForensics
+  id: BorgModuleForensics
   parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
-  name: advanced forensics cyborg module
+  name: forensics cyborg module
   components:
   - type: Sprite
     layers:
     - state: security
-    - state: icon-pen
+    - state: icon-template
   - type: ItemBorgModule
     items:
     - ForensicScanner
     - GasAnalyzer
     - HandLabeler
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
+
+- type: entity
+  id: BorgModuleCyborkWeaponisation
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: weaponisation cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-template
+  - type: ItemBorgModule
+    items:
+    - BaseballBat
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-esword-module }
 
 - type: entity
   id: BorgModuleEmergencyStabilisation
@@ -77,4 +92,4 @@
     - BorgBottleIpecac
     - HandheldGPSBasic
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }

@@ -43,6 +43,7 @@
   - BorgModuleAdvancedTool
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedMining
+  - BorgModuleEmergencyStabilisation # 🌟Starlight🌟
 
 - type: latheRecipePack
   id: MechParts

@@ -86,3 +86,20 @@
       toPointer: false
       sound:
         path: /Audio/_Starlight/Effects/Jump/jetpack.ogg
+
+- type: entity
+  parent: Jump
+  id: JumpJetBorg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/resomi.rsi
+      state: jump
+  - type: WorldTargetAction
+    event: !type:JetJumpActionEvent
+      distance: 10
+      sound:
+        path: /Audio/_Starlight/Effects/Jump/jetpack.ogg
