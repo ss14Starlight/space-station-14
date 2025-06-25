@@ -19,6 +19,7 @@
       - id: BoxFolderClipboardFilled
       - id: PrinterDocFlatpack
       - id: FaxMachineFlatpack
+      - id: PlushieEmmie
   
 - type: entity
   id: LockerRepresentativeFilledBluespaced
@@ -51,6 +52,7 @@
       - id: ClothingNeckCloakBsoElite
       - id: ClothingNeckCloakBsoElite
       - id: RadioHandheldSecurity
+      - id: RubberStampBSO
 
 - type: entity
   id: LockerBSOFilledBluespaced

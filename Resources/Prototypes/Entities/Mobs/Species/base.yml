@@ -31,9 +31,9 @@
     - map: [ "shoes" ]
     - map: [ "ears" ]
     - map: [ "eyes" ]
+    - map: [ "outerClothing" ] # Starlight
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
@@ -146,7 +146,6 @@
   - type: IdExaminable
   - type: Hands
   - type: ComplexInteraction
-  - type: Internals
   - type: FloatingVisuals
   - type: Climbing
   - type: Cuffable
