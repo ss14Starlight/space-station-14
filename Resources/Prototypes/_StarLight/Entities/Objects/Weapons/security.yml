@@ -25,10 +25,10 @@
   name: stunning bite
   parent: [BaseItem, BaseSecurityContraband]
   id: StunBite
-  description: Special teeth for hindering people with. Injects small amounts of impedrizine with each bite.
+  description: Special teeth for hindering people with. Injects small amounts of impedrezene with each bite.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Melee/needle.rsi
+    sprite: Objects/Weapons/Melee/xeno_claw.rsi
     layers:
     - state: icon
       map: [ "enum.ToggleVisuals.Layer" ]

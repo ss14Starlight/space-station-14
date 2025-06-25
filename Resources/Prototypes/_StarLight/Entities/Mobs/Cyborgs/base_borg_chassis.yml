@@ -162,10 +162,6 @@
     - Flashed
   - type: TypingIndicator
     proto: robot
-  - type: Speech
-    speechVerb: Robotic
-    speechSounds: Borg
-    allowedEmotes: ['Howl', 'Growl', 'Bark']
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
