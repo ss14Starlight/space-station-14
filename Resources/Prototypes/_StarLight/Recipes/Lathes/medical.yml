@@ -196,6 +196,33 @@
     Steel: 550
     Silver: 100
     Glass: 100
+#
+- type: latheRecipe
+  id: LeftArmCyberMantisBlade
+  result: LeftArmCyberMantisBlade
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
+
+- type: latheRecipe
+  id: RightArmCyberMantisBlade
+  result: RightArmCyberMantisBlade
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
+
 # IMPLANTS
 
 # Eye
@@ -233,6 +260,18 @@
     Steel: 200
     Plasma: 300
     Glass: 150
+
+- type: latheRecipe
+  id: EyeImplantSyndie
+  result: EyeImplantSyndie
+  categories:
+  - Implants
+  completeTime: 6
+  materials:
+    Steel: 300
+    Plasma: 450
+    Glass: 225
+    Plasma: 100
 
 - type: latheRecipe
   id: CyberEyeNightVision

@@ -382,6 +382,7 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - HostileCubesStatic
+    - ShadowBorgiCubeRecipePack # starlight
 
 - type: entity
   id: ShadowBorgiFabricator
@@ -520,6 +521,9 @@
     - StarlightCyberOrgansDynamic
     - StarlightImplantDynamic
     - Chemistry
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSyndicateSurgery
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

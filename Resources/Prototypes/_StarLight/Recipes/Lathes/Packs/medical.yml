@@ -52,3 +52,11 @@
   - EyeImplantWelding
   - EyeImplantMedical
   - EyeImplantSecurity
+
+#
+- type: latheRecipePack
+  id: StarlightSyndicateSurgery
+  recipes:
+  - LeftArmCyberMantisBlade
+  - RightArmCyberMantisBlade
+  - EyeImplantSyndie
