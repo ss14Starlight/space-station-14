@@ -4,6 +4,7 @@ using Content.Server.Radio.Components;
 using Content.Server.Silicons.Laws;
 using Content.Shared.Coordinates; //Starlight
 using Content.Shared.Inventory;
+using Content.Shared.NameModifier.Components; //Starlight
 using Content.Shared.PowerCell.Components; //Starlight
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
@@ -23,8 +24,11 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
 {
     [Dependency] private readonly BorgSystem _borgSystem = default!;
     [Dependency] private readonly ServerInventorySystem _inventorySystem = default!;
-    [Dependency] private readonly ContainerSystem _containerSystem = default!; //Starlight
-    [Dependency] private readonly SiliconLawSystem _siliconLawSystem = default!; //Starlight
+    //#region Starlight
+    [Dependency] private readonly ContainerSystem _containerSystem = default!;
+    [Dependency] private readonly SiliconLawSystem _siliconLawSystem = default!;
+    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    //#endregion Starlight
     
     protected override void SelectBorgModule(Entity<BorgSwitchableTypeComponent> ent, ProtoId<BorgTypePrototype> borgType)
     {
@@ -33,35 +37,35 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         //#region Starlight
         if (prototype.Transformation is not null)
         {
-            
+
 
             if (!TryComp(ent.Owner, out BorgChassisComponent? borgChassis))
             {
-                Logger.Warning($"Borg {ent} did not have a borg chassis component? Aborting transformation into {borgType.Id}");
+                Log.Warning($"Borg {ent} did not have a borg chassis component? Aborting transformation into {borgType.Id}");
                 return;
             }
             if (!TryComp(ent.Owner, out PowerCellSlotComponent? powerCellSlot))
             {
-                Logger.Warning($"Borg {ent} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
+                Log.Warning($"Borg {ent} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
                 return;
             }
-            
+
             var newChasis = SpawnAtPosition(prototype.Transformation, ent.Owner.ToCoordinates());
 
             var chassisChecks = true;
             if (!TryComp(newChasis, out BorgChassisComponent? newBorgChassis))
             {
-                Logger.Warning($"Borg prototype {prototype.Transformation} did not have a borg chassis component? Aborting transformation into {borgType.Id}");
+                Log.Warning($"Borg prototype {prototype.Transformation} did not have a borg chassis component? Aborting transformation into {borgType.Id}");
                 chassisChecks = false;
             }
             if (!TryComp(ent.Owner, out PowerCellSlotComponent? newPowerCellSlot))
             {
-                Logger.Warning($"Borg prototype {prototype.Transformation} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
+                Log.Warning($"Borg prototype {prototype.Transformation} did not have a power cell slot component? Aborting transformation into {borgType.Id}");
                 chassisChecks = false;
             }
             if (!TryComp(ent.Owner, out SiliconLawProviderComponent? newSiliconLawProvider))
             {
-                Logger.Warning($"Borg prototype {prototype.Transformation} did not have a silicon law provider component? Aborting transformation into {borgType.Id}");
+                Log.Warning($"Borg prototype {prototype.Transformation} did not have a silicon law provider component? Aborting transformation into {borgType.Id}");
                 chassisChecks = false;
             }
             if (!chassisChecks)
@@ -69,15 +73,18 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
                 Del(newChasis);
                 return;
             }
-            
+
             if (borgChassis == null || newBorgChassis == null || powerCellSlot == null || newPowerCellSlot == null || newSiliconLawProvider == null)
             {
-                Logger.Error($"required comps were found but returned null. this is a engine bug as they should not be null if previous checks passed.");
+                Log.Error($"required comps were found but returned null. this is a engine bug as they should not be null if previous checks passed.");
                 return;
             }
-            
-            
 
+            TryComp<NameModifierComponent>(ent.Owner, out var oldNameMod);
+            var oldMeta = MetaData(ent.Owner);
+            var newMeta = MetaData(newChasis);
+            _metaDataSystem.SetEntityName(newChasis, oldNameMod?.BaseName ?? oldMeta.EntityName, newMeta);
+            
             TryTransferContainerContents(ent.Owner, newChasis, borgChassis.BrainContainerId, newBorgChassis.BrainContainer);
             //why do I manually get the container? cause for some reason the power cell is NOT on the PowerCellSlotComponent. cause WHY would it...
             TryTransferContainerContents(ent.Owner, newChasis, powerCellSlot.CellSlotId, _containerSystem.GetContainer(newChasis, newPowerCellSlot.CellSlotId));
@@ -91,7 +98,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
             return;
         }
         //#endregion
-        
+
         // Assign radio channels
         string[] radioChannels = [.. ent.Comp.InherentRadioChannels, .. prototype.RadioChannels];
         if (TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter))

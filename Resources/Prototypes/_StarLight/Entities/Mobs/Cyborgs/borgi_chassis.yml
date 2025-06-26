@@ -292,9 +292,6 @@
   - type: RandomMetadata
     nameSegments:
     - NamesBorgi
-  - type: ActionGrant
-    actions:
-    - ActionViewLaws
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
@@ -318,7 +315,6 @@
     - NamesBorgi
   - type: ActionGrant
     actions:
-    - ActionViewLaws
     - ActionBorgiPlayMidi
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
@@ -339,7 +335,6 @@
     - NamesBorgi
   - type: ActionGrant
     actions:
-    - ActionViewLaws
     - ActionBorgiPlayMidi
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
@@ -378,9 +373,6 @@
   - type: RandomMetadata
     nameSegments:
     - NamesSyndiBorgi
-  - type: ActionGrant
-    actions:
-    - ActionViewLaws
   - type: ContainerFill
     containers:
       borg_brain:
