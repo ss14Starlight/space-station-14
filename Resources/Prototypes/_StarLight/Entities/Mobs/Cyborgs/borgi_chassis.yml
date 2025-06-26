@@ -270,8 +270,6 @@
         volume: -4
   - type: EmagSiliconLaw
     stunTime: 5
-  - type: ReplacementAccent
-    accent: dog
   - type: RandomMetadata
     nameSegments:
     - NamesBorgi
@@ -304,6 +302,8 @@
   - type: ActiveRadio
     channels:
     - Binary
+  - type: ReplacementAccent
+    accent: dog
 
 - type: entity
   parent: BorgiVulnerable
