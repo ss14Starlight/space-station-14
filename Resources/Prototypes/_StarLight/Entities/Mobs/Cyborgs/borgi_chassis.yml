@@ -134,7 +134,7 @@
     templateId: smartpetborgi
     # Borg chassis, to accept MMI and posibrain
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 2 # hands are VERY valueable. so you get TWO modules. martyr and l6
     moduleWhitelist:
       tags:
       - BorgModuleGeneric

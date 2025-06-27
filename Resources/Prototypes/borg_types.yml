@@ -11,6 +11,7 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleScience #until sciborgs are added
+    - BorgModuleSyndicateAssault # Starlight, for parity with borgis and l6c being printable
 
   defaultModules:
   - BorgModuleTool
@@ -44,6 +45,7 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleEngineering
+    - BorgModuleSyndicateAssault # Starlight, for parity with borgis and l6c being printable
 
   defaultModules:
   - BorgModuleTool
@@ -80,6 +82,7 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleCargo
+    - BorgModuleSyndicateAssault # Starlight, for parity with borgis and l6c being printable
 
   defaultModules:
   - BorgModuleTool
@@ -117,6 +120,7 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleJanitor
+    - BorgModuleSyndicateAssault # Starlight, for parity with borgis and l6c being printable
 
   defaultModules:
   - BorgModuleTool
@@ -153,6 +157,7 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleMedical
+    - BorgModuleSyndicateAssault # Starlight, for parity with borgis and l6c being printable
 
   defaultModules:
   - BorgModuleTool
@@ -203,6 +208,7 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleService
+    - BorgModuleSyndicateAssault # Starlight, for parity with borgis and l6c being printable
 
   defaultModules:
   - BorgModuleTool
