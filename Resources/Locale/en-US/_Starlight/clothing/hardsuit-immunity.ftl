@@ -1,0 +1,1 @@
+hardsuit-chemical-immunity-blocked = Your hardsuit protects you from chemical injection!
