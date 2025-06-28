@@ -2,13 +2,19 @@ using System.Linq;
 using Content.Shared._Starlight.Action;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.Cuffs;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;
 using Content.Shared.Inventory;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared.Stunnable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -24,6 +30,8 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
     [Dependency] private readonly InventorySystem _inv = default!;
     [Dependency] private readonly StarlightActionsSystem _starlightActions = default!;
+    [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     
     private static readonly EntProtoId<InstantActionComponent> _gizmoMark = "ActionGizmoMark";
     private static readonly EntProtoId<InstantActionComponent> _sendYourself = "ActionSendYourself";
@@ -79,6 +87,25 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnReturn(AbductorReturnToShipEvent ev)
     {
+        // Check if abductor is stunned, cuffed, or dead - if so, cancel the return
+        if (HasComp<StunnedComponent>(ev.Performer))
+        {
+            _popup.PopupEntity(Loc.GetString("abductor-return-stunned"), ev.Performer, ev.Performer);
+            return;
+        }
+
+        if (TryComp<CuffableComponent>(ev.Performer, out var cuffable) && _cuffs.IsCuffed((ev.Performer, cuffable)))
+        {
+            _popup.PopupEntity(Loc.GetString("abductor-return-cuffed"), ev.Performer, ev.Performer);
+            return;
+        }
+
+        if (_mobState.IsDead(ev.Performer))
+        {
+            _popup.PopupEntity(Loc.GetString("abductor-return-dead"), ev.Performer, ev.Performer);
+            return;
+        }
+
         AbductorAgentComponent? agentComp = null;
         if (!TryComp<AbductorScientistComponent>(ev.Performer, out var scientistComp) && !TryComp<AbductorAgentComponent>(ev.Performer, out agentComp))
             EnsureComp<AbductorScientistComponent>(ev.Performer, out scientistComp);
@@ -116,6 +143,14 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         if (args.Handled || args.Cancelled)
             return;
+
+        // Check again if abductor is stunned, cuffed, or dead during DoAfter
+        if (HasComp<StunnedComponent>(ent) ||
+            (TryComp<CuffableComponent>(ent, out var cuffable) && _cuffs.IsCuffed((ent, cuffable))) ||
+            _mobState.IsDead(ent))
+        {
+            return;
+        }
         
         Return(ent, ent.Comp, null);
     }
@@ -124,6 +159,14 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         if (args.Handled || args.Cancelled)
             return;
+
+        // Check again if abductor is stunned, cuffed, or dead during DoAfter
+        if (HasComp<StunnedComponent>(ent) ||
+            (TryComp<CuffableComponent>(ent, out var cuffable) && _cuffs.IsCuffed((ent, cuffable))) ||
+            _mobState.IsDead(ent))
+        {
+            return;
+        }
         
         Return(ent, null, ent.Comp);
     }

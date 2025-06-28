@@ -80,6 +80,12 @@ public abstract class SharedOnHitSystem : EntitySystem
 
         foreach (var target in args.HitEntities)
         {
+            // Check for target-specific immunity (like hardsuit immunity)
+            var targetAttempt = new InjectOnHitAttemptEvent();
+            RaiseLocalEvent(target, ref targetAttempt, true);
+            if (targetAttempt.Cancelled)
+                continue;
+
             if (_solutionContainers.TryGetInjectableSolution(target, out var targetSoln, out var targetSolution))
             {
                 var solution = new Solution(ent.Comp.Reagents);
@@ -101,4 +107,3 @@ public abstract class SharedOnHitSystem : EntitySystem
     {
     }
 }
-

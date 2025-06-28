@@ -1,10 +1,10 @@
+using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared._Starlight.Clothing.Components;
-using Content.Shared._Starlight.Combat.OnHit;
 using Content.Shared.Damage.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
-using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Network;
+using InventoryComponent = Content.Shared.Inventory.InventoryComponent;
 
 namespace Content.Shared._Starlight.Clothing.EntitySystems;
 
@@ -22,32 +22,74 @@ public sealed class HardsuitChemicalImmunitySystem : EntitySystem
     {
         base.Initialize();
         
-        // Subscribe to melee hits to check for hardsuit immunity before injection
-        SubscribeLocalEvent<InjectOnHitComponent, MeleeHitEvent>(OnInjectOnMeleeHit, before: new[] { typeof(SharedOnHitSystem) });
+        // Subscribe to injection attempt events to check for hardsuit immunity
+        // For melee injections (wonderprod)
+        SubscribeLocalEvent<InventoryComponent, InjectOnHitAttemptEvent>(OnInventoryMeleeInjectAttempt);
+        SubscribeLocalEvent<HardsuitChemicalImmunityComponent, InjectOnHitAttemptEvent>(OnHardsuitMeleeInjectAttempt);
+        
+        // For projectile injections (tranquilizer shells)
+        SubscribeLocalEvent<InventoryComponent, SolutionInjectAttemptEvent>(OnInventoryProjectileInjectAttempt);
+        SubscribeLocalEvent<HardsuitChemicalImmunityComponent, SolutionInjectAttemptEvent>(OnHardsuitProjectileInjectAttempt);
     }
 
-    private void OnInjectOnMeleeHit(Entity<InjectOnHitComponent> ent, ref MeleeHitEvent args)
+    // Melee injection handlers (wonderprod)
+    private void OnInventoryMeleeInjectAttempt(EntityUid uid, InventoryComponent component, ref InjectOnHitAttemptEvent args)
     {
-        if (!args.IsHit || !args.HitEntities.Any())
+        // Check the outerClothing slot for hardsuit immunity
+        if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing, component))
+        {
+            RaiseLocalEvent(outerClothing.Value, ref args, true);
+        }
+    }
+
+    private void OnHardsuitMeleeInjectAttempt(Entity<HardsuitChemicalImmunityComponent> ent, ref InjectOnHitAttemptEvent args)
+    {
+        if (!ent.Comp.Active)
             return;
 
-        // Check each target for hardsuit immunity
-        foreach (var target in args.HitEntities.ToList())
-        {
-            // Check if the target is wearing a hardsuit with chemical immunity
-            if (_inventory.TryGetSlotEntity(target, "outerClothing", out var outerClothing) &&
-                TryComp<HardsuitChemicalImmunityComponent>(outerClothing, out var immunity) &&
-                immunity.Active)
-            {
-                // Remove this target from the hit entities to prevent injection
-                args.HitEntities.Remove(target);
+        // Cancel the injection attempt
+        args.Cancelled = true;
 
-                // Show popup message to indicate immunity
-                if (_net.IsServer)
-                {
-                    _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked"), 
-                        target, target, PopupType.Medium);
-                }
+        // Show popup message to indicate immunity
+        if (_net.IsServer)
+        {
+            // Find the entity wearing this hardsuit by checking the parent container
+            var parent = Transform(ent).ParentUid;
+            if (EntityManager.EntityExists(parent))
+            {
+                _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked"), 
+                    parent, parent, PopupType.Small);
+            }
+        }
+    }
+
+    // Projectile injection handlers (tranquilizer shells)
+    private void OnInventoryProjectileInjectAttempt(EntityUid uid, InventoryComponent component, ref SolutionInjectAttemptEvent args)
+    {
+        // Check the outerClothing slot for hardsuit immunity
+        if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing, component))
+        {
+            RaiseLocalEvent(outerClothing.Value, ref args, true);
+        }
+    }
+
+    private void OnHardsuitProjectileInjectAttempt(Entity<HardsuitChemicalImmunityComponent> ent, ref SolutionInjectAttemptEvent args)
+    {
+        if (!ent.Comp.Active)
+            return;
+
+        // Cancel the injection attempt
+        args.Cancelled = true;
+
+        // Show popup message to indicate immunity
+        if (_net.IsServer)
+        {
+            // Find the entity wearing this hardsuit by checking the parent container
+            var parent = Transform(ent).ParentUid;
+            if (EntityManager.EntityExists(parent))
+            {
+                _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked"), 
+                    parent, parent, PopupType.Small);
             }
         }
     }

@@ -1,6 +1,7 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Components;
+using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Events;
 using Content.Shared.Inventory;
@@ -94,8 +95,14 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             if (Deleted(target))
                 continue;
 
-            // Yuck, this is way to hardcodey for my tastes
-            // TODO blocking injection with a hardsuit should probably done with a cancellable event or something
+            // Use our new cancellable event system instead of hardcoded checks
+            var injectAttempt = new SolutionInjectAttemptEvent(target, source, injector.Owner);
+            RaiseLocalEvent(target, ref injectAttempt, true);
+            if (injectAttempt.Cancelled)
+                continue;
+
+            // Fallback to old hardcoded logic for backwards compatibility
+            // TODO: Remove this once all immunity systems use the new event
             if (!injector.Comp.PierceArmor && _inventory.TryGetSlotEntity(target, "outerClothing", out var suit) && _tag.HasTag(suit.Value, HardsuitTag))
             {
                 // Only show popup to attacker
