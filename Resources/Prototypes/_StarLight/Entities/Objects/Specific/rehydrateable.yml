@@ -36,8 +36,8 @@
     possibleSpawns:
     - SmartSubWooferVulnerable
     - SubWooferVulnerable
-    - SmartBorgiVulnerable
-    - BorgiVulnerable
+    - BasicBorgi
+    - BaseStationBorgi
     - SmartCorgi
   - type: CollisionWake
     enabled: false

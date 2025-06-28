@@ -3,6 +3,6 @@
   id: borgi
 
   # Description
-  dummyPrototype: SmartSubWooferVulnerable
+  dummyPrototype: RoundstartBorgi
 
-  transformation: SmartSubWooferVulnerable
+  transformation: RoundstartBorgi
