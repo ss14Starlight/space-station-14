@@ -235,8 +235,8 @@
         Heat: 0.35
         Radiation: 0.1
         Caustic: 0.4
-    staminaModifier: 1
-    ingoreKnockdown: false
+    staminaModifier: 1 #Intended weakness
+    ingoreKnockdown: false #Major weakness
   - type: ClothingSpeedModifier
     walkModifier: 0.90
     sprintModifier: 0.90
