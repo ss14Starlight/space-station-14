@@ -30,6 +30,7 @@ public sealed class HardsuitChemicalImmunitySystem : EntitySystem
         // For projectile injections (tranquilizer shells)
         SubscribeLocalEvent<InventoryComponent, SolutionInjectAttemptEvent>(OnInventoryProjectileInjectAttempt);
         SubscribeLocalEvent<HardsuitChemicalImmunityComponent, SolutionInjectAttemptEvent>(OnHardsuitProjectileInjectAttempt);
+        
     }
 
     // Melee injection handlers (wonderprod)
@@ -93,4 +94,5 @@ public sealed class HardsuitChemicalImmunitySystem : EntitySystem
             }
         }
     }
+
 }
