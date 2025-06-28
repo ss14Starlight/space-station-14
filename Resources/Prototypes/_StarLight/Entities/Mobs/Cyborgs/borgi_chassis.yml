@@ -328,7 +328,7 @@
       hasMindState: borgi_l
       noMindState: borgi_l
     - type: SiliconLawProvider
-      lawset: Crewsimov
+      laws: Crewsimov
 
 - type: entity
   parent: SmartSubWooferVulnerable
