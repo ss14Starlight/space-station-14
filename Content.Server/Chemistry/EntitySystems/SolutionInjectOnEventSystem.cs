@@ -95,7 +95,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             if (Deleted(target))
                 continue;
 
-            // Use our new cancellable event system instead of hardcoded checks
+            // STARLIGHT: Use our new cancellable event system instead of hardcoded checks
             var injectAttempt = new SolutionInjectAttemptEvent(target, source, injector.Owner);
             RaiseLocalEvent(target, ref injectAttempt, true);
             if (injectAttempt.Cancelled)
@@ -103,6 +103,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
 
             // Fallback to old hardcoded logic for backwards compatibility
             // TODO: Remove this once all immunity systems use the new event
+            // STARLIGHT END
             if (!injector.Comp.PierceArmor && _inventory.TryGetSlotEntity(target, "outerClothing", out var suit) && _tag.HasTag(suit.Value, HardsuitTag))
             {
                 // Only show popup to attacker
