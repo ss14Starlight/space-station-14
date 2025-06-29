@@ -11,7 +11,7 @@
     deleteOnCollide: false
     damage:
       types:
-        Blunt: 5
+        Blunt: 4
   - type: StaminaDamageOnCollide
     damage: 20 #STARLIGHT
   - type: TimedDespawn
