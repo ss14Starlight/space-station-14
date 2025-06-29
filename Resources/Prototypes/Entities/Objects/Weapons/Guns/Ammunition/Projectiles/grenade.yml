@@ -11,9 +11,9 @@
     deleteOnCollide: false
     damage:
       types:
-        Blunt: 4
+        Blunt: 5
   - type: StaminaDamageOnCollide
-    damage: 55
+    damage: 20 #STARLIGHT
   - type: TimedDespawn
     lifetime: 0.25
 
