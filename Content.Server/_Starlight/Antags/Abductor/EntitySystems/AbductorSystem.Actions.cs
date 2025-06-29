@@ -100,12 +100,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             return;
         }
 
-        if (_mobState.IsDead(ev.Performer))
-        {
-            _popup.PopupEntity(Loc.GetString("abductor-return-dead"), ev.Performer, ev.Performer);
-            return;
-        }
-
         AbductorAgentComponent? agentComp = null;
         if (!TryComp<AbductorScientistComponent>(ev.Performer, out var scientistComp) && !TryComp<AbductorAgentComponent>(ev.Performer, out agentComp))
             EnsureComp<AbductorScientistComponent>(ev.Performer, out scientistComp);

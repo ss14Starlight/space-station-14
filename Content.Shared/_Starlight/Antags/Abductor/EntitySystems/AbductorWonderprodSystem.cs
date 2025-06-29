@@ -1,9 +1,10 @@
 using Content.Shared._Starlight.Antags.Abductor.Components;
 using Content.Shared._Starlight.Clothing.Components;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Events;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Weapons.Melee.Events;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Antags.Abductor.EntitySystems;
 
@@ -14,13 +15,19 @@ namespace Content.Shared._Starlight.Antags.Abductor.EntitySystems;
 public sealed class AbductorWonderprodSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         
-        // Subscribe to melee hit events from wonderprods to check for hardsuit immunity
+        SubscribeLocalEvent<AbductorWonderprodComponent, StaminaDamageOnHitAttemptEvent>(OnWonderprodStaminaDamageAttempt);
         SubscribeLocalEvent<AbductorWonderprodComponent, MeleeHitEvent>(OnWonderprodMeleeHit);
+    }
+
+    private void OnWonderprodStaminaDamageAttempt(Entity<AbductorWonderprodComponent> ent, ref StaminaDamageOnHitAttemptEvent args)
+    {
+        args.Cancelled = true;
     }
 
     private void OnWonderprodMeleeHit(Entity<AbductorWonderprodComponent> ent, ref MeleeHitEvent args)
@@ -29,34 +36,26 @@ public sealed class AbductorWonderprodSystem : EntitySystem
         if (!TryComp<StaminaDamageOnHitComponent>(ent, out var staminaDamage))
             return;
 
-        // Store the original damage value
-        var originalDamage = staminaDamage.Damage;
-        var hasHardsuitTargets = false;
-
-        // Check each target for hardsuit immunity
+        var staminaTargets = new List<EntityUid>();
         foreach (var target in args.HitEntities)
         {
-            if (HasHardsuitImmunity(target))
-            {
-                hasHardsuitTargets = true;
-            }
+            if (HasComp<StaminaComponent>(target))
+                staminaTargets.Add(target);
         }
 
-        // If any target has hardsuit immunity, temporarily reduce the damage
-        if (hasHardsuitTargets)
+        if (staminaTargets.Count == 0)
+            return;
+
+        var originalDamage = staminaDamage.Damage;
+
+        foreach (var target in staminaTargets)
         {
-            staminaDamage.Damage = ent.Comp.FallbackStaminaDamage;
-            
-            // The damage will be applied with the reduced value
-            // We need to restore the original damage after the hit is processed
-            // We'll do this by scheduling a callback
-            ent.Owner.SpawnTimer(TimeSpan.Zero, () =>
-            {
-                if (TryComp<StaminaDamageOnHitComponent>(ent, out var comp))
-                {
-                    comp.Damage = originalDamage;
-                }
-            });
+            var damageToApply = HasHardsuitImmunity(target) 
+                ? ent.Comp.FallbackStaminaDamage 
+                : originalDamage;
+
+            _stamina.TakeStaminaDamage(target, damageToApply / staminaTargets.Count, 
+                source: args.User, with: ent, sound: staminaDamage.Sound);
         }
     }
 
