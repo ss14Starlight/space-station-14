@@ -64,20 +64,13 @@ public sealed partial class ChangelingComponent : Component
     ///     Amount of biomass changeling currently has.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Biomass = 40f;
+    public float Biomass = 30f;
 
     /// <summary>
     ///     Maximum amount of biomass a changeling can have.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float MaxBiomass = 60f;
-
-    [DataField, AutoNetworkedField]
-    public float BiomassDeficitWarningPercent = 0.5f;
-    [DataField, AutoNetworkedField]
-    public float BiomassDeficitJitterPercent = 0.33f;
-    [DataField, AutoNetworkedField]
-    public float BiomassDeficitVomitPercent = 0.1f;
+    public float MaxBiomass = 30f;
 
     /// <summary>
     ///     How much biomass should be removed per cycle.
@@ -106,19 +99,11 @@ public sealed partial class ChangelingComponent : Component
     /// <summary>
     ///     Cooldown between chem regen events.
     /// </summary>
-    [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan ChemicalNextUpdateTime = TimeSpan.Zero;
-    [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan ChemicalUpdateCooldown = TimeSpan.FromSeconds(1f);
+    public TimeSpan UpdateTimer = TimeSpan.Zero;
+    public float UpdateCooldown = 1f;
 
-    [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan BiomassNextUpdateTime = TimeSpan.Zero;
-    [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan BiomassUpdateCooldown = TimeSpan.FromSeconds(60f);
+    public float BiomassUpdateTimer = 0f;
+    public float BiomassUpdateCooldown = 60f;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public List<TransformData> AbsorbedDNA = new();

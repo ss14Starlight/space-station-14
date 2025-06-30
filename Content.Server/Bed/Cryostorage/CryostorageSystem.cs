@@ -5,7 +5,6 @@ using Content.Server.Ghost;
 using Content.Server.Hands.Systems;
 using Content.Server.Inventory;
 using Content.Server.Popups;
-using Content.Server.Revolutionary.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords;
@@ -18,9 +17,6 @@ using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Mind.Components;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Revolutionary.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.UserInterface;
 using Robust.Server.Audio;
@@ -238,11 +234,6 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 
             _stationRecords.RemoveRecord(key, stationRecords);
         }
-
-        //starlight start
-        RemComp<HeadRevolutionaryComponent>(ent.Owner);
-        RemComp<CommandStaffComponent>(ent.Owner);
-        //starlight end
 
         _chatSystem.DispatchStationAnnouncement(station.Value,
             Loc.GetString(

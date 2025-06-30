@@ -1,3 +1,4 @@
+using Content.Client.LateJoin;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Lobby;

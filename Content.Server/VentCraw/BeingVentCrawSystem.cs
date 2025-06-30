@@ -8,7 +8,6 @@ using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.VentCraw.Components;
 using Robust.Shared.Player;
-using Content.Shared.NodeContainer;
 
 namespace Content.Server.VentCraw;
 

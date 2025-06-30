@@ -284,33 +284,13 @@
   materials:
     SheetPrinter: 100
     
-- type: latheRecipe
-  id: PrintedDocumentRequestERTRecipe
-  result: PrintedDocumentRequestERT
-  categories:
-  - InquiriesAndAppeals
-  completetime: 2
-  applyMaterialDiscount: false
-  materials:
-    SheetPrinter: 100
-    
-- type: latheRecipe
-  id: PrintedDocumentProductOrderRecipe
-  result: PrintedDocumentProductOrder
-  categories:
-  - InquiriesAndAppeals
-  completetime: 2
-  applyMaterialDiscount: false
-  materials:
-    SheetPrinter: 100
-    
-# Complaints
+# Complaintst
 
 - type: latheRecipe
   id: PrintedDocumentComplaintViolationLaborRulesRecipe
   result: PrintedDocumentComplaintViolationLaborRules
   categories:
-  - Complaints
+  - Complaintst
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -320,7 +300,7 @@
   id: PrintedDocumentComplaintOffenseRecipe
   result: PrintedDocumentComplaintOffense
   categories:
-  - Complaints
+  - Complaintst
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -441,16 +421,6 @@
     SheetPrinter: 100
     
 - type: latheRecipe
-  id: PrintedDocumentExecutionDNROrderRecipe
-  result: PrintedDocumentExecutionDNROrder
-  categories:
-  - OrdersAndInstructions
-  completetime: 2
-  applyMaterialDiscount: false
-  materials:
-    SheetPrinter: 100
-    
-- type: latheRecipe
   id: PrintedDocumentMedicalInterventionOrderRecipe
   result: PrintedDocumentMedicalInterventionOrder
   categories:
@@ -460,3 +430,14 @@
   materials:
     SheetPrinter: 100
     
+# Orders
+
+- type: latheRecipe
+  id: PrintedDocumentProductOrderRecipe
+  result: PrintedDocumentProductOrder
+  categories:
+  - Orders
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100

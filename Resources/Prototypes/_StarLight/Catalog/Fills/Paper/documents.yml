@@ -58,7 +58,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentInternalAffairsAgentsReport
-  name: Internal investigation report
+  name: Internal Investigation Report
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -76,7 +76,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentObjectInvestigationReport
-  name: Report on object investigation
+  name: Report on object Investigation
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -115,7 +115,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentStatementAppointmentInterimChapter
-  name: Statement of appointment to the interim chapter
+  name: Statement of Appointment to the Interim Chapter
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -124,7 +124,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentEmploymentStatement
-  name: Statement of employment
+  name: Statement of Employment
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -133,7 +133,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentResignationStatement
-  name: Statement of resignation
+  name: Statement of Resignation
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -267,24 +267,7 @@
     - type: Paper
       content: doc-text-printer-request-modernization
       
-- type: entity
-  parent: PrintedDocument
-  id: PrintedDocumentRequestERT
-  name: Request for ERT
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Paper
-      content: doc-text-printer-request-ert
-      
-- type: entity
-  parent: PrintedDocument
-  id: PrintedDocumentProductOrder
-  name: Product order
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Paper
-      content: doc-text-printer-product-order
-# Complaints
+# Complaintst
 
 - type: entity
   parent: PrintedDocument
@@ -354,7 +337,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentSurgeryConsentPermit
-  name: Surgery consent permit
+  name: Surgery Consent Permit
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
@@ -416,14 +399,16 @@
     - type: Paper
       content: doc-text-printer-medical-intervention-order
 
+# Orders
+
 - type: entity
   parent: PrintedDocument
-  id: PrintedDocumentExecutionDNROrder
-  name: Execution & DNR order
+  id: PrintedDocumentProductOrder
+  name: Product order
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
-      content: doc-text-printer-execution-dnr-order
+      content: doc-text-printer-product-order
 
 - type: entity
   id: BoxFolderClipboardFilled

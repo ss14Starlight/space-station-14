@@ -6,12 +6,8 @@
   objective: roles-antag-nuclear-operative-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 43200 # 12h
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 21600 # 6h
+    time: 18000 # 5h
   guides: [ NuclearOperatives ]
-  previewStartingGear: SyndicateOperativeGearFull
 
 - type: antag
   id: NukeopsMedic
@@ -21,18 +17,11 @@
   objective: roles-antag-nuclear-operative-agent-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 43200 # 12h
+    time: 18000 # 5h
   - !type:RoleTimeRequirement
     role: JobChemist
-    time: 21600 # 6h
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 28800 # 8h
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 21600 # 6h
+    time: 10800 # 3h
   guides: [ NuclearOperatives ]
-  previewStartingGear: SyndicateOperativeMedicFull
 
 - type: antag
   id: NukeopsCommander
@@ -42,16 +31,12 @@
   objective: roles-antag-nuclear-operative-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 86400 # 24h
+    time: 18000 # 5h
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 43200 # 12h
-  - !type:DepartmentTimeRequirement
-    department: Command
-    time: 14400 # 4h
+    time: 18000 # 5h
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
-  previewStartingGear: SyndicateCommanderGearFull
 
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink
@@ -80,35 +65,15 @@
   equipment:
     pocket2: BaseUplinkRadio40TC
 
-- type: chameleonOutfit
-  id: NukeopsOutfit
-  name: roles-antag-nuclear-operative-name
-  startingGear: SyndicateOperativeGearFullNoUplink
-  icon: "JobIconSyndicate"
-  equipment:
-    head: ClothingHeadHelmetHardsuitSyndie
-    neck: ClothingNeckScarfStripedSyndieRed
-
 #Nuclear Operative Commander Gear
 - type: startingGear
   id: SyndicateCommanderGearFull
   parent: SyndicateOperativeGearFull
   equipment:
-    neck: CommanderWhistle #Starlight
-    ears: ClothingHeadsetAltSyndicateCommander #Starlight
+    neck: SyndicateWhistle
     outerClothing: ClothingOuterHardsuitSyndieCommander
-    id: CommanderPDA
   inhand:
   - NukeOpsDeclarationOfWar
-
-- type: chameleonOutfit
-  id: NukeopsCommanderOutfit
-  name: roles-antag-nuclear-operative-commander-name
-  startingGear: SyndicateCommanderGearFull
-  icon: "JobIconSyndicate"
-  equipment:
-    head: ClothingHeadHelmetHardsuitSyndieCommander
-    neck: ClothingNeckScarfStripedSyndieGreen
 
 #Nuclear Operative Medic Gear
 - type: startingGear
@@ -117,7 +82,6 @@
   equipment:
     eyes: ClothingEyesHudSyndicateAgent
     outerClothing: ClothingOuterHardsuitSyndieMedic
-    ears: ClothingHeadsetAltSyndicateAgent #Starlight
     shoes: ClothingShoesBootsMagSyndie
     id: SyndiAgentPDA
     belt: ClothingBeltMilitaryWebbingMedFilled
@@ -132,15 +96,6 @@
     - HandheldHealthAnalyzer
     - CombatMedipen
     - DeathAcidifierImplanter
-
-- type: chameleonOutfit
-  id: NukeopsMedicOutfit
-  name: roles-antag-nuclear-operative-agent-name
-  startingGear: SyndicateOperativeMedicFull
-  icon: "JobIconSyndicate"
-  equipment:
-    head: ClothingHeadHelmetHardsuitSyndieMedic
-    neck: ClothingNeckScarfStripedLightBlue
 
 #Lone Operative Gear
 - type: startingGear

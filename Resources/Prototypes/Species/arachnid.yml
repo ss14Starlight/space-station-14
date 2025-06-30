@@ -13,7 +13,6 @@
   lastNames: NamesArachnidLast
   sexes:
   - Unsexed
-  customName: true # Starlight
 
 - type: speciesBaseSprites
   id: MobArachnidSprites
@@ -64,7 +63,7 @@
       required: true
       defaultMarkings: [ ArachnidCheliceraeDownwards ]
     Chest:
-      points: 2
+      points: 1
       required: false
     Legs:
       points: 2

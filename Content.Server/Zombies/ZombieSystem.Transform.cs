@@ -36,8 +36,6 @@ using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.Tag;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Zombies;
 
@@ -62,10 +60,7 @@ public sealed partial class ZombieSystem
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
 
-    private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
-    private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
     /// <summary>
     /// Handles an entity turning into a zombie when they die or go into crit
     /// </summary>
@@ -137,16 +132,6 @@ public sealed partial class ZombieSystem
         melee.Angle = 0.0f;
         melee.HitSound = zombiecomp.BiteSound;
 
-        DirtyFields(target, melee, null, fields:
-        [
-            nameof(MeleeWeaponComponent.Animation),
-            nameof(MeleeWeaponComponent.WideAnimation),
-            nameof(MeleeWeaponComponent.AltDisarm),
-            nameof(MeleeWeaponComponent.Range),
-            nameof(MeleeWeaponComponent.Angle),
-            nameof(MeleeWeaponComponent.HitSound),
-        ]);
-
         if (mobState.CurrentState == MobState.Alive)
         {
             // Groaning when damaged
@@ -180,7 +165,17 @@ public sealed partial class ZombieSystem
             _humanoidAppearance.SetBaseLayerId(target, HumanoidVisualLayers.Snout, zombiecomp.BaseLayerExternal, humanoid: huApComp);
 
             //This is done here because non-humanoids shouldn't get baller damage
-            melee.Damage = zombiecomp.DamageOnBite;
+            //lord forgive me for the hardcoded damage
+            DamageSpecifier dspec = new()
+            {
+                DamageDict = new()
+                {
+                    { "Slash", 13 },
+                    { "Piercing", 7 },
+                    { "Structural", 10 }
+                }
+            };
+            melee.Damage = dspec;
 
             // humanoid zombies get to pry open doors and shit
             var pryComp = EnsureComp<PryingComponent>(target);
@@ -236,8 +231,8 @@ public sealed partial class ZombieSystem
         _npc.SleepNPC(target, htn);
 
         //He's gotta have a mind
-        var hasMind = _mind.TryGetMind(target, out var mindId, out var mind);
-        if (hasMind && mind != null && _player.TryGetSessionById(mind.UserId, out var session))
+        var hasMind = _mind.TryGetMind(target, out var mindId, out _);
+        if (hasMind && _mind.TryGetSession(mindId, out var session))
         {
             //Zombie role for player manifest
             _role.MindAddRole(mindId, "MindRoleZombie", mind: null, silent: true);
@@ -285,7 +280,6 @@ public sealed partial class ZombieSystem
 
         //Need to prevent them from getting an item, they have no hands.
         // Also prevents them from becoming a Survivor. They're undead.
-        _tag.AddTag(target, InvalidForGlobalSpawnSpellTag);
-        _tag.AddTag(target, CannotSuicideTag);
+        _tag.AddTag(target, "InvalidForGlobalSpawnSpell");
     }
 }

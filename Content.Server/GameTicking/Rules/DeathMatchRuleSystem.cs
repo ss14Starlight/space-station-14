@@ -4,7 +4,6 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.KillTracking;
 using Content.Server.Mind;
 using Content.Server.Points;
-using Content.Server.Preferences.Managers;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.GameTicking;
@@ -29,7 +28,6 @@ public sealed class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRuleComponen
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IServerPreferencesManager _preferences = default!;
 
     public override void Initialize()
     {
@@ -49,15 +47,10 @@ public sealed class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRuleComponen
             if (!GameTicker.IsGameRuleActive(uid, rule))
                 continue;
 
-            // If no profile is provided here, try to get any enabled profile for the player...
-            var profile = ev.Profile ?? _preferences.GetPreferences(ev.Player.UserId).GetRandomEnabledProfile();
-            if (profile == null)
-                return;
-
-            var newMind = _mind.CreateMind(ev.Player.UserId, profile.Name);
+            var newMind = _mind.CreateMind(ev.Player.UserId, ev.Profile.Name);
             _mind.SetUserId(newMind, ev.Player.UserId);
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(ev.Station, null, profile);
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(ev.Station, null, ev.Profile);
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 

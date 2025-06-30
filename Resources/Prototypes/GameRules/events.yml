@@ -10,7 +10,7 @@
     - id: ClericalError
     - id: CockroachMigration
     - id: GasLeak
-    - id: DoorLaggingVirus
+    - id: GreytideVirus
     - id: IonStorm # its calm like 90% of the time smh
     - id: KudzuGrowth
     - id: MassHallucinations
@@ -29,7 +29,7 @@
   id: BasicAntagEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
-    - id: ClosetSkeleton
+#    - id: ClosetSkeleton STARLIGHT
     - id: DragonSpawn
     - id: KingRatMigration
     - id: NinjaSpawn
@@ -212,7 +212,6 @@
     - spawnerPrototype: SpawnPointGhostSpaceNinja
       min: 1
       max: 1
-      prefRoles: [ SpaceNinja ]
       pickPlayer: false
       startingGear: SpaceNinjaGear
       roleLoadout:
@@ -234,7 +233,6 @@
         nameSegments:
         - NamesNinjaTitle
         - NamesNinja
-        nameFormat: name-format-ninja
       mindRoles:
       - MindRoleNinja
 
@@ -321,7 +319,6 @@
         nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
-        nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
 
@@ -532,8 +529,8 @@
   - type: StationEvent
     earliestStart: 55 # 🌟Starlight🌟 Casualization
     weight: 4.5 # 🌟Starlight🌟 Casualization
-    minimumPlayers: 35
-    duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
+    minimumPlayers: 20
+    duration: 1
   - type: RuleGrids
   - type: LoadMapRule
     gridPath: /Maps/Shuttles/ShuttleEvent/striker.yml
@@ -544,9 +541,11 @@
     - spawnerPrototype: SpawnPointLoneNukeOperative
       min: 1
       max: 1
-      prefRoles: [ Nukeops ]
       pickPlayer: false
       startingGear: SyndicateLoneOperativeGearFull
+      blacklist:
+        tags:
+          - Resomi
       roleLoadout:
       - RoleSurvivalNukie
       components:
@@ -555,7 +554,6 @@
         nameSegments:
         - NamesSyndicatePrefix
         - NamesSyndicateNormal
-        nameFormat: name-format-nukie-generic
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -643,7 +641,7 @@
   - type: MobReplacementRule
 
 - type: entity
-  id: DoorLaggingVirus
+  id: GreytideVirus
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent

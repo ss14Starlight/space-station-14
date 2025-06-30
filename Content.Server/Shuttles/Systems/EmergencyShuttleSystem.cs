@@ -6,6 +6,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Communications;
+using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking.Events;
 using Content.Server.GameTicking;
@@ -37,7 +38,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -79,11 +79,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [ValidatePrototypeId<TagPrototype>]
     private const string DockTag = "DockEmergency";
 
-    //starlight
-    [ValidatePrototypeId<TagPrototype>]
-    private const string DockEscapeTag = "DockEscape";
-    //starlight end
-
     public override void Initialize()
     {
         _emergencyShuttleEnabled = _configManager.GetCVar(CCVars.EmergencyShuttleEnabled);
@@ -97,7 +92,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         SubscribeLocalEvent<StationCentcommComponent, MapInitEvent>(OnStationInit);
 
         SubscribeLocalEvent<EmergencyShuttleComponent, FTLStartedEvent>(OnEmergencyFTL);
-        SubscribeLocalEvent<EscapePodComponent, FTLStartedEvent>(OnEmergencyPodFTL); //starlight
         SubscribeLocalEvent<EmergencyShuttleComponent, FTLCompletedEvent>(OnEmergencyFTLComplete);
         SubscribeNetworkEvent<EmergencyShuttleRequestPositionMessage>(OnShuttleRequestPosition);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnded);
@@ -211,30 +205,11 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         });
     }
 
-    //starlight
-    private void OnEmergencyPodFTL(EntityUid uid, EscapePodComponent component, ref FTLStartedEvent args)
-    {
-        //set the priority tag
-        if (TryComp<ShuttleComponent>(uid, out var shuttleComp))
-        {
-            shuttleComp.PriorityTag = DockEscapeTag;
-        }
-    }
-    //starlight end
-
     /// <summary>
     ///     Escape shuttle FTL event handler. The only escape shuttle FTL transit should be from station to centcomm at round end
     /// </summary>
     private void OnEmergencyFTL(EntityUid uid, EmergencyShuttleComponent component, ref FTLStartedEvent args)
     {
-        //starlight
-        //set the priority tag
-        if (TryComp<ShuttleComponent>(uid, out var shuttleComp))
-        {
-            shuttleComp.PriorityTag = DockTag;
-        }
-        //starlight end
-
         var ftlTime = TimeSpan.FromSeconds
         (
             TryComp<FTLComponent>(uid, out var ftlComp) ? ftlComp.TravelTime : _shuttle.DefaultTravelTime
@@ -359,7 +334,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     /// </summary>
     public void AnnounceShuttleDock(ShuttleDockResult result, bool extended)
     {
-        var stationShuttleComp = result.Station.Comp;
         var shuttle = result.Station.Comp.EmergencyShuttle;
 
         DebugTools.Assert(shuttle != null);
@@ -368,11 +342,11 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         {
             _chatSystem.DispatchStationAnnouncement(
                 result.Station,
-                Loc.GetString(stationShuttleComp.FailureAnnouncement),
+                Loc.GetString("emergency-shuttle-good-luck"),
                 playDefaultSound: false);
 
             // TODO: Need filter extensions or something don't blame me.
-            _audio.PlayGlobal(stationShuttleComp.FailureAudio, Filter.Broadcast(), true);
+            _audio.PlayGlobal("/Audio/Misc/notice1.ogg", Filter.Broadcast(), true);
             return;
         }
 
@@ -391,10 +365,10 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         var location = FormattedMessage.RemoveMarkupPermissive(
             _navMap.GetNearestBeaconString((shuttle.Value, Transform(shuttle.Value))));
 
-        var extendedText = extended ? Loc.GetString(stationShuttleComp.LaunchExtendedMessage) : "";
+        var extendedText = extended ? Loc.GetString("emergency-shuttle-extended") : "";
         var locKey = result.ResultType == ShuttleDockResultType.NoDock
-            ? stationShuttleComp.NearbyAnnouncement
-            : stationShuttleComp.DockedAnnouncement;
+            ? "emergency-shuttle-nearby"
+            : "emergency-shuttle-docked";
 
         _chatSystem.DispatchStationAnnouncement(
             result.Station,
@@ -427,8 +401,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         // Play announcement audio.
 
         var audioFile = result.ResultType == ShuttleDockResultType.NoDock
-            ? stationShuttleComp.NearbyAudio
-            : stationShuttleComp.DockedAudio;
+            ? "/Audio/Misc/notice1.ogg"
+            : "/Audio/Announcements/shuttle_dock.ogg";
 
         // TODO: Need filter extensions or something don't blame me.
         _audio.PlayGlobal(audioFile, Filter.Broadcast(), true);
@@ -560,20 +534,14 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             return;
         }
 
-        if (component.Maps.Length == 0) //starlight edit
+        if (string.IsNullOrEmpty(component.Map.ToString()))
         {
-            Log.Warning("No CentComm maps found, skipping setup.");
+            Log.Warning("No CentComm map found, skipping setup.");
             return;
         }
 
         var map = _mapSystem.CreateMap(out var mapId);
-
-        //starlight start
-        //randomly select a centcomm map
-        var mapPath = _random.Pick(component.Maps);
-        //starlight end
-
-        if (!_loader.TryLoadGrid(mapId, mapPath, out var grid)) //starlight edit
+        if (!_loader.TryLoadGrid(mapId, component.Map, out var grid))
         {
             Log.Error($"Failed to set up centcomm grid!");
             return;
@@ -691,11 +659,18 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         if (!EmergencyShuttleArrived)
             return false;
 
-        // check if target is on an emergency shuttle
+        // check each emergency shuttle
         var xform = Transform(target);
+        foreach (var stationData in EntityQuery<StationEmergencyShuttleComponent>())
+        {
+            if (stationData.EmergencyShuttle == null)
+                continue;
 
-        if (HasComp<EmergencyShuttleComponent>(xform.GridUid))
-            return true;
+            if (IsOnGrid(xform, stationData.EmergencyShuttle.Value))
+            {
+                return true;
+            }
+        }
 
         return false;
     }

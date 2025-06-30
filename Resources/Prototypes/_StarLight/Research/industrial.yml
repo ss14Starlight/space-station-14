@@ -18,8 +18,6 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
-  radioChannels:
-  - Supply
 
 # Tier 2
 
@@ -37,8 +35,6 @@
   - RipleyUpgradeKit
   technologyPrerequisites:
   - RipleyAPLU
-  radioChannels:
-  - Supply
 
 - type: technology
   id: Clarke
@@ -59,5 +55,3 @@
   - ClarkePeripheralsElectronics
   technologyPrerequisites:
   - RipleyAPLU
-  radioChannels:
-  - Supply

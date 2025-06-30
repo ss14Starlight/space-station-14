@@ -31,7 +31,6 @@
   - PrintedDocumentRequestEuthanasiaRecipe
   - PrintedDocumentRequestConstructionWorkRecipe
   - PrintedDocumentRequestModernizationRecipe
-  - PrintedDocumentRequestERTRecipe
   # Complaints
   - PrintedDocumentComplaintViolationLaborRulesRecipe
   - PrintedDocumentComplaintOffenseRecipe
@@ -49,7 +48,6 @@
   - PrintedDocumentPrisonerParoleOrderRecipe
   - PrintedDocumentOrderRecognizingReasonablenessCreatureRecipe
   - PrintedDocumentMedicalInterventionOrderRecipe
-  - PrintedDocumentExecutionDNROrderRecipe
   # Orders
   - PrintedDocumentProductOrderRecipe
 

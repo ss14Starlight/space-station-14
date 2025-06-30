@@ -58,6 +58,7 @@ namespace Content.Server.Lathe
         /// Per-tick cache
         /// </summary>
         private readonly List<GasMixture> _environments = new();
+        private readonly HashSet<ProtoId<LatheRecipePrototype>> _availableRecipes = new();
 
         public override void Initialize()
         {
@@ -157,8 +158,12 @@ namespace Content.Server.Lathe
 
         public List<ProtoId<LatheRecipePrototype>> GetAvailableRecipes(EntityUid uid, LatheComponent component, bool getUnavailable = false)
         {
-            var ev = new LatheGetRecipesEvent((uid, component), getUnavailable);
-            AddRecipesFromPacks(ev.Recipes, component.StaticPacks);
+            _availableRecipes.Clear();
+            AddRecipesFromPacks(_availableRecipes, component.StaticPacks);
+            var ev = new LatheGetRecipesEvent(uid, getUnavailable)
+            {
+                Recipes = _availableRecipes
+            };
             RaiseLocalEvent(uid, ev);
             return ev.Recipes.ToList();
         }
@@ -286,7 +291,7 @@ namespace Content.Server.Lathe
                 var pack = _proto.Index(id);
                 foreach (var recipe in pack.Recipes)
                 {
-                    if (args.GetUnavailable || database.UnlockedRecipes.Contains(recipe))
+                    if (args.getUnavailable || database.UnlockedRecipes.Contains(recipe))
                         args.Recipes.Add(recipe);
                 }
             }
@@ -294,8 +299,10 @@ namespace Content.Server.Lathe
 
         private void OnGetRecipes(EntityUid uid, TechnologyDatabaseComponent component, LatheGetRecipesEvent args)
         {
-            if (uid == args.Lathe)
-                AddRecipesFromDynamicPacks(ref args, component, args.Comp.DynamicPacks);
+            if (uid != args.Lathe || !TryComp<LatheComponent>(uid, out var latheComponent))
+                return;
+
+            AddRecipesFromDynamicPacks(ref args, component, latheComponent.DynamicPacks);
         }
 
         private void GetEmagLatheRecipes(EntityUid uid, EmagLatheRecipesComponent component, LatheGetRecipesEvent args)
@@ -303,7 +310,7 @@ namespace Content.Server.Lathe
             if (uid != args.Lathe)
                 return;
 
-            if (!args.GetUnavailable && !_emag.CheckFlag(uid, EmagType.Interaction))
+            if (!args.getUnavailable && !_emag.CheckFlag(uid, EmagType.Interaction))
                 return;
 
             AddRecipesFromPacks(args.Recipes, component.EmagStaticPacks);

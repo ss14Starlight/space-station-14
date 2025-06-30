@@ -5,90 +5,65 @@
   loots:
     - !type:RandomSpawnsLoot
       entries:
-        - proto: AmmoTechFabCircuitboard
-          cost: 2
-          prob: 0.2
-        - proto: ResearchDisk10000
-          prob: 0.3
-
-        - proto: WeaponPistolMakarov
-          prob: 0.5
-          cost: 4
-        - proto: WeaponRifleAk
-          prob: 0.1
+        - proto: SecurityTechFabCircuitboard
           cost: 50
+          prob: 0.1
+        - proto: TechnologyDiskRare
+          cost: 21
+          prob: 0.2
+        - proto: TechnologyDisk
+          cost: 7
+          prob: 0.6
 
-        - proto: MagazineLightRifleEmpty
-          prob: 0.2
-          cost: 3
-
-        - proto: MagazineBoxPistolSP
-          prob: 0.2
-          cost: 10
-        - proto: MagazineBoxPistolHP
-          prob: 0.2
-          cost: 10
-        - proto: MagazineBoxPistolFMJ
-          prob: 0.2
-          cost: 10
-        - proto: MagazineBoxPistolUranium
+        - proto: CrateSyndicateSurplusBundle
+          prob: 0.08
+          cost: 30
+        - proto: ClothingBackpackDuffelSyndicateAmmoFilled
           prob: 0.1
           cost: 20
-        - proto: MagazineBoxPistolIncendiary
-          prob: 0.1
-          cost: 20
-        - proto: MagazineBoxPistolAP
+        - proto: ClothingBackpackDuffelSyndicateFilledLMG
           prob: 0.05
-          cost: 40
+          cost: 64
+        - proto: ClothingBackpackDuffelSyndicateFilledRevolver
+          prob: 0.2
+          cost: 20
+        - proto: ClothingBackpackDuffelSyndicateFilledCarbine
+          prob: 0.1
+          cost: 32
+        - proto: SyndicateJawsOfLife
+          prob: 0.2
+          cost: 6
+        - proto: SyndieMiniBomb
+          prob: 0.2
+          cost: 8
+        - proto: BaseUplinkRadio
+          prob: 0.2
+          cost: 20
 
-        - proto: MagazineBoxLightRifleSP
-          prob: 0.2
-          cost: 10
-        - proto: MagazineBoxLightRifleHP
-          prob: 0.2
-          cost: 10
-        - proto: MagazineBoxLightRifleFMJ
-          prob: 0.2
-          cost: 10
-        - proto: MagazineBoxLightRifleUranium
+        - proto: Telecrystal1
+          prob: 0.5
+          cost: 12
+        - proto: Telecrystal5
           prob: 0.1
-          cost: 20
-        - proto: MagazineBoxLightRifleIncendiary
-          prob: 0.1
-          cost: 20
-        - proto: MagazineBoxLightRifleAP
+          cost: 60
+        - proto: Telecrystal10
           prob: 0.05
-          cost: 40
-        - proto: GrenadeIncendiary
-          prob: 0.3
-          cost: 10
-        - proto: ExGrenade
-          prob: 0.3
-          cost: 10
+          cost: 120
+        - proto: Telecrystal
+          prob: 0.025
+          cost: 240
+        - proto: BaseUplinkRadio
+          prob: 0.2
+          cost: 20
 
-        - proto: Wristwatch
+        - proto: MedkitAdvancedFilled
           prob: 0.8
-          cost: 3
-        - proto: WristwatchGold
+          cost: 21                    
+        - proto: MedkitCombatFilled
           prob: 0.4
-          cost: 6
-        - proto: ScrapPAIGold
-          prob: 0.2
-          cost: 1
-        - proto: ClothingNeckCloakPirateCap
-          prob: 0.2
-          cost: 18
-        - proto: MusicBoxInstrument
-          prob: 0.2
-          cost: 2
-
-        - proto: DrinkVodkizineBottleFull
-          cost: 3                    
-        - proto: MedkitBruteFilled
-          cost: 6
-        - proto: MedkitBurnFilled
-          cost: 6
-        - proto: MedkitRadiationFilled
-          cost: 6
-        - proto: MedkitToxinFilled
-          cost: 6
+          cost: 36
+        - proto: ChemistryBottleOmnizine
+          cost: 3
+        - proto: ClothingEyesHudMedSec
+          prob: 0.3
+          cost: 21

@@ -224,18 +224,7 @@
   - RipleyMKII
   completetime: 10
   materials:
-    Plasteel: 1000
-
-# Paddy
-
-- type: latheRecipe
-  id: PaddyUpgradeKit
-  result: PaddyUpgradeKit
-  categories:
-  - Paddy
-  completetime: 10
-  materials:
-    Plasteel: 2000
+    Steel: 500
 
 # H.O.N.K.
 - type: latheRecipe

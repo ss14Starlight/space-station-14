@@ -142,7 +142,7 @@
     
 - type: listing
   id: VendorLeftLegHuman
-  productEntity: LeftLegWithFootHuman
+  productEntity: LeftLegHuman
   cost:
     NTCredit: 153
   categories:
@@ -152,7 +152,7 @@
     
 - type: listing
   id: VendorRightLegHuman
-  productEntity: RightLegWithFootHuman
+  productEntity: RightLegHuman
   cost:
     NTCredit: 153
   categories:
@@ -173,46 +173,6 @@
 - type: listing
   id: VendorRightFootHuman
   productEntity: RightFootHuman
-  cost:
-    NTCredit: 37
-  categories:
-  - SLSurgery
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorLeftArmHuman
-  productEntity: LeftArmWithHandHuman
-  cost:
-    NTCredit: 153
-  categories:
-  - SLSurgery
-  conditions:
-  - !type:BuyerAccessCondition
-    
-- type: listing
-  id: VendorRightArmHuman
-  productEntity: RightArmWithHandHuman
-  cost:
-    NTCredit: 153
-  categories:
-  - SLSurgery
-  conditions:
-  - !type:BuyerAccessCondition
-      
-- type: listing
-  id: VendorLeftHandHuman
-  productEntity: LeftHandHuman
-  cost:
-    NTCredit: 37
-  categories:
-  - SLSurgery
-  conditions:
-  - !type:BuyerAccessCondition
-    
-- type: listing
-  id: VendorRightHandHuman
-  productEntity: RightHandHuman
   cost:
     NTCredit: 37
   categories:

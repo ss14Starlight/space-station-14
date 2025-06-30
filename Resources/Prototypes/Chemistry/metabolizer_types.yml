@@ -25,10 +25,6 @@
   id: Cyclorite
   name: metabolizer-type-cyclorite
 
-- type: metabolizerType #🌟Starlight🌟
-  id: Avali
-  name: metabolizer-type-avali
-
 - type: metabolizerType
   id: Vox
   name: metabolizer-type-vox

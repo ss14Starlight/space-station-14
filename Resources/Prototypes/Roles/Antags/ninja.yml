@@ -2,13 +2,9 @@
   id: SpaceNinja
   name: roles-antag-space-ninja-name
   antagonist: true
-  setPreference: true
+  setPreference: false
   objective: roles-antag-space-ninja-objective
   guides: [ SpaceNinja ]
-  previewStartingGear: SpaceNinjaGear
-  requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 3600 # 5h
 
 #Ninja Gear
 - type: startingGear
@@ -23,7 +19,7 @@
     outerClothing: ClothingOuterSuitSpaceNinja
     shoes: ClothingShoesSpaceNinja
     id: AgentIDCard
-    ears: ClothingHeadsetAssistantNinja # Starlight
+    ears: ClothingHeadsetAssistant
     pocket1: SpiderCharge
     pocket2: PinpointerStation
     belt: EnergyKatana
@@ -37,11 +33,3 @@
     - Wirecutter
     - Welder
     - Multitool
-
-- type: chameleonOutfit
-  id: NinjaChameleonOutfit
-  name: roles-antag-space-ninja-name
-  startingGear: SpaceNinjaGear
-  equipment:
-    id: AssistantPDA
-    neck: ClothingNeckGoldmedal

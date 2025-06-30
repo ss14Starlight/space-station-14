@@ -31,7 +31,6 @@
             </BoxContainer>
         </BoxContainer>
 
-        <CheckBox Name="Glowing" Text="{Loc 'marking-glowing'}" /> <!-- Starlight -->
         <!-- Colors -->
         <BoxContainer Name="CMarkingColors" Orientation="Vertical" Visible="False" />
     </BoxContainer>

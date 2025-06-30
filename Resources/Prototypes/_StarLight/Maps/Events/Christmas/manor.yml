@@ -1,7 +1,7 @@
 - type: gameMap
   id: ChristmasManor
   mapName: 'Manor Station'
-  mapPath: /Maps/_Starlight/Stations/Manor.yml
+  mapPath: /Maps/_Starlight/Stations/Events/Christmas/Manor.yml
   minPlayers: 50
   stations:
     Manor:
@@ -40,7 +40,6 @@
             Paramedic: [ 2, 2 ]
             MedicalIntern: [ 3, 3 ]
             Psychologist: [ 1, 1 ]
-            Surgeon: [ 2, 2 ]
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
@@ -48,17 +47,16 @@
             Roboticist: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
-            Warden: [ 2, 2 ]
-            SecurityOfficer: [ 10, 13 ]
+            Warden: [ 1, 1 ]
+            SecurityOfficer: [ 5, 7 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ]
-            Brigmedic: [ 2, 2 ]
+            Brigmedic: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 4 ]
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 5, 7 ]
-            MailTech: [ 1, 2 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

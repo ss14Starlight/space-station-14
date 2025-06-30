@@ -64,54 +64,8 @@
   - growls!
 
 - type: emote
-  id: Yip
-  name: chat-emote-name-yip
-  category: Vocal
-  available: false
-  icon: Interface/Actions/scream.png
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-yip"]
-  chatTriggers:
-  - yip
-  - yip.
-  - yip?
-  - yip!
-  - yips
-  - yips.
-  - yips?
-  - yips!
-
-- type: emote
-  id: Whine
-  name: chat-emote-name-whine
-  category: Vocal
-  available: false
-  icon: Interface/Actions/scream.png
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-whine"]
-  chatTriggers:
-  - whine
-  - whine.
-  - whine?
-  - whine!
-  - whines
-  - whines.
-  - whines?
-  - whines!
-
-- type: emote
   id: Mew
-  name: chat-emote-name-mew
+  name: chat-emote-name-mews
   category: Vocal
   available: false
   whitelist:
@@ -120,7 +74,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-mew"]
+  chatMessages: [mew]
   chatTriggers:
     - mew
     - mew.
@@ -133,7 +87,7 @@
 
 - type: emote
   id: Hisses
-  name: chat-emote-name-hiss
+  name: chat-emote-name-hisses
   category: Vocal
   available: false
   whitelist:
@@ -142,7 +96,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-hiss"]
+  chatMessages: [hiss]
   chatTriggers:
   - hiss
   - hiss.
@@ -159,7 +113,7 @@
 
 - type: emote
   id: Meow
-  name: chat-emote-name-meow
+  name: chat-emote-name-meows
   category: Vocal
   available: false
   whitelist:
@@ -168,7 +122,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-meow"]
+  chatMessages: [meow]
   chatTriggers:
     - meow
     - meow.
@@ -185,7 +139,7 @@
 
 - type: emote
   id: Purr
-  name: chat-emote-name-purr
+  name: chat-emote-name-purrs
   category: Vocal
   available: false
   whitelist:
@@ -194,7 +148,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-purr"]
+  chatMessages: [purr]
   chatTriggers:
     - purr
     - purr.
@@ -211,7 +165,7 @@
 
 - type: emote
   id: Trill
-  name: chat-emote-name-trill
+  name: chat-emote-name-trills
   category: Vocal
   available: false
   whitelist:
@@ -220,7 +174,7 @@
   blacklist:
     components:
     - BorgChassis
-  chatMessages: ["chat-emote-msg-trill"]
+  chatMessages: [trill]
   chatTriggers:
     - trill
     - trill.
@@ -234,47 +188,3 @@
     - trilling.
     - trilling!
     - trilling?
-
-- type: emote
-  id: Mar
-  name: chat-emote-name-mar
-  category: Vocal
-  available: false
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-mar"]
-  chatTriggers:
-    - mar
-    - mar.
-    - mar!
-    - mar?
-    - mars
-    - mars.
-    - mars!
-    - mars?
-
-- type: emote
-  id: Wurble
-  name: chat-emote-name-wurble
-  category: Vocal
-  available: false
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-wurble"]
-  chatTriggers:
-    - wurble
-    - wurble.
-    - wurble!
-    - wurble?
-    - wurbles
-    - wurbles.
-    - wurbles!
-    - wurbles?

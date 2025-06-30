@@ -8,12 +8,10 @@ using Content.Shared.Chat;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Preferences;
-using Content.Shared.Roles;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Antag;
 
@@ -173,7 +171,8 @@ public sealed partial class AntagSelectionSystem
         if (def.PrefRoles.Count == 0)
             return false;
 
-        return _pref.GetPreferences(session.UserId).HasAntagPreference(def.PrefRoles);
+        var pref = (HumanoidCharacterProfile) _pref.GetPreferences(session.UserId).SelectedCharacter;
+        return pref.AntagPreferences.Any(p => def.PrefRoles.Contains(p));
     }
 
     /// <summary>
@@ -187,7 +186,8 @@ public sealed partial class AntagSelectionSystem
         if (def.FallbackRoles.Count == 0)
             return false;
 
-        return _pref.GetPreferences(session.UserId).HasAntagPreference(def.FallbackRoles);
+        var pref = (HumanoidCharacterProfile) _pref.GetPreferences(session.UserId).SelectedCharacter;
+        return pref.AntagPreferences.Any(p => def.FallbackRoles.Contains(p));
     }
 
     /// <summary>
@@ -264,10 +264,10 @@ public sealed partial class AntagSelectionSystem
         if (!_mind.TryGetMind(entity, out _, out var mindComponent))
             return;
 
-        if (!_playerManager.TryGetSessionById(mindComponent.UserId, out var session))
+        if (mindComponent.Session == null)
             return;
 
-        SendBriefing(session, briefing, briefingColor, briefingSound);
+        SendBriefing(mindComponent.Session, briefing, briefingColor, briefingSound);
     }
 
     /// <summary>
@@ -415,40 +415,5 @@ public sealed partial class AntagSelectionSystem
         }
 
         return result;
-    }
-
-    /// <summary>
-    /// Returns a list of AntagSelectionDefinitions that this session has been preselected for
-    /// </summary>
-    public List<AntagSelectionDefinition> GetPreSelectedAntagDefinitions(ICommonSession session)
-    {
-        var result = new List<AntagSelectionDefinition>();
-        var query = QueryAllRules();
-        while (query.MoveNext(out var uid, out var comp, out _))
-        {
-            if (HasComp<EndedGameRuleComponent>(uid))
-                continue;
-
-            foreach (var def in comp.Definitions)
-            {
-                if (comp.PreSelectedSessions.TryGetValue(def, out var set) && set.Contains(session))
-                    result.Add(def);
-            }
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    /// Returns a list, each item being a set of AntagPrototype IDs for each Antag definition the session has been
-    /// preselected for. These entries can be compared to a HumanoidCharacterProfile's AntagPreferences.
-    /// </summary>
-    public List<HashSet<ProtoId<AntagPrototype>>> GetPreSelectedAntags(ICommonSession session)
-    {
-        var antagDefinitions = GetPreSelectedAntagDefinitions(session);
-
-        return antagDefinitions.Select(def =>
-            def.PrefRoles.Union(def.FallbackRoles).ToHashSet())
-            .ToList();
     }
 }

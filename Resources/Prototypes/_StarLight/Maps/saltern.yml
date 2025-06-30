@@ -3,9 +3,9 @@
   mapName: 'Saltern'
   mapPath: /Maps/_Starlight/Stations/Saltern.yml
   minPlayers: 0
-  maxPlayers: 40
+  maxPlayers: 35
   stations:
-    StarlightSaltern:
+    Saltern:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
@@ -25,7 +25,6 @@
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
-            Reporter: [ 1, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 2 ]
@@ -37,12 +36,11 @@
             MedicalDoctor: [ 3, 3 ]
             MedicalIntern: [ 4, 4 ]
             Paramedic: [ 1, 1 ]
-            Surgeon: [ 1, 2 ]
+            Surgeon: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 4, 4 ]
             ResearchAssistant: [ 2, 2 ]
-            Roboticist: [ 1, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -52,10 +50,8 @@
             Brigmedic: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 3, 4 ]
-            MiningSpecialist: [ 2, 3 ]
-            CargoTechnician: [ 2, 3 ]
-            MailTech: [ 1, 2 ]
+            SalvageSpecialist: [ 6, 6 ]
+            CargoTechnician: [ 2, 2 ]
             #civillian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

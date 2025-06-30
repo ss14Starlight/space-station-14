@@ -10,10 +10,6 @@
     {
       "name": "icon",
       "directions": 1
-    },
-    {
-      "name": "unshaded",
-      "directions": 1
     }
   ]
 }

@@ -34,7 +34,7 @@
 - type: startingGear
   id: CaptainGear
   equipment:
-    #shoes: ClothingShoesBootsLaceup # 🌟Starlight🌟
+    shoes: ClothingShoesBootsLaceup
     gloves: ClothingHandsGlovesCaptain
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand
@@ -42,13 +42,3 @@
     back:
     - Flash
     # - StationCharter
-
-- type: chameleonOutfit
-  id: CaptainChameleonOutfit
-  job: Captain
-  hasMindShield: true
-  equipment:
-    head: ClothingHeadHatCapcap
-    eyes: ClothingEyesGlassesCommand
-    mask: ClothingMaskGasCaptain
-    neck: ClothingNeckCloakCap

@@ -2,9 +2,9 @@ using System.Linq;
 using System.Threading;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
-using Content.Shared.Procedural;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
+using Content.Shared.Procedural;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Audio;
@@ -129,7 +129,7 @@ public sealed partial class SalvageSystem
     {
         var component = expedition.Comp;
         component.NextOffer = _timing.CurTime + TimeSpan.FromSeconds(_cooldown);
-        Announce(uid, Loc.GetString("salvage-expedition-completed"));
+        Announce(uid, Loc.GetString("salvage-expedition-mission-completed"));
         component.ActiveMission = 0;
         component.Cooldown = true;
         UpdateConsoles(expedition);
@@ -140,20 +140,13 @@ public sealed partial class SalvageSystem
         component.Missions.Clear();
         var difficulties = _prototypeManager.GetInstances<SalvageDifficultyPrototype>();
 
-        // 🌟Starlight🌟
-        var available = difficulties
-#if !DEBUG
-            .Where(d => d.Value.Delay <= _timing.CurTime)
-#endif
-            .ToDictionary(x => x.Value.ID, x => x.Value.Probability);
-
         for (var i = 0; i < MissionLimit; i++)
         {
             var mission = new SalvageMissionParams
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = _random.Pick(available), // 🌟Starlight🌟
+                Difficulty = difficulties.Values[_random.Next(difficulties.Count)].ID,
             };
 
             component.Missions[component.NextIndex++] = mission;
@@ -174,11 +167,13 @@ public sealed partial class SalvageSystem
             EntityManager,
             _timing,
             _logManager,
+            _mapManager,
             _prototypeManager,
             _anchorable,
             _biome,
             _dungeon,
             _metaData,
+            _transform,
             _mapSystem,
             station,
             coordinatesDisk,

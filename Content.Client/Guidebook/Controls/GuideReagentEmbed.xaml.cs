@@ -22,22 +22,17 @@ namespace Content.Client.Guidebook.Controls;
 ///     Control for embedding a reagent into a guidebook.
 /// </summary>
 [UsedImplicitly, GenerateTypedNameReferences]
-public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISearchableControl, IPrototypeRepresentationControl
+public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISearchableControl
 {
     [Dependency] private readonly IEntitySystemManager _systemManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private readonly ChemistryGuideDataSystem _chemistryGuideData;
-    private readonly ISawmill _sawmill;
-
-    public IPrototype? RepresentedPrototype { get; private set; }
 
     public GuideReagentEmbed()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        _sawmill = _logManager.GetSawmill("guidebook.reagent");
         _chemistryGuideData = _systemManager.GetEntitySystem<ChemistryGuideDataSystem>();
         MouseFilter = MouseFilterMode.Stop;
     }
@@ -67,13 +62,13 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
         control = null;
         if (!args.TryGetValue("Reagent", out var id))
         {
-            _sawmill.Error("Reagent embed tag is missing reagent prototype argument");
+            Logger.Error("Reagent embed tag is missing reagent prototype argument");
             return false;
         }
 
         if (!_prototype.TryIndex<ReagentPrototype>(id, out var reagent))
         {
-            _sawmill.Error($"Specified reagent prototype \"{id}\" is not a valid reagent prototype");
+            Logger.Error($"Specified reagent prototype \"{id}\" is not a valid reagent prototype");
             return false;
         }
 
@@ -85,8 +80,6 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
 
     private void GenerateControl(ReagentPrototype reagent)
     {
-        RepresentedPrototype = reagent;
-
         NameBackground.PanelOverride = new StyleBoxFlat
         {
             BackgroundColor = reagent.SubstanceColor

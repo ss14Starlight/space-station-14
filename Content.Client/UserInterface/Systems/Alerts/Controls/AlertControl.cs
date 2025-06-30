@@ -12,10 +12,6 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
 {
     public sealed class AlertControl : BaseButton
     {
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-
-        private readonly SpriteSystem _sprite;
-
         public AlertPrototype Alert { get; }
 
         /// <summary>
@@ -37,7 +33,8 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
         private (TimeSpan Start, TimeSpan End)? _cooldown;
 
         private short? _severity;
-
+        private readonly IGameTiming _gameTiming;
+        private readonly IEntityManager _entityManager;
         private readonly SpriteView _icon;
         private readonly CooldownGraphic _cooldownGraphic;
 
@@ -50,11 +47,8 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
         /// <param name="severity">severity of alert, null if alert doesn't have severity levels</param>
         public AlertControl(AlertPrototype alert, short? severity)
         {
-            // Alerts will handle this.
-            MuteSounds = true;
-
-            IoCManager.InjectDependencies(this);
-            _sprite = _entityManager.System<SpriteSystem>();
+            _gameTiming = IoCManager.Resolve<IGameTiming>();
+            _entityManager = IoCManager.Resolve<IEntityManager>();
             TooltipSupplier = SupplyTooltip;
             Alert = alert;
             _severity = severity;
@@ -77,7 +71,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
         {
             var msg = FormattedMessage.FromMarkupOrThrow(Loc.GetString(Alert.Name));
             var desc = FormattedMessage.FromMarkupOrThrow(Loc.GetString(Alert.Description));
-            return new ActionAlertTooltip(msg, desc) { Cooldown = Cooldown };
+            return new ActionAlertTooltip(msg, desc) {Cooldown = Cooldown};
         }
 
         /// <summary>
@@ -92,8 +86,8 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
             if (!_entityManager.TryGetComponent<SpriteComponent>(_spriteViewEntity, out var sprite))
                 return;
             var icon = Alert.GetIcon(_severity);
-            if (_sprite.LayerMapTryGet((_spriteViewEntity, sprite), AlertVisualLayers.Base, out var layer, false))
-                _sprite.LayerSetSprite((_spriteViewEntity, sprite), layer, icon);
+            if (sprite.LayerMapTryGet(AlertVisualLayers.Base, out var layer))
+                sprite.LayerSetSprite(layer, icon);
         }
 
         protected override void FrameUpdate(FrameEventArgs args)
@@ -120,8 +114,8 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
             if (_entityManager.TryGetComponent<SpriteComponent>(_spriteViewEntity, out var sprite))
             {
                 var icon = Alert.GetIcon(_severity);
-                if (_sprite.LayerMapTryGet((_spriteViewEntity, sprite), AlertVisualLayers.Base, out var layer, false))
-                    _sprite.LayerSetSprite((_spriteViewEntity, sprite), layer, icon);
+                if (sprite.LayerMapTryGet(AlertVisualLayers.Base, out var layer))
+                    sprite.LayerSetSprite(layer, icon);
             }
 
             _icon.SetEntity(_spriteViewEntity);

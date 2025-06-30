@@ -35,10 +35,6 @@
     sprite: Objects/Weapons/Melee/pickaxe.rsi
     storedRotation: -45
   - type: UseDelay
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 100
-      Wood: 100
 
 - type: entity
   name: mining drill
@@ -98,7 +94,6 @@
   description: An early design of the proto-kinetic accelerator.
   components:
   - type: Sharp
-  - type: Execution
   - type: UnpoweredFlashlight
   - type: PointLight
     color: "#ffeead"
@@ -115,15 +110,6 @@
   - type: Sprite
     sprite: Objects/Weapons/Melee/crusher.rsi
     state: icon
-  - type: Item
-    size: Ginormous
-    sprite: Objects/Weapons/Melee/crusher-inhands.rsi
-  - type: Clothing
-    sprite: Objects/Weapons/Melee/crusher.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
   - type: AmmoCounter
   - type: UseDelayOnShoot
   - type: UseDelay
@@ -161,6 +147,9 @@
         Slash: 2.5
         Structural: 30
   - type: GunRequiresWield
+  - type: Item
+    size: Ginormous
+    sprite: Objects/Weapons/Melee/crusher-inhands.rsi
   - type: DisarmMalus
   - type: Prying
 
@@ -179,7 +168,7 @@
     attackRate: 2
     damage:
       types:
-        Slash: 12
+        Slash: 15
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
     offset: -0.15,0.0
@@ -202,16 +191,6 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/crusher_glaive.rsi
-    state: icon
-  - type: Item
-    size: Ginormous
-    sprite: Objects/Weapons/Melee/crusher_glaive-inhands.rsi
-  - type: Clothing
-    sprite: Objects/Weapons/Melee/crusher_glaive.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
   - type: UseDelay
     delay: 1.9
   - type: LeechOnMarker
@@ -222,3 +201,6 @@
   - type: Tag
     tags:
       - Pickaxe
+  - type: Item
+    size: Ginormous
+    sprite: Objects/Weapons/Melee/crusher_glaive-inhands.rsi

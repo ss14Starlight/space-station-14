@@ -21,7 +21,7 @@ namespace Content.Shared.Emag.Systems;
 public sealed class EmagSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -61,14 +61,14 @@ public sealed class EmagSystem : EntitySystem
         if (_tag.HasTag(target, ent.Comp.EmagImmuneTag))
             return false;
 
-        Entity<LimitedChargesComponent?> chargesEnt = ent.Owner;
-        if (_sharedCharges.IsEmpty(chargesEnt))
+        TryComp<LimitedChargesComponent>(ent, out var charges);
+        if (_charges.IsEmpty(ent, charges))
         {
             _popup.PopupClient(Loc.GetString("emag-no-charges"), user, user);
             return false;
         }
 
-        var emaggedEvent = new GotEmaggedEvent(user, ent.Comp.EmagType, DestroyTransponder: ent.Comp.DestroyTransponder); // Starlight
+        var emaggedEvent = new GotEmaggedEvent(user, ent.Comp.EmagType);
         RaiseLocalEvent(target, ref emaggedEvent);
 
         if (!emaggedEvent.Handled)
@@ -80,8 +80,8 @@ public sealed class EmagSystem : EntitySystem
 
         _adminLogger.Add(LogType.Emag, LogImpact.High, $"{ToPrettyString(user):player} emagged {ToPrettyString(target):target} with flag(s): {ent.Comp.EmagType}");
 
-        if (emaggedEvent.Handled)
-            _sharedCharges.TryUseCharge(chargesEnt);
+        if (charges != null  && emaggedEvent.Handled)
+            _charges.UseCharge(ent, charges);
 
         if (!emaggedEvent.Repeatable)
         {
@@ -144,4 +144,4 @@ public enum EmagType : byte
 /// <param name="Repeatable">Can the entity be emagged more than once? Prevents adding of <see cref="EmaggedComponent"/></param>
 /// <remarks>Needs to be handled in shared/client, not just the server, to actually show the emagging popup</remarks>
 [ByRefEvent]
-public record struct GotEmaggedEvent(EntityUid UserUid, EmagType Type, bool Handled = false, bool Repeatable = false, bool DestroyTransponder = false); // Starlight
+public record struct GotEmaggedEvent(EntityUid UserUid, EmagType Type, bool Handled = false, bool Repeatable = false);

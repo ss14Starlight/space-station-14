@@ -8,18 +8,6 @@
     strippingWindowPos: 0,0
     displayName: Head
     offset: 0.015625, -0.09375
-  # 🌟Starlight🌟 start
-  - name: neck
-    slotTexture: neck
-    slotFlags: NECK
-    uiWindowPos: 0,2
-    strippingWindowPos: 0,1
-    displayName: Medal
-    offset: 0.03, -0.15
-    whitelist:
-      tags:
-        - Medal
-  # 🌟Starlight🌟 end
 
 - type: inventoryTemplate
   id: borgShort
@@ -31,18 +19,6 @@
     strippingWindowPos: 0,0
     displayName: Head
     offset: 0.015625, -0.1875
-  # 🌟Starlight🌟 start
-  - name: neck
-    slotTexture: neck
-    slotFlags: NECK
-    uiWindowPos: 0,2
-    strippingWindowPos: 0,1
-    displayName: Medal
-    offset: 0.075, -0.22
-    whitelist:
-      tags:
-        - Medal
-  # 🌟Starlight🌟 end
 
 - type: inventoryTemplate
   id: borgTall
@@ -54,18 +30,6 @@
     strippingWindowPos: 0,0
     displayName: Head
     offset: 0.015625, 0
-  # 🌟Starlight🌟 start
-  - name: neck
-    slotTexture: neck
-    slotFlags: NECK
-    uiWindowPos: 0,2
-    strippingWindowPos: 0,1
-    displayName: Medal
-    offset: 0.01, -0.125
-    whitelist:
-      tags:
-        - Medal
-  # 🌟Starlight🌟 end
 
 # taller than tall
 - type: inventoryTemplate
@@ -78,15 +42,3 @@
     strippingWindowPos: 0,0
     displayName: Head
     offset: 0, 0.09375
-  # 🌟Starlight🌟 start
-  - name: neck
-    slotTexture: neck
-    slotFlags: NECK
-    uiWindowPos: 0,2
-    strippingWindowPos: 0,1
-    displayName: Medal
-    offset: 0.02, -0.125
-    whitelist:
-      tags:
-        - Medal
-  # 🌟Starlight🌟 end

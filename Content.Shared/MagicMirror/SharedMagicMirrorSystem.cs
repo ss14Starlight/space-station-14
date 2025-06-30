@@ -119,17 +119,15 @@ public sealed class MagicMirrorSelectMessage : BoundUserInterfaceMessage
 [Serializable, NetSerializable]
 public sealed class MagicMirrorChangeColorMessage : BoundUserInterfaceMessage
 {
-    public MagicMirrorChangeColorMessage(MagicMirrorCategory category, List<Color> colors, bool isGlowing, int slot) //starlight constructor edit
+    public MagicMirrorChangeColorMessage(MagicMirrorCategory category, List<Color> colors, int slot)
     {
         Category = category;
         Colors = colors;
         Slot = slot;
-        IsGlowing = isGlowing; //starlight
     }
 
     public MagicMirrorCategory Category { get; }
     public List<Color> Colors { get; }
-    public bool IsGlowing { get; } //starlight
     public int Slot { get; }
 }
 
@@ -225,5 +223,4 @@ public sealed partial class MagicMirrorChangeColorDoAfterEvent : DoAfterEvent
     public MagicMirrorCategory Category;
     public int Slot;
     public List<Color> Colors = new List<Color>();
-    public bool IsGlowing; //starlight
 }

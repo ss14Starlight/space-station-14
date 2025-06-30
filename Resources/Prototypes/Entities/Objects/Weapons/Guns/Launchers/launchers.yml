@@ -15,9 +15,6 @@
       Resomi:
         knockback: 10
         staminaMultiplier: 8
-      Avali:
-        knockback: 3 # Bigger bird, more sturdy bones.. or something.
-        staminaMultiplier: 8
       Felionoid:
         knockback: 5 #half of what resomi take
         staminaMultiplier: 8
@@ -40,7 +37,7 @@
   name: china lake
   parent: [BaseWeaponLauncher, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponLauncherChinaLake
-  description: A pump-action grenade launcher commonly used by the infamous Nuclear Operatives. PLOOP!
+  description: PLOOP.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
@@ -54,8 +51,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
-    pump: true
-    fireRate: 0.8
+    fireRate: 1
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -71,46 +67,6 @@
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
 
 - type: entity
-  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseMajorContraband ]
-  id: WeaponLauncherHydra
-  name: hydra
-  description: PLOOP... FSSSSSS
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Launchers/hydra_launcher.rsi
-    layers:
-    - state: icon
-      map: [ "enum.GunVisualLayers.Base" ]
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Launchers/hydra_launcher.rsi
-    slots:
-    - Back
-    - suitStorage
-  - type: AmmoCounter
-  - type: Gun
-    fireRate: 1
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-  - type: ContainerContainer
-    containers:
-      revolver-ammo: !type:Container
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-      - Grenade
-    proto: GrenadeCleanade
-    capacity: 6
-    chambers: [ True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null ]
-    soundEject:
-      path: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
-
-- type: entity
   name: RPG-7
   parent: [ BaseWeaponLauncher, BaseMajorContraband]
   id: WeaponLauncherRocket
@@ -122,8 +78,6 @@
         knockback: -5
       Felionoid:
         knockback: -2.5 #half of what resomi take
-      Avali:
-        knockback: -1.5
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
     layers:
@@ -251,7 +205,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-    - type: ToggleableVisuals
+    - type: ToggleableLightVisuals
       spriteLayer: unshaded
       inhandVisuals:
         left:
@@ -299,7 +253,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-        - type: ToggleableVisuals
+        - type: ToggleableLightVisuals
           spriteLayer: unshaded
           inhandVisuals:
             left:
@@ -371,7 +325,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-    - type: ToggleableVisuals
+    - type: ToggleableLightVisuals
       spriteLayer: unshaded
       inhandVisuals:
         left:
@@ -413,7 +367,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-    - type: ToggleableVisuals
+    - type: ToggleableLightVisuals
       spriteLayer: unshaded
       inhandVisuals:
         left:

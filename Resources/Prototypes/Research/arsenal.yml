@@ -13,8 +13,6 @@
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
   - MechEquipmentKineticAccelerator
-  radioChannels:
-  - Supply
   # These are roundstart but not replenishable for salvage
 
 - type: technology
@@ -41,8 +39,6 @@
   - LightRifleHeavyMagazineIncendiary
   - MagazinePistolSubMachineGunIncendiary
   - SpeedLoaderShotgunIncendiary
-  radioChannels:
-  - Security
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -56,8 +52,6 @@
   recipeUnlocks:
   - WeaponLaserCarbine
   - WeaponMechCombatFiredartLaser
-  radioChannels:
-  - Security
 
 - type: technology
   id: NonlethalAmmunition
@@ -82,8 +76,6 @@
   - MagazineBoxMagnumRubber
   - MagazineBoxLightRifleRubber
   - MagazineBoxRifleRubber
-  radioChannels:
-  - Security
 
 - type: technology
   id: UraniumMunitions
@@ -108,8 +100,6 @@
   - LightRifleHeavyMagazineUranium
   - MagazinePistolSubMachineGunUranium
   - SpeedLoaderShotgunUranium
-  radioChannels:
-  - Security
 
 - type: technology
   id: AdvancedRiotControl
@@ -125,8 +115,6 @@
   - TelescopicShield
   - HoloprojectorSecurity
   - WeaponDisablerSMG
-  radioChannels:
-  - Security
 
 - type: technology
   id: ExplosiveTechnology
@@ -145,8 +133,6 @@
   - FlashPayload
   - ExplosivePayload
   - ChemicalPayload
-  radioChannels:
-  - Security
 
 - type: technology
   id: SpecialMeans
@@ -159,8 +145,6 @@
   cost: 5000
   recipeUnlocks:
   - ClothingBackpackElectropack
-  radioChannels:
-  - Security
 
 # Tier 2
 
@@ -177,8 +161,6 @@
   - WeaponLaserCannon
   - WeaponMechCombatSolarisLaser
   - WeaponLaserImmolator
-  radioChannels:
-  - Security
 
 - type: technology
   id: WaveParticleHarnessing
@@ -191,23 +173,7 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
-  radioChannels:
-  - Security
   
-- type: technology
-  id: KineticModifications
-  name: research-technology-kinetic-modifications
-  icon:
-    sprite: Objects/Tools/upgrade.rsi
-    state: display
-  discipline: Arsenal
-  tier: 2
-  cost: 7500
-  recipeUnlocks:
-  - PKAUpgradeDamage
-  - PKAUpgradeRange
-  - PKAUpgradeFireRate
-
 - type: technology
   id: BasicShuttleArmament
   name: research-technology-basic-shuttle-armament
@@ -229,8 +195,6 @@
   - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
-  radioChannels:
-  - Security
 
 # Tier 3
 
@@ -247,23 +211,18 @@
   - WeaponAdvancedLaser
   - PortableRecharger
   - WeaponMechCombatImmolationGun
-  radioChannels:
-  - Security
 
 - type: technology
-  id: ThermalWeaponry
-  name: research-technology-thermal-weaponry
+  id: ExperimentalBatteryAmmo
+  name: research-technology-experimental-battery-ammo
   icon:
-    sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi
+    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
     state: icon
   discipline: Arsenal
   tier: 3
   cost: 15000
   recipeUnlocks:
   - WeaponLaserSvalinn
-  - WeaponTemperatureGun
-  radioChannels:
-  - Security
 
 - type: technology
   id: AdvancedShuttleWeapon
@@ -280,5 +239,3 @@
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - BasicShuttleArmament
-  radioChannels:
-  - Security

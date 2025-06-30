@@ -14,12 +14,11 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-    - CorgiWearable
 
 #Syndicate EVA
 - type: entity
   parent: [ ClothingOuterEVASuitBase, BaseSyndicateContraband ]
-  id: ClothingOuterEVASuitSyndicate
+  id: ClothingOuterHardsuitSyndicate # TODO: rename to ClothingOuterEVASuitSyndicate
   name: syndicate EVA suit
   description: "Has a tag on the back that reads: 'Totally not property of an enemy corporation, honest!'"
   components:
@@ -57,11 +56,6 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - SuitEVA
-    - WhitelistChameleon
 
 #Prisoner EVA
 - type: entity
@@ -160,7 +154,3 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon

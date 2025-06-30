@@ -33,25 +33,20 @@ namespace Content.Server.Hands.Systems
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly StackSystem _stackSystem = default!;
+        [Dependency] private readonly VirtualItemSystem _virtualItemSystem = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly PullingSystem _pullingSystem = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
 
-        private EntityQuery<PhysicsComponent> _physicsQuery;
-
-        /// <summary>
-        /// Items dropped when the holder falls down will be launched in
-        /// a direction offset by up to this many degrees from the holder's
-        /// movement direction.
-        /// </summary>
-        private const float DropHeldItemsSpread = 45;
-
         public override void Initialize()
         {
             base.Initialize();
 
-            SubscribeLocalEvent<HandsComponent, DisarmedEvent>(OnDisarmed, before: new[] {typeof(StunSystem), typeof(SharedStaminaSystem)});
+            SubscribeLocalEvent<HandsComponent, DisarmedEvent>(OnDisarmed, before: new[] {typeof(StunSystem), typeof(StaminaSystem)});
+
+            SubscribeLocalEvent<HandsComponent, PullStartedMessage>(HandlePullStarted);
+            SubscribeLocalEvent<HandsComponent, PullStoppedMessage>(HandlePullStopped);
 
             SubscribeLocalEvent<HandsComponent, BodyPartAddedEvent>(HandleBodyPartAdded);
             SubscribeLocalEvent<HandsComponent, BodyPartRemovedEvent>(HandleBodyPartRemoved);
@@ -65,8 +60,6 @@ namespace Content.Server.Hands.Systems
             CommandBinds.Builder
                 .Bind(ContentKeyFunctions.ThrowItemInHand, new PointerInputCmdHandler(HandleThrowItem))
                 .Register<HandsSystem>();
-
-            _physicsQuery = GetEntityQuery<PhysicsComponent>();
         }
 
         public override void Shutdown()
@@ -94,7 +87,7 @@ namespace Content.Server.Hands.Systems
             }
         }
 
-        private void OnDisarmed(EntityUid uid, HandsComponent component, ref DisarmedEvent args)
+        private void OnDisarmed(EntityUid uid, HandsComponent component, DisarmedEvent args)
         {
             if (args.Handled)
                 return;
@@ -137,6 +130,45 @@ namespace Content.Server.Hands.Systems
 
             RemoveHand(uid, args.Slot);
         }
+
+        #region pulling
+
+        private void HandlePullStarted(EntityUid uid, HandsComponent component, PullStartedMessage args)
+        {
+            if (args.PullerUid != uid)
+                return;
+
+            if (TryComp<PullerComponent>(args.PullerUid, out var pullerComp) && !pullerComp.NeedsHands)
+                return;
+
+            if (!_virtualItemSystem.TrySpawnVirtualItemInHand(args.PulledUid, uid))
+            {
+                DebugTools.Assert("Unable to find available hand when starting pulling??");
+            }
+        }
+
+        private void HandlePullStopped(EntityUid uid, HandsComponent component, PullStoppedMessage args)
+        {
+            if (args.PullerUid != uid)
+                return;
+
+            // Try find hand that is doing this pull.
+            // and clear it.
+            foreach (var hand in component.Hands.Values)
+            {
+                if (hand.HeldEntity == null
+                    || !TryComp(hand.HeldEntity, out VirtualItemComponent? virtualItem)
+                    || virtualItem.BlockingEntity != args.PulledUid)
+                {
+                    continue;
+                }
+
+                TryDrop(args.PullerUid, hand, handsComp: component);
+                break;
+            }
+        }
+
+        #endregion
 
         #region interactions
 
@@ -202,13 +234,13 @@ namespace Content.Server.Hands.Systems
 
         private void OnDropHandItems(Entity<HandsComponent> entity, ref DropHandItemsEvent args)
         {
-            // If the holder doesn't have a physics component, they ain't moving
-            var holderVelocity = _physicsQuery.TryComp(entity, out var physics) ? physics.LinearVelocity : Vector2.Zero;
-            var spreadMaxAngle = Angle.FromDegrees(DropHeldItemsSpread);
+            var direction = EntityManager.TryGetComponent(entity, out PhysicsComponent? comp) ? comp.LinearVelocity / 50 : Vector2.Zero;
+            var dropAngle = _random.NextFloat(0.8f, 1.2f);
 
             var fellEvent = new FellDownEvent(entity);
             RaiseLocalEvent(entity, fellEvent, false);
 
+            var worldRotation = TransformSystem.GetWorldRotation(entity).ToVec();
             foreach (var hand in entity.Comp.Hands.Values)
             {
                 if (hand.HeldEntity is not EntityUid held)
@@ -223,26 +255,10 @@ namespace Content.Server.Hands.Systems
                 if (!TryDrop(entity, hand, null, checkActionBlocker: false, handsComp: entity.Comp))
                     continue;
 
-                // Rotate the item's throw vector a bit for each item
-                var angleOffset = _random.NextAngle(-spreadMaxAngle, spreadMaxAngle);
-                // Rotate the holder's velocity vector by the angle offset to get the item's velocity vector
-                var itemVelocity = angleOffset.RotateVec(holderVelocity);
-                // Decrease the distance of the throw by a random amount
-                itemVelocity *= _random.NextFloat(1f);
-                // Heavier objects don't get thrown as far
-                // If the item doesn't have a physics component, it isn't going to get thrown anyway, but we'll assume infinite mass
-                itemVelocity *= _physicsQuery.TryComp(held, out var heldPhysics) ? heldPhysics.InvMass : 0;
-                // Throw at half the holder's intentional throw speed and
-                // vary the speed a little to make it look more interesting
-                var throwSpeed = entity.Comp.BaseThrowspeed * _random.NextFloat(0.45f, 0.55f);
-
                 _throwingSystem.TryThrow(held,
-                    itemVelocity,
-                    throwSpeed,
-                    entity,
-                    pushbackRatio: 0,
-                    compensateFriction: false
-                );
+                    _random.NextAngle().RotateVec(direction / dropAngle + worldRotation / 50),
+                    0.5f * dropAngle * _random.NextFloat(-0.9f, 1.1f),
+                    entity, 0);
             }
         }
 

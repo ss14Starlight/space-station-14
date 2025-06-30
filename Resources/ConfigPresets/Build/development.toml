@@ -15,9 +15,6 @@ quick_lottery = true
 [gateway]
 generator_enabled = false
 
-[movement]
-mob_pushing = true
-
 [physics]
 # Makes mapping annoying
 grid_splitting = false
@@ -31,14 +28,9 @@ expedition_cooldown = 30.0
 [shuttle]
 grid_fill = false
 auto_call_time = 0
-emergency = true
+emergency = false
 arrivals = false
 preload_grids = false
 
 [admin]
 see_own_notes = true
-
-[ic]
-random_characters = false
-random_species_weights = ""
-ssd_sleep_time = 3600

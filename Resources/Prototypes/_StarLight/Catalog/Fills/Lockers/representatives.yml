@@ -19,16 +19,6 @@
       - id: BoxFolderClipboardFilled
       - id: PrinterDocFlatpack
       - id: FaxMachineFlatpack
-      - id: PlushieEmmie
-  
-- type: entity
-  id: LockerRepresentativeFilledBluespaced
-  suffix: Filled, Bluespaced
-  parent: LockerRepresentativeFilled
-  components:
-  - type: TriggerOnSpawn
-  - type: SpawnOnTrigger
-    proto: EffectFlashBluespace
 
 - type: entity
   id: LockerBSOFilled
@@ -52,13 +42,3 @@
       - id: ClothingNeckCloakBsoElite
       - id: ClothingNeckCloakBsoElite
       - id: RadioHandheldSecurity
-      - id: RubberStampBSO
-
-- type: entity
-  id: LockerBSOFilledBluespaced
-  suffix: Filled, Bluespaced
-  parent: LockerBSOFilled
-  components:
-  - type: TriggerOnSpawn
-  - type: SpawnOnTrigger
-    proto: EffectFlashBluespace

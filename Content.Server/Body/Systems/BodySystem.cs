@@ -13,7 +13,6 @@ using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 using System.Numerics;
-using Content.Shared.Damage.Components;
 
 namespace Content.Server.Body.Systems;
 
@@ -115,9 +114,6 @@ public sealed class BodySystem : SharedBodySystem
         {
             return new HashSet<EntityUid>();
         }
-
-        if (HasComp<GodmodeComponent>(bodyId))
-            return new HashSet<EntityUid>();
 
         var xform = Transform(bodyId);
         if (xform.MapUid is null)

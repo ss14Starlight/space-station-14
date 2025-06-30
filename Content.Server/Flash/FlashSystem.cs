@@ -21,7 +21,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Random;
 using InventoryComponent = Content.Shared.Inventory.InventoryComponent;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Flash
 {
@@ -29,7 +28,7 @@ namespace Content.Server.Flash
     {
         [Dependency] private readonly AppearanceSystem _appearance = default!;
         [Dependency] private readonly AudioSystem _audio = default!;
-        [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
+        [Dependency] private readonly SharedChargesSystem _charges = default!;
         [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly ExamineSystemShared _examine = default!;
@@ -39,8 +38,6 @@ namespace Content.Server.Flash
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
-
-        private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
 
         public override void Initialize()
         {
@@ -87,18 +84,18 @@ namespace Content.Server.Flash
                 return false;
 
             TryComp<LimitedChargesComponent>(uid, out var charges);
-            if (_sharedCharges.IsEmpty((uid, charges)))
+            if (_charges.IsEmpty(uid, charges))
                 return false;
 
-            _sharedCharges.TryUseCharge((uid, charges));
+            _charges.UseCharge(uid, charges);
             _audio.PlayPvs(comp.Sound, uid);
             comp.Flashing = true;
             _appearance.SetData(uid, FlashVisuals.Flashing, true);
 
-            if (_sharedCharges.IsEmpty((uid, charges)))
+            if (_charges.IsEmpty(uid, charges))
             {
                 _appearance.SetData(uid, FlashVisuals.Burnt, true);
-                _tag.AddTag(uid, TrashTag);
+                _tag.AddTag(uid, "Trash");
                 _popup.PopupEntity(Loc.GetString("flash-component-becomes-empty"), user);
             }
 

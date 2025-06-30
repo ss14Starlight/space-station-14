@@ -147,8 +147,6 @@
       partType: Leg
       symmetry: Left
     - type: MovementBodyPart
-      sprintSpeed : 5.625
-      maxDensity: 55
 
 - type: entity
   id: RightLegFelionoid
@@ -165,8 +163,6 @@
       partType: Leg
       symmetry: Right
     - type: MovementBodyPart
-      sprintSpeed : 5.625
-      maxDensity: 55
 
 - type: entity
   id: LeftFootFelionoid

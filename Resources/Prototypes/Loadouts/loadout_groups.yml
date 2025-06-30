@@ -29,10 +29,8 @@
   - ClothingNeckLesbianPin
   - ClothingNeckNonBinaryPin
   - ClothingNeckPansexualPin
-  - ClothingNeckPluralPin
   - ClothingNeckOmnisexualPin
   - ClothingNeckGenderqueerPin
-  - ClothingNeckGenderfluidPin
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
@@ -53,10 +51,6 @@
   - TowelColorWhite
   - TowelColorYellow
   - SuperSynthesizerInstrument # 🌟Starlight🌟
-  - ClothingUnderSocksCoder # 🌟Starlight🌟
-  - ClothWrap # 🌟Starlight🌟
-  - ClothingUniformJumpskirtElegantMaid # 🌟Starlight🌟
-  - ClothingHeadHatCatEars # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: Glasses
@@ -206,7 +200,6 @@
   - BasicJumpskirt
   - AncientJumpsuit
   - RainbowJumpsuit
-  - RainbowJumpskirt
 
 - type: loadoutGroup
   id: AssistantFace
@@ -556,7 +549,6 @@
   loadouts:
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
-  - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
 
 - type: loadoutGroup
@@ -647,9 +639,6 @@
   name: loadout-group-quartermaster-shoes
   loadouts:
   - BrownShoes
-  - LeatherShoes # 🌟Starlight🌟
-  - SalvageBoots # 🌟Starlight🌟
-  - WorkBoots # 🌟Starlight🌟
   - CargoWinterBoots
 
 - type: loadoutGroup
@@ -686,10 +675,7 @@
   name: loadout-group-cargo-technician-shoes
   loadouts:
   - BlackShoes
-  - YellowShoes # 🌟Starlight🌟
   - CargoWinterBoots
-  - LeatherShoes # 🌟Starlight🌟
-  - WorkBoots # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SalvageSpecialistBackpack
@@ -712,7 +698,6 @@
   loadouts:
   - SalvageBoots
   - CargoWinterBoots
-  - WorkBoots # 🌟Starlight🌟
 
 # Engineering
 - type: loadoutGroup
@@ -752,7 +737,6 @@
   name: loadout-group-chief-engineer-shoes
   loadouts:
   - BrownShoes
-  - WorkBoots # 🌟Starlight🌟
   - EngineeringWinterBoots
 
 - type: loadoutGroup
@@ -840,7 +824,6 @@
   name: loadout-group-atmospheric-technician-shoes
   loadouts:
   - WhiteShoes
-  - WorkBoots # 🌟Starlight🌟
   - EngineeringWinterBoots
 
 - type: loadoutGroup
@@ -889,12 +872,7 @@
   name: loadout-group-research-director-shoes
   loadouts:
   - BrownShoes
-  - WhiteShoes # 🌟Starlight🌟
-  - BlackShoes # 🌟Starlight🌟
   - ScienceWinterBoots
-  - Heels # 🌟Starlight🌟
-  - LaceupShoes # 🌟Starlight🌟
-  - LeatherShoes # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: ScientistHead
@@ -950,8 +928,6 @@
   - WhiteShoes
   - BlackShoes
   - ScienceWinterBoots
-  - Heels # 🌟Starlight🌟
-  - LeatherShoes # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: ScientistGloves
@@ -977,6 +953,13 @@
   - WhiteJumpskirt
 
 # Security
+- type: loadoutGroup
+  id: SecurityWeapon
+  name: loadout-group-security-weapon
+  loadouts:
+  - SecurityTaser
+  - SecurityDominator
+
 - type: loadoutGroup
   id: HeadofSecurityHead
   name: loadout-group-head-of-security-head
@@ -1090,12 +1073,12 @@
   - CorpsmanBelt #Starlight
 
 #Starlight Start
-- type: loadoutGroup
+- type: loadoutGroup 
   id: BrigmedicGloves
   name: loadout-group-brigmedic-gloves
   loadouts:
   - Nitrile
-  - BlackNitrile
+  - BlackNitrile 
 #Starlight End
 
 - type: loadoutGroup
@@ -1258,11 +1241,7 @@
   name: loadout-group-chief-medical-officer-shoes
   loadouts:
   - BrownShoes
-  - WhiteShoes # 🌟Starlight🌟
   - MedicalWinterBoots
-  - Heels # 🌟Starlight🌟
-  - LaceupShoes # 🌟Starlight🌟
-  - LeatherShoes # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MedicalDoctorHead
@@ -1393,19 +1372,7 @@
   name: loadout-group-paramedic-shoes
   loadouts:
   - BlueShoes
-  - WhiteShoes
   - MedicalWinterBoots
-
-- type: loadoutGroup
-  id: MedicalEyewear
-  name: loadout-group-medical-glasses
-  minLimit: 0
-  loadouts:
-  - MedicalHud
-  - MedicalEyePatchHud
-  - Glasses
-  - GlassesJamjar
-  - GlassesJensen
 
 - type: loadoutGroup
   id: SurvivalMedical

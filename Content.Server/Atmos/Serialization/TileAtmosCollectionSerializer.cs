@@ -25,8 +25,8 @@ public sealed partial class TileAtmosCollectionSerializer : ITypeSerializer<Dict
         SerializationHookContext hookCtx, ISerializationContext? context = null,
         ISerializationManager.InstantiationDelegate<Dictionary<Vector2i, TileAtmosphere>>? instanceProvider = null)
     {
-        node.TryGetValue("version", out var versionNode);
-        var version = ((ValueDataNode?)versionNode)?.AsInt() ?? 1;
+        node.TryGetValue(new ValueDataNode("version"), out var versionNode);
+        var version = ((ValueDataNode?) versionNode)?.AsInt() ?? 1;
         Dictionary<Vector2i, TileAtmosphere> tiles = new();
 
         // Backwards compatability
@@ -48,8 +48,7 @@ public sealed partial class TileAtmosCollectionSerializer : ITypeSerializer<Dict
                     }
                     catch (ArgumentOutOfRangeException)
                     {
-                        var sawmill = dependencies.Resolve<ILogManager>().GetSawmill("szr");
-                        sawmill.Error(
+                        Logger.Error(
                             $"Error during atmos serialization! Tile at {indices} points to an unique mix ({mix}) out of range!");
                     }
                 }
@@ -57,18 +56,18 @@ public sealed partial class TileAtmosCollectionSerializer : ITypeSerializer<Dict
         }
         else
         {
-            var dataNode = (MappingDataNode)node["data"];
+            var dataNode = (MappingDataNode) node["data"];
             var chunkSize = serializationManager.Read<int>(dataNode["chunkSize"], hookCtx, context);
 
-            dataNode.TryGet("uniqueMixes", out var mixNode);
+            dataNode.TryGetValue(new ValueDataNode("uniqueMixes"), out var mixNode);
             var unique = mixNode == null ? null : serializationManager.Read<List<GasMixture>?>(mixNode, hookCtx, context);
 
             if (unique != null)
             {
-                var tileNode = (MappingDataNode)dataNode["tiles"];
+                var tileNode = (MappingDataNode) dataNode["tiles"];
                 foreach (var (chunkNode, valueNode) in tileNode)
                 {
-                    var chunkOrigin = serializationManager.Read<Vector2i>(tileNode.GetKeyNode(chunkNode), hookCtx, context);
+                    var chunkOrigin = serializationManager.Read<Vector2i>(chunkNode, hookCtx, context);
                     var chunk = serializationManager.Read<TileAtmosChunk>(valueNode, hookCtx, context);
 
                     foreach (var (mix, data) in chunk.Data)
@@ -77,7 +76,7 @@ public sealed partial class TileAtmosCollectionSerializer : ITypeSerializer<Dict
                         {
                             for (var y = 0; y < chunkSize; y++)
                             {
-                                var flag = data & (uint)(1 << (x + y * chunkSize));
+                                var flag = data & (uint) (1 << (x + y * chunkSize));
 
                                 if (flag == 0)
                                     continue;
@@ -92,8 +91,7 @@ public sealed partial class TileAtmosCollectionSerializer : ITypeSerializer<Dict
                                 }
                                 catch (ArgumentOutOfRangeException)
                                 {
-                                    var sawmill = dependencies.Resolve<ILogManager>().GetSawmill("szr");
-                                    sawmill.Error(
+                                    Logger.Error(
                                         $"Error during atmos serialization! Tile at {indices} points to an unique mix ({mix}) out of range!");
                                 }
                             }
@@ -130,7 +128,7 @@ public sealed partial class TileAtmosCollectionSerializer : ITypeSerializer<Dict
             var indices = SharedMapSystem.GetChunkRelative(gridIndices, chunkSize);
 
             var mixFlag = tileChunk.Data.GetOrNew(mixIndex);
-            mixFlag |= (uint)1 << (indices.X + indices.Y * chunkSize);
+            mixFlag |= (uint) 1 << (indices.X + indices.Y * chunkSize);
             tileChunk.Data[mixIndex] = mixFlag;
         }
 

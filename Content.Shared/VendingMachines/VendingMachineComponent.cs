@@ -1,7 +1,6 @@
 using Content.Shared.Actions;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes; //Starlight
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -134,14 +133,6 @@ namespace Content.Shared.VendingMachines
         [DataField]
         public float InitialStockQuality = 1.0f;
 
-        //#region starlight
-        /// <summary>
-        /// forces to restock a specific item in VendingMachineSystem#RestockRandom
-        /// </summary>
-        [DataField("forceRandom")]
-        public ProtoId<EntityPrototype>? RandomRestockTarget = null;
-        //#endregion starlight
-        
         /// <summary>
         ///     While disabled by EMP it randomly ejects items
         /// </summary>

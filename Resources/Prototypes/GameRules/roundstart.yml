@@ -105,7 +105,6 @@
     nameSegments:
     - NamesOperationPrefix
     - NamesOperationSuffix
-    nameFormat: name-format-nuclear-operation
   - type: NukeopsRule
   - type: RuleGrids
   - type: AntagSelection
@@ -124,7 +123,7 @@
   - type: GameRule
     minPlayers: 20
   - type: LoadMapRule
-    mapPath: /Maps/_Starlight/nukieplanet.yml
+    mapPath: /Maps/Nonstations/nukieplanet.yml
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
@@ -132,14 +131,17 @@
       fallbackRoles: [ Nukeops, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsCommander
       startingGear: SyndicateCommanderGearFull
+      blacklist:
+        tags:
+          - Resomi
       roleLoadout:
       - RoleSurvivalNukie
       components:
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
+        - nukeops-role-commander
         - NamesSyndicateElite
-        nameFormat: name-format-nukie-commander
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -149,14 +151,17 @@
       fallbackRoles: [ Nukeops, NukeopsCommander ]
       spawnerPrototype: SpawnPointNukeopsMedic
       startingGear: SyndicateOperativeMedicFull
+      blacklist:
+        tags:
+          - Resomi
       roleLoadout:
       - RoleSurvivalNukie
       components:
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
+        - nukeops-role-agent
         - NamesSyndicateNormal
-        nameFormat: name-format-nukie-agent
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -168,14 +173,17 @@
       max: 3
       playerRatio: 10
       startingGear: SyndicateOperativeGearFull
+      blacklist:
+        tags:
+          - Resomi
       roleLoadout:
       - RoleSurvivalNukie
       components:
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
+        - nukeops-role-operator
         - NamesSyndicateNormal
-        nameFormat: name-format-nukie-operator
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -246,6 +254,10 @@
     - prefRoles: [ HeadRev ]
       max: 3
       playerRatio: 15
+      briefing:
+        text: head-rev-role-greeting
+        color: CornflowerBlue
+        sound: "/Audio/Ambience/Antag/headrev_start.ogg"
       startingGear: HeadRevGear
       components:
       - type: Revolutionary
@@ -312,7 +324,6 @@
         nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
-        nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
 
@@ -406,7 +417,7 @@
   components:
   - type: RampingStationEventScheduler
     scheduledGameRules: !type:NestedSelector
-      tableId: BasicGameRulesTableNoRoundenders # 🌟Starlight🌟
+      tableId: BasicGameRulesTable
 
 - type: entity
   id: SpaceTrafficControlEventScheduler # iff we make a selector for EntityTables that can respect StationEventComp restrictions, or somehow impliment them otherwise in said tables,
@@ -451,13 +462,3 @@
       orGroup: puddleMess
     - id: SmugglerStashVariationPass
       prob: 0.90
-    - id: SolarPanelDamageVariationPass
-    - id: SolarPanelEmptyVariationPass
-    - id: BasicDecalDirtVariationPass
-    - id: BasicDecalGraffitiVariationPass
-    - id: BasicDecalBrunsVariationPass
-      prob: 0.50
-      orGroup: monospaceDecals
-    - id: BasicDecalDirtMonospaceVariationPass
-      prob: 0.50
-      orGroup: monospaceDecals

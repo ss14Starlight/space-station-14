@@ -90,7 +90,7 @@ namespace Content.Server.GameTicking
         /// </remarks>
         private void LoadMaps()
         {
-            if (_map.MapExists(DefaultMap))
+            if (_mapManager.MapExists(DefaultMap))
                 return;
 
             AddGamePresetRules();
@@ -196,7 +196,7 @@ namespace Content.Server.GameTicking
 
             if (ev.GameMap.IsGrid)
             {
-                var mapUid = _map.CreateMap(out mapId, runMapInit: options?.InitializeMaps ?? false);
+                var mapUid = _map.CreateMap(out mapId);
                 if (!_loader.TryLoadGrid(mapId,
                         ev.GameMap.MapPath,
                         out var grid,
@@ -208,7 +208,7 @@ namespace Content.Server.GameTicking
                 }
 
                 _metaData.SetEntityName(mapUid, proto.MapName);
-                var g = new List<EntityUid> { grid.Value.Owner };
+                var g = new List<EntityUid> {grid.Value.Owner};
                 RaiseLocalEvent(new PostGameMapLoad(proto, mapId, g, stationName));
                 return g;
             }
@@ -258,7 +258,7 @@ namespace Content.Server.GameTicking
                 }
 
                 _metaData.SetEntityName(mapUid, proto.MapName);
-                var g = new List<EntityUid> { grid.Value.Owner };
+                var g = new List<EntityUid> {grid.Value.Owner};
                 RaiseLocalEvent(new PostGameMapLoad(proto, mapId, g, stationName));
                 return g;
             }
@@ -308,7 +308,7 @@ namespace Content.Server.GameTicking
                     throw new Exception($"Failed to load game-map grid {ev.GameMap.ID}");
                 }
 
-                var g = new List<EntityUid> { grid.Value.Owner };
+                var g = new List<EntityUid> {grid.Value.Owner};
                 // TODO MAP LOADING use a new event?
                 RaiseLocalEvent(new PostGameMapLoad(proto, targetMap, g, stationName));
                 return g;
@@ -371,7 +371,7 @@ namespace Content.Server.GameTicking
             SendServerMessage(Loc.GetString("game-ticker-start-round"));
 
             var readyPlayers = new List<ICommonSession>();
-            var readyPlayerIds = new HashSet<NetUserId>();
+            var readyPlayerProfiles = new Dictionary<NetUserId, HumanoidCharacterProfile>();
             var autoDeAdmin = _cfg.GetCVar(CCVars.AdminDeadminOnJoin);
             foreach (var (userId, status) in _playerGameStatuses)
             {
@@ -387,7 +387,16 @@ namespace Content.Server.GameTicking
 #endif
 
                 readyPlayers.Add(session);
-                readyPlayerIds.Add(userId);
+                HumanoidCharacterProfile profile;
+                if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
+                {
+                    profile = (HumanoidCharacterProfile) preferences.SelectedCharacter;
+                }
+                else
+                {
+                    profile = HumanoidCharacterProfile.Random();
+                }
+                readyPlayerProfiles.Add(userId, profile);
             }
 
             DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
@@ -417,7 +426,7 @@ namespace Content.Server.GameTicking
             // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
             _map.InitializeMap(DefaultMap);
 
-            SpawnPlayers(readyPlayers, readyPlayerIds, force);
+            SpawnPlayers(readyPlayers, readyPlayerProfiles, force);
 
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
@@ -548,7 +557,7 @@ namespace Content.Server.GameTicking
 
                 if (TryGetEntity(mind.OriginalOwnedEntity, out var entity) && pvsOverride)
                 {
-                    _pvsOverride.AddGlobalOverride(entity.Value);
+                    _pvsOverride.AddGlobalOverride(GetNetEntity(entity.Value), recursive: true);
                 }
 
                 var roles = _roles.MindGetAllRoleInfo(mindId);
@@ -637,9 +646,6 @@ namespace Content.Server.GameTicking
             // Handle restart for server update
             if (_serverUpdates.RoundEnded())
                 return;
-
-            // Check if the GamePreset needs to be reset
-            TryResetPreset();
 
             _sawmill.Info("Restarting round!");
 
@@ -932,11 +938,13 @@ namespace Content.Server.GameTicking
         /// </summary>
         /// <remarks>If you spawn a player by yourself from this event, don't forget to call <see cref="GameTicker.PlayerJoinGame"/> on them.</remarks>
         public List<ICommonSession> PlayerPool { get; }
+        public IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> Profiles { get; }
         public bool Forced { get; }
 
-        public RulePlayerSpawningEvent(List<ICommonSession> playerPool, bool forced)
+        public RulePlayerSpawningEvent(List<ICommonSession> playerPool, IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> profiles, bool forced)
         {
             PlayerPool = playerPool;
+            Profiles = profiles;
             Forced = forced;
         }
     }
@@ -948,11 +956,13 @@ namespace Content.Server.GameTicking
     public sealed class RulePlayerJobsAssignedEvent
     {
         public ICommonSession[] Players { get; }
+        public IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> Profiles { get; }
         public bool Forced { get; }
 
-        public RulePlayerJobsAssignedEvent(ICommonSession[] players, bool forced)
+        public RulePlayerJobsAssignedEvent(ICommonSession[] players, IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> profiles, bool forced)
         {
             Players = players;
+            Profiles = profiles;
             Forced = forced;
         }
     }

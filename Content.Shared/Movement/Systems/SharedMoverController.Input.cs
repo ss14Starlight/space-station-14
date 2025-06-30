@@ -1,18 +1,15 @@
-﻿using System.Numerics;
-using System.Security.Cryptography;
-using Content.Shared._Starlight.Actions.Jump;
+using System.Numerics;
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Follower.Components;
 using Content.Shared.Input;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
+using Robust.Shared.Maths;
 using Robust.Shared.GameStates;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
-using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -42,7 +39,6 @@ namespace Content.Shared.Movement.Systems
                 .Bind(EngineKeyFunctions.MoveLeft, moveLeftCmdHandler)
                 .Bind(EngineKeyFunctions.MoveRight, moveRightCmdHandler)
                 .Bind(EngineKeyFunctions.MoveDown, moveDownCmdHandler)
-                .Bind(ContentKeyFunctions.Jump, new JumpInputCmdHandler(_action, _charges, Timing)) // 🌟Starlight🌟
                 .Bind(EngineKeyFunctions.Walk, new WalkInputCmdHandler(this))
                 .Bind(EngineKeyFunctions.CameraRotateLeft, new CameraRotateInputCmdHandler(this, Direction.East))
                 .Bind(EngineKeyFunctions.CameraRotateRight, new CameraRotateInputCmdHandler(this, Direction.West))
@@ -107,7 +103,7 @@ namespace Content.Shared.Movement.Systems
             RaiseLocalEvent(entity, ref moveEvent);
             Dirty(entity, entity.Comp);
 
-            var ev = new SpriteMoveEvent(entity.Comp.HasDirectionalMovement);
+            var ev = new SpriteMoveEvent(entity.Comp.HeldMoveButtons != MoveButtons.None);
             RaiseLocalEvent(entity, ref ev);
         }
 
@@ -137,7 +133,7 @@ namespace Content.Shared.Movement.Systems
                 entity.Comp.HeldMoveButtons = state.HeldMoveButtons;
                 RaiseLocalEvent(entity.Owner, ref moveEvent);
 
-                var ev = new SpriteMoveEvent(entity.Comp.HasDirectionalMovement);
+                var ev = new SpriteMoveEvent(entity.Comp.HeldMoveButtons != MoveButtons.None);
                 RaiseLocalEvent(entity, ref ev);
             }
         }
@@ -189,7 +185,7 @@ namespace Content.Shared.Movement.Systems
                 xform = relayXform;
             }
             // If we updated parent then cancel the accumulator and force it now.
-            if (!TryUpdateRelative(uid, mover, XformQuery.GetComponent(uid)) && mover.TargetRelativeRotation.Equals(Angle.Zero))
+            if (!TryUpdateRelative(mover, xform) && mover.TargetRelativeRotation.Equals(Angle.Zero))
                 return;
 
             mover.LerpTarget = TimeSpan.Zero;
@@ -197,14 +193,8 @@ namespace Content.Shared.Movement.Systems
             Dirty(uid, mover);
         }
 
-        private bool TryUpdateRelative(EntityUid uid, InputMoverComponent mover, TransformComponent xform)
+        private bool TryUpdateRelative(InputMoverComponent mover, TransformComponent xform)
         {
-            // Starlight Start
-            if (RelayQuery.TryComp(uid, out var relay)
-                && XformQuery.TryComp(relay.RelayEntity, out var relayXform))
-                xform = relayXform;
-            // Starlight End
-
             var relative = xform.GridUid;
             relative ??= xform.MapUid;
 
@@ -218,42 +208,38 @@ namespace Content.Shared.Movement.Systems
 
             // Okay need to get our old relative rotation with respect to our new relative rotation
             // e.g. if we were right side up on our current grid need to get what that is on our new grid.
-            var oldRelativeRot = Angle.Zero;
-            var relativeRot = Angle.Zero;
+            var currentRotation = Angle.Zero;
+            var targetRotation = Angle.Zero;
 
             // Get our current relative rotation
             if (XformQuery.TryGetComponent(mover.RelativeEntity, out var oldRelativeXform))
             {
-                oldRelativeRot = _transform.GetWorldRotation(oldRelativeXform);
+                currentRotation = _transform.GetWorldRotation(oldRelativeXform, XformQuery) + mover.RelativeRotation;
             }
 
             if (XformQuery.TryGetComponent(relative, out var relativeXform))
             {
                 // This is our current rotation relative to our new parent.
-                relativeRot = _transform.GetWorldRotation(relativeXform);
+                mover.RelativeRotation = (currentRotation - _transform.GetWorldRotation(relativeXform)).FlipPositive();
             }
 
-            var diff = relativeRot - oldRelativeRot;
-
-            // If we're going from a grid -> map then preserve the relative rotation so it's seamless if they go into space and back.
-            if (MapQuery.HasComp(relative) && MapGridQuery.HasComp(mover.RelativeEntity))
+            // If we went from grid -> map we'll preserve our worldrotation
+            if (relative != null && HasComp<MapComponent>(relative.Value))
             {
-                mover.TargetRelativeRotation -= diff;
+                targetRotation = currentRotation.FlipPositive().Reduced();
             }
-            // Snap to nearest cardinal if map -> grid or grid -> grid
-            else if (MapGridQuery.HasComp(relative) && (MapQuery.HasComp(mover.RelativeEntity) || MapGridQuery.HasComp(mover.RelativeEntity)))
+            // If we went from grid -> grid OR grid -> map then snap the target to cardinal and lerp there.
+            // OR just rotate to zero (depending on cvar)
+            else if (relative != null && _mapManager.IsGrid(relative.Value))
             {
-                var targetDir = mover.TargetRelativeRotation - diff;
-                targetDir = targetDir.GetCardinalDir().ToAngle().Reduced();
-                mover.TargetRelativeRotation = targetDir;
+                if (CameraRotationLocked)
+                    targetRotation = Angle.Zero;
+                else
+                    targetRotation = mover.RelativeRotation.GetCardinalDir().ToAngle().Reduced();
             }
-
-            // Preserve target rotation in relation to the new parent.
-            // Regardless of what the target is don't want the eye to move at all (from the player's perspective).
-            mover.RelativeRotation -= diff;
 
             mover.RelativeEntity = relative;
-            Dirty(uid, mover);
+            mover.TargetRelativeRotation = targetRotation;
             return true;
         }
 
@@ -327,7 +313,6 @@ namespace Content.Shared.Movement.Systems
             // Relayed movement just uses the same keybinds given we're moving the relayed entity
             // the same as us.
 
-            // TODO: Should move this into HandleMobMovement itself.
             if (TryComp<RelayInputMoverComponent>(entity, out var relayMover))
             {
                 DebugTools.Assert(relayMover.RelayEntity != entity);

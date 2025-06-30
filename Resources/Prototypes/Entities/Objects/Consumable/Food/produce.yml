@@ -250,7 +250,7 @@
   name: death nettle
   description: This nettle's out for blood.
   id: DeathNettle
-  parent: [ProduceBase, BaseMajorContraband]
+  parent: ProduceBase
   components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/death_nettle.rsi
@@ -261,56 +261,24 @@
   - type: MeleeWeapon
     damage:
       types:
-        Heat: 8
-        Caustic: 8
+        Heat: 8.5
+        Caustic: 8.5
   - type: SolutionContainerManager
     solutions:
       food:
         reagents:
         - ReagentId: SulfuricAcid
-          Quantity: 15
+          Quantity: 3
         - ReagentId: FluorosulfuricAcid
-          Quantity: 15
+          Quantity: 3
   - type: Produce
     seedId: deathNettle
   - type: MeleeChemicalInjector
-    transferAmount: 5
+    transferAmount: 2
     solution: food
-    pierceArmor: true
+    pierceArmor: false
   - type: Extractable
     grindableSolutionName: food
-  - type: DamageOnInteract
-    damage:
-      types:
-        Heat: 4
-        Caustic: 4
-    throw: true
-    throwSpeed: 3
-    interactTimer: 2 # Stop the player from spam clicking the entity
-    ignoreResistances: false
-    popupText: powered-light-component-burn-hand
-    interactSound: /Audio/Effects/lightburn.ogg
-    stunChance: 0.10
-    stunSeconds: 1.5
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 25
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Voice/Diona/diona_salute.ogg
-          params:
-            volume: -5
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: DamageOnHit
-    damage:
-      types:
-        Blunt: 5 # The nettle will "wilt" after 5 hits.
 
 - type: entity
   name: banana
@@ -445,8 +413,6 @@
   - type: Extractable
     grindableSolutionName: food
   - type: SpaceGarbage
-  - type: Food
-    requiresSpecialDigestion: true
 
 - type: entity
   name: baked banana peel
@@ -1312,7 +1278,6 @@
   - type: Tag
     tags:
     - Vegetable
-    - Mushroom
 
 # Slices
 
@@ -1624,9 +1589,6 @@
     entries:
       Taco: Lingzhi
       Burger: Lingzhi
-  - type: Tag
-    tags:
-    - Mushroom
 
 - type: entity
   name: ambrosia vulgaris
@@ -1829,10 +1791,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 30
         reagents:
         - ReagentId: Amatoxin
-          Quantity: 10
+          Quantity: 25
         - ReagentId: Nutriment
           Quantity: 5
   - type: Sprite
@@ -1848,9 +1810,6 @@
     entries:
       Taco: FlyAmanita
       Burger: FlyAmanita
-  - type: Tag
-    tags:
-    - Mushroom
 
 - type: entity
   name: gatfruit
@@ -2584,9 +2543,6 @@
     tags:
     - ClothMade
     - CottonBoll
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: CottonBol
 
 - type: entity
   name: pyrotton boll
@@ -2620,9 +2576,6 @@
     - CottonBoll
   - type: Extractable
     grindableSolutionName: food
-  - type: FoodSequenceElement
-    entries:
-      CottonBurger: PyrottonBol
 
 - type: entity
   name: cherry

@@ -22,16 +22,31 @@ public sealed partial class GunSystem
     private void OnChamberMagazineAppearance(EntityUid uid, ChamberMagazineAmmoProviderComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null ||
-            !_sprite.LayerMapTryGet((uid, args.Sprite), GunVisualLayers.Base, out var boltLayer, false) ||
+            !args.Sprite.LayerMapTryGet(GunVisualLayers.Base, out var boltLayer) ||
             !Appearance.TryGetData(uid, AmmoVisuals.BoltClosed, out bool boltClosed))
         {
             return;
         }
+        
+        string baseLayer = "base";
+        
+        string boltOpen = "bolt-open";
+        
+        if (component.SelectedPrefix != null && component.SelectedPrefix != "")
+        {
+            baseLayer = "base_" + component.SelectedPrefix;
+            boltOpen = "bolt-open_" + component.SelectedPrefix;
+        }
 
-        //starlight start
-        var prefix = string.IsNullOrEmpty(component.SelectedPrefix) ? "" : $"_{component.SelectedPrefix}";
-        _sprite.LayerSetRsiState((uid, args.Sprite), boltLayer, boltClosed ? $"base{prefix}" : $"bolt-open{prefix}");
-        //starlight end
+        // Maybe re-using base layer for this will bite me someday but screw you future sloth.
+        if (boltClosed)
+        {
+            args.Sprite.LayerSetState(boltLayer, baseLayer);
+        }
+        else
+        {
+            args.Sprite.LayerSetState(boltLayer, boltOpen);
+        }
     }
 
     protected override void OnMagazineSlotChange(EntityUid uid, MagazineAmmoProviderComponent component, ContainerModifiedMessage args)

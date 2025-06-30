@@ -11739,7 +11739,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: StarlightCore
+      id: Core
   - uid: 4
     components:
     - type: MetaData

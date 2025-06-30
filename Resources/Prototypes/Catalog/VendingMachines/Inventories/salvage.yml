@@ -8,7 +8,6 @@
     FlashlightLantern: 2
     HandheldGPSBasic: 2
     RadioHandheld: 2
-    RadioHandheldExpedition: 4 #starlight
     WeaponGrapplingGun: 4
     WeaponProtoKineticAccelerator: 4
   contrabandInventory:

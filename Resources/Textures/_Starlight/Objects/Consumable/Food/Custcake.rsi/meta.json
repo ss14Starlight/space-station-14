@@ -1,7 +1,7 @@
 ﻿{
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from starlight textures by Conf & IQlvlZero",
+  "copyright": "",
   "size": {
     "x": 32,
     "y": 32
@@ -11,16 +11,7 @@
       "name": "ResomiKart"
     },
     {
-      "name": "ResomiKartSlice"
-    },
-    {
-      "name": "mothcake"
-    },
-    {
-    "name": "mothcakeslice"
-    },
-    {
-    "name": "mothbatter"
+     "name": "ResomiKartSlice"
     }
   ]
 }

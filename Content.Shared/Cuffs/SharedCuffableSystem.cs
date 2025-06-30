@@ -4,7 +4,6 @@ using Content.Shared.Administration.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
-using Content.Shared.CombatMode;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -40,6 +39,7 @@ namespace Content.Shared.Cuffs
     // TODO remove all the IsServer() checks.
     public abstract partial class SharedCuffableSystem : EntitySystem
     {
+        [Dependency] private readonly IComponentFactory _componentFactory = default!;
         [Dependency] private readonly INetManager _net = default!;
         [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
@@ -53,7 +53,6 @@ namespace Content.Shared.Cuffs
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly UseDelaySystem _delay = default!;
-        [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
 
         public override void Initialize()
         {
@@ -145,7 +144,7 @@ namespace Content.Shared.Cuffs
 
         private void OnStartup(EntityUid uid, CuffableComponent component, ComponentInit args)
         {
-            component.Container = _container.EnsureContainer<Container>(uid, Factory.GetComponentName(component.GetType()));
+            component.Container = _container.EnsureContainer<Container>(uid, _componentFactory.GetComponentName(component.GetType()));
         }
 
         private void OnRejuvenate(EntityUid uid, CuffableComponent component, RejuvenateEvent args)
@@ -379,8 +378,7 @@ namespace Content.Shared.Cuffs
                     _popup.PopupClient(Loc.GetString("handcuff-component-cuff-interrupt-message",
                         ("targetName", Identity.Name(target, EntityManager, user))), user, user);
                     _popup.PopupClient(Loc.GetString("handcuff-component-cuff-interrupt-other-message",
-                        ("otherName", Identity.Name(user, EntityManager, target)),
-                        ("otherEnt", user)), target, target);
+                        ("otherName", Identity.Name(user, EntityManager, target))), target, target);
                 }
             }
         }
@@ -722,31 +720,10 @@ namespace Content.Shared.Cuffs
                 }
             }
 
-            var shoved = false;
-            // if combat mode is on, shove the person.
-            if (_combatMode.IsInCombatMode(user) && target != user && user != null)
-            {
-                var eventArgs = new DisarmedEvent(target, user.Value, 1f);
-                RaiseLocalEvent(target, ref eventArgs);
-                shoved = true;
-            }
-
             if (cuffable.CuffedHandCount == 0)
             {
                 if (user != null)
-                {
-                    if (shoved)
-                    {
-                        _popup.PopupClient(Loc.GetString("cuffable-component-remove-cuffs-push-success-message",
-                            ("otherName", Identity.Name(user.Value, EntityManager, user))),
-                            user.Value,
-                            user.Value);
-                    }
-                    else
-                    {
-                        _popup.PopupClient(Loc.GetString("cuffable-component-remove-cuffs-success-message"), user.Value, user.Value);
-                    }
-                }
+                    _popup.PopupClient(Loc.GetString("cuffable-component-remove-cuffs-success-message"), user.Value, user.Value);
 
                 if (target != user && user != null)
                 {

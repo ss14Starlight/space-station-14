@@ -34,8 +34,6 @@
   - Detective
   - Cryogenics
   - Brigmedic
-  - GenpopEnter #starlight
-  - GenpopLeave #starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -46,18 +44,9 @@
 - type: startingGear
   id: HoSGear
   equipment:
-    eyes: ClothingEyesGlassesSecurity
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
   storage:
     back:
     - Flash
-
-- type: chameleonOutfit
-  id: HeadOfSecurityChameleonOutfit
-  job: HeadOfSecurity
-  hasMindShield: true
-  equipment:
-    mask: ClothingMaskGasSecurity
-    neck: ClothingNeckCloakHos

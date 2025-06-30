@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "By Pofitlo, many touch-ups and InHand displacement by Salem",
+    "copyright": "By Pofitlo",
     "size": {
         "x": 32,
         "y": 32
@@ -56,10 +56,6 @@
         },
         {
             "name": "suitStorage",
-            "directions": 4
-        },
-        {
-            "name": "outerClothing",
             "directions": 4
         }
     ]

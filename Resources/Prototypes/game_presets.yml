@@ -42,7 +42,6 @@
     - Traitor
     - Revolutionary
     - Zombie
-    - Wizard
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
     - Changeling
@@ -65,7 +64,6 @@
     - Traitor
     - Revolutionary
     - Zombie
-    - Wizard
     - BasicStationEventScheduler
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler

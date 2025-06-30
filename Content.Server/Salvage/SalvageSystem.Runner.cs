@@ -80,7 +80,7 @@ public sealed partial class SalvageSystem
             ChatChannel.Radio,
             text,
             text,
-            _mapSystem.GetMapOrInvalid(mapId),
+            _mapManager.GetMapEntityId(mapId),
             false,
             true,
             null);

@@ -1,4 +1,3 @@
-using System;
 using System.Numerics;
 using Content.Shared.Directions;
 using Content.Shared.Maps;
@@ -27,10 +26,9 @@ public sealed class GoliathTentacleSystem : DelayableEntitySystem
     {
         SubscribeLocalEvent<GoliathSummonTentacleAction>(OnSummonAction);
     }
-
     private void OnSummonAction(GoliathSummonTentacleAction args)
     {
-        if (args.Handled)
+        if (args.Handled || args.Coords is not { } coords)
             return;
         args.Handled = true;
 
@@ -39,7 +37,7 @@ public sealed class GoliathTentacleSystem : DelayableEntitySystem
         _stun.TryStun(args.Performer, TimeSpan.FromSeconds(0.8f), false);
 
         Queue<EntityCoordinates> spawnPos = new();
-        var direction = Vector2.Normalize(args.Target.Position - xform.Coordinates.Position);
+        var direction = Vector2.Normalize(coords.Position - xform.Coordinates.Position);
         var pos = xform.Coordinates;
         for (var i = 0; i < 9; i++)
         {
@@ -47,7 +45,7 @@ public sealed class GoliathTentacleSystem : DelayableEntitySystem
             spawnPos.Enqueue(pos);
         }
 
-        if (_transform.GetGrid(args.Target) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
+        if (_transform.GetGrid(coords) is not { } grid || !TryComp<MapGridComponent>(grid, out var gridComp))
             return;
         void action(EntityCoordinates pos)
         {

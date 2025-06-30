@@ -1,5 +1,4 @@
 using Content.Shared.Dragon;
-using Content.Shared.Revolutionary.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameStates;
 
@@ -8,7 +7,6 @@ namespace Content.Client.Dragon;
 public sealed class DragonSystem : EntitySystem
 {
     [Dependency] private readonly SharedPointLightSystem _lights = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -33,7 +31,7 @@ public sealed class DragonSystem : EntitySystem
         switch (state.State)
         {
             case DragonRiftState.Charging:
-                _sprite.LayerSetColor((uid, sprite), 0, Color.FromHex("#569fff"));
+                sprite?.LayerSetColor(0, Color.FromHex("#569fff"));
 
                 if (light != null)
                 {
@@ -41,30 +39,15 @@ public sealed class DragonSystem : EntitySystem
                 }
                 break;
             case DragonRiftState.AlmostFinished:
+                sprite?.LayerSetColor(0, Color.FromHex("#cf4cff"));
 
-                // Starlight: For RevSupplyRift, use a brighter red color instead of purple
-                if (HasComp<RevolutionaryRiftComponent>(uid))
+                if (light != null)
                 {
-                    sprite?.LayerSetColor(0, Color.FromHex("#ff3333"));
-
-                    if (light != null)
-                    {
-                        _lights.SetColor(uid, Color.FromHex("#cc0000"), light);
-                    }
-                }
-                else
-                {
-                    // Regular dragon rift still uses purple
-                    sprite?.LayerSetColor(0, Color.FromHex("#cf4cff"));
-
-                    if (light != null)
-                    {
-                        _lights.SetColor(uid, Color.FromHex("#9e2fc1"), light);
-                    } // Starlight End
+                    _lights.SetColor(uid, Color.FromHex("#9e2fc1"), light);
                 }
                 break;
             case DragonRiftState.Finished:
-                _sprite.LayerSetColor((uid, sprite), 0, Color.FromHex("#edbc36"));
+                sprite?.LayerSetColor(0, Color.FromHex("#edbc36"));
 
                 if (light != null)
                 {

@@ -9,7 +9,7 @@
     layers:
       - state: icon
       - state: screen
-        map: [ "enum.ToggleableVisuals.Layer" ]
+        map: [ "enum.ToggleVisuals.Layer" ]
         visible: false
         shader: unshaded
       - state: ready

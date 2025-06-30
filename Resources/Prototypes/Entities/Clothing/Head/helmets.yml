@@ -6,19 +6,6 @@
   id: ClothingHeadHelmetBase
   abstract: true
   components:
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-  - type: HideLayerClothing
-    layers:
-      HeadTop : HEAD
-      HeadSide : HEAD
-
-- type: entity
-  parent: ClothingHeadHelmetBase
-  id: ClothingHeadHelmetArmoredBase
-  abstract: true
-  components:
   - type: Armor #Values seem to let the user survive one extra hit if attacked consistently.
     modifiers:
       coefficients:
@@ -26,10 +13,17 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - HeadTop
+    - HeadSide
 
 #Basic Helmet (Security Helmet)
 - type: entity
-  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband]
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetBasic
   name: helmet
   description: Standard security gear. Protects the head from impacts.
@@ -42,13 +36,10 @@
     tags:
     - WhitelistChameleon
     - SecurityHelmet
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #Mercenary Helmet
 - type: entity
-  parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband ]
+  parent: [ ClothingHeadHelmetBase, BaseMajorContraband ]
   id: ClothingHeadHelmetMerc
   name: mercenary helmet
   description: The combat helmet is commonly used by mercenaries, is strong, light and smells like gunpowder and the jungle.
@@ -57,13 +48,10 @@
     sprite: Clothing/Head/Helmets/merc_helmet.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/merc_helmet.rsi
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #SWAT Helmet
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  parent: [ClothingHeadBase, BaseSecurityContraband]
   id: ClothingHeadHelmetSwat
   name: SWAT helmet
   description: An extremely robust helmet, commonly used by paramilitary forces. This one has the Nanotrasen logo emblazoned on the top.
@@ -85,9 +73,6 @@
         Caustic: 0.95
   - type: ExplosionResistance
     damageCoefficient: 0.75
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #Syndicate SWAT Helmet
 - type: entity
@@ -101,13 +86,10 @@
     sprite: Clothing/Head/Helmets/swat_syndicate.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/swat_syndicate.rsi
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #Light Riot Helmet
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  parent: [ClothingHeadBase, BaseSecurityContraband]
   id: ClothingHeadHelmetRiot
   name: light riot helmet
   description: It's a helmet specifically designed to protect against close range attacks.
@@ -125,9 +107,6 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.95
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #Bombsuit Helmet
 - type: entity
@@ -152,9 +131,11 @@
         Slash: 0.95
         Piercing: 0.95
   - type: HideLayerClothing
-    layers:
-      Hair: HEAD
-      Snout: HEAD
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
 
 #Janitorial Bombsuit Helmet
 - type: entity
@@ -168,13 +149,10 @@
     sprite: Clothing/Head/Helmets/janitor_bombsuit.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/janitor_bombsuit.rsi
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #Cult Helmet
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseMajorContraband]
+  parent: [ClothingHeadBase, BaseMajorContraband]
   id: ClothingHeadHelmetCult
   name: cult helmet
   description: A robust, evil-looking cult helmet.
@@ -193,9 +171,6 @@
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.9
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #Space Ninja Helmet
 - type: entity
@@ -214,16 +189,18 @@
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: HideLayerClothing
-    layers:
-      Hair: HEAD
-      Snout: HEAD
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
 
-#Knight Helmet
+#Templar Helmet
 - type: entity
-  parent: ClothingHeadHelmetBase
+  parent: ClothingHeadBase
   id: ClothingHeadHelmetTemplar
-  name: knight helmet
-  description: Decorative helmet fashioned to resemble the knights of old.
+  name: templar helmet
+  description: DEUS VULT!
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/templar.rsi
@@ -231,13 +208,10 @@
     sprite: Clothing/Head/Helmets/templar.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #Thunderdome Helmet
 - type: entity
-  parent: ClothingHeadHelmetBase
+  parent: ClothingHeadBase
   id: ClothingHeadHelmetThunderdome
   name: thunderdome helmet
   description: Let the battle commence!
@@ -246,13 +220,10 @@
     sprite: Clothing/Head/Helmets/thunderdome.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/thunderdome.rsi
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #Wizard Helmet
 - type: entity
-  parent: ClothingHeadHelmetBase
+  parent: ClothingHeadBase
   id: ClothingHeadHelmetWizardHelm
   name: wizard helm
   description: Strange-looking helmet that most certainly belongs to a real magic user.
@@ -263,9 +234,6 @@
     sprite: Clothing/Head/Helmets/wizardhelm.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #Fire Helmet
 - type: entity
@@ -291,9 +259,11 @@
     - WhitelistChameleon
     - FireHelmet
   - type: HideLayerClothing
-    layers:
-      Hair: HEAD
-      Snout: HEAD
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
 
 #Atmos Fire Helmet
 - type: entity
@@ -322,14 +292,16 @@
     - WhitelistChameleon
     - FireHelmet
   - type: HideLayerClothing
-    layers:
-      Hair: HEAD
-      Snout: HEAD
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
   - type: BreathMask
 
 #Chitinous Helmet
 - type: entity
-  parent: [ ClothingHeadHelmetBase, BaseMajorContraband]
+  parent: [ ClothingHeadBase, BaseMajorContraband]
   id: ClothingHeadHelmetLing
   name: chitinous helmet
   description: An all-consuming chitinous mass of armor.
@@ -347,14 +319,11 @@
         Slash: 0.5
         Piercing: 0.5
         Heat: 0.9
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #ERT HELMETS
 #ERT Leader Helmet
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetArmoredBase ]
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetBase ]
   id: ClothingHeadHelmetERTLeader
   name: ERT leader helmet
   description: An in-atmosphere helmet worn by the leader of a Nanotrasen Emergency Response Team. Has blue highlights.
@@ -363,13 +332,10 @@
     sprite: Clothing/Head/Helmets/ert_leader.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_leader.rsi
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #ERT Security Helmet
 - type: entity
-  parent: ClothingHeadHelmetERTLeader
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetBase ]
   id: ClothingHeadHelmetERTSecurity
   name: ERT security helmet
   description: An in-atmosphere helmet worn by security members of the Nanotrasen Emergency Response Team. Has red highlights.
@@ -378,13 +344,10 @@
     sprite: Clothing/Head/Helmets/ert_security.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_security.rsi
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #ERT Medic Helmet
 - type: entity
-  parent: ClothingHeadHelmetERTLeader
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetBase ]
   id: ClothingHeadHelmetERTMedic
   name: ERT medic helmet
   description: An in-atmosphere helmet worn by medical members of the Nanotrasen Emergency Response Team. Has white highlights.
@@ -393,13 +356,10 @@
     sprite: Clothing/Head/Helmets/ert_medic.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_medic.rsi
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #ERT Engineer Helmet
 - type: entity
-  parent: ClothingHeadHelmetERTLeader
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetBase ]
   id: ClothingHeadHelmetERTEngineer
   name: ERT engineer helmet
   description: An in-atmosphere helmet worn by engineering members of the Nanotrasen Emergency Response Team. Has orange highlights.
@@ -408,13 +368,10 @@
     sprite: Clothing/Head/Helmets/ert_engineer.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_engineer.rsi
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #ERT Janitor Helmet
 - type: entity
-  parent: ClothingHeadHelmetERTLeader
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetBase ]
   id: ClothingHeadHelmetERTJanitor
   name: ERT janitor helmet
   description: An in-atmosphere helmet worn by janitorial members of the Nanotrasen Emergency Response Team. Has dark purple highlights.
@@ -423,9 +380,6 @@
     sprite: Clothing/Head/Helmets/ert_janitor.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_janitor.rsi
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 - type: entity
   parent: [ BaseSyndicateContraband, ClothingHeadHelmetBase ]
@@ -446,14 +400,10 @@
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.85
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 #Bone Helmet
-#No need to hide the hair on this one
 - type: entity
-  parent: [ ClothingHeadHelmetArmoredBase, BaseMinorContraband ]
+  parent: [ ClothingHeadHelmetBase, BaseMinorContraband ]
   id: ClothingHeadHelmetBone
   name: bone helmet
   description: Cool-looking helmet made of skull of your enemies.
@@ -466,9 +416,8 @@
     graph: BoneHelmet
     node: helmet
 
-#Ironclad II Helmet
 - type: entity
-  parent: [ ClothingHeadHelmetArmoredBase, BaseMinorContraband ]
+  parent: [ ClothingHeadHelmetBase, BaseMinorContraband ]
   id: ClothingHeadHelmetPodWars
   name: ironclad II helmet
   description: An ironclad II helmet, a relic of the pod wars.
@@ -477,9 +426,6 @@
     sprite: Clothing/Head/Helmets/podwars_helmet.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/podwars_helmet.rsi
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 - type: entity
   parent: ClothingHeadBase
@@ -505,7 +451,7 @@
   
 #Justice Helmet
 - type: entity
-  parent: ClothingHeadHelmetBasic
+  parent: [ ClothingHeadHelmetBase, BaseSecurityContraband ]
   id: ClothingHeadHelmetJustice
   name: justice helm
   description: Advanced security gear. Protects the station from ne'er-do-wells.
@@ -542,8 +488,7 @@
     action: ActionToggleJusticeHelm
     mustEquip: false
   - type: ItemTogglePointLight
-  - type: ToggleableVisuals
-    spriteLayer: light
+  - type: ToggleableLightVisuals
     clothingVisuals:
       head:
       - state: on-equipped-HELMET
@@ -573,9 +518,6 @@
   - type: Construction
     graph: HelmetJustice
     node: helmet
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 - type: entity
   parent: ClothingHeadHelmetJustice
@@ -586,18 +528,13 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
 
 - type: entity
-  parent: BaseAction
   id: ActionToggleJusticeHelm
   name: Toggle Justice Helm
   description: Toggles the justice helm on and off.
   components:
-  - type: Action
+  - type: InstantAction
     useDelay: 1
     itemIconStyle: BigItem
-  - type: InstantAction
     event: !type:ToggleActionEvent

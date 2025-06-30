@@ -18,19 +18,9 @@
   id: MusicianGear
   equipment:
     eyes: ClothingEyesGlassesSunglasses
-    #shoes: ClothingShoesBootsLaceup # 🌟Starlight🌟
+    shoes: ClothingShoesBootsLaceup
     id: MusicianPDA
     ears: ClothingHeadsetService
   #storage:
     #back:
     #- Stuff
-
-- type: chameleonOutfit
-  id: MusicianChameleonOutfit
-  job: Musician
-  equipment:
-    head: ClothingHeadHatTophat
-    mask: ClothingMaskBreath
-    neck: ClothingNeckHeadphones
-    outerClothing: ClothingOuterWinterMusician
-    gloves: ClothingHandsGlovesColorBlack

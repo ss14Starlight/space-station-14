@@ -15,9 +15,6 @@ permanent-blindness-trait-examined = [color=lightblue]{CAPITALIZE(POSS-ADJ($targ
 trait-lightweight-name = Lightweight drunk
 trait-lightweight-desc = Alcohol has a stronger effect on you.
 
-trait-monochromancy-name = Monochromancy
-trait-monochromancy-desc = You are fully colorblind, everything you perceive ranges from blacks to whites.
-
 trait-muted-name = Muted
 trait-muted-desc = You can't speak.
 
@@ -30,8 +27,7 @@ trait-unrevivable-desc = You are unable to be revived by defibrillators.
 trait-pirate-accent-name = Pirate accent
 trait-pirate-accent-desc = You can't stop speaking like a pirate!
 
-## 🌟Starlight🌟
-trait-accentless-name = No native accent
+trait-accentless-name = Accentless
 trait-accentless-desc = You don't have the accent that your species would usually have
 
 trait-frontal-lisp-name = Frontal lisp

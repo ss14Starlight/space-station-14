@@ -12,7 +12,6 @@
   femaleFirstNames: NamesDionaFirst
   lastNames: NamesDionaLast
   naming: TheFirstofLast
-  customName: true # Starlight
 
 - type: speciesBaseSprites
   id: MobDionaSprites
@@ -53,7 +52,7 @@
       points: 1
       required: false
     Chest:
-      points: 2
+      points: 1
       required: false
     Legs:
       points: 2

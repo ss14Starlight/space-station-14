@@ -2,9 +2,9 @@
   id: StarlightFland
   mapName: 'Fland Installation'
   mapPath: /Maps/_Starlight/Stations/Fland.yml
-  minPlayers: 65
+  minPlayers: 70
   stations:
-    StarlightFland:
+    Fland:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
@@ -27,8 +27,7 @@
             Janitor: [ 3, 3 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
-            ServiceWorker: [ 2, 3 ]
-            Reporter: [ 1, 2 ]
+            ServiceWorker: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
@@ -45,28 +44,26 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ 6, 6 ]
-            Roboticist: [ 1, 2 ]
+            Roboticist: [ 1, 1 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            SecurityOfficer: [ 9, 9 ]
-            Detective: [ 2, 2 ]
+            SecurityOfficer: [ 8, 8 ]
+            Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ]
             Brigmedic: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 5, 5 ]
+            SalvageSpecialist: [ 6, 6 ]
             CargoTechnician: [ 4, 4 ]
-            MailTech: [ 1, 2 ]
-            MiningSpecialist: [ 3, 3 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
-            Musician: [ 1, 2 ]
+            Musician: [ 1, 1 ]
             #silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 3, 4 ]
+            Borg: [ 2, 2 ]
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]

@@ -15,8 +15,6 @@
   - MineralScannerEmpty
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
-  radioChannels:
-  - Supply
 
 - type: technology
   id: SpaceScanning
@@ -30,8 +28,7 @@
   recipeUnlocks:
   - RadarConsoleCircuitboard
   - HandHeldMassScanner
-  radioChannels:
-  - Supply
+  - BorgModuleGPS
 
 - type: technology
   id: AdvancedPowercells
@@ -46,8 +43,6 @@
   - PowerCellHigh
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
-  radioChannels:
-  - Engineering
 
 - type: technology
   id: MechanicalCompression
@@ -92,8 +87,6 @@
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
   - EmitterCircuitboard
-  radioChannels:
-  - Engineering
 
 - type: technology
   id: AtmosphericTech
@@ -107,8 +100,6 @@
   recipeUnlocks:
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
-  radioChannels:
-  - Engineering
 
 # Tier 2
 
@@ -126,8 +117,6 @@
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
-  radioChannels:
-  - Engineering
 
 - type: technology
   id: AdvancedAtmospherics
@@ -144,8 +133,6 @@
   - HolofanProjector
   technologyPrerequisites:
   - AtmosphericTech
-  radioChannels:
-  - Engineering
 
 - type: technology
   id: AdvancedToolsTechnology
@@ -163,8 +150,6 @@
     - BorgModuleAdvancedTool
     - Fulton
     - FultonBeacon
-  radioChannels:
-  - Supply
 
 - type: technology
   id: MassExcavation
@@ -180,9 +165,6 @@
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
     - MechEquipmentDrillDiamond
-    - BorgModuleAdvancedMining
-  radioChannels:
-  - Supply
 
 # Tier 3
 
@@ -201,8 +183,8 @@
   - ClothingBackpackDuffelHolding
 
 - type: technology
-  id: OptimizedMicrogalvanism
-  name: research-technology-optimized-microgalvanism
+  id: PortableFission
+  name: research-technology-portable-fission
   icon:
     sprite: Objects/Power/power_cells.rsi
     state: microreactor
@@ -211,6 +193,5 @@
   cost: 10000
   recipeUnlocks:
   - PowerCellMicroreactor
-  - PowerCellHyper
   technologyPrerequisites:
   - AdvancedPowercells

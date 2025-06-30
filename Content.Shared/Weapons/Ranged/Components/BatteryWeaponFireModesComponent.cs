@@ -1,4 +1,3 @@
-﻿using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -9,7 +8,6 @@ namespace Content.Shared.Weapons.Ranged.Components;
 /// Allows battery weapons to fire different types of projectiles
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-[Access(typeof(BatteryWeaponFireModesSystem))]
 [AutoGenerateComponentState(true)]
 public sealed partial class BatteryWeaponFireModesComponent : Component
 {
@@ -35,7 +33,7 @@ public sealed partial class BatteryWeaponFireMode
     /// The projectile prototype associated with this firing mode
     /// </summary>
     [DataField("proto", required: true)]
-    public string Prototype = default!; // 🌟Starlight🌟  entity & hitscan
+    public string Prototype = default!;
 
     /// <summary>
     /// The battery cost to fire the projectile associated with this firing mode
@@ -58,10 +56,4 @@ public sealed partial class BatteryWeaponFireMode
     
     [DataField("visualState")]
     public string? VisualState;
-}
-
-[Serializable, NetSerializable]
-public enum BatteryWeaponFireModeVisuals : byte
-{
-    State
 }

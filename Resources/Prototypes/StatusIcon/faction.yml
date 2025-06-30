@@ -31,7 +31,7 @@
       - ShowAntagIcons
       - Revolutionary
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi  # Starlight USSP revs
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Revolutionary
 
 - type: factionIcon
@@ -43,7 +43,7 @@
       - ShowAntagIcons
       - Revolutionary
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi # Starlight USSP revs
+    sprite: /Textures/Interface/Misc/job_icons.rsi
     state: HeadRevolutionary
 
 - type: factionIcon

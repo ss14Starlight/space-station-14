@@ -33,8 +33,11 @@ namespace Content.Server.GameTicking
             {
                 if (args.NewStatus != SessionStatus.Disconnected)
                 {
-                    _pvsOverride.AddSessionOverride(mindId.Value, session);
+                    mind.Session = session;
+                    _pvsOverride.AddSessionOverride(GetNetEntity(mindId.Value), session);
                 }
+
+                DebugTools.Assert(mind.Session == session);
             }
 
             DebugTools.Assert(session.GetMind() == mindId);
@@ -126,9 +129,10 @@ namespace Content.Server.GameTicking
                 case SessionStatus.Disconnected:
                 {
                     _chatManager.SendAdminAnnouncement(Loc.GetString("player-leave-message", ("name", args.Session.Name)));
-                    if (mindId != null)
+                    if (mind != null)
                     {
-                        _pvsOverride.RemoveSessionOverride(mindId.Value, session);
+                        _pvsOverride.ClearOverride(GetNetEntity(mindId!.Value));
+                        mind.Session = null;
                     }
 
                     _userDb.ClientDisconnected(session);
@@ -177,6 +181,11 @@ namespace Content.Server.GameTicking
                     await _db.AddRoundPlayers(RoundId, id);
                 }
             }
+        }
+
+        public HumanoidCharacterProfile GetPlayerProfile(ICommonSession p)
+        {
+            return (HumanoidCharacterProfile) _prefsManager.GetPreferences(p.UserId).SelectedCharacter;
         }
 
         public void PlayerJoinGame(ICommonSession session, bool silent = false)

@@ -14,8 +14,6 @@
     doestContain:
       Resomi:
         knockback: 0.1
-      Avali:
-        knockback: 0.05 # Bigger bird, more sturdy bones.. or something.
   - type: Sprite
   - type: Item
     size: Huge
@@ -31,7 +29,6 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
-    - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
   - type: ChamberMagazineAmmoProvider
@@ -67,7 +64,7 @@
   name: AKMS
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRifleAk
-  description: A somewhat battered combat rifle of a design originating from old Earth. Favored by criminals, militias, and terrorists due to its famed reliability and easy-to-manufacture design. Feeds from .30 rifle magazines.
+  description: An iconic weapon of war. Uses .30 rifle ammo.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Rifles/ak.rsi
@@ -199,7 +196,7 @@
       gun_chamber: !type:ContainerSlot ""
   - type: MagazineVisuals
     magState: mag
-    steps: 5
+    steps: 1
     zeroVisible: true
   - type: Appearance
 
@@ -237,14 +234,3 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     clumsyProof: true
   - type: PacifismAllowedGun
-
-- type: entity
-  name: ForceableFollow AKMS
-  parent: [ WeaponRifleAk, BaseSecurityContraband ]
-  id: WeaponRifleAkAdmeme
-  suffix: Admeme
-  description: An iconic weapon of war. Uses .30 rifle ammo.
-  components:
-  - type: Tag
-    tags:
-    - ForceableFollow

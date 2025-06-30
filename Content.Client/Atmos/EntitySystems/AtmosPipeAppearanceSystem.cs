@@ -1,7 +1,6 @@
 using Content.Client.SubFloor;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Atmos.Piping;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -9,10 +8,9 @@ using Robust.Client.GameObjects;
 namespace Content.Client.Atmos.EntitySystems;
 
 [UsedImplicitly]
-public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanceSystem
+public sealed class AtmosPipeAppearanceSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -27,37 +25,25 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
         if (!TryComp(uid, out SpriteComponent? sprite))
             return;
 
-        var numberOfPipeLayers = GetNumberOfPipeLayers(uid, out _);
-
-        foreach (var layerKey in Enum.GetValues<PipeConnectionLayer>())
+        foreach (PipeConnectionLayer layerKey in Enum.GetValues(typeof(PipeConnectionLayer)))
         {
-            for (byte i = 0; i < numberOfPipeLayers; i++)
-            {
-                var layerName = layerKey.ToString() + i.ToString();
-                var layer = _sprite.LayerMapReserve((uid, sprite), layerName);
-                _sprite.LayerSetRsi((uid, sprite), layer, component.Sprite[i].RsiPath);
-                _sprite.LayerSetRsiState((uid, sprite), layer, component.Sprite[i].RsiState);
-                _sprite.LayerSetDirOffset((uid, sprite), layer, ToOffset(layerKey));
-            }
+            sprite.LayerMapReserveBlank(layerKey);
+            var layer = sprite.LayerMapGet(layerKey);
+            sprite.LayerSetRSI(layer, component.Sprite.RsiPath);
+            sprite.LayerSetState(layer, component.Sprite.RsiState);
+            sprite.LayerSetDirOffset(layer, ToOffset(layerKey));
         }
     }
 
-    private void HideAllPipeConnection(Entity<SpriteComponent> entity, AtmosPipeLayersComponent? atmosPipeLayers, int numberOfPipeLayers)
+    private void HideAllPipeConnection(SpriteComponent sprite)
     {
-        var sprite = entity.Comp;
-
-        foreach (var layerKey in Enum.GetValues<PipeConnectionLayer>())
+        foreach (PipeConnectionLayer layerKey in Enum.GetValues(typeof(PipeConnectionLayer)))
         {
-            for (byte i = 0; i < numberOfPipeLayers; i++)
-            {
-                var layerName = layerKey.ToString() + i.ToString();
+            if (!sprite.LayerMapTryGet(layerKey, out var key))
+                continue;
 
-                if (!_sprite.LayerMapTryGet(entity.AsNullable(), layerName, out var key, false))
-                    continue;
-
-                var layer = sprite[key];
-                layer.Visible = false;
-            }
+            var layer = sprite[key];
+            layer.Visible = false;
         }
     }
 
@@ -73,45 +59,33 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
             return;
         }
 
-        var numberOfPipeLayers = GetNumberOfPipeLayers(uid, out var atmosPipeLayers);
-
-        if (!_appearance.TryGetData<int>(uid, PipeVisuals.VisualState, out var worldConnectedDirections, args.Component))
+        if (!_appearance.TryGetData<PipeDirection>(uid, PipeVisuals.VisualState, out var worldConnectedDirections, args.Component))
         {
-            HideAllPipeConnection((uid, args.Sprite), atmosPipeLayers, numberOfPipeLayers);
+            HideAllPipeConnection(args.Sprite);
             return;
         }
 
         if (!_appearance.TryGetData<Color>(uid, PipeColorVisuals.Color, out var color, args.Component))
             color = Color.White;
 
-        for (byte i = 0; i < numberOfPipeLayers; i++)
+        // transform connected directions to local-coordinates
+        var connectedDirections = worldConnectedDirections.RotatePipeDirection(-Transform(uid).LocalRotation);
+
+        foreach (PipeConnectionLayer layerKey in Enum.GetValues(typeof(PipeConnectionLayer)))
         {
-            // Extract the cardinal pipe orientations for the current pipe layer
-            // '15' is the four bit mask that is used to extract the pipe orientations of interest from 'worldConnectedDirections'
-            // Fun fact: a collection of four bits is called a 'nibble'! They aren't natively supported :(
-            var pipeLayerConnectedDirections = (PipeDirection)(15 & (worldConnectedDirections >> (PipeDirectionHelpers.PipeDirections * i)));
+            if (!args.Sprite.LayerMapTryGet(layerKey, out var key))
+                continue;
 
-            // Transform the connected directions to local-coordinates
-            var connectedDirections = pipeLayerConnectedDirections.RotatePipeDirection(-Transform(uid).LocalRotation);
+            var layer = args.Sprite[key];
+            var dir = (PipeDirection) layerKey;
+            var visible = connectedDirections.HasDirection(dir);
 
-            foreach (var layerKey in Enum.GetValues<PipeConnectionLayer>())
-            {
-                var layerName = layerKey.ToString() + i.ToString();
+            layer.Visible &= visible;
 
-                if (!_sprite.LayerMapTryGet((uid, args.Sprite), layerName, out var key, false))
-                    continue;
+            if (!visible)
+                continue;
 
-                var layer = args.Sprite[key];
-                var dir = (PipeDirection)layerKey;
-                var visible = connectedDirections.HasDirection(dir);
-
-                layer.Visible &= visible;
-
-                if (!visible)
-                    continue;
-
-                layer.Color = color;
-            }
+            layer.Color = color;
         }
     }
 

@@ -1,5 +1,3 @@
-using Robust.Shared.Audio;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Starlight.TextToSpeech;
@@ -8,8 +6,6 @@ namespace Content.Shared.Starlight.TextToSpeech;
 public sealed class PlayTTSEvent : EntityEventArgs
 {
     public byte[] Data { get; set; } = [];
-
-    public SoundSpecifier? Chime { get; set; }
     public NetEntity? SourceUid { get; set; }
     public bool IsRadio { get; set; }
     public float VolumeModifier { get; set; } = 1;

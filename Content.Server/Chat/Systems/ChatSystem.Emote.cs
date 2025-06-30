@@ -197,20 +197,10 @@ public partial class ChatSystem
     private bool AllowedToUseEmote(EntityUid source, EmotePrototype emote)
     {
         // If emote is in AllowedEmotes, it will bypass whitelist and blacklist
-        //#region starlight
-        if (TryComp<SpeechComponent>(source, out var speech))
+        if (TryComp<SpeechComponent>(source, out var speech) &&
+            speech.AllowedEmotes.Contains(emote.ID))
         {
-            if (speech.LateCalc)
-            {
-                _speechSystem.AddMarkingEmotes(source, speech);
-                speech.LateCalc = false; //cause apperently on the server it is ALWAYS out of order.
-                                         //on the client it works just fine
-                                         //but NOT serverside
-                                         //cause that would be too easy
-            }
-            if (speech.AllowedEmotes.Contains(emote.ID))
-                return true;
-            //#endregion starlight
+            return true;
         }
 
         // Check the whitelist and blacklist

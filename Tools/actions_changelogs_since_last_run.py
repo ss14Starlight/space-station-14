@@ -7,7 +7,6 @@ import requests
 import yaml
 from typing import Any, Iterable
 from datetime import datetime
-import time
 
 # Discord and GitHub settings
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
@@ -68,7 +67,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
     for author, group in itertools.groupby(entries, key=lambda x: x["author"]):
         group = list(group)
         try:
-            entry_time = datetime.strptime(group[0]["time"], "%Y-%m-%dT%H:%M:%S.%f%z")
+            time = datetime.strptime(group[0]["time"], "%Y-%m-%dT%H:%M:%S.%f%z")
         except ValueError:
             print(f"Invalid time format for entry by {author}: {group[0]['time']}")
             continue
@@ -77,7 +76,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
             "title": author,
             "description": "",
             "fields": [],
-            "timestamp": entry_time.isoformat(),
+            "timestamp": time.isoformat(),
             "color": 0x7289DA,
         }
 
@@ -110,7 +109,6 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
             embed["description"] += "\n\nRelated Pull Requests:\n" + "\n".join(f"- [GitHub Pull Request]({url})" for url in urls)
 
         send_discord(embed)
-        time.sleep(0.5)
 
     update_sent_ids(SENT_IDS_FILE, [{"id": eid} for eid in sent_ids])
 

@@ -106,7 +106,7 @@
           map: ["light"]
           visible: false
     - type: BorgChassis
-      maxModules: 4 # starlight
+      maxModules: 3
       moduleWhitelist:
         tags:
           - BorgModuleGeneric
@@ -139,7 +139,7 @@
           map: ["light"]
           visible: false
     - type: BorgChassis
-      maxModules: 4 # starlight
+      maxModules: 3
       moduleWhitelist:
         tags:
           - BorgModuleGeneric
@@ -179,7 +179,7 @@
           map: ["light"]
           visible: false
     - type: BorgChassis
-      maxModules: 4 # starlight
+      maxModules: 3
       moduleWhitelist:
         tags:
           - BorgModuleGeneric

@@ -6,16 +6,13 @@
   playTimeTracker: JobERTLeader
   setPreference: false
   startingGear: ERTLeaderGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTLeaderGear
@@ -24,7 +21,7 @@
     back: ClothingBackpackERTLeader
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHelmetERTLeader
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTLeaderPDA
@@ -48,7 +45,7 @@
     back: ClothingBackpackERTLeader
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTLeader
     id: ERTLeaderPDA
@@ -72,7 +69,7 @@
     back: ClothingBackpackERTLeader
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTLeader
     id: ERTLeaderPDA
@@ -91,14 +88,6 @@
     - CrowbarRed
     - MagazineMagnum
 
-- type: chameleonOutfit
-  id: ERTLeaderChameleonOutfit
-  job: ERTLeader
-  hasMindShield: true
-  equipment:
-    head: ClothingHeadHelmetHardsuitERTLeader
-    neck: ClothingNeckBronzeheart
-
 # Chaplain
 - type: job
   id: ERTChaplain
@@ -107,7 +96,7 @@
   playTimeTracker: JobERTChaplain
   setPreference: false
   startingGear: ERTChaplainGear
-  icon: "JobIconCentComm"
+  icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -118,8 +107,6 @@
   - !type:AddComponentSpecial
     components:
     - type: BibleUser #Lets them heal with bibles
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTChaplainGear
@@ -128,12 +115,12 @@
     back: ClothingBackpackERTChaplain
     shoes: ClothingShoesLeather
     head: ClothingHeadHatFez
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesGlasses
     neck: ClothingNeckStoleChaplain
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTChaplainPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltStorageWaistbag
     pocket1: Flare
     pocket2: DrinkWaterBottleFull
@@ -159,12 +146,12 @@
     back: ClothingBackpackERTChaplain
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesGlasses
     neck: ClothingNeckStoleChaplain
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTChaplain
     id: ERTChaplainPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltStorageWaistbag
     pocket1: Flare
     pocket2: DrinkWaterBottleFull
@@ -183,16 +170,6 @@
     - FoodBakedBunHotX
     - Lighter
 
-- type: chameleonOutfit
-  id: ERTChaplainChameleonOutfit
-  job: ERTChaplain
-  hasMindShield: true
-  equipment:
-    head: ClothingHeadHelmetHardsuitERTChaplain
-    mask: ClothingMaskGasERT
-    outerClothing: ClothingOuterHardsuitERTChaplain
-    shoes: ClothingShoesBootsMagAdv
-
 # Engineer
 - type: job
   id: ERTEngineer
@@ -201,16 +178,13 @@
   playTimeTracker: JobERTEngineer
   setPreference: false
   startingGear: ERTEngineerGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTEngineerGear
@@ -223,7 +197,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTEngineerPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltChiefEngineerFilled
     pocket1: Flare
     pocket2: GasAnalyzer
@@ -251,7 +225,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTEngineer
     id: ERTEngineerPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltChiefEngineerFilled
     pocket1: Flare
     pocket2: GasAnalyzer
@@ -268,14 +242,6 @@
     - SheetSteel
     - SheetGlass
 
-- type: chameleonOutfit
-  id: ERTEngineerChameleonOutfit
-  job: ERTEngineer
-  hasMindShield: true
-  equipment:
-    head: ClothingHeadHelmetHardsuitERTEngineer
-    neck: ClothingNeckEngineermedal
-
 # Security
 - type: job
   id: ERTSecurity
@@ -284,16 +250,13 @@
   playTimeTracker: JobERTSecurity
   setPreference: false
   startingGear: ERTEngineerGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTSecurityGear
@@ -302,11 +265,11 @@
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHelmetERTSecurity
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTSecurityPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58
     pocket2: FlashlightSeclite
@@ -326,11 +289,11 @@
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesBootsMag
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58
     pocket2: FlashlightSeclite
@@ -350,11 +313,11 @@
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesBootsMag
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
     pocket1: MagazineRifleAP
     pocket2: MagazineRifleIncendiary
@@ -369,14 +332,6 @@
     - CrowbarRed
     - MagazinePistolSP
 
-- type: chameleonOutfit
-  id: ERTSecurityChameleonOutfit
-  job: ERTSecurity
-  hasMindShield: true
-  equipment:
-    head: ClothingHeadHelmetHardsuitERTSecurity
-    neck: ClothingNeckSecuritymedal
-
 # Medical
 - type: job
   id: ERTMedical
@@ -385,16 +340,13 @@
   playTimeTracker: JobERTMedical
   setPreference: false
   startingGear: ERTMedicalGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTMedicalGear
@@ -403,11 +355,11 @@
     back: ClothingBackpackERTMedical
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHelmetERTMedic
-    eyes: ClothingEyesGlassesCentComm
+    eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesNitrile
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTMedicPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
     pocket1: Flare
   storage:
@@ -427,11 +379,11 @@
     back: ClothingBackpackERTMedical
     shoes: ClothingShoesBootsMag
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesHudCentComm
+    eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesNitrile
     outerClothing: ClothingOuterHardsuitERTMedical
     id: ERTMedicPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
     pocket1: Flare
   storage:
@@ -444,14 +396,6 @@
     - ChemistryBottleEpinephrine
     - ChemistryBottleEpinephrine
 
-- type: chameleonOutfit
-  id: ERTMedicalChameleonOutfit
-  job: ERTMedical
-  hasMindShield: true
-  equipment:
-    head: ClothingHeadHelmetHardsuitERTMedical
-    neck: ClothingNeckStethoscope
-
 # Janitor
 - type: job
   id: ERTJanitor
@@ -460,16 +404,13 @@
   playTimeTracker: JobERTJanitor
   setPreference: false
   startingGear: ERTJanitorGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTJanitorGear
@@ -481,7 +422,7 @@
     gloves: ClothingHandsGlovesColorPurple
     outerClothing: ClothingOuterArmorBasicSlim
     id: ERTJanitorPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltJanitorFilled
     pocket1: Flare
   storage:
@@ -503,7 +444,7 @@
     gloves: ClothingHandsGlovesColorPurple
     outerClothing: ClothingOuterHardsuitERTJanitor
     id: ERTJanitorPDA
-    ears: ClothingHeadsetCentCom #Starlight
+    ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltJanitorFilled
     pocket1: Flare
   storage:
@@ -514,12 +455,3 @@
     - Soap
     - CrowbarRed
     - AdvMopItem
-
-- type: chameleonOutfit
-  id: ERTJanitorChameleonOutfit
-  job: ERTJanitor
-  hasMindShield: true
-  equipment:
-    head: ClothingHeadHelmetHardsuitERTJanitor
-    neck: ClothingNeckScarfStripedPurple
-    eyes: ClothingEyesGlassesSunglasses

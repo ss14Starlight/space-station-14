@@ -7,7 +7,7 @@
   name: trait-accentless-name
   description: trait-accentless-desc
   category: SpeechTraits
-  cost: 0 # 🌟Starlight🌟
+  cost: 2
   components:
   - type: Accentless
     removes:

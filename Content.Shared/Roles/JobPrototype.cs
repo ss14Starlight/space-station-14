@@ -1,4 +1,4 @@
-﻿using Content.Shared.Access;
+using Content.Shared.Access;
 using Content.Shared.Guidebook;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.StatusIcon;
@@ -31,9 +31,6 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField("name")]
         public string Name { get; private set; } = string.Empty;
-
-        [DataField("hidden")] // 🌟Starlight🌟
-        public bool Hidden { get; private set; } = false;
 
         [ViewVariables(VVAccess.ReadOnly)]
         public string LocalizedName => Loc.GetString(Name);

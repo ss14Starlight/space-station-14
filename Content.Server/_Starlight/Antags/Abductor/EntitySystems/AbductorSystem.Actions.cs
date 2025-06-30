@@ -1,19 +1,17 @@
-using System.Linq;
-using Content.Shared._Starlight.Action;
-using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
-using Content.Shared.DoAfter;
-using Content.Shared.Effects;
-using Content.Shared.Inventory;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Starlight.Medical.Surgery;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
+using Content.Shared.Actions;
+using Content.Shared.DoAfter;
+using Content.Shared.Effects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
+using Robust.Shared.Audio.Systems;
+using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.Movement.Pulling.Components;
+using Robust.Shared.Map;
+using Content.Shared.Inventory;
+using System.Linq;
 
 namespace Content.Server.Starlight.Antags.Abductor;
 
@@ -23,8 +21,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
     [Dependency] private readonly InventorySystem _inv = default!;
-    [Dependency] private readonly StarlightActionsSystem _starlightActions = default!;
-    
+
     private static readonly EntProtoId<InstantActionComponent> _gizmoMark = "ActionGizmoMark";
     private static readonly EntProtoId<InstantActionComponent> _sendYourself = "ActionSendYourself";
     private static readonly EntProtoId<InstantActionComponent> _exitAction = "ActionExitConsole";
@@ -230,7 +227,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void AddActions(AbductorBeaconChosenBuiMsg args)
     {
         EnsureComp<AbductorsAbilitiesComponent>(args.Actor, out var comp);
-        comp.HiddenActions = _starlightActions.HideActions(args.Actor);
+        comp.HiddenActions = _actions.HideActions(args.Actor);
         _actions.AddAction(args.Actor, ref comp.ExitConsole, _exitAction);
         _actions.AddAction(args.Actor, ref comp.SendYourself, _sendYourself);
         _actions.AddAction(args.Actor, ref comp.GizmoMark, _gizmoMark);
@@ -245,6 +242,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         if (comp.GizmoMark is not null)
             _actions.RemoveAction(actor, comp.GizmoMark);
 
-        _starlightActions.UnHideActions(actor, comp.HiddenActions);
+        _actions.UnHideActions(actor, comp.HiddenActions);
     }
 }

@@ -1,5 +1,5 @@
 - type: cargoProduct
-  id: SupermatterFlatpackPurchase
+  id: SuppermatterFlatpackPurchase
   icon:
     sprite: _Starlight/Objects/Specific/supermatter.rsi
     state: supermatter

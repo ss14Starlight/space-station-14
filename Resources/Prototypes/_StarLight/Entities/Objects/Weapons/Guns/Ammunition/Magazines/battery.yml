@@ -2,7 +2,7 @@
 - type: entity
   id: BaseMagazineBattery
   name: "magazine (laser)"
-  parent: [ BaseItem ]
+  parent: [ BaseItem, BaseRestrictedContraband ]
   abstract: true
   components:
   - type: Tag

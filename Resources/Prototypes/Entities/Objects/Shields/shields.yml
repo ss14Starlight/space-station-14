@@ -331,7 +331,7 @@
 
 - type: entity
   name: mirror shield
-  parent: [ BaseShield, BaseMagicalContraband ]
+  parent: BaseShield
   id: MirrorShield
   description: Eerily glows red... you hear the geometer whispering
   components:
@@ -412,7 +412,7 @@
       heldPrefix: eshield
     - type: UseDelay
       delay: 0.5
-    - type: ToggleableVisuals
+    - type: ToggleableLightVisuals
       spriteLayer: shield
       inhandVisuals:
         left:
@@ -524,7 +524,7 @@
       heldPrefix: teleriot
     - type: UseDelay
       delay: 0.5
-    - type: ToggleableVisuals
+    - type: ToggleableLightVisuals
       spriteLayer: shield
       inhandVisuals:
         left:

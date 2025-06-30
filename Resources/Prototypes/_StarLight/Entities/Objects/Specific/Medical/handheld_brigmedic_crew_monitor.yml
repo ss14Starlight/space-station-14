@@ -1,6 +1,6 @@
 - type: entity
   name: BrigBuddy™ 5000
-  parent: [ BaseHandheldComputer, BaseSecurityContraband ]
+  parent: [ BaseHandheldComputer, BaseRestrictedContraband ]
   id: HandheldBrigmedicCrewMonitor
   description: So advanced it only tracks security personnel! Does not monitor emotional stability or competence levels of security members. Use at your own risk!
   components:

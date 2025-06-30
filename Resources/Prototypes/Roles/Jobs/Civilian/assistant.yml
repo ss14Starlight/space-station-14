@@ -9,18 +9,6 @@
   access:
   - Maintenance
 
-- type: job # Just ignore it. It’s a database workaround.
-  id: Passenger
-  hidden: true
-  name: job-name-assistant
-  description: job-description-assistant
-  playTimeTracker: JobAssistant 
-  startingGear: AssistantGear
-  icon: "JobIconAssistant"
-  supervisors: job-supervisors-everyone
-  access:
-  - Maintenance
-
 - type: startingGear
   id: AssistantGear
   equipment:
@@ -29,14 +17,3 @@
   #storage:
     #back:
     #- Stuff
-
-- type: chameleonOutfit
-  id: PassengerChameleonOutfit
-  job: Passenger
-  equipment:
-    head: ClothingHeadHatWelding
-    eyes: ClothingEyesGlassesCheapSunglasses
-    mask: ClothingMaskGas
-    neck: ClothingNeckMantle
-    outerClothing: ClothingOuterWinterCoat
-    gloves: ClothingHandsGlovesColorYellowBudget

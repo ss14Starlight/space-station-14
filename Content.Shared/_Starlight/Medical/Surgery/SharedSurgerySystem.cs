@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Content.Server.Administration.Systems;
+using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
+using Content.Shared.Starlight.Medical.Surgery.Events;
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
@@ -14,9 +16,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -48,55 +47,82 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
+
+    private readonly Dictionary<EntProtoId, EntityUid> _surgeries = new();
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
 
         InitializeSteps();
         InitializeConditions();
     }
 
-    public bool IsSurgeryValid
-        (
-            EntityUid body,
-            EntityUid targetPart,
-            EntProtoId surgery,
-            EntProtoId stepId,
-            out Entity<SurgeryComponent> surgeryEnt,
-            out Entity<BodyPartComponent> partEnt,
-            out EntityUid step
-        )
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
+    {
+        _surgeries.Clear();
+    }
+
+    public bool IsSurgeryValid(EntityUid body, EntityUid targetPart, EntProtoId surgery, EntProtoId stepId, out Entity<SurgeryComponent> surgeryEnt, out Entity<BodyPartComponent> part, out EntityUid step)
     {
         surgeryEnt = default;
-        partEnt = default;
+        part = default;
         step = default;
 
-        if (!HasComp<SurgeryTargetComponent>(body) 
-             || !IsLyingDown(body) 
-             || !_entitySystem.TryEntity(targetPart, out partEnt) 
-             || !_entitySystem.TryGetSingleton(surgery, out var surgeryEntId) 
-             || !_entitySystem.TryEntity(surgeryEntId, out surgeryEnt) 
-             || !_entitySystem.TryGetSingleton(stepId, out step)
-             || !surgeryEnt.Comp.Steps.Contains(stepId))
-            return false;
-
-        var progress = EnsureComp<SurgeryProgressComponent>(targetPart);
+        if (!HasComp<SurgeryTargetComponent>(body) ||
+            !IsLyingDown(body) ||
+            !TryComp(targetPart, out BodyPartComponent? partComp) ||
+            GetSingleton(surgery) is not { } surgeryEntId ||
+            !TryComp(surgeryEntId, out SurgeryComponent? surgeryComp) ||
+            !surgeryComp.Steps.Contains(stepId) ||
+            GetSingleton(stepId) is not { } stepEnt) return false;
 
         var ev = new SurgeryValidEvent(body, targetPart);
 
+        if (!TryComp<SurgeryProgressComponent>(targetPart, out var progress))
+        {
+            progress = new SurgeryProgressComponent();
+            AddComp(targetPart, progress);
+        }
+
         if (!progress.StartedSurgeries.Contains(surgery))
         {
-            RaiseLocalEvent(step, ref ev);
+            RaiseLocalEvent(stepEnt, ref ev);
             RaiseLocalEvent(surgeryEntId, ref ev);
         }
 
-        return !ev.Cancelled;
+        if (ev.Cancelled)
+            return false;
+
+        surgeryEnt = (surgeryEntId, surgeryComp);
+        part = (targetPart, partComp);
+        step = stepEnt;
+        return true;
     }
 
-    protected List<EntityUid> GetTools(EntityUid surgeon) => [.. _hands.EnumerateHeld(surgeon)];
+    public EntityUid? GetSingleton(EntProtoId surgeryOrStep)
+    {
+        if (!_prototypes.HasIndex(surgeryOrStep))
+            return null;
+
+        // This (for now) assumes that surgery entity data remains unchanged between client
+        // and server
+        // if it does not you get the bullet
+        if (!_surgeries.TryGetValue(surgeryOrStep, out var ent) || TerminatingOrDeleted(ent))
+        {
+            ent = Spawn(surgeryOrStep, MapCoordinates.Nullspace);
+            _surgeries[surgeryOrStep] = ent;
+        }
+
+        return ent;
+    }
+
+    protected List<EntityUid> GetTools(EntityUid surgeon)
+    {
+        return _hands.EnumerateHeld(surgeon).ToList();
+    }
 
     public bool IsLyingDown(EntityUid entity)
     {

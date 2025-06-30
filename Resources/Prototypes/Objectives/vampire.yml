@@ -10,7 +10,8 @@
     issuer: objective-issuer-vampire
   - type: RoleRequirement
     roles:
-    - VampireRole
+      mindRoles:
+      - VampireRole
       
 - type: entity
   abstract: true

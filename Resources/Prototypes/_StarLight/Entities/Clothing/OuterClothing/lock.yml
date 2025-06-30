@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingOuterHardsuitJuggernaut, BaseSyndicateContraband ]
+  parent: ClothingOuterHardsuitJuggernaut
   id: ClothingOuterHardsuitJuggernautLocked
   suffix: Locked
   components:

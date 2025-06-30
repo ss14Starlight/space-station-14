@@ -27,9 +27,8 @@
     baseLayer: base
     layerStates:
     - icon
-    layerFunction: Threshold
-  - type: StackLayerThreshold
-    thresholds: [1]
+    layerCountStates:
+    - 1
   - type: Sprite
     sprite: _Starlight/Objects/Economy/salvage_ticket.rsi
     state: icon
@@ -62,7 +61,7 @@
 
 - type: stack
   id: SalvageTicket
-  name: stack-ticket
+  name: ticket
   icon: { sprite: /Textures/_Starlight/Objects/Economy/salvage_ticket.rsi, state: icon }
   spawn: SalvageTicket
   

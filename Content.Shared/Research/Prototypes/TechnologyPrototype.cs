@@ -1,5 +1,4 @@
-﻿using Content.Shared.Radio;
-using Robust.Shared.Prototypes;
+﻿using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Research.Prototypes;
@@ -70,12 +69,6 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// </summary>
     [DataField]
     public IReadOnlyList<GenericUnlock> GenericUnlocks = new List<GenericUnlock>();
-
-    /// <summary>
-    /// Radio Channel to broadast on in addition to science when a technology of this discipline is unlocked.
-    /// <\summary>
-    [DataField("radioChannels", required: false)]
-    public List<ProtoId<RadioChannelPrototype>> RadioChannels = [];
 }
 
 [DataDefinition]

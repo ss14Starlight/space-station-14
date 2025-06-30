@@ -5,16 +5,13 @@
   playTimeTracker: JobCBURN
   setPreference: false
   startingGear: CBURNGear
-  icon: "JobIconCentComm"
+  icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: CBURNGear
@@ -22,8 +19,8 @@
     jumpsuit: ClothingUniformJumpsuitColorBrown
     back: ClothingBackpackDuffelCBURN
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
-    ears: ClothingHeadsetCentCom #Starlight
+    eyes: ClothingEyesGlassesSecurity
+    ears: ClothingHeadsetAltCentCom
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
     shoes: ClothingShoesBootsCombatFilled
@@ -38,11 +35,3 @@
     - GrenadeFlashBang
     - PillAmbuzolPlus
     - PillAmbuzol
-
-- type: chameleonOutfit
-  id: CBURNChameleonOutfit
-  job: CBURN
-  hasMindShield: true
-  equipment:
-    head: ClothingHeadHelmetCBURN
-    neck: ClothingNeckScarfStripedBrown

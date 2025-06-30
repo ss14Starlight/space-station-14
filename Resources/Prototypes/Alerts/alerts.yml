@@ -7,7 +7,6 @@
     - alertType: ChangelingBiomass
     - category: Health
     - category: Stamina
-    - alertType: Shadekin # Starlight
     - alertType: ChangelingChemicals
     - alertType: SuitPower
     - category: Internals
@@ -27,7 +26,6 @@
     - category: Hunger
     - category: Thirst
     - alertType: Magboots
-    - alertType: Rooted
     - alertType: Pacified
 
 - type: entity
@@ -138,7 +136,6 @@
     state: walking
   name: alerts-walking-name
   description: alerts-walking-desc
-  clientHandled: true
 
 - type: alert
   id: Stun

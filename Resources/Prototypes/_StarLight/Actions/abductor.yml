@@ -4,15 +4,12 @@
   name: Exit console
   description: Exit console.
   components:
-  - type: Action
+  - type: InstantAction
     priority: -20
     itemIconStyle: BigAction
-    checkConsciousness: false
-    checkCanInteract: false
     icon:
       sprite: _Starlight/Interface/Actions/actions_abductor.rsi
       state: exit
-  - type: InstantAction
     event: !type:ExitConsoleEvent
 
 - type: entity
@@ -20,19 +17,15 @@
   name: Send yourself
   description: send yourself.
   components:
-  - type: Action
+  - type: WorldTargetAction
     useDelay: 10
     priority: -19
-    checkConsciousness: false
-    checkCanInteract: false
+    range: -1
+    checkCanAccess: false
     itemIconStyle: BigAction
     icon:
       sprite: _Starlight/Interface/Actions/actions_abductor.rsi
       state: send-yourself
-  - type: TargetAction
-    checkCanAccess: false
-    range: -1
-  - type: WorldTargetAction
     event: !type:SendYourselfEvent
     
 - type: entity
@@ -40,16 +33,15 @@
   name: Mark
   description: using gizmo from your pockets to mark agent.
   components:
-  - type: Action
+  - type: EntityTargetAction
     useDelay: 10
     priority: -18
+    range: -1
+    checkCanAccess: false
     itemIconStyle: BigAction
     icon:
       sprite: _Starlight/Interface/Actions/actions_abductor.rsi
       state: gizmo
-  - type: TargetAction
-    range: -1
-  - type: EntityTargetAction
     event: !type:GizmoMarkEvent
 
 - type: entity
@@ -57,16 +49,12 @@
   name: return
   description: return to the ship.
   components:
-  - type: Action
+  - type: InstantAction
     useDelay: 30
-    priority: -12
-    checkConsciousness: false
-    checkCanInteract: false
-    itemIconStyle: BigAction
     icon:
       sprite: _Starlight/Interface/Actions/actions_abductor.rsi
       state: implant
-  - type: InstantAction
+    priority: -12
     event: !type:AbductorReturnToShipEvent
 
 #- type: entity

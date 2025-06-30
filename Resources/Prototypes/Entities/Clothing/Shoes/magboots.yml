@@ -9,7 +9,7 @@
     sprite: Clothing/Shoes/Boots/magboots.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleableVisuals.Layer" ]
+      map: [ "enum.ToggleVisuals.Layer" ]
   - type: Clothing
     sprite: Clothing/Shoes/Boots/magboots.rsi
   - type: ToggleClothing
@@ -18,10 +18,6 @@
   - type: ComponentToggler
     components:
     - type: NoSlip
-  - type: ItemTogglePrefix
-    prefixOn: on
-  - type: ToggleClothingPrefix
-    prefixOn: on
   - type: Magboots
   - type: ClothingSpeedModifier
     walkModifier: 0.85
@@ -29,8 +25,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
           True: {state: icon-on}
           False: {state: icon}
   - type: StaticPrice
@@ -115,12 +111,10 @@
     size: Normal
 
 - type: entity
-  parent: BaseAction
   id: ActionToggleMagboots
   name: Toggle Magboots
   description: Toggles the magboots on and off.
   components:
-  - type: Action
-    itemIconStyle: BigItem
   - type: InstantAction
+    itemIconStyle: BigItem
     event: !type:ToggleActionEvent

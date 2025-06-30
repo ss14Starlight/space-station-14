@@ -97,13 +97,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         TryComp<FingerprintComponent>(player, out var fingerprintComponent);
         TryComp<DnaComponent>(player, out var dnaComponent);
 
-        /// Starlight - Start
-        string specie = profile.Species;
-        if (!string.IsNullOrEmpty(profile.CustomSpecieName))
-            specie = profile.CustomSpecieName + " (" + profile.Species + ")";
-        /// Starlight - End
-
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie)
+        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
     }
 
 
@@ -399,10 +393,6 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         {
             StationRecordFilterType.Name =>
                 !someRecord.Name.ToLower().Contains(filterLowerCaseValue),
-            StationRecordFilterType.Job =>
-                !someRecord.JobTitle.ToLower().Contains(filterLowerCaseValue),
-            StationRecordFilterType.Species =>
-                !someRecord.Species.ToLower().Contains(filterLowerCaseValue),
             StationRecordFilterType.Prints => someRecord.Fingerprint != null
                 && IsFilterWithSomeCodeValue(someRecord.Fingerprint, filterLowerCaseValue),
             StationRecordFilterType.DNA => someRecord.DNA != null

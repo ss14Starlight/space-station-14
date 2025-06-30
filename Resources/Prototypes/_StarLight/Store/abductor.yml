@@ -33,9 +33,3 @@
   name: abductors-ui-shop-AbductorExtractor
   cost: 2
   productEntity: AbductorExtractor
-  
-- type: abductorListing
-  id: VendingMachineRestockAbductorDispenser
-  name: abductors-ui-shop-VendingMachineRestockAbductorDispenser
-  cost: 2
-  productEntity: VendingMachineRestockAbductorDispenser

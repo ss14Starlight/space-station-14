@@ -8,5 +8,3 @@ collective-mind-abductor = Abductor
 collective-mind-spider = Spider
 collective-mind-changeling = Ling
 collective-mind-cluwne = Cluwn
-collective-mind-nexus = Nexus User
-collective-mind-empathy = Marish
