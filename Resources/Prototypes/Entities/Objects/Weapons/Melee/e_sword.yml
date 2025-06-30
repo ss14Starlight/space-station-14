@@ -74,6 +74,7 @@
       DisablerBolt: 0.60
       LaserBolt: 0.60
       BulletDisabler: 0.60
+      BulletDisablerSmgSpread: 0.60
       BulletLaserSpread: 0.60
       BulletLaserSpreadNarrow: 0.60
       BulletDisablerSmg: 0.55
@@ -357,6 +358,7 @@
       DisablerBolt: 0.60
       LaserBolt: 0.60
       BulletDisabler: 0.60
+      BulletDisablerSmgSpread: 0.60
       BulletLaserSpread: 0.60
       BulletLaserSpreadNarrow: 0.60
       BulletDisablerSmg: 0.55
