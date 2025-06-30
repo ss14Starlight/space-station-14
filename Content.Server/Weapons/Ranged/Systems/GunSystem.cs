@@ -288,7 +288,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                             effects.Add((fromEffect, result.Distance, dir.Normalized().ToAngle(), hit));
 
-                            var ev = new HitScanReflectAttemptEvent(user, gunUid, hitscan.Reflective, dir, false);
+                            var ev = new HitScanReflectAttemptEvent(user, gunUid, hitscan.Reflective, dir, false, hitscan.ID); //STARLIGHT
                             RaiseLocalEvent(hit, ref ev);
 
                             if (!ev.Reflected)
@@ -485,7 +485,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     if (hitscan.Reflective != ReflectType.None)
                     {
-                        var ev = new HitScanReflectAttemptEvent(user, gunUid, hitscan.Reflective, dir, false);
+                        var ev = new HitScanReflectAttemptEvent(user, gunUid, hitscan.Reflective, dir, false, hitscan.ID);
                         RaiseLocalEvent(hit, ref ev);
 
                         if (ev.Reflected)
