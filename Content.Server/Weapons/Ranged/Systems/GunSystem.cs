@@ -485,7 +485,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     if (hitscan.Reflective != ReflectType.None)
                     {
-                        var ev = new HitScanReflectAttemptEvent(user, gunUid, hitscan.Reflective, dir, false, hitscan.ID);
+                        var ev = new HitScanReflectAttemptEvent(user, gunUid, hitscan.Reflective, dir, false, hitscan.ID); //STARLIGHT
                         RaiseLocalEvent(hit, ref ev);
 
                         if (ev.Reflected)
