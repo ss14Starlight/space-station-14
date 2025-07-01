@@ -27,5 +27,7 @@ public enum TextScreenVisuals : byte
     ///     Change text color on the entire screen
     ///     Expects a <see cref="Color"/>.
     /// </summary>
-    Color
+    Color,
+
+    AlertLevel // Starlight
 }

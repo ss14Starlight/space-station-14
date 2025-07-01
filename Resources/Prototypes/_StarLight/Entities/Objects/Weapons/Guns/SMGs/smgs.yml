@@ -1,7 +1,7 @@
 # Rubber
 - type: entity
   name: Drozd
-  parent: WeaponSubMachineGunDrozd
+  parent: [WeaponSubMachineGunDrozd, BaseSecurityContraband]
   id: WeaponSubMachineGunDrozdRubber
   suffix: Non-Lethal
   components:
@@ -23,29 +23,148 @@
           whitelist:
             tags:
               - CartridgePistol
-
+            
 - type: entity
-  name: Vector
-  parent: WeaponSubMachineGunVector
-  id: WeaponSubMachineGunVectorRubber
-  description: An excellent fully automatic Heavy SMG. Uses .45 magnum ammo.
-  suffix: Non-Lethal
+  name: SP-91-RC
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
+  id: WeaponSubMachineGunSP91RC
+  description: Compact submachine gun designed for riot control.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/sp91rc.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -19
+    maxAngle: -16
+  - type: Gun
+    fireRate: 13
+    selectedMode: Burst
+    shotsPerBurst: 5
+    availableModes:
+      - Burst
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/1sp_91.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+    
+- type: entity
+  name: Type U3 Uzi
+  parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
+  id: WeaponSubMachineGunUzi
+  description: Lightweight submachine gun with a 32-round magazine that has single or 4 round firing modes.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/uzi.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 12
+    selectedMode: FullAuto
+    shotsPerBurst: 4
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/uzi.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineMagnumSubMachineGunRubber
+        startingItem: MagazinePistolSubMachineGunUzi
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineMagnumSubMachineGun
+            - MagazineSMGUzi
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnumRubber
+        startingItem: CartridgePistolSP
         priority: 1
         whitelist:
           tags:
-            - CartridgeMagnum
+            - CartridgePistol
+#PPSH
+- type: entity
+  name: PPSH 59 SMG
+  parent: [BaseWeaponSubMachineGun, BaseSovietContraband]
+  id: WeaponSubMachineGunPPSH
+  description: Beloved by USSP veterans and feared by friendly fire protocols everywhere. Uses .35 ammo.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/PPSh59.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/PPSh59.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -9
+    maxAngle: -9
+  - type: Gun
+    minAngle: 21
+    maxAngle: 32
+    fireRate: 15
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/ppsh.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGunPPSH
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineSMGPPSH
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol

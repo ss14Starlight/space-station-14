@@ -2,46 +2,104 @@
   id: JobRoboticist
   groups:
   - RoboticistHead
+  - RoboticistGoggles
   - RoboticistJumpsuit
+  - RoboticistGloves
   - RoboticistOuterClothing
   - RoboticistBackpack
-  - ScientistShoes
+  - RoboticistShoes
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  
+
 - type: roleLoadout
   id: JobMagistrate
   groups:
   - CommonBackpack
+  - MagistrateShoes
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
   
 - type: roleLoadout
+  id: JobSurgeon
+  groups:
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
   id: JobNanoTrasenRepresentative
   groups:
   - NanoTrasenRepresentativeJumpsuit
+  - NanoTrasenRepresentativeEyewear
   - CommonBackpack
+  - NanotrasenRepresentativeShoes
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
-  
+
 - type: roleLoadout
   id: JobIAA
   groups:
   - LawyerNeck
   - LawyerJumpsuit
   - CommonBackpack
+  - LawyerShoes
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
-  
+
 - type: roleLoadout
   id: JobBlueShield
   groups:
   - BlueShieldJumpsuit
   - BlueShieldBackpack
+  - BlueShieldEyewear
   - Trinkets
   - SurvivalSecurity
   - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobMiningSpecialist
+  groups:
+  - GroupTankHarness
+  - SalvageSpecialistBackpack
+  - SalvageSpecialistOuterClothing
+  - SalvageSpecialistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobMailTech
+  groups:
+  - GroupTankHarness
+  - CargoTechnicianHead
+  - CargoTechnicianJumpsuit
+  - CargoTechnicianBackpack
+  - CargoTechnicianOuterClothing
+  - CargoTechnicianShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobBrigmedic
+  groups:
+    - BrigmedicHead
+    - BrigmedicJumpsuit
+    - BrigmedicBackpack
+    - BrigmedicOuterClothing
+    - BrigmedicBelt
+    - BrigmedicGloves
+    - BrigmedicEyewear
+    - SecurityShoes
+    - SecurityNonLethalWeapon
+    - SecuritySidearm
+    - SurvivalSecurity
+    - Trinkets
+    - SecurityStar
+    - GroupSpeciesBreathToolSecurity

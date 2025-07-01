@@ -81,6 +81,13 @@
   - type: Sprite
     layers:
       - state: eyeball
+  - type: FunctionalOrgan
+    comps: 
+    - type: CycloriteVision
+    - type: NightVision
+  - type: OrganVisualization
+    layer: Eyes
+    prototype: MobCycloriteEyes
 
 - type: entity
   id: OrganCycloriteTongue

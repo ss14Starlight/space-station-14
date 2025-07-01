@@ -146461,8 +146461,6 @@ entities:
     - type: VentCrawTube
       connected: True
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 32175
   - uid: 32100
@@ -175269,8 +175267,6 @@ entities:
     - type: Transform
       pos: -37.44216,65.286
       parent: 12
-    - type: Blocking
-      blockingToggleActionEntity: 20777
     - type: ActionsContainer
     - type: ContainerContainer
       containers:
@@ -175284,8 +175280,6 @@ entities:
     - type: Transform
       pos: -37.846073,65.249306
       parent: 12
-    - type: Blocking
-      blockingToggleActionEntity: 19882
     - type: ActionsContainer
     - type: ContainerContainer
       containers:
@@ -180753,7 +180747,7 @@ entities:
     - type: Transform
       pos: -20.5,-46.5
       parent: 12
-- proto: SpawnPointPassenger
+- proto: SpawnPointAssistant
   entities:
   - uid: 21631
     components:
@@ -214045,8 +214039,6 @@ entities:
       rot: -25.132741228718352 rad
       pos: -3.3112438,-68.32195
       parent: 12
-    - type: Blocking
-      blockingToggleActionEntity: 31202
     - type: ActionsContainer
     - type: ContainerContainer
       containers:

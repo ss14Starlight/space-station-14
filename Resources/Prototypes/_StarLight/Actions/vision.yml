@@ -1,0 +1,14 @@
+- type: entity
+  id: ActionToggleThermal
+  name: Toggle Thermal Vision
+  description: Enable or disable thermal vision.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 1
+    priority: -20
+    icon:
+      sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+      state: eyes_thermal
+  - type: InstantAction
+    event: !type:ToggleThermalVisionEvent

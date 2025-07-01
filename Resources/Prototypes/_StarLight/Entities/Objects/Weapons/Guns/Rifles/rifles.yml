@@ -1,6 +1,6 @@
 - type: entity
   name: Lecter
-  parent: WeaponRifleLecter
+  parent: [WeaponRifleLecter, BaseSecurityContraband]
   id: WeaponRifleLecterRubber
   suffix: Non-lethal
   components:
@@ -25,7 +25,7 @@
             
 - type: entity
   name: lr-30
-  parent: [BaseItem, BaseGunWieldable]
+  parent: [BaseItem, BaseGunWieldable, BaseSecuritySalvageContraband]
   id: WeaponLr30
   description: Energy carbine with lethal mode.
   components:
@@ -71,7 +71,7 @@
   
 - type: entity
   name: IK-60 laser carbine
-  parent: [BaseItem, BaseGunWieldable]
+  parent: [BaseItem, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponIK60
   description: A short, compact rifle-like carbine that relies more on battery-powered ammunition rather than a built-in battery. Used by the Nanotrasen Space Force in combat operations.
   components:
@@ -116,3 +116,56 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
+  
+- type: entity
+  name: ARG
+  parent: [ WeaponRifleLecter, BaseCentcommContraband ]
+  id: WeaponRifleARG
+  description: A robust assault rile used by Nanotrasen fighting forces.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
+  - type: Gun
+    fireRate: 7
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
+      
+- type: entity
+  name: Aussec Armory M-52
+  parent: [WeaponRifleLecter, BaseSecurityContraband]
+  id: WeaponRifleM52
+  description: One of the least popular examples of heavy assault rifles. It has impressive firepower.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/m-52.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/m-52.rsi
+  - type: Gun
+    fireRate: 8
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/aussec.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleM52SP
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifleM52
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifleSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle

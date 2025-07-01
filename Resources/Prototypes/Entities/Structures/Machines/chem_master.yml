@@ -16,9 +16,17 @@
       map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: Icon
     sprite: Structures/Machines/mixer.rsi
-    state: mixer_loaded
+    state: mixer_empty
+  - type: ItemMapper
+    containerWhitelist: [beakerSlot]
+    mapLayers:
+      mixer_loaded:
+        whitelist:
+          components:
+          - FitsInDispenser
   - type: ChemMaster
     pillDosageLimit: 20
+    patchDosageLimit: 20
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -83,6 +91,7 @@
           tags:
           - Bottle
           - PillCanister
+          - PatchPack # Starlight-edit
   - type: SolutionContainerManager
     solutions:
       buffer: {}

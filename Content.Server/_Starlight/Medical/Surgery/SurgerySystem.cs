@@ -1,31 +1,25 @@
 ﻿using System.Linq;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
-using Content.Server.Hands.Systems;
-using Content.Server.Humanoid;
 using Content.Server.Popups;
 using Content.Shared.Body.Part;
 using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Damage;
-using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.HealthExaminable;
 using Content.Shared.Interaction;
 using Content.Shared.Prototypes;
-using Content.Shared.Tag;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Server.Administration.Systems;
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
 public sealed partial class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -33,9 +27,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ContainerSystem _containers = default!;
-    [Dependency] private readonly BlindableSystem _blindable = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
+    [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()
@@ -47,17 +39,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 
         LoadPrototypes();
-    }
-
-    public override void Update(float frameTime)
-    {
-        _delayAccumulator += frameTime;
-        if (_delayAccumulator > 0.7)
-        {
-            _delayAccumulator = 0;
-            while (_delayQueue.TryDequeue(out var action))
-                action();
-        }
     }
 
     protected override void RefreshUI(EntityUid body)
@@ -91,7 +72,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         foreach (var surgery in _surgeries)
         {
-            if (GetSingleton(surgery) is not { } surgeryEnt
+            if (!_entitySystem.TryGetSingleton(surgery, out var surgeryEnt)
                 || !TryComp(surgeryEnt, out SurgeryComponent? surgeryComp)
                 || (surgeryComp.Requirement.Count() > 0 && !progress.CompletedSurgeries.Any(x => surgeryComp.Requirement.Contains(x))))
                 continue;

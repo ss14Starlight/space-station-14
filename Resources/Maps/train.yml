@@ -71,9 +71,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: Parallax
@@ -89187,7 +89185,7 @@ entities:
     - type: Transform
       pos: -2.5,-165.5
       parent: 2
-- proto: SpawnPointPassenger
+- proto: SpawnPointAssistant
   entities:
   - uid: 13362
     components:
@@ -92710,7 +92708,7 @@ entities:
     - type: Transform
       pos: -1.2981937,-166.44269
       parent: 2
-- proto: ToyFigurinePassenger
+- proto: ToyFigurineAssistant
   entities:
   - uid: 13921
     components:

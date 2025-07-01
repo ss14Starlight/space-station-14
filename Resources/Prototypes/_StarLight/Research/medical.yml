@@ -17,6 +17,8 @@
     - Cautery
     - Saw
     - Hemostat
+  radioChannels:
+  - Medical
 
 - type: technology
   id: CyberLimbsTech
@@ -36,6 +38,10 @@
     - RightLegCyber
     - LeftFootCyber
     - RightFootCyber
+  radioChannels:
+  - Medical
+
+# Tier 2
 
 - type: technology
   id: SurgeryTechAdvanced
@@ -54,9 +60,9 @@
     - RetractorAdvanced
     - HemostatAdvanced
   technologyPrerequisites:
-  - SurgeryTech
-    
-# Tier 2
+    - SurgeryTech
+  radioChannels:
+  - Medical
 
 - type: technology
   id: CyberImplantsTech
@@ -72,4 +78,65 @@
     - EyeImplantMedical
     - EyeImplantSecurity
   technologyPrerequisites:
-  - CyberLimbsTech
+    - CyberLimbsTech
+  radioChannels:
+  - Security
+  - Medical
+
+# Tier 3
+
+- type: technology
+  id: FunctionalCyberLimbsTech
+  name: research-technology-functional-cyberlimbs
+  icon:
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
+  discipline: Biochemical
+  tier: 3
+  cost: 9320
+  recipeUnlocks:
+    - LeftArmCyberReaper
+    - RightArmCyberReaper
+    - LeftArmCyberMechwright
+    - RightArmCyberMechwright
+    - LeftArmCyberBulwark
+    - RightArmCyberBulwark
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Security
+  - Medical
+
+- type: technology
+  id: CyberEyeNightVision
+  name: research-technology-nightvision-eyes
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eyes_night
+  discipline: Biochemical
+  tier: 3
+  cost: 7680
+  recipeUnlocks:
+    - CyberEyeNightVision
+  technologyPrerequisites:
+    - CyberImplantsTech
+  radioChannels:
+  - Security
+  - Medical
+  
+- type: technology
+  id: CyberEyeThermalVision
+  name: research-technology-thermalvision-eyes
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eyes_thermal
+  discipline: Biochemical
+  tier: 3
+  cost: 9320
+  recipeUnlocks:
+    - CyberEyeThermal
+  technologyPrerequisites:
+    - CyberEyeNightVision
+  radioChannels:
+  - Security
+  - Medical
