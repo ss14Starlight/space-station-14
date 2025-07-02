@@ -1,7 +1,7 @@
 - type: entity
-  name: Miniature Hypospray
+  name: miniature hypospray # Get Happy or Faush to have this thing take vials.
   parent: [BaseItem, BaseSecurityContraband]
-  description: A compact sterile injector for rapid chemical injection in combat situations.
+  description: A compact sterile spray for rapid chemical injection in combat situations.
   id: BrigHypo
   components:
   - type: Sprite
@@ -24,3 +24,24 @@
     delay: 0.5
   - type: StaticPrice
     price: 750
+
+- type: entity
+  name: hypoinjector
+  parent: [BaseSyringe, BaseMedicalContraband]
+  description: A sterile discount hypospray for rapid chemical injection.
+  id: FastSyringe
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
+    state: hypo
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
+    size: Tiny
+  - type: Injector
+    transferAmount: 15
+    toggleState: Draw
+    actualDelay: -100
+  - type: Tag
+    tags:
+    - Syringe
+    - Trash

@@ -1,10 +1,8 @@
-# TODO: Have a seperate lid state that can be popped on and off (not as a seperate item) that changes whether the vial can be spilled or not.
-
 - type: entity
-  name: Reinforced Vial
+  name: miniature vial
   parent: BaseItem
-  id: ReinforcedEmptyChemistryVial
-  description: A small vial made with blast-resistant glass. #My workaround for being unable to make a container explosion-proof.
+  id: ReinforcedMiniatureEmptyChemistryVial
+  description: A small vial made with blast-resistant glass.
   components:
   - type: Tag
     tags:
@@ -13,7 +11,7 @@
     - Vial
   - type: PhysicalComposition
     materialComposition:
-      Glass: 25
+      SheetRGlass: 25
   - type: FitsInDispenser
     solution: beaker
   - type: SpaceGarbage
@@ -35,7 +33,7 @@
   - type: SolutionContainerManager
     solutions:
       beaker:
-        maxVol: 30
+        maxVol: 5
   - type: MixableSolution
     solution: beaker
   - type: RefillableSolution
@@ -47,7 +45,7 @@
   - type: DrawableSolution
     solution: beaker
   - type: SolutionTransfer
-    maxTransferAmount: 30
+    maxTransferAmount: 5
     canChangeTransferAmount: true
   - type: SolutionItemStatus
     solution: beaker
