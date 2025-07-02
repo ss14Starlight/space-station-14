@@ -20,7 +20,6 @@
       max: 2
       playerRatio: 20 # if I counted right this should be about 40 players for 2 BBs
       allowNonHumans: true
-      multiAntagSetting: NotExclusive
       briefing:
         text: blood-brother-initial-role-greeting
         color: MediumVioletRed

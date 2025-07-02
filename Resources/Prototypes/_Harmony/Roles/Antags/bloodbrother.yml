@@ -8,3 +8,14 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 3600 # 1h
+
+# not actually given out, only used to check the preference
+- type: antag
+  id: BloodBrotherConvertible
+  name: roles-antag-blood-brother-convertible-name
+  setPreference: true
+  objective: roles-antag-blood-brother-objective
+  guides: [ BloodBrothers ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 3600 # 1h

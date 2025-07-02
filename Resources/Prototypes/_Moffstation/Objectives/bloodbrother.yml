@@ -12,10 +12,6 @@
   id: BloodBrotherJailbreakObjective
 
 - type: entity
-  parent: [BaseBloodBrotherObjective, LeaveCallingCardObjective]
-  id: BloodBrotherLeaveCallingCardObjective
-
-- type: entity
   parent: [BaseBloodBrotherObjective, RobDepartmentObjective]
   id: BloodBrotherRobDepartmentObjective
 
@@ -34,3 +30,18 @@
 - type: entity
   parent: [BaseBloodBrotherObjective, TeachLessonObjective]
   id: BloodBrotherTeachLessonObjective
+
+- type: entity
+  parent: [ BaseBloodBrotherObjective, BigIronStealObjective ]
+  id: BloodBrotherBigIronStealObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, LeaveCallingCardObjective]
+  id: BloodBrotherLeaveCallingCardObjective
+  components:
+  - type: Objective
+    difficulty: 0.2
+    icon:
+      sprite: Objects/Misc/bureaucracy.rsi
+      state: paper_receipt_horizontal
+    unique: true # only one person needs to really send a message.

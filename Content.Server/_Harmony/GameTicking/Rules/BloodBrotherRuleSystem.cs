@@ -15,6 +15,7 @@ using Content.Server.Stunnable;
 using Content.Shared._Harmony.BloodBrothers.Components;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
@@ -30,6 +31,7 @@ namespace Content.Server._Harmony.GameTicking.Rules;
 public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComponent>
 {
     [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly AntagSelectionSystem _antagSystem = default!;
@@ -95,7 +97,13 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
 
         if (!CanConvert(entity, args.Target, out var failureMessage))
         {
-            _popupSystem.PopupEntity(Loc.GetString(failureMessage, ("converter", entity), ("converted", args.Target)), args.Target, entity, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(
+                Loc.GetString(failureMessage,
+                    ("converter", Identity.Entity(entity, _entityManager)),
+                    ("converted", Identity.Entity(args.Target, _entityManager))),
+                args.Target,
+                entity,
+                PopupType.MediumCaution);
             return;
         }
 
@@ -147,7 +155,10 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
             entity.Comp.BriefingSound);
 
         _popupSystem.PopupEntity(
-            Loc.GetString(entity.Comp.ConvertPopupText, ("converter", entity), ("converted", args.Target)),
+            Loc.GetString(
+                entity.Comp.ConvertPopupText,
+                ("converter", Identity.Entity(entity, _entityManager)),
+                ("converted", Identity.Entity(args.Target, _entityManager))),
             args.Target,
             PopupType.LargeCaution);
 
@@ -166,11 +177,23 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
     {
         if (!CanConvert(entity, args.Target, out var failureMessage))
         {
-            _popupSystem.PopupEntity(Loc.GetString(failureMessage, ("converter", entity), ("converted", args.Target)), args.Target, entity, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(
+                Loc.GetString(failureMessage,
+                    ("converter", Identity.Entity(entity, _entityManager)),
+                    ("converted", Identity.Entity(args.Target, _entityManager))),
+                args.Target,
+                entity,
+                PopupType.MediumCaution);
             return;
         }
 
-        _popupSystem.PopupEntity(Loc.GetString("blood-brother-convert-convertible", ("converter", entity), ("converted", args.Target)), args.Target, entity, PopupType.Medium);
+        _popupSystem.PopupEntity(
+            Loc.GetString("blood-brother-convert-convertible",
+                ("converter", Identity.Entity(entity, _entityManager)),
+                ("converted", Identity.Entity(args.Target, _entityManager))),
+            args.Target,
+            entity,
+            PopupType.Medium);
     }
 
     private bool CanConvert(

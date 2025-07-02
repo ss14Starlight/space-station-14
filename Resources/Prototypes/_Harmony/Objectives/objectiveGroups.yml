@@ -30,6 +30,7 @@
     BloodBrotherCaptainJetpackStealObjective: 0.5
     BloodBrotherHandTeleporterStealObjective: 0.5
     BloodBrotherEnergyShotgunStealObjective: 0.5
+    BloodBrotherBigIronStealObjective: 0.5 # Moffstation - Added big iron steal objective.
 
 - type: weightedRandom
   id: BloodBrotherObjectiveGroupKill

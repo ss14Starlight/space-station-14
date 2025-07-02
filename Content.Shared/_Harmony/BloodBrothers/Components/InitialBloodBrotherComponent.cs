@@ -38,7 +38,7 @@ public sealed partial class InitialBloodBrotherComponent : Component
     /// If null, the check will be skipped.
     /// </summary>
     [DataField]
-    public ProtoId<AntagPrototype>? RequiredAntagPreference = "BloodBrother";
+    public ProtoId<AntagPrototype>? RequiredAntagPreference = "BloodBrotherConvertible";
 
     /// <summary>
     /// The popup that will happen when a blood brother is converted.
