@@ -25,7 +25,7 @@
   - type: StaticPrice
     price: 750
 
-- type: entity
+- type: entity #Of fucking course speed is hardcoded. You know the drill.
   name: hypoinjector
   parent: [BaseSyringe, BaseMedicalContraband]
   description: A sterile discount hypospray for rapid chemical injection.

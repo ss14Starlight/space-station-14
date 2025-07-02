@@ -1,0 +1,65 @@
+- type: entity
+  name: reinforced bottle
+  parent: BaseItem
+  id: EmptyBottleReinforced
+  description: A round, explosion proof bottle.
+  components:
+  - type: Tag
+    tags:
+    - Bottle
+    - Trash
+  - type: PhysicalComposition
+    materialComposition:
+      SheetRGlass: 25
+  - type: SpaceGarbage
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/reinforced_bottle.rsi
+    layers:
+    - state: bottle-1
+    - state: bottle-1-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: bottle-1-
+  - type: Drink
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 60
+  - type: MixableSolution
+    solution: drink
+  - type: RefillableSolution
+    solution: drink
+  - type: DrainableSolution
+    solution: drink
+  - type: ExaminableSolution
+    solution: drink
+  - type: DrawableSolution
+    solution: drink
+  - type: SolutionTransfer
+    maxTransferAmount: 60
+    canChangeTransferAmount: true
+  - type: SolutionItemStatus
+    solution: drink
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: Item
+    size: Tiny
+    sprite: _Starlight/Objects/Specific/Chemistry/reinforced_bottle.rsi
+  - type: Spillable
+    solution: drink
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
+  - type: TrashOnSolutionEmpty
+    solution: drink
+  - type: StaticPrice
+    price: 0
+  - type: DnaSubstanceTrace

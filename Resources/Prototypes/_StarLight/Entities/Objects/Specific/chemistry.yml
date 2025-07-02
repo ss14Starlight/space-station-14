@@ -86,3 +86,97 @@
     - vial5
     - vial6
   - type: Appearance
+
+- type: entity
+  name: reinforced beaker
+  parent: BaseItem
+  id: BeakerReinforced
+  description: Used to contain a moderate amount of chemicals and solutions, now explosion proof!
+  components:
+  - type: Tag
+    tags:
+    - GlassBeaker
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/reinforced_beaker.rsi
+    layers:
+      - state: beaker
+      - state: beaker1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chemistry/reinforced_beaker.rsi
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+  - type: MixableSolution
+    solution: beaker
+  - type: FitsInDispenser
+    solution: beaker
+  - type: RefillableSolution
+    solution: beaker
+  - type: DrainableSolution
+    solution: beaker
+  - type: ExaminableSolution
+    solution: beaker
+  - type: DrawableSolution
+    solution: beaker
+  - type: InjectableSolution
+    solution: beaker
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: SolutionItemStatus
+    solution: beaker
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: Drink
+    solution: beaker
+  - type: Spillable
+    solution: beaker
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: beaker
+  - type: StaticPrice
+    price: 30
+  - type: DnaSubstanceTrace
+
+- type: entity
+  name: large reinforced beaker
+  parent: BeakerReinforced
+  description: Used to contain a large amount of chemicals or solutions, now explosion proof!
+  id: LargeBeakerReinforced
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/reinforced_beaker_large.rsi
+    layers:
+      - state: beakerlarge
+      - state: beakerlarge1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Specific/Chemistry/reinforced_beaker_large.rsi
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 200
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: beakerlarge
+    inHandsMaxFillLevels: 4
+    inHandsFillBaseName: -fill-
+  - type: PhysicalComposition
+    materialComposition:
+      SheetRGlass: 100
+  - type: StaticPrice
+    price: 20

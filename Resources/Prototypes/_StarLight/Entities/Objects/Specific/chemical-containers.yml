@@ -1,0 +1,57 @@
+#Cannot inheret from normal proto due to needing specific comps removed.
+
+- type: entity
+  name: reinforced jug
+  parent: BaseItem
+  id: JugReinforced
+  description: Used to contain a very large amount of chemicals or solutions. Chugging is extremely ill-advised, now explosion AND spill proof!
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 300
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Chemistry/reinforced_jug.rsi
+      layers:
+        - state: jug
+        - state: jug1
+          map: [ "enum.SolutionContainerLayers.Fill" ]
+          visible: false
+    - type: Item
+      size: Normal
+      sprite: _Starlight/Objects/Specific/Chemistry/reinforced_jug.rsi
+    - type: MixableSolution
+      solution: beaker
+    - type: RefillableSolution
+      solution: beaker
+    - type: DrainableSolution
+      solution: beaker
+    - type: ExaminableSolution
+      solution: beaker
+    - type: DrawableSolution
+      solution: beaker
+    - type: InjectableSolution
+      solution: beaker
+    - type: SolutionTransfer
+      canChangeTransferAmount: true
+    - type: SolutionItemStatus
+      solution: beaker
+    - type: UserInterface
+      interfaces:
+        enum.TransferAmountUiKey.Key:
+          type: TransferAmountBoundUserInterface
+    - type: Drink
+      solution: beaker
+    - type: Appearance
+    - type: SolutionContainerVisuals
+      maxFillLevels: 6
+      fillBaseName: jug
+      inHandsMaxFillLevels: 5
+      inHandsFillBaseName: -fill-
+    - type: StaticPrice
+      price: 60
+    - type: Label
+    - type: Tag
+      tags:
+      - ChemDispensable
+    - type: DnaSubstanceTrace
