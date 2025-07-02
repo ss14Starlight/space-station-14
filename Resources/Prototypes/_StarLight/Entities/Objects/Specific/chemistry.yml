@@ -177,6 +177,6 @@
     inHandsFillBaseName: -fill-
   - type: PhysicalComposition
     materialComposition:
-      SheetRGlass: 100
+      ReinforcedGlass: 100
   - type: StaticPrice
     price: 20

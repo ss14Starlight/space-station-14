@@ -171,6 +171,9 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: Tag #Starlight
+    tags:
+    - Sheet
 
 - type: entity
   parent: SheetRGlass

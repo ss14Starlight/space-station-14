@@ -10,7 +10,7 @@
     - Trash
   - type: PhysicalComposition
     materialComposition:
-      SheetRGlass: 25
+      ReinforcedGlass: 25
   - type: SpaceGarbage
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Chemistry/reinforced_bottle.rsi

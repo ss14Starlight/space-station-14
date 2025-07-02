@@ -73,8 +73,10 @@
   - type: DnaSubstanceTrace
 
 - type: entity
+  name: reinforced vial
   id: ChemistryVialReinforced
   parent: ReinforcedMiniatureEmptyChemistryVial
+  description: A small vial, now explosion proof.
   components:
   - type: SolutionContainerManager
     solutions:

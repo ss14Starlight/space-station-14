@@ -65,6 +65,25 @@
   - Medical
 
 - type: technology
+  id: BlastProofTech
+  name: research-technology-blast-proof
+  icon:
+    sprite: _Starlight/Objects/Specific/Chemistry/reinforced_beaker_large.rsi
+    state: beakerlarge
+  discipline: Biochemical
+  tier: 2
+  cost: 9000
+  recipeUnlocks:
+    - LargeBeakerReinforced
+    - BeakerReinforced
+    - ChemistryVialReinforced
+    - EmptyBottleReinforced
+    - JugReinforced
+    - ReinforcedMiniatureEmptyChemistryVial
+  radioChannels:
+  - Medical
+
+- type: technology
   id: CyberImplantsTech
   name: research-technology-basic-eye-implants
   icon:
