@@ -248,8 +248,8 @@
       coefficients:
         Blunt: 0.45
         Slash: 0.45
-        Piercing: 0.35
-        Heat: 0.3
+        Piercing: 0.25 # SL
+        Heat: 0.4 # SL
         Caustic: 0.5
     staminaModifier: 0.75 # SL: Weakened stun resistance
     ingoreKnockdown: true
