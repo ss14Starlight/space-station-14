@@ -1,15 +1,20 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Components;
+using Content.Server.Cuffs; //#starlight
+using Content.Server.Stunnable; //#starlight
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Events;
+using Content.Shared.Cuffs.Components; //#starlight
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared.Stunnable; //#starlight
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
+using System.Linq; //#starlight
 
 namespace Content.Server.Chemistry.EntitySystems;
 
@@ -24,6 +29,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly CuffableSystem _cuffable = default!; //#Starlight
 
     private static readonly ProtoId<TagPrototype> HardsuitTag = "Hardsuit";
 
@@ -50,8 +56,27 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
     {
         // MeleeHitEvent is weird, so we have to filter to make sure we actually
         // hit something and aren't just examining the weapon.
-        if (args.IsHit)
+        //#region starlight. I had to redo all of this...
+        if (!args.IsHit) return;
+        if (entity.Comp.RequireIncapacitated)
+        {
+            var enumerator = args.HitEntities.GetEnumerator();
+            var filter = new List<EntityUid>();
+            while (enumerator.MoveNext())
+            {
+                var x = enumerator.Current;
+                if ((TryComp<CuffableComponent>(x, out var cuffable) && _cuffable.IsCuffed((x, cuffable))) ||
+                    HasComp<StunnedComponent>(x))
+                    filter.Add(x);
+            }
+            enumerator.Dispose();
+            TryInjectTargets((entity.Owner, entity.Comp), filter.AsReadOnly(), args.User);
+        }
+        else
+        {
             TryInjectTargets((entity.Owner, entity.Comp), args.HitEntities, args.User);
+        }
+        //#endregion
     }
 
     private void OnInjectOverTime(Entity<SolutionInjectWhileEmbeddedComponent> entity, ref InjectOverTimeEvent args)
@@ -59,7 +84,8 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         DoInjection((entity.Owner, entity.Comp), args.EmbeddedIntoUid);
     }
 
-    private void DoInjection(Entity<BaseSolutionInjectOnEventComponent> injectorEntity, EntityUid target, EntityUid? source = null)
+    private void DoInjection(Entity<BaseSolutionInjectOnEventComponent> injectorEntity, EntityUid target,
+        EntityUid? source = null)
     {
         TryInjectTargets(injectorEntity, [target], source);
     }
@@ -77,7 +103,8 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
     /// </list>
     /// </remarks>
     /// <returns>true if at least one target was successfully injected, otherwise false</returns>
-    private bool TryInjectTargets(Entity<BaseSolutionInjectOnEventComponent> injector, IReadOnlyList<EntityUid> targets, EntityUid? source = null)
+    private bool TryInjectTargets(Entity<BaseSolutionInjectOnEventComponent> injector, IReadOnlyList<EntityUid> targets,
+        EntityUid? source = null)
     {
         // Make sure we have at least one target
         if (targets.Count == 0)
@@ -96,11 +123,14 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
 
             // Yuck, this is way to hardcodey for my tastes
             // TODO blocking injection with a hardsuit should probably done with a cancellable event or something
-            if (!injector.Comp.PierceArmor && _inventory.TryGetSlotEntity(target, "outerClothing", out var suit) && _tag.HasTag(suit.Value, HardsuitTag))
+            if (!injector.Comp.PierceArmor && _inventory.TryGetSlotEntity(target, "outerClothing", out var suit) &&
+                _tag.HasTag(suit.Value, HardsuitTag))
             {
                 // Only show popup to attacker
                 if (source != null)
-                    _popup.PopupEntity(Loc.GetString(injector.Comp.BlockedByHardsuitPopupMessage, ("weapon", injector.Owner), ("target", target)), target, source.Value, PopupType.SmallCaution);
+                    _popup.PopupEntity(
+                        Loc.GetString(injector.Comp.BlockedByHardsuitPopupMessage, ("weapon", injector.Owner),
+                            ("target", target)), target, source.Value, PopupType.SmallCaution);
 
                 continue;
             }
@@ -118,6 +148,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
                         break;
                     }
                 }
+
                 if (blocked)
                     continue;
             }
@@ -136,7 +167,8 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             return false;
 
         // Extract total needed solution from the injector
-        var removedSolution = _solutionContainer.SplitSolution(injectorSolution.Value, injector.Comp.TransferAmount * targetBloodstreams.Count);
+        var removedSolution = _solutionContainer.SplitSolution(injectorSolution.Value,
+            injector.Comp.TransferAmount * targetBloodstreams.Count);
         // Adjust solution amount based on transfer efficiency
         var solutionToInject = removedSolution.SplitSolution(removedSolution.Volume * injector.Comp.TransferEfficiency);
         // Calculate how much of the adjusted solution each target will get

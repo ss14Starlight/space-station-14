@@ -14,6 +14,7 @@ using Content.Shared.Effects;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.FixedPoint;
+using Content.Shared.Stunnable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -29,6 +30,8 @@ public abstract class SharedOnHitSystem : EntitySystem
     [Dependency] protected readonly SharedSolutionContainerSystem _solutionContainers = default!;
     [Dependency] protected readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] protected readonly SharedCuffableSystem _cuffs = default!;
+    [Dependency] private readonly SharedCuffableSystem _cuffable = default!; //#Starlight
+    
     public override void Initialize()
     {
         SubscribeLocalEvent<InjectOnHitComponent, MeleeHitEvent>(OnInjectOnMeleeHit);
@@ -80,6 +83,10 @@ public abstract class SharedOnHitSystem : EntitySystem
 
         foreach (var target in args.HitEntities)
         {
+            if (ent.Comp.RequireIncapacitated && !((TryComp<CuffableComponent>(target, out var cuffable) && _cuffable.IsCuffed((target, cuffable))) ||
+                    HasComp<StunnedComponent>(target)))
+                continue;
+            
             if (_solutionContainers.TryGetInjectableSolution(target, out var targetSoln, out var targetSolution))
             {
                 var solution = new Solution(ent.Comp.Reagents);

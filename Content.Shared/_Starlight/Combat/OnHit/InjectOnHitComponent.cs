@@ -14,6 +14,9 @@ public sealed partial class InjectOnHitComponent : Component
 
     [DataField("sound")]
     public SoundSpecifier? Sound;
+
+    [DataField]
+    public bool RequireIncapacitated = false;
 }
 [ByRefEvent]
 public record struct InjectOnHitAttemptEvent(bool Cancelled);

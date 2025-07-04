@@ -83,6 +83,7 @@
           animation: WeaponArcThrust
         - type: InjectOnHit
           limit: 20
+          requireIncapacitated: true
           reagents:
           - ReagentId: Nocturine
             Quantity: 5
