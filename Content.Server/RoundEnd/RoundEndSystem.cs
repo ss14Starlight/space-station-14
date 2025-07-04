@@ -21,6 +21,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Server.Voting.Managers;
+using Content.Server.Voting; // Starlight
 
 namespace Content.Server.RoundEnd
 {
@@ -41,6 +43,7 @@ namespace Content.Server.RoundEnd
         [Dependency] private readonly EmergencyShuttleSystem _shuttle = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
+        [Dependency] private readonly IVoteManager _voteManager = default!; // Starlight
 
         public TimeSpan DefaultCooldownDuration { get; set; } = TimeSpan.FromSeconds(30);
 
@@ -232,7 +235,7 @@ namespace Content.Server.RoundEnd
                 _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled");
             }
 
-            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
+            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-vote-announcement"),
                 Loc.GetString("round-end-system-shuttle-sender-announcement"), false, colorOverride: Color.Gold);
 
             _audio.PlayGlobal("/Audio/_Starlight/Announcements/recallEvac.ogg", Filter.Broadcast(), true); //🌟Starlight🌟
@@ -357,7 +360,39 @@ namespace Content.Server.RoundEnd
             {
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
-                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
+                    // Starlight - start
+                    _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-vote-announcement"),
+                        Loc.GetString("round-end-system-shuttle-sender-announcement"), false, colorOverride: Color.Gold);
+
+                    var options = new VoteOptions
+                    {
+                        InitiatorText = Loc.GetString("ui-vote-shuttle-initiator"),
+                        Title = Loc.GetString("ui-vote-shuttle-title"),
+                        Duration = TimeSpan.FromSeconds(30),
+                        Options =
+                        {
+                            (Loc.GetString("ui-vote-shuttle-yes"), "yes"),
+                            (Loc.GetString("ui-vote-shuttle-no"), "no")
+                        },
+                    };
+
+                    var vote = _voteManager.CreateVote(options);
+
+                    vote.OnFinished += (_, eventArgs) =>
+                    {
+                        if (eventArgs.Winner == "yes")
+                            RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
+                        else
+                            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-continue-announcement"),
+                                Loc.GetString("round-end-system-shuttle-sender-announcement"), false, colorOverride: Color.Gold);
+                    };
+
+                    vote.OnCancelled += _ =>
+                    {
+                        RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
+                    };
+                    // Starlight - End
+
                     _autoCalledBefore = true;
                 }
 
@@ -365,7 +400,7 @@ namespace Content.Server.RoundEnd
                 SetAutoCallTime();
             }
         }
-        
+
         public TimeSpan TimeToCallShuttle()
         {
             var autoCalledBefore = _autoCalledBefore
