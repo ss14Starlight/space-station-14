@@ -21,7 +21,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
 using Timer = Robust.Shared.Timing.Timer;
-using Content.Server.Voting.Managers;
+using Content.Server.Voting.Managers; // Starlight
 using Content.Server.Voting; // Starlight
 
 namespace Content.Server.RoundEnd
@@ -235,7 +235,7 @@ namespace Content.Server.RoundEnd
                 _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled");
             }
 
-            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-vote-announcement"),
+            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
                 Loc.GetString("round-end-system-shuttle-sender-announcement"), false, colorOverride: Color.Gold);
 
             _audio.PlayGlobal("/Audio/_Starlight/Announcements/recallEvac.ogg", Filter.Broadcast(), true); //🌟Starlight🌟
