@@ -147,7 +147,8 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
-  - type: HardsuitChemicalImmunity
+  - type: HardsuitChemicalImmunity #starlight
+  - type: ArmorSparkEffect #starlight
 
 - type: entity
   abstract: true
