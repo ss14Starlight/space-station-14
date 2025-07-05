@@ -60,6 +60,13 @@ public sealed class HardsuitChemicalImmunitySystem : EntitySystem
             {
                 _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked"), 
                     parent, parent, PopupType.Small);
+                
+                // Show popup to the attacker as well
+                if (args.Attacker.HasValue && EntityManager.EntityExists(args.Attacker.Value))
+                {
+                    _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked-attacker"), 
+                        parent, args.Attacker.Value, PopupType.Small);
+                }
             }
         }
     }
@@ -91,6 +98,13 @@ public sealed class HardsuitChemicalImmunitySystem : EntitySystem
             {
                 _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked"), 
                     parent, parent, PopupType.Small);
+                
+                // Show popup to the attacker as well
+                if (args.Source.HasValue && EntityManager.EntityExists(args.Source.Value))
+                {
+                    _popup.PopupEntity(Loc.GetString("hardsuit-chemical-immunity-blocked-attacker"), 
+                        parent, args.Source.Value, PopupType.Small);
+                }
             }
         }
     }

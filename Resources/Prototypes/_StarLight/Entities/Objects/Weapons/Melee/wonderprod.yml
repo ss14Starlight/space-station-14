@@ -26,7 +26,7 @@
     - abductors-weapon-restricted-3
     - abductors-weapon-restricted-4
   - type: AbductorWonderprod
-    fallbackStaminaDamage: 45
+    fallbackStaminaDamage: 90
   - type: ItemSwitch
     state: stun
     states:

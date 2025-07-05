@@ -43,7 +43,7 @@ public abstract class SharedOnHitSystem : EntitySystem
          || !args.HitEntities.Any())
             return;
 
-        var ev = new InjectOnHitAttemptEvent();
+        var ev = new InjectOnHitAttemptEvent(false, args.User);
         RaiseLocalEvent(ent, ref ev);
         if (ev.Cancelled)
             return;
@@ -73,7 +73,7 @@ public abstract class SharedOnHitSystem : EntitySystem
             || !args.HitEntities.Any())
             return;
 
-        var ev = new InjectOnHitAttemptEvent();
+        var ev = new InjectOnHitAttemptEvent(false, args.User);
         RaiseLocalEvent(ent, ref ev);
         if (ev.Cancelled)
             return;
@@ -81,7 +81,7 @@ public abstract class SharedOnHitSystem : EntitySystem
         foreach (var target in args.HitEntities)
         {
             // Check for target-specific immunity (like hardsuit immunity)
-            var targetAttempt = new InjectOnHitAttemptEvent();
+            var targetAttempt = new InjectOnHitAttemptEvent(false, args.User);
             RaiseLocalEvent(target, ref targetAttempt, true);
             if (targetAttempt.Cancelled)
                 continue;
