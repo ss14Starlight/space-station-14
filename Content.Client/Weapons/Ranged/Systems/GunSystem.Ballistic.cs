@@ -34,7 +34,11 @@ public sealed partial class GunSystem
             component.Entities.RemoveAt(component.Entities.Count - 1);
 
             Containers.Remove(existing, component.Container);
-            EnsureShootable(existing);
+
+            // STARLIGHT FIX: Only call EnsureShootable if the entity still exists after container removal
+            if (Exists(existing))
+                EnsureShootable(existing);
+            // STARLIGHT END
         }
         else if (component.UnspawnedCount > 0)
         {
