@@ -49,6 +49,18 @@
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
   - type: StaticPrice
     price: 500
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 8
+    angle: 40
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/block_metal1.ogg
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    attackType: Heavy
 
 - type: entity
   name: Deckard

@@ -35,6 +35,18 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 10
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/genhit3.ogg
+  - type: AltFireMelee
+    attackType: Light
+
 
 - type: entity
   name: china lake
@@ -69,6 +81,7 @@
     proto: GrenadeFrag
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: MeleeRequiresWield
 
 - type: entity
   parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseMajorContraband ]
@@ -109,6 +122,7 @@
       path: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
+  - type: MeleeRequiresWield
 
 - type: entity
   name: RPG-7

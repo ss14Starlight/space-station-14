@@ -30,6 +30,19 @@
     startingCharge: 1000
   - type: StaticPrice
     price: 500
+    equippedMaxFillLevels: 1
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 15
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/genhit3.ogg
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    attackType: Heavy
 
 - type: entity
   id: BaseWeaponPowerCell
@@ -69,6 +82,17 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 15
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/genhit1.ogg
+  - type: AltFireMelee
+    attackType: Heavy
 
 - type: entity
   id: BaseWeaponBatterySmall
@@ -89,6 +113,17 @@
     slots:
     - Belt
     - suitStorage
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 8
+    angle: 40
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/block_metal1.ogg
+  - type: AltFireMelee
+    attackType: Heavy
 
 - type: entity
   id: BaseWeaponPowerCellSmall
@@ -105,6 +140,18 @@
     quickEquip: false
     slots:
     - Belt
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 8
+    angle: 40
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/block_metal1.ogg
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    attackType: Heavy
 
 - type: entity
   name: svalinn laser pistol

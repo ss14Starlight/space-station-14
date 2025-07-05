@@ -77,6 +77,19 @@
     price: 500
   - type: UseDelay
     delay: 1
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 17
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/genhit3.ogg
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    attackType: Heavy
+
 
 - type: entity
   name: L6 SAW
