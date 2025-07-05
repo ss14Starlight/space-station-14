@@ -72,7 +72,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
-  - type: MeleeWeapon
+  - type: MeleeWeapon #here to line 75 is 🌟Starlight🌟
     wideAnimationRotation: -135
     damage:
       types:

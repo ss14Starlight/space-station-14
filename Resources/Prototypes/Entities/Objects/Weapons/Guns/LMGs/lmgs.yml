@@ -77,7 +77,7 @@
     price: 500
   - type: UseDelay
     delay: 1
-  - type: MeleeWeapon
+  - type: MeleeWeapon #here to line 91 is 🌟Starlight🌟
     wideAnimationRotation: -135
     damage:
       types:

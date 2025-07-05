@@ -50,7 +50,7 @@
         ents: []
   - type: StaticPrice
     price: 500
-  - type: MeleeWeapon
+  - type: MeleeWeapon #here to line 64 is 🌟Starlight🌟
     wideAnimationRotation: -135
     damage:
       types:

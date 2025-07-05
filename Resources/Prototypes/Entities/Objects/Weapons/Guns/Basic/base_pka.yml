@@ -49,7 +49,7 @@
     - Belt
   - type: UseDelay
     delay: 1
-  - type: MeleeWeapon
+  - type: MeleeWeapon #here to line 63 is 🌟Starlight🌟
     wideAnimationRotation: -135
     damage:
       types:

@@ -35,7 +35,7 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
-  - type: MeleeWeapon
+  - type: MeleeWeapon #here to line 48 is 🌟Starlight🌟
     wideAnimationRotation: -135
     damage:
       types:
@@ -81,7 +81,7 @@
     proto: GrenadeFrag
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: MeleeRequiresWield
+  - type: MeleeRequiresWield #🌟Starlight🌟
 
 - type: entity
   parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseMajorContraband ]
@@ -122,7 +122,7 @@
       path: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
-  - type: MeleeRequiresWield
+  - type: MeleeRequiresWield #🌟Starlight🌟
 
 - type: entity
   name: RPG-7

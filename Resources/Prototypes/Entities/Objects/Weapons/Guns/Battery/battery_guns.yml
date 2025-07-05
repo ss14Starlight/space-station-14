@@ -30,7 +30,7 @@
     startingCharge: 1000
   - type: StaticPrice
     price: 500
-  - type: MeleeWeapon
+  - type: MeleeWeapon #here to line 44 is 🌟Starlight🌟
     wideAnimationRotation: -135
     damage:
       types:

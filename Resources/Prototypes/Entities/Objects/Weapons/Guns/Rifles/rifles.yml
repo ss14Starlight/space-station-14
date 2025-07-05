@@ -62,7 +62,7 @@
       gun_chamber: !type:ContainerSlot ""
   - type: StaticPrice
     price: 500
-  - type: MeleeWeapon
+  - type: MeleeWeapon #here to line 76 is 🌟Starlight🌟
     wideAnimationRotation: -135
     damage:
       types:

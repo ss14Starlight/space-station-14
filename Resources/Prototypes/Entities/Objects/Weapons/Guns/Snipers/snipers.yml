@@ -86,8 +86,8 @@
     fireRate: 1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-  - type: GunRequiresWield
-  - type: MeleeWeapon
+  - type: GunRequiresWield 
+  - type: MeleeWeapon #here to line 101 is 🌟Starlight🌟
     wideAnimationRotation: -135
     damage:
       types:
@@ -132,7 +132,7 @@
   - type: EyeCursorOffset
     maxOffset: 3
     pvsIncrease: 0.3
-  - type: MeleeWeapon
+  - type: MeleeWeapon #here to line 146 is 🌟Starlight🌟
     wideAnimationRotation: -135
     damage:
       types:
@@ -182,7 +182,7 @@
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
-  - type: GunRequiresWield
+  - type: GunRequiresWield #here to line 188 is 🌟Starlight🌟
   - type: MeleeRequiresWield
   - type: AltFireMelee
     attackType: Heavy
@@ -218,7 +218,7 @@
     proto: CartridgeMagnumSP
   - type: StaticPrice
     price: 0
-  - type: MeleeWeapon
+  - type: MeleeWeapon #here to line 232 is 🌟Starlight🌟
     wideAnimationRotation: -135
     damage:
       types:
