@@ -30,7 +30,6 @@
     startingCharge: 1000
   - type: StaticPrice
     price: 500
-    equippedMaxFillLevels: 1
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
