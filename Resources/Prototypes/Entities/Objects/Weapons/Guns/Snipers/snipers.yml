@@ -69,7 +69,7 @@
         knockback: 1 #half of what resomi take
   - type: BallisticAmmoProvider # Starlight
     capacity: 10
-    proto: CartridgeMagnumSP
+    proto: CartridgeMagnumFMJ # Starlight
     whitelist:
       tags:
         - CartridgeMagnum
