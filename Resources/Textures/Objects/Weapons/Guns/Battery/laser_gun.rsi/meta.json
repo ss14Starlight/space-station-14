@@ -14,15 +14,6 @@
             "name": "base"
         },
         {
-            "name": "mag-unshaded-0",
-            "delays":[
-                [
-                    0.3,
-                    0.3
-                ]
-            ]
-        },
-        {
             "name": "mag-unshaded-1"
         },
         {
@@ -35,43 +26,11 @@
             "name": "mag-unshaded-4"
         },
         {
-            "name": "mag0-inhand-left",
+            "name": "inhand-left",
             "directions": 4
         },
         {
-            "name": "mag0-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "mag1-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "mag1-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "mag2-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "mag2-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "mag3-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "mag3-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "mag4-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "mag4-inhand-right",
+            "name": "inhand-right",
             "directions": 4
         },
         {
@@ -80,6 +39,14 @@
         },
         {
             "name": "wielded-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "equipped-BACKPACK",
+            "directions": 4
+        },
+        {
+            "name": "equipped-SUITSTORAGE",
             "directions": 4
         }
     ]

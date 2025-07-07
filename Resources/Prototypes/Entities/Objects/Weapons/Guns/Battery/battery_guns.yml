@@ -234,9 +234,9 @@
     - SemiAuto
   - type: HitscanBatteryAmmoProvider
     proto: RedLaserPractice
-    fireCost: 62.5
+    fireCost: 31.25
   - type: StaticPrice
-    price: 300
+    price: 100
 
 - type: entity
   name: laser rifle
@@ -254,7 +254,7 @@
     zeroVisible: true
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
-    fireCost: 62.5
+    fireCost: 31.25
 
 #- type: entity
 #  name: pulse pistol
@@ -370,7 +370,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 100
+    fireCost: 50
   - type: Tag
     tags:
     - TurretCompatibleWeapon
@@ -427,7 +427,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: XrayLaser
-    fireCost: 100
+    fireCost: 50
   - type: MagazineVisuals
     magState: mag
     steps: 5

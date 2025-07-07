@@ -360,7 +360,7 @@
     - SemiAuto
   - type: HitscanBatteryAmmoProvider
     proto: IgnitionRedLaser
-    fireCost: 62.5
+    fireCost: 31.25
   - type: StaticPrice
     price: 300
 
@@ -573,7 +573,7 @@
     slots:
     - Back
   - type: Gun
-    fireRate: 0.1
+    fireRate: 0.5
   - type: HitscanBatteryAmmoProvider
     proto: SniperBolt
     fireCost: 100
