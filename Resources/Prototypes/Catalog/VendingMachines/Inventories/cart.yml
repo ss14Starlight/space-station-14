@@ -9,6 +9,7 @@
     RubberStampDenied: 1
     Paper: 10
     Envelope: 10
+    FolderSpawner: 10  #starlight edit 
     HandLabeler: 2
     EncryptionKeyCargo: 2
     EncryptionKeyEngineering: 2

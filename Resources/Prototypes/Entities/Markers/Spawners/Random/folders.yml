@@ -1,5 +1,5 @@
 - type: entity
-  name: Random Folder Spawner
+  name: random folder  #starlight edit
   id: FolderSpawner
   parent: MarkerBase
   placement:
