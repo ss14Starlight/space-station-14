@@ -79,6 +79,7 @@
       BulletLaserSpreadNarrow: 0.50
       BulletDisablerSmg: 0.45
       TaserBolt: 0.47
+      PelletClusterRubber: 0.50
   - type: IgnitionSource
     temperature: 700
 
@@ -363,6 +364,7 @@
       BulletLaserSpreadNarrow: 0.50
       BulletDisablerSmg: 0.45
       TaserBolt: 0.47
+      PelletClusterRubber: 0.50
   - type: Scalpel
   - type: SurgeryTool
     successRate: 0.6
