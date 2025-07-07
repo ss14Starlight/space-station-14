@@ -167,7 +167,7 @@
         Slash: 0.6
         Piercing: 0.3
         Heat: 0.9
-    staminaModifier: 0.6 # SL: Default stun resistance
+    staminaModifier: 0.5 # SL: Default stun resistance
     ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.9
@@ -195,7 +195,7 @@
         Heat: 0.3
         Radiation: 0.5
         Caustic: 0.5
-    staminaModifier: 0.50 # SL: Improved stun resistance
+    staminaModifier: 0.4 # SL: Improved stun resistance
     ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.5
@@ -252,7 +252,7 @@
         Piercing: 0.25 # SL
         Heat: 0.4 # SL
         Caustic: 0.5
-    staminaModifier: 0.75 # SL: Weakened stun resistance
+    staminaModifier: 0.6 # SL: Weakened stun resistance
     ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.35

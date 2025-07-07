@@ -92,7 +92,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 35
+      Piercing: 31
   armorPenetration: -0.25
   pierceChance: 0.40
   derivation: 0.05
@@ -108,8 +108,8 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 15
-      Blunt: 15
+      Piercing: 14
+      Blunt: 14
   armorPenetration: -0.35
   pierceChance: 0.25
   derivation: 0.05
@@ -125,7 +125,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 46 #+ 30%
+      Piercing: 42
   staminaDamage: 10    
   armorPenetration: -1
   pierceChance: 0.03
@@ -137,7 +137,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 28 #- 20%
+      Piercing: 24
   armorPenetration: 0.25
   pierceChance: 0.69
   derivation: 0.05
@@ -169,7 +169,7 @@
   damage:
     types:
       Blunt: 3
-      Heat: 32
+      Heat: 28
   pierceChance: 0.69
   derivation: 0.05
   ricochetChance: 0.48
@@ -183,8 +183,8 @@
   parent: BulletTrace
   damage:
     types:
-      Radiation: 15
-      Piercing: 20
+      Radiation: 14
+      Piercing: 16
   pierceChance: 0.69
   derivation: 0.05
   ricochetChance: 0.80
@@ -199,7 +199,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 25 #- 30%
+      Piercing: 21
   armorPenetration: 0.69
   pierceChance: 0.81
   derivation: 0.05
@@ -217,7 +217,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 16
+      Piercing: 12
   armorPenetration: -0.25
   pierceChance: 0.40
   derivation: 0.2
@@ -233,8 +233,8 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 7
-      Blunt: 7
+      Piercing: 6
+      Blunt: 6
   armorPenetration: -0.30
   pierceChance: 0.25
   derivation: 0.2
@@ -250,7 +250,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 20 #+ 30%
+      Piercing: 16
   armorPenetration: -1
   staminaDamage: 5
   pierceChance: 0.03
@@ -262,7 +262,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 12 #- 20%
+      Piercing: 7
   armorPenetration: 0.25
   pierceChance: 0.69
   derivation: 0.2
@@ -294,7 +294,7 @@
   damage:
     types:
       Blunt: 2
-      Heat: 14
+      Heat: 9
   pierceChance: 0.69
   derivation: 0.2
   ricochetChance: 0.48
@@ -309,7 +309,7 @@
   damage:
     types:
       Radiation: 6
-      Piercing: 10
+      Piercing: 7
   pierceChance: 0.69
   derivation: 0.2
   ricochetChance: 0.80
@@ -324,7 +324,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 11 #- 30%
+      Piercing: 9
   armorPenetration: 0.69
   pierceChance: 0.81
   derivation: 0.2
@@ -338,10 +338,10 @@
 - type: hitscan
   id: BulletPistolTrace40SP
   parent: BulletTrace
-  staminaDamage: 15
+  staminaDamage: 8
   damage:
     types:
-      Piercing: 20
+      Piercing: 16
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -354,10 +354,10 @@
 - type: hitscan
   id: BulletPistolTrace40HP
   parent: BulletTrace
-  staminaDamage: 20
+  staminaDamage: 15
   damage:
     types:
-      Piercing: 24
+      Piercing: 16
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -370,10 +370,10 @@
 - type: hitscan
   id: BulletPistolTrace40FMJ
   parent: BulletTrace
-  staminaDamage: 13
+  staminaDamage: 8
   damage:
     types:
-      Piercing: 16
+      Piercing: 11
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -387,10 +387,10 @@
 - type: hitscan
   id: BulletPistolTrace40AP
   parent: BulletTrace
-  staminaDamage: 10
+  staminaDamage: 6
   damage:
     types:
-      Piercing: 14
+      Piercing: 11
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -408,7 +408,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 19
+      Piercing: 15
 
 - type: hitscan
   id: BulletCaselessRiflePracticeTrace
@@ -424,7 +424,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 19
+      Piercing: 15
 
 - type: hitscan
   id: BulletMinigunTrace
@@ -441,7 +441,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 19
+      Piercing: 15
   armorPenetration: -0.25
   staminaDamage: 2
   pierceChance: 0.40
@@ -476,7 +476,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 25 #+ 30%
+      Piercing: 21
   pierceLevel: Wood
   armorPenetration: -1
   staminaDamage: 6
@@ -489,7 +489,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 15 #- 20%
+      Piercing: 11
   armorPenetration: 0.25
   pierceChance: 0.69
   derivation: 0.05
@@ -505,7 +505,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 13 #- 40%
+      Piercing: 13
   armorPenetration: 0.69
   pierceChance: 0.81
   derivation: 0.05
@@ -537,7 +537,7 @@
   damage:
     types:
       Blunt: 3
-      Heat: 16
+      Heat: 11
   pierceChance: 0.69
   derivation: 0.05
   ricochetChance: 0.48
@@ -552,7 +552,7 @@
   damage:
     types:
       Radiation: 9
-      Piercing: 10
+      Piercing: 7
   pierceChance: 0.69
   derivation: 0.05
   ricochetChance: 0.80
@@ -569,7 +569,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 17
+      Piercing: 13
   armorPenetration: -0.25
   pierceChance: 0.40
   ricochetChance: 0.30
@@ -585,7 +585,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 22 #+ 30%
+      Piercing: 18
   armorPenetration: -1
   staminaDamage: 5
   pierceChance: 0.03
@@ -596,7 +596,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 14 #- 20%
+      Piercing: 10
   armorPenetration: 0.25
   pierceChance: 0.69
   ricochetChance: 0.80
@@ -611,7 +611,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 12 #- 30%
+      Piercing: 8
   armorPenetration: 0.69
   pierceChance: 0.81
   ricochetChance: 0.48
@@ -641,7 +641,7 @@
   damage:
     types:
       Blunt: 2
-      Heat: 15
+      Heat: 11
   pierceChance: 0.69
   ricochetChance: 0.48
   bullet:
@@ -655,7 +655,7 @@
   damage:
     types:
       Radiation: 7
-      Piercing: 8
+      Piercing: 7
   pierceChance: 0.69
   ricochetChance: 0.80
   pierceLevel: HardenedMetal
@@ -683,7 +683,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 28
+      Piercing: 24
   pierceChance: 0.08
   bullet:
     sprite:
@@ -695,7 +695,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 28
+      Piercing: 24
   pierceChance: 0.08
   bullet:
     sprite:
@@ -707,7 +707,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 5
+      Piercing: 4
   pierceChance: 0.03
   count: 12
   spread: 15

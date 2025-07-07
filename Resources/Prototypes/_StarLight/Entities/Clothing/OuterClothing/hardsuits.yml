@@ -216,7 +216,7 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
-    staminaModifier: 0.5 # SL: Improved stun resistance
+    staminaModifier: 0.4 # SL: Improved stun resistance
     ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.1
