@@ -226,7 +226,8 @@
   - type: MagazineVisuals
     magState: mag
     steps: 5
-    zeroVisible: true
+    zeroVisible: false
+  - type: Appearance
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -243,10 +244,6 @@
   id: WeaponLaserCarbine
   description: Favoured by Nanotrasen Security for being cheap and easy to use.
   components:
-  #- type: MagazineVisuals
-    #magState: mag
-    #steps: 5
-    #zeroVisible: false
   - type: StaticPrice
     price: 420
   - type: HitscanBatteryAmmoProvider
