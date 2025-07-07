@@ -223,6 +223,10 @@
       shader: unshaded
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -231,25 +235,23 @@
     proto: RedLaserPractice
     fireCost: 31.25
   - type: StaticPrice
-    price: 100
+    price: 300
 
 - type: entity
   name: laser rifle
-  parent: [WeaponLaserCarbinePractice, BaseGunWieldable, BaseSecurityContraband]
+  parent: [WeaponLaserCarbinePractice, BaseGunWieldable, BaseRestrictedContraband]
   id: WeaponLaserCarbine
   description: Favoured by Nanotrasen Security for being cheap and easy to use.
   components:
+  #- type: MagazineVisuals
+    #magState: mag
+    #steps: 5
+    #zeroVisible: false
   - type: StaticPrice
     price: 420
-  - type: Item
-    heldPrefix: mag4
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
-    fireCost: 31.25
+    fireCost: 32.25
 
 #- type: entity
 #  name: pulse pistol
