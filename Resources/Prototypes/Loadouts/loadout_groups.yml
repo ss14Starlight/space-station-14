@@ -994,6 +994,7 @@
   minLimit: 0
   loadouts:
   - HeadofSecurityHead
+  - HeadofSecuritySheriff #Starlight
   - HeadofSecurityBeret
 
 - type: loadoutGroup
@@ -1166,6 +1167,7 @@
   loadouts:
   - JackBoots
   - SecurityWinterBoots
+  - HighHeelBoots # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SecurityPDA
@@ -1324,6 +1326,9 @@
   loadouts:
   - WhiteShoes
   - MedicalWinterBoots
+  - Heels # 🌟Starlight🌟
+  - LaceupShoes # 🌟Starlight🌟
+  - LeatherShoes # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MedicalDoctorPDA

@@ -219,7 +219,7 @@
     staminaModifier: 0.4 # SL: Improved stun resistance
     ingoreKnockdown: true
   - type: ExplosionResistance
-    damageCoefficient: 0.1
+    damageCoefficient: 0.5
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
     disableOnUnequip: true
