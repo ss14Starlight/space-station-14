@@ -1,0 +1,21 @@
+- type: entity
+  parent: Bible
+  name: torah
+  description: "For God's chosen crewmembers"
+  id: BibleTorah
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chapel/torah.rsi
+  - type: Item
+    sprite: Objects/Specific/Chapel/torah.rsi
+
+- type: entity
+  parent: Bible
+  name: quran
+  description: "Prayer carpet not included"
+  id: BibleQuran
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chapel/quran.rsi
+  - type: Item
+    sprite: Objects/Specific/Chapel/quran.rsi
