@@ -96,7 +96,7 @@
     sprite: Objects/Specific/Chapel/necronomicon.rsi
 
 - type: entity
-  parent: [Bible]
+  parent: Bible
   name: torah
   description: "For God's chosen crewmembers"
   id: BibleTorah
@@ -107,7 +107,7 @@
     sprite: Objects\Specific\Chapel\torah.rsi
 
 - type: entity
-  parent: [Bible]
+  parent: Bible
   name: quran
   description: "Prayer carpet not included"
   id: BibleQuran
