@@ -76,6 +76,7 @@
       BulletDisabler: 0.50
       BulletDisablerSmgSpread: 0.50
       BulletLaserSpread: 0.50
+      DisablerBoltSmg: 0.50
       BulletLaserSpreadNarrow: 0.50
       BulletDisablerSmg: 0.45
       TaserBolt: 0.47
@@ -361,6 +362,7 @@
       BulletDisabler: 0.50
       BulletDisablerSmgSpread: 0.50
       BulletLaserSpread: 0.50
+      DisablerBoltSmg: 0.50
       BulletLaserSpreadNarrow: 0.50
       BulletDisablerSmg: 0.45
       TaserBolt: 0.47

@@ -833,6 +833,9 @@
   name: disabler bolt practice
   parent: EnergyTrace
   collisionMask: 64 #BulletImpassable
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    state: impact_laser_blue
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
