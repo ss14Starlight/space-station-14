@@ -5,9 +5,9 @@
   id: BibleTorah
   components:
   - type: Sprite
-    sprite: Objects/Specific/Chapel/torah.rsi
+    sprite: _Starlight/Objects/Specific/Chapel/torah.rsi
   - type: Item
-    sprite: Objects/Specific/Chapel/torah.rsi
+    sprite: _Starlight/Objects/Specific/Chapel/torah.rsi
 
 - type: entity
   parent: Bible
@@ -16,6 +16,6 @@
   id: BibleQuran
   components:
   - type: Sprite
-    sprite: Objects/Specific/Chapel/quran.rsi
+    sprite: _Starlight/Objects/Specific/Chapel/quran.rsi
   - type: Item
-    sprite: Objects/Specific/Chapel/quran.rsi
+    sprite: _Starlight/Objects/Specific/Chapel/quran.rsi
