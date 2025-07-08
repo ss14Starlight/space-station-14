@@ -16,6 +16,6 @@
   id: BibleQuran
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Chapel/quran.rsi
+    sprite: Objects/Specific/Chapel/quran.rsi
   - type: Item
-    sprite: _Starlight/Objects/Specific/Chapel/quran.rsi
+    sprite: Objects/Specific/Chapel/quran.rsi
