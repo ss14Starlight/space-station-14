@@ -27,6 +27,11 @@
   id: BibleDruid
   components:
   - type: Sprite
-    sprite: Objects/Specific/Chapel/mysteryofthedruids.rsi
+    sprite: _Starlight/Objects/Specific/Chapel/mysteryofthedruids.rsi
   - type: Item
-    sprite: Objects/Specific/Chapel/mysteryofthedruids.rsi
+    sprite: _Starlight/Objects/Specific/Chapel/mysteryofthedruids.rsi
+
+- type: entity
+  parent: Bible
+  name: communist manifesto
+  description: ""
