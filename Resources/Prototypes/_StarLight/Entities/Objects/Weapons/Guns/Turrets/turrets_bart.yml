@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseWeaponBallisticTurret
+  id: WeaponTurretBart
+  suffix: Bart
+  components:
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Turrets/bart.rsi
+    drawdepth: Mobs
+    layers:
+    - state: Bart
