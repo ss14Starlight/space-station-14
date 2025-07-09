@@ -41,3 +41,14 @@
     sprite: _Starlight/Objects/Specific/Chapel/communistmanifesto.rsi
   - type: Item
     sprite: _Starlight/Objects/Specific/Chapel/communistmanifesto.rsi
+
+- type: entity
+  parent: Bible
+  name: satanic bible
+  description: "What could possibly go wrong?"
+  id: BibleSatanic
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/satanicbible.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/satanicbible.rsi
