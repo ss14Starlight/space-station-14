@@ -34,4 +34,10 @@
 - type: entity
   parent: Bible
   name: communist manifesto
-  description: ""
+  description: "Remove the mask of humanity from Capital."
+  id: BibleCommunistManifesto
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/communistmanifesto.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/communistmanifesto.rsi
