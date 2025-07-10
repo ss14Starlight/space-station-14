@@ -21,8 +21,7 @@
     id: ChaplainPDA
     ears: ClothingHeadsetService
   storage:
-    back:
-    - Bible
+    back: # 🌟Starlight🌟, Bible moved to loadout
     - RubberStampChaplain
 
 - type: chameleonOutfit
