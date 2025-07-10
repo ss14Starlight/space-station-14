@@ -1006,6 +1006,7 @@
   minLimit: 0
   loadouts:
   - HeadofSecurityHead
+  - HeadofSecuritySheriff #Starlight
   - HeadofSecurityBeret
 
 - type: loadoutGroup
