@@ -52,3 +52,14 @@
     sprite: _Starlight/Objects/Specific/Chapel/satanicbible.rsi
   - type: Item
     sprite: _Starlight/Objects/Specific/Chapel/satanicbible.rsi
+
+- type: entity
+  parent: Bible
+  name: codex nanotrasimus
+  description: "A familiar book containing the Sacred Operating Procedures."
+  id: BibleNanoTrasen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/codexnanotrasimus.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/codexnanotrasimus.rsi
