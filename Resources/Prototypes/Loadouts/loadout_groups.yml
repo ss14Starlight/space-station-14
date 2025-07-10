@@ -391,7 +391,7 @@
   loadouts:
   - ChaplainNeck
 
-- type: loadoutGroup
+- type: loadoutGroup # 🌟Starlight🌟 Start
   id: ChaplainBible
   name: loadout-group-chaplain-bible
   minLimit: 1
@@ -401,7 +401,7 @@
   - BibleNanoTrasen
   - BibleQuran
   - BibleSatanic
-  - BibleTorah
+  - BibleTorah # 🌟Starlight🌟 End
 
 - type: loadoutGroup
   id: JanitorHead
