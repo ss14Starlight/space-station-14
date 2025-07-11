@@ -50,7 +50,7 @@
   - type: UseDelay
   - type: ClothingSpeedModifier
     walkModifier: 1
-    sprintModifier: 0.85
+    sprintModifier: 0.90
   - type: HeldSpeedModifier
   - type: DamageOtherOnHit
     damage:
