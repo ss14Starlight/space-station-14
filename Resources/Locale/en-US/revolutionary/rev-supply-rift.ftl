@@ -43,13 +43,13 @@ soviet-gas-mask-desc = An old uncomfortable mechanical gas mask. Has eye and fla
 soviet-coat-name = Soviet great coat
 soviet-coat-desc = Offers minor protection from bullets, major protection from fashion.
 glasses-name = cheap sunglasses
-glasses-desc = A downgrade that shows the brainwashing parasite above them.
+glasses-desc = Retrofitted to show the brainwashing parasite above them.
 soviet-hardsuit-name = Marine hardsuit (SSF)
 soviet-hardsuit-desc = Old robust design, still holds up to this day.
 
 # Implants
-stolen-implanter-name = Implanter (NT)
-stolen-implanter-desc = The committee is yet to find a way. Can undo brainwashing.
+SKB-implanter-name = SKB Demindshielder
+SKB-implanter-desc = An implant specialized in removing brainwashing parasites.
 
 # Deception
 soviet-encryption-key-name = Soviet encryption key

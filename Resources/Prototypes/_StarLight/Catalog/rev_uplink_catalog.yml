@@ -14,10 +14,10 @@
     stockLimit: 1
 
 - type: listing
-  id: StolenImplanterConversion
-  name: stolen-implanter-name
-  description: stolen-implanter-desc
-  productEntity: Implanter
+  id: SKBImplanterConversion
+  name: SKB-implanter-name
+  description: SKB-implanter-desc
+  productEntity: USSPUplinkImplanterEmpty
   cost:
     Conversion: 13
   categories:
@@ -258,10 +258,10 @@
 # Implants
 
 - type: listing
-  id: StolenImplanter
-  name: stolen-implanter-name
-  description: stolen-implanter-desc
-  productEntity: Implanter
+  id: SKBImplanter
+  name: SKB-implanter-name
+  description: SKB-implanter-desc
+  productEntity: USSPUplinkImplanterEmpty
   cost:
     Telebond: 5
   categories:
