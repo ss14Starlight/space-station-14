@@ -6,11 +6,11 @@
   - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
     state: implanter0
   - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
-    state: implanter1
+    state: implanter0
   - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
     state: implanter0
   - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
-    state: implanter1
+    state: implanter0
   - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
     state: implanter0
   name: alerts-mindshield-degrading-name
