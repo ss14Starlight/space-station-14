@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._Starlight.Mindshield.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
@@ -8,6 +9,7 @@ using Content.Shared.Forensics;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Implants.Components;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mindshield.Components;
 using Content.Shared.Popups;
 using Content.Shared.Revolutionary.Components;
 using Content.Shared.Verbs;
@@ -126,10 +128,37 @@ public abstract class SharedImplanterSystem : EntitySystem
         // Check AFTER the doafter to prevent "is it a fake?" metagaming against deceptive implants
         if (!component.AllowMultipleImplants && CheckSameImplant(target, implant.Value))
         {
-            var name = Identity.Name(target, EntityManager, user);
-            var msg = Loc.GetString("implanter-component-implant-already", ("implant", implant), ("target", name));
-            _popup.PopupEntity(msg, target, user);
-            return;
+            // STARLIGHT START: Special handling for head revolutionaries with mindshield implants
+            // If this is a head revolutionary and we're trying to implant a mindshield,
+            // remove the existing mindshield implant first to allow repeated destruction
+            if (HasComp<HeadRevolutionaryComponent>(target) && TryComp<MindShieldImplantComponent>(implant.Value, out _))
+            {
+                // Find and remove the existing mindshield implant
+                if (TryComp<ImplantedComponent>(target, out var implanted) && implanted.ImplantContainer != null)
+                {
+                    var implantPrototype = Prototype(implant.Value);
+                    foreach (var existingImplant in implanted.ImplantContainer.ContainedEntities.ToList())
+                    {
+                        if (Prototype(existingImplant) == implantPrototype)
+                        {
+                            // Remove the existing mindshield implant
+                            _container.Remove(existingImplant, implanted.ImplantContainer);
+                            QueueDel(existingImplant);
+                            break;
+                        }
+                    }
+                }
+                // Continue with the implantation process (don't return)
+            }
+            else
+            {
+                // Normal behavior for non-head-revolutionaries or non-mindshield implants
+                var name = Identity.Name(target, EntityManager, user);
+                var msg = Loc.GetString("implanter-component-implant-already", ("implant", implant), ("target", name));
+                _popup.PopupEntity(msg, target, user);
+                return;
+            }
+            // STARLIGHT END
         }
 
         //If the target doesn't have the implanted component, add it.
@@ -171,7 +200,8 @@ public abstract class SharedImplanterSystem : EntitySystem
             return false;
         }
 
-        // STARLIGHT START: Check if the implant is a USSP uplink implant (revolutionary implant)
+
+        // Check if the implant is a USSP uplink implant (revolutionary implant)
         var isUSSPImplant = false;
         if (TryComp<MetaDataComponent>(implant.Value, out var metadata) && 
             metadata.EntityPrototype?.ID == "USSPUplinkImplant")
@@ -348,6 +378,20 @@ public abstract class SharedImplanterSystem : EntitySystem
                 {
                     _popup.PopupEntity(Loc.GetString("Useless junk."), user, user);
                     return false;
+                }
+            }
+        }
+
+        // Check if this is a mindshield implant and the target has a destroyed mindshield
+        if (TryComp<MindShieldImplantComponent>(implant.Value, out _))
+        {
+            if (HasComp<DestroyedMindshieldComponent>(target))
+            {
+                // Allow head revolutionaries to be repeatedly implanted (mindshield will be destroyed immediately)
+                // Block everyone else with destroyed mindshields
+                if (!HasComp<HeadRevolutionaryComponent>(target))
+                {
+                    return false; // Block the implantation, but don't show popup here (will be handled after doafter)
                 }
             }
         }

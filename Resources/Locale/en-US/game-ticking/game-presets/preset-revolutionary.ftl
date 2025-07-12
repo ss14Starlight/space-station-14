@@ -17,6 +17,7 @@ head-rev-briefing =
     Lots of used flashes are the biggest indicator of a revolution to security, so be careful!
 
 head-rev-break-mindshield = The MindShield™ was destroyed!
+head-rev-break-mindshield-name = {$target}'s MindShield™ was destroyed!
 
 ## Rev
 

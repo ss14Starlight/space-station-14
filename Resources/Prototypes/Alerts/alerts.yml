@@ -8,6 +8,7 @@
     - category: Health
     - category: Stamina
     - alertType: Shadekin # Starlight
+    - alertType: MindshieldDegrading # Starlight
     - alertType: ChangelingChemicals
     - alertType: SuitPower
     - category: Internals

@@ -1,0 +1,5 @@
+# Status effect for mindshield degradation
+
+- type: statusEffect
+  id: MindshieldDegrading
+  alert: MindshieldDegrading

@@ -1,0 +1,19 @@
+# Alert for mindshield degradation
+
+- type: alert
+  id: MindshieldDegrading
+  icons:
+  - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
+    state: implanter1
+  - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
+    state: implanter1
+  - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  name: alerts-mindshield-degrading-name
+  description: alerts-mindshield-degrading-desc
+  minSeverity: 0
+  maxSeverity: 4

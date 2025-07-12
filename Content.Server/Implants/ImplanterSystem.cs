@@ -1,11 +1,14 @@
 using System.Linq;
 using Content.Server.Popups;
+using Content.Shared._Starlight.Mindshield.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
+using Content.Shared.Mindshield.Components;
 using Content.Shared.Popups;
+using Content.Shared.Revolutionary.Components;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Implants;
@@ -140,6 +143,33 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
     {
         if (args.Cancelled || args.Handled || args.Target == null || args.Used == null)
             return;
+
+        // STARLIGHT START: Check for destroyed mindshield after doafter completes
+        if (!CanImplant(args.User, args.Target.Value, args.Used.Value, component, out var implant, out _))
+        {
+            // Check specifically if this is a mindshield implant being blocked by destroyed mindshield
+            if (TryComp<MindShieldImplantComponent>(implant, out _) && HasComp<DestroyedMindshieldComponent>(args.Target.Value))
+            {
+                // Only show the destroyed mindshield message for non-head-revolutionaries
+                // Head revolutionaries are allowed to be implanted (mindshield will be destroyed immediately)
+                if (!HasComp<HeadRevolutionaryComponent>(args.Target.Value))
+                {
+                    var name = Identity.Name(args.Target.Value, EntityManager, args.User);
+                    var msg = Loc.GetString("implanter-component-mindshield-destroyed", ("target", name));
+                    _popup.PopupEntity(msg, args.Target.Value, args.User);
+                }
+            }
+            
+            // STARLIGHT: Still check if this implanter should dissolve on use even if implantation failed
+            if (component.DissolveOnUse)
+            {
+                QueueDel(args.Used.Value);
+            }
+            
+            args.Handled = true;
+            return;
+        }
+        // STARLIGHT END
 
         Implant(args.User, args.Target.Value, args.Used.Value, component);
 
