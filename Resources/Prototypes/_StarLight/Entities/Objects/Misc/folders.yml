@@ -25,10 +25,10 @@
           amount: 20
 
 - type: entity
-  id: BoxFolderFundingClipboard
+  id: BoxFolderHoPClipboard
   parent: [BoxFolderClipboard, BaseGrandTheftContraband]
-  name: Funding Allocation Digi-board
-  description: An unassuming digital clipboard. Controls the station's fund allocations, vulnerable to assistants.
+  name: Bureaucratic Digi-Board
+  description: A bulky electric clipboard, filled with bureaucracy. Contains a portable ID card computer. Vulnerable to assistants.
   components:
   - type: Sprite
     sprite: Objects/Misc/qm_clipboard.rsi
@@ -55,11 +55,51 @@
   - type: Clothing
     sprite: Objects/Misc/qm_clipboard.rsi
   - type: Storage
+    maxItemSize: Small
     grid:
     - 0,0,4,3
     quickInsert: true
   - type: StorageFill
-    contents: [] #to override base clipboard fill
+    contents:
+      - id: Paper
+        prob: 1
+      - id: Paper
+        prob: 1
+      - id: Paper
+        prob: 1
+      - id: Paper
+        prob: 1
+      - id: Paper
+        prob: 1
+  - type: IdCardConsole
+    privilegedIdSlot:
+      name: id-card-clipboard-priviliged-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+    targetIdSlot:
+      name: id-card-clipboard-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+  - type: ActivatableUI
+    key: enum.IdCardConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.IdCardConsoleUiKey.Key:
+        type: IdCardConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: ItemMapper
     mapLayers:
       qm_clipboard_paper:
@@ -70,21 +110,10 @@
         whitelist:
           tags:
           - Write
-  - type: FundingAllocationConsole
-  - type: ActivatableUI
-    key: enum.FundingAllocationConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.FundingAllocationConsoleUiKey.Key:
-        type: FundingAllocationConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 10
+        Slash: 10
   - type: Tag
     tags:
     - Folder

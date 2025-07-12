@@ -103,9 +103,9 @@
   <Box>
     <GuideEntityEmbed Entity="BoxFolderQmClipboard" Caption=""/>
   </Box>
-  - Stealing the [color=gold]Captain's[/color] [bold]Funding Clipboard[/bold]
+  - Stealing the [color=gold]Captain's[/color] [bold]ID Clipboard[/bold]
   <Box>
-  <GuideEntityEmbed Entity="BoxFolderFundingClipboard" Caption=""/>
+  <GuideEntityEmbed Entity="BoxFolderIDClipboard" Caption=""/>
   </Box>
   - Butchering Ian, the [color=#9fed58]Head of Personnel[/color]'s dog, and obtaining the [bold]corgi meat[/bold].
   <Box>
