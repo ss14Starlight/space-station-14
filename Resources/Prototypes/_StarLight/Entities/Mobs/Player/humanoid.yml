@@ -90,3 +90,4 @@
         - NamesSovietMarinesFirst
         - NamesSovietMarinesLast
       nameFormat: name-format-ert
+    - type: Revolutionary # change if you do soviet invasion gamemode
