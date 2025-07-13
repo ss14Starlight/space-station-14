@@ -1,7 +1,7 @@
 - type: entity
   name: miniature hypospray # Get Happy or Faush to have this thing take vials.
   parent: [BaseItem, BaseSecurityContraband]
-  description: A compact sterile spray for rapid chemical injection in combat situations.
+  description: A compact sterile spray for rapid chemical injection in combat situations. Accepts miniature vials.
   id: BrigHypo
   components:
   - type: Sprite
@@ -10,20 +10,27 @@
   - type: Item
     sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
     size: Tiny
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 5
-  - type: RefillableSolution
-    solution: hypospray
-  - type: ExaminableSolution
-    solution: hypospray
-  - type: Hypospray
-    onlyAffectsMobs: false
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
     price: 750
+  - type: ItemSlots
+    slots:
+      vial_slot:
+        name: miniature-hypospray-vial-slot-name
+        whitelist:
+          tags:
+            - Vial
+          components:
+            - SolutionContainerManager
+          requireAll: true
+  - type: ContainerContainer
+    containers:
+      vial_slot: !type:ContainerSlot
+  - type: ExternalContainerInjector
+    onlyAffectsMobs: false
+    vialSlotId: vial_slot
+    vialSolutionName: beaker
 
 - type: entity #Of fucking course speed is hardcoded. You know the drill.
   name: hypoinjector
@@ -40,7 +47,8 @@
   - type: Injector
     transferAmount: 15
     toggleState: Draw
-    actualDelay: -100
+    delay: 30.0
+    delayPerVolume: 0.05
   - type: Tag
     tags:
     - Syringe

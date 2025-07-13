@@ -78,6 +78,9 @@
   parent: ReinforcedMiniatureEmptyChemistryVial
   description: A small vial, now explosion proof.
   components:
+  - type: Tag
+    tags:
+    - ExternalContainerInjectorVial
   - type: SolutionContainerManager
     solutions:
       beaker:
