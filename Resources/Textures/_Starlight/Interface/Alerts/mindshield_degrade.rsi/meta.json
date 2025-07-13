@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by JustAdler for https://github.com/ss14Starlight/space-station-14",
+
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "implanter0"
+        },
+        {
+            "name": "implanter1"
+        },
+        {
+            "name": "implanter2"
+        },
+        {
+            "name": "implanter3"
+        },
+        {
+            "name": "implanter4"
+        }     
+    ]
+}

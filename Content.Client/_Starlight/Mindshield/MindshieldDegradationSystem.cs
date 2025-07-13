@@ -35,13 +35,15 @@ public sealed class MindshieldDegradationSystem : SharedMindshieldDegradationSys
     {
         var progress = GetDegradationProgress(uid, degradation);
         
-        // Convert progress (0.0 to 1.0) to severity (0 to 2)
-        // 0-50% = severity 0 (Low), 50-80% = severity 1 (Medium), 80%+ = severity 2 (High)
-        short severity = 0; // Low severity (green)
-        if (progress >= 0.5f) // 5+ minutes elapsed
-            severity = 1; // Medium severity (yellow)
+        short severity = 0;
+        if (progress >= 0.2f) // 2+ minutes elapsed
+            severity = 1;
+        if (progress >= 0.4f) // 4+ minutes elapsed
+            severity = 2;
+        if (progress >= 0.6f) // 6+ minutes elapsed
+            severity = 3;
         if (progress >= 0.8f) // 8+ minutes elapsed  
-            severity = 2; // High severity (red)
+            severity = 4;
 
         // Calculate cooldown times for the circular progress indicator
         var startTime = degradation.StartTime;

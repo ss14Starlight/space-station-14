@@ -3,16 +3,16 @@
 - type: alert
   id: MindshieldDegrading
   icons:
-  - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
+  - sprite: _Starlight/Interface/Alerts/mindshield_degrade.rsi
     state: implanter0
-  - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
-    state: implanter0
-  - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
-    state: implanter0
-  - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
-    state: implanter0
-  - sprite: /Textures/Objects/Specific/Medical/implanter.rsi
-    state: implanter0
+  - sprite: _Starlight/Interface/Alerts/mindshield_degrade.rsi
+    state: implanter1
+  - sprite: _Starlight/Interface/Alerts/mindshield_degrade.rsi
+    state: implanter2
+  - sprite: _Starlight/Interface/Alerts/mindshield_degrade.rsi
+    state: implanter3
+  - sprite: _Starlight/Interface/Alerts/mindshield_degrade.rsi
+    state: implanter4
   name: alerts-mindshield-degrading-name
   description: alerts-mindshield-degrading-desc
   minSeverity: 0
