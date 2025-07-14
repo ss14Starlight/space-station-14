@@ -1,7 +1,7 @@
 - type: entity
-  name: miniature hypospray # Get Happy or Faush to have this thing take vials.
+  name: brigmedic hypospray
   parent: [BaseItem, BaseSecurityContraband]
-  description: A compact sterile spray for rapid chemical injection in combat situations. Accepts miniature vials.
+  description: A compact sterile spray for rapid chemical injection in combat situations. Accepts small vials.
   id: BrigHypo
   components:
   - type: Sprite
@@ -20,7 +20,7 @@
         name: miniature-hypospray-vial-slot-name
         whitelist:
           tags:
-            - Vial
+            - ExternalContainerInjectorVial
           components:
             - SolutionContainerManager
           requireAll: true

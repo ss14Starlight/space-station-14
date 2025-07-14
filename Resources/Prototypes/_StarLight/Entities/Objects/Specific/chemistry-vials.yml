@@ -1,5 +1,5 @@
 - type: entity
-  name: miniature vial
+  name: small reinforced vial
   parent: BaseItem
   id: ReinforcedMiniatureEmptyChemistryVial
   description: A small vial made with blast-resistant glass.
@@ -8,7 +8,7 @@
     tags:
     - Trash
     - CentrifugeCompatible
-    - Vial
+    - ExternalContainerInjectorVial
   - type: PhysicalComposition
     materialComposition:
       SheetRGlass: 5
@@ -33,7 +33,7 @@
   - type: SolutionContainerManager
     solutions:
       beaker:
-        maxVol: 5
+        maxVol: 10
   - type: MixableSolution
     solution: beaker
   - type: RefillableSolution
@@ -80,7 +80,7 @@
   components:
   - type: Tag
     tags:
-    - ExternalContainerInjectorVial
+    - Vial
   - type: SolutionContainerManager
     solutions:
       beaker:
