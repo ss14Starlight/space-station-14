@@ -75,19 +75,6 @@
   categories:
   - RevUplinkPassive
 
-- type: listing
-  id: SNKVDAPS
-  name: aps-name
-  description: aps-desc
-  productEntity: WeaponPistolAPS
-  cost:
-    Conversion: 28
-  categories:
-  - RevUplinkPassive
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
-
 ### Telebonds category
 # Weapons, some modern some discontinued like the PPSH
 # The AKMS is candidate of discontinued weapons, but it's just a better DP28 right now.
@@ -145,6 +132,20 @@
   conditions:
   - !type:StockLimitedListingCondition
     stockLimit: 6
+
+- type: listing
+  id: SNKVDAPS
+  name: aps-name
+  description: aps-desc
+  productEntity: ClothingBackpackDuffelStechkinAPS
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/Pistols/aps.rsi, state: icon }
+  cost:
+    Telebond: 15
+  categories:
+  - RevUplinkWeaponry
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
 
 - type: listing
   id: SKBDP28

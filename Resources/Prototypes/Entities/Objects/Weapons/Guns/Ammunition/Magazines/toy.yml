@@ -1,5 +1,5 @@
 - type: entity
-  parent: MagazineLightRifleBoxSP # It goes in a saw, its funny.
+  parent: MagazineLightRifleBoxFMJ # It goes in a saw, its funny.
   id: MagazineFoamBox
   name: ammunition box (foam)
   components:

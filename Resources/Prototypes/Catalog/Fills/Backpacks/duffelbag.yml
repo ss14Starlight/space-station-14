@@ -57,7 +57,7 @@
   - type: StorageFill
     contents:
       - id: WeaponSubMachineGunC20r
-      - id: MagazinePistolSubMachineGunSP
+      - id: MagazinePistolSubMachineGunFMJ
         amount: 2
 #     - id: SMGSuppressor
 
@@ -82,9 +82,9 @@
   - type: StorageFill
     contents:
       - id: WeaponLightMachineGunL6
-      - id: MagazineBoxLightRifleSP
-      - id: MagazineLightRifleBoxSP
-      - id: MagazineLightRifleBoxSP
+      - id: MagazineBoxLightRifleFMJ
+      - id: MagazineLightRifleBoxFMJ
+      - id: MagazineLightRifleBoxFMJ
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -126,17 +126,15 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGunSP
+      - id: MagazinePistolSubMachineGunFMJ
         amount: 4
       - id: MagazineShotgun
         amount: 4
-      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBoxFMJ
         amount: 3
       - id: MagazineBoxLightRifleSP
-        amount: 1
+        amount: 2
       - id: MagazineBoxLightRifleHP
-        amount: 1
-      - id: MagazineBoxLightRifleFMJ
         amount: 1
 
 - type: entity
@@ -344,9 +342,9 @@
   - type: StorageFill
     contents:
       - id: WeaponSubMachineGunC20r
-      - id: MagazinePistolSubMachineGunSP
+      - id: MagazinePistolSubMachineGunFMJ
         amount: 3
-      - id: MagazinePistolSP
+      - id: MagazinePistolFMJ
       - id: SyndicateJawsOfLife
       - id: C4
         amount: 2

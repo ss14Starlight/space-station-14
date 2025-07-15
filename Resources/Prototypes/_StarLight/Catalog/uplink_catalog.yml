@@ -103,6 +103,17 @@
   categories:
     - UplinkAmmo
 
+- type: listing
+  id: UplinkPistol40MagazineFMJ
+  name: uplink-pistol40-magazine-nameFMJ
+  description: uplink-pistol40-magazine-descFMJ
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: fmj }
+  productEntity: MagazinePistol40FMJ
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
 # Cybernetics
 
 - type: listing

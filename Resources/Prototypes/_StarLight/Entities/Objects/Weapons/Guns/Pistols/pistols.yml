@@ -206,6 +206,25 @@
   - type: Gun
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol40FMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolDP
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol40FMJ
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistolDP
       
 - type: entity
   name: Stechkin APS
@@ -227,6 +246,25 @@
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg
   - type: Contraband
     severity: Soviet
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol40SP
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolDP
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol40SP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistolDP
       
 - type: entity
   name: Jungle Hawk
@@ -246,6 +284,25 @@
     fireRate: 5
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/deagle.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnumUranium
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnumUranium
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
       
 - type: entity
   name: m1911
