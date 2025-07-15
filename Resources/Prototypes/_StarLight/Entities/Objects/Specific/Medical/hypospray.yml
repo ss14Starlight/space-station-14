@@ -32,23 +32,36 @@
     vialSlotId: vial_slot
     vialSolutionName: beaker
 
-- type: entity #Of fucking course speed is hardcoded. You know the drill.
+- type: entity
   name: hypoinjector
   parent: [BaseSyringe, BaseMedicalContraband]
-  description: A sterile discount hypospray for rapid chemical injection.
-  id: FastSyringe
+  description: A sterile reusable auto-injector/drawer with a built-in limiter, draw and inject liquids with the push of a button!
+  id: SlowAutoinjector
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
-    state: hypo
+    sprite: _Starlight/Objects/Specific/Medical/syringe.rsi
+    layers:
+      - state: syringe1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+      - state: syringe_base_draw0
+        map: ["enum.SolutionContainerLayers.Base"]
+  - type: Icon
+    sprite: _Starlight/Objects/Specific/Medical/syringe.rsi
+    state: "syringe_base_draw0"
   - type: Item
-    sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
+    sprite: _Starlight/Objects/Specific/Medical/syringe.rsi
     size: Tiny
   - type: Injector
     transferAmount: 15
     toggleState: Draw
-    delay: 30.0
-    delayPerVolume: 0.05
+    delay: 2.5
+    delayPerVolume: 0
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: syringe
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
   - type: Tag
     tags:
     - Syringe

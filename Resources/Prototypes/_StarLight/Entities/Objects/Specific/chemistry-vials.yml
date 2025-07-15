@@ -16,7 +16,7 @@
     solution: beaker
   - type: SpaceGarbage
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Chemistry/reinforced_vial.rsi #REMEMBER TO MAKE SMOL.
+    sprite: _Starlight/Objects/Specific/Chemistry/reinforced_vial_small.rsi
     layers:
       - state: vial-1
       - state: vial-1-1
@@ -24,7 +24,7 @@
         visible: false
   - type: Appearance
   - type: SolutionContainerVisuals
-    maxFillLevels: 6
+    maxFillLevels: 4
     fillBaseName: vial-1-
     inHandsMaxFillLevels: 4
     inHandsFillBaseName: -fill-
