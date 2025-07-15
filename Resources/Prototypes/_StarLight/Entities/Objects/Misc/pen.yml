@@ -12,3 +12,19 @@
       tags:
         - Write
         - Pen
+
+- type: entity
+  name: chrono pen
+  parent: [BaseAdvancedPen, BaseMajorContraband]
+  id: ChronoPen
+  description: A extremely high-tech pen straight from god knows where, capable of refracting hard-light at impossible angles through a holographic tip in order to write. So powerful, it's even able to rewrite officially stamped documents should the need arise.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/chrono_pen.rsi
+    layers: 
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+  - type: Item
+    sprite: _Starlight/Objects/Misc/chrono_pen.rsi
+    heldPrefix: ""

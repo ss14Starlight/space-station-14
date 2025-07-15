@@ -373,3 +373,17 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
 
+- type: entity
+  parent: [ ClothingUniformBase, BaseMajorContraband ]
+  id: ClothingUniformJumpsuitLegionnaire
+  name: legionnaire jumpsuit
+  description: A tight-fitting jumpsuit lined with technology.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/chrono_uniform.rsi
+    layers: 
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/chrono_uniform.rsi

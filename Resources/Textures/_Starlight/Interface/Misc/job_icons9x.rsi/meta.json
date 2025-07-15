@@ -1,0 +1,20 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by Salem.uwu for Starlight",
+    "size": {
+        "x": 9,
+        "y": 9
+    },
+    "states": [
+                {
+            "name": "Chrono",
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        }
+    ]
+}

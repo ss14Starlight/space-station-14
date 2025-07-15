@@ -77,3 +77,12 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: Operative
   jobName: job-name-Operative
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconLegionnaire
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons9x.rsi
+    state: Chrono
+  jobName: job-name-Chrono
+  allowSelection: false # it doesn't exists yet.

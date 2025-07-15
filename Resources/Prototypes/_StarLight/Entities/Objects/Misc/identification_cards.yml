@@ -228,3 +228,22 @@
       interfaces:
         enum.AgentIDCardUiKey.Key:
           type: AgentIDCardBoundUserInterface
+
+- type: entity
+  parent: [ UniversalIDCard, BaseMajorContraband ]
+  id: ChronoIDCard
+  description: a ID of the far future. has access to everything.
+  name: legionnaire ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: chrono
+        - state: chrono-unshaded
+          shader: unshaded
+    - type: Item
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      heldPrefix: chrono
+    - type: IdCard
+      jobTitle: job-name-Chrono
+      jobIcon: JobIconLegionnaire
