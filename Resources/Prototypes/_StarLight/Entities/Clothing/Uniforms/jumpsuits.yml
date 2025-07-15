@@ -387,3 +387,8 @@
       shader: unshaded
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/chrono_uniform.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+      - state: equipped-INNERCLOTHING-unshaded
+        shader: unshaded
