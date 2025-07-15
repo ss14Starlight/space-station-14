@@ -31,6 +31,7 @@
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
+
 #NTRep Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
@@ -64,6 +65,7 @@
     damageCoefficient: 0.9
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNtrep
+
 #Clown Battlesuit
 - type: entity
   parent: [ClothingOuterHardsuitBase]
@@ -98,6 +100,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetBattlesuitClown
+
 #Mercenary Hardsuit
 - type: entity
   parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ]
@@ -250,8 +253,7 @@
             - PowerCell
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitInfiltration
-    
-    
+     
 #CCNT Consortium medics
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieMedic ] #sl Change
@@ -269,7 +271,6 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-
 
 #USSP
 - type: entity
@@ -322,3 +323,56 @@
   - type: Item
     size: Huge
 
+#Chrono Legionnaire
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseMajorContraband]
+  id: ClothingOuterHardsuitLegionnaire
+  name: legionnaire hardsuit
+  description: A really strong futuristic hardsuit. removes footstep sounds and makes you faster.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/chrono_hardsuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/chrono_hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.1 #best armor in the game
+        Slash: 0.1
+        Piercing: 0.1
+        Heat: 0.1
+        Radiation: 0.1
+        Caustic: 0.1
+    staminaModifier: 0.0
+    ingoreKnockdown: true
+  - type: BreathMask
+    allowedSlots: [ MASK, HEAD, OUTERCLOTHING ]
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+    staminaModifier: 1
+    ingoreKnockdown: false
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1.1
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitChrono
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: BarestepCarpet
+      params:
+        volume: -1000
+        variation: 0
+  - type: Item
+    size: Normal
