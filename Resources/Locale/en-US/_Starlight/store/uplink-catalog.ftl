@@ -10,6 +10,8 @@ uplink-stechkin-name = Stechkin pistol
 uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors.
 uplink-pistol-magnum-magazine-name = Pistol Magazine (.45 magnum)
 uplink-pistol-magnum-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Desert Eagle.
+uplink-pistol-magnum-magazine-name-uranium = Pistol Magazine (.45 magnum uranium)
+uplink-pistol-magnum-magazine-desc-uranium = Pistol magazine with 10 cartridges. Compatible with the Desert Eagle.
 uplink-magillitis-serum-implanter-name = Magillitis Serum Implanter
 uplink-magillitis-serum-implanter-desc = An experimental biochip which causes irreversable rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas.
 
@@ -19,6 +21,9 @@ uplink-thermalvision-eyes = Thermal Vision Cyber Eyes
 uplink-thermalvision-eyes-desc = Allows you to see in the dark and detect creatures through walls but makes you more vulnerable to flashes. (Warning: You will need a surgical assistant for the procedure.)
 uplink-mantis-blade-arms-name = Mantis Blade Arms Bundle
 uplink-mantis-blade-arms-desc = Originally used as a simple construction tool, now turned into hidden blades that can extend from your arm while still keeping its destructive prying skill. Truly a sight to behold. (Warning: You will need a surgical assistant for the procedure.)
+
+uplink-pistol-magazine-c20r-nameSP = SMG magazine (.35 auto SP)
+uplink-pistol-magazine-c20r-descSP = Rifle magazine with 30 catridges. Compatible with C-20r.
 
 uplink-pistol-magazine-nameSP = Pistol Magazine (.35 auto SP)
 uplink-pistol-magazine-descSP = Pistol magazine with 10 catridges. Compatible with the Viper.
