@@ -80,3 +80,36 @@
           type: Avali
           shouldHave: true
         amount: 3
+
+  # Should heal quite literally everything
+- type: reagent
+  id: Panacea
+  name: reagent-name-panacea
+  group: Medicine
+  desc: reagent-desc-panacea
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#25dbf3"
+  worksOnTheDead: true
+  metabolismRate: 0.1
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Burn: -25
+          Toxin: -25
+          Airloss: -25
+          Brute: -25
+      - !type:ModifyBloodLevel
+        amount: 25
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          max: 293.15
+        amount: 100000 # thermal energy, not temperature!
+      - !type:AdjustTemperature
+        conditions:
+        - !type:Temperature
+          min: 293.15
+        amount: -10000
