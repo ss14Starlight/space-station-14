@@ -230,7 +230,7 @@
           type: AgentIDCardBoundUserInterface
 
 - type: entity
-  parent: [ UniversalIDCard, BaseMajorContraband ]
+  parent: [ IDCardStandard, BaseMajorContraband ]
   id: ChronoIDCard
   description: a ID of the far future. has access to everything.
   name: legionnaire ID card
@@ -248,3 +248,16 @@
       jobTitle: job-name-Chrono
       jobIcon: JobIconLegionnaire
       bypassLogging: true # leave no trace.
+    - type: Access
+      groups:
+      - AllAccess
+      - Silicon
+      tags:
+      - CentralCommand
+      - NuclearOperative
+      - SyndicateAgent
+      - Wizard
+      - Xenoborg
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+      - DoorBumpOpener

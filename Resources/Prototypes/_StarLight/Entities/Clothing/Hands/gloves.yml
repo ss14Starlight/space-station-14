@@ -122,3 +122,6 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Hands/Gloves/chronogloves.rsi
   - type: FingerprintMask
+  - type: Thieving
+    stripTimeReduction: 10 #very fast. not quite instant
+    stealthy: true
