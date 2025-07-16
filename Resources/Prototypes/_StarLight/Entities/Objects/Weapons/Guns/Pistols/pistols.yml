@@ -8,9 +8,9 @@
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/makarov.rsi
   - type: Gun
     minAngle: 1
-    maxAngle: 30
+    maxAngle: 13
     angleIncrease: 9
-    angleDecay: 10
+    angleDecay: 25
     fireRate: 3
     availableModes:
     - SemiAuto
