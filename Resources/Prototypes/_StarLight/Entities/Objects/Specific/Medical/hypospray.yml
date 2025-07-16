@@ -31,6 +31,10 @@
     onlyAffectsMobs: false
     vialSlotId: vial_slot
     vialSolutionName: beaker
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: hypo_fill
+    solutionName: hypospray
 
 - type: entity
   name: hypoinjector
