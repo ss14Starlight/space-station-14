@@ -170,6 +170,31 @@
         color: "#72E374"
 
 - type: entity
+  id: MagazineMagnumIncendiary
+  name: pistol magazine (.45 magnum incendiary)
+  parent: BaseMagazineMagnum
+  description: 7-round single stack pistol magazine. Intended to hold crisp incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#40F57A"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#40F57A"
+
+- type: entity
   id: MagazineMagnumSubMachineGunEmpty
   name: SMG magazine (.45 magnum any)
   suffix: empty

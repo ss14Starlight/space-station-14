@@ -115,17 +115,17 @@
   - UplinkAmmo
 
 - type: listing
-  id: UplinkPistolMagnumMagazineUranium
-  name: uplink-pistol-magnum-magazine-name-uranium
-  description: uplink-pistol-magnum-magazine-desc-uranium
+  id: UplinkPistolMagnumMagazineIncendiary
+  name: uplink-pistol-magnum-magazine-name-incendiary
+  description: uplink-pistol-magnum-magazine-desc-incendiary
   icon:
     {
       sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi,
-      state: uranium,
+      state: incendiary,
     }
-  productEntity: MagazineMagnumUranium
+  productEntity: MagazineMagnumIncendiary
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
     - UplinkAmmo
 
