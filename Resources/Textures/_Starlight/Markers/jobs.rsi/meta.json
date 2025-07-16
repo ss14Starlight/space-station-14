@@ -30,6 +30,9 @@
     },
     {
       "name": "mailtech"
+    },
+    {
+      "name": "chrono"
     }
   ]
 }

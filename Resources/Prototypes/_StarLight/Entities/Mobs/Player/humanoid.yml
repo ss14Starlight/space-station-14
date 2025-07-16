@@ -90,3 +90,33 @@
         - NamesSovietMarinesFirst
         - NamesSovietMarinesLast
       nameFormat: name-format-ert
+
+# Chrono Legionnaire
+- type: entity
+  name: Chrono Legionnaire
+  id: RandomHumanoidChronoLegionnaire
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: chrono
+    - type: RandomHumanoidSpawner
+      settings: ChronoLegionnaire
+
+- type: randomHumanoidSettings
+  id: ChronoLegionnaire
+  randomizeName: false
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: IdBind
+    - type: Tag
+      tags:
+      - ChronoLegionnaire
+    - type: Loadout
+      prototypes: [ ChronoLegionnaireGear ]
+      roleLoadout: [ RoleSurvivalStandard ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert

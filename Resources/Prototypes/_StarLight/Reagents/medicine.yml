@@ -91,9 +91,9 @@
   flavor: medicine
   color: "#25dbf3"
   worksOnTheDead: true
-  metabolismRate: 0.1
   metabolisms:
     Medicine:
+      metabolismRate: 0.1
       effects:
       - !type:EvenHealthChange
         damage:

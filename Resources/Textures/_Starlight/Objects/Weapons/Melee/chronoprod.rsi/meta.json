@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "copyright": "Edit by Conflee. OG Wonderprod taked From Paradise Station, animated by darkrell",
+    "license": "CC-BY-SA-3.0",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "delays": [
+              [
+                1,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15
+              ]
+            ]
+        },
+        {
+            "name": "chrono-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "chrono-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "chrono-equipped-BACKPACK",
+            "directions": 4
+        }
+    ]
+}

@@ -1,0 +1,114 @@
+- type: entity
+  name: Chronoprod
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: Chronoprod
+  description: Universal tool of the chrono legionnaire.
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/chronoprod.rsi
+    size: Normal
+    storedRotation: -90
+    inhandVisuals: 
+      left: 
+        - state: chrono-inhand-left
+      right:
+        - state: chrono-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Melee/chronoprod.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+    clothingVisuals:
+      back: 
+        - state: chrono-equipped-BACKPACK
+      suitstorage:
+        - state: chrono-equipped-BACKPACK
+  - type: Sprite 
+    sprite: _Starlight/Objects/Weapons/Melee/chronoprod.rsi
+    state: icon
+  - type: RestrictByUserTag
+    contains:
+    - ChronoLegionnaire
+    messages:
+    - chrono-weapon-restricted-1
+    - chrono-weapon-restricted-2
+    - chrono-weapon-restricted-3
+    - chrono-weapon-restricted-4
+  - type: ItemSwitch
+    state: stun
+    states:
+      stun: !type:ItemSwitchState
+        verb: stun
+        sprite:
+          sprite: _Starlight/Objects/Weapons/Melee/chronoprod.rsi
+          state: icon
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 0.5
+          damage:
+            types:
+              Shock: 0
+          angle: 60
+          animation: WeaponArcThrust
+        - type: StaminaDamageOnHit
+          damage: 225
+          sound: /Audio/Weapons/Guns/Hits/taser_hit.ogg
+        soundStateActivate:
+          collection: sparks
+          params:
+            variation: 0.250
+
+      cuffs: !type:ItemSwitchState
+        verb: cuffs
+        sprite:
+          sprite: _Starlight/Objects/Weapons/Melee/chronoprod.rsi
+          state: icon
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 0.5
+          damage:
+            types:
+              Shock: 0
+          angle: 60
+          animation: WeaponArcThrust
+        - type: CuffsOnHit
+          proto: Handcuffs
+          duration: 0 # INSTANT
+
+      sleep: !type:ItemSwitchState
+        verb: sleep
+        sprite:
+          sprite: _Starlight/Objects/Weapons/Melee/chronoprod.rsi
+          state: icon
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 1
+          damage:
+            types:
+              Shock: 0
+          angle: 60
+          animation: WeaponArcThrust
+        - type: InjectOnHit
+          limit: 40
+          reagents:
+          - ReagentId: Nocturine
+            Quantity: 20
+      
+      damage: !type:ItemSwitchState
+        verb: damage
+        sprite:
+          sprite: _Starlight/Objects/Weapons/Melee/chronoprod.rsi
+          state: icon
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 0.75
+          angle: 60
+          animation: WeaponArcThrust
+          damage:
+            types:
+              Heat: 55

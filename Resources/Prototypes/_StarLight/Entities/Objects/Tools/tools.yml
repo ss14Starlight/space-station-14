@@ -889,7 +889,7 @@
       - Screwdriver
 
 - type: entity
-  id: RCDExperimental
+  id: ChronoRCD
   parent: RCD
   name: chrono RCD
   description: A nullspace-enhanced rapid construction device that rapidly generates its own compressed matter.
