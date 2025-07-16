@@ -112,6 +112,7 @@
     - type: Tag
       tags:
       - ChronoLegionnaire
+      - Abductor # so they can use the prod. "it aint much but it will work"
     - type: Loadout
       prototypes: [ ChronoLegionnaireGear ]
       roleLoadout: [ RoleSurvivalStandard ]
