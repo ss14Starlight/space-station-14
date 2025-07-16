@@ -29,4 +29,36 @@
       state: crypt_soviet
     - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
       state: soviet_label
-    
+
+
+- type: entity
+  parent: [ EncryptionKey, BaseMajorContraband ]
+  id: EncryptionKeyChrono
+  name: chrono encryption key
+  description: An encryption key that hears everything.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Common
+    - CentCom
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Syndicate
+    - Handheld
+    - Binary
+    - Freelance
+    - Xenoborg
+    - Mothership
+    - Law
+    - Soviet
+    - Expedition
+    defaultChannel: Command
+  - type: Sprite
+    layers:
+    - state: crypt_gold
+    - state: cap_label

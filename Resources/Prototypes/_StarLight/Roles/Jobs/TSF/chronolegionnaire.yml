@@ -23,7 +23,7 @@
     outerClothing: ClothingOuterHardsuitLegionnaire
     id: ChronoPDA
     eyes: ClothingEyesHudChrono
-    ears: ClothingHeadsetAltCommand #temp
+    ears: ClothingHeadsetChrono
     belt: ClothingBeltBlueShieldWebbingFilled #temp
     gloves: ClothingHandsGlovesCombat #temp
     suitstorage: Chronoprod

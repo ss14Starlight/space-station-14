@@ -77,3 +77,21 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/soviet.ogg
+
+- type: entity
+  parent: [ClothingHeadset, BaseMajorContraband]
+  id: ClothingHeadsetChrono
+  name: chrono headset
+  description: A headset that hears everything.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyChrono
+  - type: Sprite
+    sprite: _Starlight/Clothing/Ears/Headsets/chronoheadset.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Ears/Headsets/chronoheadset.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/captain.ogg

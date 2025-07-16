@@ -253,7 +253,7 @@
       - AstroNavCartridge
 
 - type: entity
-  parent: BasePDA
+  parent: AdminPDA
   id: ChronoPDA
   name: legionnaire PDA
   components:
@@ -271,6 +271,6 @@
        !type:String
        pda-chronoagent
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#32e5f1"
   - type: Icon
     state: pda-chronoagent
