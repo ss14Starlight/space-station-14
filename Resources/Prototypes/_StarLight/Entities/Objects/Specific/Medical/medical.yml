@@ -517,11 +517,11 @@
   - type: Storage
     whitelist:
       tags:
-        - Vial
-      components:
+        - ExternalContainerInjectorVial
         - Hypospray
     grid:
-    - 0,0,2,2
+    - 1,0,2,0
+    - 0,2,3,3
   - type: Item
     size: Normal
     sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi

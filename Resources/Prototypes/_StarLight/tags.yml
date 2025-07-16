@@ -40,6 +40,9 @@
   id: Felionoid
 
 - type: Tag
+  id: Hypospray
+
+- type: Tag
   id: LightRifleHeavy
 
 - type: Tag

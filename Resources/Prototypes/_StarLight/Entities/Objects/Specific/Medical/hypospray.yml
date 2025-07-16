@@ -9,7 +9,6 @@
     state: hypo
   - type: Item
     sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
-    size: Tiny
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
@@ -18,6 +17,7 @@
     slots:
       vial_slot:
         name: brigmedic-hypospray-vial-slot-name
+        startingItem: ReinforcedMiniatureEmptyChemistryVial
         whitelist:
           tags:
             - ExternalContainerInjectorVial
@@ -38,6 +38,7 @@
   - type: Tag
     tags:
     - HighRiskItem
+    - Hypospray
   - type: StealTarget
     stealGroup: BrigmedicHypoSteal
 

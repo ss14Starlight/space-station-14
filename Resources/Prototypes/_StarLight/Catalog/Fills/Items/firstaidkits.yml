@@ -6,5 +6,5 @@
   - type: StorageFill
     contents:
       - id: BrigHypo
-      - id: ReinforcedEmptyChemistryVial
-        amount: 8
+      - id: ReinforcedMiniatureEmptyChemistryVial
+        amount: 9

@@ -25,7 +25,7 @@
   storage:
     back:
     - EmergencyRollerBedSpawnFolded
-    - DefibrillatorParamedical
+    - DefibrillatorParamedical # Starlight
 
 - type: chameleonOutfit
   id: ParamedicChameleonOutfit
