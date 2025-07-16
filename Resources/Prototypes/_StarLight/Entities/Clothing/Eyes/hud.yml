@@ -127,3 +127,27 @@
     modifiers:
       coefficients:
         Heat: 0.95
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons]
+  id: ClothingEyesHudChrono
+  name: chrono hud
+  description: A highly futuristic HuD showing legionnaires anything they would want to know.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/chrono.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/chrono.rsi
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: FlashImmunity
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons
+  - type: ShowSyndicateIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowAntagIcons #allows seeing revs
+  - type: ShowJobIcons

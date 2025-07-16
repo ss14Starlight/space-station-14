@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Salem.uwu for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "equipped-EYES",
+      "directions": 4
+    },
+    {
+      "name": "equipped-EYES-arachnid",
+      "directions": 4
+    },
+    {
+      "name": "equipped-EYES-moth",
+      "directions": 4
+    },
+    {
+      "name": "equipped-EYES-resomi",
+      "directions": 4
+    }
+  ]
+}
