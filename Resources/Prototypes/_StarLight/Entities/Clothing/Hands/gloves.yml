@@ -121,10 +121,4 @@
     sprite: _Starlight/Clothing/Hands/Gloves/chronogloves.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Hands/Gloves/chronogloves.rsi
-  - type: StunProvider
-    noPowerPopup: ninja-no-power
-    skipChecks: true
-    whitelist:
-      components:
-        - Stamina
   - type: FingerprintMask
