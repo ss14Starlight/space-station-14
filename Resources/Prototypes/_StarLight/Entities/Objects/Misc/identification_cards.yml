@@ -247,3 +247,4 @@
     - type: IdCard
       jobTitle: job-name-Chrono
       jobIcon: JobIconLegionnaire
+      bypassLogging: true # leave no trace.
