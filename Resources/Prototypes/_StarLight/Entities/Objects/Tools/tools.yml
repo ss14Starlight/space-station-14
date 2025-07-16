@@ -887,3 +887,16 @@
       - PlantSampleTaker
       - Wirecutter
       - Screwdriver
+
+- type: entity
+  id: RCDExperimental
+  parent: RCD
+  name: chrono RCD
+  description: A nullspace-enhanced rapid construction device that rapidly generates its own compressed matter.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/chrono_rcd.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Tools/chrono_rcd.rsi
+  - type: AutoRecharge
+    rechargeDuration: 1
