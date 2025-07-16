@@ -111,11 +111,11 @@ public sealed class InjectorSystem : SharedInjectorSystem
         // Create a pop-up for the user
         if (injector.Comp.ToggleState == InjectorToggleMode.Draw)
         {
-            Popup.PopupEntity(Loc.GetString("injector-component-drawing-user"), target, user);
+            Popup.PopupEntity(Loc.GetString(injector.Comp.InjectorDrawingStartDescription), target, user); // Starlight edit - moved translation key to component
         }
         else
         {
-            Popup.PopupEntity(Loc.GetString("injector-component-injecting-user"), target, user);
+            Popup.PopupEntity(Loc.GetString(injector.Comp.InjectorInjectingStartDescription), target, user); // Starlight edit - moved translation key to component
         }
 
         if (!SolutionContainers.TryGetSolution(injector.Owner, injector.Comp.SolutionName, out _, out var solution))

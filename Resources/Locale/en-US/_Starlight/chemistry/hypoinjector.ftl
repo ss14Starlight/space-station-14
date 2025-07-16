@@ -1,0 +1,2 @@
+hypoinjector-component-injecting-user = You start pressing the injector firmly against their arm and push the button
+hypoinjector-component-drawing-user = You start pressing the injector firmly against their arm and hold down the button

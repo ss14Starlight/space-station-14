@@ -17,7 +17,7 @@
   - type: ItemSlots
     slots:
       vial_slot:
-        name: miniature-hypospray-vial-slot-name
+        name: brigmedic-hypospray-vial-slot-name
         whitelist:
           tags:
             - ExternalContainerInjectorVial
@@ -57,6 +57,8 @@
     toggleState: Draw
     delay: 2.5
     delayPerVolume: 0
+    injectorInjectingStartDescription: "hypoinjector-component-injecting-user"
+    injectorDrawingStartDescription: "hypoinjector-component-drawing-user"
   - type: SolutionContainerVisuals
     maxFillLevels: 3
     fillBaseName: syringe
