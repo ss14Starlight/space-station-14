@@ -1,0 +1,28 @@
+- type: entity
+  parent: [ClothingShoesBootsMagBase, BaseJetpack, BaseMajorContraband]
+  id: ClothingShoesBootsMagChrono
+  name: chrono magboots
+  description: Highly advanced magboots that can anchor you to the floor and provide unlimited space propulsion.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Boots/magboots-chronoagent.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Boots/magboots-chronoagent.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Jetpack
+    moleUsage: 0 # free unlimited flight
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 2 minutes of thrust
+      volume: 0.75
+      temperature: 293.15
+      moles:
+      - 0.153853429 # oxygen
+      - 0.153853429 # nitrogen
+  - type: Item
+    sprite: _Starlight/Clothing/Shoes/Boots/magboots-chronoagent.rsi
+    size: Normal

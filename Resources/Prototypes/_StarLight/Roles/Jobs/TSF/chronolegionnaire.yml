@@ -18,7 +18,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitLegionnaire
     back: ClothingBackpackChrono
-    shoes: ClothingShoesBootsCombatFilled #temp
+    shoes: ClothingShoesBootsMagChrono
     head: ClothingHeadHatBeretBlueShield #temp
     outerClothing: ClothingOuterHardsuitLegionnaire
     id: ChronoPDA
