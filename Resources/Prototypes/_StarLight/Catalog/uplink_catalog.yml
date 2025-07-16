@@ -125,7 +125,7 @@
     }
   productEntity: MagazineMagnumUranium
   cost:
-    Telecrystal: 3
+    Telecrystal: 4
   categories:
     - UplinkAmmo
 
