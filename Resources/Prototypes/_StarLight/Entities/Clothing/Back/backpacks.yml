@@ -15,3 +15,25 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Backpacks/blueshield.rsi
+
+- type: entity
+  parent: [ ClothingBackpack, BaseMajorContraband ]
+  id: ClothingBackpackChrono
+  name: chrono stasis bag
+  description: A backpack that opens into a localized pocket of spacetime.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Backpacks/chronostasisbag.rsi
+    state: holding
+    layers:
+    - state: holding
+    - state: holding-unlit
+      shader: unshaded
+  - type: Clothing
+    equippedPrefix: holding
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,19,9

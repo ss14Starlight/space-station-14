@@ -28,3 +28,9 @@
   - type: Item
     sprite: _Starlight/Objects/Misc/chrono_pen.rsi
     heldPrefix: ""
+  - type: MeleeWeapon
+    attackRate: 2
+    autoAttack: true
+    damage:
+      types:
+        Heat: 15
