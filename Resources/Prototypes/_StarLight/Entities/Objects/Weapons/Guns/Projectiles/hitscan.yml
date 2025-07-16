@@ -324,7 +324,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 9
+      Piercing: 6
   armorPenetration: 0.69
   pierceChance: 0.81
   derivation: 0.2
@@ -505,7 +505,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 13
+      Piercing: 10
   armorPenetration: 0.69
   pierceChance: 0.81
   derivation: 0.05
@@ -707,7 +707,7 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 4
+      Piercing: 5
   pierceChance: 0.03
   count: 12
   spread: 15
