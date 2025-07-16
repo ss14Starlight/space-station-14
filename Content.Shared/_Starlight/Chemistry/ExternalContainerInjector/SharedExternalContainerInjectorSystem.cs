@@ -23,7 +23,6 @@ public abstract class SharedExternalContainerInjectorSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ExternalContainerInjectorComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<ExternalContainerInjectorComponent, GetVerbsEvent<ActivationVerb>>(AddActivationVerb);
     }
 
@@ -34,27 +33,12 @@ public abstract class SharedExternalContainerInjectorSystem : EntitySystem
             return;
 
         var (_, component) = entity;
-        var user = args.User;
         
         var activationVerb = new ActivationVerb()
         {
             Text = Loc.GetString("hypospray-verb-mode-label"),
-            Act = () => { ToggleMode(entity, user); }
         };
         args.Verbs.Add(activationVerb);
-    }
-
-    private void ToggleMode(Entity<ExternalContainerInjectorComponent> entity, EntityUid user)
-    {
-        SetMode(entity, !entity.Comp.OnlyAffectsMobs);
-
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        string msg = (entity.Comp.OnlyAffectsMobs && entity.Comp.CanContainerDraw)
-            ? "hypospray-verb-mode-inject-mobs-only"
-            : "hypospray-verb-mode-inject-all";
-        _popup.PopupClient(Loc.GetString(msg), entity, user);
     }
 
     public void SetMode(Entity<ExternalContainerInjectorComponent> entity, bool onlyAffectsMobs)
@@ -64,15 +48,6 @@ public abstract class SharedExternalContainerInjectorSystem : EntitySystem
 
         entity.Comp.OnlyAffectsMobs = onlyAffectsMobs;
         Dirty(entity);
-    }
-
-    private void OnUseInHand(Entity<ExternalContainerInjectorComponent> entity, ref UseInHandEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        var user = args.User;
-        ToggleMode(entity, user);
     }
 
     /// <summary>

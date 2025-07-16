@@ -18,6 +18,18 @@ public sealed partial class ExternalContainerInjectorComponent : Component
     public SoundSpecifier InjectSound = new SoundPathSpecifier("/Audio/Items/hypospray.ogg");
 
     /// <summary>
+    /// The ID of the item slot that holds the vial.
+    /// </summary>
+    [DataField(required: true)]
+    public string VialSlotId = string.Empty;
+
+    /// <summary>
+    /// The name of the solution to use from the inserted vial.
+    /// </summary>
+    [DataField]
+    public string VialSolutionName = "beaker";
+
+    /// <summary>
     /// Decides whether you can inject everything or just mobs.
     /// </summary>
     [AutoNetworkedField]
@@ -37,16 +49,4 @@ public sealed partial class ExternalContainerInjectorComponent : Component
     /// </summary>
     [DataField]
     public bool InjectOnly = false;
-
-    /// <summary>
-    /// The ID of the item slot that holds the vial.
-    /// </summary>
-    [DataField(required: true)]
-    public string VialSlotId = string.Empty;
-
-    /// <summary>
-    /// The name of the solution to use from the inserted vial.
-    /// </summary>
-    [DataField]
-    public string VialSolutionName = "beaker";
 } 

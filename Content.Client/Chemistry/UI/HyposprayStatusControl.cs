@@ -50,9 +50,8 @@ public sealed class HyposprayStatusControl : Control
             true => "hypospray-mobs-only-mode-text",
         });
 
-        _label.SetMarkup(Loc.GetString("hypospray-volume-label",
+        _label.SetMarkup(Loc.GetString("brigmedic-hypospray-volume-label",
             ("currentVolume", solution.Volume),
-            ("totalVolume", solution.MaxVolume),
-            ("modeString", modeStringLocalized)));
+            ("totalVolume", solution.MaxVolume)));
     }
 }
