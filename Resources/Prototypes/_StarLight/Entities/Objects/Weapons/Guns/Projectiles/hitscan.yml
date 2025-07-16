@@ -671,7 +671,7 @@
   damage:
     types:
       Blunt: 10
-  staminaDamage: 40
+  staminaDamage: 35
   pierceChance: 0   
   bullet:
     sprite:
@@ -683,8 +683,9 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 24
-  pierceChance: 0.08
+      Piercing: 40
+  pierceChance: 0.87
+  armorPenetration: 0.10
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -707,7 +708,8 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 5
+      Piercing: 3
+      Slash: 2
   pierceChance: 0.03
   count: 12
   spread: 15
