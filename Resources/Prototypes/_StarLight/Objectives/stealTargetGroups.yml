@@ -13,3 +13,21 @@
   sprite:
     sprite: _Starlight/Objects/Specific/legalpapers/cmo-license.rsi
     state: cmo-license
+
+# Brigmedic Items
+
+# Syndie
+- type: stealTargetGroup
+  id: BrigmedicHypoSteal
+  name: steal-target-groups-brigmedichypo
+  sprite:
+    sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
+    state: hypo
+
+# Thief
+- type: stealTargetGroup
+  id: BrigmedicBedsheetSteal
+  name: steal-target-groups-brigmedicbedsheet
+  sprite:
+    sprite: _Starlight/Objects/Misc/bedsheets.rsi
+    state: sheetbrigmedicstrange

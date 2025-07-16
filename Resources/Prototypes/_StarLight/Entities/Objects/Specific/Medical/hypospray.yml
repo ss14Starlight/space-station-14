@@ -35,6 +35,11 @@
     maxFillLevels: 2
     fillBaseName: hypo_fill
     solutionName: hypospray
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: BrigmedicHypoSteal
 
 - type: entity
   name: hypoinjector

@@ -38,3 +38,25 @@
   components:
   - type: StealCondition
     stealGroup: CMOLicenseSteal
+
+## brigmedic
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseBrigmedicStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Brigmedic
+  - type: StealCondition
+    owner: job-name-brigmedic
+
+- type: entity
+  parent: BaseBrigmedicStealObjective
+  id: BrigmedicHyposprayStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: BrigmedicHypoSteal
+  - type: Objective
+    # You'll have to snatch this from the brigmedic's cold, dead hands. Also they're always in sec.
+    difficulty: 2

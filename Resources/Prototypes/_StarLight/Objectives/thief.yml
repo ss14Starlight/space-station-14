@@ -1,0 +1,10 @@
+- type: entity                                     
+  parent: BaseThiefStealObjective
+  id: BrigmedicBedsheetStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Brigmedic
+  - type: StealCondition
+    stealGroup: BrigmedicBedsheetSteal
+  - type: Objective
+    difficulty: 1
