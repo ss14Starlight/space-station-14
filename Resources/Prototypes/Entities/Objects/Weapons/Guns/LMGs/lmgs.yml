@@ -96,6 +96,12 @@
     steps: 4
     zeroVisible: true
   - type: Appearance
+  - type: Gun
+    minAngle: 20
+    maxAngle: 40
+    angleIncrease: 3
+    angleDecay: 13
+    fireRate: 8
   - type: ItemSlots
     slots:
       gun_magazine:
