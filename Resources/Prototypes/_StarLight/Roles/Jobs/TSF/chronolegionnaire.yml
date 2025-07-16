@@ -19,16 +19,16 @@
     jumpsuit: ClothingUniformJumpsuitLegionnaire
     back: ClothingBackpackChrono
     shoes: ClothingShoesBootsMagChrono
-    head: ClothingHeadHatBeretBlueShield #temp
+    # head: ClothingHeadHatBeretBlueShield
     outerClothing: ClothingOuterHardsuitLegionnaire
     id: ChronoPDA
     eyes: ClothingEyesHudChrono
     ears: ClothingHeadsetChrono
-    belt: ClothingBeltBlueShieldWebbingFilled #temp
-    gloves: ClothingHandsGlovesCombat #temp
+    # belt: ClothingBeltBlueShieldWebbingFilled
+    gloves: ClothingHandsChronoGloves
     suitstorage: Chronoprod
     pocket1: PanaceaHypogun
-    # pocket2: WeaponPistolN1984 #temp
+    # pocket2: WeaponPistolN1984
   storage:
     back:
     - ChronoRCD

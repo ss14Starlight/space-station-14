@@ -111,3 +111,20 @@
       - state: black_white-equipped-HAND
   - type: Fiber
     fiberColor: fibers-grey
+
+- type: entity
+  parent: [ ClothingHandsBase, BaseMajorContraband ]
+  id: ClothingHandsChronoGloves
+  name: legionnaire gloves
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Gloves/chronogloves.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Gloves/chronogloves.rsi
+  - type: StunProvider
+    noPowerPopup: ninja-no-power
+    skipChecks: true
+    whitelist:
+      components:
+        - Stamina
+  - type: FingerprintMask
