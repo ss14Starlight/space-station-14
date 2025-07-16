@@ -409,6 +409,7 @@
   damage:
     types:
       Piercing: 15
+  armorPenetration: 0.20
 
 - type: hitscan
   id: BulletCaselessRiflePracticeTrace
