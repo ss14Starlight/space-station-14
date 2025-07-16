@@ -31,14 +31,14 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledDeagle
-  name: Desert Eagle bundle
-  description: "Contains high damage Desert Eagle, a 3 magnum magazines."
+  name: Scorching Eagle bundle
+  description: "Contains the powerful Scorching Eagle along with it's 2 magnum incendiary magazines."
   components:
   - type: StorageFill
     contents:
       - id: WeaponPistolDeagle
-      - id: MagazineShotgun
-      - id: MagazineShotgun
+      - id: MagazineMagnumIncendiary
+      - id: MagazineMagnumIncendiary
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

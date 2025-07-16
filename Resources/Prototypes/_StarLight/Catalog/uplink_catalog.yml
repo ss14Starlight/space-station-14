@@ -64,12 +64,17 @@
   id: uplinkWeaponPistolDeagle
   name: uplink-deagle-name
   description: uplink-deagle-desc
-  productEntity: WeaponPistolDeagle
+  icon:
+    {
+      sprite: _Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi,
+      state: icon,
+    }
+  productEntity: ClothingBackpackDuffelSyndicateFilledDeagle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 15
   cost:
-    Telecrystal: 8
+    Telecrystal: 18
   categories:
     - UplinkWeaponry
 
