@@ -127,7 +127,9 @@
   - type: StorageFill
     contents:
       - id: MagazinePistolSubMachineGunFMJ
-        amount: 4
+        amount: 2
+      - id: MagazinePistolSubMachineGunSP
+        amount: 2
       - id: MagazineShotgun
         amount: 4
       - id: MagazineLightRifleBoxFMJ
