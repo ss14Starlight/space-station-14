@@ -104,6 +104,17 @@
     - UplinkAmmo
 
 - type: listing
+  id: UplinkMagazinePistolSubMachineGunSP
+  name: uplink-pistol-magazine-c20r-nameSP
+  description: uplink-pistol-magazine-c20r-descSP
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: sp }
+  productEntity: MagazinePistolSubMachineGunSP
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+
+- type: listing
   id: UplinkPistolMagnumMagazineUranium
   name: uplink-pistol-magnum-magazine-name-uranium
   description: uplink-pistol-magnum-magazine-desc-uranium
