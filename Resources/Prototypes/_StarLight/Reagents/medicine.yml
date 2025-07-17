@@ -83,10 +83,10 @@
 
   # Should heal quite literally everything
 - type: reagent
-  id: Panacea
-  name: reagent-name-panacea
+  id: Theriac
+  name: reagent-name-theriac
   group: Medicine
-  desc: reagent-desc-panacea
+  desc: reagent-desc-theriac
   physicalDesc: reagent-physical-desc-soothing
   flavor: medicine
   color: "#25dbf3"

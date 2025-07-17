@@ -27,7 +27,7 @@
     # belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsChronoGloves
     suitstorage: Chronoprod
-    pocket1: PanaceaHypogun
+    pocket1: TheriacHypogun
     # pocket2: WeaponPistolN1984
   storage:
     back:

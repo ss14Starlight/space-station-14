@@ -1,8 +1,8 @@
 - type: entity
   parent: [ BaseItem, BaseMajorContraband ]
-  id: PanaceaHypogun
+  id: TheriacHypogun
   name: chrono hypogun
-  description: A self-refilling injector for rapid administration of panacea to targets.
+  description: A self-refilling injector for rapid administration of theriac to targets.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/chrono_hypogun.rsi
@@ -15,13 +15,13 @@
       hypospray:
         maxVol: 5
         reagents:
-        - ReagentId: Panacea # panacea
+        - ReagentId: Theriac
           Quantity: 5
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
-      - ReagentId: Panacea # panacea
+      - ReagentId: Theriac
         Quantity: 1
   - type: ExaminableSolution
     solution: hypospray
