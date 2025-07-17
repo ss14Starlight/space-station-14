@@ -38,26 +38,8 @@
   description: An encryption key that hears everything.
   components:
   - type: EncryptionKey
-    channels:
-    - Common
-    - CentCom
-    - Command
-    - Engineering
-    - Medical
-    - Science
-    - Security
-    - Service
-    - Supply
-    - Syndicate
-    - Handheld
-    - Binary
-    - Freelance
-    - Xenoborg
-    - Mothership
-    - Law
-    - Soviet
-    - Expedition
     defaultChannel: Command
+    allComms: true
   - type: Sprite
     layers:
     - state: crypt_gold

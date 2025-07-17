@@ -19,4 +19,13 @@ public sealed partial class EncryptionKeyComponent : Component
     /// </summary>
     [DataField("defaultChannel", customTypeSerializer: typeof(PrototypeIdSerializer<RadioChannelPrototype>))]
     public string? DefaultChannel;
+
+    //#region Starlight allcomms autopop
+
+    /// <summary>
+    /// whether to give the key every avaliable comms channel on mapinit
+    /// </summary>
+    [DataField]
+    public bool AllComms = false;
+    //#endregion Starlight allcomms autopop
 }

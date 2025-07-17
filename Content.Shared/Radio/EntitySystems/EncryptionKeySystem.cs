@@ -34,6 +34,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<EncryptionKeyComponent, ComponentInit>(OnCompInit);//#Starlight
         SubscribeLocalEvent<EncryptionKeyComponent, ExaminedEvent>(OnKeyExamined);
         SubscribeLocalEvent<EncryptionKeyHolderComponent, ExaminedEvent>(OnHolderExamined);
 
@@ -244,6 +245,14 @@ public sealed partial class EncryptionKeySystem : EntitySystem
             }
         }
     }
+
+    //#region Starlight
+    private void OnCompInit(EntityUid uid, EncryptionKeyComponent comp, ComponentInit ev)
+    {
+        if (comp.AllComms)
+            comp.Channels = [.. _protoManager.EnumeratePrototypes<RadioChannelPrototype>().Select(x => x.ID)];
+    }
+    //#endregion Starlight
 
     [Serializable, NetSerializable]
     public sealed partial class EncryptionRemovalFinishedEvent : SimpleDoAfterEvent
