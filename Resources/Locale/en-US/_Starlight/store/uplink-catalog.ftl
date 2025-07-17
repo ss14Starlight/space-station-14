@@ -1,13 +1,13 @@
 uplink-contortionist-jumpsuit-name = Contortionist's Jumpsuit
 uplink-contortionist-jumpsuit-desc = It looks like an atmos jumpsuit, but it really is. This jumpsuit allows the agent to slip through the vents.
 uplink-mini-energy-crossbow-name = mini energy crossbow
-uplink-mini-energy-crossbow-desc = Fires low-damage kinetic bolts at a short range.
+uplink-mini-energy-crossbow-desc = Fires low-damage kinetic bolts at a short range, disarms like a security taser.
 uplink-minotaur-name = Minotaur bundle
 uplink-minotaur-desc = Lean and mean: Contains smooth, powerful, highly illegal Shotgun, a 5 12g buckshot drums.
 uplink-deagle-name = Scorching Eagle Bundle
-uplink-deagle-desc = A robust magnum handgun. Loaded with incendiary.
+uplink-deagle-desc = A robust magnum handgun. Loaded with .45 magnum incendiary.
 uplink-stechkin-name = Stechkin pistol
-uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors.
+uplink-stechkin-desc = A small, easily concealable .40 handgun. Has a threaded barrel for suppressors.
 uplink-pistol-magnum-magazine-name = Pistol Magazine (.45 magnum)
 uplink-pistol-magnum-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Scorching Eagle.
 uplink-pistol-magnum-magazine-name-incendiary = Pistol Magazine (.45 magnum incendiary)

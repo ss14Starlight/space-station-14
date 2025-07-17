@@ -197,7 +197,7 @@
   name: stechkin pistol
   parent: [WeaponPistolMk58, BaseSecurityContraband]
   id: WeaponPistolStechkin
-  description: A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors.
+  description: A small, easily concealable .40 handgun. Has a threaded barrel for suppressors.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/stechkin.rsi
