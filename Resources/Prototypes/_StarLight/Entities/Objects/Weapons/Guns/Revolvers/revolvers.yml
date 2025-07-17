@@ -112,7 +112,30 @@
     angleDecay: 6
     selectedMode: SemiAuto
     soundGunshot:
-    #path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+     path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
     #capacity: 6
     #chambers: [ True, True, True, True, True, True ]
     #ammoSlots: [ null, null, null, null, null, null ]
+
+- type: entity
+  name: Winston
+  parent: [BaseWeaponRevolver, BaseMajorContraband]
+  id: WeaponRevolverWinston
+  description: A shitty, cheap, mass producable revovler chambered in *gags* .35 auto. Good luck if this is your last weapon.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/winston.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/winston.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - CartridgePistol
+    proto: CartridgePistolFMJ
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+    soundEject:
+       path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+    soundInsert:
+       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg

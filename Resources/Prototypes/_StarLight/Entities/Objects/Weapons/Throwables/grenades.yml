@@ -1,0 +1,25 @@
+- type: entity
+  name: explosive grenade
+  description: Grenade that creates a small but devastating explosion.
+  parent: [GrenadeBase, BaseMajorContraband]
+  id: GrenadeHistoric
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Grenades/Historic/classic.rsi
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 120 # about a ~4 tile radius
+    canCreateVacuum: false
+  - type: OnUseTimerTrigger
+    #beepSound:
+      #path: "/Audio/Effects/beep1.ogg"
+      #params:
+        #volume: 5
+    #initialBeepDelay: 0
+    #beepInterval: 2 # 2 beeps total (at 0 and 2)
+  - type: TimerTriggerVisuals
+    primingSound:
+      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
