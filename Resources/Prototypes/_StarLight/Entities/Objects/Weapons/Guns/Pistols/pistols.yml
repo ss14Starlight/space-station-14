@@ -270,7 +270,7 @@
   name: Scorching Eagle
   parent: [ BaseSecuritySalvageContraband, WeaponPistolN1984 ] 
   id: WeaponPistolDeagle
-  description: A high-caliber handgun designed for putting down large game.
+  description: The all time classic handgun has found it's place among the dunes. Loaded with .45 incendiary magnum.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi
