@@ -263,3 +263,14 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmetSoldier
+  name: soldier helmet
+  description: An in-atmosphere helmet worn by the bravest fighters.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/soldier.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/soldier.rsi

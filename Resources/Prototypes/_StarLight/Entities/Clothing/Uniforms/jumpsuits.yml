@@ -373,3 +373,15 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
 
+# Historic
+- type: entity
+  parent: [ UnsensoredClothingUniformBase, BaseMajorContraband ]
+  id: ClothingUniformJumpsuitHistoric
+  name: Historic Jumpsuit
+  description: Smells a bit. How old is that bloodstain?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/soldier.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/soldier.rsi
+

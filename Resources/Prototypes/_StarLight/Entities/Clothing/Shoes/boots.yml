@@ -1,0 +1,18 @@
+- type: entity
+  parent: [ClothingShoesMilitaryBase, BaseSecurityContraband]
+  id: ClothingShoesBootsMarch
+  name: marching boots
+  description: Combat boots for combat scenarios or combat situations. All combat, all the time.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
