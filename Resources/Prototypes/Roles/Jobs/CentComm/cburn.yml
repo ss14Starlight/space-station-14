@@ -30,14 +30,18 @@
     id: CBURNPDA
     pocket1: RadioHandheld
     pocket2: WeaponLaserGun
-    belt: ClothingBeltBandolier
+    belt: ClothingBeltAssault
   storage:
     back:
     - WeaponShotgunDoubleBarreled
-    - BoxShotgunIncendiary
     - GrenadeFlashBang
     - PillAmbuzolPlus
     - PillAmbuzol
+    - WeaponShotgunRiotSawn
+    - DoubleEmergencyOxygenTankFilled
+    - DoubleEmergencyNitrogenTankFilled
+    belt:
+    - BoxShotgunIncendiary
 
 - type: chameleonOutfit
   id: CBURNChameleonOutfit
