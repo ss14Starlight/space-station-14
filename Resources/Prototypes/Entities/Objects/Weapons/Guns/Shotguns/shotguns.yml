@@ -84,7 +84,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
   - type: GunRequiresWield
   - type: Gun
-    spread: 15
+    spread: 7
     fireRate: 2
     selectedMode: FullAuto
     availableModes:
