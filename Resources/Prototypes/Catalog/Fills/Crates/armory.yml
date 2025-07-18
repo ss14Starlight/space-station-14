@@ -15,7 +15,7 @@
   id: CrateArmoryShotgun
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: shotgun crate
-  description: For when the enemy absolutely needs to be replaced with lead. Contains two Enforcer Combat Shotguns, and some standard shotgun shells. Requires Armory access to open.
+  description: For when the enemy absolutely needs to be replaced with lead. Contains two Enforcer shotguns, and some standard shotgun shells. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
@@ -50,7 +50,7 @@
   id: CrateArmoryLaser
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   name: lasers crate
-  description: Contains two standard-issue laser rifles and two energy gun's. Requires Armory access to open.
+  description: Contains two standard-issue laser rifles and two energy guns. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
@@ -79,8 +79,8 @@
 - type: entity
   id: CrateSecurityRiot
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
-  name: swat crate
-  description: Contains two sets of riot armor, helmets, shields, and enforcers loaded with beanbags. Extra ammo is included. Requires Armory access to open.
+  name: riot crate
+  description: Contains two sets of riot armor, helmets, shields, and riot shotguns loaded with beanbags. Extra ammo is included. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
@@ -88,7 +88,7 @@
       amount: 2
     - id: ClothingHeadHelmetRiot
       amount: 2
-    - id: WeaponShotgunEnforcer
+    - id: WeaponShotgunRiot
       amount: 2
     - id: BoxBeanbag
       amount: 2

@@ -24,10 +24,10 @@
             - CartridgeRifle
             
 - type: entity
-  name: lr-30
+  name: LR-30
   parent: [BaseItem, BaseGunWieldable, BaseSecuritySalvageContraband]
   id: WeaponLr30
-  description: Energy carbine with lethal mode.
+  description: Experimental energy carbines capable of tearing through most armor. Only loads with LR30's unique laser magazines.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/lr30.rsi
@@ -56,7 +56,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
   - type: Gun
-    fireRate: 5
+    fireRate: 3
     selectedMode: FullAuto
     availableModes:
       - SemiAuto

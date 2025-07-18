@@ -105,10 +105,10 @@
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/golden_mk58.rsi
     
 - type: entity
-  name: enforcer
+  name: Sentinel
   parent: [ BaseWeaponPistol, BaseSecurityContraband ]
   id: WeaponPistolEnforcer
-  description: A pistol of modern design.
+  description: A pistol of modern design. Comes with various colors.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/enforcer.rsi
