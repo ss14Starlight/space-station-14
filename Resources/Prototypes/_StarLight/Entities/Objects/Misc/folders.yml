@@ -31,9 +31,9 @@
   description: A bulky electric clipboard, filled with bureaucracy. Contains a portable ID card computer. Vulnerable to assistants.
   components:
   - type: Sprite
-    sprite: Objects/Misc/qm_clipboard.rsi
+    sprite: _Starlight\Objects\Misc\HOP_Clipboard.rsi
     layers:
-    - state: qm_clipboard
+    - state: hop_clipboard
     - state: qm_clipboard_paper
       map: ["qm_clipboard_paper"]
       visible: false
@@ -50,10 +50,10 @@
           - Write
         insertOnInteract: true
   - type: Item
-    sprite: Objects/Misc/qm_clipboard.rsi
+    sprite: _Starlight\Objects\Misc\HOP_Clipboard.rsi
     size: Normal
   - type: Clothing
-    sprite: Objects/Misc/qm_clipboard.rsi
+    sprite: _Starlight\Objects\Misc\HOP_Clipboard.rsi
   - type: Storage
     maxItemSize: Small
     grid:
@@ -61,6 +61,12 @@
     quickInsert: true
   - type: StorageFill
     contents:
+      - id: Paper
+        prob: 1
+      - id: Paper
+        prob: 1
+      - id: Paper
+        prob: 1
       - id: Paper
         prob: 1
       - id: Paper
