@@ -11,7 +11,7 @@
     - ExternalContainerInjectorVial
   - type: PhysicalComposition
     materialComposition:
-      SheetRGlass: 5
+      ReinforcedGlass: 5
   - type: FitsInDispenser
     solution: beaker
   - type: SpaceGarbage
