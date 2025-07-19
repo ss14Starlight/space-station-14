@@ -20,12 +20,12 @@ public sealed class MusicPlayerSystem : EntitySystem
 {
     [Dependency] private readonly IResourceManager _resMan = default!;
     [Dependency] private readonly IAudioManager _audioManager = default!;
-    private static readonly ISawmill Log = Logger.GetSawmill("music");
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
     private EntityUid? _currentAudioEntity;
     private string _currentTrackName = "";
     private float _volume = 0.5f;
-    private float _currentTrackDuration = 0f;
+    public float CurrentTrackDuration { get; private set; }
     private readonly Dictionary<string, float> _durationCache = new();
     private readonly List<MusicPlayerUi> _activeUIs = new();
     private float _uiUpdateAccumulator = 0f;
@@ -35,12 +35,11 @@ public sealed class MusicPlayerSystem : EntitySystem
     private List<string> _playlistPaths = new();
     private List<string> _playlistNames = new();
     private int _currentTrackIndex = -1;
-    private SharedAudioSystem? AudioSystem => EntityManager.System<SharedAudioSystem>();
     private bool _autoplayEnabled = true;
     private bool _shuffleEnabled = false;
     public bool ShuffleEnabled => _shuffleEnabled;
 
-    public bool IsPlaying => _currentAudioEntity != null && AudioSystem?.IsPlaying(_currentAudioEntity) == true;
+    public bool IsPlaying => _currentAudioEntity != null && _audioSystem?.IsPlaying(_currentAudioEntity) == true;
 
     public float CurrentPlaybackPosition
     {
@@ -52,7 +51,7 @@ public sealed class MusicPlayerSystem : EntitySystem
         }
     }
 
-    public float GetTrackDuration() => _currentTrackDuration;
+    public float GetTrackDuration() => CurrentTrackDuration;
     public string CurrentTrackName => _currentTrackName;
     public float Volume => _volume;
     public float PausedPosition => _pausedPosition;
@@ -84,9 +83,9 @@ public sealed class MusicPlayerSystem : EntitySystem
             foreach (var ui in _activeUIs)
                 ui.UpdateUI();
 
-            if (_autoplayEnabled && IsPlaying && _currentTrackDuration > 0)
+            if (_autoplayEnabled && IsPlaying && CurrentTrackDuration > 0)
             {
-                if (CurrentPlaybackPosition >= _currentTrackDuration - 0.1f)
+                if (CurrentPlaybackPosition >= CurrentTrackDuration - 0.1f)
                     PlayNextTrack();
             }
         }
@@ -94,8 +93,7 @@ public sealed class MusicPlayerSystem : EntitySystem
 
     public void PlayTrack(string filePath, string trackName = "")
     {
-        var audioSystem = AudioSystem;
-        if (audioSystem == null)
+        if (_audioSystem == null)
         {
             Log.Error("SharedAudioSystem not available");
             return;
@@ -105,24 +103,24 @@ public sealed class MusicPlayerSystem : EntitySystem
         _currentFilePath = filePath;
         int playlistIndex = _playlistPaths.IndexOf(filePath);
         _currentTrackIndex = playlistIndex >= 0 ? playlistIndex : 0;
-        _currentTrackDuration = GetAudioFileDuration(filePath);
+        CurrentTrackDuration = GetAudioFileDuration(filePath);
 
         try
         {
             var volumeInDb = SharedAudioSystem.GainToVolume(_volume);
             var audioParams = AudioParams.Default.WithVolume(volumeInDb);
-            var playResult = audioSystem.PlayGlobal(filePath, Filter.Local(), false, audioParams);
+            var playResult = _audioSystem.PlayGlobal(filePath, Filter.Local(), false, audioParams);
 
             if (playResult != null)
             {
                 _currentAudioEntity = playResult.Value.Entity;
-                audioSystem.SetVolume(_currentAudioEntity, volumeInDb);
+                _audioSystem.SetVolume(_currentAudioEntity, volumeInDb);
 
                 _currentTrackName = string.IsNullOrEmpty(trackName)
                     ? new ResPath(filePath).Filename.Split('.')[0]
                     : trackName;
 
-                Log.Info($"Playing track: {_currentTrackName}, Volume: {_volume}, Duration: {_currentTrackDuration:F1}s)");
+                Log.Info($"Playing track: {_currentTrackName}, Volume: {_volume}, Duration: {CurrentTrackDuration:F1}s)");
             }
             else
             {
@@ -137,10 +135,9 @@ public sealed class MusicPlayerSystem : EntitySystem
 
     public void StopTrack()
     {
-        var audioSystem = AudioSystem;
-        if (_currentAudioEntity != null && audioSystem != null)
+        if (_currentAudioEntity != null && _audioSystem != null)
         {
-            audioSystem.Stop(_currentAudioEntity);
+            _audioSystem.Stop(_currentAudioEntity);
             _currentAudioEntity = null;
         }
         _currentTrackName = "";
@@ -149,20 +146,19 @@ public sealed class MusicPlayerSystem : EntitySystem
     public void SetVolume(float volume)
     {
         _volume = Math.Clamp(volume, 0f, 1f);
-        var audioSystem = AudioSystem;
-        if (_currentAudioEntity != null && audioSystem != null &&
+
+        if (_currentAudioEntity != null && _audioSystem != null &&
             TryComp<AudioComponent>(_currentAudioEntity.Value, out var audioComp))
         {
             var volumeInDb = SharedAudioSystem.GainToVolume(_volume);
-            audioSystem.SetVolume(_currentAudioEntity, volumeInDb);
+            _audioSystem.SetVolume(_currentAudioEntity, volumeInDb);
         }
     }
 
     public void SetPosition(float position)
     {
-        var audioSystem = AudioSystem;
-        if (_currentAudioEntity != null && audioSystem != null)
-            audioSystem.SetPlaybackPosition(_currentAudioEntity, position);
+        if (_currentAudioEntity != null && _audioSystem != null)
+            _audioSystem.SetPlaybackPosition(_currentAudioEntity, position);
     }
 
     public void PauseTrack()
@@ -172,10 +168,9 @@ public sealed class MusicPlayerSystem : EntitySystem
             if (TryComp<AudioComponent>(_currentAudioEntity.Value, out var audioComp))
                 _pausedPosition = audioComp.PlaybackPosition;
 
-            var audioSystem = AudioSystem;
-            if (audioSystem != null)
+            if (_audioSystem != null)
             {
-                audioSystem.Stop(_currentAudioEntity);
+                _audioSystem.Stop(_currentAudioEntity);
                 _currentAudioEntity = null;
             }
         }
@@ -186,9 +181,9 @@ public sealed class MusicPlayerSystem : EntitySystem
         if (!string.IsNullOrEmpty(_currentFilePath) && _pausedPosition > 0)
         {
             PlayTrack(_currentFilePath, _currentTrackName);
-            var audioSystem = AudioSystem;
-            if (_currentAudioEntity != null && audioSystem != null)
-                audioSystem.SetPlaybackPosition(_currentAudioEntity, _pausedPosition);
+
+            if (_currentAudioEntity != null && _audioSystem != null)
+                _audioSystem.SetPlaybackPosition(_currentAudioEntity, _pausedPosition);
             _pausedPosition = 0f;
         }
     }
@@ -260,11 +255,6 @@ public sealed class MusicPlayerSystem : EntitySystem
             shuffleEnabled: _shuffleEnabled
         );
         ui.UpdateState(state);
-    }
-
-    public override void Initialize()
-    {
-        base.Initialize();
     }
 
     public override void Shutdown()

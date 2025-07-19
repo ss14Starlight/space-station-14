@@ -20,7 +20,7 @@ public sealed partial class MusicPlayerUi : UIFragment
         {
             musicSystem.RegisterUI(this);
             _fragment.UpdateNowPlaying(musicSystem.CurrentTrackName, musicSystem.IsPlaying);
-            _fragment.UpdateProgress(musicSystem.CurrentPlaybackPosition, musicSystem.GetTrackDuration());
+            _fragment.UpdateProgress(musicSystem.CurrentPlaybackPosition, musicSystem.CurrentTrackDuration);
             _fragment.UpdatePlaybackButtons(musicSystem.IsPlaying);
             _fragment.UpdateShuffleButton(musicSystem.ShuffleEnabled);
         }

@@ -90,7 +90,7 @@ namespace Content.Client.CartridgeLoader.Cartridges
 
             var isPlaying = musicSystem.IsPlaying;
             var position = musicSystem.CurrentPlaybackPosition;
-            var duration = musicSystem.GetTrackDuration();
+            var duration = musicSystem.CurrentTrackDuration;
 
             _isUpdatingSlider = true;
             ProgressSlider.MaxValue = duration > 0 ? duration : 1;
