@@ -161,6 +161,8 @@
     sprite: Clothing/Mask/medicalsecurity.rsi
   - type: Pierceable
     level: Metal
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.95
   - type: Armor
     modifiers:
       coefficients:

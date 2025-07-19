@@ -46,25 +46,34 @@
   name: nt representive jacket
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband, ClothingOuterWinterCoatToggleable]
   id: ClothingOuterCoatCorpsman
   name: Corpsman's Armored Jacket
-  description: Tacticool never looked so good..However, impractical armor placement makes it just as effective as the normal coat.
+  description: Stylish black and blue jacket, with tactically placed armor plating.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Coats/corpsman.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/corpsman.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.50
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.85
-        Piercing: 0.65
-        Heat: 0.85
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.60
+        Heat: 0.75
         Caustic: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodCorpsman
 
 - type: entity
   parent: ClothingOuterStorageBase

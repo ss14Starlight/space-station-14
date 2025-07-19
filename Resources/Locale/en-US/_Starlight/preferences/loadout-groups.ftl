@@ -33,6 +33,14 @@ loadout-group-security-non-lethal-weapon = Security Non-Lethal Weapon
 loadout-group-security-sidearm = Security Sidearm
 loadout-group-detective-shoes = Detective shoes
 
+loadout-group-corpsman-head = Corpsman head
+loadout-group-corpsman-jumpsuit = Corpsman jumpsuit
+loadout-group-corpsman-backpack = Corpsman backpack
+loadout-group-corpsman-outerclothing = Corpsman outer clothing
+loadout-group-corpsman-eyewear = Corpsman eyewear
+loadout-group-corpsman-belt = Corpsman belt
+loadout-group-corpsman-gloves = Corpsman gloves
+
 # Law
 loadout-group-magistrate-shoes = Magistrate shoes
 loadout-group-iia-shoes = Lawyer shoes

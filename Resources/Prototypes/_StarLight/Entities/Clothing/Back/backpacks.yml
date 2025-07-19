@@ -15,3 +15,12 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Backpacks/blueshield.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband]
+  id: ClothingBackpackCorpsman
+  name: corpsman's backpack
+  description: A backpack with easy to access pockets for the organized Corpsman!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Backpacks/corpsman.rsi

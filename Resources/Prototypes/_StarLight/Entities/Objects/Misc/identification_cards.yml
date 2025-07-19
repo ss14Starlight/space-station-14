@@ -24,6 +24,19 @@
       job: Brigmedic
 
 - type: entity
+  parent: [ IDCardStandard, BaseSecurityContraband ]
+  id: CorpsmanIDCard
+  name: corpsman ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: silver
+        - state: idcorpsman
+    - type: PresetIdCard
+      job: Corpsman
+
+- type: entity
   parent: [ IDCardStandard, BaseCentcommContraband ]
   id: CentcomIDCardOperator
   name: centcomm operator ID card

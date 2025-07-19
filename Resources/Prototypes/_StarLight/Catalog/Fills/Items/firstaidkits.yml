@@ -8,3 +8,17 @@
       - id: BrigHypo
       - id: ReinforcedMiniatureEmptyChemistryVial
         amount: 9
+
+- type: entity
+  id: SecurityMedkitFilled
+  suffix: Filled
+  parent: SecurityMedkit
+  components:
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 2
+      - id: Gauze
+        amount: 2

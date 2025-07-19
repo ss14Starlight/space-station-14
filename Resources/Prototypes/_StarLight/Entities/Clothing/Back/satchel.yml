@@ -16,3 +16,11 @@
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Satchels/blueshield.rsi
 
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseSecurityContraband]
+  id: ClothingBackpackSatchelCorpsman
+  name: Corpsman Satchel
+  description: Has more than enough pockets to organize everything.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/corpsman.rsi

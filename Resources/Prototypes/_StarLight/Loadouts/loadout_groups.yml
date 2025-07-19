@@ -219,3 +219,52 @@
   - Heels
   - LeatherShoes
 
+- type: loadoutGroup
+  id: CorpsmanHead
+  name: loadout-group-corpsman-head
+  minLimit: 0
+  loadouts:
+  - SecurityHelmet
+  - CorpsmanBeret
+
+- type: loadoutGroup
+  id: CorpsmanJumpsuit
+  name: loadout-group-corpsman-jumpsuit
+  loadouts:
+  - JumpsuitCorpsman
+  - JumpskirtCorpsman
+
+- type: loadoutGroup
+  id: CorpsmanBackpack
+  name: loadout-group-corpsman-backpack
+  loadouts:
+  - CorpsmanBackpack
+  - CorpsmanSatchel
+  - CorpsmanDuffel
+
+- type: loadoutGroup
+  id: CorpsmanOuterClothing
+  name: loadout-group-corpsman-outerclothing
+  loadouts:
+  - SecurityOfficerWintercoat
+  - CorpsmanCoat
+
+- type: loadoutGroup
+  id: CorpsmanEyewear
+  name: loadout-group-corpsman-eyewear
+  loadouts:
+  - CorpsmanGlasses
+  - CorpsmanHud
+
+- type: loadoutGroup
+  id: CorpsmanBelt
+  name: loadout-group-corpsman-belt
+  loadouts:
+  - CorpsmanBelt
+
+- type: loadoutGroup
+  id: CorpsmanGloves
+  name: loadout-group-corpsman-gloves
+  loadouts:
+  - Nitrile
+  - BlackNitrile

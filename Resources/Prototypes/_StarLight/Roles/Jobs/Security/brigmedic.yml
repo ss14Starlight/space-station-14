@@ -38,6 +38,3 @@
   storage:
     back:
     - Flash
-    - SecurityMedkit
-    - DefibrillatorBrigmedical
-    - SecurityHypoKitFilled

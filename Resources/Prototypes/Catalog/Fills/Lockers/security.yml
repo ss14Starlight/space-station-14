@@ -91,8 +91,8 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingEyesGlassesBrigmedic
-      - id: ClothingEyesHudBrigmedic
+      - id: ClothingEyesGlassesBrigmedic  #Starlight
+      - id: ClothingEyesHudBrigmedic  #Starlight
       - id: WeaponDisabler
       - id: TrackingImplanter
         amount: 2
@@ -100,6 +100,9 @@
       - id: BoxSterileMask
       - id: ClothingHeadHatBeretBrigmedic
       - id: ClothingOuterCoatAMG
+      - id: SecurityMedkitFilled #Starlight - Start
+      - id: DefibrillatorBrigmedical
+      - id: SecurityHypoKitFilled
       - id: ClothingOuterCoatCorpsman
       - id: ClothingUniformJumpsuitCorpsman
       - id: ClothingUniformJumpskirtCorpsman
@@ -111,7 +114,7 @@
       - id: ClothingUniformJumpskirtOfLife
       - id: ClothingShoesBootsMagSec
       - id: BedsheetBrigmedicStrange
-      - id: RubberStampBrigmedic
+      - id: RubberStampBrigmedic #Starlight - End
       - id: MedkitFilled
       - id: MedkitCombatFilled
         prob: 0.6
@@ -127,8 +130,8 @@
         prob: 0.7
       - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
         prob: 0.15
-      - id: PlushieMorgana #starlight
-      - id: PlushieKiller #starlight
+      - id: PlushieMorgana #Starlight
+      - id: PlushieKiller #Starlight
 
 - type: entity
   id: LockerDetectiveFilled

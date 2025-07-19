@@ -37,3 +37,12 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Duffels/blueshield.rsi
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseCommandContraband]
+  id: ClothingBackpackDuffelCorpsman
+  name: corpsman's duffel bag
+  description: An odd duffelbag that uses flaps instead of zippers for quicker access. Handy!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/corpsman.rsi

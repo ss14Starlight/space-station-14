@@ -434,6 +434,8 @@
     sprite: Clothing/OuterClothing/Coats/brigmedic.rsi
   - type: Pierceable
     level: Metal
+  - type: ZombificationResistance #Starlight
+    zombificationResistanceCoefficient: 0.60 #Starlight
   - type: Armor
     modifiers:
       coefficients:

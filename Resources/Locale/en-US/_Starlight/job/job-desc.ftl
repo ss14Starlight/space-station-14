@@ -7,3 +7,4 @@ job-description-miningspec = Stay station side and enrich the station with mater
 job-description-mailtech = Deliver letters and packages to the crew of the station to make cargo money.
 job-description-surgeon = Heal people, cripple enemies, and replace limbs and organs!
 job-description-ntccblueshield = Your primary job is to protect your charged Nanotrasen-Central Command Consortium officials, this overrules anything else.
+job-description-corpsman = Drag blackout drunk officers into the brig for the Brigmedic to treat, provide on-field emergency triage during a shootout and smack any who gets too close to your officer with your defibrillator, and most importantly, ensure security stays alive during times of emergency.

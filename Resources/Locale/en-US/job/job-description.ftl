@@ -4,7 +4,8 @@ job-description-bartender = Manage the bar and keep it lively, give out drinks, 
 job-description-botanist = Grow food for the chef, drugs for medbay, and other plants to keep yourself entertained.
 job-description-borg = Half-human, Half-machine. Follow your laws, serve the crew, and hound the science team for upgrades.
 job-description-boxer = Fight your way to the top! Challenge the head of personnel and get brigged when you win. Currently available on Core and Convex.
-job-description-brigmedic = Fight in the rear of the security service, for the lives of your comrades! You are the first and last hope of your squad. Hippocrates bless you.
+job-description-brigmedic = Produce medicinal drugs and chemical mixtures of dubious legality for yourself and the Corpsman, give prisoners medical treatment for punching a security officer in the face and ensure security stays in tip-top shape medically, not mentally, from the safety of the brig.
+# SLedit
 job-description-centcomoperator = Response to station's requets and play games at your break time.
 job-description-cadet = Learn the basics of arresting criminals and managing the brig. Listen to your supervisors and feel free to ask them for any help.
 job-description-captain = Keep the station running, delegate work to the other heads of staff, and exert your will.

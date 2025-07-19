@@ -1059,16 +1059,13 @@
   loadouts:
   - BrigmedicBeret
   - SecurityHelmet
-  - CorpsmanBeret #Starlight
 
 - type: loadoutGroup
   id: BrigmedicJumpsuit
   name: loadout-group-brigmedic-jumpsuit
   loadouts:
   - JumpsuitBrigmedic
-  - JumpsuitCorpsman
   - JumpskirtBrigmedic
-  - JumpskirtCorpsman #Starlight
 
 - type: loadoutGroup
   id: BrigmedicBackpack
@@ -1084,14 +1081,13 @@
   loadouts:
   - BrigmedicCoat
   - SecurityOfficerWintercoat
-  - CorpsmanCoat #Starlight
 
 - type: loadoutGroup
   id: BrigmedicEyewear
   name: loadout-group-brigmedic-eyewear
   loadouts:
-  - BrigmedicGlasses
-  - BrigmedicHud
+  - BrigmedicGlasses #Starlight
+  - BrigmedicHud #Starlight
 
 - type: loadoutGroup
   id: BrigmedicBelt
@@ -1099,16 +1095,12 @@
   loadouts:
   - BrigmedicRig
   - BrigmedicBelt #Starlight
-  - CorpsmanBelt #Starlight
 
-#Starlight Start
 - type: loadoutGroup
   id: BrigmedicGloves
   name: loadout-group-brigmedic-gloves
   loadouts:
   - Nitrile
-  - BlackNitrile
-#Starlight End
 
 - type: loadoutGroup
   id: SecurityHead

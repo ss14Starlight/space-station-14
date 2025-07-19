@@ -54,15 +54,18 @@
   - type: StorageFill
     contents:
       - id: ClothingEyesGlassesBrigmedic
-        amount: 2
       - id: ClothingEyesHudBrigmedic
-        amount: 2
+      - id: ClothingEyesGlassesCorpsman
+      - id: ClothingEyesHudCorpsman
       - id: WeaponDisabler
         amount: 2
       - id: TrackingImplanter
         amount: 4
       - id: ClothingOuterHardsuitBrigmedic
         amount: 2
+      - id: SecurityMedkit #fill
+      - id: DefibrillatorBrigmedical
+      - id: SecurityHypoKitFilled
       - id: BoxSterileMask
       - id: ClothingHeadHatBeretBrigmedic
       - id: ClothingOuterCoatAMG

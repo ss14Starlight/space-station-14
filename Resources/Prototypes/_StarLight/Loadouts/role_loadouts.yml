@@ -113,3 +113,21 @@
     - Trinkets
     - SecurityStar
     - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobCorpsman
+  groups:
+    - CorpsmanHead
+    - CorpsmanJumpsuit
+    - CorpsmanBackpack
+    - CorpsmanOuterClothing
+    - CorpsmanBelt
+    - CorpsmanGloves
+    - CorpsmanEyewear
+    - SecurityShoes
+    - SecurityNonLethalWeapon
+    - SecuritySidearm
+    - SurvivalSecurity
+    - Trinkets
+    - SecurityStar
+    - GroupSpeciesBreathToolSecurity

@@ -2,6 +2,9 @@
   id: JobBrigmedic
 
 - type: playTimeTracker
+  id: JobCorpsman
+
+- type: playTimeTracker
   id: JobRoboticist
 
 - type: playTimeTracker

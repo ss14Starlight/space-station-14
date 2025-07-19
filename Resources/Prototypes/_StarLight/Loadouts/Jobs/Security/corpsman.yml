@@ -1,0 +1,66 @@
+# Head
+- type: loadout
+  id: CorpsmanBeret
+  equipment:
+    head: ClothingHeadHatBeretCorpsman
+
+# Jumpsuit
+- type: loadout
+  id: JumpsuitCorpsman
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCorpsman
+
+- type: loadout
+  id: JumpskirtCorpsman
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCorpsman
+
+# Back
+- type: loadout
+  id: CorpsmanBackpack
+  equipment:
+    back: ClothingBackpackCorpsman
+
+- type: loadout
+  id: CorpsmanSatchel
+  equipment:
+    back: ClothingBackpackSatchelCorpsman
+
+- type: loadout
+  id: CorpsmanDuffel
+  equipment:
+    back: ClothingBackpackDuffelCorpsman
+
+# Belt
+- type: loadout
+  id: CorpsmanBelt
+  equipment:
+    belt: ClothingBeltCorpsmanFilled
+
+# Gloves
+- type: loadout
+  id: CorpsmanNitrile
+  equipment:
+    gloves: ClothingHandsGlovesNitrile
+
+- type: loadout
+  id: BlackNitrile
+  equipment:
+    gloves: ClothingHandsGlovesBlackNitrile
+
+
+# Outerclothing
+- type: loadout
+  id: CorpsmanCoat
+  equipment:
+    outerClothing: ClothingOuterCoatCorpsman
+
+- type: loadout
+  id: CorpsmanGlasses
+  equipment:
+    eyes: ClothingEyesGlassesCorpsman
+
+- type: loadout
+  id: CorpsmanHud
+  equipment:
+    eyes: ClothingEyesHudCorpsman

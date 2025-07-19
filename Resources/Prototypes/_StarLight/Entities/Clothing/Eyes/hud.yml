@@ -36,6 +36,30 @@
   - type: EyeProtection
     protectionTime: 5
   - type: ShowHealthBars
+  - type: SolutionScanner
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
+  id: ClothingEyesHudCorpsman
+  name: corpsman hud
+  description: Super Tamashi-Upgraded hud. Corpsman one.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/corpsman.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/corpsman.rsi
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec

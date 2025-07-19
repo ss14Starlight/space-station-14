@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "taken from the game",
+  "copyright": "taken from the game, Corpsman is Killer Tamashi (discord + character)",
   "size": {
     "x": 32,
     "y": 32
@@ -30,6 +30,9 @@
     },
     {
       "name": "mailtech"
+    },
+    {
+      "name": "corpsman"
     }
   ]
 }
