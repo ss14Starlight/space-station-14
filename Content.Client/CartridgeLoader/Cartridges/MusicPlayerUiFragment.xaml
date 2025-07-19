@@ -1,0 +1,39 @@
+<cartridges:MusicPlayerUiFragment 
+    xmlns="https://spacestation14.io" 
+    xmlns:cartridges="clr-namespace:Content.Client.CartridgeLoader.Cartridges"
+    xmlns:controls="clr-namespace:Robust.Client.UserInterface.Controls"
+    Orientation="Vertical"
+    VerticalExpand="True" 
+    Margin="8">
+
+    <!-- Now Playing Display -->
+    <Label Name="NowPlaying" Text="Now Playing: (none)" StyleClasses="LabelHeading" Margin="0 0 0 4"/>
+    
+    <!-- Track List -->
+    <ScrollContainer Name="TrackScrollContainer" HorizontalExpand="True" VerticalExpand="True" MinHeight="150">
+        <ItemList Name="TrackList" HorizontalExpand="True" VerticalExpand="True"/>
+    </ScrollContainer>
+    
+    <!-- Progress Slider -->
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 4">
+        <Label Name="CurrentTime" Text="0:00" MinWidth="35" HorizontalAlignment="Left"/>
+        <Slider Name="ProgressSlider" HorizontalExpand="True" MinValue="0" MaxValue="100" Margin="4 0"/>
+        <Label Name="TotalTime" Text="0:00" MinWidth="35" HorizontalAlignment="Right"/>
+    </BoxContainer>
+    
+    <!-- Control Buttons -->
+    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 4">
+        <Button Name="PlayButton" Text="Play" MinWidth="50" MaxWidth="50" Margin="2 0"/>
+        <Button Name="PauseButton" Text="Pause" MinWidth="50" MaxWidth="50" Margin="2 0"/>
+        <Button Name="StopButton" Text="Stop" MinWidth="50" MaxWidth="50" Margin="2 0"/>
+        <Button Name="SkipButton" Text="Skip" MinWidth="50" MaxWidth="50" Margin="2 0"/>
+        <Button Name="ShuffleButton" Text="Shuffle"/>
+    </BoxContainer>
+    
+    <!-- Volume Control -->
+    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 4">
+        <Label Text="Volume:" Margin="0 0 8 0" MinWidth="50"/>
+        <Slider Name="VolumeSlider" MinWidth="100" MaxWidth="150" MinValue="0" MaxValue="1.0" Value="0.5"/>
+    </BoxContainer>
+    
+</cartridges:MusicPlayerUiFragment>

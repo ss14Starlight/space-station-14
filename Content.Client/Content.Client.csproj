@@ -28,6 +28,9 @@
     <Folder Include="_Starlight\Actions\" />
     <Folder Include="_Starlight\Audio\" />
   </ItemGroup>
+  <ItemGroup>
+    <RobustXaml Include="CartridgeLoader\Cartridges\MusicPlayerUiFragment.xaml" />
+  </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />
 </Project>

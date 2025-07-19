@@ -1,82 +1,102 @@
 ﻿- files: ["thunderdome.ogg"]
+  artist: MashedByMachines
   license: "CC-BY-NC-SA-3.0"
-  copyright: "-Sector11 by MashedByMachines. Converted from MP3 to OGG."
   source: "https://www.newgrounds.com/audio/listen/312622"
+  info: "Originally titled 'Sector11'. Converted from MP3 to OGG."
 
 - files: ["endless_space.ogg"]
+  artist: SolusLunes
   license: "CC-BY-3.0"
-  copyright: "Endless Space by SolusLunes. Converted from MP3 to OGG."
   source: "https://www.newgrounds.com/audio/listen/67583"
+  info: "Converted from MP3 to OGG."
 
 - files: ["space_asshole.ogg"]
+  artist: Chris Remo
   license: "Custom"
-  copyright: "Space Asshole by Chris Remo is used with special permission from the author, under the condition that the project remains non-commercial and open source. The author also requested that a link to his bandcamp be included: https://chrisremo.bandcamp.com/"
   source: "https://idlethumbs.bandcamp.com/track/space-asshole"
-  # The source is a direct link to the track, but not the "main" bandcamp of the author. Hence the link is also included separately in the copyright.
+  info: "Used with special permission. Must remain non-commercial and open source. Bandcamp link included per author's request: https://chrisremo.bandcamp.com/"
 
 - files: ["the_wizard.ogg"]
+  artist: Chris Remo
   license: "Custom"
-  copyright: "The Wizard by Chris Remo is used with special permission from the author, under the condition that the project remains non-commercial and open source. The author also requested that a link to his bandcamp be included: https://chrisremo.bandcamp.com/"
   source: "https://idlethumbs.bandcamp.com/track/the-wizard"
-  # The source is a direct link the the track, but not the "main" bandcamp of the author. Hence the link is also included separately in the copyright.
-  # Got permission from Chris for this song as well on 02/25/25, requires same attributions
+  info: "Used with same conditions as 'Space Asshole'. Permission confirmed on 02/25/25."
 
 - files: ["skubstep.ogg"]
+  artist: finket
   license: "CC-BY-NC-SA-3.0"
-  copyright: "skubstep by finket."
   source: "https://soundcloud.com/finket/skubstep-extended"
-  
-- files: ["absconditus.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Absconditus by ZhayTee. Converted from MP3 to OGG."
-  source: "https://bandcamp.zhaytee.net/track/absconditus"
+  info: "Converted from MP3 to OGG."
 
 - files: ["atomicamnesiammx.ogg"]
+  artist: Philip Dyer
   license: "CC-BY-NC-SA-3.0"
-  copyright: "Atomic Amnesia MMX by Philip Dyer. Converted from MP3 to OGG."
   source: "https://soundcloud.com/3kliksphilip/atomic-amnesia-mmx-1"
+  info: "Converted from MP3 to OGG."
 
 - files: ["singuloose.ogg"]
+  artist: Janis Schiedková
   license: "CC-BY-NC-SA-3.0"
-  copyright: "Singuloose by Janis Schiedková. Converted from MP3 to OGG."
   source: "https://soundcloud.com/js_m/singuloose"
+  info: "Converted from MP3 to OGG."
 
 - files: ["title2.ogg"]
+  artist: Jonathan Dunn & Eric Shumaker
   license: "Custom"
-  copyright: "Originally composed by Jonathan Dunn for Robocop 2 Gameboy published by Ocean Software. Remixed by Eric Shumaker for his video Dilbert 3. As of October 9th, 2008 nobody owns the rights to this song and copyright action has never been taken against anyone using this song in their projects."
   source: "https://www.youtube.com/watch?v=4o6_8Unj2mQ"
+  info: "Originally for Robocop 2 (Gameboy) by Ocean Software. Remixed for Dilbert 3. Unclaimed and widely reused."
 
-- files: ["title3.ogg"]
+- files: ["Tintin_Remix.ogg"]
+  artist: Cuboos
   license: "CC-BY-NC-SA-3.0"
-  copyright: "Title3 by Cuboos. It is a remix of the song 'Tintin on the Moon'. Converted from MP3 to OGG."
   source: "https://www.youtube.com/watch?v=YKVmXn-Gv0M"
+  info: "Remix of 'Tintin on the Moon'. Converted from MP3 to OGG."
 
 - files: ["comet_haley.ogg"]
+  artist: Stellardrone
   license: "CC-BY-NC-SA-3.0"
-  copyright: "Comet Haley by Stellardrone. Converted from MP3 to OGG."
   source: "https://stellardrone.bandcamp.com/track/comet-halley"
+  info: "Converted from MP3 to OGG."
 
 - files: ["mod.flip-flap.ogg"]
+  artist: X-ceed
   license: "Custom"
-  copyright: "Flip Flap by X-ceed is licensed under a short but clear license (see flip-flap.txt in this directory) and is free for non-commercial use. It was converted from MOD to WAV using Schism Tracker, in 16 Bit, Non-Interpolated mode, no output equalizer settings, Ramp volume at start of sample enabled. From there it was converted to OGG Vorbis with `ffmpeg -i flip-flap.wav -q 2.9 flip-flap-renc.ogg` (quality scale chosen to match size of the OGG file being replaced). Non-interpolated mode was chosen as the module has a high enough sample rate to balance it out, but seems muffled in other interpolation modes. If 'Ramp volume at start of sample' is not enabled, a clicking phenomenon results."
   source: "http://aminet.net/package/mods/xceed/Flipflap"
+  info: |
+    Licensed for free non-commercial use. Converted from MOD to WAV using Schism Tracker in 16 Bit, Non-Interpolated mode. Ramp volume enabled to prevent clicking. Converted to OGG Vorbis with ffmpeg -q 2.9 to match original file size.
 
 - files: ["Spac_Stac.ogg"]
+  artist: Hayabusa
   license: "CC-BY-NC-SA-3.0"
-  copyright: "Spac Stac by Hayabusa. Converted from MP3 to OGG."
   source: "https://www.youtube.com/watch?v=grUBe-SZgr0"
+  info: "Converted from MP3 to OGG."
 
 - files: ["pwmur.ogg"]
+  artist: Sunbeamstress / Lauren Loveless
   license: "CC-BY-NC-SA-3.0"
-  copyright: "phoron will make us rich by Sunbeamstress/Lauren Loveless."
   source: "https://soundcloud.com/sunbeamstress/phoron-will-make-us-rich"
+  info: "Title: 'phoron will make us rich'."
 
 - files: ["lasers_rip_apart_the_bulkhead.ogg"]
+  artist: Sunbeamstress / Lauren Loveless
   license: "CC-BY-NC-SA-3.0"
-  copyright: "lasers rip apart the bulkhead by Sunbeamstress/Lauren Loveless."
   source: "https://soundcloud.com/sunbeamstress/lasers-rip-apart-the-bulkhead"
+  info: "Converted from MP3 to OGG."
 
 - files: ["every_light_is_blinking_at_once.ogg"]
+  artist: Sunbeamstress / Lauren Loveless
   license: "CC-BY-NC-SA-3.0"
-  copyright: "every light is blinking at once by Sunbeamstress/Lauren Loveless."
   source: "https://soundcloud.com/sunbeamstress/every-light-is-blinking-at-once"
+  info: "Converted from MP3 to OGG."
+
+- files: ["Cosmic_Wave.ogg"]
+  artist: Sima
+  license: "CC-BY-NC-SA-3.0"
+  source: "https://suno.com/song/1f00a486-96a0-415f-b2f3-33f484a30214"
+  info: "Converted from MP3 to OGG."
+
+- files: ["Hold_Still_Please.ogg"]
+  artist: Sima
+  license: "CC-BY-NC-SA-3.0"
+  source: "Unpublished track by Sima, used with permission."
+  info: "Converted from MP3 to OGG."

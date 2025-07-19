@@ -1,5 +1,6 @@
 ﻿using Content.Client._Starlight.Managers;
 using Content.Client.Administration.Managers;
+using Content.Client.Audio;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
 using Content.Client.DebugMon;
@@ -39,6 +40,7 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client.Entry
 {
@@ -188,6 +190,7 @@ namespace Content.Client.Entry
             _userInterfaceManager.MainViewport.Visible = false;
 
             SwitchToDefaultState();
+
         }
 
         private void SwitchToDefaultState(bool disconnected = false)

@@ -26,6 +26,7 @@ using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Starlight;
 using Content.Client._Starlight.Managers;
+using Content.Client.CartridgeLoader.Cartridges;
 
 namespace Content.Client.IoC
 {
@@ -64,6 +65,7 @@ namespace Content.Client.IoC
             collection.Register<PlayerRateLimitManager>();
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             collection.Register<TitleWindowManager>();
+            collection.Register<MusicPlayerSystem>();
         }
     }
 }

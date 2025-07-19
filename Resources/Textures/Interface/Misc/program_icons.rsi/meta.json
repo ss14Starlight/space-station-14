@@ -15,6 +15,9 @@
       },
       {
         "name": "nano_task"
+      },
+      {
+        "name": "music_player"
       }
     ]
 }
