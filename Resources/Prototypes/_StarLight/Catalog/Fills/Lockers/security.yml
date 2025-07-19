@@ -63,7 +63,7 @@
         amount: 4
       - id: ClothingOuterHardsuitBrigmedic
         amount: 2
-      - id: SecurityMedkit #fill
+      - id: SecurityMedkitFilled
       - id: DefibrillatorBrigmedical
       - id: SecurityHypoKitFilled
       - id: BoxSterileMask

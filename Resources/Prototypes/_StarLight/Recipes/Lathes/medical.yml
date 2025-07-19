@@ -326,3 +326,14 @@
   completetime: 6
   materials:
     ReinforcedGlass: 400
+
+# The lonely syringe
+
+- type: latheRecipe
+  id: SlowAutoinjector
+  result: SlowAutoinjector
+  completetime: 2
+  materials:
+    Steel: 200
+    Plastic: 100
+    Gold: 25

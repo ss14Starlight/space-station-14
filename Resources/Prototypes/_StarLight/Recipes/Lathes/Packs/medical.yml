@@ -53,6 +53,8 @@
   - EyeImplantMedical
   - EyeImplantSecurity
 
+#
+
 - type: latheRecipePack
   id: StarlightMedContainersDynamic
   recipes:
@@ -62,3 +64,10 @@
   - EmptyBottleReinforced
   - JugReinforced
   - ReinforcedMiniatureEmptyChemistryVial
+
+#
+
+- type: latheRecipePack
+  id: StarlightMedSyringeDynamic
+  recipes:
+  - SlowAutoinjector

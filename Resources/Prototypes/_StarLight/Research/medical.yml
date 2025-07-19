@@ -21,6 +21,20 @@
   - Medical
 
 - type: technology
+  id: HypoinjectorTech
+  name: research-technology-hypoinjector
+  icon: 
+    sprite: _Starlight/Objects/Specific/Medical/syringe.rsi
+    state: syringe_base_inject0
+  discipline: Biochemical
+  tier: 1
+  cost: 4000
+  recipeUnlocks:
+    - SlowAutoinjector
+  radioChannels:
+  - Medical
+
+- type: technology
   id: CyberLimbsTech
   name: research-technology-basic-cyberlimbs
   icon:

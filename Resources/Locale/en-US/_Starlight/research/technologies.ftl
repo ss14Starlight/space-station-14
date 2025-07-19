@@ -16,3 +16,5 @@ research-technology-ion-weaponry = Ion Weaponry
 research-technology-declone-technology = Declone Technology
 
 research-technology-blast-proof = Blast-Proof Containers
+
+research-technology-hypoinjector = Automated Injection

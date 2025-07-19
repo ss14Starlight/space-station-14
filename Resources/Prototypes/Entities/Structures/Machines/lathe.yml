@@ -520,6 +520,7 @@
     - StarlightCyberOrgansDynamic
     - StarlightImplantDynamic
     - StarlightMedContainersDynamic
+    - StarlightMedSyringeDynamic
     - Chemistry
   - type: Machine
     board: MedicalTechFabCircuitboard
