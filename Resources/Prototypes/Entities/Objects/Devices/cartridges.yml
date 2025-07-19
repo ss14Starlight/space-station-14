@@ -173,24 +173,3 @@
         sprite: Objects/Devices/gps.rsi
         state: icon
     - type: AstroNavCartridge
-
-- type: entity
-  parent: BaseItem
-  id: MusicPlayerCartridge
-  name: music player cartridge
-  description: A cartridge for playing music files stored on the device.
-  components:
-    - type: Sprite
-      sprite: Objects/Devices/cartridge.rsi
-      state: cart-music
-    - type: Icon
-      sprite: Objects/Devices/cartridge.rsi
-      state: cart-music
-    - type: UIFragment
-      ui: !type:MusicPlayerUi
-    - type: Cartridge
-      programName: music-player-program-name
-      icon:
-        sprite: Objects/Misc/buffering.rsi
-        state: icon
-    - type: MusicPlayerCartridge

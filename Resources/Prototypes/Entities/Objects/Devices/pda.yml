@@ -83,7 +83,6 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
-      - MusicPlayerCartridge
       
     cartridgeSlot:
       priority: -1
@@ -156,7 +155,6 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
-    - MusicPlayerCartridge
 
 - type: entity
   parent: BasePDA
@@ -171,7 +169,6 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
-      - MusicPlayerCartridge
 
 - type: entity
   parent: BasePDA
@@ -522,7 +519,6 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
-      - MusicPlayerCartridge
 
 - type: entity
   parent: BasePDA
@@ -873,7 +869,6 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
-    - MusicPlayerCartridge
 
 - type: entity
   parent: BaseSecurityPDA
@@ -945,7 +940,6 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
-      - MusicPlayerCartridge
 
 - type: entity
   parent: CentcomPDA
@@ -972,7 +966,6 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
-      - MusicPlayerCartridge
 
   - type: Tag #  Ignore Chameleon tags
     tags:
@@ -1097,7 +1090,6 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
-      - MusicPlayerCartridge
 
 - type: entity
   parent: BaseSecurityPDA
@@ -1130,7 +1122,6 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
-      - MusicPlayerCartridge
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1300,7 +1291,6 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
-    - MusicPlayerCartridge
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1329,7 +1319,6 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
-    - MusicPlayerCartridge
 
 - type: entity
   parent: ClownPDA
@@ -1503,7 +1492,6 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
-      - MusicPlayerCartridge
 
 - type: entity
   parent: BasePDA
