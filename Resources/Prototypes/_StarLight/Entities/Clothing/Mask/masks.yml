@@ -27,7 +27,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: [ ClothingMaskGas, BaseCommandContraband ]
+  parent: [ ClothingMaskGas, BaseSecurityContraband ]
   id: ClothingMaskGasCorpsman
   name: Biohazard Gas Mask
   description: VERY Expensive medical PPE.

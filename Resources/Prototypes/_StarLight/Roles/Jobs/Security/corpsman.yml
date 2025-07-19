@@ -13,6 +13,7 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 28800 # 8 hrs
+  weight: 1
   startingGear: CorpsmanGear
   icon: "JobIconCorpsman"
   supervisors: job-supervisors-hos
