@@ -471,7 +471,7 @@
   maxCount: 20
 
 - type: entity
-  name: BrigKit
+  name: CorpsKit
   description: A heavy-duty first aid kit with slots and hooks for medical supplies, but nothing else.
   parent: BaseStorageItem
   id: SecurityMedkit
