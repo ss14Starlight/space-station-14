@@ -1,12 +1,39 @@
+# Traitor open-ended objectives
+- type: weightedRandom
+  id: TraitorObjectiveOpenEnded
+  weights:
+    DisruptDepartmentObjective: 1
+    SabotageObjective: 0.5
+    TrashRoomObjective: 1
+    ClaimLocationObjective: 1
+    GatherIntelObjective: 1
+    JailbreakObjective: 1
+    LeaveCallingCardObjective: 0.5
+    LeaveCallingCardOnPersonObjective: 0.5
+    #DistractSecObjective: 1
+    #IncriminateObjective: 1
+    #InfiltrateObjective: 0.5
+
+# Thief open-ended objectives
+- type: weightedRandom
+  id: ThiefObjectiveOpenEnded
+  weights:
+    StealEverythingObjective: 0.5
+    StealMoneyObjective: 0.5
+    RobDepartmentObjective: 1
+    InfiltrateThiefObjective: 1
+
 # Blood brother Moffstation objectives
 - type: weightedRandom
   id: BloodBrotherObjectiveGroupOpenEnded
   weights:
     BloodBrotherDisruptDepartmentObjective: 1
-    BloodBrotherInfiltrateObjective: 0.5
     BloodBrotherJailbreakObjective: 0.5
+    BloodBrotherTrashRoomObjective: 1
+    BloodBrotherClaimLocationObjective: 1
     BloodBrotherLeaveCallingCardObjective: 0.2
     BloodBrotherRobDepartmentObjective: 1
     BloodBrotherSabotageObjective: 0.5
     BloodBrotherStealEverythingObjective: 0.2
     BloodBrotherStealMoneyObjective: 1
+    #BloodBrotherInfiltrateObjective: 0.5

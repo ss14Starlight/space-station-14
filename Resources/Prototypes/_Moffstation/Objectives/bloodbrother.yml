@@ -3,13 +3,25 @@
   parent: [BaseBloodBrotherObjective, HarassObjective] # Starlight
   id: BloodBrotherDisruptDepartmentObjective
 
-- type: entity
-  parent: [BaseBloodBrotherObjective, InfiltrateObjective]
-  id: BloodBrotherInfiltrateObjective
+#- type: entity
+#  parent: [BaseBloodBrotherObjective, InfiltrateObjective]
+#  id: BloodBrotherInfiltrateObjective
 
 - type: entity
   parent: [BaseBloodBrotherObjective, JailbreakObjective]
   id: BloodBrotherJailbreakObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, TrashRoomObjective]
+  id: BloodBrotherTrashRoomObjective
+
+- type: entity
+  parent: [BaseBloodBrotherObjective, ClaimLocationObjective]
+  id: BloodBrotherClaimLocationObjective
+  components:
+  - type: LocationObjective
+    title: objective-condition-claim-room-bb
+
 
 - type: entity
   parent: [BaseBloodBrotherObjective, RobDepartmentObjective]
