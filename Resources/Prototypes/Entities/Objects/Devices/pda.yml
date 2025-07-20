@@ -83,6 +83,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - MusicPlayerCartridge #Starlight
       
     cartridgeSlot:
       priority: -1
@@ -155,6 +156,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
+    - MusicPlayerCartridge #Starlight
 
 - type: entity
   parent: BasePDA
@@ -169,6 +171,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - MusicPlayerCartridge #Starlight
 
 - type: entity
   parent: BasePDA
@@ -519,6 +522,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - MusicPlayerCartridge #Starlight
 
 - type: entity
   parent: BasePDA
@@ -869,6 +873,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - MusicPlayerCartridge #Starlight
 
 - type: entity
   parent: BaseSecurityPDA
@@ -940,6 +945,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - MusicPlayerCartridge #Starlight
 
 - type: entity
   parent: CentcomPDA
@@ -966,6 +972,7 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
+      - MusicPlayerCartridge #Starlight
 
   - type: Tag #  Ignore Chameleon tags
     tags:
@@ -1090,6 +1097,7 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - MusicPlayerCartridge #Starlight
 
 - type: entity
   parent: BaseSecurityPDA
@@ -1122,6 +1130,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - MusicPlayerCartridge #Starlight
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1291,6 +1300,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - MusicPlayerCartridge #Starlight
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1319,6 +1329,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - MusicPlayerCartridge #Starlight
 
 - type: entity
   parent: ClownPDA
@@ -1492,6 +1503,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - MusicPlayerCartridge #Starlight
 
 - type: entity
   parent: BasePDA
