@@ -2,6 +2,7 @@
   "version": 1,
   "license": "CC-BY-SA-3.0",
   "copyright": "Sprite made by Gtheglorious based on the sprite made by emisse for ss14, vox state made by Flareguy for SS14, Resprited by Sunrise, monkey state made by MercerBray for Ss14.",
+  "copyright": "Color scheme, species, modified by JustAdler for https://github.com/ss14Starlight/space-station-14",
   "size": {
     "x": 32,
     "y": 32
@@ -11,15 +12,62 @@
       "name": "icon"
     },
     {
+      "name": "icon-unshaded"
+    },
+    {
       "name": "equipped-OUTERCLOTHING",
       "directions": 4
     },
     {
-      "name": "equipped-OUTERCLOTHING-reptilian",
+      "name": "equipped-OUTERCLOTHING-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-vulpkanin",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-unshaded-vulpkanin",
       "directions": 4
     },
     {
       "name": "equipped-OUTERCLOTHING-vox",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-unshaded-vox",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-cyclorite",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-unshaded-cyclorite",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-felionoid",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-unshaded-felionoid",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-resomi",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-unshaded-resomi",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-avali",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-unshaded-avali",
       "directions": 4
     },
     {
