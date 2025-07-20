@@ -127,6 +127,11 @@
     - Sidearm
   - type: Gun
     spread: 30
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+      params:
+        variation: 0.05
+        pitch: 0.8
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/ga12.rsi
   - type: GunRequiresWield

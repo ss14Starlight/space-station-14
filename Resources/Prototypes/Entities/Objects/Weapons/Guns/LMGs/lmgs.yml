@@ -95,11 +95,6 @@
     sprite: Objects/Weapons/Guns/LMGs/l6_wielded_x64.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/LMGs/l6_clothing_x64.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/lmg2.ogg
-      params:
-        variation: 0.05
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/m41_cock.ogg
@@ -107,29 +102,16 @@
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
     soundBoltOpened: 
       path: /Audio/Weapons/Guns/Cock/shotgun_open.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        startingItem: MagazineLightRifleBoxSP
-        insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineLightRifleBox
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeLightRifleSP
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeLightRifle
   - type: MagazineVisuals
     magState: mag
     steps: 4
     zeroVisible: true
   - type: Appearance
   - type: Gun
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/lmg2.ogg
+      params:
+        variation: 0.05
     minAngle: 20
     maxAngle: 40
     angleIncrease: 3
@@ -140,8 +122,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazineLightRifleBoxFMJ
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
         priority: 2
         whitelist:
           tags:
