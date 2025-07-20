@@ -177,8 +177,15 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntcc_hardsuit.rsi
+    layers:
+      - state: icon
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntcc_hardsuit.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+      outerClothing-resomi:
+      - state: equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNTCCConsortium
   - type: Tag
