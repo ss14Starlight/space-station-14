@@ -85,12 +85,45 @@
   description: Developed by Waffle Corp, the L6 Squad Automatic Weapon is a deadly light machine gun often used by the Gorlex Marauders. Although bulky and cumbersome, its heavy barrel and high ammo capacity make it perfect for suppressing combatants with a hail of bullets. Feeds from .30 ammo belts.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    sprite: Objects/Weapons/Guns/LMGs/l6_x64.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-3
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: Objects/Weapons/Guns/LMGs/l6_wielded_x64.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/LMGs/l6_clothing_x64.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/lmg2.ogg
+      params:
+        variation: 0.05
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/m41_cock.ogg
+    soundBoltClosed: 
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+    soundBoltOpened: 
+      path: /Audio/Weapons/Guns/Cock/shotgun_open.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: MagazineLightRifleBoxSP
+        insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleBox
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
   - type: MagazineVisuals
     magState: mag
     steps: 4

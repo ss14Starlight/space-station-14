@@ -1,0 +1,5 @@
+- type: soundCollection
+  id: TechMarch
+  files:
+    - /Audio/_Starlight/Effects/Footsteps/march1.ogg
+    - /Audio/_Starlight/Effects/Footsteps/march2.ogg

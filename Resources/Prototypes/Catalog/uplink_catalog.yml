@@ -332,7 +332,7 @@
   id: UplinkGrenadierRig
   name: uplink-grenadier-rig-name
   description: uplink-grenadier-rig-desc
-  productEntity: ClothingBeltMilitaryWebbingGrenadeFilled
+  productEntity: ClothingBeltOperativeWebbingGrenadeFilled
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 6
@@ -1635,7 +1635,7 @@
   id: UplinkChestRig
   name: uplink-chest-rig-name
   description: uplink-chest-rig-desc
-  productEntity: ClothingBeltMilitaryWebbing
+  productEntity: ClothingBeltOperativeWebbing
   cost:
     Telecrystal: 1
   categories:

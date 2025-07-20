@@ -628,6 +628,10 @@
     size: Huge
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+    equipSound: /Audio/Mecha/mechmove03.ogg #starlight
+    unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
+    equipDelay: 0.5 #starlight
+    unequipDelay: 0.5 #starlight
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -650,6 +654,12 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
+  - type: FootstepModifier # STARLIGHT
+    footstepSoundCollection:
+      collection: TechMarch
+      params:
+        pitch: 0.9
+        variation: 0.09
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndie
   - type: Tag
@@ -686,8 +696,45 @@
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+        - state: equipped-OUTERCLOTHING-unshaded
+          shader: unshaded
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+        - state: equipped-OUTERCLOTHING-unshaded-vox
+          shader: unshaded
+      outerClothing-cyclorite:
+        - state: equipped-OUTERCLOTHING-cyclorite
+        - state: equipped-OUTERCLOTHING-unshaded-cyclorite
+          shader: unshaded
+      outerClothing-felionoid:
+        - state: equipped-OUTERCLOTHING-felionoid
+        - state: equipped-OUTERCLOTHING-unshaded-felionoid
+          shader: unshaded
+      outerClothing-vulpkanin:
+        - state: equipped-OUTERCLOTHING-vulpkanin
+        - state: equipped-OUTERCLOTHING-unshaded-vulpkanin
+          shader: unshaded
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+        - state: equipped-OUTERCLOTHING-unshaded-resomi
+          shader: unshaded
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+        - state: equipped-OUTERCLOTHING-unshaded-avali
+          shader: unshaded
+    equipSound: /Audio/Mecha/mechmove03.ogg #starlight
+    unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
+    equipDelay: 0.5 #starlight
+    unequipDelay: 0.5 #starlight
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -717,6 +764,12 @@
     walkModifier: 1.0
     sprintModifier: 1.0
   - type: HeldSpeedModifier
+  - type: FootstepModifier # STARLIGHT
+    footstepSoundCollection:
+      collection: TechMarch
+      params:
+        pitch: 0.8
+        variation: 0.09
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
   - type: Tag
@@ -736,6 +789,10 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+    equipSound: /Audio/Mecha/mechmove03.ogg #starlight
+    unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
+    equipDelay: 0.5 #starlight
+    unequipDelay: 0.5 #starlight
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -758,6 +815,12 @@
     walkModifier: 0.95
     sprintModifier: 0.95
   - type: HeldSpeedModifier
+  - type: FootstepModifier # STARLIGHT
+    footstepSoundCollection:
+      collection: TechMarch
+      params:
+        pitch: 0.9
+        variation: 0.02
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
 
@@ -770,12 +833,45 @@
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
     equipSound: /Audio/Mecha/mechmove03.ogg #starlight
     unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
     equipDelay: 3 #starlight
     unequipDelay: 3 #starlight
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+        - state: equipped-OUTERCLOTHING-unshaded
+          shader: unshaded
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+        - state: equipped-OUTERCLOTHING-unshaded-vox
+          shader: unshaded
+      outerClothing-cyclorite:
+        - state: equipped-OUTERCLOTHING-cyclorite
+        - state: equipped-OUTERCLOTHING-unshaded-cyclorite
+          shader: unshaded
+      outerClothing-vulpkanin:
+        - state: equipped-OUTERCLOTHING-vulpkanin
+        - state: equipped-OUTERCLOTHING-unshaded-vulpkanin
+          shader: unshaded
+      outerClothing-felionoid:
+        - state: equipped-OUTERCLOTHING-felionoid
+        - state: equipped-OUTERCLOTHING-unshaded-felionoid
+          shader: unshaded
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+        - state: equipped-OUTERCLOTHING-unshaded-resomi
+          shader: unshaded
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+        - state: equipped-OUTERCLOTHING-unshaded-avali
+          shader: unshaded
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000

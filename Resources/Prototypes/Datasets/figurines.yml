@@ -188,7 +188,7 @@
   id: FigurinesNukie
   values:
     prefix: figurines-nukie-
-    count: 5
+    count: 6
 
 - type: localizedDataset
   id: FigurinesNukieElite
@@ -200,7 +200,7 @@
   id: FigurinesNukieCommander
   values:
     prefix: figurines-nukie-commander-
-    count: 5
+    count: 7
 
 - type: localizedDataset
   id: FigurinesFootsoldier
@@ -212,7 +212,7 @@
   id: FigurinesWizard
   values:
     prefix: figurines-wizard-
-    count: 4
+    count: 8
 
 - type: localizedDataset
   id: FigurinesSpaceDragon

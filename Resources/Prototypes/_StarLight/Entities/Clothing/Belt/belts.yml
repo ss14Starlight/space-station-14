@@ -172,7 +172,7 @@
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseMajorContraband]
   id: ClothingBeltOperativeWebbing
   name: operative webbing
-  description: A rugged set of sleek webbing made for gruesome but covert operations.
+  description: Standard-rendered in a low-vis to mid-vis B3 pattern, this module is a streamlined workhorse and a go-to pick for various galactic paramilitaries that operate within the black market.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Belt/militarywebbing_dark.rsi
@@ -184,6 +184,40 @@
     grid:
     - 0,0,11,1
 
+- type: entity
+  id: ClothingBeltOperativeWebbingMedFilled
+  parent: ClothingBeltOperativeWebbing
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: ChemistryBottleEpinephrine
+        amount: 2
+      - id: ChemistryBottleEphedrine
+        amount: 2
+      - id: ChemistryBottleOmnizine
+      - id: MedkitCombatFilled
+
+- type: entity
+  id: ClothingBeltOperativeWebbingGrenadeFilled
+  parent: ClothingBeltOperativeWebbing
+  name: grenadier operative webbing
+  suffix: Filled
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,7,1
+  - type: StorageFill
+    contents:
+      - id: ExGrenade
+        amount: 4
+      - id: SyndieMiniBomb
+        amount: 2
+      - id: EmpGrenade
+        amount: 2
 
 # USSP 
 

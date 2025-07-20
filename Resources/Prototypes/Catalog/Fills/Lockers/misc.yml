@@ -7,7 +7,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: ClothingBeltMilitaryWebbing
+        - id: ClothingBeltOperativeWebbing
         - id: ClothingHandsGlovesCombat
         - id: JetpackBlackFilled
         - id: ClothingUniformJumpsuitOperative
@@ -141,7 +141,7 @@
     - id: CyberPen
     - id: CigPackSyndicate
     - id: ClothingBackpackDuffelSyndicatePyjamaBundle
-    - id: ClothingBeltMilitaryWebbing
+    - id: ClothingBeltOperativeWebbing
     - id: ClothingShoesBootsCombatFilled
     - id: ToolboxSyndicateFilled
     - id: BalloonSyn

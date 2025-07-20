@@ -39,3 +39,8 @@
   copyright: "Created by fujiwaranao"
   license: "CC-BY-NC-SA-4.0"
   source: "https://github.com/space-wizards/space-station-14/pull/27578"
+
+- files: ["nano_death"]
+  license: "CC-BY-4.0"
+  copyright: 'JustAdler'
+  source: "https://github.com/ss14Starlight/space-station-14"
