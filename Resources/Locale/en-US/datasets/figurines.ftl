@@ -232,35 +232,42 @@ figurines-janitor-7 = My only friend is my mop.
 figurines-janitor-8 = That better not be what I think it is...
 figurines-janitor-9 = Another day, another body.
 
-figurines-nukie-1 = I got the disk!
-figurines-nukie-2 = Whiskey, Echo, Whiskey.
-figurines-nukie-3 = The nuke makes boom.
-figurines-nukie-4 = What's the code?
-figurines-nukie-5 = Commander...? ...That's a balloon...
+figurines-nukie-1 = Ignore the disk! Kill crew!
+figurines-nukie-2 = Whiskey, Echo, Whiskey!
+figurines-nukie-3 = I already bought a clake?
+figurines-nukie-4 = Wait, the code is for our nuke?
+figurines-nukie-5 = THAT'S A MAXCAP!
+figurines-nukie-6 = Can we just plasma flood and that's it?
 
-figurines-nukie-elite-1 = Not a word in nanotrasen.
-figurines-nukie-elite-2 = THAT'S A KEG!
-figurines-nukie-elite-3 = Guys are you alive?
-figurines-nukie-elite-4 = Breach and clear!
-figurines-nukie-elite-5 = Leave no survivors.
-figurines-nukie-elite-6 = Good work, team.
+figurines-nukie-elite-1 = Death to NanoTrasen.
+figurines-nukie-elite-2 = Stupid fucking firelocks.
+figurines-nukie-elite-3 = Guys... are you still alive?
+figurines-nukie-elite-4 = Loose- err, destroy the SMESS.
+figurines-nukie-elite-5 = At least I look cooler than you.
+figurines-nukie-elite-6 = ERT? Again?
 
-figurines-nukie-commander-1 = GET DAT FUKKEN DISK!
+figurines-nukie-commander-1 = GO GET THE DISK, COME ON NOW!!
 figurines-nukie-commander-2 = Fuckin' flukies.
-figurines-nukie-commander-3 = The syndicate sends its regards.
-figurines-nukie-commander-4 = Failure is not an option.
-figurines-nukie-commander-5 = Whoops.
+figurines-nukie-commander-3 = That fuckin' vox again.
+figurines-nukie-commander-4 = Your pinpointer is upside down.
+figurines-nukie-commander-5 = Warops? Alright, stealthops it is.
+figurines-nukie-commander-6 = Forget magboots. Hit grav. Float. Die horribly.
+figurines-nukie-commander-7 = At least I know chem.
 
 figurines-footsoldier-1 = I'm an evil boy. Less boy every day, more evil every day.
 figurines-footsoldier-2 = Who will you choose? Them or us? Us or them?
-figurines-footsoldier-3 = Glory to the syndicate!
-figurines-footsoldier-4 = Down with Nanotrasen!
-figurines-footsoldier-5 = I'd rather die than join Nanotrasen.
+figurines-footsoldier-3 = Glory to the Syndicate!
+figurines-footsoldier-4 = Death to Nanotrasen!
+figurines-footsoldier-5 = I'd rather die than join NanoTrasen.
 
-figurines-wizard-1 = Ei Nath!!
-figurines-wizard-2 = Real wizards support trans rights.
+figurines-wizard-1 = EI NATH!!
+figurines-wizard-2 = Real wizards point blank fireballs.
 figurines-wizard-3 = Skidaddle skadoodle!
-figurines-wizard-4 = FIREBALL!
+figurines-wizard-4 = Say you wanna live long, say you wanna be free?
+figurines-wizard-5 = We gonna rock, down, to...
+figurines-wizard-6 = And YOU get a gun! And YOU get a gun!
+figurines-wizard-7 = HoS, this wizard barged into my room.
+figurines-wizard-8 = UNNNNLIMITED POWAAAH! 10 WizCoin minimum wage though.
 
 figurines-space-dragon-1 = Fish will consume the station.
 figurines-space-dragon-2 = Dragon de- Actually, nevermind.
