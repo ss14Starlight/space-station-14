@@ -332,7 +332,6 @@
             Structural: 15
   - type: ItemToggleActiveSound
     activeSound:
-      activeSound:
       path: /Audio/_Starlight/Weapons/Energy/ebladehum.ogg #STARLIGHT
       params:
         volume: -3

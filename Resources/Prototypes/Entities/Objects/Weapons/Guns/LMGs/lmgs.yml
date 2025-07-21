@@ -112,7 +112,7 @@
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/lmg2.ogg
       params:
         variation: 0.05
-        volume: -3
+        volume: -4
     minAngle: 20
     maxAngle: 40
     angleIncrease: 3
