@@ -377,7 +377,7 @@
 - type: entity
   parent: [ UnsensoredClothingUniformBase, BaseMajorContraband ]
   id: ClothingUniformJumpsuitHistoric
-  name: Historic Jumpsuit
+  name: historic Jumpsuit
   description: Smells a bit. How old is that bloodstain?
   components:
   - type: Sprite

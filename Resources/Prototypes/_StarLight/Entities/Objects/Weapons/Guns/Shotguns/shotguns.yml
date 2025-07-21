@@ -252,3 +252,26 @@
       - id: RifleStock
         launchAngle: 180
         prob: 0.80
+
+- type: entity
+  name: trench shotgun
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseMajorContraband]
+  id: WeaponShotgunTrench
+  description: A sturdy shotgun made for clearing trenches. You can hold down the trigger and pump for sorta full auto, if you're crazy.
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/trench_inhands_64x.rsi
+  - type: Gun
+    spread: 20
+    pump: true
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/trench.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/trench.rsi
+  - type: GunRequiresWield
+  - type: BallisticAmmoProvider
+    capacity: 5

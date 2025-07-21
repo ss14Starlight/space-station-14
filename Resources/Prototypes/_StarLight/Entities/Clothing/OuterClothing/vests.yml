@@ -5,9 +5,9 @@
   description: A simple holster that can hold a long-arm.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Vests/tankharness.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Vests/gun_holster.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/Vests/tankharness.rsi
+    sprite:  _Starlight/Clothing/OuterClothing/Vests/gun_holster.rsi
   - type: Item
     size: Normal # Make smaller than typical outer clothing
     shape:
