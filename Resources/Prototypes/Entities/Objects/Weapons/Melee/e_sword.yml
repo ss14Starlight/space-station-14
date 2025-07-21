@@ -17,7 +17,7 @@
     activeSound:
       path: /Audio/_Starlight/Weapons/Energy/ebladehum.ogg #STARLIGHT
       params:
-        volume: -3
+        volume: -5
   - type: ComponentToggler
     components:
     - type: Sharp
