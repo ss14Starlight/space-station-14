@@ -1089,11 +1089,11 @@
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi #if you change this, please update the humanoid.yml with a better markers sprite.
-    layers:
+    layers: # STARLIGHT
       - state: icon
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
-    clothingVisuals:
+    clothingVisuals: # STARLIGHT
       outerClothing:
         - state: equipped-OUTERCLOTHING
   - type: ToggleableClothing
@@ -1138,11 +1138,11 @@
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
-    layers:
+    layers: # STARLIGHT
       - state: icon
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
-    clothingVisuals:
+    clothingVisuals: # STARLIGHT
       outerClothing:
       - state: equipped-OUTERCLOTHING
       outerClothing-vox:
