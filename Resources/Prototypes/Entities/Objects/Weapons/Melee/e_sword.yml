@@ -312,19 +312,19 @@
     onUse: false # wielding events control it instead
     onActivate: false # prevents the weapon from being able to be turned on when it is on the ground
     soundActivate:
-      path: /Audio/Weapons/ebladeon.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladeon.ogg #STARLIGHT
       params:
-        volume: 3
+        volume: 12
     soundDeactivate:
-      path: /Audio/Weapons/ebladeoff.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladeoff.ogg #STARLIGHT
       params:
-        volume: 3
+        volume: 10
   - type: ItemToggleMeleeWeapon
     activatedSoundOnSwing:
-      path: /Audio/Weapons/eblademiss.ogg
+      collection: EnergySwordMiss #STARLIGHT
       params:
+        variation: 0.125
         volume: 3
-        variation: 0.250
     activatedDamage:
         types:
             Slash: 12
@@ -332,9 +332,10 @@
             Structural: 15
   - type: ItemToggleActiveSound
     activeSound:
-      path: /Audio/Weapons/ebladehum.ogg
+      activeSound:
+      path: /Audio/_Starlight/Weapons/Energy/ebladehum.ogg #STARLIGHT
       params:
-        volume: 3
+        volume: -3
   - type: ComponentToggler
     components:
     - type: Sharp
