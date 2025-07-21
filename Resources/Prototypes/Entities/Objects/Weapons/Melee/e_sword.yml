@@ -8,11 +8,11 @@
     soundActivate:
       path: /Audio/_Starlight/Weapons/Energy/ebladeon.ogg #STARLIGHT
       params:
-        volume: 25
+        volume: 12
     soundDeactivate:
       path: /Audio/_Starlight/Weapons/Energy/ebladeoff.ogg #STARLIGHT
       params:
-        volume: 23
+        volume: 10
   - type: ItemToggleActiveSound
     activeSound:
       path: /Audio/_Starlight/Weapons/Energy/ebladehum.ogg #STARLIGHT
