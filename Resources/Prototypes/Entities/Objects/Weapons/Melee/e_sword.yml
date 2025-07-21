@@ -445,6 +445,9 @@
   components: # could add energy-draining like the L6C
   - type: Wieldable
     freeHandsRequired: 0 # because borg has no off-hand to wield with.  Without this, it will be unable to activate the esword
+  - type: EnergySword # STARLIGHT
+    colorOptions:
+    - "#FF0000" # can only be red
   - type: Scalpel
   - type: SurgeryTool
     successRate: 0.6
