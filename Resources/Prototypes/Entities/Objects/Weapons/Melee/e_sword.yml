@@ -6,12 +6,18 @@
   - type: EnergySword
   - type: ItemToggle
     soundActivate:
-      path: /Audio/Weapons/ebladeon.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladeon.ogg #STARLIGHT
+      params:
+        volume: 25
     soundDeactivate:
-      path: /Audio/Weapons/ebladeoff.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladeoff.ogg #STARLIGHT
+      params:
+        volume: 23
   - type: ItemToggleActiveSound
     activeSound:
-      path: /Audio/Weapons/ebladehum.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladehum.ogg #STARLIGHT
+      params:
+        volume: -3
   - type: ComponentToggler
     components:
     - type: Sharp
@@ -24,18 +30,20 @@
     toggleableVisualsColorModulatesLights: true
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
-      path: /Audio/Weapons/eblade1.ogg
+      collection: EnergySwordHit #STARLIGHT
       params:
         variation: 0.250
+        volume: 5
     activatedSoundOnHitNoDamage:
-      path: /Audio/Weapons/eblade1.ogg
+      collection: EnergySwordHit #STARLIGHT
       params:
         variation: 0.250
-        volume: -10
+        volume: -7
     activatedSoundOnSwing:
-      path: /Audio/Weapons/eblademiss.ogg
+      collection: EnergySwordMiss #STARLIGHT
       params:
         variation: 0.125
+        volume: 3
     activatedDamage:
       types:
         Slash: 15
