@@ -11,3 +11,10 @@
     - /Audio/_Starlight/Weapons/Energy/eblademiss1.ogg
     - /Audio/_Starlight/Weapons/Energy/eblademiss2.ogg
     - /Audio/_Starlight/Weapons/Energy/eblademiss3.ogg
+
+- type: soundCollection
+  id: EnergyRifle
+  files:
+    - /Audio/_Starlight/Weapons/Energy/laser1.ogg
+    - /Audio/_Starlight/Weapons/Energy/laser2.ogg
+    - /Audio/_Starlight/Weapons/Energy/laser3.ogg

@@ -618,7 +618,9 @@
       - SemiAuto
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      collection: EnergyRifle #STARLIGHT
+      params:
+        variation: 0.05
   - type: MagazineVisuals
     magState: stun
     steps: 5
@@ -672,7 +674,9 @@
       - SemiAuto
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      collection: EnergyRifle #STARLIGHT
+      params:
+        variation: 0.05
   - type: MagazineVisuals
     magState: stun
     steps: 5
@@ -712,7 +716,9 @@
     availableModes:
       - Burst
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      collection: EnergyRifle #STARLIGHT
+      params:
+        variation: 0.05
   - type: MagazineVisuals
     magState: destroy
     steps: 5

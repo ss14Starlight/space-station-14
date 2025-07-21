@@ -110,7 +110,9 @@
       - SemiAuto
       - Burst
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      collection: EnergyRifle #STARLIGHT
+      params:
+        variation: 0.05
   - type: MagazineVisuals
     magState: mag
     steps: 5
