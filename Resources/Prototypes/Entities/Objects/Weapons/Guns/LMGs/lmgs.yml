@@ -123,7 +123,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleBoxFMJ
+        startingItem: MagazineLightRifleBoxSP # will be replaced with FMJ
         insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
         priority: 2
@@ -132,7 +132,7 @@
             - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleFMJ
+        startingItem: CartridgeLightRifleSP # will be replaced with FMJ
         priority: 1
         whitelist:
           tags:
