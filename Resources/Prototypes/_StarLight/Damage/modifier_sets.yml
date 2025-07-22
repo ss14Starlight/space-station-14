@@ -49,3 +49,11 @@
     Blunt: 1.25
     Cellular: 0
     Poison: 1.5
+
+- type: damageModifierSet
+  id: Silicon
+  coefficients:
+    Slash: 0.2 # Good luck slicing metal idiot (/lh)
+    Blunt: 0.6
+    Heat: 1.33
+    Shock: 4.0 # encourage sec to not lethal borgs
