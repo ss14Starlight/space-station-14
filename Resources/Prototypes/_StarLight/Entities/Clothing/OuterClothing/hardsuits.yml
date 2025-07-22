@@ -177,8 +177,15 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntcc_hardsuit.rsi
+    layers: # STARLIGHT
+      - state: icon
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntcc_hardsuit.rsi
+    clothingVisuals: # STARLIGHT
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+      outerClothing-resomi:
+      - state: equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNTCCConsortium
   - type: Tag
@@ -216,7 +223,7 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
-    staminaModifier: 0.3
+    staminaModifier: 0.4 # SL: Improved stun resistance
     ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.5
@@ -294,14 +301,14 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.40
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
         Heat: 0.35
         Radiation: 0.1
         Caustic: 0.4
-    staminaModifier: 1
-    ingoreKnockdown: false
+    staminaModifier: 1 #Intended weakness
+    ingoreKnockdown: false #Major weakness
   - type: ClothingSpeedModifier
     walkModifier: 0.90
     sprintModifier: 0.90
