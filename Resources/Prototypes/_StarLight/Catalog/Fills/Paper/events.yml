@@ -118,3 +118,17 @@
         - UnknownShuttleHonki
         - WizardSpawn
         - NinjaSpawn #spawns less cause there is also less people to take said roles. and I deem these to be the less "chaotic" ones
+
+- type: entity
+  parent: Paper
+  id: PaperSendNukieReinforcements
+  name: Send reinforcements!
+  description: An official notice from... an alternate timeline?
+  components:
+    - type: Paper
+      content: paper-send-nukie-reinforcements
+    - type: GameruleOnSign
+      remaining: 27 #on low pop this is basically the entire station. on hihpop this is nothing.
+      rules: 
+        - LoneOpsSpawn
+        - LoneOpsSpawn

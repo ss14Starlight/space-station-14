@@ -15124,7 +15124,7 @@ entities:
     - type: Transform
       pos: 1.8436577,3.5806565
       parent: 1
-- proto: PaperTooQuietNeedChaos
+- proto: PaperSendNukieReinforcements
   entities:
   - uid: 4157
     components:
