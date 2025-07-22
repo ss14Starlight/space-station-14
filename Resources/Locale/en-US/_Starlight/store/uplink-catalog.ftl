@@ -33,3 +33,12 @@ uplink-pistol-magazine-nameFMJ = Pistol Magazine (.35 auto FMJ)
 uplink-pistol-magazine-descFMJ = Pistol magazine with 10 catridges. Compatible with the Viper.
 uplink-pistol40-magazine-nameFMJ = Pistol Magazine (.40 auto FMJ)
 uplink-pistol40-magazine-descFMJ = Pistol magazine with 10 catridges. Compatible with the Stechkin.
+
+uplink-syndicate-borgi-name = Syndicate Borgi
+uplink-syndicate-borgi-desc = A basic syndicate borgi
+
+uplink-syndicate-borgi-kitted-name = Kitted Syndicate Borgi
+uplink-syndicate-borgi-kitted-desc = A syndicate borgi, with assault modules
+
+uplink-syndicate-borgi-speed-name = Speed Syndicate Borgi
+uplink-syndicate-borgi-speed-desc = A syndicate borgi, with dagger modules and additional speed
