@@ -26,6 +26,7 @@ construction-graph-tag-eva-helmet = an EVA helmet
 # hud
 construction-graph-tag-security-hud = security hud
 construction-graph-tag-medical-hud = medical hud
+construction-graph-tag-mmsp = modular machine part
 
 # security
 construction-graph-tag-sun-glasses = sun glasses
