@@ -12,13 +12,17 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
 using Robust.Shared.Timing;
+using Content.Shared.Chemistry.Components;
+using Robust.Shared.Prototypes;
+using Content.Shared.Containers.ItemSlots;
+using Robust.Shared.Containers;
 
 namespace Content.Server._Starlight.Chemistry.ExternalContainerInjector;
 
 /// <summary>
 /// Server-side implementation of the external container injector system.
 /// </summary>
-public sealed class ExternalContainerInjectorSystem : SharedExternalContainerInjectorSystem
+public sealed partial class ExternalContainerInjectorSystem : SharedExternalContainerInjectorSystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -27,11 +31,17 @@ public sealed class ExternalContainerInjectorSystem : SharedExternalContainerInj
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainers = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<ExternalContainerInjectorComponent, AfterInteractEvent>(OnAfterInteract);
+        SubscribeLocalEvent<SolutionChangedEvent>(OnSolutionChanged);
+        SubscribeLocalEvent<ExternalContainerInjectorComponent, EntInsertedIntoContainerMessage>(OnVialInserted);
+        SubscribeLocalEvent<ExternalContainerInjectorComponent, EntRemovedFromContainerMessage>(OnVialRemoved);
     }
 
     public void OnAfterInteract(Entity<ExternalContainerInjectorComponent> entity, ref AfterInteractEvent args)
@@ -141,6 +151,9 @@ public sealed class ExternalContainerInjectorSystem : SharedExternalContainerInj
         _reactiveSystem.DoEntityReaction(target, removedSolution, ReactionMethod.Injection);
         _solutionContainers.TryAddSolution(targetSoln.Value, removedSolution);
 
+        // Update hypospray appearance to reflect the reduced solution
+        UpdateHyposprayAppearance(entity);
+
         // Play injection sound
         PlayInjectSound(entity, user);
 
@@ -173,5 +186,78 @@ public sealed class ExternalContainerInjectorSystem : SharedExternalContainerInj
             return;
 
         _audio.PlayPvs(entity.Comp.InjectSound, user);
+    }
+
+    private void OnSolutionChanged(ref SolutionChangedEvent args)
+    {
+        var query = EntityQueryEnumerator<ExternalContainerInjectorComponent>();
+        while (query.MoveNext(out var uid, out var component))
+        {
+            if (TryGetVialSolution((uid, component), out var solution, out var solutionEntity) &&
+                solutionEntity.Owner == args.Solution.Owner)
+            {
+                UpdateHyposprayAppearance((uid, component));
+            }
+        }
+    }
+
+    private void UpdateHyposprayAppearance(Entity<ExternalContainerInjectorComponent> entity)
+    {
+        if (!TryComp<AppearanceComponent>(entity, out var appearance))
+            return;
+
+        if (!TryGetVialSolution(entity, out var solution, out _))
+        {
+            // No solution - show empty
+            _appearance.SetData(entity, SolutionContainerVisuals.FillFraction, 0f, appearance);
+            _appearance.SetData(entity, SolutionContainerVisuals.Color, Color.White, appearance);
+            _appearance.SetData(entity, SolutionContainerVisuals.SolutionName, entity.Comp.VialSolutionName,
+                appearance);
+            return;
+        }
+
+        // Update with solution data
+        _appearance.SetData(entity, SolutionContainerVisuals.FillFraction, solution?.FillFraction ?? 0, appearance);
+        _appearance.SetData(entity, SolutionContainerVisuals.Color,
+            solution?.GetColor(_prototypeManager) ?? Color.Transparent, appearance);
+        _appearance.SetData(entity, SolutionContainerVisuals.SolutionName, entity.Comp.VialSolutionName, appearance);
+
+        if (solution?.GetPrimaryReagentId() is { } reagent)
+            _appearance.SetData(entity, SolutionContainerVisuals.BaseOverride, reagent.ToString(), appearance);
+    }
+
+    private bool TryGetVialSolution(Entity<ExternalContainerInjectorComponent> entity, out Solution? solution,
+        out Entity<Content.Shared.Chemistry.Components.SolutionComponent> solutionEntity)
+    {
+        solution = null;
+        solutionEntity = default;
+
+        if (!_itemSlots.TryGetSlot(entity.Owner, entity.Comp.VialSlotId, out var slot) || !slot.HasItem ||
+            slot.Item == null)
+            return false;
+
+        if (!_solutionContainers.TryGetSolution(slot.Item.Value, entity.Comp.VialSolutionName, out var vialSolution,
+                out var vialSolutionComponent))
+            return false;
+
+        solution = vialSolutionComponent;
+        solutionEntity = vialSolution.GetValueOrDefault();
+        return true;
+    }
+
+    private void OnVialInserted(Entity<ExternalContainerInjectorComponent> entity, ref EntInsertedIntoContainerMessage args)
+    {
+        if (args.Container.ID == entity.Comp.VialSlotId)
+        {
+            UpdateHyposprayAppearance(entity);
+        }
+    }
+
+    private void OnVialRemoved(Entity<ExternalContainerInjectorComponent> entity, ref EntRemovedFromContainerMessage args)
+    {
+        if (args.Container.ID == entity.Comp.VialSlotId)
+        {
+            UpdateHyposprayAppearance(entity);
+        }
     }
 }

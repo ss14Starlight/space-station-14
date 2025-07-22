@@ -7,6 +7,11 @@
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
     state: hypo
+    layers:
+      - state: hypo
+        map: ["enum.SolutionContainerLayers.Base"]
+      - state: hypo_fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
   - type: Item
     sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
   - type: UseDelay
@@ -31,10 +36,11 @@
     onlyAffectsMobs: false
     vialSlotId: vial_slot
     vialSolutionName: beaker
+  - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 2
     fillBaseName: hypo_fill
-    solutionName: hypospray
+    solutionName: beaker
   - type: Tag
     tags:
     - HighRiskItem
