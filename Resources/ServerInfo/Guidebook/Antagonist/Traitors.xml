@@ -103,7 +103,7 @@
   <Box>
     <GuideEntityEmbed Entity="BoxFolderQmClipboard" Caption=""/>
   </Box>
-  - Stealing the [color=gold]Captain's[/color] [bold]ID Clipboard[/bold]
+  - Stealing the [color=gold]Head of Personnel's[/color] [bold]ID Clipboard[/bold]  <!-- Starlight Change -->
   <Box>
   <GuideEntityEmbed Entity="BoxFolderIDClipboard" Caption=""/>
   </Box>
