@@ -257,7 +257,7 @@ figurines-nukie-commander-7 = At least I know chem.
 figurines-footsoldier-1 = I'm an evil boy. Less boy every day, more evil every day.
 figurines-footsoldier-2 = Who will you choose? Them or us? Us or them?
 figurines-footsoldier-3 = Glory to the Syndicate!
-figurines-footsoldier-4 = Death to Nanotrasen!
+figurines-footsoldier-4 = Death to NanoTrasen!
 figurines-footsoldier-5 = I'd rather die than join NanoTrasen.
 
 figurines-wizard-1 = EI NATH!!
