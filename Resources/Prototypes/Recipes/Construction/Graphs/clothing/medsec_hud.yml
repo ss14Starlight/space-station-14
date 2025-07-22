@@ -1,4 +1,4 @@
-﻿- type: constructionGraph
+- type: constructionGraph
   id: HudMedSec
   start: start
   graph:
@@ -27,7 +27,7 @@
                 sprite: Objects/Devices/communication.rsi
                 state: walkietalkie
               doAfter: 5
-            - material: Manipulator
+            - material: MicroManipulatorStockPart
               amount: 2
               doAfter: 5
     - node: medsecHud
