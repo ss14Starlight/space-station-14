@@ -31,16 +31,22 @@
   description: A bulky electric clipboard, filled with bureaucracy. Contains a portable ID card computer. Vulnerable to assistants.
   components:
   - type: Sprite
-    sprite: _Starlight\Objects\Misc\HOP_Clipboard.rsi
+    sprite: _Starlight/Objects/Misc/hop_clipboard.rsi
     layers:
-    - state: hop_clipboard
-    - state: qm_clipboard_paper
-      map: ["qm_clipboard_paper"]
-      visible: false
-    - state: qm_clipboard_pen
-      map: ["qm_clipboard_pen"]
-      visible: false
-    - state: qm_clipboard_over
+      - state: hop_clipboard
+      - state: hop_clipboard_paper
+        map: ["hop_clipboard_paper"]
+        visible: false
+      - state: hop_clipboard_pen
+        map: ["hop_clipboard_pen"]
+        visible: false
+      - state: hop_clipboard_target_id
+        map: ["hop_clipboard_target_id"]
+        visible: false
+      - state: hop_clipboard_priv_id
+        map: ["hop_clipboard_priv_id"]
+        visible: false
+      - state: hop_clipboard_over
   - type: ItemSlots
     slots:
       pen_slot:
@@ -50,10 +56,10 @@
           - Write
         insertOnInteract: true
   - type: Item
-    sprite: _Starlight\Objects\Misc\HOP_Clipboard.rsi
+    sprite: _Starlight/Objects/Misc/hop_clipboard.rsi
     size: Normal
   - type: Clothing
-    sprite: _Starlight\Objects\Misc\HOP_Clipboard.rsi
+    sprite: _Starlight/Objects/Misc/hop_clipboard.rsi
   - type: Storage
     maxItemSize: Small
     grid:
@@ -108,18 +114,33 @@
         type: StorageBoundUserInterface
   - type: ItemMapper
     mapLayers:
-      qm_clipboard_paper:
+      hop_clipboard_paper:
         whitelist:
           tags:
           - Document
-      qm_clipboard_pen:
+      hop_clipboard_pen:
         whitelist:
           tags:
           - Write
+      hop_clipboard_priv_id:
+        minCount: 1
+        whitelist:
+          tags:
+          - DoorBumpOpener
+      hop_clipboard_target_id:
+        minCount: 2
+        whitelist: 
+          tags:
+          - DoorBumpOpener
   - type: MeleeWeapon
     damage:
       types:
         Slash: 10
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 8
   - type: Tag
     tags:
     - Folder

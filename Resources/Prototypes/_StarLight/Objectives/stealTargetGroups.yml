@@ -25,5 +25,5 @@
   id: HoPBoardSteal
   name: steal-target-groups-hopboard
   sprite:
-    sprite: _Starlight/Objects/Specific/legalpapers/cmo-license.rsi
-    state: cmo-license
+    sprite: _Starlight/Objects/Misc/hop_clipboard.rsi
+    state: hop_clipboard

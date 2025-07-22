@@ -13,3 +13,4 @@ id-card-console-target-id = Target ID
 id-card-console-damaged = Structural integrity compromised, ejecting contents.
 id-card-clipboard-priviliged-id = Privileged ID
 id-card-clipboard-target-id = Target ID
+# Clipboard ID card is Starlight Change
