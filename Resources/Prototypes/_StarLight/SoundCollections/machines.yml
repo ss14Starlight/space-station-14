@@ -1,0 +1,7 @@
+- type: soundCollection
+  id: SyndicateBorgScreams_SL
+  files:
+    - /Audio/_Starlight/Machines/killer_robotscream_1.ogg
+    - /Audio/_Starlight/Machines/killer_robotscream_2.ogg
+    - /Audio/_Starlight/Machines/killer_robotscream_3.ogg
+    - /Audio/_Starlight/Machines/killer_robotscream_4.ogg

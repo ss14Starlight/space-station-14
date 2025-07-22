@@ -37,7 +37,10 @@
     availableModes:
       - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      collection: EnergyRifle #STARLIGHT
+      params:
+        variation: 0.05
+        pitch: 0.7
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
     fireCost: 80

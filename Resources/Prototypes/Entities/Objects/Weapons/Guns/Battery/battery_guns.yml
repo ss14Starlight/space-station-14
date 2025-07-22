@@ -24,7 +24,9 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      collection: EnergyRifle #STARLIGHT
+      params:
+        variation: 0.05
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
@@ -46,7 +48,9 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      collection: EnergyRifle #STARLIGHT
+      params:
+        variation: 0.15
   - type: HitscanBatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 50
@@ -367,7 +371,9 @@
   - type: Gun
     fireRate: 1.5
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      collection: EnergyRifle #STARLIGHT
+      params:
+        variation: 0.05
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
     fireCost: 100
@@ -610,7 +616,9 @@
     sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      collection: EnergyRifle #STARLIGHT
+      params:
+        variation: 0.05
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 100
@@ -656,7 +664,9 @@
     sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      collection: EnergyRifle #STARLIGHT
+      params:
+        variation: 0.05
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 100
@@ -784,7 +794,9 @@
   - type: Gun
     fireRate: 2
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      path: /Audio/_Starlight/Weapons/Energy/laser_shotgun.ogg # STARLIGHT
+      params:
+        variation: 0.07
   - type: ProjectileBatteryAmmoProvider
     proto: BulletLaserSpread
     fireCost: 150

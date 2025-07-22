@@ -1,0 +1,20 @@
+- type: soundCollection
+  id: EnergySwordHit
+  files:
+    - /Audio/_Starlight/Weapons/Energy/eblade1.ogg
+    - /Audio/_Starlight/Weapons/Energy/eblade2.ogg
+    - /Audio/_Starlight/Weapons/Energy/eblade3.ogg
+
+- type: soundCollection
+  id: EnergySwordMiss
+  files:
+    - /Audio/_Starlight/Weapons/Energy/eblademiss1.ogg
+    - /Audio/_Starlight/Weapons/Energy/eblademiss2.ogg
+    - /Audio/_Starlight/Weapons/Energy/eblademiss3.ogg
+
+- type: soundCollection
+  id: EnergyRifle
+  files:
+    - /Audio/_Starlight/Weapons/Energy/laser1.ogg
+    - /Audio/_Starlight/Weapons/Energy/laser2.ogg
+    - /Audio/_Starlight/Weapons/Energy/laser3.ogg

@@ -16,6 +16,7 @@
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 7
+    proto: ShellShotgunBeanbag
   - type: Construction
     graph: ShotgunRiotSawn
     node: start
@@ -23,7 +24,7 @@
     
 - type: entity
   name: sawn-off riot shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponShotgun, BaseSecurityContraband]
   id: WeaponShotgunRiotSawn
   description: Come with me if you want to live.
   components:
@@ -37,7 +38,6 @@
   - type: Gun
     spread: 30
     pump: true
-  - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 4
   - type: Construction
@@ -61,7 +61,7 @@
   name: combat shotgun
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunCombat
-  description: A semi automatic shotgun with tactical furniture and a six-shell capacity underneath.
+  description: A semi automatic shotgun with tactical furniture and a seven-shell capacity underneath.
   components:
   - type: Item
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun_inhands_64x.rsi
@@ -127,6 +127,11 @@
     - Sidearm
   - type: Gun
     spread: 30
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+      params:
+        variation: 0.05
+        pitch: 0.8
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/ga12.rsi
   - type: GunRequiresWield
@@ -137,7 +142,7 @@
       tags:
       - ShellShotgun
       - SpeedLoaderShotgun
-    proto: ShellShotgun
+    proto: ShellShotgunSlug
     capacity: 3
     chambers: [ True, True, True ]
     ammoSlots: [ null, null, null ]
@@ -159,6 +164,8 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/minotaur.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/minotaur_inhands_64x.rsi
   - type: GunRequiresWield
   - type: Gun
     spread: 20

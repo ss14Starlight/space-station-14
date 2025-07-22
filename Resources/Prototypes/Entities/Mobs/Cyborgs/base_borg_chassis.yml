@@ -370,6 +370,8 @@
       Unsexed: UnisexSiliconSyndicate
   - type: PointLight
     color: "#dd200b"
+    radius: 9 #STARLIGHT
+    energy: 6
 
 - type: entity
   id: BaseBorgChassisDerelict

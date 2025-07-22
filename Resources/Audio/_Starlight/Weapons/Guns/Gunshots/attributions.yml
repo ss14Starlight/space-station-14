@@ -22,3 +22,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Taken from RU Paradise Station"
   source: "https://github.com/ss220-space/Paradise/commit/7fb130eac5c2c645fc841769c69f7b7a50dfe854"
+
+- files: ["lmg2.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by JustAdler https://github.com/ss14Starlight/space-station-14"
+  source: "https://github.com/ss14Starlight/space-station-14"

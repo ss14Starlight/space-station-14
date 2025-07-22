@@ -6,12 +6,18 @@
   - type: EnergySword
   - type: ItemToggle
     soundActivate:
-      path: /Audio/Weapons/ebladeon.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladeon.ogg #STARLIGHT
+      params:
+        volume: 12
     soundDeactivate:
-      path: /Audio/Weapons/ebladeoff.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladeoff.ogg #STARLIGHT
+      params:
+        volume: 10
   - type: ItemToggleActiveSound
     activeSound:
-      path: /Audio/Weapons/ebladehum.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladehum.ogg #STARLIGHT
+      params:
+        volume: -5
   - type: ComponentToggler
     components:
     - type: Sharp
@@ -24,18 +30,19 @@
     toggleableVisualsColorModulatesLights: true
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
-      path: /Audio/Weapons/eblade1.ogg
+      collection: EnergySwordHit #STARLIGHT
       params:
         variation: 0.250
     activatedSoundOnHitNoDamage:
-      path: /Audio/Weapons/eblade1.ogg
+      collection: EnergySwordHit #STARLIGHT
       params:
         variation: 0.250
-        volume: -10
+        volume: -7
     activatedSoundOnSwing:
-      path: /Audio/Weapons/eblademiss.ogg
+      collection: EnergySwordMiss #STARLIGHT
       params:
         variation: 0.125
+        volume: 3
     activatedDamage:
       types:
         Slash: 15
@@ -68,6 +75,19 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect
+    reflectProb: 0.25  # STARLIGHT
+    spread: 75  # STARLIGHT
+    enhancedReflection:  # STARLIGHT
+      DisablerBolt: 0.50
+      LaserBolt: 0.50
+      BulletDisabler: 0.50
+      BulletDisablerSmgSpread: 0.50
+      BulletLaserSpread: 0.50
+      DisablerBoltSmg: 0.50
+      BulletLaserSpreadNarrow: 0.50
+      BulletDisablerSmg: 0.45
+      TaserBolt: 0.47
+      PelletClusterRubber: 0.50
   - type: IgnitionSource
     temperature: 700
 
@@ -291,19 +311,19 @@
     onUse: false # wielding events control it instead
     onActivate: false # prevents the weapon from being able to be turned on when it is on the ground
     soundActivate:
-      path: /Audio/Weapons/ebladeon.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladeon.ogg #STARLIGHT
       params:
-        volume: 3
+        volume: 12
     soundDeactivate:
-      path: /Audio/Weapons/ebladeoff.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladeoff.ogg #STARLIGHT
       params:
-        volume: 3
+        volume: 10
   - type: ItemToggleMeleeWeapon
     activatedSoundOnSwing:
-      path: /Audio/Weapons/eblademiss.ogg
+      collection: EnergySwordMiss #STARLIGHT
       params:
+        variation: 0.125
         volume: 3
-        variation: 0.250
     activatedDamage:
         types:
             Slash: 12
@@ -311,9 +331,9 @@
             Structural: 15
   - type: ItemToggleActiveSound
     activeSound:
-      path: /Audio/Weapons/ebladehum.ogg
+      path: /Audio/_Starlight/Weapons/Energy/ebladehum.ogg #STARLIGHT
       params:
-        volume: 3
+        volume: -3
   - type: ComponentToggler
     components:
     - type: Sharp
@@ -343,6 +363,17 @@
   - type: Reflect
     reflectProb: .75
     spread: 75
+    enhancedReflection:  # STARLIGHT
+      DisablerBolt: 0.50
+      LaserBolt: 0.50
+      BulletDisabler: 0.50
+      BulletDisablerSmgSpread: 0.50
+      BulletLaserSpread: 0.50
+      DisablerBoltSmg: 0.50
+      BulletLaserSpreadNarrow: 0.50
+      BulletDisablerSmg: 0.45
+      TaserBolt: 0.47
+      PelletClusterRubber: 0.50
   - type: Scalpel
   - type: SurgeryTool
     successRate: 0.6
@@ -413,6 +444,9 @@
   components: # could add energy-draining like the L6C
   - type: Wieldable
     freeHandsRequired: 0 # because borg has no off-hand to wield with.  Without this, it will be unable to activate the esword
+  - type: EnergySword # STARLIGHT
+    colorOptions:
+    - "#FF0000" # can only be red
   - type: Scalpel
   - type: SurgeryTool
     successRate: 0.6

@@ -177,6 +177,8 @@
       tags:
         - CigPack
         - Taser
+        - ShellShotgun
+        - ShellShotgunImprovised
       components:
         - Stunbaton
         - FlashOnTrigger
@@ -658,10 +660,10 @@
     sprite: Clothing/Belt/salvagewebbing.rsi
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSyndicateContraband]
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseMajorContraband]
   id: ClothingBeltMilitaryWebbing
   name: chest rig
-  description: A set of tactical webbing worn by Syndicate boarding parties.
+  description: A set of tactical webbing worn by various militant boarding parties.
   components:
   - type: Storage #Starlight
     grid:
@@ -681,7 +683,7 @@
   parent: ClothingBeltMilitaryWebbing
   id: ClothingBeltMilitaryWebbingMed
   name: medical chest rig
-  description: A set of tactical webbing worn by Gorlex Marauder medic operatives.
+  description: A set of tactical webbing worn by various military corpsmen.
   components:
   - type: Storage #Starlight
     grid:

@@ -66,7 +66,7 @@
     shoes: ClothingShoesBootsCombatFilled
     id: SyndiPDA
     pocket2: PlushieCarp
-    belt: ClothingBeltMilitaryWebbing
+    belt: ClothingBeltOperativeWebbing
   storage:
     back:
     - WeaponPistolViper
@@ -120,7 +120,7 @@
     ears: ClothingHeadsetAltSyndicateAgent #Starlight
     shoes: ClothingShoesBootsMagSyndie
     id: SyndiAgentPDA
-    belt: ClothingBeltMilitaryWebbingMedFilled
+    belt: ClothingBeltOperativeWebbingMedFilled
   storage:
     back:
     - SyndiHypo

@@ -436,7 +436,7 @@
     variation: 0.05
   sounds:
     Scream:
-      collection: SiliconScreams
+      collection: SyndicateBorgScreams_SL
     Laugh:
       path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
     Beep:
