@@ -1,13 +1,15 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Created by JustAdler for https://github.com/ss14Starlight/space-station-14",
+  "copyright": "Soviet key Created by JustAdler for https://github.com/ss14Starlight/space-station-14, Chrono encryption key by Salem.uwu for Starlight ",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {"name": "crypt_soviet"},
-    {"name": "soviet_label"}
+    {"name": "soviet_label"},
+    {"name": "crypt_chrono"},
+    {"name": "chrono_label"}
   ]
 }

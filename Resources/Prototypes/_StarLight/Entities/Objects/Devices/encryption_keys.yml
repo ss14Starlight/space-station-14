@@ -41,6 +41,7 @@
     defaultChannel: Command
     allComms: true
   - type: Sprite
+    sprite: _Starlight/Objects/Devices/encryption_keys.rsi
     layers:
-    - state: crypt_gold
-    - state: cap_label
+    - state: crypt_chrono
+    - state: chrono_label
