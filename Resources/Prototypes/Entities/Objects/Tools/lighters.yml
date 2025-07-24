@@ -221,6 +221,9 @@
   - type: UseDelay
   - type: IgnitionSource
     ignited: false
+  - type: Tag
+    tags:
+      - Lighters #SL
 
 - type: entity
   name: flippo engraved lighter
