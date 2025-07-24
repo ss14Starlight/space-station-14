@@ -221,7 +221,7 @@
 
 - type: entity
   parent: ClothingHeadHardsuitBase
-  id: ClothingHeadHelmetHardsuitLuxmax
+  id: [ ClothingHeadHelmetHardsuitLuxmax, ClothingHeadSuitWithLightBase ]
   categories: [ HideSpawnMenu ]
   name: QM's luxury maxim hardsuit helmet
   description: This thing is made of solid gold, its a wonder you can keep your head up with it on.
