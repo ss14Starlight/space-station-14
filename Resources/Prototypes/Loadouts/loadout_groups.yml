@@ -3,7 +3,7 @@
   id: Trinkets
   name: loadout-group-trinkets
   minLimit: 0
-  maxLimit: 4
+  maxLimit: 5
   loadouts:
   - FlowerWreath
   - Hairflower
