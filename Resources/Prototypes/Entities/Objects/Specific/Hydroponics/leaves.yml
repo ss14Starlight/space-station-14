@@ -43,6 +43,8 @@
   - type: Tag
     tags:
       - Smokable
+  - type: Item
+    size: Tiny
 
 - type: entity
   name: ground cannabis
@@ -143,6 +145,8 @@
   - type: Tag
     tags:
       - Smokable
+  - type: Item
+    size: Tiny
 
 - type: entity
   name: ground rainbow cannabis
@@ -248,6 +252,8 @@
   - type: Tag
     tags:
       - Smokable
+  - type: Item
+    size: Tiny
 
 - type: entity
   name: ground tobacco
