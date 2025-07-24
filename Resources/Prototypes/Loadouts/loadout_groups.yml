@@ -83,6 +83,10 @@
   - PaperFolder6 #SL
   - PaperFolder7 #SL
   - PaperClipboard #SL
+  - MedRollies #SL
+  - RollerSkates #SL
+  - DaBling #SL
+  - CrapPlushie #SL ##not a typo
 
 - type: loadoutGroup
   id: Glasses
