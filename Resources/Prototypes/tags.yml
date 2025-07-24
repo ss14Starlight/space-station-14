@@ -153,6 +153,9 @@
   id: BotanyHoe
 
 - type: Tag
+  id: BotanyLeaves
+
+- type: Tag
   id: BotanyShovel
 
 - type: Tag

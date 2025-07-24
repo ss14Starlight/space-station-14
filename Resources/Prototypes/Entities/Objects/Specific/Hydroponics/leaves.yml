@@ -17,6 +17,9 @@
         reagents:
         - ReagentId: THC
           Quantity: 15
+  - type: Tag
+    tags:
+      - Smokable
 
 
 - type: entity
@@ -37,6 +40,9 @@
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
     state: dried
+  - type: Tag
+    tags:
+      - Smokable
 
 - type: entity
   name: ground cannabis
@@ -101,6 +107,9 @@
 #         Quantity: 1
         - ReagentId: Psicodine
           Quantity: 0.6
+  - type: Tag
+    tags:
+      - Smokable
 
 - type: entity
   name: dried rainbow cannabis leaves
@@ -131,6 +140,9 @@
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
     state: dried
+  - type: Tag
+    tags:
+      - Smokable
 
 - type: entity
   name: ground rainbow cannabis
@@ -164,6 +176,9 @@
   - type: Construction
     graph: smokeableGroundCannabisRainbow
     node: groundRainbow
+  - type: Tag
+    tags:
+      - Smokable
 
 - type: entity
   name: tea leaves
@@ -208,6 +223,9 @@
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
   - type: Produce
     seedId: tobacco
+  - type: Tag
+    tags:
+      - Smokable
 
 - type: entity
   name: dried tobacco leaves
@@ -227,6 +245,9 @@
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
     state: dried
+  - type: Tag
+    tags:
+      - Smokable
 
 - type: entity
   name: ground tobacco
