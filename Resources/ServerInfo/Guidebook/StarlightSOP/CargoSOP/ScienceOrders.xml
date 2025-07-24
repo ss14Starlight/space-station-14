@@ -13,7 +13,7 @@ Basic Materials only for printer/lathes
 Other
 <Box>
     <GuideEntityEmbed Entity="SheetPlasma"/> 
-    <GuideEntityEmbed Entity="SimpleXenoArtifact"/> 
+    <GuideEntityEmbed Entity="ComplexXenoArtifact"/> 
     <GuideEntityEmbed Entity="CrateVendingMachineRestockRoboticsFilled"/> 
 </Box>
 
