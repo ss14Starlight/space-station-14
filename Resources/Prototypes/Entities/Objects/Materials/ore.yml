@@ -32,6 +32,7 @@
   components:
   - type: Stack
     stackType: GoldOre
+    count: 100
   - type: Sprite
     state: gold
   - type: Material
@@ -69,6 +70,7 @@
   components:
   - type: Stack
     stackType: DiamondOre
+    count: 100
   - type: Sprite
     state: diamond
   - type: Material
@@ -102,6 +104,7 @@
   components:
   - type: Stack
     stackType: SteelOre
+    count: 100
   - type: Sprite
     state: iron
   - type: Material
@@ -135,6 +138,7 @@
   components:
   - type: Stack
     stackType: PlasmaOre
+    count: 100
   - type: Sprite
     state: plasma
   - type: Material
@@ -177,6 +181,7 @@
   components:
   - type: Stack
     stackType: SilverOre
+    count: 100
   - type: Sprite
     state: silver
   - type: Material
@@ -214,6 +219,7 @@
   components:
   - type: Stack
     stackType: SpaceQuartz
+    count: 100
   - type: Sprite
     state: spacequartz
   - type: Material
@@ -247,6 +253,7 @@
   components:
   - type: Stack
     stackType: UraniumOre
+    count: 100
   - type: Sprite
     state: uranium
   - type: Material
@@ -292,6 +299,7 @@
   components:
   - type: Stack
     stackType: BananiumOre
+    count: 100
   - type: Sprite
     state: bananium
   - type: Material
@@ -338,6 +346,7 @@
   components:
   - type: Stack
     stackType: Coal
+    count: 100
   - type: Sprite
     state: coal
   - type: Material
@@ -403,6 +412,7 @@
   components:
   - type: Stack
     stackType: SaltOre
+    count: 100
   - type: Sprite
     state: salt
   - type: Material
