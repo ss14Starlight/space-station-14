@@ -312,3 +312,50 @@
   storage:
     back:
       - BoxFolderClipboard
+
+- type: loadout
+  id: MedRollies
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 36000 # 10hr
+  storage:
+    back:
+      - CigPackMedRollie
+
+- type: loadout
+  id: RollerSkates
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobMailTech
+        time: 36000 # 10 hours of being ignored while carrying a parcelbomb
+  storage:
+    back:
+      - ClothingShoesSkates
+
+- type: loadout
+  id: DaBling
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobCargoTechnician
+        time: 36000 # 10 hours of resisting the urge to declare cargonia
+  storage:
+    back:
+      - ClothingNeckBling
+
+- type: loadout
+  id: CrapPlushie
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobSalvageSpecialist
+        time: 36000 # 10 hours of not turning in contra to sec
+  storage:
+    back:
+      - PlushieCarp
