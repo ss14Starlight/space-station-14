@@ -2,11 +2,10 @@
 - type: loadout
   id: SuperSynthesizerInstrument
   effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobMusician
-      time: 72000 # 20 hours of being the biggest musician on the station
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 360000 #100 hours of activity in the Starlight sectors ##changed from musician because musician isn't mechanically fun to play, and the slot was always hogged for playtime for this item
   storage:
     back:
     - SuperSynthesizerInstrument
