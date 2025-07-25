@@ -4,67 +4,66 @@
   name: recruitment computer
   description: A computer for managing crew hiring.
   components:
-  - type: RecruitmentComputer
-  - type: ActivatableUI
-    key: enum.RecruitmentComputerUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.RecruitmentComputerUiKey.Key:
-        type: RecruitmentComputerBui
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: AccessReader
-    access: [["CentralCommand"]]
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: recruitment
-    - map: ["computerLayerKeys"]
-      state: recruitment_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: Computer
-    board: RecruitmentComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#3c5eb5"
-  - type: Tag
-    tags:
-    - EmagImmune
-  - type: ItemSlots
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
+    - type: RecruitmentComputer
+    - type: ActivatableUI
+      key: enum.RecruitmentComputerUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.RecruitmentComputerUiKey.Key:
+          type: RecruitmentComputerBui
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: AccessReader
+      access: [["CentralCommand"]]
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: recruitment
+        - map: ["computerLayerKeys"]
+          state: recruitment_key
+        - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+          state: generic_panel_open
+    - type: Computer
+      board: RecruitmentComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#3c5eb5"
+    - type: Tag
+      tags:
+        - EmagImmune
+    - type: ItemSlots
+    - type: ContainerContainer
+      containers:
+        board: !type:Container #abductor
 
-#abductor
 - type: entity
   parent: BaseComputer
   id: AbductorConsole
   name: abductor console
   description: A computer that is used for spying on the station.
   components:
-  - type: AbductorConsole
-  - type: Sprite
-    sprite: _Starlight/Structures/Machines/abductor_console.rsi
-    layers:
-    - map: ["console"]
-      state: console
-  - type: ActivatableUI
-    key: enum.AbductorConsoleUIKey.Key
-  - type: UserInterface
-    interfaces:
-     enum.AbductorConsoleUIKey.Key:
-        type: AbductorConsoleBui
-  - type: PointLight
-    enabled: true
-    radius: 1.5
-    energy: 1.6
-    color: "#FC0097"
+    - type: AbductorConsole
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/abductor_console.rsi
+      layers:
+        - map: ["console"]
+          state: console
+    - type: ActivatableUI
+      key: enum.AbductorConsoleUIKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.AbductorConsoleUIKey.Key:
+          type: AbductorConsoleBui
+    - type: PointLight
+      enabled: true
+      radius: 1.5
+      energy: 1.6
+      color: "#FC0097"
 
 - type: entity
   parent: ComputerComms
@@ -73,19 +72,19 @@
   description: Use this to annoy captains of all stations at once.
   components:
     - type: AccessReader
-      access: [[ "CentralCommand" ]]
+      access: [["CentralCommand"]]
     - type: Sprite
       layers:
-      - map: ["computerLayerBody"]
-        state: computer
-      - map: ["computerLayerKeyboard"]
-        state: generic_keyboard
-      - map: ["computerLayerScreen"]
-        state: comm_sectoral
-      - map: ["computerLayerKeys"]
-        state: generic_keys
-      - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-        state: generic_panel_open
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm_sectoral
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+          state: generic_panel_open
     - type: CommunicationsConsole
       title: comms-console-announcement-title-centcom
       global: true
@@ -95,95 +94,102 @@
       energy: 1.6
       color: "#90EE90"
 
-
 - type: entity
   parent: BaseComputer
   id: AbductorHumanObservationConsole
   name: human observation console
   description: Use this to set teleporter destination or retrieve people marked by scientist tools. Also used for buying replacement gear and linking the agent's vest.
   components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Machines/abductor_camera_console.rsi
-    layers:
-    - map: ["console"]
-      state: console
-  - type: AbductorHumanObservationConsole
-  - type: ActivatableUI
-    key: enum.AbductorCameraConsoleUIKey.Key
-  - type: UserInterface
-    interfaces:
-     enum.AbductorCameraConsoleUIKey.Key:
-        type: AbductorCameraConsoleBui
-  - type: PointLight
-    enabled: true
-    radius: 1.5
-    energy: 1.6
-    color: "#FC0097"
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/abductor_camera_console.rsi
+      layers:
+        - map: ["console"]
+          state: console
+    - type: AbductorHumanObservationConsole
+    - type: ActivatableUI
+      key: enum.AbductorCameraConsoleUIKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.AbductorCameraConsoleUIKey.Key:
+          type: AbductorCameraConsoleBui
+    - type: PointLight
+      enabled: true
+      radius: 1.5
+      energy: 1.6
+      color: "#FC0097"
 
 - type: entity
   parent:
-  - Incorporeal
-  - BaseMob
+    - Incorporeal
+    - BaseMob
   id: AbductorHumanObservationConsoleEye
   name: abductor eye
   description: The abductor's viewer.
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   suffix: DO NOT MAP
   components:
-  - type: NoFTL
-  - type: WarpPoint
-    follow: true
-  - type: Eye
-    pvsScale: 1.5
-  - type: Visibility
-    layer: 4
-  - type: Sprite
-    sprite: _Starlight/Structures/Machines/abductor_camera_console.rsi
-    layers:
-    - state: eye
-      shader: unshaded
-  - type: Tag
-    tags:
-    - CantInteract
+    - type: NoFTL
+    - type: WarpPoint
+      follow: true
+    - type: Eye
+      pvsScale: 1.5
+    - type: Visibility
+      layer: 4
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/abductor_camera_console.rsi
+      layers:
+        - state: eye
+          shader: unshaded
+    - type: Tag
+      tags:
+        - CantInteract
 
-# DO NOT UNCOMMENT UNTIL SPRITING & PROTOTYPING IS COMPLETE
-# - type: entity
-#  parent: BaseComputer
-#  id: CentralManagementConsole
-#  name: central management console
-#  description: The eyes of the sector are upon you, and this computer.
-#  components:
-#  - type: AccessReader
-#    access: [[ "CentralCommand" ]]
-#  - type: Sprite
-#    layers:
-#    - map: ["computerLayerBody"]
-#      state: computer
-#    - map: ["computerLayerKeyboard"]
-#      state: generic_keyboard
-#    - map: ["computerLayerScreen"]
-#      state: cc_management
-#    - map: ["computerLayerKeys"]
-#      state: cc_management_key
-#    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-#      state: generic_panel_open
-#  - type: Computer
-#    board: CentralManagementComputerCircuitboard
-#      state: generic_keys
-#    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-#  - type: ItemSlots
-#    slots:
-#      disk_slot:
-#        name: Auth Key
-#        insertSound:
-#          path: /Audio/Machines/terminal_insert_disc.ogg
-#        ejectSound:
-#          path: /Audio/Machines/terminal_insert_disc.ogg
-#        whitelist:
-#          tags:
-#          - AuthKey
-#  - type: ContainerContainer
-#    containers:
-#      board: !type:Container
-#        ents: []
-#      disk_slot: !type:ContainerSlot {}
+- type: entity
+  parent: BaseComputer
+  id: CentralManagementConsole
+  name: central management console
+  description: The eyes of the sector are upon you, and this computer.
+  components:
+    - type: AccessReader
+      access: [["CentralCommand"]]
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: cc_management
+        - map: ["computerLayerKeys"]
+          state: cc_management_key
+        - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+          state: generic_panel_open
+    - type: Computer
+      board: CentralManagementComputerCircuitboard
+    - type: ItemSlots
+      slots:
+        auth_key1:
+          name: Auth Key
+          insertSound:
+            path: /Audio/Machines/terminal_insert_disc.ogg
+          ejectSound:
+            path: /Audio/Machines/terminal_insert_disc.ogg
+          whitelist:
+            tags:
+              - AuthKey
+        auth_key2:
+          name: Auth Key
+          insertSound:
+            path: /Audio/Machines/terminal_insert_disc.ogg
+          ejectSound:
+            path: /Audio/Machines/terminal_insert_disc.ogg
+          whitelist:
+            tags:
+              - AuthKey
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          ents: []
+        auth_key1: !type:ContainerSlot {}
+        auth_key2: !type:ContainerSlot {}
+    

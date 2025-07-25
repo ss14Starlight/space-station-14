@@ -27,6 +27,6 @@
     outerClothing: ClothingOuterArmorBasic
     id: AdmInternCentralCommandPDA
     ears: ClothingHeadsetAltCentCom
-    belt: WeaponPistolN1984
-    pocket1: BoxFolderBlack
-    pocket2: PenCentcom
+    belt: BoxFolderCentComClipboard
+    pocket1: WeaponPistolN1984
+    pocket2: NTCCAuthKey # almost literal keys to the kingdom here.
