@@ -78,10 +78,24 @@ public sealed partial class SpeciesPrototype : IPrototype
     public EntProtoId DollPrototype { get; private set; } = default!;
 
     /// <summary>
+    /// Starlight
+    /// Allow Custom Specie Name for this Specie.
+    /// </summary>
+    [DataField]
+    public Boolean CustomName { get; private set; } = false;
+
+    /// <summary>
     /// Method of skin coloration used by the species.
     /// </summary>
     [DataField(required: true)]
     public HumanoidSkinColor SkinColoration { get; private set; }
+
+    /// <summary>
+    /// Starlight
+    /// Method of eyes coloration used by the species.
+    /// </summary>
+    [DataField]
+    public HumanoidEyeColor EyeColoration { get; private set; } = HumanoidEyeColor.Standard;
 
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> MaleFirstNames { get; private set; } = "NamesFirstMale";
@@ -122,6 +136,14 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public int MaxAge = 120;
+
+    /// Starlight
+    /// <summary>
+    ///     How many points species get for installing cybernetics at roundstart
+    ///     Can be used to disable roundstart cybernetics
+    /// </summary>
+    [DataField]
+    public int RoundstartCyberwareCapacity = 3;
 }
 
 public enum SpeciesNaming : byte

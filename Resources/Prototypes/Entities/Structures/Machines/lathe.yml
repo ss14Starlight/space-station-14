@@ -112,6 +112,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -185,6 +186,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -280,6 +282,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: RequireProjectileTarget
 
 - type: entity
@@ -329,12 +332,14 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightMechWeapon
+    - StarlightSyndicateModules
   - type: MaterialStorage
     whitelist:
       tags:
       - Sheet
       - RawMaterial
       - Ingot
+  - type: OreSiloClient
   - type: GuideHelp
     guides:
     - Robotics
@@ -377,25 +382,6 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - HostileCubesStatic
-
-- type: entity
-  id: ShadowBorgiFabricator
-  parent: Biofabricator
-  name: shadow borgi cube fabricator
-  description: Produces creatures of evil.
-  components:
-  - type: Lathe
-    idleState: icon
-    runningState: building
-    staticPacks:
-    - ShadowBorgiCubeRecipePack
-  - type: MaterialStorage
-    ignoreColor: true
-    whitelist:
-      tags:
-      - Sheet
-      - Ingot
-      - RawMaterial
 
 - type: entity
   id: SecurityTechFab
@@ -444,6 +430,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
 
 - type: entity
   id: AmmoTechFab
@@ -477,6 +464,7 @@
           - Sheet
           - RawMaterial
           - Ingot
+    - type: OreSiloClient
 
 - type: entity
   id: MedicalTechFab
@@ -517,6 +505,7 @@
     board: MedicalTechFabCircuitboard
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
+  - type: OreSiloClient
 
 - type: entity
   parent: BaseLathe
@@ -562,6 +551,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
 
 - type: entity
   id: Biogenerator
@@ -681,6 +671,7 @@
       tags:
       - Raw
       - Wooden
+      - Boll
   - type: Lathe
     idleState: base_machine
     runningState: base_machine_processing
@@ -722,3 +713,4 @@
         - Wooden
         - RawMaterial
         - Plastic
+  - type: OreSiloClient

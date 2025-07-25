@@ -8,3 +8,5 @@ job-name-surgeon = Surgeon
 job-name-mailtech = Mail Technician
 job-name-centcomm = CentComm Official
 job-name-admccintern = Central Administration Intern
+
+job-name-abductor = Abductor

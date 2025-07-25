@@ -6,11 +6,13 @@
   - type: StorageFill
     contents:
       - id: FlashlightSeclite
+      - id: WeaponEnergyShotgun
       - id: WeaponDisabler
       - id: ClothingBeltSecurityFilled
       - id: Flash
       - id: ClothingEyesGlassesSecurity
       - id: ClothingEyesHudSecurity
+      - id: ClothingHeadsetSecurityWarden
       - id: ClothingHandsGlovesCombat
       - id: ClothingShoesBootsJack
       - id: ClothingOuterCoatWarden
@@ -34,11 +36,13 @@
   - type: StorageFill
     contents:
       - id: FlashlightSeclite
+      - id: WeaponEnergyShotgun
       - id: WeaponDisabler
       - id: ClothingBeltSecurityFilled
       - id: Flash
       - id: ClothingEyesGlassesSecurity
       - id: ClothingEyesHudSecurity
+      - id: ClothingHeadsetSecurityWarden
       - id: ClothingHandsGlovesCombat
       - id: ClothingShoesBootsJack
       - id: ClothingOuterCoatWarden
@@ -109,6 +113,7 @@
       - id: ClothingUniformJumpskirtOfLife
       - id: ClothingShoesBootsMagSec
       - id: BedsheetBrigmedicStrange
+      - id: RubberStampBrigmedic
       - id: MedkitFilled
       - id: MedkitCombatFilled
         prob: 0.6
@@ -124,6 +129,8 @@
         prob: 0.7
       - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
         prob: 0.15
+      - id: PlushieMorgana #starlight
+      - id: PlushieKiller #starlight
 
 - type: entity
   id: LockerDetectiveFilled
@@ -132,15 +139,13 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingEyesGlassesSecurity
-        prob: 0.3
-      - id: ClothingEyesHudSecurity
-        prob: 0.3
+      - id: ClothingEyesGlassesNoir
       - id: ClothingHeadHatFedoraBrown
       - id: ClothingHeadHatDetGadget
       - id: ClothingNeckTieDet
       - id: ClothingOuterVestDetective
-      - id: ClothingOuterCoatDetective
+      - id: ClothingOuterCoatDetectiveLoadout
+      - id: FlippoEngravedLighter
       - id: FlashlightSeclite
       - id: ForensicScanner
       - id: LogProbeCartridge

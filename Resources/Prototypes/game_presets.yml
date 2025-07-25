@@ -42,6 +42,7 @@
     - Traitor
     - Revolutionary
     - Zombie
+    - Wizard
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
     - Changeling
@@ -64,6 +65,7 @@
     - Traitor
     - Revolutionary
     - Zombie
+    - Wizard
     - BasicStationEventScheduler
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler
@@ -157,7 +159,7 @@
   minPlayers: 4
   showInVote: true # 🌟Starlight🌟
   rules:
-  - DummyNonAntagChance
+  # - DummyNonAntagChance 🌟Starlight🌟
   - Traitor
   - SubGamemodesRule
   - BasicStationEventScheduler
@@ -189,7 +191,7 @@
   showInVote: true # 🌟Starlight🌟
   rules:
   - Nukeops
-  - DummyNonAntagChance
+  # - DummyNonAntagChance 🌟Starlight🌟
   - SubGamemodesRule
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
@@ -207,7 +209,7 @@
   minPlayers: 30
   showInVote: true # 🌟Starlight🌟
   rules:
-  - DummyNonAntagChance
+  # - DummyNonAntagChance 🌟Starlight🌟
   - Revolutionary
   - SubGamemodesRule
   - BasicStationEventScheduler
@@ -224,7 +226,7 @@
   showInVote: false
   rules:
   - Wizard
-  - DummyNonAntagChance
+  # - DummyNonAntagChance 🌟Starlight🌟
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
   - BasicStationEventScheduler
   - MeteorSwarmScheduler

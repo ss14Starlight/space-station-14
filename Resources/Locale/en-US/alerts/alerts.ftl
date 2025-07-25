@@ -33,6 +33,9 @@ alerts-walking-desc = You are walking, moving at a slow pace.
 alerts-stunned-name = [color=yellow]Stunned[/color]
 alerts-stunned-desc = You're [color=yellow]stunned[/color]! Something is impairing your ability to move or interact with objects.
 
+alerts-knockdown-name = [color=yellow]Knocked Down[/color]
+alerts-knockdown-desc = You're [color=yellow]Knocked Down[/color]! Something has slipped or pushed you over, encumbering your movement.
+
 alerts-handcuffed-name = [color=yellow]Handcuffed[/color]
 alerts-handcuffed-desc = You're [color=yellow]handcuffed[/color] and can't use your hands. If anyone drags you, you won't be able to resist.
 
@@ -120,3 +123,6 @@ alerts-changeling-chemicals-desc = Spend chemicals to use your abilities. Slowly
 alerts-changeling-biomass-name = Biomass
 alerts-changeling-biomass-desc =
     This is your health. If it reaches 0 - it's [color=red]game over[/color]. Absorb humanoids to recover some of it.
+
+alerts-rooted-name = Rooted
+alerts-rooted-desc = You are attached to the ground. You can't slip, but you absorb fluids under you.

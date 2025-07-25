@@ -75,10 +75,11 @@
     footstepSoundCollection:
       collection: FootstepHighHeels
       params:
+        volume: -6
         variation: 0.09
 
 - type: entity
-  parent: [ ClothingShoesMilitaryBase ]
+  parent: [ ClothingShoesMilitaryBase, BaseSalvageContraband ] #Starlight salvContra
   id: ClothingShoesBootsMerc
   name: mercenary boots
   description: Boots that have gone through many conflicts and that have proven their combat reliability.
@@ -215,6 +216,7 @@
       collection: FootstepSpurs
       params:
         variation: 0.09
+        volume: -6
 
 - type: entity
   parent: ClothingShoesBootsCowboyBrown
