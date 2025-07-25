@@ -46,6 +46,7 @@ station-ai-hologram-cat = Cat form
 station-ai-hologram-dog = Corgi form
 
 # begin SL (ported from CD)
+## icons
 station-ai-icon-alien = Alien Lifeform
 station-ai-icon-thinking = Curiousity
 station-ai-icon-database = Station Database
@@ -73,4 +74,15 @@ station-ai-icon-too-deep = Too Deep
 station-ai-icon-triumvirate = Triumvirate
 station-ai-icon-weird = Weird
 station-ai-icon-evil-dot = What We Behold
+## holos
+station-ai-hologram-alien = Alien
+station-ai-hologram-bees = Bees
+station-ai-hologram-big-moth = Big, Big Moth
+station-ai-hologram-cy = Cy
+station-ai-hologram-ghost = Ghost
+station-ai-hologram-horror = Horror
+station-ai-hologram-leaves = Leaves
+station-ai-hologram-narsie = Risen
+station-ai-hologram-ratvar = Clockwork
+station-ai-hologram-semi = SEMI
 # end SL
