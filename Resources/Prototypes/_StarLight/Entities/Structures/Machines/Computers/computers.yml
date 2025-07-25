@@ -159,8 +159,10 @@
         - map: ["computerLayerKeyboard"]
           state: generic_keyboard
         - map: ["computerLayerScreen"]
+          sprite: _Starlight/Structures/Machines/ccai_computers.rsi
           state: cc_management
         - map: ["computerLayerKeys"]
+          sprite: _Starlight/Structures/Machines/ccai_computers.rsi
           state: cc_management_key
         - map: ["enum.WiresVisualLayers.MaintenancePanel"]
           state: generic_panel_open
@@ -192,4 +194,11 @@
           ents: []
         auth_key1: !type:ContainerSlot {}
         auth_key2: !type:ContainerSlot {}
-    
+    - type: ActivatableUI
+      key: enum.ManagementConsoleUIKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.ManagementConsoleUIKey.Key:
+          type: CCManagmentConsoleBUI
+    - type: ActivatableUIRequiresAccess
+    - type: CentCommManagementConsole
