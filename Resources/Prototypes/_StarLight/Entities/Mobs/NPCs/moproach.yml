@@ -27,15 +27,6 @@
     - id: MoproachCube
 
 - type: entity
-  parent: MonkeyCube
-  id: MoproachCube
-  name: moproach cube
-  components:
-  - type: Rehydratable
-    possibleSpawns:
-    - MobMoproach
-
-- type: entity
   parent: Paper
   id: PaperMoproachManual
   suffix: moproach manual
