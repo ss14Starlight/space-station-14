@@ -14,7 +14,7 @@
       - id: Scalpel
       - id: BoneGel
       - id: BoneSetter
-      
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
   id: ClothingBackpackDuffelSyndicateFilledMedical
@@ -95,8 +95,8 @@
     contents:
       - id: WeaponLightMachineGunL6
       - id: MagazineBoxLightRifleSP
-      - id: MagazineLightRifleBoxSP
-      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBox
+      - id: MagazineLightRifleBox
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -142,7 +142,7 @@
         amount: 4
       - id: MagazineShotgun
         amount: 4
-      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBox
         amount: 3
       - id: MagazineBoxLightRifleSP
         amount: 1

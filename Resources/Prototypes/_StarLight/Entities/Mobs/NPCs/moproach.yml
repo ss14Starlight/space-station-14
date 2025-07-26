@@ -1,0 +1,44 @@
+- type: entity
+  parent: BoxCardboard
+  name: moproach kit
+  id: MoproachBox
+  description: A kit to quickly get two moproaches ready to work.
+  components:
+  - type: StorageFill
+    contents:
+    - id: MoproachCubeWrapped
+      amount: 2
+    - id: ClothingHeadHatPurplesoft
+      amount: 2
+    - id: PaperMoproachManual
+  - type: Sprite
+    sprite: Objects/Misc/monkeycube.rsi
+    state: box_moproach
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: moproach cube
+  suffix: Wrapped
+  id: MoproachCubeWrapped
+  description: Unwrap this to get a moproach cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MoproachCube
+
+- type: entity
+  parent: MonkeyCube
+  id: MoproachCube
+  name: moproach cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobMoproach
+
+- type: entity
+  parent: Paper
+  id: PaperMoproachManual
+  suffix: moproach manual
+  components:
+  - type: Paper
+    content: book-text-moproach

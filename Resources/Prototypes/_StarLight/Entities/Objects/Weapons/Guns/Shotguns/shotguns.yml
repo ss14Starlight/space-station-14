@@ -20,7 +20,7 @@
     graph: ShotgunRiotSawn
     node: start
     deconstructionTarget: null
-    
+
 - type: entity
   name: sawn-off riot shotgun
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
@@ -44,7 +44,7 @@
     graph: ShotgunRiotSawn
     node: shotgunsawn
     deconstructionTarget: null
-    
+
 - type: entity
   parent: [WeaponShotgunRiotSawn, BaseSecurityContraband]
   id: WeaponShotgunRiotSawnEmpty
@@ -56,7 +56,7 @@
     graph: ShotgunRiotSawn
     node: shotgunsawn
     deconstructionTarget: null
-    
+
 - type: entity
   name: combat shotgun
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
@@ -74,10 +74,10 @@
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 7
-    
+
 - type: entity
   name: cycler shotgun
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecuritySalvageContraband]
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecuritySalvageContraband]
   id: WeaponShotgunCycler
   description: An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types.
   components:
@@ -103,10 +103,10 @@
     ammoSlots: [ null, null, null, null, null, null, null, null, null ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
-      
+
 - type: entity
   name: Tkach Ya-Sui GA 12 revolver
-  parent: [BaseWeaponShotgunAny, BaseSecuritySalvageContraband]
+  parent: [BaseWeaponShotgun, BaseSecuritySalvageContraband]
   id: WeaponShotgunGA12
   description: An outdated sidearm rarely seen in use by certain PMCs that operate throughout the frontier systems, featuring a three-shell cylinder. Thats right, shell, this one shoots twelve gauge.
   components:
@@ -143,10 +143,10 @@
     ammoSlots: [ null, null, null ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
-      
+
 - type: entity
   name: "AS-12 'Minotaur' Shotgun"
-  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSyndicateContraband]
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponShotgunMinotaur
   description: Smooth, powerful, highly illegal. The newest full auto shotgun available at the market, utilizes standard 12g drum mags. Property of Gorlex Marauders.
   components:

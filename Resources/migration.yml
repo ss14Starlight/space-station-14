@@ -654,7 +654,7 @@ CrateFoodPizzaLarge: CrateFoodPizza
 CrateFoodSoftdrinksLarge: CrateFoodSoftdrinks
 
 # 2025-06-06
-MagazineLightRifleMaxim: null
+#MagazineLightRifleMaxim: null #Starlight, we keep this one
 MagazineLightRiflePkBox: null
 MagazineCaselessRifle10x24: null
 BaseMagazineCaselessRifleShort: null

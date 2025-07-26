@@ -120,6 +120,8 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
+  radioChannels: #Starlight
+  - Supply #Starlight
 
 # Tier 2
 
