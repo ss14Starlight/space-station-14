@@ -44,6 +44,7 @@
     - id: RemoteSignaller
       amount: 2
     - id: Binoculars
+    - id: WeaponEnergyShotgun # Starlight
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -52,6 +53,7 @@
     - id: ClothingOuterHardsuitWarden
     - id: OxygenTankFilled
     - id: ClothingMaskBreath
+    - id: ClothingShoesBootsMagSec
 
 - type: entity
   id: LockerSecurityFilled
@@ -129,10 +131,11 @@
         weight: 0.8
       - id: MedkitBurnFilled
         weight: 1.8
-      - id: PlushieMorgana #starlight
-      - id: PlushieKiller #starlight
-      - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
-        prob: 0.15
+    - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
+      prob: 0.15
+    - id: PlushieMorgana #starlight
+    - id: PlushieKiller #starlight
+
 
 - type: entity
   id: LockerDetectiveFilled

@@ -179,7 +179,7 @@ public abstract partial class SharedHandsSystem
 
         foreach (var hand in EnumerateHands(entity))
         {
-            if (!hand.IsEmpty)
+            if (!HandIsEmpty(entity, hand))
                 continue;
             hands++;
             emptyHand = true;
@@ -191,10 +191,12 @@ public abstract partial class SharedHandsSystem
     public bool TryGetActiveHand(Entity<HandsComponent?> entity, [NotNullWhen(true)] out Hand? hand)
     {
         if (!Resolve(entity, ref entity.Comp, false))
+        {
+            hand = null;
             return false;
         }
 
-        hand = entity.Comp.ActiveHand;
+        TryGetHand(entity, entity.Comp.ActiveHandId, out hand);
         return hand != null;
     }
 
@@ -204,9 +206,10 @@ public abstract partial class SharedHandsSystem
         {
             item = null;
             return false;
+        }
 
-        item = held;
-        return true;
+        item = GetActiveItem(entity);
+        return item != null;
     }
 
     /// <summary>

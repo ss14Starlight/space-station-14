@@ -1,9 +1,4 @@
 using System.Linq; //Starlight
-using Content.Server.Administration.Logs; //Starlight
-using Content.Server.Body.Components; //Starlight
-using Content.Server.Body.Systems; //Starlight
-using Content.Server.Popups; //Starlight
-using Content.Server.Stack; //Starlight
 using Content.Shared.FixedPoint; //Starlight
 using Content.Shared.Chemistry.Components; //Starlight
 using Content.Shared.Chemistry.Components.SolutionManager; //Starlight
@@ -12,7 +7,6 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Medical.Components;
 using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Database;
@@ -223,6 +217,7 @@ public sealed class HealingSystem : EntitySystem
             return false;
 
         // Starlight start
+        var (uid, component) = healing;
         if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(uid, out var solutionManager))
         {
             Entity<SolutionComponent>? solutionEntity = null;

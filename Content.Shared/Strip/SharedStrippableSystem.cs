@@ -59,9 +59,9 @@ public abstract class SharedStrippableSystem : EntitySystem
 
         // Count hands holding items
         int handsHolding = 0;
-        foreach (var hand in handsComp.Hands.Values)
+        foreach (var hand in handsComp.Hands.Keys)
         {
-            if (hand.HeldEntity != null)
+            if (!_handsSystem.HandIsEmpty(user, hand))
                 handsHolding++;
         }
 
@@ -722,9 +722,9 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (TryComp<HandsComponent>(entity.Owner, out var handsComp))
         {
             int handsHolding = 0;
-            foreach (var hand in handsComp.Hands.Values)
+            foreach (var hand in handsComp.Hands.Keys)
             {
-                if (hand.HeldEntity != null)
+                if (!_handsSystem.HandIsEmpty((entity.Owner, entity.Comp), hand))
                     handsHolding++;
             }
             int freeHands = handsComp.Count - handsHolding;

@@ -10,12 +10,11 @@ namespace Content.Shared.CollectiveMind;
 public abstract partial class SharedCollectiveMindSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
     private ISawmill _sawmill = default!;
-    
+
     private static Dictionary<CollectiveMindPrototype, int> _globalMindIDTracker = new();
 
     public override void Initialize()
@@ -87,7 +86,7 @@ public abstract partial class SharedCollectiveMindSystem : EntitySystem
                 //check if they dont already have it
                 if (collective.Minds.ContainsKey(prototype))
                     continue;
-                
+
                 collective.Minds.TryAdd(prototype, CreateNewCollectiveMindMemberData(prototype));
             }
             else

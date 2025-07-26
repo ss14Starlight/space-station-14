@@ -1,5 +1,6 @@
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List; //Starlight
 
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
@@ -19,6 +20,7 @@ public sealed partial class SalvageTemperatureMod : IPrototype, IBiomeSpecificMo
     public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
 
     // 🌟Starlight🌟
+    // TODO: Make this a List<ProtoId<SalvageDifficultyPrototype>
     [DataField("difficulties", customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
     public List<string>? Difficulties { get; private set; } = null;
 

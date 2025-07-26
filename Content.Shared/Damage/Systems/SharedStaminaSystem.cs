@@ -450,28 +450,9 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         public NetEntity Entity = entity;
     }
 
-    [Serializable, NetSerializable]
-    public sealed class StaminaAnimationEvent(NetEntity entity) : EntityEventArgs
-    {
-        public NetEntity Entity = entity;
-    }
 }
 
-public sealed class StaminaModifyEvent: EntityEventArgs, IInventoryRelayEvent
-{
-    public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
-
-    public float Damage;
-    public float Modifier;
-
-    public StaminaModifyEvent(float damage, float modifier = 1.0f)
-    {
-        Damage = damage;
-        Modifier = modifier;
-    }
-}
-
-public sealed class StaminaModifyEvent: EntityEventArgs, IInventoryRelayEvent
+public sealed class StaminaModifyEvent : EntityEventArgs, IInventoryRelayEvent
 {
     public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
 

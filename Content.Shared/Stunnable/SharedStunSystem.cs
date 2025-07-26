@@ -28,7 +28,6 @@ namespace Content.Shared.Stunnable;
 public abstract partial class SharedStunSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming GameTiming = default!; //Starlight
-    [Dependency] protected readonly ActionBlockerSystem Blocker = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] protected readonly AlertsSystem Alerts = default!;
@@ -38,7 +37,6 @@ public abstract partial class SharedStunSystem : EntitySystem
     [Dependency] protected readonly SharedDoAfterSystem DoAfter = default!; //Starlight
     [Dependency] protected readonly SharedStaminaSystem Stamina = default!; //Starlight
     [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
 
@@ -119,7 +117,7 @@ public abstract partial class SharedStunSystem : EntitySystem
 
     private void UpdateCanMove(EntityUid uid, StunnedComponent component, EntityEventArgs args)
     {
-        Blocker.UpdateCanMove(uid);
+        _blocker.UpdateCanMove(uid);
     }
 
     private void OnStunOnContactCollide(Entity<StunOnContactComponent> ent, ref StartCollideEvent args)
