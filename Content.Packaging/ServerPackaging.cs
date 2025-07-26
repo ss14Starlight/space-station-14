@@ -47,14 +47,18 @@ public static class ServerPackaging
         // Python script had Npgsql. though we want Npgsql.dll as well soooo
         "Npgsql",
         "Microsoft",
-        "Microsoft.Orleans", // Starlight
-        "Orleans", // Starlight
-        "Starlight", // Starlight
-        "StackExchange.Redis", // Starlight
-        "System", // Starlight
-        "Newtonsoft", // Starlight
-        "Pipelines", // Starlight
         "NetCord",
+        #region Starlight Packing Deps.
+        "Microsoft.Orleans",
+        "Orleans",
+        "Starlight",
+        "StackExchange.Redis",
+        "System",
+        "Newtonsoft",
+        "Pipelines",
+        "NAudio",
+        "OggVorbisEncoder"
+        #endregion
     };
 
     private static readonly List<string> ServerNotExtraAssemblies = new()

@@ -21,7 +21,7 @@ namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem
 {
     private static MethodInfo? s_raiseLocalEventRefMethod;
-    static LimbSystem() 
+    static LimbSystem()
         => s_raiseLocalEventRefMethod = typeof(LimbSystem)
             .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
             .Where(m => m.Name == nameof(RaiseLocalEvent)
@@ -59,17 +59,19 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
                     foreach (var containedEnt in child.ContainedEntities)
                     {
-                        if (TryComp(containedEnt, out BodyPartComponent? innerPart)
-                            && innerPart.PartType == BodyPartType.Hand)
+                        if (TryComp(containedEnt, out BodyPartComponent? innerPart) &&
+                            TryComp(body, out HandsComponent? handscomp) &&
+                            innerPart.PartType == BodyPartType.Hand)
                         {
-                            _hands.AddHand(body, slotFullId, limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
+                            _hands.AddHand((body, handscomp), slotFullId, limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
                             AddLimbVisual(body, (containedEnt, innerPart));
                         }
                     }
                 }
                 break;
             case BodyPartType.Hand:
-                _hands.AddHand(body, BodySystem.GetPartSlotContainerId(slot), limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
+                if (TryComp(body.Owner, out HandsComponent? hands))
+                    _hands.AddHand((body, hands), BodySystem.GetPartSlotContainerId(slot), limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
                 break;
             case BodyPartType.Leg:
                 if (limb.Comp.Children.Keys.Count == 0)
@@ -134,16 +136,17 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
                     foreach (var containedEnt in child.ContainedEntities)
                     {
-                        if (TryComp(containedEnt, out BodyPartComponent? innerPart)
+                        if (TryComp(containedEnt, out BodyPartComponent? innerPart) &&
+                            TryComp(body, out HandsComponent? handscomp)
                             && innerPart.PartType == BodyPartType.Hand)
-                            _hands.RemoveHand(body, BodySystem.GetPartSlotContainerId(limbSlotId));
+                            _hands.RemoveHand((body,handscomp), BodySystem.GetPartSlotContainerId(limbSlotId));
                     }
                 }
                 break;
             case BodyPartType.Hand:
                 var parentSlot = _body.GetParentPartAndSlotOrNull(limb);
-                if (parentSlot is not null)
-                    _hands.RemoveHand(body, BodySystem.GetPartSlotContainerId(parentSlot.Value.Slot));
+                if (parentSlot is not null && TryComp(body, out HandsComponent? hands))
+                    _hands.RemoveHand((body, hands), BodySystem.GetPartSlotContainerId(parentSlot.Value.Slot));
                 break;
             case BodyPartType.Leg:
             case BodyPartType.Foot:

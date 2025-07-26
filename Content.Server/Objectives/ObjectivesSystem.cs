@@ -20,7 +20,6 @@ using Content.Shared.Prototypes;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles.Jobs;
-using Discord;
 using Robust.Server.Player;
 using Robust.Shared;
 using Robust.Shared.Configuration;

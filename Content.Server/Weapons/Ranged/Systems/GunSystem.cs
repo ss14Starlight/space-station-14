@@ -54,6 +54,7 @@ using Robust.Server.GameObjects;
 using System.Collections.Generic;
 using Content.Server.PowerCell;
 using Content.Shared.Cargo;
+using Content.Shared.Body.Components;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 

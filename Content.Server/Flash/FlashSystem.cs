@@ -13,6 +13,14 @@ using Robust.Shared.Audio;
 using Robust.Shared.Random;
 using InventoryComponent = Content.Shared.Inventory.InventoryComponent;
 using Robust.Shared.Prototypes;
+using Content.Shared.Charges.Systems;
+using Content.Server.Popups;
+using Content.Server.Stunnable;
+using Content.Shared.Flash.Components;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Server.Light.EntitySystems;
+using System.Linq;
+using Content.Shared.Charges.Components;
 
 namespace Content.Server.Flash
 {
@@ -59,7 +67,7 @@ namespace Content.Server.Flash
             args.Handled = true;
             foreach (var e in args.HitEntities)
             {
-                Flash(e, args.User, uid, comp.FlashDuration, comp.SlowTo, melee: true, stunDuration: comp.MeleeStunDuration);
+                Flash(e, args.User, uid, comp.MeleeDuration, comp.SlowTo, melee: true, stunDuration: comp.MeleeStunDuration);
             }
         }
 
@@ -74,7 +82,7 @@ namespace Content.Server.Flash
 
         private bool UseFlash(EntityUid uid, FlashComponent comp, EntityUid user)
         {
-            if (comp.Flashing)
+            if (!comp.FlashOnUse)
                 return false;
 
             TryComp<LimitedChargesComponent>(uid, out var charges);
@@ -83,7 +91,7 @@ namespace Content.Server.Flash
 
             _sharedCharges.TryUseCharge((uid, charges));
             _audio.PlayPvs(comp.Sound, uid);
-            comp.Flashing = true;
+            comp.FlashOnUse = false;
             _appearance.SetData(uid, FlashVisuals.Flashing, true);
 
             if (_sharedCharges.IsEmpty((uid, charges)))
@@ -96,7 +104,7 @@ namespace Content.Server.Flash
             uid.SpawnTimer(400, () =>
             {
                 _appearance.SetData(uid, FlashVisuals.Flashing, false);
-                comp.Flashing = false;
+                comp.FlashOnUse = true;
             });
 
             return true;
@@ -150,7 +158,7 @@ namespace Content.Server.Flash
             }
         }
 
-        public override void FlashArea(Entity<FlashComponent?> source, EntityUid? user, float range, float duration, float slowTo = 0.8f, bool displayPopup = false, float probability = 1f, SoundSpecifier? sound = null)
+        public void FlashArea(Entity<FlashComponent?> source, EntityUid? user, float range, float duration, float slowTo = 0.8f, bool displayPopup = false, float probability = 1f, SoundSpecifier? sound = null)
         {
             var transform = Transform(source);
             var mapPosition = _transform.GetMapCoordinates(transform);

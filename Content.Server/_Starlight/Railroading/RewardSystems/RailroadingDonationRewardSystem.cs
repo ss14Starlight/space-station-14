@@ -14,7 +14,6 @@ using Content.Shared.Examine;
 using Content.Shared.Nutrition;
 using Content.Shared.Objectives;
 using Content.Shared.Starlight.Economy;
-using Discord;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;

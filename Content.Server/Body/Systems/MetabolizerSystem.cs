@@ -175,7 +175,7 @@ namespace Content.Server.Body.Systems
                     // Remove $rate, as long as there's enough reagent there to actually remove that much
                     mostToRemove = FixedPoint2.Clamp(rate, 0, quantity);
 
-                    float scale = (float) mostToRemove / (float) rate;
+                    float scale = (float)mostToRemove / (float)rate;
 
                     // if it's possible for them to be dead, and they are,
                     // then we shouldn't process any effects, but should probably
@@ -223,16 +223,43 @@ namespace Content.Server.Body.Systems
 
             _solutionContainerSystem.UpdateChemicals(soln.Value);
         }
-    }
 
+        #region Starlight. I WOULD figure out where these functions went but I honestly have no clue where they went
+        public bool TryAddMetabolizerType(MetabolizerComponent component, string metabolizerType)
+        {
+            if (!_prototypeManager.HasIndex<MetabolizerTypePrototype>(metabolizerType))
+                return false;
+
+            if (component.MetabolizerTypes == null)
+                component.MetabolizerTypes = new();
+
+            return component.MetabolizerTypes.Add(metabolizerType);
+        }
+
+        public bool TryRemoveMetabolizerType(MetabolizerComponent component, string metabolizerType)
+        {
+            if (component.MetabolizerTypes == null)
+                return true;
+
+            return component.MetabolizerTypes.Remove(metabolizerType);
+        }
+
+        public void ClearMetabolizerTypes(MetabolizerComponent component)
+        {
+            if (component.MetabolizerTypes != null)
+                component.MetabolizerTypes.Clear();
+        }
+        #endregion
+
+    }
     // TODO REFACTOR THIS
     // This will cause rates to slowly drift over time due to floating point errors.
     // Instead, the system that raised this should trigger an update and subscribe to get-modifier events.
     [ByRefEvent]
     public readonly record struct ApplyMetabolicMultiplierEvent(
-        EntityUid Uid,
-        float Multiplier,
-        bool Apply)
+    EntityUid Uid,
+    float Multiplier,
+    bool Apply)
     {
         /// <summary>
         /// The entity whose metabolism is being modified.

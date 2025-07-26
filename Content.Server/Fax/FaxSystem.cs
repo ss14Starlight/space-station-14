@@ -36,7 +36,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Inventory;
 using Robust.Server.Containers;
 using Content.Server.Storage.EntitySystems;
-useing Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes;
 using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.Fax;

@@ -21,6 +21,8 @@
                       OutputItemType="Analyzer"
                       PrivateAssets="all" />
     <PackageReference Include="SS14.Starlight.NullLink" />
+    <PackageReference Include="NAudio" /> <!-- Starlight -->
+    <PackageReference Include= "OggVorbisEncoder" /> <!-- Starlight -->
     <PackageReference Include="NetCord" />
   </ItemGroup>
   <ItemGroup>

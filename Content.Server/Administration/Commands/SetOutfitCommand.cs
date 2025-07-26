@@ -4,8 +4,18 @@ using Content.Server.EUI;
 using Content.Server.Hands.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Administration;
+using Content.Shared.Clothing;
+using Content.Shared.Hands.Components;
+using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
+using Content.Shared.PDA;
+using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
+using Content.Shared.Roles;
+using Content.Shared.Station;
 using Robust.Shared.Console;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Administration.Commands
 {
@@ -14,6 +24,7 @@ namespace Content.Server.Administration.Commands
     {
         [Dependency] private readonly EuiManager _euiManager = default!;
         [Dependency] private readonly OutfitSystem _outfitSystem = default!;
+        [Dependency] private readonly IEntityManager _entities = default!;
 
         public override string Command => "setoutfit";
         public override string Description => Loc.GetString("cmd-setoutfit-desc", ("requiredComponent", nameof(InventoryComponent)));
@@ -82,7 +93,7 @@ namespace Content.Server.Administration.Commands
                 foreach (var slot in slots)
                 {
                     invSystem.TryUnequip(target, slot.Name, true, true, false, inventoryComponent);
-                    var gearStr = ((IEquipmentLoadout) startingGear).GetGear(slot.Name);
+                    var gearStr = ((IEquipmentLoadout)startingGear).GetGear(slot.Name);
                     if (gearStr == string.Empty)
                     {
                         continue;

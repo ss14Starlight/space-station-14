@@ -1,4 +1,6 @@
 using Content.Shared.Administration.Logs;
+using Content.Shared.Chat.V2.Repository;
+using Content.Shared.Climbing.Events;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -70,6 +72,13 @@ public sealed partial class RepairableSystem : EntitySystem
             delay *= ent.Comp.SelfRepairPenalty;
         }
 
+        #region Starlight
+        var ev = new CanRepairEvent(ent, args.User);
+        RaiseLocalEvent(ent.Owner, ref ev);
+        if (ev.Cancelled)
+            _popup.PopupEntity(ev.Message, args.User);
+        #endregion Starlight
+
         // Run the repairing doafter
         args.Handled = _toolSystem.UseTool(args.Used, args.User, ent.Owner, delay, ent.Comp.QualityNeeded, new RepairFinishedEvent(), ent.Comp.FuelCost);
     }
@@ -85,3 +94,20 @@ public readonly record struct RepairedEvent(Entity<RepairableComponent> Ent, Ent
 
 [Serializable, NetSerializable]
 public sealed partial class RepairFinishedEvent : SimpleDoAfterEvent;
+
+#region Starlight
+[ByRefEvent]
+public sealed partial class CanRepairEvent : CancellableEntityEventArgs
+{
+    public Entity<RepairableComponent> Ent;
+    public EntityUid User;
+    public string Message;
+
+    public CanRepairEvent(Entity<RepairableComponent> ent, EntityUid user, string message = "")
+    {
+        this.Ent = ent;
+        this.User = user;
+        this.Message = message;
+    }
+}
+#endregion

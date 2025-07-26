@@ -100,7 +100,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         SubscribeLocalEvent<MechComponent, UpdateCanMoveEvent>(OnMechCanMoveEvent);
         SubscribeLocalEvent<MechComponent, ShotAttemptedEvent>(OnShootAttempt);
-        SubscribeLocalEvent<MechComponent, CanRepaireEvent>(CanRepaire);
+        SubscribeLocalEvent<MechComponent, CanRepairEvent>(CanRepaire);
 
         SubscribeLocalEvent<MechPilotComponent, ToolUserAttemptUseEvent>(OnToolUseAttempt);
         SubscribeLocalEvent<MechPilotComponent, InhaleLocationEvent>(OnInhale);
@@ -248,11 +248,11 @@ public sealed partial class MechSystem : SharedMechSystem
         args.Cancel();
     }
 
-    private void CanRepaire(EntityUid uid, MechComponent component, ref CanRepaireEvent args)
+    private void CanRepaire(EntityUid uid, MechComponent component, ref CanRepairEvent args)
     {
         if (!component.MaintenanceMode)
         {
-            args.Cancelled = true;
+            args.Cancel();
             args.Message = "You need to turn on maintenance mode first!";
         }
     }
@@ -467,8 +467,8 @@ public sealed partial class MechSystem : SharedMechSystem
         }
 
         if (TryComp<HandsComponent>(args.Args.User, out var handsComponent))
-            foreach (var hand in _hands.EnumerateHands(args.Args.User, handsComponent))
-                _hands.DoDrop(args.Args.User, hand, true, handsComponent);
+            foreach (var hand in _hands.EnumerateHands((args.Args.User, handsComponent)))
+                _hands.DoDrop(args.Args.User, hand, true, false);
 
         TryInsert(uid, args.Args.User, component);
         _actionBlocker.UpdateCanMove(uid);

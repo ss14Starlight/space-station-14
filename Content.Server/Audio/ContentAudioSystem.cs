@@ -138,10 +138,10 @@ public sealed class ContentAudioSystem : SharedContentAudioSystem
     public string[] CreatePlaylistWithFirstTrack(string firstTrack)
     {
         // Get all tracks except the one we want first
-        var otherTracks = _lobbyMusicCollection.PickFiles
+        var otherTracks = _lobbyMusicCollection?.PickFiles
                                               .Select(x => x.ToString())
                                               .Where(x => x != firstTrack)
-                                              .ToList();
+                                              .ToList() ?? []; //Starlight. failing to get collection return a empty list.
 
         // Shuffle the other tracks
         _robustRandom.Shuffle(otherTracks);

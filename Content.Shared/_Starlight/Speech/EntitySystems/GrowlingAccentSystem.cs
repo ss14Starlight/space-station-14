@@ -1,9 +1,9 @@
 ﻿using System.Text.RegularExpressions;
-using Content.Server._Starlight.Speech.Components;
-using Content.Server.Speech;
+using Content.Shared._Starlight.Speech.Components;
+using Content.Shared.Speech;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.Speech.EntitySystems;
+namespace Content.Shared._Starlight.Speech.EntitySystems;
 
 public sealed class GrowlingAccentSystem : EntitySystem
 {

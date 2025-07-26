@@ -22,6 +22,7 @@ public sealed class OutfitSystem : EntitySystem
     [Dependency] private readonly HandsSystem _handSystem = default!;
     [Dependency] private readonly InventorySystem _invSystem = default!;
     [Dependency] private readonly SharedStationSpawningSystem _spawningSystem = default!;
+    [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
 
     public bool SetOutfit(EntityUid target, string gear, Action<EntityUid, EntityUid>? onEquipped = null)
     {
@@ -32,22 +33,15 @@ public sealed class OutfitSystem : EntitySystem
             return false;
 
         HumanoidCharacterProfile? profile = null;
-        ICommonSession? session = null;
-        // Check if we are setting the outfit of a player to respect the preferences
-        if (EntityManager.TryGetComponent(target, out ActorComponent? actorComponent))
-        {
-            session = actorComponent.PlayerSession;
-            var userId = actorComponent.PlayerSession.UserId;
-            var prefs = _preferenceManager.GetPreferences(userId);
-            profile = prefs.SelectedCharacter as HumanoidCharacterProfile;
-        }
+        if (TryComp<HumanoidAppearanceComponent>(target, out var humanoidAppearance))
+            profile = _appearance.GetBaseProfile((target, humanoidAppearance));
 
         if (_invSystem.TryGetSlots(target, out var slots))
         {
             foreach (var slot in slots)
             {
                 _invSystem.TryUnequip(target, slot.Name, true, true, false, inventoryComponent);
-                var gearStr = ((IEquipmentLoadout) startingGear).GetGear(slot.Name);
+                var gearStr = ((IEquipmentLoadout)startingGear).GetGear(slot.Name);
                 if (gearStr == string.Empty)
                     continue;
 
@@ -95,6 +89,11 @@ public sealed class OutfitSystem : EntitySystem
 
             if (roleLoadout == null)
             {
+                // This session is required when making a default loadout to check requirements for loadout items
+                ICommonSession? session = null;
+                if (EntityManager.TryGetComponent(target, out ActorComponent? actorComponent))
+                    session = actorComponent.PlayerSession;
+
                 // If they don't have a loadout for the role, make a default one
                 roleLoadout = new RoleLoadout(jobProtoId);
                 roleLoadout.SetDefault(profile, session, _prototypeManager);

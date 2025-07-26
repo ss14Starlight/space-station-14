@@ -25,7 +25,6 @@ public sealed class CluwneSystem : EntitySystem
 {
     private static readonly ProtoId<DamageGroupPrototype> GeneticDamageGroup = "Genetic";
 
-    [Dependency] private readonly AutoEmoteSystem _emote = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
@@ -61,8 +60,8 @@ public sealed class CluwneSystem : EntitySystem
             RemComp<CluwneComponent>(uid);
             RemComp<ClumsyComponent>(uid);
             RemComp<AutoEmoteComponent>(uid);
-            var damageSpec = new DamageSpecifier(_prototypeManager.Index(GeneticDamageGroup), 300);
-            _damageableSystem.TryChangeDamage(uid, damageSpec);
+            var damageSpec = new DamageSpecifier(_proto.Index(GeneticDamageGroup), 300);
+            _damageable.TryChangeDamage(uid, damageSpec);
         }
     }
 
@@ -81,7 +80,7 @@ public sealed class CluwneSystem : EntitySystem
         var name = meta.EntityName;
 
         EnsureComp<AutoEmoteComponent>(uid);
-        _emote.AddEmote(uid, component.AutoEmoteSound);
+        _autoEmote.AddEmote(uid, component.AutoEmoteSound);
         EnsureComp<ClumsyComponent>(uid);
 
         if (component.IsCluwne)

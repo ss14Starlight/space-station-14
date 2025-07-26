@@ -24,6 +24,7 @@ public sealed class SupermatterCascadeSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     private readonly LinkedList<Branch> _branches = [];
     private LinkedListNode<Branch>? node;
@@ -84,7 +85,7 @@ public sealed class SupermatterCascadeSystem : EntitySystem
         if (_transform.GetGrid(branch.Coordinates) is not { } grid
             || !TryComp<MapGridComponent>(grid, out var gridComp)
             || !_map.TryGetTileRef(grid, gridComp, branch.Coordinates, out var tileRef)
-            || tileRef.IsSpace())
+            || _turf.IsSpace(tileRef))
         {
             _branches.Remove(node);
             node = nextNode;
