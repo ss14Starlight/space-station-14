@@ -17,6 +17,8 @@
                 <CheckBox Name="TracesCheckBox"
                           Text="{Loc 'ui-options-trace'}"
                           ToolTip="{Loc 'ui-options-trace-tooltip'}" />
+                <CheckBox Name="AmbientOcclusionCheckBox" Text="{Loc 'ui-options-ambient-occlusion'}" />
+
                 <!-- Interface -->
                 <Label Text="{Loc 'ui-options-interface-label'}" StyleClasses="LabelKeyText"/>
                 <ui:OptionDropDown Name="DropDownUIScale" Title="{Loc 'ui-options-scale-label'}" />

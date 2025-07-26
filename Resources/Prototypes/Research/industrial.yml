@@ -11,10 +11,10 @@
   cost: 7500
   recipeUnlocks:
   - MiningDrill
-  - MechEquipmentDrill
   - MineralScannerEmpty
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
+  - ClothingShoesBootsJump
   radioChannels:
   - Supply
 
@@ -30,8 +30,6 @@
   recipeUnlocks:
   - RadarConsoleCircuitboard
   - HandHeldMassScanner
-  radioChannels:
-  - Supply
 
 - type: technology
   id: AdvancedPowercells
@@ -46,8 +44,6 @@
   - PowerCellHigh
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
-  radioChannels:
-  - Engineering
 
 - type: technology
   id: MechanicalCompression
@@ -92,8 +88,6 @@
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
   - EmitterCircuitboard
-  radioChannels:
-  - Engineering
 
 - type: technology
   id: AtmosphericTech
@@ -107,8 +101,25 @@
   recipeUnlocks:
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
-  radioChannels:
-  - Engineering
+
+- type: technology
+  id: RipleyAPLU
+  name: research-technology-ripley-aplu
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: ripley
+  discipline: Industrial
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - RipleyHarness
+  - RipleyLArm
+  - RipleyRArm
+  - RipleyLLeg
+  - RipleyRLeg
+  - RipleyCentralElectronics
+  - RipleyPeripheralsElectronics
+  - MechEquipmentGrabber
 
 # Tier 2
 
@@ -126,8 +137,6 @@
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
-  radioChannels:
-  - Engineering
 
 - type: technology
   id: AdvancedAtmospherics
@@ -144,8 +153,6 @@
   - HolofanProjector
   technologyPrerequisites:
   - AtmosphericTech
-  radioChannels:
-  - Engineering
 
 - type: technology
   id: AdvancedToolsTechnology
@@ -163,8 +170,6 @@
     - BorgModuleAdvancedTool
     - Fulton
     - FultonBeacon
-  radioChannels:
-  - Supply
 
 - type: technology
   id: MassExcavation
@@ -179,10 +184,7 @@
     - OreBagOfHolding
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
-    - MechEquipmentDrillDiamond
     - BorgModuleAdvancedMining
-  radioChannels:
-  - Supply
 
 # Tier 3
 

@@ -360,7 +360,7 @@
           shouldHave: false
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
-      - !type:GenericStatusEffect
+      - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentThreshold
           reagent: NitrousOxide
@@ -368,9 +368,8 @@
         - !type:OrganType
           type: Slime
           shouldHave: false
-        key: ForcedSleep
-        component: ForcedSleeping
-        time: 12 # Starlight change
+        effectProto: StatusEffectForcedSleeping
+        time: 12 # Starlight Change
         type: Add
       - !type:HealthChange
         conditions:

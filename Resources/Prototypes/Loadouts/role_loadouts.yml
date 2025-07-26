@@ -7,9 +7,7 @@
   - CaptainJumpsuit
   - CaptainBackpack
   - CaptainOuterClothing
-  - CaptainShoes # 🌟Starlight🌟
-  - CaptainEyewear
-  - SurvivalExtended
+  - Survival
   - Trinkets
   - GroupSpeciesBreathTool
 
@@ -22,7 +20,6 @@
   - HoPJumpsuit
   - HoPBackpack
   - HoPOuterClothing
-  - HoPShoes # 🌟Starlight🌟
   - Glasses
   - Survival
   - Trinkets
@@ -41,18 +38,17 @@
 
 # Civilian
 - type: roleLoadout
-  id: JobAssistant
+  id: JobPassenger
   groups:
   - GroupTankHarness
-  - AssistantJumpsuit
-  - AssistantBackpack #starlight
-  - AssistantNeck
-  - AssistantFace
-  - AssistantGloves
-  - AssistantOuterClothing
-  - AssistantShoes
-  - AssistantGlasses #starlight
-  - AssistantHead #starlight
+  - PassengerJumpsuit
+  - CommonBackpack
+  - PassengerNeck
+  - PassengerFace
+  - PassengerGloves
+  - PassengerOuterClothing
+  - PassengerShoes
+  - Glasses
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
@@ -65,7 +61,6 @@
   - BartenderJumpsuit
   - CommonBackpack
   - BartenderOuterClothing
-  - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
   - Trinkets
@@ -77,7 +72,6 @@
   - GroupTankHarness
   - BartenderJumpsuit
   - CommonBackpack
-  - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
   - Trinkets
@@ -92,7 +86,6 @@
   - ChefJumpsuit
   - CommonBackpack
   - ChefOuterClothing
-  - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
   - Trinkets
@@ -104,7 +97,6 @@
   - GroupTankHarness
   - LibrarianJumpsuit
   - CommonBackpack
-  - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
   - Trinkets
@@ -132,6 +124,7 @@
   - ChaplainJumpsuit
   - CommonBackpack
   - ChaplainOuterClothing
+  - ChaplainBible
   - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
@@ -202,7 +195,6 @@
   - MusicianJumpsuit
   - CommonBackpack
   - MusicianOuterClothing
-  - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
   - Trinkets
@@ -356,9 +348,7 @@
   - HeadofSecurityJumpsuit
   - SecurityBackpack
   - SecurityBelt
-  - SecurityNonLethalWeapon #Starlight
   - HeadofSecurityOuterClothing
-  - SecurityEyewear
   - SecurityShoes
   - SurvivalSecurity
   - Trinkets
@@ -373,7 +363,6 @@
   - SecurityBackpack
   - SecurityBelt
   - WardenOuterClothing
-  - SecurityEyewear
   - SecurityShoes
   - SurvivalSecurity
   - Trinkets
@@ -386,13 +375,10 @@
   - SecurityHead
   - SecurityJumpsuit
   - SecurityBackpack
-  - SecurityEyewear
   - SecurityOuterClothing
   - SecurityShoes
   - SecurityPDA
   - SecurityBelt
-  - SecurityNonLethalWeapon #Starlight
-  - SecuritySidearm #Starlight
   - SurvivalSecurity
   - Trinkets
   - SecurityStar
@@ -405,9 +391,8 @@
   - DetectiveNeck
   - DetectiveJumpsuit
   - SecurityBackpack
-  - SecurityEyewear
   - DetectiveOuterClothing
-  - DetectiveShoes # 🌟Starlight🌟
+  - SecurityShoes
   - SurvivalSecurity
   - Trinkets
   - SecurityStar
@@ -418,8 +403,6 @@
   groups:
   - SecurityCadetJumpsuit
   - SecurityBackpack
-  - SecurityNonLethalWeapon
-  - SecurityEyewear
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
@@ -506,7 +489,6 @@
   groups:
   - GroupTankHarness
   - CommonBackpack
-  - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
   - Trinkets
@@ -518,7 +500,6 @@
   - GroupTankHarness
   - ReporterJumpsuit
   - CommonBackpack
-  - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
   - Trinkets
@@ -530,7 +511,6 @@
   - GroupTankHarness
   - PsychologistJumpsuit
   - MedicalBackpack
-  - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
   - Trinkets

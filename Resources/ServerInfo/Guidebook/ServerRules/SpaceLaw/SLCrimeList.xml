@@ -403,21 +403,21 @@
   Crimes that are linked can not be charged together. For more information, refer to Sentencing.
 
   1. Failure to Comply, Breach of Arrest, Breach of Custody, Refusal of Mental Shielding
-  
+
   2. Possession or Use of Minor Contraband, Major Contraband, or Syndicate Contraband
-  
+
   3. Petty Theft, Grand Theft, and Armed Robbery
-  
+
   4. Vandalism, Damage of Property, Mass Destruction, Terrorism
-  
+
   5. Trespass, Secure Trespass
-  
+
   6. Endangerment, Minor Assault, Major Assault, Manslaughter, Attempted Murder, Murder, Prevention of Revival, Mass Murder, Unlawful Execution
-  
+
   7. Disturbance, Vigilantism, Rioting
-  
+
   8. Sedition, Conspiracy, Treason
-  
+
   ## Minor Crimes
   Those who commit a minor crime should be issued a warning for their first offense, however repeat offenses are cumulative and may result in jail time of up to 5 minutes per minor crime committed.
   <Table Columns="2">
@@ -803,7 +803,7 @@
     </ColorBox>
     <ColorBox Color="#475c7d">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To willfully betray allegiances to NanoTrasen. This includes collaborating with terrorists, and especially applies to members of Command attempting to illegally forsake their duties to the detriment of the Station and Nanotrasen. 
+        To willfully betray allegiances to NanoTrasen. This includes collaborating with terrorists, and especially applies to members of Command attempting to illegally forsake their duties to the detriment of the Station and Nanotrasen.
       </Box>
     </ColorBox>
     <ColorBox>

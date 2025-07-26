@@ -163,22 +163,29 @@
        - id: ClothingOuterArmorBasic
        - id: ClothingUniformJumpskirtSec
 
- - type: entity
-   id: WardrobeCargoFilled
-   suffix: Filled
-   parent: WardrobeCargo
-   description: "This locker? Maybe 500 spesos. Brotherhood? Priceless."
-   components:
-   - type: StorageFill
-     contents:
-       - id: ClothingHeadHatCargosoft
-       - id: ClothingUniformJumpsuitCargo
-       - id: ClothingBackpack
-       - id: ClothingShoesColorBlack
-       - id: ClothingUniformJumpskirtCargo
-       - id: ClothingHandsGlovesFingerless
-       - id: AppraisalTool
-       - id: WeaponMeleeBoxcutter
+- type: entity
+  id: WardrobeCargoFilled
+  suffix: Filled
+  parent: WardrobeCargo
+  description: "This locker? Maybe 500 spesos. Brotherhood? Priceless."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillWardrobeCargo
+
+- type: entityTable
+  id: FillWardrobeCargo
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadHatCargosoft
+    - id: ClothingUniformJumpsuitCargo
+    - id: ClothingBackpack
+    - id: ClothingShoesColorBlack
+    - id: ClothingUniformJumpskirtCargo
+    - id: ClothingHandsGlovesFingerless
+    - id: AppraisalTool
+    - id: WeaponMeleeBoxcutter
 
  - type: entity
    id: WardrobeSalvageFilled

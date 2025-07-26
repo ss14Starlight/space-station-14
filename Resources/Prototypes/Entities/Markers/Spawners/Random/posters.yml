@@ -34,7 +34,7 @@
       - PosterContrabandFreeTonto
       - PosterContrabandAtmosiaDeclarationIndependence
       - PosterContrabandFunPolice
-      - PosterContrabandLustyExomorph
+      - PosterContrabandRealExomorph
       - PosterContrabandSyndicateRecruitment
       - PosterContrabandClown
       - PosterContrabandSmoke
@@ -64,7 +64,7 @@
       - PosterContrabandPunchShit
       - PosterContrabandTheGriffin
       - PosterContrabandFreeDrone
-      - PosterContrabandBustyBackdoorExoBabes6
+      - PosterContrabandRouny
       - PosterContrabandRobustSoftdrinks
       - PosterContrabandShamblersJuice
       - PosterContrabandPwrGame
@@ -91,16 +91,9 @@
       - PosterContrabandInterdyne
       - PosterContrabandWaffleCorp
       - PosterContrabandMissingSpacepen
-      - PosterContrabandYoutoolpia
-      - PosterContrabandDoCauseCancer
-      - PosterContrabandLnuGlorf
-      - PosterContrabandRobustVox
-      - PosterContrabandRobirdVox
-      - PosterContrabandForumPost
-      - PosterContrabandHaveYouSeenHimJohnToe
-      - PosterContrabandIlluminatePropaganda
-      - PosterContrabandHolyInsuls
-      - PosterContrabandFentsAndCo
+      - PosterContrabandExoAcid
+      - PosterContrabandExoRun
+      - PosterContrabandExoChomp
     chance: 1
 
 - type: entity
@@ -165,9 +158,6 @@
       - PosterLegitSafetyMothHardhat
       - PosterLegitSafetyMothSSD
       - PosterLegitOppenhopper
-      - PosterLegitCalendar
-      - PosterLegitCleanHands
-      - PosterLegitEyeChart
       - PosterLegitTyrone
       - PosterLegitSkillIssue
       - PosterLegitShoeless
@@ -179,4 +169,5 @@
       - PosterLegitRipleyCertified
       - PosterLegitKillersClinic
       - PosterlegitLawPoster
+      - PosterLegitHelio
     chance: 1

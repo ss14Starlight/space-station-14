@@ -41,9 +41,8 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
         [Dependency] private readonly TagSystem _tag = default!; //Starlight-edit
 
-        [ValidatePrototypeId<EntityPrototype>]
-        private const string PillPrototypeId = "Pill";
-        
+        private static readonly EntProtoId PillPrototypeId = "Pill";
+
         //Starlight-start
         [ValidatePrototypeId<EntityPrototype>]
         private const string PatchPrototypeId = "Patch";
@@ -246,7 +245,7 @@ namespace Content.Server.Chemistry.EntitySystems
             UpdateUiState(chemMaster);
             ClickSound(chemMaster);
         }
-        
+
         //Starlight-start
         private void OnCreatePatchesMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterCreatePatchesMessage message)
         {
@@ -258,7 +257,7 @@ namespace Content.Server.Chemistry.EntitySystems
             // Ensure the number is valid.
             if (message.Number == 0 || !_storageSystem.HasSpace((container, storage)))
                 return;
-            
+
             // Ensure the amount is valid.
             if (message.Dosage == 0 || message.Dosage > chemMaster.Comp.PillDosageLimit)
                 return;
@@ -266,7 +265,7 @@ namespace Content.Server.Chemistry.EntitySystems
             // Ensure label length is within the character limit.
             if (message.Label.Length > SharedChemMaster.LabelMaxLength)
                 return;
-            
+
             var needed = message.Dosage * message.Number;
             if (!WithdrawFromBeaker(chemMaster, needed, user, out var withdrawal)) // Starlight-edit
                 return;
@@ -321,7 +320,7 @@ namespace Content.Server.Chemistry.EntitySystems
             ClickSound(chemMaster);
         }
 
-        
+
         private bool WithdrawFromBeaker( // Starlight-edit
             Entity<ChemMasterComponent> chemMaster,
             FixedPoint2 neededVolume, EntityUid? user,
@@ -395,7 +394,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
             if (!TryComp(container, out StorageComponent? storage))
                 return null;
-            
+
             //Starlight-start
             var pills = storage.Container.ContainedEntities.Select((Func<EntityUid, (string, FixedPoint2 quantity)>) (pill =>
             {
@@ -404,7 +403,7 @@ namespace Content.Server.Chemistry.EntitySystems
                     var quantity = solution?.Volume ?? FixedPoint2.Zero;
                     return (Name(pill), quantity);
                 }
-                else 
+                else
                 {
                     if (_solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PatchSolutionName, out _, out var patchSolution));
                     {
@@ -413,7 +412,7 @@ namespace Content.Server.Chemistry.EntitySystems
                     }
                 }
             })).ToList();
-            
+
             if (_tag.HasTag(container.Value, "PatchPack"))
             {
                 return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)) / 2, storage.Grid.GetArea() / 2)

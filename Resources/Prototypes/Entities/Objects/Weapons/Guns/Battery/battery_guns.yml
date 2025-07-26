@@ -108,7 +108,7 @@
 
 - type: entity
   name: svalinn laser pistol
-  parent: [ BaseWeaponPowerCellSmall, BaseSecurityContraband ]
+  parent: [BaseWeaponPowerCellSmall, BaseSecurityContraband]
   id: WeaponLaserSvalinn
   description: A cheap and widely used laser pistol.
   components:
@@ -129,7 +129,7 @@
 
 - type: entity
   name: retro laser blaster
-  parent: [ BaseWeaponBatterySmall, BaseMajorContraband ]
+  parent: [BaseWeaponBatterySmall, BaseMajorContraband]
   id: WeaponLaserGun
   description: A weapon using light amplified by the stimulated emission of radiation.
   components:
@@ -152,7 +152,7 @@
 
 - type: entity
   name: makeshift laser pistol
-  parent: BaseWeaponBatterySmall
+  parent: [BaseWeaponBatterySmall, BaseMinorContraband]
   id: WeaponMakeshiftLaser
   description: Better pray it won't burn your hands off.
   components:
@@ -180,7 +180,7 @@
 
 - type: entity
   name: tesla gun
-  parent: [ BaseWeaponBattery, BaseMajorContraband ] #Starlight Major Contra
+  parent: [BaseWeaponBattery, BaseMajorContraband]
   id: WeaponTeslaGun
   description: The power of the primordial element of lightning in your hands.
   components:
@@ -248,6 +248,94 @@
     price: 420
   - type: Item
     heldPrefix: mag4
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 62.5
+
+- type: entity
+  name: pulse pistol
+  parent: [BaseWeaponBatterySmall, BaseCentcommContraband]
+  id: WeaponPulsePistol
+  description: A state of the art energy pistol favoured as a sidearm by the NT operatives.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: Pulse
+    fireCost: 200
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+
+- type: entity
+  name: pulse carbine
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  id: WeaponPulseCarbine
+  description: A high tech energy carbine favoured by the NT-ERT operatives.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: Pulse
+    fireCost: 200
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+
+- type: entity
+  name: pulse rifle
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  id: WeaponPulseRifle
+  description: A weapon that is almost as infamous as its users.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -255,93 +343,6 @@
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 62.5
-
-#- type: entity
-#  name: pulse pistol
-#  parent: BaseWeaponBatterySmall
-#  id: WeaponPulsePistol
-#  description: A state of the art energy pistol favoured as a sidearm by the NT operatives.
-#  components:
-#  - type: Sprite
-#    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
-#    layers:
-#    - state: base
-#      map: ["enum.GunVisualLayers.Base"]
-#    - state: mag-unshaded-4
-#      map: ["enum.GunVisualLayers.MagUnshaded"]
-#      shader: unshaded
-#  - type: Clothing
-#    sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi
-#  - type: Gun
-#    selectedMode: SemiAuto
-#    availableModes:
-#    - SemiAuto
-#    soundGunshot:
-#      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-#  - type: HitscanBatteryAmmoProvider
-#    proto: Pulse
-#    fireCost: 200
-#  - type: Battery
-#    maxCharge: 2000
-#    startingCharge: 2000
-
-#- type: entity
-#  name: pulse carbine
-#  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
-#  id: WeaponPulseCarbine
-#  description: A high tech energy carbine favoured by the NT-ERT operatives.
-#  components:
-#  - type: Sprite
-#    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
-#    layers:
-#    - state: base
-#      map: ["enum.GunVisualLayers.Base"]
-#    - state: mag-unshaded-4
-#      map: ["enum.GunVisualLayers.MagUnshaded"]
-#      shader: unshaded
-#  - type: Clothing
-#    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
-#  - type: Gun
-#    selectedMode: SemiAuto
-#    fireRate: 3
-#    availableModes:
-#      - SemiAuto
-#      - FullAuto
-#    soundGunshot:
-#      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-#  - type: HitscanBatteryAmmoProvider
-#    proto: Pulse
-#    fireCost: 200
-#  - type: Battery
-#    maxCharge: 5000
-#    startingCharge: 5000
-
-#- type: entity
-#  name: pulse rifle
-#  parent: [BaseWeaponBattery, BaseGunWieldable]
-#  id: WeaponPulseRifle
-#  description: A weapon that is almost as infamous as its users.
-#  components:
-#  - type: Sprite
-#    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
-#    layers:
-#    - state: base
-#      map: ["enum.GunVisualLayers.Base"]
-#    - state: mag-unshaded-4
-#      map: ["enum.GunVisualLayers.MagUnshaded"]
-#      shader: unshaded
-#  - type: Clothing
-#    sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi
-#  - type: Gun
-#    fireRate: 1.5
-#    soundGunshot:
-#      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-#  - type: HitscanBatteryAmmoProvider
-#    proto: Pulse
-#    fireCost: 100
-#  - type: Battery
-#    maxCharge: 40000
-#    startingCharge: 40000
 
 - type: entity
   name: laser cannon
@@ -377,7 +378,7 @@
 
 - type: entity
   name: portable particle decelerator
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseEngineeringContraband]
   id: WeaponParticleDecelerator
   description: A portable particle decelerator capable of decomposing a tesla or singularity.
   components:
@@ -475,7 +476,7 @@
 
 - type: entity
   name: disabler
-  parent: [ WeaponDisablerPractice, BaseSecurityCommandContraband ]
+  parent: [WeaponDisablerPractice, BaseSecurityCommandContraband]
   id: WeaponDisabler
   description: A self-defense weapon that exhausts organic targets, weakening them until they collapse.
   components:
@@ -503,7 +504,7 @@
 
 - type: entity
   name: disabler SMG
-  parent: [ BaseWeaponBattery, BaseSecurityContraband ]
+  parent: [BaseWeaponBattery, BaseSecurityContraband]
   id: WeaponDisablerSMG
   description: Advanced weapon that exhausts organic targets, weakening them until they collapse.
   components:
@@ -541,7 +542,7 @@
 
 - type: entity
   name: taser
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
+  parent: [BaseWeaponBatterySmall, BaseSecurityContraband]
   id: WeaponTaser
   description: A low-capacity, energy-based stun gun used by security teams to subdue targets at close range.
   components:
@@ -638,7 +639,7 @@
 
 - type: entity
   name: advanced laser pistol
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband]
+  parent: [BaseWeaponBatterySmall, BaseSecurityContraband]
   id: WeaponAdvancedLaser
   description: An experimental high-energy laser pistol with a self-charging nuclear battery.
   components:
@@ -721,7 +722,7 @@
   name: experimental C.H.I.M.P. handcannon
   parent: [WeaponPistolCHIMP, BaseSyndicateContraband]
   id: WeaponPistolCHIMPUpgraded
-  description: This C.H.I.M.P. seems to have a greater punch than is usual...
+  description: This C.H.I.M.P. seems to have a greater punch than usual...
   components:
   - type: BatteryWeaponFireModes
     fireModes:
@@ -814,7 +815,7 @@
 
 - type: entity
   name: temperature gun
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponTemperatureGun
   description: An advanced gun that shoots body-temperature-changing beams. This probably constitutes as some kind of war crime.
   components:
@@ -858,12 +859,12 @@
 
 - type: entity
   name: xenoborg laser gun
-  parent: [ WeaponAdvancedLaser, BaseXenoborgContraband ]
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
   id: XenoborgLaserGun
 
 - type: entity
   name: xenoborg heavy laser gun
-  parent: [ WeaponAdvancedLaser, BaseXenoborgContraband ]
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
   id: XenoborgHeavyLaserGun
   components:
   - type: HitscanBatteryAmmoProvider

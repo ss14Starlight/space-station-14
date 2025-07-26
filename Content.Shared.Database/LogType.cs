@@ -477,4 +477,9 @@ public enum LogType
     // 🌟Starlight🌟 start
     Railroading = 1000,
     // 🌟Starlight🌟 end
+
+    /// <summary>
+    /// Events relating to midi playback.
+    /// </summary>
+    Instrument = 103,
 }

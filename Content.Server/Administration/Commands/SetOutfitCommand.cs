@@ -1,35 +1,24 @@
 using Content.Server.Administration.UI;
+using Content.Server.Clothing.Systems;
 using Content.Server.EUI;
 using Content.Server.Hands.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Administration;
-using Content.Shared.Clothing;
-using Content.Shared.Hands.Components;
-using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
-using Content.Shared.PDA;
-using Content.Shared.Preferences;
-using Content.Shared.Preferences.Loadouts;
-using Content.Shared.Roles;
-using Content.Shared.Station;
 using Robust.Shared.Console;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Administration.Commands
 {
     [AdminCommand(AdminFlags.Admin)]
-    public sealed class SetOutfitCommand : IConsoleCommand
+    public sealed class SetOutfitCommand : LocalizedEntityCommands
     {
-        [Dependency] private readonly IEntityManager _entities = default!;
+        [Dependency] private readonly EuiManager _euiManager = default!;
+        [Dependency] private readonly OutfitSystem _outfitSystem = default!;
 
-        public string Command => "setoutfit";
+        public override string Command => "setoutfit";
+        public override string Description => Loc.GetString("cmd-setoutfit-desc", ("requiredComponent", nameof(InventoryComponent)));
 
-        public string Description => Loc.GetString("set-outfit-command-description", ("requiredComponent", nameof(InventoryComponent)));
-
-        public string Help => Loc.GetString("set-outfit-command-help-text", ("command", Command));
-
-        public void Execute(IConsoleShell shell, string argStr, string[] args)
+        public override void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             if (args.Length < 1)
             {
@@ -45,13 +34,13 @@ namespace Content.Server.Administration.Commands
 
             var nent = new NetEntity(entInt);
 
-            if (!_entities.TryGetEntity(nent, out var target))
+            if (!EntityManager.TryGetEntity(nent, out var target))
             {
                 shell.WriteLine(Loc.GetString("shell-invalid-entity-id"));
                 return;
             }
 
-            if (!_entities.HasComponent<InventoryComponent>(target))
+            if (!EntityManager.HasComponent<InventoryComponent>(target))
             {
                 shell.WriteLine(Loc.GetString("shell-target-entity-does-not-have-message", ("missing", "inventory")));
                 return;
@@ -61,13 +50,12 @@ namespace Content.Server.Administration.Commands
             {
                 if (shell.Player is not { } player)
                 {
-                    shell.WriteError(Loc.GetString("set-outfit-command-is-not-player-error"));
+                    shell.WriteError(Loc.GetString("cmd-setoutfit-is-not-player-error"));
                     return;
                 }
 
-                var eui = IoCManager.Resolve<EuiManager>();
                 var ui = new SetOutfitEui(nent);
-                eui.OpenEui(ui, player);
+                _euiManager.OpenEui(ui, player);
                 return;
             }
 
