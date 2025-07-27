@@ -1092,7 +1092,7 @@
         Heat: 0.1
         Radiation: 0.1
         Caustic: 0.1
-    staminaModifier: 0.4 # SL: Improved stun resistance
+    staminaModifier: 0.6 # SL: Weakened stun resistance
     ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 1.0
