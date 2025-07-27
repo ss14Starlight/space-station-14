@@ -18,11 +18,1682 @@
       edges:
         - to: pistol
           steps:
+            - tag: ImprovisedAmmoBox
+              icon:
+                sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Boxes/improvised.rsi
+                state: icon
+              name: crafting-menu-name-IMGB
+              doAfter: 10
             - material: Steel
-              amount: 5
-              doAfter: 5
-            - material: Cloth
-              amount: 3
-              doAfter: 5
+              amount: 30
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
     - node: pistol
       entity: MagazineBoxImprovisedPistol
+    - node: startrifle
+      edges:
+        - to: rifle
+          steps:
+            - tag: ImprovisedAmmoBox
+              icon:
+                sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Boxes/improvised.rsi
+                state: icon
+              name: crafting-menu-name-IMGB
+              doAfter: 10
+            - material: Steel
+              amount: 30
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+    - node: rifle
+      entity: MagazineBoxImprovisedRifle
+    - node: startmagnum
+      edges:
+        - to: magnum
+          steps:
+            - tag: ImprovisedAmmoBox
+              icon:
+                sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Boxes/improvised.rsi
+                state: icon
+              name: crafting-menu-name-IMGB
+              doAfter: 10
+            - material: Steel
+              amount: 30
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+    - node: magnum
+      entity: MagazineBoxImprovisedMagnum
+    - node: startshotgun
+      edges:
+        - to: shotgun
+          steps:
+            - tag: ImprovisedAmmoBox
+              icon:
+                sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Boxes/improvised.rsi
+                state: icon
+              name: crafting-menu-name-IMGB
+              doAfter: 10
+            - material: Steel
+              amount: 30
+              doAfter: 0.5
+            - material: Glass
+              amount: 30
+              doAfter: 1.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5 
+            - tag: Matchstick
+              name: construction-graph-tag-match-stick
+              icon:
+                sprite: Objects/Tools/matches.rsi
+                state: match_unlit
+              doAfter: 0.5
+    - node: shotgun
+      entity: MagazineBoxImprovisedShotgun
