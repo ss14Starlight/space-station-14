@@ -11,7 +11,31 @@
             "name": "base"
         },
         {
+            "name": "ap"
+        },
+        {
+            "name": "fmj"
+        },
+        {
+            "name": "incendiary"
+        },
+        {
+            "name": "rubber"
+        },
+        {
+            "name": "sp"
+        },
+        {
+            "name": "practice"
+        },
+        {
+            "name": "uranium"
+        },
+        {
             "name": "stripe"
+        },
+        {
+            "name": "red"
         },
         {
             "name": "mag-1"

@@ -31,6 +31,21 @@
         {
             "name": "inhand-right-stripe",
             "directions": 4
+        },
+        {
+            "name": "rubber"
+        },
+        {
+            "name": "piercing"
+        },
+        {
+            "name": "practice"
+        },
+        {
+            "name": "red"
+        },
+        {
+            "name": "uranium"
         }
     ]
 }
