@@ -1,4 +1,4 @@
-﻿crafting-menu-name-FDB = forged double-barrel shotgun
+crafting-menu-name-FDB = forged double-barrel shotgun
 crafting-menu-text-FDB = The cousin of the improvised shotgun, this one is made from better quality parts and an additional barrel! Takes time and welding supplies to make, however. 
 
 crafting-menu-name-MP = makeshift pistol
@@ -63,6 +63,18 @@ crafting-menu-text-IRB = Better than nothing. Fairly full with phosphorus but st
 
 crafting-menu-name-IMGB = improvised magazine box
 crafting-menu-text-IMGB = Organization is not the strong suit of any tider. Can hold all kinds of bullets.
+
+crafting-menu-name-IMGP = improvised magazine box (.35 auto improvised)
+crafting-menu-text-IMGP = Organization is not the strong suit of any tider. Holds 40 improvised .35 auto rounds.
+
+crafting-menu-name-IMGR = improvised magazine box (.30 rifle improvised)
+crafting-menu-text-IMGR = Organization is not the strong suit of any tider. Holds 40 improvised .30 rifle rounds.
+
+crafting-menu-name-IMGM = improvised magazine box (.45 magnum improvised)
+crafting-menu-text-IMGM = Organization is not the strong suit of any tider. Holds 40 improvised .45 magnum rounds.
+
+crafting-menu-name-IMGS = improvised magazine box (.50 shotgun improvised)
+crafting-menu-text-IMGS = Organization is not the strong suit of any tider. Holds 40 improvised .50 shotgun shells.
 
 crafting-menu-name-MC = makeshift crowbar
 crafting-menu-text-MC = You must be REALLY desperate..
