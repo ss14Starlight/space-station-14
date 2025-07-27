@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Damage;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Hands.Components;
@@ -63,6 +62,7 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
     //starlight
     [Dependency] private readonly DamageableSystem _damageable = default!;
 
@@ -307,12 +307,11 @@ public abstract class SharedMagicSystem : EntitySystem
     /// <param name="args"></param>
     private void OnTeleportSpell(TeleportSpellEvent args)
     {
-        if ( args.Handled || !PassesSpellPrerequisites(args.Action, args.Performer))
+        if (args.Handled || !PassesSpellPrerequisites(args.Action, args.Performer))
             return;
 
         var transform = Transform(args.Performer);
-
-        if (transform.MapID != _transform.GetMapId(args.Target) || (!args.IgnoreWalls && !_interaction.InRangeUnobstructed(args.Performer, args.Target, range: 1000F, collisionMask: CollisionGroup.Opaque, popup: true)))
+        if (transform.MapID != _transform.GetMapId(args.Target) || !_interaction.InRangeUnobstructed(args.Performer, args.Target, range: 1000F, collisionMask: CollisionGroup.Opaque, popup: true))
             return;
 
         _transform.SetCoordinates(args.Performer, args.Target);
@@ -392,11 +391,7 @@ public abstract class SharedMagicSystem : EntitySystem
         if (!TryComp<BodyComponent>(ev.Target, out var body))
             return;
 
-        //_body.GibBody(ev.Target, true, body); //starlight commented out
-        //starlight start
-        //apply damage to the target
-        _damageable.TryChangeDamage(ev.Target, ev.Damage, true); //ignore resistances
-        //starlight end
+        _body.GibBody(ev.Target, true, body);
     }
 
     // End Touch Spells

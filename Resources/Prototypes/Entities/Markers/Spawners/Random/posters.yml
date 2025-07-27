@@ -64,7 +64,7 @@
       - PosterContrabandPunchShit
       - PosterContrabandTheGriffin
       - PosterContrabandFreeDrone
-      - PosterContrabandBustyBackdoorExoBabes6
+      - PosterContrabandRouny
       - PosterContrabandRobustSoftdrinks
       - PosterContrabandShamblersJuice
       - PosterContrabandPwrGame
@@ -91,16 +91,9 @@
       - PosterContrabandInterdyne
       - PosterContrabandWaffleCorp
       - PosterContrabandMissingSpacepen
-      - PosterContrabandYoutoolpia
-      - PosterContrabandDoCauseCancer
-      - PosterContrabandLnuGlorf
-      - PosterContrabandRobustVox
-      - PosterContrabandRobirdVox
-      - PosterContrabandForumPost
-      - PosterContrabandHaveYouSeenHimJohnToe
-      - PosterContrabandIlluminatePropaganda
-      - PosterContrabandHolyInsuls
-      - PosterContrabandFentsAndCo
+      - PosterContrabandExoAcid
+      - PosterContrabandExoRun
+      - PosterContrabandExoChomp
     chance: 1
 
 - type: entity
@@ -169,6 +162,8 @@
       - PosterLegitCleanHands
       - PosterLegitEyeChart
       - PosterLegitTyrone
+      - PosterLegitHelio
+      #region Starlight
       - PosterLegitSkillIssue
       - PosterLegitShoeless
       - PosterLegitDoNotCauseCancer
@@ -179,4 +174,5 @@
       - PosterLegitRipleyCertified
       - PosterLegitKillersClinic
       - PosterlegitLawPoster
+      #endregion Starlight
     chance: 1

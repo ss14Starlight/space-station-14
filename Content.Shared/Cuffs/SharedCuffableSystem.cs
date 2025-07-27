@@ -34,7 +34,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
-using static Content.Shared.Stunnable.SharedStunSystem;
 
 namespace Content.Shared.Cuffs
 {
@@ -340,6 +339,7 @@ namespace Content.Shared.Cuffs
 
             if (!args.Cancelled && TryAddNewCuffs(target, user, uid, cuffable))
             {
+                component.Used = true;
                 _audio.PlayPredicted(component.EndCuffSound, uid, user);
 
                 var popupText = (user == target)
@@ -472,16 +472,15 @@ namespace Content.Shared.Cuffs
             if (TryComp<HandsComponent>(target, out var hands) && hands.Count <= component.CuffedHandCount)
                 return false;
 
-            EnsureComp<HandcuffComponent>(handcuff, out var handcuffsComp);
-            handcuffsComp.Used = true;
-            Dirty(handcuff, handcuffsComp);
-            
+            var ev = new TargetHandcuffedEvent();
+            RaiseLocalEvent(target, ref ev);
+
             // Success!
             _hands.TryDrop(user, handcuff);
 
-            var result = _container.Insert(handcuff, component.Container);
+            _container.Insert(handcuff, component.Container);
             UpdateHeldItems(target, handcuff, component);
-            return result;
+            return true;
         }
 
         /// <returns>False if the target entity isn't cuffable.</returns>
