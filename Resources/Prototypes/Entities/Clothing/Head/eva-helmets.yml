@@ -13,7 +13,6 @@
     tags:
     - HelmetEVA
     - WhitelistChameleon
-    - CorgiWearable
 
 #Large EVA Helmet
 - type: entity
@@ -28,6 +27,8 @@
     sprite: Clothing/Head/Helmets/eva_large.rsi
   - type: Tag
     tags:
+    - HelmetEVA
+    - WhitelistChameleon
     - CorgiWearable
 
 #Syndicate EVA Helmet
@@ -41,6 +42,8 @@
     sprite: Clothing/Head/Helmets/eva_syndicate.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/eva_syndicate.rsi
+  - type: StaticPrice
+    price: 500 # Suit is 1000
 
 #Cosmonaut Helmet
 - type: entity
@@ -85,16 +88,12 @@
       - state: equipped-head-light
       head-vox:
       - state: equipped-head-light-vox
-      head-dog:
-      - state: equipped-head-light-dog
   - type: Clothing
     clothingVisuals:
       head:
       - state: equipped-head
       head-vox:
       - state: equipped-head-vox
-      head-dog:
-      - state: equipped-head-dog
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
@@ -110,3 +109,5 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - HelmetEVA
+    - WhitelistChameleon

@@ -27,6 +27,7 @@ using System.Linq;
 using Content.Shared.Store.Components;
 using Content.Server.Starlight.Antags.Abductor;
 using Prometheus; // Starlight
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -424,8 +425,6 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     {
         ent.Comp.WinType = type;
 
-        NukeopsCount.WithLabels(type.ToString()).Inc(); // Starlight
-
         if (endRound && (type == WinType.CrewMajor || type == WinType.OpsMajor))
             _roundEndSystem.EndRound();
     }
@@ -494,7 +493,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
         SetWinType(ent, WinType.CrewMajor, false);
 
-        if (nukeops.RoundEndBehavior == RoundEndBehavior.Nothing) // It's still worth checking if operatives have all died, even if the round-end behaviour is nothing. 
+        if (nukeops.RoundEndBehavior == RoundEndBehavior.Nothing) // It's still worth checking if operatives have all died, even if the round-end behaviour is nothing.
             return; // Shouldn't actually try to end the round in the case of nothing though.
 
         _roundEndSystem.DoRoundEndBehavior(nukeops.RoundEndBehavior,

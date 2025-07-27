@@ -169,7 +169,7 @@
 #      map: ["enum.GunVisualLayers.Base"]
 #    - state: mag-1
 #      map: ["enum.GunVisualLayers.Mag"]
-#            
+#
 #- type: entity
 #  id: MagazinePistolHP
 #  name: pistol magazine (.35 auto HP)
@@ -183,7 +183,7 @@
 #      map: ["enum.GunVisualLayers.Base"]
 #    - state: mag-1
 #      map: ["enum.GunVisualLayers.Mag"]
-#            
+#
 #- type: entity
 #  id: MagazinePistolFMJ
 #  name: pistol magazine (.35 auto FMJ)
@@ -197,7 +197,7 @@
 #      map: ["enum.GunVisualLayers.Base"]
 #    - state: mag-1
 #      map: ["enum.GunVisualLayers.Mag"]
-#            
+#
 #- type: entity
 #  id: MagazinePistolAP
 #  name: pistol magazine (.35 auto AP)
@@ -316,7 +316,7 @@
 #      map: ["enum.GunVisualLayers.Base"]
 #    - state: mag-1
 #      map: ["enum.GunVisualLayers.Mag"]
-#      
+#
 #- type: entity
 #  id: MagazinePistolHighCapacityFMJ
 #  name: machine pistol magazine (.35 auto FMJ)
@@ -330,7 +330,7 @@
 #      map: ["enum.GunVisualLayers.Base"]
 #    - state: mag-1
 #      map: ["enum.GunVisualLayers.Mag"]
-#      
+#
 #- type: entity
 #  id: MagazinePistolHighCapacityAP
 #  name: machine pistol magazine (.35 auto AP)
@@ -459,7 +459,7 @@
 #      map: ["enum.GunVisualLayers.Base"]
 #    - state: mag-1
 #      map: ["enum.GunVisualLayers.Mag"]
-#      
+#
 #- type: entity
 #  id: MagazinePistolSubMachineGunFMJ
 #  name: SMG magazine (.35 auto FMJ)
@@ -479,7 +479,7 @@
 #      map: ["enum.GunVisualLayers.Base"]
 #    - state: mag-1
 #      map: ["enum.GunVisualLayers.Mag"]
-#      
+#
 #- type: entity
 #  id: MagazinePistolSubMachineGunAP
 #  name: SMG magazine (.35 auto AP)
@@ -529,7 +529,7 @@
 #      map: ["enum.GunVisualLayers.Base"]
 #    - state: mag-1
 #      map: ["enum.GunVisualLayers.Mag"]
-#      
+#
 #- type: entity
 #  id: MagazinePistolSubMachineGunIncendiary
 #  name: SMG magazine (.35 auto incendiary)

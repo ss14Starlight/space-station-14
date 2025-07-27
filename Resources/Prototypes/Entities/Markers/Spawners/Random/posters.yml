@@ -34,10 +34,11 @@
       - PosterContrabandFreeTonto
       - PosterContrabandAtmosiaDeclarationIndependence
       - PosterContrabandFunPolice
-      - PosterContrabandLustyExomorph
+      - PosterContrabandRealExomorph
       - PosterContrabandSyndicateRecruitment
       - PosterContrabandClown
       - PosterContrabandSmoke
+      - PosterContrabandGreyTide
       - PosterContrabandMissingGloves
       - PosterContrabandHackingGuide
       - PosterContrabandRIPBadger
@@ -64,7 +65,7 @@
       - PosterContrabandPunchShit
       - PosterContrabandTheGriffin
       - PosterContrabandFreeDrone
-      - PosterContrabandBustyBackdoorExoBabes6
+      - PosterContrabandRouny
       - PosterContrabandRobustSoftdrinks
       - PosterContrabandShamblersJuice
       - PosterContrabandPwrGame
@@ -91,16 +92,9 @@
       - PosterContrabandInterdyne
       - PosterContrabandWaffleCorp
       - PosterContrabandMissingSpacepen
-      - PosterContrabandYoutoolpia
-      - PosterContrabandDoCauseCancer
-      - PosterContrabandLnuGlorf
-      - PosterContrabandRobustVox
-      - PosterContrabandRobirdVox
-      - PosterContrabandForumPost
-      - PosterContrabandHaveYouSeenHimJohnToe
-      - PosterContrabandIlluminatePropaganda
-      - PosterContrabandHolyInsuls
-      - PosterContrabandFentsAndCo
+      - PosterContrabandExoAcid
+      - PosterContrabandExoRun
+      - PosterContrabandExoChomp
     chance: 1
 
 - type: entity
@@ -165,10 +159,9 @@
       - PosterLegitSafetyMothHardhat
       - PosterLegitSafetyMothSSD
       - PosterLegitOppenhopper
-      - PosterLegitCalendar
-      - PosterLegitCleanHands
-      - PosterLegitEyeChart
       - PosterLegitTyrone
+      - PosterLegitHelio
+      #region Starlight
       - PosterLegitSkillIssue
       - PosterLegitShoeless
       - PosterLegitDoNotCauseCancer
@@ -179,4 +172,5 @@
       - PosterLegitRipleyCertified
       - PosterLegitKillersClinic
       - PosterlegitLawPoster
+      #endregion Starlight
     chance: 1

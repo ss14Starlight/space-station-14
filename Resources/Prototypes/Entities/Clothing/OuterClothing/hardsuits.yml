@@ -22,8 +22,6 @@
     reduction: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.5
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -38,11 +36,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitAtmos
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
 
 #Engineering Hardsuit
 - type: entity
@@ -60,8 +53,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -77,11 +68,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineering
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
 
 #Spationaut Hardsuit
 - type: entity
@@ -97,8 +83,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.7
     lowPressureMultiplier: 1000
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -118,7 +102,6 @@
     - Hardsuit
     - WhitelistChameleon
     - HardsuitSpatio
-    - CorgiWearable
 
 #Salvage Hardsuit
 - type: entity
@@ -135,15 +118,13 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: Pierceable
-    level: Metal
+    damageCoefficient: 0.7
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.7
         Slash: 0.6
-        Piercing: 0.65
+        Piercing: 0.7
         Heat: 0.7
         Radiation: 0.3
         Caustic: 0.7
@@ -153,11 +134,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSalvage
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
 
 #Goliath Hardsuit
 - type: entity
@@ -193,18 +169,13 @@
   - type: Construction
     graph: HardsuitGoliath
     node: hardsuitGoliath
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
 
 #Maxim Hardsuit
 - type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ] #Starlight salvContra
+  parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
   id: ClothingOuterHardsuitMaxim
   name: salvager maxim hardsuit
-  description: Fire. Heat. These things forge great weapons, they also forge great salvagers.  Has built-in battery-powered energy barrier technology.
+  description: Fire. Heat. These things forge great weapons, they also forge great salvagers.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/maxim.rsi
@@ -216,8 +187,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -232,31 +201,7 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMaxim  
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-      toggleable-clothing: !type:ContainerSlot
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
-        whitelist:
-          tags:
-            - PowerCell
-            - PowerCellSmall
-  - type: EnergyDomeGenerator
-    damageEnergyDraw: 6
-    domePrototype: EnergyDomeSmallPink
-  - type: PowerCellDraw
-    enabled: false
-    drawRate: 8
-    useRate: 0
-  - type: UseDelay
-    delay: 10.0
+    clothingPrototype: ClothingHeadHelmetHardsuitMaxim
 
 #Security Hardsuit
 - type: entity
@@ -274,8 +219,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.4
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -284,7 +227,6 @@
         Piercing: 0.6
         Heat: 0.8
         Caustic: 0.7
-    staminaModifier: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
@@ -306,21 +248,15 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: ExplosionResistance
-    damageCoefficient: 0.4
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.6
-        Piercing: 0.6
-        Caustic: 0.7
-    staminaModifier: 0.7
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.80
-    sprintModifier: 0.80
+    walkModifier: 0.65
+    sprintModifier: 0.65
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
@@ -330,7 +266,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
   id: ClothingOuterHardsuitWarden
   name: warden's hardsuit
-  description: A specialized, heavy riot suit geared to combat low pressure environments.
+  description: A specialized riot suit geared to combat low pressure environments.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/security-warden.rsi
@@ -341,8 +277,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.4
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -351,7 +285,6 @@
         Piercing: 0.6
         Heat: 0.8
         Caustic: 0.7
-    staminaModifier: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
@@ -375,8 +308,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -386,18 +317,12 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.6
-    staminaModifier: 0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCap
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
 
 #Chief Engineer's Hardsuit
 - type: entity
@@ -417,8 +342,6 @@
     reduction: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.2
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -434,11 +357,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineeringWhite
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -454,8 +372,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -468,11 +384,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMedical
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
 
 #Research Director's Hardsuit
 - type: entity
@@ -488,8 +399,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
-  - type: Pierceable
-    level: Rock
   - type: Armor
     modifiers:
       coefficients:
@@ -536,8 +445,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -547,37 +454,12 @@
         Heat: 0.8
         Radiation: 0.5
         Caustic: 0.6
-    staminaModifier: 0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityRed
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-      toggleable-clothing: !type:ContainerSlot
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
-        whitelist:
-          tags:
-            - PowerCell
-            - PowerCellSmall
-  - type: EnergyDomeGenerator
-    damageEnergyDraw: 5
-    domePrototype: EnergyDomeSmallPink
-  - type: PowerCellDraw
-    enabled: false
-    drawRate: 6
-    useRate: 0
-  - type: UseDelay
-    delay: 10.0
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -595,9 +477,7 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.6
-  - type: Pierceable
-    level: Metal
+    damageCoefficient: 0.9
   - type: Armor
     modifiers:
       coefficients:
@@ -635,6 +515,8 @@
     damageCoefficient: 0.5
   - type: Pierceable
     level: Metal
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.75
   - type: Armor
     modifiers:
       coefficients:
@@ -644,8 +526,6 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
-    staminaModifier: 0.3
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -658,6 +538,9 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
+    - ScurretWearable
+  - type: StaticPrice
+    price: 5000
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -700,30 +583,25 @@
     reduction: 0.8
   - type: Pierceable
     level: Metal
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.6
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.70 #SL EDIT
-        Slash: 0.70 #SL EDIT
-        Piercing: 0.60 #SL EDIT
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
         Heat: 0.2
         Radiation: 0.01
         Caustic: 0.5
-    staminaModifier: 0.2
-    ingoreKnockdown: true
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -743,6 +621,8 @@
     damageCoefficient: 0.5
   - type: Pierceable
     level: Metal
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.6
   - type: Armor
     modifiers:
       coefficients:
@@ -752,11 +632,9 @@
         Heat: 0.5
         Radiation: 0.25
         Caustic: 0.4
-    staminaModifier: 0.1
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
@@ -772,10 +650,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
-    equipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    equipDelay: 3 #starlight
-    unequipDelay: 3 #starlight
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
@@ -783,6 +657,7 @@
     damageCoefficient: 0.3
   - type: Pierceable
     level: Rock
+  # - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
   - type: Armor
     modifiers:
       coefficients:
@@ -792,19 +667,10 @@
         Heat: 0.2
         Radiation: 0.2
         Caustic: 0.2
-    staminaModifier: 0.1
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.65
   - type: HeldSpeedModifier
-  - type: FootstepModifier #starlight
-    footstepSoundCollection:
-      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
-      params:
-        volume: -6
-        pitch: 0.7
-        variation: 0.025
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCybersun
   - type: Tag
@@ -828,8 +694,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
-  - type: Pierceable
-    level: Rock
   - type: Armor
     modifiers:
       coefficients:
@@ -845,11 +709,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWizard
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
 
 #Ling Space Suit
 - type: entity
@@ -867,8 +726,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.2
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -900,8 +757,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/pirateeva.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.7
-  - type: Pierceable
-    level: Wood
   - type: Armor
     modifiers:
       coefficients:
@@ -937,8 +792,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.6
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -968,19 +821,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
-  - type: ExplosionResistance #sl Change
-    damageCoefficient: 0.2 #sl Change
-  - type: Armor #sl Change
-    modifiers: #sl Change
-      coefficients: #sl Change
-        Blunt: 0.4 #sl Change
-        Slash: 0.4 #sl Change
-        Piercing: 0.3 #sl Change
-        Heat: 0.2 #sl Change
-        Radiation: 0.01 #sl Change
-        Caustic: 0.4 #sl Change
-    staminaModifier: 0.1
-    ingoreKnockdown: true
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
 
@@ -1030,7 +870,7 @@
 
 #ERT Security Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ] #sl Change
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ]
   id: ClothingOuterHardsuitERTSecurity
   name: ERT security's hardsuit
   description: A protective hardsuit worn by the security officers of an emergency response team.
@@ -1081,8 +921,8 @@
     damageCoefficient: 0.2
   - type: FireProtection
     reduction: 0.8
-  - type: Pierceable
-    level: Rock
+  - type: StaminaResistance
+    damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
   - type: Armor
     modifiers:
       coefficients:
@@ -1092,8 +932,6 @@
         Heat: 0.1
         Radiation: 0.1
         Caustic: 0.1
-    staminaModifier: 0.0
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1120,8 +958,6 @@
     coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.7
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -1133,7 +969,8 @@
         Shock: 0.1
         Radiation: 0.1
         Caustic: 0.1
-    staminaModifier: 0.2
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.25
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1158,8 +995,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: Pierceable
-    level: Wood
   - type: Armor
     modifiers:
       coefficients:
@@ -1167,8 +1002,6 @@
         Slash: 0.9
         Piercing: 0.9
         Caustic: 0.8
-    staminaModifier: 0.8
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -1212,8 +1045,6 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.85
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -1227,37 +1058,3 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSanta
-
-- type: entity
-  parent: [ ClothingOuterBaseLarge, AllowSuitStorageClothing ]
-  id: ChangelingClothingOuterHardsuit
-  name: organic space suit
-  description: A spaceworthy biomass of pressure and temperature resistant tissue.
-  suffix: Unremoveable
-  components:
-  - type: Sprite
-    sprite: Changeling/ling_spacesuit.rsi
-  - type: Clothing
-    sprite: Changeling/ling_spacesuit.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.225
-    lowPressureMultiplier: 1000
-  - type: TemperatureProtection
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.01
-  - type: ExplosionResistance
-    damageCoefficient: 0.2
-  - type: Pierceable
-    level: Flesh
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 1
-        Heat: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
-  - type: Unremoveable

@@ -88,28 +88,12 @@ public sealed partial class TestPair : IAsyncDisposable
 
     private async Task ResetModifiedPreferences()
     {
-        if (Player == null)
-            return;
-        await Server.WaitIdleAsync();
         var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
-
-        var prefs = prefMan.GetPreferences(Player.UserId);
-
-        foreach(var slot in prefs.Characters.Keys)
+        foreach (var user in _modifiedProfiles)
         {
-            if (slot == 0)
-                continue;
-            await Server.WaitPost(() =>
-            {
-                prefMan.DeleteProfile(Player.UserId, slot).Wait();
-            });
+            await Server.WaitPost(() => prefMan.SetProfile(user, 0, new HumanoidCharacterProfile()).Wait());
         }
-
-        await Server.WaitPost(() =>
-        {
-            prefMan.SetProfile(Player.UserId, 0, new HumanoidCharacterProfile().AsEnabled()).Wait();
-            prefMan.SetJobPriorities(Player.UserId, new () { { SharedGameTicker.FallbackOverflowJob, JobPriority.High } }).Wait();
-        });
+        _modifiedProfiles.Clear();
     }
 
     public async ValueTask CleanReturnAsync()
@@ -129,6 +113,7 @@ public sealed partial class TestPair : IAsyncDisposable
             throw;
         }
         State = PairState.Ready;
+        DebugTools.Assert(State is PairState.Dead or PairState.Ready);
         PoolManager.NoCheckReturn(this);
         ClearContext();
     }

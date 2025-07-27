@@ -32,6 +32,11 @@ lathe-category-steel = Steel
 lathe-category-white = White
 lathe-category-wood = Wood
 
+# Science
+lathe-category-mechs = Mechs
+lathe-category-modules = Modules
+lathe-category-robotics = Robotics
+
 # Security TechFab
 lathe-category-ammo = Ammo
 lathe-category-boxes = Boxes
@@ -45,17 +50,3 @@ lathe-category-command = Command
 lathe-category-hats = Hats
 lathe-category-jumpsuits = Jumpsuits
 lathe-category-neck = Neck
-
-# Mechs
-lathe-category-mechs = Mechs
-lathe-category-mechs-vim = Vim
-lathe-category-mechs-honker = H.O.N.K.
-lathe-category-mechs-hamptr = H.A.M.P.T.R.
-lathe-category-mechs-ripley = Ripley
-lathe-category-mechs-ripleymkii = Ripley MK-II
-lathe-category-mechs-paddy = Paddy
-lathe-category-mechs-clarke = Clarke
-lathe-category-mechs-gygax = Gygax
-lathe-category-mechs-durand = Durand
-lathe-category-mechs-equipment = Mech equipment
-lathe-category-mechs-weapons = Mech weapons

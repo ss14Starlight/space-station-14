@@ -368,9 +368,8 @@
         - !type:OrganType
           type: Slime
           shouldHave: false
-        key: ForcedSleep
-        component: ForcedSleeping
-        time: 12 # Starlight change
+        effectProto: StatusEffectForcedSleeping
+        time: 12 #Starlight eepy
         type: Add
       - !type:HealthChange
         conditions:

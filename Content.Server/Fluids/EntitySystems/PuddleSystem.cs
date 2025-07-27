@@ -59,6 +59,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private readonly SpeedModifierContactsSystem _speedModContacts = default!;
     [Dependency] private readonly TileFrictionController _tile = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     [ValidatePrototypeId<ReagentPrototype>]
     private const string Blood = "Blood";
@@ -68,12 +69,10 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
     [ValidatePrototypeId<ReagentPrototype>]
     private const string CopperBlood = "CopperBlood";
-    
+
     [ValidatePrototypeId<ReagentPrototype>]
     private const string BloodChangeling = "BloodChangeling";
 
-
-    private static string[] _standoutReagents = [Blood, Slime, CopperBlood, BloodChangeling];
 
     // Using local deletion queue instead of the standard queue so that we can easily "undelete" if a puddle
     // loses & then gains reagents in a single tick.
@@ -343,50 +342,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         UpdateSlip((entity, entity.Comp), args.Solution);
         UpdateSlow(entity, args.Solution);
         UpdateEvaporation(entity, args.Solution);
-        UpdateAppearance(entity, entity.Comp);
-    }
-
-    private void UpdateAppearance(EntityUid uid, PuddleComponent? puddleComponent = null,
-        AppearanceComponent? appearance = null)
-    {
-        if (!Resolve(uid, ref puddleComponent, ref appearance, false))
-        {
-            return;
-        }
-
-        var volume = FixedPoint2.Zero;
-        Color color = Color.White;
-
-        if (_solutionContainerSystem.ResolveSolution(uid, puddleComponent.SolutionName, ref puddleComponent.Solution,
-                out var solution))
-        {
-            volume = solution.Volume / puddleComponent.OverflowVolume;
-
-            //starlight edit, just make all solutions semi-transparent
-            color = solution.GetColor(_prototypeManager);
-            color = color.WithAlpha(0.85f);
-
-            // Make blood stand out more
-            // Kinda EH
-            // Could potentially do alpha per-solution but future problem.
-
-            /* color = solution.GetColorWithout(_prototypeManager, _standoutReagents);
-            color = color.WithAlpha(0.7f);
-
-            foreach (var standout in _standoutReagents)
-            {
-                var quantity = solution.GetTotalPrototypeQuantity(standout);
-                if (quantity <= FixedPoint2.Zero)
-                    continue;
-
-                var interpolateValue = quantity.Float() / solution.Volume.Float();
-                color = Color.InterpolateBetween(color,
-                    _prototypeManager.Index<ReagentPrototype>(standout).SubstanceColor, interpolateValue);
-            } */
-        }
-
-        _appearance.SetData(uid, PuddleVisuals.CurrentVolume, volume.Float(), appearance);
-        _appearance.SetData(uid, PuddleVisuals.SolutionColor, color, appearance);
     }
 
     private void UpdateSlip(Entity<PuddleComponent> entity, Solution solution)
@@ -396,8 +351,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         // Ensure we actually have the component
         EnsureComp<TileFrictionModifierComponent>(entity);
-
-        EnsureComp<SlipperyComponent>(entity, out var slipComp);
 
         // This is the base amount of reagent needed before a puddle can be considered slippery. Is defined based on
         // the sprite threshold for a puddle larger than 5 pixels.
@@ -417,21 +370,17 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         var launchMult = FixedPoint2.Zero;
         // A cumulative weighted amount of stun times from slippery reagents
         var stunTimer = TimeSpan.Zero;
-        // A cumulative weighted amount of knockdown times from slippery reagents
-        var knockdownTimer = TimeSpan.Zero;
 
         // Check if the puddle is big enough to slip in to avoid doing unnecessary logic
         if (solution.Volume <= smallPuddleThreshold)
         {
             _stepTrigger.SetActive(entity, false, comp);
             _tile.SetModifier(entity, 1f);
-            slipComp.SlipData.SlipFriction = 1f;
-            slipComp.AffectsSliding = false;
-            Dirty(entity, slipComp);
             return;
         }
 
-        slipComp.AffectsSliding = true;
+        if (!TryComp<SlipperyComponent>(entity, out var slipComp))
+            return;
 
         foreach (var (reagent, quantity) in solution.Contents)
         {
@@ -451,8 +400,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             // Aggregate launch speed based on quantity
             launchMult += reagentProto.SlipData.LaunchForwardsMultiplier * quantity;
             // Aggregate stun times based on quantity
-            stunTimer += reagentProto.SlipData.StunTime * (float)quantity;
-            knockdownTimer += reagentProto.SlipData.KnockdownTime * (float)quantity;
+            stunTimer += reagentProto.SlipData.ParalyzeTime * (float)quantity;
 
             if (reagentProto.SlipData.SuperSlippery)
                 superSlipperyUnits += quantity;
@@ -470,6 +418,8 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         // A puddle with 10 units of lube vs a puddle with 10 of lube and 20 catchup should stun and launch forward the same amount.
         if (slipperyUnits > 0)
         {
+            slipComp.SlipData.LaunchForwardsMultiplier = (float)(launchMult / slipperyUnits);
+            slipComp.SlipData.ParalyzeTime = stunTimer / (float)slipperyUnits;
             slipComp.SlipData.LaunchForwardsMultiplier = (float)(launchMult/slipperyUnits);
             slipComp.SlipData.StunTime = (stunTimer/(float)slipperyUnits);
             slipComp.SlipData.KnockdownTime = (knockdownTimer/(float)slipperyUnits);

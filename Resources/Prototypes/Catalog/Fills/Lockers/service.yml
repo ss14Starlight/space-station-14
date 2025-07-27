@@ -78,7 +78,8 @@
         amount: 2
       - id: Plunger
         amount: 2
-      - id: MoproachBox
+      - id: MoproachBox #Starlight
+      - id: WireBrush
 
 - type: entity
   id: ClosetLegalFilled

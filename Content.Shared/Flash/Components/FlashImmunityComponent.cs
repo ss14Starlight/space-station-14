@@ -6,16 +6,19 @@ namespace Content.Shared.Flash.Components;
 ///     Makes the entity immune to being flashed.
 ///     When given to clothes in the "head", "eyes" or "mask" slot it protects the wearer.
 /// </summary>
-[RegisterComponent, Access(typeof(SharedFlashSystem)), NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[Access(typeof(SharedFlashSystem))]
 public sealed partial class FlashImmunityComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("enabled")]
-    public bool Enabled { get; set; } = true;
+    /// <summary>
+    /// Is this component currently enabled?
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Enabled = true;
 
     //starlight
     /// <summary>
-    /// If true, will affect night vision, thermal vision, and cyclorite vision.
+    /// If true, will affect night vision, thermal vision and cyclorite vision
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]

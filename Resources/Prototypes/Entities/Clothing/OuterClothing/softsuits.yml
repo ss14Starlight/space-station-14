@@ -13,8 +13,8 @@
     tags:
     - SuitEVA
     - MonkeyWearable
-    - WhitelistChameleon
     - CorgiWearable
+    - WhitelistChameleon
 
 #Syndicate EVA
 - type: entity
@@ -60,6 +60,8 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - ScurretWearable
+    - MonkeyWearable
     - SuitEVA
     - WhitelistChameleon
 
@@ -120,8 +122,6 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -160,7 +160,3 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon

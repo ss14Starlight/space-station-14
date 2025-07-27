@@ -101,6 +101,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
         var actorUid = Transform(uid).ParentUid;
+
+        if (actorUid.IsValid())
+        {
+            var relayEvent = new HeadsetRadioReceiveRelayEvent(args);
+            RaiseLocalEvent(parent, ref relayEvent);
+        }
+
         if (!TryComp(Transform(uid).ParentUid, out ActorComponent? actor)) return;
         _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
         if (actorUid != args.MessageSource && TryComp(args.MessageSource, out TextToSpeechComponent? _))

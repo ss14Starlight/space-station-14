@@ -102,7 +102,7 @@
     id: VisitorPDA
     belt: WeaponDisabler
     back: ClothingBackpackDebug
-    ears: ClothingHeadsetHoP
+    ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterWinterHoP
     pocket1: WeaponDisabler
 
@@ -116,7 +116,7 @@
     id: VisitorPDA
     belt: WeaponDisabler
     back: ClothingBackpackSatchelLeather
-    ears: ClothingHeadsetHoP
+    ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterWinterHoP
     pocket1: WeaponDisabler
 
@@ -228,7 +228,7 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasic
     pocket1: WeaponPistolMk58
-    pocket2: MagazinePistolRubber
+    pocket2: MagazinePistol
   inhand:
   - FlashlightSeclite
 
@@ -246,7 +246,7 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasicSlim
     pocket1: WeaponPistolMk58
-    pocket2: MagazinePistolRubber
+    pocket2: MagazinePistol
   inhand:
   - FlashlightSeclite
 
@@ -263,7 +263,7 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasic
     pocket1: WeaponPistolMk58
-    pocket2: MagazinePistolRubber
+    pocket2: MagazinePistol
   inhand:
   - FlashlightSeclite
 
@@ -282,7 +282,7 @@
     outerClothing: ClothingOuterArmorBasicSlim
     pocket1: WeaponPistolMk58
     pocket2: MagazinePistolRubber
-  inhand: 
+  inhand:
   - FlashlightSeclite
 
 - type: startingGear
@@ -351,7 +351,7 @@
     id: VisitorPDA
     belt: ClothingBeltSecurityFilled
     back: ClothingBackpackSatchelSecurity
-    ears: ClothingHeadsetSecurityWarden
+    ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterWinterWarden
     pocket1: WeaponDisabler
@@ -859,7 +859,7 @@
     eyes: ClothingEyesHudMedical
     pocket1: RegenerativeMesh
     pocket2: PillCanisterBicaridine
-  inhand: 
+  inhand:
   - ScalpelAdvanced
   - MedicatedSuture
 
@@ -1888,7 +1888,7 @@
     id: VisitorPDA
     back: ClothingBackpackMerc
     belt: ClothingBeltMercWebbing
-    ears: ClothingHeadsetAssistant
+    ears: ClothingHeadsetGrey
     outerClothing: ClothingOuterVestWebMerc
     pocket1: WeaponLaserSvalinn
     pocket2: RadioHandheld
@@ -1900,6 +1900,4 @@
     shoes: ClothingShoesBootsSalvage
     head: ClothingHeadHatGreyFlatcap
     id: VisitorPDA
-    back: ClothingBackpackSatchelLeather
-    pocket1: HydroponicsToolHatchet
-    pocket2: WheatBushel
+    back: ClothingBackpack

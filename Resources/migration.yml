@@ -20,7 +20,7 @@ ClothingOuterVestKevlar: ClothingOuterArmorBasic
 Intercom: IntercomCommon
 
 # 2023-07-12
-ToyFigurinePassenger: ToyFigurineAssistant
+ToyAssistant: ToyFigurinePassenger
 
 # 2023-07-20
 ForensicGloves: ClothingHandsGlovesForensic
@@ -39,26 +39,26 @@ BoxMagazinePistolCaselessRifleHighVelocity: BoxMagazinePistolCaselessRifle
 BoxMagazinePistolHighCapacityHighVelocity: BoxMagazinePistolHighCapacity
 BoxMagazinePistolHighVelocity: BoxMagazinePistol
 BoxMagazinePistolSubMachineGunHighVelocity: BoxMagazinePistolSubMachineGun
-BoxMagazineRifleHighVelocity: BoxMagazineRifleSP
+BoxMagazineRifleHighVelocity: BoxMagazineRifle
 BulletCaselessRifleHighVelocity: BulletCaselessRifle
 BulletLightRifleHighVelocity: BulletLightRifle
 BulletMagnumHighVelocity: BulletMagnum
 BulletPistolHighVelocity: BulletPistol
 BulletRifleHighVelocity: BulletRifle
 CartridgeCaselessRifleHighVelocity: CartridgeCaselessRifle
-CartridgeLightRifleHighVelocity: CartridgeLightRifleFMJ
-CartridgeMagnumHighVelocity: CartridgeMagnumFMJ
-CartridgePistolHighVelocity: CartridgePistolFMJ
-CartridgeRifleHighVelocity: CartridgeRifleFMJ
+CartridgeLightRifleHighVelocity: CartridgeLightRifle
+CartridgeMagnumHighVelocity: CartridgeMagnum
+CartridgePistolHighVelocity: CartridgePistol
+CartridgeRifleHighVelocity: CartridgeRifle
 MagazineBoxCaselessRifleHighVelocity: MagazineBoxCaselessRifle
-MagazineBoxLightRifleHighVelocity: MagazineBoxLightRifleFMJ
-MagazineBoxMagnumHighVelocity: MagazineBoxMagnumSP
-MagazineBoxPistolHighVelocity: MagazineBoxPistolFMJ
-MagazineBoxRifleHighVelocity: MagazineBoxRifleFMJ
+MagazineBoxLightRifleHighVelocity: MagazineBoxLightRifle
+MagazineBoxMagnumHighVelocity: MagazineBoxMagnum
+MagazineBoxPistolHighVelocity: MagazineBoxPistol
+MagazineBoxRifleHighVelocity: MagazineBoxRifle
 MagazineCaselessRifleHighVelocity: MagazineCaselessRifle
-MagazineCaselessRifleShortHighVelocity: MagazineCaselessRifleShort
+MagazineCaselessRifleShortHighVelocity: null
 MagazineLightRifleHighVelocity: MagazineLightRifleFMJ
-MagazineMagnumSubMachineGunHighVelocity: MagazineMagnumSubMachineGun
+MagazineMagnumSubMachineGunHighVelocity: null
 MagazinePistolCaselessRifleHighVelocity: MagazinePistolCaselessRifle
 MagazinePistolHighCapacityHighVelocity: MagazinePistolHighCapacityFMJ
 MagazinePistolHighVelocity: MagazinePistolFMJ
@@ -122,7 +122,7 @@ WarpPointBeaconService: null
 
 # 2023-12-30
 ClothingEyesGlassesCosmeticSunglasses: ClothingEyesGlassesSunglasses
-SpawnPointPassenger: SpawnPointAssistant
+SpawnPointAssistant: SpawnPointPassenger
 
 # 2024-01-05
 DrinkGoldschlagerBottleFull: DrinkGildlagerBottleFull
@@ -301,8 +301,10 @@ MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP
 MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
 MagazineMagnumRubber: MagazineMagnum
 MagazineMagnumSubMachineGunRubber: MagazineMagnumSubMachineGun
+MagazineLightRifleRubber: MagazineLightRifle
+MagazineRifleRubber: MagazineRifle
 MagazineCaselessRifleRubber: MagazineCaselessRifle
-MagazineCaselessRifleShortRubber: MagazineCaselessRifleShort
+MagazineCaselessRifleShortRubber: null
 SpeedLoaderPistolRubber: SpeedLoaderPistol
 # RIP box of magnum rubbers 202X to 2024
 MagazineBoxMagnumRubber: MagazineBoxMagnumSP
@@ -314,7 +316,7 @@ BoxMagazinePistolHighCapacityRubber: BoxMagazinePistolHighCapacity
 BoxMagazinePistolSubMachineGunRubber: BoxMagazinePistolSubMachineGun
 BoxMagazineLightRifleRubber: BoxMagazineLightRifle
 BoxMagazineCaselessRifleRubber: BoxMagazinePistolCaselessRifle
-BoxMagazineMagnumSubMachineGunRubber: BoxMagazineMagnumSubMachineGun
+BoxMagazineMagnumSubMachineGunRubber: null
 WeaponPistolMk58Nonlethal: WeaponPistolMk58
 WeaponPistolN1984Nonlethal: WeaponPistolN1984
 WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunDrozd
@@ -639,8 +641,29 @@ ClothingNeckCloakMiner: null
 MatterBinStockPart: MicroManipulatorStockPart
 CapacitorStockPart: MicroManipulatorStockPart
 
+# 2025-05-26 Turrets
+WeaponEnergyTurretStation: WeaponEnergyTurretSecurity
+WeaponEnergyTurretStationControlPanel: WeaponEnergyTurretSecurityControlPanel
+WeaponEnergyTurretStationMachineCircuitboard: WeaponEnergyTurretSecurityMachineCircuitboard
+
 # 2025-05-30
 SpawnHonkBot: SpawnMobHonkBot
+
+# 2025-06-06
+MagazineLightRifleMaxim: null
+MagazineLightRiflePkBox: null
+MagazineCaselessRifle10x24: null
+BaseMagazineCaselessRifleShort: null
+MagazineCaselessRifleShort: null
+MagazineCaselessRifleShortPractice: null
+BaseMagazineMagnumSubMachineGun: null
+MagazineMagnumSubMachineGunEmpty: null
+MagazineMagnumSubMachineGun: null
+MagazineMagnumSubMachineGunPractice: null
+MagazineMagnumSubMachineGunUranium: null
+MagazineMagnumSubMachineGunPiercing: null
+BoxMagazineMagnumSubMachineGun: null
+BoxMagazineMagnumSubMachineGunPractice: null
 
 # 2025-06-09
 BarSignAlignTile: BarSign
@@ -669,3 +692,6 @@ BarSignEmprahAlignTile: BarSignEmprah
 BarSignSpacebucksAlignTile: BarSignSpacebucks
 BarSignMaltroachAlignTile: BarSignMaltroach
 BarSignWhiskeyEchoesAlignTile: BarSignWhiskeyEchoes
+
+# 2025-06-21
+ClothingNeckHeadphones: ClothingMultipleHeadphones

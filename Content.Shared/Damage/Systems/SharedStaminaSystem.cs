@@ -8,9 +8,6 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Database;
 using Content.Shared.Effects;
 using Content.Shared.FixedPoint;
-using Content.Shared.Inventory;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Rounding;
@@ -227,7 +224,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
     /// <summary>
     /// Tries to take stamina damage without raising the entity over the crit threshold.
     /// </summary>
-    public bool TryTakeStamina(EntityUid uid, float value, StaminaComponent? component = null, EntityUid? source = null, EntityUid? with = null, bool visual = false)
+    public bool TryTakeStamina(EntityUid uid, float value, StaminaComponent? component = null, EntityUid? source = null, EntityUid? with = null)
     {
         // Something that has no Stamina component automatically passes stamina checks
         if (!Resolve(uid, ref component, false))
@@ -235,10 +232,10 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
         var oldStam = component.StaminaDamage;
 
-        if (oldStam + value >= component.CritThreshold || component.Critical)
+        if (oldStam + value > component.CritThreshold || component.Critical)
             return false;
 
-        TakeStaminaDamage(uid, value, component, source, with, visual: visual);
+        TakeStaminaDamage(uid, value, component, source, with, visual: false);
         return true;
     }
 
@@ -264,12 +261,9 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         // Have we already reached the point of max stamina damage?
         if (component.Critical)
             return;
-        
-        var staminaModifyEvent = new StaminaModifyEvent(value);
-        RaiseLocalEvent(uid, staminaModifyEvent);
 
         var oldDamage = component.StaminaDamage;
-        component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + (value * staminaModifyEvent.Modifier));
+        component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + value);
 
         // Reset the decay cooldown upon taking damage.
         if (oldDamage < component.StaminaDamage)
@@ -383,7 +377,8 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         component.Critical = true;
         component.StaminaDamage = component.CritThreshold;
 
-        _stunSystem.TryParalyze(uid, component.StunTime, true, force: true);
+        if (StunSystem.TryParalyze(uid, component.StunTime, true))
+            StunSystem.TrySeeingStars(uid);
 
         // Give them buffer before being able to be re-stunned
         component.NextUpdate = _timing.CurTime + component.StunTime + StamCritBufferTime;
@@ -434,19 +429,5 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         }
 
         _stunSystem.UpdateStunModifiers(ent, ent.Comp.StunModifierThresholds[closest]);
-    }
-}
-
-public sealed class StaminaModifyEvent: EntityEventArgs, IInventoryRelayEvent
-{
-    public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
-    
-    public float Damage;
-    public float Modifier;
-    
-    public StaminaModifyEvent(float damage, float modifier = 1.0f)
-    {
-        Damage = damage;
-        Modifier = modifier;
     }
 }

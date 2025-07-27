@@ -34,6 +34,9 @@ public abstract partial class SharedHandsSystem
         InitializePickup();
         InitializeRelay();
         InitializeEventListeners();
+
+        SubscribeLocalEvent<HandsComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<HandsComponent, MapInitEvent>(OnMapInit);
     }
 
     public override void Shutdown()
@@ -138,6 +141,9 @@ public abstract partial class SharedHandsSystem
         return false;
     }
 
+    /// <summary>
+    /// Attempts to retrieve the item held in the entity's active hand.
+    /// </summary>
     /// <summary>
     ///     Does this entity have any empty hands, and how many?
     /// </summary>

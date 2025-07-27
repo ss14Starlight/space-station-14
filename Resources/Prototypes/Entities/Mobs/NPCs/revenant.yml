@@ -6,7 +6,9 @@
   name: revenant
   description: A spooky ghostie.
   components:
-  - type: ThermalVision
+  - type: Emag
+    emagType: All
+  - type: ThermalVision #Starlight
   - type: Input
     context: "ghost"
   - type: Spectral

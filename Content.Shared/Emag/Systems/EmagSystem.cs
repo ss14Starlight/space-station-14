@@ -68,7 +68,9 @@ public sealed class EmagSystem : EntitySystem
             return false;
         }
 
-        var emaggedEvent = new GotEmaggedEvent(user, ent.Comp.EmagType, DestroyTransponder: ent.Comp.DestroyTransponder); // Starlight
+        var typeToUse = customEmagType ?? ent.Comp.EmagType;
+
+        var emaggedEvent = new GotEmaggedEvent(user, typeToUse, DestroyTransponder: ent.Comp.DestroyTransponder);
         RaiseLocalEvent(target, ref emaggedEvent);
 
         if (!emaggedEvent.Handled)

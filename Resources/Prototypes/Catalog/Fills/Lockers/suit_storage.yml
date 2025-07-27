@@ -121,14 +121,21 @@
   parent: SuitStorageBase
   suffix: Security
   components:
-  - type: StorageFill
-    contents:
-        - id: OxygenTankFilled
-        - id: ClothingOuterHardsuitSecurity
-        - id: ClothingMaskBreath
-        - id: ClothingShoesBootsMagSec
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageSecurity
   - type: AccessReader
     access: [["Security"]]
+
+- type: entityTable
+  id: FillSuitStorageSecurity
+  table: !type:AllSelector
+    children:
+    - id: OxygenTankFilled
+    - id: ClothingOuterHardsuitSecurity
+    - id: ClothingMaskBreath
+    - id: ClothingShoesBootsMagSec
 
 #CE's hardsuit
 - type: entity
@@ -188,12 +195,10 @@
   parent: SuitStorageBase
   suffix: Warden
   components:
-  - type: StorageFill
-    contents:
-        - id: OxygenTankFilled
-        - id: ClothingOuterHardsuitWarden
-        - id: ClothingMaskBreath
-        - id: ClothingShoesBootsMagSec
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerWardenHarduit
   - type: AccessReader
     access: [["Armory"]]
 

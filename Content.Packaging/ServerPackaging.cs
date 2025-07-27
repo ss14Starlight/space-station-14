@@ -47,8 +47,9 @@ public static class ServerPackaging
         // Python script had Npgsql. though we want Npgsql.dll as well soooo
         "Npgsql",
         "Microsoft",
-        "NAudio",
-        "OggVorbisEncoder",
+        "NetCord",
+        "NAudio", //Starlight
+        "OggVorbisEncoder", //Starlight
         "Microsoft.Orleans", // Starlight
         "Orleans", // Starlight
         "Starlight", // Starlight
@@ -56,13 +57,11 @@ public static class ServerPackaging
         "System", // Starlight
         "Newtonsoft", // Starlight
         "Pipelines", // Starlight
-        "Discord",
     };
 
     private static readonly List<string> ServerNotExtraAssemblies = new()
     {
         "Microsoft.CodeAnalysis",
-        "System.Diagnostics.EventLog.Messages",   // Starlight
     };
 
     private static readonly HashSet<string> BinSkipFolders = new()
@@ -205,7 +204,6 @@ public static class ServerPackaging
                 contentAssemblies.Add(fileName);
             }
         }
-        pass.InjectFileFromDisk("build.json", Path.Combine(contentDir, "Content.Server", "build.json"));
 
         await RobustSharedPackaging.DoResourceCopy(
             Path.Combine("RobustToolbox", "bin", "Server",

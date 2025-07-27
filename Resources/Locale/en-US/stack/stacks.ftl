@@ -95,14 +95,13 @@ stack-rolling-paper = rolling {$amount ->
 }
 
 stack-fulton = fulton
-stack-speso = speso
+stack-credit = speso
 stack-plasma = plasma
 stack-biomass = biomass
 stack-pyrotton = pyrotton
 stack-sharkminnow-tooth = sharkminnow tooth
 stack-goliath-hide = goliath hide
 stack-telecrystal = telecrystal
-stack-telebond = telebond
 stack-gold-ore = gold ore
 stack-rough-diamond = rough diamond
 stack-iron-ore = iron ore
@@ -118,6 +117,7 @@ stack-inflatable-door = inflatable door
 stack-ointment = ointment
 stack-aloe-cream = aloe cream
 stack-gauze = gauze
+stack-brutepack = brutepack
 stack-bloodpack = bloodpack
 stack-medicated-suture = medicated-suture
 stack-regenerative-mesh = regenerative-mesh
@@ -232,57 +232,3 @@ stack-astro-snow-floor = astro-snow floor
 stack-large-wood-floor = large wood floor
 stack-red-circuit-floor = red-circuit floor
 stack-asteroid-astro-sand-floor = asteroid astro-sand floor
-
-
-stack-brutepack = {$amount ->
-    [1] brutepack
-    *[other] brutepacks
-}
-stack-blueointment = {$amount ->
-    [1] blueointment
-    *[other] blueointments
-}
-stack-redointment = {$amount ->
-    [1] redointment
-    *[other] redointments
-}
-stack-redbrutepack = {$amount ->
-    [1] redbrutepack
-    *[other] redbrutepacks
-}
-stack-redpunctpack = {$amount ->
-    [1] redpunctpack
-    *[other] redpunctpacks
-}
-stack-redlacepack = {$amount ->
-    [1] redlacepack
-    *[other] redlacepacks
-}
-stack-redbruizpack = {$amount ->
-    [1] redbruizpack
-    *[other] redbruizpacks
-}
-
-stack-credit = {$amount ->
-    [1] credit
-    *[other] credits
-}
-stack-ticket = {$amount ->
-    [1] ticket
-    *[other] tickets
-}
-
-
-stack-wizcoin = {$amount ->
-    [1] wizcoin
-    *[other] wizcoins
-}
-
-stack-abyssium-ore = {$amount ->
-    [1] abyssium ore
-    *[other] abyssium ores
-}
-stack-abyssium-bar = {$amount ->
-    [1] abyssium bar
-    *[other] abyssium bars
-}
