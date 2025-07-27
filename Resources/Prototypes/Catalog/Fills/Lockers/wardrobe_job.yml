@@ -164,6 +164,18 @@
       entity_storage: !type:NestedSelector
         tableId: FillWardrobeCargo
 
+- type: entityTable
+  id: FillWardrobeCargo
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadHatCargosoft
+    - id: ClothingUniformJumpsuitCargo
+    - id: ClothingBackpack
+    - id: ClothingShoesColorBlack
+    - id: ClothingUniformJumpskirtCargo
+    - id: ClothingHandsGlovesFingerless
+    - id: AppraisalTool
+
 - type: entity
   id: WardrobeSalvageFilled
   suffix: Filled
@@ -176,6 +188,7 @@
         amount: 2
       - id: ClothingUniformJumpsuitSalvageSpecialist
         amount: 2
+
 - type: entity
   id: WardrobeAtmosphericsFilled
   suffix: Filled

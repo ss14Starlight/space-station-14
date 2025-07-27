@@ -18,7 +18,6 @@
     - type: DisarmMalus
       malus: 0.6
     - type: Execution
-      doAfterDuration: 4.0
   - type: ItemToggleHot
   - type: ItemToggleSize
     activatedSize: Huge
@@ -139,7 +138,6 @@
     - type: DisarmMalus
       malus: 0.4
     - type: Execution
-      doAfterDuration: 4.0
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_dagger_loud.rsi
     layers:
@@ -203,7 +201,6 @@
     - type: DisarmMalus
       malus: 0.4
     - type: Execution
-      doAfterDuration: 4.0
     - type: Contraband
       severity: Syndicate
   - type: Sprite
@@ -316,7 +313,6 @@
     - type: DisarmMalus
       malus: 0.7
     - type: Execution
-      doAfterDuration: 4.0
   - type: Wieldable
     wieldSound: null # esword light sound instead
   - type: MeleeWeapon

@@ -33,3 +33,16 @@
   components:
   - type: Paper
     content: book-text-moproach
+
+- type: entity
+  parent: MobMoproach
+  id: MobMoproachHat
+  suffix: hat
+  components:
+  - type: Loadout
+    prototypes: [ MoproachGear ]
+
+- type: startingGear
+  id: MoproachGear
+  equipment:
+    head: ClothingHeadHatPurplesoft

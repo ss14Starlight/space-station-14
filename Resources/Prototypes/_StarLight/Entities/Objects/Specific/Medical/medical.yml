@@ -151,7 +151,7 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: DatasetVocalizer
-    pack: MedibotAds
+    dataset: MedibotAds
   - type: Inventory
     templateId: medibot
 

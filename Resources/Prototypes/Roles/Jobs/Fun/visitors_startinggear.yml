@@ -228,7 +228,7 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasic
     pocket1: WeaponPistolMk58
-    pocket2: MagazinePistol
+    pocket2: MagazinePistolSP
   inhand:
   - FlashlightSeclite
 
@@ -246,7 +246,7 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasicSlim
     pocket1: WeaponPistolMk58
-    pocket2: MagazinePistol
+    pocket2: MagazinePistolSP
   inhand:
   - FlashlightSeclite
 
@@ -263,7 +263,7 @@
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasic
     pocket1: WeaponPistolMk58
-    pocket2: MagazinePistol
+    pocket2: MagazinePistolSP
   inhand:
   - FlashlightSeclite
 
@@ -1888,7 +1888,7 @@
     id: VisitorPDA
     back: ClothingBackpackMerc
     belt: ClothingBeltMercWebbing
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetAssistant
     outerClothing: ClothingOuterVestWebMerc
     pocket1: WeaponLaserSvalinn
     pocket2: RadioHandheld

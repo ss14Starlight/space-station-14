@@ -41,13 +41,13 @@
   id: JobPassenger
   groups:
   - GroupTankHarness
-  - PassengerJumpsuit
+  - AssistantJumpsuit
   - CommonBackpack
-  - PassengerNeck
-  - PassengerFace
-  - PassengerGloves
-  - PassengerOuterClothing
-  - PassengerShoes
+  - AssistantNeck
+  - AssistantFace
+  - AssistantGloves
+  - AssistantOuterClothing
+  - AssistantShoes
   - Glasses
   - Survival
   - Trinkets

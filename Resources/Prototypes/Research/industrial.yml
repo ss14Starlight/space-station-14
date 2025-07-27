@@ -107,7 +107,7 @@
   name: research-technology-ripley-aplu
   icon:
     sprite: Objects/Specific/Mech/mecha.rsi
-    state: ripley
+    state: hauler-open
   discipline: Industrial
   tier: 1
   cost: 7500
