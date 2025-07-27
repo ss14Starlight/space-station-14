@@ -1,4 +1,5 @@
 using Content.Server.Administration.UI;
+using Content.Server.Clothing.Systems;
 using Content.Server.EUI;
 using Content.Server.Hands.Systems;
 using Content.Shared.Access.Components;
@@ -71,96 +72,8 @@ namespace Content.Server.Administration.Commands
                 return;
             }
 
-            if (!SetOutfit(target.Value, args[1], _entities))
-                shell.WriteLine(Loc.GetString("set-outfit-command-invalid-outfit-id-error"));
-        }
-
-        public static bool SetOutfit(EntityUid target, string gear, IEntityManager entityManager, Action<EntityUid, EntityUid>? onEquipped = null)
-        {
-            if (!entityManager.TryGetComponent(target, out InventoryComponent? inventoryComponent))
-                return false;
-
-            var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
-            if (!prototypeManager.TryIndex<StartingGearPrototype>(gear, out var startingGear))
-                return false;
-
-            // Check if the entity was spawned in with a player's character profile to respect loadouts
-            var appearanceSystem = entityManager.System<SharedHumanoidAppearanceSystem>();
-            var profile = appearanceSystem.GetBaseProfile(target);
-
-            var invSystem = entityManager.System<InventorySystem>();
-            if (invSystem.TryGetSlots(target, out var slots))
-            {
-                foreach (var slot in slots)
-                {
-                    invSystem.TryUnequip(target, slot.Name, true, true, false, inventoryComponent);
-                    var gearStr = ((IEquipmentLoadout) startingGear).GetGear(slot.Name);
-                    if (gearStr == string.Empty)
-                    {
-                        continue;
-                    }
-
-                    var equipmentEntity = entityManager.SpawnEntity(gearStr, entityManager.GetComponent<TransformComponent>(target).Coordinates);
-                    if (slot.Name == "id" &&
-                        entityManager.TryGetComponent(equipmentEntity, out PdaComponent? pdaComponent) &&
-                        entityManager.TryGetComponent<IdCardComponent>(pdaComponent.ContainedId, out var id))
-                    {
-                        id.FullName = entityManager.GetComponent<MetaDataComponent>(target).EntityName;
-                    }
-
-                    invSystem.TryEquip(target, equipmentEntity, slot.Name, silent: true, force: true, inventory: inventoryComponent);
-
-                    onEquipped?.Invoke(target, equipmentEntity);
-                }
-            }
-
-            if (entityManager.TryGetComponent(target, out HandsComponent? handsComponent))
-            {
-                var handsSystem = entityManager.System<HandsSystem>();
-                var coords = entityManager.GetComponent<TransformComponent>(target).Coordinates;
-                foreach (var prototype in startingGear.Inhand)
-                {
-                    var inhandEntity = entityManager.SpawnEntity(prototype, coords);
-                    handsSystem.TryPickup(target, inhandEntity, checkActionBlocker: false, handsComp: handsComponent);
-                }
-            }
-
-            // See if this starting gear is associated with a job
-            var jobs = prototypeManager.EnumeratePrototypes<JobPrototype>();
-            foreach (var job in jobs)
-            {
-                if (job.StartingGear != gear)
-                    continue;
-
-                var jobProtoId = LoadoutSystem.GetJobPrototype(job.ID);
-                if (!prototypeManager.TryIndex<RoleLoadoutPrototype>(jobProtoId, out var jobProto))
-                    break;
-
-                // Don't require a player, so this works on Urists
-                profile ??= entityManager.TryGetComponent<HumanoidAppearanceComponent>(target, out var comp)
-                    ? HumanoidCharacterProfile.DefaultWithSpecies(comp.Species)
-                    : new HumanoidCharacterProfile();
-                // Try to get the user's existing loadout for the role
-                profile.Loadouts.TryGetValue(jobProtoId, out var roleLoadout);
-
-                if (roleLoadout == null)
-                {
-                    // This session is required when making a default loadout to check requirements for loadout items
-                    ICommonSession? session = null;
-                    if (entityManager.TryGetComponent(target, out ActorComponent? actorComponent))
-                        session = actorComponent.PlayerSession;
-
-                    // If they don't have a loadout for the role, make a default one
-                    roleLoadout = new RoleLoadout(jobProtoId);
-                    roleLoadout.SetDefault(profile, session, prototypeManager);
-                }
-
-                // Equip the target with the job loadout
-                var stationSpawning = entityManager.System<SharedStationSpawningSystem>();
-                stationSpawning.EquipRoleLoadout(target, roleLoadout, jobProto);
-            }
-
-            return true;
+            if (!_outfitSystem.SetOutfit(target.Value, args[1]))
+                shell.WriteLine(Loc.GetString("cmd-setoutfit-invalid-outfit-id-error"));
         }
     }
 }

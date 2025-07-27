@@ -1,4 +1,5 @@
-﻿using Content.Server._Starlight.Medical.Limbs;
+using Content.Server._Starlight.Medical.Limbs; //Starlight
+using System.Numerics;
 using Content.Server.Body.Components;
 using Content.Server.Ghost;
 using Content.Server.Humanoid;
@@ -74,9 +75,6 @@ public sealed class BodySystem : SharedBodySystem
             var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
             _humanoidSystem.SetLayersVisibility(bodyEnt.Owner, layers, visible: true);
         }
-        
-        if (TryComp<HumanoidAppearanceComponent>(bodyEnt, out var humanoid))
-            _limbSystem.AddLimbVisual((bodyEnt, humanoid), partEnt); //🌟Starlight🌟
     }
 
     protected override void RemovePart(

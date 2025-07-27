@@ -22,8 +22,11 @@
         {
             "name": "uranium"
         },
-        {
-            "name": "piercing"
+      {
+        "name": "piercing"
+      },
+      {
+            "name": "stripe"
         },
         {
             "name": "mag-1"

@@ -95,6 +95,8 @@
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  - type: StaticPrice
+    price: 2500
 
 - type: entity
   name: energy dagger
@@ -132,6 +134,8 @@
     - type: Sharp
     - type: DisarmMalus
       malus: 0.4
+    - type: Execution
+      doAfterDuration: 4.0
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_dagger_loud.rsi
     layers:
@@ -157,13 +161,6 @@
     energy: 1.5
     color: white
     netsync: false
-  - type: Scalpel
-  - type: SurgeryTool
-    successRate: 0.6
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
 
 - type: entity
   name: pen
@@ -201,6 +198,8 @@
     - type: Sharp
     - type: DisarmMalus
       malus: 0.4
+    - type: Execution
+      doAfterDuration: 4.0
     - type: Contraband
       severity: Syndicate
   - type: Sprite
@@ -231,13 +230,6 @@
   - type: Tag
     tags:
     - Write
-  - type: Scalpel
-  - type: SurgeryTool
-    successRate: 0.6
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
 
 - type: entity
   parent: [BaseItem, BaseSyndicateContraband]
@@ -319,6 +311,8 @@
     - type: Sharp
     - type: DisarmMalus
       malus: 0.7
+    - type: Execution
+      doAfterDuration: 4.0
   - type: Wieldable
     wieldSound: null # esword light sound instead
   - type: MeleeWeapon
@@ -343,13 +337,6 @@
   - type: Reflect
     reflectProb: .75
     spread: 75
-  - type: Scalpel
-  - type: SurgeryTool
-    successRate: 0.6
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
 
 # Item will look weird in handslot. Will need to adjust handstorage visuals in a future PR
 - type: entity
@@ -413,13 +400,6 @@
   components: # could add energy-draining like the L6C
   - type: Wieldable
     freeHandsRequired: 0 # because borg has no off-hand to wield with.  Without this, it will be unable to activate the esword
-  - type: Scalpel
-  - type: SurgeryTool
-    successRate: 0.6
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
 
 - type: entity
   parent: [ EnergyDaggerLoud, BaseXenoborgContraband ]

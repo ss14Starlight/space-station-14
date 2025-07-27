@@ -20,6 +20,7 @@
     <PackageVersion Include="Microsoft.Orleans.Clustering.Redis" Version="9.1.2" />
     <PackageVersion Include="Microsoft.Orleans.Sdk" Version="9.1.2" />
     <PackageVersion Include="NAudio" Version="2.2.1" />
+    <PackageVersion Include="NetCord" Version="1.0.0-alpha.388" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
     <PackageVersion Include="OggVorbisEncoder" Version="1.2.2" />
     <PackageVersion Include="OpenTK" Version="4.7.2" />

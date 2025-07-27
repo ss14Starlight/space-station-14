@@ -189,7 +189,7 @@
     sprite: Clothing/Head/Hats/beret_brigmedic.rsi
 
 - type: entity
-  parent: [ ClothingHeadBase , BaseSalvageContraband ] #Starlight salvContra
+  parent: [ ClothingHeadBase ]
   id: ClothingHeadHatBeretMerc
   name: mercenary beret
   description: Olive beret, the badge depicts a jackal on a rock.
@@ -360,7 +360,7 @@
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatHoshat
   name: head of security cap
-  description: The robust hat of the Head of Security. For showing the officers who's the real boss.
+  description: The robust standard-issue cap of the Head of Security. For showing the officers who's in charge.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/hoshat.rsi
@@ -451,9 +451,9 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - HamsterWearable
     - ClothMade
     - WhitelistChameleon
+    - HamsterWearable #Starlight
 
 - type: entity
   parent: [ClothingHeadBase, BaseFoldable]
@@ -647,9 +647,9 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - HamsterWearable
     - ClothMade
     - WhitelistChameleon
+    - HamsterWearable #Starlight
 
 - type: entity
   parent: ClothingHeadBase
@@ -723,7 +723,6 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
-    - CorgiWearable
 
 - type: entity
   parent: ClothingHeadBase
@@ -748,7 +747,7 @@
     sprite: Clothing/Head/Hats/truckershat.rsi
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseMajorContraband ] #SL EDIT, Syndie to Major
+  parent: [ ClothingHeadBase, BaseSyndicateContraband ]
   id: ClothingHeadPyjamaSyndicateBlack
   name: syndicate black pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -764,7 +763,7 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseMajorContraband ] #SL EDIT, Syndie to Major
+  parent: [ ClothingHeadBase, BaseSyndicateContraband ]
   id: ClothingHeadPyjamaSyndicatePink
   name: syndicate pink pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -780,7 +779,7 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseMajorContraband ] #SL EDIT, Syndie to Major
+  parent: [ ClothingHeadBase, BaseSyndicateContraband ]
   id: ClothingHeadPyjamaSyndicateRed
   name: syndicate red pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -958,8 +957,6 @@
     sprite: Clothing/Head/Hats/melon.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/melon.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -975,15 +972,13 @@
     sprite: Clothing/Head/Hats/holyhatmelon.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/holyhatmelon.rsi
-  - type: Pierceable
-    level: Metal
   - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.95
 
 - type: entity
-  parent: [ClothingHeadBase, BaseMajorContraband] #SL EDIT, Syndie to Major
+  parent: [ClothingHeadBase, BaseSyndicateContraband]
   id: ClothingHeadHatSyndie
   name: syndicate hat
   description: A souvenir hat from "Syndieland", their production has already been closed.

@@ -224,11 +224,20 @@
   - !type:PowerWireAction
     pulseTimeout: 15
   - !type:AiInteractWireAction
-  - !type:AccessWireAction 
-  
+  - !type:AccessWireAction
+
+- type: wireLayout
+  id: APC
+  dummyWires: 3
+  wires:
+  - !type:AccessWireAction
+  - !type:AiInteractWireAction
+
+#this should really be in _Starlight  
 - type: wireLayout
   id: MedibotControls
   dummyWires: 9
   wires:
   - !type:SpeechWireAction
+#the above should really be in _Starlight
   

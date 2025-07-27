@@ -1,9 +1,9 @@
-using Content.Server.Administration.Commands;
 using Content.Server.Popups;
 using Content.Shared.Popups;
 using Content.Shared.Mobs;
 using Content.Server.Chat;
 using Content.Server.Chat.Systems;
+using Content.Server.Clothing.Systems;
 using Content.Shared.Chat.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Stunnable;
@@ -27,6 +27,7 @@ public sealed class CluwneSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
+    [Dependency] private readonly OutfitSystem _outfitSystem = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -58,8 +59,8 @@ public sealed class CluwneSystem : EntitySystem
             RemComp<CluwneComponent>(uid);
             RemComp<ClumsyComponent>(uid);
             RemComp<AutoEmoteComponent>(uid);
-            var damageSpec = new DamageSpecifier(_proto.Index<DamageGroupPrototype>("Genetic"), 100);
-            _damageable.TryChangeDamage(uid, damageSpec);
+            var damageSpec = new DamageSpecifier(_prototypeManager.Index<DamageGroupPrototype>("Genetic"), 300);
+            _damageableSystem.TryChangeDamage(uid, damageSpec);
         }
     }
 
@@ -72,30 +73,18 @@ public sealed class CluwneSystem : EntitySystem
     {
         if (component.EmoteSoundsId == null)
             return;
-        _proto.TryIndex(component.EmoteSoundsId, out EmoteSounds);
-        
-        var meta = MetaData(uid);
-        var name = meta.EntityName;
+        _prototypeManager.TryIndex(component.EmoteSoundsId, out EmoteSounds);
 
         EnsureComp<AutoEmoteComponent>(uid);
-        _emote.AddEmote(uid, component.AutoEmoteSound);
+        _autoEmote.AddEmote(uid, "CluwneGiggle");
         EnsureComp<ClumsyComponent>(uid);
 
-        if (component.IsCluwne)
-        {
-            _popup.PopupEntity(Loc.GetString("cluwne-transform", ("target", uid)), uid, PopupType.LargeCaution);
-            _audio.PlayPvs(component.SpawnSound, uid);
-            _meta.SetEntityName(uid, Loc.GetString("cluwne-name-prefix", ("baseName", name)), meta);
-            SetOutfitCommand.SetOutfit(uid, "CluwneGear", EntityManager);
-            _faction.RemoveFaction(uid, "NanoTrasen", false);
-            _faction.AddFaction(uid, "HonkNeutral");
-        }
-        else
-        {
-            Spawn(component.Portal, Transform(uid).Coordinates);
-            SetOutfitCommand.SetOutfit(uid, "CluwneBeastGear", EntityManager);
-            _audio.PlayPvs(component.ArrivalSound, uid);
-        }
+        _popupSystem.PopupEntity(Loc.GetString("cluwne-transform", ("target", uid)), uid, PopupType.LargeCaution);
+        _audio.PlayPvs(component.SpawnSound, uid);
+
+        _nameMod.RefreshNameModifiers(uid);
+
+        _outfitSystem.SetOutfit(uid, "CluwneGear");
     }
 
     /// <summary>
@@ -107,15 +96,16 @@ public sealed class CluwneSystem : EntitySystem
             return;
         args.Handled = _chat.TryPlayEmoteSound(uid, EmoteSounds, args.Emote);
 
-        if (_random.Prob(component.GiggleRandomChance))
+        if (_robustRandom.Prob(component.GiggleRandomChance))
         {
             _audio.PlayPvs(component.SpawnSound, uid);
             _chat.TrySendInGameICMessage(uid, "honks", InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
-        else if (_random.Prob(component.KnockChance))
+
+        else if (_robustRandom.Prob(component.KnockChance))
         {
             _audio.PlayPvs(component.KnockSound, uid);
-            _stun.TryParalyze(uid, TimeSpan.FromSeconds(component.ParalyzeTime), true);
+            _stunSystem.TryParalyze(uid, TimeSpan.FromSeconds(component.ParalyzeTime), true);
             _chat.TrySendInGameICMessage(uid, "spasms", InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
     }

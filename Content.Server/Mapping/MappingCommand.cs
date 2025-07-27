@@ -2,8 +2,6 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Shared.Administration;
-using Content.Shared.Starlight.CCVar; //# Starlight
-using Robust.Shared.Configuration; //# Starlight
 using Robust.Shared.Console;
 using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization;
@@ -19,6 +17,10 @@ namespace Content.Server.Mapping
     {
         [Dependency] private readonly IEntityManager _entities = default!;
         [Dependency] private readonly IConfigurationManager _configuration = default!; //# Starlight
+        [Dependency] private readonly IResourceManager _resourceMgr = default!;
+        [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+        [Dependency] private readonly MappingSystem _mappingSystem = default!;
+        [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
 
         public string Command => "mapping";
         public string Description => Loc.GetString("cmd-mapping-desc");
@@ -43,11 +45,6 @@ namespace Content.Server.Mapping
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            if (_configuration.GetCVar(StarlightCCVars.FuckMappingCommand)) //# region Starlight
-            {
-                shell.WriteError(Loc.GetString("shell-command-disabled"));
-                return;
-            } //# endregion Starlight
             if (shell.Player is not { } player)
             {
                 shell.WriteError(Loc.GetString("shell-cannot-run-command-from-server"));

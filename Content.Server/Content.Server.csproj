@@ -24,6 +24,7 @@
     <PackageReference Include="NAudio" />
     <PackageReference Include="OggVorbisEncoder" />
     <PackageReference Include="SS14.Starlight.NullLink" />
+    <PackageReference Include="NetCord" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Content.Packaging\Content.Packaging.csproj" />
@@ -34,15 +35,6 @@
     <ProjectReference Include="..\RobustToolbox\Robust.Shared\Robust.Shared.csproj" />
     <ProjectReference Include="..\RobustToolbox\Robust.Server\Robust.Server.csproj" />
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Objectives\Interfaces\" />
-    <Folder Include="_Starlight\Achievement\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="build.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
 </Project>
