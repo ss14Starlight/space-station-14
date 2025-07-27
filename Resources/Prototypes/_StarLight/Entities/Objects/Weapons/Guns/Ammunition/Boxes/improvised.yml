@@ -38,6 +38,9 @@
   - type: Construction
     graph: ImprovisedMagazineBoxGraph
     node: shell
+  - type: Tag
+    tags:
+    - ImprovisedAmmoBox
 
 - type: entity
   parent: BaseMagazineBoxImprovised
