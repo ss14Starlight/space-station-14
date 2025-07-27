@@ -135,7 +135,6 @@
       components:
         - type: DatasetVocalizer
           dataset: PlushiesMorgana
-          minimumWait: 120
         - type: TextToSpeech
           voice: bettylabomba
 
