@@ -76,6 +76,5 @@
         !type:GeneratedParallaxTextureSource
         id: ""
         configPath: "/Prototypes/Parallaxes/parallax_config.toml"
-        slowness: 0.5
   layersLQUseHQ: false
 
