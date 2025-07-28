@@ -7,6 +7,8 @@
       - id: MailSyndicateSpamLetter
         weight: .25
       - id: MailSpamDontYouWantMore
-        weight: .40
+        weight: .30
+      - id: PaperSendNukieReinforcements
+        weight: .10
       - id: MailSovietSpamLetter25
         weight: .35

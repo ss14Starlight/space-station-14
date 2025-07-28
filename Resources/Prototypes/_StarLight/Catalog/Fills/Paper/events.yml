@@ -54,9 +54,9 @@
       rules: ghost-role-information-freeagent-rules
       allowSpeech: true
       reregister: true
-      raffle: 
+      raffle:
         settings: default
-      mindRoles: 
+      mindRoles:
         - MindRoleGhostRoleFreeAgent
     - type: ShowMindShieldIcons # gotta know your targets.
     - type: Speech
@@ -82,7 +82,7 @@
       content: paper-too-quiet-need-chaos
     - type: GameruleOnSign
       remaining: 9 # command, security, cargo, science, medical, engineering, service, and 2 members of sec outside of hos (or more sec/salv and less heads... or people who you mindshielded JUST to get this signed)
-      whitelist: 
+      whitelist:
         components:
           - MindShield
       rules: #this will DEFINETLY end the "quiet" you so hate
@@ -98,7 +98,7 @@
         - DragonSpawn
         - NinjaSpawn
         - ParadoxCloneSpawn
-    
+
 - type: entity
   parent: BasePaperQuietChaos
   id: PaperTooQuietNeedChaosFew
@@ -108,7 +108,7 @@
       content: paper-too-quiet-need-chaos-few
     - type: GameruleOnSign
       remaining: 3 # on 15 pop usually there are only about 3 heads I expect
-      whitelist: 
+      whitelist:
         components:
           - MindShield
       rules: #this will DEFINETLY end the "quiet" you so hate
@@ -118,3 +118,16 @@
         - UnknownShuttleHonki
         - WizardSpawn
         - NinjaSpawn #spawns less cause there is also less people to take said roles. and I deem these to be the less "chaotic" ones
+
+- type: entity
+  parent: Paper
+  id: PaperSendNukieReinforcements
+  name: Send reinforcements!
+  description: An official notice from... an alternate timeline?
+  components:
+    - type: Paper
+      content: paper-send-nukie-reinforcements
+    - type: GameruleOnSign
+      remaining: 27 #on low pop this is basically the entire station. on hihpop this is nothing.
+      rules:
+        - LoneOpsSpawn

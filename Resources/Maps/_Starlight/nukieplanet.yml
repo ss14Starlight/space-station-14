@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 264.0.0
+  forkId: Starlight
+  forkVersion: 1732131340
+  time: 07/28/2025 17:31:24
+  entityCount: 4164
+maps:
+- 1295
+grids:
+- 1
+orphans: []
+nullspace: []
 tilemap:
   10: Space
   7: FloorArcadeRed
@@ -2254,9 +2265,7 @@ entities:
     - type: Transform
     - type: Map
       mapPaused: True
-    - type: PhysicsMap
     - type: GridTree
-    - type: MovedGrids
     - type: FTLDestination
       whitelist:
         tags:
@@ -3326,7 +3335,7 @@ entities:
             - -0.45,0.45
           mask:
           - Impassable
-          - TableLayer
+          - MidImpassable
           - LowImpassable
           layer:
           - BulletImpassable
@@ -11775,11 +11784,41 @@ entities:
     - type: Transform
       pos: -28.605858,-0.8710441
       parent: 1
+    - type: Tool
+      useSound: !type:SoundPathSpecifier
+        params:
+          variation: null
+          playOffsetSeconds: 0
+          loop: False
+          referenceDistance: 1
+          rolloffFactor: 1
+          maxDistance: 15
+          pitch: 1
+          volume: 0
+        path: /Audio/Items/Culinary/chop.ogg
+      speedModifier: 1
+      qualities:
+      - Slicing
   - uid: 3880
     components:
     - type: Transform
       pos: -28.324608,-0.8710441
       parent: 1
+    - type: Tool
+      useSound: !type:SoundPathSpecifier
+        params:
+          variation: null
+          playOffsetSeconds: 0
+          loop: False
+          referenceDistance: 1
+          rolloffFactor: 1
+          maxDistance: 15
+          pitch: 1
+          volume: 0
+        path: /Audio/Items/Culinary/chop.ogg
+      speedModifier: 1
+      qualities:
+      - Slicing
 - proto: ComfyChair
   entities:
   - uid: 629
@@ -14464,6 +14503,21 @@ entities:
     - type: Transform
       pos: -14.518055,-23.473787
       parent: 1
+    - type: Tool
+      useSound: !type:SoundPathSpecifier
+        params:
+          variation: null
+          playOffsetSeconds: 0
+          loop: False
+          referenceDistance: 1
+          rolloffFactor: 1
+          maxDistance: 15
+          pitch: 1
+          volume: 0
+        path: /Audio/Items/Culinary/chop.ogg
+      speedModifier: 1
+      qualities:
+      - Slicing
 - proto: KitchenOven
   entities:
   - uid: 1403
@@ -14698,7 +14752,7 @@ entities:
   - uid: 4156
     components:
     - type: Transform
-      pos: -14.775839,8.616626
+      pos: -14.741358,8.557928
       parent: 1
     missingComponents:
     - FaxableObject
@@ -14897,7 +14951,7 @@ entities:
       pos: -3.5,1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -17597.717
+      secondsUntilStateChange: -17629.387
       state: Opening
   - uid: 730
     components:
@@ -14905,7 +14959,7 @@ entities:
       pos: -3.5,2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -17598.584
+      secondsUntilStateChange: -17630.254
       state: Opening
 - proto: MinimoogInstrument
   entities:
@@ -15124,6 +15178,15 @@ entities:
     - type: Transform
       pos: 1.8436577,3.5806565
       parent: 1
+- proto: PaperSendNukieReinforcements
+  entities:
+  - uid: 4157
+    components:
+    - type: Transform
+      pos: -14.958039,8.575979
+      parent: 1
+    missingComponents:
+    - FaxableObject
 - proto: PartRodMetal
   entities:
   - uid: 828
@@ -18311,21 +18374,29 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         118:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         119:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         120:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         117:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         116:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         121:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         122:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         123:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
   - uid: 1277
     components:
     - type: MetaData
@@ -18337,9 +18408,11 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         1273:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         1274:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: SignalButtonDirectional
   entities:
   - uid: 1568
@@ -18353,21 +18426,29 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         1559:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         1560:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         1561:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         1562:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         1569:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         1570:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         1571:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
         1572:
-        - Pressed: Toggle
+        - - Pressed
+          - Toggle
 - proto: SignalTrigger
   entities:
   - uid: 582
@@ -19058,6 +19139,8 @@ entities:
     - type: Transform
       pos: 1.4812105,4.649179
       parent: 1
+    - type: StockLimitedProcessing
+      processingListings: {}
 - proto: SyndieFlag
   entities:
   - uid: 2720
@@ -25156,7 +25239,7 @@ entities:
       pos: -15.5,-5.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -19867.28
+      secondsUntilStateChange: -19898.95
       state: Opening
   - uid: 1244
     components:
@@ -25164,6 +25247,6 @@ entities:
       pos: -15.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -19867.713
+      secondsUntilStateChange: -19899.383
       state: Opening
 ...
