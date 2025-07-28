@@ -127,9 +127,9 @@ figurines-ce-6 = Power's out again.
 figurines-engineer-1 = SINGULOOSE!
 figurines-engineer-2 = TESLOOSE!
 figurines-engineer-3 = What is AME?
-figurines-engineer-4 = Free insuls at engineering
+figurines-engineer-4 = Free insuls at Engineering!
 figurines-engineer-5 = Where'd the power go?
-figurines-engineer-6 = Someone bombed medbay... again...
+figurines-engineer-6 = Someone bombed the medbay... again...
 figurines-engineer-7 = Well, why don't you come and fix it?
 
 figurines-atmostech-1 = I put plasma in distro.
@@ -141,7 +141,7 @@ figurines-atmostech-6 = Distro? That's short for disposal.
 figurines-atmostech-7 = TEG: Thermal Energy? Gone!
 
 figurines-rd-1 = Blowing up all of the borgs!
-figurines-rd-2 = Tier 3 arsenal? No way.
+figurines-rd-2 = Tier 3 Arsenal? No way.
 figurines-rd-3 = Now where did I leave my hardsuit...?
 figurines-rd-4 = Now you're thinking with portals!
 figurines-rd-5 = The cake is a lie!
