@@ -1,5 +1,3 @@
-﻿using Robust.Shared.Prototypes;
-
 namespace Content.Shared.Nutrition;
 
 /// <summary>
@@ -47,11 +45,4 @@ public sealed class BeforeFullySlicedEvent : CancellableEntityEventArgs
     /// The person slicing the food.
     /// </summary>
     public EntityUid User;
-}
-
-// 🌟Starlight🌟
-[ByRefEvent]
-public readonly record struct FullyEatenEvent(EntProtoId food)
-{
-    public readonly EntProtoId Food = food;
 }

@@ -15,7 +15,7 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: Appearance
   - type: SpentAmmoVisuals
-    revealSpent: true # Starlight
+    state: null
     tip: true
 
 - type: entity

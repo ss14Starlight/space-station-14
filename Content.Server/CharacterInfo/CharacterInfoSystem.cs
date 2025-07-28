@@ -1,5 +1,4 @@
-﻿using Content.Server._Starlight.Objectives.Events;
-using Content.Server.Mind;
+﻿using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
 using Content.Shared.CharacterInfo;
@@ -35,16 +34,9 @@ public sealed class CharacterInfoSystem : EntitySystem
         var objectives = new Dictionary<string, List<ObjectiveInfo>>();
         var jobTitle = Loc.GetString("character-info-no-profession");
         string? briefing = null;
-
-        // 🌟Starlight🌟 start
         Dictionary<CollectiveMindPrototype, CollectiveMindMemberData>? collectiveMinds = null;
         if (TryComp<CollectiveMindComponent>(entity, out var mindsComp))
             collectiveMinds = mindsComp.Minds;
-
-        var @event = new CollectObjectivesEvent(objectives);
-        RaiseLocalEvent(entity, ref @event);
-        // 🌟Starlight🌟 end
-
         if (_minds.TryGetMind(entity, out var mindId, out var mind))
         {
             // Get objectives

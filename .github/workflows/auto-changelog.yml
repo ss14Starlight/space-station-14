@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - Starlight
-      - starlight-dev
-      
+
 permissions:
   contents: write
   pull-requests: read

@@ -9,46 +9,29 @@ namespace Content.Server.Stunnable.Components
         // TODO: Can probably predict this.
 
         /// <summary>
-        /// How long we are stunned for
+        /// how long a player will have stamina crit
         /// </summary>
-        [DataField]
-        public TimeSpan StunAmount;
+        [DataField("stunAmount")]
+        public double StunAmount;
 
         /// <summary>
-        /// How long we are knocked down for
+        /// how long the player will be on the floor
         /// </summary>
-        [DataField]
-        public TimeSpan KnockdownAmount;
+        [DataField("knockdownAmount")]
+        public double KnockdownAmount;
 
         /// <summary>
-        /// How long we are slowed down for
+        /// how long the player will have a slowdown
         /// </summary>
-        [DataField]
-        public TimeSpan SlowdownAmount;
+        [DataField("slowdownAmount")]
+        public double SlowdownAmount;
 
-        /// <summary>
-        /// Multiplier for a mob's walking speed
-        /// </summary>
-        [DataField]
-        public float WalkSpeedModifier = 1f;
+        // See stunsystem for what these do
+        [DataField("walkSpeedMultiplier")]
+        public float WalkSpeedMultiplier = 1f;
 
-        /// <summary>
-        /// Multiplier for a mob's sprinting speed
-        /// </summary>
-        [DataField]
-        public float SprintSpeedModifier = 1f;
-
-        /// <summary>
-        /// Refresh Stun or Slowdown on hit
-        /// </summary>
-        [DataField]
-        public bool Refresh = true;
-
-        /// <summary>
-        /// Should the entity try and stand automatically after being knocked down?
-        /// </summary>
-        [DataField]
-        public bool AutoStand = true;
+        [DataField("runSpeedMultiplier")]
+        public float RunSpeedMultiplier = 1f;
 
         /// <summary>
         /// Fixture we track for the collision.

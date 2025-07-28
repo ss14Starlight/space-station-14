@@ -13,13 +13,13 @@ public sealed partial class SpeedModifierContactsComponent : Component
     /// <summary>
     /// The modifier applied to the walk speed of entities that come into contact with the entity this component is added to.
     /// </summary>
-    [DataField, AutoNetworkedField] 
+    [DataField, AutoNetworkedField]
     public float WalkSpeedModifier = 1.0f;
 
     /// <summary>
     /// The modifier applied to the sprint speed of entities that come into contact with the entity this component is added to.
     /// </summary>
-    [DataField, AutoNetworkedField] 
+    [DataField, AutoNetworkedField]
     public float SprintSpeedModifier = 1.0f;
 
     /// <summary>
@@ -28,18 +28,9 @@ public sealed partial class SpeedModifierContactsComponent : Component
     [DataField, AutoNetworkedField]
     public bool AffectAirborne;
 
-    // 🌟Starlight🌟 Changes below here.
-    
     /// <summary>
-    /// A blacklist of entities that should be ignored by this component's speed modifiers. // 🌟Starlight🌟  
+    /// A whitelist of entities that should be ignored by this component's speed modifiers.
     /// </summary>
     [DataField]
-    public EntityWhitelist? Blacklist; // 🌟Starlight🌟  
-    
-    
-    /// <summary>
-    /// A whitelist of entities that should be targeted by this component's speed modifiers. // 🌟Starlight🌟  
-    /// </summary>
-    [DataField]
-    public EntityWhitelist? Whitelist; // 🌟Starlight🌟  
+    public EntityWhitelist? IgnoreWhitelist;
 }

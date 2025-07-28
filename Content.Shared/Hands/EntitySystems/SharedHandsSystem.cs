@@ -33,7 +33,6 @@ public abstract partial class SharedHandsSystem
         InitializeDrop();
         InitializePickup();
         InitializeRelay();
-        InitializeEventListeners();
     }
 
     public override void Shutdown()
@@ -136,27 +135,6 @@ public abstract partial class SharedHandsSystem
         }
 
         return false;
-    }
-
-    /// <summary>
-    ///     Does this entity have any empty hands, and how many?
-    /// </summary>
-    public bool TryCountEmptyHands(Entity<HandsComponent?> entity, [NotNullWhen(true)] out int? hands)
-    {
-        hands = 0;
-        var emptyHand = false;
-        if (!Resolve(entity, ref entity.Comp, false) || entity.Comp.Count == 0)
-            return false;
-
-        foreach (var hand in EnumerateHands(entity))
-        {
-            if (!hand.IsEmpty)
-                continue;
-            hands++;
-            emptyHand = true;
-        }
-
-        return emptyHand;
     }
 
     public bool TryGetActiveHand(Entity<HandsComponent?> entity, [NotNullWhen(true)] out Hand? hand)

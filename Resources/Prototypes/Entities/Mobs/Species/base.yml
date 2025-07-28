@@ -9,8 +9,7 @@
   id: BaseMobSpecies
   abstract: true
   components:
-  - type: Railroadable # 🌟Starlight🌟
-  - type: SurgeryTarget # 🌟Starlight🌟
+  - type: SurgeryTarget
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -122,7 +121,6 @@
   - type: StatusEffects
     allowed:
     - Stun
-    - Friction
     - KnockedDown
     - SlowedDown
     - Stutter

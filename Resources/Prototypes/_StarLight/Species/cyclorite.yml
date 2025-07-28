@@ -42,19 +42,19 @@
       points: 1
       required: false
     Head:
-      points: 3
-      required: false
+      points: 1
+      required: true
     Snout:
       points: 1
-      required: false
+      required: true
     Arms:
-      points: 4
-      required: false
+      points: 1
+      required: true
     Legs:
-      points: 2
-      required: false
+      points: 1
+      required: true
     Chest:
-      points: 2
+      points: 1
       required: false
 
 - type: humanoidBaseSprite

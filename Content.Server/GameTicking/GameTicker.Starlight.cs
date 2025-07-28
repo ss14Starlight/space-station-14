@@ -184,7 +184,7 @@ public sealed partial class GameTicker //🌟Starlight🌟
         if (_statusStaffMessageId == 0)
         {
             _ = _discord.CreateMessage(_statusWebhookStaffIdentifier.Value, _payloadWithAdmins);
-            _statusWebhookStaffIdentifier = null;
+            _statusWebhookIdentifier = null;
         }
         else
             _ = _discord.EditMessage(_statusWebhookStaffIdentifier.Value, _statusStaffMessageId, _payloadWithAdmins);
