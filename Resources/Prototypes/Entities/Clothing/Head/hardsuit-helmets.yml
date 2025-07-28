@@ -463,10 +463,6 @@
         - state: off-equipped-HELMET-vox
         - state: off-equipped-HELMET-unshaded-vox
           shader: unshaded
-      head-vulpkanin:
-        - state: off-equipped-HELMET-vulpkanin
-        - state: off-equipped-HELMET-unshaded-vulpkanin
-          shader: unshaded
       head-cyclorite:
         - state: off-equipped-HELMET-cyclorite
         - state: off-equipped-HELMET-unshaded-cyclorite
