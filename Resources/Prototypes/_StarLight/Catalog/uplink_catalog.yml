@@ -110,10 +110,21 @@
 
 - type: listing
   id: UplinkMagazinePistolSubMachineGunSP
-  name: uplink-pistol-magazine-c20r-nameSP
-  description: uplink-pistol-magazine-c20r-descSP
+  name: uplink-pistol-magazine-c20r-name-SP
+  description: uplink-pistol-magazine-c20r-desc-SP
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: sp }
   productEntity: MagazinePistolSubMachineGunSP
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazinePistolSubMachineGunFMJ
+  name: uplink-pistol-magazine-c20r-name-FMJ
+  description: uplink-pistol-magazine-c20r-desc-FMJ
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: fmj }
+  productEntity: MagazinePistolSubMachineGunFMJ
   cost:
     Telecrystal: 2
   categories:
