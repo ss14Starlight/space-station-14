@@ -33,9 +33,6 @@
       head-vox:
       - state: equipped-head-light-vox
         shader: unshaded
-      head-dog:
-      - state: equipped-head-light-dog
-        shader: unshaded
   - type: Clothing
     clothingVisuals:
       head:
@@ -125,10 +122,6 @@
       head-vox:
       - state: equipped-head-vox
       - state: equipped-head-unshaded-vox
-        shader: unshaded
-      head-dog:
-      - state: equipped-head-dog
-      - state: equipped-head-unshaded-dog
         shader: unshaded
   - type: PointLight
     radius: 6
@@ -260,10 +253,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 #Brigmedic Hardsuit
 - type: entity
@@ -394,10 +383,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.60
     lowPressureMultiplier: 1000
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 #Head of Security's hardsuit
 - type: entity
@@ -551,10 +536,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -577,10 +558,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - WhitelistChameleon
 
 #Wizard Hardsuit
 - type: entity
@@ -651,7 +628,7 @@
   components:
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/piratecaptainhelm.rsi
-  - type: ToggleableVisuals
+  - type: ToggleableLightVisuals
     clothingVisuals:
       head:
       - state: equipped-HELMET-light

@@ -30,7 +30,9 @@
 - type: entity
   parent: Mirror
   id: MirrorModern
+  name: mirror
   suffix: rectangle
   components:
   - type: Sprite
+    sprite: Structures/Wallmounts/mirror.rsi
     state: rectangle-mirror

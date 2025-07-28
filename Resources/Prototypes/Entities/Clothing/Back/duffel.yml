@@ -116,7 +116,6 @@
   components:
   - type: Sprite
     sprite: Clothing/Back/Duffels/mime.rsi
-  - type: Storage
     storageOpenSound:
       collection: null
     storageInsertSound:

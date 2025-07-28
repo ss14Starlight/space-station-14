@@ -1,7 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using Content.Server._Starlight.Objectives.Events;
 using Content.Server.GameTicking;
+using Content.Server.Holiday.Greet;
 using Content.Server.Objectives.Commands;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Starlight.Railroading;
@@ -9,13 +13,16 @@ using Content.Shared.CCVar;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
+using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Prototypes;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles.Jobs;
+using Discord;
 using Robust.Server.Player;
+using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -290,10 +297,8 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             var objectives = group.Weights.ShallowClone();
             while (_random.TryPickAndTake(objectives, out var objectiveProto))
             {
-                if (!_prototypeManager.Index(objectiveProto).TryGetComponent<ObjectiveComponent>(out var objectiveComp, EntityManager.ComponentFactory))
-                    continue;
-
-                if (objectiveComp.Difficulty <= maxDifficulty && TryCreateObjective((mindId, mind), objectiveProto, out var objective))
+                if (TryCreateObjective((mindId, mind), objectiveProto, out var objective)
+                    && Comp<ObjectiveComponent>(objective.Value).Difficulty <= maxDifficulty)
                     return objective;
             }
         }

@@ -21,8 +21,8 @@
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Melee/cybershield.rsi
       layers:
-        - state: cybershield-icon
-        - state: cybershield-on
+        - state: cybershieldoff
+        - state: cybershield
           color: "#FFFFFF"
           visible: false
           shader: unshaded
@@ -30,9 +30,7 @@
     - type: Item
       size: Small
       sprite: _Starlight/Objects/Weapons/Melee/cybershield.rsi
-      heldPrefix: cybershield
-    - type: ToggleableVisuals
-      spriteLayer: shield
+      heldPrefix: cybershieldoff
     - type: UseDelay
       delay: 0.5
     - type: ToggleableLightVisuals

@@ -12,8 +12,6 @@
     - Energy
     reflectProb: 0.2
     spread: 90
-  - type: Paintable
-    group: CrateSteel
   - type: RadiationBlockingContainer
     resistance: 2.5
 
@@ -33,8 +31,6 @@
     - entity_storage
   - type: StaticPrice
     price: 100
-  - type: Paintable
-    group: CratePlastic
 
 - type: entity
   parent: CratePlastic
@@ -53,8 +49,6 @@
     node: done
     containers:
     - entity_storage
-  - type: Paintable
-    group: null
 
 - type: entity
   parent: CratePlastic
@@ -693,7 +687,7 @@
   parent: CrateGeneric
   id: CrateCoffin
   name: coffin
-  description: A comfy coffin, excellent place for the vampires and corpses.
+  description: A comfy coffin, excelent place for the vampires and corpses.
   components:
   - type: Sprite
     sprite: Structures/Storage/Crates/coffin.rsi
@@ -847,8 +841,6 @@
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "0.0,0.03125"
       map: ["enum.PaperLabelVisuals.Layer"]
-  - type: Paintable
-    group: null
 
 - type: entity
   parent: CrateBaseSecure
@@ -875,8 +867,6 @@
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: AccessReader
     access: [["Janitor"]]
-  - type: Paintable
-    group: null
 
 - type: entity
   parent: CrateBaseWeldable

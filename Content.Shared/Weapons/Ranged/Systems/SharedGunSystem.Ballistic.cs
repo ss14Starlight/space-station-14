@@ -16,6 +16,7 @@ public abstract partial class SharedGunSystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // 🌟Starlight🌟
 
 
     protected virtual void InitializeBallistic()
@@ -190,13 +191,13 @@ public abstract partial class SharedGunSystem
         {
             var firstAmmo = component.Entities[^1];
             if (TryComp<MetaDataComponent>(firstAmmo, out var meta) && meta.EntityPrototype?.ID != null &&
-                ProtoManager.TryIndex<EntityPrototype>(meta.EntityPrototype.ID, out var entity))
+                _prototypeManager.TryIndex<EntityPrototype>(meta.EntityPrototype.ID, out var entity))
             {
                 ammoTypeName = entity.Name;
             }
         }
 
-        else if (component.UnspawnedCount > 0 && component.Proto != null && ProtoManager.TryIndex(component.Proto, out EntityPrototype? proto))
+        else if (component.UnspawnedCount > 0 && component.Proto != null && _prototypeManager.TryIndex(component.Proto, out EntityPrototype? proto))
         {
             ammoTypeName = proto.Name;
         }
@@ -274,7 +275,7 @@ public abstract partial class SharedGunSystem
                 entity = component.Entities[^1];
 
                 args.Ammo.Add((entity, EnsureShootable(entity)));
-
+                
                 if (TryComp<GunComponent>(uid, out var gun))
                 {
                     if (!gun.Pump)
@@ -288,7 +289,7 @@ public abstract partial class SharedGunSystem
                     component.Entities.RemoveAt(component.Entities.Count - 1);
                     Containers.Remove(entity, component.Container);
                 }
-
+                
                 DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.Entities));
             }
             else if (component.UnspawnedCount > 0)
@@ -296,7 +297,7 @@ public abstract partial class SharedGunSystem
                 component.UnspawnedCount--;
                 DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.UnspawnedCount));
                 entity = Spawn(component.Proto, args.Coordinates);
-
+                
                 if (TryComp<GunComponent>(uid, out var gun))
                 {
                     if (gun.Pump)
@@ -306,7 +307,7 @@ public abstract partial class SharedGunSystem
                         DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.Entities));
                     }
                 }
-
+                
                 args.Ammo.Add((entity, EnsureShootable(entity)));
             }
         }

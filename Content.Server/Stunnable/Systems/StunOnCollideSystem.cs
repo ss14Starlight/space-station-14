@@ -23,25 +23,15 @@ namespace Content.Server.Stunnable
         private void TryDoCollideStun(EntityUid uid, StunOnCollideComponent component, EntityUid target)
         {
 
-            if (TryComp<StatusEffectsComponent>(target, out var status))
-            {
-                _stunSystem.TryStun(target, component.StunAmount, component.Refresh, status);
+            if (!EntityManager.TryGetComponent<StatusEffectsComponent>(target, out var status))
+                return;
 
-                _stunSystem.TryKnockdown(target,
-                    component.KnockdownAmount,
-                    component.Refresh,
-                    component.AutoStand,
-                    status);
+            _stunSystem.TryStun(target, component.StunAmount, component.Refresh, status);
 
-                _stunSystem.TrySlowdown(target,
-                    component.SlowdownAmount,
-                    component.Refresh,
-                    component.WalkSpeedModifier,
-                    component.SprintSpeedModifier,
-                    status);
-            }
+            _stunSystem.TryKnockdown(target, component.KnockdownAmount, component.Refresh, component.AutoStand, status);
+
+            _stunSystem.TrySlowdown(target, component.SlowdownAmount, component.Refresh, component.WalkSpeedModifier, component.SprintSpeedModifier, status);
         }
-
         private void HandleCollide(EntityUid uid, StunOnCollideComponent component, ref StartCollideEvent args)
         {
             if (args.OurFixtureId != component.FixtureID)

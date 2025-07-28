@@ -169,8 +169,6 @@
       - PosterLegitCleanHands
       - PosterLegitEyeChart
       - PosterLegitTyrone
-      - PosterLegitHelio
-      #region Starlight
       - PosterLegitSkillIssue
       - PosterLegitShoeless
       - PosterLegitDoNotCauseCancer
@@ -181,5 +179,4 @@
       - PosterLegitRipleyCertified
       - PosterLegitKillersClinic
       - PosterlegitLawPoster
-      #endregion Starlight
     chance: 1

@@ -21,7 +21,7 @@ public sealed partial class SalvageMod : IPrototype, ISalvageMod
     public float Cost { get; private set; } = 0f;
 
     // 🌟Starlight🌟
-    [DataField]
-    public List<ProtoId<SalvageDifficultyPrototype>>? Difficulties { get; private set; } = null;
+    [DataField("difficulties", customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
+    public List<string>? Difficulties { get; private set; } = null;
 
 }

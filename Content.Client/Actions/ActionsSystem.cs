@@ -32,6 +32,7 @@ namespace Content.Client.Actions
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IPrototypeManager _proto = default!;
         [Dependency] private readonly IResourceManager _resources = default!;
+        [Dependency] private readonly ISerializationManager _serialization = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
 
         public event Action<EntityUid>? OnActionAdded;
@@ -211,7 +212,7 @@ namespace Content.Client.Actions
             else
             {
                 var request = new RequestPerformActionEvent(GetNetEntity(action));
-                RaisePredictiveEvent(request);
+                EntityManager.RaisePredictiveEvent(request);
             }
         }
 

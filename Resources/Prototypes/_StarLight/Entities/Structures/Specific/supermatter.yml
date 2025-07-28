@@ -30,9 +30,8 @@
   - type: Pullable
   - type: Sprite
     sprite: _Starlight/Objects/Specific/supermatter.rsi
-    layers:
-      - state: supermatter
-        shader: unshaded
+    state: supermatter
+    shader: unshaded
   - type: Icon
     sprite: _Starlight/Objects/Specific/supermatter.rsi
     state: supermatter
@@ -89,7 +88,7 @@
 - type: entity
   id: Cascad2
   parent: Cascad1
-  components:
+  components: 
     - type: Sprite
       layers:
         - state: cascade_2
@@ -100,7 +99,7 @@
 - type: entity
   id: Cascad3
   parent: Cascad1
-  components:
+  components: 
     - type: Sprite
       layers:
         - state: cascade_3
@@ -111,7 +110,7 @@
 - type: entity
   id: Cascad4
   parent: Cascad1
-  components:
+  components: 
     - type: Sprite
       layers:
         - state: cascade_4
@@ -122,7 +121,7 @@
 - type: entity
   id: Cascad5
   parent: Cascad1
-  components:
+  components: 
     - type: Sprite
       layers:
         - state: cascade_5
@@ -133,7 +132,7 @@
 - type: entity
   id: Cascad6
   parent: Cascad1
-  components:
+  components: 
     - type: Sprite
       layers:
         - state: cascade_6

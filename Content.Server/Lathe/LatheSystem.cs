@@ -6,6 +6,7 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Lathe.Components;
 using Content.Server.Materials;
 using Content.Server.Popups;
+using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
 using Content.Shared.Atmos;
@@ -14,7 +15,9 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.UserInterface;
 using Content.Shared.Database;
+using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
+using Content.Shared.Examine;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Materials;
@@ -176,7 +179,7 @@ namespace Content.Server.Lathe
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
             }
-            component.Queue.Enqueue(recipe);
+            component.Queue.Add(recipe);
 
             return true;
         }
@@ -188,8 +191,8 @@ namespace Content.Server.Lathe
             if (component.CurrentRecipe != null || component.Queue.Count <= 0 || !this.IsPowered(uid, EntityManager))
                 return false;
 
-            var recipeProto = component.Queue.Dequeue();
-            var recipe = _proto.Index(recipeProto);
+            var recipe = component.Queue.First();
+            component.Queue.RemoveAt(0);
 
             var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
 
@@ -219,19 +222,18 @@ namespace Content.Server.Lathe
 
             if (comp.CurrentRecipe != null)
             {
-                var currentRecipe = _proto.Index(comp.CurrentRecipe.Value);
-                if (currentRecipe.Result is { } resultProto)
+                if (comp.CurrentRecipe.Result is { } resultProto)
                 {
                     var result = Spawn(resultProto, Transform(uid).Coordinates);
                     _stack.TryMergeToContacts(result);
-                    if (currentRecipe.PrintTicket)
+                    if (comp.CurrentRecipe.PrintTicket)
                     {
-                        var tickets = Spawn(currentRecipe.TicketProtoId, Transform(uid).Coordinates);
+                        var tickets = Spawn(comp.CurrentRecipe.TicketProtoId, Transform(uid).Coordinates);
                         _stack.TryMergeToContacts(tickets);
                     }
                 }
 
-                if (currentRecipe.ResultReagents is { } resultReagents &&
+                if (comp.CurrentRecipe.ResultReagents is { } resultReagents &&
                     comp.ReagentOutputSlotId is { } slotId)
                 {
                     var toAdd = new Solution(
@@ -268,11 +270,9 @@ namespace Content.Server.Lathe
             if (!Resolve(uid, ref component))
                 return;
 
-            var producing = component.CurrentRecipe;
-            if (producing == null && component.Queue.TryPeek(out var next))
-                producing = next;
+            var producing = component.CurrentRecipe ?? component.Queue.FirstOrDefault();
 
-            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue.ToArray(), producing);
+            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing);
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 

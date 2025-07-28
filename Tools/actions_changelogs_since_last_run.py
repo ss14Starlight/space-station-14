@@ -94,15 +94,13 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
                 if emoji not in changes_by_type:
                     changes_by_type[emoji] = []
 
-                # if a single line is longer than the limit, it needs to be truncated
-                if len(message) > DISCORD_SPLIT_LIMIT:
-                    message = message[: DISCORD_SPLIT_LIMIT - 100].rstrip() + " [...]"
-
-                if url is not None:
-                    pr_number = url.split("/")[-1]
-                    line = f"{emoji} - {message} ([#{pr_number}]({url}))\n"
-                else:
-                    line = f"{emoji} - {message}\n"
+                max_field_length = 1024
+                for i in range(0, len(message), max_field_length):
+                    changes_by_type[emoji].append(message[i:i + max_field_length])
+                    
+            url = entry.get("url")
+            if url and "https://" in url:
+                urls.add(url)
 
         for emoji, messages in changes_by_type.items():
             for message in messages:

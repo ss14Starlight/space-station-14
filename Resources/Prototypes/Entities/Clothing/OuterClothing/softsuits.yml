@@ -13,7 +13,6 @@
     tags:
     - SuitEVA
     - MonkeyWearable
-    - CorgiWearable
     - WhitelistChameleon
     - CorgiWearable
 
@@ -33,8 +32,6 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-  - type: StaticPrice
-    price: 1000 # Helmet is 500
 
 #Emergency EVA
 - type: entity
@@ -63,9 +60,7 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - ScurretWearable
-    - MonkeyWearable
-    - SuitEVA #Starlight
+    - SuitEVA
     - WhitelistChameleon
 
 #Prisoner EVA

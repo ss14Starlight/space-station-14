@@ -1,7 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Systems;
 using Content.Server.Explosion.Components;
-using Content.Shared.Flash;
+using Content.Server.Flash;
 using Content.Server.Electrocution;
 using Content.Server.Pinpointer;
 using Content.Shared.Chemistry.EntitySystems;
@@ -71,7 +71,7 @@ namespace Content.Server.Explosion.EntitySystems
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ExplosionSystem _explosions = default!;
         [Dependency] private readonly FixtureSystem _fixtures = default!;
-        [Dependency] private readonly SharedFlashSystem _flashSystem = default!;
+        [Dependency] private readonly FlashSystem _flashSystem = default!;
         [Dependency] private readonly SharedBroadphaseSystem _broadphase = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly SharedContainerSystem _container = default!;
@@ -146,7 +146,7 @@ namespace Content.Server.Explosion.EntitySystems
                 return;
 
             var containerEnt = container.Owner;
-            var curTime = _gameTiming.CurTime;
+            var curTime = _timing.CurTime;
 
             if (curTime < shockOnTrigger.Comp.NextTrigger)
             {
@@ -198,13 +198,14 @@ namespace Content.Server.Explosion.EntitySystems
 
         private void HandleFlashTrigger(EntityUid uid, FlashOnTriggerComponent component, TriggerEvent args)
         {
-            _flashSystem.FlashArea(uid, args.User, component.Range, component.Duration, probability: component.Probability);
+            // TODO Make flash durations sane ffs.
+            _flashSystem.FlashArea(uid, args.User, component.Range, component.Duration * 1000f, probability: component.Probability);
             args.Handled = true;
         }
 
         private void HandleDeleteTrigger(EntityUid uid, DeleteOnTriggerComponent component, TriggerEvent args)
         {
-            QueueDel(uid);
+            EntityManager.QueueDeleteEntity(uid);
             args.Handled = true;
         }
 
@@ -265,10 +266,10 @@ namespace Content.Server.Explosion.EntitySystems
         {
             if (args.Handled || !args.Complex)
                 return;
-
+            
             var currentTime = _gameTiming.CurTime;
             var cooldown = TimeSpan.FromSeconds(component.CooldownTime);
-
+            
             if (currentTime - component.LastTimeActivated < cooldown)
                 return;
 
@@ -309,7 +310,7 @@ namespace Content.Server.Explosion.EntitySystems
 
         private void OnRepeatInit(Entity<RepeatingTriggerComponent> ent, ref MapInitEvent args)
         {
-            ent.Comp.NextTrigger = _gameTiming.CurTime + ent.Comp.Delay;
+            ent.Comp.NextTrigger = _timing.CurTime + ent.Comp.Delay;
         }
 
         public bool Trigger(EntityUid trigger, EntityUid? user = null)
@@ -449,7 +450,7 @@ namespace Content.Server.Explosion.EntitySystems
 
         private void UpdateRepeat()
         {
-            var now = _gameTiming.CurTime;
+            var now = _timing.CurTime;
             var query = EntityQueryEnumerator<RepeatingTriggerComponent>();
             while (query.MoveNext(out var uid, out var comp))
             {

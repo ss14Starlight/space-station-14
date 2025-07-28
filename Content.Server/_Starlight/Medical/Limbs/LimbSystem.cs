@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Humanoid;
@@ -7,7 +8,9 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Starlight;
 using Content.Shared.Starlight.Medical.Surgery;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
@@ -18,6 +21,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
     [Dependency] private readonly ContainerSystem _containers = default!;
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -107,8 +111,8 @@ public sealed partial class LimbSystem : SharedLimbSystem
             return;
         }
 
-        _hands.AddHand((bodyId,hands), handId, HandLocation.Middle);
-        _hands.DoPickup(bodyId, handId, itemId, hands);
+        _hands.AddHand(bodyId, handId, HandLocation.Middle, hands);
+        _hands.DoPickup(bodyId, hands.Hands[handId], itemId, hands);
         EnsureComp<UnremoveableComponent>(itemId);
     }
 
@@ -116,8 +120,12 @@ public sealed partial class LimbSystem : SharedLimbSystem
     {
         if (!bodyId.IsValid() || !itemId.IsValid()) return;
 
+        if (!TryComp<HandsComponent>(bodyId, out var hands)
+            || !_hands.TryGetHand(bodyId, handId, out var hand, hands))
+            return;
+
         RemComp<UnremoveableComponent>(itemId);
-        _hands.DoDrop(itemId, handId);
+        _hands.DoDrop(itemId, hand);
         _hands.RemoveHand(bodyId, handId);
     }
 }

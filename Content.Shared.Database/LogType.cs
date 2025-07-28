@@ -474,12 +474,7 @@ public enum LogType
     /// </summary>
     ShuttleImpact = 102,
 
-    /// <summary>
-    /// Events relating to midi playback.
-    /// </summary>
-    Instrument = 103,
-
-    #region Starlight log flags
+    // 🌟Starlight🌟 start
     Railroading = 1000,
-    #endregion
+    // 🌟Starlight🌟 end
 }

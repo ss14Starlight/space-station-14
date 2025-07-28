@@ -70,7 +70,8 @@ namespace Content.Server.Kitchen.EntitySystems
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly SharedSuicideSystem _suicide = default!;
 
-        private static readonly EntProtoId MalfunctionSpark = "Spark";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string MalfunctionSpark = "Spark";
 
         private static readonly ProtoId<TagPrototype> MetalTag = "Metal";
         private static readonly ProtoId<TagPrototype> PlasticTag = "Plastic";
@@ -152,10 +153,7 @@ namespace Content.Server.Kitchen.EntitySystems
             microwavedComp.Microwave = ent.Owner;
         }
 
-        private void OnActiveMicrowaveRemove(Entity<ActiveCookingDeviceComponent> ent, ref EntRemovedFromContainerMessage args)
-        {
-            RemCompDeferred<ActivelyCookedComponent>(args.Entity);
-        }
+        private void OnActiveMicrowaveRemove(Entity<ActiveCookingDeviceComponent> ent, ref EntRemovedFromContainerMessage args) => EntityManager.RemoveComponentDeferred<ActivelyCookedComponent>(args.Entity); // Starlight-edit
 
         // Stop items from transforming through constructiongraphs while being microwaved.
         // They might be reserved for a microwave recipe.
@@ -853,7 +851,7 @@ namespace Content.Server.Kitchen.EntitySystems
             if (!HasContents(ent.Comp) || HasComp<ActiveCookingDeviceComponent>(ent)) // Starlight-edit
                 return;
 
-            _container.Remove(GetEntity(args.EntityID), ent.Comp.Storage);
+            _container.Remove(EntityManager.GetEntity(args.EntityID), ent.Comp.Storage);
             UpdateUserInterfaceState(ent, ent.Comp);
         }
 

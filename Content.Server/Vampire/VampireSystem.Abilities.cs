@@ -1,7 +1,13 @@
 using Content.Server.Bible.Components;
+using Content.Server.Body.Components;
+using Content.Server.Flash;
+using Content.Server.Flash.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Storage.Components;
+using Content.Server.Store.Components;
+using Content.Shared.Actions;
 using Content.Server.Objectives.Components;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Chemistry.Components;
@@ -19,6 +25,8 @@ using Content.Shared.Popups;
 using Content.Shared.Polymorph;
 using Content.Shared.Prying.Components;
 using Content.Shared.Stealth.Components;
+using Content.Shared.Store.Events;
+using Content.Shared.Store.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
@@ -28,7 +36,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Flash.Components;
 
 namespace Content.Server.Vampire;
@@ -172,9 +179,9 @@ public sealed partial class VampireSystem
 
         if (!IsAbilityUsable(vampire, def))
             return;
-
+        
         UnnaturalStrength(vampire);
-
+        
         ev.Handled = true;
     }
     private void OnVampireSupernaturalStrength(EntityUid entity, VampireComponent component, VampireSupernaturalStrengthEvent ev)
@@ -186,9 +193,9 @@ public sealed partial class VampireSystem
 
         if (!IsAbilityUsable(vampire, def))
             return;
-
+        
         SupernaturalStrength(vampire);
-
+        
         ev.Handled = true;
     }
     private void OnVampireCloakOfDarkness(EntityUid entity, VampireComponent component, VampireCloakOfDarknessEvent ev)
@@ -197,7 +204,7 @@ public sealed partial class VampireSystem
             return;
 
         var vampire = new Entity<VampireComponent>(entity, component);
-
+        
         if (_vampire.GetBloodEssence(vampire) < FixedPoint2.New(330))
         {
             _popup.PopupEntity(Loc.GetString("vampire-cloak-disable"), vampire, vampire);
@@ -318,13 +325,13 @@ public sealed partial class VampireSystem
             var strength = EnsureComp<VampireStrengthComponent>(vampire);
             strength.Upkeep = 1f;
             strength.Power = "SupernaturalStrength";
-
+            
             var pryComp = EnsureComp<PryingComponent>(vampire);
             pryComp.Force = true;
             pryComp.PryPowered = true;
-
+        
             _popup.PopupEntity(Loc.GetString("vampire-supernaturalstrength", ("user", vampire)), vampire, vampire, Shared.Popups.PopupType.SmallCaution);
-
+            
             meleeComp.Damage += damage;
         }
     }
@@ -377,7 +384,7 @@ public sealed partial class VampireSystem
     {
         if (string.IsNullOrEmpty(polymorphTarget))
             return;
-
+        
         var prototypeId = polymorphTarget switch
         {
             "MobMouse" => "VampireMouse",
@@ -400,7 +407,7 @@ public sealed partial class VampireSystem
         _polymorph.PolymorphEntity(vampire, prototype);
     }
     private void BloodSteal(Entity<VampireComponent> vampire)
-    {
+    { 
         var transform = Transform(vampire.Owner);
 
         var targets = new HashSet<(EntityUid, FixedPoint2)>();
@@ -425,19 +432,19 @@ public sealed partial class VampireSystem
             var victimBloodRemaining = bloodstream.BloodSolution.Value.Comp.Solution.Volume;
             if (victimBloodRemaining <= 0)
                 continue;
-
+            
             var volumeToConsume = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, 20);
 
             targets.Add((entity, volumeToConsume));
         }
-
+        
         if (targets.Count != 0)
         {
             foreach (var (entity, volumeToConsume) in targets)
             {
                 if (!TryComp<BloodstreamComponent>(entity, out var bloodstream) || bloodstream.BloodSolution == null)
                     continue;
-
+                
                 //Transfer 80% to the vampire
                 var bloodSolution = _solution.SplitSolution(bloodstream.BloodSolution.Value, volumeToConsume * 0.80);
                 //And spill 20% on the floor
@@ -492,7 +499,7 @@ public sealed partial class VampireSystem
             return false;
 
         var attempt = new FlashAttemptEvent(target.Value, vampire.Owner, vampire.Owner);
-        RaiseLocalEvent(target.Value, ref attempt, true);
+        RaiseLocalEvent(target.Value, attempt, true);
 
         if (attempt.Cancelled)
             return false;
@@ -528,7 +535,7 @@ public sealed partial class VampireSystem
         if (args.Cancelled)
             return;
 
-        _statusEffects.TryAddStatusEffectDuration(args.Target.Value, SleepingSystem.StatusEffectForcedSleeping,out var _, args.Duration ?? TimeSpan.FromSeconds(30));
+        _statusEffects.TryAddStatusEffect<ForcedSleepingComponent>(args.Target.Value, VampireComponent.SleepStatusEffectProto, args.Duration ?? TimeSpan.FromSeconds(30), false);
     }
     #endregion
 
@@ -667,7 +674,7 @@ public sealed partial class VampireSystem
         //Do a precheck
         if (!HasComp<VampireFangsExtendedComponent>(vampire))
             return false;
-
+        
         if (!HasComp<TransformComponent>(vampire))
             return false;
 
@@ -730,7 +737,7 @@ public sealed partial class VampireSystem
 
         var volumeToConsume = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume);
         var volumeToDrain = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume * 8);
-
+        
         if (_mind.TryGetMind(entity, out var mindId, out var mind))
             if (_mind.TryGetObjectiveComp<BloodDrainConditionComponent>(mindId, out var objective, mind))
                     objective.BloodDranked = entity.Comp.TotalBloodDrank;

@@ -1,14 +1,5 @@
 - type: entity
   parent: BasePlushie
-  id: BasePlushieVocalizer
-  abstract: true
-  components:
-    - type: Vocalizer
-      minVocalizeInterval: 120
-      maxVocalizeInterval: 240
-
-- type: entity
-  parent: BasePlushieVocalizer
   id: BaseResomiPlushie
   abstract: true
   components:
@@ -37,7 +28,7 @@
       path: /Audio/Voice/Resomi/resomi_scream.ogg
 
 - type: entity
-  parent: BasePlushieVocalizer
+  parent: BasePlushie
   id: BaseVulpkaninPlushie
   abstract: true
   components:
@@ -69,7 +60,7 @@
       path: /Audio/_Starlight/Effects/yip.ogg
 
 - type: entity
-  parent: BasePlushieVocalizer
+  parent: BasePlushie
   id: BaseMothPlushie
   abstract: true
   components:
@@ -95,7 +86,7 @@
       path: /Audio/Voice/Moth/moth_scream.ogg
 
 - type: entity
-  parent: BasePlushieVocalizer
+  parent: BasePlushie
   id: BaseLizardPlushie
   abstract: true
   components:
@@ -121,7 +112,7 @@
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 
 - type: entity
-  parent: BasePlushieVocalizer
+  parent: BasePlushie
   id: BaseShadekinPlushie
   abstract: true
   components:
@@ -147,7 +138,7 @@
       collection: FelionoidScreams
 
 - type: entity
-  parent: BasePlushieVocalizer
+  parent: BasePlushie
   id: BaseBorgPlushie
   abstract: true
   components:
