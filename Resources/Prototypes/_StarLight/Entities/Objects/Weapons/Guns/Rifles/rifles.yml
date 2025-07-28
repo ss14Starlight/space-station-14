@@ -22,7 +22,7 @@
         whitelist:
           tags:
             - CartridgeRifle
-            
+
 - type: entity
   name: LR-30
   parent: [BaseItem, BaseGunWieldable, BaseSecuritySalvageContraband]
@@ -68,7 +68,7 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
-  
+
 - type: entity
   name: IK-60 laser carbine
   parent: [BaseItem, BaseGunWieldable, BaseSecurityContraband]
@@ -116,7 +116,7 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
-  
+
 - type: entity
   name: ARG
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
@@ -135,7 +135,7 @@
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
   - type: Gun
-    fireRate: 7
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
   - type: ChamberMagazineAmmoProvider
@@ -171,7 +171,7 @@
     zeroVisible: true
   - type: Contraband
     allowedDepartments: [ Security ]
-      
+
 - type: entity
   name: Aussec Armory M-52
   parent: [WeaponRifleLecter, BaseCentcommContraband]
@@ -187,7 +187,7 @@
   - type: Contraband
     allowedDepartments: [ CentralCommand ]
   - type: Gun
-    fireRate: 8
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/aussec.ogg
   - type: MagazineVisuals
