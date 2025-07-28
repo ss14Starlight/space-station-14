@@ -31,3 +31,54 @@
       whitelist:
         components:
           - Hands
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BaseExtractOnlyImplant
+  name: storage implant extract only
+  description: This implant grants hidden storage within a person's body using bluespace technology. cant put stuff back in through.
+  abstract: true #you should sub-proto this and storage fill it.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionOpenStorageImplant
+      whitelist:
+        components:
+        - Hands # no use giving a mouse a storage implant, but a monkey is another story...
+    - type: Storage
+      grid:
+      - 0,0,2,2
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: [ ]
+    - type: CannotStorageInsert #extract-only implant
+    - type: DeimplantOnStorageEmpty # no use for a empty storage implant that you cant insert into
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+
+- type: entity
+  parent: BaseExtractOnlyImplant
+  id: ThievingGearImplant
+  description: a handy little pocket holding all your tools. stuff cant be returned once taken out.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        storagebase:
+          - SatchelThief
+
+- type: entity
+  parent: BaseExtractOnlyImplant
+  id: RevolutionaryGearImplant
+  description: a under-engineered pocket holding your tools for the revolution. you cant put the tools back in once they are out.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        storagebase:
+          - USSPUplinkImplanter
+          - ClothingEyesGlassesSunglasses
+          - Flash

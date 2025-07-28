@@ -62,3 +62,20 @@
   components:
     - type: Implanter
       implant: MagillitisSerumImplant
+
+- type: entity
+  id: ThievingGearImplanter
+  name: thieving gear implanter
+  parent: BaseImplantOnlyImplanter
+  suffix: Admeme
+  components:
+    - type: Implanter
+      implant: ThievingGearImplant
+
+- type: entity
+  id: RevolutionaryGearImplanter
+  name: revolutionary gear implanter
+  suffix: Admeme
+  components:
+    - type: Implanter
+      implant: RevolutionaryGearImplant
