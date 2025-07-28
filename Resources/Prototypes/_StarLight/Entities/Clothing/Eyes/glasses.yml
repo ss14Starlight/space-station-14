@@ -9,6 +9,7 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
   - type: FlashImmunity
+  - type: SolutionScanner
   - type: EyeProtection
     protectionTime: 5
   - type: ShowHealthBars
