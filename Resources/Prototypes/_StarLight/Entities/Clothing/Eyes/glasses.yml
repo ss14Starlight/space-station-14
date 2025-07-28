@@ -9,10 +9,10 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
   - type: FlashImmunity
+  - type: SolutionScanner
   - type: EyeProtection
     protectionTime: 5
   - type: ShowHealthBars
-  - type: SolutionScanner
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -63,7 +63,7 @@
   - type: ShowCriminalRecordIcons
   - type: EyeProtection
     protectionTime: 5
-    
+
 - type: entity
   parent: [ClothingEyesBase, BaseCommandContraband]
   id: ClothingEyesGlassesBlueShield
