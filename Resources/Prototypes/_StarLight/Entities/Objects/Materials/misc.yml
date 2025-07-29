@@ -32,3 +32,26 @@
           - ItemMask
         restitution: 0.3
         friction: 0.2
+        
+- type: entity
+  parent: OreBase
+  id: CrushedPhosphorus
+  name: crushed phosphorus
+  suffix: Full
+  components:
+    - type: Stack
+      stackType: CrushedPhosphorus
+    - type: Sprite
+      sprite: _Starlight/Objects/Materials/phosphorus.rsi
+      state: phosphorus_3
+    - type: Material
+    - type: Item
+      heldPrefix: phosphorus
+
+- type: entity
+  parent: CrushedPhosphorus
+  id: CrushedPhosphorus1
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
