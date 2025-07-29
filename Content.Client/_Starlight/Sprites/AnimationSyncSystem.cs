@@ -5,9 +5,14 @@ namespace Content.Client._Starlight.Sprites
 {
     public sealed class AnimationSyncSystem : EntitySystem
     {
-        [Dependency] private SpriteSystem _sprite = default!;
+        [Dependency] private readonly SpriteSystem _sprite = default!;
 
-        public void SyncOnLayer(Entity<SpriteComponent?> sprite, Enum key)
+        /// <summary>
+        /// Synchronizes the layers of a SpriteComponent to given layer's current animation time
+        /// </summary>
+        /// <param name="sprite">Sprite to synchronize</param>
+        /// <param name="key">Key of the layer to synchronize with</param>
+        public void SyncToLayer(Entity<SpriteComponent?> sprite, Enum key)
         {
             if (!Resolve(sprite.Owner, ref sprite.Comp)
                 || !_sprite.TryGetLayer(sprite, key, out var layer, true))
@@ -15,12 +20,6 @@ namespace Content.Client._Starlight.Sprites
 
             var animTime = LayerGetAnimationTime(layer);
             _sprite.SetAutoAnimateSync(sprite.Comp, animTime);
-        }
-
-        public void SyncOnLayer(SpriteComponent sprite, Layer layer)
-        {
-            var animTime = LayerGetAnimationTime(layer);
-            _sprite.SetAutoAnimateSync(sprite, animTime);
         }
 
         // RT doesn't include getters for layer anim data so including here for future use.

@@ -71,7 +71,7 @@ public sealed class BorgSystem : SharedBorgSystem
         _sprite.LayerSetRsiState((uid, sprite), BorgVisualLayers.Light, hasPlayer ? component.HasMindState : component.NoMindState);
 
         // Starlight - Science borg animation sync
-        _sync.SyncOnLayer((uid, sprite), BorgVisualLayers.Body);
+        _sync.SyncToLayer((uid, sprite), BorgVisualLayers.Body);
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)
