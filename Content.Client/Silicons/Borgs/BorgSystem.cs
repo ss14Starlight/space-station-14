@@ -59,7 +59,6 @@ public sealed class BorgSystem : SharedBorgSystem
         {
             if (state != MobState.Alive)
             {
-                _sprite.LayerSetAutoAnimated((uid, sprite), BorgVisualLayers.Body, false); // Starlight - don't animate when dead
                 _sprite.LayerSetVisible((uid, sprite), BorgVisualLayers.Light, false);
                 return;
             }
@@ -70,7 +69,7 @@ public sealed class BorgSystem : SharedBorgSystem
 
         _sprite.LayerSetVisible((uid, sprite), BorgVisualLayers.Light, component.BrainEntity != null || hasPlayer);
         _sprite.LayerSetRsiState((uid, sprite), BorgVisualLayers.Light, hasPlayer ? component.HasMindState : component.NoMindState);
-        
+
         // Starlight - Science borg animation sync
         _sync.SyncOnLayer((uid, sprite), BorgVisualLayers.Body);
     }
