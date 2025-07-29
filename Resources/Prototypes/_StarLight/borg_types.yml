@@ -27,5 +27,5 @@
   spriteToggleLightState: science_l
 
   # Pet
-  petSuccessString: petting-success-generic-cyborg
-  petFailureString: petting-failure-generic-cyborg
+  petSuccessString: petting-success-science-cyborg
+  petFailureString: petting-failure-science-cyborg

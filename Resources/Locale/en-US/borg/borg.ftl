@@ -38,7 +38,8 @@ borg-select-type-menu-guidebook = Guidebook
 ## Borg type information
 
 borg-type-generic-name = Generic
-borg-type-generic-desc = Jack of all trades, master of none. Do various random station tasks, or maybe help out the science department that built you.
+## Starlight - change generic desc
+borg-type-generic-desc = Jack of all trades, master of none. Do various random station tasks and help the crew.
 borg-type-generic-transponder = generic cyborg
 
 borg-type-engineering-name = Engineering
