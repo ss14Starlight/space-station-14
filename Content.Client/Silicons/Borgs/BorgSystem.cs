@@ -3,6 +3,7 @@ using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.Containers;
+using Content.Client._Starlight.Sprites; // Starlight
 
 namespace Content.Client.Silicons.Borgs;
 
@@ -11,6 +12,7 @@ public sealed class BorgSystem : SharedBorgSystem
 {
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly AnimationSyncSystem _sync = default!;
 
     public override void Initialize()
     {
@@ -57,6 +59,7 @@ public sealed class BorgSystem : SharedBorgSystem
         {
             if (state != MobState.Alive)
             {
+                _sprite.LayerSetAutoAnimated((uid, sprite), BorgVisualLayers.Body, false); // Starlight - don't animate when dead
                 _sprite.LayerSetVisible((uid, sprite), BorgVisualLayers.Light, false);
                 return;
             }
@@ -67,6 +70,9 @@ public sealed class BorgSystem : SharedBorgSystem
 
         _sprite.LayerSetVisible((uid, sprite), BorgVisualLayers.Light, component.BrainEntity != null || hasPlayer);
         _sprite.LayerSetRsiState((uid, sprite), BorgVisualLayers.Light, hasPlayer ? component.HasMindState : component.NoMindState);
+        
+        // Starlight - Science borg animation sync
+        _sync.SyncOnLayer((uid, sprite), BorgVisualLayers.Body);
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)
