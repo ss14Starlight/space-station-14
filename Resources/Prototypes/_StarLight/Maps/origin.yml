@@ -47,6 +47,7 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
+            Corpsman: [ 1, 1 ]
             Detective: [ 1, 1 ]
             SecurityOfficer: [ 10, 14 ]
             SecurityCadet: [ 2, 4 ]
