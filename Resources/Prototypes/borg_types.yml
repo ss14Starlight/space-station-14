@@ -6,18 +6,15 @@
   dummyPrototype: BorgChassisGeneric
 
   # Functional
-  extraModuleCount: 5
+  extraModuleCount: 3 # Starlight
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
-    - BorgModuleScience #until sciborgs are added
+    # Starlight - removed sci modules from whitelist
 
   defaultModules:
   - BorgModuleTool
-  - BorgModuleArtifact
-  - BorgModuleAnomaly
-  radioChannels:
-  - Science
+  # Starlight - removed sci radio channel and modules
 
   # Visual
   inventoryTemplateId: borgShort

@@ -1,0 +1,8 @@
+- type: entity
+  id: BorgChassisScience
+  parent: BorgChassisSelectable
+  name: science cyborg
+  components:
+    - type: TextToSpeech
+    - type: BorgSwitchableType
+      selectedBorgType: science

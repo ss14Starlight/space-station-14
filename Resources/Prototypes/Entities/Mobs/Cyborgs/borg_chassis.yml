@@ -97,6 +97,7 @@
     - type: Sprite
       layers:
         - state: synd_sec
+          map: ["enum.BorgVisualLayers.Body"] # Starlight
         - state: synd_sec_e
           map: ["enum.BorgVisualLayers.Light"]
           shader: unshaded
@@ -130,6 +131,7 @@
     - type: Sprite
       layers:
         - state: synd_medical
+          map: ["enum.BorgVisualLayers.Body"] # Starlight
         - state: synd_medical_e
           map: ["enum.BorgVisualLayers.Light"]
           shader: unshaded
@@ -170,6 +172,7 @@
     - type: Sprite
       layers:
         - state: synd_engi
+          map: ["enum.BorgVisualLayers.Body"] # Starlight
         - state: synd_engi_e
           map: ["enum.BorgVisualLayers.Light"]
           shader: unshaded
@@ -206,6 +209,7 @@
   - type: Sprite
     layers:
     - state: derelict
+      map: ["enum.BorgVisualLayers.Body"] # Starlight
     - state: derelict_e_r
       map: ["enum.BorgVisualLayers.Light"]
       shader: unshaded
