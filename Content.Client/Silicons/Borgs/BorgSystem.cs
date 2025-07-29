@@ -12,7 +12,7 @@ public sealed class BorgSystem : SharedBorgSystem
 {
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly AnimationSyncSystem _sync = default!;
+    [Dependency] private readonly AnimationSyncSystem _sync = default!; // Starlight
 
     public override void Initialize()
     {
