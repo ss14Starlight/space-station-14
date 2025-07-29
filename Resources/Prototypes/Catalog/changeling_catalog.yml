@@ -299,20 +299,6 @@
 #    stock: 1
 
 - type: listing
-  id: EvolutionMenuUtilityLesserForm
-  name: evolutionmenu-utility-lesserform-name
-  description: evolutionmenu-utility-lesserform-desc
-  icon: { sprite: Changeling/changeling_abilities.rsi, state: lesser_form }
-  productAction: ActionToggleLesserForm
-  cost:
-    EvolutionPoint: 2
-  categories:
-  - ChangelingAbilityUtility
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
   id: EvolutionMenuUtilitySpacesuit
   name: evolutionmenu-utility-spacesuit-name
   description: evolutionmenu-utility-spacesuit-desc

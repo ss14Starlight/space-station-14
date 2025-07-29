@@ -61,7 +61,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, ActionEphedrineOverdoseEvent>(OnEphedrineOverdose);
         SubscribeLocalEvent<ChangelingComponent, ActionFleshmendEvent>(OnHealUltraSwag);
         SubscribeLocalEvent<ChangelingComponent, ActionLastResortEvent>(OnLastResort);
-        SubscribeLocalEvent<ChangelingComponent, ActionLesserFormEvent>(OnLesserForm);
         SubscribeLocalEvent<ChangelingComponent, ActionSpacesuitEvent>(OnSpacesuit);
         SubscribeLocalEvent<ChangelingComponent, ActionHivemindAccessEvent>(OnHivemindAccess);
         SubscribeLocalEvent<ChangelingComponent, FakeMindShieldToggleEvent>(OnFakeMindShieldToggle);
@@ -595,24 +594,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         // todo: implement
     }
-    public void OnLesserForm(EntityUid uid, ChangelingComponent comp, ref ActionLesserFormEvent args)
-    {
-        if (!TryUseAbility(uid, comp, args))
-            return;
 
-        var newUid = TransformEntity(uid, protoId: "MobMonkey", comp: comp);
-        if (newUid == null)
-        {
-            comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
-            return;
-        }
-
-        PlayMeatySound((EntityUid) newUid, comp);
-        var loc = Loc.GetString("changeling-transform-others", ("user", Identity.Entity((EntityUid) newUid, EntityManager)));
-        _popup.PopupEntity(loc, (EntityUid) newUid, PopupType.LargeCaution);
-
-        comp.IsInLesserForm = true;
-    }
     public void OnSpacesuit(EntityUid uid, ChangelingComponent comp, ref ActionSpacesuitEvent args)
     {
         if (!TryUseAbility(uid, comp, args))

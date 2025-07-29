@@ -229,7 +229,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             if (stamina.StaminaDamage >= stamina.CritThreshold || _gravity.IsWeightless(uid))
                 ToggleStrainedMuscles(uid, comp);
         }
-        
+
         if (comp.StealthEnabled)
         {
             if (comp.Chemicals > comp.StealthDrain)
@@ -308,12 +308,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (comp.Biomass < 1 && lingAction.RequireBiomass)
         {
             _popup.PopupEntity(Loc.GetString("changeling-biomass-deficit"), uid, uid);
-            return false;
-        }
-
-        if (!lingAction.UseInLesserForm && comp.IsInLesserForm)
-        {
-            _popup.PopupEntity(Loc.GetString("changeling-action-fail-lesserform"), uid, uid);
             return false;
         }
 
@@ -422,7 +416,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         if (!TryComp<HumanoidAppearanceComponent>(target, out var appearance)
         || !TryComp<MetaDataComponent>(target, out var metadata)
-        || !TryComp<DnaComponent>(target, out var dna) 
+        || !TryComp<DnaComponent>(target, out var dna)
         || dna.DNA == null
         || !TryComp<FingerprintComponent>(target, out var fingerprint))
             return false;
@@ -471,7 +465,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         newComp.Biomass = comp.Biomass;
         newComp.MaxBiomass = comp.MaxBiomass;
 
-        newComp.IsInLesserForm = comp.IsInLesserForm;
         newComp.CurrentForm = comp.CurrentForm;
 
         newComp.TotalAbsorbedEntities = comp.TotalAbsorbedEntities;
@@ -543,7 +536,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             EnsureComp<HeadRevolutionaryComponent>(newEnt);
         if (HasComp<RevolutionaryComponent>(uid))
             EnsureComp<RevolutionaryComponent>(newEnt);
-        
+
         _factionSystem.Up(uid, newEnt);
 
         QueueDel(uid);

@@ -523,24 +523,6 @@
     useInLesserForm: true
 
 - type: entity
-  id: ActionToggleLesserForm
-  name: Lesser Form
-  description: Abandon your current form and transform into a monkey. Costs 20 chemicals.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    useDelay: 5
-    itemIconStyle: NoItem
-    icon:
-      sprite: Changeling/changeling_abilities.rsi
-      state: lesser_form
-    checkCanInteract: false
-  - type: InstantAction
-    event: !type:ActionLesserFormEvent {}
-  - type: ChangelingAction
-    chemicalCost: 20
-
-- type: entity
   id: ActionToggleSpacesuit
   name: Toggle Space Suit
   description: Make your body space proof. Costs 20 chemicals.
