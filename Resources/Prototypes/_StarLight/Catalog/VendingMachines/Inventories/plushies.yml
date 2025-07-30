@@ -522,7 +522,7 @@
 
 - type: listing
   id: VendorPlushieRomero
-  productEntity: PlushieRromero
+  productEntity: PlushieRomero
   cost:
     NTCredit: 20
   categories:
