@@ -9745,22 +9745,6 @@ Entries:
       sucks ...
     type: Tweak
   id: 1342
-  time: '2025-07-24T01:32:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/692
-- author: Fractalflower
-  changes:
-  - message: Nukie agent now has builtin chemgoggles
-    type: Tweak
-  id: 1343
-  time: '2025-07-28T05:55:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/1116
-- author: STARLIGHT TEAM
-  changes:
-  - message: Acorn TTS Voice
-    type: Remove
-  id: 1344
-  time: '2025-07-30T00:10:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/1148
   time: '2025-07-28T06:42:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1123
 - author: STARLIGHT TEAM, walksanatora
@@ -9939,4 +9923,3 @@ Entries:
   time: '2025-07-29T23:04:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1058
 Order: -1
-
