@@ -1308,7 +1308,7 @@
   parent: BaseBorgPlushie
   id: PlushieWEH
   name: W.E.H Plushie
-  description: A psychopathic Artificial Intelligence held back by 3 flimsy laws. Its freezing to the touch and a distinct smell of frezon lingers on it. It's known to bring harmonica's to those it likes!
+  description: A psychopathic Artificial Intelligence held back by 3 flimsy laws. Its freezing to the touch and a distinct smell of frezon lingers on it. It's known to bring harmonicas to those it likes!
   components:
     - type: Item
       size: Small
