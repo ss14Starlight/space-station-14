@@ -312,3 +312,15 @@
   storage:
     back:
       - BoxFolderClipboard
+
+- type: loadout
+  id: HonoredClownMask
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobClown
+        time: 72000 # 20 hours of honk
+  storage:
+    back:
+      - ClothingMaskClown
