@@ -1,18 +1,61 @@
+using Content.Shared.CCVar;
 using Robust.Client.GameObjects;
 using static Robust.Client.GameObjects.SpriteComponent;
+using Robust.Shared.Configuration;
 
 namespace Content.Client._Starlight.Sprites
 {
     public sealed class AnimationSyncSystem : EntitySystem
     {
         [Dependency] private readonly SpriteSystem _sprite = default!;
+        [Dependency] private readonly IConfigurationManager _config = default!; // Starlight
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<AnimationSyncComponent, AppearanceChangeEvent>(OnAppearanceChanged);
+        }
+
+        public void OnAppearanceChanged(EntityUid uid, AnimationSyncComponent component, AppearanceChangeEvent args)
+        {
+            if (args.Sprite == null)
+                return;
+            
+            UpdateLayerSync(uid, component, args.Sprite);
+        }
+
+        public void UpdateLayerSync(EntityUid uid,
+            AnimationSyncComponent? component = null,
+            SpriteComponent? sprite = null)
+        {
+            if (!Resolve(uid, ref component, ref sprite))
+                return;
+            
+            SyncToLayer((uid, sprite), component.layer);
+        }
+        
+        /// <summary>
+        /// Set AutoAnimated value for all layers of a given entity's sprite
+        /// </summary>
+        public void SetAllAutoAnimated(Entity<SpriteComponent?> sprite, bool value)
+        {
+            if (!Resolve(sprite.Owner, ref sprite.Comp))
+                return;
+
+            foreach (var spriteLayer in sprite.Comp.AllLayers)
+            {
+                if (spriteLayer is Layer layer)
+                {
+                    _sprite.LayerSetAutoAnimated(layer, value);
+                }
+            }
+        }
 
         /// <summary>
         /// Synchronizes the layers of a SpriteComponent to given layer's current animation time
         /// </summary>
         /// <param name="sprite">Sprite to synchronize</param>
         /// <param name="key">Key of the layer to synchronize with</param>
-        public void SyncToLayer(Entity<SpriteComponent?> sprite, Enum key)
+        public void SyncToLayer(Entity<SpriteComponent?> sprite, string key)
         {
             if (!Resolve(sprite.Owner, ref sprite.Comp)
                 || !_sprite.TryGetLayer(sprite, key, out var layer, true))
