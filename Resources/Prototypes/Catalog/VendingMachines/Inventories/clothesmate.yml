@@ -7,7 +7,7 @@
     ClothingBackpackSatchel: 3
     ClothingBackpackSatchelLeather: 2
     ClothingRandomSpawner: 8
-    ClothingOuterCoatRandom: 8
+    ClothingOuterCoatRandom: 8 # Starlight
     ClothingUniformRandomShorts: 4
     ClothingHeadHatBeret: 4
     ClothingHeadBandBlack: 2
@@ -80,6 +80,7 @@
     ClothingHeadHatCorpsoft: 2
     ClothingHeadFishCap: 2
     ClothingHeadRastaHat: 2
+    ClothingHeadPropellerHat: 2
     ClothingBeltStorageWaistbag: 3
     ClothingEyesGlasses: 6
     ClothingHandsGlovesColorBlack: 4
