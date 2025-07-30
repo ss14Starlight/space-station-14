@@ -1,4 +1,4 @@
-plushie-weh-1 = Freezon!!
+plushie-weh-1 = Frezon!!
 plushie-weh-2 = Yay!
 plushie-weh-3 = Jack!
 plushie-weh-4 = More Modules!
