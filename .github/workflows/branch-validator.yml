@@ -1,0 +1,54 @@
+name: Check PR Source Branch
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  pull-requests: write
+  content: read
+
+jobs:
+  check-source-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install pyyaml PyGithub
+
+      - name: Run source branch check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          SOURCE_BRANCH: ${{ github.head_ref }}
+          REPO_NAME: ${{ github.repository }}
+        run: |
+          python <<EOF
+          import os
+          from github import Github
+
+          token = os.environ['GITHUB_TOKEN']
+          repo_name = os.environ['REPO_NAME']
+          pr_number = int(os.environ['PR_NUMBER'])
+          source_branch = os.environ['SOURCE_BRANCH']
+
+          if source_branch != "starlight-dev":
+            g = Github(token)
+            repo = g.get_repo(repo_name)
+            pr = repo.get_pull(pr_number)
+            pr.create_issue_comment(
+              f"This pull request must be opened from the `starlight-dev` branch.\n"
+              f"Current: `{source_branch}`"
+            )
+            print(f"Invalid source branch: {source_branch}")
+            exit(1)
+          else:
+            print(f"Source branch is valid: {source_branch}")
+          EOF
