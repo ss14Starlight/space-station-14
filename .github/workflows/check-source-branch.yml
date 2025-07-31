@@ -16,8 +16,9 @@ jobs:
 
       - name: Fetch all branches
         run: |
-          git fetch origin --all
-          git branch -r
+            git fetch origin
+            git fetch --all
+            git branch -r
 
       - name: Check if branch was created from starlight-dev
         run: |
@@ -88,5 +89,6 @@ jobs:
             git checkout your-branch-name
             git rebase origin/starlight-dev
             git push --force-with-lease
-            \`\`\`'
+            \`\`\`
+            `;
   
