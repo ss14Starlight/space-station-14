@@ -62,7 +62,7 @@
   id: PlushiesPercy
   values:
     prefix: plushie-percy-
-    count: 6
+    count: 7
 
 - type: localizedDataset
   id: PlushiesAsh
