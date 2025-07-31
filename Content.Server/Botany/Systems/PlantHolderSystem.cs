@@ -26,7 +26,6 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Timing;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Database;
 using Content.Shared.EntityEffects;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Labels.Components;
@@ -466,7 +465,9 @@ public sealed partial class PlantHolderSystem : EntitySystem
             UpdateSprite(uid, component);
     }
 
-    //TODO: kill this bullshit
+    /// <summary>
+    /// Ensures all plant holder levels are within valid ranges.
+    /// </summary>
     public void CheckLevelSanity(EntityUid uid, PlantHolderComponent? component = null)
     {
         if (!Resolve(uid, ref component))
