@@ -16,6 +16,7 @@ using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Kitchen.Components;
+using LogType = Content.Shared.Database.LogType;
 
 namespace Content.Server.Botany.Systems;
 

@@ -28,6 +28,7 @@ using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.EntityEffects;
 using Content.Shared.Kitchen.Components;
+using LogType = Content.Shared.Database.LogType;
 using Content.Shared.Labels.Components;
 
 namespace Content.Server.Botany.Systems;
