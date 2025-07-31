@@ -129078,7 +129078,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: DrinkIrishSlammer
+- proto: DrinkIrishCarBomb #Starlight Change
   entities:
   - uid: 17293
     components:
