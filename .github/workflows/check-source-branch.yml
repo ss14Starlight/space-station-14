@@ -1,0 +1,53 @@
+name: Check PR Branch Origin
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-branch-origin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check if branch was created from starlight-dev
+        run: |
+          PR_BRANCH="${{ github.head_ref }}"
+          echo "PR Branch: $PR_BRANCH"
+          
+          BASE_COMMIT=$(git merge-base origin/starlight-dev origin/$PR_BRANCH)
+          
+          if git merge-base --is-ancestor $BASE_COMMIT origin/starlight-dev; then
+
+            STARLIGHT_DEV_COMMIT=$(git rev-parse origin/starlight-dev)
+            
+            if git merge-base --is-ancestor $BASE_COMMIT $STARLIGHT_DEV_COMMIT; then
+              echo "Branch '$PR_BRANCH' was correctly created from 'starlight-dev'"
+              echo "Base commit: $BASE_COMMIT"
+            else
+              echo "Branch '$PR_BRANCH' was NOT created from 'starlight-dev'"
+              echo "Base commit: $BASE_COMMIT"
+              echo "Expected base: starlight-dev ($STARLIGHT_DEV_COMMIT)"
+              exit 1
+            fi
+          else
+            echo "Branch '$PR_BRANCH' was NOT created from 'starlight-dev'"
+            echo "Base commit: $BASE_COMMIT"
+            exit 1
+          fi
+
+      - name: Add comment on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '**Branch Origin Check Failed**\n\nThis pull request branch was not created from the `starlight-dev` branch. Please fix this before the PR can be merged.\n\n**How to fix:**\n\n**Rebase current branch:**\n```bash\ngit checkout your-branch-name\ngit rebase origin/starlight-dev\ngit push --force-with-lease\n```\n
+            })
