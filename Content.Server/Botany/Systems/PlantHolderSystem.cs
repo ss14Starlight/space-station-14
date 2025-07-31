@@ -194,7 +194,7 @@ public sealed partial class PlantHolderSystem : EntitySystem
                     ("seedName", name),
                     ("seedNoun", noun)), args.User, PopupType.Medium);
 
-                component.Seed = seed;
+                component.Seed = seed.Clone();
                 component.Dead = false;
                 component.Age = 1;
                 if (seeds.HealthOverride != null)
