@@ -576,7 +576,6 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         if (quantity == 0)
             return false;
 
-        // Use the more efficient direct transfer method
         return TryDirectTransferReagents(soln, source, quantity);
     }
 
@@ -1336,7 +1335,6 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         if (quantity == 0)
             return false;
 
-        // Directly transfer reagents without creating intermediate solutions
         foreach (var (reagentId, amount) in source.Contents)
         {
             var transferAmount = amount * (quantity / source.Volume);

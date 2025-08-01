@@ -52,17 +52,15 @@ public sealed partial class PlantHolderSystem : EntitySystem
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
+    [Dependency] private readonly ISerializationManager _copier = default!;
 
     public const float HydroponicsSpeedMultiplier = 1f;
     public const float HydroponicsConsumptionMultiplier = 2f;
     public readonly FixedPoint2 PlantMetabolismRate = FixedPoint2.New(1);
+    public const float WeedHighLevelThreshold = 10f;
 
     private static readonly ProtoId<TagPrototype> HoeTag = "Hoe";
     private static readonly ProtoId<TagPrototype> PlantSampleTakerTag = "PlantSampleTaker";
-
-    [Dependency] private readonly ISerializationManager _copier = default!;
-
-    public const float WeedHighLevelThreshold = 10f;
 
     public override void Initialize()
     {
@@ -429,7 +427,7 @@ public sealed partial class PlantHolderSystem : EntitySystem
                 chance = 0.01f;
 
             if (_random.Prob(chance))
-                component.WeedLevel += 1 + component.WeedCoefficient; // * HydroponicsSpeedMultiplier
+                component.WeedLevel += 1 + component.WeedCoefficient;
 
             if (component.DrawWarnings)
                 component.UpdateSpriteAfterUpdate = true;
@@ -602,7 +600,7 @@ public sealed partial class PlantHolderSystem : EntitySystem
         component.YieldMod = 1;
         component.MutationMod = 1;
         component.ImproperPressure = false;
-        component.WeedLevel += 1; // * HydroponicsSpeedMultiplier;
+        component.WeedLevel += 1;
         component.PestLevel = 0;
         UpdateSprite(uid, component);
     }
