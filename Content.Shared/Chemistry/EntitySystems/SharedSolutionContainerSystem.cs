@@ -302,7 +302,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
 
     /// <summary>
     /// Dirties a solution entity that has been modified and prompts updates to chemical reactions and overflow state.
-    /// Should be invoked whenever a solution entity is changed.
+    /// Should be invoked whenever a solution entity is modified.
     /// </summary>
     /// <remarks>
     /// 90% of this system is ensuring that this proc is invoked whenever a solution entity is changed. The other 10% <i>is</i> this proc.
@@ -576,7 +576,12 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         if (quantity == 0)
             return false;
 
-        return TryDirectTransferReagents(soln, source, quantity);
+        // TODO This should be made into a function that directly transfers reagents.
+        // Currently this is quite inefficient.
+        solution.AddSolution(source.SplitSolution(quantity), PrototypeManager);
+
+        UpdateChemicals(soln);
+        return true;
     }
 
     /// <summary>
@@ -862,6 +867,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
             );
             colorHex = lighterColor.ToHexNoAlpha();
         }
+
         var messageString = "shared-solution-container-component-on-examine-main-text";
 
         using (args.PushGroup(nameof(ExaminableSolutionComponent)))
@@ -1318,33 +1324,5 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         if (overflow < 0)
             dissolvedReagentAmount += overflow;
         return dissolvedReagentAmount;
-    }
-
-    /// <summary>
-    /// Directly transfers reagents from one solution to another without creating intermediate solutions.
-    /// </summary>
-    public bool TryDirectTransferReagents(Entity<SolutionComponent> targetSoln, Solution source, FixedPoint2 quantity)
-    {
-        var (uid, comp) = targetSoln;
-        var solution = comp.Solution;
-
-        if (quantity <= FixedPoint2.Zero || source.Volume <= FixedPoint2.Zero)
-            return false;
-
-        quantity = FixedPoint2.Min(quantity, solution.AvailableVolume, source.Volume);
-        if (quantity == 0)
-            return false;
-
-        foreach (var (reagentId, amount) in source.Contents)
-        {
-            var transferAmount = amount * (quantity / source.Volume);
-            if (transferAmount > FixedPoint2.Zero)
-            {
-                solution.AddReagent(reagentId, transferAmount);
-            }
-        }
-
-        UpdateChemicals(targetSoln);
-        return true;
     }
 }
