@@ -236,6 +236,13 @@
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
+
+  - type: SolutionScanner #starlight
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+
 - type: entity
   parent: [ClothingEyesGlassesSunglasses, ShowSecurityIcons]
   id: ClothingEyesGlassesHiddenSecurity
