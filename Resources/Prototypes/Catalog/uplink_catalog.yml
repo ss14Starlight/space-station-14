@@ -152,11 +152,6 @@
     Telecrystal: 8
   categories:
   - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
 
 - type: listing
   id: UplinkSniperBundle
@@ -492,8 +487,8 @@
 
 - type: listing
   id: UplinkPistol9mmMagazineSP
-  name: uplink-pistol-magazine-name
-  description: uplink-pistol-magazine-desc
+  name: uplink-pistol-magazine-nameSP
+  description: uplink-pistol-magazine-descSP
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
   productEntity: MagazinePistolHP
   cost:
@@ -503,8 +498,8 @@
 
 - type: listing
   id: UplinkPistol9mmMagazineHP
-  name: uplink-pistol-magazine-name
-  description: uplink-pistol-magazine-desc
+  name: uplink-pistol-magazine-nameHP
+  description: uplink-pistol-magazine-descHP
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: sp }
   productEntity: MagazinePistolSP
   cost:
@@ -514,8 +509,8 @@
 
 - type: listing
   id: UplinkPistol9mmMagazineFMJ
-  name: uplink-pistol-magazine-name
-  description: uplink-pistol-magazine-desc
+  name: uplink-pistol-magazine-nameFMJ
+  description: uplink-pistol-magazine-descFMJ
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: fmj }
   productEntity: MagazinePistolFMJ
   cost:
@@ -529,7 +524,7 @@
   name: uplink-pistol-magazine-c20r-name
   description: uplink-pistol-magazine-c20r-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGunSP
+  productEntity: MagazinePistolSubMachineGunFMJ
   cost:
     Telecrystal: 2
   categories:

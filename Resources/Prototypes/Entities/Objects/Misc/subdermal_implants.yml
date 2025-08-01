@@ -185,7 +185,7 @@
       implantAction: ActionActivateEmpImplant
     - type: TriggerImplantAction
     - type: EmpOnTrigger
-      range: 2.75
+      range: 3.12 #STARLIGHT
       energyConsumption: 50000
       disableDuration: 10
 

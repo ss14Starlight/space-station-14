@@ -96,6 +96,30 @@
     steps: 4
     zeroVisible: true
   - type: Appearance
+  - type: Gun
+    minAngle: 20
+    maxAngle: 40
+    angleIncrease: 3
+    angleDecay: 13
+    fireRate: 8
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleBoxFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleBox
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
   - type: StaticPrice
     price: 10000
 
@@ -131,7 +155,7 @@
       containers:
         ballistic-ammo: !type:Container
     - type: ProjectileBatteryAmmoProvider
-      proto: CartridgeLightRifleSP
+      proto: CartridgeLightRifleFMJ
       fireCost: 100
     - type: Battery
       maxCharge: 10000

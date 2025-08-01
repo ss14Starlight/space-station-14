@@ -50,7 +50,7 @@
         ents: []
   - type: StaticPrice
     price: 500
-    
+
 - type: entity
   parent: BaseWeaponShotgunAny
   id: BaseWeaponShotgun
@@ -84,7 +84,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
   - type: GunRequiresWield
   - type: Gun
-    spread: 15
+    spread: 7
     fireRate: 2
     selectedMode: FullAuto
     availableModes:
@@ -149,10 +149,10 @@
     proto: ShellShotgunBeanbag
 
 - type: entity
-  name: Sentiel
+  name: Enforcer
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunEnforcer
-  description: A premium semi-automatic shotgun, and the pride of all security forces. Uses .50 shotgun shells.
+  description: The pride of all security forces. Uses .50 shotgun shells.
   components: # intend for Enforcer to have wider choke for semi-auto function
   - type: Gun
     spread: 5
@@ -164,6 +164,7 @@
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/sentiel_inhands_64x.rsi
   - type: BallisticAmmoProvider
+    capacity: 8
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
 - type: entity

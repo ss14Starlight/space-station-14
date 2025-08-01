@@ -186,6 +186,8 @@
       tags:
         - CigPack
         - Taser
+        - ShellShotgun
+        - ShellShotgunImprovised
       components:
         - Stunbaton
         - FlashOnTrigger

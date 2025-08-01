@@ -69,7 +69,7 @@
         knockback: 1 #half of what resomi take
   - type: BallisticAmmoProvider # Starlight
     capacity: 10
-    proto: CartridgeMagnumSP
+    proto: CartridgeMagnumFMJ #Starlight
     whitelist:
       tags:
         - CartridgeMagnum
@@ -83,7 +83,7 @@
       params:
         variation: 0.246
     pump: true
-    fireRate: 1
+    fireRate: 1.3
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
     layers:

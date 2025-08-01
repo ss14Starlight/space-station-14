@@ -108,7 +108,7 @@ uplink-pistol-magazine-caseless-desc = Pistol magazine with 10 cartridges. Compa
 uplink-speedloader-magnum-name = Speedloader (.45 magnum AP)
 uplink-speedloader-magnu-desc = Revolver speedloader with 6 armor-piercing cartridges, capable of ignoring armor entirely. Compatible with the Python.
 
-uplink-mosin-ammo-name = Ammunition box (.30 rifle)
+uplink-mosin-ammo-name = Ammunition box (.30 rifle FMJ)
 uplink-mosin-ammo-desc = A box of 60 cartridges for the surplus rifle.
 
 uplink-sniper-ammo-name = Ammunition box (.60 antimateriel)
@@ -249,7 +249,7 @@ uplink-meds-bundle-name = Interdyne Medical Bundle
 uplink-meds-bundle-desc = An assortment of autoinjectors and premium medical equipment to cover for every possible situation. Contains an elite compact defibrillator that can be used as a weapon.
 
 uplink-ammo-bundle-name = Ammo Bundle
-uplink-ammo-bundle-desc = Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW.
+uplink-ammo-bundle-desc = Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 3 ammo boxes for the L6 SAW.
 
 uplink-sniper-bundle-name = Sniper Bundle
 uplink-sniper-bundle-desc = An inconspicuous briefcase that contains a Hristov, 10 spare bullets and a convenient disguise.

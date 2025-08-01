@@ -154,7 +154,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Armor/makeshift.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Armor/makeshift.rsi
-  - type: Armor 
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.90
@@ -180,7 +180,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Armor/improvised.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Armor/improvised.rsi
-  - type: Armor 
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -205,7 +205,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Armor/forged.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor 
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.75
@@ -227,7 +227,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Armor/paladin.rsi
   - type: Pierceable
     level: Metal
-  - type: Armor 
+  - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.70
@@ -262,13 +262,13 @@
         Heat: 0.3
         Radiation: 0.5
         Caustic: 0.5
-    staminaModifier: 0.35
+    staminaModifier: 0.4 # SL: Improved stun resistance
     ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: FireProtection
     reduction: 0.85
-    
+
 - type: entity
   parent: [ClothingOuterArmorBase, BaseCentcommContraband]
   id: ClothingOuterVestNTCC

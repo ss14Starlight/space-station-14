@@ -64,12 +64,17 @@
   id: uplinkWeaponPistolDeagle
   name: uplink-deagle-name
   description: uplink-deagle-desc
-  productEntity: WeaponPistolDeagle
+  icon:
+    {
+      sprite: _Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi,
+      state: icon,
+    }
+  productEntity: ClothingBackpackDuffelSyndicateFilledDeagle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 15
   cost:
-    Telecrystal: 8
+    Telecrystal: 18
   categories:
     - UplinkWeaponry
 
@@ -98,6 +103,54 @@
       state: sp,
     }
   productEntity: MagazineMagnum
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazinePistolSubMachineGunSP
+  name: uplink-pistol-magazine-c20r-name-SP
+  description: uplink-pistol-magazine-c20r-desc-SP
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: sp }
+  productEntity: MagazinePistolSubMachineGunSP
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazinePistolSubMachineGunFMJ
+  name: uplink-pistol-magazine-c20r-name-FMJ
+  description: uplink-pistol-magazine-c20r-desc-FMJ
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: fmj }
+  productEntity: MagazinePistolSubMachineGunFMJ
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+
+- type: listing
+  id: UplinkPistolMagnumMagazineIncendiary
+  name: uplink-pistol-magnum-magazine-name-incendiary
+  description: uplink-pistol-magnum-magazine-desc-incendiary
+  icon:
+    {
+      sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi,
+      state: incendiary,
+    }
+  productEntity: MagazineMagnumIncendiary
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkAmmo
+
+- type: listing
+  id: UplinkPistol40MagazineFMJ
+  name: uplink-pistol40-magazine-nameFMJ
+  description: uplink-pistol40-magazine-descFMJ
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi, state: fmj }
+  productEntity: MagazinePistol40FMJ
   cost:
     Telecrystal: 1
   categories:

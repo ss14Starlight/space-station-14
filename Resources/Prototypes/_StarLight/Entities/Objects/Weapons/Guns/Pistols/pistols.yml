@@ -8,9 +8,9 @@
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/makarov.rsi
   - type: Gun
     minAngle: 1
-    maxAngle: 30
+    maxAngle: 13
     angleIncrease: 9
-    angleDecay: 10
+    angleDecay: 25
     fireRate: 3
     availableModes:
     - SemiAuto
@@ -44,7 +44,7 @@
       gun_chamber: !type:ContainerSlot
   - type: StaticPrice
     price: 150
-    
+
 - type: entity
   id: WeaponPistolMk58Nonlethal
   parent: [WeaponPistolMk58, BaseSecurityContraband]
@@ -68,7 +68,7 @@
         whitelist:
           tags:
             - CartridgePistol
-            
+
 - type: entity
   name: N1984
   parent: [ WeaponPistolN1984, BaseSecurityContraband ]
@@ -93,7 +93,7 @@
         whitelist:
           tags:
             - CartridgeMagnum
-            
+
 - type: entity
   name: golden mk 58
   parent: [ WeaponPistolMk58, BaseSecurityContraband ]
@@ -103,12 +103,12 @@
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/golden_mk58.rsi
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/golden_mk58.rsi
-    
+
 - type: entity
-  name: enforcer
+  name: Sentinel
   parent: [ BaseWeaponPistol, BaseSecurityContraband ]
   id: WeaponPistolEnforcer
-  description: A pistol of modern design.
+  description: A pistol of modern design. Comes with various colors.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/enforcer.rsi
@@ -127,7 +127,7 @@
     - tan
     - grey
     - greengrip
-    
+
 - type: entity
   name: Due Process
   parent: [BaseWeaponPistol, BaseSecurityContraband]
@@ -163,7 +163,7 @@
         whitelist:
           tags:
             - CartridgePistolDP
-            
+
 - type: entity
   name: sp-8t
   parent: [WeaponPistolDP, BaseSecurityContraband]
@@ -178,7 +178,7 @@
     availablePrefixes:
     - ""
     - dust
-    
+
 - type: entity
   name: sp-8ar
   parent: [WeaponPistolDP, BaseSecurityContraband]
@@ -192,12 +192,12 @@
   - type: ChamberMagazineAmmoProvider
     availablePrefixes:
     - ""
-    
+
 - type: entity
   name: stechkin pistol
   parent: [WeaponPistolMk58, BaseSecurityContraband]
   id: WeaponPistolStechkin
-  description: A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors.
+  description: A small, easily concealable .40 handgun. Has a threaded barrel for suppressors.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/stechkin.rsi
@@ -206,7 +206,26 @@
   - type: Gun
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg
-      
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol40FMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolDP
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol40FMJ
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistolDP
+
 - type: entity
   name: Stechkin APS
   parent: [WeaponPistolMk58, BaseSovietContraband]
@@ -227,12 +246,31 @@
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg
   - type: Contraband
     severity: Soviet
-      
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol40SP
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolDP
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol40SP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistolDP
+
 - type: entity
-  name: Jungle Hawk
-  parent: [ BaseSecuritySalvageContraband, WeaponPistolN1984 ] 
+  name: Scorching Eagle
+  parent: [ BaseSecuritySalvageContraband, WeaponPistolN1984 ]
   id: WeaponPistolDeagle
-  description: A high-caliber handgun designed for putting down large game.
+  description: The all time classic handgun has found it's place among the dunes. Loaded with .45 incendiary magnum.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi
@@ -246,7 +284,26 @@
     fireRate: 5
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/deagle.ogg
-      
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnumIncendiary
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnumIncendiary
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
+
 - type: entity
   name: m1911
   parent: [WeaponPistolN1984, BaseSecurityContraband]
@@ -402,12 +459,12 @@
   - type: MagazineVisuals
     magState: mag
     steps: 3
-    zeroVisible: true  
+    zeroVisible: true
   - type: Item
     size: Small
     shape:
     - 0,0,1,0
-    - 0,1,1,1  
+    - 0,1,1,1
   - type: Gun
     fireRate: 4
     minAngle: 1

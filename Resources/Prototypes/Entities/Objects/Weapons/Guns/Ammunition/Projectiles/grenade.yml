@@ -13,7 +13,7 @@
       types:
         Blunt: 4
   - type: StaminaDamageOnCollide
-    damage: 55
+    damage: 20 #STARLIGHT
   - type: TimedDespawn
     lifetime: 0.25
 

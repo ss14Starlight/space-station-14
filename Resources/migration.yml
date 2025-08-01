@@ -624,7 +624,7 @@ SuitStorageBasic: SuitStorageEVA
 BoxMagazineRifle: BoxMagazineRifleSP
 MagazineBoxLightRifle: MagazineBoxLightRifleSP
 MagazineBoxPistol: MagazineBoxPistolSP
-MagazineLightRifleBox: MagazineLightRifleBoxSP
+MagazineLightRifleBox: MagazineLightRifleBoxFMJ
 MagazineLightRifle: MagazineLightRifleSP
 MagazinePistolSubMachineGun: MagazinePistolSubMachineGunSP
 MagazineRifle: MagazineRifleSP
