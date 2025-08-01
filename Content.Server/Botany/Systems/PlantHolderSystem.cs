@@ -214,6 +214,8 @@ public sealed partial class PlantHolderSystem : EntitySystem
                 foreach(var g in seed.GrowthComponents)
                     EntityManager.AddComponent(uid, _copier.CreateCopy(g, notNullableOverride: true), overwrite: true);
 
+                EnsureDefaultGrowthComponents(uid);
+
                 if (TryComp<PaperLabelComponent>(args.Used, out var paperLabel))
                 {
                     _itemSlots.TryEjectToHands(args.Used, paperLabel.LabelSlot, args.User);
@@ -786,5 +788,16 @@ public sealed partial class PlantHolderSystem : EntitySystem
         component.SkipAging++; // We're forcing an update cycle, so one age hasn't passed.
         component.ForceUpdate = true;
         Update(uid, component);
+    }
+
+    /// <summary>
+    /// Ensures that all default growth components are added to the plant if they're not already present.
+    /// </summary>
+    private void EnsureDefaultGrowthComponents(EntityUid uid)
+    {
+        EnsureComp<PlantComponent>(uid);
+        EnsureComp<BasicGrowthComponent>(uid);
+        EnsureComp<AtmosphericGrowthComponent>(uid);
+        EnsureComp<WeedPestGrowthComponent>(uid);
     }
 }
