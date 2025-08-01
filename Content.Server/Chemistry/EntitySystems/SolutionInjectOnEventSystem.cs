@@ -88,6 +88,10 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         if (!_solutionContainer.TryGetSolution(injector.Owner, injector.Comp.Solution, out var injectorSolution))
             return false;
 
+        // STARLIGHT START: Check if the solution actually has any volume to inject
+        if (injectorSolution.Value.Comp.Solution.Volume <= 0)
+            return false;
+
         // Build a list of bloodstreams to inject into
         var targetBloodstreams = new ValueList<Entity<BloodstreamComponent>>();
         foreach (var target in targets)
@@ -95,7 +99,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             if (Deleted(target))
                 continue;
 
-            // STARLIGHT: Use our new cancellable event system instead of hardcoded checks
+            // Use our new cancellable event system instead of hardcoded checks
             var injectAttempt = new SolutionInjectAttemptEvent(target, source, injector.Owner);
             RaiseLocalEvent(target, ref injectAttempt, true);
             if (injectAttempt.Cancelled)
