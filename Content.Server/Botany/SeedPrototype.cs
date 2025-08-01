@@ -267,8 +267,7 @@ public partial class SeedData
         // Deep copy growth components
         foreach (var component in GrowthComponents)
         {
-            // Use serialization manager for proper deep copying
-            var newComponent = IoCManager.Resolve<ISerializationManager>().CreateCopy(component, notNullableOverride: true);
+            var newComponent = component.DupeComponent();
             newSeed.GrowthComponents.Add(newComponent);
         }
 
@@ -343,8 +342,7 @@ public partial class SeedData
         // Deep copy growth components from the new species
         foreach (var component in other.GrowthComponents)
         {
-            // Use serialization manager for proper deep copying
-            var newComponent = IoCManager.Resolve<ISerializationManager>().CreateCopy(component, notNullableOverride: true);
+            var newComponent = component.DupeComponent();
             newSeed.GrowthComponents.Add(newComponent);
         }
 
