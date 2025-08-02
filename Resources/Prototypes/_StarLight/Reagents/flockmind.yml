@@ -14,7 +14,7 @@
       - !type:SelfReplication
         maxAmmount: 0.7
       - !type:ReagentScalingChance
-        minimumAmmount: 10
+        minimumAmmount: 200
         scaling: 0.2 # 1/5 scaling
         minimumChance: 0.02 #2% chance minimum
         effects:
