@@ -60,7 +60,10 @@ public sealed partial class SurgeryOrganDontExistConditionComponent : Component
 {
     [DataField]
     public ComponentRegistry? Organ;
-    
+
     [DataField]
     public string? Container;
 }
+
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+public sealed partial class SurgeryAllowMaskComponent : Component;

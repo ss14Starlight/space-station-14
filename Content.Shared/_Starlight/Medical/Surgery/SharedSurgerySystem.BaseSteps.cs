@@ -331,6 +331,9 @@ public abstract partial class SharedSurgerySystem
             _ => SlotFlags.NONE
         };
 
+        if (HasComp<SurgeryAllowMaskComponent>(step))
+            slot &= ~SlotFlags.MASK;
+
         var check = new SurgeryCanPerformStepEvent(user, body, GetTools(user), slot);
         RaiseLocalEvent(step, ref check);
         popup = check.Popup;

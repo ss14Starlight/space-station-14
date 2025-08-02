@@ -262,6 +262,7 @@
   components:
   - type: SurgeryStep
     duration: 2
+  - type: SurgeryAllowMask
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
@@ -277,6 +278,7 @@
     duration: 3
     tools:
     - type: Hemostat
+  - type: SurgeryAllowMask
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: hemostat
@@ -294,6 +296,7 @@
   - type: SurgeryStepOrganExtract
     organ:
     - type: OrganEyes
+  - type: SurgeryAllowMask
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
@@ -306,6 +309,7 @@
   components:
   - type: SurgeryStep
     duration: 2
+  - type: SurgeryAllowMask
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -324,6 +328,7 @@
   - type: SurgeryStepOrganExtract
     organ:
     - type: EyeImplant
+  - type: SurgeryAllowMask
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
@@ -788,6 +793,7 @@
     duration: 2
     tools:
     - type: Scalpel
+  - type: SurgeryAllowMask
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
@@ -803,6 +809,7 @@
     - type: OrganEyes
   - type: SurgeryStepOrganInsert
     slot: eyes
+  - type: SurgeryAllowMask
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
@@ -818,6 +825,7 @@
     duration: 4
     tools:
     - type: Hemostat
+  - type: SurgeryAllowMask
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: hemostat
@@ -835,6 +843,7 @@
     - type: EyeImplant
   - type: SurgeryStepOrganInsert
     slot: eye_implant
+  - type: SurgeryAllowMask
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
