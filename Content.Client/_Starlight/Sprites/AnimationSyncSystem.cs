@@ -1,4 +1,5 @@
 using Content.Shared.CCVar;
+using Content.Shared._Starlight.Sprites;
 using Robust.Client.GameObjects;
 using static Robust.Client.GameObjects.SpriteComponent;
 using Robust.Shared.Configuration;
@@ -9,10 +10,13 @@ namespace Content.Client._Starlight.Sprites
     {
         [Dependency] private readonly SpriteSystem _sprite = default!;
         [Dependency] private readonly IConfigurationManager _config = default!; // Starlight
+
+        private bool _reducedMotion = false;
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<AnimationSyncComponent, AppearanceChangeEvent>(OnAppearanceChanged);
+            _config.OnValueChanged(CCVars.ReducedMotion, (b) => { _reducedMotion = b; }, invokeImmediately: true);
         }
 
         public void OnAppearanceChanged(EntityUid uid, AnimationSyncComponent component, AppearanceChangeEvent args)
@@ -29,8 +33,9 @@ namespace Content.Client._Starlight.Sprites
         {
             if (!Resolve(uid, ref component, ref sprite))
                 return;
-            
-            SyncToLayer((uid, sprite), component.layer);
+
+            SetAllAutoAnimated((uid, sprite), !(_reducedMotion && component.ReduceMotion));
+            SyncToLayer((uid, sprite), component.LayerKey);
         }
         
         /// <summary>
@@ -50,6 +55,7 @@ namespace Content.Client._Starlight.Sprites
             }
         }
 
+        #region Layer Synchro
         /// <summary>
         /// Synchronizes the layers of a SpriteComponent to given layer's current animation time
         /// </summary>
@@ -64,6 +70,7 @@ namespace Content.Client._Starlight.Sprites
             var animTime = LayerGetAnimationTime(layer);
             _sprite.SetAutoAnimateSync(sprite.Comp, animTime);
         }
+        #endregion
 
         // RT doesn't include getters for layer anim data so including here for future use.
         #region AnimationTime Getters

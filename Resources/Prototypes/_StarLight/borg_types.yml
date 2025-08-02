@@ -19,6 +19,11 @@
   radioChannels:
     - Science
 
+  addComponents:
+    - type: AnimationSync
+      layer: body
+      reduceMotion: true
+
   # Visual
   inventoryTemplateId: borgShort
   spriteBodyState: science

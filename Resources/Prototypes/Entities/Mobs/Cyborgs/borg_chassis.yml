@@ -6,17 +6,15 @@
   - type: Sprite
     layers:
     - state: robot
-      map: ["enum.BorgVisualLayers.Body", "movement"]
+      map: ["enum.BorgVisualLayers.Body", "movement", "body"] # starlight
     - state: robot_e_r
-      map: ["enum.BorgVisualLayers.Light"]
+      map: ["enum.BorgVisualLayers.Light", "mind_light"] # starlight
       shader: unshaded
       visible: false
     - state: robot_l
       shader: unshaded
       map: ["light","enum.BorgVisualLayers.LightStatus"]
       visible: false
-  - type: AnimationSync
-    layer: movement
   - type: BorgChassis
     # Default borg can take no modules until selected type.
     maxModules: 0
