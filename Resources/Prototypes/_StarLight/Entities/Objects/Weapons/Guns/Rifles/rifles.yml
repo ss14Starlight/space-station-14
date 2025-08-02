@@ -22,7 +22,7 @@
         whitelist:
           tags:
             - CartridgeRifle
-            
+
 - type: entity
   name: LR-30
   parent: [BaseItem, BaseGunWieldable, BaseSecuritySalvageContraband]
@@ -38,6 +38,12 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     size: Huge
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/lr30.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: MagazineAmmoProvider
   - type: ItemSlots
     slots:
@@ -68,7 +74,7 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
-  
+
 - type: entity
   name: IK-60 laser carbine
   parent: [BaseItem, BaseGunWieldable, BaseSecurityContraband]
@@ -118,7 +124,7 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
-  
+
 - type: entity
   name: ARG
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
