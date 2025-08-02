@@ -654,10 +654,10 @@
     - Log
   mutationPrototypes:
     - steelcap
-  ligneous: true
   lightTolerance: 6
   growthComponents:
     - !type:PlantTraitsComponent
+        ligneous: true
         lifespan: 80
         maturation: 15
         production: 3
@@ -680,9 +680,9 @@
   productPrototypes:
     - SteelLog
   ligneous: true
-  lightTolerance: 6
   growthComponents:
     - !type:PlantTraitsComponent
+        ligneous: true
         lifespan: 80
         maturation: 15
         production: 3
