@@ -583,7 +583,7 @@ public sealed class EntityEffectSystem : EntitySystem
         var transform = Comp<TransformComponent>(args.Args.TargetEntity);
         var quantity = (int)args.Effect.Number;
         if (args.Args is EntityEffectReagentArgs reagentArgs)
-            quantity *= reagentArgs.Quantity.Int();
+            quantity *= reagentArgs.Scale.Int();//Starlight Fix. Scale not reagent ammount.
 
         for (var i = 0; i < quantity; i++)
         {

@@ -1,0 +1,24 @@
+- type: reagent
+  id: CoagulatedGnesis
+  name: reagent-name-coagulatedgnesis
+  group: Medicine
+  desc: reagent-desc-coagulatedgnesis
+  physicalDesc: reagent-physical-desc-oily
+  flavor: medicine
+  color: "#1b544c"
+  worksOnTheDead: true
+  metabolisms:
+    Drink:
+      metabolismRate: 0.7
+      effects:
+      - !type:SelfReplication
+        maxAmmount: 0.7
+      - !type:ReagentScalingChance
+        minimumAmmount: 10
+        scaling: 0.2 # 1/5 scaling
+        minimumChance: 0.02 #2% chance minimum
+        effects:
+          - !type:CreateEntityReactionEffect
+            entity: MobMouse
+            number: 1
+          - !type:Gib
