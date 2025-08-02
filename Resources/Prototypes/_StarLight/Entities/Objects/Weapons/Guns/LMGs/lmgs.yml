@@ -107,7 +107,7 @@
   name: Lewis gun
   id: WeaponLightMachineGunLewis
   parent: [BaseWeaponLightMachineGun, BaseMajorContraband]
-  description: From RA-TA-TA-TA with love. Uses .30 ammo.
+  description: Defend the trenches! Uses .30 ammo.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/LMGs/Lewis.rsi
