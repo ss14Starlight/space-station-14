@@ -685,6 +685,7 @@
   damage:
     types:
       Piercing: 40
+      Structural: 15
   pierceChance: 0.87
   armorPenetration: 0.10
   bullet:
@@ -711,6 +712,7 @@
     types:
       Piercing: 3
       Slash: 2
+      Structural: 5
   pierceChance: 0.03
   count: 12
   spread: 15
@@ -780,6 +782,21 @@
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
       state: depleted-uranium
 
+- type: hitscan
+  id: PelletShotgunBreachTrace
+  parent: BulletTrace
+  damage:
+    types:
+      Piercing: 5
+      Structural: 20
+  pierceChance: 0.03
+  count: 12
+  spread: 50
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: piercing
+
 ## energy
 
 - type: hitscan
@@ -829,8 +846,8 @@
     state: impact_blue
   damage:
     types:
-      Heat: 50
-
+      Heat: 60
+      
 - type: hitscan
   id: DisablerBoltPractice
   name: disabler bolt practice
