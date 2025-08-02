@@ -86,8 +86,6 @@
     fireRate: 1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
-  - type: GunRequiresWield 
-  - type: MeleeWeapon #🌟Starlight🌟
     layers:
     - state: base
     - state: base1
