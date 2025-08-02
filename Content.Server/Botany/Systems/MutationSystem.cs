@@ -1,3 +1,4 @@
+using Content.Server.Botany.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.EntityEffects;
 using Content.Shared.Random;
@@ -14,6 +15,7 @@ public sealed partial class MutationSystem : EntitySystem
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
+    [Dependency] private readonly BotanySystem _botanySystem = default!;
     private RandomPlantMutationListPrototype _randomMutations = default!;
 
     public override void Initialize()
@@ -78,17 +80,16 @@ public sealed partial class MutationSystem : EntitySystem
 
         CrossChemicals(ref result.Chemicals, a.Chemicals);
 
-        CrossFloat(ref result.Endurance, a.Endurance);
-        CrossInt(ref result.Yield, a.Yield);
-        CrossFloat(ref result.Lifespan, a.Lifespan);
-        CrossFloat(ref result.Maturation, a.Maturation);
-        CrossFloat(ref result.Production, a.Production);
-        CrossFloat(ref result.Potency, a.Potency);
+        var aTraits = _botanySystem.GetPlantTraits(a);
+        var resultTraits = _botanySystem.GetPlantTraits(result);
 
-        CrossBool(ref result.Seedless, a.Seedless);
-        CrossBool(ref result.Ligneous, a.Ligneous);
-        CrossBool(ref result.TurnIntoKudzu, a.TurnIntoKudzu);
-        CrossBool(ref result.CanScream, a.CanScream);
+        if (aTraits != null && resultTraits != null)
+        {
+            CrossBool(ref resultTraits.Seedless, aTraits.Seedless);
+            CrossBool(ref resultTraits.Ligneous, aTraits.Ligneous);
+            CrossBool(ref resultTraits.CanScream, aTraits.CanScream);
+            CrossBool(ref resultTraits.TurnIntoKudzu, aTraits.TurnIntoKudzu);
+        }
 
         // LINQ Explanation
         // For the list of mutation effects on both plants, use a 50% chance to pick each one.
@@ -99,7 +100,11 @@ public sealed partial class MutationSystem : EntitySystem
         // effective hybrid crossings.
         if (a.Name != result.Name && Random(0.7f))
         {
-            result.Seedless = true;
+            var traits = _botanySystem.GetPlantTraits(result);
+            if (traits != null)
+            {
+                traits.Seedless = true;
+            }
         }
 
         return result;
