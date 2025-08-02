@@ -6,9 +6,9 @@
   - type: Sprite
     layers:
     - state: robot
-      map: ["enum.BorgVisualLayers.Body", "movement", "body"] # starlight
+      map: ["enum.BorgVisualLayers.Body", "movement"]
     - state: robot_e_r
-      map: ["enum.BorgVisualLayers.Light", "mind_light"] # starlight
+      map: ["enum.BorgVisualLayers.Light"]
       shader: unshaded
       visible: false
     - state: robot_l

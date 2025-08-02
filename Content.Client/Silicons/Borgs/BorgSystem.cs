@@ -67,7 +67,6 @@ public sealed class BorgSystem : SharedBorgSystem
 
         _sprite.LayerSetVisible((uid, sprite), BorgVisualLayers.Light, component.BrainEntity != null || hasPlayer);
         _sprite.LayerSetRsiState((uid, sprite), BorgVisualLayers.Light, hasPlayer ? component.HasMindState : component.NoMindState);
-
     }
 
     private void OnMMIAppearanceChanged(EntityUid uid, MMIComponent component, ref AppearanceChangeEvent args)
