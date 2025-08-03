@@ -137,6 +137,7 @@
   - type: Clothing
     sprite: Clothing/Mask/medical.rsi
   - type: BreathMask
+  - type: SurgeryCompatibleMask
   - type: IngestionBlocker
   - type: Tag
     tags:
@@ -183,6 +184,7 @@
     sprite: Clothing/Mask/breath.rsi
   - type: BreathMask
   - type: IngestionBlocker
+  - type: SurgeryCompatibleMask
   - type: Tag
     tags:
     - PetWearable
@@ -310,6 +312,7 @@
     size: Tiny
   - type: IdentityBlocker
     coverage: MOUTH
+  - type: SurgeryCompatibleMask
   - type: PhysicalComposition
     materialComposition:
       Plastic: 25

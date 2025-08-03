@@ -64,3 +64,8 @@ public sealed partial class SurgeryOrganDontExistConditionComponent : Component
     [DataField]
     public string? Container;
 }
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class SurgeryCompatibleMaskComponent : Component
+{
+}
