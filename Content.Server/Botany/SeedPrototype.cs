@@ -46,14 +46,13 @@ public partial struct SeedChemQuantity
     [DataField("Inherent")] public bool Inherent = true;
 }
 
-// TODO Make Botany ECS and give it a proper API. I removed the limited access of this class because it's egregious how many systems needed access to it due to a lack of an actual API.
 /// <remarks>
 /// SeedData is no longer restricted because the number of friends is absolutely unreasonable.
 /// This entire data definition is unreasonable. I felt genuine fear looking at this, this is horrific. Send help.
 /// </remarks>
 // TODO: Hit Botany with hammers
 [Virtual, DataDefinition]
-[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(PlantHolderComponent), typeof(EntityEffect), typeof(MutationSystem), typeof(AgeGrowthSystem))]
+[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(EntityEffectSystem), typeof(MutationSystem), typeof(AutoHarvestGrowthSystem), typeof(HarvestSystem), typeof(PlantTraitsSystem))]
 public partial class SeedData
 {
     #region Tracking
