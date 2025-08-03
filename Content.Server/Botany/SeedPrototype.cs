@@ -52,7 +52,7 @@ public partial struct SeedChemQuantity
 /// </remarks>
 // TODO: Hit Botany with hammers
 [Virtual, DataDefinition]
-[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(EntityEffectSystem), typeof(MutationSystem), typeof(AutoHarvestGrowthSystem), typeof(HarvestSystem), typeof(PlantTraitsSystem))]
+[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(EntityEffectSystem), typeof(MutationSystem), typeof(HarvestSystem), typeof(PlantTraitsSystem))]
 public partial class SeedData
 {
     #region Tracking
