@@ -298,7 +298,7 @@ public sealed class SpreaderSystem : EntitySystem
     public void ActivateSpreadableNeighbors(EntityUid uid, (EntityUid Grid, Vector2i Tile)? position = null)
     {
         Vector2i tile;
-        EntityUid ent;
+        EntityUid gridId;
         MapGridComponent? grid;
 
         if (position == null)
@@ -308,35 +308,36 @@ public sealed class SpreaderSystem : EntitySystem
                 return;
 
             tile = _map.TileIndicesFor(transform.GridUid.Value, grid, transform.Coordinates);
-            ent = transform.GridUid.Value;
+            gridId = transform.GridUid.Value;
         }
         else
         {
             if (!TryComp(position.Value.Grid, out grid))
                 return;
-            (ent, tile) = position.Value;
+            (gridId, tile) = position.Value;
         }
 
-        var anchored = _map.GetAnchoredEntitiesEnumerator(ent, grid, tile);
+        // Reactivate spreaders on the same tile.
+        var anchored = _map.GetAnchoredEntitiesEnumerator(gridId, grid, tile);
         while (anchored.MoveNext(out var entity))
         {
-            if (entity == ent)
+            if (entity == uid)
                 continue;
-            DebugTools.Assert(Transform(entity.Value).Anchored);
-            if (_query.HasComponent(ent) && !TerminatingOrDeleted(entity.Value))
+
+            if (_query.HasComponent(entity.Value) && !TerminatingOrDeleted(entity.Value))
                 EnsureComp<ActiveEdgeSpreaderComponent>(entity.Value);
         }
 
+        // Reactivate spreaders on adjacent tiles.
         for (var i = 0; i < Atmospherics.Directions; i++)
         {
             var direction = (AtmosDirection) (1 << i);
-            var adjacentTile = SharedMapSystem.GetDirection(tile, direction.ToDirection());
-            anchored = _map.GetAnchoredEntitiesEnumerator(ent, grid, adjacentTile);
+            var adjacentTile = tile.Offset(direction.ToDirection());
+            anchored = _map.GetAnchoredEntitiesEnumerator(gridId, grid, adjacentTile);
 
             while (anchored.MoveNext(out var entity))
             {
-                DebugTools.Assert(Transform(entity.Value).Anchored);
-                if (_query.HasComponent(ent) && !TerminatingOrDeleted(entity.Value))
+                if (_query.HasComponent(entity.Value) && !TerminatingOrDeleted(entity.Value))
                     EnsureComp<ActiveEdgeSpreaderComponent>(entity.Value);
             }
         }
