@@ -1,5 +1,7 @@
 using Content.Shared.Inventory;
 using Content.Shared.StatusEffect;
+using Content.Shared.Stunnable;
+using Content.Shared.Damage.Components;
 
 namespace Content.Shared.Electrocution
 {
@@ -14,6 +16,9 @@ namespace Content.Shared.Electrocution
             SubscribeLocalEvent<InsulatedComponent, ElectrocutionAttemptEvent>(OnInsulatedElectrocutionAttempt);
             // as long as legally distinct electric-mice are never added, this should be fine (otherwise a mouse-hat will transfer it's power to the wearer).
             SubscribeLocalEvent<InsulatedComponent, InventoryRelayedEvent<ElectrocutionAttemptEvent>>((e, c, ev) => OnInsulatedElectrocutionAttempt(e, c, ev.Args));
+
+            // STARLIGHT: Handle knockdown protection for insulated gloves against electrical sources (like tasers)
+            SubscribeLocalEvent<InsulatedComponent, InventoryRelayedEvent<BeforeKnockdownEvent>>((e, c, ev) => OnInsulatedKnockdownAttempt(e, c, ev.Args));
         }
 
         public void SetInsulatedSiemensCoefficient(EntityUid uid, float siemensCoefficient, InsulatedComponent? insulated = null)
@@ -73,5 +78,18 @@ namespace Content.Shared.Electrocution
         {
             args.SiemensCoefficient *= insulated.Coefficient;
         }
+
+        // STARLIGHT
+        private void OnInsulatedKnockdownAttempt(EntityUid uid, InsulatedComponent insulated, BeforeKnockdownEvent args)
+        {
+            // Only protect against electrical knockdown sources (like tasers)
+            // We check if the insulation coefficient is low enough to provide protection
+            // Note: Stamina crit knockdown is now handled directly in the stamina system
+            if (insulated.Coefficient <= 0.5f)
+            {
+                args.Cancelled = true;
+            }
+        }
+        // STARLIGHT END
     }
 }

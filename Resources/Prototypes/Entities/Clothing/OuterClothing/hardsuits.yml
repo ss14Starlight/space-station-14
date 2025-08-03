@@ -274,6 +274,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.4
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -284,7 +286,6 @@
         Piercing: 0.6
         Heat: 0.7 # Starlight Edit
         Caustic: 0.7
-    staminaModifier: 0.5 # SL: Default stun resistance
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
@@ -313,6 +314,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.4
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -323,7 +326,6 @@
         Piercing: 0.6 # Starlight edit
         Heat: 0.7 # Starlight Edit
         Caustic: 0.7
-    staminaModifier: 0.5 # SL: Default stun resistance
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.7 # Starlight
   - type: ClothingSpeedModifier
@@ -349,6 +351,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.4
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -359,7 +363,6 @@
         Piercing: 0.6
         Heat: 0.7 # Starlight Edit
         Caustic: 0.7
-    staminaModifier: 0.5 # SL: Default stun resistance
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
@@ -383,6 +386,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -394,7 +399,6 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.6
-    staminaModifier: 0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -546,6 +550,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -557,7 +563,6 @@
         Heat: 0.7 # Starlight Edit
         Radiation: 0.5
         Caustic: 0.6
-    staminaModifier: 0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -644,7 +649,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.75
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -656,8 +661,6 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
-    staminaModifier: 0.5 # SL: Default stun resistance
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -716,7 +719,7 @@
   - type: FireProtection
     reduction: 0.8
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.6
+    damageCoefficient: 0.45 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -728,8 +731,6 @@
         Heat: 0.2
         Radiation: 0.01
         Caustic: 0.5
-    staminaModifier: 0.4 # SL: Improved stun resistance
-    ingoreKnockdown: true
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
@@ -761,7 +762,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.6
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -773,8 +774,6 @@
         Heat: 0.5
         Radiation: 0.25
         Caustic: 0.4
-    staminaModifier: 0.4 # SL: Improved stun resistance
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
@@ -808,7 +807,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.3
-  # - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Rock
   - type: Armor
@@ -820,8 +820,6 @@
         Heat: 0.2
         Radiation: 0.2
         Caustic: 0.2
-    staminaModifier: 0.6 # SL: Weakened stun resistance
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 0.65
     sprintModifier: 0.65
@@ -1000,6 +998,8 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: ExplosionResistance #sl Change
     damageCoefficient: 0.2 #sl Change
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Armor #sl Change
     modifiers: #sl Change
       coefficients: #sl Change
@@ -1009,8 +1009,6 @@
         Heat: 0.2 #sl Change
         Radiation: 0.01 #sl Change
         Caustic: 0.4 #sl Change
-    staminaModifier: 0.4 # SL: Improved stun resistance
-    ingoreKnockdown: true
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
 
@@ -1113,6 +1111,8 @@
     reduction: 0.8
   - type: Pierceable
     level: Rock
+  - type: StaminaResistance
+    damageCoefficient: 0.45 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
@@ -1122,8 +1122,6 @@
         Heat: 0.1
         Radiation: 0.1
         Caustic: 0.1
-    staminaModifier: 0.6 # SL: Weakened stun resistance
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1150,6 +1148,8 @@
     coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.7
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -1163,7 +1163,6 @@
         Shock: 0.1
         Radiation: 0.1
         Caustic: 0.1
-    staminaModifier: 0.5 # SL: Default stun resistance
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1188,6 +1187,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Wood
   - type: Armor
@@ -1197,8 +1198,6 @@
         Slash: 0.9
         Piercing: 0.9
         Caustic: 0.8
-    staminaModifier: 0.8
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9

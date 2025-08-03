@@ -7,6 +7,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Database;
 using Content.Shared.Effects;
+using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.IdentityManagement;
@@ -39,6 +40,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
     [Dependency] protected readonly SharedStunSystem StunSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!; // STARLIGHT
 
     /// <summary>
     /// How much of a buffer is there between the stun duration and when stuns can be re-applied.
@@ -274,7 +276,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         // Have we already reached the point of max stamina damage?
         if (component.Critical)
             return;
-        
+
         var staminaModifyEvent = new StaminaModifyEvent(value);
         RaiseLocalEvent(uid, staminaModifyEvent);
 
@@ -390,8 +392,28 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         component.Critical = true;
         component.StaminaDamage = component.CritThreshold;
 
-        if (StunSystem.TryParalyze(uid, component.StunTime, true))
-            StunSystem.TrySeeingStars(uid);
+        // STARLIGHT: Check if the entity has insulated gloves that would protect against knockdown
+        var hasInsulatedProtection = false;
+        if (_inventory.TryGetSlotEntity(uid, "gloves", out var gloves) &&
+            TryComp<InsulatedComponent>(gloves, out var insulated) &&
+            insulated.Coefficient <= 0.5f)
+        {
+            hasInsulatedProtection = true;
+        }
+
+        if (hasInsulatedProtection)
+        {
+            // Apply only stun, not knockdown, for entities with insulated gloves
+            if (StunSystem.TryStun(uid, component.StunTime, true))
+                StunSystem.TrySeeingStars(uid);
+        }
+        else
+        {
+            // Apply full paralyze (stun + knockdown) for entities without insulated protection
+            if (StunSystem.TryParalyze(uid, component.StunTime, true))
+                StunSystem.TrySeeingStars(uid);
+        }
+        // STARLIGHT END
 
         // Give them buffer before being able to be re-stunned
         component.NextUpdate = Timing.CurTime + component.StunTime + StamCritBufferTime;
@@ -454,10 +476,10 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 public sealed class StaminaModifyEvent: EntityEventArgs, IInventoryRelayEvent
 {
     public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
-    
+
     public float Damage;
     public float Modifier;
-    
+
     public StaminaModifyEvent(float damage, float modifier = 1.0f)
     {
         Damage = damage;

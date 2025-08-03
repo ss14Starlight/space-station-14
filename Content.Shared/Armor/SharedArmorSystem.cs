@@ -1,8 +1,6 @@
 ﻿using Content.Shared.Damage;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
-using Content.Shared.Stunnable;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
@@ -23,8 +21,6 @@ public abstract class SharedArmorSystem : EntitySystem
 
         SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<CoefficientQueryEvent>>(OnCoefficientQuery);
         SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<DamageModifyEvent>>(OnDamageModify);
-        SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<StaminaModifyEvent>>(OnStaminaDamageModify);
-        SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<BeforeKnockdownEvent>>(OnKnockdown);
         SubscribeLocalEvent<ArmorComponent, BorgModuleRelayedEvent<DamageModifyEvent>>(OnBorgDamageModify);
         SubscribeLocalEvent<ArmorComponent, GetVerbsEvent<ExamineVerb>>(OnArmorVerbExamine);
     }
@@ -46,21 +42,7 @@ public abstract class SharedArmorSystem : EntitySystem
     {
         args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers, args.Args.ArmorPenetration);
     }
-    
-    private void OnStaminaDamageModify(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<StaminaModifyEvent> args)
-    {
-        if (args.Args.Damage < 0)
-            return;
-        
-        if (args.Args.Modifier > component.StaminaDamageModifier)
-            args.Args.Modifier = component.StaminaDamageModifier;
-    }
-    
-    private void OnKnockdown(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<BeforeKnockdownEvent> args)
-    {
-        if (component.IngoreKnockdown)
-            args.Args.Cancelled = true;
-    }
+
 
     private void OnBorgDamageModify(EntityUid uid, ArmorComponent component,
         ref BorgModuleRelayedEvent<DamageModifyEvent> args)
@@ -98,13 +80,6 @@ public abstract class SharedArmorSystem : EntitySystem
                 ("value", MathF.Round((1f - coefficientArmor.Value) * 100, 1))
             ));
         }
-        
-        msg.PushNewline();
-        var staminaType = Loc.GetString("armor-damage-type-stamina");
-        msg.AddMarkupOrThrow(Loc.GetString("armor-stamina-value",
-            ("type", staminaType),
-            ("value", MathF.Round((1f - component.StaminaDamageModifier) * 100, 1))
-        ));
 
         foreach (var flatArmor in armorModifiers.FlatReduction)
         {

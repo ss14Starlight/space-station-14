@@ -47,6 +47,8 @@
         components:
         - type: Pierceable
           level: Metal
+        - type: StaminaResistance
+          damageCoefficient: 0.85
         - type: Armor
           modifiers:
             coefficients:
@@ -56,7 +58,6 @@
               Piercing: 0.85
               Radiation: 0.85
               Caustic: 0.25
-          staminaModifier: 0.85
         - type: ExplosionResistance
           damageCoefficient: 0.85
 
@@ -69,6 +70,8 @@
         components:
         - type: Pierceable
           level: Metal
+        - type: StaminaResistance
+          damageCoefficient: 0.65 #STARLIGHT
         - type: Armor
           modifiers:
             coefficients:
@@ -78,7 +81,6 @@
               Piercing: 0.5
               Radiation: 0.5
               Caustic: 0.1
-          staminaModifier: 0.5
         - type: ExplosionResistance
           damageCoefficient: 0.5
 
@@ -253,6 +255,8 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
@@ -262,8 +266,6 @@
         Heat: 0.3
         Radiation: 0.5
         Caustic: 0.5
-    staminaModifier: 0.4 # SL: Improved stun resistance
-    ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: FireProtection

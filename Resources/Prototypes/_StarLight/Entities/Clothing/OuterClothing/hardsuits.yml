@@ -15,6 +15,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -26,7 +28,6 @@
         Heat: 0.7
         Radiation: 0.25
         Caustic: 0.6
-    staminaModifier: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing
@@ -50,6 +51,8 @@
     sprintModifier: 0.95
   - type: Pierceable
     level: Metal
+  - type: StaminaResistance
+    damageCoefficient: 0.9
   - type: Armor
     modifiers:
       coefficients:
@@ -59,7 +62,6 @@
         Heat: 0.9
         Radiation: 0.25
         Caustic: 0.9
-    staminaModifier: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: ToggleableClothing
@@ -82,6 +84,8 @@
     damageCoefficient: 0.4
   - type: Pierceable
     level: Metal
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
@@ -91,7 +95,6 @@
         Caustic: 0.7
         Heat: 0.5
         Radiation: 0.1
-    staminaModifier: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.8
@@ -117,6 +120,8 @@
       sprintModifier: 0.9
     - type: Pierceable
       level: Metal
+    - type: StaminaResistance
+      damageCoefficient: 0.65 #STARLIGHT
     - type: Armor
       modifiers:
         coefficients:
@@ -126,7 +131,6 @@
           Caustic: 0.75
           Heat: 0.75
           Radiation: 0.75
-      staminaModifier: 0.9
     - type: ExplosionResistance
       damageCoefficient: 0.75
     - type: ToggleableClothing
@@ -207,6 +211,8 @@
     sprintModifier: 1
   - type: Pierceable
     level: Metal
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
@@ -216,8 +222,6 @@
         Heat: 0.6
         Radiation: 0.6
         Caustic: 0.6
-    staminaModifier: 0.4 # SL: Improved stun resistance
-    ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: ToggleClothing
@@ -291,6 +295,8 @@
     allowedSlots: [ MASK, HEAD, OUTERCLOTHING ]
   - type: IngestionBlocker
   - type: IdentityBlocker
+  - type: StaminaResistance
+    damageCoefficient: 0
   - type: Armor
     modifiers:
       coefficients:
@@ -300,8 +306,6 @@
         Heat: 0.35
         Radiation: 0.1
         Caustic: 0.4
-    staminaModifier: 1 #Intended weakness
-    ingoreKnockdown: false #Major weakness
   - type: ClothingSpeedModifier
     walkModifier: 0.90
     sprintModifier: 0.90

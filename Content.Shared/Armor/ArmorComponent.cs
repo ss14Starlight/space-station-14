@@ -16,12 +16,6 @@ public sealed partial class ArmorComponent : Component
     /// </summary>
     [DataField(required: true)]
     public DamageModifierSet Modifiers = default!;
-    
-    [DataField("staminaModifier")]
-    public float StaminaDamageModifier = 1.0f;
-    
-    [DataField]
-    public bool IngoreKnockdown = false;
 
     /// <summary>
     /// A multiplier applied to the calculated point value

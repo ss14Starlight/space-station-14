@@ -169,6 +169,8 @@
     sprite: Clothing/OuterClothing/Vests/webvest.rsi
   - type: Pierceable
     level: Metal
+  - type: StaminaResistance
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
@@ -176,8 +178,6 @@
         Slash: 0.6
         Piercing: 0.3
         Heat: 0.9
-    staminaModifier: 0.5 # SL: Default stun resistance
-    ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: StaticPrice
@@ -197,6 +197,8 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
+  - type: StaminaResistance
+    damageCoefficient: 0.45 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
@@ -206,8 +208,6 @@
         Heat: 0.3
         Radiation: 0.5
         Caustic: 0.5
-    staminaModifier: 0.4 # SL: Improved stun resistance
-    ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: FireProtection
@@ -265,8 +265,6 @@
         Piercing: 0.35
         Heat: 0.3
         Caustic: 0.5
-    staminaModifier: 0.6 # SL: Weakened stun resistance
-    ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.35
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
