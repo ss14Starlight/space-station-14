@@ -157,7 +157,15 @@ public abstract partial class SharedSurgerySystem
             {
                 total++;
                 if (con.ContainedEntity != null)
+                {
+                    // Allow surgery-compatible masks for head surgery
+                    if (args.TargetSlots.HasFlag(SlotFlags.MASK) &&
+                        HasComp<SurgeryCompatibleMaskComponent>(con.ContainedEntity.Value))
+                    {
+                        continue;
+                    }
                     items++;
+                }
             }
 
             if (items > 0)
