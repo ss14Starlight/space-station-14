@@ -1,4 +1,5 @@
-﻿using Content.Shared.Body.Part;
+﻿using Content.Shared.Atmos.Components;
+using Content.Shared.Body.Part;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Inventory;
@@ -151,16 +152,21 @@ public abstract partial class SharedSurgerySystem
         
         if (_inventory.TryGetContainerSlotEnumerator(args.Body, out var enumerator, args.TargetSlots))
         {
-            var items = 0f;
-            var total = 0f;
+            var hasBlockingItems = false;
             while (enumerator.MoveNext(out var con))
             {
-                total++;
                 if (con.ContainedEntity != null)
-                    items++;
+                {
+                    // Allow medical masks (items with BreathToolComponent) for head surgeries
+                    if (con.ID == "mask" && HasComp<BreathToolComponent>(con.ContainedEntity.Value))
+                        continue;
+                    
+                    hasBlockingItems = true;
+                    break;
+                }
             }
 
-            if (items > 0)
+            if (hasBlockingItems)
             {
                 args.Invalid = StepInvalidReason.Armor;
                 args.Popup = $"You need to take off armor from patient to perform this step!";
