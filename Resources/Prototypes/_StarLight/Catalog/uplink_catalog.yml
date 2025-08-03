@@ -189,6 +189,16 @@
   categories:
     - UplinkAmmo
 
+- type: listing
+  id: UplinkEstocAmmoFMJ
+  name: uplink-estoc-ammo-nameFMJ
+  description: uplink-estoc-ammo-descFMJ
+  productEntity: MagazineRifleFMJ
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+
 # Cybernetics
 
 - type: listing

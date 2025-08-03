@@ -99,8 +99,8 @@ uplink-magazine-bulldog-pellet-desc = Shotgun magazine with 8 shells filled with
 uplink-magazine-bulldog-slug-name = Drum magazine (.50 slug)
 uplink-magazine-bulldog-slug-desc = Shotgun magazine with 8 shells filled with slugs. Compatible with the Bulldog.
 
-uplink-estoc-ammo-name = Rifle magazine (.20 rifle)
-uplink-estoc-ammo-desc = A rifle magazine with 25 cartridges. Compatible with the Estoc DMR.
+uplink-estoc-ammo-nameSP = Rifle magazine (.20 rifle SP)
+uplink-estoc-ammo-descSP = A rifle magazine with 25 cartridges. Compatible with the Estoc DMR.
 
 uplink-pistol-magazine-caseless-name = Pistol Magazine (.25 caseless)
 uplink-pistol-magazine-caseless-desc = Pistol magazine with 10 cartridges. Compatible with the Cobra.

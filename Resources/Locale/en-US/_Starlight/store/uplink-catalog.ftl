@@ -24,6 +24,9 @@ uplink-thermalvision-eyes-desc = Allows you to see in the dark and detect creatu
 uplink-mantis-blade-arms-name = Mantis Blade Arms Bundle
 uplink-mantis-blade-arms-desc = Originally used as a simple construction tool, now turned into hidden blades that can extend from your arm while still keeping its destructive prying skill. Truly a sight to behold. (Warning: You will need a surgical assistant for the procedure.)
 
+uplink-estoc-ammo-nameFMJ = Rifle magazine (.20 rifle FMJ)
+uplink-estoc-ammo-descFMJ = A rifle magazine with 25 cartridges. Compatible with the Estoc DMR.
+
 uplink-pistol-magazine-c20r-name-SP = SMG magazine (.35 auto SP)
 uplink-pistol-magazine-c20r-desc-SP = Rifle magazine with 30 catridges. Compatible with C-20r.
 

@@ -70,7 +70,7 @@
   - type: StorageFill
     contents:
     - id: WeaponRifleEstoc
-    - id: MagazineRifleSP
+    - id: MagazineRifleFMJ
       amount: 2
 
 - type: entity
