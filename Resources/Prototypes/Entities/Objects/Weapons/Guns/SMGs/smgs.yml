@@ -108,7 +108,7 @@
     maxAngle: -16
   - type: Gun
     minAngle: 21
-    maxAngle: 32
+    maxAngle: 28 # STARLIGHT
     shotsPerBurst: 5
     availableModes:
     - Burst
