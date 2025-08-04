@@ -170,7 +170,7 @@
   - type: Pierceable
     level: Metal
   - type: StaminaResistance
-    damageCoefficient: 0.65 #STARLIGHT
+    damageCoefficient: 0.75 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
@@ -198,7 +198,7 @@
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1
   - type: StaminaResistance
-    damageCoefficient: 0.45 #STARLIGHT
+    damageCoefficient: 0.55 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
@@ -268,7 +268,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.35
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.45
+    damageCoefficient: 0.55
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1.1
