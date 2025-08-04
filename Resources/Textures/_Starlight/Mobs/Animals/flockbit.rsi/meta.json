@@ -1,0 +1,45 @@
+{
+    "version": 1,
+    "license": "BY-NC-CC 3.0",
+    "copyright": "Taken from https://github.com/goonstation/goonstation/blob/master/icons/misc/featherzone.dmi commit 9076c9f22fa5989aaa5731866f8e005a00122e1c",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "flockbit",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "bit-dormant",
+            "directions": 4
+        }
+    ]
+}

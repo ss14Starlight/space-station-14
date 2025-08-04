@@ -1,0 +1,15 @@
+- type: tile
+  id: FloorFeatherzone
+  name: tiles-flockfloor
+  sprite: /Textures/_Starlight/Tiles/flock_floor.png
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepPlating
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  parent: FloorFeatherzone
+  id: FloorFeatherzoneBroken
+  name: tiles-flockfloor-broken
+  sprite: /Textures/_Starlight/Tiles/flock_floor_broken.png

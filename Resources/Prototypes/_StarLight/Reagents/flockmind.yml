@@ -19,6 +19,5 @@
         minimumChance: 0.02 #2% chance minimum
         effects:
           - !type:CreateEntityReactionEffect
-            entity: MobMouse
-            number: 1
+            entity: MobFlockBit
           - !type:Gib
