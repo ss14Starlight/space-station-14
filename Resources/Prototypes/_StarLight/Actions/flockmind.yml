@@ -1,0 +1,20 @@
+- type: entity
+  id: ActionFlockmindConvertTileFree
+  name: convert tile
+  description: turn a tile and any entities on it into their flock equivalent
+  components:
+  - type: Action
+    useDelay: 10
+    priority: -19
+    checkConsciousness: false
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_abductor.rsi
+      state: send-yourself
+  - type: TargetAction
+    checkCanAccess: false #cause I dont think you can "access" the inside of walls
+    range: 1
+  - type: WorldTargetAction
+    event: !type:FlockmindConvertTileEvent
+      convertCost: 0
