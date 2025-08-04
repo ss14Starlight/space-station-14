@@ -275,7 +275,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -315,7 +315,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -352,7 +352,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -387,7 +387,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -551,7 +551,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -649,7 +649,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -719,7 +719,7 @@
   - type: FireProtection
     reduction: 0.8
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.55 #STARLIGHT
+    damageCoefficient: 0.45 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -762,7 +762,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -808,7 +808,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Rock
   - type: Armor
@@ -999,7 +999,7 @@
   - type: ExplosionResistance #sl Change
     damageCoefficient: 0.2 #sl Change
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Armor #sl Change
     modifiers: #sl Change
       coefficients: #sl Change
@@ -1112,7 +1112,7 @@
   - type: Pierceable
     level: Rock
   - type: StaminaResistance
-    damageCoefficient: 0.55 #STARLIGHT
+    damageCoefficient: 0.45 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
@@ -1149,7 +1149,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -1188,7 +1188,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Wood
   - type: Armor

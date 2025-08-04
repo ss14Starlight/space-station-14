@@ -16,7 +16,7 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -85,7 +85,7 @@
   - type: Pierceable
     level: Metal
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
@@ -121,7 +121,7 @@
     - type: Pierceable
       level: Metal
     - type: StaminaResistance
-      damageCoefficient: 0.75 #STARLIGHT
+      damageCoefficient: 0.65 #STARLIGHT
     - type: Armor
       modifiers:
         coefficients:
@@ -212,7 +212,7 @@
   - type: Pierceable
     level: Metal
   - type: StaminaResistance
-    damageCoefficient: 0.75 #STARLIGHT
+    damageCoefficient: 0.65 #STARLIGHT
   - type: Armor
     modifiers:
       coefficients:
