@@ -164,12 +164,6 @@ public partial class SeedData
     public List<PlantGrowthComponent> GrowthComponents = new();
 
     /// <summary>
-    /// If false, rapidly decrease health while growing. Adds a bit of challenge to keep mutated plants alive via Unviable's frequency.
-    /// </summary>
-    [DataField]
-    public bool Viable = true;
-
-    /// <summary>
     /// Log impact for harvest operations.
     /// </summary>
     [DataField]
@@ -188,7 +182,6 @@ public partial class SeedData
         var newSeed = new SeedData
         {
             GrowthComponents = new List<PlantGrowthComponent>(),
-            Viable = Viable,
             HarvestLogImpact = HarvestLogImpact,
             PlantLogImpact = PlantLogImpact,
             Name = Name,
@@ -229,7 +222,6 @@ public partial class SeedData
         var newSeed = new SeedData
         {
             GrowthComponents = new List<PlantGrowthComponent>(),
-            Viable = other.Viable,
             HarvestLogImpact = other.HarvestLogImpact,
             PlantLogImpact = other.PlantLogImpact,
             Name = other.Name,
