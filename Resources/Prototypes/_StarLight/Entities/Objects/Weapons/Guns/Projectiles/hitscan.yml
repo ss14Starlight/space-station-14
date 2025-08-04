@@ -338,7 +338,7 @@
 - type: hitscan
   id: BulletPistolTrace40SP
   parent: BulletTrace
-  staminaDamage: 8
+  staminaDamage: 4
   damage:
     types:
       Piercing: 16
@@ -354,7 +354,7 @@
 - type: hitscan
   id: BulletPistolTrace40HP
   parent: BulletTrace
-  staminaDamage: 15
+  staminaDamage: 6
   damage:
     types:
       Piercing: 16
@@ -370,7 +370,7 @@
 - type: hitscan
   id: BulletPistolTrace40FMJ
   parent: BulletTrace
-  staminaDamage: 8
+  staminaDamage: 3
   damage:
     types:
       Piercing: 11
@@ -847,7 +847,7 @@
   damage:
     types:
       Heat: 60
-      
+
 - type: hitscan
   id: DisablerBoltPractice
   name: disabler bolt practice

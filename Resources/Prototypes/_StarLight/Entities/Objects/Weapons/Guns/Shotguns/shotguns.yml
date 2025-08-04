@@ -148,7 +148,7 @@
   name: "AS-12 'Minotaur' Shotgun"
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponShotgunMinotaur
-  description: Smooth, powerful, highly illegal. The newest full auto shotgun available at the market, utilizes standard 12g drum mags. Property of Gorlex Marauders.
+  description: Smooth. Powerful. Highly illegal. The newest full-auto shotgun on the market utilizes standard 12-gauge drum mags. Property of the Gorlex Marauders.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/minotaur.rsi
