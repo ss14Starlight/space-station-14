@@ -13,7 +13,7 @@ public partial class SiliconLaw : IComparable<SiliconLaw>, IEquatable<SiliconLaw
     /// </summary>
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
     public string LawString = string.Empty;
-    
+
     [DataField(required: false), ViewVariables(VVAccess.ReadWrite)]
     public bool Sayable = true;
 
@@ -72,7 +72,8 @@ public partial class SiliconLaw : IComparable<SiliconLaw>, IEquatable<SiliconLaw
         {
             LawString = LawString,
             Order = Order,
-            LawIdentifierOverride = LawIdentifierOverride
+            LawIdentifierOverride = LawIdentifierOverride,
+            Sayable = Sayable //Starlight
         };
     }
 }
