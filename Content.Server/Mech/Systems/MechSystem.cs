@@ -108,9 +108,8 @@ public sealed partial class MechSystem : SharedMechSystem
         SubscribeLocalEvent<MechPilotComponent, InhaleLocationEvent>(OnInhale);
         SubscribeLocalEvent<MechPilotComponent, ExhaleLocationEvent>(OnExhale);
         SubscribeLocalEvent<MechPilotComponent, AtmosExposedGetAirEvent>(OnExpose);
-        SubscribeLocalEvent<MechAirComponent, AtmosDeviceUpdateEvent>(OnAirUpdate);
 
-        SubscribeLocalEvent<MechAirComponent, GetFilterAirEvent>(OnGetFilterAir);
+        SubscribeLocalEvent<MechAirComponent, ComponentStartup>(OnInitializeAir);
 
         #region Equipment UI message relays
         SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);
@@ -631,19 +630,27 @@ public sealed partial class MechSystem : SharedMechSystem
     }
 
     #region Atmos Handling
-    private void OnInhale(EntityUid uid, MechPilotComponent component, InhaleLocationEvent args)
+
+    private void OnInhale(EntityUid uid, MechPilotComponent component, ref InhaleLocationEvent args)
     {
-        if (!TryComp<MechComponent>(component.Mech, out var mech) ||
-            !TryComp<MechAirComponent>(component.Mech, out var mechAir))
+        if (!TryComp<MechComponent>(component.Mech, out var mech))
         {
             return;
         }
 
-        if (mech.Airtight)
-            args.Gas = mechAir.Air;
+        // Breathe in surrounding gas if you don't have internals on or equipped. Even if Airtight.
+        if (!mech.Internals || mech.GasTankSlot.ContainedEntity == null)
+        {
+            args.Gas = _atmosphere.GetContainingMixture(component.Mech);
+            return;
+        }
+
+        var gasTank = Comp<GasTankComponent>(mech.GasTankSlot.ContainedEntity.Value);
+        args.Gas = _gasTank.RemoveAirVolume((uid, gasTank), args.Respirator.BreathVolume);
+        return;
     }
 
-    private void OnExhale(EntityUid uid, MechPilotComponent component, ExhaleLocationEvent args)
+    private void OnExhale(EntityUid uid, MechPilotComponent component, ref ExhaleLocationEvent args)
     {
         if (!TryComp<MechComponent>(component.Mech, out var mech) ||
             !TryComp<MechAirComponent>(component.Mech, out var mechAir))
@@ -651,8 +658,7 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
-        if (mech.Airtight)
-            args.Gas = mechAir.Air;
+        args.Gas = _atmosphere.GetContainingMixture(component.Mech);
     }
 
     private void OnExpose(EntityUid uid, MechPilotComponent component, ref AtmosExposedGetAirEvent args)
@@ -674,25 +680,13 @@ public sealed partial class MechSystem : SharedMechSystem
         args.Handled = true;
     }
 
-    private void OnAirUpdate(EntityUid uid, MechAirComponent comp, ref AtmosDeviceUpdateEvent args)
+    private void OnInitializeAir(EntityUid uid, MechAirComponent comp, ComponentStartup args)
     {
-        if (!TryComp<MechComponent>(uid, out var mech) || !mech.Airtight || mech.GasTankSlot.ContainedEntity == null || !mech.Internals)
-            return;
-
-        var gasTank = Comp<GasTankComponent>(mech.GasTankSlot.ContainedEntity.Value);
-        _atmosphere.PumpGasTo(gasTank.Air, comp.Air, 70);
-    }
-
-    private void OnGetFilterAir(EntityUid uid, MechAirComponent comp, ref GetFilterAirEvent args)
-    {
-        if (args.Air != null)
-            return;
-
-        // only airtight mechs get internal air
-        if (!TryComp<MechComponent>(uid, out var mech) || !mech.Airtight)
-            return;
-
-        args.Air = comp.Air;
+        var moles = Atmospherics.OneAtmosphere * comp.Air.Volume / (Atmospherics.R * Atmospherics.T20C);
+        comp.Air.SetMoles(Gas.Frezon, moles); // You will get in the LCL and you will like it
+        comp.Air.Temperature = Atmospherics.T20C;
+        // The gas type doesn't matter since we aren't using it for anything besides pressurization.
+        comp.Air.MarkImmutable(); // So disallow changes explicitly.
     }
     #endregion
 }
