@@ -64,6 +64,10 @@
       - id: ClothingOuterHardsuitBrigmedic
         amount: 2
       - id: SecurityMedkitFilled
+      - id: BoxSyringe
+      - id: PlasmaChemistryVial
+      - id: BoxBeaker
+      - id: JugCarbon
       - id: DefibrillatorBrigmedical
       - id: SecurityHypoKitFilled
       - id: BoxSterileMask

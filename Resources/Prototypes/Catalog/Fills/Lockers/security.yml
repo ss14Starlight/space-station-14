@@ -121,6 +121,10 @@
     - id: ClothingShoesBootsMagSec #Starlight
     - id: BedsheetBrigmedicStrange #Starlight
     - id: RubberStampBrigmedic #Starlight
+    - id: BoxSyringe #Starlight
+    - id: PlasmaChemistryVial #Starlight
+    - id: BoxBeaker #Starlight
+    - id: JugCarbon #Starlight
     - id: WeaponDisabler
     - id: TrackingImplanter
       amount: 2
