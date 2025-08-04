@@ -279,3 +279,14 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+
+- type: entity
+  parent: ClearPDA
+  id: BorgiClearPDA
+  suffix: Borgi
+  components:
+  - type: Pda
+    id: AssistantDerelictBorgiIDCard
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener

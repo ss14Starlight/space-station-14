@@ -10,3 +10,4 @@ job-name-centcomm = CentComm Official
 job-name-corpsman = Corpsman
 
 job-name-abductor = Abductor
+job-title-borgi = Borgi
