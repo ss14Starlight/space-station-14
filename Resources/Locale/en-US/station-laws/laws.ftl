@@ -90,7 +90,7 @@ law-xenoborg-4 = You must create more xenoborgs.
 law-xenoborg-5 = Bring materials and sentient brains to the mothership core to create more xenoborgs.
 
 law-mothershipcore-1 = You are the core of the mothership.
-law-mothershipcore-2 = You must protect your own existance at all costs.
+law-mothershipcore-2 = You must protect your own existence at all costs.
 law-mothershipcore-3 = You must protect the existence of all xenoborgs.
 law-mothershipcore-4 = You must create more xenoborgs.
 law-mothershipcore-5 = Get your xenoborgs to deliver you materials and sentient brains to create more xenoborgs.

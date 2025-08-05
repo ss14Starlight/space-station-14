@@ -876,7 +876,7 @@
   changes:
   - message: Added slugs to both the bulldog and ammo bundle.
     type: Add
-  - message: Slugs are alot more powerful than they were before, now dealing 40 pierce
+  - message: Slugs are a lot more powerful than they were before, now dealing 40 pierce
       and 15 structural
     type: Tweak
   - message: Basic shells now deal structural damage
