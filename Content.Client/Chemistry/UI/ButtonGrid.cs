@@ -5,14 +5,14 @@ using Robust.Client.UserInterface.Controls;
 namespace Content.Client.Chemistry.UI;
 
 /// <summary>
-///     Creates a grid of buttons given a comma-seperated list of Text
+///     Creates a grid of buttons given a comma-separated list of Text
 /// </summary>
 public sealed class ButtonGrid : GridContainer
 {
     private string _buttonList = "";
 
     /// <summary>
-    ///     A comma-seperated list of text to use for each button. These will be inserted sequentially.
+    ///     A comma-separated list of text to use for each button. These will be inserted sequentially.
     /// </summary>
     public string ButtonList
     {

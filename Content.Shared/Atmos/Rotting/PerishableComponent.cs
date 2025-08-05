@@ -18,7 +18,7 @@ public sealed partial class PerishableComponent : Component
     public TimeSpan RotAfter = TimeSpan.FromMinutes(10);
 
     /// <summary>
-    /// How much rotting has occured
+    /// How much rotting has occurred
     /// </summary>
     [DataField]
     public TimeSpan RotAccumulator = TimeSpan.Zero;

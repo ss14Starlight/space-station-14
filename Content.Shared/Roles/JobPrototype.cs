@@ -60,7 +60,7 @@ namespace Content.Shared.Roles
         public bool JoinNotifyCrew { get; private set; } = false;
 
         /// <summary>
-        ///     When true - the player will recieve a message about importancy of their job.
+        ///     When true - the player will receive a message about importancy of their job.
         /// </summary>
         [DataField("requireAdminNotify")]
         public bool RequireAdminNotify { get; private set; } = false;

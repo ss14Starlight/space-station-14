@@ -157,7 +157,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
     /// <summary>
     ///     Attempts to start a new DoAfter. Note that even if this function returns true, an interaction may have
-    ///     occured, as starting a duplicate DoAfter may cancel currently running DoAfters.
+    ///     occurred, as starting a duplicate DoAfter may cancel currently running DoAfters.
     /// </summary>
     /// <param name="args">The DoAfter arguments</param>
     /// <param name="component">The user's DoAfter component</param>
@@ -167,7 +167,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
     /// <summary>
     ///     Attempts to start a new DoAfter. Note that even if this function returns false, an interaction may have
-    ///     occured, as starting a duplicate DoAfter may cancel currently running DoAfters.
+    ///     occurred, as starting a duplicate DoAfter may cancel currently running DoAfters.
     /// </summary>
     /// <param name="args">The DoAfter arguments</param>
     /// <param name="id">The Id of the newly started DoAfter</param>
