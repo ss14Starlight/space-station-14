@@ -88,6 +88,16 @@ public sealed partial class MechToggleNightVisionEvent : InstantActionEvent
 {
 }
 
+// Starlight Begin
+public sealed partial class MechStartPilotingEvent : InstantActionEvent
+{
+}
+
+public sealed partial class MechStopPilotingEvent : InstantActionEvent
+{
+}
+// Starlight End
+
 [ByRefEvent]
 public readonly record struct BeforePilotEjectEvent(EntityUid Mech, EntityUid Pilot)
 {

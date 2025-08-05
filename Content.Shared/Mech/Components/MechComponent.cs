@@ -204,6 +204,14 @@ public sealed partial class MechComponent : Component
     public EntProtoId MechToggleSirenAction = "ActionMechToggleSirens";
     [DataField]
     public EntProtoId MechToggleThrustersAction = "ActionMechToggleThrusters";
+
+    // Starlight Begin
+    [DataField]
+    public EntProtoId MechStartPiloting = "ActionMechStartPiloting";
+
+    [DataField]
+    public EntProtoId MechStopPiloting = "ActionMechStopPiloting";
+    // Starlight End
     #endregion
 
     #region Visualizer States
@@ -243,4 +251,7 @@ public sealed partial class MechComponent : Component
     [DataField] public EntityUid? MechToggleInternalsActionEntity;
     [DataField] public EntityUid? MechToggleSirenActionEntity;
     [DataField] public EntityUid? MechToggleThrustersActionEntity;
+    // Starlight
+    [DataField] public EntityUid? MechStartPilotingActionEntity;
+    [DataField] public EntityUid? MechStopPilotingActionEntity;
 }
