@@ -1,6 +1,7 @@
 - type: gameMapPool
   id: DefaultStarlightMapPool
   maps:
+  - StarlightBagel
   - Barratry
   - StarlightCog
   - Cork
@@ -18,7 +19,6 @@
   - Kiloton
   - StarlightElkridge
 
-# - StarlightBagel
 # - StarlightBox
 # - StarlightHotel
 # - StarlightMarathon
