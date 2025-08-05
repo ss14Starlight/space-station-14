@@ -1,0 +1,33 @@
+- type: entity
+  id: ActionMechStartPilot
+  name: Pilot Mech
+  description: Activate neural hijack routines to directly control the mech. Shed your mortal flesh.
+  components:
+    - type: Action
+      useDelay: 1
+      itemIconStyle: NoItem
+      icon:
+        sprite: Interface/Actions/actions_mecha.rsi
+        state: mech_night_vision_off
+      iconOn:
+        sprite: Interface/Actions/actions_mecha.rsi
+        state: mech_night_vision_on
+    - type: InstantAction
+      event: !type:MechStartPilotingEvent
+
+- type: entity
+  id: ActionMechStopPilot
+  name: Stop Piloting
+  description: Disengage link and return to your body. Later, meatbag!
+  components:
+    - type: Action
+      useDelay: 1
+      itemIconStyle: NoItem
+      icon:
+        sprite: Interface/Actions/actions_mecha.rsi
+        state: mech_night_vision_off
+      iconOn:
+        sprite: Interface/Actions/actions_mecha.rsi
+        state: mech_night_vision_on
+    - type: InstantAction
+      event: !type:MechStopPilotingEvent

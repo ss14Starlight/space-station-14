@@ -50,10 +50,10 @@ public abstract partial class SharedMechSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction);
+        // SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction);
         SubscribeLocalEvent<MechComponent, MechToggleInternalsEvent>(OnMechToggleInternals);
         SubscribeLocalEvent<MechComponent, MechEjectPilotEvent>(OnEjectPilotEvent);
-        SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
+        // SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
         SubscribeLocalEvent<MechComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<MechComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<MechComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
@@ -61,9 +61,9 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<MechComponent, GotEmaggedEvent>(OnEmagged);
 
-        SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
-        SubscribeLocalEvent<MechPilotComponent, CanAttackFromContainerEvent>(OnCanAttackFromContainer);
-        SubscribeLocalEvent<MechPilotComponent, AttackAttemptEvent>(OnAttackAttempt);
+        // SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
+        // SubscribeLocalEvent<MechPilotComponent, CanAttackFromContainerEvent>(OnCanAttackFromContainer);
+        // SubscribeLocalEvent<MechPilotComponent, AttackAttemptEvent>(OnAttackAttempt);
         SubscribeLocalEvent<MechPilotComponent, EntGotRemovedFromContainerMessage>(OnPilotRemoved); //Starlight
 
         InitializeRelay();
@@ -120,6 +120,16 @@ public abstract partial class SharedMechSystem : EntitySystem
         component.BatterySlot = _container.EnsureContainer<ContainerSlot>(uid, component.BatterySlotId);
         component.GasTankSlot = _container.EnsureContainer<ContainerSlot>(uid, component.GasTankSlotId);
         UpdateAppearance(uid, component);
+
+        if (_net.IsClient)
+            return;
+
+        if (_light.TryGetLight(uid, out var light))
+            _actions.AddAction(uid, ref component.MechToggleLightActionEntity, component.MechToggleLightAction, uid);
+        if (component.SirenAvailable)
+            _actions.AddAction(uid, ref component.MechToggleSirenActionEntity, component.MechToggleSirenAction, uid);
+        if (HasComp<MechThrustersComponent>(uid))
+            _actions.AddAction(uid, ref component.MechToggleThrustersActionEntity, component.MechToggleThrustersAction, uid);
     }
 
     private void OnDestruction(EntityUid uid, MechComponent component, DestructionEventArgs args)
@@ -144,10 +154,10 @@ public abstract partial class SharedMechSystem : EntitySystem
         var rider = EnsureComp<MechPilotComponent>(pilot);
 
         // Warning: this bypasses most normal interaction blocking components on the user, like drone laws and the like.
-        var irelay = EnsureComp<InteractionRelayComponent>(pilot);
+        // var irelay = EnsureComp<InteractionRelayComponent>(pilot);
 
-        _mover.SetRelay(pilot, mech);
-        _interaction.SetRelay(pilot, mech, irelay);
+        // _mover.SetRelay(pilot, mech);
+        // _interaction.SetRelay(pilot, mech, irelay); 
         rider.Mech = mech;
         Dirty(pilot, rider);
 
@@ -171,40 +181,38 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!Resolve(mech, ref component))
             return;
 
-        if (_net.IsClient)
+        if (_net.IsClient) // TODO: if this is server only why is it in shared? Double check
             return;
 
-        _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
+        // _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
         if (component.Airtight)
             _actions.AddAction(pilot, ref component.MechToggleInternalsActionEntity, component.MechToggleInternalsAction, mech);
-        if (_light.TryGetLight(mech, out var light))
-            _actions.AddAction(pilot, ref component.MechToggleLightActionEntity, component.MechToggleLightAction, mech);
-        if (component.SirenAvailable)
-            _actions.AddAction(pilot, ref component.MechToggleSirenActionEntity, component.MechToggleSirenAction, mech);
-        if (HasComp<MechThrustersComponent>(mech))
-            _actions.AddAction(pilot, ref component.MechToggleThrustersActionEntity, component.MechToggleThrustersAction, mech);
-        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-            if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
-                _actions.AddAction(pilot, ref actionComp.EquipmentActionEntity, actionComp.EquipmentAction, ent);
+        _actions.AddAction(pilot, ref component.MechStartPilotingActionEntity, component.MechStartPiloting, pilot);
+        _actions.AddAction(mech, ref component.MechStopPilotingActionEntity, component.MechStopPiloting, pilot);
+        // var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
+        // foreach (var ent in equipment)
+        //     if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
+        //         _actions.AddAction(mech, ref actionComp.EquipmentActionEntity, actionComp.EquipmentAction, ent);
     }
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)
     {
         if (!RemComp<MechPilotComponent>(pilot))
             return;
-        RemComp<RelayInputMoverComponent>(pilot);
+        //RemComp<RelayInputMoverComponent>(pilot);
         RemComp<InteractionRelayComponent>(pilot);
 
         _actions.RemoveProvidedActions(pilot, mech);
         if (!TryComp<MechComponent>(mech, out var mechComp))
             return;
-        var equipment = new List<EntityUid>(mechComp.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-            if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
-                _actions.RemoveProvidedActions(pilot, ent);
+        
+        _actions.RemoveAction(pilot, mechComp.MechStartPilotingActionEntity);
+        // var equipment = new List<EntityUid>(mechComp.EquipmentContainer.ContainedEntities);
+        // foreach (var ent in equipment)
+        //     if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
+        //         _actions.RemoveProvidedActions(pilot, ent);
     }
 
     /// <summary>
@@ -475,10 +483,10 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (component.PilotSlot.ContainedEntity == null)
             return false;
 
-        if (HasComp<NoRotateOnMoveComponent>(uid))
-        {
-            RemComp<NoRotateOnMoveComponent>(uid);
-        }
+        // if (HasComp<NoRotateOnMoveComponent>(uid))
+        // {
+        //     RemComp<NoRotateOnMoveComponent>(uid);
+        // }
 
         var pilot = component.PilotSlot.ContainedEntity.Value;
 
@@ -497,30 +505,6 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         if (TryComp<MechComponent>(component.Mech, out var mechComp))
             UpdateAppearance(component.Mech, mechComp);
-    }
-
-    private void OnGetMeleeWeapon(EntityUid uid, MechPilotComponent component, GetMeleeWeaponEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (!TryComp<MechComponent>(component.Mech, out var mech))
-            return;
-
-        var weapon = mech.CurrentSelectedEquipment ?? component.Mech;
-        args.Weapon = weapon;
-        args.Handled = true;
-    }
-
-    private void OnCanAttackFromContainer(EntityUid uid, MechPilotComponent component, CanAttackFromContainerEvent args)
-    {
-        args.CanAttack = true;
-    }
-
-    private void OnAttackAttempt(EntityUid uid, MechPilotComponent component, AttackAttemptEvent args)
-    {
-        if (args.Target == component.Mech)
-            args.Cancel();
     }
 
     public void UpdateAppearance(EntityUid uid, MechComponent? component = null,

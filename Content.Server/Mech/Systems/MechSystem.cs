@@ -19,6 +19,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mech;
+using Content.Shared.Mech.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.NPC.Components;
@@ -46,6 +47,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Mind;
 
 namespace Content.Server.Mech.Systems;
 
@@ -71,7 +73,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private readonly GasTankSystem _gasTank = default!;
-
+    [Dependency] private readonly SharedMindSystem _mind = default!;
 
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
 
@@ -112,9 +114,19 @@ public sealed partial class MechSystem : SharedMechSystem
         SubscribeLocalEvent<MechAirComponent, ComponentStartup>(OnInitializeAir);
 
         #region Equipment UI message relays
+
         SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);
         SubscribeLocalEvent<MechComponent, MechSoundboardPlayMessage>(ReceiveEquipmentUiMesssages);
+
         #endregion
+
+        #region Mind Control
+
+        SubscribeLocalEvent<MechPilotComponent, MechStartPilotingEvent>(OnTransferControl);
+        SubscribeLocalEvent<MechPilotComponent, MechStopPilotingEvent>(OnReturnControl);
+
+        #endregion
+
     }
 
     public override void Update(float frameTime)
@@ -269,12 +281,13 @@ public sealed partial class MechSystem : SharedMechSystem
             _actionBlocker.UpdateCanMove(uid);
             return;
         }
-        if(component.GasTankSlot.ContainedEntity==null && TryComp<GasTankComponent>(args.Used, out var gasTank))
+
+        if (component.GasTankSlot.ContainedEntity == null && TryComp<GasTankComponent>(args.Used, out var gasTank))
         {
             InsertGasTank(uid, args.Used, component, gasTank);
         }
 
-        if (_toolSystem.HasQuality(args.Used, PryingQuality) && component.BatterySlot.ContainedEntity != null)
+        if (_toolSystem.HasQuality(args.Used, PryingQuality))
         {
             if (component.BatterySlot.ContainedEntity != null)
             {
@@ -301,7 +314,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void OnInsertEquipment(EntityUid uid, MechComponent component, EntInsertedIntoContainerMessage args)
     {
-        if(!(args.Container != component.BatterySlot || !TryComp<BatteryComponent>(args.Entity, out var battery)))
+        if (!(args.Container != component.BatterySlot || !TryComp<BatteryComponent>(args.Entity, out var battery)))
         {
             component.Energy = battery.CurrentCharge;
             component.MaxEnergy = battery.MaxCharge;
@@ -309,7 +322,7 @@ public sealed partial class MechSystem : SharedMechSystem
             Dirty(uid, component);
             _actionBlocker.UpdateCanMove(uid);
         }
-        else if(!(args.Container != component.GasTankSlot || !TryComp<GasTankComponent>(args.Entity, out var gasTank)))
+        else if (!(args.Container != component.GasTankSlot || !TryComp<GasTankComponent>(args.Entity, out var gasTank)))
         {
             Dirty(uid, component);
             _actionBlocker.UpdateCanMove(uid);
@@ -344,6 +357,7 @@ public sealed partial class MechSystem : SharedMechSystem
     private void OnMapInit(EntityUid uid, MechComponent component, MapInitEvent args)
     {
         var xform = Transform(uid);
+
         // TODO: this should use containerfill?
         foreach (var equipment in component.StartingEquipment)
         {
@@ -406,8 +420,8 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             Act = () => ToggleMechUi(uid, component, args.User),
             Text = Loc.GetString("mech-ui-open-verb")
-         };
-         args.Verbs.Add(openUiVerb);
+        };
+        args.Verbs.Add(openUiVerb);
 
         if (component.Broken)
             return;
@@ -584,6 +598,7 @@ public sealed partial class MechSystem : SharedMechSystem
         _actionBlocker.UpdateCanMove(uid);
         return true;
     }
+
     public void InsertGasTank(EntityUid uid, EntityUid toInsert, MechComponent? component = null, GasTankComponent? gasTank = null)
     {
         if (!Resolve(uid, ref component, false))
@@ -596,6 +611,7 @@ public sealed partial class MechSystem : SharedMechSystem
         _actionBlocker.UpdateCanMove(uid);
         Dirty(uid, component);
     }
+
     public void InsertBattery(EntityUid uid, EntityUid toInsert, MechComponent? component = null, BatteryComponent? battery = null)
     {
         if (!Resolve(uid, ref component, false))
@@ -645,8 +661,9 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
-        var gasTank = Comp<GasTankComponent>(mech.GasTankSlot.ContainedEntity.Value);
-        args.Gas = _gasTank.RemoveAirVolume((uid, gasTank), args.Respirator.BreathVolume);
+        var tankEnt = mech.GasTankSlot.ContainedEntity.Value;
+        var gasTank = Comp<GasTankComponent>(tankEnt);
+        args.Gas = _gasTank.RemoveAirVolume((tankEnt, gasTank), args.Respirator.BreathVolume);
         return;
     }
 
@@ -683,10 +700,40 @@ public sealed partial class MechSystem : SharedMechSystem
     private void OnInitializeAir(EntityUid uid, MechAirComponent comp, ComponentStartup args)
     {
         var moles = Atmospherics.OneAtmosphere * comp.Air.Volume / (Atmospherics.R * Atmospherics.T20C);
+        // The gas type doesn't matter since we aren't using it for anything besides pressurization.
         comp.Air.SetMoles(Gas.Frezon, moles); // You will get in the LCL and you will like it
         comp.Air.Temperature = Atmospherics.T20C;
-        // The gas type doesn't matter since we aren't using it for anything besides pressurization.
-        comp.Air.MarkImmutable(); // So disallow changes explicitly.
+        comp.Air.MarkImmutable(); // Disallow changes explicitly.
+    }
+
+    #endregion
+
+    // TODO: Move to Starlight folders in separate partial
+    // TODO: Block autocryo.
+
+    #region Mind Handling (Psychic Warfare)
+
+
+    private void OnTransferControl(EntityUid uid, MechPilotComponent component, MechStartPilotingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!_mind.TryGetMind(uid, out var mindId, out var mind))
+            return;
+
+        _mind.TransferTo(mindId, component.Mech, mind: mind);
+    }
+
+    private void OnReturnControl(EntityUid uid, MechPilotComponent component, MechStopPilotingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!_mind.TryGetMind(component.Mech, out var mindId, out var mind))
+            return;
+
+        _mind.TransferTo(mindId, uid, mind: mind);
     }
     #endregion
 }
