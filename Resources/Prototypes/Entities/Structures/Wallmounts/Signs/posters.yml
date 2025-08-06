@@ -936,6 +936,15 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterLegitYesERP
+  name: "Yes ERP"
+  description: "This poster reminds the crew that Eroticism and Pornography are completely allowed on Nanotrasen stations."
+  components:
+  - type: Sprite
+    state: yeserp
+
+- type: entity
+  parent: PosterBase
   id: PosterLegitCarbonDioxide
   name: "Carbon Dioxide"
   description: "This informational poster teaches the viewer what carbon dioxide is."
