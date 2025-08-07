@@ -177,6 +177,8 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
+    layers: # STARLIGHT
+      - state: icon
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
   - type: ToggleableClothing
