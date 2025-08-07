@@ -6,3 +6,5 @@ steal-target-groups-cmolicense = medical license
 
 steal-target-groups-brigmedichypo = corpsman hypospray
 steal-target-groups-brigmedicbedsheet = Strange Brigmedic's Bedsheet
+
+steal-target-groups-salvage-shuttle-console-circuitboard = salvage shuttle console board
