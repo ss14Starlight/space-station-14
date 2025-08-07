@@ -74,31 +74,7 @@
   - type: MobMover
   - type: Mech
   - type: MechAir
-  - type: AirFilter
-    # everything except oxygen and nitrogen
-    gases:
-    - CarbonDioxide
-    - Plasma
-    - Tritium
-    - WaterVapor
-    - Ammonia
-    - NitrousOxide
-    - Frezon
-    #- Helium3 TODO: fusion
-    # remove everything except oxygen to maintain oxygen ratio
-    overflowGases:
-    - Nitrogen
-    - CarbonDioxide
-    - Plasma
-    - Tritium
-    - WaterVapor
-    - Ammonia
-    - NitrousOxide
-    - Frezon
-    #- Helium3 TODO: fusion
-  - type: AtmosDevice
-    requireAnchored: false
-    joinSystem: true
+  # Starlight - remove air filtration
   - type: DoAfter
   - type: Repairable
     fuelCost: 25
@@ -176,6 +152,9 @@
     enabled: false
     drawRate: 1
     delay: 3
+  - type: Actions
+  - type: MindContainer
+  - type: Hands
 
 # Ripley MK-I
 - type: entity
