@@ -151,7 +151,6 @@ namespace Content.Shared.Damage
             {
                 if (value == 0)
                     continue;
-
                 if (value < 0)
                 {
                     newDamage.DamageDict[key] = value;
@@ -159,12 +158,24 @@ namespace Content.Shared.Damage
                 }
 
                 float newValue = value.Float();
-
                 if (modifierSet.FlatReduction.TryGetValue(key, out var reduction))
                     newValue = Math.Max(0f, newValue - (reduction - (reduction * armorPenetration))); // flat reductions can't heal you
 
                 if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
-                    newValue *= (coefficient + ((1f - coefficient) * armorPenetration)); // coefficients can heal you, e.g. cauterizing bleeding, Starlight change: removed maximum coefficent allowing for weaknesses
+                {
+                    var effectiveCoefficient = coefficient + ((1f - coefficient) * armorPenetration);
+
+                    // A negative armor penetration value can result in a negative effective coefficient, which results in
+                    // healing. This isn't intended. This logic clamps the effective coefficient to zero if armor
+                    // penetration is negative, which nullifies the damage instead of causing healing. This also prevents
+                    // negative armor penetration from amplifying any existing weaknesses
+                    if (armorPenetration < 0f)
+                    {
+                        effectiveCoefficient = Math.Max(0f, effectiveCoefficient);
+                    }
+
+                    newValue *= effectiveCoefficient;
+                }
 
                 if (newValue != 0)
                     newDamage.DamageDict[key] = FixedPoint2.New(newValue);
