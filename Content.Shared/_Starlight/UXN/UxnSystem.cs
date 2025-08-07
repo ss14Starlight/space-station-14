@@ -12,14 +12,16 @@ public sealed partial class UxnSystem : EntitySystem
 {
     [Dependency] private readonly IResourceManager _resourceManager = default!;
 
-    private readonly ResPath _compilerRom = new ResPath("_Starlight/drifloon.rom");
+    private readonly ResPath _compilerRom = new ResPath("/_Starlight/drifloon.rom");
 
     private readonly UXNProcessor _compiler = new();
 
-    public static Encoding Codepage437 = Encoding.GetEncoding(437);
+    public static Encoding Codepage437 = Encoding.GetEncoding("us-ascii");
 
     public override void Initialize()
     {
+        //var encodings = Encoding.GetEncodings();
+
         base.Initialize();
         SubscribeLocalEvent<UxnAttachedComponent, MapInitEvent>(OnMapInit);
     }
@@ -36,6 +38,12 @@ public sealed partial class UxnSystem : EntitySystem
 
     public bool Compile(string uxnTal, [NotNullWhen(false)] out string? error, [NotNullWhen(true)] out List<byte>? rom)
     {
+        if (!_resourceManager.ContentFileExists(_compilerRom))
+        {
+            error = $"Failed to load UXN assembler {_compilerRom}";
+            rom = null;
+            return false;
+        }
         _compiler.Reset();
         var mem = _compiler.SystemMem;
         var writeHead = 0x100;
@@ -44,6 +52,7 @@ public sealed partial class UxnSystem : EntitySystem
         while (stream.CanRead)
         {
             var amnt = stream.Read(span);
+            if (amnt == 0) break;
             for (int i = 0; i < amnt; i++)
             {
                 mem[writeHead] = span[i];
@@ -55,11 +64,13 @@ public sealed partial class UxnSystem : EntitySystem
 
         _compiler.RunUnlimited(); //Basically this *should* run until it runs out of source code to process;
 
+        Log.Info($"Assembled UXN program in {_compiler.InstructionCounter} instructions");
+
         var stdErr = stdio.FakedError;
-        if (stdErr.Count > 0)
+        if (_compiler.SystemDevice.Status < 0x80)
         {
-            error = Codepage437.GetChars(stdErr.ToArray()).ToString() ?? "Failed to decode faked stderr to string";
-            Log.Error($"Failed to compile uxntal \n```\n{uxnTal}\n```\n drifloon error output:\n {error}");
+            error = new string(Codepage437.GetChars([.. stdErr]));
+            Log.Error($"Failed to compile uxntal. drifloon error output:\n {error}");
             rom = null;
             return false;
         }

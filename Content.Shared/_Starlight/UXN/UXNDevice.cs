@@ -1,21 +1,21 @@
-using System.Runtime.CompilerServices;
+using System.Collections;
 using Content.Shared._Starlight.UXN.Devices;
-using Content.Shared.Anomaly.Components;
-using Robust.Shared.Toolshed.Commands.Generic;
 namespace Content.Shared._Starlight.UXN;
-
 
 public struct Byte256
 {
     private readonly byte[] _inner = new byte[256];
 
-    public Byte256() {}
+    public Byte256() =>
+        Array.Fill<byte>(_inner, 0x00);
 
     public byte this[int i]
     {
         get => _inner[i];
         set => _inner[i] = value;
     }
+
+    public readonly byte[] ToRaw() => (byte[])_inner.Clone();
 }
 
 public sealed class UxnStack
@@ -57,39 +57,48 @@ public sealed class UxnStack
         PushByte((byte)(dat >> 8));
         PushByte((byte)(dat & 0xff));
     }
-
     public void SetPointer(byte ptr)
     {
         Warp();
         StackPointer = ptr;
         StackPointerReturn = ptr;
     }
+
+    public (byte, byte[]) ToRaw() =>
+        (StackPointer, Stack.ToRaw());
 }
 
 public struct UxnMem
 {
     private readonly byte[] _inner = new byte[65536];
 
-    public UxnMem() {}
+    public UxnMem() =>
+        Array.Fill<byte>(_inner, 0x00);
 
     public byte this[int i]
     {
         get => _inner[i];
         set => _inner[i] = value;
     }
+
+    public byte[] ToRaw() => (byte[])_inner.Clone();
 }
 
-public struct UxnDevices
+public struct UxnDevices : IEnumerable<UXNDevice>
 {
     private readonly UXNDevice[] _inner = new UXNDevice[0xF];
 
-    public UxnDevices() {}
+    public UxnDevices() =>
+        Array.Fill(_inner, new UXNDevice());
 
     public UXNDevice this[int i]
     {
         get => _inner[i];
         set => _inner[i] = value;
     }
+
+    public IEnumerator<UXNDevice> GetEnumerator() => ((IEnumerable<UXNDevice>)_inner).GetEnumerator();
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
 
 [Virtual]
@@ -133,16 +142,34 @@ public abstract class UxnEvent
     public abstract void PerformEvent(UXNProcessor proc);
 }
 
+[DataDefinition]
+public partial struct UxnFrame
+{
+    public ushort PC;
+    public (byte, byte[]) WS;
+    public (byte, byte[]) RS;
+    public byte[] Mem;
+
+    public UxnFrame(ushort pc, (byte, byte[]) ws, (byte, byte[]) rs, byte[] mem)
+    {
+        PC = pc;
+        WS = ws;
+        RS = rs;
+        Mem = mem;
+    }
+
+    public static UxnFrame FromProcessor(UXNProcessor proc) =>
+        new(proc.PC, proc.WorkingStack.ToRaw(), proc.ReturnStack.ToRaw(), proc.SystemMem.ToRaw());
+}
+
 public sealed class UXNProcessor
 {
-    public UXNProcessor()
-    {
-        SystemDevice = AttachDevice(0x00, new StandardSystemDevice());
-    }
+    public static readonly string[] DISASM_TABLE = ["BRK", "INC", "POP", "NIP", "SWP", "ROT", "DUP", "OVR", "EQU", "NEQ", "GTH", "LTH", "JMP", "JCN", "JSR", "STH", "LDZ", "STZ", "LDR", "STR", "LDA", "STA", "DEI", "DEO", "ADD", "SUB", "MUL", "DIV", "AND", "ORA", "EOR", "SFT", "JCI", "INC2", "POP2", "NIP2", "SWP2", "ROT2", "DUP2", "OVR2", "EQU2", "NEQ2", "GTH2", "LTH2", "JMP2", "JCN2", "JSR2", "STH2", "LDZ2", "STZ2", "LDR2", "STR2", "LDA2", "STA2", "DEI2", "DEO2", "ADD2", "SUB2", "MUL2", "DIV2", "AND2", "ORA2", "EOR2", "SFT2", "JMI", "INCr", "POPr", "NIPr", "SWPr", "ROTr", "DUPr", "OVRr", "EQUr", "NEQr", "GTHr", "LTHr", "JMPr", "JCNr", "JSRr", "STHr", "LDZr", "STZr", "LDRr", "STRr", "LDAr", "STAr", "DEIr", "DEOr", "ADDr", "SUBr", "MULr", "DIVr", "ANDr", "ORAr", "EORr", "SFTr", "JSI", "INC2r", "POP2r", "NIP2r", "SWP2r", "ROT2r", "DUP2r", "OVR2r", "EQU2r", "NEQ2r", "GTH2r", "LTH2r", "JMP2r", "JCN2r", "JSR2r", "STH2r", "LDZ2r", "STZ2r", "LDR2r", "STR2r", "LDA2r", "STA2r", "DEI2r", "DEO2r", "ADD2r", "SUB2r", "MUL2r", "DIV2r", "AND2r", "ORA2r", "EOR2r", "SFT2r", "LIT", "INCk", "POPk", "NIPk", "SWPk", "ROTk", "DUPk", "OVRk", "EQUk", "NEQk", "GTHk", "LTHk", "JMPk", "JCNk", "JSRk", "STHk", "LDZk", "STZk", "LDRk", "STRk", "LDAk", "STAk", "DEIk", "DEOk", "ADDk", "SUBk", "MULk", "DIVk", "ANDk", "ORAk", "EORk", "SFTk", "LIT2", "INC2k", "POP2k", "NIP2k", "SWP2k", "ROT2k", "DUP2k", "OVR2k", "EQU2k", "NEQ2k", "GTH2k", "LTH2k", "JMP2k", "JCN2k", "JSR2k", "STH2k", "LDZ2k", "STZ2k", "LDR2k", "STR2k", "LDA2k", "STA2k", "DEI2k", "DEO2k", "ADD2k", "SUB2k", "MUL2k", "DIV2k", "AND2k", "ORA2k", "EOR2k", "SFT2k", "LITr", "INCkr", "POPkr", "NIPkr", "SWPkr", "ROTkr", "DUPkr", "OVRkr", "EQUkr", "NEQkr", "GTHkr", "LTHkr", "JMPkr", "JCNkr", "JSRkr", "STHkr", "LDZkr", "STZkr", "LDRkr", "STRkr", "LDAkr", "STAkr", "DEIkr", "DEOkr", "ADDkr", "SUBkr", "MULkr", "DIVkr", "ANDkr", "ORAkr", "EORkr", "SFTkr", "LIT2r", "INC2kr", "POP2kr", "NIP2kr", "SWP2kr", "ROT2kr", "DUP2kr", "OVR2kr", "EQU2kr", "NEQ2kr", "GTH2kr", "LTH2kr", "JMP2kr", "JCN2kr", "JSR2kr", "STH2kr", "LDZ2kr", "STZ2kr", "LDR2kr", "STR2kr", "LDA2kr", "STA2kr", "DEI2kr", "DEO2kr", "ADD2kr", "SUB2kr", "MUL2kr", "DIV2kr", "AND2kr", "ORA2kr", "EOR2kr", "SFT2kr"];
+    public UXNProcessor() => Reset();
 
     public bool Running { get; private set; } = true;
 
-    public StandardSystemDevice SystemDevice;
+    public StandardSystemDevice SystemDevice = new(); //this gets overrwiten basically instantly but oh well.
 
     public Byte256 DevMem { get; private set; } = new();
 
@@ -152,7 +179,11 @@ public sealed class UXNProcessor
     public UxnStack ReturnStack { get; private set; } = new();
     public UxnDevices Devices { get; private set; } = new();
 
-    private Queue<UxnEvent> _events = [];
+    public int InstructionCounter { get; private set; } = 0;
+    public List<(ushort, string)> InstrLog { get; private set; } = new();
+    public List<UxnFrame> FrameLog { get; private set; } = new();
+
+    private Queue<UxnEvent> _events = new();
 
     /// <summary>
     /// Runs the UXN for a single step
@@ -163,7 +194,12 @@ public sealed class UXNProcessor
         if (!Running) return true;
 
         var instr = SystemMem[PC];
+
+        InstrLog.Add((PC, DISASM_TABLE[instr]));
+        FrameLog.Add(UxnFrame.FromProcessor(this));
         PC++;
+
+        InstructionCounter++;
 
         bool keep = (instr & 0x80) != 0x00;
         bool ret = (instr & 0x40) != 0x00;
@@ -183,7 +219,7 @@ public sealed class UXNProcessor
             case 0x20: // JCI
                 {
                     var msb = SystemMem[PC];
-                    var addr = (ushort)((msb << 8) | SystemMem[PC + 1]);
+                    var addr = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
                     PC += 2;
                     if (stack.PopByte(false) != 0) PC += addr;
                 }
@@ -191,7 +227,7 @@ public sealed class UXNProcessor
             case 0x40: // JMI
                 {
                     var msb = SystemMem[PC];
-                    var addr = (ushort)((msb << 8) | SystemMem[PC + 1]);
+                    var addr = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
                     PC += addr;
                     PC += 2;
                 }
@@ -199,7 +235,7 @@ public sealed class UXNProcessor
             case 0x60: // JSI
                 {
                     var msb = SystemMem[PC];
-                    var addr = (ushort)((msb << 8) | SystemMem[PC + 1]);
+                    var addr = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
                     PC += 2;
                     ReturnStack.PushShort(PC);
                     PC += addr;
@@ -214,7 +250,21 @@ public sealed class UXNProcessor
             case 0xA0: // LIT2
                 {
                     var msb = SystemMem[PC];
-                    var res = (ushort)((msb << 8) | SystemMem[PC + 1]);
+                    var res = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
+                    PC += 2;
+                    stack.PushShort(res);
+                }
+                break;
+            case 0xC0: // LITr
+                {
+                    stack.PushByte(SystemMem[PC]);
+                    PC++;
+                }
+                break;
+            case 0xE0: // LIT2r
+                {
+                    var msb = SystemMem[PC];
+                    var res = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
                     PC += 2;
                     stack.PushShort(res);
                 }
@@ -647,8 +697,11 @@ public sealed class UXNProcessor
             #endregion
             default: throw new InvalidOperationException($"got {masked} for a opcode which shouldn't possible");
         }
-        ;
-        return true;
+
+        foreach (UXNDevice dev in Devices)
+            dev.ProcessorStep(this);
+
+        return false;
     }
 
     /// <summary>
@@ -662,8 +715,10 @@ public sealed class UXNProcessor
         ReturnStack = new();
         WorkingStack = new();
         Devices = new();
+        SystemDevice = AttachDevice(0x00, new StandardSystemDevice());
         _events = [];
         Running = true;
+        InstructionCounter = 0;
     }
 
     public void PushEvent(UxnEvent uevent)
