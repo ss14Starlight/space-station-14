@@ -164,7 +164,7 @@ namespace Content.Shared.Damage
                 if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
                 {
                     // Starlight edit begin
-                    var effectiveCoefficient = coefficient + ((1f - coefficient) * armorPenetration);
+                    var effectiveCoefficient = coefficient + ((1f - coefficient) * armorPenetration); // coefficients can heal you, e.g. cauterizing bleeding, Starlight change: removed maximum coefficent allowing for weaknesses
 
                     // A negative armor penetration value can result in a negative effective coefficient, which results in
                     // healing. This isn't intended. This logic clamps the effective coefficient to zero if armor
