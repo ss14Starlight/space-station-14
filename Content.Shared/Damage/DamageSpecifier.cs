@@ -163,6 +163,7 @@ namespace Content.Shared.Damage
 
                 if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
                 {
+                    // Starlight edit begin
                     var effectiveCoefficient = coefficient + ((1f - coefficient) * armorPenetration);
 
                     // A negative armor penetration value can result in a negative effective coefficient, which results in
@@ -175,6 +176,7 @@ namespace Content.Shared.Damage
                     }
 
                     newValue *= effectiveCoefficient;
+                    // Starlight edit end
                 }
 
                 if (newValue != 0)
