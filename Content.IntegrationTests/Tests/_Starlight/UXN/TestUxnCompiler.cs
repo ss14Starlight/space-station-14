@@ -10,7 +10,6 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Utility;
-using Serilog;
 using YamlDotNet.Core;
 using YamlDotNet.RepresentationModel;
 
