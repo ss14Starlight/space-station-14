@@ -39,8 +39,6 @@ public abstract partial class SharedMechSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
@@ -202,12 +200,12 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!RemComp<MechPilotComponent>(pilot))
             return;
         //RemComp<RelayInputMoverComponent>(pilot);
-        RemComp<InteractionRelayComponent>(pilot);
+        //RemComp<InteractionRelayComponent>(pilot);
 
         _actions.RemoveProvidedActions(pilot, mech);
         if (!TryComp<MechComponent>(mech, out var mechComp))
             return;
-        
+        _actions.RemoveAction(pilot, mechComp.MechStopPilotingActionEntity);
         _actions.RemoveAction(pilot, mechComp.MechStartPilotingActionEntity);
         // var equipment = new List<EntityUid>(mechComp.EquipmentContainer.ContainedEntities);
         // foreach (var ent in equipment)

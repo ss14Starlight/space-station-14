@@ -96,6 +96,12 @@ public sealed partial class MechStartPilotingEvent : InstantActionEvent
 public sealed partial class MechStopPilotingEvent : InstantActionEvent
 {
 }
+
+[ByRefEvent]
+public readonly record struct MechActivateEquipmentEvent(EntityUid Mech);
+
+[ByRefEvent]
+public readonly record struct MechDeactivateEquipmentEvent(EntityUid Mech);
 // Starlight End
 
 [ByRefEvent]

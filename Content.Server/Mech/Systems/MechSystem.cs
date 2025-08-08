@@ -709,6 +709,7 @@ public sealed partial class MechSystem : SharedMechSystem
     #endregion
 
     // TODO: Move to Starlight folders in separate partial
+    // TODO: Pilot removal handling
     // TODO: Block autocryo.
 
     #region Mind Handling (Psychic Warfare)
