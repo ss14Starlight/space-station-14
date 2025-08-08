@@ -1,5 +1,7 @@
 using System.Linq;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -29,6 +31,8 @@ public abstract class SharedOnHitSystem : EntitySystem
     [Dependency] protected readonly SharedSolutionContainerSystem _solutionContainers = default!;
     [Dependency] protected readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] protected readonly SharedCuffableSystem _cuffs = default!;
+    [Dependency] protected readonly SharedChargesSystem _sharedCharges = default!;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<InjectOnHitComponent, MeleeHitEvent>(OnInjectOnMeleeHit);
@@ -69,6 +73,26 @@ public abstract class SharedOnHitSystem : EntitySystem
 
     private void OnInjectOnMeleeHit(Entity<InjectOnHitComponent> ent, ref MeleeHitEvent args)
     {
+        if (HasComp<LimitedChargesComponent>(ent.Owner))
+        {
+            var charges = _sharedCharges.GetCurrentCharges(ent.Owner);
+            if (charges == 0)
+            {
+                return;
+            }
+            
+            InjectSolution(ent, ref args);
+            
+            _sharedCharges.AddCharges(ent.Owner, -1);
+        }
+        else
+        {
+            InjectSolution(ent, ref args);
+        }
+    }
+
+    private void InjectSolution(Entity<InjectOnHitComponent> ent, ref MeleeHitEvent args)
+    {
         if (!args.IsHit
             || !args.HitEntities.Any())
             return;
@@ -101,4 +125,3 @@ public abstract class SharedOnHitSystem : EntitySystem
     {
     }
 }
-
