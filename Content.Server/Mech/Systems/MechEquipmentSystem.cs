@@ -9,8 +9,9 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Whitelist;
 using Content.Shared.Interaction.Components;
-using Content.Shared._Starlight.Mech.Components;
 using Content.Shared.Mech;
+using Content.Shared._Starlight.Mech.Components;
+using Content.Shared._Starlight.Mech.Systems;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Mech.Systems;
@@ -18,7 +19,7 @@ namespace Content.Server.Mech.Systems;
 /// <summary>
 /// Handles the insertion of mech equipment into mechs.
 /// </summary>
-public sealed class MechEquipmentSystem : EntitySystem
+public sealed class MechEquipmentSystem : SharedMechEquipmentSystem
 {
     [Dependency] private readonly MechSystem _mech = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
@@ -30,11 +31,17 @@ public sealed class MechEquipmentSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        base.Initialize();
+
         SubscribeLocalEvent<MechEquipmentComponent, AfterInteractEvent>(OnUsed);
         SubscribeLocalEvent<MechEquipmentComponent, InsertEquipmentEvent>(OnInsertEquipment);
 
+        SubscribeLocalEvent<MechEquipmentActionComponent, MechEquipmentInsertedEvent>(OnToggleableInserted);
+        SubscribeLocalEvent<MechEquipmentActionComponent, MechEquipmentRemovedEvent>(OnToggleableRemoved);
         SubscribeLocalEvent<MechEquipmentActionComponent, MechToggleEquipmentEvent>(OnToggleEquipment);
 
+        SubscribeLocalEvent<MechActiveEquipComponent, MechActivateEquipmentEvent>(OnActivated);
+        SubscribeLocalEvent<MechActiveEquipComponent, MechDeactivateEquipmentEvent>(OnDeactivated);
     }
 
     private void OnUsed(EntityUid uid, MechEquipmentComponent component, AfterInteractEvent args)
@@ -85,6 +92,16 @@ public sealed class MechEquipmentSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void OnToggleableInserted(EntityUid uid, MechEquipmentActionComponent component, ref MechEquipmentInsertedEvent args)
+    {
+        _mech.AddEquipmentAction(args.Mech, uid, actionComp: component);
+    }
+
+    private void OnToggleableRemoved(EntityUid uid, MechEquipmentActionComponent component, ref MechEquipmentRemovedEvent args)
+    {
+        _mech.RemoveEquipmentAction(args.Mech, uid, actionComponent: component);
+    }
+
     private void OnToggleEquipment(EntityUid uid, MechEquipmentActionComponent component, MechToggleEquipmentEvent args)
     {
         var mech = args.Performer;
@@ -95,6 +112,7 @@ public sealed class MechEquipmentSystem : EntitySystem
         args.Toggle = true;
         args.Handled = true;
 
+        // TODO: check lifecycle stage etc, validate module, etc.
         component.EquipmentToggled = !component.EquipmentToggled;
         if (component.EquipmentToggled)
         {
@@ -103,15 +121,27 @@ public sealed class MechEquipmentSystem : EntitySystem
         }
         else
         {
-            var ev = new MechDeactivateEquipmentEvent();
+            var ev = new MechDeactivateEquipmentEvent(mech);
             RaiseLocalEvent(uid, ref ev);
         }
+        Dirty(mech, chassis);
     }
 
     #region Auxiliary Equipment
     #endregion
 
     #region Active Equipment
+
+    private void OnActivated(EntityUid uid, MechActiveEquipComponent component, ref MechActivateEquipmentEvent args)
+    {
+        ProvideItems(args.Mech, uid, component: component);
+    }
+
+    private void OnDeactivated(EntityUid uid, MechActiveEquipComponent component, ref MechDeactivateEquipmentEvent args)
+    {
+        RemoveProvidedItems(args.Mech, uid, component: component);
+    }
+
     private void ProvideItems(EntityUid chassis, EntityUid uid, MechComponent? chassisComponent = null, MechActiveEquipComponent? component = null)
     {
         if (!Resolve(chassis, ref chassisComponent) || !Resolve(uid, ref component))

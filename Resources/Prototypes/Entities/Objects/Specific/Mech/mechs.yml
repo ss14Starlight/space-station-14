@@ -155,6 +155,7 @@
   - type: Actions
   - type: MindContainer
   - type: Hands
+  - type: CombatMode
 
 # Ripley MK-I
 - type: entity

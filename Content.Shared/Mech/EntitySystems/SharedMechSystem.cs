@@ -335,12 +335,22 @@ public abstract partial class SharedMechSystem : EntitySystem
         var ev = new MechEquipmentRemovedEvent(uid);
         RaiseLocalEvent(toRemove, ref ev);
 
-        if (component.CurrentSelectedEquipment == toRemove)
-            CycleEquipment(uid, component);
+        // if (component.CurrentSelectedEquipment == toRemove)
+        //     CycleEquipment(uid, component);
 
         equipmentComponent.EquipmentOwner = null;
         _container.Remove(toRemove, component.EquipmentContainer);
         UpdateUserInterface(uid, component);
+    }
+
+    public void AddEquipmentAction(EntityUid uid, EntityUid equipment, MechEquipmentActionComponent actionComp)
+    {
+        _actions.AddAction(uid, ref actionComp.EquipmentActionEntity, actionComp.EquipmentAction, equipment);
+    }
+
+    public void RemoveEquipmentAction(EntityUid uid, EntityUid equipment, MechEquipmentActionComponent? actionComponent = null)
+    {
+        _actions.RemoveProvidedActions(equipment, uid);
     }
 
     /// <summary>
