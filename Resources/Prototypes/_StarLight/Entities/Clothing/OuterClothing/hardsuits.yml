@@ -181,11 +181,6 @@
       - state: icon
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntcc_hardsuit.rsi
-    clothingVisuals: # STARLIGHT
-      outerClothing:
-      - state: equipped-OUTERCLOTHING
-      outerClothing-resomi:
-      - state: equipped-OUTERCLOTHING-resomi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortium
   - type: Tag
