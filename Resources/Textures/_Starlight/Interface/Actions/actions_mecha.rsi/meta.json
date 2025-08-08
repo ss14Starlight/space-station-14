@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprite layers taken from https://github.com/tgstation/tgstation/commit/3d049e69fe71a0be2133005e65ea469135d648c8 and https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, modified by neurovermi (Github)",
+  "size" : {
+    "x" : 32,
+    "y" : 32
+  },
+  "states" : [
+    {
+      "name" : "mech_link_off"
+    }
+  ]
+}

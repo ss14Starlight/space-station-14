@@ -7,8 +7,8 @@
       useDelay: 1
       itemIconStyle: NoItem
       icon:
-        sprite: Interface/Actions/actions_mecha.rsi
-        state: mech_night_vision_off
+        sprite: _Starlight/Interface/Actions/actions_mecha.rsi
+        state: mech_link_off
       iconOn:
         sprite: Interface/Actions/actions_mecha.rsi
         state: mech_night_vision_on
@@ -24,10 +24,10 @@
       useDelay: 1
       itemIconStyle: NoItem
       icon:
-        sprite: Interface/Actions/actions_mecha.rsi
-        state: mech_night_vision_off
+        sprite: _Starlight/Interface/Actions/actions_mecha.rsi
+        state: mech_link_off
       iconOn:
-        sprite: Interface/Actions/actions_mecha.rsi
-        state: mech_night_vision_on
+        sprite: _Starlight/Interface/Actions/actions_mecha.rsi
+        state: mech_link_off
     - type: InstantAction
       event: !type:MechStopPilotingEvent
