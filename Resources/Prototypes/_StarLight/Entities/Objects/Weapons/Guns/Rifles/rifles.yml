@@ -246,7 +246,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineMagnumRifleSP
+        startingItem: MagazineMagnumRifleFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
@@ -256,7 +256,7 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnumSP
+        startingItem: CartridgeMagnumFMJ
         priority: 1
         whitelist:
           tags:

@@ -144,7 +144,7 @@
         amount: 2
       - id: MagazineShotgun
         amount: 4
-      - id: MagazineMagnumRifleSP #Starlight, for the Pitbull
+      - id: MagazineMagnumRifleFMJ #Starlight, for the Pitbull
         amount: 2
       - id: MagazineRifleFMJ #Starlight, for the estoc
         amount: 2 

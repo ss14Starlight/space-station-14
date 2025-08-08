@@ -62,7 +62,7 @@
   - type: StorageFill
     contents:
     - id: WeaponRiflePitbull
-    - id: MagazineMagnumRifleSP
+    - id: MagazineMagnumRifleFMJ
       amount: 2
 
 - type: entity

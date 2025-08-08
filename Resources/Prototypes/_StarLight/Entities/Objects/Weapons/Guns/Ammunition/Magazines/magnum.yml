@@ -360,8 +360,24 @@
         color: "#40F57A"
         
 - type: entity
+  id: MagazineMagnumRifleFMJ
+  name: rifle magazine (.45 magnum FMJ)
+  parent: BaseMagazineMagnumSubMachineGun
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumFMJ
+    capacity: 20
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Magnum/magnum_rifle_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
   id: MagazineMagnumRifleSP
-  name: rifle magazine (.45 magnum)
+  name: rifle magazine (.45 magnum SP)
   parent: BaseMagazineMagnumSubMachineGun
   components:
   - type: BallisticAmmoProvider
