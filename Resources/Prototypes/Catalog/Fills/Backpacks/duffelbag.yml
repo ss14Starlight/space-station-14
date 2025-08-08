@@ -144,6 +144,10 @@
         amount: 2
       - id: MagazineShotgun
         amount: 4
+      - id: MagazineMagnumRifleSP #Starlight, for the Pitbull
+        amount: 2
+      - id: MagazineRifleFMJ #Starlight, for the estoc
+        amount: 2 
       - id: MagazineLightRifleBoxFMJ
         amount: 3
       - id: MagazineBoxLightRifleSP
@@ -366,3 +370,4 @@
       - id: EmpImplanter
       - id: ClothingShoesBootsMagSyndie
       - id: AgentIDCard
+
