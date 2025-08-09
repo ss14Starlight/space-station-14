@@ -510,7 +510,8 @@ public sealed partial class MechSystem : SharedMechSystem
 
         if (args.DamageIncreased &&
             args.DamageDelta != null &&
-            component.PilotSlot.ContainedEntity != null)
+            component.PilotSlot.ContainedEntity != null &&
+            !component.Airtight) // Starlight - airtight mechs prevent damage transmission
         {
             var damage = args.DamageDelta * component.MechToPilotDamageMultiplier;
             _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damage);
