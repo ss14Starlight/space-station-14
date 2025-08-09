@@ -610,10 +610,24 @@
 - type: entity
   id: BorgRegenerativeSyringeBase
   name: regenerative syringe
-  parent: BaseSyringe
+  parent: BaseItem # Inherits from BaseItem to avoid Spillable/TrashOnSolutionEmpty from BaseSyringe
   abstract: true
   description: An integrated syringe for a cyborg that automatically regenerates its contents.
   components:
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/syringe.rsi
+    layers:
+      - state: syringe1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+      - state: syringe_base0
+        map: ["enum.SolutionContainerLayers.Base"]
+  - type: Icon
+    sprite: Objects/Specific/Chemistry/syringe.rsi
+    state: "syringe_base0"
+  - type: Item
+    size: Tiny
+    sprite: Objects/Specific/Chemistry/syringe.rsi
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -622,11 +636,20 @@
     transferAmount: 15
     injectOnly: true
     onlyAffectsMobs: true
-    autoToggle: false # Prevents the syringe from switching to Draw mode when empty
+    autoToggle: false
     toggleState: Inject
     delay: 2.0
-  - type: Item
-    sprite: Objects/Specific/Chemistry/syringe.rsi
+  - type: ExaminableSolution
+    solution: injector
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: syringe
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: Tag
+    tags:
+      - Syringe
 
 - type: entity
   id: BorgSyringeTricordrazineRegenerative
