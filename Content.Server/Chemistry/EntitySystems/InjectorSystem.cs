@@ -36,12 +36,14 @@ public sealed class InjectorSystem : SharedInjectorSystem
         // Handle injecting/drawing for solutions
         if (injector.Comp.ToggleState == InjectorToggleMode.Inject)
         {
+            // Starlight begin
             if (injector.Comp.OnlyAffectsMobs && !HasComp<MobStateComponent>(target))
             {
                 Popup.PopupEntity(Loc.GetString("injector-component-cannot-inject-non-mob",
                     ("target", Identity.Entity(target, EntityManager))), injector, user);
                 return false;
             }
+            // Starlight end
 
             if (isOpenOrIgnored && SolutionContainers.TryGetInjectableSolution(target, out var injectableSolution, out _))
                 return TryInject(injector, target, injectableSolution.Value, user, false);
@@ -303,7 +305,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
     {
         // Automatically set syringe to draw after completely draining it, IF AutoToggle is true
         if (injector.Comp.AutoToggle && SolutionContainers.TryGetSolution(injector.Owner, injector.Comp.SolutionName, out _,
-                out var solution) && solution.Volume == 0)
+                out var solution) && solution.Volume == 0) // Starlight edit
         {
             SetMode(injector, InjectorToggleMode.Draw);
         }
@@ -317,7 +319,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
     {
         // Automatically set syringe to inject after completely filling it, IF AutoToggle is true
         if (injector.Comp.AutoToggle && SolutionContainers.TryGetSolution(injector.Owner, injector.Comp.SolutionName, out _,
-                out var solution) && solution.AvailableVolume == 0)
+                out var solution) && solution.AvailableVolume == 0) // Starlight edit
         {
             SetMode(injector, InjectorToggleMode.Inject);
         }
