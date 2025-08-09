@@ -744,8 +744,6 @@
     - BorgVial
     - BorgVial
     - BorgVial
-    - BorgHyposprayTricordrazineRegenerative
-    - BorgHyposprayInaprovalineRegenerative
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
