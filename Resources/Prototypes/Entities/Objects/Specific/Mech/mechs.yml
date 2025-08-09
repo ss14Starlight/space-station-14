@@ -155,7 +155,13 @@
   - type: Actions
   - type: MindContainer
   - type: Hands
+    showInHands: false
+    disableExplosionRecursion: true
+    canBeStripped: false
   - type: CombatMode
+  - type: MeleeThrowOnHit
+    speed: 20
+    distance: 5
 
 # Ripley MK-I
 - type: entity
