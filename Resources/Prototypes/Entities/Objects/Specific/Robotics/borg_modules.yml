@@ -744,8 +744,6 @@
     - BorgVial
     - BorgVial
     - BorgVial
-    - BorgBeakerTricordrazineRegenerative
-    - BorgBeakerInaprovalineRegenerative
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 

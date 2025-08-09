@@ -153,32 +153,6 @@
     fillBaseName: beaker
 
 - type: entity
-  id: BorgBeakerTricordrazineRegenerative
-  name: regenerative tricordrazine beaker
-  parent: BorgBeaker
-  description: An integrated beaker for a cyborg that automatically regenerates Tricordrazine.
-  components:
-  - type: SolutionRegeneration
-    solution: beaker
-    generated:
-      reagents:
-        - ReagentId: Tricordrazine
-          Quantity: 0.5 # 30u per minute
-
-- type: entity
-  id: BorgBeakerInaprovalineRegenerative
-  name: regenerative inaprovaline beaker
-  parent: BorgBeaker
-  description: An integrated beaker for a cyborg that automatically regenerates Inaprovaline.
-  components:
-  - type: SolutionRegeneration
-    solution: beaker
-    generated:
-      reagents:
-        - ReagentId: Inaprovaline
-          Quantity: 0.25 # 15u per minute
-
-- type: entity
   parent: BaseItem
   id: BaseBeakerMetallic
   abstract: true
