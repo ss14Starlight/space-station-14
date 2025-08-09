@@ -661,3 +661,50 @@
       tags:
       - Pill
   - type: Dumpable
+
+- type: entity
+  id: BorgRegenerativeSyringeBase
+  name: regenerative syringe
+  parent: BaseSyringe
+  abstract: true
+  description: An integrated syringe for a cyborg that automatically regenerates its contents.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 50
+  - type: Injector
+    transferAmount: 15
+    injectOnly: true
+    onlyAffectsMobs: true
+    autoToggle: false # Prevents the syringe from switching to Draw mode when empty
+    toggleState: Inject
+    delay: 2.0
+  - type: Item
+    sprite: Objects/Specific/Chemistry/syringe.rsi
+
+- type: entity
+  id: BorgSyringeTricordrazineRegenerative
+  name: regenerative tricordrazine syringe
+  parent: BorgRegenerativeSyringeBase
+  description: An integrated syringe for a cyborg that automatically regenerates Tricordrazine.
+  components:
+  - type: SolutionRegeneration
+    solution: injector
+    generated:
+      reagents:
+        - ReagentId: Tricordrazine
+          Quantity: 0.5 # 30u per minute
+
+- type: entity
+  id: BorgSyringeInaprovalineRegenerative
+  name: regenerative inaprovaline syringe
+  parent: BorgRegenerativeSyringeBase
+  description: An integrated syringe for a cyborg that automatically regenerates Inaprovaline.
+  components:
+  - type: SolutionRegeneration
+    solution: injector
+    generated:
+      reagents:
+        - ReagentId: Inaprovaline
+          Quantity: 0.25 # 15u per minute
