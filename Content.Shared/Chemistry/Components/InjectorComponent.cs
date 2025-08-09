@@ -48,15 +48,15 @@ public sealed partial class InjectorComponent : Component
     /// <summary>
     /// If true, this injector can only inject into mobs and not other containers.
     /// </summary>
-    [DataField("onlyAffectsMobs"), AutoNetworkedField]
-    public bool OnlyAffectsMobs = false;
+    [DataField("onlyAffectsMobs"), AutoNetworkedField] // Starlight edit
+    public bool OnlyAffectsMobs = false; // Starlight edit
     
     /// <summary>
     /// Whether the injector should automatically toggle between inject/draw modes when emptied or filled.
     /// </summary>
-    [DataField("autoToggle")]
-    [AutoNetworkedField]
-    public bool AutoToggle = true;
+    [DataField("autoToggle")] // Starlight edit
+    [AutoNetworkedField] // Starlight edit
+    public bool AutoToggle = true; // Starlight edit
 
     /// <summary>
     /// Whether or not the injector is able to draw from or inject into containers that are closed/sealed
