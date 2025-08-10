@@ -6,7 +6,7 @@
       deleteOnSpawn: true
 
 - type: entity
-  id: ShellShotgunIncendiaryMech
+  id: ShellShotgunMechIncendiary
   parent: [ShellShotgunIncendiary, MechCartridge]
 
 - type: entity

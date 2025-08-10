@@ -4,6 +4,7 @@
   description: Fires a heavy pulse laser.
   suffix: Mech Weapon, Gun, Combat, Pulse
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -27,6 +28,7 @@
   description: A gun for battlemechs, firing high-temperature beams.
   suffix: Mech Weapon, Gun, Combat, Laser
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -76,6 +78,7 @@
   description: The standard combat armament of the mechs is a combat mounted laser.
   suffix: Mech Weapon, Gun, Combat, Laser
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -99,6 +102,7 @@
   description: A weapon for combat mechs, firing energy balls, based on the principle of an experimental Tesla engine.
   suffix: Mech Weapon, Gun, Combat, Tesla
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -126,6 +130,7 @@
   description: A non-lethal mounted stun gun that allows you to immobilize intruders.
   suffix: Mech Weapon, Gun, Combat, Disabler
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -149,6 +154,7 @@
   description: A mounted non-lethal taser that allows you to stun intruders.
   suffix: Mech Weapon, Gun, Combat, Disabler, admeme
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -169,9 +175,10 @@
 - type: entity
   id: WeaponMechCombatShotgun
   name: LBX AC 10 "Scattershot"
-  description: A mounted non-lethal taser that allows you to stun intruders.
+  description: A mounted combat shotgun for heavy CQC.
   suffix: Mech Weapon, Gun, Combat, Shotgun
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -183,18 +190,19 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: PelletShotgunSpreadTrace
-    fireCost: 100
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShellShotgunMech
+    fireCost: 50
   - type: Appearance
   - type: AmmoCounter
 
 - type: entity
   id: WeaponMechCombatShotgunIncendiary
-  name: FNX-99 "Hades" Carbine
-  description: Mounted carbine, firing incendiary cartridges.
+  name: FNX-99 "Hades" Shotgun
+  description: Mounted shotgun, firing incendiary cartridges.
   suffix: Mech Weapon, Gun, Combat, Shotgun, Incendiary
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -206,18 +214,19 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: ShellShotgunIncendiaryTrace
-    fireCost: 90
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShellShotgunMechIncendiary
+    fireCost: 50
   - type: Appearance
   - type: AmmoCounter
 
 - type: entity
   id: WeaponMechCombatUltraRifle
   name: Ultra AC-2
-  description: Mounted carbine, firing incendiary cartridges.
+  description: Mounted automatic rifle. Reliable and deadly.
   suffix: Mech Weapon, Gun, Combat, Rifle
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -226,13 +235,13 @@
     fireRate: 5
     shotsPerBurst: 3
     burstCooldown: 1.2
-    selectedMode: Burst
+    selectedMode: FullAuto
     availableModes:
-      - Burst
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletLightRifleTraceSP
+    proto: BulletLightRifleTraceFMJ
     fireCost: 20
   - type: Appearance
   - type: AmmoCounter
@@ -243,6 +252,7 @@
   description: A mounted ion weapon that operates on the same principle as a handheld ion carbine. Extremely effective against synthetics, robots and other mechs.
   suffix: Mech Weapon, Gun, Combat, Ion
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ] # Starlight
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -272,6 +282,7 @@
   description: Laser mounted machine gun.
   suffix: Mech Weapon, Gun, Combat, Laser
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -280,8 +291,9 @@
     fireRate: 4
     shotsPerBurst: 3
     burstCooldown: 1.2
-    selectedMode: Burst
+    selectedMode: FullAuto
     availableModes:
+      - FullAuto
       - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
@@ -299,6 +311,7 @@
   description: Experimental mech weapon that fires X-rays that pass through obstacles.
   suffix: Mech Weapon, Gun, Combat, X-Ray
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -325,6 +338,7 @@
   description: Launches low-explosive breaching missiles designed to explode only when striking a sturdy target.
   suffix: Mech Weapon, Gun, Combat, Light Missile
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -348,6 +362,7 @@
   description: Tubes must be reloaded from the outside.
   suffix: Mech Weapon, Gun, Combat, Missile
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -371,9 +386,10 @@
 - type: entity
   id: WeaponMechCombatFlashbangLauncher
   name: SGL-6 Flashbang Launcher
-  description: Launches low-explosive breaching missiles designed to explode only when striking a sturdy target.
+  description: Flashbang launcher designed for station pacification and crowd control.
   suffix: Mech Weapon, Gun, Combat, Flashbang
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi

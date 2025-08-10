@@ -4,6 +4,7 @@
   suffix: Mech Weapon, Gun, Special, Mortar
   name: mousetrap mortar
   description: Mounted mousetrap launcher.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: mecha_mousetrapmrtr
@@ -32,6 +33,7 @@
   suffix: Mech Weapon, Gun, Special, Mortar
   name: banana mortar
   description: Mounted banana peel launcher.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: mecha_bananamrtr
