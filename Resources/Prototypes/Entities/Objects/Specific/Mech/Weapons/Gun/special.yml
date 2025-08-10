@@ -1,5 +1,5 @@
 - type: entity
-  id: WeaponMechSpecialMousetrapMortar
+  id: InternalMechSpecialMousetrapMortar
   parent: [ BaseMechWeaponRange, SpecialMechEquipment ]
   suffix: Mech Weapon, Gun, Special, Mortar
   name: mousetrap mortar
@@ -28,7 +28,7 @@
   - type: Appearance
   
 - type: entity
-  id: WeaponMechSpecialBananaMortar
+  id: InternalMechSpecialBananaMortar
   parent: [ BaseMechWeaponRange, SpecialMechEquipment ]
   suffix: Mech Weapon, Gun, Special, Mortar
   name: banana mortar

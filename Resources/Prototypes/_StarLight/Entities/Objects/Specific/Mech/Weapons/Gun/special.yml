@@ -1,19 +1,19 @@
 - type: entity
-  id: EquipmentMechSpecialMousetrapMortar
-  parent: [ WeaponMechSpecialMousetrapMortar, MechHeavyEquipmentItem ]
+  id: WeaponMechSpecialMousetrapMortar
+  parent: [ InternalMechSpecialMousetrapMortar, MechHeavyEquipmentItem ]
   components:
     - type: MechActiveEquipment
       items:
-        - WeaponMechSpecialMousetrapMortar
+        - InternalMechSpecialMousetrapMortar
     - type: MechEquipmentAction
       actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechSpecialBananaMortar
-  parent: [ WeaponMechSpecialBananaMortar, MechHeavyEquipmentItem ]
+  id: WeaponMechSpecialBananaMortar
+  parent: [ InternalMechSpecialBananaMortar, MechHeavyEquipmentItem ]
   components:
     - type: MechActiveEquipment
       items:
-        - WeaponMechSpecialBananaMortar
+        - InternalMechSpecialBananaMortar
     - type: MechEquipmentAction
       actionId: ActionMechCycleEquipment

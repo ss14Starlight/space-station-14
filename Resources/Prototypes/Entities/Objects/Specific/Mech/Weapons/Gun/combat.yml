@@ -1,5 +1,5 @@
 - type: entity
-  id: WeaponMechCombatPulseRifle
+  id: InternalMechCombatPulseRifle
   name: eZ-14 mk2 Heavy pulse rifle
   description: Fires a heavy pulse laser.
   suffix: Mech Weapon, Gun, Combat, Pulse
@@ -23,7 +23,7 @@
   - type: AmmoCounter
 
 - type: entity
-  id: WeaponMechCombatImmolationGun
+  id: InternalMechCombatImmolationGun
   name: ZFI Immolation Beam Gun
   description: A gun for battlemechs, firing high-temperature beams.
   suffix: Mech Weapon, Gun, Combat, Laser
@@ -47,7 +47,7 @@
   - type: AmmoCounter
 
 - type: entity
-  id: WeaponMechCombatSolarisLaser
+  id: InternalMechCombatSolarisLaser
   name: CH-LC "Solaris" laser cannon
   description: An experimental combat mounted laser cannon that causes more damage, but also has a greater cooldown than a "Firedart".
   suffix: Mech Weapon, Gun, Combat, Laser
@@ -73,7 +73,7 @@
     startingCharge: 240
 
 - type: entity
-  id: WeaponMechCombatFiredartLaser
+  id: InternalMechCombatFiredartLaser
   name: CH-PS "Firedart" Laser
   description: The standard combat armament of the mechs is a combat mounted laser.
   suffix: Mech Weapon, Gun, Combat, Laser
@@ -97,7 +97,7 @@
   - type: AmmoCounter
 
 - type: entity
-  id: WeaponMechCombatTeslaCannon
+  id: InternalMechCombatTeslaCannon
   name: P-X Tesla Cannon
   description: A weapon for combat mechs, firing energy balls, based on the principle of an experimental Tesla engine.
   suffix: Mech Weapon, Gun, Combat, Tesla
@@ -125,7 +125,7 @@
   - type: AmmoCounter
 
 - type: entity
-  id: WeaponMechCombatDisabler
+  id: InternalMechCombatDisabler
   name: CH-PD Disabler
   description: A non-lethal mounted stun gun that allows you to immobilize intruders.
   suffix: Mech Weapon, Gun, Combat, Disabler
@@ -149,7 +149,7 @@
   - type: AmmoCounter
 
 - type: entity
-  id: WeaponMechCombatTaser
+  id: InternalMechCombatTaser
   name: PBT "Pacifier" Mounted Taser
   description: A mounted non-lethal taser that allows you to stun intruders.
   suffix: Mech Weapon, Gun, Combat, Disabler, admeme
@@ -173,7 +173,7 @@
   - type: AmmoCounter
 
 - type: entity
-  id: WeaponMechCombatShotgun
+  id: InternalMechCombatShotgun
   name: LBX AC 10 "Scattershot"
   description: A mounted combat shotgun for heavy CQC.
   suffix: Mech Weapon, Gun, Combat, Shotgun
@@ -197,7 +197,7 @@
   - type: AmmoCounter
 
 - type: entity
-  id: WeaponMechCombatShotgunIncendiary
+  id: InternalMechCombatShotgunIncendiary
   name: FNX-99 "Hades" Shotgun
   description: Mounted shotgun, firing incendiary cartridges.
   suffix: Mech Weapon, Gun, Combat, Shotgun, Incendiary
@@ -221,7 +221,7 @@
   - type: AmmoCounter
 
 - type: entity
-  id: WeaponMechCombatUltraRifle
+  id: InternalMechCombatUltraRifle
   name: Ultra AC-2
   description: Mounted automatic rifle. Reliable and deadly.
   suffix: Mech Weapon, Gun, Combat, Rifle
@@ -247,7 +247,7 @@
   - type: AmmoCounter
   
 - type: entity
-  id: WeaponMechCombatIon
+  id: InternalMechCombatIon
   name: Mk.IV Ion Heavy Cannon
   description: A mounted ion weapon that operates on the same principle as a handheld ion carbine. Extremely effective against synthetics, robots and other mechs.
   suffix: Mech Weapon, Gun, Combat, Ion
@@ -277,7 +277,7 @@
     startingCharge: 400
     
 - type: entity
-  id: WeaponMechCombatAMLG90
+  id: InternalMechCombatAMLG90
   name: AMLG90
   description: Laser mounted machine gun.
   suffix: Mech Weapon, Gun, Combat, Laser
@@ -306,7 +306,7 @@
   - type: AmmoCounter
   
 - type: entity
-  id: WeaponMechCombatXray
+  id: InternalMechCombatXray
   name: S-1 X-Ray Projector
   description: Experimental mech weapon that fires X-rays that pass through obstacles.
   suffix: Mech Weapon, Gun, Combat, X-Ray
@@ -333,7 +333,7 @@
     startingCharge: 400
 
 - type: entity
-  id: WeaponMechCombatMissileRack8
+  id: InternalMechCombatMissileRack8
   name: SRM-8 Light Missile Rack
   description: Launches low-explosive breaching missiles designed to explode only when striking a sturdy target.
   suffix: Mech Weapon, Gun, Combat, Light Missile
@@ -357,7 +357,7 @@
   - type: AmmoCounter
 
 - type: entity
-  id: WeaponMechCombatMissileRack6
+  id: InternalMechCombatMissileRack6
   name: BRM-6 Missile Rack
   description: Tubes must be reloaded from the outside.
   suffix: Mech Weapon, Gun, Combat, Missile
@@ -384,7 +384,7 @@
     startingCharge: 220
 
 - type: entity
-  id: WeaponMechCombatFlashbangLauncher
+  id: InternalMechCombatFlashbangLauncher
   name: SGL-6 Flashbang Launcher
   description: Flashbang launcher designed for station pacification and crowd control.
   suffix: Mech Weapon, Gun, Combat, Flashbang

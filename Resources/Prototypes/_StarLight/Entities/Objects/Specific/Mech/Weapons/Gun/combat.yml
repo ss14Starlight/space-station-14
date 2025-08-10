@@ -1,149 +1,149 @@
 - type: entity
-  id: EquipmentMechCombatPulseRifle
-  parent: [ WeaponMechCombatPulseRifle, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatPulseRifle
+  parent: [ InternalMechCombatPulseRifle, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatPulseRifle
+    - InternalMechCombatPulseRifle
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatImmolationGun
-  parent: [ WeaponMechCombatImmolationGun, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatImmolationGun
+  parent: [ InternalMechCombatImmolationGun, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatImmolationGun
+    - InternalMechCombatImmolationGun
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatSolarisLaser
-  parent: [ WeaponMechCombatSolarisLaser, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatSolarisLaser
+  parent: [ InternalMechCombatSolarisLaser, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatSolarisLaser
+    - InternalMechCombatSolarisLaser
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatFiredartLaser
-  parent: [ WeaponMechCombatFiredartLaser, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatFiredartLaser
+  parent: [ InternalMechCombatFiredartLaser, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatFiredartLaser
+    - InternalMechCombatFiredartLaser
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatTeslaCannon
-  parent: [ WeaponMechCombatTeslaCannon, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatTeslaCannon
+  parent: [ InternalMechCombatTeslaCannon, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatTeslaCannon
+    - InternalMechCombatTeslaCannon
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatDisabler
-  parent: [ WeaponMechCombatDisabler, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatDisabler
+  parent: [ InternalMechCombatDisabler, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatDisabler
+    - InternalMechCombatDisabler
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatTaser
-  parent: [ WeaponMechCombatTaser, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatTaser
+  parent: [ InternalMechCombatTaser, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatTaser
+    - InternalMechCombatTaser
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatShotgun
-  parent: [ WeaponMechCombatShotgun, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatShotgun
+  parent: [ InternalMechCombatShotgun, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatShotgun
+    - InternalMechCombatShotgun
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatShotgunIncendiary
-  parent: [ WeaponMechCombatShotgunIncendiary, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatShotgunIncendiary
+  parent: [ InternalMechCombatShotgunIncendiary, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatShotgunIncendiary
+    - InternalMechCombatShotgunIncendiary
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatUltraRifle
-  parent: [ WeaponMechCombatUltraRifle, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatUltraRifle
+  parent: [ InternalMechCombatUltraRifle, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatUltraRifle
+    - InternalMechCombatUltraRifle
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatIon
-  parent: [ WeaponMechCombatIon, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatIon
+  parent: [ InternalMechCombatIon, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatIon
+    - InternalMechCombatIon
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatAMLG90
-  parent: [ WeaponMechCombatAMLG90, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatAMLG90
+  parent: [ InternalMechCombatAMLG90, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatAMLG90
+    - InternalMechCombatAMLG90
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatXray
-  parent: [ WeaponMechCombatXray, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatXray
+  parent: [ InternalMechCombatXray, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatXray
+    - InternalMechCombatXray
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatMissileRack8
-  parent: [ WeaponMechCombatMissileRack8, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatMissileRack8
+  parent: [ InternalMechCombatMissileRack8, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatMissileRack8
+    - InternalMechCombatMissileRack8
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
 
 - type: entity
-  id: EquipmentMechCombatMissileRack6
-  parent: [ WeaponMechCombatMissileRack6, MechHeavyEquipmentItem ]
+  id: WeaponMechCombatMissileRack6
+  parent: [ InternalMechCombatMissileRack6, MechHeavyEquipmentItem ]
   components:
   - type: MechActiveEquipment
     items:
-    - WeaponMechCombatMissileRack6
+    - InternalMechCombatMissileRack6
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment

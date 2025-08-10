@@ -1,9 +1,9 @@
 - type: entity
-  id: EquipmentMechIndustrialKinecticAccelerator
-  parent: [ WeaponMechIndustrialKineticAccelerator, MechHeavyEquipmentItem ]
+  id: WeaponMechIndustrialKinecticAccelerator
+  parent: [ InternalMechIndustrialKineticAccelerator, MechHeavyEquipmentItem ]
   components:
     - type: MechActiveEquipment
       items:
-        - WeaponMechIndustrialKineticAccelerator
+        - InternalMechIndustrialKineticAccelerator
     - type: MechEquipmentAction
       actionId: ActionMechCycleEquipment
