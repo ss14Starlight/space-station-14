@@ -57,11 +57,30 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
   - type: Item
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
+
+# Starlight begin - equipment changes
+- type: entity
+  id: BaseMechEquipmentItem
+  abstract: true
+  components:
+  - type: Item
     size: Ginormous
   - type: MechEquipment
   - type: GuideHelp
     guides:
     - Robotics
+
+- type: entity
+  id: MechHeavyEquipmentItem
+  parent: BaseMechEquipmentItem
+  abstract: true
+  components:
+    - type: MultiHandedItem
+    - type: ClothingSpeedModifier
+      walkModifier: 0.5
+      sprintModifier: 0.5
+    - type: HeldSpeedModifier
+# Starlight end
 
 - type: entity
   id: MechEquipmentGrabber
