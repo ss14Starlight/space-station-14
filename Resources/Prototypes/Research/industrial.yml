@@ -11,6 +11,7 @@
   cost: 7500
   recipeUnlocks:
   - MiningDrill
+  - MechEquipmentDrill # Starlight
   - MineralScannerEmpty
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
@@ -179,7 +180,7 @@
     - OreBagOfHolding
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
-    - MechEquipmentDrillDiamond
+    - MechEquipmentDrillDiamond # Starlight
     - BorgModuleAdvancedMining
   radioChannels:
   - Supply
