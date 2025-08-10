@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.Mech.Components;
 /// Used for <see cref="MechEquipmentComponent.cs"/> for providing usable items to a mech via modules
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class MechActiveEquipComponent : Component
+public sealed partial class MechActiveEquipmentComponent : Component
 {
     /// <summary>
     /// The items that are provided.

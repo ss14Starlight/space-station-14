@@ -10,10 +10,10 @@ public abstract partial class SharedMechEquipmentSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<MechActiveEquipComponent, ComponentStartup>(OnActiveEquipmentStartup);
+        SubscribeLocalEvent<MechActiveEquipmentComponent, ComponentStartup>(OnActiveEquipmentStartup);
     }
 
-    private void OnActiveEquipmentStartup(EntityUid uid, MechActiveEquipComponent component, ComponentStartup args)
+    private void OnActiveEquipmentStartup(EntityUid uid, MechActiveEquipmentComponent component, ComponentStartup args)
     {
         component.ProvidedContainer = _container.EnsureContainer<Container>(uid, component.ProvidedContainerId);
     }

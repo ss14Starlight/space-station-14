@@ -40,8 +40,8 @@ public sealed class MechEquipmentSystem : SharedMechEquipmentSystem
         SubscribeLocalEvent<MechEquipmentActionComponent, MechEquipmentRemovedEvent>(OnToggleableRemoved);
         SubscribeLocalEvent<MechEquipmentActionComponent, MechToggleEquipmentEvent>(OnToggleEquipment);
 
-        SubscribeLocalEvent<MechActiveEquipComponent, MechActivateEquipmentEvent>(OnActivated);
-        SubscribeLocalEvent<MechActiveEquipComponent, MechDeactivateEquipmentEvent>(OnDeactivated);
+        SubscribeLocalEvent<MechActiveEquipmentComponent, MechActivateEquipmentEvent>(OnActivated);
+        SubscribeLocalEvent<MechActiveEquipmentComponent, MechDeactivateEquipmentEvent>(OnDeactivated);
     }
 
     private void OnUsed(EntityUid uid, MechEquipmentComponent component, AfterInteractEvent args)
@@ -132,17 +132,17 @@ public sealed class MechEquipmentSystem : SharedMechEquipmentSystem
 
     #region Active Equipment
 
-    private void OnActivated(EntityUid uid, MechActiveEquipComponent component, ref MechActivateEquipmentEvent args)
+    private void OnActivated(EntityUid uid, MechActiveEquipmentComponent component, ref MechActivateEquipmentEvent args)
     {
         ProvideItems(args.Mech, uid, component: component);
     }
 
-    private void OnDeactivated(EntityUid uid, MechActiveEquipComponent component, ref MechDeactivateEquipmentEvent args)
+    private void OnDeactivated(EntityUid uid, MechActiveEquipmentComponent component, ref MechDeactivateEquipmentEvent args)
     {
         RemoveProvidedItems(args.Mech, uid, component: component);
     }
 
-    private void ProvideItems(EntityUid chassis, EntityUid uid, MechComponent? chassisComponent = null, MechActiveEquipComponent? component = null)
+    private void ProvideItems(EntityUid chassis, EntityUid uid, MechComponent? chassisComponent = null, MechActiveEquipmentComponent? component = null)
     {
         if (!Resolve(chassis, ref chassisComponent) || !Resolve(uid, ref component))
             return;
@@ -189,7 +189,7 @@ public sealed class MechEquipmentSystem : SharedMechEquipmentSystem
         component.ItemsCreated = true;
     }
 
-    private void RemoveProvidedItems(EntityUid chassis, EntityUid uid, MechComponent? chassisComponent = null, MechActiveEquipComponent? component = null)
+    private void RemoveProvidedItems(EntityUid chassis, EntityUid uid, MechComponent? chassisComponent = null, MechActiveEquipmentComponent? component = null)
     {
         if (!Resolve(chassis, ref chassisComponent) || !Resolve(uid, ref component))
             return;
