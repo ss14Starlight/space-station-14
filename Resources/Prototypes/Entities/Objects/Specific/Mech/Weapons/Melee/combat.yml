@@ -1,9 +1,10 @@
 - type: entity
-  id: WeaponMechChainSword
+  id: InternalMechChainSword
   parent: [ BaseMechWeaponMelee, CombatMechEquipment, BaseSecurityContraband ]
   name: exosuit chainsword
   suffix: Mech Weapon, Melee, Combat
   description: Equipment for combat exosuits. This is the mechanical chainsword that'll pierce the heavens!
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: mecha_chainsword
@@ -18,3 +19,13 @@
       types:
         Structural: 35
         Piercing: 15
+
+- type: entity
+  id: WeaponMechChainSword
+  parent: [ InternalMechChainSword, MechHeavyEquipmentItem]
+  components:
+  - type: MechActiveEquipment
+    items:
+      - InternalMechChainSword
+  - type: MechEquipmentAction
+    actionId: ActionMechCycleEquipment

@@ -1,5 +1,5 @@
 - type: entity
-  id: WeaponMechMelleDrill
+  id: InternalMechMeleeDrill
   parent: [ BaseMechWeaponMelee, BaseCargoContraband ]
   name: exosuit drill
   suffix: Mech Weapon, Melee, Industrial
@@ -25,7 +25,17 @@
         Structural: 40 # ~10 seconds for solid wall / ~21 secods for reinforced wall
 
 - type: entity
-  id: WeaponMechMelleDrillDiamond
+  id: WeaponMechMechMeleeDrill
+  parent: [ InternalMechMechMeleeDrill, MechHeavyEquipmentItem ]
+  components:
+    - type: MechActiveEquipment
+      items:
+        - InternalMechMechMeleeDrill
+    - type: MechEquipmentAction
+      actionId: ActionMechCycleEquipment
+
+- type: entity
+  id: InternalMechMeleeDrillDiamond
   parent: [ BaseMechWeaponMelee, BaseCargoContraband ]
   name: diamond-tipped exosuit drill
   suffix: Mech Weapon, Melee, Industrial
@@ -49,3 +59,13 @@
         Brute: 18
       types:
         Structural: 60 # ~3 seconds for solid wall / 9 seconds for reinforced wall
+
+- type: entity
+  id: WeaponMechMechMeleeDrillDiamond
+  parent: [ InternalMechMechMeleeDrillDiamond, MechHeavyEquipmentItem ]
+  components:
+    - type: MechActiveEquipment
+      items:
+        - InternalMechMechMeleeDrillDiamond
+    - type: MechEquipmentAction
+      actionId: ActionMechCycleEquipment
