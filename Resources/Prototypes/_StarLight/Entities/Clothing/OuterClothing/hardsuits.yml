@@ -168,7 +168,7 @@
     - Hardsuit
     - WhitelistChameleon
 
-#CCNT Consortium BSOs
+#NTNC Consortium BSOs
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ] #sl Change
   id: ClothingOuterHardsuitNTNCConsortium
@@ -176,11 +176,11 @@
   description: A protective hardsuit worn by NT-NC Naval Officers.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntcc_hardsuit.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
     layers: # STARLIGHT
       - state: icon
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntcc_hardsuit.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortium
   - type: Tag
