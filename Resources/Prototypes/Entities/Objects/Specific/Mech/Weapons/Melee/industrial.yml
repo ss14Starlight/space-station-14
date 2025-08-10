@@ -26,11 +26,11 @@
 
 - type: entity
   id: WeaponMechMechMeleeDrill
-  parent: [ InternalMechMechMeleeDrill, MechHeavyEquipmentItem ]
+  parent: [ InternalMechMeleeDrill, MechHeavyEquipmentItem ]
   components:
     - type: MechActiveEquipment
       items:
-        - InternalMechMechMeleeDrill
+        - InternalMechMeleeDrill
     - type: MechEquipmentAction
       actionId: ActionMechCycleEquipment
 
@@ -62,10 +62,10 @@
 
 - type: entity
   id: WeaponMechMechMeleeDrillDiamond
-  parent: [ InternalMechMechMeleeDrillDiamond, MechHeavyEquipmentItem ]
+  parent: [ InternalMechMeleeDrillDiamond, MechHeavyEquipmentItem ]
   components:
     - type: MechActiveEquipment
       items:
-        - InternalMechMechMeleeDrillDiamond
+        - InternalMechMeleeDrillDiamond
     - type: MechEquipmentAction
       actionId: ActionMechCycleEquipment

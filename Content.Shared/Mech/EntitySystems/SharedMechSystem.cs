@@ -254,7 +254,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         _actions.RemoveProvidedActions(pilot, mech);
         if (!TryComp<MechComponent>(mech, out var mechComp))
             return;
-        _actions.RemoveAction(pilot, mechComp.MechStopPilotingActionEntity);
+        _actions.RemoveAction(mech, mechComp.MechStopPilotingActionEntity);
         _actions.RemoveAction(pilot, mechComp.MechStartPilotingActionEntity);
         // var equipment = new List<EntityUid>(mechComp.EquipmentContainer.ContainedEntities);
         // foreach (var ent in equipment)

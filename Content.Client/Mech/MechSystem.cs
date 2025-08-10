@@ -25,7 +25,7 @@ public sealed class MechSystem : SharedMechSystem
         if (args.Sprite == null)
             return;
 
-        if (!_sprite.LayerExists((uid, args.Sprite), MechVisualLayers.Base))
+        if (!_sprite.TryGetLayer((uid, args.Sprite), MechVisualLayers.Base, out var _, false))
             return;
 
         var state = component.BaseState;
