@@ -25,7 +25,7 @@
         Structural: 40 # ~10 seconds for solid wall / ~21 secods for reinforced wall
 
 - type: entity
-  id: WeaponMechMechMeleeDrill
+  id: WeaponMechMeleeDrill
   parent: [ InternalMechMeleeDrill, MechHeavyEquipmentItem ]
   components:
     - type: MechActiveEquipment
@@ -61,7 +61,7 @@
         Structural: 60 # ~3 seconds for solid wall / 9 seconds for reinforced wall
 
 - type: entity
-  id: WeaponMechMechMeleeDrillDiamond
+  id: WeaponMechMeleeDrillDiamond
   parent: [ InternalMechMeleeDrillDiamond, MechHeavyEquipmentItem ]
   components:
     - type: MechActiveEquipment
