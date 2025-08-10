@@ -107,6 +107,10 @@
   - type: Physics
     bodyType: KinematicController
   - type: Clickable
+  - type: Hands
+    showInHands: false
+    disableExplosionRecursion: true
+    canBeStripped: false
   - type: WiresPanel
   - type: Fixtures
     fixtures:
@@ -154,10 +158,6 @@
     delay: 3
   - type: Actions
   - type: MindContainer
-  - type: Hands
-    showInHands: false
-    disableExplosionRecursion: true
-    canBeStripped: false
   - type: CombatMode
   - type: MeleeThrowOnHit
     speed: 20
