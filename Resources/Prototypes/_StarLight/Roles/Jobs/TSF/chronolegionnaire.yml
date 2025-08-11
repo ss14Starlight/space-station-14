@@ -19,16 +19,13 @@
     jumpsuit: ClothingUniformJumpsuitLegionnaire
     back: ClothingBackpackChrono
     shoes: ClothingShoesBootsMagChrono
-    # head: ClothingHeadHatBeretBlueShield
     outerClothing: ClothingOuterHardsuitLegionnaire
     id: ChronoPDA
     eyes: ClothingEyesHudChrono
     ears: ClothingHeadsetChrono
-    # belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsChronoGloves
     suitstorage: Chronoprod
     pocket1: TheriacHypogun
-    # pocket2: WeaponPistolN1984
   storage:
     back:
     - ChronoRCD
