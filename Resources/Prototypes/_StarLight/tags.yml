@@ -176,9 +176,6 @@
   id: Compy
 
 - type: Tag
-  id: DockEscape
-
-- type: Tag
   id: ChronoLegionnaire
 
 - type: Tag
