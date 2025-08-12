@@ -1,5 +1,5 @@
 ﻿- type: entity
-  id: OrganVulpkaninStomach
+  id: OrganExperimentStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
   name: stomach
   description: "Gross. This is hard to stomach." 

@@ -3,17 +3,17 @@
   files:
   - /Audio/_Starlight/Voice/Experiment/canine_scream.ogg
 
-  - type: soundCollection
+- type: soundCollection
   id: ExperimentLaughs
   files:
   - /Audio/_Starlight/Voice/Experiment/canine_laugh.ogg
 
-  - type: soundCollection
+- type: soundCollection
   id: ExperimentSighs
   files:
   - /Audio/_Starlight/Voice/Experiment/canine_sigh.ogg
 
-  - type: soundCollection
+- type: soundCollection
   id: ExperimentCries
   files:
   - /Audio/_Starlight/Voice/Experiment/canine_cry.ogg
