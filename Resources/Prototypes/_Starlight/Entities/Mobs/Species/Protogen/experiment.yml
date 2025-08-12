@@ -10,6 +10,8 @@
   - type: Vocal
     sounds:
       Unsexed: Experiment
+      Male: Experiment
+      Female: Experiment
   - type: Hunger
   - type: Thirst
   - type: Icon
