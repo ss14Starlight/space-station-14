@@ -13,6 +13,15 @@
       Male: Experiment
       Female: Experiment
   - type: Hunger
+    baseDecayRate: 0.12
+  - type: PassiveDamage
+    allowedStates: 
+    - Alive
+    damageCap: 200
+    damage: 
+      groups:
+        Burn: -0.5
+        Brute: -0.5
   - type: Thirst
   - type: Icon
     sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
