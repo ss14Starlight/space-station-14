@@ -17,7 +17,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Movement.Events; // Starlight-edit
 using Content.Shared.Popups;
 using Content.Shared.Repairable; // Starlight-edit
-using Content.Shared.Weapons.Melee;
+using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
@@ -68,11 +68,12 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechPilotComponent, EntGotRemovedFromContainerMessage>(OnPilotRemoved); //Starlight
 
         SubscribeLocalEvent<MechComponent, UpdateCanMoveEvent>(OnMechMoveEvent); // Starlight-edit: Moved from server side, broken
-        SubscribeLocalEvent<MechPilotComponent, UpdateCanMoveEvent>(OnPilotMoveEvent); // Starlight-edit
+        // SubscribeLocalEvent<MechPilotComponent, UpdateCanMoveEvent>(OnPilotMoveEvent); // Starlight-edit
         SubscribeLocalEvent<MechComponent, ChangeDirectionAttemptEvent>(OnMechMoveEvent); // Starlight-edit
         SubscribeLocalEvent<MechComponent, ShotAttemptedEvent>(OnShootAttempt); // Starlight-edit: Moved from server side, broken
         SubscribeLocalEvent<MechComponent, CanRepairEvent>(OnRepairAttempt); // Starlight-edit: Moved from server side, broken
 
+        SubscribeLocalEvent<MechComponent, AttemptMeleeThrowOnHitEvent>(OnAttemptMeleeThrowOnHit);
         InitializeRelay();
     }
 
@@ -603,6 +604,16 @@ public abstract partial class SharedMechSystem : EntitySystem
         args.Handled = true;
         component.EquipmentWhitelist = null;
         Dirty(uid, component);
+    }
+
+    private void OnAttemptMeleeThrowOnHit(EntityUid uid, MechComponent component, ref AttemptMeleeThrowOnHitEvent args)
+    {
+        if (!HasComp<MechComponent>(args.Target))
+            return;
+
+        // Don't throw other mechs. Everything else is fair game, though.
+        args.Cancelled = true;
+        args.Handled = true;
     }
 }
 

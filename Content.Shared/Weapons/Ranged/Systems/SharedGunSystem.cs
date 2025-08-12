@@ -159,9 +159,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (user == null)
             return;
 
-        if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
-            user = mechPilot.Mech;
-
         if (!TryGetGun(user.Value, out var ent, out var gun))
             return;
 
@@ -376,7 +373,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (ev.Ammo.Count <= 0)
         {
             // triggers effects on the gun if it's empty
-            var emptyGunShotEvent = new OnEmptyGunShotEvent();
+            var emptyGunShotEvent = new OnEmptyGunShotEvent(user, gunUid); // Starlight - add user (and missing gun uid?)
             RaiseLocalEvent(gunUid, ref emptyGunShotEvent);
 
             gun.BurstActivated = false;
