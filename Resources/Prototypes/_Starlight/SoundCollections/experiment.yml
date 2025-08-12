@@ -17,3 +17,8 @@
   id: ExperimentCries
   files:
   - /Audio/_Starlight/Voice/Experiment/canine_cry.ogg
+
+- type: soundCollection
+  id: ExperimentArfs
+  files:
+  - /Audio/_Starlight/Voice/Experiment/canine_arf.ogg

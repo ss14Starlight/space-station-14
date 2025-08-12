@@ -6,11 +6,10 @@
   - type: Absorbable
   - type: Speech
     speechVerb: Experiment
+    allowedEmotes: ['Arf']
   - type: Vocal
     sounds:
-      Male: MaleExperiment
-      Female: FemaleExperiment
-      Unsexed: MaleExperiment
+      Unsexed: Experiment
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -41,7 +40,9 @@
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
-        color: "#7a8bf2"
+        color: "#ffbb00"
+  - type: Bloodstream
+    bloodReagent: SawianBlood
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -50,7 +51,7 @@
     attackRate: 2
     damage:
       types:
-        Slash: 3
+        Slash: 4
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -117,6 +118,38 @@
           32:
             sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
             state: feet
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: mask
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: belt
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: suit_storage
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+          state: in_hand
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+          state: in_hand
+
 
 - type: entity
   parent: BaseSpeciesDummy

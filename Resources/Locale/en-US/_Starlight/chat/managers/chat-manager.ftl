@@ -38,3 +38,9 @@ chat-speech-verb-rodentia-1 = squeaks
 chat-speech-verb-rodentia-2 = pieps
 chat-speech-verb-rodentia-3 = chatters
 chat-speech-verb-rodentia-4 = squeals
+
+chat-speech-verb-name-experiment = Experiment
+chat-speech-verb-experiment-1 = squeaks
+chat-speech-verb-experiment-2 = barks
+chat-speech-verb-experiment-3 = says
+chat-speech-verb-experiment-4 = yaps

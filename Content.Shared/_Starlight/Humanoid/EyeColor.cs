@@ -4,6 +4,7 @@ namespace Content.Shared.Humanoid;
 public static class EyeColor
 {
     public const float ShadekinBrightness = 0.251f;
+    public const float MinSawianBrightness = 1f;
     public const float BrighteyeBrightness = 1;
 
     public static bool VerifyBrighteye(Color color)
@@ -54,12 +55,16 @@ public static class EyeColor
         return Color.White;
     }
 
+    public static bool VerifySawianColor(Color color) => color.R >= MinSawianBrightness && color.G >= MinSawianBrightness && color.B >= MinSawianBrightness;
+    public static Color ClosestSawianColor(Color color) => new(MathF.Max(color.R, MinSawianBrightness), MathF.Max(color.G, MinSawianBrightness), MathF.Max(color.B, MinSawianBrightness));
+
     public static bool VerifyEyeColor(HumanoidEyeColor type, Color color)
     {
         return type switch
         {
             HumanoidEyeColor.Shadekin => VerifyShadekin(color),
             HumanoidEyeColor.FullWhite => VerifyFullWhite(color),
+            HumanoidEyeColor.Sawian => VerifySawianColor(color),
             _ => false,
         };
     }
@@ -70,6 +75,7 @@ public static class EyeColor
         {
             HumanoidEyeColor.Shadekin => MakeShadekinValid(color),
             HumanoidEyeColor.FullWhite => MakeFullWhiteValid(color),
+            HumanoidEyeColor.Sawian => ClosestSawianColor(color),
             _ => color
         };
     }
@@ -80,6 +86,7 @@ public enum HumanoidEyeColor : byte
     Standard,
     Shadekin,
     FullWhite,
+    Sawian,
 }
 
 [ByRefEvent]
