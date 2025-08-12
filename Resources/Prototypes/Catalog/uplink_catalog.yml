@@ -519,16 +519,16 @@
   - UplinkAmmo
 
 # For the C20R
-- type: listing
-  id: UplinkMagazinePistolSubMachineGun
-  name: uplink-pistol-magazine-c20r-name
-  description: uplink-pistol-magazine-c20r-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolSubMachineGunFMJ
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkAmmo
+# - type: listing
+#   id: UplinkMagazinePistolSubMachineGun
+#   name: uplink-pistol-magazine-c20r-name
+#   description: uplink-pistol-magazine-c20r-desc
+#   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
+#   productEntity: MagazinePistolSubMachineGun
+#   cost:
+#     Telecrystal: 2
+#   categories:
+#   - UplinkAmmo
 
 # For the Bulldog
 - type: listing
