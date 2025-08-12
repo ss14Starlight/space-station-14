@@ -49,6 +49,12 @@ uplink-pistol-magazine-descFMJ = Pistol magazine with 10 catridges. Compatible w
 uplink-pistol40-magazine-nameFMJ = Pistol Magazine (.40 auto FMJ)
 uplink-pistol40-magazine-descFMJ = Pistol magazine with 10 catridges. Compatible with the Stechkin.
 
+uplink-uzi-bundle-name = Type U3 Uzi Bundle
+uplink-uzi-bundle-desc = Contains the Type U3 Uzi, with two additional magazines.
+
+uplink-uzi-magazine-name = Uzi Magazine (.35 auto)
+uplink-uzi-magazine-desc = Submachine gun magazine with 32 cartridges. Compatible with the Type U3 Uzi
+
 uplink-breaching-magazine-name = Shotgun Magazine (.50 breaching)
 uplink-breaching-magazine-desc = A magazine loaded with breaching shells, for breaking down airlocks, windows and walls. Less effective on people.
 

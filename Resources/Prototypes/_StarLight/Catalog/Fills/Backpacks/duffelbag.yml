@@ -67,6 +67,18 @@
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledUzi
+  name: type u3 uzi bundle
+  description: "Contains a sleek, dangerous uzi, and 2 additional magazines."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMachineGunUzi
+      - id: MagazinePistolSubMachineGunUzi
+      - id: MagazinePistolSubMachineGunUzi
+      
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledInfiltration
   name: infiltration hardsuit bundle
   description: "Contains the latest in Syndicate chameleon technology, the infiltration hardsuit."
