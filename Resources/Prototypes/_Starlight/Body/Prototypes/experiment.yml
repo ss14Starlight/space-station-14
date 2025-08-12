@@ -1,0 +1,52 @@
+- type: body
+  id: Experiment
+  name: "experiment"
+  root: torso
+  slots:
+    head:
+      part: HeadExperiment
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+        tongue: OrganHumanTongue
+        eye_implant: null
+    torso:
+      part: TorsoExperiment
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganAnimalHeart
+        lungs: OrganHumanLungs
+        stomach: OrganReptilianStomach
+        liver:  OrganHumanLiver
+        kidneys: OrganHumanKidneys
+        cavity: null
+    right arm:
+      part: RightArmExperiment
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmExperiment
+      connections:
+      - left hand
+    right hand:
+      part: RightHandExperiment
+    left hand:
+      part: LeftHandExperiment
+    right leg:
+      part: RightLegExperiment
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegExperiment
+      connections:
+      - left foot
+    right foot:
+      part: RightFootExperiment
+    left foot:
+      part: LeftFootExperiment

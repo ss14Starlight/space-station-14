@@ -410,6 +410,73 @@
     variation: 0.05
     pitch: 1.25
 
+- id: MaleExperiment
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/_Starlight/Voice/Experiment/canine_scream.ogg
+    Laugh:
+      path: /Audio/_Starlight/Voice/Experiment/canine_laugh.ogg
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Crying:
+      path: /Audio/_Starlight/Voice/Experiment/canine_cry.ogg
+    Whistle:
+      collection: Whistles
+    Sigh:
+      path: /Audio/_Starlight/Voice/Experiment/canine_sigh.ogg
+    Yawn:
+      collection: MaleYawn
+    Snore:
+      collection: Snores
+    Honk:
+      collection: BikeHorn
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
+
+- type: emoteSounds
+  id: FemaleExperiment
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/_Starlight/Voice/Experiment/canine_scream.ogg
+    Laugh:
+      path: /Audio/_Starlight/Voice/Experiment/canine_laugh.ogg
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    Crying:
+      path: /Audio/_Starlight/Voice/Experiment/canine_cry.ogg
+    Sigh:
+      path: /Audio/_Starlight/Voice/Experiment/canine_sigh.ogg
+    Yawn:
+      collection: FemaleYawn
+    Snore:
+      collection: Snores
+    Whistle:
+      collection: Whistles
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Honk:
+      collection: BikeHorn
+
 - type: emoteSounds
   id: FemaleThaven
   sounds:

@@ -1,0 +1,162 @@
+﻿- type: entity
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
+  id: BaseMobExperiment
+  abstract: true
+  components:
+  - type: Absorbable
+  - type: Speech
+    speechVerb: Experiment
+  - type: Vocal
+    sounds:
+      Male: MaleExperiment
+      Female: FemaleExperiment
+      Unsexed: MaleExperiment
+  - type: Hunger
+  - type: Thirst
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: full
+  - type: Body
+    prototype: Experiment
+    requiredLegs: 2
+  - type:  HumanoidAppearance
+    species: Experiment
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      45: 0.7 
+      60: 0.5
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 3
+  - type: Damageable
+    damageContainer: Biological
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#7a8bf2"
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 2
+    damage:
+      types:
+        Slash: 3
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Experiment
+  - type: Fixtures
+    fixtures: 
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 110
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Inventory
+    speciesId: experiment
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: hands
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: feet
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobExperimentDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Experiment
+  - type: Body
+    prototype: Experiment
+  - type: Inventory
+    speciesId: experiment
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: hands
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: feet
