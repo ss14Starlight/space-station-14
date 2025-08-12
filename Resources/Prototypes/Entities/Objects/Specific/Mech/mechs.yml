@@ -95,6 +95,8 @@
   - type: Puller
     needsHands: false
   - type: InputMover
+  - type: Input
+    context: "human"
   - type: InteractionOutline
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
@@ -162,6 +164,20 @@
   - type: MeleeThrowOnHit
     speed: 20
     distance: 5
+    stunTime: .5
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+      - Common
+  - type: ActiveRadio
+    channels:
+      - Common
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Alerts
 
 # Ripley MK-I
 - type: entity

@@ -237,8 +237,8 @@ public abstract partial class SharedMechSystem : EntitySystem
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
         if (component.Airtight)
             _actions.AddAction(pilot, ref component.MechToggleInternalsActionEntity, component.MechToggleInternalsAction, mech);
-        _actions.AddAction(pilot, ref component.MechStartPilotingActionEntity, component.MechStartPiloting, pilot);
-        _actions.AddAction(mech, ref component.MechStopPilotingActionEntity, component.MechStopPiloting, pilot);
+        _actions.AddAction(pilot, ref component.MechStartPilotingActionEntity, component.MechStartPiloting, mech);
+        _actions.AddAction(mech, ref component.MechStopPilotingActionEntity, component.MechStopPiloting, mech);
         // var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
         // foreach (var ent in equipment)
         //     if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
@@ -256,7 +256,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!TryComp<MechComponent>(mech, out var mechComp))
             return;
         _actions.RemoveAction(mech, mechComp.MechStopPilotingActionEntity);
-        _actions.RemoveAction(pilot, mechComp.MechStartPilotingActionEntity);
         // var equipment = new List<EntityUid>(mechComp.EquipmentContainer.ContainedEntities);
         // foreach (var ent in equipment)
         //     if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
