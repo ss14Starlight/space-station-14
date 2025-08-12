@@ -31,6 +31,7 @@
   <Box>
   <GuideEntityEmbed Entity="AppearanceProtogen" Caption="Protogen"/> <!--FH-->
   <GuideEntityEmbed Entity="AppearanceIPC" Caption="IPC"/> <!--FH-->
+  <GuideEntityEmbed Entity="MobExperiment" Caption="Experiment"/>
   </Box>
 <!-- Starlight end, reorganizing all of this alphabetically-->
 </Document>
