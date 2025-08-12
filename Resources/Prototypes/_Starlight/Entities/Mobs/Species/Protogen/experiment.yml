@@ -82,6 +82,11 @@
           32:
             sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
             state: jumpsuit
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: outer
       eyes:
         sizeMaps:
           32:
@@ -130,6 +135,11 @@
           32:
             sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
             state: jumpsuit
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: outer
       eyes:
         sizeMaps:
           32:
