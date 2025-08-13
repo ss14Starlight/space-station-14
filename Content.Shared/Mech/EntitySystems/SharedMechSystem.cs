@@ -262,6 +262,11 @@ public abstract partial class SharedMechSystem : EntitySystem
         //         _actions.RemoveProvidedActions(pilot, ent);
     }
 
+    protected virtual void ReturnControl(EntityUid uid, EntityUid pilot, MechComponent? component = null)
+    {
+
+    }
+
     /// <summary>
     /// Destroys the mech, removing the user and ejecting all installed equipment.
     /// </summary>
@@ -550,6 +555,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         RaiseLocalEvent(pilot, ref ev);
 
+        ReturnControl(uid, pilot);
         _container.RemoveEntity(uid, pilot);
         return true;
     }

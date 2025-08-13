@@ -117,8 +117,8 @@ public sealed partial class MechSystem : SharedMechSystem
 
         #region Mind Control
 
-        SubscribeLocalEvent<MechComponent, MechStartPilotingEvent>(OnTransferControl);
-        SubscribeLocalEvent<MechComponent, MechStopPilotingEvent>(OnReturnControl);
+        SubscribeLocalEvent<MechComponent, MechStartPilotingEvent>(OnStartPiloting);
+        SubscribeLocalEvent<MechComponent, MechStopPilotingEvent>(OnStopPiloting);
 
         #endregion
 
@@ -748,7 +748,7 @@ public sealed partial class MechSystem : SharedMechSystem
     #region Mind Handling (Psychic Warfare)
 
 
-    private void OnTransferControl(EntityUid uid, MechComponent component, MechStartPilotingEvent args)
+    private void OnStartPiloting(EntityUid uid, MechComponent component, MechStartPilotingEvent args)
     {
         if (args.Handled)
             return;
@@ -761,9 +761,17 @@ public sealed partial class MechSystem : SharedMechSystem
         _mind.TransferTo(mindId, uid, mind: mind);
     }
 
-    private void OnReturnControl(EntityUid uid, MechComponent component, MechStopPilotingEvent args)
+    private void OnStopPiloting(EntityUid uid, MechComponent component, MechStopPilotingEvent args)
     {
         if (args.Handled)
+            return;
+
+        ReturnControl(uid, args.Performer, component);
+    }
+
+    protected override void ReturnControl(EntityUid uid, EntityUid pilot, MechComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
             return;
 
         if (!_mind.TryGetMind(uid, out var mindId, out var mind)
