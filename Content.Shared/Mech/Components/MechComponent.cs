@@ -1,3 +1,4 @@
+using Content.Shared.Alert;
 using Content.Shared.FixedPoint;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
@@ -254,4 +255,14 @@ public sealed partial class MechComponent : Component
     // Starlight
     [DataField] public EntityUid? MechStartPilotingActionEntity;
     [DataField] public EntityUid? MechStopPilotingActionEntity;
+
+    #region Alerts
+
+    [DataField]
+    public ProtoId<AlertPrototype> NoBatteryAlert = "BorgBatteryNone";
+
+    [DataField]
+    public ProtoId<AlertPrototype> BatteryAlert = "BorgBattery";
+
+    #endregion
 }

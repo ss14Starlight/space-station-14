@@ -19,7 +19,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mech;
-using Content.Shared.Mech.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
@@ -35,6 +34,7 @@ using Content.Shared.Whitelist;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
 using Content.Shared.Wires;
+using Content.Shared.Alert;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -73,6 +73,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private readonly GasTankSystem _gasTank = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
 
     private static readonly ProtoId<ToolQualityPrototype> PryingQuality = "Prying";
 
@@ -242,6 +243,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
         UpdateUserInterface(uid, component);
+        UpdateBatteryAlerts(uid, component);
 
         Dirty(uid, component);
     }
@@ -261,10 +263,34 @@ public sealed partial class MechSystem : SharedMechSystem
 
         UpdateCanMove(mech, mechComp);
         UpdateUserInterface(mech, mechComp);
+        UpdateBatteryAlerts(mech, mechComp);
 
         Dirty(mech, mechComp);
     }
 
+    private void UpdateBatteryAlerts(EntityUid uid, MechComponent component)
+    {
+        if (component.BatterySlot.ContainedEntity is null
+            || !TryComp<BatteryComponent>(component.BatterySlot.ContainedEntity.Value, out var battery))
+        {
+            _alerts.ClearAlert(uid, component.BatteryAlert);
+            _alerts.ShowAlert(uid, component.NoBatteryAlert);
+            return;
+        }
+
+        var chargePercent = (short) MathF.Round(battery.CurrentCharge / battery.MaxCharge * 10f);
+
+        // we make sure 0 only shows if they have absolutely no battery.
+        // also account for floating point imprecision
+        // Does not yet take draw rate into account due to no power cell slot
+        if (chargePercent == 0 && battery.CurrentCharge > 0f)
+        {
+            chargePercent = 1;
+        }
+
+        _alerts.ClearAlert(uid, component.NoBatteryAlert);
+        _alerts.ShowAlert(uid, component.BatteryAlert, chargePercent);
+    }
     // Starlight-end
 
     public void ToggleLight(EntityUid uid, MechComponent component)
@@ -392,6 +418,7 @@ public sealed partial class MechSystem : SharedMechSystem
             var mechBattery = EnsureComp<MechBatteryComponent>(component.BatterySlot.ContainedEntity.Value);
             mechBattery.Mech = uid;
         }
+        UpdateBatteryAlerts(uid, component);
         // Starlight-end
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
@@ -741,13 +768,9 @@ public sealed partial class MechSystem : SharedMechSystem
 
     #endregion
 
-    // TODO: Move to Starlight folders in separate partial
-    // TODO: Pilot removal handling
     // TODO: Block autocryo.
 
     #region Mind Handling (Psychic Warfare)
-
-
     private void OnStartPiloting(EntityUid uid, MechComponent component, MechStartPilotingEvent args)
     {
         if (args.Handled)
