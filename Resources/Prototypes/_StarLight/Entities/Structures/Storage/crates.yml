@@ -8,3 +8,14 @@
     sprite: _Starlight/Structures/Storage/USSP/soviet-crate.rsi
   - type: Sprite
     sprite: _Starlight/Structures/Storage/USSP/soviet-crate.rsi
+
+
+- type: entity
+  parent: [ CrateBaseSecure ]
+  suffix: Salvage, Secure
+  id: CrateSalvageContrabandStorageSecure
+  name: salvage storage crate
+  description: A security and salvage access locked crate for storing contraband.
+  components:
+  - type: AccessReader
+    access: [["Security"],["Salvage"]]
