@@ -49,6 +49,9 @@
   - Cargo
   - Atmospherics
   - Medical
+  
+  #Starlight
+  - Brigmedic
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
