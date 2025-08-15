@@ -232,9 +232,13 @@ public sealed partial class MechComponent : Component
     [DataField]
     public SoundSpecifier NominalSound = new SoundPathSpecifier("/Audio/Mecha/nominal.ogg");
     [DataField]
-    public SoundSpecifier NominalLongSound = new SoundPathSpecifier("/Audio/Mecha/longnanoactivation.ogg");
+    public SoundSpecifier NominalLongSound = new SoundPathSpecifier("/Audio/Mecha/longnanoactivation_truncated.ogg");
     [DataField]
-    public SoundSpecifier PowerupSound = new SoundPathSpecifier("/Audio/Mecha/powerup.ogg");
+    public SoundSpecifier PowerupSound =
+        new SoundPathSpecifier("/Audio/Mecha/powerupmono.ogg")
+        {
+            Params = AudioParams.Default.WithVolume(-7f)
+        };
     [DataField]
     public SoundSpecifier CriticalDamageSound = new SoundPathSpecifier("/Audio/Mecha/critnano.ogg");
     

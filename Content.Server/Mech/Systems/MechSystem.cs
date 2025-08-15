@@ -782,6 +782,7 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
 
         _mind.TransferTo(mindId, uid, mind: mind);
+        PlayPilotingAudio(uid, component);
     }
 
     private void OnStopPiloting(EntityUid uid, MechComponent component, MechStopPilotingEvent args)

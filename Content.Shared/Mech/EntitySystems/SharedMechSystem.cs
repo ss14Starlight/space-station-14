@@ -205,21 +205,17 @@ public abstract partial class SharedMechSystem : EntitySystem
         // var irelay = EnsureComp<InteractionRelayComponent>(pilot);
 
         // _mover.SetRelay(pilot, mech);
-        // _interaction.SetRelay(pilot, mech, irelay); 
+        // _interaction.SetRelay(pilot, mech, irelay);
         rider.Mech = mech;
         Dirty(pilot, rider);
 
-        if ((component.Integrity / component.MaxIntegrity) * 100 >= 50)
-            if (component.FirstStart)
-            {
-                _audioSystem.PlayEntity(component.NominalLongSound, pilot, mech);
-                component.FirstStart = false;
-                Dirty(mech, component);
-            }
-            else
-                _audioSystem.PlayEntity(component.NominalSound, pilot, mech);
-        else
-            _audioSystem.PlayEntity(component.CriticalDamageSound, pilot, mech);
+        if (component.FirstStart)
+        {
+            _audioSystem.PlayEntity(component.NominalLongSound, pilot, mech);
+            component.FirstStart = false;
+            Dirty(mech, component);
+        }
+        _audioSystem.PlayEntity(component.PowerupSound, pilot, mech);
 
         UpdateActions(mech, pilot, component);
     }
@@ -422,21 +418,31 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (component.Energy + delta < 0)
             return false;
 
-        if ((component.Energy / component.MaxEnergy) * 100 <= 10
+        if ((component.Energy / component.MaxEnergy) * 100 <= 15
             && component.PlayPowerSound
             && component.PilotSlot.ContainedEntity != null)
         {
-            _audioSystem.PlayEntity(component.LowPowerSound, component.PilotSlot.ContainedEntity.Value, uid);
+            _audioSystem.PlayEntity(component.LowPowerSound, uid, uid);
 
             component.PlayPowerSound = false;
         }
-        else if ((component.Energy / component.MaxEnergy) * 100 >= 10)
+        else if ((component.Energy / component.MaxEnergy) * 100 >= 15)
             component.PlayPowerSound = true;
 
         component.Energy = FixedPoint2.Clamp(component.Energy + delta, 0, component.MaxEnergy);
         Dirty(uid, component);
         UpdateUserInterface(uid, component);
         return true;
+    }
+
+    protected void PlayPilotingAudio(EntityUid uid, MechComponent component)
+    {
+        if ((component.Integrity / component.MaxIntegrity) * 100 <= 30)
+            _audioSystem.PlayEntity(component.CriticalDamageSound, uid, uid);
+        else if (component.Energy * 100 / component.MaxEnergy <= 15)
+            _audioSystem.PlayEntity(component.LowPowerSound, uid, uid);
+        else
+            _audioSystem.PlayEntity(component.NominalSound, uid, uid);
     }
 
     /// <summary>
@@ -544,9 +550,6 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         if (component.PilotSlot.ContainedEntity == null)
             return false;
-
-        if (HasComp<NoRotateOnMoveComponent>(uid))
-            RemComp<NoRotateOnMoveComponent>(uid);
 
         var pilot = component.PilotSlot.ContainedEntity.Value;
 
