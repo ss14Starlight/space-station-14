@@ -54,7 +54,7 @@
 - type: stack
   id: Bluebrutepack
   name: stack-brutepack
-  icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: bluebrutepack }
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: bluebrutepack }
   spawn: Bluebrutepack1
   maxCount: 20
 
@@ -103,7 +103,7 @@
 - type: stack
   id: Blueointment
   name: stack-blueointment
-  icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: blueointment }
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: blueointment }
   spawn: Blueointment1
   maxCount: 20
 
