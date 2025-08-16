@@ -217,76 +217,138 @@ namespace Content.Server.Kitchen.EntitySystems
             }
         }
 
-        private void SubtractContents(CookingDeviceComponent component, FoodRecipePrototype recipe) // Starlight-edit
+        private bool TrySubtractContents(CookingDeviceComponent component, FoodRecipePrototype recipe) // Starlight-edit
         {
-            // TODO Turn recipe.IngredientsReagents into a ReagentQuantity[]
+            // First pass: verify we have enough ingredients
+            var reagentsNeeded = new Dictionary<string, FixedPoint2>(recipe.IngredientsReagents);
+            var solidsNeeded = new Dictionary<string, int>();
+            foreach (var (solidId, countFp) in recipe.IngredientsSolids)
+                solidsNeeded[solidId] = countFp.Int();
 
-            var totalReagentsToRemove = new Dictionary<string, FixedPoint2>(recipe.IngredientsReagents);
+            var reagentRemovalPlan = new Dictionary<EntityUid, Dictionary<string, FixedPoint2>>();
+            var solidRemovalPlan = new List<(EntityUid ent, bool delete, int useFromStack)>();
 
-            // this is spaghetti ngl
-            foreach (var item in component.Storage.ContainedEntities)
+            // Check reagents availability
+            if (reagentsNeeded.Count > 0)
             {
-                // use the same reagents as when we selected the recipe
-                if (!_solutionContainer.TryGetDrainableSolution(item, out var solutionEntity, out var solution))
-                    continue;
-
-                foreach (var (reagent, _) in recipe.IngredientsReagents)
+                var reagentsToFind = new Dictionary<string, FixedPoint2>(reagentsNeeded);
+                
+                foreach (var item in component.Storage.ContainedEntities)
                 {
-                    // removed everything
-                    if (!totalReagentsToRemove.ContainsKey(reagent))
+                    if (!_solutionContainer.TryGetDrainableSolution(item, out var solutionEntity, out var solution))
                         continue;
 
-                    var quant = solution.GetTotalPrototypeQuantity(reagent);
-
-                    if (quant >= totalReagentsToRemove[reagent])
+                    foreach (var (reagent, needed) in reagentsToFind.ToArray())
                     {
-                        quant = totalReagentsToRemove[reagent];
-                        totalReagentsToRemove.Remove(reagent);
-                    }
-                    else
-                        totalReagentsToRemove[reagent] -= quant;
-
-                    _solutionContainer.RemoveReagent(solutionEntity.Value, reagent, quant);
-                }
-            }
-
-            foreach (var recipeSolid in recipe.IngredientsSolids)
-            {
-                for (var i = 0; i < recipeSolid.Value; i++)
-                {
-                    foreach (var item in component.Storage.ContainedEntities)
-                    {
-                        string? itemID = null;
-
-                        // If an entity has a stack component, use the stacktype instead of prototype id
-                        if (TryComp<StackComponent>(item, out var stackComp))
-                            itemID = _prototype.Index<StackPrototype>(stackComp.StackTypeId).Spawn;
-                        else
-                        {
-                            var metaData = MetaData(item);
-                            if (metaData.EntityPrototype == null)
-                                continue;
-                            itemID = metaData.EntityPrototype.ID;
-                        }
-
-                        if (itemID != recipeSolid.Key)
+                        if (needed <= FixedPoint2.Zero)
                             continue;
 
-                        if (stackComp is not null)
+                        var available = solution.GetTotalPrototypeQuantity(reagent);
+                        if (available <= FixedPoint2.Zero)
+                            continue;
+
+                        var toTake = FixedPoint2.Min(available, needed);
+                        if (!reagentRemovalPlan.TryGetValue(solutionEntity!.Value, out var plan))
                         {
-                            if (stackComp.Count == 1)
-                                _container.Remove(item, component.Storage);
-                            _stack.Use(item, 1, stackComp);
-                            break;
+                            plan = new Dictionary<string, FixedPoint2>();
+                            reagentRemovalPlan[solutionEntity.Value] = plan;
                         }
-                        else
-                        {
-                            _container.Remove(item, component.Storage);
-                            Del(item);
-                            break;
-                        }
+                        if (!plan.TryAdd(reagent, toTake))
+                            plan[reagent] += toTake;
+
+                        reagentsToFind[reagent] -= toTake;
+                        if (reagentsToFind[reagent] <= FixedPoint2.Zero)
+                            reagentsToFind.Remove(reagent);
                     }
                 }
+
+                // Check if we found all required reagents
+                if (reagentsToFind.Count > 0)
+                    return false;
+            }
+
+            // Check solids availability
+            if (solidsNeeded.Count > 0)
+            {
+                var solidsToFind = new Dictionary<string, int>(solidsNeeded);
+                
+                foreach (var item in component.Storage.ContainedEntities)
+                {
+                    string? itemID = null;
+                    StackComponent? stackComp = null;
+
+                    if (TryComp<StackComponent>(item, out stackComp))
+                        itemID = _prototype.Index<StackPrototype>(stackComp.StackTypeId).Spawn;
+                    else
+                    {
+                        var metaData = MetaData(item);
+                        if (metaData.EntityPrototype != null)
+                            itemID = metaData.EntityPrototype.ID;
+                    }
+
+                    if (itemID == null)
+                        continue;
+
+                    if (!solidsToFind.TryGetValue(itemID, out var need) || need <= 0)
+                        continue;
+
+                    if (stackComp != null)
+                    {
+                        var take = Math.Min(stackComp.Count, need);
+                        if (take > 0)
+                        {
+                            solidRemovalPlan.Add((item, delete: stackComp.Count == take, useFromStack: take));
+                            solidsToFind[itemID] -= take;
+                            if (solidsToFind[itemID] <= 0)
+                                solidsToFind.Remove(itemID);
+                        }
+                    }
+                    else
+                    {
+                        solidRemovalPlan.Add((item, delete: true, useFromStack: 0));
+                        solidsToFind[itemID] -= 1;
+                        if (solidsToFind[itemID] <= 0)
+                            solidsToFind.Remove(itemID);
+                    }
+                }
+
+                // Check if we found all required solids
+                if (solidsToFind.Count > 0)
+                    return false;
+            }
+
+            // Execute removals atomically since we verified all ingredients are available
+            try
+            {
+                foreach (var (solEnt, plan) in reagentRemovalPlan)
+                {
+                    foreach (var (reagent, qty) in plan)
+                        _solutionContainer.RemoveReagent(solEnt, reagent, qty);
+                }
+
+                foreach (var (ent, delete, useFromStack) in solidRemovalPlan)
+                {
+                    if (useFromStack > 0 && TryComp<StackComponent>(ent, out var stackComp))
+                    {
+                        _stack.Use(ent, useFromStack, stackComp);
+                        // Note: _stack.Use may delete the entity if count reaches zero
+                        if (stackComp.Count == 0 && delete)
+                            _container.Remove(ent, component.Storage, force: true);
+                    }
+                    else if (delete)
+                    {
+                        _container.Remove(ent, component.Storage);
+                        Del(ent);
+                    }
+                }
+                
+                return true;
+            }
+            catch
+            {
+                // If anything fails during removal, return false
+                // This shouldn't happen if our verification was correct, but safety first
+                return false;
             }
         }
 
@@ -649,6 +711,120 @@ namespace Content.Server.Kitchen.EntitySystems
             UpdateUserInterfaceState(uid, component);
         }
 
+        /// <summary>
+        /// Processes recipes for a cooking device, preventing duplication and ensuring atomic operations
+        /// </summary>
+        private void ProcessRecipes(Entity<ActiveCookingDeviceComponent, CookingDeviceComponent> ent)
+        {
+            var (uid, active, cookingDevice) = ent;
+            int actualTime = (int)(_gameTiming.CurTime - cookingDevice.StartedCookTime).TotalSeconds;
+            var coords = Transform(uid).Coordinates;
+            
+            // Handle spoilage for overcooked items (60+ seconds)
+            if (actualTime >= 60)
+            {
+                var containedItems = cookingDevice.Storage.ContainedEntities.ToList(); // error-proof copy
+                foreach (var item in containedItems)
+                {
+                    string? itemID = null;
+
+                    if (TryComp<StackComponent>(item, out var stackComp))
+                        itemID = _prototype.Index<StackPrototype>(stackComp.StackTypeId).Spawn;
+                    else
+                    {
+                        var metaData = MetaData(item);
+                        if (metaData.EntityPrototype == null)
+                            continue;
+                        itemID = metaData.EntityPrototype.ID;
+                    }
+
+                    if (stackComp is not null)
+                    {
+                        if (stackComp.Count == 1)
+                            _container.Remove(item, cookingDevice.Storage);
+                        _stack.Use(item, 1, stackComp);
+                        Spawn(cookingDevice.SpoiledItemId, coords);
+                        continue;
+                    }
+                    else
+                    {
+                        _container.Remove(item, cookingDevice.Storage);
+                        Del(item);
+                        Spawn(cookingDevice.SpoiledItemId, coords);
+                        continue;
+                    }
+                }
+                return; // Don't process recipes if everything is spoiled
+            }
+            
+            // Process matching recipes by specificity (ingredient count) to avoid overlaps
+            var processedRecipes = new HashSet<FoodRecipePrototype>();
+            foreach (var pair in active.PortionedRecipes.OrderByDescending(p => p.Key.IngredientCount()))
+            {
+                var recipe = pair.Key;
+                var maxPortions = pair.Value;
+                var targetTime = (int) recipe.CookTime;
+
+                if (Math.Abs(targetTime - actualTime) > 1)
+                    continue;
+                    
+                if (processedRecipes.Contains(recipe))
+                    continue;
+
+                // Determine how many portions we can actually make with current ingredients
+                var currentSolids = new Dictionary<string, int>();
+                var currentReagents = new Dictionary<string, FixedPoint2>();
+                
+                // Collect current available ingredients
+                foreach (var item in cookingDevice.Storage.ContainedEntities.ToArray())
+                {
+                    // Collect solids
+                    string? solidID = null;
+                    int amountToAdd = 1;
+
+                    if (TryComp<StackComponent>(item, out var stackComp))
+                    {
+                        solidID = _prototype.Index<StackPrototype>(stackComp.StackTypeId).Spawn;
+                        amountToAdd = stackComp.Count;
+                    }
+                    else
+                    {
+                        var metaData = MetaData(item);
+                        if (metaData.EntityPrototype is not null)
+                            solidID = metaData.EntityPrototype.ID;
+                    }
+
+                    if (solidID is not null)
+                    {
+                        if (!currentSolids.TryAdd(solidID, amountToAdd))
+                            currentSolids[solidID] += amountToAdd;
+                    }
+
+                    // Collect reagents
+                    if (_solutionContainer.TryGetDrainableSolution(item, out var _, out var solution))
+                    {
+                        foreach (var (reagent, quantity) in solution.Contents)
+                            if (!currentReagents.TryAdd(reagent.Prototype, quantity))
+                                currentReagents[reagent.Prototype] += quantity;
+                    }
+                }
+                
+                // Calculate actual portions we can make
+                var actualPortions = CanSatisfyRecipe(cookingDevice, recipe, currentSolids, currentReagents).Item2;
+                actualPortions = Math.Min(actualPortions, maxPortions);
+
+                // Process the recipe portions atomically
+                for (var i = 0; i < actualPortions; i++)
+                {
+                    if (!TrySubtractContents(cookingDevice, recipe))
+                        break; // Not enough inputs left for this recipe
+                    Spawn(recipe.Result, coords);
+                }
+                
+                processedRecipes.Add(recipe);
+            }
+        }
+
         private void StopCooking(Entity<CookingDeviceComponent> ent) // Starlight-edit
         {
             RemCompDeferred<ActiveCookingDeviceComponent>(ent); // Starlight-edit
@@ -658,8 +834,6 @@ namespace Content.Server.Kitchen.EntitySystems
 
         public static (FoodRecipePrototype, int) CanSatisfyRecipe(CookingDeviceComponent component, FoodRecipePrototype recipe, Dictionary<string, int> solids, Dictionary<string, FixedPoint2> reagents) // Starlight-edit
         {
-            var portions = 0;
-
             if (component.Safe && component.CurrentCookTimerTime % recipe.CookTime != 0) // Starlight-edit
             {
                 //can't be a multiple of this recipe
@@ -669,6 +843,9 @@ namespace Content.Server.Kitchen.EntitySystems
             if (recipe.DeviceType != component.DeviceType)
                 return (recipe, 0);
 
+            var maxPortions = int.MaxValue;
+
+            // Check solid ingredients
             foreach (var solid in recipe.IngredientsSolids)
             {
                 if (!solids.ContainsKey(solid.Key))
@@ -677,27 +854,29 @@ namespace Content.Server.Kitchen.EntitySystems
                 if (solids[solid.Key] < solid.Value)
                     return (recipe, 0);
 
-                portions = portions == 0
-                    ? solids[solid.Key] / solid.Value.Int()
-                    : Math.Min(portions, solids[solid.Key] / solid.Value.Int());
+                var possiblePortions = solids[solid.Key] / solid.Value.Int();
+                maxPortions = Math.Min(maxPortions, possiblePortions);
             }
 
+            // Check reagent ingredients
             foreach (var reagent in recipe.IngredientsReagents)
             {
-                // TODO Turn recipe.IngredientsReagents into a ReagentQuantity[]
                 if (!reagents.ContainsKey(reagent.Key))
                     return (recipe, 0);
 
                 if (reagents[reagent.Key] < reagent.Value)
                     return (recipe, 0);
 
-                portions = portions == 0
-                    ? reagents[reagent.Key].Int() / reagent.Value.Int()
-                    : Math.Min(portions, reagents[reagent.Key].Int() / reagent.Value.Int());
+                var possiblePortions = reagents[reagent.Key].Int() / reagent.Value.Int();
+                maxPortions = Math.Min(maxPortions, possiblePortions);
             }
 
+            // If no ingredients were checked, can't make any portions
+            if (maxPortions == int.MaxValue)
+                maxPortions = 0;
+
             //cook only as many of those portions as time allows
-            return (recipe, component.Safe ? (int)Math.Min(portions, component.CurrentCookTimerTime / recipe.CookTime) : portions); // Starlight-edit
+            return (recipe, component.Safe ? (int)Math.Min(maxPortions, component.CurrentCookTimerTime / recipe.CookTime) : maxPortions); // Starlight-edit
         }
 
         public override void Update(float frameTime)
@@ -726,55 +905,11 @@ namespace Content.Server.Kitchen.EntitySystems
                 //this means the microwave has finished cooking.
                 AddTemperature(cookingDevice, Math.Max(frameTime + active.CookTimeRemaining, 0)); //Though there's still a little bit more heat to pump out
                 
-                // Starlight-start
-                if (actualTime >= 60)
+                // Only process recipes if they haven't been processed yet
+                if (!active.RecipesProcessed)
                 {
-                    var containedItems = cookingDevice.Storage.ContainedEntities.ToList(); // error-proof copy
-                    foreach (var item in containedItems)
-                    {
-                        string? itemID = null;
-
-                        if (TryComp<StackComponent>(item, out var stackComp))
-                            itemID = _prototype.Index<StackPrototype>(stackComp.StackTypeId).Spawn;
-                        else
-                        {
-                            var metaData = MetaData(item);
-                            if (metaData.EntityPrototype == null)
-                                continue;
-                            itemID = metaData.EntityPrototype.ID;
-                        }
-
-                        if (stackComp is not null)
-                        {
-                            if (stackComp.Count == 1)
-                                _container.Remove(item, cookingDevice.Storage);
-                            _stack.Use(item, 1, stackComp);
-                            Spawn(cookingDevice.SpoiledItemId, coords);
-                            continue;
-                        }
-                        else
-                        {
-                            _container.Remove(item, cookingDevice.Storage);
-                            Del(item);
-                            Spawn(cookingDevice.SpoiledItemId, coords);
-                            continue;
-                        }
-                    }
-                }
-                // Starlight-end
-                
-                foreach (var (recipe, availableAmount) in active.PortionedRecipes) // Starlight-edit
-                {
-                    int targetTime = (int)recipe.CookTime; // Starlight-edit
-                    
-                    if (Math.Abs(targetTime - actualTime) <= 1) // Starlight-edit
-                    {
-                        for (var i = 0; i < availableAmount; i++) // Starlight-edit
-                        {
-                            SubtractContents(cookingDevice, recipe);
-                            Spawn(recipe.Result, coords);
-                        }
-                    }
+                    ProcessRecipes((uid, active, cookingDevice));
+                    active.RecipesProcessed = true;
                 }
 
                 // Starlight-start
@@ -812,22 +947,13 @@ namespace Content.Server.Kitchen.EntitySystems
             
             if (!TryComp<ActiveCookingDeviceComponent>(ent.Owner, out var active))
                 return;
-            //this means the microwave has finished cooking.
-            AddTemperature(cookingDevice, Math.Max((float)_gameTiming.CurTime.TotalSeconds + active.CookTimeRemaining, 0)); //Though there's still a little bit more heat to pump out
-            int actualTime = (int)(_gameTiming.CurTime - cookingDevice.StartedCookTime).TotalSeconds;
-            foreach (var (recipe, availableAmount) in active.PortionedRecipes)
-            {
-                int targetTime = (int)recipe.CookTime;
-                var coords = Transform(uid).Coordinates;
                 
-                if (Math.Abs(targetTime - actualTime) <= 1)
-                {
-                    for (var i = 0; i < availableAmount; i++)
-                    {
-                        SubtractContents(cookingDevice, recipe);
-                        Spawn(recipe.Result, coords);
-                    }
-                }
+            // Only process recipes if they haven't been processed yet
+            if (!active.RecipesProcessed)
+            {
+                // Process recipes based on actual cook time
+                ProcessRecipes((uid, active, cookingDevice));
+                active.RecipesProcessed = true;
             }
 
             _container.EmptyContainer(cookingDevice.Storage);

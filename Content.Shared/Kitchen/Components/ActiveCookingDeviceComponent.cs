@@ -22,4 +22,10 @@ public sealed partial class ActiveCookingDeviceComponent : Component // Starligh
 
     [ViewVariables]
     public Dictionary<FoodRecipePrototype, int> PortionedRecipes = new Dictionary<FoodRecipePrototype, int>(); // Starlight-edit
+    
+    /// <summary>
+    /// Prevents duplicate recipe processing when cooking is stopped
+    /// </summary>
+    [ViewVariables]
+    public bool RecipesProcessed = false;
 }
