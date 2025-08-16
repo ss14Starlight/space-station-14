@@ -35,6 +35,12 @@ public sealed partial class MechActiveEquipmentComponent : Component
     public bool ItemsCreated;
 
     /// <summary>
+    /// Whether the item is created on component startup (ex: the item is necessary for UI)
+    /// </summary>
+    [DataField("createOnStartup")]
+    public bool CreateOnStartup;
+
+    /// <summary>
     /// A container where provided items are stored when not being used.
     /// This is helpful as it means that items retain state.
     /// </summary>

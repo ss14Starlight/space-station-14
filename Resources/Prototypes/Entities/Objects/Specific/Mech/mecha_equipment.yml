@@ -134,21 +134,15 @@
     - SmallMech
 
 - type: entity
-  id: MechEquipmentHorn
+  id: MechEquipmentHornBase
   parent: [ BaseMechEquipment, SpecialMechEquipment, BaseCivilianContraband ]
   name: mech horn
   description: An enhanced bike horn that plays a hilarious array of sounds for the enjoyment of the crew. HONK!
+  abstract: true
   components:
   - type: Sprite
     # TODO: use own sprite
     state: mecha_honker
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-honk
-      right:
-      - state: inhand-right-honk
-  - type: MultiHandedItem
   - type: MechSoundboard
     sounds:
     - collection: BikeHorn
@@ -156,11 +150,36 @@
     - collection: TrollAnimals
     - collection: TrollBeeping
     - collection: TrollEsword
-  - type: UIFragment
-    ui: !type:MechSoundboardUi
   - type: UseDelay
     delay: 0.5
-    
+
+
+- type: entity
+  id: MechEquipmentHornInternal
+  parent: [MechEquipmentHornBase ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: UIFragment
+    ui: !type:MechSoundboardUi
+
+- type: entity
+  id: MechEquipmentHornItem
+  parent: [ MechEquipmentHornBase, BaseMechEquipmentItem ]
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+        - state: inhand-left-honk
+      right:
+        - state: inhand-right-honk
+  - type: MultiHandedItem
+  - type: MechEquipmentAction
+    actionId: ActionMechCycleEquipment
+  - type: MechActiveEquipment
+    createOnStartup: true
+    items:
+    - MechEquipmentHornInternal
+
 - type: entity
   id: MechEquipmentCamera
   parent: [ BaseMechEquipment, CombatMechEquipment ]
@@ -172,5 +191,7 @@
   - type: Sprite
     state: mecha_camera
   - type: MechEquipmentAction
-    actionId: ActionMechToggleNightVision
-  - type: MechNightVision
+    actionId: ActionMechCycleEquipment
+  - type: MechPassiveEquipment
+    addComponents:
+    - type: NightVision

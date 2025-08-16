@@ -35,13 +35,20 @@ public sealed class MechEquipmentSystem : SharedMechEquipmentSystem
 
         SubscribeLocalEvent<MechEquipmentComponent, AfterInteractEvent>(OnUsed);
         SubscribeLocalEvent<MechEquipmentComponent, InsertEquipmentEvent>(OnInsertEquipment);
+        SubscribeLocalEvent<MechEquipmentComponent, MechEquipmentRemovedEvent>(OnEquipmentRemoved);
 
         SubscribeLocalEvent<MechEquipmentActionComponent, MechEquipmentInsertedEvent>(OnToggleableInserted);
         SubscribeLocalEvent<MechEquipmentActionComponent, MechEquipmentRemovedEvent>(OnToggleableRemoved);
         SubscribeLocalEvent<MechEquipmentActionComponent, MechToggleEquipmentEvent>(OnToggleEquipment);
+        SubscribeLocalEvent<MechEquipmentActionComponent, MechActivateEquipmentEvent>(OnActionActivated);
+        SubscribeLocalEvent<MechEquipmentActionComponent, MechDeactivateEquipmentEvent>(OnActionDeactivated);
 
-        SubscribeLocalEvent<MechActiveEquipmentComponent, MechActivateEquipmentEvent>(OnActivated);
-        SubscribeLocalEvent<MechActiveEquipmentComponent, MechDeactivateEquipmentEvent>(OnDeactivated);
+        SubscribeLocalEvent<MechActiveEquipmentComponent, MapInitEvent>(OnActiveInitialized);
+        SubscribeLocalEvent<MechActiveEquipmentComponent, MechActivateEquipmentEvent>(OnActiveActivated);
+        SubscribeLocalEvent<MechActiveEquipmentComponent, MechDeactivateEquipmentEvent>(OnActiveDeactivated);
+
+        SubscribeLocalEvent<MechPassiveEquipmentComponent, MechActivateEquipmentEvent>(OnPassiveActivated);
+        SubscribeLocalEvent<MechPassiveEquipmentComponent, MechDeactivateEquipmentEvent>(OnPassiveDeactivated);
     }
 
     private void OnUsed(EntityUid uid, MechEquipmentComponent component, AfterInteractEvent args)
@@ -58,7 +65,7 @@ public sealed class MechEquipmentSystem : SharedMechEquipmentSystem
 
         if (args.User == mechComp.PilotSlot.ContainedEntity)
             return;
-        
+
         if (!mechComp.MaintenanceMode)
         {
             _popup.PopupEntity("You need to turn on maintenance mode first!", args.User, PopupType.MediumCaution);
@@ -92,6 +99,15 @@ public sealed class MechEquipmentSystem : SharedMechEquipmentSystem
         args.Handled = true;
     }
 
+    private void OnEquipmentRemoved(EntityUid uid, MechEquipmentComponent component, ref MechEquipmentRemovedEvent _)
+    {
+        if (!component.EquipmentOwner.HasValue)
+            return;
+
+        var ev = new MechDeactivateEquipmentEvent(component.EquipmentOwner.Value);
+        RaiseLocalEvent(uid, ref ev);
+    }
+
     private void OnToggleableInserted(EntityUid uid, MechEquipmentActionComponent component, ref MechEquipmentInsertedEvent args)
     {
         _mech.AddEquipmentAction(args.Mech, uid, actionComp: component);
@@ -113,8 +129,7 @@ public sealed class MechEquipmentSystem : SharedMechEquipmentSystem
         args.Handled = true;
 
         // TODO: check lifecycle stage etc, validate module, etc.
-        component.EquipmentToggled = !component.EquipmentToggled;
-        if (component.EquipmentToggled)
+        if (!component.EquipmentToggled)
         {
             var ev = new MechActivateEquipmentEvent(mech);
             RaiseLocalEvent(uid, ref ev);
@@ -127,19 +142,93 @@ public sealed class MechEquipmentSystem : SharedMechEquipmentSystem
         Dirty(mech, chassis);
     }
 
+    private void OnActionActivated(EntityUid uid, MechEquipmentActionComponent component, ref MechActivateEquipmentEvent _)
+    {
+        component.EquipmentToggled = true;
+        Dirty(uid, component);
+    }
+
+    private void OnActionDeactivated(EntityUid uid, MechEquipmentActionComponent component, ref MechDeactivateEquipmentEvent _)
+    {
+        component.EquipmentToggled = false;
+        Dirty(uid, component);
+    }
+
     #region Auxiliary Equipment
+
+    private void OnPassiveActivated(EntityUid uid, MechPassiveEquipmentComponent component, ref MechActivateEquipmentEvent args)
+    {
+        if (!HasComp<MechComponent>(args.Mech))
+            return;
+
+        if (!component.ComponentsProvided)
+        {
+            EntityManager.AddComponents(args.Mech, component.AddComponents);
+        }
+        component.ComponentsProvided = true;
+        Dirty(uid, component);
+    }
+
+    private void OnPassiveDeactivated(EntityUid uid, MechPassiveEquipmentComponent component, ref MechDeactivateEquipmentEvent args)
+    {
+        if (!HasComp<MechComponent>(args.Mech))
+            return;
+
+        if (component.ComponentsProvided)
+        {
+            EntityManager.RemoveComponents(args.Mech, component.AddComponents);
+        }
+        component.ComponentsProvided = false;
+        Dirty(uid, component);
+    }
+
     #endregion
 
     #region Active Equipment
 
-    private void OnActivated(EntityUid uid, MechActiveEquipmentComponent component, ref MechActivateEquipmentEvent args)
+    private void OnActiveActivated(EntityUid uid, MechActiveEquipmentComponent component, ref MechActivateEquipmentEvent args)
     {
+        if (!TryComp<MechComponent>(args.Mech, out var chassis))
+            return;
+
+        if (chassis.CurrentSelectedEquipment.HasValue
+            && chassis.CurrentSelectedEquipment.Value != uid)
+        {
+            var ev = new MechDeactivateEquipmentEvent(args.Mech);
+            RaiseLocalEvent(chassis.CurrentSelectedEquipment.Value, ref ev);
+            Dirty(args.Mech, chassis);
+        }
+
         ProvideItems(args.Mech, uid, component: component);
+        chassis.CurrentSelectedEquipment = uid;
+        Dirty(args.Mech, chassis);
     }
 
-    private void OnDeactivated(EntityUid uid, MechActiveEquipmentComponent component, ref MechDeactivateEquipmentEvent args)
+    private void OnActiveDeactivated(EntityUid uid, MechActiveEquipmentComponent component, ref MechDeactivateEquipmentEvent args)
     {
+        if (!TryComp<MechComponent>(args.Mech, out var chassis))
+            return;
+
         RemoveProvidedItems(args.Mech, uid, component: component);
+        chassis.CurrentSelectedEquipment = null;
+        Dirty(args.Mech, chassis);
+    }
+
+    private void OnActiveInitialized(EntityUid uid, MechActiveEquipmentComponent component, MapInitEvent args)
+    {
+        if (component.CreateOnStartup)
+        {
+            var xform = Transform(uid);
+            foreach (var itemProto in component.Items)
+            {
+                EntityUid item;
+                item = Spawn(itemProto, xform.Coordinates);
+                _container.Insert(item, component.ProvidedContainer);
+            }
+
+            component.ItemsCreated = true;
+            Dirty(uid, component);
+        }
     }
 
     private void ProvideItems(EntityUid chassis, EntityUid uid, MechComponent? chassisComponent = null, MechActiveEquipmentComponent? component = null)

@@ -400,7 +400,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
     public void RemoveEquipmentAction(EntityUid uid, EntityUid equipment, MechEquipmentActionComponent? actionComponent = null)
     {
-        _actions.RemoveProvidedActions(equipment, uid);
+        _actions.RemoveProvidedActions(uid, equipment);
     }
 
     /// <summary>
