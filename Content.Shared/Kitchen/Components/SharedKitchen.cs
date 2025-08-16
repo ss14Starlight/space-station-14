@@ -53,9 +53,25 @@ public sealed class MicrowaveSelectCookTimeMessage : BoundUserInterfaceMessage
 }
 
 [NetSerializable, Serializable]
+public sealed class MicrowaveItemInfo
+{
+    public NetEntity Entity;
+    public string Name;
+    public SpriteSpecifier? Icon;
+
+    public MicrowaveItemInfo(NetEntity entity, string name, SpriteSpecifier? icon)
+    {
+        Entity = entity;
+        Name = name;
+        Icon = icon;
+    }
+}
+
+[NetSerializable, Serializable]
 public sealed class MicrowaveUpdateUserInterfaceState : BoundUserInterfaceState
 {
     public NetEntity[] ContainedSolids;
+    public MicrowaveItemInfo[] ContainedSolidsInfo;
     public bool IsMicrowaveBusy;
     public bool IsMicrowaveSafe;
     public int ActiveButtonIndex;
@@ -64,10 +80,11 @@ public sealed class MicrowaveUpdateUserInterfaceState : BoundUserInterfaceState
     public TimeSpan CurrentCookTimeEnd;
     public TimeSpan StartedCookTime;
 
-    public MicrowaveUpdateUserInterfaceState(NetEntity[] containedSolids,
+    public MicrowaveUpdateUserInterfaceState(NetEntity[] containedSolids, MicrowaveItemInfo[] containedSolidsInfo,
         bool isMicrowaveBusy, bool isMicrowaveSafe, int activeButtonIndex, uint currentCookTime, TimeSpan currentCookTimeEnd, TimeSpan startedCookTime)
     {
         ContainedSolids = containedSolids;
+        ContainedSolidsInfo = containedSolidsInfo;
         IsMicrowaveBusy = isMicrowaveBusy;
         IsMicrowaveSafe = isMicrowaveSafe;
         ActiveButtonIndex = activeButtonIndex;

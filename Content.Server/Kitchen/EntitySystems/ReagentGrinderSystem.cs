@@ -222,6 +222,29 @@ namespace Content.Server.Kitchen.EntitySystems
                 canJuice = inputContainer.ContainedEntities.All(CanJuice);
             }
 
+            var containedEntities = inputContainer.ContainedEntities.ToArray();
+            var itemsInfo = new GrinderItemInfo[containedEntities.Length];
+
+            for (var i = 0; i < containedEntities.Length; i++)
+            {
+                var entity = containedEntities[i];
+                var name = MetaData(entity).EntityName;
+                SpriteSpecifier? icon = null;
+
+                if (TryComp<IconComponent>(entity, out var iconComponent))
+                {
+                    icon = iconComponent.Icon;
+                }
+                else if (TryComp<SpriteComponent>(entity, out var spriteComponent))
+                {
+                    icon = spriteComponent.BaseRSI != null
+                        ? new SpriteSpecifier.Rsi(spriteComponent.BaseRSI, spriteComponent.LayerMapGet(0).State)
+                        : null;
+                }
+
+                itemsInfo[i] = new GrinderItemInfo(GetNetEntity(entity), name, icon);
+            }
+
             var state = new ReagentGrinderInterfaceState(
                 isBusy,
                 outputContainer.HasValue,
@@ -229,7 +252,8 @@ namespace Content.Server.Kitchen.EntitySystems
                 canJuice,
                 canGrind,
                 grinderComp.AutoMode,
-                GetNetEntityArray(inputContainer.ContainedEntities.ToArray()),
+                GetNetEntityArray(containedEntities),
+                itemsInfo,
                 containerSolution?.Contents.ToArray()
             );
             _userInterfaceSystem.SetUiState(uid, ReagentGrinderUiKey.Key, state);

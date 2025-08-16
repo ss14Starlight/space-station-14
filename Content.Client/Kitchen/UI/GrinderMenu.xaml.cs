@@ -62,8 +62,8 @@ namespace Content.Client.Kitchen.UI
                     break;
             }
 
-            // TODO move this to a component state and ensure the net ids.
-            RefreshContentsDisplay(state.ReagentQuantities, _entityManager.GetEntityArray(state.ChamberContents), state.HasBeakerIn);
+            // Use component state data instead of entity lookups
+            RefreshContentsDisplay(state.ReagentQuantities, state.ChamberContentsInfo, state.HasBeakerIn);
         }
 
         public void HandleMessage(BoundUserInterfaceMessage message)
@@ -89,24 +89,33 @@ namespace Content.Client.Kitchen.UI
             }
         }
 
-        private void RefreshContentsDisplay(IList<ReagentQuantity>? reagents, IReadOnlyList<EntityUid> containedSolids, bool isBeakerAttached)
+        private void RefreshContentsDisplay(IList<ReagentQuantity>? reagents, GrinderItemInfo[] chamberContentsInfo, bool isBeakerAttached)
         {
             //Refresh chamber contents
             _chamberVisualContents.Clear();
 
             ChamberContentBox.BoxContents.Clear();
-            foreach (var entity in containedSolids)
+            for (var i = 0; i < chamberContentsInfo.Length; i++)
             {
-                if (!_entityManager.EntityExists(entity))
+                var itemInfo = chamberContentsInfo[i];
+                var entity = _entityManager.GetEntity(itemInfo.Entity);
+                
+                if (entity == null || !_entityManager.EntityExists(entity.Value))
                 {
-                    return;
+                    continue;
                 }
 
-                var texture = _entityManager.GetComponent<SpriteComponent>(entity).Icon?.Default;
+                // Use sprite view for proper rendering
+                Texture? texture = null;
+                if (itemInfo.Icon != null)
+                {
+                    var spriteSystem = _entityManager.System<SpriteSystem>();
+                    texture = spriteSystem.GetIcon(itemInfo.Icon);
+                }
 
-                var solidItem = ChamberContentBox.BoxContents.AddItem(_entityManager.GetComponent<MetaDataComponent>(entity).EntityName, texture);
+                var solidItem = ChamberContentBox.BoxContents.AddItem(itemInfo.Name, texture);
                 var solidIndex = ChamberContentBox.BoxContents.IndexOf(solidItem);
-                _chamberVisualContents.Add(solidIndex, entity);
+                _chamberVisualContents.Add(solidIndex, entity.Value);
             }
 
             //Refresh beaker contents
