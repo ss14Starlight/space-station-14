@@ -15,7 +15,7 @@
   - type: Item
     sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
   - type: UseDelay
-    delay: 0.5
+    delay: 1
   - type: StaticPrice
     price: 750
   - type: ItemSlots

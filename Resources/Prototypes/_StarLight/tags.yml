@@ -3,9 +3,11 @@
 - type: Tag
   id: Arachnid
 
-
 - type: Tag
   id: Avali
+
+- type: Tag
+  id: AutoMender
 
 - type: Tag
   id: AvianFood

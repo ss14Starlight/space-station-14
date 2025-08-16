@@ -498,6 +498,7 @@
         - Gauze
         - Ointment
         - PillCanister
+        - AutoMender
       components:
         - Hypospray
         - Injector
