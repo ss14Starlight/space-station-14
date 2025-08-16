@@ -103,6 +103,14 @@
   - type: ContainerContainer
     containers:
       item-container: !type:Container
+  # 🌟Starlight-start🌟
+  - type: Retractor
+  - type: SurgeryTool
+    successRate: 0.05 # they are very much too large
+    speed: 1.5
+    startSound:
+      path: /Audio/Mecha/sound_mecha_hydraulic.ogg
+  # 🌟Starlight-end🌟
 
 - type: entity
   id: MechEquipmentGrabberSmall
@@ -132,6 +140,14 @@
     tags:
     - IndustrialMech
     - SmallMech
+  # 🌟Starlight-start🌟
+  - type: Retractor
+  - type: SurgeryTool
+    successRate: 0.1 # they are very much too large
+    speed: 1.5
+    startSound:
+      path: /Audio/Mecha/sound_mecha_hydraulic.ogg
+  # 🌟Starlight-end🌟
 
 - type: entity
   id: MechEquipmentHornBase
