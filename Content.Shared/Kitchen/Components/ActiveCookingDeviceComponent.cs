@@ -26,6 +26,7 @@ public sealed partial class ActiveCookingDeviceComponent : Component // Starligh
     /// <summary>
     /// Prevents duplicate recipe processing when cooking is stopped
     /// </summary>
+    // 🌟Starlight🌟 - Added to prevent duplicate recipe processing 
     [ViewVariables]
     public bool RecipesProcessed = false;
 }

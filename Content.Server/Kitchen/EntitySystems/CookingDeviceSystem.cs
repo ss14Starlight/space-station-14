@@ -217,6 +217,7 @@ namespace Content.Server.Kitchen.EntitySystems
             }
         }
 
+        // 🌟Starlight🌟 - Enhanced ingredient subtraction with atomic operations and pre-validation
         private bool TrySubtractContents(CookingDeviceComponent component, FoodRecipePrototype recipe) // Starlight-edit
         {
             // First pass: verify we have enough ingredients
@@ -317,7 +318,7 @@ namespace Content.Server.Kitchen.EntitySystems
                     return false;
             }
 
-            // Execute removals atomically since we verified all ingredients are available
+            // 🌟Starlight🌟 - Execute removals atomically since we verified all ingredients are available
             try
             {
                 foreach (var (solEnt, plan) in reagentRemovalPlan)
@@ -714,13 +715,14 @@ namespace Content.Server.Kitchen.EntitySystems
         /// <summary>
         /// Processes recipes for a cooking device, preventing duplication and ensuring atomic operations
         /// </summary>
+        // 🌟Starlight🌟 - Consolidated recipe processing to prevent duplicate outputs
         private void ProcessRecipes(Entity<ActiveCookingDeviceComponent, CookingDeviceComponent> ent)
         {
             var (uid, active, cookingDevice) = ent;
             int actualTime = (int)(_gameTiming.CurTime - cookingDevice.StartedCookTime).TotalSeconds;
             var coords = Transform(uid).Coordinates;
             
-            // Handle spoilage for overcooked items (60+ seconds)
+            // 🌟Starlight🌟 - Handle spoilage for overcooked items (60+ seconds)
             if (actualTime >= 60)
             {
                 var containedItems = cookingDevice.Storage.ContainedEntities.ToList(); // error-proof copy
@@ -757,7 +759,7 @@ namespace Content.Server.Kitchen.EntitySystems
                 return; // Don't process recipes if everything is spoiled
             }
             
-            // Process matching recipes by specificity (ingredient count) to avoid overlaps
+            // 🌟Starlight🌟 - Process matching recipes by specificity (ingredient count) to avoid overlaps
             var processedRecipes = new HashSet<FoodRecipePrototype>();
             foreach (var pair in active.PortionedRecipes.OrderByDescending(p => p.Key.IngredientCount()))
             {
@@ -813,7 +815,7 @@ namespace Content.Server.Kitchen.EntitySystems
                 var actualPortions = CanSatisfyRecipe(cookingDevice, recipe, currentSolids, currentReagents).Item2;
                 actualPortions = Math.Min(actualPortions, maxPortions);
 
-                // Process the recipe portions atomically
+                // 🌟Starlight🌟 - Process the recipe portions atomically
                 for (var i = 0; i < actualPortions; i++)
                 {
                     if (!TrySubtractContents(cookingDevice, recipe))
@@ -905,7 +907,7 @@ namespace Content.Server.Kitchen.EntitySystems
                 //this means the microwave has finished cooking.
                 AddTemperature(cookingDevice, Math.Max(frameTime + active.CookTimeRemaining, 0)); //Though there's still a little bit more heat to pump out
                 
-                // Only process recipes if they haven't been processed yet
+                // 🌟Starlight🌟 - Only process recipes if they haven't been processed yet
                 if (!active.RecipesProcessed)
                 {
                     ProcessRecipes((uid, active, cookingDevice));
@@ -948,7 +950,7 @@ namespace Content.Server.Kitchen.EntitySystems
             if (!TryComp<ActiveCookingDeviceComponent>(ent.Owner, out var active))
                 return;
                 
-            // Only process recipes if they haven't been processed yet
+            // 🌟Starlight🌟 - Only process recipes if they haven't been processed yet
             if (!active.RecipesProcessed)
             {
                 // Process recipes based on actual cook time
