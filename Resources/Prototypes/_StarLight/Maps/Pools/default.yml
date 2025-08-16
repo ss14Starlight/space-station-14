@@ -1,22 +1,29 @@
 - type: gameMapPool
   id: DefaultStarlightMapPool
   maps:
+  - StarlightBagel
+  - Barratry
   - StarlightCog
+  - Cork
+  - StarlightExo
   - StarlightFland
+  - StarlightHotel
+  - Lagan
+  - Leth
   - Lobster
   - Manor
   - StarlightOasis
   - StarlightOmega
+  - Origin
   - Orwell
   - StarlightReach
   - StarlightSaltern
   - Starboard
-
-# - StarlightBagel
+  - Kiloton
+  - StarlightElkridge
+  - Prism
+  - StarlightSilica
 # - StarlightBox
-# - StarlightHotel
 # - StarlightMarathon
 # - StarlightMeta
 # - StarlightPacked
-# - StarlightElkridge
-# - StarlightElkridge

@@ -1,10 +1,11 @@
+﻿using System.Runtime.CompilerServices;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Atmos.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true, fieldDeltas: true)]
 public sealed partial class GasTankComponent : Component, IGasMixtureHolder
 {
     public const float MaxExplosionRange = 26f;
@@ -35,6 +36,12 @@ public sealed partial class GasTankComponent : Component, IGasMixtureHolder
     [DataField]
     public GasMixture Air { get; set; } = new();
 
+    // 🌟Starlight🌟
+    // It’s minimal mol count synchronization
+    // just enough so the client can predict a jetpack jump
+    [DataField, AutoNetworkedField]
+    public float TotalMoles;
+
     /// <summary>
     ///     Pressure at which tank should be considered 'low' such as for internals.
     /// </summary>
@@ -44,7 +51,7 @@ public sealed partial class GasTankComponent : Component, IGasMixtureHolder
     /// <summary>
     ///     Distributed pressure.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float OutputPressure = DefaultOutputPressure;
 
     /// <summary>

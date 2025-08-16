@@ -14,6 +14,7 @@ using Content.Shared.Players;
 using Content.Shared.Preferences;
 using JetBrains.Annotations;
 using Prometheus;
+using Robust.Shared;
 using Robust.Shared.Asynchronous;
 using Robust.Shared.Audio;
 using Robust.Shared.EntitySerialization;
@@ -24,6 +25,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using System.Text.RegularExpressions;
 
 namespace Content.Server.GameTicking
 {
@@ -32,6 +34,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly DiscordWebhook _discord = default!;
         [Dependency] private readonly RoleSystem _role = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
+        
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -39,8 +42,7 @@ namespace Content.Server.GameTicking
 
         private static readonly Gauge RoundLengthMetric = Metrics.CreateGauge(
             "ss14_round_length",
-            "Round length in seconds.");
-
+            "Round length in seconds.");     
 #if EXCEPTION_TOLERANCE
         [ViewVariables]
         private int _roundStartFailCount = 0;
@@ -55,6 +57,8 @@ namespace Content.Server.GameTicking
         private RoundEndMessageEvent.RoundEndPlayerInfo[]? _replayRoundPlayerInfo;
 
         private string? _replayRoundText;
+
+        private static readonly Regex GreekRegex = new (@"(?<={).(?=})", RegexOptions.Compiled);
 
         [ViewVariables]
         public GameRunLevel RunLevel
@@ -90,7 +94,7 @@ namespace Content.Server.GameTicking
         /// </remarks>
         private void LoadMaps()
         {
-            if (_mapManager.MapExists(DefaultMap))
+            if (_map.MapExists(DefaultMap))
                 return;
 
             AddGamePresetRules();
@@ -208,7 +212,7 @@ namespace Content.Server.GameTicking
                 }
 
                 _metaData.SetEntityName(mapUid, proto.MapName);
-                var g = new List<EntityUid> {grid.Value.Owner};
+                var g = new List<EntityUid> { grid.Value.Owner };
                 RaiseLocalEvent(new PostGameMapLoad(proto, mapId, g, stationName));
                 return g;
             }
@@ -258,7 +262,7 @@ namespace Content.Server.GameTicking
                 }
 
                 _metaData.SetEntityName(mapUid, proto.MapName);
-                var g = new List<EntityUid> {grid.Value.Owner};
+                var g = new List<EntityUid> { grid.Value.Owner };
                 RaiseLocalEvent(new PostGameMapLoad(proto, mapId, g, stationName));
                 return g;
             }
@@ -308,7 +312,7 @@ namespace Content.Server.GameTicking
                     throw new Exception($"Failed to load game-map grid {ev.GameMap.ID}");
                 }
 
-                var g = new List<EntityUid> {grid.Value.Owner};
+                var g = new List<EntityUid> { grid.Value.Owner };
                 // TODO MAP LOADING use a new event?
                 RaiseLocalEvent(new PostGameMapLoad(proto, targetMap, g, stationName));
                 return g;
@@ -371,7 +375,7 @@ namespace Content.Server.GameTicking
             SendServerMessage(Loc.GetString("game-ticker-start-round"));
 
             var readyPlayers = new List<ICommonSession>();
-            var readyPlayerProfiles = new Dictionary<NetUserId, HumanoidCharacterProfile>();
+            var readyPlayerIds = new HashSet<NetUserId>();
             var autoDeAdmin = _cfg.GetCVar(CCVars.AdminDeadminOnJoin);
             foreach (var (userId, status) in _playerGameStatuses)
             {
@@ -387,16 +391,7 @@ namespace Content.Server.GameTicking
 #endif
 
                 readyPlayers.Add(session);
-                HumanoidCharacterProfile profile;
-                if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
-                {
-                    profile = (HumanoidCharacterProfile) preferences.SelectedCharacter;
-                }
-                else
-                {
-                    profile = HumanoidCharacterProfile.Random();
-                }
-                readyPlayerProfiles.Add(userId, profile);
+                readyPlayerIds.Add(userId);
             }
 
             DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
@@ -426,7 +421,7 @@ namespace Content.Server.GameTicking
             // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
             _map.InitializeMap(DefaultMap);
 
-            SpawnPlayers(readyPlayers, readyPlayerProfiles, force);
+            SpawnPlayers(readyPlayers, readyPlayerIds, force);
 
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
@@ -611,8 +606,10 @@ namespace Content.Server.GameTicking
                     return;
 
                 var duration = RoundDuration();
+                var greekIndicator = GreekRegex.Match(_cfg.GetCVar(CVars.GameHostName));
                 var content = Loc.GetString("discord-round-notifications-end",
                     ("id", RoundId),
+                    ("serverIndicator", greekIndicator.Value),
                     ("hours", Math.Truncate(duration.TotalHours)),
                     ("minutes", duration.Minutes),
                     ("seconds", duration.Seconds));
@@ -623,7 +620,7 @@ namespace Content.Server.GameTicking
                 if (DiscordRoundEndRole == null)
                     return;
 
-                content = Loc.GetString("discord-round-notifications-end-ping", ("roleId", DiscordRoundEndRole));
+                content = Loc.GetString("discord-round-notifications-end-ping", ("roleId", DiscordRoundEndRole), ("serverIndicator", greekIndicator));
                 payload = new WebhookPayload { Content = content };
                 payload.AllowedMentions.AllowRoleMentions();
 
@@ -689,7 +686,9 @@ namespace Content.Server.GameTicking
                 if (_webhookIdentifier == null)
                     return;
 
-                var content = Loc.GetString("discord-round-notifications-new");
+                var greekIndicator = GreekRegex.Match(_cfg.GetCVar(CVars.GameHostName));
+
+                var content = Loc.GetString("discord-round-notifications-new", ("serverIndicator", greekIndicator.Value));
 
                 var payload = new WebhookPayload { Content = content };
 
@@ -811,7 +810,8 @@ namespace Content.Server.GameTicking
                     return;
 
                 var mapName = _gameMapManager.GetSelectedMap()?.MapName ?? Loc.GetString("discord-round-notifications-unknown-map");
-                var content = Loc.GetString("discord-round-notifications-started", ("id", RoundId), ("map", mapName));
+                var greekIndicator = GreekRegex.Match(_cfg.GetCVar(CVars.GameHostName));
+                var content = Loc.GetString("discord-round-notifications-started", ("id", RoundId), ("map", mapName), ("serverIndicator", greekIndicator.Value));
 
                 var payload = new WebhookPayload { Content = content };
 
@@ -941,13 +941,11 @@ namespace Content.Server.GameTicking
         /// </summary>
         /// <remarks>If you spawn a player by yourself from this event, don't forget to call <see cref="GameTicker.PlayerJoinGame"/> on them.</remarks>
         public List<ICommonSession> PlayerPool { get; }
-        public IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> Profiles { get; }
         public bool Forced { get; }
 
-        public RulePlayerSpawningEvent(List<ICommonSession> playerPool, IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> profiles, bool forced)
+        public RulePlayerSpawningEvent(List<ICommonSession> playerPool, bool forced)
         {
             PlayerPool = playerPool;
-            Profiles = profiles;
             Forced = forced;
         }
     }
@@ -959,13 +957,11 @@ namespace Content.Server.GameTicking
     public sealed class RulePlayerJobsAssignedEvent
     {
         public ICommonSession[] Players { get; }
-        public IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> Profiles { get; }
         public bool Forced { get; }
 
-        public RulePlayerJobsAssignedEvent(ICommonSession[] players, IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> profiles, bool forced)
+        public RulePlayerJobsAssignedEvent(ICommonSession[] players, bool forced)
         {
             Players = players;
-            Profiles = profiles;
             Forced = forced;
         }
     }

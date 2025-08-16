@@ -15,6 +15,9 @@
       Resomi:
         knockback: 4
         staminaMultiplier: 15
+      Avali:
+        knockback: 1 # Bigger bird, more sturdy bones.. or something.
+        staminaMultiplier: 15
       Felionoid:
         knockback: 2 #half of what resomi take
         staminaMultiplier: 15
@@ -54,9 +57,9 @@
 
 - type: entity
   name: Kardashev-Mosin
-  parent: [BaseWeaponSniper, BaseGunWieldable, BaseMajorContraband]
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseMajorContraband] # Starlight
   id: WeaponSniperMosin
-  description: A true relic, the Kardashev-Mosin has served in nearly every armed conflict since its creation 670 years ago. The bolt-action design of the rifle remains virtually identical to its original design, whether used for hunting, sniping, or endless trench warfare. Loads 10 rounds of .30 rifle.
+  description: A weapon of the masses, a true relic. The Kardashev-Mosin has served in nearly every armed conflict since its creation 670 years ago. The bolt-action design of the rifle remains virtually identical to its original design, whether used for hunting, sniping, or endless trench warfare. Uses .45 magnum ammo.
   components:
   - type: KnockbackByUserTag
     doestContain:
@@ -64,15 +67,73 @@
         knockback: 2
       Felionoid:
         knockback: 1 #half of what resomi take
+  - type: BallisticAmmoProvider # Starlight
+    capacity: 10
+    proto: CartridgeMagnumSP
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    soundRack:
+      path: /Audio/_Starlight/Weapons/Guns/Cock/cycle_bolt.ogg
+      params:
+        variation: 0.146
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/mosin.ogg # Starlight
+      params:
+        variation: 0.246
+    pump: true
+    fireRate: 1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+    layers:
+    - state: base
+    - state: base1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: base
+    inHandsFillBaseName: -fill-
+    inHandsMaxFillLevels: 1
+    equippedFillBaseName: -fill-
+    equippedMaxFillLevels: 1
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 12
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 2
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 2
+  - type: Sharp
+    butcherDelayModifier: 2 #It's a bayonet
   - type: GunRequiresWield
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   name: Hristov
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponSniperHristov
-  description: A portable anti-materiel rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-materiel ammo.
+  description: For when you absolutely, positively need to make someone regret their life choices from a safe distance. Uses .60 anti-materiel ammo.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
@@ -100,6 +161,8 @@
   - type: EyeCursorOffset
     maxOffset: 3
     pvsIncrease: 0.3
+  - type: StaticPrice
+    price: 3500
 
 - type: entity
   name: musket

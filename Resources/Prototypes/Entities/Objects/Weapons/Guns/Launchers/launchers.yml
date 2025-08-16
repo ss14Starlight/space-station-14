@@ -15,6 +15,9 @@
       Resomi:
         knockback: 10
         staminaMultiplier: 8
+      Avali:
+        knockback: 3 # Bigger bird, more sturdy bones.. or something.
+        staminaMultiplier: 8
       Felionoid:
         knockback: 5 #half of what resomi take
         staminaMultiplier: 8
@@ -66,6 +69,9 @@
     proto: GrenadeFrag
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: GunRequiresWield
+  - type: StaticPrice
+    price: 10000
 
 - type: entity
   parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseMajorContraband ]
@@ -91,6 +97,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: GunRequiresWield
   - type: ContainerContainer
     containers:
       revolver-ammo: !type:Container
@@ -119,6 +126,8 @@
         knockback: -5
       Felionoid:
         knockback: -2.5 #half of what resomi take
+      Avali:
+        knockback: -1.5
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
     layers:
@@ -246,7 +255,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: unshaded
       inhandVisuals:
         left:
@@ -294,7 +303,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-        - type: ToggleableLightVisuals
+        - type: ToggleableVisuals
           spriteLayer: unshaded
           inhandVisuals:
             left:
@@ -366,7 +375,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: unshaded
       inhandVisuals:
         left:
@@ -408,7 +417,7 @@
           map: [ "unshaded" ]
           shader: unshaded
           visible: false
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: unshaded
       inhandVisuals:
         left:

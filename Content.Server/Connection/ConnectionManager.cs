@@ -1,24 +1,28 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Content.Server._NullLink.Core;
+using Content.Server._NullLink.PlayerData;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection.IPIntel;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
+using Content.Shared._NullLink;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Content.Shared.NullLink.CCVar;
 using Content.Shared.Players.PlayTimeTracking;
+using Content.Shared.Starlight;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Starlight;
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -51,6 +55,7 @@ namespace Content.Server.Connection
     /// </summary>
     public sealed partial class ConnectionManager : IConnectionManager
     {
+        [Dependency] private readonly IActorRouter _actors = default!; // NullLink
         [Dependency] private readonly IPlayerManager _plyMgr = default!;
         [Dependency] private readonly IPlayerRolesManager _plyRoles = default!;
         [Dependency] private readonly IServerNetManager _netMgr = default!;
@@ -64,14 +69,20 @@ namespace Content.Server.Connection
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly IHttpClientHolder _http = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
+
+        private GameTicker? _ticker;
 
         private ISawmill _sawmill = default!;
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private IPIntel.IPIntel _ipintel = default!;
 
+        private RoleRequirementPrototype? _roleReqPeacefulBypass;
         public void PostInit()
         {
             InitializeWhitelist();
+            _cfg.OnValueChanged(NullLinkCCVars.RoleReqPeacefulBypass, reqProtoId 
+                => _roleReqPeacefulBypass = _prototypeManager.Index<RoleRequirementPrototype>(reqProtoId), true); // NullLink
         }
 
         public void Initialize()
@@ -242,10 +253,8 @@ namespace Content.Server.Connection
             }
 
             var adminData = await _db.GetAdminDataForAsync(e.UserId);
-            var playerData = await _db.GetPlayerDataForAsync(e.UserId); // 🌟Starlight🌟
-            var playerRoles = (PlayerFlags)(playerData?.Flags ?? 0);    // 🌟Starlight🌟
 
-            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !playerRoles.HasFlag(PlayerFlags.ExtRoles)) // 🌟Starlight🌟
+            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null) 
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);
@@ -255,6 +264,13 @@ namespace Content.Server.Connection
                 var validAccountAge = record != null &&
                                       record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0;
                 var bypassAllowed = _cfg.GetCVar(CCVars.BypassBunkerWhitelist) && await _db.GetWhitelistStatusAsync(userId);
+
+                // NullLink Bypass start
+                if (!validAccountAge  
+                    && _roleReqPeacefulBypass is not null
+                    && _actors.TryGetServerGrain(out var serverGrain)) 
+                    validAccountAge = await serverGrain.HasPlayerAnyRole(userId, _roleReqPeacefulBypass.Roles);
+                // NullLink Bypass end
 
                 // Use the custom reason if it exists & they don't have the minimum account age
                 if (customReason != string.Empty && !validAccountAge && !bypassAllowed)
@@ -292,8 +308,9 @@ namespace Content.Server.Connection
                 }
             }
 
-            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
-                            ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
+            _ticker ??= _entityManager.SystemOrNull<GameTicker>();
+            var wasInGame = _ticker != null &&
+                            _ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
             var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
             var softPlayerCount = _plyMgr.PlayerCount;

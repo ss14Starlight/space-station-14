@@ -26,7 +26,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 150
+        density: 300
         mask:
         - MobMask
         layer:
@@ -113,7 +113,6 @@
       - BorgChassis
       - RoboticsConsole
   - type: WiresPanel
-    openingTool: Prying
   - type: ActivatableUIRequiresPanel
   - type: NameIdentifier
     group: Silicon
@@ -218,10 +217,11 @@
       id: blinking
       interpolate: Nearest
       maxDuration: 1.0
-      minValue: 0.1
-      maxValue: 2.0
+      startValue: 0.1
+      endValue: 2.0
       isLooped: true
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
+    spriteLayer: light
   - type: PointLight
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
@@ -249,6 +249,8 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
+  - type: CyborgSparkEffect #starlight
+  - type: StationAIShunt #Starlight allow shunting into all borgs
 
 - type: entity
   abstract: true
@@ -318,7 +320,7 @@
     - NamesBorg
   - type: NpcFactionMember
     factions:
-    - NanoTrasen
+    - NanoTrasenSilicon # starlight
   - type: Access
     enabled: false
     groups:
@@ -340,7 +342,7 @@
   - type: TextToSpeech
   - type: NpcFactionMember
     factions:
-    - Syndicate
+    - SyndicateSilicon # starlight
   - type: Access
     tags:
     - NuclearOperative
@@ -356,6 +358,7 @@
     - Syndicate
   - type: ActiveRadio
     channels:
+    - Binary
     - Syndicate
   - type: ShowSyndicateIcons
   - type: MovementAlwaysTouching
@@ -376,7 +379,7 @@
   components:
   - type: NpcFactionMember
     factions:
-    - NanoTrasen #The seemingly best fit. It was a regular NT cyborg once, after all.
+    - NanoTrasenSilicon #The seemingly best fit. It was a regular NT cyborg once, after all. starlight
   - type: Access
     enabled: false
     groups:

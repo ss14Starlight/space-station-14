@@ -1,4 +1,41 @@
 - type: loadoutGroup
+  id: AssistantGlasses
+  name: loadout-group-assistant-glasses
+  minLimit: 0
+  loadouts:
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - CheapSunnies
+  - AssistantNoirGlasses
+
+- type: loadoutGroup
+  id: AssistantHead
+  name: loadout-group-assistant-head
+  minLimit: 0
+  loadouts:
+  - GreyCowboy
+  - GreyBandana
+  - GreyFlatcap
+  - GreyCap
+  - CorpoCap
+  - SyndieCap
+  - GreyFedoraA
+  - SolidHeadband
+  - GreytideBizarreAdventures
+  - BrimHat
+  - FeatheredHat
+
+- type: loadoutGroup
+  id: AssistantBackpack
+  name: loadout-group-assistant-backpack
+  loadouts:
+  - CommonBackpack
+  - CommonSatchel
+  - CommonDuffel
+  - LeatherSatchel
+
+- type: loadoutGroup
   id: RoboticistJumpsuit
   name: loadout-group-roboticist-jumpsuit
   loadouts:
@@ -20,7 +57,25 @@
   loadouts:
   - RoboticistCap
   - SkullBandana
-  
+
+- type: loadoutGroup
+  id: RoboticistGloves
+  name: loadout-group-roboticist-gloves
+  minLimit: 0
+  loadouts:
+  - LatexGloves
+  - PurpleGloves
+  - RobohandsGloves
+
+- type: loadoutGroup
+  id: RoboticistGoggles
+  name: loadout-group-roboticist-goggles
+  minLimit: 0
+  loadouts:
+  - RoboticistWeldingGoggles
+  - RoboticistDiagnosticsHud
+
+
 - type: loadoutGroup
   id: RoboticistBackpack
   name: loadout-group-roboticist-backpack
@@ -28,6 +83,7 @@
   - RoboticistBackpack
   - RoboticistSatchel
   - RoboticistDuffel
+  - LeatherSatchel
   
 - type: loadoutGroup
   id: NanoTrasenRepresentativeJumpsuit
@@ -43,7 +99,7 @@
   loadouts:
   - NanoTrasenRepresentativeGlasses
   - NanoTrasenRepresentativeHud
-  
+
 - type: loadoutGroup
   id: BlueShieldBackpack
   name: loadout-group-blueshield-backpack
@@ -51,6 +107,7 @@
   - BlueShieldBackpack
   - BlueShieldSatchel
   - BlueShieldDuffel
+  - LeatherSatchel
 
 - type: loadoutGroup
   id: BlueShieldJumpsuit
@@ -60,6 +117,21 @@
   - BlueShieldJumpskirt
   - EliteBlueShieldJumpsuit
   - EliteBlueShieldJumpskirt
+  - BlueShieldShirt
+
+- type: loadoutGroup
+  id: BlueShieldOuterclothing
+  name: Loadout-group-blueshield-outerclothing
+  loadouts:
+  - BlueShieldVest
+  - BlueShieldCoat
+
+- type: loadoutGroup
+  id: BlueShieldNeck
+  name: Loadout-group-blueshield-neck
+  loadouts:
+  - BlueShieldFormalCloak
+  - BlueShieldEliteCloak
 
 - type: loadoutGroup
   id: BlueShieldEyewear
@@ -67,7 +139,7 @@
   loadouts:
   - BlueShieldGlasses
   - BlueShieldHud
-    
+
 - type: loadoutGroup
   id: SecurityNonLethalWeapon
   name: loadout-group-security-non-lethal-weapon
@@ -82,3 +154,96 @@
   - SecurityMk58
   - SecurityPistolDP
 
+# Assorted Boots
+- type: loadoutGroup
+  id: RoboticistShoes
+  name: loadout-group-roboticist-shoes
+  minLimit: 1
+  loadouts:
+  - BlackShoes
+  - ScienceWinterBoots
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: CaptainShoes
+  name: loadout-group-captain-shoes
+  minLimit: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+  - CowboyBootsBrownFilled
+  - CowboyBootsBlackFilled
+  - CowboyBootsWhiteFilled
+  - HighHeelBootsFilled
+
+- type: loadoutGroup
+  id: HoPShoes
+  name: loadout-group-hop-shoes
+  minLimit: 1
+  loadouts:
+  - BrownShoes
+  - Heels
+  - LaceupShoes
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: MagistrateShoes
+  name: loadout-group-magistrate-shoes
+  minLimit: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+
+- type: loadoutGroup
+  id: NanotrasenRepresentativeShoes
+  name: loadout-group-nanotrasenrepresentative-shoes
+  minLimit: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: DetectiveShoes
+  name: loadout-group-detective-shoes
+  minLimit: 1
+  loadouts:
+  - JackBoots
+  - SecurityWinterBoots
+  - LaceupShoes
+  - CowboyBootsBrownFilled
+  - CowboyBootsBlackFilled
+  - CowboyBootsWhiteFilled
+  - Heels
+  - HighHeelBootsFilled
+
+- type: loadoutGroup
+  id: CivilianShoes
+  name: loadout-group-civilian-shoes
+  minLimit: 1
+  loadouts:
+  - BlackShoes
+  - WhiteShoes
+  - GreenShoes
+  - LeatherShoes
+  - Heels
+  - LaceupShoes
+
+- type: loadoutGroup
+  id: LawyerShoes
+  name: loadout-group-iia-shoes
+  minLimit: 1
+  loadouts:
+  - BlackShoes
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: BlueShieldShoes
+  name: loadout-group-security-shoes
+  loadouts:
+  - CombatBoots
+  - HighHeelBootsFilled

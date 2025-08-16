@@ -15,6 +15,9 @@
       Resomi:
         knockback: 3
         staminaMultiplier: 20
+      Avali:
+        knockback: 1 # Bigger bird, more sturdy bones.. or something.
+        staminaMultiplier: 20
       Felionoid:
         knockback: 1.5 #half of what resomi take
         staminaMultiplier: 20
@@ -108,6 +111,8 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: StaticPrice
+    price: 5000
 
 - type: entity
   name: double-barreled shotgun

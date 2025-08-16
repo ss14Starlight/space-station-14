@@ -1,4 +1,4 @@
-using Robust.Shared.Input;
+﻿using Robust.Shared.Input;
 
 namespace Content.Shared.Input
 {
@@ -32,6 +32,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction OpenInventoryMenu = "OpenInventoryMenu";
         public static readonly BoundKeyFunction SmartEquipBackpack = "SmartEquipBackpack";
         public static readonly BoundKeyFunction SmartEquipBelt = "SmartEquipBelt";
+        public static readonly BoundKeyFunction SmartEquipSuitStorage = "SmartEquipSuitStorage"; // Starlight edit - Suit storage Equip
         public static readonly BoundKeyFunction OpenBackpack = "OpenBackpack";
         public static readonly BoundKeyFunction OpenBelt = "OpenBelt";
         public static readonly BoundKeyFunction OpenAHelp = "OpenAHelp";
@@ -130,5 +131,9 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction MappingRemoveDecal = "MappingRemoveDecal";
         public static readonly BoundKeyFunction MappingCancelEraseDecal = "MappingCancelEraseDecal";
         public static readonly BoundKeyFunction MappingOpenContextMenu = "MappingOpenContextMenu";
+
+        // 🌟Starlight🌟
+        public static readonly BoundKeyFunction Jump = "Jump";
+        public static readonly BoundKeyFunction ToggleKnockdown = "ToggleKnockdown";
     }
 }

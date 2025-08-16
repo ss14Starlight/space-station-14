@@ -3,6 +3,7 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Starlight.TextToSpeech;
 using Content.Shared.Inventory;
+using Content.Shared.Preferences;
 using Robust.Shared.Enums;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -33,6 +34,9 @@ public sealed partial class HumanoidAppearanceComponent : Component
 
     [DataField, AutoNetworkedField]
     public int Age = 18;
+
+    [DataField, AutoNetworkedField] // Starlight
+    public string CustomSpecieName = "";
 
     /// <summary>
     ///     Any custom base layers this humanoid might have. See:
@@ -76,6 +80,10 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField, AutoNetworkedField]
     public Color EyeColor = Color.Brown;
     [DataField, AutoNetworkedField]
+    public float Width = 1f; // starlight
+    [DataField, AutoNetworkedField]
+    public float Height = 1f; // starlight
+    [DataField, AutoNetworkedField]
     public bool EyeGlowing = false; //starlight
 
     /// <summary>
@@ -104,6 +112,12 @@ public sealed partial class HumanoidAppearanceComponent : Component
 
     [DataField]
     public ProtoId<MarkingPrototype>? UndergarmentBottom = new ProtoId<MarkingPrototype>("UndergarmentBottomBoxers");
+
+    /// <summary>
+    /// The profile that this entity was originally spawned with.
+    /// If null, the entity was not spawned with a profile.
+    /// </summary>
+    public HumanoidCharacterProfile? BaseProfile;
     
     public static readonly Dictionary<Sex, string> DefaultSexVoice = new()
     {

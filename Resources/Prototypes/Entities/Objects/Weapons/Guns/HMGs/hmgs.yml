@@ -15,9 +15,17 @@
       Resomi:
         knockback: 0.01
         staminaMultiplier: 100
+      Avali:
+        knockback: 0.01 # Bigger bird, more sturdy bones.. or something.
+        staminaMultiplier: 100
   - type: Sprite
   - type: Item
     size: Ginormous
+  - type: MultiHandedItem
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
   - type: Gun
     fireRate: 20
     selectedMode: FullAuto

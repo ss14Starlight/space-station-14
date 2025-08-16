@@ -1,0 +1,22 @@
+# Traitor single items
+
+- type: stealTargetGroup
+  id: RDDiplomaSteal
+  name: steal-target-groups-rddiploma
+  sprite:
+    sprite: _Starlight/Objects/Specific/legalpapers/rd-diploma.rsi
+    state: rd-diploma
+    
+- type: stealTargetGroup
+  id: CMOLicenseSteal
+  name: steal-target-groups-cmolicense
+  sprite:
+    sprite: _Starlight/Objects/Specific/legalpapers/cmo-license.rsi
+    state: cmo-license
+
+- type: stealTargetGroup
+  id: SalvageShuttleConsoleCircuitboard
+  name: steal-target-groups-salvage-shuttle-console-circuitboard
+  sprite:
+    sprite: Objects/Misc/module.rsi
+    state: cpuboard

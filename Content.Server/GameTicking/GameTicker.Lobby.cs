@@ -82,8 +82,8 @@ namespace Content.Server.GameTicking
                 ("playerCount", playerCount),
                 ("readyCount", readyCount),
                 ("mapName", stationNames.ToString()),
-                ("gmTitle", gmTitle),
-                ("desc", desc));
+                ("gmTitle", string.IsNullOrWhiteSpace(GamemodeNameOverride) ? gmTitle : Loc.GetString(GamemodeNameOverride)), //Starlight edit: gamemode name override
+                ("desc", string.IsNullOrWhiteSpace(GamemodeDescOverride) ? desc : Loc.GetString(GamemodeDescOverride))); //Starlight edit: gamemode desc override
         }
 
         private TickerConnectionStatusEvent GetConnectionStatusMsg()
@@ -173,8 +173,12 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            var status = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
-            _playerGameStatuses[player.UserId] = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
+            // Ensure that the player has a character enabled with a compatible job that can even join.
+            var readyPossible = (_prefsManager.GetPreferencesOrNull(player.UserId)?.JobPrioritiesFiltered().Count ?? 0) != 0;
+
+            _playerGameStatuses[player.UserId] = ready && readyPossible
+                ? PlayerGameStatus.ReadyToPlay
+                : PlayerGameStatus.NotReadyToPlay;
             RaiseNetworkEvent(GetStatusMsg(player), player.Channel);
             // update server info to reflect new ready count
             UpdateInfoText();

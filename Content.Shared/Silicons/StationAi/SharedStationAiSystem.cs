@@ -30,6 +30,9 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.Utility;
+using Content.Shared.Starlight.TextToSpeech;
+using System.Linq;
+using Content.Shared._Starlight.Silicons.Borgs;//Starlight
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -70,7 +73,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     private EntityQuery<BroadphaseComponent> _broadphaseQuery;
     private EntityQuery<MapGridComponent> _gridQuery;
 
-    [ValidatePrototypeId<EntityPrototype>]
     private static readonly EntProtoId DefaultAi = "StationAiBrain";
 
     private const float MaxVisionMultiplier = 5f;
@@ -123,6 +125,8 @@ public abstract partial class SharedStationAiSystem : EntitySystem
                 Category = VerbCategory.Debug,
                 Act = () =>
                 {
+                    if (_net.IsClient)
+                        return;
                     var brain = SpawnInContainerOrDrop(DefaultAi, ent.Owner, StationAiCoreComponent.Container);
                     _mind.ControlMob(user, brain);
                 },
@@ -238,6 +242,17 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         if (!TryComp(args.Args.Target, out StationAiHolderComponent? targetHolder))
             return;
 
+        //#region Starlight
+        // basically if the AI is off shunting we wanna force them BACK. simplest way to do that is to fake the event to send them back.
+        var item = ent.Comp.Slot.Item;
+        if (item.HasValue && TryComp<StationAIShuntableComponent>(item.Value, out var shuntable))
+            if (shuntable.Inhabited.HasValue)
+            {
+                var returnEvent = new AIUnShuntActionEvent();
+                RaiseLocalEvent(shuntable.Inhabited.Value, returnEvent);
+            }
+        //#endregion Starlight
+        
         // Try to insert our thing into them
         if (_slots.CanEject(ent.Owner, args.User, ent.Comp.Slot))
         {
@@ -485,7 +500,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         _metadata.SetEntityName(ent.Owner, MetaData(args.Entity).EntityName);
 
         AttachEye(ent);
-    }
+	}
 
     private void OnAiRemove(Entity<StationAiCoreComponent> ent, ref EntRemovedFromContainerMessage args)
     {
@@ -517,11 +532,25 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         // Todo: when AIs can die, add a check to see if the AI is in the 'dead' state
         var state = StationAiState.Empty;
 
-        if (_containers.TryGetContainer(entity.Owner, StationAiHolderComponent.Container, out var container) && container.Count > 0)
-            state = StationAiState.Occupied;
+		if (_containers.TryGetContainer(entity.Owner, StationAiHolderComponent.Container, out var container) && container.Count > 0)
+		{
+			state = StationAiState.Occupied;
 
-        // If the entity is a station AI core, attempt to customize its appearance
-        if (TryComp<StationAiCoreComponent>(entity, out var stationAiCore))
+			//Load voice from mind 🌟Starlight🌟
+			//Because APPARENTLY this is the best place to do it
+            //Station AIs will have to update their picture at least once for this to be called
+			var user = container.ContainedEntities[0];
+			if (TryComp<TextToSpeechComponent>(user, out var ttscomp))
+			{
+				if (_mind.TryGetMind(user, out _, out var mindcomp))
+				{
+					ttscomp.VoicePrototypeId = mindcomp.SiliconVoice;
+				}
+			}
+		}
+
+		// If the entity is a station AI core, attempt to customize its appearance
+		if (TryComp<StationAiCoreComponent>(entity, out var stationAiCore))
         {
             CustomizeAppearance((entity, stationAiCore), state);
             return;

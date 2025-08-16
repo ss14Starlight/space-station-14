@@ -204,6 +204,13 @@ public partial class ListingData : IEquatable<ListingData>
     [DataField]
     public bool DisableRefund = false;
 
+    /// <summary>
+    /// STARLIGHT: Whether the listing is unavailable for purchase (greyed out in the UI).
+    /// This can be used to temporarily disable a listing without removing it from the store.
+    /// </summary>
+    [DataField]
+    public bool Unavailable = false;
+
     public bool Equals(ListingData? listing)
     {
         if (listing == null)
@@ -243,7 +250,6 @@ public partial class ListingData : IEquatable<ListingData>
 ///     Defines a set item listing that is available in a store
 /// </summary>
 [Prototype]
-[Serializable, NetSerializable]
 [DataDefinition]
 public sealed partial class ListingPrototype : ListingData, IPrototype
 {
@@ -424,7 +430,7 @@ public sealed partial class ListingDataWithCostModifiers : ListingData
 ///     how <see cref="StoreDiscountComponent"/> will be filled by respective system.
 /// </summary>
 [Prototype]
-[DataDefinition, Serializable, NetSerializable]
+[DataDefinition]
 public sealed partial class DiscountCategoryPrototype : IPrototype
 {
     [ViewVariables]

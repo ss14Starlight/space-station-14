@@ -5,7 +5,8 @@
   abstract: true
   components:
   - type: Absorbable
-  - type: ResomiSkill
+  - type: Jump
+    action: JumpResomi
   - type: DamageVisuals
     thresholds: [ 10, 30, 50, 70]
     targetLayers:
@@ -218,7 +219,7 @@
       Unsexed: UnisexResomi
   - type: Speech
     speechVerb: Resomi
-    allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl']
+    allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk']
   - type: Tag
     tags:
     - CanPilot
