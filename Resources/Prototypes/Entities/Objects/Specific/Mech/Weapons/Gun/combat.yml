@@ -69,6 +69,9 @@
     fireCost: 120
   - type: Appearance
   - type: AmmoCounter
+  - type: Battery
+    maxCharge: 240
+    startingCharge: 240
 
 - type: entity
   id: WeaponMechCombatFiredartLaser
@@ -315,6 +318,9 @@
     fireCost: 200
   - type: Appearance
   - type: AmmoCounter
+  - type: Battery
+    maxCharge: 400
+    startingCharge: 400
 
 - type: entity
   id: WeaponMechCombatMissileRack8
