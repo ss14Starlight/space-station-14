@@ -545,7 +545,7 @@ doc-text-printer-request-change-salary =
     
     I hereby request consideration for a salary increase/decrease of (amount or number of percent)
     
-    Employee recieving salary change:
+    Employee receiving salary change:
 
     Employees job title:
     
