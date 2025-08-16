@@ -522,8 +522,32 @@ namespace Content.Server.Kitchen.EntitySystems
 
         public void UpdateUserInterfaceState(EntityUid uid, CookingDeviceComponent component, bool? IsBusy = null) // Starlight-edit
         {
+            var containedEntities = component.Storage.ContainedEntities.ToArray();
+            var itemsInfo = new MicrowaveItemInfo[containedEntities.Length];
+
+            for (var i = 0; i < containedEntities.Length; i++)
+            {
+                var entity = containedEntities[i];
+                var name = MetaData(entity).EntityName;
+                SpriteSpecifier? icon = null;
+
+                if (TryComp<IconComponent>(entity, out var iconComponent))
+                {
+                    icon = iconComponent.Icon;
+                }
+                else if (TryComp<SpriteComponent>(entity, out var spriteComponent))
+                {
+                    icon = spriteComponent.BaseRSI != null
+                        ? new SpriteSpecifier.Rsi(spriteComponent.BaseRSI, spriteComponent.LayerMapGet(0).State)
+                        : null;
+                }
+
+                itemsInfo[i] = new MicrowaveItemInfo(GetNetEntity(entity), name, icon);
+            }
+
             _userInterface.SetUiState(uid, MicrowaveUiKey.Key, new MicrowaveUpdateUserInterfaceState(
-                GetNetEntityArray(component.Storage.ContainedEntities.ToArray()),
+                GetNetEntityArray(containedEntities),
+                itemsInfo,
                 IsBusy ?? HasComp<ActiveCookingDeviceComponent>(uid), // Starlight-edit
                 component.Safe, // Starlight-edit
                 component.CurrentCookTimeButtonIndex,

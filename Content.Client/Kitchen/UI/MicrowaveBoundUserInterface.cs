@@ -111,8 +111,8 @@ namespace Content.Client.Kitchen.UI
             _menu.CurrentCooktimeEnd = cState.CurrentCookTimeEnd;
 
             _menu.ToggleBusyDisableOverlayPanel(cState.IsMicrowaveBusy || cState.ContainedSolids.Length == 0);
-            // TODO move this to a component state and ensure the net ids.
-            RefreshContentsDisplay(EntMan.GetEntityArray(cState.ContainedSolids));
+            // Use component state data instead of entity lookups
+            RefreshContentsDisplay(cState.ContainedSolidsInfo);
 
             //Set the cook time info label
             var cookTime = cState.ActiveButtonIndex == 0
@@ -183,7 +183,7 @@ namespace Content.Client.Kitchen.UI
             }
         }
 
-        private void RefreshContentsDisplay(EntityUid[] containedSolids)
+        private void RefreshContentsDisplay(MicrowaveItemInfo[] containedSolidsInfo)
         {
             _reagents.Clear();
 
@@ -191,32 +191,28 @@ namespace Content.Client.Kitchen.UI
 
             _solids.Clear();
             _menu.IngredientsList.Clear();
-            foreach (var entity in containedSolids)
+            
+            for (var i = 0; i < containedSolidsInfo.Length; i++)
             {
-                if (EntMan.Deleted(entity))
-                {
-                    return;
-                }
-
-                // TODO just use sprite view
-
-                Texture? texture;
-                if (EntMan.TryGetComponent<IconComponent>(entity, out var iconComponent))
-                {
-                    texture = EntMan.System<SpriteSystem>().GetIcon(iconComponent);
-                }
-                else if (EntMan.TryGetComponent<SpriteComponent>(entity, out var spriteComponent))
-                {
-                    texture = spriteComponent.Icon?.Default;
-                }
-                else
+                var itemInfo = containedSolidsInfo[i];
+                var entity = EntMan.GetEntity(itemInfo.Entity);
+                
+                if (entity == null || EntMan.Deleted(entity.Value))
                 {
                     continue;
                 }
 
-                var solidItem = _menu.IngredientsList.AddItem(EntMan.GetComponent<MetaDataComponent>(entity).EntityName, texture);
+                // Use sprite view for proper rendering
+                Texture? texture = null;
+                if (itemInfo.Icon != null)
+                {
+                    var spriteSystem = EntMan.System<SpriteSystem>();
+                    texture = spriteSystem.GetIcon(itemInfo.Icon);
+                }
+
+                var solidItem = _menu.IngredientsList.AddItem(itemInfo.Name, texture);
                 var solidIndex = _menu.IngredientsList.IndexOf(solidItem);
-                _solids.Add(solidIndex, entity);
+                _solids.Add(solidIndex, entity.Value);
             }
         }
     }

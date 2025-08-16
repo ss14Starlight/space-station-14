@@ -89,6 +89,21 @@ namespace Content.Shared.Kitchen
     }
 
     [NetSerializable, Serializable]
+    public sealed class GrinderItemInfo
+    {
+        public NetEntity Entity;
+        public string Name;
+        public SpriteSpecifier? Icon;
+
+        public GrinderItemInfo(NetEntity entity, string name, SpriteSpecifier? icon)
+        {
+            Entity = entity;
+            Name = name;
+            Icon = icon;
+        }
+    }
+
+    [NetSerializable, Serializable]
     public sealed class ReagentGrinderInterfaceState : BoundUserInterfaceState
     {
         public bool IsBusy;
@@ -97,10 +112,11 @@ namespace Content.Shared.Kitchen
         public bool CanJuice;
         public bool CanGrind;
         public NetEntity[] ChamberContents;
+        public GrinderItemInfo[] ChamberContentsInfo;
         public ReagentQuantity[]? ReagentQuantities;
         public GrinderAutoMode AutoMode;
 
-        public ReagentGrinderInterfaceState(bool isBusy, bool hasBeaker, bool powered, bool canJuice, bool canGrind, GrinderAutoMode autoMode, NetEntity[] chamberContents, ReagentQuantity[]? heldBeakerContents)
+        public ReagentGrinderInterfaceState(bool isBusy, bool hasBeaker, bool powered, bool canJuice, bool canGrind, GrinderAutoMode autoMode, NetEntity[] chamberContents, GrinderItemInfo[] chamberContentsInfo, ReagentQuantity[]? heldBeakerContents)
         {
             IsBusy = isBusy;
             HasBeakerIn = hasBeaker;
@@ -109,6 +125,7 @@ namespace Content.Shared.Kitchen
             CanGrind = canGrind;
             AutoMode = autoMode;
             ChamberContents = chamberContents;
+            ChamberContentsInfo = chamberContentsInfo;
             ReagentQuantities = heldBeakerContents;
         }
     }
