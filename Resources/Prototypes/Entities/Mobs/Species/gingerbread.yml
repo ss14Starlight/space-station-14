@@ -52,6 +52,30 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+# Starlight-start: playable gingerbread
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Milk ]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPieReaction
+    - reagents: [ Milk ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        scaleByQuantity: true
+        damage:
+          types:
+            Heat: 0.1
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "gingerbread-hurt-by-milk-popup" ]
+        probability: 0.25
+# Starlight-end
 
 
 - type: entity
