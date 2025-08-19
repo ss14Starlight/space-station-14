@@ -10065,7 +10065,6 @@ Entries:
   id: 1386
   time: '2025-08-07T20:51:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1167
-
 - author: neurovermi
   changes:
   - message: Restore deleted mech weapon code.
