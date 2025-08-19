@@ -29,9 +29,9 @@
     - type: NpcFactionMember
       factions:
       - HonkNeutral
-    - type: Tag
-      tags:
-        - Comedian
+    - type: Tag #SL
+      tags: #SL
+        - Comedian #SL
   - !type:AddImplantSpecial
     implants: [ SadTromboneImplant ]
 
