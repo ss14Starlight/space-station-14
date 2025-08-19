@@ -39,7 +39,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
             // Starlight begin
             if (injector.Comp.OnlyAffectsMobs && !HasComp<MobStateComponent>(target))
             {
-                Popup.PopupEntity(Loc.GetString("injector-component-cannot-inject-non-mob",
+                Popup.PopupEntity(Loc.GetString("injector-component-cannot-inject",
                     ("target", Identity.Entity(target, EntityManager))), injector, user);
                 return false;
             }
