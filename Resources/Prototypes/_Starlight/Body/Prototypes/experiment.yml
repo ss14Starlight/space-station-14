@@ -20,7 +20,7 @@
       - right leg
       - left leg
       organs:
-        heart: OrganAnimalHeart
+        heart: OrganExperimentHeart
         lungs: OrganHumanLungs
         stomach: OrganExperimentStomach
         liver:  OrganHumanLiver

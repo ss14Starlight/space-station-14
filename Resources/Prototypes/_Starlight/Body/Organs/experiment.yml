@@ -21,3 +21,16 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
+
+- type: entity
+  id: OrganExperimentHeart
+  parent: OrganHumanHeart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Experiment]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
