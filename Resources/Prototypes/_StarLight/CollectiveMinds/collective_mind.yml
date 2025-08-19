@@ -86,5 +86,5 @@
   name: collective-mind-comedy
   keycode: 'o'
   color: "#F1801A"
-  requiredComponents: 
+  requiredTags:
   - Comedian
