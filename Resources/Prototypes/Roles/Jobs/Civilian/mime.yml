@@ -18,7 +18,9 @@
     - type: MimePowers
       preventWriting: false #SL
     - type: FrenchAccent
-    - type: Comedian
+    - type: Tag #SL
+      tags: #SL
+        - Comedian #SL
 
 - type: startingGear
   id: MimeGear
