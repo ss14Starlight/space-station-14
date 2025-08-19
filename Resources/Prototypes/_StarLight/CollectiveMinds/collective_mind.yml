@@ -80,3 +80,11 @@
   color: "#ff00f2"
   requiredComponents: 
   - Shadekin
+
+- type: collectiveMind
+  id: Comedian
+  name: collective-mind-comedy
+  keycode: 'o'
+  color: "#F1801A"
+  requiredComponents: 
+  - Comedian
