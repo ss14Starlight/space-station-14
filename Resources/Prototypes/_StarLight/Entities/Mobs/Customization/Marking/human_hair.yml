@@ -13,3 +13,2697 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
       state: himecutwithtails
+
+# Gradient
+- type: marking
+  id: HumanHairAfroGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: afro
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afro_secondary
+
+- type: marking
+  id: HumanHairAfro2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: afro2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afro2_secondary
+
+- type: marking
+  id: HumanHairBigafroGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bigafro
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bigafro_secondary
+
+- type: marking
+  id: HumanHairAntennaGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: antenna
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: antenna_secondary
+
+- type: marking
+  id: HumanHairBaldingGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: e
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: e_secondary
+
+- type: marking
+  id: HumanHairBedheadGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bedhead
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bedhead_secondary
+
+- type: marking
+  id: HumanHairBedheadv2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bedheadv2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bedheadv2_secondary
+
+- type: marking
+  id: HumanHairBedheadv3Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bedheadv3
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bedheadv3_secondary
+
+- type: marking
+  id: HumanHairPulatoGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: pulato
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: pulato_secondary
+
+- type: marking
+  id: HumanHairLongBedheadGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: long_bedhead
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: long_bedhead_secondary
+
+- type: marking
+  id: HumanHairLongBedhead2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: long_bedhead2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: long_bedhead2_secondary
+
+- type: marking
+  id: HumanHairFloorlengthBedheadGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: floorlength_bedhead
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: floorlength_bedhead_secondary
+
+- type: marking
+  id: HumanHairBeehiveGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: beehive
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: beehive_secondary
+
+- type: marking
+  id: HumanHairBeehivev2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: beehivev2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: beehivev2_secondary
+
+- type: marking
+  id: HumanHairBobGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bob
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bob_secondary
+
+- type: marking
+  id: HumanHairBob2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bob2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bob2_secondary
+
+- type: marking
+  id: HumanHairBobcutGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bobcut
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bobcut_secondary
+
+- type: marking
+  id: HumanHairBob4Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bob4
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bob4_secondary
+
+- type: marking
+  id: HumanHairBob5Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bob5
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bob5_secondary
+
+- type: marking
+  id: HumanHairBobcurlGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bobcurl
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bobcurl_secondary
+
+- type: marking
+  id: HumanHairBoddickerGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: boddicker
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: boddicker_secondary
+
+- type: marking
+  id: HumanHairBowlcutGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bowlcut
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bowlcut_secondary
+
+- type: marking
+  id: HumanHairBowlcut2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bowlcut2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bowlcut2_secondary
+
+- type: marking
+  id: HumanHairBraidGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: braid
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: braid_secondary
+
+- type: marking
+  id: HumanHairBraidedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: braided
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: braided_secondary
+
+- type: marking
+  id: HumanHairBraidfrontGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: braidfront
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: braidfront_secondary
+
+- type: marking
+  id: HumanHairBraid2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: braid2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: braid2_secondary
+
+- type: marking
+  id: HumanHairHbraidGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: hbraid
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: hbraid_secondary
+
+- type: marking
+  id: HumanHairShortbraidGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shortbraid
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shortbraid_secondary
+
+- type: marking
+  id: HumanHairBraidtailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: braidtail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: braidtail_secondary
+
+- type: marking
+  id: HumanHairBunGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bun
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bun_secondary
+
+- type: marking
+  id: HumanHairBunhead2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bunhead2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bunhead2_secondary
+
+- type: marking
+  id: HumanHairBun3Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bun3
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bun3_secondary
+
+- type: marking
+  id: HumanHairLargebunGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: largebun
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: largebun_secondary
+
+- type: marking
+  id: HumanHairManbunGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: manbun
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: manbun_secondary
+
+- type: marking
+  id: HumanHairTightbunGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: tightbun
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: tightbun_secondary
+
+- type: marking
+  id: HumanHairBusinessGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: business
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: business_secondary
+
+- type: marking
+  id: HumanHairBusiness2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: business2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: business2_secondary
+
+- type: marking
+  id: HumanHairBusiness3Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: business3
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: business3_secondary
+
+- type: marking
+  id: HumanHairBusiness4Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: business4
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: business4_secondary
+
+- type: marking
+  id: HumanHairBuzzcutGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: buzzcut
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: buzzcut_secondary
+
+- type: marking
+  id: HumanHairCiaGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: cia
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: cia_secondary
+
+- type: marking
+  id: HumanHairClassicAfroGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classicafro
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classicafro_secondary
+
+- type: marking
+  id: HumanHairClassicBigAfroGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classicbigafro
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classicbigafro_secondary
+
+- type: marking
+  id: HumanHairClassicBusinessGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classicbusiness
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classicbusiness_secondary
+
+- type: marking
+  id: HumanHairClassicCiaGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classiccia
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classiccia_secondary
+
+- type: marking
+  id: HumanHairClassicCornrows2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classiccornrows2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classiccornrows2_secondary
+
+- type: marking
+  id: HumanHairClassicFloorlengthBedheadGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classicfloorlength_bedhead
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classicfloorlength_bedhead_secondary
+
+- type: marking
+  id: HumanHairClassicModernGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classicmodern
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classicmodern_secondary
+
+- type: marking
+  id: HumanHairClassicMulderGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classicmulder
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classicmulder_secondary
+
+- type: marking
+  id: HumanHairClassicWispGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classicwisp
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classicwisp_secondary
+
+- type: marking
+  id: HumanHairCoffeehouseGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: coffeehouse
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: coffeehouse_secondary
+
+- type: marking
+  id: HumanHairComboverGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: combover
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: combover_secondary
+
+- type: marking
+  id: HumanHairCornrowsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: cornrows
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: cornrows_secondary
+
+- type: marking
+  id: HumanHairCornrows2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: cornrows2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: cornrows2_secondary
+
+- type: marking
+  id: HumanHairCornrowbunGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: cornrowbun
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: cornrowbun_secondary
+
+- type: marking
+  id: HumanHairCornrowbraidGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: cornrowbraid
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: cornrowbraid_secondary
+
+- type: marking
+  id: HumanHairCornrowtailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: cornrowtail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: cornrowtail_secondary
+
+- type: marking
+  id: HumanHairCrewcutGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: crewcut
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: crewcut_secondary
+
+- type: marking
+  id: HumanHairCrewcut2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: crewcut2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: crewcut2_secondary
+
+- type: marking
+  id: HumanHairCurlsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: curls
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: curls_secondary
+
+- type: marking
+  id: HumanHairCGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: c
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: c_secondary
+
+- type: marking
+  id: HumanHairDandypompadourGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: dandypompadour
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: dandypompadour_secondary
+
+- type: marking
+  id: HumanHairDevilockGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: devilock
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: devilock_secondary
+
+- type: marking
+  id: HumanHairDoublebunGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: doublebun
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: doublebun_secondary
+
+- type: marking
+  id: HumanHairDoublebunLongGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+  - sprite: Mobs/Customization/human_hair.rsi
+    state: doublebun_long
+  - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+    state: doublebun_long_secondary
+
+- type: marking
+  id: HumanHairDreadsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: dreads
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: dreads_secondary
+
+- type: marking
+  id: HumanHairDrillruruGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: drillruru
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: drillruru_secondary
+
+- type: marking
+  id: HumanHairDrillhairextendedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: drillhairextended
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: drillhairextended_secondary
+
+- type: marking
+  id: HumanHairEmoGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: emo
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: emo_secondary
+
+- type: marking
+  id: HumanHairEmofringeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: emofringe
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: emofringe_secondary
+
+- type: marking
+  id: HumanHairNofadeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: nofade
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: nofade_secondary
+
+- type: marking
+  id: HumanHairHighfadeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: highfade
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: highfade_secondary
+
+- type: marking
+  id: HumanHairMedfadeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: medfade
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: medfade_secondary
+
+- type: marking
+  id: HumanHairLowfadeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: lowfade
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: lowfade_secondary
+
+- type: marking
+  id: HumanHairBaldfadeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: baldfade
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: baldfade_secondary
+
+- type: marking
+  id: HumanHairFeatherGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: feather
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: feather_secondary
+
+- type: marking
+  id: HumanHairFatherGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: father
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: father_secondary
+
+- type: marking
+  id: HumanHairSargeantGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: sargeant
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: sargeant_secondary
+
+- type: marking
+  id: HumanHairFlairGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: flair
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: flair_secondary
+
+- type: marking
+  id: HumanHairBigflattopGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bigflattop
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bigflattop_secondary
+
+- type: marking
+  id: HumanHairFlowGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: f
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: f_secondary
+
+- type: marking
+  id: HumanHairGelledGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: gelled
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: gelled_secondary
+
+- type: marking
+  id: HumanHairGentleGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: gentle
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: gentle_secondary
+
+- type: marking
+  id: HumanHairHalfbangGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: halfbang
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfbang_secondary
+
+- type: marking
+  id: HumanHairHalfbang2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: halfbang2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfbang2_secondary
+
+- type: marking
+  id: HumanHairHalfshavedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: halfshaved
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshaved_secondary
+
+- type: marking
+  id: HumanHairHedgehogGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: hedgehog
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: hedgehog_secondary
+
+- type: marking
+  id: HumanHairHimecutGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: himecut
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: himecut_secondary
+
+- type: marking
+  id: HumanHairHimecut2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: himecut2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: himecut2_secondary
+
+- type: marking
+  id: HumanHairShorthimeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shorthime
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shorthime_secondary
+
+- type: marking
+  id: HumanHairHimeupGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: himeup
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: himeup_secondary
+
+- type: marking
+  id: HumanHairHitopGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: hitop
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: hitop_secondary
+
+- type: marking
+  id: HumanHairJadeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: jade
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: jade_secondary
+
+- type: marking
+  id: HumanHairJensenGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: jensen
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: jensen_secondary
+
+- type: marking
+  id: HumanHairJoestarGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: joestar
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: joestar_secondary
+
+- type: marking
+  id: HumanHairKeanuGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: keanu
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: keanu_secondary
+
+- type: marking
+  id: HumanHairKusanagiGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: kusanagi
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: kusanagi_secondary
+
+- type: marking
+  id: HumanHairLongGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: long
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: long_secondary
+
+- type: marking
+  id: HumanHairLong2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: long2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: long2_secondary
+
+- type: marking
+  id: HumanHairLong3Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: long3
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: long3_secondary
+
+- type: marking
+  id: HumanHairLongWithBundlesGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longbundled
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longbundled_secondary
+
+- type: marking
+  id: HumanHairLongovereyeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longovereye
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longovereye_secondary
+
+- type: marking
+  id: HumanHairLbangsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: lbangs
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: lbangs_secondary
+
+- type: marking
+  id: HumanHairLongemoGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longemo
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longemo_secondary
+
+- type: marking
+  id: HumanHairLongfringeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longfringe
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longfringe_secondary
+
+- type: marking
+  id: HumanHairLongsidepartGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longsidepart
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longsidepart_secondary
+
+- type: marking
+  id: HumanHairMegaeyebrowsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: megaeyebrows
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: megaeyebrows_secondary
+
+- type: marking
+  id: HumanHairMessyGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: messy
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: messy_secondary
+
+- type: marking
+  id: HumanHairModernGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: modern
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: modern_secondary
+
+- type: marking
+  id: HumanHairMohawkGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: d
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: d_secondary
+
+- type: marking
+  id: HumanHairNitoriGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: nitori
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: nitori_secondary
+
+- type: marking
+  id: HumanHairReversemohawkGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: reversemohawk
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: reversemohawk_secondary
+
+- type: marking
+  id: HumanHairUnshavenMohawkGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: unshaven_mohawk
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: unshaven_mohawk_secondary
+
+- type: marking
+  id: HumanHairMulderGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: mulder
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: mulder_secondary
+
+- type: marking
+  id: HumanHairOdangoGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: odango
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: odango_secondary
+
+- type: marking
+  id: HumanHairOmbreGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ombre
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ombre_secondary
+
+- type: marking
+  id: HumanHairOneshoulderGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: oneshoulder
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: oneshoulder_secondary
+
+- type: marking
+  id: HumanHairShortovereyeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shortovereye
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shortovereye_secondary
+
+- type: marking
+  id: HumanHairOxtonGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: oxton
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: oxton_secondary
+
+- type: marking
+  id: HumanHairPartedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: parted
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: parted_secondary
+
+- type: marking
+  id: HumanHairPartGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: part
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: part_secondary
+
+- type: marking
+  id: HumanHairKagamiGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: kagami
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: kagami_secondary
+
+- type: marking
+  id: HumanHairPigtailsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: pigtails
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: pigtails_secondary
+
+- type: marking
+  id: HumanHairPigtails2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: pigtails2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: pigtails2_secondary
+
+- type: marking
+  id: HumanHairPixieGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: pixie
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: pixie_secondary
+
+- type: marking
+  id: HumanHairPompadourGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: pompadour
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: pompadour_secondary
+
+- type: marking
+  id: HumanHairBigpompadourGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bigpompadour
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bigpompadour_secondary
+
+- type: marking
+  id: HumanHairPonytailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ponytail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytail_secondary
+
+- type: marking
+  id: HumanHairPonytail2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ponytail2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytail2_secondary
+
+- type: marking
+  id: HumanHairPonytail3Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ponytail3
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytail3_secondary
+
+- type: marking
+  id: HumanHairPonytail4Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ponytail4
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytail4_secondary
+
+- type: marking
+  id: HumanHairPonytail5Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ponytail5
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytail5_secondary
+
+- type: marking
+  id: HumanHairPonytail6Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ponytail6
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytail6_secondary
+
+- type: marking
+  id: HumanHairPonytail7Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ponytail7
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytail7_secondary
+
+- type: marking
+  id: HumanHairHighponytailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: highponytail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: highponytail_secondary
+
+- type: marking
+  id: HumanHairStailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: stail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: stail_secondary
+
+- type: marking
+  id: HumanHairLongstraightponytailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longstraightponytail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longstraightponytail_secondary
+
+- type: marking
+  id: HumanHairCountryGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: country
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: country_secondary
+
+- type: marking
+  id: HumanHairFringetailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: fringetail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: fringetail_secondary
+
+- type: marking
+  id: HumanHairSidetailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: sidetail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: sidetail_secondary
+
+- type: marking
+  id: HumanHairSidetail2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: sidetail2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: sidetail2_secondary
+
+- type: marking
+  id: HumanHairSidetail3Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: sidetail3
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: sidetail3_secondary
+
+- type: marking
+  id: HumanHairSidetail4Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: sidetail4
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: sidetail4_secondary
+
+- type: marking
+  id: HumanHairSpikyponytailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: spikyponytail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: spikyponytail_secondary
+
+- type: marking
+  id: HumanHairPoofyGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: poofy
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: poofy_secondary
+
+- type: marking
+  id: HumanHairQuiffGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: quiff
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: quiff_secondary
+
+- type: marking
+  id: HumanHairRoninGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ronin
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ronin_secondary
+
+- type: marking
+  id: HumanHairShavedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shaved
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shaved_secondary
+
+- type: marking
+  id: HumanHairShavedpartGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shavedpart
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shavedpart_secondary
+
+- type: marking
+  id: HumanHairShortbangsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shortbangs
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shortbangs_secondary
+
+- type: marking
+  id: HumanHairAGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: a
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: a_secondary
+
+- type: marking
+  id: HumanHairShorthair2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shorthair2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shorthair2_secondary
+
+- type: marking
+  id: HumanHairShorthair3Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shorthair3
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shorthair3_secondary
+
+- type: marking
+  id: HumanHairDGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: d
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: d_secondary
+
+- type: marking
+  id: HumanHairEGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: e
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: e_secondary
+
+- type: marking
+  id: HumanHairFGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: f
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: f_secondary
+
+- type: marking
+  id: HumanHairShorthairgGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shorthairg
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shorthairg_secondary
+
+- type: marking
+  id: HumanHair80sGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: 80s
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: 80s_secondary
+
+- type: marking
+  id: HumanHairRosaGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: rosa
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: rosa_secondary
+
+- type: marking
+  id: HumanHairBGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: b
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: b_secondary
+
+- type: marking
+  id: HumanHairSidecutGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: sidecut
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: sidecut_secondary
+
+- type: marking
+  id: HumanHairSkinheadGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: skinhead
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: skinhead_secondary
+
+- type: marking
+  id: HumanHairProtagonistGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: protagonist
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: protagonist_secondary
+
+- type: marking
+  id: HumanHairSpikeyGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: spikey
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: spikey_secondary
+
+- type: marking
+  id: HumanHairSpikyGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: spiky
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: spiky_secondary
+
+- type: marking
+  id: HumanHairSpiky2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: spiky2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: spiky2_secondary
+
+- type: marking
+  id: HumanHairSpookyLongGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: spookylong
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: spookylong_secondary
+
+- type: marking
+  id: HumanHairSweptGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: swept
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: swept_secondary
+
+- type: marking
+  id: HumanHairSwept2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: swept2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: swept2_secondary
+
+- type: marking
+  id: HumanHairThinningGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: thinning
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: thinning_secondary
+
+- type: marking
+  id: HumanHairThinningfrontGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: thinningfront
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: thinningfront_secondary
+
+- type: marking
+  id: HumanHairThinningrearGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: thinningrear
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: thinningrear_secondary
+
+- type: marking
+  id: HumanHairTopknotGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: topknot
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: topknot_secondary
+
+- type: marking
+  id: HumanHairTressshoulderGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: tressshoulder
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: tressshoulder_secondary
+
+- type: marking
+  id: HumanHairTrimmedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: trimmed
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: trimmed_secondary
+
+- type: marking
+  id: HumanHairTrimflatGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: trimflat
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: trimflat_secondary
+
+- type: marking
+  id: HumanHairTwintailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: twintail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: twintail_secondary
+
+- type: marking
+  id: HumanHairTwoStrandsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: twostrands
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: twostrands_secondary
+
+- type: marking
+  id: HumanHairUndercutGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: undercut
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: undercut_secondary
+
+- type: marking
+  id: HumanHairUndercutleftGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: undercutleft
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: undercutleft_secondary
+
+- type: marking
+  id: HumanHairUndercutrightGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: undercutright
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: undercutright_secondary
+
+- type: marking
+  id: HumanHairUnkeptGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: unkept
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: unkept_secondary
+
+- type: marking
+  id: HumanHairUpdoGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: updo
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: updo_secondary
+
+- type: marking
+  id: HumanHairVlongGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: vlong
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: vlong_secondary
+
+- type: marking
+  id: HumanHairLongestGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longest
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longest_secondary
+
+- type: marking
+  id: HumanHairLongest2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longest2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longest2_secondary
+
+- type: marking
+  id: HumanHairVeryshortovereyealternateGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: veryshortovereyealternate
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: veryshortovereyealternate_secondary
+
+- type: marking
+  id: HumanHairVlongfringeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: vlongfringe
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: vlongfringe_secondary
+
+- type: marking
+  id: HumanHairVolajuGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: volaju
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: volaju_secondary
+
+- type: marking
+  id: HumanHairWispGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: wisp
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: wisp_secondary
+
+- type: marking
+  id: HumanHairUnevenGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: uneven
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: uneven_secondary
+
+- type: marking
+  id: HumanHairTailedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: tailed
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: tailed_secondary
+
+- type: marking
+  id: HumanHairClassicLong2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classiclong2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classiclong2_secondary
+
+- type: marking
+  id: HumanHairClassicLong3Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classiclong3
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: classiclong3_secondary
+
+- type: marking
+  id: HumanHairShapedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shaped
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shaped_secondary
+
+- type: marking
+  id: HumanHairLongBowGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longbow
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longbow_secondary
+
+- type: marking
+  id: HumanHairAfricanPigtailsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: africanpigtails
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: africanpigtails_secondary
+
+- type: marking
+  id: HumanHairAfropuffdoubleGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffdouble
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffdouble_secondary
+
+- type: marking
+  id: HumanHairAfropuffleftGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffleft
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffleft_secondary
+
+- type: marking
+  id: HumanHairAfropuffrightGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffright
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffright_secondary
+
+- type: marking
+  id: HumanHairAmazonGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: amazon
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: amazon_secondary
+
+- type: marking
+  id: HumanHairAstolfoGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: astolfo
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: astolfo_secondary
+
+- type: marking
+  id: HumanHairBaumGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: baum
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: baum_secondary
+
+- type: marking
+  id: HumanHairBeachwaveGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: beachwave
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: beachwave_secondary
+
+- type: marking
+  id: HumanHairBluntbangsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bluntbangs
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bluntbangs_secondary
+
+- type: marking
+  id: HumanHairBluntbangsAltGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bluntbangs_alt
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bluntbangs_alt_secondary
+
+- type: marking
+  id: HumanHairBobcutAltGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bobcutalt
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bobcutalt_secondary
+
+- type: marking
+  id: HumanHairBunhead4Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bunhead4
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bunhead4_secondary
+
+- type: marking
+  id: HumanHairCombedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: combed
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: combed_secondary
+
+- type: marking
+  id: HumanHairCombedbobGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: combedbob
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: combedbob_secondary
+
+- type: marking
+  id: HumanHairCottonGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: cotton
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: cotton_secondary
+
+- type: marking
+  id: HumanHairCurlyGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: curly
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: curly_secondary
+
+- type: marking
+  id: HumanHairDaveGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: dave
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: dave_secondary
+
+- type: marking
+  id: HumanHairDiagonalBangsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: diagonal_bangs
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: diagonal_bangs_secondary
+
+- type: marking
+  id: HumanHairEmoshortGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: emoshort
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: emoshort_secondary
+
+- type: marking
+  id: HumanHairFingerwaveGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: fingerwave
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: fingerwave_secondary
+
+- type: marking
+  id: HumanHairFluffyShortGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: fluffy_short
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: fluffy_short_secondary
+
+- type: marking
+  id: HumanHairFortunetellerGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: fortuneteller
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: fortuneteller_secondary
+
+- type: marking
+  id: HumanHairFortunetellerAltGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: fortuneteller_alt
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: fortuneteller_alt_secondary
+
+- type: marking
+  id: HumanHairFroofylongGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: froofylong
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: froofylong_secondary
+
+- type: marking
+  id: HumanHairGeishaGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: geisha
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: geisha_secondary
+
+- type: marking
+  id: HumanHairGentle21Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: gentle21
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: gentle21_secondary
+
+- type: marking
+  id: HumanHairGlammetalGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: glammetal
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: glammetal_secondary
+
+- type: marking
+  id: HumanHairGloomyLongGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: gloomy_long
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: gloomy_long_secondary
+
+- type: marking
+  id: HumanHairGloomyMediumGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: gloomy_medium
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: gloomy_medium_secondary
+
+- type: marking
+  id: HumanHairGrandeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: grande
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: grande_secondary
+
+- type: marking
+  id: HumanHairHalfshaveGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_secondary
+
+- type: marking
+  id: HumanHairHalfshaveglamorousGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_glamorous
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_glamorous_secondary
+
+- type: marking
+  id: HumanHairHalfshaveLongGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_long
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_long_secondary
+
+- type: marking
+  id: HumanHairHalfshaveMessyGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_messy
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_messy_secondary
+
+- type: marking
+  id: HumanHairHalfshaveMessyLongGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_messylong
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_messylong_secondary
+
+- type: marking
+  id: HumanHairHalfshaveSnoutGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_snout
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_snout_secondary
+
+- type: marking
+  id: HumanHairHightightGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: hightight
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: hightight_secondary
+
+- type: marking
+  id: HumanHairHyenamaneGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: hyenamane
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: hyenamane_secondary
+
+- type: marking
+  id: HumanHairJessicaGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: jessica
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: jessica_secondary
+
+- type: marking
+  id: HumanHairLong4Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: long4
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: long4_secondary
+
+- type: marking
+  id: HumanHairLongdtailsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longdtails
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longdtails_secondary
+
+- type: marking
+  id: HumanHairLongerAltGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longeralt
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longeralt_secondary
+
+- type: marking
+  id: HumanHairLongovereyeAltGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longovereye_alt
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longovereye_alt_secondary
+
+- type: marking
+  id: HumanHairLongsidepartstraightGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longsidepartstraight
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longsidepartstraight_secondary
+
+- type: marking
+  id: HumanHairLooseSlickedGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: loose_slicked
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: loose_slicked_secondary
+
+- type: marking
+  id: HumanHairMediumbraidGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: mediumbraid
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: mediumbraid_secondary
+
+- type: marking
+  id: HumanHairNewyouGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: newyou
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: newyou_secondary
+
+- type: marking
+  id: HumanHairPonytailAltGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytailalt
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytailalt_secondary
+
+- type: marking
+  id: HumanHairPonytailFGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytailf
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytailf_secondary
+
+- type: marking
+  id: HumanHairPoofy2Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: poofy2
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: poofy2_secondary
+
+- type: marking
+  id: HumanHairQuadcurlsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: quadcurls
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: quadcurls_secondary
+
+- type: marking
+  id: HumanHairSabitsukiGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: sabitsuki
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: sabitsuki_secondary
+
+- type: marking
+  id: HumanHairScullyGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: scully
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: scully_secondary
+
+- type: marking
+  id: HumanHairShorthair4Gradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shorthair4
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shorthair4_secondary
+
+- type: marking
+  id: HumanHairShyGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shy
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shy_secondary
+
+- type: marking
+  id: HumanHairSimplePonytailGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: simple_ponytail
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: simple_ponytail_secondary
+
+- type: marking
+  id: HumanHairSleazeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: sleaze
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: sleaze_secondary
+
+- type: marking
+  id: HumanHairSlightlyMessyGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slightlymessy
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slightlymessy_secondary
+
+- type: marking
+  id: HumanHairSlimedropletGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimedroplet
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimedroplet_secondary
+
+- type: marking
+  id: HumanHairSlimedropletAltGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimedroplet_alt
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimedroplet_alt_secondary
+
+- type: marking
+  id: HumanHairSlimespikesGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimespikes
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimespikes_secondary
+
+- type: marking
+  id: HumanHairSlimetendrilsGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimetendrils
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimetendrils_secondary
+
+- type: marking
+  id: HumanHairSlimetendrilsAltGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimetendrils_alt
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimetendrils_alt_secondary
+
+- type: marking
+  id: HumanHairSpicyGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: spicy
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: spicy_secondary
+
+- type: marking
+  id: HumanHairTwintailFloorGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: twintail_floor
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: twintail_floor_secondary
+
+- type: marking
+  id: HumanHairVeryshortovereyeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: veryshortovereye
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: veryshortovereye_secondary
+
+- type: marking
+  id: HumanHairVictoryGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: victory
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: victory_secondary
+
+- type: marking
+  id: HumanHairViperGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: viper
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: viper_secondary
+
+- type: marking
+  id: HumanHairWifeGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: wife
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: wife_secondary
+
+- type: marking
+  id: HumanHairZieglerGradient
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ziegler
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ziegler_secondary
+
+# Mixed Color
+- type: marking
+  id: HumanHairNitoriTwo
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: nitori
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: nitori_secondary_alt
+
+- type: marking
+  id: HumanHairNitoriHarley
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: nitori
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: nitori_secondary_alt1
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: nitori_secondary_alt2

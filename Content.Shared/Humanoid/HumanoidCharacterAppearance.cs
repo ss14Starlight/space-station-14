@@ -15,7 +15,8 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     public string HairStyleId { get; set; } = HairStyles.DefaultHairStyle;
 
     [DataField]
-    public Color HairColor { get; set; } = Color.Black;
+    public List<Color> HairColor { get; set; } = new() { Color.Black }; // Corvax-Wega-Hair-Extended
+
     [DataField]
     public bool HairGlowing { get; set; } = false; //starlight
 
@@ -45,7 +46,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     public float Height { get; set; } = 1f; //starlight
 
     public HumanoidCharacterAppearance(string hairStyleId,
-        Color hairColor,
+        List<Color> hairColor, // Corvax-Wega-Hair-Extended
         bool hairGlowing, //starlight
         string facialHairStyleId,
         Color facialHairColor,
@@ -58,7 +59,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         float height) //starlight
     {
         HairStyleId = hairStyleId;
-        HairColor = ClampColor(hairColor);
+        HairColor = hairColor.Select(ClampColor).ToList(); // Corvax-Wega-Hair-Extended
         FacialHairStyleId = facialHairStyleId;
         FacialHairColor = ClampColor(facialHairColor);
         EyeColor = ClampColor(eyeColor);
@@ -85,7 +86,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     }
 
     // starlight, function changed to support glowing, size
-    public HumanoidCharacterAppearance WithHairColor(Color newColor)
+    public HumanoidCharacterAppearance WithHairColor(List<Color> newColor) // Corvax-Wega-Hair-Extended
     {
         return new(HairStyleId, newColor, HairGlowing, FacialHairStyleId, FacialHairColor, FacialHairGlowing, EyeColor, EyeGlowing, SkinColor, Markings, Width, Height);
     }
@@ -167,7 +168,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
 
         return new(
             HairStyles.DefaultHairStyle,
-            Color.Black,
+            new List<Color> { Color.Black }, // Corvax-Wega-Hair-Extended
             false, //starlight
             HairStyles.DefaultFacialHairStyle,
             Color.Black,
@@ -253,7 +254,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var newHeight = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
         //starlight end
 
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, false, newFacialHairStyle, newHairColor, false, newEyeColor, false, newSkinColor, new (), newWidth, newHeight); //starlight, glowing
+        return new HumanoidCharacterAppearance(newHairStyle, new List<Color> {newHairColor}, false, newFacialHairStyle, newHairColor, false, newEyeColor, false, newSkinColor, new (), newWidth, newHeight); //starlight - glowing Corvax-Wega-Hair-Extended - gradient hair
 
         float RandomizeColor(float channel)
         {
@@ -271,7 +272,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var hairStyleId = appearance.HairStyleId;
         var facialHairStyleId = appearance.FacialHairStyleId;
 
-        var hairColor = ClampColor(appearance.HairColor);
+        var hairColor = appearance.HairColor.Select(ClampColor).ToList(); // Corvax-Wega-Hair-Extended
         var facialHairColor = ClampColor(appearance.FacialHairColor);
         var eyeColor = ClampColor(appearance.EyeColor);
 
@@ -339,7 +340,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
     {
         if (maybeOther is not HumanoidCharacterAppearance other) return false;
         if (HairStyleId != other.HairStyleId) return false;
-        if (!HairColor.Equals(other.HairColor)) return false;
+        if (!HairColor.SequenceEqual(other.HairColor)) return false; // Corvax-Wega-Hair-Extended
         if (HairGlowing != other.HairGlowing) return false; //starlight
         if (FacialHairStyleId != other.FacialHairStyleId) return false;
         if (!FacialHairColor.Equals(other.FacialHairColor)) return false;

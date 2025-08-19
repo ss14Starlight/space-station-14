@@ -19,7 +19,7 @@
 
         <CheckBox Name="Glowing" Text="{Loc 'marking-glowing'}" /> <!-- Starlight -->
         <!-- Color sliders -->
-        <ScrollContainer MinHeight="200" HorizontalExpand="True">
+        <ScrollContainer MinHeight="300" HorizontalExpand="True"> <!-- Corvax-Wega-Hair-Extended -->
             <BoxContainer Name="ColorSelectorContainer" HorizontalExpand="True" />
         </ScrollContainer>
     </BoxContainer>
