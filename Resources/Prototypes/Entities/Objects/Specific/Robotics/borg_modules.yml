@@ -744,8 +744,8 @@
     - BorgVial
     - BorgVial
     - BorgVial
-    - BorgSyringeTricordrazineRegenerative
-    - BorgSyringeInaprovalineRegenerative
+    - BorgSyringeTricordrazineRegenerative # Starlight-edit
+    - BorgSyringeInaprovalineRegenerative # Starlight-edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
