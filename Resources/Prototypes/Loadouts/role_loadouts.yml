@@ -381,6 +381,7 @@
   - Trinkets
   - SecurityStar
   - GroupSpeciesBreathToolSecurity
+  - WardenSidearm
 
 - type: roleLoadout
   id: JobSecurityOfficer

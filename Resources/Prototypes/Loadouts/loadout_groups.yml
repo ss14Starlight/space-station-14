@@ -1132,6 +1132,13 @@
   - WardenHead
   - WardenBeret
 
+- type: loadoutGroup # Starlight comment moment
+  id: WardenSidearm
+  name: Loadout-group-warden-Sidearm 
+  minLimit: 1
+  loadouts:
+  - EnergyMagnumGunLoadout # Starlight comment moment
+
 - type: loadoutGroup
   id: WardenJumpsuit
   name: loadout-group-warden-jumpsuit
