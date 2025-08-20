@@ -218,8 +218,7 @@
         Heat: 0.6
         Radiation: 0.6
         Caustic: 0.6
-    staminaModifier: 0.4 # SL: Improved stun resistance
-    ingoreKnockdown: true
+    staminaModifier: 0.3
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: ToggleClothing
@@ -302,8 +301,7 @@
         Heat: 0.35
         Radiation: 0.1
         Caustic: 0.4
-    staminaModifier: 1 #Intended weakness
-    ingoreKnockdown: false #Major weakness
+    staminaModifier: 1
   - type: ClothingSpeedModifier
     walkModifier: 0.90
     sprintModifier: 0.90
