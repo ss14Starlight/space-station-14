@@ -43,7 +43,6 @@ public abstract class SharedArmorSystem : EntitySystem
         args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers, args.Args.ArmorPenetration, args.Args.CanHeal); // 🌟Starlight🌟
     }
 
-
     private void OnBorgDamageModify(EntityUid uid, ArmorComponent component,
         ref BorgModuleRelayedEvent<DamageModifyEvent> args)
     {
