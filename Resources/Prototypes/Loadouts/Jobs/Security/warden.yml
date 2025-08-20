@@ -31,9 +31,10 @@
   equipment:
     outerClothing: ClothingOuterWinterWarden
 
-# WardenSidearm
+# WardenSidearm Starlight comment start
 - type: loadout
   id: EnergyMagnumGunLoadout
   storage:
     back:
     - WeaponEnergyMagnumGun
+    # Starlight Comment End
