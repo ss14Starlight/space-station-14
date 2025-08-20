@@ -446,6 +446,7 @@
     items:
     - BorgFireExtinguisher
     - BorgHandheldGPSBasic
+    - HandheldStationMapUnpowered
     - HandHeldMassScannerBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: extinguisher-module }
@@ -674,6 +675,7 @@
   id: BorgModuleDiagnosis # todo: reuse when med refractor is finished
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
   name: diagnosis cyborg module
+  suffix: DO NOT USE
   components:
   - type: Sprite
     layers:
@@ -720,6 +722,7 @@
     items:
     - HandheldHealthAnalyzerUnpowered
     - DefibrillatorOneHandedUnpowered
+    - ClothingNeckStethoscope
     - BorgFireExtinguisher
     - BorgHandheldGPSBasic
     - HandLabeler
@@ -760,6 +763,8 @@
     items:
     - HandheldHealthAnalyzerUnpowered
     - BorgHypo
+    - AutoMenderBrute
+    - AutoMenderBurn
     - Syringe
     - BorgDropper
     - BorgBeaker
@@ -935,6 +940,8 @@
       - state: base-part-inhand-right
       - state: base-stripes-inhand-right
         color: "#7B0F12"
+  - type: StaticPrice
+    price: 2500
 
 - type: entity
   id: BorgModuleOperative
@@ -1022,6 +1029,8 @@
         - state: base-part-inhand-right
         - state: base-stripes-inhand-right
           color: "#7B0F12"
+    - type: StaticPrice
+      price: 2000
 
 # xenoborg modules
 - type: entity

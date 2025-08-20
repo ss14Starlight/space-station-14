@@ -3,7 +3,7 @@
   id: Trinkets
   name: loadout-group-trinkets
   minLimit: 0
-  maxLimit: 4
+  maxLimit: 5
   loadouts:
   - FlowerWreath
   - Hairflower
@@ -65,7 +65,6 @@
   - HonkImplant #SL
   - TromboneImplant #SL
   - NewtonsCradle #SL
-  - POrb #SL
   - BBall #SL
   - RubberQuack #SL
   - GatchaBox #SL
@@ -83,6 +82,12 @@
   - PaperFolder6 #SL
   - PaperFolder7 #SL
   - PaperClipboard #SL
+  - HonoredClownMask #SL
+  - MedRollies #SL
+  - RollerSkates #SL
+  - DaBling #SL
+  - CrapPlushie #SL ##not a typo
+  - LighterGatcha #SL
 
 - type: loadoutGroup
   id: Glasses
@@ -171,6 +176,7 @@
   - CaptainBackpack
   - CaptainSatchel
   - CaptainDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: CaptainOuterClothing
@@ -216,6 +222,7 @@
   - CommonSatchel
   - CommonDuffel
   - HoPBackpackIan
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: HoPOuterClothing
@@ -236,6 +243,46 @@
   - RainbowJumpskirt
   - GreyJumpsuit #starlight
   - GreyJumpskirt #starlight
+  - WhiteJumpsuitLoadout #SL
+  - WhiteJumpskirtLoadout #SL
+  - BlackJumpsuitLoadout #SL
+  - BlackJumpskirtLoadout #SL
+  - BlueJumpsuitLoadout #SL
+  - BlueJumpskirtLoadout #SL
+  - DarkBlueJumpsuitLoadout #SL
+  - DarkBlueJumpskirtLoadout #SL
+  - TealJumpsuitLoadout #SL
+  - TealJumpskirtLoadout #SL
+  - GreenJumpsuitLoadout #SL
+  - GreenJumpskirtLoadout #SL
+  - DarkGreenJumpsuitLoadout #SL
+  - DarkGreenJumpskirtLoadout #SL
+  - OrangeJumpsuitLoadout #SL
+  - OrangeJumpskirtLoadout #SL
+  - PinkJumpsuitLoadout #SL
+  - PinkJumpskirtLoadout #SL
+  - RedJumpsuitLoadout #SL
+  - RedJumpskirtLoadout #SL
+  - YellowJumpsuitLoadout #SL
+  - YellowJumpskirtLoadout #SL
+  - PurpleJumpsuitLoadout #SL
+  - PurpleJumpskirtLoadout #SL
+  - LightBrownJumpsuitLoadout #SL
+  - LightBrownJumpskirtLoadout #SL
+  - BrownJumpsuitLoadout #SL
+  - BrownJumpskirtLoadout #SL
+  - MaroonJumpsuitLoadout #SL
+  - MaroonJumpskirtLoadout #SL
+  - BodysuitJeans #SL
+  - CoolTanktop #SL
+  - LumberjackOveralls #SL
+  - MechanicOveralls #SL
+  - MessyDressShirt #SL
+  - OldWomanDress #SL
+  - PunkJeans #SL
+  - TatteredClothes #SL
+  - TieDye #SL
+  - VintageClothes #SL
 
 - type: loadoutGroup
   id: AssistantFace
@@ -252,7 +299,7 @@
   loadouts:
   - AssistantGloves
   - GreyGloves #starlight
-  
+
 - type: loadoutGroup
   id: CommonBackpack
   name: loadout-group-backpack
@@ -260,6 +307,7 @@
   - CommonBackpack
   - CommonSatchel
   - CommonDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: AssistantNeck
@@ -277,6 +325,7 @@
   - GreyHoodieA #starlight
   - GreyTrenchcoatA #starlight
   - SpaceAssholeCoat #starlight
+  - RedLeatherJacker #SL
 
 - type: loadoutGroup
   id: AssistantShoes
@@ -286,6 +335,7 @@
   - BrownShoes
   - WhiteShoes
   - WinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: BartenderHead
@@ -418,6 +468,17 @@
   - ChaplainNeck
 
 - type: loadoutGroup
+  id: ChaplainBible
+  name: loadout-group-chaplain-bible
+  minLimit: 1
+  loadouts:
+  - Bible
+  - BibleDruid
+  - BibleNanoTrasen
+  - BibleSatanic
+  - BibleTanakh
+
+- type: loadoutGroup
   id: JanitorHead
   name: loadout-group-janitor-head
   minLimit: 0
@@ -477,6 +538,7 @@
   - BotanistBackpack
   - BotanistSatchel
   - BotanistDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: BotanistOuterClothing
@@ -510,6 +572,7 @@
   - ClownBackpack
   - ClownSatchel
   - ClownDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: ClownOuterClothing
@@ -568,6 +631,7 @@
   - MimeBackpack
   - MimeSatchel
   - MimeDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: MimeOuterClothing
@@ -687,6 +751,7 @@
   - SalvageBoots # 🌟Starlight🌟
   - WorkBoots # 🌟Starlight🌟
   - CargoWinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: CargoTechnicianHead
@@ -709,6 +774,7 @@
   - CargoTechnicianBackpack
   - CargoTechnicianSatchel
   - CargoTechnicianDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: CargoTechnicianOuterClothing
@@ -726,6 +792,7 @@
   - CargoWinterBoots
   - LeatherShoes # 🌟Starlight🌟
   - WorkBoots # 🌟Starlight🌟
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SalvageSpecialistBackpack
@@ -734,6 +801,7 @@
   - SalvageSpecialistBackpack
   - SalvageSpecialistSatchel
   - SalvageSpecialistDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: SalvageSpecialistOuterClothing
@@ -749,6 +817,7 @@
   - SalvageBoots
   - CargoWinterBoots
   - WorkBoots # 🌟Starlight🌟
+  - HighHeelBoots # 🌟Starlight🌟
 
 # Engineering
 - type: loadoutGroup
@@ -790,6 +859,7 @@
   - BrownShoes
   - WorkBoots # 🌟Starlight🌟
   - EngineeringWinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: TechnicalAssistantJumpsuit
@@ -825,6 +895,7 @@
   - StationEngineerBackpack
   - StationEngineerSatchel
   - StationEngineerDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: StationEngineerOuterClothing
@@ -840,6 +911,7 @@
   loadouts:
   - WorkBoots
   - EngineeringWinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: StationEngineerID
@@ -870,6 +942,7 @@
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianSatchel
   - AtmosphericTechnicianDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: AtmosphericTechnicianShoes
@@ -878,6 +951,7 @@
   - WhiteShoes
   - WorkBoots # 🌟Starlight🌟
   - EngineeringWinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SurvivalExtended
@@ -967,6 +1041,7 @@
   - ScientistBackpack
   - ScientistSatchel
   - ScientistDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: ScientistOuterClothing
@@ -1033,6 +1108,8 @@
   - HeadofSecurityTurtleneckSkirt
   - HeadofSecurityFormalSuit
   - HeadofSecurityFormalSkirt
+  - HeadofSecurityBlueJumpsuit
+  - HeadofSecurityGreyJumpsuit
 
 - type: loadoutGroup
   id: HeadofSecurityNeck
@@ -1077,6 +1154,7 @@
   loadouts:
   - SecurityGlasses
   - SecurityHud
+  - DetectiveNoirGlasses
 
 - type: loadoutGroup
   id: BrigmedicHead
@@ -1103,6 +1181,7 @@
   - BrigmedicBackpack
   - BrigmedicSatchel
   - BrigmedicDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: BrigmedicOuterClothing
@@ -1160,6 +1239,7 @@
   - SeniorOfficerJumpsuit
   - SeniorOfficerJumpskirt
   - TrooperUniform
+  - SecurityJumpsuitBlue
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -1168,6 +1248,7 @@
   - SecurityBackpack
   - SecuritySatchel
   - SecurityDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: SecurityBelt
@@ -1193,7 +1274,7 @@
   loadouts:
   - JackBoots
   - SecurityWinterBoots
-  - HighHeelBoots # 🌟Starlight🌟
+  - HighHeelBootsFilled # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SecurityPDA
@@ -1345,6 +1426,7 @@
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: MedicalShoes
@@ -1408,6 +1490,7 @@
   - ChemistBackpack
   - ChemistSatchel
   - ChemistDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: ParamedicHead
@@ -1438,6 +1521,7 @@
   - BlueShoes
   - WhiteShoes
   - MedicalWinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MedicalEyewear

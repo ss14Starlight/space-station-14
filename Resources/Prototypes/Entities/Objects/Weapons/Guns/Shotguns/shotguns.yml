@@ -111,6 +111,8 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: StaticPrice
+    price: 5000
 
 - type: entity
   name: double-barreled shotgun
@@ -129,6 +131,8 @@
   - type: Gun
     spread: 10
     fireRate: 3
+  - type: GunSpreadModifier
+    spread: 0.6
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -212,6 +216,8 @@
   - type: Gun
     spread: 40
     fireRate: 3
+  - type: GunSpreadModifier
+    spread: 1.4
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
