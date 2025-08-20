@@ -219,7 +219,6 @@
         Radiation: 0.6
         Caustic: 0.6
     staminaModifier: 0.3
-    ingoreKnockdown: true
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: ToggleClothing

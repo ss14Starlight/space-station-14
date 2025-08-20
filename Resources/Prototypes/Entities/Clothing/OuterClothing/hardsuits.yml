@@ -832,6 +832,8 @@
         Caustic: 0.4
     staminaModifier: 0.4 # SL: Improved stun resistance
     ingoreKnockdown: true
+    staminaModifier: 0.1
+
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
@@ -1306,7 +1308,6 @@
         Piercing: 0.9
         Caustic: 0.8
     staminaModifier: 0.8
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
