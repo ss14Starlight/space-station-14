@@ -1,10 +1,30 @@
 - type: latheRecipe
   id: SwordFlamingTA
   result: SwordFlaming
-  completetime: 1500
+  completetime: 1000
   materials:
      Steel: 250
      Glass: 500
      Plastic: 350
      Cloth: 300
      Plasteel: 1100
+
+- type: latheRecipe
+  id: HelmetForgedTA
+  result: UnfinishedClothingHeadHelmetForged
+  completetime: 300
+  materials:
+     Steel: 400
+     Plastic: 150
+     Cloth: 300
+     Plasteel: 200
+
+- type: latheRecipe
+  id: OmnitoolForgedTA
+  result: UnfinishedForgedOmnitool
+  completetime: 1350
+  materials:
+     Steel: 1400
+     Glass: 50
+     Plastic: 200
+     Plasteel: 350
