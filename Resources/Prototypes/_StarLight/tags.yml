@@ -184,6 +184,9 @@
   id: Table
 
 - type: Tag
+  id: TiderAnvilParts
+
+- type: Tag
   id: SecuredLocker
 
 - type: Tag
