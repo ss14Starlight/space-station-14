@@ -160,7 +160,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentMorgueReport
-  name: Morgue Report
+  name: Morgue report
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
