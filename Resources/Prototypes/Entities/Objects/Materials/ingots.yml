@@ -14,6 +14,7 @@
   - type: Tag
     tags:
     - Ingot
+    - TiderAnvilParts #SL
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
