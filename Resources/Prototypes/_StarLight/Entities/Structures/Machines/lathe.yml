@@ -41,7 +41,7 @@
   id: TideLathe
   parent: BaseLatheFuel
   name: tider's anvil
-  description: It produces basic items using metal and glass. Has the ability to process blueprints to print new recipes.
+  description: Every maints blacksmith's dream, a forge for producing gear in bulk.
   components:
   - type: Sprite
     sprite: Structures/Machines/autolathe.rsi
