@@ -14,8 +14,11 @@ doc-text-printer-morgue-report =
     Position of Document Compiler:
     
     Name:
+
     Job/Occupation:
+
     Approximate time of death/DNR approval:
+
     Reason for DNR status:
     
     ────────────────────────────────────────
