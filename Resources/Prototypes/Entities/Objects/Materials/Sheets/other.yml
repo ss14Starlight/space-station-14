@@ -110,6 +110,7 @@
   - type: Tag
     tags:
     - Sheet
+    - TiderAnvilParts #SL
 
 - type: entity
   parent: SheetPlasma
@@ -152,6 +153,7 @@
     tags:
     - Plastic
     - Sheet
+    - TiderAnvilParts #SL
   - type: Material
   - type: PhysicalComposition
     materialComposition:
