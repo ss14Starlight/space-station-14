@@ -157,6 +157,15 @@
     - type: Paper
       content: doc-text-printer-equipment-request-statement
       
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentMorgueReport
+  name: Morgue Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-morgue-report
+    
 # InquiriesAndAppeals
       
 - type: entity

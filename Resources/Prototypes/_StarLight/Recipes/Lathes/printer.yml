@@ -110,6 +110,17 @@
   materials:
     SheetPrinter: 100
     
+- type: latheRecipe
+  id: PrintedDocumentMorgueReportRecipe
+  result: PrintedDocumentMorgueReport
+  categories:
+  - Reports
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+ 
+    
 # Statements
 
 - type: latheRecipe

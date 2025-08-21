@@ -1,5 +1,31 @@
 # Reports
 
+doc-text-printer-morgue-report =
+   ⠀[logo]            [cclogo] 
+
+                             [head=3]NT-CC Consortium Services[/head]
+
+                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+   ⠀⠀                            [bold]MORGUE REPORT[/bold]
+    ────────────────────────────────────────
+    Time and Date:
+    Compiler of the document:
+    Position of Document Compiler:
+    
+    Patient Name:
+
+    Patient Job:
+
+    Approximate time of death/DNR approval:
+
+    Cause of Death/Unrecoverable state:
+
+    Reason for DNR status:
+    
+    ────────────────────────────────────────
+   ⠀                                    [italic]Place for stamps[/italic]
+
 doc-text-printer-report-station =
    ⠀[logo]            [cclogo] 
 
