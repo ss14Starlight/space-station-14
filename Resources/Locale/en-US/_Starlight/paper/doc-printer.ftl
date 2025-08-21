@@ -13,14 +13,9 @@ doc-text-printer-morgue-report =
     Compiler of the document:
     Position of Document Compiler:
     
-    Patient Name:
-
-    Patient Job:
-
+    Name:
+    Job/Occupation:
     Approximate time of death/DNR approval:
-
-    Cause of Death/Unrecoverable state:
-
     Reason for DNR status:
     
     ────────────────────────────────────────
