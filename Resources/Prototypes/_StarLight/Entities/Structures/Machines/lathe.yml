@@ -25,7 +25,7 @@
   - type: ReagentSpeed
     solution: fuel
     modifiers:
-      WeldingFuel: 0.05
+      WeldingFuel: 0.2
   - type: SolutionContainerManager
     solutions:
       fuel:
