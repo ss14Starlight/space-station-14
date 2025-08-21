@@ -38,7 +38,7 @@
     solution: fuel
 
 - type: entity
-  id: TideLathe
+  id: TiderLathe
   parent: BaseLatheFuel
   name: tider's anvil
   description: Every maints blacksmith's dream, a forge for producing gear in bulk.
