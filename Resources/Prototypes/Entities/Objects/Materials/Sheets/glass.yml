@@ -15,6 +15,7 @@
   - type: Tag
     tags:
     - Sheet
+    - TiderAnvilParts
   - type: Material
   - type: Damageable
     damageContainer: Inorganic
