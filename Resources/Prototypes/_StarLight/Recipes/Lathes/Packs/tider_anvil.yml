@@ -1,0 +1,9 @@
+- type: latheRecipePack
+  id: TiderAnvilStatic
+  recipes:
+  # forged
+  - test
+  # improvised
+  - 
+  # makeshift
+  - 
