@@ -28,3 +28,76 @@
      Glass: 50
      Plastic: 200
      Plasteel: 350
+
+- type: latheRecipe
+  id: PistolForgedTA
+  result: UnfinishedPistolForged
+  completetime: 450
+  materials:
+     Steel: 700
+     Wood: 350
+     Plastic: 50
+     Plasteel: 300
+
+- type: latheRecipe
+  id: RevolverForgedTA
+  result: UnfinishedRevolverForged
+  completetime: 950
+  materials:
+     Steel: 800
+     Wood: 350
+     Plastic: 50
+     Plasteel: 400
+
+- type: latheRecipe
+  id: BucklerForgedTA
+  result: UnfinishedForgedShieldBuckler
+  completetime: 350
+  materials:
+     Steel: 350
+     Plastic: 300
+     Cloth: 350
+     Plasteel: 300
+
+- type: latheRecipe
+  id: TowerForgedTA
+  result: UnfinishedForgedShieldTower
+  completetime: 1350
+  materials:
+     Steel: 1300
+     Glass: 300
+     Plastic: 450
+     Cloth: 600
+     Plasteel: 600
+
+- type: latheRecipe
+  id: ShotgunForgedTA
+  result: UnfinishedForgedShotgun
+  completetime: 450
+  materials:
+     Steel: 600
+     Wood: 350
+     Plastic: 50
+     Cloth: 200
+     Plasteel: 150
+
+- type: latheRecipe
+  id: SMGForgedTA
+  result: UnfinishedSubMachineGunForged
+  completetime: 1750
+  materials:
+     Steel: 150
+     Wood: 350
+     Plastic: 50
+     Plasteel: 750
+
+- type: latheRecipe
+  id: SniperForgedTA
+  result: UnfinishedSniperForged
+  completetime: 2000
+  materials:
+     Steel: 2100
+     Plastic: 50
+     Wood: 350
+     Plasteel: 1150
+
