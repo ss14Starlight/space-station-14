@@ -1,0 +1,10 @@
+- type: latheRecipe
+  id: SwordFlamingTA
+  result: SwordFlaming
+  completetime: 1500
+  materials:
+     Steel: 250
+     Glass: 500
+     Plastic: 350
+     Cloth: 300
+     Plasteel: 1100
