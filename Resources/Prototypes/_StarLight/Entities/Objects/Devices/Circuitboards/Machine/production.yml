@@ -43,3 +43,19 @@
     - type: Tag
       tags:
       - StoveMachineBoard
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AssortedForgeParts
+  name: assorted forge parts
+  description: A small pile of components for making a forge for an anvil, contains an igniter and valves.
+  components:
+  - type: MachineBoard
+    prototype: TiderLathe
+    stackRequirements:
+      Plasteel: 13
+      Steel: 5
+    tagRequirements:
+      GasTank:
+        amount: 2
+        defaultPrototype: OxygenTank
