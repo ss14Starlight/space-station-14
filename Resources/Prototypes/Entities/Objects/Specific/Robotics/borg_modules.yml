@@ -868,8 +868,8 @@
             whitelist:
               components:
                 - FitsInDispenser
-        - item: BorgSyringeTricordrazineRegenerative # Starlight-edit
-        - item: BorgSyringeInaprovalineRegenerative # Starlight-edit
+        - item: BorgSyringeTricordrazineRegenerative
+        - item: BorgSyringeInaprovalineRegenerative
     - type: BorgModuleIcon
       icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
