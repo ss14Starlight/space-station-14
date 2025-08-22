@@ -30,11 +30,3 @@
   id: WardenArmoredWinterCoat
   equipment:
     outerClothing: ClothingOuterWinterWarden
-
-# WardenSidearm Starlight comment start
-- type: loadout
-  id: EnergyMagnumGunLoadout
-  storage:
-    back:
-    - WeaponEnergyMagnumGun
-    # Starlight Comment End
