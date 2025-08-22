@@ -838,38 +838,40 @@
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
   name: chemical cyborg module
   components:
-  - type: Sprite
-    layers:
-    - state: medical
-    - state: icon-chem
-  - type: ItemBorgModule
-    hands:
-    - item: HandheldHealthAnalyzerUnpowered
-    - item: Syringe
-    - item: BorgDropper
-    - item: BaseChemistryEmptyVial
-      hand:
-        emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
-        whitelist:
-          components:
-          - FitsInDispenser
-    - item: BaseChemistryEmptyVial
-      hand:
-        emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
-        whitelist:
-          components:
-          - FitsInDispenser
-    - item: BaseChemistryEmptyVial
-      hand:
-        emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
-        whitelist:
-          components:
-          - FitsInDispenser
-  - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
+    - type: Sprite
+      layers:
+        - state: medical
+        - state: icon-chem
+    - type: ItemBorgModule
+      hands:
+        - item: HandheldHealthAnalyzerUnpowered
+        - item: Syringe
+        - item: BorgDropper
+        - item: BaseChemistryEmptyVial
+          hand:
+            emptyLabel: borg-slot-small-containers-empty
+            emptyRepresentative: BaseChemistryEmptyVial
+            whitelist:
+              components:
+                - FitsInDispenser
+        - item: BaseChemistryEmptyVial
+          hand:
+            emptyLabel: borg-slot-small-containers-empty
+            emptyRepresentative: BaseChemistryEmptyVial
+            whitelist:
+              components:
+                - FitsInDispenser
+        - item: BaseChemistryEmptyVial
+          hand:
+            emptyLabel: borg-slot-small-containers-empty
+            emptyRepresentative: BaseChemistryEmptyVial
+            whitelist:
+              components:
+                - FitsInDispenser
+        - item: BorgSyringeTricordrazineRegenerative # Starlight-edit
+        - item: BorgSyringeInaprovalineRegenerative # Starlight-edit
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
 - type: entity
   id: BorgModuleAdvancedChemical
