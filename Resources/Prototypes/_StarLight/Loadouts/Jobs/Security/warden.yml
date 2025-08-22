@@ -1,0 +1,6 @@
+- type: loadout
+  id: EnergyMagnumGunLoadout
+  storage:
+    back:
+    - WeaponEnergyMagnumGun
+    # made by scarlet!

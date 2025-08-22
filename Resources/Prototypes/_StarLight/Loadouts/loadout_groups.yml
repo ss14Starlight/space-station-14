@@ -248,3 +248,11 @@
   loadouts:
   - CombatBoots
   - HighHeelBootsFilled
+
+#  Made by scarlet!
+- type: loadoutGroup 
+  id: WardenSidearm
+  name: Loadout-group-warden-Sidearm 
+  minLimit: 1
+  loadouts:
+  - EnergyMagnumGunLoadout 
