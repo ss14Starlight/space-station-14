@@ -283,7 +283,6 @@
         - Plunger
         - GoldenPlunger
         - WireBrush
-        - AdvancedWireBrush #Starlight
       components:
         - LightReplacer
         - SmokeOnTrigger
