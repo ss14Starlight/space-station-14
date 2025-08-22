@@ -44,7 +44,7 @@
   description: Every maints blacksmith's dream, a forge for producing gear in bulk.
   components:
   - type: Sprite
-    sprite: Structures/Machines/autolathe.rsi
+    sprite: _Starlight/Structures/Machines/tider_anvil.rsi
     snapCardinals: true
     layers:
     - state: icon
@@ -62,6 +62,7 @@
     whitelist:
       tags:
         - TiderAnvilMats
+        - TiderAnvilParts
   - type: OreSiloClient
   - type: Lathe
     idleState: icon
