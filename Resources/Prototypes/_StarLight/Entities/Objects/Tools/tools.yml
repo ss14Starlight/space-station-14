@@ -891,3 +891,41 @@
       - PlantSampleTaker
       - Wirecutter
       - Screwdriver
+
+- type: entity
+  parent: BaseItem
+  id: AdvancedWireBrush
+  name: advanced wire brush
+  description: A steel scrubbing pad has been attached to the end of a drill, for when you really want rust gone.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Janitorial/wire_brush_advanced.rsi
+    state: advwire
+  - type: Item
+    storedSprite:
+      sprite: _Starlight/Objects/Specific/Janitorial/wire_brush_advanced.rsi
+      state: advwire
+    size: Small
+  - type: Tag
+    tags:
+    - WireBrush
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 300
+      Plastic: 100
+  - type: Tool
+    qualities:
+    - Brushing
+    speedModifier: 5
+    useSound:
+      path: /Audio/_starlight/Tools/wirebrushingdrill.ogg
+  - type: StaticPrice
+    price: 100
+  - type: MeleeWeapon
+    wideAnimationRotation: 100
+    attackrate: 1.5
+    damage:
+      types:
+        Slash: 10
+    soundHit:
+      path: "/Audio/Weapons/bladeslice.ogg"

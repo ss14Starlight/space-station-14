@@ -1,0 +1,7 @@
+- type: latheRecipe
+  id: AdvancedWireBrush
+  result: AdvancedWireBrush
+  completetime: 2
+  materials:
+     Steel: 300
+     Plastic: 300 

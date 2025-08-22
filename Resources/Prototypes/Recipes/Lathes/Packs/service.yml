@@ -49,6 +49,7 @@
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
   - MegaSprayBottle
+  - AdvancedWireBrush #Starlight
 
 - type: latheRecipePack
   id: Instruments
