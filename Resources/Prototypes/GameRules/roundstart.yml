@@ -22,7 +22,7 @@
     rules:
     - id: Thief
       prob: 0.5
-    - id: SLChangeling #Starlight lings
+    - id: Changeling
       prob: 0.4
     - id: Vampire
       prob: 0.25
@@ -37,7 +37,7 @@
     rules:
     - id: Thief
       prob: 0.5
-    - id: SLChangeling # StarlightLings
+    - id: Changeling
       prob: 0.4
     - id: Vampire
       prob: 0.25
