@@ -28,7 +28,6 @@
     - VoxPidgin
     - Scratch
     - SolCommon
-    - Ancestor
   - type: TextToSpeech
   # Starlight-end
   - type: Instrument
