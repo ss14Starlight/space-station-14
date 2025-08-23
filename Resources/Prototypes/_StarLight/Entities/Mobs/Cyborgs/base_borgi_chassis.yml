@@ -205,11 +205,6 @@
       - Scratch
       - SolCommon
       - Ancestor
-      - Cat
-      - Dog
-      - Chicken
-      - Duck
-      - Mouse
 
 - type: entity
   parent: [ BaseBorgiChassis, BaseBorgTransponder ]
