@@ -255,11 +255,28 @@
     speaks:
     - GalacticCommon
     - Machine
+    - Ancestor
+    - Bubblish
+    - Canilunzt
+    - Cat
+    - Chicken
+    - Chittin
+    - Dog
+    - Duck
+    - Draconic
+    - Marish
+    - Moffic
+    - Mouse
+    - Nekomimetic
+    - Scratch
+    - SolCommon
+    - Sylvan
+    - Terrum
+    - VoxPidgin
     understands:
     - GalacticCommon
     - Machine
     - Canilunzt
-    - Sign
     - Bubblish
     - Chittin
     - Draconic
@@ -271,6 +288,13 @@
     - VoxPidgin
     - Scratch
     - SolCommon
+    - Ancestor
+    - Cat
+    - Dog
+    - Chicken
+    - Duck
+    - Mouse
+    - Sign
   # Starlight-end
 
 - type: entity

@@ -664,9 +664,9 @@
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
-    - Sylvan
+    - Duck
     understands:
-    - Sylvan
+    - Duck
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs

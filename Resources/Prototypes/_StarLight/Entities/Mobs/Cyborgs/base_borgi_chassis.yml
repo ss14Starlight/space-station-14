@@ -190,7 +190,6 @@
       - Dog
       understands:
       - GalacticCommon
-      - SolCommon
       - Machine
       - Canilunzt
       - Sign
@@ -204,7 +203,13 @@
       - Terrum
       - VoxPidgin
       - Scratch
+      - SolCommon
+      - Ancestor
+      - Cat
       - Dog
+      - Chicken
+      - Duck
+      - Mouse
 
 - type: entity
   parent: [ BaseBorgiChassis, BaseBorgTransponder ]
