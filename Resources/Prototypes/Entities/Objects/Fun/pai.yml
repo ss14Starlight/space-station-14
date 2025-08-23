@@ -29,11 +29,6 @@
     - Scratch
     - SolCommon
     - Ancestor
-    - Cat
-    - Dog
-    - Chicken
-    - Duck
-    - Mouse
   - type: TextToSpeech
   # Starlight-end
   - type: Instrument
