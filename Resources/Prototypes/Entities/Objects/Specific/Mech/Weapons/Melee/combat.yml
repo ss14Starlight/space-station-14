@@ -29,3 +29,7 @@
       - InternalMechChainSword
   - type: MechEquipmentAction
     actionId: ActionMechCycleEquipment
+    iconOverride:
+      sprite: Objects/Specific/Mech/mecha_equipment.rsi
+      state: mecha_chainsword
+

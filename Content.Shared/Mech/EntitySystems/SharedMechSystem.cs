@@ -395,7 +395,12 @@ public abstract partial class SharedMechSystem : EntitySystem
 
     public void AddEquipmentAction(EntityUid uid, EntityUid equipment, MechEquipmentActionComponent actionComp)
     {
-        _actions.AddAction(uid, ref actionComp.EquipmentActionEntity, actionComp.EquipmentAction, equipment);
+        if (_actions.AddAction(uid, ref actionComp.EquipmentActionEntity, out var action, actionComp.EquipmentAction, equipment)
+            && actionComp.IconOverride != null)
+        {
+            var actionEnt = (actionComp.EquipmentActionEntity.Value, action);
+            _actions.SetIcon(actionEnt, actionComp.IconOverride);
+        }
     }
 
     public void RemoveEquipmentAction(EntityUid uid, EntityUid equipment, MechEquipmentActionComponent? actionComponent = null)

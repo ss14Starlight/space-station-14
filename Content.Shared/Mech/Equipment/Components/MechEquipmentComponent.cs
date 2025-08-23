@@ -1,6 +1,7 @@
 ﻿using Content.Shared.DoAfter;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech;
+using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -36,7 +37,10 @@ public sealed partial class MechEquipmentActionComponent : Component
     [DataField]
     [AutoNetworkedField]
     public bool EquipmentComponentAdded = false;
-    
+
+    [DataField("iconOverride")]
+    public SpriteSpecifier.Rsi? IconOverride = null;
+
     [DataField("actionId")]
     public EntProtoId EquipmentAction = "";
     

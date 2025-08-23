@@ -44,8 +44,11 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Server.Radio.Components;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Mind;
+using Content.Shared.Radio.Components;
+using Content.Shared.Speech.Muting;
 
 namespace Content.Server.Mech.Systems;
 
@@ -291,6 +294,13 @@ public sealed partial class MechSystem : SharedMechSystem
         _alerts.ClearAlert(uid, component.NoBatteryAlert);
         _alerts.ShowAlert(uid, component.BatteryAlert, chargePercent);
     }
+
+    private void UpdateIntegrityAlert(EntityUid uid, MechComponent component)
+    {
+        var dmgTaken = (component.MaxIntegrity - component.Integrity) / component.MaxIntegrity - 0.01;
+        var healthPercent = (short) Math.Clamp(MathF.Floor((float)dmgTaken * 5f), 0f, 4f);
+        _alerts.ShowAlert(uid, component.IntegrityAlert, healthPercent);
+    }
     // Starlight-end
 
     public void ToggleLight(EntityUid uid, MechComponent component)
@@ -419,6 +429,7 @@ public sealed partial class MechSystem : SharedMechSystem
             mechBattery.Mech = uid;
         }
         UpdateBatteryAlerts(uid, component);
+        UpdateIntegrityAlert(uid, component);
         // Starlight-end
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
@@ -561,6 +572,7 @@ public sealed partial class MechSystem : SharedMechSystem
     {
         var integrity = component.MaxIntegrity - args.Damageable.TotalDamage;
         SetIntegrity(uid, integrity, component);
+        UpdateIntegrityAlert(uid, component);
 
         if (args.DamageIncreased &&
             args.DamageDelta != null &&
@@ -783,6 +795,10 @@ public sealed partial class MechSystem : SharedMechSystem
 
         _mind.TransferTo(mindId, uid, mind: mind);
         PlayPilotingAudio(uid, component);
+        GrabRadioChannels(uid, args.Performer);
+
+        if (HasComp<MutedComponent>(args.Performer))
+            AddComp<MutedComponent>(uid);
     }
 
     private void OnStopPiloting(EntityUid uid, MechComponent component, MechStopPilotingEvent args)
@@ -791,6 +807,9 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
 
         ReturnControl(uid, args.Performer, component);
+        if (HasComp<MutedComponent>(args.Performer)
+            && HasComp<MutedComponent>(uid))
+            RemComp<MutedComponent>(uid);
     }
 
     protected override void ReturnControl(EntityUid uid, EntityUid pilot, MechComponent? component = null)
@@ -803,6 +822,28 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
 
         _mind.TransferTo(mindId, component.PilotSlot.ContainedEntity.Value, mind: mind);
+        ResetRadioChannels(uid);
+    }
+
+    private void GrabRadioChannels(EntityUid mech, EntityUid pilot)
+    {
+        if (!TryComp<WearingHeadsetComponent>(pilot, out var headsetComp)
+            || !TryComp<EncryptionKeyHolderComponent>(headsetComp.Headset, out var keyHolderComp))
+            return;
+
+        if (TryComp<ActiveRadioComponent>(mech, out var receiver))
+            receiver.Channels.UnionWith(keyHolderComp.Channels);
+
+        if (TryComp<IntrinsicRadioTransmitterComponent>(mech, out var transmitter))
+            transmitter.Channels.UnionWith(keyHolderComp.Channels);
+    }
+
+    private void ResetRadioChannels(EntityUid mech)
+    {
+        if (!TryComp<ActiveRadioComponent>(mech, out var receiver))
+            return;
+
+        receiver.Channels.RemoveWhere((s => s != "Common"));
     }
     #endregion
 }

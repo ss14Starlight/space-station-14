@@ -263,6 +263,9 @@ public sealed partial class MechComponent : Component
     #region Alerts
 
     [DataField]
+    public ProtoId<AlertPrototype> IntegrityAlert = "BorgHealth";
+
+    [DataField]
     public ProtoId<AlertPrototype> NoBatteryAlert = "BorgBatteryNone";
 
     [DataField]
