@@ -149,8 +149,8 @@
     Steel: 600
 
 - type: latheRecipe
-  id: MagazinePistolImprovTA
-  result: MagazinePistolImprovised
+  id: MagazineSMGImprovTA
+  result: MagazineSMGImprovised
   completetime: 36
   materials:
     Steel: 600
