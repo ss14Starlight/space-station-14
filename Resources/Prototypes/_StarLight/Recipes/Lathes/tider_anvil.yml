@@ -198,8 +198,8 @@
     Plasteel: 750
 
 - type: latheRecipe
-  id: GreatPaladinTA
-  result: UnfinishedPaladinShieldGreat
+  id: GreatSwordTA
+  result: UnfinishedClaymoreForged
   completetime: 180
   materials:
     Cloth: 600
