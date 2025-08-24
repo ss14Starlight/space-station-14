@@ -19,6 +19,17 @@
       - id: BoxFolderClipboardFilled
       - id: PrinterDocFlatpack
       - id: FaxMachineFlatpack
+      - id: PlushieEmmie
+      - id: ClothingOuterHardsuitNtrep
+  
+- type: entity
+  id: LockerRepresentativeFilledBluespaced
+  suffix: Filled, Bluespaced
+  parent: LockerRepresentativeFilled
+  components:
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: EffectFlashBluespace
 
 - type: entity
   id: LockerBSOFilled
@@ -31,7 +42,7 @@
       - id: ClothingHandsGlovesCombat
       - id: ClothingShoesBootsCombat
       - id: TrackingImplanter
-        amount: 3
+        amount: 1
       - id: MedkitAdvancedFilled
       - id: ClothingEyesGlassesBlueShield
       - id: ClothingEyesHudBlueShield
@@ -42,3 +53,16 @@
       - id: ClothingNeckCloakBsoElite
       - id: ClothingNeckCloakBsoElite
       - id: RadioHandheldSecurity
+      - id: ClothingUniformJumpsuitBlueShieldCaptain
+      - id: ClothingOuterCoatBlueShield
+      - id: ClothingNeckCloakBsoCape
+      - id: RubberStampBSO
+
+- type: entity
+  id: LockerBSOFilledBluespaced
+  suffix: Filled, Bluespaced
+  parent: LockerBSOFilled
+  components:
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: EffectFlashBluespace

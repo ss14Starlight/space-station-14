@@ -3,7 +3,7 @@
          xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
          xmlns:parallax="clr-namespace:Content.Client.Parallax"
          xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls">
-    <parallax:ParallaxControl />
+    <parallax:ParallaxControl SpeedX="20"/>
     <Control HorizontalAlignment="Center" VerticalAlignment="Center">
         <PanelContainer StyleClasses="AngleRect" />
         <BoxContainer Orientation="Vertical" MinSize="300 200">
@@ -28,6 +28,14 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Bottom"
                                     StyleClasses="OpenRight"/>
+                          <!-- NullLink start-->
+                          <Button Name="LinkDiscordButton"
+                                  Text="{Loc 'link-discord'}"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Bottom"
+                                  Visible="False" 
+                                  StyleClasses="OpenBoth"/>
+                          <!-- NullLink end-->
                             <Button Name="CopyButton"
                                     Text="{Loc 'connecting-copy'}"
                                     HorizontalAlignment="Center"

@@ -3,3 +3,7 @@
   name: roles-antag-dragon-name
   antagonist: true
   objective: roles-antag-dragon-objective
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobSalvageSpecialist
+    time: 10800 # 3h STARLIGHT

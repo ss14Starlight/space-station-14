@@ -1,5 +1,7 @@
 ﻿using Content.Server.Actions;
 using Content.Server.Humanoid;
+using Content.Shared.Cloning.Events;
+using Content.Shared._Starlight.Humanoid.Markings;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Mobs;
@@ -18,6 +20,8 @@ public sealed class WaggingSystem : EntitySystem
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
+    [Dependency] private readonly StarlightMarkingSystem _starlightMarking = default!; //starlight edit
+
     public override void Initialize()
     {
         base.Initialize();
@@ -26,6 +30,15 @@ public sealed class WaggingSystem : EntitySystem
         SubscribeLocalEvent<WaggingComponent, ComponentShutdown>(OnWaggingShutdown);
         SubscribeLocalEvent<WaggingComponent, ToggleActionEvent>(OnWaggingToggle);
         SubscribeLocalEvent<WaggingComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<WaggingComponent, CloningEvent>(OnCloning);
+    }
+
+    private void OnCloning(Entity<WaggingComponent> ent, ref CloningEvent args)
+    {
+        if (!args.Settings.EventComponents.Contains(Factory.GetRegistration(ent.Comp.GetType()).Name))
+            return;
+
+        EnsureComp<WaggingComponent>(args.CloneUid);
     }
 
     private void OnWaggingMapInit(EntityUid uid, WaggingComponent component, MapInitEvent args)
@@ -67,34 +80,39 @@ public sealed class WaggingSystem : EntitySystem
 
         for (var idx = 0; idx < markings.Count; idx++) // Animate all possible tails
         {
-            var currentMarkingId = markings[idx].MarkingId;
-            string newMarkingId;
+            //starlight for loop
+            foreach (var possibleSuffix in wagging.Suffixes)
+            {
+                var currentMarkingId = markings[idx].MarkingId;
+                string? newMarkingId;
 
-            if (wagging.Wagging)
-            {
-                newMarkingId = $"{currentMarkingId}{wagging.Suffix}";
-            }
-            else
-            {
-                if (currentMarkingId.EndsWith(wagging.Suffix))
+                if (wagging.Wagging)
                 {
-                    newMarkingId = currentMarkingId[..^wagging.Suffix.Length];
+                    newMarkingId = $"{currentMarkingId}{possibleSuffix}"; //starlight edit
                 }
                 else
                 {
-                    newMarkingId = currentMarkingId;
-                    Log.Warning($"Unable to revert wagging for {currentMarkingId}");
+                    if (currentMarkingId.EndsWith(possibleSuffix)) //starlight edit
+                    {
+                        newMarkingId = currentMarkingId[..^possibleSuffix.Length]; //starlight edit
+                    }
+                    else
+                    {
+                        newMarkingId = currentMarkingId;
+                        Log.Warning($"Unable to revert wagging for {currentMarkingId}");
+                    }
                 }
-            }
 
-            if (!_prototype.HasIndex<MarkingPrototype>(newMarkingId))
-            {
-                Log.Warning($"{ToPrettyString(uid)} tried toggling wagging but {newMarkingId} marking doesn't exist");
-                continue;
-            }
+                if (!_prototype.HasIndex<MarkingPrototype>(newMarkingId) &&
+                    !_starlightMarking.TryGetWaggingId(currentMarkingId, out newMarkingId)) //starlight edit
+                {
+                    Log.Warning($"{ToPrettyString(uid)} tried toggling wagging but {newMarkingId} marking doesn't exist");
+                    continue;
+                }
 
-            _humanoidAppearance.SetMarkingId(uid, MarkingCategories.Tail, idx, newMarkingId,
-                humanoid: humanoid);
+                _humanoidAppearance.SetMarkingId(uid, MarkingCategories.Tail, idx, newMarkingId,
+                    humanoid: humanoid);
+            }
         }
 
         return true;

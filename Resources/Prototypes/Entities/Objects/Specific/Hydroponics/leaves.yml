@@ -17,6 +17,9 @@
         reagents:
         - ReagentId: THC
           Quantity: 15
+  - type: Tag
+    tags:
+    - Smokable
 
 
 - type: entity
@@ -37,6 +40,11 @@
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
     state: dried
+  - type: Tag
+    tags:
+    - Smokable
+  - type: Item
+    size: Tiny
 
 - type: entity
   name: ground cannabis
@@ -62,10 +70,10 @@
     node: ground
   - type: Tag
     tags:
-      - Smokable
+    - Smokable
   - type: Item
     size: Tiny
-    
+
 - type: entity
   name: rainbow cannabis leaves
   parent: LeavesCannabis
@@ -73,14 +81,18 @@
   description: "Is it supposed to be glowing like that...?"
   components:
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+    layers:
+    - sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+      state: produce
+      shader: unshaded
   - type: Produce
     seedId: rainbowCannabis
-  - type: PointLight
-    radius: 1.5
-    energy: 2
-  - type: RgbLightController
-    cycleRate: 0.6
+  # disabled because 50 morbillion point lights still break the lighting engine
+  #- type: PointLight
+  #  radius: 1.5
+  #  energy: 2
+  #- type: RgbLightController
+  #  cycleRate: 0.6
   - type: SolutionContainerManager
     solutions:
       food:
@@ -93,10 +105,13 @@
           Quantity: 2
         - ReagentId: Happiness
           Quantity: 2
-#       - ReagentId: ColorfulReagent
-#         Quantity: 1
+        #       - ReagentId: ColorfulReagent
+        #         Quantity: 1
         - ReagentId: Psicodine
           Quantity: 0.6
+  - type: Tag
+    tags:
+    - Smokable
 
 - type: entity
   name: dried rainbow cannabis leaves
@@ -120,13 +135,18 @@
           Quantity: 1.6
         - ReagentId: Happiness
           Quantity: 1.6
-#       - ReagentId: ColorfulReagent
-#         Quantity: 0.8
+        #       - ReagentId: ColorfulReagent
+        #         Quantity: 0.8
         - ReagentId: Psicodine
           Quantity: 0.48
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
     state: dried
+  - type: Tag
+    tags:
+    - Smokable
+  - type: Item
+    size: Tiny
 
 - type: entity
   name: ground rainbow cannabis
@@ -149,8 +169,8 @@
           Quantity: 2.66
         - ReagentId: Happiness
           Quantity: 2.66
-#       - ReagentId: ColorfulReagent
-#         Quantity: 1.33
+        #       - ReagentId: ColorfulReagent
+        #         Quantity: 1.33
         - ReagentId: Psicodine
           Quantity: 0.8
   - type: Sprite
@@ -160,6 +180,9 @@
   - type: Construction
     graph: smokeableGroundCannabisRainbow
     node: groundRainbow
+  - type: Tag
+    tags:
+    - Smokable
 
 - type: entity
   name: tea leaves
@@ -204,6 +227,9 @@
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
   - type: Produce
     seedId: tobacco
+  - type: Tag
+    tags:
+    - Smokable
 
 - type: entity
   name: dried tobacco leaves
@@ -223,6 +249,11 @@
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
     state: dried
+  - type: Tag
+    tags:
+    - Smokable
+  - type: Item
+    size: Tiny
 
 - type: entity
   name: ground tobacco
@@ -248,6 +279,6 @@
     node: ground
   - type: Tag
     tags:
-      - Smokable
+    - Smokable
   - type: Item
     size: Tiny

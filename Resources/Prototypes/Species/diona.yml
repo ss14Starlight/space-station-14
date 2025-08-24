@@ -12,6 +12,10 @@
   femaleFirstNames: NamesDionaFirst
   lastNames: NamesDionaLast
   naming: TheFirstofLast
+  customName: true # Starlight start
+  standardSize: 200
+  standardWeight: 145
+  standardDensity: 130 # Starlight end
 
 - type: speciesBaseSprites
   id: MobDionaSprites
@@ -52,7 +56,7 @@
       points: 1
       required: false
     Chest:
-      points: 1
+      points: 2
       required: false
     Legs:
       points: 2

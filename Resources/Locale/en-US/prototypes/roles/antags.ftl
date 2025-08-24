@@ -27,7 +27,7 @@ roles-antag-suspicion-suspect-objective = Kill the innocents.
 roles-antag-nuclear-operative-commander-name = Nuclear operative commander
 roles-antag-nuclear-operative-commander-objective = Lead your team to the destruction of the station.
 
-roles-antag-nuclear-operative-agent-name = Nuclear operative agent
+roles-antag-nuclear-operative-agent-name = Nuclear operative corpsman
 roles-antag-nuclear-operative-agent-objective = Like default operative, the team's treatment will have priority.
 
 roles-antag-nuclear-operative-name = Nuclear operative
@@ -48,5 +48,4 @@ roles-antag-thief-objective = Add some NT property to your personal collection w
 roles-antag-dragon-name = Space Dragon
 roles-antag-dragon-objective = Create a carp army to take over this quadrant.
 
-roles-antag-changeling-name = Changeling
 roles-antag-changeling-description = Use your shapeshifting abilities to complete your objectives.

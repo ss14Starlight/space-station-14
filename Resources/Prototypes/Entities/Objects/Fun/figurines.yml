@@ -21,6 +21,8 @@
     stealGroup: Figurines
   - type: UseDelay
     delay: 5
+  - type: UseDelayOnTrigger
+  - type: UseDelayTriggerCondition # prevent spam
   - type: TriggerOnActivate
   - type: TriggerOnSignal
   - type: Speech
@@ -55,17 +57,6 @@
     state: assistant
   - type: SpeakOnTrigger
     pack: FigurinesAssistant
-
-- type: entity
-  parent: BaseFigurine
-  id: ToyFigurineGreytider
-  name: greytider figure
-  description: A figurine depicting a dubious-looking assistant. Greytide worldwide!
-  components:
-  - type: Sprite
-    state: passenger_greytide
-  - type: SpeakOnTrigger
-    pack: FigurinesGreytider
 
 - type: entity
   parent: BaseFigurine

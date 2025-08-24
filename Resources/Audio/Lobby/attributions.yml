@@ -1,9 +1,4 @@
-﻿- files: ["Chasing-Cosmic-Dreams.ogg.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Darkrell"
-  source: "https://github.com/ss14Starlight/space-station-14"
-
-- files: ["thunderdome.ogg"]
+﻿- files: ["thunderdome.ogg"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "-Sector11 by MashedByMachines. Converted from MP3 to OGG."
   source: "https://www.newgrounds.com/audio/listen/312622"
@@ -48,7 +43,7 @@
 
 - files: ["title2.ogg"]
   license: "Custom"
-  copyright: "Originally composed by Jonathan Dunn for Robocop 2 Gameboy published by Ocean Software. Remixed by Eric Shumaker for his video Dilbert 3. As of October 9th, 2008 nobody owns the rights to this song and copyright action has never been taken against anyone using this song in their projects."
+  copyright: "Originally composed by Jonathan Dunn for RoboCop (Game Boy) published by Ocean Software. Remixed by Eric Shumaker for his video Dilbert 3. As of October 9th, 2008 nobody owns the rights to this song and copyright action has never been taken against anyone using this song in their projects."
   source: "https://www.youtube.com/watch?v=4o6_8Unj2mQ"
 
 - files: ["title3.ogg"]
@@ -85,8 +80,3 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "every light is blinking at once by Sunbeamstress/Lauren Loveless."
   source: "https://soundcloud.com/sunbeamstress/every-light-is-blinking-at-once"
-
-- files: ["Cosmonaut.ogg"]
-  license: "CC-BY-ND-4.0"
-  copyright: "Cosmonaut by Artifyber, for InanimateIJK & their associated projects."
-  source: "https://soundcloud.com/r3dz3r/cosmonaut"

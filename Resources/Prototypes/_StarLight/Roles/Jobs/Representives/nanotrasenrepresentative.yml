@@ -6,13 +6,9 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 62000 # 20 hrs
-    - !type:AnyFlagsRequirement
-      flags:
-      - Staff
-      - Mentor
-      - ExtRoles
-      - Retiree
+      time: 72000 # 20 hrs
+    - !type:RolesRequirement
+      proto: ExtRolesReq
   startingGear: NanoTrasenRepresentativeGear
   icon: JobIconNanotrasen
   supervisors: job-supervisors-centcom
@@ -52,11 +48,12 @@
 - type: startingGear
   id: NanoTrasenRepresentativeGear
   equipment:
-    shoes: ClothingShoesBootsLaceup
+    #shoes: ClothingShoesBootsLaceup
     head: ClothingHeadHatCapNtrep
     id: NanoTrasenRepresentativePDA
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterCoatNtrep
+    belt: BoxFolderNanoTrasenClipboard
   storage:
     back:
     - RubberStampNtrep

@@ -4,6 +4,7 @@
   id: ServiceStatic
   recipes:
   - Bucket
+  - Ashtray
   - DrinkMug
   - DrinkMugMetal
   - DrinkGlass
@@ -19,10 +20,12 @@
   - FoodPlateMuffinTin
   - FoodKebabSkewer
   - SprayBottle
+  - TrashBag
   - LightReplacer
   - MopItem
   - Holoprojector
   - WetFloorSign
+  - WireBrush
 
 - type: latheRecipePack
   id: ServiceBoardsStatic
@@ -30,6 +33,8 @@
   - BiogeneratorMachineCircuitboard
   - UniformPrinterMachineCircuitboard
   - MicrowaveMachineCircuitboard
+  - OvenMachineCircuitboard # Starlight-edit
+  - StoveMachineCircuitboard # Starlight-edit
   - ReagentGrinderMachineCircuitboard
   - ElectricGrillMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
@@ -49,6 +54,7 @@
   id: Instruments
   recipes:
   - SynthesizerInstrument
+  - PushHorn
 
 - type: latheRecipePack
   id: ServiceBoards

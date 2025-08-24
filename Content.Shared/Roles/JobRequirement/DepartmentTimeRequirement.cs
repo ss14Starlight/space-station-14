@@ -1,7 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._NullLink;
 using Content.Shared.Localizations;
-using Content.Shared.Starlight;
 using Content.Shared.Preferences;
+using Content.Shared.Starlight;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -30,16 +31,21 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
         ICommonSession? player,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
-        IReadOnlyDictionary<string, TimeSpan> playTimes,
+        IReadOnlyDictionary<string, TimeSpan>? playTimes,
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = new FormattedMessage();
+
+        // If playTimes is null, we're not going to check against playtime requirements
+        if (playTimes == null)
+            return true;
+
         var playtime = TimeSpan.Zero;
 
-        //🌟Starlight🌟 start
-        if(player is not null && IoCManager.Resolve<ISharedPlayersRoleManager>().IsAllRolesAvailable(player))
+        //NullLink start
+        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player))
             return true;
-        //🌟Starlight🌟 end
+        //NullLink end
 
         // Check all jobs' departments
         var department = protoManager.Index(Department);

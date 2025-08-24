@@ -42,15 +42,18 @@
         Blunt: 0.5
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/cyberchainsaw.rsi
-  - type: Scalpel
+  # 🌟Starlight-start🌟
+  - type: BoneSaw
   - type: SurgeryTool
-    successRate: 0.01
+    successRate: 0.6
+    speed: 0.2
     startSound:
-      path: /Audio/Weapons/chainsaw.ogg
+      path: /Audio/Weapons/chainsawwield.ogg
     endSound:
       path: /Audio/Weapons/chainsaw.ogg
+  # 🌟Starlight-end🌟
   - type: Reflect
-    reflectProb: 0.2
+    reflectProb: 0.1
 
 #Mantis Blade
 - type: entity
@@ -64,12 +67,12 @@
     state: cybermantisblade
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 2.0
+    attackRate: 2.4
     autoAttack: false
     damage:
       types:
-        Slash: 15
-        Structural: 25
+        Slash: 12
+        Structural: 20
     soundHit:
       path: /Audio/Weapons/block_metal1.ogg
     soundNoDamage:
@@ -77,8 +80,4 @@
     soundSwing:
       path: /Audio/Weapons/punchmiss.ogg
   - type: Item
-  - type: Prying
-    speedModifier: 2.0
-    pryPowered: true
-    useSound: /Audio/Items/jaws_pry.ogg
   - type: Sharp

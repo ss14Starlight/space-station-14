@@ -101,6 +101,11 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorOfficer
 
+- type: loadout
+  id: SecurityJumpsuitBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecBlue
+
 # Back
 - type: loadout
   id: SecurityBackpack
@@ -198,16 +203,6 @@
   storage:
     back:
     - Dinkystar
-
-- type: loadout
-  id: SecurityDominator
-  equipment:
-    pocket1: WeaponDominator
-    
-- type: loadout
-  id: SecurityTaser
-  equipment:
-    pocket1: WeaponAdvancedTaser
 
 - type: loadout
   id: SecurityGlasses

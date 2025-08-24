@@ -22,7 +22,7 @@
     rules:
     - id: Thief
       prob: 0.5
-    - id: Changeling
+    - id: SLChangeling #Starlight lings
       prob: 0.4
     - id: Vampire
       prob: 0.25
@@ -37,7 +37,7 @@
     rules:
     - id: Thief
       prob: 0.5
-    - id: Changeling
+    - id: SLChangeling # StarlightLings
       prob: 0.4
     - id: Vampire
       prob: 0.25
@@ -105,6 +105,7 @@
     nameSegments:
     - NamesOperationPrefix
     - NamesOperationSuffix
+    nameFormat: name-format-nuclear-operation
   - type: NukeopsRule
   - type: RuleGrids
   - type: AntagSelection
@@ -123,7 +124,7 @@
   - type: GameRule
     minPlayers: 20
   - type: LoadMapRule
-    mapPath: /Maps/Nonstations/nukieplanet.yml
+    mapPath: /Maps/_Starlight/nukieplanet.yml
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
@@ -131,17 +132,14 @@
       fallbackRoles: [ Nukeops, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsCommander
       startingGear: SyndicateCommanderGearFull
-      blacklist:
-        tags:
-          - Resomi
       roleLoadout:
       - RoleSurvivalNukie
       components:
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-commander
         - NamesSyndicateElite
+        nameFormat: name-format-nukie-commander
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -151,17 +149,14 @@
       fallbackRoles: [ Nukeops, NukeopsCommander ]
       spawnerPrototype: SpawnPointNukeopsMedic
       startingGear: SyndicateOperativeMedicFull
-      blacklist:
-        tags:
-          - Resomi
       roleLoadout:
       - RoleSurvivalNukie
       components:
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-agent
         - NamesSyndicateNormal
+        nameFormat: name-format-nukie-agent
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -173,17 +168,14 @@
       max: 3
       playerRatio: 10
       startingGear: SyndicateOperativeGearFull
-      blacklist:
-        tags:
-          - Resomi
       roleLoadout:
       - RoleSurvivalNukie
       components:
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-operator
         - NamesSyndicateNormal
+        nameFormat: name-format-nukie-operator
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -242,22 +234,51 @@
       - MindRoleTraitorReinforcement
 
 - type: entity
+  id: Changeling
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 25
+  - type: AntagSelection
+    agentName: changeling-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 3
+      playerRatio: 15
+      briefing:
+        text: changeling-role-greeting
+        color: Red
+        sound: /Audio/Ambience/Antag/changeling_start.ogg
+      components:
+      - type: ChangelingDevour
+      - type: ChangelingIdentity
+      - type: ChangelingTransform
+      - type: ActionGrant
+        actions:
+        - ActionRetractableItemArmBlade # Temporary addition, will inevitably be a purchasable in the bio-store
+      mindRoles:
+      - MindRoleChangeling
+  - type: AntagObjectives
+    objectives:
+    - ChangelingSurviveObjective
+
+- type: entity
   id: Revolutionary
   parent: BaseGameRule
   components:
   - type: GameRule
     minPlayers: 15
   - type: RevolutionaryRule
+  - type: SpecialLobbyContent
+    music: "/Audio/_Starlight/Music/Lobby/Liberation.ogg"
+    background: "/Textures/_Starlight/LobbyScreens/rev-clown.webp"
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ HeadRev ]
       max: 3
       playerRatio: 15
-      briefing:
-        text: head-rev-role-greeting
-        color: CornflowerBlue
-        sound: "/Audio/Ambience/Antag/headrev_start.ogg"
       startingGear: HeadRevGear
       components:
       - type: Revolutionary
@@ -287,7 +308,7 @@
     - WizardSurviveObjective
     - WizardDemonstrateObjective
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/wizard.yml
+    mapPath: /Maps/_Starlight/Shuttles/WizardShuttle.yml #Starlight. wizard deserves their shuttle. and it had to be re-saved as a map to get it to work.
   - type: RuleGrids
   - type: AntagSelection
   - type: AntagLoadProfileRule
@@ -317,6 +338,7 @@
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:
+      - type: UniversalLanguageSpeaker # Starlight-edit: Languages
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -324,6 +346,7 @@
         nameSegments:
         - NamesWizardFirst
         - NamesWizardLast
+        nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
 
@@ -417,7 +440,7 @@
   components:
   - type: RampingStationEventScheduler
     scheduledGameRules: !type:NestedSelector
-      tableId: BasicGameRulesTable
+      tableId: BasicGameRulesTableNoRoundenders # 🌟Starlight🌟
 
 - type: entity
   id: SpaceTrafficControlEventScheduler # iff we make a selector for EntityTables that can respect StationEventComp restrictions, or somehow impliment them otherwise in said tables,
@@ -462,3 +485,13 @@
       orGroup: puddleMess
     - id: SmugglerStashVariationPass
       prob: 0.90
+    - id: SolarPanelDamageVariationPass
+    - id: SolarPanelEmptyVariationPass
+    - id: BasicDecalDirtVariationPass
+    - id: BasicDecalGraffitiVariationPass
+    - id: BasicDecalBrunsVariationPass
+      prob: 0.50
+      orGroup: monospaceDecals
+    - id: BasicDecalDirtMonospaceVariationPass
+      prob: 0.50
+      orGroup: monospaceDecals

@@ -30,7 +30,7 @@ public abstract partial class SharedGunSystem
 
     private void OnAltVerb(EntityUid uid, GunComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || component.SelectedMode == component.AvailableModes)
+        if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null || component.SelectedMode == component.AvailableModes)
             return;
 
         var nextMode = GetNextMode(component);
@@ -66,7 +66,7 @@ public abstract partial class SharedGunSystem
         if (component.SelectedMode == fire)
             return;
 
-        DebugTools.Assert((component.AvailableModes  & fire) != 0x0);
+        DebugTools.Assert((component.AvailableModes & fire) != 0x0);
         component.SelectedMode = fire;
 
         if (!Paused(uid))
@@ -113,7 +113,7 @@ public abstract partial class SharedGunSystem
     private void OnGunSelected(EntityUid uid, GunComponent component, HandSelectedEvent args)
     {
         if (Timing.ApplyingState)
-             return;
+            return;
 
         if (component.FireRateModified <= 0)
             return;
@@ -138,4 +138,14 @@ public abstract partial class SharedGunSystem
         component.NextFire = minimum;
         Dirty(uid, component);
     }
+
+    #region Starlight
+    public void DelayFire(Entity<GunComponent?> entity, TimeSpan delay)
+    {
+        if (!Resolve(entity, ref entity.Comp, logMissing: false))
+            return;
+
+        entity.Comp.NextFire = Timing.CurTime + delay;
+    }
+    #endregion Starlight
 }

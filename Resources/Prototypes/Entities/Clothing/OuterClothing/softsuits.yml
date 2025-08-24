@@ -13,12 +13,14 @@
     tags:
     - SuitEVA
     - MonkeyWearable
+    - CorgiWearable
     - WhitelistChameleon
+    - CorgiWearable
 
 #Syndicate EVA
 - type: entity
   parent: [ ClothingOuterEVASuitBase, BaseSyndicateContraband ]
-  id: ClothingOuterHardsuitSyndicate # TODO: rename to ClothingOuterEVASuitSyndicate
+  id: ClothingOuterEVASuitSyndicate
   name: syndicate EVA suit
   description: "Has a tag on the back that reads: 'Totally not property of an enemy corporation, honest!'"
   components:
@@ -31,6 +33,8 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
+  - type: StaticPrice
+    price: 1000 # Helmet is 500
 
 #Emergency EVA
 - type: entity
@@ -56,6 +60,13 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - ScurretWearable
+    - MonkeyWearable
+    - SuitEVA #Starlight
+    - WhitelistChameleon
 
 #Prisoner EVA
 - type: entity
@@ -108,8 +119,8 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 1.0 # Starlight Edit
+    sprintModifier: 1.0 # Starlight Edit
   - type: HeldSpeedModifier
   - type: TemperatureProtection
     heatingCoefficient: 0.1
@@ -154,3 +165,7 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon

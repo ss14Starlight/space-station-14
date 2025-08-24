@@ -13,6 +13,7 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Server.Administration.Systems;
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -70,7 +71,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         foreach (var surgery in _surgeries)
         {
-            if (GetSingleton(surgery) is not { } surgeryEnt
+            if (!_entity.TryGetSingleton(surgery, out var surgeryEnt)
                 || !TryComp(surgeryEnt, out SurgeryComponent? surgeryComp)
                 || (surgeryComp.Requirement.Count() > 0 && !progress.CompletedSurgeries.Any(x => surgeryComp.Requirement.Contains(x))))
                 continue;
@@ -78,7 +79,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             var ev = new SurgeryValidEvent(body, part);
 
             var isCompleted = progress.CompletedSurgeries.Contains(surgery);
-            if (!progress.StartedSurgeries.Contains(surgery) 
+            if (!progress.StartedSurgeries.Contains(surgery)
                 && !isCompleted)
             {
                 RaiseLocalEvent(surgeryEnt, ref ev);

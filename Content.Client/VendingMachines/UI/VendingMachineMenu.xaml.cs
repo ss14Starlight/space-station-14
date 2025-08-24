@@ -10,6 +10,7 @@ using Robust.Client.UserInterface;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.IdentityManagement;
 using Robust.Client.Graphics;
+using Robust.Shared.Utility;
 
 namespace Content.Client.VendingMachines.UI
 {
@@ -20,15 +21,33 @@ namespace Content.Client.VendingMachines.UI
         [Dependency] private readonly IEntityManager _entityManager = default!;
 
         private readonly Dictionary<EntProtoId, EntityUid> _dummies = [];
+         // 🌟Starlight start🌟
         private readonly Dictionary<EntProtoId, (ListContainerButton Button, VendingMachineItem Item)> _listItems = new();
-        private readonly Dictionary<EntProtoId, uint> _amounts = new();
+        private readonly Dictionary<EntProtoId, uint> _amounts = new(); 
+        private readonly Dictionary<EntProtoId, int> _prices = new(); 
+         // 🌟Starlight end🌟
 
         /// <summary>
         /// Whether the vending machine is able to be interacted with or not.
         /// </summary>
-        private bool _enabled;
+        private bool _enabled; // 🌟Starlight🌟
+        private bool _showPrices; // 🌟Starlight🌟
 
         public event Action<GUIBoundKeyEventArgs, ListData>? OnItemSelected;
+
+        // 🌟Starlight🌟 start
+
+        /// <summary>
+        /// Updates the balance display
+        /// </summary>
+        /// <param name="balance">Current player balance</param>
+        public void UpdateBalance(int balance) => BalanceLabel.Text = $"Balance: {balance}₡";
+        
+        /// <summary>
+        /// Toggles the balance display
+        /// </summary>
+         public void ToggleBalance(bool? enable = null) => BalanceContainer.Visible = enable ?? !BalanceContainer.Visible;
+        // 🌟Starlight🌟 end
 
         public VendingMachineMenu()
         {
@@ -71,24 +90,38 @@ namespace Content.Client.VendingMachines.UI
 
         private void GenerateButton(ListData data, ListContainerButton button)
         {
-            if (data is not VendorItemsListData { ItemProtoID: var protoID, ItemText: var text })
+            if (data is not VendorItemsListData { ItemProtoID: var protoID, ItemText: var text } vendorListData)
                 return;
 
-            var item = new VendingMachineItem(protoID, text);
+            // 🌟Starlight🌟 start
+            _dummies.TryGetValue(protoID, out var dummy);
+            var itemName = dummy != default ? Identity.Name(dummy, _entityManager) : text;
+            var amount = vendorListData.Amount;
+            var price = vendorListData.Price;
+
+            var item = new VendingMachineItem(protoID, itemName, amount, price, _showPrices);
+            // 🌟Starlight🌟 end
+            
             _listItems[protoID] = (button, item);
+
             button.AddChild(item);
             button.AddStyleClass("ButtonSquare");
-            button.Disabled = !_enabled || _amounts[protoID] == 0;
+
+            button.Disabled = !_enabled || amount == 0; // 🌟Starlight🌟
         }
 
         /// <summary>
         /// Populates the list of available items on the vending machine interface
         /// and sets icons based on their prototypes
         /// </summary>
-        public void Populate(List<VendingMachineInventoryEntry> inventory, bool enabled)
+        public void Populate(List<VendingMachineInventoryEntry> inventory, bool enabled, bool showPrices = true) // 🌟Starlight🌟
         {
             _enabled = enabled;
+            // 🌟Starlight🌟 start
+            _showPrices = showPrices; 
             _listItems.Clear();
+             _prices.Clear(); 
+            // 🌟Starlight🌟 end
             _amounts.Clear();
 
             if (inventory.Count == 0 && VendingContents.Visible)
@@ -132,8 +165,13 @@ namespace Content.Client.VendingMachines.UI
                 }
 
                 var itemName = Identity.Name(dummy, _entityManager);
-                var itemText = $"{itemName} [{entry.Amount}]";
+                //🌟Starlight🌟 start
+                var itemText = showPrices && entry.Price > 0 ? 
+                    $"{itemName} [{entry.Amount}] - {entry.Price} ₡" : 
+                    $"{itemName} [{entry.Amount}]";
+                //🌟Starlight🌟 end
                 _amounts[entry.ID] = entry.Amount;
+                _prices[entry.ID] = entry.Price; // 🌟Stgarlight🌟
 
                 if (itemText.Length > longestEntry.Length)
                     longestEntry = itemText;
@@ -141,6 +179,8 @@ namespace Content.Client.VendingMachines.UI
                 listData.Add(new VendorItemsListData(prototype.ID, i)
                 {
                     ItemText = itemText,
+                    Amount = entry.Amount,
+                    Price = entry.Price, // 🌟Starlight🌟
                 });
             }
 
@@ -152,9 +192,10 @@ namespace Content.Client.VendingMachines.UI
         /// <summary>
         /// Updates text entries for vending data in place without modifying the list controls.
         /// </summary>
-        public void UpdateAmounts(List<VendingMachineInventoryEntry> cachedInventory, bool enabled)
+        public void UpdateAmounts(List<VendingMachineInventoryEntry> cachedInventory, bool enabled, bool showPrices = true) // 🌟Starlight🌟
         {
             _enabled = enabled;
+            _showPrices = showPrices; // 🌟Starlight🌟
 
             foreach (var proto in _dummies.Keys)
             {
@@ -162,19 +203,26 @@ namespace Content.Client.VendingMachines.UI
                     continue;
 
                 var dummy = _dummies[proto];
-                var amount = cachedInventory.First(o => o.ID == proto).Amount;
-                // Could be better? Problem is all inventory entries get squashed.
-                var text = GetItemText(dummy, amount);
+                if (!cachedInventory.TryFirstOrDefault(o => o.ID == proto, out var entry))
+                    continue;
+                var amount = entry.Amount;
+                // 🌟Starlight🌟 start
+                _amounts[proto] = amount;
+                _prices[proto] = entry.Price;
 
-                button.Item.SetText(text);
+                button.Item.SetAmount(amount);
+                button.Item.SetPrice(entry.Price, showPrices);
+                // 🌟Starlight🌟 end
                 button.Button.Disabled = !enabled || amount == 0;
             }
         }
 
-        private string GetItemText(EntityUid dummy, uint amount)
+        private string GetItemText(EntityUid dummy, uint amount, int price, bool showPrices = true) // 🌟Starlight🌟 
         {
-            var itemName = Identity.Name(dummy, _entityManager);
-            return $"{itemName} [{amount}]";
+            var itemName = Identity.Name(dummy, _entityManager); // 🌟Starlight🌟
+            return showPrices && price > 0 ? 
+                $"{itemName} [{amount}] - {price} ₡" : 
+                $"{itemName} [{amount}]"; 
         }
 
         private void SetSizeAfterUpdate(int longestEntryLength, int contentCount)
@@ -187,5 +235,7 @@ namespace Content.Client.VendingMachines.UI
     public record VendorItemsListData(EntProtoId ItemProtoID, int ItemIndex) : ListData
     {
         public string ItemText = string.Empty;
+        public uint Amount; // 🌟Starlight🌟
+        public int Price; // 🌟Starlight🌟
     }
 }

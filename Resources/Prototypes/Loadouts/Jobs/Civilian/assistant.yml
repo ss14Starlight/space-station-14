@@ -1,59 +1,64 @@
-# Greytide Time
+# Assistants Time
 - type: loadoutEffectGroup
-  id: GreyTider
+  id: HonoredAssistant
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:RoleTimeRequirement
-      role: JobAssistant
+      role: JobPassenger
       time: 36000 #10 hrs, silly reward for people who play Assistant a lot
 
-# Head of Greytide (for grey mantle)
+# Head of Assistants (for grey mantle)
 - type: loadoutEffectGroup
   id: MasterGrey
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:RoleTimeRequirement
-      role: JobAssistant
-      time: 72000 #20 hrs, fun mantle for the most experienced greytiders
+      role: JobPassenger
+      time: 72000 #20 hrs, fun mantle for the most experienced assistants
 
-# Face
+# Mask
 - type: loadout
   id: AssistantFace
   effects:
   - !type:GroupLoadoutEffect
-    proto: GreyTider
+    proto: HonoredAssistant
   equipment:
     mask: ClothingMaskGas
 
-# Jumpsuits
-# Grey
+# Jumpsuit
 - type: loadout
-  id: GreyJumpsuit
+  id: BasicJumpsuit
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorGrey
+    jumpsuit: ClothingUniformJumpsuitAssistant
 
 - type: loadout
-  id: GreyJumpskirt
+  id: BasicJumpskirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtColorGrey
+    jumpsuit: ClothingUniformJumpskirtAssistant
 
-# Rainbow
 - type: loadout
   id: RainbowJumpsuit
   effects:
   - !type:GroupLoadoutEffect
-    proto: GreyTider
+    proto: HonoredAssistant
   equipment:
     jumpsuit: ClothingUniformColorRainbow
 
-# Ancient
+- type: loadout
+  id: RainbowJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: HonoredAssistant
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtColorRainbow
+
 - type: loadout
   id: AncientJumpsuit
   effects:
   - !type:GroupLoadoutEffect
-    proto: GreyTider
+    proto: HonoredAssistant
   equipment:
     jumpsuit: ClothingUniformJumpsuitAncient
 
@@ -87,12 +92,19 @@
   equipment:
     back: ClothingBackpackDuffel
 
+# starlight start
+- type: loadout
+  id: LeatherSatchel
+  equipment:
+    back: ClothingBackpackSatchelLeather
+# starlight end
+
 # Gloves
 - type: loadout
   id: AssistantGloves
   effects:
   - !type:GroupLoadoutEffect
-    proto: GreyTider
+    proto: HonoredAssistant
   equipment:
     gloves: ClothingHandsGlovesFingerlessInsulated
 
@@ -102,7 +114,7 @@
   equipment:
     outerClothing: ClothingOuterWinterCoat
 
-# Shoes
+# Feet
 - type: loadout
   id: BlackShoes
   equipment:

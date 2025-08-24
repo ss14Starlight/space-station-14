@@ -5,6 +5,23 @@
   setPreference: true
   objective: roles-antag-rev-head-objective
   guides: [ Revolutionaries ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 86400 # 24h STARLIGHT
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 21600 # 6h STARLIGHT
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 21600 # 6h STARLIGHT
+
+- type: startingGear
+  id: HeadRevGear
+  storage:
+    back:
+    - Flash
+    - ClothingEyesGlassesSunglasses
+    - USSPUplinkImplanter
 
 - type: antag
   id: Rev
@@ -13,10 +30,3 @@
   setPreference: false
   objective: roles-antag-rev-objective
   guides: [ Revolutionaries ]
-
-- type: startingGear
-  id: HeadRevGear
-  storage:
-    back:
-    - Flash
-    - ClothingEyesGlassesSunglasses

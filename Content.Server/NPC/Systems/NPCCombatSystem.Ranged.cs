@@ -206,7 +206,7 @@ public sealed partial class NPCCombatSystem
 
             if (_mapManager.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
             {
-                targetCordinates = new EntityCoordinates(gridUid, mapGrid.WorldToLocal(targetSpot));
+                targetCordinates = new EntityCoordinates(gridUid, _map.WorldToLocal(gridUid, mapGrid, targetSpot));
             }
             else
             {
@@ -220,7 +220,7 @@ public sealed partial class NPCCombatSystem
                 return;
             }
 
-            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates);
+            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates, comp.Target);
         }
     }
 }

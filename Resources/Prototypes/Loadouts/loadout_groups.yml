@@ -3,7 +3,7 @@
   id: Trinkets
   name: loadout-group-trinkets
   minLimit: 0
-  maxLimit: 3
+  maxLimit: 5
   loadouts:
   - FlowerWreath
   - Hairflower
@@ -29,11 +29,19 @@
   - ClothingNeckLesbianPin
   - ClothingNeckNonBinaryPin
   - ClothingNeckPansexualPin
+  - ClothingNeckPluralPin
   - ClothingNeckOmnisexualPin
   - ClothingNeckGenderqueerPin
+  - ClothingNeckGenderfluidPin
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
+  - OffsetCane
+  - OffsetCaneWood
+  - OffsetCaneClown
+  - OffsetCaneMime
+  - OffsetCaneNT
+  - Cane
   - TowelColorBlack
   - TowelColorDarkBlue
   - TowelColorDarkGreen
@@ -50,6 +58,42 @@
   - TowelColorSilver
   - TowelColorWhite
   - TowelColorYellow
+  - SuperSynthesizerInstrument # 🌟Starlight🌟
+  - ClothingUnderSocksCoder # 🌟Starlight🌟
+  - ClothWrap # 🌟Starlight🌟
+  - ClothingUniformJumpskirtElegantMaid # 🌟Starlight🌟
+  - ClothingHeadHatCatEars # 🌟Starlight🌟
+  - RolliePack #SL
+  - GoldRing #SL
+  - SilverRing #SL
+  - Matchbox #SL
+  - FancyPen #SL
+  - HonkImplant #SL
+  - TromboneImplant #SL
+  - NewtonsCradle #SL
+  - BBall #SL
+  - RubberQuack #SL
+  - GatchaBox #SL
+  - WristWatch #SL
+  - ZippoLighter #SL
+  - MedChecker #SL
+  - ChanceSack #SL
+  - StationMap #SL
+  - YaharJar #SL
+  - PaperFolder1 #SL
+  - PaperFolder2 #SL
+  - PaperFolder3 #SL
+  - PaperFolder4 #SL
+  - PaperFolder5 #SL
+  - PaperFolder6 #SL
+  - PaperFolder7 #SL
+  - PaperClipboard #SL
+  - HonoredClownMask #SL
+  - MedRollies #SL
+  - RollerSkates #SL
+  - DaBling #SL
+  - CrapPlushie #SL ##not a typo
+  - LighterGatcha #SL
 
 - type: loadoutGroup
   id: Glasses
@@ -77,6 +121,7 @@
   - EmergencyNitrogen
   - EmergencyOxygen
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyNonBreather # 🌟Starlight🌟
 
 # nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
@@ -137,6 +182,7 @@
   - CaptainBackpack
   - CaptainSatchel
   - CaptainDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: CaptainOuterClothing
@@ -182,6 +228,7 @@
   - CommonSatchel
   - CommonDuffel
   - HoPBackpackIan
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: HoPOuterClothing
@@ -195,10 +242,53 @@
   id: AssistantJumpsuit
   name: loadout-group-assistant-jumpsuit
   loadouts:
-  - GreyJumpsuit
-  - GreyJumpskirt
+  - BasicJumpsuit
+  - BasicJumpskirt
   - AncientJumpsuit
   - RainbowJumpsuit
+  - RainbowJumpskirt
+  - GreyJumpsuit #starlight
+  - GreyJumpskirt #starlight
+  - WhiteJumpsuitLoadout #SL
+  - WhiteJumpskirtLoadout #SL
+  - BlackJumpsuitLoadout #SL
+  - BlackJumpskirtLoadout #SL
+  - BlueJumpsuitLoadout #SL
+  - BlueJumpskirtLoadout #SL
+  - DarkBlueJumpsuitLoadout #SL
+  - DarkBlueJumpskirtLoadout #SL
+  - TealJumpsuitLoadout #SL
+  - TealJumpskirtLoadout #SL
+  - GreenJumpsuitLoadout #SL
+  - GreenJumpskirtLoadout #SL
+  - DarkGreenJumpsuitLoadout #SL
+  - DarkGreenJumpskirtLoadout #SL
+  - OrangeJumpsuitLoadout #SL
+  - OrangeJumpskirtLoadout #SL
+  - PinkJumpsuitLoadout #SL
+  - PinkJumpskirtLoadout #SL
+  - RedJumpsuitLoadout #SL
+  - RedJumpskirtLoadout #SL
+  - YellowJumpsuitLoadout #SL
+  - YellowJumpskirtLoadout #SL
+  - PurpleJumpsuitLoadout #SL
+  - PurpleJumpskirtLoadout #SL
+  - LightBrownJumpsuitLoadout #SL
+  - LightBrownJumpskirtLoadout #SL
+  - BrownJumpsuitLoadout #SL
+  - BrownJumpskirtLoadout #SL
+  - MaroonJumpsuitLoadout #SL
+  - MaroonJumpskirtLoadout #SL
+  - BodysuitJeans #SL
+  - CoolTanktop #SL
+  - LumberjackOveralls #SL
+  - MechanicOveralls #SL
+  - MessyDressShirt #SL
+  - OldWomanDress #SL
+  - PunkJeans #SL
+  - TatteredClothes #SL
+  - TieDye #SL
+  - VintageClothes #SL
 
 - type: loadoutGroup
   id: AssistantFace
@@ -206,6 +296,7 @@
   minLimit: 0
   loadouts:
   - AssistantFace
+  - NeckGaiter #starlight
 
 - type: loadoutGroup
   id: AssistantGloves
@@ -213,6 +304,7 @@
   minLimit: 0
   loadouts:
   - AssistantGloves
+  - GreyGloves #starlight
 
 - type: loadoutGroup
   id: CommonBackpack
@@ -221,6 +313,7 @@
   - CommonBackpack
   - CommonSatchel
   - CommonDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: AssistantNeck
@@ -235,6 +328,10 @@
   minLimit: 0
   loadouts:
   - AssistantWintercoat
+  - GreyHoodieA #starlight
+  - GreyTrenchcoatA #starlight
+  - SpaceAssholeCoat #starlight
+  - RedLeatherJacker #SL
 
 - type: loadoutGroup
   id: AssistantShoes
@@ -244,6 +341,7 @@
   - BrownShoes
   - WhiteShoes
   - WinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: BartenderHead
@@ -376,6 +474,17 @@
   - ChaplainNeck
 
 - type: loadoutGroup
+  id: ChaplainBible
+  name: loadout-group-chaplain-bible
+  minLimit: 1
+  loadouts:
+  - Bible
+  - BibleDruid
+  - BibleNanoTrasen
+  - BibleSatanic
+  - BibleTanakh
+
+- type: loadoutGroup
   id: JanitorHead
   name: loadout-group-janitor-head
   minLimit: 0
@@ -435,6 +544,7 @@
   - BotanistBackpack
   - BotanistSatchel
   - BotanistDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: BotanistOuterClothing
@@ -468,6 +578,7 @@
   - ClownBackpack
   - ClownSatchel
   - ClownDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: ClownOuterClothing
@@ -493,6 +604,7 @@
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyNonBreatherClown # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MimeHead
@@ -525,6 +637,7 @@
   - MimeBackpack
   - MimeSatchel
   - MimeDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: MimeOuterClothing
@@ -548,7 +661,9 @@
   loadouts:
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
+  - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyNonBreatherMime # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MusicianJumpsuit
@@ -638,7 +753,11 @@
   name: loadout-group-quartermaster-shoes
   loadouts:
   - BrownShoes
+  - LeatherShoes # 🌟Starlight🌟
+  - SalvageBoots # 🌟Starlight🌟
+  - WorkBoots # 🌟Starlight🌟
   - CargoWinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: CargoTechnicianHead
@@ -661,6 +780,7 @@
   - CargoTechnicianBackpack
   - CargoTechnicianSatchel
   - CargoTechnicianDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: CargoTechnicianOuterClothing
@@ -674,7 +794,11 @@
   name: loadout-group-cargo-technician-shoes
   loadouts:
   - BlackShoes
+  - YellowShoes # 🌟Starlight🌟
   - CargoWinterBoots
+  - LeatherShoes # 🌟Starlight🌟
+  - WorkBoots # 🌟Starlight🌟
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SalvageSpecialistBackpack
@@ -683,6 +807,7 @@
   - SalvageSpecialistBackpack
   - SalvageSpecialistSatchel
   - SalvageSpecialistDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: SalvageSpecialistOuterClothing
@@ -697,6 +822,8 @@
   loadouts:
   - SalvageBoots
   - CargoWinterBoots
+  - WorkBoots # 🌟Starlight🌟
+  - HighHeelBoots # 🌟Starlight🌟
 
 # Engineering
 - type: loadoutGroup
@@ -736,7 +863,9 @@
   name: loadout-group-chief-engineer-shoes
   loadouts:
   - BrownShoes
+  - WorkBoots # 🌟Starlight🌟
   - EngineeringWinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: TechnicalAssistantJumpsuit
@@ -772,6 +901,7 @@
   - StationEngineerBackpack
   - StationEngineerSatchel
   - StationEngineerDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: StationEngineerOuterClothing
@@ -787,6 +917,7 @@
   loadouts:
   - WorkBoots
   - EngineeringWinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: StationEngineerID
@@ -817,13 +948,16 @@
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianSatchel
   - AtmosphericTechnicianDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: AtmosphericTechnicianShoes
   name: loadout-group-atmospheric-technician-shoes
   loadouts:
   - WhiteShoes
+  - WorkBoots # 🌟Starlight🌟
   - EngineeringWinterBoots
+  - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SurvivalExtended
@@ -834,6 +968,7 @@
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyNonBreatherExtended # 🌟Starlight🌟
 
 # Science
 - type: loadoutGroup
@@ -871,7 +1006,12 @@
   name: loadout-group-research-director-shoes
   loadouts:
   - BrownShoes
+  - WhiteShoes # 🌟Starlight🌟
+  - BlackShoes # 🌟Starlight🌟
   - ScienceWinterBoots
+  - Heels # 🌟Starlight🌟
+  - LaceupShoes # 🌟Starlight🌟
+  - LeatherShoes # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: ScientistHead
@@ -907,6 +1047,7 @@
   - ScientistBackpack
   - ScientistSatchel
   - ScientistDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: ScientistOuterClothing
@@ -927,6 +1068,8 @@
   - WhiteShoes
   - BlackShoes
   - ScienceWinterBoots
+  - Heels # 🌟Starlight🌟
+  - LeatherShoes # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: ScientistGloves
@@ -953,18 +1096,12 @@
 
 # Security
 - type: loadoutGroup
-  id: SecurityWeapon
-  name: loadout-group-security-weapon
-  loadouts:
-  - SecurityTaser
-  - SecurityDominator
-
-- type: loadoutGroup
   id: HeadofSecurityHead
   name: loadout-group-head-of-security-head
   minLimit: 0
   loadouts:
   - HeadofSecurityHead
+  - HeadofSecuritySheriff #Starlight
   - HeadofSecurityBeret
 
 - type: loadoutGroup
@@ -977,6 +1114,8 @@
   - HeadofSecurityTurtleneckSkirt
   - HeadofSecurityFormalSuit
   - HeadofSecurityFormalSkirt
+  - HeadofSecurityBlueJumpsuit
+  - HeadofSecurityGreyJumpsuit
 
 - type: loadoutGroup
   id: HeadofSecurityNeck
@@ -1021,6 +1160,7 @@
   loadouts:
   - SecurityGlasses
   - SecurityHud
+  - DetectiveNoirGlasses
 
 - type: loadoutGroup
   id: BrigmedicHead
@@ -1047,6 +1187,7 @@
   - BrigmedicBackpack
   - BrigmedicSatchel
   - BrigmedicDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: BrigmedicOuterClothing
@@ -1072,12 +1213,12 @@
   - CorpsmanBelt #Starlight
 
 #Starlight Start
-- type: loadoutGroup 
+- type: loadoutGroup
   id: BrigmedicGloves
   name: loadout-group-brigmedic-gloves
   loadouts:
   - Nitrile
-  - BlackNitrile 
+  - BlackNitrile
 #Starlight End
 
 - type: loadoutGroup
@@ -1104,6 +1245,7 @@
   - SeniorOfficerJumpsuit
   - SeniorOfficerJumpskirt
   - TrooperUniform
+  - SecurityJumpsuitBlue
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -1112,6 +1254,7 @@
   - SecurityBackpack
   - SecuritySatchel
   - SecurityDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: SecurityBelt
@@ -1137,6 +1280,7 @@
   loadouts:
   - JackBoots
   - SecurityWinterBoots
+  - HighHeelBootsFilled # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SecurityPDA
@@ -1193,6 +1337,7 @@
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyNonbreatherSecurity # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SecurityStar
@@ -1240,7 +1385,11 @@
   name: loadout-group-chief-medical-officer-shoes
   loadouts:
   - BrownShoes
+  - WhiteShoes # 🌟Starlight🌟
   - MedicalWinterBoots
+  - Heels # 🌟Starlight🌟
+  - LaceupShoes # 🌟Starlight🌟
+  - LeatherShoes # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MedicalDoctorHead
@@ -1283,6 +1432,7 @@
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: MedicalShoes
@@ -1290,6 +1440,9 @@
   loadouts:
   - WhiteShoes
   - MedicalWinterBoots
+  - Heels # 🌟Starlight🌟
+  - LaceupShoes # 🌟Starlight🌟
+  - LeatherShoes # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MedicalDoctorPDA
@@ -1343,6 +1496,7 @@
   - ChemistBackpack
   - ChemistSatchel
   - ChemistDuffel
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: ParamedicHead
@@ -1371,7 +1525,20 @@
   name: loadout-group-paramedic-shoes
   loadouts:
   - BlueShoes
+  - WhiteShoes
   - MedicalWinterBoots
+  - Heels # 🌟Starlight🌟
+
+- type: loadoutGroup
+  id: MedicalEyewear
+  name: loadout-group-medical-glasses
+  minLimit: 0
+  loadouts:
+  - MedicalHud
+  - MedicalEyePatchHud
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
 
 - type: loadoutGroup
   id: SurvivalMedical
@@ -1382,6 +1549,7 @@
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyNonBreatherMedical # 🌟Starlight🌟
 
 # Wildcards
 - type: loadoutGroup
@@ -1424,6 +1592,7 @@
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool

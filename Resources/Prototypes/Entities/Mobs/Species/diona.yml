@@ -5,6 +5,15 @@
   id: BaseMobDiona
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Sylvan
+    understands:
+    - GalacticCommon
+    - Sylvan
+  # Starlight-end
   - type: Absorbable
   - type: Tag
     tags:
@@ -100,6 +109,8 @@
       Male: UnisexDiona
       Female: UnisexDiona
       Unsexed: UnisexDiona
+  - type: TypingIndicator
+    proto: diona
   - type: BodyEmotes
     soundsId: DionaBodyEmotes
   - type: IgnoreKudzu
@@ -118,6 +129,7 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: Rootable
 
 - type: entity
   parent: BaseSpeciesDummy

@@ -22,10 +22,22 @@
     revertOnDeath: true
 
 - type: polymorph
+  id: PermanentCorgiMorph
+  configuration:
+    entity: MobCorgiSmart
+    forced: true
+    inventory: Drop
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: false
+
+- type: polymorph
   id: WizardForcedCarp
   configuration:
     entity: MobCarpMagic
     forced: true
+    duration: 120 #STARLIGHT
     inventory: None
     transferName: true
     transferDamage: true
@@ -41,6 +53,7 @@
   configuration:
     entity: MobSkeletonPerson
     forced: true
+    duration: 120 #STARLIGHT
     inventory: Drop
     transferName: true
     transferDamage: true
@@ -56,6 +69,7 @@
   configuration:
     entity: MobMonkey
     forced: true
+    duration: 120 #STARLIGHT
     inventory: None
     transferName: true
     transferDamage: true
@@ -147,6 +161,17 @@
     inventory: Drop
     cooldown: 160
 
+- type: polymorph
+  id: SmartCorgiMorph
+  configuration:
+    entity: MobCorgiSmart
+    forced: false
+    inventory: Drop
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: false
+
 # this is the monkey polymorph for artifact.
 - type: polymorph
   id: ArtifactMonkey
@@ -178,7 +203,6 @@
     entity: MobLizard
     forced: true
     transferName: true
-    transferHumanoidAppearance: true
     inventory: None
     revertOnDeath: true
     revertOnCrit: true
@@ -190,7 +214,6 @@
     entity: MobLuminousPerson
     forced: true
     transferName: true
-    transferHumanoidAppearance: true
     inventory: None
     revertOnDeath: true
     revertOnCrit: true
@@ -232,7 +255,7 @@
     entity: MobBat
     revertOnDeath: true
     revertOnCrit: true
-    
+
 # Temporary Jaunt
 # Don't make permanent jaunts until action system can be reworked to allow do afters and cooldown pausing
 - type: polymorph
@@ -248,3 +271,18 @@
     polymorphSound: /Audio/Magic/ethereal_enter.ogg
     exitPolymorphSound: /Audio/Magic/ethereal_exit.ogg
     duration: 3
+
+# Desynchronized / Void Pocket status
+- type: polymorph
+  id: VoidPocket
+  configuration:
+    entity: DesynchronizedPocket
+    transferName: false
+    inventory: None
+    forced: false
+    revertOnDeath: true
+    allowRepeatedMorphs: false
+    polymorphSound: /Audio/Magic/ethereal_enter.ogg
+    exitPolymorphSound: /Audio/Magic/ethereal_exit.ogg
+    duration: 120
+    effectProto: EffectDesynchronizer

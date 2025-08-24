@@ -5,6 +5,9 @@
   setPreference: true
   objective: roles-antag-syndicate-agent-objective
   guides: [ Traitors ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 10800 # 3h STARLIGHT
 
 - type: antag
   id: TraitorSleeper
@@ -13,6 +16,9 @@
   setPreference: true
   objective: roles-antag-syndicate-agent-sleeper-objective
   guides: [ Traitors ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 10800 # 3h STARLIGHT
 
 # Syndicate Operative Outfit - Monkey
 - type: startingGear

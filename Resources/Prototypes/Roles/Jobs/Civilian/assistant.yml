@@ -2,7 +2,19 @@
   id: Assistant
   name: job-name-assistant
   description: job-description-assistant
-  playTimeTracker: JobAssistant
+  playTimeTracker: JobPassenger
+  startingGear: AssistantGear
+  icon: "JobIconAssistant"
+  supervisors: job-supervisors-everyone
+  access:
+  - Maintenance
+
+- type: job # Just ignore it. It’s a database workaround.
+  id: Passenger
+  hidden: true
+  name: job-name-assistant
+  description: job-description-assistant
+  playTimeTracker: JobAssistant 
   startingGear: AssistantGear
   icon: "JobIconAssistant"
   supervisors: job-supervisors-everyone
@@ -13,7 +25,18 @@
   id: AssistantGear
   equipment:
     id: AssistantPDA
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetAssistant
   #storage:
     #back:
     #- Stuff
+
+- type: chameleonOutfit
+  id: PassengerChameleonOutfit
+  job: Passenger
+  equipment:
+    head: ClothingHeadHatWelding
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckMantle
+    outerClothing: ClothingOuterWinterCoat
+    gloves: ClothingHandsGlovesColorYellowBudget

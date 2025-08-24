@@ -41,6 +41,14 @@ public sealed partial record PolymorphConfiguration
     public EntProtoId Entity;
 
     /// <summary>
+    /// Additional entity to spawn when polymorphing/reverting.
+    /// Gets parented to the entity polymorphed into.
+    /// Useful for visual effects.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public EntProtoId? EffectProto;
+
+    /// <summary>
     /// The delay between the polymorph's uses in seconds
     /// Slightly weird as of right now.
     /// </summary>
@@ -104,10 +112,20 @@ public sealed partial record PolymorphConfiguration
     public bool RevertOnEat;
 
     /// <summary>
-    /// Whether or not an already polymorphed entity is able to be polymorphed again
+    /// If true, attempts to polymorph this polymorph will fail, unless
+    /// <see cref="IgnoreAllowRepeatedMorphs"/> is true on the /new/ morph.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool AllowRepeatedMorphs;
+
+    /// <summary>
+    /// If true, this morph will succeed even when used on an entity
+    /// that is already polymorphed with a configuration that has
+    /// <see cref="AllowRepeatedMorphs"/> set to false. Helpful for
+    /// smite polymorphs which should always succeed.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public bool IgnoreAllowRepeatedMorphs;
 
     /// <summary>
     /// The amount of time that should pass after this polymorph has ended, before a new one
@@ -128,6 +146,19 @@ public sealed partial record PolymorphConfiguration
     /// </summary>
     [DataField]
     public SoundSpecifier? ExitPolymorphSound;
+
+    // Starlight - Start
+    /// <summary>
+    /// The exact names of components to copy over when this polymorph is applied.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public HashSet<string> CopiedComponents = new()
+    {
+        "LanguageKnowledge",
+        "LanguageSpeaker",
+        "Grammar"
+    };
+    // Starlight - End
 
     /// <summary>
     ///     If not null, this popup will be displayed when being polymorphed into something.

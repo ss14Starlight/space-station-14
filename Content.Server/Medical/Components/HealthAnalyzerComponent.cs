@@ -41,10 +41,10 @@ public sealed partial class HealthAnalyzerComponent : Component
     public EntityUid? ScannedEntity;
 
     /// <summary>
-    /// The maximum range in tiles at which the analyzer can receive continuous updates
+    /// The maximum range in tiles at which the analyzer can receive continuous updates, a value of null will be infinite range
     /// </summary>
     [DataField]
-    public float MaxScanRange = 2.5f;
+    public float? MaxScanRange = 2.5f;
 
     /// <summary>
     /// Sound played on scanning begin
@@ -66,4 +66,27 @@ public sealed partial class HealthAnalyzerComponent : Component
     
     [DataField("damageContainers", customTypeSerializer: typeof(PrototypeIdListSerializer<DamageContainerPrototype>))]
     public List<string>? DamageContainers;
+    
+    # region Starlight
+    
+    /// <summary>
+    /// Whether to show up the messages in chat
+    /// </summary>
+    [DataField]
+    public bool Talk;
+    
+    [DataField]
+    public string TalkMessage = "health-analyzer-chat-message";
+    
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
+    public TimeSpan NextTalk = TimeSpan.Zero;
+    
+    /// <summary>
+    /// The delay between talk updates
+    /// </summary>
+    [DataField]
+    public TimeSpan TalkInterval = TimeSpan.FromSeconds(5);
+    
+    # endregion Starlight
 }

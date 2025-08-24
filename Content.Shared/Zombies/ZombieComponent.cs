@@ -1,7 +1,7 @@
-using Content.Shared.Antag;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -17,17 +17,30 @@ namespace Content.Shared.Zombies;
 public sealed partial class ZombieComponent : Component
 {
     /// <summary>
-    /// The baseline infection chance you have if you are completely nude
+    /// The baseline infection chance you have if you have no protective gear
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float MaxZombieInfectionChance = 0.80f;
+    public float BaseZombieInfectionChance = 0.75f;
 
     /// <summary>
     /// The minimum infection chance possible. This is simply to prevent
-    /// being invincible by bundling up.
+    /// being overly protected by bundling up.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float MinZombieInfectionChance = 0.25f;
+    public float MinZombieInfectionChance = 0.00f; // Starlight, since Biosuits now provide zombie immunity
+
+    /// <summary>
+    /// How effective each resistance type on a piece of armor is. Using a damage specifier for this seems illegal.
+    /// </summary>
+    public DamageSpecifier ResistanceEffectiveness = new()
+    {
+        DamageDict = new ()
+        {
+            {"Slash", 0.5},
+            {"Piercing", 0.3},
+            {"Blunt", 0.1},
+        }
+    };
 
     [ViewVariables(VVAccess.ReadWrite)]
     public float ZombieMovementSpeedDebuff = 0.70f;
@@ -80,10 +93,8 @@ public sealed partial class ZombieComponent : Component
     [DataField("beforeZombifiedEyeColor")]
     public Color BeforeZombifiedEyeColor;
 
-    [DataField("emoteId", customTypeSerializer: typeof(PrototypeIdSerializer<EmoteSoundsPrototype>))]
-    public string? EmoteSoundsId = "Zombie";
-
-    public EmoteSoundsPrototype? EmoteSounds;
+    [DataField("emoteId")]
+    public ProtoId<EmoteSoundsPrototype>? EmoteSoundsId = "Zombie";
 
     [DataField("nextTick", customTypeSerializer:typeof(TimeOffsetSerializer))]
     public TimeSpan NextTick;
@@ -126,6 +137,25 @@ public sealed partial class ZombieComponent : Component
             { "Piercing", -2 }
         }
     };
+
+    /// <summary>
+    /// The damage dealt on bite, dehardcoded for your enjoyment
+    /// </summary>
+    [DataField]
+    public DamageSpecifier DamageOnBite = new()
+    {
+        DamageDict = new()
+        {
+            { "Slash", 20 }, // Removed piercing damage because how in the fuck is the best counter to a zombie bite a bullet proof vest
+            { "Structural", 10 }
+        }
+    };
+
+    /// <summary>
+    ///     Starlight, this just makes zombies always attack at the same speed as a base human (and also the first C# code I did eheee :3)
+    /// </summary>
+    [DataField("BiteSpeed")]
+    public float BiteSpeed = 1.0f;
 
     /// <summary>
     ///     Path to antagonist alert sound.

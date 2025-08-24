@@ -6,10 +6,12 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 62000 # 20 hrs
+      time: 72000 # 20 hrs
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 62000 # 20 hrs
+      time: 72000 # 20 hrs
+    - !type:RolesRequirement
+      proto: ExtRolesReq
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   supervisors: job-supervisors-centcom
@@ -31,7 +33,9 @@
     - Detective
     - Salvage
     - Security
+    - Brigmedic
     - Brig
+    - Lawyer
     - Cargo
     - Atmospherics
     - Cargo
@@ -44,15 +48,14 @@
 - type: startingGear
   id: BlueShieldGear
   equipment:
-    shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHatBeretBlueShield
-    outerClothing: ClothingOuterArmorBlueShield
     id: BlueShieldPDA
-    ears: ClothingHeadsetAltCommand
+    ears: ClothingHeadsetAltBSO # Starlight
     belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat
+    pocket1: WeaponMultiphaseGun
+    pocket2: HandheldBSOCrewMonitor
   storage:
     back:
-    - WeaponMultiphaseGun
     - Flash
     - ClothingMaskGasBSO

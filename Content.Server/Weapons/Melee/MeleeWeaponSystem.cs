@@ -1,40 +1,31 @@
+using System.Linq; // Starlight-edit™
+using System.Numerics; // Starlight-edit™
 using Content.Server.Chat.Systems;
-using Content.Server.CombatMode.Disarm;
 using Content.Server.Movement.Systems;
-using Content.Shared.Actions.Events;
-using Content.Shared.Administration.Components;
-using Content.Shared.CombatMode;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Database;
 using Content.Shared.Effects;
-using Content.Shared.Hands.Components;
-using Content.Shared.IdentityManagement;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Popups;
+using Content.Shared.Physics; // Starlight-edit™
 using Content.Shared.Speech.Components;
-using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
-using Robust.Shared.Random;
-using System.Linq;
-using System.Numerics;
+using Content.Shared.Chat; // Starlight
+using Robust.Shared.Physics; // Starlight-edit™
+using Robust.Shared.Physics.Systems; // Starlight-edit™
 
 namespace Content.Server.Weapons.Melee;
 
 public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
     [Dependency] private readonly LagCompensationSystem _lag = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!; // Starlight-edit™
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Starlight-edit™
 
     public override void Initialize()
     {
@@ -66,7 +57,7 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
         ICommonSession? session)
     {
         // Originally the client didn't predict damage effects so you'd intuit some level of how far
-        // in the future you'd need to predict, but then there was a lot of complaining like "why would you add artifical delay" as if ping is a choice.
+        // in the future you'd need to predict, but then there was a lot of complaining like "why would you add artificial delay" as if ping is a choice.
         // Now damage effects are predicted but for wide attacks it differs significantly from client and server so your game could be lying to you on hits.
         // This isn't fair in the slightest because it makes ping a huge advantage and this would be a hidden system.
         // Now the client tells us what they hit and we validate if it's plausible.
@@ -85,142 +76,72 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
         return true;
     }
 
-    protected override bool DoDisarm(EntityUid user, DisarmAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)
-    {
-        if (!base.DoDisarm(user, ev, meleeUid, component, session))
-            return false;
-
-        if (!TryComp<CombatModeComponent>(user, out var combatMode) ||
-            combatMode.CanDisarm != true)
-        {
-            return false;
-        }
-
-        var target = GetEntity(ev.Target!.Value);
-
-        if (_mobState.IsIncapacitated(target))
-        {
-            return false;
-        }
-
-        if (!TryComp<HandsComponent>(target, out var targetHandsComponent))
-        {
-            if (!TryComp<StatusEffectsComponent>(target, out var status) || !status.AllowedEffects.Contains("KnockedDown"))
-                return false;
-        }
-
-        if (!InRange(user, target, component.Range, session))
-        {
-            return false;
-        }
-
-        EntityUid? inTargetHand = null;
-
-        if (targetHandsComponent?.ActiveHand is { IsEmpty: false })
-        {
-            inTargetHand = targetHandsComponent.ActiveHand.HeldEntity!.Value;
-        }
-
-        Interaction.DoContactInteraction(user, target);
-
-        var attemptEvent = new DisarmAttemptEvent(target, user, inTargetHand);
-
-        if (inTargetHand != null)
-        {
-            RaiseLocalEvent(inTargetHand.Value, attemptEvent);
-        }
-
-        RaiseLocalEvent(target, attemptEvent);
-
-        if (attemptEvent.Cancelled)
-            return false;
-
-        var chance = CalculateDisarmChance(user, target, inTargetHand, combatMode);
-
-        if (_random.Prob(chance))
-        {
-            // Yknow something tells me this comment is hilariously out of date...
-            // Don't play a sound as the swing is already predicted.
-            // Also don't play popups because most disarms will miss.
-            return false;
-        }
-
-        AdminLogger.Add(LogType.DisarmedAction, $"{ToPrettyString(user):user} used disarm on {ToPrettyString(target):target}");
-
-        var eventArgs = new DisarmedEvent { Target = target, Source = user, PushProbability = 1 - chance };
-        RaiseLocalEvent(target, eventArgs);
-
-        if (!eventArgs.Handled)
-        {
-            return false;
-        }
-
-        _audio.PlayPvs(combatMode.DisarmSuccessSound, user, AudioParams.Default.WithVariation(0.025f).WithVolume(5f));
-        AdminLogger.Add(LogType.DisarmedAction, $"{ToPrettyString(user):user} used disarm on {ToPrettyString(target):target}");
-
-        var targetEnt = Identity.Entity(target, EntityManager);
-        var userEnt = Identity.Entity(user, EntityManager);
-
-        var msgOther = Loc.GetString(
-                eventArgs.PopupPrefix + "popup-message-other-clients",
-                ("performerName", userEnt),
-                ("targetName", targetEnt));
-
-        var msgUser = Loc.GetString(eventArgs.PopupPrefix + "popup-message-cursor", ("targetName", targetEnt));
-
-        var filterOther = Filter.PvsExcept(user, entityManager: EntityManager);
-
-        PopupSystem.PopupEntity(msgOther, user, filterOther, true);
-        PopupSystem.PopupEntity(msgUser, target, user);
-
-        if (eventArgs.IsStunned)
-        {
-
-            PopupSystem.PopupEntity(Loc.GetString("stunned-component-disarm-success-others", ("source", userEnt), ("target", targetEnt)), targetEnt, Filter.PvsExcept(user), true, PopupType.LargeCaution);
-            PopupSystem.PopupCursor(Loc.GetString("stunned-component-disarm-success", ("target", targetEnt)), user, PopupType.Large);
-
-            AdminLogger.Add(LogType.DisarmedKnockdown, LogImpact.Medium, $"{ToPrettyString(user):user} knocked down {ToPrettyString(target):target}");
-        }
-
-        return true;
-    }
-
     protected override bool InRange(EntityUid user, EntityUid target, float range, ICommonSession? session)
     {
-        EntityCoordinates targetCoordinates;
-        Angle targetLocalAngle;
-
+        // Server-side unobstructed check with lag compensation
         if (session is { } pSession)
         {
-            (targetCoordinates, targetLocalAngle) = _lag.GetCoordinatesAngle(target, pSession);
-            return Interaction.InRangeUnobstructed(user, target, targetCoordinates, targetLocalAngle, range, overlapCheck: false);
+            var (targetCoordinates, targetLocalAngle) = _lag.GetCoordinatesAngle(target, pSession); // Starlight-edit-begin™
+            if (Interaction.InRangeUnobstructed(user, target, targetCoordinates, targetLocalAngle, range, overlapCheck: false))
+                return true;
+        }
+        else
+        {
+            // Fallback for when no session is provided
+            var targetXformSimple = Transform(target);
+            if (Interaction.InRangeUnobstructed(user, target, targetXformSimple.Coordinates, targetXformSimple.LocalRotation, range, overlapCheck: false))
+                return true; // Starlight-edit-end™
         }
 
-        return Interaction.InRangeUnobstructed(user, target, range);
+        // Fallback for same-tile obstructions // Starlight-edit-begin™
+        var userXform = Transform(user);
+        var targetXform = Transform(target);
+
+        var userPos = TransformSystem.GetWorldPosition(userXform);
+        var targetPos = TransformSystem.GetWorldPosition(targetXform);
+        var delta = targetPos - userPos;
+        var distance = delta.Length();
+
+        if (distance > range)
+            return false;
+
+        // If distance is near-zero, it's a point-blank attack. The path is definitionally "unobstructed"
+        if (distance < 0.001f)
+            return true;
+
+        var mapId = userXform.MapID;
+        if (mapId == MapId.Nullspace)
+            return false;
+
+        var dir = delta.Normalized();
+        const int attackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
+
+        var ray = new CollisionRay(userPos, dir, attackMask);
+        var rayCastResults = _physics.IntersectRay(mapId, ray, distance, user, false).ToList();
+
+        if (!rayCastResults.Any() || rayCastResults.First().HitEntity == target)
+            return true;
+
+        var hitEntity = rayCastResults.First().HitEntity;
+
+        if (targetXform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
+            return false;
+
+        var hitXform = Transform(hitEntity);
+        if (hitXform.GridUid != gridUid)
+            return false;
+
+        var targetTile = _map.CoordinatesToTile(gridUid, grid, targetXform.Coordinates);
+        var hitTile = _map.CoordinatesToTile(gridUid, grid, hitXform.Coordinates);
+
+        // If the first obstruction is on the same tile as the target, allow the attack
+        return targetTile == hitTile; // Starlight-edit-end™
     }
 
     protected override void DoDamageEffect(List<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
     {
         var filter = Filter.Pvs(targetXform.Coordinates, entityMan: EntityManager).RemoveWhereAttachedEntity(o => o == user);
         _color.RaiseEffect(Color.Red, targets, filter);
-    }
-
-    private float CalculateDisarmChance(EntityUid disarmer, EntityUid disarmed, EntityUid? inTargetHand, CombatModeComponent disarmerComp)
-    {
-        if (HasComp<DisarmProneComponent>(disarmer))
-            return 1.0f;
-
-        if (HasComp<DisarmProneComponent>(disarmed))
-            return 0.0f;
-
-        var chance = disarmerComp.BaseDisarmFailChance;
-
-        if (inTargetHand != null && TryComp<DisarmMalusComponent>(inTargetHand, out var malus))
-        {
-            chance += malus.Malus;
-        }
-
-        return Math.Clamp(chance, 0f, 1f);
     }
 
     public override void DoLunge(EntityUid user, EntityUid weapon, Angle angle, Vector2 localPos, string? animation, bool predicted = true)
@@ -247,7 +168,7 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
             return;
         }
 
-        if (comp.Battlecry != null)//If the battlecry is set to empty, doesn't speak
+        if (comp.Battlecry != null) //If the battlecry is set to empty, doesn't speak
         {
             _chat.TrySendInGameICMessage(args.User, comp.Battlecry, InGameICChatType.Speak, true, true, checkRadioPrefix: false);  //Speech that isn't sent to chat or adminlogs
         }

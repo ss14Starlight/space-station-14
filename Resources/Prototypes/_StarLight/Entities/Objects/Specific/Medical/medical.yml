@@ -53,7 +53,7 @@
 
 - type: stack
   id: Bluebrutepack
-  name: brutepack
+  name: stack-brutepack
   icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: bluebrutepack }
   spawn: Bluebrutepack1
   maxCount: 20
@@ -102,7 +102,7 @@
 
 - type: stack
   id: Blueointment
-  name: blueointment
+  name: stack-blueointment
   icon: { sprite: "/Textures/Objects/Specific/Medical/medical.rsi", state: blueointment }
   spawn: Blueointment1
   maxCount: 20
@@ -150,10 +150,20 @@
     interactFailureString: petting-failure-medibot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: Advertise
-    pack: MedibotAds
+  - type: DatasetVocalizer
+    dataset: MedibotAds
   - type: Inventory
     templateId: medibot
+  # starlight
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-medibot
+    layoutId: MedibotControls
+    alwaysRandomize: true
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
 
 - type: entity
   name: red ointment
@@ -172,6 +182,7 @@
   - type: Healing
     damageContainers:
       - Biological
+    delay: 1.6 # STARLIGHT
     damage:
       types:
         Heat: -6
@@ -213,7 +224,7 @@
 
 - type: stack
   id: RedOintment
-  name: redointment
+  name: stack-redointment
   icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: redointment }
   spawn: RedOintment1
   maxCount: 20
@@ -235,6 +246,7 @@
   - type: Healing
     damageContainers:
       - Biological
+    delay: 1.6 # STARLIGHT
     damage:
       groups:
         Brute: -18 # 6 for each type in the group :3
@@ -274,7 +286,7 @@
 
 - type: stack
   id: RedBrutePack
-  name: redbrutepack
+  name: stack-redbrutepack
   icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: redbrutepack }
   spawn: RedBrutePack1
   maxCount: 20
@@ -296,6 +308,7 @@
   - type: Healing
     damageContainers:
       - Biological
+    delay: 1.6 # STARLIGHT
     damage:
       types:
         Piercing: -7.5
@@ -338,7 +351,7 @@
 
 - type: stack
   id: RedPunctPack
-  name: redpunctpack
+  name: stack-redpunctpack
   icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: puncturaseredbrutepack }
   spawn: RedPunctPack1
   maxCount: 20
@@ -360,6 +373,7 @@
   - type: Healing
     damageContainers:
       - Biological
+    delay: 1.6 # STARLIGHT
     damage:
       types:
         Piercing: -2.5
@@ -402,7 +416,7 @@
 
 - type: stack
   id: RedLacePack
-  name: redlacepack
+  name: stack-redlacepack
   icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: lacerinolbrutepack }
   spawn: RedLacePack1
   maxCount: 20
@@ -424,6 +438,7 @@
   - type: Healing
     damageContainers:
       - Biological
+    delay: 1.6 # STARLIGHT
     damage:
       types:
         Piercing: -2.5
@@ -465,7 +480,7 @@
 
 - type: stack
   id: RedBruizPack
-  name: redbruizpack
+  name: stack-redbruizpack
   icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: bruizinebrutepack }
   spawn: RedBruizPack1
   maxCount: 20

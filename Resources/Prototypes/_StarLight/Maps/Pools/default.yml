@@ -2,16 +2,28 @@
   id: DefaultStarlightMapPool
   maps:
   - StarlightBagel
-  - StarlightBox
+  - Barratry
   - StarlightCog
+  - Cork
+  - StarlightExo
   - StarlightFland
   - StarlightHotel
+  - Lagan
+  - Leth
   - Lobster
   - Manor
-  - StarlightMarathon
-  - StarlightMeta
   - StarlightOasis
   - StarlightOmega
-  - StarlightPacked
+  - Origin
+  - Orwell
   - StarlightReach
   - StarlightSaltern
+  - Starboard
+  - Kiloton
+  - StarlightElkridge
+  - Prism
+  - StarlightSilica
+# - StarlightBox
+# - StarlightMarathon
+# - StarlightMeta
+# - StarlightPacked

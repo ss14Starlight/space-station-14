@@ -5,6 +5,9 @@
 
 # Jobs
 - type: playTimeTracker
+  id: JobAssistant
+
+- type: playTimeTracker
   id: JobAtmosphericTechnician
 
 - type: playTimeTracker
@@ -98,7 +101,7 @@
   id: JobMusician
 
 - type: playTimeTracker
-  id: JobAssistant
+  id: JobPassenger
 
 - type: playTimeTracker
   id: JobParamedic

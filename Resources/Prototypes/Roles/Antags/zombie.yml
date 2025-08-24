@@ -5,6 +5,9 @@
   setPreference: true
   objective: roles-antag-initial-infected-objective
   guides: [ Zombies ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 10800 # 3h #STARLIGHT
 
 - type: antag
   id: Zombie

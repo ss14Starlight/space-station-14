@@ -1,5 +1,36 @@
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAssistant
+  name: assistant jumpsuit
+  description: A tasteful green jumpsuit that reminds you of the good old days.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+    layers:
+    - state: icon
+      color: "#639137"
+    - state: trinkets-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#639137"
+      - state: trinkets-inhand-left
+      right:
+      - state: inhand-right
+        color: "#639137"
+      - state: trinkets-inhand-right
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#639137"
+      - state: trinkets-equipped-INNERCLOTHING
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitDeathSquad
   name: death squad uniform
   description: Advanced armored jumpsuit used by special forces in special operations.
@@ -408,6 +439,17 @@
     sprite: Clothing/Uniforms/Jumpsuit/hos_parade.rsi
 
 - type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitCommandGeneric
+  name: command jumpsuit
+  description: A generic Command-colored jumpsuit not associated with any particular department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/commandgeneric.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/commandgeneric.rsi
+
+- type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHydroponics
   name: hydroponics jumpsuit
@@ -524,6 +566,7 @@
   - type: Tag
     tags:
     - ClothMade
+    - Recyclable
     - PrisonUniform
     - WhitelistChameleon
 
@@ -775,7 +818,7 @@
       sprite: Clothing/Uniforms/Jumpsuit/lawyergood.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseSyndicateContraband]
+  parent: [UnsensoredClothingUniformBase, BaseMajorContraband] #SL EDIT, Syndie to Major
   id: ClothingUniformJumpsuitPyjamaSyndicateBlack
   name: black syndicate pyjamas
   description: For those long nights in perma.
@@ -786,7 +829,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseSyndicateContraband]
+  parent: [UnsensoredClothingUniformBase, BaseMajorContraband] #SL EDIT, Syndie to Major
   id: ClothingUniformJumpsuitPyjamaSyndicatePink
   name: pink syndicate pyjamas
   description: For those long nights in perma.
@@ -797,7 +840,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseSyndicateContraband]
+  parent: [UnsensoredClothingUniformBase, BaseMajorContraband] #SL EDIT, Syndie to Major
   id: ClothingUniformJumpsuitPyjamaSyndicateRed
   name: red syndicate pyjamas
   description: For those long nights in perma.
@@ -861,6 +904,8 @@
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   parent: ClothingUniformBase
@@ -878,7 +923,7 @@
       mode: SensorOff
 
 - type: entity
-  parent: [ ClothingUniformBase ]
+  parent: [ ClothingUniformBase , BaseSalvageContraband ] #Starlight salvContra
   id: ClothingUniformJumpsuitMercenary
   name: mercenary jumpsuit
   description: Clothing for real mercenaries who have gone through fire, water and the jungle of planets flooded with dangerous monsters or targets for which a reward has been assigned.
@@ -1077,6 +1122,13 @@
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/cluwne.rsi
   - type: Unremoveable
+  #region Starlight
+  - type: Tag
+    tags:
+    - ClownSuit
+    - WhitelistChameleon
+    - BibleThwackRemovable
+  #endregion
 
 - type: entity
   parent: ClothingUniformBase
