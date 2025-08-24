@@ -11,6 +11,7 @@ using Content.Shared.Implants;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Popups;
 using Content.Shared.Revolutionary.Components;
+using Content.Shared.Roles.Components; # Starlight-edit
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
