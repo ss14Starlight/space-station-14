@@ -445,6 +445,39 @@
   products:
     Bruizine: 2
 
+#- type: reaction # Starlight
+ #id: BicarLacerinol # mixing any two brute medications will make Razorium # Starlight
+ #impact: Medium # Starlight
+ #reactants: # Starlight
+   #Lacerinol: # Starlight
+     #amount: 1 # Starlight
+   #Bicaridine: # Starlight
+     #amount: 1 # Starlight
+ #products: # Starlight
+   #Razorium: 1 # Starlight
+#- # Starlight
+#- type: reaction # Starlight
+ #id: BicarPuncturase # mixing any two brute medications will make Razorium # Starlight
+ #impact: Medium # Starlight
+ #reactants: # Starlight
+   #Puncturase: # Starlight
+     #amount: 1 # Starlight
+   #Bicaridine: # Starlight
+     #amount: 1 # Starlight
+ #products: # Starlight
+   #Razorium: 1 # Starlight
+#- # Starlight
+#-- type: reaction # Starlight
+ #id: BicarBruizine # mixing any two brute medications will make Razorium # Starlight
+ #impact: Medium # Starlight
+ #reactants: # Starlight
+   #Bruizine: # Starlight
+     #amount: 1 # Starlight
+   #Bicaridine: # Starlight
+     #amount: 1 # Starlight
+ #products: # Starlight
+   #Razorium: 1 # Starlight
+#- # Starlight
 - type: reaction
   id: BruizineLacerinol # mixing any two brute medications will make Razorium
   impact: Medium
