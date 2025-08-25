@@ -13,3 +13,19 @@
       - Medal
   - type: StaticPrice
     price: 250
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingBlackstarMedal
+  name: Order of the Blackstar
+  description: A dark medal made with plasteel and diamonds. made for the best of the best mercenaries. It looks very official.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Medals/Blackstarmedal.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Medals/Blackstarmedal.rsi
+  - type: Tag
+    tags:
+      - Medal
+  - type: StaticPrice
+    price: 25000
