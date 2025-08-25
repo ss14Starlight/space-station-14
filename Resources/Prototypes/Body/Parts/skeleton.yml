@@ -39,6 +39,7 @@
   parent: [ PartSkeleton, BaseMob ]
   components:
   # Starlight Start
+    - type: LanguageSpeaker
     - type: LanguageKnowledge
       speaks:
       - GalacticCommon
