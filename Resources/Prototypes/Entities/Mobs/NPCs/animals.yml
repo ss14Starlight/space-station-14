@@ -7,9 +7,10 @@
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
-    - Mouse
+    - Bat
     understands:
-    - Mouse
+    - Bat
+    - GalacticCommon
   # Starlight-end
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
@@ -2929,6 +2930,14 @@
   id: MobCorgiNarsi
   description: Ian! No!
   components:
+  # Starlight Start
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    understands:
+    - Dog
+    - GalacticCommon
+  # Starlight End
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/corgi.rsi

@@ -7,6 +7,13 @@
   id: BaseMobSkeletonPerson
   abstract: true
   components:
+  # Starlight Start
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    understands:
+    - GalacticCommon
+  # Starlight End
   - type: HumanoidAppearance
     species: Skeleton
   - type: Icon
