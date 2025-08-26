@@ -2932,6 +2932,7 @@
   description: Ian! No!
   components:
   # Starlight Start
+  - type: LanguageSpeaker
   - type: LanguageKnowledge
     speaks:
     - Dog
