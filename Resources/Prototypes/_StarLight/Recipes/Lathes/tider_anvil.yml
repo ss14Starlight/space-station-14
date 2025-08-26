@@ -150,7 +150,7 @@
 
 - type: latheRecipe
   id: MagazineSMGImprovTA
-  result: MagazineSMGImprovised
+  result: MagazinePistolSubMachineGunImprovised
   completetime: 36
   materials:
     Steel: 600
