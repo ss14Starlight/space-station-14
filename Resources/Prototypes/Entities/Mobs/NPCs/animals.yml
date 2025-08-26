@@ -5,6 +5,7 @@
   description: Some cultures find them terrifying, others crunchy on the teeth.
   components:
   # Starlight-start: Languages
+  - type: LanguageSpeaker
   - type: LanguageKnowledge
     speaks:
     - Bat
