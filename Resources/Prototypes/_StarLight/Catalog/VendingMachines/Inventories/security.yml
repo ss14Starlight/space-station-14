@@ -110,3 +110,19 @@
     stock: 4
   - !type:BuyerAccessCondition
     access: Brigmedic
+
+- type: listing
+  id: TCSyndie
+  productEntity: Telecrystal5
+  cost:
+    NTCredit: 1984
+  categories:
+  - SLSecurity
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:BuyerAntagCondition
+    whitelist:
+    - Thief
+    - Traitor
+    - TraitorSleeper
