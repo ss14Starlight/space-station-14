@@ -1,0 +1,10 @@
+- type: microwaveMealRecipe
+  id: RecipeGingerbread
+  name: Gingerbread Recipe
+  result: MobGingerbreadAI
+  time: 25
+  reagents:
+    Cognizine: 10
+    Flour: 5
+    Milk: 5
+    Egg: 6
