@@ -666,9 +666,9 @@
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
-    - Sylvan
+    - Duck
     understands:
-    - Sylvan
+    - Duck
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs
@@ -3125,6 +3125,14 @@
   parent: MobCatSpace
   description: Explosive kitten.
   components:
+# Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Cat
+    understands:
+    - Cat
+    - GalacticCommon
+# Starlight-end
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
