@@ -68,7 +68,8 @@ public sealed partial class ExternalContainerInjectorSystem : SharedExternalCont
         if (!EligibleEntity(target, EntityManager, component))
             return false;
 
-        if (TryComp<UseDelayComponent>(uid, out var delayComp))
+        bool hasUseDelay = TryComp<UseDelayComponent>(uid, out var delayComp);
+        if (hasUseDelay)
         {
             if (_useDelay.IsDelayed((uid, delayComp)))
                 return false;
@@ -157,6 +158,10 @@ public sealed partial class ExternalContainerInjectorSystem : SharedExternalCont
         // Play injection sound
         PlayInjectSound(entity, user);
 
+        // Add Cooldown
+        if (hasUseDelay)
+            _useDelay.TryResetDelay((uid, delayComp!));
+
         // Show injection feedback
         if (target != user)
         {
@@ -238,6 +243,10 @@ public sealed partial class ExternalContainerInjectorSystem : SharedExternalCont
 
         if (!_solutionContainers.TryGetSolution(slot.Item.Value, entity.Comp.VialSolutionName, out var vialSolution,
                 out var vialSolutionComponent))
+            return false;
+
+        // Check if empty
+        if (vialSolutionComponent.Volume == 0)
             return false;
 
         solution = vialSolutionComponent;
