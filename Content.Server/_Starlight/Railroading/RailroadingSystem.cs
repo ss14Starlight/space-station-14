@@ -132,6 +132,10 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
             {
                 subject.Comp.ActiveCard = card;
                 _adminLogger.Add(LogType.Railroading, LogImpact.Medium, $"{ToPrettyString(subject)} selected card {ToPrettyString(cardUid)}.");
+
+                var cardPerformer = EnsureComp<RailroadCardPerformerComponent>(card);
+                cardPerformer.Performer = subject;
+
                 var @event = new RailroadingCardChosenEvent(subject);
                 RaiseLocalEvent(card, ref @event);
             }
@@ -167,6 +171,21 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         RaiseLocalEvent(ent.Comp.ActiveCard.Value, ref completedEvent);
 
         _adminLogger.Add(LogType.Railroading, LogImpact.Medium, $"{ToPrettyString(ent)} completed card {ToPrettyString(ent.Comp.ActiveCard.Value)}.");
+        ent.Comp.Completed ??= [];
+        ent.Comp.Completed.Add(ent.Comp.ActiveCard.Value);
+        ent.Comp.ActiveCard = null;
+    }
+
+    internal void CardFailed(Entity<RailroadableComponent> ent)
+    {
+        if (ent.Comp.ActiveCard is null)
+            return;
+
+        var @event = new RailroadingCardFailedEvent(ent);
+        RaiseLocalEvent(ent.Comp.ActiveCard.Value, ref @event);
+        RaiseLocalEvent(ent, ref @event);
+
+        _adminLogger.Add(LogType.Railroading, LogImpact.Medium, $"{ToPrettyString(ent)} failed card {ToPrettyString(ent.Comp.ActiveCard.Value)}.");
         ent.Comp.Completed ??= [];
         ent.Comp.Completed.Add(ent.Comp.ActiveCard.Value);
         ent.Comp.ActiveCard = null;
