@@ -302,3 +302,92 @@
     - type: Construction
       graph: MakeshiftShield
       node: makeshiftShield
+
+- type: entity
+  name: X41-Vibro Shield
+  parent: BaseShield
+  id: VibroShield
+  description: An advanced riot shield made of lightweight materials that collapses for easy storage.
+  components:
+    - type: ItemToggle
+      soundActivate:
+        path: /Audio/Weapons/telescopicon.ogg
+        params:
+          volume: -5
+      soundDeactivate:
+        path: /Audio/Weapons/telescopicoff.ogg
+        params:
+          volume: -5
+    - type: ComponentToggler
+      components:
+      - type: DisarmMalus
+        malus: 0.6
+    - type: ItemToggleSize
+      activatedSize: Huge
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/bsoshield.rsi
+      layers:
+        - state: bsoshieldicon
+        - state: Blueshield-on
+          visible: false
+          map: [ "shield" ]
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Weapons/Melee/bsoshield.rsi
+      heldPrefix: teleriot
+    - type: UseDelay
+      delay: 0.5
+    - type: ToggleableVisuals
+      spriteLayer: shield
+      inhandVisuals:
+        left:
+          - state: Blueshield2-inhand-left-on
+        right:
+          - state: Blueshield2-inhand-right-on
+    - type: Reflect
+      reflectProb: 0.35
+      reflects:
+        - Energy
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.55
+          Slash: 0.5
+          Piercing: 0.4
+          Heat: 0.4
+      activeBlockModifier:
+        coefficients:
+          Blunt: 1.2
+          Slash: 0.85
+          Piercing: 0.5
+          Heat: 0.4
+        flatReductions:
+          Heat: 1
+          Piercing: 1
+    - type: Appearance
+    - type: Damageable
+      damageContainer: Shield
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetPlasteel1:
+                  min: 2
+                  max: 1
+    - type: StaticPrice
+      price: 350
