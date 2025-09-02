@@ -16,7 +16,7 @@
       - Sheet
       - Ingot
       - RawMaterial
-
+#test
 - type: entity
   abstract: true
   parent: BaseLathe
