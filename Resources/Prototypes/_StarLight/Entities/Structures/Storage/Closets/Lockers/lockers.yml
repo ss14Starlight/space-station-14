@@ -103,3 +103,19 @@
     stateDoorClosed: salvageleadmed_door
   - type: AccessReader
     access: [["Salvage"]]
+
+# Mining Specialist
+- type: entity
+  id: LockerMiningSpecialist
+  parent: LockerBaseSecure
+  name: mining specialist's locker
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: miner
+      stateDoorOpen: miner_open
+      stateDoorClosed: miner_door
+    - type: AccessReader
+      access: [["Mining"]]

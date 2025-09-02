@@ -124,32 +124,6 @@
             - !type:NestedSelector
               tableId: LockerFillMiningSpecialist
 
-- type: entity
-  id: LockerMiningSpecialistLargeFilledHardsuit
-  suffix: Filled, Hardsuit
-  parent: LockerMiningSpecialistLarge
-  components:
-    - type: EntityTableContainerFill
-      containers:
-        entity_storage: !type:AllSelector
-          children:
-            - !type:NestedSelector
-              tableId: FillMiningSpecialistHardsuitSpaceHazard
-            - !type:NestedSelector
-              tableId: LockerFillMiningSpecialist
-
-- type: entity
-  id: LockerMiningSpecialistLargeFilled
-  suffix: Filled
-  parent: LockerMiningSpecialistLarge
-  components:
-    - type: EntityTableContainerFill
-      containers:
-        entity_storage: !type:AllSelector
-          children:
-            - !type:NestedSelector
-              tableId: LockerFillMiningSpecialist
-
 - type: entityTable
   id: LockerFillMiningSpecialist
   table: !type:AllSelector
