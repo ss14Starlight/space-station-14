@@ -67,6 +67,19 @@
       - state: jobicon
 
 - type: entity
+  id: SpawnPointSalvageMedic
+  parent: SpawnPointJobBase
+  name: salvage medic
+  components:
+  - type: SpawnPoint
+    job_id: SalvageMedic
+  - type: Sprite
+    sprite: _Starlight/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: salvagemedic
+
+- type: entity
   id: SpawnPointminingspecialist
   parent: SpawnPointJobBase
   name: miningspecialist

@@ -103,7 +103,7 @@
   parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ]
   id: ClothingOuterHardsuitMercenary
   name: mercenary hardsuit
-  description: It's a hardsuit. It could stop a bullet. It's sealed with top of the line duct tape. 
+  description: It's a hardsuit. It could stop a bullet. It's sealed with top of the line duct tape.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/mercenary.rsi
@@ -249,8 +249,8 @@
             - PowerCell
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitInfiltration
-    
-    
+
+
 #CCNT Consortium medics
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieMedic ] #sl Change
@@ -352,3 +352,38 @@
     sprintModifier: 0.9
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLuxmax
+    
+#Spationaut Medic Hardsuit
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ]
+  id: ClothingOuterHardsuitSpatioMedic
+  name: spationaut medic hardsuit
+  description: A lightweight white trimmed hardsuit designed for industrial EVA in zero gravity.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/medicspatio.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/medicspatio.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.7
+      lowPressureMultiplier: 1000
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Radiation: 0.2
+          Caustic: 0.6
+    - type: ClothingSpeedModifier
+      walkModifier: 0.85
+      sprintModifier: 0.85
+    - type: HeldSpeedModifier
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitSpatioMedic
+    - type: Tag
+      tags:
+        - Hardsuit
+        - HardsuitSpatio

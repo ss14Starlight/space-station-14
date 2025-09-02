@@ -8,5 +8,6 @@ job-name-surgeon = Surgeon
 job-name-mailtech = Mail Technician
 job-name-centcomm = CentComm Official
 
+job-name-salvagemedic = Salvage Medic
 job-name-abductor = Abductor
 job-title-borgi = Borgi
