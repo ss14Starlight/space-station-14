@@ -12,3 +12,5 @@ chat-speech-verb-vulpkanin-4 = yaps
 chat-speech-verb-marish = mars
 
 chat-manager-language-requires-hands = You need free hands to speak this language!
+
+chat-speech-verb-alien-1 = mentally says
