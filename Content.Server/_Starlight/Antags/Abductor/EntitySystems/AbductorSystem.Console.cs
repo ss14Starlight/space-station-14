@@ -181,16 +181,13 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         }
         if (!HasComp<AbductorComponent>(victim))
         {
+            if (_mobState.IsIncapacitated(victim)) // If crit/dead don't teleport
+                return;
             var dispenser = GetEntity(args.Dispencer);
             if (TryComp<VendingMachineComponent>(dispenser, out var vendingComp))
             {
                 _vending.RestockRandom(dispenser, vendingComp);
             }
-        }
-        else
-        {
-            if (_mobState.IsIncapacitated(victim)) // If crit/dead don't teleport
-                return;
         }
         
         _xformSys.SetCoordinates(victim, GetCoordinates(args.TargetCoordinates));
