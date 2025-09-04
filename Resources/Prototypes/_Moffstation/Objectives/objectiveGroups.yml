@@ -7,7 +7,7 @@
     TrashRoomObjective: 1
     ClaimLocationObjective: 1
     GatherIntelObjective: 1
-    JailbreakObjective: 1
+    JailbreakObjective: 0.5
     LeaveCallingCardObjective: 0.5
     LeaveCallingCardOnPersonObjective: 0.5
     #DistractSecObjective: 1
@@ -33,6 +33,7 @@
     BloodBrotherClaimLocationObjective: 1
     BloodBrotherLeaveCallingCardObjective: 0.2
     BloodBrotherRobDepartmentObjective: 1
+    BloodBrotherLoudRobDepartmentObjective: 1
     BloodBrotherSabotageObjective: 0.5
     BloodBrotherStealEverythingObjective: 0.2
     BloodBrotherStealMoneyObjective: 1
