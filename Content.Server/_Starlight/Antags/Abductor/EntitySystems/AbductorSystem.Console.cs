@@ -45,11 +45,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         args.Progress = AbductProgress(ent, _number.GetTarget(ent.Owner));
     }
 
-    private void ConsolePopup(EntityUid actor, string text)
-    {
-        _popup.PopupCursor(text, actor);
-    }
-
     private float AbductProgress(Entity<AbductConditionComponent> ent, int target)
     {
         AbductorScientistComponent? scientistComp = null;
@@ -166,7 +161,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         };
         _doAfter.TryStartDoAfter(doAfter);
     }
-
     private void OnDoAfterAttract(Entity<AbductorComponent> ent, ref AbductorAttractDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
@@ -187,15 +181,10 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         }
         if (!HasComp<AbductorComponent>(victim))
         {
-            if (_mobState.IsIncapacitated(victim)) // If crit/dead don't teleport
-            {
-                // ConsolePopup(args.Actor, Loc.GetString("abductor-console-target-status-bad"));
-                return;
-            }
             var dispenser = GetEntity(args.Dispencer);
             if (TryComp<VendingMachineComponent>(dispenser, out var vendingComp))
             {
-                _vending.RestockRandom(dispenser, vendingComp);
+                _vending.RestockRandom(dispenser,vendingComp);
             }
         }
         
