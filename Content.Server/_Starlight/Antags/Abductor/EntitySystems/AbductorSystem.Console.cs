@@ -182,7 +182,10 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         if (!HasComp<AbductorComponent>(victim))
         {
             if (_mobState.IsIncapacitated(victim)) // If crit/dead don't teleport
+            {
+                ConsolePopup(args.Actor, Loc.GetString("abductor-console-target-status-bad"));
                 return;
+            }
             var dispenser = GetEntity(args.Dispencer);
             if (TryComp<VendingMachineComponent>(dispenser, out var vendingComp))
             {
