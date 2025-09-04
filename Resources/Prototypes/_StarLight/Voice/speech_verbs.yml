@@ -6,7 +6,7 @@
   - chat-speech-verb-felionoid-2
   - chat-speech-verb-felionoid-3
   - chat-speech-verb-felionoid-4
-  
+
 - type: speechVerb
   id: Vulpkanin
   name: chat-speech-verb-name-vulpkanin
@@ -15,7 +15,7 @@
   - chat-speech-verb-vulpkanin-2
   - chat-speech-verb-vulpkanin-3
   - chat-speech-verb-vulpkanin-4
-
+  
 - type: speechVerb
   id: Alien
   name: chat-speech-verb-name-alien
