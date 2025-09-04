@@ -95,6 +95,7 @@
       - CanPilot
       - AnomalyHost
       - DoorBumpOpener
+      - MechPilot
     - type: ActivatableUI
       key: enum.BorgUiKey.Key
     - type: SiliconLawBound
