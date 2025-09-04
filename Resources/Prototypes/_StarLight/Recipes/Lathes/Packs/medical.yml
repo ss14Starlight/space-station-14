@@ -71,3 +71,12 @@
   id: StarlightMedSyringeDynamic
   recipes:
   - SlowAutoinjector
+
+- type: latheRecipePack
+  id: StarlightBudgetCyberOrgansDynamic
+  recipes:
+  - BudgetCyberEyes
+  - BudgetCyberTongue
+  - BudgetCyberLiver
+  - BudgetCyberStomach
+  - BudgetCyberKidneys
