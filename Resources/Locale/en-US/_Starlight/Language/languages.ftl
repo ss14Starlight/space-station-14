@@ -88,3 +88,6 @@ language-Duck-description = Quack!
 
 language-Pig-name = Pig
 language-Pig-description = Oink!
+
+language-Alien-name = Advanced Alien
+language-Alien-description = An advanced form of alien language that to others just sounds like gleep glorp.

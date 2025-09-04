@@ -34,3 +34,11 @@
   exclaimSound:
     path: /Audio/_Starlight/Voice/gorilla.ogg
 
+- type: speechSounds
+  id: Alien
+  saySound:
+    path: /Audio/_Starlight/Voice/Alien/Alien.ogg
+  askSound:
+    path: /Audio/_Starlight/Voice/Alien/AlienAsk.ogg
+  exclaimSound:
+    path: /Audio/_Starlight/Voice/Alien/AlienExclaim.ogg

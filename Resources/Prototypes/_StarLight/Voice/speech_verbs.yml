@@ -15,3 +15,9 @@
   - chat-speech-verb-vulpkanin-2
   - chat-speech-verb-vulpkanin-3
   - chat-speech-verb-vulpkanin-4
+
+- type: speechVerb
+  id: Alien
+  name: chat-speech-verb-name-alien
+  speechVerbStrings:
+  - chat-speech-verb-alien-1

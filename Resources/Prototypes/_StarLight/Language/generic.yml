@@ -64,3 +64,13 @@
   id: CodeSpeak
   icon: LanguageIconCodeSpeak
   iconNotUnderstood: false
+
+- type: language
+  id: Alien
+  icon: LanguageIconAlien
+  speech:
+    color: "#ae2be0"
+    fontId: Alien
+    obfuscationFont: true
+  obfuscation:
+    !type:RandomObfuscation

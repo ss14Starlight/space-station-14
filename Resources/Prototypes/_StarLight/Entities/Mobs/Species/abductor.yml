@@ -9,7 +9,42 @@
   abstract: true
   components:
   #- type: Absorbable Starlight: Done on purpose so the abductors don't get absorbed.
-  - type: Muted
+  #Starlight-Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks: 
+    - Alien
+    understands:
+    - Alien
+    - Ancestor
+    - Bubblish
+    - Canilunzt
+    - Carptongue
+    - Cat
+    - Chicken
+    - Chittin
+    - Duck
+    - Draconic
+    - Fox
+    - GalacticCommon
+    - Machine
+    - Marish
+    - Moffic
+    - Mothroach
+    - Nekomimetic
+    - ScurretSign
+    - Scratch
+    - Sign
+    - SolCommon
+    - Sylvan
+    - Terrum
+    - VoxPidgin
+    - Xeno
+    - Zombie
+  - type: Speech
+    speechSounds: Alien
+    speechVerb: Alien
+  #Starlight-End
   - type: HumanoidAppearance
     species: Abductor
   - type: Icon

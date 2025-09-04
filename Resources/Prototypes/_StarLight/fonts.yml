@@ -33,3 +33,7 @@
 - type: font
   id: Draconic
   path: /Fonts/_Starlight/Draconic-modern.otf
+
+- type: font
+  id: Alien
+  path: /Fonts/_Starlight/Alien.otf

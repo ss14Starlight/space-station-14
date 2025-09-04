@@ -165,3 +165,10 @@
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
     state: buzz
   allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: LanguageIconAlien
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: alien
