@@ -5,6 +5,7 @@ using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.HTN.PrimitiveTasks.Operators.Interactions;
+using Content.Shared._Starlight.Language;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
@@ -16,11 +17,9 @@ namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Interaction
 
 public sealed partial class UseActionOperator : HTNOperator
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly CombatModeSystem _combatMode = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    private SharedDoAfterSystem _doAfterSystem = default!;
+    private SharedActionsSystem _actions = default!;
 
     [DataField]
     public string TargetKey = "TargetTile";
@@ -37,6 +36,13 @@ public sealed partial class UseActionOperator : HTNOperator
 
     //WHY ISN'T THIS STATIC IN InteractWithOperator
     public string CurrentDoAfter = "CurrentInteractWithDoAfter";
+
+    public override void Initialize(IEntitySystemManager sysManager)
+    {
+        base.Initialize(sysManager);
+        _doAfterSystem = sysManager.GetEntitySystem<SharedDoAfterSystem>();
+        _actions = sysManager.GetEntitySystem<SharedActionsSystem>();
+    }
 
     // Ensure that CurrentDoAfter doesn't exist as we enter this operator,
     // the code currently relies on the result of a TryGetValue

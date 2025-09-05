@@ -67,3 +67,4 @@
       behaviors:
       - !type:GibBehavior
         recursive: false
+  - type: FlockmindConverter

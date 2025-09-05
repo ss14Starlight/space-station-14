@@ -15,10 +15,10 @@ public sealed partial class FlockmindConverterSystem : EntitySystem
 
     private void OnTileConvert(Entity<FlockmindConverterComponent> ent, ref FlockmindConvertTileEvent ev)
     {
-
+        Log.Debug("TODO!!! IMPLEMENT THIS!!!");
+        //todo: implement this
     }
 }
-
 
 public sealed partial class FlockmindConvertTileEvent : WorldTargetActionEvent
 {

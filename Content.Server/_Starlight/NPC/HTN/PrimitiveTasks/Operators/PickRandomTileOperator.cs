@@ -13,9 +13,16 @@ namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators;
 
 public sealed partial class PickRandomTileOperator : HTNOperator
 {
-    [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    private TurfSystem _turf = default!;
+    private SharedMapSystem _map = default!;
+
+    public override void Initialize(IEntitySystemManager sysManager)
+    {
+        base.Initialize(sysManager);
+        _turf = sysManager.GetEntitySystem<TurfSystem>();
+        _map = sysManager.GetEntitySystem<SharedMapSystem>();
+    }
 
     [DataField]
     public string TargetKey = "TargetTile";
@@ -43,7 +50,7 @@ public sealed partial class PickRandomTileOperator : HTNOperator
         bool IsValidTile(TileRef tile) => tileIds.Contains(_turf.GetContentTileDefinition(tile).ID) ^ Invert;
         var tileEnumerator = _map.GetLocalTilesEnumerator(ownerPos.GridUid.Value, mapGrid, aabb, true, IsValidTile);
 
-        List<(Vector2,float)> coordinates = new();
+        List<(Vector2, float)> coordinates = new();
         while (tileEnumerator.MoveNext(out var tile))
         {
             var tileCenter = tile.GridIndices + mapGrid.TileSizeHalfVector;
@@ -54,7 +61,7 @@ public sealed partial class PickRandomTileOperator : HTNOperator
                 coordinates.Add((tileCenter, len));
             }
         }
-        coordinates.Sort(delegate((Vector2, float) left, (Vector2, float) right)
+        coordinates.Sort(delegate ((Vector2, float) left, (Vector2, float) right)
         {
             if (left.Item2 < right.Item2)
                 return -1;

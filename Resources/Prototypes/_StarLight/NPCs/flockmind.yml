@@ -1,16 +1,23 @@
 - type: htnCompound
   id: FlockBitCompound
   branches:
-    - task:
-      - id: PickUnconvertedFlockTilePrimitive
-      - id: ConvertUnconvertedFlockTileCompound
-    - task:
-      - id: IdleCompound
+    - tasks:
+      - !type:HTNCompoundTask
+        task: ConvertUnconvertedFlockTileCompound
+    - tasks:
+      - !type:HTNCompoundTask
+        task: IdleCompound
 
 - type: htnCompound
   id: ConvertUnconvertedFlockTileCompound
   branches:
-    - task:
+    - tasks:
+      - !type:HTNPrimitiveTask
+        operator: !type:PickRandomTileOperator
+          tiles:
+          - FloorFeatherzone
+          - FloorFeatherzoneBroken
+          invert: true # we want all tiles *except* featherzone tiles
       - !type:HTNPrimitiveTask
         operator: !type:MoveToOperator
           shutdownState: TaskFinished
@@ -21,13 +28,5 @@
           rangeKey: MeleeRange
       - !type:HTNPrimitiveTask
         operator: !type:UseActionOperator
-          expectDoAfter: true
+          expectDoAfter: false #until we actually implement it
           actionID: ActionFlockmindConvertTileFree
-
-- type: htnPrimitive
-  id: PickUnconvertedFlockTilePrimitive
-  operator: !type:PickRantomTileOperator
-    tiles:
-    - FloorFeatherzone
-    - FloorFeatherzoneBroken
-    invert: true # we want all tiles *except* featherzone tiles
