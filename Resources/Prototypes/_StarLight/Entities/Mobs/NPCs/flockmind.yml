@@ -8,10 +8,10 @@
     prototype: Mouse
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    sprite: _Starlight/Mobs/Animals/flockbit.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: bit-dormant
+      state: flockbit
   - type: SpriteMovement
     movementLayers:
       movement:
