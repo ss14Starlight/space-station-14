@@ -1067,6 +1067,7 @@
 - type: entity
   parent: ClearPDA
   id: VisitorPDA
+  suffix: Visitor # Starlight
   components:
   - type: Pda
     id: VisitorIDCard
@@ -1352,6 +1353,14 @@
   - type: Icon
     state: pda-cluwne
   - type: Unremoveable
+  #region Starlight
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - WhitelistChameleon
+    - WhitelistChameleonPDA
+    - BibleThwackRemovable
+  #endregion Starlight
 
 - type: entity
   parent: ClownPDA
@@ -1500,7 +1509,7 @@
       - MedTekCartridge
 
 - type: entity
-  parent: BasePDA
+  parent: [BasePDA, VoiceLock]
   id: ChameleonPDA
   name: assistant PDA
   description: Why isn't it gray?

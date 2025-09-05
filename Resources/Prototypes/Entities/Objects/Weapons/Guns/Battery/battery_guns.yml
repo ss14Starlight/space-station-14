@@ -10,7 +10,7 @@
     - abductor-gun-restricted-1
   - type: Sprite
   - type: Item
-    size: Huge
+    size: Large # Starlight
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
     quickEquip: false
@@ -121,6 +121,10 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Item
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: 0,-7
     sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
   - type: MagazineVisuals
     magState: mag
@@ -141,6 +145,8 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    storedOffset: 0,-5
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 62.5
@@ -164,6 +170,8 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    storedOffset: 0,-4
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -184,6 +192,10 @@
   id: WeaponTeslaGun
   description: The power of the primordial element of lightning in your hands.
   components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/tesla_gun.rsi
     layers:
@@ -208,11 +220,13 @@
   - type: Appearance
 
 - type: entity
-  name: practice laser rifle
+  name: practice laser carbine
   parent: [BaseWeaponBattery, BaseGunWieldable]
   id: WeaponLaserCarbinePractice
-  description: This modified laser rifle fires nearly harmless beams in the 40-watt range, for target practice.
+  description: This modified laser carbine fires nearly harmless beams in the 40-watt range, for target practice.
   components:
+  - type: Item
+    size: Large
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
     layers:
@@ -239,7 +253,7 @@
     price: 300
 
 - type: entity
-  name: laser rifle
+  name: laser carbine
   parent: [WeaponLaserCarbinePractice, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponLaserCarbine
   description: Favoured by Nanotrasen Security for being cheap and easy to use.
@@ -252,9 +266,18 @@
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: Gun #Starlight - Start
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto #Just allows people to hold down left click
+  - type: Battery 
+    maxCharge: 1500 # ~1:30 minutes for recharge
+    startingCharge: 1500
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
-    fireCost: 62.5
+    fireCost: 30 #Starlight - End
 
 #- type: entity
 #  name: pulse pistol
@@ -349,6 +372,10 @@
   id: WeaponLaserCannon
   description: A heavy duty, high powered laser weapon.
   components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
     layers:
@@ -370,7 +397,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 100
+    fireCost: 40 #Starlight
   - type: Tag
     tags:
     - TurretCompatibleWeapon
@@ -412,6 +439,10 @@
   id: WeaponXrayCannon
   description: An experimental weapon that uses concentrated x-ray energy against its target.
   components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
     layers:
@@ -427,7 +458,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: XrayLaser
-    fireCost: 100
+    fireCost: 40 #Starlight
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -448,6 +479,8 @@
     - state: mag-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    storedOffset: -1,-5
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/practice_disabler.rsi
     quickEquip: false
@@ -509,6 +542,8 @@
   components:
   - type: Item
     size: Large
+    shape:
+    - 0,0,2,1
   - type: Tag
     tags:
       - Taser
@@ -598,6 +633,10 @@
   id: WeaponAntiqueLaser
   description: This is an antique laser pistol. All craftsmanship is of the highest quality. It is decorated with a mahogany grip and chrome filigree. The object menaces with spikes of energy. On the item is an image of a captain and a clown. The clown is dead. The captain is striking a heroic pose.
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
     layers:
@@ -643,7 +682,9 @@
   description: An experimental high-energy laser pistol with a self-charging nuclear battery.
   components:
   - type: Item
-    size: Normal  # Intentionally larger than other pistols
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
     layers:
@@ -686,6 +727,8 @@
       visible: false
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    storedOffset: 0,-6
   - type: Appearance
   - type: MagazineVisuals
     magState: mag
@@ -786,20 +829,18 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserSpreadNarrow
-    fireCost: 150
+    proto: BulletLaserSpread
+    fireCost: 60
   - type: BatteryWeaponFireModes
     fireModes:
-    #- proto: BulletLaserSpread
-      #fireCost: 150
-    - proto: BulletLaserSpreadNarrow
-      fireCost: 200
-    - proto: BulletDisablerSmgSpread
+#    - proto: BulletLaserSpread Starlight
+#      fireCost: 65
+    - proto: BulletLaserSpreadNarrow #Starlight
       fireCost: 120
+    - proto: BulletDisablerSmgSpread #Starlight
+      fireCost: 75
   - type: Item
     size: Large
-    shape:
-    - 0,0,3,1
     sprite: Objects/Weapons/Guns/Battery/inhands_64x.rsi
     heldPrefix: energy
   - type: Tag

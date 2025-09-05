@@ -87,8 +87,8 @@
 
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
-  id: NTCCBlueShieldIDCard
-  name: NT-CC consortium officer's ID card
+  id: NTNCBlueShieldIDCard
+  name: Nanotrasen Navy Corps Marine's ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -96,7 +96,7 @@
     - state: gold
     - state: idblueshield
   - type: PresetIdCard
-    job: NTCCBlueshield
+    job: NTNCBlueshield
 
 - type: entity
   parent: [ IDCardStandard, BaseCargoContraband ]
@@ -207,24 +207,25 @@
           type: AgentIDCardBoundUserInterface
 
 - type: entity
-  parent: [ IDCardStandard ]
-  id: AbductorIDCard
-  name: Abductor ID Card
+  parent: IDCardStandard
+  id: AssistantDerelictBorgiIDCard
+  name: assistant ID card
+  suffix: Borgi
   components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Misc/id_cards.rsi
-      layers:
-        - state: abductor
-    - type: Access # get your access from your victims.
-    - type: AgentIDCard
-    - type: IdCard
-      bypassLogging: true
-      canMicrowave: false
-      jobTitle: job-name-abductor
-    - type: ActivatableUI
-      key: enum.AgentIDCardUiKey.Key
-      inHandsOnly: true
-    - type: UserInterface
-      interfaces:
-        enum.AgentIDCardUiKey.Key:
-          type: AgentIDCardBoundUserInterface
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idassistant
+  - type: IdCard
+    jobTitle: job-title-borgi
+    jobIcon: JobIconBorg
+  - type: Tag  # not a chameleon target.
+    tags:
+    - DoorBumpOpener
+  - type: Access
+    tags:
+    - Maintenance
+    - External
+    - Research
+    - Engineering
+    - Atmospherics

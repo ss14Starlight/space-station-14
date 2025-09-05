@@ -10,12 +10,8 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 36000 # 10h
-    - !type:AnyFlagsRequirement
-      flags:
-      - Staff
-      - Mentor
-      - ExtRoles
-      - Retiree
+    - !type:RolesRequirement
+      proto: ExtRolesReq
   startingGear: MagistrateGear
   icon: "JobIconMagistrate"
   supervisors: job-supervisors-centcom
@@ -67,3 +63,13 @@
     - GavelHammer
     - GavelBlock
     - MagistrateUniformSkirt
+
+- type: chameleonOutfit
+  id: MagistrateChameleonOutfit
+  job: Magistrate
+  equipment:
+    head: ClothingHeadHatPwig
+    eyes: ClothingEyesGlassesSecurity
+    outerClothing: ClothingOuterRobesJudge
+    neck: ClothingNeckLawyerbadge
+    gloves: ClothingHandsGlovesColorWhite

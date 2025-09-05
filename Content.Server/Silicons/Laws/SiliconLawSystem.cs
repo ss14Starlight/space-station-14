@@ -2,8 +2,8 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
 using Content.Server.Radio.Components;
-using Content.Server.Roles;
 using Content.Server.Station.Systems;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Emag.Systems;
@@ -11,9 +11,9 @@ using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
-using Content.Shared.Wires;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -157,30 +157,43 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         // Show the silicon has been subverted.
         component.Subverted = true;
 
-        //#region Starlight
-        if (args.lawset != null)
+        #region Starlight: Add the new channel to the silicon.
+        var emag = args.emagComp;
+        if (emag != null)
         {
-            component.Lawset = GetLawset(args.lawset);
+            if (TryComp(uid, out ActiveRadioComponent? activeRadio))
+            {
+                activeRadio.Channels.UnionWith(emag.ChannelAdd.Select(item => item.Id.ToString()).ToHashSet());
+            }
+            if (TryComp(uid, out IntrinsicRadioTransmitterComponent? transmitter))
+            {
+                transmitter.Channels.UnionWith(emag.ChannelAdd.Select(item => item.Id.ToString()).ToHashSet());
+            }
+            var lawset = emag.Lawset;
+            if (lawset != null)
+            {
+                component.Lawset = GetLawset(lawset.Value);
+                return;
+            }
         }
-        else
+        #endregion
+
+        // Add the first emag law before the others
+        component.Lawset?.Laws.RemoveAt(0);
+
+        component.Lawset?.Laws.Insert(0, new SiliconLaw
         {
-            // Add the first emag law before the others
-            component.Lawset?.Laws.RemoveAt(0);
+            LawString = Loc.GetString("law-emag-custom", ("name", Name(args.user)), ("title", Loc.GetString(component.Lawset.ObeysTo))),
+            Order = 0,
+            Sayable = false
+        });
 
-            component.Lawset?.Laws.Insert(0, new SiliconLaw
-            {
-                LawString = Loc.GetString("law-emag-custom", ("name", Name(args.user)), ("title", Loc.GetString(component.Lawset.ObeysTo))),
-                Order = 0,
-                Sayable = false
-            });
-
-            //Add the secrecy law after the others
-            component.Lawset?.Laws.Add(new SiliconLaw
-            {
-                LawString = Loc.GetString("law-emag-secrecy", ("faction", Loc.GetString(component.Lawset.ObeysTo))),
-                Order = component.Lawset.Laws.Max(law => law.Order) + 1
-            });
-        }//#endregion Starlight
+        //Add the secrecy law after the others
+        component.Lawset?.Laws.Add(new SiliconLaw
+        {
+            LawString = Loc.GetString("law-emag-secrecy", ("faction", Loc.GetString(component.Lawset.ObeysTo))),
+            Order = component.Lawset.Laws.Max(law => law.Order) + 1
+        });
     }
 
     protected override void EnsureSubvertedSiliconRole(EntityUid mindId)
@@ -256,6 +269,11 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
     public override void NotifyLawsChanged(EntityUid uid, SoundSpecifier? cue = null)
     {
+        #region Starlight statoin-ai shunt redirection
+        if (TryComp<StationAIShuntableComponent>(uid, out var shuntable) && shuntable.Inhabited.HasValue)
+            uid = shuntable.Inhabited.Value;
+        #endregion
+
         base.NotifyLawsChanged(uid, cue);
 
         if (!TryComp<ActorComponent>(uid, out var actor))

@@ -23,6 +23,7 @@
   - External
   - Cryogenics
   - Brigmedic
+  - Chemistry
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -40,3 +41,10 @@
     - Flash
     - SecurityMedkit
     - DefibrillatorBrigmedical
+
+- type: chameleonOutfit
+  id: BrigmedicChameleonOutfit
+  job: Brigmedic
+  equipment:
+    mask: ClothingMaskBreathMedicalSecurity
+    neck: ClothingNeckTieRed
