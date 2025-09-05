@@ -37,7 +37,7 @@
     equipmentWhitelist:
       tags:
       - SmallMech
-      
+
 - type: entity
   id: NanotrasenMech
   abstract: true
@@ -49,7 +49,7 @@
       path: /Audio/Mecha/lowpowernano.ogg
     nominalSound:
       path: /Audio/Mecha/nominalnano.ogg
-      
+
 - type: entity
   id: SyndieMech
   abstract: true
@@ -204,8 +204,8 @@
     brokenState: base-broken
     mechToPilotDamageMultiplier: 0.75
     pilotWhitelist:
-      components:
-        - HumanoidAppearance
+      tags:
+      - CanPilot
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -264,8 +264,8 @@
     mechToPilotDamageMultiplier: 0.4
     airtight: true
     pilotWhitelist:
-      components:
-        - HumanoidAppearance
+      tags:
+      - CanPilot
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -299,7 +299,7 @@
       - PowerCellHigh
       mech-gas-tank-slot:
       - MechAirTankFilled
-      
+
 # Paddy
 - type: entity
   id: MechPaddy
@@ -331,8 +331,8 @@
     mechToPilotDamageMultiplier: 0.60
     airtight: true
     pilotWhitelist:
-      components:
-        - HumanoidAppearance
+      tags:
+      - CanPilot
     siren: true
   - type: MeleeWeapon
     hidden: true
@@ -361,7 +361,7 @@
       - PowerCellHigh
       mech-gas-tank-slot:
       - MechAirTankFilled
-      
+
 - type: entity
   id: MechPaddyFilled
   parent: MechPaddyBattery
@@ -396,8 +396,8 @@
     mechToPilotDamageMultiplier: 0.5
     airtight: true
     pilotWhitelist:
-      components:
-        - HumanoidAppearance
+      tags:
+      - CanPilot
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -623,8 +623,8 @@
     mechToPilotDamageMultiplier: 0.3
     airtight: true
     pilotWhitelist:
-      components:
-        - HumanoidAppearance
+      tags:
+      - CanPilot
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -680,8 +680,8 @@
     airtight: true
     maxIntegrity: 400
     pilotWhitelist:
-      components:
-        - HumanoidAppearance
+      tags:
+      - CanPilot
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -745,8 +745,8 @@
     maxIntegrity: 500
     maxEquipmentAmount: 4
     pilotWhitelist:
-      components:
-        - HumanoidAppearance
+      tags:
+      - CanPilot
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -814,8 +814,8 @@
     maxIntegrity: 550
     maxEquipmentAmount: 5
     pilotWhitelist:
-      components:
-        - HumanoidAppearance
+      tags:
+      - CanPilot
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -886,8 +886,8 @@
     maxIntegrity: 300
     maxEquipmentAmount: 4
     pilotWhitelist:
-      components:
-        - HumanoidAppearance
+      tags:
+      - CanPilot
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -961,8 +961,8 @@
     maxIntegrity: 500
     maxEquipmentAmount: 5
     pilotWhitelist:
-      components:
-        - HumanoidAppearance
+      tags:
+      - CanPilot
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
