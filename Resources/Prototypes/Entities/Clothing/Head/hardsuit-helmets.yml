@@ -426,6 +426,9 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  - type: ComponentToggler # Starlight begin
+    components:
+    - type: EyeProtection # Starlight end
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -468,6 +471,9 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  - type: ComponentToggler # Starlight begin
+    components:
+      - type: EyeProtection # Starlight end
 
 #Head of Security's hardsuit
 - type: entity
