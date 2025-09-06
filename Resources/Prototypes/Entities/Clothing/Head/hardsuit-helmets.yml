@@ -64,6 +64,9 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  - type: ComponentToggler # Starlight begin
+    components:
+      - type: EyeProtection # Starlight end
 
 #Engineering Hardsuit
 - type: entity
@@ -119,6 +122,9 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  - type: ComponentToggler # Starlight begin
+    components:
+      - type: EyeProtection # Starlight end
 
 #Spationaut Hardsuit
 - type: entity
@@ -819,6 +825,9 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: ComponentToggler # Starlight begin
+    components:
+      - type: EyeProtection # Starlight end
 
 #ERT Medical Hardsuit
 - type: entity
