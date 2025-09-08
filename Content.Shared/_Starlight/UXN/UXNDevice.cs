@@ -204,9 +204,7 @@ public sealed class UXNProcessor
 
         var stack = ret ? ReturnStack : WorkingStack;
         var otherStack = ret ? WorkingStack : ReturnStack;
-        stack.Warp();
-        otherStack.Warp();
-
+        
         var masked = imme ? instr : instr & 0x1F;
         switch (masked)
         {
@@ -279,7 +277,7 @@ public sealed class UXNProcessor
                     stack.PushByte((byte)(a + 1));
                 }
                 break;
-            case 0x02: //POP a --
+            case 0x02: // POP a --
                 if (shrt)
                 {
                     stack.PopShort(keep);
@@ -711,6 +709,9 @@ public sealed class UXNProcessor
             #endregion
             default: throw new InvalidOperationException($"got {masked} for a opcode which shouldn't possible");
         }
+
+        stack.Warp();
+        otherStack.Warp();
 
         foreach (UXNDevice dev in Devices)
             dev.ProcessorStep(this);
