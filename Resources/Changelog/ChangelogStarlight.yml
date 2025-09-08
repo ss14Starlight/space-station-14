@@ -13164,5 +13164,95 @@ Entries:
   id: 151400
   time: '2025-09-02T15:17:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1514
+- author: stickycheZ101
+  changes:
+  - message: added a pipecleaner set of decals, basically a cosmetic version of the
+      old ss13 wiring system (maints ass enthusiasts rejoice)((sprayable with the
+      paint sprayer))
+    type: Add
+  id: 140400
+  time: '2025-09-02T23:25:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1404
+- author: Quantumcross
+  changes:
+  - message: Fix Late join antag selection if you have no "active" characters with
+      a specific antagonist role.
+    type: Fix
+  id: 143300
+  time: '2025-09-04T01:20:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1433
+- author: wayiscool
+  changes:
+  - message: Various floor tiling and lighting changes, extra decals for detailing,
+      and minor room furniture layout changes.
+    type: Tweak
+  id: 147400
+  time: '2025-09-04T22:00:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1474
+- author: Jezithyr
+  changes:
+  - message: Fixed previous flavor text not carrying over to the new format.
+    type: Fix
+  id: 151800
+  time: '2025-09-05T01:48:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1518
+- author: Jezithyr
+  changes:
+  - message: Fix for flavortext editors sometimes not working
+    type: Fix
+  id: 151801
+  time: '2025-09-05T01:48:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1518
+- author: STARLIGHT TEAM
+  changes:
+  - message: Abductors can once again teleport onto the station from another map.
+    type: Fix
+  id: 155000
+  time: '2025-09-05T02:09:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1550
+- author: STARLIGHT TEAM
+  changes:
+  - message: Flash and welding protection has been added to the abductor agent’s helmet.
+    type: Add
+  id: 155001
+  time: '2025-09-05T02:09:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1550
+- author: STARLIGHT TEAM
+  changes:
+  - message: Removed the abductor’s ID card, and completely disabled their ability
+      to use ID cards at all.
+    type: Remove
+  id: 155002
+  time: '2025-09-05T02:09:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1550
+- author: CorruptOmega
+  changes:
+  - message: Fixed Tracking Implanter not sending Death Rattle message.
+    type: Fix
+  id: 149400
+  time: '2025-09-01T20:42:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1494
+- author: Happyrobot33
+  changes:
+  - message: Removed vulp petting for now, pending rewrite.
+    type: Remove
+  id: 155100
+  time: '2025-09-05T02:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1551
+- author: walksanatora
+  changes:
+  - message: Abductors cant self-teleport when crit/dead
+    type: Tweak
+  id: 153500
+  time: '2025-09-05T02:37:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1535
+- author: walksanatora
+  changes:
+  - message: Abductor console cant teleport dead abductors to the ship (field triage
+      required)
+    type: Tweak
+  id: 153501
+  time: '2025-09-05T02:37:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1535
 Order: -1
 
