@@ -383,6 +383,7 @@ public sealed class UxnShortOpcodeTest : ContentUnitTest
         uxn.WorkingStack.PushShort(0x1234);
         uxn.WorkingStack.PushByte(0x00);
         var testdev = new TestDevice();
+        uxn.AttachDevice(0x0, testdev);
         Assert.That(uxn.Step(), Is.EqualTo(false));
         Assert.That(uxn.DevMem[0x00], Is.EqualTo(0x12));
         Assert.That(uxn.DevMem[0x01], Is.EqualTo(0x34));
