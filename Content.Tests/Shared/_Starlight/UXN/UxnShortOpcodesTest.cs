@@ -480,7 +480,7 @@ public sealed class UxnShortOpcodeTest : ContentUnitTest
 
     [Test]
     [Repeat(10, false)]
-    public void OR2()
+    public void ORA2()
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x1D + 0x20;

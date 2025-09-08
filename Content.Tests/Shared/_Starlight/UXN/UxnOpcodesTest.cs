@@ -43,9 +43,7 @@ public sealed class UxnOpcodeTest : ContentUnitTest
         uxn.SystemMem[0x100] = 0x01;
         uxn.WorkingStack.PushByte(val);
         Assert.That(uxn.Step(), Is.EqualTo(false));
-        var res = uxn.WorkingStack.PopByte(true);
-        Console.WriteLine($"Retval: 0x{res:x2}");
-        Assert.That(res, Is.EqualTo<byte>((byte)(val + 1)));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo<byte>((byte)(val + 1)));
     }
 
     [Test]
@@ -405,7 +403,7 @@ public sealed class UxnOpcodeTest : ContentUnitTest
 
     [Test]
     [Repeat(5, false)]
-    public void OR()
+    public void ORA()
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x1D;
