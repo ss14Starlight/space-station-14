@@ -103,6 +103,10 @@
     ammoSlots: [ null, null, null, null, null, null, null, null, null ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      revolver-ammo: !type:Container
       
 - type: entity
   name: Tkach Ya-Sui GA 12 revolver
@@ -143,6 +147,10 @@
     ammoSlots: [ null, null, null ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      revolver-ammo: !type:Container
       
 - type: entity
   name: "AS-12 'Minotaur' Shotgun"
@@ -162,14 +170,14 @@
   - type: GunRequiresWield
   - type: Gun
     spread: 20
-    fireRate: 3
+    fireRate: 2
     burstFireRate: 4
     burstCooldown: 1
     selectedMode: Burst
     shotsPerBurst: 3
     availableModes:
     - Burst
-    - FullAuto
+    - SemiAuto
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/minotaur.ogg
   - type: ItemSlots

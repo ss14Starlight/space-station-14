@@ -21,3 +21,28 @@ PosterContrabandGreyTide: null
 # 2025-06-28
 SyndicateWhistle: CommanderWhistle
 WeaponPistolAPS: WeaponPistolStechkin
+
+
+#2025-08-02
+ClothingHeadHelmetHardsuitNTCCConsortium: ClothingHeadHelmetHardsuitNTNCConsortium
+ClothingHeadHelmetHardsuitNTCCConsortiumMedic: ClothingHeadHelmetHardsuitNTNCConsortiumMedic
+ClothingHeadHelmetNTCCConsortium: ClothingHeadHelmetNTNCConsortium
+ClothingOuterVestNTCC: ClothingOuterVestNTNC
+ClothingOuterHardsuitNTCCConsortium: ClothingOuterHardsuitNTNCConsortium
+ClothingOuterHardsuitNTCCConsortiumMedic: ClothingOuterHardsuitNTNCConsortiumMedic
+ClothingUniformNTCCFatigues: ClothingUniformNTNCFatigues
+NTCCBlueShieldPDA: NTNCBlueShieldPDA
+NTCCBlueShieldIDCard: NTNCBlueShieldIDCard
+
+# 2025-08-31
+PosterContrabandRealExomorph: PosterContrabandLustyExomorph
+MagazinePistol: MagazinePistolSP
+
+# 2025-09-02
+PosterContrabandRouny: RandomPosterLegit
+SpeedLoaderMagnum: SpeedLoaderMagnumBasic
+WeaponShotgunEnforcerRubber: WeaponShotgunEnforcer
+MagazineBoxMagnum: MagazineBoxMagnumSP
+CartridgeMagnum: CartridgeMagnumSP
+CartridgePistol: CartridgePistolSP
+CartridgeRifle: CartridgeRifleSP
