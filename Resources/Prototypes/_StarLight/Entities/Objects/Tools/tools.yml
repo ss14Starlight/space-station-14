@@ -920,7 +920,7 @@
     - Brushing
     speedModifier: 5
     useSound:
-      path: /Audio/_starlight/Tools/wirebrushingdrill.ogg
+      path: /Audio/_Starlight/Tools/wirebrushingdrill/wirebrushingdrill.ogg
       params:
         volume: -3
   - type: StaticPrice
