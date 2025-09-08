@@ -2,7 +2,7 @@ using System.Collections;
 using Content.Shared._Starlight.UXN.Devices;
 namespace Content.Shared._Starlight.UXN;
 
-public struct Byte256
+public sealed class Byte256
 {
     private readonly byte[] _inner = new byte[256];
 
@@ -15,7 +15,7 @@ public struct Byte256
         set => _inner[i] = value;
     }
 
-    public readonly byte[] ToRaw() => (byte[])_inner.Clone();
+    public byte[] ToRaw() => (byte[])_inner.Clone();
 }
 
 public sealed class UxnStack
@@ -26,16 +26,15 @@ public sealed class UxnStack
 
     public void Warp()
     {
-        StackPointer = StackPointerReturn;
-        StackPointerReturn = StackPointer;
+        StackPointer += StackPointerReturn;
+        StackPointerReturn = 0;
     }
 
     public byte PopByte(bool sim)
     {
-        byte val = Stack[StackPointer];
-        StackPointer += 1;
-        if (!sim) StackPointerReturn = StackPointer;
-        return val;
+        if (!sim) StackPointerReturn++;
+        StackPointer -= 1;
+        return Stack[StackPointer];
     }
     public ushort PopShort(bool sim)
     {
@@ -47,10 +46,8 @@ public sealed class UxnStack
     public void PushByte(byte dat)
     {
         Warp();
-        var stack = Stack;
-        stack[StackPointer] = dat;
+        Stack[StackPointer] = dat;
         StackPointer += 1;
-        StackPointerReturn += 1;
     }
     public void PushShort(ushort dat)
     {
@@ -59,16 +56,15 @@ public sealed class UxnStack
     }
     public void SetPointer(byte ptr)
     {
-        Warp();
         StackPointer = ptr;
-        StackPointerReturn = ptr;
+        StackPointerReturn = 0;
     }
 
     public (byte, byte[]) ToRaw() =>
         (StackPointer, Stack.ToRaw());
 }
 
-public struct UxnMem
+public sealed class UxnMem
 {
     private readonly byte[] _inner = new byte[65536];
 
@@ -410,13 +406,13 @@ public sealed class UXNProcessor
                 {
                     var b = stack.PopShort(keep);
                     var a = stack.PopShort(keep);
-                    stack.PushByte((byte)(a > b ? 1 : 0));
+                    stack.PushByte((byte)(b > a ? 1 : 0));
                 }
                 else
                 {
                     var b = stack.PopByte(keep);
                     var a = stack.PopByte(keep);
-                    stack.PushByte((byte)(a > b ? 1 : 0));
+                    stack.PushByte((byte)(b > a ? 1 : 0));
                 }
                 break;
             case 0x0B: // LTH a b -- bool8
@@ -424,30 +420,30 @@ public sealed class UXNProcessor
                 {
                     var b = stack.PopShort(keep);
                     var a = stack.PopShort(keep);
-                    stack.PushByte((byte)(a < b ? 1 : 0));
+                    stack.PushByte((byte)(b < a ? 1 : 0));
                 }
                 else
                 {
                     var b = stack.PopByte(keep);
                     var a = stack.PopByte(keep);
-                    stack.PushByte((byte)(a < b ? 1 : 0));
+                    stack.PushByte((byte)(b < a ? 1 : 0));
                 }
                 break;
             #endregion comparisons
             #region JMPs
             case 0x0C: // JMP addr --
-                PC = shrt ? stack.PopShort(keep) : (ushort)(PC + stack.PopByte(keep));
+                PC = shrt ? stack.PopShort(keep) : (ushort)(PC + (sbyte)stack.PopByte(keep));
                 break;
             case 0x0D: // JCN cond8 addr --
                 {
-                    var tgt = shrt ? stack.PopShort(keep) : (ushort)(PC + stack.PopByte(keep));
+                    var tgt = shrt ? stack.PopShort(keep) : (ushort)(PC + (sbyte)stack.PopByte(keep));
                     if (stack.PopByte(keep) != 0)
                         PC = tgt;
                 }
                 break;
             case 0x0E: // JSR addr --
                 otherStack.PushShort(PC);
-                PC = shrt ? stack.PopShort(keep) : (ushort)(PC + stack.PopByte(keep));
+                PC = shrt ? stack.PopShort(keep) : (ushort)(PC + (sbyte)stack.PopByte(keep));
                 break;
             case 0x0F: // STH a -- | a
                 if (shrt)
@@ -495,11 +491,11 @@ public sealed class UXNProcessor
                 break;
             case 0x12: // LDR addr8 -- value
                 {
-                    var addr = (ushort)(stack.PopByte(keep) + PC);
+                    var addr = (ushort)(PC + (sbyte)stack.PopByte(keep));
                     if (shrt)
                     {
                         stack.PushShort(
-                            (ushort)((SystemMem[addr] << 8) | SystemMem[addr + 1])
+                            (ushort)((SystemMem[addr] << 8) | SystemMem[(ushort)(addr + 1)])
                         );
                     }
                     else
@@ -510,7 +506,7 @@ public sealed class UXNProcessor
                 break;
             case 0x13: // STR value addr8 --
                 {
-                    var addr = (stack.PopByte(keep) + PC) & 0xFFFF;
+                    var addr = (PC + (sbyte)stack.PopByte(keep)) & 0xFFFF;
                     var mem = SystemMem;
                     if (shrt)
                     {
@@ -602,7 +598,7 @@ public sealed class UXNProcessor
                 }
                 else
                 {
-                    var b = stack.PopShort(keep);
+                    var b = stack.PopByte(keep);
                     var a = stack.PopByte(keep);
                     stack.PushByte((byte)(a + b));
                 }
@@ -616,7 +612,7 @@ public sealed class UXNProcessor
                 }
                 else
                 {
-                    var b = stack.PopShort(keep);
+                    var b = stack.PopByte(keep);
                     var a = stack.PopByte(keep);
                     stack.PushByte((byte)(a - b));
                 }
@@ -630,7 +626,7 @@ public sealed class UXNProcessor
                 }
                 else
                 {
-                    var b = stack.PopShort(keep);
+                    var b = stack.PopByte(keep);
                     var a = stack.PopByte(keep);
                     stack.PushByte((byte)(a * b));
                 }
@@ -640,13 +636,15 @@ public sealed class UXNProcessor
                 {
                     var b = stack.PopShort(keep);
                     var a = stack.PopShort(keep);
-                    stack.PushShort((ushort)(a / b));
+                    if (b != 0) { stack.PushShort((ushort)(a / b)); }
+                    else { stack.PushShort(0x0000); }
                 }
                 else
                 {
-                    var b = stack.PopShort(keep);
+                    var b = stack.PopByte(keep);
                     var a = stack.PopByte(keep);
-                    stack.PushByte((byte)(a / b));
+                    if (b != 0) { stack.PushByte((byte)(a / b)); }
+                    else { stack.PushByte(0x00); }
                 }
                 break;
             case 0x1D: // OR a b -- a||b
@@ -658,7 +656,7 @@ public sealed class UXNProcessor
                 }
                 else
                 {
-                    var b = stack.PopShort(keep);
+                    var b = stack.PopByte(keep);
                     var a = stack.PopByte(keep);
                     stack.PushByte((byte)(a | b));
                 }
@@ -672,7 +670,7 @@ public sealed class UXNProcessor
                 }
                 else
                 {
-                    var b = stack.PopShort(keep);
+                    var b = stack.PopByte(keep);
                     var a = stack.PopByte(keep);
                     stack.PushByte((byte)(a ^ b));
                 }

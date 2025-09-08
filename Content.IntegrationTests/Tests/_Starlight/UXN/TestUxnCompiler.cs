@@ -52,11 +52,8 @@ public sealed class TestUxnCompiler
         var server = pair.Server;
 
         var resourceManager = server.ResolveDependency<IResourceManager>();
-        var dataManager = resourceManager.UserData;
-        dataManager.CreateDir(new ResPath("/uxnDump"));
         var uxnSystem = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<UxnSystem>();
         var sawmill = server.ResolveDependency<ILogManager>().GetSawmill("uxn.testrunner");
-        var serMan = server.ResolveDependency<ISerializationManager>();
 
         await server.WaitAssertion(() =>
         {
@@ -81,28 +78,6 @@ public sealed class TestUxnCompiler
             var stdio = uxnRunner.AttachDevice(0x1, new FakeStdioDevice(""));
             uxnRunner.RunUnlimited();
 
-            foreach (var (addr, instr) in uxnRunner.InstrLog)
-            {
-                sawmill.Info($"0x{addr:X4}: {instr}");
-            }
-
-            var cout = 0;
-            foreach (var frame in uxnRunner.FrameLog)
-            {
-                var node = serMan.WriteValue<UxnFrame>(frame, true);
-                var doc = new YamlDocument(node.ToYamlNode());
-                var ystream = new YamlStream { doc };
-                using var writer = new StringWriter(new StringBuilder());
-
-                // Remove the three funny dots from the end of the string...
-                ystream.Save(new YamlNoDocEndDotsFix(new YamlMappingFix(new Emitter(writer))), false);
-                var write = dataManager.OpenWriteText(new ResPath($"/uxnDump/{cout}.json"));
-                write.Write(writer.ToString());
-                write.Close();
-                cout++;
-            }
-
-            sawmill.Info($"DataRoot: {dataManager.RootDir} classnamed: {dataManager.GetType().Name}");
             sawmill.Info($"Ran {uxnRunner.InstructionCounter} instructions");
             sawmill.Info($"UXN Opcode test output:\n{new string(UxnSystem.Codepage437.GetChars([.. stdio.FakedOutput]))}");
 
