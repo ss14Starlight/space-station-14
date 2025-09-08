@@ -1,6 +1,8 @@
 using System;
 using Content.Shared._Starlight.UXN;
 using NUnit.Framework;
+using Robust.Shared.IoC;
+using Robust.Shared.Random;
 
 namespace Content.Tests.Shared._Starlight.UXN;
 
@@ -17,10 +19,11 @@ public sealed class TestDevice : UXNDevice
 [TestFixture]
 public sealed class UxnOpcodeTest : ContentUnitTest
 {
+
+    private IRobustRandom _random = default!;
+
     [OneTimeSetUp]
-    public void OneTimeSetup()
-    {
-    }
+    public void OneTimeSetup() => _random = IoCManager.Resolve<IRobustRandom>();
 
     [Test]
     public void BRK()
@@ -370,7 +373,7 @@ public sealed class UxnOpcodeTest : ContentUnitTest
         Assert.That(uxn.Step(), Is.EqualTo(false));
         Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo((byte)(left * right)));
     }
-    
+
     [Test]
     [TestCase(0x00, 0x00)]
     [TestCase(0x10, 0x00)]
@@ -385,5 +388,61 @@ public sealed class UxnOpcodeTest : ContentUnitTest
         uxn.WorkingStack.PushByte(right);
         Assert.That(uxn.Step(), Is.EqualTo(false));
         Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(right != 0 ? (byte)(left / right) : 0x00));
+    }
+
+    [Test]
+    [Repeat(5, false)]
+    public void AND()
+    {
+        var uxn = new UXNProcessor();
+        uxn.SystemMem[0x100] = 0x1C;
+        var left = _random.NextByte();
+        var right = _random.NextByte();
+        uxn.WorkingStack.PushByte(left);
+        uxn.WorkingStack.PushByte(right);
+        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(left & right));
+    }
+
+    [Test]
+    [Repeat(5, false)]
+    public void OR()
+    {
+        var uxn = new UXNProcessor();
+        uxn.SystemMem[0x100] = 0x1D;
+        var left = _random.NextByte();
+        var right = _random.NextByte();
+        uxn.WorkingStack.PushByte(left);
+        uxn.WorkingStack.PushByte(right);
+        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(left | right));
+    }
+
+    [Test]
+    [Repeat(5, false)]
+    public void XOR()
+    {
+        var uxn = new UXNProcessor();
+        uxn.SystemMem[0x100] = 0x1E;
+        var left = _random.NextByte();
+        var right = _random.NextByte();
+        uxn.WorkingStack.PushByte(left);
+        uxn.WorkingStack.PushByte(right);
+        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(left ^ right));
+    }
+
+    [Test]
+    [TestCase(0x12, 0x00, 0x12)]
+    [TestCase(0x34, 0x10, 0x68)] // left by 1. double the value
+    [TestCase(0x32, 0x01, 0x19)] // right by 1. half the value
+    public void SFT(byte input, byte sft, byte output)
+    {
+        var uxn = new UXNProcessor();
+        uxn.SystemMem[0x100] = 0x1F;
+        uxn.WorkingStack.PushByte(input);
+        uxn.WorkingStack.PushByte(sft);
+        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(output));
     }
 }

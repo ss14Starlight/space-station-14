@@ -647,6 +647,20 @@ public sealed class UXNProcessor
                     else { stack.PushByte(0x00); }
                 }
                 break;
+            case 0x1C: // AND a b -- a&b
+                if (shrt)
+                {
+                    var b = stack.PopShort(keep);
+                    var a = stack.PopShort(keep);
+                    stack.PushShort((ushort)(a & b));
+                }
+                else
+                {
+                    var b = stack.PopByte(keep);
+                    var a = stack.PopByte(keep);
+                    stack.PushByte((byte)(a & b));
+                }
+                break;
             case 0x1D: // OR a b -- a||b
                 if (shrt)
                 {
@@ -679,7 +693,7 @@ public sealed class UXNProcessor
                 {
                     var shift8 = stack.PopByte(keep);
                     var left = shift8 >> 4;
-                    var right = shift8 & 0xF0;
+                    var right = shift8 & 0xF;
                     if (shrt)
                     {
                         var a = stack.PopShort(keep);
