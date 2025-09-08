@@ -927,7 +927,6 @@
     price: 100
   - type: MeleeWeapon
     wideAnimationRotation: 100
-    attackrate: 1.5
     damage:
       types:
         Slash: 10
