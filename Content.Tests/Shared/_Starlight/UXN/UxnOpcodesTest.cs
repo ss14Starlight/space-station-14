@@ -65,6 +65,7 @@ public sealed class UxnOpcodeTest : ContentUnitTest
         uxn.SystemMem[0x100] = 0x03;
         uxn.WorkingStack.PushShort(0x1234);
         Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.WorkingStack.StackPointer, Is.EqualTo(0x01));
         Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(0x34));
     }
 
@@ -118,64 +119,64 @@ public sealed class UxnOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [TestCase(0x11, 0x11, true)]
-    [TestCase(0x11, 0x12, false)]
-    [TestCase(0x12, 0x11, false)]
-    [TestCase(0x12, 0x12, true)]
-    public void EQU(byte left, byte right, bool expected)
+    [TestCase(0x11, 0x11)]
+    [TestCase(0x11, 0x12)]
+    [TestCase(0x12, 0x11)]
+    [TestCase(0x12, 0x12)]
+    public void EQU(byte left, byte right)
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x08;
         uxn.WorkingStack.PushByte(left);
         uxn.WorkingStack.PushByte(right);
         Assert.That(uxn.Step(), Is.EqualTo(false));
-        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(expected));
+        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(left == right));
     }
 
     [Test]
-    [TestCase(0x11, 0x11, false)]
-    [TestCase(0x11, 0x12, true)]
-    [TestCase(0x12, 0x11, true)]
-    [TestCase(0x12, 0x12, false)]
-    public void NEQ(byte left, byte right, bool expected)
+    [TestCase(0x11, 0x11)]
+    [TestCase(0x11, 0x12)]
+    [TestCase(0x12, 0x11)]
+    [TestCase(0x12, 0x12)]
+    public void NEQ(byte left, byte right)
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x09;
         uxn.WorkingStack.PushByte(left);
         uxn.WorkingStack.PushByte(right);
         Assert.That(uxn.Step(), Is.EqualTo(false));
-        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(expected));
+        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(left != right));
     }
 
     [Test]
-    [TestCase(0x12, 0x34, true)]
-    [TestCase(0x34, 0x12, false)]
-    [TestCase(0x00, 0xff, true)]
-    [TestCase(0x00, 0x00, false)]
-    public void GTH(byte left, byte right, bool expected)
+    [TestCase(0x12, 0x34)]
+    [TestCase(0x34, 0x12)]
+    [TestCase(0x00, 0xff)]
+    [TestCase(0x00, 0x00)]
+    public void GTH(byte left, byte right)
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x0A;
-        uxn.WorkingStack.PushByte(left);
         uxn.WorkingStack.PushByte(right);
+        uxn.WorkingStack.PushByte(left);
         Assert.That(uxn.Step(), Is.EqualTo(false));
-        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(expected));
+        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(left > right));
     }
 
     [Test]
-    [TestCase(0x12, 0x34, false)]
-    [TestCase(0x34, 0x12, true)]
-    [TestCase(0x00, 0xff, false)]
-    [TestCase(0xff, 0x00, true)]
-    [TestCase(0x00, 0x00, false)]
-    public void LTH(byte left, byte right, bool expected)
+    [TestCase(0x12, 0x34)]
+    [TestCase(0x34, 0x12)]
+    [TestCase(0x00, 0xff)]
+    [TestCase(0xff, 0x00)]
+    [TestCase(0x00, 0x00)]
+    public void LTH(byte right, byte left)
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x0B;
-        uxn.WorkingStack.PushByte(left);
         uxn.WorkingStack.PushByte(right);
+        uxn.WorkingStack.PushByte(left);
         Assert.That(uxn.Step(), Is.EqualTo(false));
-        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(expected));
+        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(left < right));
     }
 
     [Test]
@@ -310,7 +311,6 @@ public sealed class UxnOpcodeTest : ContentUnitTest
         uxn.AttachDevice(0x00, testdev);
         Assert.That(uxn.Step(), Is.EqualTo(false));
         Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(0x32));
-        Assert.That(testdev.dei, Is.Not.Null);
         Assert.That(testdev.dei, Is.EqualTo(0x00));
     }
 
@@ -325,7 +325,6 @@ public sealed class UxnOpcodeTest : ContentUnitTest
         uxn.AttachDevice(0x00, testdev);
         Assert.That(uxn.Step(), Is.EqualTo(false));
         Assert.That(uxn.DevMem[0x00], Is.EqualTo(0x32));
-        Assert.That(testdev.deo, Is.Not.Null);
         Assert.That(testdev.deo, Is.EqualTo(0x00));
     }
 

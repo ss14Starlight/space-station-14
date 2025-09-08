@@ -32,7 +32,7 @@ public sealed class UxnStack
 
     public byte PopByte(bool sim)
     {
-        if (!sim) StackPointerReturn++;
+        if (sim) StackPointerReturn++;
         StackPointer -= 1;
         return Stack[StackPointer];
     }
@@ -82,7 +82,7 @@ public sealed class UxnMem
 
 public struct UxnDevices : IEnumerable<UXNDevice>
 {
-    private readonly UXNDevice[] _inner = new UXNDevice[0xF];
+    private readonly UXNDevice[] _inner = new UXNDevice[0x10];
 
     public UxnDevices() =>
         Array.Fill(_inner, new UXNDevice());
@@ -289,7 +289,7 @@ public sealed class UXNProcessor
                     stack.PopByte(keep);
                 }
                 break;
-            case 0x03: //NIP a b -- b
+            case 0x03: // NIP a b -- b
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -555,10 +555,11 @@ public sealed class UXNProcessor
                     var devInstance = Devices[dev >> 4];
                     if (shrt)
                     {
+                        var possibleDev = Devices[((dev + 1) & 0xFF) >> 4];
                         devInstance.ReadValue(dev, DevMem, this);
-                        devInstance.ReadValue((byte)((dev + 1) & 0xFF), DevMem, this);
+                        possibleDev.ReadValue((byte)((dev + 1) & 0xFF), DevMem, this);
                         var msb = DevMem[dev];
-                        stack.PushShort((ushort)((msb << 8) | DevMem[(dev + 1) & 0xFF]));
+                        stack.PushShort((ushort)((msb << 8) | (DevMem[(dev + 1) & 0xFF])));
                     }
                     else
                     {
@@ -574,11 +575,12 @@ public sealed class UXNProcessor
                     var mem = DevMem;
                     if (shrt)
                     {
+                        var possibleDev = Devices[((dev + 1) & 0xFF) >> 4];
                         var val = stack.PopShort(keep);
                         mem[dev] = (byte)(val >> 8);
                         mem[(dev + 1) & 0xFF] = (byte)(val & 0xFF);
                         devInstance.WriteValue(dev, DevMem, this);
-                        devInstance.WriteValue((byte)((dev + 1) & 0xFF), DevMem, this);
+                        possibleDev.WriteValue((byte)((dev + 1) & 0xFF), DevMem, this);
                     }
                     else
                     {
