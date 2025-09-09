@@ -729,8 +729,8 @@
         Caustic: 0.5
   # Starlight removal
   #   staminaModifier: 0.2
-  # - type: Item
-  #   size: Huge
+  - type: Item
+    size: Huge
   # - type: ClothingSpeedModifier
   #   walkModifier: 0.9
   #   sprintModifier: 0.9
