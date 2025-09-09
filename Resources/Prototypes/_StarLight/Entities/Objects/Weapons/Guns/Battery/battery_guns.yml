@@ -861,7 +861,7 @@
     - HighRiskItem
   #- type: StealTarget
     #stealGroup: WeaponEnergyShotgun
-  - type: GunRequiresWield
+  #- type: GunRequiresWield
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
