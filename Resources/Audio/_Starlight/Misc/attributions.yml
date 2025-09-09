@@ -7,3 +7,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "made by stickycheZ101"
   source: "https://github.com/stickycheZ101"
+
+- files: ["closet_open.ogg", "podwoosh.ogg", "supplypodlanding.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "taken from tgstation"
+  source: "https://github.com/tgstation/tgstation/blob/ce3748e15e5dd8fb62f055a49bce5046467ee6a6/code/game/objects/structures/crates_lockers/closets.dm"

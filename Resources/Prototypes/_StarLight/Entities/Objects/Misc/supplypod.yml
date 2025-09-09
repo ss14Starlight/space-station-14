@@ -1,0 +1,277 @@
+# 1
+- type: entity
+  id: SpawnSupplyPod
+  components:
+  - type: TimedDespawn
+    lifetime: 9.75
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplyPodAnimation
+  - type: TriggerOnSpawn
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+  - type: Marker
+
+- type: entity 
+  id: SpawnSupplyPodAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/podmarker.rsi
+    state: marker_ping
+  - type: TimedDespawn
+    lifetime: 1.640
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplyPodStartAnimationSound
+  - type: TriggerOnSpawn
+  - type: SpawnOnDespawn
+    prototype: SpawnSupplyPodPermaMarkerAnimation
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SpawnSupplyPodPermaMarkerAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/podmarker.rsi
+    state: marker
+  - type: TimedDespawn
+    lifetime: 2
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplyPodLandingAnimation
+  - type: TriggerOnSpawn
+  - type: Tag
+    tags:
+    - HideContextMenu     
+
+- type: entity
+  id: SpawnSupplyPodStartAnimationSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Misc/supplypodlanding.ogg
+      params:
+        maxDistance: 5
+  - type: TriggerOnSpawn
+
+- type: entity
+  id: SpawnSupplyPodLandingAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/landingpod.rsi
+    state: landing
+    offset: 0, 5
+  - type: TimedDespawn
+    lifetime: 1.95
+  - type: SpawnOnDespawn
+    prototype: SpawnSupplyPodLanded
+  - type: Tag
+    tags:
+    - HideContextMenu     
+
+- type: entity
+  id: SpawnSupplyPodLanded
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SmokeOnTrigger
+    duration: 3
+    spreadAmount: 1
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: _Starlight/Objects/Misc/supplypod.rsi
+    state: landed
+  - type: TimedDespawn
+    lifetime: 6
+  - type: SpawnOnDespawn 
+    prototype: SpawnSupplyPodLandedOpening
+  - type: Tag
+    tags:
+    - HideContextMenu     
+
+- type: entity
+  id: SpawnSupplyPodLandedOpening
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: _Starlight/Objects/Misc/supplypod.rsi
+    state: landed-opened
+  - type: TimedDespawn
+    lifetime: 4
+  - type: SpawnOnDespawn 
+    prototype: SpawnSupplyPodWooshSound
+  - type: EmitSoundOnTrigger 
+    sound:
+      path: /Audio/_Starlight/Misc/closet_open.ogg
+      params:
+        maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: Tag
+    tags:
+    - HideContextMenu     
+
+- type: entity
+  id: SpawnSupplyPodWooshSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Misc/podwoosh.ogg
+      params:
+        maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 3
+
+# 2
+
+- type: entity
+  id: SpawnSupplyPodSecondary
+  name: SpawnSupplyEmpty
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 9.75
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplyPodSecondaryAnimation
+  - type: TriggerOnSpawn
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+  - type: Marker
+
+- type: entity 
+  id: SpawnSupplyPodSecondaryAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/marker_secondary.rsi
+    state: marker_ping
+  - type: TimedDespawn
+    lifetime: 1.75
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplyPodSecondaryStartAnimationSound
+  - type: TriggerOnSpawn
+  - type: SpawnOnDespawn
+    prototype: SpawnSupplyPodSecondaryPermaMarkerAnimation
+  - type: Tag
+    tags:
+    - HideContextMenu
+    
+- type: entity
+  id: SpawnSupplyPodSecondaryPermaMarkerAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/marker_secondary.rsi
+    state: marker
+  - type: TimedDespawn
+    lifetime: 2
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplyPodSecondaryLandingAnimation
+  - type: TriggerOnSpawn
+  - type: Tag
+    tags:
+    - HideContextMenu     
+    
+- type: entity
+  id: SpawnSupplyPodSecondaryStartAnimationSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Misc/supplypodlanding.ogg
+      params:
+        maxDistance: 5
+  - type: TriggerOnSpawn
+    
+- type: entity
+  id: SpawnSupplyPodSecondaryLandingAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/landingpod_secondary.rsi
+    state: landing
+    offset: -1.7, 4.3
+  - type: TimedDespawn
+    lifetime: 1.8
+  - type: SpawnOnDespawn
+    prototype: SpawnSupplyPodSecondaryLanded
+  - type: Tag
+    tags:
+    - HideContextMenu     
+
+- type: entity
+  id: SpawnSupplyPodSecondaryLanded
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplyPodSecondaryGib
+  - type: SmokeOnTrigger
+    duration: 3
+    spreadAmount: 1
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: _Starlight/Objects/Misc/supplypod.rsi
+    state: landed
+  - type: TimedDespawn
+    lifetime: 6
+  - type: SpawnOnDespawn 
+    prototype: SpawnSupplyPodSecondaryLandedOpening
+  - type: Tag
+    tags:
+    - HideContextMenu     
+    
+- type: entity
+  id: SpawnSupplyPodSecondaryGib
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Minibomb
+    totalIntensity: 250
+    intensitySlope: 25 #Will destroy the tile under it reliably, space 1-2 more to rods. Only does any significant damage in a 5-tile cross.
+    maxIntensity: 60
+    canCreateVacuum: false
+
+- type: entity
+  id: SpawnSupplyPodSecondaryLandedOpening
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: _Starlight/Objects/Misc/supplypod.rsi
+    state: landed-opened
+  - type: TimedDespawn
+    lifetime: 4
+  - type: SpawnOnDespawn 
+    prototype: SpawnSupplyPodSecondaryWooshSound
+  - type: EmitSoundOnTrigger 
+    sound:
+      path: /Audio/_Starlight/Misc/closet_open.ogg
+      params:
+        maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: Tag
+    tags:
+    - HideContextMenu     
+
+- type: entity
+  id: SpawnSupplyPodSecondaryWooshSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Misc/podwoosh.ogg
+      params:
+        maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 3
