@@ -19,3 +19,4 @@ research-technology-declone-technology = Declone Technology
 research-technology-blast-proof = Blast-Proof Containers
 
 research-technology-hypoinjector = Automated Injection
+research-technology-scan-gate = Scan Gates Technology
