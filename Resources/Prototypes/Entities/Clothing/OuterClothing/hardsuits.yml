@@ -727,7 +727,7 @@
         Heat: 0.1 # SL EDIT
         Radiation: 0.01
         Caustic: 0.5
-      staminaModifier: 0.2
+    staminaModifier: 0.2
   - type: Item
     size: Huge
   # Starlight removal
