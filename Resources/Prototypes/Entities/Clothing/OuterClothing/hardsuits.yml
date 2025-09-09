@@ -727,10 +727,10 @@
         Heat: 0.15 # SL EDIT
         Radiation: 0.01
         Caustic: 0.5
-  # Starlight removal
-  #   staminaModifier: 0.2
+      staminaModifier: 0.2
   - type: Item
     size: Huge
+  # Starlight removal
   # - type: ClothingSpeedModifier
   #   walkModifier: 0.9
   #   sprintModifier: 0.9
