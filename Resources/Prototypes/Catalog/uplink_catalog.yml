@@ -1789,7 +1789,7 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndieelite.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   cost:
-    Telecrystal: 8
+    Telecrystal: 8 # Starlight-edit
   categories:
   - UplinkWearables
   conditions:
