@@ -833,7 +833,7 @@
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
   - type: Gun
-    fireRate: 1.75
+    fireRate: 2.5
     selectedMode: FullAuto
     availableModes:
     - FullAuto
