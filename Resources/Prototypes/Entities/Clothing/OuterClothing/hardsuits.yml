@@ -723,7 +723,7 @@
       coefficients:
         Blunt: 0.60 #SL EDIT
         Slash: 0.60 #SL EDIT
-        Piercing: 0.55 #SL EDIT
+        Piercing: 0.60 #SL EDIT
         Heat: 0.15 # SL EDIT
         Radiation: 0.01
         Caustic: 0.5
