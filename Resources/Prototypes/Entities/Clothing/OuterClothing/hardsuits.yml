@@ -232,7 +232,7 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMaxim  
+    clothingPrototype: ClothingHeadHelmetHardsuitMaxim
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
@@ -721,19 +721,20 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.70 #SL EDIT
-        Slash: 0.70 #SL EDIT
-        Piercing: 0.60 #SL EDIT
-        Heat: 0.2
+        Blunt: 0.60 #SL EDIT
+        Slash: 0.60 #SL EDIT
+        Piercing: 0.55 #SL EDIT
+        Heat: 0.15 # SL EDIT
         Radiation: 0.01
         Caustic: 0.5
-    staminaModifier: 0.2
-  - type: Item
-    size: Huge
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
+  # Starlight removal
+  #   staminaModifier: 0.2
+  # - type: Item
+  #   size: Huge
+  # - type: ClothingSpeedModifier
+  #   walkModifier: 0.9
+  #   sprintModifier: 0.9
+  # - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
   - type: Tag
