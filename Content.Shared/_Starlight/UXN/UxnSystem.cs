@@ -61,7 +61,10 @@ public sealed partial class UxnSystem : EntitySystem
 
         var stdio = _compiler.AttachDevice(0x01, new FakeStdioDevice(uxnTal));
 
-        _compiler.RunUnlimited(Log); //Basically this *should* run until it runs out of source code to process;
+        // we allow it to run "unlimited" cause we know that the input uxntal has a finite length
+        // the finite input is usually 10k chars max on paper
+        // but it *should* run out of memory before assembling uxntal that big tbh.
+        _compiler.RunUnlimited(Log);
 
         Log.Info($"Assembled UXN program in {_compiler.InstructionCounter} instructions, FakedStdio provided {stdio.CharCount}/{uxnTal.Length} chars");
 
