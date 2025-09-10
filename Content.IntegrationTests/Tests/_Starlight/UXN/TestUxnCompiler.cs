@@ -3,6 +3,7 @@ using System.Text;
 using Content.Shared._Starlight;
 using Content.Shared._Starlight.UXN;
 using Content.Shared._Starlight.UXN.Devices;
+using Pidgin;
 using Robust.Shared.ContentPack;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
@@ -21,6 +22,7 @@ public sealed class TestUxnCompiler
 
     private readonly ResPath _uxntalSourceFile = new("/_Starlight/Uxntal/opctest.tal");
     private readonly ResPath _uxnopctestRom = new("/_Starlight/opctest.rom");
+    private readonly ResPath _uxnCatRom = new("/_Starlight/cat.com");
 
     [Test]
     public async Task TestCompilingOpcTest()
@@ -46,8 +48,13 @@ public sealed class TestUxnCompiler
     }
 
     [Test]
-    public async Task TestOpcTestPasses()
+    [TestCase("/_Starlight/hello.rom")]
+    [TestCase("/_Starlight/opctest.rom", null, null, 0x80)]
+    [TestCase("/_Starlight/console.rom", "foobar", "baz qux", 0x80)]
+    #nullable enable
+    public async Task RunRomAsTest(string file, string? stdin = null, string? argv = null, byte? expected = 0x01)
     {
+        var res = new ResPath(file);
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
 
@@ -57,12 +64,10 @@ public sealed class TestUxnCompiler
 
         await server.WaitAssertion(() =>
         {
-            var uxnTalSource = resourceManager.ContentFileReadAllText(_uxntalSourceFile);
-
             var uxnRunner = new UXNProcessor();
             var mem = uxnRunner.SystemMem;
             var writeHead = 0x100;
-            var stream = resourceManager.ContentFileRead(_uxnopctestRom);
+            var stream = resourceManager.ContentFileRead(res);
             Span<byte> span = new byte[32];
             while (stream.CanRead)
             {
@@ -75,14 +80,14 @@ public sealed class TestUxnCompiler
                 }
             }
 
-            var stdio = uxnRunner.AttachDevice(0x1, new FakeStdioDevice(""));
-            uxnRunner.RunUnlimited();
+            var stdio = uxnRunner.AttachDevice(0x1, new FakeStdioDevice(stdin, argv, sawmill));
+            uxnRunner.RunUnlimited(sawmill);
 
             sawmill.Info($"Ran {uxnRunner.InstructionCounter} instructions");
-            sawmill.Info($"UXN Opcode test output:\n{new string(UxnSystem.Codepage437.GetChars([.. stdio.FakedOutput]))}");
+            sawmill.Info($"Program output:\n{new string(UxnSystem.Codepage437.GetChars([.. stdio.FakedOutput])).Trim()}");
 
-            //Make sure compile succeded.
-            Assert.That(uxnRunner.SystemDevice.Status, Is.EqualTo(0x00));
+            //Make sure program succeded.
+            Assert.That(uxnRunner.SystemDevice.Status, Is.EqualTo(expected));
         });
 
         await pair.CleanReturnAsync();

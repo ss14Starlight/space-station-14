@@ -149,10 +149,17 @@ BRK
 		;Dict/missed pstr
 		[ LIT2 &name $2 ] pstr
 		[ LIT2 "# 18 ] DEO
-		[ LIT2 "a -id ] LDZ ADD #18 DEO
+		[ LIT2 "b -id ] LDZ ADD #18 DEO
 		#0a18 DEO
 		#01 ;on-reset/fail STA
+		!&final
 		&pass
+		;Dict/oppass pstr
+		;run-test/name LDA2 pstr
+		[ LIT2 "# 18 ] DEO
+		[ LIT2 "b -id ] LDZ ADD #18 DEO
+		#0a18 DEO
+	&final
 	.id LDZ INC .id STZ
 
 JMP2r
@@ -473,6 +480,7 @@ JMP2r
 	&stz "STZ $1 &str "STR $1 &sta "STA $1
 	&jmp "JMP $1 &jcn "JCN $1 &jsr "JSR $1 &sth "STH $1
 	&jmi "JMI $1 &jci "JCI $1 &jsi "JSI $1
+	&oppass "Passed! 20 $1
 ]
 
 (

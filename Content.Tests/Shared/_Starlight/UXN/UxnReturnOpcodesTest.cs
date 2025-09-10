@@ -400,7 +400,7 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
 
     [Test]
     [Repeat(5, false)]
-    public void XORr()
+    public void EORr()
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x1E + 0x40;

@@ -783,7 +783,7 @@ public sealed class UXNProcessor
         return false;
     }
 
-    public bool RunUnlimited()
+    public bool RunUnlimited(ISawmill? sawmill = null)
     {
         while (Running)
         {
@@ -791,14 +791,19 @@ public sealed class UXNProcessor
             {
                 if (SystemDevice.Status != 0)
                 {
+                    sawmill?.Info($"Uxn exiting. status {SystemDevice.Status:x}. leftover events {_events.Count}");
                     Running = false;
                     _events.Clear();
                     return true;
                 }
                 if (_events.Count > 0)
+                {
+                    sawmill?.Info("UXN popping event");
                     _events.Dequeue().PerformEvent(this);
+                }
                 else
                 {
+                    sawmill?.Info("UXN has no events to pop exiting");
                     Running = false;
                     return false;
                 }

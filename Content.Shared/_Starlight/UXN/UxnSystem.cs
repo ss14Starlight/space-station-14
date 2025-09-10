@@ -12,7 +12,7 @@ public sealed partial class UxnSystem : EntitySystem
 {
     [Dependency] private readonly IResourceManager _resourceManager = default!;
 
-    private readonly ResPath _compilerRom = new ResPath("/_Starlight/drifloon.rom");
+    private readonly ResPath _compilerRom = new("/_Starlight/drifloon.rom");
 
     private readonly UXNProcessor _compiler = new();
 
@@ -34,7 +34,6 @@ public sealed partial class UxnSystem : EntitySystem
 
         }
     }
-
 
     public bool Compile(string uxnTal, [NotNullWhen(false)] out string? error, [NotNullWhen(true)] out List<byte>? rom)
     {
@@ -62,9 +61,9 @@ public sealed partial class UxnSystem : EntitySystem
 
         var stdio = _compiler.AttachDevice(0x01, new FakeStdioDevice(uxnTal));
 
-        _compiler.RunUnlimited(); //Basically this *should* run until it runs out of source code to process;
+        _compiler.RunUnlimited(Log); //Basically this *should* run until it runs out of source code to process;
 
-        Log.Info($"Assembled UXN program in {_compiler.InstructionCounter} instructions");
+        Log.Info($"Assembled UXN program in {_compiler.InstructionCounter} instructions, FakedStdio provided {stdio.CharCount}/{uxnTal.Length} chars");
 
         var stdErr = stdio.FakedError;
         if (_compiler.SystemDevice.Status < 0x80)

@@ -494,7 +494,7 @@ public sealed class UxnShortOpcodeTest : ContentUnitTest
 
     [Test]
     [Repeat(10, false)]
-    public void XOR2()
+    public void EOR2()
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x1E + 0x20;
