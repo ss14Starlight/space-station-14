@@ -88,7 +88,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
   id: NTNCBlueShieldIDCard
-  name: NT-NC naval officer's ID card
+  name: Nanotrasen Navy Corps Marine's ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -207,29 +207,6 @@
           type: AgentIDCardBoundUserInterface
 
 - type: entity
-  parent: [ IDCardStandard ]
-  id: AbductorIDCard
-  name: Abductor ID Card
-  components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Misc/id_cards.rsi
-      layers:
-        - state: abductor
-    - type: Access # get your access from your victims.
-    - type: AgentIDCard
-    - type: IdCard
-      bypassLogging: true
-      canMicrowave: false
-      jobTitle: job-name-abductor
-    - type: ActivatableUI
-      key: enum.AgentIDCardUiKey.Key
-      inHandsOnly: true
-    - type: UserInterface
-      interfaces:
-        enum.AgentIDCardUiKey.Key:
-          type: AgentIDCardBoundUserInterface
-
-- type: entity
   parent: [ IDCardStandard, BaseMajorContraband ]
   id: ChronoIDCard
   description: a ID of the far future. has access to everything.
@@ -285,4 +262,3 @@
     - Research
     - Engineering
     - Atmospherics
-
