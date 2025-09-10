@@ -12,7 +12,7 @@ public sealed partial class UxnSystem : EntitySystem
 {
     [Dependency] private readonly IResourceManager _resourceManager = default!;
 
-    private readonly ResPath _compilerRom = new("/_Starlight/drifloon.rom");
+    private readonly ResPath _compilerRom = new("/_Starlight/Uxn/Rom/drifloon.rom");
 
     private readonly UXNProcessor _compiler = new();
 

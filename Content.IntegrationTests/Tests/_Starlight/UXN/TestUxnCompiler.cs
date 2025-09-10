@@ -1,18 +1,10 @@
-using System.IO;
-using System.Text;
 using Content.Shared._Starlight;
 using Content.Shared._Starlight.UXN;
 using Content.Shared._Starlight.UXN.Devices;
-using Pidgin;
 using Robust.Shared.ContentPack;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
-using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.Manager;
-using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Utility;
-using YamlDotNet.Core;
-using YamlDotNet.RepresentationModel;
 
 namespace Content.IntegrationTests.Tests._Starlight.UXN;
 
@@ -20,9 +12,7 @@ namespace Content.IntegrationTests.Tests._Starlight.UXN;
 public sealed class TestUxnCompiler
 {
 
-    private readonly ResPath _uxntalSourceFile = new("/_Starlight/Uxntal/opctest.tal");
-    private readonly ResPath _uxnopctestRom = new("/_Starlight/opctest.rom");
-    private readonly ResPath _uxnCatRom = new("/_Starlight/cat.com");
+    private readonly ResPath _uxntalSourceFile = new("/_Starlight/Uxn/Tal/opctest.tal");
 
     [Test]
     public async Task TestCompilingOpcTest()
@@ -48,9 +38,9 @@ public sealed class TestUxnCompiler
     }
 
     [Test]
-    [TestCase("/_Starlight/hello.rom")]
-    [TestCase("/_Starlight/opctest.rom", null, null, 0x80)]
-    [TestCase("/_Starlight/console.rom", "foobar", "baz qux", 0x80)]
+    [TestCase("/_Starlight/Uxn/Rom/hello.rom")]
+    [TestCase("/_Starlight/Uxn/Rom/opctest.rom", null, null, 0x80)]
+    [TestCase("/_Starlight/Uxn/Rom/console.rom", "foobar", "baz qux", 0x80)]
     #nullable enable
     public async Task RunRomAsTest(string file, string? stdin = null, string? argv = null, byte? expected = 0x01)
     {
