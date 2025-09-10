@@ -133,3 +133,50 @@
       - CartridgeMagnumImprovised
   - type: WeaponDismantleOnShoot
     dismantleChance: 0
+
+- type: entity
+  name: Mark 1 Rifle
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseSecuritySalvageContraband]
+  id: WeaponRifleMark1
+  description: A very old Mark 1 Rifle used in many old wars. Someone managed to find one out of a museum or something, with the date of production scratched out from usage... but the NT logo is very new.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 2
+      Felionoid:
+        knockback: 1
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: CartridgeMagnumSP
+    whitelist:
+      tags:
+        - CartridgeMagnum
+        - CartridgeLightRifle
+    soundRack:
+      path: /Audio/_Starlight/Weapons/Guns/Cock/mark1_cycle_bolt.ogg
+      params:
+        variation: 0.145
+  - type: Gun
+    minAngle: 10
+    maxAngle: 40
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/mark1.ogg
+      params:
+        variation: 0.246
+    pump: true
+    fireRate: 1
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Weapons/Guns/Snipers/mark1_rifle.rsi
+  - type: Clothing
+    sprite: /Textures/_Starlight/Objects/Weapons/Guns/Snipers/mark1_rifle.rsi
+  - type: Item
+    size: Large
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -5
+    maxAngle: -10
+  - type: GunRequiresWield
+  - type: StaticPrice
+    price: 500

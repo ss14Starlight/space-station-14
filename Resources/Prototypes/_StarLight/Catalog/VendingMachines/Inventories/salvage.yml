@@ -183,6 +183,16 @@
   - SalvageWeapons
   conditions:
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorWeaponMark1Rifle
+  productEntity: WeaponRifleMark1
+  cost:
+    SalvageTicket: 400
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
   
 #consumables
 - type: listing
