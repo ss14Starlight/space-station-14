@@ -145,7 +145,6 @@
     - Inorganic
   - type: IdentityBlocker
     coverage: EYES
-  - type: FlashImmunity
   - type: ShowHungerIcons
   - type: ShowThirstIcons
   - type: ShowSyndicateIcons
