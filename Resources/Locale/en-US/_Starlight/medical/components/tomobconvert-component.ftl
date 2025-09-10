@@ -1,0 +1,1 @@
+tomobconvert-verb-name = Prepare torso for surgery

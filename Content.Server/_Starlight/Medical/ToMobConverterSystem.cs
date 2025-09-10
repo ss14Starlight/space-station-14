@@ -6,11 +6,11 @@ using Robust.Server.GameObjects;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Server.Body.Systems;
-using Content.Server.Humanoid.Systems;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Humanoid;
 using Content.Server.Humanoid;
 using Content.Shared.Preferences;
-using Content.Server.NPC.Queries.Considerations;
+using Content.Shared.Chemistry.EntitySystems;
 
 namespace Content.Server._Starlight.Medical;
 
@@ -19,9 +19,10 @@ public sealed class ToMobConverterSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly ISawmill _sawmill = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
 
 
     public override void Initialize()
@@ -42,10 +43,10 @@ public sealed class ToMobConverterSystem : EntitySystem
         var coords = _transform.GetMapCoordinates(args.Args.Target.Value);
         var ent = Spawn(convToMobComp.OutputMob, coords);
 
-        if (!TryComp<BodyComponent>(ent, out var _))
+        if (!TryComp<BodyComponent>(ent, out var _) || !TryComp<BloodstreamComponent>(ent, out var blood) || blood.BloodSolution == null)
         {
             QueueDel(ent);
-            _sawmill.Error($"When producing mob from torso, was asked to create {convToMobComp.OutputMob} which has no BodyComponent");
+            return;
         }
 
         foreach (var organ in _body.GetBodyOrgans(ent)) QueueDel(organ.Id); // clear out organs
@@ -54,6 +55,7 @@ public sealed class ToMobConverterSystem : EntitySystem
             if (part.Component.PartType == BodyPartType.Torso) continue;
             QueueDel(part.Id);
         }
+        _solution.RemoveAllSolution((Entity<SolutionComponent>)blood.BloodSolution);
 
         // randomise appearance if possible
         if (!TryComp<HumanoidAppearanceComponent>(ent, out var humanoid)) return;
