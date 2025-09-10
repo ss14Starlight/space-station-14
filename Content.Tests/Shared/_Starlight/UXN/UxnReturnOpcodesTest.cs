@@ -130,34 +130,33 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [TestCase(0x12, 0x34)]
-    [TestCase(0x34, 0x12)]
-    [TestCase(0x00, 0xff)]
-    [TestCase(0x00, 0x00)]
-    public void GTHr(byte left, byte right)
+    [TestCase(0xf8, 0xf8, false)]
+    [TestCase(0x01, 0x01, false)]
+    [TestCase(0xf8, 0x01, true)]
+    [TestCase(0x01, 0xf8, false)]
+    public void GTH(byte left, byte right, bool expected)
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x0A + 0x40;
-        uxn.ReturnStack.PushByte(right);
         uxn.ReturnStack.PushByte(left);
+        uxn.ReturnStack.PushByte(right);
         Assert.That(uxn.Step(), Is.EqualTo(false));
-        Assert.That(uxn.ReturnStack.PopByte(true) == 0x01, Is.EqualTo(left > right));
+        Assert.That(uxn.ReturnStack.PopByte(true) == 0x01, Is.EqualTo(expected));
     }
 
     [Test]
-    [TestCase(0x12, 0x34)]
-    [TestCase(0x34, 0x12)]
-    [TestCase(0x00, 0xff)]
-    [TestCase(0xff, 0x00)]
-    [TestCase(0x00, 0x00)]
-    public void LTHr(byte right, byte left)
+    [TestCase(0xf8, 0xf8, false)]
+    [TestCase(0x01, 0x01, false)]
+    [TestCase(0xf8, 0x01, false)]
+    [TestCase(0x01, 0xff, true)]
+    public void LTHr(byte left, byte right, bool expected)
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x0B + 0x40;
-        uxn.ReturnStack.PushByte(right);
         uxn.ReturnStack.PushByte(left);
+        uxn.ReturnStack.PushByte(right);
         Assert.That(uxn.Step(), Is.EqualTo(false));
-        Assert.That(uxn.ReturnStack.PopByte(true) == 0x01, Is.EqualTo(left < right));
+        Assert.That(uxn.ReturnStack.PopByte(true) == 0x01, Is.EqualTo(expected));
     }
 
     [Test]

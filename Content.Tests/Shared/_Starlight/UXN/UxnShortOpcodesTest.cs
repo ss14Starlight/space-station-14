@@ -147,18 +147,18 @@ public sealed class UxnShortOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [TestCase(0x1200, 0x3400)]
-    [TestCase(0x3400, 0x1200)]
-    [TestCase(0x0000, 0x7f00)] //stupid NUnit wont let me do int -> ushort in TestCase oh well. atleast all math is unsigned.
-    [TestCase(0x0000, 0x0000)]
-    public void LTH2(short left, short right)
+    [TestCase(0xf801, 0xf801, false)]
+    [TestCase(0x01f8, 0x01f8, false)]
+    [TestCase(0xf801, 0x01f8, false)]
+    [TestCase(0x01f8, 0xf801, true)]
+    public void LTH2(int left, int right, bool expected)
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x0B + 0x20;
-        uxn.WorkingStack.PushShort((ushort)right);
         uxn.WorkingStack.PushShort((ushort)left);
+        uxn.WorkingStack.PushShort((ushort)right);
         Assert.That(uxn.Step(), Is.EqualTo(false));
-        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(left < right));
+        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(expected));
     }
 
     [Test]

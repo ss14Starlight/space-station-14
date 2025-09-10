@@ -151,12 +151,12 @@ public sealed class UxnKeepOpcodeTest : ContentUnitTest
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x0A + 0x80;
-        uxn.WorkingStack.PushByte(right);
         uxn.WorkingStack.PushByte(left);
+        uxn.WorkingStack.PushByte(right);
         Assert.That(uxn.Step(), Is.EqualTo(false));
         Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(left > right));
-        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(left));
         Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(right));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(left));
     }
 
     [Test]
@@ -169,12 +169,12 @@ public sealed class UxnKeepOpcodeTest : ContentUnitTest
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x0B + 0x80;
-        uxn.WorkingStack.PushByte(right);
         uxn.WorkingStack.PushByte(left);
+        uxn.WorkingStack.PushByte(right);
         Assert.That(uxn.Step(), Is.EqualTo(false));
         Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(left < right));
-        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(left));
         Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(right));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(left));
     }
 
     [Test]
