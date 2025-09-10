@@ -30,6 +30,8 @@
         Quantity: 10
       - ReagentId: AmmoniaBlood
         Quantity: 20
+  - type: ConvertableToMob # Starlight
+    outputMob: MobVox # Starlight
 
 - type: entity
   parent: [ PartVox, BaseHead ]

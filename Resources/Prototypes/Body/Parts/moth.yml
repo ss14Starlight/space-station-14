@@ -29,6 +29,8 @@
         Quantity: 10
       - ReagentId: Blood
         Quantity: 20
+  - type: ConvertableToMob # Starlight
+    outputMob: MobMoth # Starlight
 
 
 - type: entity

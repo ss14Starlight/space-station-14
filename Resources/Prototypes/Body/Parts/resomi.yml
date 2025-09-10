@@ -27,6 +27,8 @@
         Quantity: 10
       - ReagentId: AmmoniaBlood # Starlight
         Quantity: 20
+  - type: ConvertableToMob
+    outputMob: MobResomi
 
 
 - type: entity

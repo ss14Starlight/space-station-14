@@ -29,6 +29,8 @@
             Quantity: 10
           - ReagentId: Blood
             Quantity: 20
+    - type: ConvertableToMob
+      outputMob: MobVulpkanin
 
 - type: entity
   id: HeadVulpkanin

@@ -44,6 +44,8 @@
           Quantity: 1
         - ReagentId: Blood
           Quantity: 5
+    - type: ConvertableToMob
+      outputMob: MobFelionoid
 
 - type: entity
   id: HeadFelionoid

@@ -30,6 +30,8 @@
           Quantity: 10
         - ReagentId: CopperBlood
           Quantity: 20
+    - type: ConvertableToMob
+      outputMob: MobCyclorite
 
 - type: entity
   id: HeadCyclorite

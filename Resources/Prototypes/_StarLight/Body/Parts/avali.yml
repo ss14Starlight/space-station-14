@@ -30,6 +30,8 @@
         Quantity: 5
       - ReagentId: AmmoniaBlood
         Quantity: 10
+  - type: ConvertableToMob
+    outputMob: MobAvali
 
 - type: entity
   parent: [ PartAvali, BaseHead ]

@@ -29,6 +29,8 @@
         Quantity: 10
       - ReagentId: CopperBlood
         Quantity: 20
+  - type: ConvertableToMob # Starlight
+    outputMob: MobArachnid # Starlight
 
 - type: entity
   id: HeadArachnid
