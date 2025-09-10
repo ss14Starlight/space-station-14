@@ -22,6 +22,11 @@
     <ProjectReference Include="..\RobustToolbox\Robust.Shared\Robust.Shared.csproj" />
     <ProjectReference Include="..\RobustToolbox\Robust.UnitTesting\Robust.UnitTesting.csproj" />
   </ItemGroup>
-
+  <!-- Starlight UXN Includes -->
+  <ItemGroup>
+    <EmbeddedResource Include="../Resources/_Starlight/Uxn/Tal/opctest.tal"/>
+    <EmbeddedResource Include="../Resources/_Starlight/Uxn/Rom/drifloon.rom"/>
+  </ItemGroup>
+  <!-- End Starlight UXN Includes -->
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
 </Project>
