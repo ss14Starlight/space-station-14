@@ -38,7 +38,6 @@ public sealed class ToMobConverterSystem : EntitySystem
         if (args.Handled || !TryComp<ConvertableToMobComponent>(args.Args.Target, out var convToMobComp)) return;
         mobConvComp.Converting.Remove(args.Args.Target.Value); // done, cancelled or not
         if (args.Cancelled) return;
-        QueueDel(args.Target); // delete the torso
 
         var coords = _transform.GetMapCoordinates(args.Args.Target.Value);
         var ent = Spawn(convToMobComp.OutputMob, coords);
@@ -48,6 +47,8 @@ public sealed class ToMobConverterSystem : EntitySystem
             QueueDel(ent);
             return;
         }
+
+        QueueDel(args.Target); // delete the torso
 
         foreach (var organ in _body.GetBodyOrgans(ent)) QueueDel(organ.Id); // clear out organs
         foreach (var part in _body.GetBodyChildren(ent)) // clear out non-torso parts
