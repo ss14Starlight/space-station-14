@@ -404,13 +404,13 @@ public sealed class UXNProcessor
                 {
                     var b = stack.PopShort(keep);
                     var a = stack.PopShort(keep);
-                    stack.PushByte((byte)(b > a ? 1 : 0));
+                    stack.PushByte((byte)(a > b ? 1 : 0));
                 }
                 else
                 {
                     var b = stack.PopByte(keep);
                     var a = stack.PopByte(keep);
-                    stack.PushByte((byte)(b > a ? 1 : 0));
+                    stack.PushByte((byte)(a > b ? 1 : 0));
                 }
                 break;
             case 0x0B: // LTH a b -- bool8
@@ -418,13 +418,13 @@ public sealed class UXNProcessor
                 {
                     var b = stack.PopShort(keep);
                     var a = stack.PopShort(keep);
-                    stack.PushByte((byte)(b < a ? 1 : 0));
+                    stack.PushByte((byte)(a < b ? 1 : 0));
                 }
                 else
                 {
                     var b = stack.PopByte(keep);
                     var a = stack.PopByte(keep);
-                    stack.PushByte((byte)(b < a ? 1 : 0));
+                    stack.PushByte((byte)(a < b ? 1 : 0));
                 }
                 break;
             #endregion comparisons

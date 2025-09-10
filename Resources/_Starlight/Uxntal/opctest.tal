@@ -480,7 +480,7 @@ JMP2r
 	&stz "STZ $1 &str "STR $1 &sta "STA $1
 	&jmp "JMP $1 &jcn "JCN $1 &jsr "JSR $1 &sth "STH $1
 	&jmi "JMI $1 &jci "JCI $1 &jsi "JSI $1
-	&oppass "Passed! 20 $1
+	&oppass "Opcode 20 "Passed! 20 "-- $1
 ]
 
 (

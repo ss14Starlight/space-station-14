@@ -147,18 +147,18 @@ public sealed class UxnOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [TestCase(0x12, 0x34)]
-    [TestCase(0x34, 0x12)]
-    [TestCase(0x00, 0xff)]
-    [TestCase(0x00, 0x00)]
-    public void GTH(byte left, byte right)
+    [TestCase(0xf8, 0xf8, false)]
+    [TestCase(0x01, 0x01, false)]
+    [TestCase(0xf8, 0x01, true)]
+    [TestCase(0x01, 0xf8, false)]
+    public void GTH(byte left, byte right, bool expected)
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x0A;
-        uxn.WorkingStack.PushByte(right);
         uxn.WorkingStack.PushByte(left);
+        uxn.WorkingStack.PushByte(right);
         Assert.That(uxn.Step(), Is.EqualTo(false));
-        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(left > right));
+        Assert.That(uxn.WorkingStack.PopByte(true) == 0x01, Is.EqualTo(expected));
     }
 
     [Test]

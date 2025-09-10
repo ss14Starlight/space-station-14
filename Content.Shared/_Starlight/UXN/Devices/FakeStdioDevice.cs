@@ -58,10 +58,10 @@ public sealed class FakeStdioDevice : UXNDevice
                 {
                     events.Add(new ArgvCharEvent(letter, 0x02));
                 }
-                events.Add(new ArgvCharEvent(0x20, 0x03)); //Split
+                events.Add(new ArgvCharEvent(0x0a, 0x03)); //Split. according to the test rom it is split with a newline on argv.
             }
             events.RemoveAt(events.Count - 1); //remove the last split to replace with...
-            events.Add(new ArgvCharEvent(0x20, 0x04)); //End of Args
+            events.Add(new ArgvCharEvent(0x0a, 0x04)); //End of Args. still a newline.
             foreach (var ev in events)
             {
                 ev.Sawmill = _sawmill;
@@ -82,6 +82,9 @@ public sealed class FakeStdioDevice : UXNDevice
         _sawmill?.Info($"FakedStdio: push char '{letter}'");
         CharCount++;
         proc.PushEvent(new StdioCharEvent(letterByte, this));
+
+        if (_fakedInput.Length == 0)
+            proc.PushEvent(new ArgvCharEvent(0x00, 0x04)); //end of stdin is null not a newline IG?
     }
 }
 

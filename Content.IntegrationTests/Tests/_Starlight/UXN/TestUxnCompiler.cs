@@ -41,7 +41,7 @@ public sealed class TestUxnCompiler
             //Make sure compile succeded.
             Assert.That(result, Is.EqualTo(true));
             //Make sure compile is the right size.
-            Assert.That(rom.Count, Is.EqualTo(3323));
+            Assert.That(rom.Count, Is.EqualTo(3373));
         });
 
         await pair.CleanReturnAsync();
