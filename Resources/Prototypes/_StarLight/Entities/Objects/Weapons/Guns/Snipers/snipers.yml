@@ -154,7 +154,7 @@
         - CartridgeMagnum
         - CartridgeLightRifle
     soundRack:
-      path: /Audio/_Starlight/Weapons/Guns/Cock/mark1_cycle_bolt.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Cock/mark1_cycle_Bolt.ogg
       params:
         variation: 0.05
   - type: Gun
@@ -204,7 +204,7 @@
         - CartridgeMagnum
         - CartridgeLightRifle
     soundRack:
-      path: /Audio/_Starlight/Weapons/Guns/Cock/mark1_cycle_bolt.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Cock/mark1_cycle_Bolt.ogg
       params:
         variation: 0.05
   - type: Gun
@@ -258,7 +258,7 @@
         - CartridgeMagnum
         - CartridgeLightRifle
     soundRack:
-      path: /Audio/_Starlight/Weapons/Guns/Cock/mark1_cycle_bolt.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Cock/mark1_cycle_Bolt.ogg
       params:
         variation: 0.05
   - type: Gun
