@@ -148,7 +148,6 @@
         knockback: 1
   - type: BallisticAmmoProvider
     capacity: 10
-    count: 10
     proto: CartridgeMagnumSP
     whitelist:
       tags:
@@ -199,7 +198,6 @@
         knockback: 1
   - type: BallisticAmmoProvider
     capacity: 10
-    count: 10
     proto: CartridgeMagnumSP
     whitelist:
       tags:
@@ -254,7 +252,6 @@
         knockback: 2
   - type: BallisticAmmoProvider
     capacity: 3
-    count: 3
     proto: CartridgeMagnumSP
     whitelist:
       tags:
@@ -291,7 +288,7 @@
     tags:
     - Markalibur1
   - type: Sharp
-    buthcerDelayModifier: 2
+    butcherDelayModifier: 2
   - type: MeleeWeapon
     wideAnimationRotation: -120
     attackRate: 1.25
