@@ -14,7 +14,7 @@ namespace Content.Tests.Shared._Starlight.UXN;
 public sealed class UxnTestCompiler : ContentUnitTest
 {
     [Test]
-    public void TestCompileOpctest()
+    public void UxnTestCompileOpctest()
     {
         var uxn = new UXNProcessor();
         using Stream rom = Assembly.GetExecutingAssembly().GetManifestResourceStream("Content.Tests.drifloon.rom")!;
