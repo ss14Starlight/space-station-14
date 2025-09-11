@@ -206,7 +206,7 @@
 
 - type: listing
   id: VendorWeaponMarkalibur1Rifle
-  productEntity: WeaponRifleMarkalibur1
+  productEntity: Markalibur1SheathFilled
   cost:
     SalvageTicket: 1000
   categories:

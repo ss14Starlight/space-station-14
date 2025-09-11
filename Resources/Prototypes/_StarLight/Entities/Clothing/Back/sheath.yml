@@ -1,0 +1,45 @@
+- type: entity
+  parent: [ BaseItem, ClothingSlotBase, BaseSecuritySalvageContraband ]
+  id: Markalibur1Sheath
+  name: Markalibur 1 Sheath
+  description: A sheath containing one of the silliest yet most effective gun-swords a salvager could ever ask for.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Starlight/Clothing/Back/Sheath/MarkaliburSheathe.rsi
+    state: sheath
+  - type: Clothing
+    quickEquip: false
+    sprite: /Textures/_Starlight/Clothing/Back/Sheath/MarkaliburSheathe.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Markalibur1
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/_Starlight/Items/sword_sheathe.ogg
+        ejectSound: /Audio/_Starlight/Items/sword_draw.ogg
+        whitelist:
+          tags:
+          - Markalibur1
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - Markalibur1
+  - type: Appearance
+
+- type: entity
+  id: Markalibur1SheathFilled
+  parent: Markalibur1Sheath
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - WeaponRifleMarkalibur1
