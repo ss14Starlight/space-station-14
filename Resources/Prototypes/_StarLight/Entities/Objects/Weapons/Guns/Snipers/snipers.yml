@@ -148,6 +148,7 @@
         knockback: 1
   - type: BallisticAmmoProvider
     capacity: 10
+    count: 10
     proto: CartridgeMagnumSP
     whitelist:
       tags:
@@ -156,7 +157,7 @@
     soundRack:
       path: /Audio/_Starlight/Weapons/Guns/Cock/mark1_cycle_bolt.ogg
       params:
-        variation: 0.145
+        variation: 0.05
   - type: Gun
     minAngle: 10
     maxAngle: 40
@@ -165,11 +166,14 @@
       params:
         variation: 0.246
     pump: true
-    fireRate: 1
+    fireRate: .75
   - type: Sprite
     sprite: /Textures/_Starlight/Objects/Weapons/Guns/Snipers/mark1_rifle.rsi
   - type: Clothing
     sprite: /Textures/_Starlight/Objects/Weapons/Guns/Snipers/mark1_rifle.rsi
+    slots:
+      - Back
+      - suitStorage
   - type: Item
     size: Large
   - type: Wieldable
@@ -180,3 +184,171 @@
   - type: GunRequiresWield
   - type: StaticPrice
     price: 500
+
+- type: entity
+  name: Mark 1 Sniper Rifle
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseSecuritySalvageContraband]
+  id: WeaponRifleMark1Sniper
+  description: A very old Mark 1 Rifle used in many old wars. They say the scratches on the side of the gun are for every kill the wielder had.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 2
+      Felionoid:
+        knockback: 1
+  - type: BallisticAmmoProvider
+    capacity: 10
+    count: 10
+    proto: CartridgeMagnumSP
+    whitelist:
+      tags:
+        - CartridgeMagnum
+        - CartridgeLightRifle
+    soundRack:
+      path: /Audio/_Starlight/Weapons/Guns/Cock/mark1_cycle_bolt.ogg
+      params:
+        variation: 0.05
+  - type: Gun
+    minAngle: 10
+    maxAngle: 40
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/mark1.ogg
+      params:
+        variation: 0.246
+    pump: true
+    fireRate: .40
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Weapons/Guns/Snipers/mark1_sniper_rifle.rsi
+  - type: Clothing
+    sprite: /Textures/_Starlight/Objects/Weapons/Guns/Snipers/mark1_sniper_rifle.rsi
+    slots:
+      - Back
+      - suitStorage
+  - type: Item
+    size: Large
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -5
+    maxAngle: -20
+  - type: GunRequiresWield
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 0
+    pvsIncrease: 0.1
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  name: Markalibur 1 "Rifle"
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseSecuritySalvageContraband]
+  id: WeaponRifleMarkalibur1
+  description: A very old Mark 1 Rifle used in many old wars... before someone took the poor thing, mangled it, and somehow ended up with a sword.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 3
+      Felionoid:
+        knockback: 2
+  - type: BallisticAmmoProvider
+    capacity: 3
+    count: 3
+    proto: CartridgeMagnumSP
+    whitelist:
+      tags:
+        - CartridgeMagnum
+        - CartridgeLightRifle
+    soundRack:
+      path: /Audio/_Starlight/Weapons/Guns/Cock/mark1_cycle_bolt.ogg
+      params:
+        variation: 0.05
+  - type: Gun
+    minAngle: 0
+    maxAngle: 40
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/mark1.ogg
+      params:
+        variation: 0.246
+    pump: true
+    fireRate: .75
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Weapons/Guns/Snipers/markalibur1_rifle.rsi
+  - type: Clothing
+    sprite: /Textures/_Starlight/Objects/Weapons/Guns/Snipers/markalibur1_rifle.rsi
+    quickEquip: false
+    slots:
+    - NONE
+  - type: Item
+    size: Large
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunRequiresWield
+  - type: StaticPrice
+    price: 1000
+  - type: Tag
+    tags:
+    - Markalibur1
+  - type: Sharp
+    buthcerDelayModifier: 2
+  - type: MeleeWeapon
+    wideAnimationRotation: -120
+    attackRate: 1.25
+    damage:
+      types:
+        Slash: 14
+    soundHit: /Audio/Weapons/bladeslice.ogg
+  - type: Tool
+    qualities:
+      - Slicing
+  - type: Execution
+  - type: DisarmMalus
+  - type: AltFireMelee
+    attackType: Heavy
+
+- type: entity
+  parent: [ BaseItem, ClothingSlotBase, BaseSecuritySalvageContraband ]
+  id: Markalibur1Sheath
+  name: Markalibur 1 Sheath
+  description: This sheathe is to holster one of the silliest yet most brilliant sword a salvager could yield.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Starlight/Clothing/Back/Sheath/MarkaliburSheathe.rsi
+    state: sheath
+  - type: Clothing
+    quickEquip: false
+    sprite: /Textures/_Starlight/Clothing/Back/Sheath/MarkaliburSheathe.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Markalibur1
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/_Starlight/Items/sword_sheathe.ogg
+        ejectSound: /Audio/_Starlight/Items/sword_draw.ogg
+        whitelist:
+          tags:
+          - Markalibur1
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - Markalibur1
+  - type: Appearance
+
+- type: entity
+  id: Markalibur1SheathFilled
+  parent: Markalibur1Sheath
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - WeaponRifleMarkalibur1

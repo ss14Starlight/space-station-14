@@ -193,6 +193,26 @@
   - SalvageWeapons
   conditions:
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorWeaponMark1SniperRifle
+  productEntity: WeaponRifleMark1Sniper
+  cost:
+    SalvageTicket: 600
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorWeaponMarkalibur1Rifle
+  productEntity: WeaponRifleMarkalibur1
+  cost:
+    SalvageTicket: 1000
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
   
 #consumables
 - type: listing
@@ -270,6 +290,16 @@
   productEntity: BoxFlare
   cost:
     SalvageTicket: 15
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorBoxMagnum
+  productEntity: MagazineBoxMagnumSP
+  cost:
+    SalvageTicket: 250
   categories:
   - SalvageConsumeables
   conditions:

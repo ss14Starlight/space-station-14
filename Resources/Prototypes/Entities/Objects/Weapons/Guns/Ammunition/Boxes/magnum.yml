@@ -2,6 +2,7 @@
   abstract: true
   parent: BaseItem
   id: BaseMagazineBoxMagnum
+  description: 12-round box of .45 Magnum ammunition.
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
