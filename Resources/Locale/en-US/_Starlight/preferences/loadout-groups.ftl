@@ -34,6 +34,7 @@ loadout-group-brigmedic-gloves = Brigmedic gloves
 loadout-group-security-non-lethal-weapon = Security Non-Lethal Weapon
 loadout-group-security-sidearm = Security Sidearm
 loadout-group-detective-shoes = Detective shoes
+Loadout-group-warden-Sidearm = Warden Sidearm
 
 # Law
 loadout-group-magistrate-shoes = Magistrate shoes

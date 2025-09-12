@@ -154,9 +154,6 @@ loadout-group-head-of-security-outerclothing = Head of Security outer clothing
 loadout-group-warden-head = Warden head
 loadout-group-warden-jumpsuit = Warden jumpsuit
 loadout-group-warden-outerclothing = Warden outer clothing
-# Starlight Comment Start
-Loadout-group-warden-Sidearm = Warden Sidearm
-# Starlight Comment End
 
 loadout-group-security-head = Security head
 loadout-group-security-jumpsuit = Security jumpsuit
