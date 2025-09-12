@@ -95,3 +95,14 @@
       forceEnableEmergencyLights: true
       shuttleTime: 1200
       # end starlight
+    gamma_shuttleless: # begin afterlight
+      announcement: alert-level-gamma-announcement
+      selectable: false
+      sound:
+        path: /Audio/Misc/gamma.ogg
+        params:
+          volume: -2
+      disableSelection: true
+      color: PaleVioletRed
+      emergencyLightColor: PaleVioletRed
+      forceEnableEmergencyLights: true # end afterlight

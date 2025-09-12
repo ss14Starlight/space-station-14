@@ -134,6 +134,15 @@
       ]
     },
     {
+      "name": "gamma_shuttleless",
+      "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
+    },
+    {
       "name": "epsilon",
       "delays": [
         [
