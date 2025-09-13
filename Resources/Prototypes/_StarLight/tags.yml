@@ -25,6 +25,9 @@
   id: Bola
 
 - type: Tag
+  id: BorgModulePurrfus
+
+- type: Tag
   id: CantInteract
 
 - type: Tag
@@ -215,3 +218,6 @@
 
 - type: Tag
   id: PettyCriminalTraitBackground
+
+- type: Tag
+  id: ScanGateMachineBoard
