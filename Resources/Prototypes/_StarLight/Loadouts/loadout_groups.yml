@@ -101,6 +101,13 @@
   - NanoTrasenRepresentativeHud
 
 - type: loadoutGroup
+  id: NanoTrasenRepresentativeNeck
+  name: loadout-group-nanotrasenrepresentative-neck
+  minLimit: 0
+  loadouts:
+  - NanoTrasenRepresentativeNeck
+
+- type: loadoutGroup
   id: BlueShieldBackpack
   name: loadout-group-blueshield-backpack
   loadouts:

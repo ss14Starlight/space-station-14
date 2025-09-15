@@ -23,3 +23,8 @@
   id: NanoTrasenRepresentativeHud
   equipment:
     eyes: ClothingEyesHudSkills
+
+- type: loadout
+  id: NanoTrasenRepresentativeNeck
+  equipment:
+    neck: ClothingUniformDama0965

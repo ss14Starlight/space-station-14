@@ -17,6 +17,7 @@ loadout-group-assistant-backpack = Assistant backpack
 loadout-group-nanotrasenrepresentative-outerclothing = NanoTrasen representative outer clothing
 loadout-group-nanotrasenrepresentative-jumpsuit = NanoTrasen representative jumpsuit
 loadout-group-nanotrasenrepresentative-eyewear = NanoTrasen representative eyewear
+loadout-group-nanotrasenrepresentative-neck = NanoTrasen representative neck
 loadout-group-nanotrasenrepresentative-shoes = NanoTrasen representative shoes
 
 loadout-group-captain-shoes = Captain shoes
