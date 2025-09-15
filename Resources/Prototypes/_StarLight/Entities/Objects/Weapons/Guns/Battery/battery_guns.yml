@@ -845,13 +845,13 @@
          volume: -2
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEnergySMGLaser
-    fireCost: 50
+    fireCost: 33
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BulletEnergySMGLaser
-      fireCost: 50
+      fireCost: 33
     - proto: BulletEnergySMGDisabler
-      fireCost: 25
+      fireCost: 33
   - type: Item
     size: Large
     shape:
