@@ -125,7 +125,7 @@
       - id: FlashlightSeclite
         amount: 2
       - id: WeaponEnergyShotgun
-      -id: WeaponEnergyMagnumGun
+      - id: WeaponEnergyMagnumGun
       - id: WeaponDisabler
         amount: 2
       - id: ClothingBeltSecurityFilled
