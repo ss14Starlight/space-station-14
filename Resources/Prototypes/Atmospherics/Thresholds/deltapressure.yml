@@ -69,7 +69,7 @@
   components:
   - type: DeltaPressure
     minPressure: 1000
-    minPressureDelta: 750
+    minPressureDelta: 2500 #Starlight. break people before glass
     scalingType: Linear
     scalingPower: 0.0005
 
@@ -80,6 +80,6 @@
   components:
   - type: DeltaPressure
     minPressure: 250
-    minPressureDelta: 187.5
+    minPressureDelta: 625 #Starlight. break people before glass
     scalingType: Threshold
 
