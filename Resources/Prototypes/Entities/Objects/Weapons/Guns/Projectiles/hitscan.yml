@@ -110,6 +110,7 @@
 
 - type: hitscan
   id: RedHeavyLaser
+  name: heavy laser # Starlight
   damage:
     types:
       Heat: 28
