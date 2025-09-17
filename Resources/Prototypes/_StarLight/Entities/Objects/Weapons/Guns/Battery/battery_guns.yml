@@ -297,10 +297,6 @@
       fireCost: 222
       magState: kill
       visualState: kill-unshaded
-    - proto: DestroyBeam
-      fireCost: 1000
-      magState: destroy
-      visualState: destroy-unshaded
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
