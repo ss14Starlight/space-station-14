@@ -18,6 +18,7 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Content.Shared.Verbs;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
@@ -32,6 +33,7 @@ public abstract class SharedInjectorSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] protected readonly SharedSolutionContainerSystem SolutionContainer = default!;
 
     public override void Initialize()
@@ -146,16 +148,19 @@ public abstract class SharedInjectorSystem : EntitySystem
     /// </summary>
     private void InjectDoAfter(Entity<InjectorComponent> injector, EntityUid target, EntityUid user)
     {
+        if (!_gameTiming.IsFirstTimePredicted)
+            return;
+
         // Create a pop-up for the user
         if (injector.Comp.ToggleState == InjectorToggleMode.Draw)
         {
-            _popup.PopupClient(Loc.GetString("injector-component-drawing-user"), target, user);
+            _popup.PopupEntity(Loc.GetString(injector.Comp.InjectorDrawingStartDescription), target, user); // Starlight edit - moved translation key to component
         }
         else
         {
-            _popup.PopupClient(Loc.GetString("injector-component-injecting-user"), target, user);
+            _popup.PopupEntity(Loc.GetString(injector.Comp.InjectorInjectingStartDescription), target, user); // Starlight edit - moved translation key to component
         }
-
+        
         if (!SolutionContainer.ResolveSolution(injector.Owner, injector.Comp.SolutionName, ref injector.Comp.Solution, out var solution))
             return;
 
