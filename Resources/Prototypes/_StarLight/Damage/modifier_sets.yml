@@ -57,6 +57,8 @@
     Slash: 2
     Heat: 0.2
     Bloodloss: 0
+  flatReductions:
+    Heat: 10
 
 - type: damageModifierSet
   id: DragonCarpResistances
