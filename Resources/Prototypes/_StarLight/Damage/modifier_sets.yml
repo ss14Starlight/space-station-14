@@ -54,7 +54,7 @@
   id: DragonResistances
   coefficients:
     Piercing: 0.4
-    Slash: 3
+    Slash: 4
     Heat: 0.2
     Bloodloss: 0
   flatReductions:
@@ -64,6 +64,6 @@
   id: DragonCarpResistances
   coefficients:
     Piercing: 0.65
-    Slash: 3
+    Slash: 2
     Heat: 0.6
     Bloodloss: 0
