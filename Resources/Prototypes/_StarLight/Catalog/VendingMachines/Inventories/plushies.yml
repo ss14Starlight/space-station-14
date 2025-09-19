@@ -576,8 +576,8 @@
     stock: 1
 
 - type: listing
-  id: VendorPlushieRedwoods
-  productEntity: PlushieRedwoods
+  id: VendorPlushieWren
+  productEntity: PlushieWren
   cost:
     NTCredit: 20
   categories:
@@ -710,6 +710,17 @@
 - type: listing
   id: VendorPlushieLiz
   productEntity: PlushieLiz
+  cost:
+    NTCredit: 20
+  categories:
+    - SLCrew
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: VendorPlushieFuria
+  productEntity: PlushieFuria
   cost:
     NTCredit: 20
   categories:
