@@ -1494,15 +1494,15 @@
 
 - type: entity
   parent: BaseVulpkaninPlushie
-  id: PlushieRedwoods
-  name: Redwoods Plushie
-  description: From being turned into a female vulpkanin and into a marketable plushie, they really can't catch a break. Studies show hugging it improves morale.
+  id: PlushieWren
+  name: Wren Plushie
+  description: From being turned into a fox and now turned into a marketable plushie, Wren is proof that even if space treats you like shit, you can dominate it, looking at her left paw, she has a ring on it, Kleio plush sold seprately.
   components:
     - type: Item
       size: Small
-      sprite: _Starlight/Objects/Fun/Plushies/redwoods_plushie.rsi
+      sprite: _Starlight/Objects/Fun/Plushies/wren_plushie.rsi
     - type: Sprite
-      sprite: _Starlight/Objects/Fun/Plushies/redwoods_plushie.rsi
+      sprite: _Starlight/Objects/Fun/Plushies/wren_plushie.rsi
       layers:
         - state: icon
     - type: ItemToggle
@@ -1512,7 +1512,7 @@
     - type: ComponentToggler
       components:
         - type: DatasetVocalizer
-          dataset: PlushiesRedwoods
+          dataset: PlushiesWren
         - type: TextToSpeech
           voice: klaasjeamandou
    
@@ -1638,7 +1638,7 @@
   parent: BaseResomiPlushie # Temporary until I make a Avali plushie base...... fml
   id: PlushieMalachi
   name: Malachi Plushie
-  description: Small but can REALLY fuck up your mischiefs and now she watches you as a plushie, a reminder that she is still there.
+  description: It's Malachi! Made with polyester, 100% all-natural FlutterSoft cotton and kind of smells like rum and orange juice. You can still hear her telling you to fuck off if you lean in closely enough. At first glance she doesn't appear to have her iconic dusters, but when you squeeze the hands there's something hard inside... The rest of the Novari pack not included. Leash and "Ravashi" sold seperately.
   components:
   - type: Item
     size: Small
@@ -1880,3 +1880,27 @@
           dataset: PlushiesLiz
         - type: TextToSpeech
           voice: junkoenoshima
+
+- type: entity
+  parent: PlushieHuman
+  id: PlushieFuria
+  name: Furia Plushie
+  description: A model Security Officer... most of the time. Pair her with Romero and Amali for an unstoppable trio!
+  components:
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/furia_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/furia_plushie.rsi
+      layers:
+        - state: icon
+    - type: ItemToggle
+      onUse: false
+      verbToggleOn: plushie-voicebox-activate
+      verbToggleOff: plushie-voicebox-deactivate
+    - type: ComponentToggler
+      components:
+        - type: DatasetVocalizer
+          dataset: PlushiesFuria
+        - type: TextToSpeech
+          voice: venti
