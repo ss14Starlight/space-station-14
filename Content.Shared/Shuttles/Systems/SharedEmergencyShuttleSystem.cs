@@ -28,7 +28,9 @@ public abstract class SharedEmergencyShuttleSystem : EntitySystem
         if (_emergencyEarlyLaunchAllowed)
             return;
 
-        args.Cancel();
-        Popup.PopupClient(Loc.GetString("emergency-shuttle-console-no-early-launches"), ent, args.User);
+        // Starlight edit: Start Early launch system enabled
+        // args.Cancel();
+        // Popup.PopupClient(Loc.GetString("emergency-shuttle-console-no-early-launches"), ent, args.User); 
+        // Starlight edit: End
     }
 }
