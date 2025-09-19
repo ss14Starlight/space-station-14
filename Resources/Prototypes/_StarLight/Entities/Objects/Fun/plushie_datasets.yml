@@ -113,9 +113,9 @@
     count: 7
 
 - type: localizedDataset
-  id: PlushiesRedwoods
+  id: PlushiesWren
   values:
-    prefix: plushie-redwoods-
+    prefix: plushie-wren-
     count: 8
 
 - type: localizedDataset
@@ -170,4 +170,11 @@
   id: PlushiesLiz
   values:
     prefix: plushie-liz-
+    count: 6
+
+
+- type: localizedDataset
+  id: PlushiesFuria
+  values:
+    prefix: plushie-furia-
     count: 6
