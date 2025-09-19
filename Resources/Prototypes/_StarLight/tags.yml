@@ -82,6 +82,9 @@
   id: HiltWood
 
 - type: Tag
+  id: ImprovisedAmmoBox
+
+- type: Tag
   id: ImprovisedCrowbar
 
 - type: Tag
