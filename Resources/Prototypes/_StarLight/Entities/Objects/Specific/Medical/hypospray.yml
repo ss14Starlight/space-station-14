@@ -69,7 +69,11 @@
     sprite: _Starlight/Objects/Specific/Medical/syringe.rsi
     size: Tiny
   - type: Injector
-    transferAmount: 15
+    injectOnly: false
+    transferAmounts:
+    - 5
+    - 10
+    - 15
     toggleState: Draw
     delay: 2.5
     delayPerVolume: 0
