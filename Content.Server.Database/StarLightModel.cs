@@ -41,6 +41,20 @@ public sealed class StarLightModel : DataModelBase
             entity.HasIndex(e => e.ProfileId)
                 .IsUnique();
 
+            entity.Property(e => e.Nickname)
+                .HasMaxLength(32);
+        });
+
+        modelBuilder.Entity<StarLightProfile>(entity =>
+        {
+            entity.HasOne(e => e.Profile)
+                .WithOne(p => p.StarLightProfile)
+                .HasForeignKey<StarLightProfile>(e => e.ProfileId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasIndex(e => e.ProfileId)
+                .IsUnique();
+
             entity.Property(e => e.CustomSpecieName)
                 .HasMaxLength(32);
         });
@@ -59,6 +73,7 @@ public sealed class StarLightModel : DataModelBase
         public int Id { get; set; }
         public int ProfileId { get; set; }
         public virtual Profile Profile { get; set; } = null!;
+        public string Nickname { get; set; } = null!;
         public string? CustomSpecieName { get; set; }
         public List<string> CyberneticIds { get; set; } = [];
         public float Width { get; set; } = 1f;

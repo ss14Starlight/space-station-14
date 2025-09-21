@@ -60,6 +60,20 @@ namespace Content.Server.Database
             // Starlight - Start
             modelBuilder.Entity<StarLightModel.StarLightProfile>(entity =>
             {
+                entity.HasOne(entity => entity.Profile)
+                    .WithOne(profile => profile.StarLightProfile)
+                    .HasForeignKey<StarLightModel.StarLightProfile>(entity => entity.ProfileId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasIndex(e => e.ProfileId)
+                    .IsUnique();
+
+                entity.Property(e => e.Nickname)
+                    .HasMaxLength(32);
+            });
+
+            modelBuilder.Entity<StarLightModel.StarLightProfile>(entity =>
+            {
                 entity.HasOne(e => e.Profile)
                     .WithOne(p => p.StarLightProfile)
                     .HasForeignKey<StarLightModel.StarLightProfile>(e => e.ProfileId)
@@ -68,8 +82,8 @@ namespace Content.Server.Database
                 entity.HasIndex(e => e.ProfileId)
                     .IsUnique();
 
-                entity.Property(e => e.CustomSpecieName)
-                    .HasMaxLength(32);
+                entity.Property(e => e.CustomSpecieName).HasMaxLength(32);
+                entity.Property(e => e.Nickname).HasMaxLength(32);
             });
             // Starlight - End
 

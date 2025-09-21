@@ -79,6 +79,13 @@ public sealed partial class SpeciesPrototype : IPrototype
 
     /// <summary>
     /// Starlight
+    /// Allow Nickname.
+    /// </summary>
+    [DataField]
+    public Boolean AllowNickname { get; private set; } = true;
+    
+    /// <summary>
+    /// Starlight
     /// Allow Custom Specie Name for this Specie.
     /// </summary>
     [DataField]

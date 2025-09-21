@@ -11,6 +11,12 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("ic.restricted_customspecienames", true, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
+    /// Restrict (sanitize) nicknames.
+    /// </summary>
+    public static readonly CVarDef<bool> RestrictedNicknames =
+        CVarDef.Create("ic.restricted_nicknames", true, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
     ///     Allows IC Secrets (flavor text only visible to the player possessing the character)
     /// </summary>
     public static readonly CVarDef<bool> ICSecrets =
@@ -21,6 +27,12 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> ExploitableSecrets =
         CVarDef.Create("ic.secrets_exploitable", false, CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// Minimum nickname length (0 = no minimum).
+    /// </summary>
+    public static readonly CVarDef<int> MinNicknameLength =
+        CVarDef.Create("ic.nickname_min_length", 2, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// Whether or not players can open character inspect windows on other players

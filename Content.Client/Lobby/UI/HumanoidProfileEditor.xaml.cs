@@ -53,6 +53,7 @@ namespace Content.Client.Lobby.UI
 
         // CCvar.
         private int _maxNameLength;
+        private int _minNicknameLength; // Starlight
         private bool _allowFlavorText;
 
         //begin starlight
@@ -141,6 +142,7 @@ namespace Content.Client.Lobby.UI
             _sprite = _entManager.System<SpriteSystem>();
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
+            _minNicknameLength = _cfgManager.GetCVar(StarlightCCVars.MinNicknameLength); // Starlight
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
 
             //begin starlight
@@ -195,6 +197,13 @@ namespace Content.Client.Lobby.UI
             #endregion Name
 
             // Starlight - Start
+            #region Nickname
+
+            NicknameEdit.OnTextChanged += args => { SetNickname(args.Text); };
+            NicknameEdit.IsValid = args => args.Length <= _maxNameLength;
+
+            #endregion Nickname
+
             #region Custom Specie Name
 
             CCustomSpecieNameEdit.OnTextChanged += args => { SetCustomSpecieName(args.Text); };
@@ -250,6 +259,7 @@ namespace Content.Client.Lobby.UI
                 UpdateHairPickers();
                 OnSkinColorOnValueChanged();
                 UpdateCustomSpecieNameEdit(); // Starlight
+                UpdateNicknameEdit(); // Starlight
             };
 
             //starlight start
@@ -920,6 +930,7 @@ namespace Content.Client.Lobby.UI
 
             UpdateNameEdit();
             UpdateCustomSpecieNameEdit(); // Starlight
+            UpdateNicknameEdit(); // Starlight
             UpdateCharacterInfoEditorText(); //Starlight
             UpdateSexControls();
             UpdateGenderControls();
@@ -1437,6 +1448,16 @@ namespace Content.Client.Lobby.UI
         }
 
         // Starlight - Start
+        private void SetNickname(string newNickname)
+        {
+            Profile = Profile?.WithNickname(newNickname);
+            SetDirty();
+
+            if (!IsDirty)
+                return;
+            ReloadPreview();
+        }
+
         private void SetCustomSpecieName(string customname)
         {
             Profile = Profile?.WithCustomSpecieName(customname);
@@ -1469,6 +1490,11 @@ namespace Content.Client.Lobby.UI
         }
 
         // Starlight - Start
+        private void UpdateNicknameEdit()
+        {
+            NicknameEdit.Text = Profile?.Nickname ?? "";
+        }
+
         private void UpdateCustomSpecieNameEdit()
         {
             var species = _species.Find(x => x.ID == Profile?.Species) ?? _species.First();

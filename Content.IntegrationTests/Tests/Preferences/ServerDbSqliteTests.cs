@@ -14,6 +14,10 @@ using Robust.Shared.Log;
 using Robust.Shared.Maths;
 using Robust.Shared.Network;
 using Robust.UnitTesting;
+// Starlight - Start
+using System.Threading.Tasks;
+using NUnit.Framework;
+// Starlight - End
 
 namespace Content.IntegrationTests.Tests.Preferences
 {
@@ -45,6 +49,7 @@ namespace Content.IntegrationTests.Tests.Preferences
                 FlavorText = "The biggest boy around.",
                 Species = "Human",
                 CustomSpecieName = "", // Starlight
+                Nickname = "", // Starlight
                 Age = 21,
                 Appearance = new(
                     "Afro",

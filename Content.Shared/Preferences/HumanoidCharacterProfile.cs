@@ -125,6 +125,7 @@ namespace Content.Shared.Preferences
             string exploitableInfo, //Starlight
             string species,
             string customspeciename, // Starlight
+            string nickname, // Starlight
             int age,
             Sex sex,
             Gender gender,
@@ -148,6 +149,7 @@ namespace Content.Shared.Preferences
             ExploitableInfo = exploitableInfo; //Starlight
             Species = species;//Starlight
             CustomSpecieName = customspeciename; // Starlight
+            Nickname = nickname; // Starlight
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -174,6 +176,7 @@ namespace Content.Shared.Preferences
                 other.ExploitableInfo,
                 other.Species,
                 other.CustomSpecieName, // Starlight
+                other.Nickname, // Starlight
                 other.Age,
                 other.Sex,
                 other.Gender,
@@ -263,6 +266,8 @@ namespace Content.Shared.Preferences
 
             var customspeciename = ""; // Starlight
 
+            var nickname = ""; // Starlight
+
             return new HumanoidCharacterProfile()
             {
                 Name = name,
@@ -271,6 +276,7 @@ namespace Content.Shared.Preferences
                 Gender = gender,
                 Species = species,
                 CustomSpecieName = customspeciename, // Starlight
+                Nickname = nickname, // Starlight
                 Appearance = HumanoidCharacterAppearance.Random(species, sex),
             };
         }
@@ -458,6 +464,7 @@ namespace Content.Shared.Preferences
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (CustomSpecieName != other.CustomSpecieName) return false; // Starlight
+            if (Nickname != other.Nickname) return false; // Starlight
             if (!Cybernetics.SequenceEqual(other.Cybernetics)) return false; // Starlight
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPreferences.SequenceEqual(other._jobPreferences)) return false;
@@ -560,6 +567,27 @@ namespace Content.Shared.Preferences
                 }
             }
 
+            var nickname =
+            !speciesPrototype.AllowNickname
+            || string.IsNullOrWhiteSpace(Nickname)
+                ? ""
+                : Nickname.Length > maxNameLength
+                    ? Nickname[..maxNameLength]
+                    : Nickname;
+
+            if (!string.IsNullOrWhiteSpace(Nickname) && configManager.GetCVar(StarlightCCVars.RestrictedNicknames))
+            {
+                nickname = RestrictedNicknameRegex.Replace(nickname, string.Empty);
+                foreach (var specieNames in prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
+                {
+                    if (Loc.GetString(specieNames.Name).ToLower() == nickname.ToLower())
+                    {
+                        nickname = "";
+                        break;
+                    }
+                }
+            }
+
             var allCybernetics = CyberneticImplant.GetAllCybernetics(prototypeManager);
             var installedCybernetics = allCybernetics.Where(p => Cybernetics.Contains(p.ID))
                                        .Where(p => p.Type == CyberneticImplantType.Limb)
@@ -606,6 +634,7 @@ namespace Content.Shared.Preferences
 
             Name = name;
             CustomSpecieName = customspeciename; // Starlight
+            Nickname = nickname; // Starlight
             FlavorText = flavortext;
             Age = age;
             Sex = sex;
@@ -721,6 +750,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(FlavorText);
             hashCode.Add(Species);
             hashCode.Add(CustomSpecieName); // Starlight
+            hashCode.Add(Nickname); // Starlight
             hashCode.Add(Age);
             hashCode.Add((int)Sex);
             hashCode.Add((int)Gender);

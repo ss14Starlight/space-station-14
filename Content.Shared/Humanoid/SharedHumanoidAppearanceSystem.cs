@@ -535,6 +535,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.CustomSpecieName = profile.CustomSpecieName; // Starlight
 
+        humanoid.Nickname = profile.Nickname; // Starlight
+
         Dirty(uid, humanoid);
         var update = new MarkingsUpdateEvent(); //starlight
         RaiseLocalEvent(uid, ref update); //starlight

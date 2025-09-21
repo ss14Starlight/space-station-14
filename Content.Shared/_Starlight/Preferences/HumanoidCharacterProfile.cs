@@ -1,5 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
+using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes;
+using Content.Shared.Humanoid.Prototypes;
 
 // ReSharper disable CheckNamespace
 
@@ -9,6 +12,7 @@ public sealed partial class HumanoidCharacterProfile
 {
     private static readonly Regex RestrictedCustomSpecieNameRegex = new(@"[^A-Za-z0-9 '\-,]|\B\s+|\s+\B"); //Starlight
 
+    private static readonly Regex RestrictedNicknameRegex = new(@"[^A-Za-z0-9 '\-,]|\B\s+|\s+\B"); //Starlight
     [DataField] public string SiliconVoice { get; set; } = "";
 
     [DataField] public string PersonalityDescription { get; set; } = string.Empty;
@@ -22,6 +26,8 @@ public sealed partial class HumanoidCharacterProfile
     [DataField] public string ExploitableInfo { get; set; } = string.Empty;
 
     [DataField] public string CustomSpecieName { get; set; } = "";
+
+    [DataField] public string Nickname { get; set; } = "";
 
     [DataField] public List<string> Cybernetics = [];
 
@@ -76,6 +82,11 @@ public sealed partial class HumanoidCharacterProfile
     public HumanoidCharacterProfile WithCustomSpecieName(string customspeciename)
     {
         return new(this) { CustomSpecieName = customspeciename };
+    }
+
+    public HumanoidCharacterProfile WithNickname(string nickname)
+    {
+        return new(this) { Nickname = nickname };
     }
 
     public HumanoidCharacterProfile WithCybernetics(List<string> cybernetics)

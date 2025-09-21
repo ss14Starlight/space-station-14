@@ -1398,6 +1398,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("star_light_profile_id");
 
+                    b.Property<string>("Nickname")
+                        .HasMaxLength(32)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("nickname");
+
                     b.Property<string>("CustomSpecieName")
                         .HasMaxLength(32)
                         .HasColumnType("TEXT")

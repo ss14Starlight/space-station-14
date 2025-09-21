@@ -8,6 +8,7 @@
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
   customName: true # Starlight
+  allowNickname: true # Starlight
   roundstartCyberwareCapacity: 5 # Starlight
 
 # The lack of a layer means that

@@ -38,6 +38,9 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField, AutoNetworkedField] // Starlight
     public string CustomSpecieName = "";
 
+    [DataField, AutoNetworkedField] // Starlight
+    public string Nickname = "";
+
     /// <summary>
     ///     Any custom base layers this humanoid might have. See:
     ///     limb transplants (potentially), robotic arms, etc.
