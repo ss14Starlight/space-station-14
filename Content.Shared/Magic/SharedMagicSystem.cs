@@ -6,6 +6,8 @@ using Content.Shared._Starlight.Language.Systems;
 using Content.Shared._Starlight.Magic.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Doors.Components;
@@ -70,11 +72,15 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
+<<<<<<< HEAD
     #region Starlight
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedLanguageSystem _language = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     #endregion
+=======
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
+>>>>>>> upstream/master
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
 
@@ -465,10 +471,13 @@ public abstract class SharedMagicSystem : EntitySystem
 
         ev.Handled = true;
 
-        if (wand == null || !TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) || basicAmmoComp.Count == null)
+        if (wand == null)
             return;
 
-        _gunSystem.UpdateBasicEntityAmmoCount(wand.Value, basicAmmoComp.Count.Value + ev.Charge, basicAmmoComp);
+        if (TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) && basicAmmoComp.Count != null)
+            _gunSystem.UpdateBasicEntityAmmoCount(wand.Value, basicAmmoComp.Count.Value + ev.Charge, basicAmmoComp);
+        else if (TryComp<LimitedChargesComponent>(wand, out var charges))
+            _charges.AddCharges((wand.Value, charges), ev.Charge);
     }
     // End Charge Spells
     #endregion

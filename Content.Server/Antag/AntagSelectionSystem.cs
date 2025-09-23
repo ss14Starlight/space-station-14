@@ -12,11 +12,11 @@ using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
 using Content.Server.Objectives;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
 using Content.Server.Shuttles.Components;
-using Content.Server.Station.Events;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Antag;
 using Content.Server.Bible.Components; 
@@ -46,12 +46,14 @@ namespace Content.Server.Antag;
 public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelectionComponent>
 {
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly IBanManager _ban = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly GhostRoleSystem _ghostRole = default!;
     [Dependency] private readonly JobSystem _jobs = default!;
     [Dependency] private readonly LoadoutSystem _loadout = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly PlayTimeTrackingSystem _playTime = default!;
     [Dependency] private readonly IServerPreferencesManager _pref = default!;
     [Dependency] private readonly RoleSystem _role = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -364,9 +366,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         _adminLogger.Add(LogType.AntagSelection, $"Start trying to make {session} become the antagonist: {ToPrettyString(ent)}");
 
+<<<<<<< HEAD
         if (!IsSessionValid(ent, session, def))
         {
             _adminLogger.Add(LogType.AntagSelection, $"{session} didn't have valid session");
+=======
+        if (checkPref && !ValidAntagPreference(session, def.PrefRoles))
+            return false;
+
+        if (!IsSessionValid(ent, session, def) || !IsEntityValid(session?.AttachedEntity, def))
+>>>>>>> upstream/master
             return false;
         }
 
@@ -532,11 +541,20 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (ent.Comp.PreSelectedSessions.TryGetValue(def, out var preSelected) && preSelected.Contains(session))
                 continue;
 
+<<<<<<< HEAD
             if (HasPrimaryAntagPreference(session, def, ent.Comp.SelectionTime))
             {
                 preferredList.Add(session);
             }
             else if (HasFallbackAntagPreference(session, def, ent.Comp.SelectionTime))
+=======
+            // Add player to the appropriate antag pool
+            if (ValidAntagPreference(session, def.PrefRoles))
+            {
+                preferredList.Add(session);
+            }
+            else if (ValidAntagPreference(session, def.FallbackRoles))
+>>>>>>> upstream/master
             {
                 fallbackList.Add(session);
             }

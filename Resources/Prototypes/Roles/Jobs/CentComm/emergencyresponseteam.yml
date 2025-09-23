@@ -81,7 +81,11 @@
     pocket1: MagazineRifleAP
     pocket2: MagazineRifleIncendiary
   inhand:
+<<<<<<< HEAD
   - WeaponRiflePeacemaker # Starlight-edit: Changed from WeaponRifleLecter
+=======
+  - WeaponRifleLecterXL8
+>>>>>>> upstream/master
   storage:
     back:
     - WeaponDisabler

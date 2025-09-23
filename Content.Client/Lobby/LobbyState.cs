@@ -218,6 +218,7 @@ namespace Content.Client.Lobby
             else
             {
                 Lobby!.StartTime.Text = string.Empty;
+                Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
                 Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
                 // If there is a tooltip showing, make sure to update the text in it as well!
                 if (Lobby!.ReadyButton.SuppliedTooltip is Tooltip tooltip)
@@ -225,8 +226,12 @@ namespace Content.Client.Lobby
                     tooltip.Text = GetReadyButtonTooltipText();
                 }
                 Lobby!.ReadyButton.ToggleMode = true;
+<<<<<<< HEAD
                 Lobby!.ReadyButton.Disabled = !_readyPossibleWithCharacters;
                 Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
+=======
+                Lobby!.ReadyButton.Disabled = false;
+>>>>>>> upstream/master
                 Lobby!.ObserveButton.Disabled = true;
             }
 

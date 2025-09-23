@@ -38,9 +38,13 @@
 
   [bold][color=red]Revolutionaries[/color] can't convert people themselves,[/bold] but they're more than capable of doing dirty work, carrying out orders, or distribute supplies if [bold]they were implanted with [color=#ed7300]Head Revolutionary's SKB uplink.[/color][/bold]
 
+<<<<<<< HEAD
   ## MindShields™
 
   Another obstacle in your way are those pesky brainwashing [color=cyan]MindShield™ implanters[/color].
+=======
+  Assume all of [color=#cb0000]Security[/color] and [color=#1b67a5]Command[/color] are implanted with mindshields already, [bold]however they can be removed using an implant extractor, obtainable from the Medical department's MedFab.[/bold]
+>>>>>>> upstream/master
 
   <Box>
     <GuideEntityEmbed Entity="MindShieldImplanter"/>

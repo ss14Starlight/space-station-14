@@ -62,7 +62,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<ShuttleConsoleComponent, ComponentShutdown>(OnConsoleShutdown);
         SubscribeLocalEvent<ShuttleConsoleComponent, PowerChangedEvent>(OnConsolePowerChange);
         SubscribeLocalEvent<ShuttleConsoleComponent, AnchorStateChangedEvent>(OnConsoleAnchorChange);
+<<<<<<< HEAD
         SubscribeLocalEvent<ShuttleConsoleComponent, BoundUIOpenedEvent>(OnConsoleUIOpen); // Starlight-edit: Change Attempt to Opened, so user not piloting if ui is not opened
+=======
+        SubscribeLocalEvent<ShuttleConsoleComponent, AfterActivatableUIOpenEvent>(OnConsoleUIOpenAttempt);
+>>>>>>> upstream/master
         Subs.BuiEvents<ShuttleConsoleComponent>(ShuttleConsoleUiKey.Key, subs =>
         {
             subs.Event<ShuttleConsoleFTLBeaconMessage>(OnBeaconFTLMessage);
@@ -155,8 +159,16 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         RemovePilot(args.Actor);
     }
 
+<<<<<<< HEAD
     private void OnConsoleUIOpen(EntityUid uid, ShuttleConsoleComponent component,
         BoundUIOpenedEvent args) => TryPilot(args.Actor, uid); // Starlight-edit: Changed from attempt to opened
+=======
+    private void OnConsoleUIOpenAttempt(EntityUid uid, ShuttleConsoleComponent component,
+        AfterActivatableUIOpenEvent args)
+    {
+        TryPilot(args.User, uid);
+    }
+>>>>>>> upstream/master
 
     private void OnConsoleAnchorChange(EntityUid uid, ShuttleConsoleComponent component,
         ref AnchorStateChangedEvent args)

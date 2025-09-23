@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Antag.Components;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Objectives;
 using Content.Shared.Antag;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking.Components;
@@ -163,6 +162,7 @@ public sealed partial class AntagSelectionSystem
     }
 
     /// <summary>
+<<<<<<< HEAD
     /// Return true if a player has any character that could take any antagonist in antagList
     /// </summary>
     /// <param name="session">The player session to pull preferences from</param>
@@ -253,13 +253,21 @@ public sealed partial class AntagSelectionSystem
     /// mindshielded roles</param>
     /// <param name="job">The job to filter the player's characters by</param>
     public bool HasPrimaryAntagPreference(ICommonSession? session, AntagSelectionDefinition def, AntagSelectionTime selectionTime, ProtoId<JobPrototype>? job = null)
+=======
+    /// Checks if a given session has enabled the antag preferences for a given definition,
+    /// and if it is blocked by any requirements or bans.
+    /// </summary>
+    /// <returns>Returns true if at least one role from the provided list passes every condition</returns>>
+    public bool ValidAntagPreference(ICommonSession? session, List<ProtoId<AntagPrototype>> roles)
+>>>>>>> upstream/master
     {
         if (session == null)
             return true;
 
-        if (def.PrefRoles.Count == 0)
+        if (roles.Count == 0)
             return false;
 
+<<<<<<< HEAD
         return job is null
             ? HasAntagPreference(session, def.PrefRoles, selectionTime)
             : HasAntagPreferenceWithJob(session, def.PrefRoles, selectionTime, job.Value);
@@ -276,11 +284,29 @@ public sealed partial class AntagSelectionSystem
     {
         if (session == null)
             return true;
+=======
+        var pref = (HumanoidCharacterProfile) _pref.GetPreferences(session.UserId).SelectedCharacter;
 
-        if (def.FallbackRoles.Count == 0)
-            return false;
+        var valid = false;
+>>>>>>> upstream/master
 
+        // Check each individual antag role
+        foreach (var role in roles)
+        {
+            var list = new List<ProtoId<AntagPrototype>>{role};
+
+<<<<<<< HEAD
         return HasAntagPreference(session, def.FallbackRoles, selectionTime);
+=======
+
+            if (pref.AntagPreferences.Contains(role)
+                && !_ban.IsRoleBanned(session, list)
+                && _playTime.IsAllowed(session, list))
+                valid = true;
+        }
+
+        return valid;
+>>>>>>> upstream/master
     }
 
     /// <summary>

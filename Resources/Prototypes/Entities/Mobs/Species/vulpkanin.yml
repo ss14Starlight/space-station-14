@@ -65,6 +65,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.2
     coolingCoefficient: 0.3
+<<<<<<< HEAD
   # STARLIGHT START
   # - type: JumpAbility
   #   action: ActionVulpkaninGravityJump
@@ -82,6 +83,18 @@
     interactSuccessString: petting-success-soft-floofy-vulp
     messagePerceivedByOthers: petting-success-soft-floofy-vulp-others
     interactFailureString: petting-failure-generic
+=======
+  - type: JumpAbility
+    action: ActionVulpkaninGravityJump
+    canCollide: true
+    jumpDistance: 3
+    jumpSound:
+      path: /Audio/Weapons/punchmiss.ogg
+      params:
+        pitch: 1.33
+        volume: -5
+        variation: 0.05
+>>>>>>> upstream/master
   - type: Sprite # Drawlayers. Top to bottom in order I believe.
     netsync: false
     layers:
@@ -130,6 +143,8 @@
       visible: false
   - type: HumanoidAppearance
     species: Vulpkanin
+    undergarmentTop: UndergarmentTopTanktopVulpkanin
+    undergarmentBottom: UndergarmentBottomBoxersVulpkanin
     hideLayersOnEquip:
     - Snout
     - SnoutCover
