@@ -43,12 +43,9 @@ using Content.Shared.Tag;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.NPC.Prototypes;
-<<<<<<< HEAD
 using Content.Server._Starlight.Language; // Starlight-edit: Languages
 using Content.Shared._Starlight.Language.Components; // Starlight-edit: Languages
-=======
 using Content.Shared.Roles;
->>>>>>> upstream/master
 
 namespace Content.Server.Zombies;
 

@@ -107,15 +107,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 var reason = group.Key.reason;
                 var name = group.Key.Name;
                 var description = group.Key.Description;
-<<<<<<< HEAD
-                var hasAccess = requirementsManager.CheckRoleRequirements(
-                    group.Key.Requirements,
-                    IoCManager.Resolve<IPlayerManager>().LocalSession,
-                    null,
-                    out var reason);
-=======
                 var prototypesAllowed = group.Key.Item3;
->>>>>>> upstream/master
 
                 // Adding a new role
                 _window.AddEntry(name, description, prototypesAllowed, reason, group, spriteSystem);

@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-﻿using System.Numerics;
 using Content.Shared.Movement.Components;
-=======
 using System.Numerics;
 using Content.Client.Graphics;
->>>>>>> upstream/master
 using Content.Shared.Silicons.StationAi;
 using Robust.Client.Graphics;
 using Robust.Client.Player;

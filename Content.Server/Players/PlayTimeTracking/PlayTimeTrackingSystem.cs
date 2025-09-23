@@ -191,7 +191,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         ev.Jobs.UnionWith(GetDisallowedJobs(ev.Player));
     }
 
-<<<<<<< HEAD
     private Dictionary<string, TimeSpan>? GetPlayTimesIfEnabled(ICommonSession player)
     {
         Dictionary<string, TimeSpan>? playTimes = null;
@@ -210,10 +209,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         return playTimes;
     }
 
-    public bool IsAllowed(ICommonSession player, string role)
-    {
-        if (!_prototypes.TryIndex<JobPrototype>(role, out var job))
-=======
     /// <summary>
     /// Checks if the player meets role requirements.
     /// </summary>
@@ -263,24 +258,13 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     public bool IsAllowed(ICommonSession player, ProtoId<JobPrototype> job)
     {
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
->>>>>>> upstream/master
             return true;
 
         var playTimes = GetPlayTimesIfEnabled(player);
 
-<<<<<<< HEAD
         var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(job);
-        return allProfilesForJob.Values.Any(profile => JobRequirements.TryRequirementsMet(job, player, playTimes, out _, EntityManager, _prototypes, profile));
-=======
         var requirements = _roles.GetRoleRequirements(job);
-        return JobRequirements.TryRequirementsMet(
-            requirements,
-            playTimes,
-            out _,
-            EntityManager,
-            _prototypes,
-            (HumanoidCharacterProfile?)
-            _preferencesManager.GetPreferences(player.UserId).SelectedCharacter);
+        return allProfilesForJob.Values.Any(profile => JobRequirements.TryRequirementsMet(requirements, player, playTimes, out _, EntityManager, _prototypes, profile));
     }
 
     /// <summary>
@@ -300,16 +284,9 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             playTimes = new Dictionary<string, TimeSpan>();
         }
 
+        var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForAntag(antag);
         var requirements = _roles.GetRoleRequirements(antag);
-        return JobRequirements.TryRequirementsMet(
-            requirements,
-            playTimes,
-            out _,
-            EntityManager,
-            _prototypes,
-            (HumanoidCharacterProfile?)
-            _preferencesManager.GetPreferences(player.UserId).SelectedCharacter);
->>>>>>> upstream/master
+        return allProfilesForJob.Values.Any(profile => JobRequirements.TryRequirementsMet(requirements, player, playTimes, out _, EntityManager, _prototypes, profile));
     }
 
     public HashSet<ProtoId<JobPrototype>> GetDisallowedJobs(ICommonSession player)

@@ -11,10 +11,6 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map.Components;
-<<<<<<< HEAD
-using Robust.Shared.Maths;
-=======
->>>>>>> upstream/master
 using Robust.Shared.Physics;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;

@@ -1,7 +1,4 @@
 using Content.Server.Chat.Systems;
-<<<<<<< HEAD
-using Content.Shared._Starlight.Silicons.Borgs; //Starlight
-=======
 using Content.Server.Construction;
 using Content.Server.Destructible;
 using Content.Server.Ghost;
@@ -13,7 +10,6 @@ using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared.Alert;
->>>>>>> upstream/master
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;

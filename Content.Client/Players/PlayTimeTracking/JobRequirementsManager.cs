@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-﻿using System.Diagnostics.CodeAnalysis;
-using Content.Client._Starlight.Managers;
-using Content.Client.Lobby;
-using Content.Shared.Starlight;
-=======
 using System.Diagnostics.CodeAnalysis;
->>>>>>> upstream/master
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -108,6 +101,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     /// </returns>>
     public bool IsAllowed(
         List<ProtoId<JobPrototype>>? jobs,
+        ICommonSession? player,
         List<ProtoId<AntagPrototype>>? antags,
         HumanoidCharacterProfile? profile,
         [NotNullWhen(false)] out FormattedMessage? reason)
@@ -118,7 +112,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         {
             foreach (var proto in antags)
             {
-                if (!IsAllowed(_prototypes.Index(proto), profile, out reason))
+                if (!IsAllowed(_prototypes.Index(proto), player, profile, out reason))
                     return false;
             }
         }
@@ -127,7 +121,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         {
             foreach (var proto in jobs)
             {
-                if (!IsAllowed(_prototypes.Index(proto), profile, out reason))
+                if (!IsAllowed(_prototypes.Index(proto), player, profile, out reason))
                     return false;
             }
         }
@@ -140,6 +134,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     /// </summary>
     public bool IsAllowed(
         JobPrototype job,
+        ICommonSession? player,
         HumanoidCharacterProfile? profile,
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
@@ -156,21 +151,9 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         // Check other role requirements
         var reqs = _entManager.System<SharedRoleSystem>().GetRoleRequirements(job);
-        if (!CheckRoleRequirements(reqs, profile, out reason))
+        if (!CheckRoleRequirements(reqs, player, profile, out reason))
             return false;
 
-<<<<<<< HEAD
-        return CheckRoleRequirements(job, player, profile, out reason);
-    }
-
-    public bool CheckRoleRequirements(JobPrototype job, ICommonSession? player, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
-    {
-        var reqs = _entManager.System<SharedRoleSystem>().GetJobRequirement(job);
-        return CheckRoleRequirements(reqs, player, profile, out reason);
-    }
-
-    public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, ICommonSession? player, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
-=======
         return true;
     }
 
@@ -179,6 +162,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     /// </summary>
     public bool IsAllowed(
         AntagPrototype antag,
+        ICommonSession? player,
         HumanoidCharacterProfile? profile,
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
@@ -195,15 +179,14 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         // Check other role requirements
         var reqs = _entManager.System<SharedRoleSystem>().GetRoleRequirements(antag);
-        if (!CheckRoleRequirements(reqs, profile, out reason))
+        if (!CheckRoleRequirements(reqs, player, profile, out reason))
             return false;
 
         return true;
     }
 
     // This must be private so code paths can't accidentally skip requirement overrides. Call this through IsAllowed()
-    private bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
->>>>>>> upstream/master
+    private bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, ICommonSession? player, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
 

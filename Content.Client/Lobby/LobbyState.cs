@@ -226,12 +226,8 @@ namespace Content.Client.Lobby
                     tooltip.Text = GetReadyButtonTooltipText();
                 }
                 Lobby!.ReadyButton.ToggleMode = true;
-<<<<<<< HEAD
                 Lobby!.ReadyButton.Disabled = !_readyPossibleWithCharacters;
                 Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
-=======
-                Lobby!.ReadyButton.Disabled = false;
->>>>>>> upstream/master
                 Lobby!.ObserveButton.Disabled = true;
             }
 

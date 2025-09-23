@@ -91,17 +91,12 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
         if(_preferences.Preferences is not {} prefs)
             return;
 
-<<<<<<< HEAD
         _sprite = _entManager.System<SpriteSystem>();
 
         var priorities = prefs.JobPriorities;
 
         // Create the job icons in order
         foreach (var job in DraggableJobTarget.OrderedJobs)
-=======
-        ViewBox.RemoveAllChildren();
-        var spriteView = new SpriteView
->>>>>>> upstream/master
         {
             if (!job.SetPreference)
                 continue;

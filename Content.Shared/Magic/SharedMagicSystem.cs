@@ -72,15 +72,12 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-<<<<<<< HEAD
     #region Starlight
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedLanguageSystem _language = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     #endregion
-=======
     [Dependency] private readonly SharedChargesSystem _charges = default!;
->>>>>>> upstream/master
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
 
