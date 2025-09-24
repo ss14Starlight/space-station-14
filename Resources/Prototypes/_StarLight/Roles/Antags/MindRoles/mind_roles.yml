@@ -7,3 +7,14 @@
     exclusiveAntag: true
     antagPrototype: LoneAbductorAntag
   - type: Abductor
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleDevil
+  name: Devil Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: Devil
+    subtype: role-subtype-devil
+  - type: DevilRole

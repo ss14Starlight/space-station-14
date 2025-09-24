@@ -1,6 +1,7 @@
 using Content.Server.Antag;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.Zombies;
 using Content.Shared.Administration;
 using Content.Server.Clothing.Systems;
@@ -30,6 +31,7 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultChangelingRule = "Changeling";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
+    private static readonly EntProtoId DefaultDevilRule = "Devil"; // starlight
     
     private static readonly EntProtoId ParadoxCloneRuleId = "ParadoxCloneSpawn";
 
@@ -193,7 +195,7 @@ public sealed partial class AdminVerbSystem
 
         if (HasComp<HumanoidAppearanceComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
-            
+
         Verb ling = new()
         {
             Text = Loc.GetString("admin-verb-text-make-changeling"),
@@ -207,7 +209,7 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-changeling"),
         };
         args.Verbs.Add(ling);
-        
+
         Verb vampire = new()
         {
             Text = Loc.GetString("admin-verb-text-make-vampire"),
@@ -221,5 +223,21 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-vampire"),
         };
         args.Verbs.Add(vampire);
+
+        // starlight start
+        Verb devil = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-devil"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Effects/fire.rsi"), "fire"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<DevilRuleComponent>(targetPlayer, DefaultDevilRule);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-devil")
+        };
+        args.Verbs.Add(devil);
+        // starlight end
     }
 }

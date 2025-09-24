@@ -1,0 +1,10 @@
+- type: antag
+  id: Devil
+  name: roles-antag-devil-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-devil-objective
+#  guides: [ Devil ] # TODO
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 36000 # 10h
