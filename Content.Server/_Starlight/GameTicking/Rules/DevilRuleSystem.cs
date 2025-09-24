@@ -2,6 +2,7 @@ using Content.Server.Antag;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Roles;
+using Content.Shared._Starlight.Devil;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
@@ -19,6 +20,7 @@ public sealed partial class DevilRuleSystem : GameRuleSystem<DevilRuleComponent>
 
     private void AfterAntagSelected(EntityUid uid, DevilRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
     {
+        EnsureComp<DevilComponent>(uid);
         _antag.SendBriefing(args.EntityUid, MakeBriefing(), null, null);
     }
 

@@ -2,7 +2,7 @@ devil-role-briefing =
     You are a devil, an infernal agent
     sent from the depths of the nine hells to
     lead the crew of this station into a life of sin.
-    Strike deals with the crewmembers, contractually
+    Strike deals with the crewmembers, and contractually
     gain their souls in return for fulfilling their
     fickle material desires.
 
