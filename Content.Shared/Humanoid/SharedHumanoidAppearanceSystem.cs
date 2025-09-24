@@ -651,7 +651,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
         
         if (!TryComp<TextToSpeechComponent>(uid, out var comp))
-                return;
+            return;
 
         humanoid.Voice = voiceId;
         comp.VoicePrototypeId = voiceId;
