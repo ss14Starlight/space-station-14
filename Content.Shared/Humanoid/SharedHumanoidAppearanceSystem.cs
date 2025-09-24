@@ -644,8 +644,14 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     //Starlight
     public void SetTTSVoice(EntityUid uid, string voiceId, HumanoidAppearanceComponent humanoid)
     {
-        if (!TryComp<TextToSpeechComponent>(uid, out var comp))
+        if (voiceId is "none" or "nonesilicon")
+        {
+            RemComp<TextToSpeechComponent>(uid);
             return;
+        }
+        
+        if (!TryComp<TextToSpeechComponent>(uid, out var comp))
+                return;
 
         humanoid.Voice = voiceId;
         comp.VoicePrototypeId = voiceId;

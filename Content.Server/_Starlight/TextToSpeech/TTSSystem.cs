@@ -66,6 +66,8 @@ public sealed partial class TTSSystem : EntitySystem
     private async void OnRequestPreviewTTS(PreviewTTSRequestEvent ev, EntitySessionEventArgs args)
     {
         if (!_isEnabled ||
+            ev.VoiceId == "none" ||
+            ev.VoiceId == "nonesilicon" ||
             !_prototypeManager.TryIndex<VoicePrototype>(ev.VoiceId, out var protoVoice))
             return;
 

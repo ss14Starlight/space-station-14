@@ -1,3 +1,4 @@
+tts-voice-name-none = None (No TTS Voice)
 tts-voice-name-drekthar = [warcraft] Drek`Thar
 tts-voice-name-stephen = [] Stephen
 tts-voice-name-pudge = [warcraft] Pudge

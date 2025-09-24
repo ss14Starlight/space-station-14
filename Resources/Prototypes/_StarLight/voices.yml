@@ -1,3 +1,15 @@
+- type: voice # This voice id is hardcoded to not provide the player TTS.
+  id: none
+  name: tts-voice-name-none
+  sex: Unsexed
+  silicon: false
+
+- type: voice # This voice id is hardcoded to not provide the player TTS.
+  id: nonesilicon
+  name: tts-voice-name-none
+  sex: Unsexed
+  silicon: true
+
 - type: voice
   id: geraltofrivia
   name: tts-voice-name-geraltofrivia
