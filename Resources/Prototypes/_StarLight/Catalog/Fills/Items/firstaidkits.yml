@@ -5,7 +5,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: BrigHypo
+      - id: CorpsmanHypospray
       - id: ReinforcedMiniatureEmptyChemistryVial
         amount: 8
 
