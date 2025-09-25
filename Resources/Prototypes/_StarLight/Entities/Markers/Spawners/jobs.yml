@@ -118,3 +118,4 @@
     layers:
       - state: green
       - state: corpsman
+      - state: jobicon
