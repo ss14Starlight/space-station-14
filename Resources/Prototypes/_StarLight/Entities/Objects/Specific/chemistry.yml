@@ -89,10 +89,13 @@
 
 - type: entity
   name: reinforced beaker
-  parent: BaseBeaker
+  parent: BaseItem
   id: BeakerReinforced
   description: Used to contain a moderate amount of chemicals and solutions, now explosion proof!
   components:
+  - type: Tag
+    tags:
+    - GlassBeaker
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Chemistry/reinforced_beaker.rsi
     layers:
@@ -102,16 +105,40 @@
         visible: false
   - type: Item
     sprite: _Starlight/Objects/Specific/Chemistry/reinforced_beaker.rsi
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
   - type: SolutionContainerManager
     solutions:
       beaker:
         maxVol: 100
+  - type: MixableSolution
+    solution: beaker
+  - type: FitsInDispenser
+    solution: beaker
+  - type: RefillableSolution
+    solution: beaker
+  - type: DrainableSolution
+    solution: beaker
+  - type: ExaminableSolution
+    solution: beaker
+  - type: DrawableSolution
+    solution: beaker
+  - type: InjectableSolution
+    solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
-  - type: Appearance
+  - type: SolutionItemStatus
+    solution: beaker
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: Metal
   - type: Destructible
     thresholds:
     - trigger:
@@ -123,18 +150,26 @@
           collection: GlassBreak
           params:
             volume: -4
-      - !type:SpillBehavior
-        solution: beaker
+      - !type:SpillBehavior { }
       - !type:SpawnEntitiesBehavior
         spawn:
           ShardGlassReinforced:
             min: 1
-            max: 5
+            max: 3
         transferForensics: true
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: Drink
+    solution: beaker
+  - type: Spillable
+    solution: beaker
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: beaker
   - type: StaticPrice
     price: 60
+  - type: DnaSubstanceTrace
 
 - type: entity
   name: large reinforced beaker
