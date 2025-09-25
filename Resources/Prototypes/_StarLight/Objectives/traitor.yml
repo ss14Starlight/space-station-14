@@ -69,7 +69,7 @@
 
 - type: entity
   parent: BaseBrigmedicStealObjective
-  id: BrigmedicHyposprayStealObjective
+  id: CorpsmanHyposprayStealObjective
   components:
   - type: StealCondition
     stealGroup: CorpsmanHypoSteal
