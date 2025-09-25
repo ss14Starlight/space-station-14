@@ -148,8 +148,10 @@ public abstract class SharedInjectorSystem : EntitySystem
     /// </summary>
     private void InjectDoAfter(Entity<InjectorComponent> injector, EntityUid target, EntityUid user)
     {
+        // Starlight-start
         if (!_gameTiming.IsFirstTimePredicted)
             return;
+        // Starlight-end
 
         // Create a pop-up for the user
         if (injector.Comp.ToggleState == InjectorToggleMode.Draw)
