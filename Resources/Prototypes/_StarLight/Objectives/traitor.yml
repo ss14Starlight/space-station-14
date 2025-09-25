@@ -65,7 +65,7 @@
   - type: NotJobRequirement
     job: Brigmedic
   - type: StealCondition
-    owner: job-name-brigmedic
+    owner: job-name-corpsman
 
 - type: entity
   parent: BaseCorpsmanStealObjective
