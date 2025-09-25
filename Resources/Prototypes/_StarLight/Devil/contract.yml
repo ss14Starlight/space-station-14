@@ -1,0 +1,7 @@
+- type: entity
+  parent: Paper
+  id: InfernalContract
+  name: infernal contract
+  description: The more you look at it, the more you feel like it is gazing back at you...
+  components:
+    - type: InfernalContract

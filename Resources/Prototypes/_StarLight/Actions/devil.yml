@@ -1,0 +1,13 @@
+- type: entity
+  id: ActionSummonDemonicContract
+  name: Summon Infernal Contract
+  description: Summon an incredibly ominous piece of paper.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 30
+    icon:
+      sprite: Objects/Misc/pens.rsi
+      state: pen
+  - type: InstantAction
+    event: !type:SummonDemonicContractEvent

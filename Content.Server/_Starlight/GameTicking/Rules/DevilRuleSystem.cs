@@ -20,7 +20,7 @@ public sealed partial class DevilRuleSystem : GameRuleSystem<DevilRuleComponent>
 
     private void AfterAntagSelected(EntityUid uid, DevilRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
     {
-        EnsureComp<DevilComponent>(uid);
+        EnsureComp<DevilComponent>(args.EntityUid);
         _antag.SendBriefing(args.EntityUid, MakeBriefing(), null, null);
     }
 
