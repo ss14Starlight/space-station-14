@@ -46,7 +46,7 @@
     - HighRiskItem
     - Hypospray
   - type: StealTarget
-    stealGroup: BrigmedicHypoSteal
+    stealGroup: CorpsmanHypoSteal
 
 - type: entity
   name: hypoinjector
