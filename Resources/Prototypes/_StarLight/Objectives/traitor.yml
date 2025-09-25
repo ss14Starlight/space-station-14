@@ -60,7 +60,7 @@
 - type: entity
   abstract: true
   parent: BaseTraitorStealObjective
-  id: BaseBrigmedicStealObjective
+  id: BaseCorpsmanStealObjective
   components:
   - type: NotJobRequirement
     job: Corpsman
