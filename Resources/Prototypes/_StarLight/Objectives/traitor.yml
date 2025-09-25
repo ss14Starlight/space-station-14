@@ -68,7 +68,7 @@
     owner: job-name-brigmedic
 
 - type: entity
-  parent: BaseBrigmedicStealObjective
+  parent: BaseCorpsmanStealObjective
   id: CorpsmanHyposprayStealObjective
   components:
   - type: StealCondition
