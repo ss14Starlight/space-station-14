@@ -63,7 +63,7 @@
   id: BaseBrigmedicStealObjective
   components:
   - type: NotJobRequirement
-    job: Brigmedic
+    job: Corpsman
   - type: StealCondition
     owner: job-name-corpsman
 
