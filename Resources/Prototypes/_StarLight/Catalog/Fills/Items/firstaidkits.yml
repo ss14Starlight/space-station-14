@@ -7,7 +7,7 @@
     contents:
       - id: BrigHypo
       - id: ReinforcedMiniatureEmptyChemistryVial
-        amount: 9
+        amount: 8
 
 - type: entity
   id: SecurityMedkitFilled
