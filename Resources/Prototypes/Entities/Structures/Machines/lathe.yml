@@ -499,14 +499,14 @@
     - EmptyMedkitsStatic
     - StarlightMedicalStatic # Starlight
     dynamicPacks:
-    - StarlightSurgeryDynamic
+    - StarlightSurgeryDynamic # Starlight - Start
     - StarlightCyberlimbDynamic
     - StarlightCyberOrgansDynamic
     - StarlightImplantDynamic
     - StarlightMedContainersDynamic
     - StarlightMedSyringeDynamic
     - Chemistry
-    - StarlightBudgetCyberOrgansDynamic
+    - StarlightBudgetCyberOrgansDynamic # Starlight - End
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
