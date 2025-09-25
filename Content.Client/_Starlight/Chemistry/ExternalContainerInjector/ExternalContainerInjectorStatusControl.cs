@@ -83,7 +83,7 @@ public sealed class ExternalContainerInjectorStatusControl : Control
         _prevVolume = solution.Volume;
         _prevMaxVolume = solution.MaxVolume;
 
-        _label.SetMarkup(Loc.GetString("brigmedic-hypospray-volume-label",
+        _label.SetMarkup(Loc.GetString("hypospray-nomode-volume-label",
             ("currentVolume", solution.Volume),
             ("totalVolume", solution.MaxVolume)));
     }
