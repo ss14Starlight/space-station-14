@@ -33,7 +33,7 @@ public abstract class SharedInjectorSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!; // Starlight-edit
     [Dependency] protected readonly SharedSolutionContainerSystem SolutionContainer = default!;
 
     public override void Initialize()
