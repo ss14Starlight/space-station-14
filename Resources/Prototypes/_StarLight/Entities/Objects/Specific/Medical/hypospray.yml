@@ -2,7 +2,7 @@
   name: corpsman hypospray
   parent: [BaseItem, BaseSecurityContraband]
   description: A compact sterile spray for rapid chemical injection in combat situations. Accepts small vials.
-  id: BrigHypo
+  id: CorpsmanHypospray
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
