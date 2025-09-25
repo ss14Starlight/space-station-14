@@ -72,7 +72,7 @@
   id: BrigmedicHyposprayStealObjective
   components:
   - type: StealCondition
-    stealGroup: BrigmedicHypoSteal
+    stealGroup: CorpsmanHypoSteal
   - type: Objective
     # You'll have to snatch this from the brigmedic's cold, dead hands. Also they're always in sec.
     difficulty: 2
