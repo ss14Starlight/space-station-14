@@ -18,7 +18,7 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Content.Shared.Verbs;
-using Robust.Shared.Timing;
+using Robust.Shared.Timing; // Starlight-edit
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
