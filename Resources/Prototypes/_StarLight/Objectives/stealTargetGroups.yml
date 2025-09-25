@@ -19,7 +19,7 @@
 # Syndie
 - type: stealTargetGroup
   id: CorpsmanHypoSteal
-  name: steal-target-groups-brigmedichypo
+  name: steal-target-groups-corpsman-hypo
   sprite:
     sprite: _Starlight/Objects/Specific/Medical/hypospray.rsi
     state: hypo
