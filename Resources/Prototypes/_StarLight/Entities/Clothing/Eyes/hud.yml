@@ -51,7 +51,7 @@
   parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
   id: ClothingEyesHudCorpsman
   name: corpsman hud
-  description: Super Tamashi-Upgraded hud. Corpsman one.
+  description: High-quality hud that can protect against flashes. Stylish!
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Eyes/Hud/corpsman.rsi
