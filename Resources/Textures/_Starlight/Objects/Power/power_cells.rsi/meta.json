@@ -9,15 +9,6 @@
     "states": [
         {
             "name": "tiny"
-        },
-        {
-            "name": "o1"
-        },
-        {
-            "name": "o2"
-        },
-        {
-            "name": "tiny2"
         }
     ]
 }

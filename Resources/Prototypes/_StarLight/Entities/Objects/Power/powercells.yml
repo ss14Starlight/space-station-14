@@ -30,10 +30,7 @@
     sprite: _Starlight/Objects/Power/power_cells.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: tiny2
-    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
-      state: o2
-      shader: unshaded
+      state: tiny
   - type: Item
     size: Small    
   - type: Battery
