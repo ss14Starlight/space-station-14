@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: OrganReptilianStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
   categories: [ HideSpawnMenu ]
@@ -21,3 +21,5 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
+  - type: StealTarget #SL
+    stealGroup: StealOrgans #SL
