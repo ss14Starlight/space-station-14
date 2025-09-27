@@ -45,7 +45,7 @@ public sealed class ExternalContainerInjectorStatusControl : Control
                 _prevVialEntity = null;
             }
 
-            _label.SetMarkup(Loc.GetString("brigmedic-hypospray-volume-label",
+            _label.SetMarkup(Loc.GetString("hypospray-nomode-volume-label",
                 ("currentVolume", FixedPoint2.Zero),
                 ("totalVolume", FixedPoint2.Zero)));
             return;
