@@ -33,8 +33,8 @@
   abstract: true
   components:
   - type: Gibbable
-  - type: StealTarget #SL ## it would be immensley badass to complete your objective with only abductor organs
-    stealGroup: StealOrgans #SL
+  - type: StealTarget # it would be immensley badass to complete your objective with only abductor organs
+    stealGroup: StealOrgans
 
 - type: entity
   id: OrganAbductorBrain
