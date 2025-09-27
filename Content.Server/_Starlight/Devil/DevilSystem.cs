@@ -17,10 +17,10 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         SubscribeLocalEvent<DevilComponent, ComponentStartup>(OnStartup);
 
-        // actions (may be seperated into own file later)
         SubscribeLocalEvent<DevilComponent, SummonDemonicContractEvent>(OnSummonDemonicContract);
 
         SubscribeContract();
+        SubscribeDamned();
     }
 
     private void OnStartup(EntityUid uid, DevilComponent devilComp, ref ComponentStartup args)

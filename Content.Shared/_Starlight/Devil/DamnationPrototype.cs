@@ -39,7 +39,7 @@ public sealed partial class DamnationPrototype : IPrototype
     public ComponentRegistry RemovedComponents = new();
 
     /// <summary>
-    /// Should these component changes be reversed if the damnation is removed?
+    /// Should the added components be removed if the damnation is undone?
     /// </summary>
     [DataField("reverseOnRemove")]
     public bool ReverseOnRemove = true;
