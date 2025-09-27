@@ -20,6 +20,8 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
+  - type: StealTarget
+    stealGroup: StealOrgans
 
 - type: entity
   id: OrganAvaliHeart
@@ -33,6 +35,8 @@
     - id: Medicine
     - id: Poison
     - id: Narcotic
+  - type: StealTarget
+    stealGroup: StealOrgans
 
 - type: entity
   id: OrganAvaliLiver
