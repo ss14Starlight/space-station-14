@@ -287,13 +287,13 @@ public sealed class PaperSystem : EntitySystem
         if (!entity.Comp.StampedBy.Contains(stampInfo))
         {
             entity.Comp.StampedBy.Add(stampInfo);
-            
+
             // Starlight-start: Clean unfilled form and signature tags when stamping to finalize the document
             var cleanedContent = CleanUnfilledTags(entity.Comp.Content);
             if (cleanedContent != entity.Comp.Content)
                 SetContent(entity, cleanedContent);
             // Starlight-end
-            
+
             Dirty(entity);
             if (entity.Comp.StampState == null && TryComp<AppearanceComponent>(entity, out var appearance))
             {
@@ -346,6 +346,27 @@ public sealed class PaperSystem : EntitySystem
             Font = "/Fonts/_Starlight/Signature.ttf" // 🌟Starlight🌟
         };
 
+        // STARLIGHT START
+        // moved the paper signing event here, so that it becomes possible to cancel signing,
+        // making the event dual-use.
+        if (!paper.Comp.StampedBy.Contains(info))
+        {
+            // if this is met, it will be possible to stamp
+            // there is no "can stamp" or equivalent method,
+            // so this is as pretty as it gets.
+            var eve = new PaperSignedEvent(signer);
+            RaiseLocalEvent(paper, ref eve);
+
+            if (eve.Cancelled)
+            {
+                if (eve.FailReason != null)
+                    _popupSystem.PopupClient(eve.FailReason, signer, signer);
+
+                return false;
+            }
+        }
+        // STARLIGHT END
+
         // Try stamp with the info, return false if failed.
         if (TryStamp(paper, info, "paper_stamp-generic"))
         {
@@ -376,10 +397,7 @@ public sealed class PaperSystem : EntitySystem
                 $"{ToPrettyString(signer):player} has signed {ToPrettyString(paper):paper}.");
 
             UpdateUserInterface(paper);
-            // #region Starlight
-            var eve = new PaperSignedEvent(signer);
-            RaiseLocalEvent(paper, ref eve);
-            // #endregion
+
             return true;
         }
 

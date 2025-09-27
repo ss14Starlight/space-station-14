@@ -5,7 +5,7 @@ using Robust.Server.Audio;
 
 namespace Content.Server._Starlight.Devil;
 
-public sealed partial class DevilSystem : EntitySystem
+public sealed partial class DevilSystem : SharedDevilSystem
 {
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;

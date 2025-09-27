@@ -2,12 +2,16 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Devil;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState]
 public sealed partial class InfernalContractComponent : Component
 {
-    EntityUid Author;
+    [AutoNetworkedField]
+    public EntityUid Author;
 
-    bool Completed = false;
+    [AutoNetworkedField]
+    public bool Completed = false;
 
-    EntityUid? Signator = null;
+    [AutoNetworkedField]
+    public EntityUid? Signator = null;
 }
