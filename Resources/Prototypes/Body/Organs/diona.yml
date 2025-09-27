@@ -24,6 +24,8 @@
   - type: FlavorProfile
     flavors:
       - people
+  - type: StealTarget
+    stealGroup: StealOrgans
 
 - type: entity
   id: OrganDionaBrain
