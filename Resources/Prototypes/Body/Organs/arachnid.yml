@@ -24,6 +24,8 @@
   - type: Tag
     tags:
       - Meat
+  - type: StealTarget
+    stealGroup: StealOrgans
 
 - type: entity
   id: OrganArachnidStomach
