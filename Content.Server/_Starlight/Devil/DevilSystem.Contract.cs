@@ -16,7 +16,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
     private void SubscribeContract()
     {
-        
+
     }
 
     private EntityUid CreateContract(EntityUid author, DevilComponent devilComp)
@@ -29,12 +29,12 @@ public sealed partial class DevilSystem : SharedDevilSystem
         }
 
         if (TryComp<ParsablePaperComponent>(paper, out var parsableComp))
-            {
-                // adds true name to the required patterns, as this dynamically changes between devils
-                // this is also shit, preferably this would somehow be able to exist entirely in yaml
-                var regexSanitisedTruename = NameSanitizeRegex().Replace(devilComp.TrueName, "");
-                parsableComp.RequiredPatterns.Add($"(?<={regexSanitisedTruename}, an agent of hell.).*");
-            }
+        {
+            // adds true name to the required patterns, as this dynamically changes between devils
+            // this is also shit, preferably this would somehow be able to exist entirely in yaml
+            var regexSanitisedTruename = NameSanitizeRegex().Replace(devilComp.TrueName, "");
+            parsableComp.RequiredPatterns.Add($"(?<={regexSanitisedTruename}, an agent of hell.).*");
+        }
 
         var content = Loc.GetString("infernal-contract-base", ("truename", devilComp.TrueName));
         _paper.SetContent(paper, content);
@@ -48,5 +48,14 @@ public sealed partial class DevilSystem : SharedDevilSystem
     private static partial Regex NameSanitizeRegex();
 
     #region events
+    protected override void OnSignedEvent(EntityUid uid, InfernalContractComponent contractComp, ref PaperSignedEvent args)
+    {
+        base.OnSignedEvent(uid, contractComp, ref args);
+        if (args.Cancelled) return;
+
+        var contract = GetContractContent(uid);
+        if (contract == null) return;
+        DamnEntity(args.Signer, (InfernalContractData)contract);
+    }
     #endregion
 }

@@ -13,16 +13,38 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
     }
 
+    private bool CanDamn(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> proto)
+    {
+        return !entity.Comp.Damnations.Contains(proto);
+    }
+
     private bool AddDamnation(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> proto)
     {
         // here we shove all the components in, and then await their potential fails later via the event
-        if (entity.Comp.Damnations.Contains(proto)) return false;
+        if (!CanDamn(entity, proto)) return false;
         if (!_prototype.TryIndex(proto, out var damnationPrototype)) return false;
 
         _entityManager.AddComponents(entity.Owner, damnationPrototype.Components);
         _entityManager.RemoveComponents(entity.Owner, damnationPrototype.RemovedComponents);
         entity.Comp.NetCost += damnationPrototype.Cost;
         entity.Comp.Damnations.Add(proto);
+
+        return true;
+    }
+
+    protected bool DamnEntity(EntityUid ent, InfernalContractData contract)
+    {
+        EnsureComp<DamnedComponent>(ent, out var damnedComp);
+        if (damnedComp == null) return false;
+
+        // check to see that all of the damnations will work, before we try to add any
+        foreach (var damnation in contract.Damnations)
+            if (!CanDamn((ent, damnedComp), damnation)) return false;
+
+        foreach (var damnation in contract.Damnations)
+        {
+            AddDamnation((ent, damnedComp), damnation);
+        }
 
         return true;
     }

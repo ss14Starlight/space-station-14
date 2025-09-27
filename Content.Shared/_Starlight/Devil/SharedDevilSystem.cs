@@ -19,6 +19,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
         SubscribeLocalEvent<InfernalContractComponent, PaperSignedEvent>(OnSignedEvent);
     }
 
+    #region contract
     protected InfernalContractValidity GetContractValidity(EntityUid contract)
     {
         if (!TryComp<InfernalContractComponent>(contract, out var contractComp) || !TryComp<ParsablePaperComponent>(contract, out var parsableComponent))
@@ -97,13 +98,13 @@ public abstract partial class SharedDevilSystem : EntitySystem
         // todo show contract cost
     }
 
-    private void OnSignedEvent(EntityUid uid, InfernalContractComponent contractComp, ref PaperSignedEvent args)
+    protected virtual void OnSignedEvent(EntityUid uid, InfernalContractComponent contractComp, ref PaperSignedEvent args)
     {
         if (args.Cancelled || contractComp.Completed) return;
 
-        if (GetContractValidity(uid) != InfernalContractValidity.Valid || args.Signer == contractComp.Author)
+        if (GetContractValidity(uid) != InfernalContractValidity.Valid || HasComp<DevilComponent>(args.Signer))
         {
-            args.FailReason = args.Signer == contractComp.Author ?
+            args.FailReason = HasComp<DevilComponent>(args.Signer) ?
                 Loc.GetString("infernal-contract-popup-fail-self") :
                 Loc.GetString("infernal-contract-popup-fail");
             args.Cancelled = true;
@@ -111,6 +112,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
             return;
         }
     }
+    #endregion
 }
 
 public enum InfernalContractValidity
