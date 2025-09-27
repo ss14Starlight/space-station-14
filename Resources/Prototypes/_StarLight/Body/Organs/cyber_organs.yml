@@ -147,7 +147,7 @@
   description: All it's missing is the HudJack, then you can watch NanoTube right from your eyes!
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/cyber_organs.rsi
     layers:
       - state: eyeball-l
       - state: eyeball-r
@@ -165,7 +165,7 @@
   description: A freakishly nimble amalgamation of hydraulics and synthmesh, this thing can do many a party trick! #this is not a freaky reference, im talking about touching your nose, clover tongue, ect
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/cyber_organs.rsi
     state: tongue
 
 - type: entity
@@ -175,7 +175,7 @@
   description: A smoker's best friend, all the nicotine and none of the cancer! You feel like these would allow for very clear breathing.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/cyber_organs.rsi
     layers:
       - state: lung-l
       - state: lung-r
@@ -213,7 +213,7 @@
   description: Why won't you die??
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/cyber_organs.rsi
     state: heart-on
   # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.
   # This is done because these chemicals need to have some effect even if they aren't being filtered out of your body.
@@ -238,7 +238,7 @@
   description: You will have quite literally, an iron stomach. it can hold many more bites of food for digestion.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/cyber_organs.rsi
     state: stomach
   - type: Item
     size: Small
@@ -271,7 +271,7 @@
   description: This medical marvel will allow you to drink the alcohol tolerance of FOUR men!
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/cyber_organs.rsi
     state: liver
   - type: Item
     size: Small
@@ -290,7 +290,7 @@
   description: Extremely efficient at processing water, you could almost go a whole shift on one bottle of water!
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/cyber_organs.rsi
     layers:
       - state: kidney-l
       - state: kidney-r
@@ -317,7 +317,7 @@
   description: The camera on a phone from 525 years ago is better than these.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/makeshift_cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/makeshift_cyber_organs.rsi
     layers:
       - state: eyeball-l
       - state: eyeball-r
@@ -339,7 +339,7 @@
   description: Little better than a strip of steel, this "tongue" doesn't allow you to taste, and it makes you thirstier, the worst of both worlds.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/makeshift_cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/makeshift_cyber_organs.rsi
     state: tongue
   - type: ThirstRateMultiplier
     multiplier: 1.3
@@ -354,7 +354,7 @@
   description: Quite literally two tiny oxygen tanks with passive valves, that SOMEHOW provide a meager amount of oxygen to your bloodstream.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/makeshift_cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/makeshift_cyber_organs.rsi
     layers:
       - state: lung-l
       - state: lung-r
@@ -392,7 +392,7 @@
   description: Nearly as good as a gravity powered water pump at pumping blood, which is to say, very bad at it.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/makeshift_cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/makeshift_cyber_organs.rsi
     state: heart-on
   # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.
   # This is done because these chemicals need to have some effect even if they aren't being filtered out of your body.
@@ -417,7 +417,7 @@
   description: This box-attached-to-a-pipe is horrible at digesting food, and even worse at storing large quantities of it.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/makeshift_cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/makeshift_cyber_organs.rsi
     state: stomach
   - type: Item
     size: Small
@@ -450,7 +450,7 @@
   description: With this poorly made organ, you are on the wagon wether you like it or not.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/makeshift_cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/makeshift_cyber_organs.rsi
     state: liver
   - type: Item
     size: Small
@@ -471,7 +471,7 @@
   description: These shoddy kidneys are as efficient at processing water as a dirty, feces filled sock is at purifying it.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/makeshift_cyber_organs.rsi
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/makeshift_cyber_organs.rsi
     layers:
       - state: kidney-l
       - state: kidney-r
