@@ -51,4 +51,17 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         return true;
     }
+
+    private bool RemoveDamnation(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> damnation)
+    {
+        if (!entity.Comp.Damnations.Contains(damnation)) return false;
+        if (!_prototype.TryIndex(damnation, out var damnationPrototype)) return false;
+
+        if (damnationPrototype.ReverseOnRemove)
+            _entityManager.RemoveComponents(entity.Owner, damnationPrototype.Components);
+
+        entity.Comp.Damnations.Remove(damnation);
+
+        return true;
+    }
 }
