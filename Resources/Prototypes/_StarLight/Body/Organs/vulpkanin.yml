@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: OrganVulpkaninStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
   name: stomach
@@ -23,6 +23,8 @@
           Quantity: 5
   - type: Metabolizer
     updateInterval: 1.5
+  - type: StealTarget
+    stealGroup: StealOrgans
 
 - type: entity
   id: OrganVulpkaninHeart
@@ -32,3 +34,5 @@
   components:
     - type: Metabolizer
       updateInterval: 0.8
+    - type: StealTarget
+      stealGroup: StealOrgans
