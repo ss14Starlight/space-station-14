@@ -133,3 +133,170 @@
     comps: 
     - type: ThirstRateMultiplier
       multiplier: 1.25
+
+- type: entity
+  id: CyberEyes
+  parent: [OrganCyber, BaseOrganEyes]
+  name: cyber eyes
+  description: ""
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    layers:
+      - state: eyeball-l
+      - state: eyeball-r
+  - type: Item
+    size: Small
+    heldPrefix: eyeballs
+  - type: OrganVisualization
+    layer: Eyes
+    prototype: MobHumanoidEyes
+
+- type: entity
+  id: CyberTongue
+  parent: [OrganCyber, BaseOrganTongue]
+  name: cyber tongue
+  description: "A fleshy muscle mostly used for lying."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    state: tongue
+
+- type: entity
+  id: CyberLungs
+  parent: [OrganCyber, BaseOrganLungs]
+  name: cyber lungs
+  description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    layers:
+      - state: lung-l
+      - state: lung-r
+  - type: Item
+    size: Small
+    heldPrefix: lungs
+  - type: Lung
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
+    metabolizerTypes: [ Human ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      Lung:
+        maxVol: 175.0
+        canReact: false
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+- type: entity
+  id: CyberHeart
+  parent: [OrganCyber, BaseOrganHeart]
+  name: cyber heart
+  description: "I feel bad for the heartless bastard who lost this."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    state: heart-on
+  # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.
+  # This is done because these chemicals need to have some effect even if they aren't being filtered out of your body.
+  # You're technically 'immune to poison' without a heart, but.. uhh, you'll have bigger problems on your hands.
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Human]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+  - type: Item
+    size: Small
+    heldPrefix: heart
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.9
+
+- type: entity
+  id: CyberStomach
+  parent: [OrganCyber, BaseOrganStomach]
+  name: cyber stomach
+  description: "Gross. This is hard to stomach."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 75
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Stomach
+  # The stomach metabolizes stuff like foods and drinks.
+  # TODO: Have it work off of the ent's solution container, and move this
+  # to intestines instead.
+  - type: Metabolizer
+    # mm yummy
+    maxReagents: 3
+    metabolizerTypes: [Human]
+    groups:
+    - id: Food
+    - id: Drink
+
+- type: entity
+  id: CyberLiver
+  parent: [OrganCyber, BaseOrganLiver]
+  name: cyber liver
+  description: "Pairing suggestion: chianti and fava beans."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    state: liver
+  - type: Item
+    size: Small
+    heldPrefix: liver
+  - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
+    maxReagents: 1
+    metabolizerTypes: [Dwarf]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
+
+- type: entity
+  id: CyberKidneys
+  parent: [OrganCyber, BaseOrganKidneys]
+  name: cyber kidneys
+  description: "Filters toxins from the bloodstream."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: Item
+    size: Small
+    heldPrefix: kidneys
+  # The kidneys just remove anything that doesn't currently have any metabolisms, as a stopgap.
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Human]
+    removeEmpty: true
+  - type: FunctionalOrgan
+    comps: 
+    - type: ThirstRateMultiplier
+      multiplier: 0.75
