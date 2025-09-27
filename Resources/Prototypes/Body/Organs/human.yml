@@ -33,6 +33,8 @@
   abstract: true
   components:
   - type: Gibbable
+  - type: StealTarget #SL
+    stealGroup: StealOrgans #SL
 
 - type: entity
   id: OrganHumanBrain
