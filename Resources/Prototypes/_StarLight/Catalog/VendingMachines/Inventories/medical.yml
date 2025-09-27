@@ -71,8 +71,8 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorMobOrganHumanHeart
-  productEntity: OrganHumanHeart
+  id: VendorMobOrganBiosynthHeart
+  productEntity: OrganBiosynthHeart
   cost:
     NTCredit: 331
   categories:
@@ -81,8 +81,8 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorMobOrganHumanStomach
-  productEntity: OrganHumanStomach
+  id: VendorMobOrganBiosynthStomach
+  productEntity: OrganBiosynthStomach
   cost:
     NTCredit: 124
   categories:
@@ -91,8 +91,8 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorMobOrganHumanLiver
-  productEntity: OrganHumanLiver
+  id: VendorMobOrganBiosynthLiver
+  productEntity: OrganBiosynthLiver
   cost:
     NTCredit: 143
   categories:
@@ -101,8 +101,8 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorMobOrganHumanKidneys
-  productEntity: OrganHumanKidneys
+  id: VendorMobOrganBiosynthKidneys
+  productEntity: OrganBiosynthKidneys
   cost:
     NTCredit: 265
   categories:
@@ -111,8 +111,8 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorMobOrganHumanLungs
-  productEntity: OrganHumanLungs
+  id: VendorMobOrganBiosynthLungs
+  productEntity: OrganBiosynthLungs
   cost:
     NTCredit: 297
   categories:
@@ -121,8 +121,8 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorMobOrganHumanTongue
-  productEntity: OrganHumanTongue
+  id: VendorMobOrganBiosynthTongue
+  productEntity: OrganBiosynthTongue
   cost:
     NTCredit: 48
   categories:
@@ -131,8 +131,8 @@
   - !type:BuyerAccessCondition
   
 - type: listing
-  id: VendorMobOrganHumanEyes
-  productEntity: OrganHumanEyes
+  id: VendorMobOrganBiosynthEyes
+  productEntity: OrganBiosynthEyes
   cost:
     NTCredit: 233
   categories:
