@@ -1,4 +1,4 @@
-﻿# Teach a Lesson
+# Teach a Lesson
 - type: entity
   parent: [BaseTraitorObjective, BaseTeachALessonObjective]
   id: TeachRandomPersonObjective
@@ -39,6 +39,18 @@
         blacklist:
           components:
           - TeachALessonTarget # dont let mutiple teach someone.
+
+- type: entity
+  parent: BaseTraitorStealObjective
+  id: OrganStealObjective
+  description: Interdyne needs you to "repossess" some organs from syndicate debtors. Make sure to bog up the holes you make.
+  components:
+  - type: StealCondition
+    stealGroup: StealOrgans
+    minCollectionSize: 5
+    maxCollectionSize: 10
+  - type: Objective
+    difficulty: 0.25
 
 - type: entity
   parent: BaseRDStealObjective
