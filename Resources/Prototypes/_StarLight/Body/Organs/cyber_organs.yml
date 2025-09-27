@@ -33,7 +33,7 @@
 - type: entity
   id: CyberEyeThermal
   name: ThermalVision cyber eyes
-  description: Enables you to see in the dark and detect warm objects through walls.
+  description: Enables you to see in the dark and detect warm objects through walls. #they're not wallhacks, i swear officer
   parent: [OrganCyber, BaseOrganEyes]
   components:
   - type: Sprite
@@ -138,7 +138,7 @@
   id: CyberEyes
   parent: [OrganCyber, BaseOrganEyes]
   name: cyber eyes
-  description: ""
+  description: All it's missing is the HudJack, then you can watch NanoTube right from your eyes!
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
@@ -156,7 +156,7 @@
   id: CyberTongue
   parent: [OrganCyber, BaseOrganTongue]
   name: cyber tongue
-  description: "A fleshy muscle mostly used for lying."
+  description: A freakishly nimble amalgamation of hydraulics and synthmesh, this thing can do many a party trick! #this is not a freaky reference, im talking about touching your nose, clover tongue, ect
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
@@ -166,7 +166,7 @@
   id: CyberLungs
   parent: [OrganCyber, BaseOrganLungs]
   name: cyber lungs
-  description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
+  description: A smoker's best friend, all the nicotine and none of the cancer! You feel like these would allow for very clear breathing.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
@@ -204,7 +204,7 @@
   id: CyberHeart
   parent: [OrganCyber, BaseOrganHeart]
   name: cyber heart
-  description: "I feel bad for the heartless bastard who lost this."
+  description: Why won't you die??
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
@@ -229,7 +229,7 @@
   id: CyberStomach
   parent: [OrganCyber, BaseOrganStomach]
   name: cyber stomach
-  description: "Gross. This is hard to stomach."
+  description: You will have quite literally, an iron stomach. it can hold many more bites of food for digestion.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
@@ -262,7 +262,7 @@
   id: CyberLiver
   parent: [OrganCyber, BaseOrganLiver]
   name: cyber liver
-  description: "Pairing suggestion: chianti and fava beans."
+  description: This medical marvel will allow you to drink the alcohol tolerance of FOUR men!
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
@@ -281,7 +281,7 @@
   id: CyberKidneys
   parent: [OrganCyber, BaseOrganKidneys]
   name: cyber kidneys
-  description: "Filters toxins from the bloodstream."
+  description: Extremely efficient at processing water, you could almost go a whole shift on one bottle of water!
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/cyber_organs.rsi
@@ -299,4 +299,4 @@
   - type: FunctionalOrgan
     comps: 
     - type: ThirstRateMultiplier
-      multiplier: 0.75
+      multiplier: 0.6
