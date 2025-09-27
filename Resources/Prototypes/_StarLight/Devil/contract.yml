@@ -5,3 +5,7 @@
   description: The more you look at it, the more you feel like it is gazing back at you...
   components:
     - type: InfernalContract
+    - type: ParsablePaper
+      requiredPatterns:
+      # Must have verbatim clause warning signator
+      - "(?<=I understand that there is no way to retrieve these sacrifices. If I offer my soul, \\[bold\\]I understand that upon my demise my soul will fall into the fires of hell. My body will not be able to be resurrected, cloned, or brought back to life in any way.\\[/bold\\]).*"

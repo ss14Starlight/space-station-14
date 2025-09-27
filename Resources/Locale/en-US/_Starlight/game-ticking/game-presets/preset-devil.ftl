@@ -10,4 +10,4 @@ devil-role-briefing =
 
 objective-issuer-devil = [color=#d90b0b]8th Office for Soul Reclamation, Ops Division[/color]
 
-thief-round-end-agent-name = devil
+devil-round-end-agent-name = devil
