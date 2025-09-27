@@ -1,0 +1,1 @@
+devil-popup-damnation = {$name} spasms, their eyes seem to become more dull.

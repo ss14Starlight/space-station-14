@@ -1,4 +1,4 @@
-using Content.Server.Jobs;
+using Content.Server.Popups;
 using Content.Shared._Starlight.Devil;
 using Robust.Shared.Prototypes;
 
@@ -8,6 +8,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private PopupSystem _popup = default!;
     private void SubscribeDamned()
     {
 
@@ -32,7 +33,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
         return true;
     }
 
-    protected bool DamnEntity(EntityUid ent, InfernalContractData contract)
+    private bool DamnEntity(EntityUid ent, InfernalContractData contract)
     {
         EnsureComp<DamnedComponent>(ent, out var damnedComp);
         if (damnedComp == null) return false;
@@ -45,6 +46,8 @@ public sealed partial class DevilSystem : SharedDevilSystem
         {
             AddDamnation((ent, damnedComp), damnation);
         }
+
+        _popup.PopupEntity(Loc.GetString("devil-popup-damnation", ("name", Name(ent))), ent, Shared.Popups.PopupType.MediumCaution);
 
         return true;
     }

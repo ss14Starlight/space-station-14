@@ -31,8 +31,6 @@ public abstract partial class SharedDevilSystem : EntitySystem
         if (contractComp.Completed)
             return InfernalContractValidity.Signed;
 
-        // todo contracts....
-
         return InfernalContractValidity.Valid;
     }
 
@@ -94,8 +92,6 @@ public abstract partial class SharedDevilSystem : EntitySystem
         var contractData = GetContractContent(uid);
         if (contractData != null)
             args.PushMarkup(Loc.GetString("infernal-contract-examine-cost", ("value", contractData.Value.Cost)));
-
-        // todo show contract cost
     }
 
     protected virtual void OnSignedEvent(EntityUid uid, InfernalContractComponent contractComp, ref PaperSignedEvent args)
@@ -120,7 +116,6 @@ public enum InfernalContractValidity
     Valid,
     InvalidFormat,
     TooCostly,
-    UnknownClauses,
     NotAContract,
     Signed
 }
