@@ -66,7 +66,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
         var availableDamnations = devilComp.AvailableDamnations.Select(d => d.ToString().ToLower()).ToList();
         foreach (var damnation in rawDamnations)
         {
-            var index = availableDamnations.IndexOf(damnation);
+            var index = availableDamnations.IndexOf(damnation.ToLower());
             if (index != -1)
             {
                 data.Damnations.Add(devilComp.AvailableDamnations[index]);
