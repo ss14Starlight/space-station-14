@@ -3,12 +3,14 @@ using System.Text.RegularExpressions;
 using Content.Shared._Starlight.Paper;
 using Content.Shared.Examine;
 using Content.Shared.Paper;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Devil;
 
 public abstract partial class SharedDevilSystem : EntitySystem
 {
     [Dependency] private readonly ParsablePaperSystem _parsablePaper = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -39,6 +41,8 @@ public abstract partial class SharedDevilSystem : EntitySystem
             return null;
 
         InfernalContractData data;
+        data.Damnations = new();
+        data.Cost = 0;
 
         // welcome to serialization hell
         // one regex statement can only take us so far, we need a second to break them down into individual lines
@@ -48,14 +52,33 @@ public abstract partial class SharedDevilSystem : EntitySystem
         var rawSacrificesGroup = rawContent.GetValueOrDefault("sacrifices")![0];
         var rawBenefitsGroup = rawContent.GetValueOrDefault("benefits")![0];
 
-        var listSplitterRegex = new Regex("[•\\-\\.\\+]\\s*(.+)");
+        var listSplitterRegex = new Regex("[•\\-\\.\\+]\\s*(.+)"); // bruh
 
         var rawSacrifices = listSplitterRegex.Matches(rawSacrificesGroup).Cast<Match>().Select(m => m.Groups[1].Value).ToList();
         var rawBenefits = listSplitterRegex.Matches(rawBenefitsGroup).Cast<Match>().Select(m => m.Groups[1].Value).ToList();
 
-        // we now have our string arrays of the wanted effects. Now we need to check them against existing ones.
+        // todo refactor this craziness, make sacrifices/benefits not seperate?
+        var rawDamnations = rawSacrifices.Concat(rawBenefits);
 
-        data.Cost = 0;
+        // we now have our string arrays of the wanted effects. Now we need to check them against existing ones.
+        // todo check for duplicates
+        if (!TryComp<DevilComponent>(contractComp.Author, out var devilComp)) return null;
+        var availableDamnations = devilComp.AvailableDamnations.Select(d => d.ToString().ToLower()).ToList();
+        foreach (var damnation in rawDamnations)
+        {
+            var index = availableDamnations.IndexOf(damnation);
+            if (index != -1)
+            {
+                data.Damnations.Add(devilComp.AvailableDamnations[index]);
+            }
+        }
+        data.Damnations = data.Damnations.Distinct().ToList();
+
+        foreach (var damnation in data.Damnations)
+        {
+            if (_prototype.TryIndex<DamnationPrototype>(damnation, out var damnationProto))
+                data.Cost += damnationProto.Cost;
+        }
 
         return data;
     }
@@ -107,5 +130,5 @@ public record struct InfernalContractData
 {
     public int Cost;
 
-    // todo sacrifices/benefits
+    public List<ProtoId<DamnationPrototype>> Damnations;
 }
