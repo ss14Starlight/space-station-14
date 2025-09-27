@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared.Paper;
 
@@ -45,22 +46,18 @@ public sealed partial class ParsablePaperSystem : EntitySystem
         foreach (var valuePattern in parsableComp.RequestedValuePatterns)
         {
             var rule = new Regex(valuePattern.Value);
-            Match match = rule.Match(content);
+            List<string> sublist = new();
 
-            if (match.Groups.Count == 0)
+            foreach (Match match in rule.Matches(content))
             {
-                if (requireAll) return null;
+                if(match.Groups.Count > 1) sublist.Add(match.Groups[1].Value);
             }
-            else
-            {
-                List<string> sublist = new();
-                for (int i = 0; i < match.Groups.Count; i++) // foreach has failed me.... if anyone knows a better way please change
-                {
-                    sublist.Add(match.Groups[i].Value);
-                }
 
+            if (sublist.Count > 0)
+            {
                 output.Add(valuePattern.Key, sublist);
             }
+            else if (requireAll) return null;
         }
 
         return output;

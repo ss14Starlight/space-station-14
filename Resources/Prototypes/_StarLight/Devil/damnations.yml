@@ -1,0 +1,7 @@
+- type: damnation
+  id: Cluwnification
+  name: Cluwnification
+  description: Oh. Oh no.
+  cost: -5
+  components:
+  - type: Cluwne
