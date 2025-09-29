@@ -133,9 +133,8 @@
   - type: ToggleClothing
     action: ActionToggleSpeedBoots
   - type: ClothingSpeedModifier
-    walkModifier: 1.5
-    sprintModifier: 1.5
-    standing: true
+    sprintSpeed : 4.725 # +5%
+    maxDensity: 111
   - type: Appearance
   - type: GenericVisualizer
     visuals:
