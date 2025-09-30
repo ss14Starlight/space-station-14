@@ -1048,3 +1048,13 @@
   damage:
     types:
       Caustic: 8
+
+# Xeno Race
+
+- type: hitscan
+  id: BulletAcidHive
+  parent: BulletAcidHitscan
+  name: acid spit
+  damage:
+    types:
+      Caustic: 6

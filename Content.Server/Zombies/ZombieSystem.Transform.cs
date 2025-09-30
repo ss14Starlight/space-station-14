@@ -41,7 +41,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.NPC.Prototypes;
 using Content.Server._Starlight.Language; // Starlight-edit: Languages
-using Content.Shared._Starlight.Language.Components; // Starlight-edit: Languages
+using Content.Shared._Starlight.Language.Components;
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Server.Power.Components; // Starlight-edit: Languages
 
 namespace Content.Server.Zombies;
 
@@ -120,18 +122,22 @@ public sealed partial class ZombieSystem
         RemComp<LegsParalyzedComponent>(target);
         RemComp<ComplexInteractionComponent>(target);
         RemComp<SentienceTargetComponent>(target);
+        // Starlight-start:
+        RemComp<GunComponent>(target); // Removes ability to shoot from entity if present
+        RemComp<BasicEntityAmmoProviderComponent>(target);
+        RemComp<RechargeBasicEntityAmmoComponent>(target);
 
-        // Starlight-start: Add Zombie Language - Starlight
+        RemComp<BatterySelfRechargerComponent>(target); // for hitscan guns as well
+        RemComp<BatteryComponent>(target); 
+        RemComp<HitscanBatteryAmmoProviderComponent>(target); 
+        // Add Zombie Language - Starlight
         RemComp<UniversalLanguageSpeakerComponent>(target);
         EnsureComp<LanguageKnowledgeComponent>(target, out var knowledge);
         EnsureComp<LanguageSpeakerComponent>(target, out var speaker);
-
         knowledge.SpokenLanguages.Clear();
         knowledge.UnderstoodLanguages.Clear();
-
         speaker.SpokenLanguages.Clear();
         speaker.UnderstoodLanguages.Clear();
-
         _language.AddLanguage(target, "Zombie");
         // Starlight-end
 

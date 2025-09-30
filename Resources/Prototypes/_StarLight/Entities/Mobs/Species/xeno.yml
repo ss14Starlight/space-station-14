@@ -1,0 +1,150 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobXenoRace
+  name: Urist McXeno
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Xeno
+    understands:
+    - GalacticCommon
+    - Xeno
+  - type: Absorbable
+
+  - type: Gun # Todo: add wall building instead of gun (Moved to subclass)
+    fireRate: 3
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg   
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletAcidHive
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 20
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+    maxSaturation: 50
+    minSaturation: 40
+  - type: Vocal
+    sounds:
+      Male: UnisexXeno
+      Female: UnisexXeno
+      Unsexed: UnisexXeno
+  - type: TypingIndicator
+    proto: alien
+  - type: Speech
+    speechVerb: LargeMob
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcThrust
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 3
+        Slash: 7
+  - type: Bloodstream
+    bloodReagent: TranexamicAcid
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#52a258"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 110
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Hunger
+    thresholds:
+      Overfed: 250
+      Okay: 200
+      Peckish: 150
+      Starving: 20
+      Dead: 0
+    baseDecayRate: 2
+    starvingSlowdownModifier: 1
+    starvationDamage:
+      types:
+          Asphyxiation: 3
+  - type: Thirst
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: full
+  - type: Perishable
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatXeno
+      amount: 5
+  - type: Body
+    prototype: Xeno
+    requiredLegs: 2
+  - type: Inventory
+    speciesId: reptilian
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: shoes
+  - type: HumanoidAppearance
+    species: Xeno
+  - type: Tag
+    tags:
+      - Xeno
+      - CanPilot
+      - FootstepSound
+      - DoorBumpOpener
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobXenoRaceDummy
+  name: Urist McXeno
+  description: A dummy xeno meant to be used in character setup.
+  categories: [HideSpawnMenu]
+  components:
+  - type: HumanoidAppearance
+    species: Xeno
+  - type: Inventory
+    speciesId: reptilian
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Xeno/displacement.rsi
+            state: shoes
+  - type: Body
+    prototype: Xeno

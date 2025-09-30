@@ -55,6 +55,9 @@
   id: CyberHandItem
 
 - type: Tag
+  id: Compy
+
+- type: Tag
   id: Diona
 
 - type: Tag
@@ -98,6 +101,9 @@
 
 - type: Tag
   id: LightRifleHeavy
+
+- type: Tag
+  id: Locker
 
 - type: Tag
   id: MagazineBattery
@@ -193,17 +199,18 @@
   id: SyndieDungeon
 
 - type: Tag
-  id: Compy
+  id: SecuredLocker
+
+- type: Tag
+  id: ScanGateMachineBoard
 
 - type: Tag
   id: Table
 
 - type: Tag
-  id: SecuredLocker
+  id: Xeno
 
-- type: Tag
-  id: Locker
-
+# Background tags
 - type: Tag
   id: CivilianTraitBackground
 
@@ -227,6 +234,4 @@
 
 - type: Tag
   id: PettyCriminalTraitBackground
-
-- type: Tag
-  id: ScanGateMachineBoard
+# Background tags end

@@ -1,0 +1,83 @@
+<Document>
+  # Species
+
+  Nanotrasen employs a variety of sapient species.
+
+ 
+    <Box>
+      <GuideEntityEmbed Entity="MobArachnid" Caption="Arachnid"/>
+    </Box>
+    Spider-like humanoids, physically resilient and compact.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobAvali" Caption="Avali"/>
+    </Box>
+    No description.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobCyclorite" Caption="Cyclorite"/>
+    </Box>
+    No description.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobDiona" Caption="Diona"/>
+    </Box>
+    A plant gestalt from the planet Luminor-α, formed by intertwined nymphs of vines, branches, and leaves shaping a humanoid body. Nymphs can live apart from the gestalt and even self-replicate. Usually calm and curious, they are ancient, wise beings organized into clans that define their life goals and paths to achieve them.
+    
+    <Box>
+      <GuideEntityEmbed Entity="MobDwarf" Caption="Dwarf"/>
+    </Box>
+    No description.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobFelionoid" Caption="Felionoid"/>
+    </Box>
+    During the 23rd century they became the second extraterrestrial race to come into contact with humans, and the first proper extraterrestrial member species of the Trans-Solar Federation.
+    <Box>
+      <GuideEntityEmbed Entity="MobHuman" Caption="Human"/>
+    </Box>
+    Their homeworld contained a moon and orbits around a yellow star, and the planet was originally lush with life and nature. Due to the wars of the 21st century and deteriorating environment from nuclear fallouts, what's left of the nations and states became united into the Trans-Solar Federation and taking off into the stars.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobSlimePerson" Caption="Laspi"/>
+    </Box>
+    Humanoid slimes from the planet Xarsis-5, which evolved intelligence and, under heavy human influence, began mimicking people. They can freely alter their shape but usually prefer human forms. Their unique physiology grants them an extremely efficient metabolism.    <Box>
+      <GuideEntityEmbed Entity="MobMoth" Caption="Moth Person"/>
+    </Box>
+    Large anthropomorphic beings resembling lepidopterans, especially moths. They have broad, mostly nonfunctional wings and antennae, while their diet consists of silk, fabrics, and certain synthetic fibers.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobReptilian" Caption="Reptilian"/>
+    </Box>
+    Anthropomorphic reptiles from the planet Moges. They have thick tails and may combine traits of various reptiles or amphibians. Their tails serve practical use, such as carrying loads. Often rough, stubborn, and blunt, they are nonetheless valued as workers for their loyalty, skill, and determination.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobResomi" Caption="Resomi"/>
+    </Box>
+    No description.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobShadekin" Caption="Shadekin"/>
+    </Box>
+    No description.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobThaven" Caption="Thaven"/>
+    </Box>
+    No description.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobVulpkanin" Caption="Vulpkanin"/>
+    </Box>
+    Anthropomorphic foxes from the planet Altam. They have thick fur and canine-like physiology, with keen hearing and sharp eyesight. Selfish, treacherous, religious, and warlike.
+
+    <Box>
+      <GuideEntityEmbed Entity="MobVox" Caption="Vox"/>
+    </Box>
+    Voxes are upright, birdlike humanoids who once roamed as space raiders and spent much of their existence in the void. They breathe nitrogen and struggle to adapt to the intergalactic community due to their alien culture. Strange yet clever and quick to learn, Vox who integrate can become some of the most loyal allies.
+    <Box>
+      <GuideEntityEmbed Entity="MobXenoRace" Caption="Xeno"/>
+    </Box>
+    Xenos are humanoid xenomorphs, captured during a brutal conflict and raised by TSM (Trans-Solar Marines) to fight their own kind. Now freed from both human control and their hive mother's influence, they are fiercely independent, highly adaptive, and driven by instinct, forging their own path in the galaxy.
+
+</Document>

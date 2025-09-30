@@ -126,6 +126,12 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool>
         GameRoleWhitelist = CVarDef.Create("game.role_whitelist", true, CVar.SERVER | CVar.REPLICATED);
+    
+    /// <summary>
+    ///     If races should be restricted based on whether or not they are whitelisted.
+    /// </summary>
+    public static readonly CVarDef<bool>
+        GameRaceWhitelist = CVarDef.Create("game.race_whitelist", true, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Whether or not disconnecting inside of a cryopod should remove the character or just store them until they reconnect.

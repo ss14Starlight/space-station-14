@@ -5,6 +5,7 @@ using Content.Client.Inventory;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Station;
+using Content.Shared._NullLink;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
@@ -39,6 +40,8 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [Dependency] private readonly IStateManager _stateManager = default!;
     [Dependency] private readonly JobRequirementsManager _requirements = default!;
     [Dependency] private readonly MarkingManager _markings = default!;
+    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRolesReq = default!;
+
     [UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
@@ -291,7 +294,6 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _profileEditor.Visible = true;
             return (_characterSetup, _profileEditor);
         }
-
         _profileEditor = new HumanoidProfileEditor(
             _preferencesManager,
             _configurationManager,
@@ -302,7 +304,9 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _prototypeManager,
             _resourceCache,
             _requirements,
-            _markings);
+            _markings,
+            _playerRolesReq // Starlight
+            );
 
         _jobPriorityEditor = new JobPriorityEditor(_preferencesManager, _prototypeManager, _requirements);
 

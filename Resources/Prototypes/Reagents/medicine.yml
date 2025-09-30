@@ -855,7 +855,21 @@
   desc: reagent-desc-tranexamic-acid
   physicalDesc: reagent-physical-desc-viscous
   flavor: medicine
-  color: "#ba7d7d"
+  color: "#52a258" # Starlight
+  reactiveEffects: # burns anyone who is not xeno
+    Acidic:
+      methods: [Touch]
+      effects:
+        - !type:HealthChange
+          scaleByQuantity: true
+          damage:
+            types:
+              Heat: 0.5
+              Caustic: 0.5
+          conditions:
+          - !type:HasTag
+            invert: true
+            tag: "Xeno"
   metabolisms:
     Medicine:
       effects:
@@ -867,6 +881,9 @@
         conditions:
         - !type:ReagentThreshold
           min: 15
+        - !type:HasTag # Starlight
+          invert: true
+          tag: "Xeno"
         damage:
           types:
             Bloodloss: 3

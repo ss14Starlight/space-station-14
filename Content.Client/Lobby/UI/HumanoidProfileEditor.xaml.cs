@@ -34,6 +34,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Starlight.CCVar;
 using Content.Client._Starlight.TTS;
+using Content.Shared._NullLink;
 
 namespace Content.Client.Lobby.UI
 {
@@ -46,6 +47,7 @@ namespace Content.Client.Lobby.UI
         private readonly IFileDialogManager _dialogManager;
         private readonly IPlayerManager _playerManager;
         private readonly IPrototypeManager _prototypeManager;
+        private readonly ISharedNullLinkPlayerRolesReqManager _playerRolesReqManager;
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
 
@@ -126,7 +128,9 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings)
+            MarkingManager markings,
+            ISharedNullLinkPlayerRolesReqManager playerRolesReqManager // Starlight
+            )
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -138,6 +142,7 @@ namespace Content.Client.Lobby.UI
             _markingManager = markings;
             _preferencesManager = preferencesManager;
             _requirements = requirements;
+            _playerRolesReqManager = playerRolesReqManager;
             _sprite = _entManager.System<SpriteSystem>();
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
@@ -268,7 +273,7 @@ namespace Content.Client.Lobby.UI
 
             WidthResetButton.OnPressed += _ =>
             {
-                if(Profile is null) return;
+                if (Profile is null) return;
                 if (_prototypeManager.TryIndex<SpeciesPrototype>(Profile.Species, out var speciesPrototype)) WidthSlider.Value = speciesPrototype.DefaultWidth;
             };
 
@@ -770,6 +775,22 @@ namespace Content.Client.Lobby.UI
             }
         }
 
+        private bool IsRaceAllowed(SpeciesPrototype race) // Starlight
+        {
+            ProtoId<RoleRequirementPrototype>? protoId = race.Requirement;
+            if (protoId == null) return true;
+            var session = _playerManager.LocalSession;
+            if (session == null)
+                return false;
+
+            if (_prototypeManager.TryIndex(protoId, out var roleReq))
+            {
+                if (_playerRolesReqManager.IsAnyRole(session, roleReq.Roles))
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Refreshes the species selector.
         /// </summary>
@@ -778,15 +799,21 @@ namespace Content.Client.Lobby.UI
             SpeciesButton.Clear();
             _species.Clear();
 
-            _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(o => o.RoundStart));
-            _species.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase)); // Starlight
+            // Starlight 
+            var gameruleRaceWhitelist = _cfgManager.GetCVar(CCVars.GameRaceWhitelist);
+            _species
+                .AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>()
+                .Where(o => o.RoundStart));
+            _species.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
+            // Starlight end
             var speciesIds = _species.Select(o => o.ID).ToList();
 
             for (var i = 0; i < _species.Count; i++)
             {
                 var name = Loc.GetString(_species[i].Name);
                 SpeciesButton.AddItem(name, i);
-
+                bool allowed = !gameruleRaceWhitelist || IsRaceAllowed(_species[i]);
+                SpeciesButton.SetItemDisabled(SpeciesButton.GetIdx(i), !allowed);
                 if (Profile?.Species.Equals(_species[i].ID) == true)
                 {
                     SpeciesButton.SelectId(i);

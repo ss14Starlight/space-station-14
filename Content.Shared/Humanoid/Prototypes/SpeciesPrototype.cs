@@ -1,5 +1,7 @@
+using Content.Shared._NullLink;
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -79,10 +81,17 @@ public sealed partial class SpeciesPrototype : IPrototype
 
     /// <summary>
     /// Starlight
-    /// Allow Custom Specie Name for this Specie.
+    /// Allow custom name for this specie.
     /// </summary>
     [DataField]
     public Boolean CustomName { get; private set; } = false;
+
+    /// <summary>
+    /// Starlight
+    /// Specie role requirement.
+    /// </summary>
+    [DataField("requirement")]
+    public ProtoId<RoleRequirementPrototype>? Requirement;
 
     /// <summary>
     /// Method of skin coloration used by the species.

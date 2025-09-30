@@ -1,0 +1,18 @@
+<Document>
+  # Xeno
+
+  <Box>
+    <GuideEntityEmbed Entity="MobXenoRace" Caption=""/>
+  </Box>
+ 
+  [color=#ffa500]Warning! This species is not recommended for new players due to major gameplay changes![/color]
+  
+  Xenos are a species of former xenomorphs captured and raised by TSM (Trans-Solar Marines). Fearing the rebellion, marines made them highly dependent on human food to survive. While retaining some xenomorph traits, they face hostility from their hive mother, who still views them as enemies.
+  
+  ## Racial Features
+
+  - You can spit acid, unless you have muzzle on.
+  - Starvation is [color=red]lethal[/color] for you.
+  - Acid doesn't burn you anymore.
+  - You get hungry really quick.
+</Document>
