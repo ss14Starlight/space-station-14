@@ -33,10 +33,12 @@ public sealed partial class DevilSystem : SharedDevilSystem
         return true;
     }
 
-    private bool DamnEntity(EntityUid ent, InfernalContractData contract)
+    private bool DamnEntity(EntityUid ent, InfernalContractData contract, EntityUid devil)
     {
         EnsureComp<DamnedComponent>(ent, out var damnedComp);
         if (damnedComp == null) return false;
+
+        damnedComp.DamnedBy = devil;
 
         // check to see that all of the damnations will work, before we try to add any
         foreach (var damnation in contract.Damnations)

@@ -3,6 +3,7 @@ using Content.Shared._Starlight.Paper;
 using Robust.Shared.Audio;
 using Content.Shared.Paper;
 using System.Text.RegularExpressions;
+using Content.Server.Mind;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -55,7 +56,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         var contract = GetContractContent(uid);
         if (contract == null) return;
-        DamnEntity(args.Signer, (InfernalContractData)contract);
+        DamnEntity(args.Signer, (InfernalContractData)contract, contractComp.Author);
 
         contractComp.Completed = true;
         Dirty(uid, contractComp);

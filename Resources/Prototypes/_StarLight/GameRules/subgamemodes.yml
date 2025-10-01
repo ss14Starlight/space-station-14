@@ -6,6 +6,7 @@
   - type: AntagObjectives
     objectives:
     - SurviveDevilObjective
+    - DamnSoulsDevilObjective
   - type: AntagSelection
     agentName: devil-round-end-agent-name
     selectionTime: IntraPlayerSpawn

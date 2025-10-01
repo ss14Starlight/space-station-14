@@ -21,3 +21,16 @@
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
   - type: EscapeShuttleCondition
+
+- type: entity
+  parent: [BaseDevilObjective, BaseLivingObjective]
+  id: DamnSoulsDevilObjective
+  name: Damn souls.
+  components:
+  - type: Objective
+    difficulty: 1
+    icon:
+      sprite: Effects/fire.rsi
+      state: fire
+  - type: DamnCondition
+    descriptionText: objective-condition-damn-description
