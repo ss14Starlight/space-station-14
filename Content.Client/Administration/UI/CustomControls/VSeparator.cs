@@ -1,13 +1,12 @@
 ﻿using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Maths;
 
 namespace Content.Client.Administration.UI.CustomControls;
 
 public sealed class VSeparator : PanelContainer
 {
-    private static readonly Color SeparatorColor = Color.FromHex("#3D4059");
+    private static readonly Color _separatorColor = Color.FromHex("#3D4059"); // Starlight
 
     // Starlight-start
     private readonly StyleBoxFlat _styleBox;
@@ -19,9 +18,10 @@ public sealed class VSeparator : PanelContainer
     }
     // Starlight-end
 
-    public VSeparator(Color color)
+    public VSeparator(Color color, float width = 2f) // Starlight
     {
-        MinSize = new Vector2(2, 5);
+        MinSize = new Vector2(width, 5);
+        VerticalExpand = true;
 
         // Starlight-start
         _styleBox = new StyleBoxFlat
@@ -33,5 +33,5 @@ public sealed class VSeparator : PanelContainer
         // Starlight-end
     }
 
-    public VSeparator() : this(SeparatorColor) { }
+    public VSeparator() : this(_separatorColor) { } // Starlight
 }

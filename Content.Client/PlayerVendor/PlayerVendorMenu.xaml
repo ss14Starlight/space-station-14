@@ -1,0 +1,64 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      Title="🏪 {Loc player-vendor-ui-title}"
+                      MinSize="600 450"
+                      SetSize="700 550"
+                      HorizontalExpand="True"
+                      VerticalExpand="True">
+  <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+    <!-- Header -->
+    <PanelContainer StyleClasses="BackgroundDark" HorizontalExpand="True">
+      <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="8 4 8 4">
+        <Label Name="OwnerLabel" HorizontalExpand="True"/>
+        <Label Name="BalanceLabel" HorizontalExpand="True"/>
+        <Label Name="DepositLabel" HorizontalExpand="True"/>
+      </BoxContainer>
+    </PanelContainer>
+
+    <PanelContainer StyleClasses="HighDivider" HorizontalExpand="True"/>
+
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="12">
+      <!-- Left panel -->
+      <PanelContainer StyleClasses="BackgroundLight" HorizontalExpand="True" VerticalExpand="True" Margin="8 4 4 4">
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+          <Label Text="📦 Available Items" StyleClasses="LabelHeading" Margin="0 0 0 4"/>
+          <ScrollContainer HorizontalExpand="True" VerticalExpand="True" StyleClasses="ScrollContainer" HScrollEnabled="False">
+            <BoxContainer Name="ItemListContainer" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True"/>
+          </ScrollContainer>
+        </BoxContainer>
+      </PanelContainer>
+
+      <customControls:VSeparator Name="VendorSeparator"/>
+
+      <!-- Right panel -->
+      <PanelContainer StyleClasses="BackgroundDark" MinWidth="220" VerticalExpand="True" Margin="4 4 8 4">
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="8" SeparationOverride="8">
+          <!-- Customer Actions -->
+          <BoxContainer Orientation="Vertical" SeparationOverride="4">
+            <Label Text="Customer Actions" StyleClasses="LabelHeading" Margin="0 0 0 4"/>
+            <Button Name="PurchaseButton" Text="{Loc player-vendor-ui-purchase-button}" StyleClasses="ButtonColorGreen" HorizontalExpand="True"/>
+            <Button Name="RefundButton" Text="{Loc player-vendor-ui-refund}" HorizontalExpand="True"/>
+          </BoxContainer>
+
+          <PanelContainer StyleClasses="LowDivider" HorizontalExpand="True"/>
+
+            <!-- Owner Actions -->
+          <BoxContainer Orientation="Vertical" SeparationOverride="4">
+            <Label Text="Owner Controls" StyleClasses="LabelHeading" Margin="0 8 0 4"/>
+            <Button Name="ClaimButton" Text="{Loc player-vendor-ui-claim}" StyleClasses="ButtonColorBlue" HorizontalExpand="True"/>
+            <BoxContainer Name="PriceBox" Orientation="Horizontal" SeparationOverride="4">
+              <LineEdit Name="PriceEdit" HorizontalExpand="True" PlaceHolder="{Loc player-vendor-ui-price-placeholder}"/>
+              <Button Name="SetPriceButton" Text="Set"/>
+            </BoxContainer>
+            <Button Name="WithdrawButton" Text="{Loc player-vendor-ui-withdraw}" HorizontalExpand="True"/>
+            <Button Name="LockButton" Text="{Loc player-vendor-ui-toggle-lock}" HorizontalExpand="True"/>
+          </BoxContainer>
+
+          <PanelContainer StyleClasses="LowDivider" HorizontalExpand="True"/>
+        </BoxContainer>
+      </PanelContainer>
+    </BoxContainer>
+  </BoxContainer>
+</controls:FancyWindow>

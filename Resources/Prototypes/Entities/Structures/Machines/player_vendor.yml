@@ -1,0 +1,86 @@
+## Player-owned vendor machine
+- type: entity
+  parent: [BaseStructureDynamic, ConstructibleMachine]
+  id: PlayerVendor
+  name: player vendor
+  description: A personal vending unit for selling your goods.
+  components:
+    - type: StationAiWhitelist
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/VendingMachines/palyerownedvendor.rsi
+      snapCardinals: true
+      layers:
+        - state: po_vendor
+        - state: panel
+          shader: unshaded
+    - type: PointLight
+      radius: 1.5
+      energy: 1.0
+      color: "#c9c99d"
+    - type: Machine
+      board: SmartFridgeCircuitboard # reuse existing board fn
+    - type: ContainerContainer
+      containers:
+        player_vendor_inventory: !type:Container
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Construction
+      graph: Machine
+      node: machine
+      containers:
+        - machine_parts
+        - machine_board
+        - player_vendor_inventory
+    - type: LitOnPowered
+    - type: ApcPowerReceiver
+      powerLoad: 150
+    - type: ExtensionCableReceiver
+    - type: WiresPanel
+    - type: WiresVisuals
+    - type: PlayerVendor
+      denySound:
+        collection: VendingDeny
+      vendSound:
+        collection: VendingDispense
+        params:
+          volume: -4
+          variation: 0.15
+    - type: ActivatableUI
+      key: enum.PlayerVendorUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.PlayerVendorUiKey.Key:
+          type: PlayerVendorBoundUserInterface
+    - type: UseDelay
+      delay: 0.5
+    - type: Physics
+      bodyType: Static
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+          density: 200
+    - type: Anchorable
+      delay: 2
+    - type: InteractionOutline
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTrigger { damage: 200 }
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound: { collection: MetalBreak }
+            - !type:DoActsBehavior { acts: ["Destruction"] }
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: Metallic
+    - type: ExplosionResistance
+      damageCoefficient: 0.2
