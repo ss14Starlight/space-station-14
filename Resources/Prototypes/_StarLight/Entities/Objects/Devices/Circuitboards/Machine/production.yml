@@ -65,7 +65,7 @@
 - type: entity
   id: PlayerOwnedVendorCircuitBoard
   parent: BaseMachineCircuitboard
-  name:  merchant vendor board
+  name:  merchant vendor machine board
   components:
     - type: Sprite
       state: service
