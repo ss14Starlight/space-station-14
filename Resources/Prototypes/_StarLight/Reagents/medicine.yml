@@ -120,3 +120,28 @@
           damage:
             types:
               Radiation: -5
+
+- type: reagent
+  id: CyberjackNanites
+  name: reagent-name-cyberjack-nanites
+  group: Medicine
+  desc: reagent-desc-cyberjack-nanites
+  physicalDesc: reagent-physical-desc-metallic
+  flavor: metallic
+  color: "#6C6B76"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:TotalDamage
+          max: 250
+        damage:
+          groups:
+            Brute: -1
+          types:
+            Poison: -0.5 ##Should be about what it was when it healed the toxin group
+            Heat: -0.33
+            Shock: -0.33
+            Cold: -0.33
