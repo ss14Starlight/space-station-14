@@ -3,3 +3,6 @@ reagent-desc-amoxla = Ammonia-based chem that treats airloss and bloodloss in Av
 
 reagent-name-chronexaline = Chronexaline
 reagent-desc-chronexaline = A mixture of unstable radiation chemicals and its base component under extremely low temperatures. This appears to cure radiation poisoning in dead bodies.
+
+reagent-name-cyberjack-nanites = Cyberjack Nanites
+reagent-desc-cyberjack-nanites = An experimental form of host-repairing nanites, this thick, grey sludge is exuded by the hyperphoronic micro-factory built into the Cyberjack Heart.
