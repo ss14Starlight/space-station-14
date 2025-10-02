@@ -230,3 +230,6 @@
 
 - type: Tag
   id: ScanGateMachineBoard
+
+- type: Tag
+  id: PlayerVendorMachineBoard

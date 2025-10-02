@@ -1,4 +1,6 @@
+using Content.Client.Power;
 using Content.Shared.PlayerVendor;
+using Content.Shared.UserInterface;
 
 namespace Content.Client.PlayerVendor;
 
@@ -10,6 +12,7 @@ public sealed class PlayerVendorUISystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<PlayerVendorComponent, AfterAutoHandleStateEvent>(OnAfterState);
+        SubscribeLocalEvent<PlayerVendorComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUiOpenAttempt, before: new[] { typeof(ActivatableUIRequiresPowerSystem) });
     }
 
     private void OnAfterState(Entity<PlayerVendorComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -18,5 +21,14 @@ public sealed class PlayerVendorUISystem : EntitySystem
             return;
             
         bui.Refresh();
+    }
+
+    private void OnActivatableUiOpenAttempt(Entity<PlayerVendorComponent> ent, ref ActivatableUIOpenAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (ent.Comp.Broken)
+            args.Cancel();
     }
 }

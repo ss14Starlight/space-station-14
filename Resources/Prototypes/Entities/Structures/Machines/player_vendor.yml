@@ -2,24 +2,37 @@
 - type: entity
   parent: [BaseStructureDynamic, ConstructibleMachine]
   id: PlayerVendor
-  name: player vendor
-  description: A personal vending unit for selling your goods.
+  name: Merchant Vendor
+  description: A personal vending unit for selling your goods
   components:
     - type: StationAiWhitelist
     - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.PlayerVendorVisuals.VisualState:
+          enum.PlayerVendorVisualLayers.Base:
+            Normal: { state: po_vendor }
+            Off: { state: po_vendor }
+            Broken: { state: broken }
+          enum.PlayerVendorVisualLayers.Panel:
+            Normal: { visible: true }
+            Off: { visible: true }
+            Broken: { visible: false }
     - type: Sprite
       sprite: _Starlight/Structures/Machines/VendingMachines/palyerownedvendor.rsi
       snapCardinals: true
       layers:
         - state: po_vendor
+          map: ["enum.PlayerVendorVisualLayers.Base"]
         - state: panel
+          map: ["enum.PlayerVendorVisualLayers.Panel"]
           shader: unshaded
     - type: PointLight
       radius: 1.5
       energy: 1.0
       color: "#c9c99d"
     - type: Machine
-      board: SmartFridgeCircuitboard # reuse existing board fn
+      board: PlayerOwnedVendorCircuitBoard
     - type: ContainerContainer
       containers:
         player_vendor_inventory: !type:Container
@@ -48,6 +61,7 @@
           variation: 0.15
     - type: ActivatableUI
       key: enum.PlayerVendorUiKey.Key
+    - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
         enum.PlayerVendorUiKey.Key:
@@ -74,7 +88,12 @@
     - type: InteractionOutline
     - type: Destructible
       thresholds:
-        - trigger: !type:DamageTrigger { damage: 200 }
+        - trigger: !type:DamageTrigger { damage: 120 }
+          behaviors:
+            - !type:DoActsBehavior { acts: ["Breakage"] }
+            - !type:PlaySoundBehavior
+              sound: { collection: MetalBreak }
+        - trigger: !type:DamageTrigger { damage: 220 }
           behaviors:
             - !type:PlaySoundBehavior
               sound: { collection: MetalBreak }
@@ -82,5 +101,7 @@
     - type: Damageable
       damageContainer: StructuralInorganic
       damageModifierSet: Metallic
+    - type: Repairable
+      doAfterDelay: 6
     - type: ExplosionResistance
       damageCoefficient: 0.2

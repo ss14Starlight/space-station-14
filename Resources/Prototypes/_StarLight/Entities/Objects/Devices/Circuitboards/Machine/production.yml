@@ -61,3 +61,20 @@
     - type: Tag
       tags:
       - ScanGateMachineBoard
+
+- type: entity
+  id: PlayerOwnedVendorCircuitBoard
+  parent: BaseMachineCircuitboard
+  name:  merchant vendor board
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: PlayerVendor
+      stackRequirements:
+        Steel: 10
+        Glass: 3
+        Cable: 10
+    - type: Tag
+      tags:
+      - PlayerVendorMachineBoard

@@ -1,6 +1,6 @@
 using Content.Shared.Access.Components;
 using Content.Server.Hands.Systems;
-using Content.Shared.Starlight; // For PlayerData & ISharedPlayersRoleManager
+using Content.Shared.Starlight;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
@@ -10,24 +10,22 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
-using Robust.Shared.GameObjects;
 using Robust.Server.Player;
 using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Stacks;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Map;
 using Content.Server.Power.Components;
-using Content.Shared.Power.EntitySystems; 
-using Content.Shared.Storage.EntitySystems; 
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Tag;
-using Content.Shared.Weapons.Ranged.Components; 
-using Content.Shared.Weapons.Melee; 
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Melee;
 using Content.Shared.Item;
 using Content.Server.Radio.EntitySystems;
-using Content.Shared.Radio; 
+using Content.Shared.Radio;
+using Content.Shared.Destructible;
+using Content.Shared.Damage;
+using Content.Shared.UserInterface;
 
 namespace Content.Server.PlayerVendor;
 
@@ -47,6 +45,7 @@ public sealed class PlayerVendorSystem : EntitySystem
     [Dependency] private readonly SharedItemSystem _itemSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     private static readonly ProtoId<TagPrototype> _highRisk = "HighRiskItem";
     private static readonly ProtoId<RadioChannelPrototype> _securityChannel = "Security";
@@ -56,8 +55,10 @@ public sealed class PlayerVendorSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<PlayerVendorComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PlayerVendorComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerb);
-        SubscribeLocalEvent<PlayerVendorComponent, InteractHandEvent>(OnInteractHand);
+        SubscribeLocalEvent<PlayerVendorComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUiOpenAttempt);
         SubscribeLocalEvent<PlayerVendorComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<PlayerVendorComponent, BreakageEventArgs>(OnBreakage);
+        SubscribeLocalEvent<PlayerVendorComponent, DamageChangedEvent>(OnDamageChanged);
 
         Subs.BuiEvents<PlayerVendorComponent>(PlayerVendorUiKey.Key, subs =>
         {
@@ -89,40 +90,65 @@ public sealed class PlayerVendorSystem : EntitySystem
             }
         }
     }
-    
-    private void OnInteractHand(Entity<PlayerVendorComponent> ent, ref InteractHandEvent args)
-    {
-        if (args.Handled)
-            return;
-        if (!IsPowered(ent))
-        {
-            _popup.PopupEntity(Loc.GetString("player-vendor-popup-no-power"), ent, args.User);
-            args.Handled = true;
-            return;
-        }
-        if (args.Handled)
-            return;
-        OpenUi(ent, args.User);
-        args.Handled = true;
-    }
 
     private bool IsPowered(EntityUid uid)
     {
         if (!TryComp<ApcPowerReceiverComponent>(uid, out var _))
             return true;
-             
+
         return _power.IsPowered(uid);
     }
 
-    private void OpenUi(Entity<PlayerVendorComponent> ent, EntityUid user)
+    private void OnBreakage(EntityUid uid, PlayerVendorComponent comp, BreakageEventArgs args)
     {
-        if (!IsPowered(ent))
+        if (comp.Broken)
+            return;
+        comp.Broken = true;
+        comp.Locked = true;
+        Dirty(uid, comp);
+        _uiSystem.CloseUi(uid, PlayerVendorUiKey.Key);
+        UpdateAppearance((uid, comp));
+    }
+
+    private void OnDamageChanged(EntityUid uid, PlayerVendorComponent comp, DamageChangedEvent args)
+    {
+        if (!comp.Broken)
+            return;
+        if (args.DamageIncreased)
+            return;
+        if (TryComp<DamageableComponent>(uid, out var dmg) && dmg.TotalDamage == 0)
         {
-            _popup.PopupEntity(Loc.GetString("player-vendor-popup-no-power"), ent, user);
+            comp.Broken = false;
+            Dirty(uid, comp);
+            UpdateAppearance((uid, comp));
+        }
+    }
+
+    private void OnActivatableUiOpenAttempt(Entity<PlayerVendorComponent> ent, ref ActivatableUIOpenAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (ent.Comp.Broken)
+        {
+            _popup.PopupEntity(Loc.GetString("player-vendor-popup-broken"), ent, args.User);
+            args.Cancel();
             return;
         }
-        _uiSystem.OpenUi(ent.Owner, PlayerVendorUiKey.Key, user);
-        PushState(ent);
+    }
+
+    private void UpdateAppearance(Entity<PlayerVendorComponent> ent)
+    {
+        if (!TryComp<AppearanceComponent>(ent, out var appearance))
+            return;
+
+        var state = PlayerVendorVisualState.Normal;
+        if (ent.Comp.Broken)
+            state = PlayerVendorVisualState.Broken;
+        else if (!IsPowered(ent)) 
+            state = PlayerVendorVisualState.Off;
+
+        _appearance.SetData(ent, PlayerVendorVisuals.VisualState, state, appearance);
     }
 
     private void OnExamined(Entity<PlayerVendorComponent> ent, ref ExaminedEvent args)
@@ -163,13 +189,11 @@ public sealed class PlayerVendorSystem : EntitySystem
                 Del(args.Used);
                 Dirty(ent);
                 PushState(ent);
-                _popup.PopupEntity(Loc.GetString("player-vendor-popup-deposit-added", ("amount", add), ("total", ent.Comp.CurrentDepositAmount)), ent, args.User);
             }
             args.Handled = true;
             return;
         }
 
-        // Claim / lock actions via ID card
         if (args.Used != EntityUid.Invalid && TryComp<IdCardComponent>(args.Used, out var idCard))
         {
             TryClaimOrToggle(ent, args.User, idCard);
@@ -177,7 +201,6 @@ public sealed class PlayerVendorSystem : EntitySystem
             return;
         }
 
-        // Insert held item
         if (!_hands.CanDrop(args.User, args.Used))
             return;
 
@@ -191,12 +214,10 @@ public sealed class PlayerVendorSystem : EntitySystem
 
         if (ent.Comp.Locked && !IsOwner(ent, user))
         {
-            _popup.PopupEntity(Loc.GetString("player-vendor-popup-locked"), ent, user);
             _audio.PlayPvs(ent.Comp.DenySound, ent);
-            return true; // Interaction consumed
+            return true;
         }
 
-        // Validation: only allow items (ItemComponent) up to Normal size, excluding HighRiskItem, weapons, and ID cards.
         if (!TryComp<ItemComponent>(used, out var itemComp))
         {
             _popup.PopupEntity(Loc.GetString("player-vendor-popup-invalid-not-item"), ent, user);
@@ -204,15 +225,13 @@ public sealed class PlayerVendorSystem : EntitySystem
             return true;
         }
 
-        // Disallow inserting ID cards themselves
         if (HasComp<IdCardComponent>(used))
         {
-            _popup.PopupEntity(Loc.GetString("player-vendor-popup-id-card-disallowed"), ent, user);
+            _popup.PopupEntity(Loc.GetString("player-vendor-popup-id-card"), ent, user);
             _audio.PlayPvs(ent.Comp.DenySound, ent);
             return true;
         }
 
-        // Get size prototype ordering via SharedItemSystem
         var sizeProto = _itemSystem.GetSizePrototype(itemComp.Size);
         var normalProto = _itemSystem.GetSizePrototype("Normal");
         if (sizeProto > normalProto)
@@ -222,11 +241,9 @@ public sealed class PlayerVendorSystem : EntitySystem
             return true;
         }
 
-        // High risk tag check
         if (_tagSystem.HasTag(used, _highRisk))
         {
             _popup.PopupEntity(Loc.GetString("player-vendor-popup-high-risk"), ent, user);
-            // Radio security alert
             var userName = Identity.Name(user, EntityManager);
             var itemName = Identity.Name(used, EntityManager);
             var vendorName = Identity.Name(ent.Owner, EntityManager);
@@ -235,8 +252,8 @@ public sealed class PlayerVendorSystem : EntitySystem
             return true;
         }
 
-        // Weapon checks: gun or melee
-        if (HasComp<GunComponent>(used) || HasComp<MeleeWeaponComponent>(used))
+        if (HasComp<GunComponent>(used) ||
+            (TryComp<MeleeWeaponComponent>(used, out var melee) && melee.Damage.AnyPositive()))
         {
             _popup.PopupEntity(Loc.GetString("player-vendor-popup-weapon-disallowed"), ent, user);
             var userName = Identity.Name(user, EntityManager);
@@ -253,10 +270,8 @@ public sealed class PlayerVendorSystem : EntitySystem
         ent.Comp.ContainedEntries.TryAdd(entryName, new());
         var set = ent.Comp.ContainedEntries[entryName];
 
-        // Check item count limit per entry
         if (set.Count >= ent.Comp.MaxItemsPerEntry)
         {
-            _popup.PopupEntity(Loc.GetString("player-vendor-popup-entry-full"), ent, user);
             _audio.PlayPvs(ent.Comp.DenySound, ent);
             return true;
         }
@@ -279,7 +294,7 @@ public sealed class PlayerVendorSystem : EntitySystem
 
         if (args.Using is { } item)
         {
-            var user = args.User; 
+            var user = args.User;
             args.Verbs.Add(new AlternativeVerb
             {
                 Text = Loc.GetString("verb-categories-insert"),
@@ -287,7 +302,6 @@ public sealed class PlayerVendorSystem : EntitySystem
             });
         }
 
-        // Claim verb if unowned and player is holding an ID card in the active hand
         if (ent.Comp.OwnerEntity == null)
         {
             var user = args.User;
@@ -318,7 +332,6 @@ public sealed class PlayerVendorSystem : EntitySystem
         if (!ent.Comp.ContainedEntries.TryGetValue(msg.Entry, out var set) || set.Count == 0)
         {
             _audio.PlayPvs(ent.Comp.DenySound, ent);
-            _popup.PopupEntity(Loc.GetString("player-vendor-popup-out-of-stock"), ent, actor);
             return;
         }
 
@@ -336,21 +349,18 @@ public sealed class PlayerVendorSystem : EntitySystem
         if (ent.Comp.CurrentDepositAmount < price)
         {
             _audio.PlayPvs(ent.Comp.DenySound, ent);
-            _popup.PopupEntity(Loc.GetString("player-vendor-popup-insufficient-deposit", ("price", price)), ent, actor);
             return;
         }
 
-        // Deduct from deposit nd credit vendor
         ent.Comp.CurrentDepositAmount -= price;
         var newBalance = ent.Comp.Balance + price;
         ent.Comp.Balance = Math.Min(newBalance, ent.Comp.MaxBalance);
         if (ent.Comp.CurrentDepositAmount <= 0)
         {
             ent.Comp.CurrentDepositAmount = 0;
-            ent.Comp.CurrentDepositorUserId = null; 
+            ent.Comp.CurrentDepositorUserId = null;
         }
 
-        // Eject an arbitrary entity
         foreach (var net in set)
         {
             var eid = GetEntity(net);
@@ -364,20 +374,13 @@ public sealed class PlayerVendorSystem : EntitySystem
         _audio.PlayPvs(ent.Comp.VendSound, ent);
         Dirty(ent);
         PushState(ent);
-        _popup.PopupEntity(Loc.GetString("player-vendor-popup-purchased", ("price", price)), ent, actor);
     }
 
     private void OnSetPriceMessage(Entity<PlayerVendorComponent> ent, ref PlayerVendorSetPriceMessage msg)
     {
         if (!_timing.IsFirstTimePredicted)
             return;
-        var actor = msg.Actor;
-        if (!IsOwner(ent, actor))
-        {
-            _audio.PlayPvs(ent.Comp.DenySound, ent);
-            _popup.PopupEntity(Loc.GetString("player-vendor-popup-not-owner"), ent, actor);
-            return;
-        }
+
         if (msg.Price < 0) msg.Price = 0;
         if (msg.Price > ent.Comp.MaxPricePerItem) msg.Price = ent.Comp.MaxPricePerItem;
         if (!ent.Comp.Entries.Contains(msg.Entry))
@@ -392,12 +395,7 @@ public sealed class PlayerVendorSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
         var actor = msg.Actor;
-        if (!IsOwner(ent, actor))
-        {
-            _audio.PlayPvs(ent.Comp.DenySound, ent);
-            _popup.PopupEntity(Loc.GetString("player-vendor-popup-not-owner"), ent, actor);
-            return;
-        }
+
         if (ent.Comp.Balance <= 0)
             return;
 
@@ -408,7 +406,6 @@ public sealed class PlayerVendorSystem : EntitySystem
         {
             _stacks.SetCount(spawned, amount, stack);
         }
-        _popup.PopupEntity(Loc.GetString("player-vendor-popup-withdrawn-physical", ("amount", amount)), ent, actor);
         ent.Comp.Balance = 0;
         Dirty(ent);
         PushState(ent);
@@ -434,8 +431,6 @@ public sealed class PlayerVendorSystem : EntitySystem
             _stacks.SetCount(cash, amount, stack);
         ent.Comp.CurrentDepositAmount = 0;
         ent.Comp.CurrentDepositorUserId = null;
-        _popup.PopupEntity(Loc.GetString("player-vendor-popup-refund", ("amount", amount)), ent, actor);
-        Dirty(ent);
         PushState(ent);
     }
 
@@ -450,7 +445,6 @@ public sealed class PlayerVendorSystem : EntitySystem
             return;
         }
         ent.Comp.Locked = !ent.Comp.Locked;
-        _popup.PopupEntity(ent.Comp.Locked ? Loc.GetString("player-vendor-popup-locked-set") : Loc.GetString("player-vendor-popup-locked-unset"), ent, actor);
         Dirty(ent);
         PushState(ent);
     }
@@ -461,11 +455,10 @@ public sealed class PlayerVendorSystem : EntitySystem
             return;
         var actor = msg.Actor;
         if (ent.Comp.OwnerEntity != null)
-            return; 
-        
-        // Check if user has an ID card in active hand
-        if (!TryComp<HandsComponent>(actor, out var hands) || 
-            !_hands.TryGetActiveItem(actor, out var held) || 
+            return;
+
+        if (!TryComp<HandsComponent>(actor, out var hands) ||
+            !_hands.TryGetActiveItem(actor, out var held) ||
             held == null ||
             !TryComp<IdCardComponent>(held, out _))
         {
@@ -473,7 +466,7 @@ public sealed class PlayerVendorSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("player-vendor-popup-need-id-card"), ent, actor);
             return;
         }
-        
+
         ent.Comp.OwnerEntity = GetNetEntity(actor);
         ent.Comp.Locked = true;
 
@@ -505,7 +498,6 @@ public sealed class PlayerVendorSystem : EntitySystem
             ent.Comp.Locked = !ent.Comp.Locked;
             Dirty(ent);
             PushState(ent);
-            _popup.PopupEntity(ent.Comp.Locked ? Loc.GetString("player-vendor-popup-locked-set") : Loc.GetString("player-vendor-popup-locked-unset"), ent, user);
             return true;
         }
         _audio.PlayPvs(ent.Comp.DenySound, ent);
@@ -564,7 +556,7 @@ public sealed class PlayerVendorSystem : EntitySystem
             ent.Comp.CurrentDepositorUserId,
             false,
             false,
-            true 
+            true
             );
 
         if (_uiSystem.TryGetOpenUi(ent.Owner, PlayerVendorUiKey.Key, out _))

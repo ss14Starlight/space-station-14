@@ -52,3 +52,8 @@
   parent: BaseSilverCircuitboardRecipe
   id: DurandTargetingElectronics
   result: DurandTargetingElectronics
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: PlayerOwnedVendorCircuitBoard
+  result: PlayerOwnedVendorCircuitBoard

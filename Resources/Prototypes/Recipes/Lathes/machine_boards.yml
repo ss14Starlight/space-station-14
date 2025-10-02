@@ -299,6 +299,13 @@
   id: FatExtractorMachineCircuitboard
   result: FatExtractorMachineCircuitboard
 
+# Starlight-edit: start
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: PlayerOwnedVendorCircuitBoard
+  result: PlayerOwnedVendorCircuitBoard
+# Starlight-edit: end
+
 ## Supply
 
 - type: latheRecipe

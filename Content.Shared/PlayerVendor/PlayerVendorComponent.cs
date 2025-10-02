@@ -64,6 +64,9 @@ public sealed partial class PlayerVendorComponent : Component
 
     [DataField]
     public SoundSpecifier DenySound = new SoundCollectionSpecifier("VendingDeny");
+
+    [DataField, AutoNetworkedField]
+    public bool Broken = false;
 }
 
 [Serializable, NetSerializable]
@@ -72,7 +75,27 @@ public enum PlayerVendorUiKey : byte
     Key,
 }
 
-// UI Messages
+[Serializable, NetSerializable]
+public enum PlayerVendorVisuals : byte
+{
+    VisualState
+}
+
+[Serializable, NetSerializable]
+public enum PlayerVendorVisualState : byte
+{
+    Normal,
+    Off,
+    Broken,
+}
+
+[Serializable, NetSerializable]
+public enum PlayerVendorVisualLayers : byte
+{
+    Base,
+    Panel,
+}
+
 [Serializable, NetSerializable]
 public sealed class PlayerVendorPurchaseMessage(string entry) : BoundUserInterfaceMessage
 {
