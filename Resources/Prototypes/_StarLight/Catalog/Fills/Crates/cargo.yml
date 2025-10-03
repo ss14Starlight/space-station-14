@@ -21,3 +21,100 @@
     - id: ClothingMaskBreath
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
+
+- type: entity
+  id: CrateBrandedPlushies
+  parent: CrateGenericSteel
+  name: Crew Plushie Crate
+  description: Contains a handful of old crew-branded plushies. Discontinued for legal reasons.
+  components:
+  - type: StorageFill
+    contents:
+      - id: PlushieMatthew
+        prob: 0.2
+      - id: PlushieEmmie
+        prob: 0.2
+      - id: PlushieTrystan
+        prob: 0.2
+      - id: PlushieMorgana
+        prob: 0.2
+      - id: PlushieMorganaRound
+        prob: 0.2
+      - id: PlushieKiosha
+        prob: 0.2
+      - id: PlushieLance
+        prob: 0.2
+      - id: PlushieKiller
+        prob: 0.2
+      - id: PlushieAmali
+        prob: 0.2
+      - id: PlushieOog
+        prob: 0.2
+      - id: PlushieVanilla
+        prob: 0.2
+      - id: PlushieOp
+        prob: 0.2
+      - id: MozanPlush
+        prob: 0.2
+      - id: PlushieKoni
+        prob: 0.2
+      - id: DeerPlushie
+        prob: 0.2
+      - id: OddDeerPlushie
+        prob: 0.2
+      - id: VikaPviPlushie
+        prob: 0.2
+      - id: StinkyPlush
+        prob: 0.2
+      - id: JessPlush
+        prob: 0.2
+      - id: SiffyPlush
+        prob: 0.2
+      - id: IgnisPlush
+        prob: 0.2
+      - id: LivvyPlush
+        prob: 0.2
+      - id: MinaPlush
+        prob: 0.2
+      - id: PlushiePercy
+        prob: 0.2
+      - id: PlushieAsh
+        prob: 0.2
+      - id: PlushieGlados
+        prob: 0.2
+      - id: PlushieWEH
+        prob: 0.2
+      - id: PlushieRufia
+        prob: 0.2
+      - id: PlushieRomero
+        prob: 0.2
+      - id: PlushiePoley
+        prob: 0.2
+      - id: PlushieGalio
+        prob: 0.2
+      - id: PlushieRedwoods
+        prob: 0.2
+      - id: PlushieDoxesTheCaptain
+        prob: 0.2
+      - id: PlushieVirus
+        prob: 0.2
+      - id: PlushieRhea
+        prob: 0.2
+      - id: PlushieMalachi
+        prob: 0.2
+      - id: PlushieRemiie
+        prob: 0.2
+      - id: PlushieBrighteyes
+        prob: 0.2
+      - id: PlushieKilla
+        prob: 0.2
+      - id: PlushieFixes
+        prob: 0.2
+      - id: PlushieBarfo
+        prob: 0.2
+      - id: PlushieEina
+        prob: 0.2
+      - id: PlushieEinalia
+        prob: 0.2
+      - id: PlushieLiz
+        prob: 0.2

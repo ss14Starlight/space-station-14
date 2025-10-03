@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: FunCrewPlushies
+  icon:
+    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
+    state: icon
+  product: CrateBrandedPlushies
+  cost: 2500
+  category: cargoproduct-category-name-fun
+  group: market

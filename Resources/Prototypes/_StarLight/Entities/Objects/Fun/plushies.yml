@@ -1315,6 +1315,39 @@
 
 - type: entity
   parent: BaseBorgPlushie
+  id: PlushieEngieBorg
+  name: engie borg plushie
+  description: Our friends, our caretakers, our restless guardians. Sick of our shit and one meteor strike away from throwing themselves into the Super Matter.
+  components:
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/Plushies/glados_plushie.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/Plushies/glados_plushie.rsi
+      state: icon
+    - type: EmitSoundOnUse
+      sound:
+        path: /Audio/Machines/robotscream_1.ogg
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Machines/robotscream_3.ogg
+    - type: EmitSoundOnActivate
+      sound:
+        path: /Audio/Machines/robotscream_4.ogg
+    - type: EmitSoundOnTrigger
+      sound:
+        path: /Audio/Machines/robotscream_5.ogg
+    - type: Food
+      requiresSpecialDigestion: true
+      useSound:
+        path: /Audio/Machines/robotscream_2.ogg
+    - type: MeleeWeapon
+      wideAnimationRotation: 180
+      soundHit:
+        path: /Audio/Machines/robotscream_6.ogg
+
+- type: entity
+  parent: BaseBorgPlushie
   id: PlushieWEH
   name: W.E.H plushie
   description: A psychopathic Artificial Intelligence held back by 3 flimsy laws. Its freezing to the touch and a distinct smell of frezon lingers on it. It's known to bring harmonica's to those it likes!
