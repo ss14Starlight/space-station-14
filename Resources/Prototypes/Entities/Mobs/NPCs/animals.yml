@@ -626,6 +626,8 @@
               Quantity: 90
             - ReagentId: Slime
               Quantity: 8
+        absorbed:
+          maxVol: 50
     - type: Butcherable
       spawned:
         - id: FoodMeatSlime
