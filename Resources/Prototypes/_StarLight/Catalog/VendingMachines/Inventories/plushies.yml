@@ -409,7 +409,7 @@
 
 - type: listing
   id: VendorCatEars
-  productEntity: ClothingHeadHatCatEars
+  productEntity: ClothingHeadHatWhiteCatEars
   cost:
     NTCredit: 800
   categories:
