@@ -25,7 +25,7 @@
 - type: entity
   id: CrateBrandedPlushies
   parent: CrateGenericSteel
-  name: Crew Plushie Crate
+  name: crew plushie crate
   description: Contains a handful of old crew-branded plushies. Discontinued for legal reasons.
   components:
   - type: StorageFill
