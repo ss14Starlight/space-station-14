@@ -40,8 +40,6 @@
         prob: 0.2
       - id: PlushieMorganaRound
         prob: 0.2
-      - id: PlushieKiosha
-        prob: 0.2
       - id: PlushieLance
         prob: 0.2
       - id: PlushieKiller
