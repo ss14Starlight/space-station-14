@@ -3,7 +3,6 @@ using Content.Shared._Starlight.Paper;
 using Robust.Shared.Audio;
 using Content.Shared.Paper;
 using System.Text.RegularExpressions;
-using Content.Server.Mind;
 
 namespace Content.Server._Starlight.Devil;
 

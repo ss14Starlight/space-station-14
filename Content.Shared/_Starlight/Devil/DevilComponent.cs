@@ -15,7 +15,8 @@ public sealed partial class DevilComponent : Component
 
     public List<ProtoId<DamnationPrototype>> AvailableDamnations = new()
     {
-        "Cluwnification"
+        "Cluwnification",
+        "TestFailDamnation"
     };
 
     [AutoNetworkedField]

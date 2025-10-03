@@ -62,7 +62,11 @@ public abstract partial class SharedDevilSystem : EntitySystem
         // we now have our string arrays of the wanted effects. Now we need to check them against existing ones.
         // todo check for duplicates
         if (!TryComp<DevilComponent>(contractComp.Author, out var devilComp)) return null;
-        var availableDamnations = devilComp.AvailableDamnations.Select(d => d.ToString().ToLower()).ToList();
+        var availableDamnations = devilComp.AvailableDamnations.Select(d =>
+        {
+            _prototype.TryIndex<DamnationPrototype>(d, out var damnationProto);
+            return damnationProto!.Name.ToLower();
+        }).ToList();
         foreach (var damnation in rawDamnations)
         {
             var index = availableDamnations.IndexOf(damnation.ToLower());

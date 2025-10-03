@@ -11,7 +11,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
     [Dependency] private PopupSystem _popup = default!;
     private void SubscribeDamned()
     {
-
+        SubscribeLocalEvent<DamnedComponent, DamnationInitFailEvent>(OnDamnationInitFail);
     }
 
     private bool CanDamn(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> proto)
@@ -65,5 +65,15 @@ public sealed partial class DevilSystem : SharedDevilSystem
         entity.Comp.Damnations.Remove(damnation);
 
         return true;
+    }
+
+    /// <summary>
+    /// If this event is triggered, a damnation has failed to apply, so we need to reverse them all
+    /// </summary>
+    private void OnDamnationInitFail(Entity<DamnedComponent> ent, ref DamnationInitFailEvent args)
+    {
+        var damnations = new List<ProtoId<DamnationPrototype>>(ent.Comp.Damnations);
+        foreach (var damnation in damnations)
+            RemoveDamnation(ent, damnation);
     }
 }
