@@ -423,7 +423,7 @@
         time: 36000 # 10hr
   storage:
     back:
-      - CrayonMagic
+      - CrayonRainbow
 
 - type: loadout
   id: HappyHonk
