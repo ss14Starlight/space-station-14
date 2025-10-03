@@ -58,10 +58,6 @@
         prob: 0.2
       - id: PlushieKoni
         prob: 0.2
-      - id: DeerPlushie
-        prob: 0.2
-      - id: OddDeerPlushie
-        prob: 0.2
       - id: VikaPviPlushie
         prob: 0.2
       - id: StinkyPlush
