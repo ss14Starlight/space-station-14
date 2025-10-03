@@ -25,6 +25,9 @@
   id: Bola
 
 - type: Tag
+  id: BoneGel
+
+- type: Tag
   id: BorgModulePurrfus
 
 - type: Tag
@@ -50,6 +53,9 @@
 
 - type: Tag
   id: ClownKudzu
+  
+- type: Tag
+  id: CyberHandItem
 
 - type: Tag
   id: Diona
@@ -74,6 +80,9 @@
 
 - type: Tag
   id: HiltWood
+
+- type: Tag
+  id: ImprovisedAmmoBox
 
 - type: Tag
   id: ImprovisedCrowbar
@@ -127,6 +136,9 @@
   id: ModularBarrel
 
 - type: Tag
+  id: PaddyMech
+
+- type: Tag
   id: OmniCyberEyes
 
 - type: Tag
@@ -143,6 +155,9 @@
 
 - type: Tag
   id: PrototypeVibroblade
+
+- type: Tag
+  id: RequiredForLmgTag
 
 - type: Tag
   id: Resomi
