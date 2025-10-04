@@ -139,6 +139,17 @@ public sealed partial class IngestionSystem
     /// </remarks>
     private void OnDrainableIsDigestible(Entity<DrainableSolutionComponent> ent, ref IsDigestibleEvent args)
     {
+        var uid = ent.Owner;
+
+        if (_mobState.IsAlive(uid))
+        {
+            if (TryComp(uid, out FoodComponent? food) && food.RequireDead)
+                return;
+
+            if (TryComp(uid, out EdibleComponent? edible) && edible.RequireDead)
+                return;
+        }
+
         args.UniversalDigestion();
     }
 
