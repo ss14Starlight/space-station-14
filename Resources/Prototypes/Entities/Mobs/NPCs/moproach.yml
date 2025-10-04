@@ -19,19 +19,12 @@
   - type: Sprite
     sprite: Mobs/Animals/mothroach/moproach.rsi
   - type: Clothing
-    quickEquip: false
     sprite: Mobs/Animals/mothroach/moproach.rsi
-    equippedPrefix: 0
-    slots:
-    - HEAD
   - type: MobThresholds
     thresholds:
       0: Alive
       60: Critical
       95: Dead
-  - type: Food
-    requireDead: true
-    transferAmount: 4
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.6
     baseSprintSpeed: 5 # extra speed for that moppin'!
