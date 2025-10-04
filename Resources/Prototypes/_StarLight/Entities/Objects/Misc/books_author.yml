@@ -81,3 +81,239 @@
           color: "#cc0000"
     - type: Paper
       content: book-text-mars-incident
+
+- type: entity
+  parent: BookBase
+  id: BookCleaningUpTheTruth
+  name: "Cleaning Up The Truth"
+  description: A suspenseful story about an AI by the name of JNTR-742, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_old
+          color: "#000000"
+        - state: decor_wingette
+          color: "#bf4526"
+        - state: icon_magnifier
+          color: "#ffffff"
+        - state: icon_planet
+          color: "#bf4526"
+        - state: detail_rivets
+          color: "#cc0000"
+    - type: Paper
+      content: book-text-cleaning-up-the-truth
+
+- type: entity
+  parent: BookBase
+  id: BookFallenAmbitions
+  name: "Fallen Ambitions"
+  description: A cute story about Morty the possum, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_base
+          color: "#000000"
+        - state: decor_spine
+          color: "#bf4526"
+        - state: icon_text
+          color: "#ffffff"
+        - state: icon_possum
+          color: "#26c026"
+        - state: decor_wingette_circle
+          color: "#ffff00"
+    - type: Paper
+      content: book-text-fallen-ambitions
+  
+- type: entity
+  parent: BookBase
+  id: BookFarHorizonsBattle
+  name: "Far Horizon's Battle"
+  description: A military tale about Combat Medical Officer Jae Min Park, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#000000"
+        - state: decor_bottom
+          color: "#bf4526"
+        - state: icon_text
+          color: "#ffffff"
+        - state: icon_medical_cross
+          color: "#2654c0"
+        - state: detail_bookmark
+          color: "#cc0000"
+    - type: Paper
+      content: book-text-far-horizons-battle
+
+- type: entity
+  parent: BookBase
+  id: BookSpaceStationSecurityJournal
+  name: "Security Journal - Officer 1GFI$!6A"
+  description: A psychological story about a Space Station Security Officer, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_old
+          color: "#000000"
+        - state: decor_wingette
+          color: "#bf4526"
+        - state: icon_pentagramm
+          color: "#ff0000"
+        - state: icon_skull
+          color: "#8c0303"
+        - state: overlay_blood
+    - type: Paper
+      content: book-text-security-journal
+
+- type: entity
+  parent: BookBase
+  id: BookStoneandShine
+  name: "Stone and Shine"
+  description: An adventurous story about General Kravik and Blup, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#000000"
+        - state: decor_vertical_middle
+          color: "#508686"
+        - state: icon_mount
+          color: "#038c03"
+        - state: icon_diamond
+          color: "#038c8c"
+        - state: detail_rivets
+          color: "#cc0000"
+    - type: Paper
+      content: book-text-stone-and-shine
+
+- type: entity
+  parent: BookBase
+  id: BookWorldTree
+  name: "The Heart of the World Tree"
+  description: A wonderous story about the Heart of the World Tree, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_base
+          color: "#000000"
+        - state: decor_middle
+          color: "#bf4526"
+        - state: icon_planet
+          color: "#bf4526"
+        - state: icon_tree
+          color: "#20df20"
+        - state: detail_bookmark
+          color: "#cc0000"
+    - type: Paper
+      content: book-text-world-tree
+
+- type: entity
+  parent: BookBase
+  id: BookSycamoreHill
+  name: "The House on Sycamore Hill"
+  description: A horror story about the House on Sycamore Hill, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper_blood
+        - state: cover_old
+          color: "#000000"
+        - state: decor_wingette_circle
+          color: "#8c0303"
+        - state: icon_magic_fireball
+        - state: icon_eye
+          color: "#df2020"
+        - state: overlay_dirt
+        - state: overlay_blood
+    - type: Paper
+      content: book-text-sycamore-hill
+
+- type: entity
+  parent: BookBase
+  id: BookLumenSpire
+  name: "The Lumen Spire"
+  description: A mysterious story about The Lumen Spire, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_base
+          color: "#000000"
+        - state: decor_wingette_flat
+          color: "#bf4526"
+        - state: icon_aurora
+          color: "#404026"
+        - state: icon_stars2
+          color: "#dfdf20"
+        - state: detail_bookmark
+          color: "#cc0000"
+    - type: Paper
+      content: book-text-lumen-spire
+
+- type: entity
+  parent: BookBase
+  id: BookMapOfAdventure
+  name: "The Map of Adventure"
+  description: An adventurous story about Jamie's exploration, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_base
+          color: "#000000"
+        - state: decor_diagonal
+          color: "#b8b889"
+        - state: icon_text
+          color: "#ffffff"
+        - state: icon_magic_knock
+    - type: Paper
+      content: book-text-map-of-adventure
+
+- type: entity
+  parent: BookBase
+  id: BookWhiskersWarden
+  name: "Whiskers and the Warden"
+  description: A comedic story about a cat named Whiskers and the Warden, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_base
+          color: "#000000"
+        - state: decor_wingette_circle
+          color: "#bf4526"
+        - state: icon_ian
+        - state: icon_stunbaton
+          color: "#cf20df"
+        - state: detail_bookmark
+          color: "#cc0000"
+    - type: Paper
+      content: book-text-whiskers-and-warden
+
+- type: entity
+  parent: BookBase
+  id: BookHollowCreekCemetery
+  name: "Whispers from Hollow Creek Cemetery"
+  description: A scary story about Hollow Creek Cemetery, written by The Shade Beneath The Rose.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_old
+          color: "#000000"
+        - state: decor_spine
+          color: "#df2020"
+        - state: icon_temple
+          color: "#8c0303"
+        - state: icon_glow
+          color: "#541c1c"
+        - state: overlay_dirt
+          color: "#cc0000"
+    - type: Paper
+      content: book-text-hollow-creek-cemetery
