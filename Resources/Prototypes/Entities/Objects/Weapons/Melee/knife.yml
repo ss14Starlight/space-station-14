@@ -42,7 +42,7 @@
 # Starlight end
 
 - type: entity
-  parent: BaseKnife
+  parent: [BaseKnife, StarlightLegendaryMeleeWeaponBase]
   id: KitchenKnife
   name: kitchen knife
   description: A general purpose Chef's Knife made by Asters Merchant Guild. Guaranteed to stay sharp for years to come..

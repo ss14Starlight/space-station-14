@@ -1,0 +1,104 @@
+- type: legendaryStory
+  id: MeleeWeapon
+  opens:
+    - starlight-weapon-open-1
+    - starlight-weapon-open-2
+    - starlight-weapon-open-3
+    - starlight-weapon-open-4
+    - starlight-weapon-open-5
+  mids:
+    - starlight-weapon-mid-1
+    - starlight-weapon-mid-2
+    - starlight-weapon-mid-3
+    - starlight-weapon-mid-4
+    - starlight-weapon-mid-5
+  ends:
+    - starlight-weapon-end-1
+    - starlight-weapon-end-2
+    - starlight-weapon-end-3
+    - starlight-weapon-end-4
+    - starlight-weapon-end-5
+
+- type: legendaryStory
+  id: Firearm
+  opens:
+    - starlight-firearm-open-1
+    - starlight-firearm-open-2
+    - starlight-firearm-open-3
+    - starlight-firearm-open-4
+    - starlight-firearm-open-5
+  mids:
+    - starlight-firearm-mid-1
+    - starlight-firearm-mid-2
+    - starlight-firearm-mid-3
+    - starlight-firearm-mid-4
+    - starlight-firearm-mid-5
+  ends:
+    - starlight-firearm-end-1
+    - starlight-firearm-end-2
+    - starlight-firearm-end-3
+    - starlight-firearm-end-4
+    - starlight-firearm-end-5
+
+- type: legendaryStory
+  id: Plush
+  opens:
+    - starlight-plush-open-1
+    - starlight-plush-open-2
+    - starlight-plush-open-3
+    - starlight-plush-open-4
+    - starlight-plush-open-5
+  mids:
+    - starlight-plush-mid-1
+    - starlight-plush-mid-2
+    - starlight-plush-mid-3
+    - starlight-plush-mid-4
+    - starlight-plush-mid-5
+  ends:
+    - starlight-plush-end-1
+    - starlight-plush-end-2
+    - starlight-plush-end-3
+    - starlight-plush-end-4
+    - starlight-plush-end-5
+
+- type: legendaryStory
+  id: Trinket
+  opens:
+    - starlight-trinket-open-1
+    - starlight-trinket-open-2
+    - starlight-trinket-open-3
+    - starlight-trinket-open-4
+    - starlight-trinket-open-5
+  mids:
+    - starlight-trinket-mid-1
+    - starlight-trinket-mid-2
+    - starlight-trinket-mid-3
+    - starlight-trinket-mid-4
+    - starlight-trinket-mid-5
+  ends:
+    - starlight-trinket-end-1
+    - starlight-trinket-end-2
+    - starlight-trinket-end-3
+    - starlight-trinket-end-4
+    - starlight-trinket-end-5
+
+- type: legendaryStory
+  id: Clothing
+  opens:
+    - starlight-clothing-open-1
+    - starlight-clothing-open-2
+    - starlight-clothing-open-3
+    - starlight-clothing-open-4
+    - starlight-clothing-open-5
+  mids:
+    - starlight-clothing-mid-1
+    - starlight-clothing-mid-2
+    - starlight-clothing-mid-3
+    - starlight-clothing-mid-4
+    - starlight-clothing-mid-5
+  ends:
+    - starlight-clothing-end-1
+    - starlight-clothing-end-2
+    - starlight-clothing-end-3
+    - starlight-clothing-end-4
+    - starlight-clothing-end-5

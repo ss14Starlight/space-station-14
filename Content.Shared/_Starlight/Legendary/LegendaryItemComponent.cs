@@ -1,3 +1,5 @@
+using Robust.Shared.Prototypes;
+
 namespace Content.Shared._Starlight.Legendary;
 
 /// <summary>
@@ -8,8 +10,13 @@ public sealed partial class LegendaryItemComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float Chance = 0.05f;
+
     [DataField]
     public LocId? Description;
+    
+    [DataField]
+    public ProtoId<StoryPrototype>? Story;
+
     public bool LegendaryApplied;
     public bool RollProcessed;
 }

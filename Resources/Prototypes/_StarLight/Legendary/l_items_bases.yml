@@ -1,0 +1,40 @@
+- type: entity
+  id: StarlightLegendaryMeleeWeaponBase
+  abstract: true
+  components:
+    - type: LegendaryItem
+      chance: 0.05
+      story: MeleeWeapon
+
+- type: entity
+  id: StarlightLegendaryFirearmBase
+  abstract: true
+  components:
+    - type: LegendaryItem
+      chance: 0.02
+      story: Firearm
+
+- type: entity
+  id: StarlightLegendaryPlushBase
+  abstract: true
+  components:
+    - type: LegendaryItem
+      chance: 0.02
+      story: Plush
+
+- type: entity
+  id: StarlightLegendaryTrinketBase
+  abstract: true
+  components:
+    - type: LegendaryItem
+      chance: 0.01
+      story: Trinket
+
+- type: entity
+  id: StarlightLegendaryClothingBase
+  abstract: true
+  components:
+    - type: LegendaryItem
+      chance: 0.01
+      story: Clothing
+      description: starlight-legendary-custom-template
