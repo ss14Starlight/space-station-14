@@ -610,7 +610,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
-        path: /Audio/Animals/fox_squeak.ogg
+        path: /Audio/Voice/Moth/moth_squeak.ogg
   - type: Food
     requireDead: true
     transferAmount: 4

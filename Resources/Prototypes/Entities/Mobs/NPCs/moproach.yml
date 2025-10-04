@@ -78,7 +78,7 @@
     interactFailureString: petting-failure-cleanbot
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
-      path: /Audio/Ambience/Objects/periodic_beep.ogg
+      path: /Audio/Voice/Moth/moth_squeak.ogg
 
 - type: entity
   parent: MobMoproach
@@ -128,4 +128,3 @@
   components:
   - type: Paper
     content: book-text-moproach
-
