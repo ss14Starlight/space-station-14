@@ -7662,7 +7662,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,39.5
       parent: 1
-- proto: SyndiAgentPDA
+- proto: SyndiCorpsmanPDA
   entities:
   - uid: 1210
     components:

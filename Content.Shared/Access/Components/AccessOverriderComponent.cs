@@ -70,8 +70,8 @@ public sealed partial class AccessOverriderComponent : Component
         public readonly string PrivilegedIdName;
         public readonly bool IsPrivilegedIdPresent;
         public readonly bool IsPrivilegedIdAuthorized;
-        public readonly ProtoId<AccessLevelPrototype>[]? TargetAccessReaderIdAccessList;
-        public readonly ProtoId<AccessLevelPrototype>[]? AllowedModifyAccessList;
+        public readonly ProtoId<AccessLevelPrototype>[]? AvailableAccessLevels; // Starlight edit
+        public readonly ProtoId<AccessLevelPrototype>[]? PressedAccessLevels; // Starlight edit
         public readonly ProtoId<AccessLevelPrototype>[]? MissingPrivilegesList;
 
         // Starlight-edit: Start
@@ -79,10 +79,11 @@ public sealed partial class AccessOverriderComponent : Component
         public readonly ProtoId<AccessGroupPrototype>? CurrentAccessGroup;
         // Starlight-edit: End
 
-        public AccessOverriderBoundUserInterfaceState(bool isPrivilegedIdPresent,
+        public AccessOverriderBoundUserInterfaceState(
+            bool isPrivilegedIdPresent,
             bool isPrivilegedIdAuthorized,
-            ProtoId<AccessLevelPrototype>[]? targetAccessReaderIdAccessList,
-            ProtoId<AccessLevelPrototype>[]? allowedModifyAccessList,
+            ProtoId<AccessLevelPrototype>[]? availableAccessLevels,
+            ProtoId<AccessLevelPrototype>[]? pressedAccessLevels,
             ProtoId<AccessLevelPrototype>[]? missingPrivilegesList,
             string privilegedIdName,
             string targetLabel,
@@ -94,14 +95,17 @@ public sealed partial class AccessOverriderComponent : Component
         {
             IsPrivilegedIdPresent = isPrivilegedIdPresent;
             IsPrivilegedIdAuthorized = isPrivilegedIdAuthorized;
-            TargetAccessReaderIdAccessList = targetAccessReaderIdAccessList;
-            AllowedModifyAccessList = allowedModifyAccessList;
+            // Starlight edit Start
+            // TargetAccessReaderIdAccessList = targetAccessReaderIdAccessList;
+            // AllowedModifyAccessList = allowedModifyAccessList;
+            // Starlight edit End
             MissingPrivilegesList = missingPrivilegesList;
             PrivilegedIdName = privilegedIdName;
             TargetLabel = targetLabel;
             TargetLabelColor = targetLabelColor;
-
             // Starlight-edit: Start
+            AvailableAccessLevels = availableAccessLevels;
+            PressedAccessLevels = pressedAccessLevels;
             AccessGroups = accessGroups;
             CurrentAccessGroup = currentAccessGroup;
             // Starlight-edit: End

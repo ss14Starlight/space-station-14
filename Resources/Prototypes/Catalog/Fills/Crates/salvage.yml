@@ -80,6 +80,8 @@
         prob: 0.001
       - id: ClothingHeadHatCatEars
         prob: 0.01
+      - id: ClothingHeadHatWhiteCatEars #Starlight
+        prob: 0.1
       - id: ClothingHeadHatDogEars
         prob: 0.01
         # TRAITOR EQUIPMENT (0.01%)

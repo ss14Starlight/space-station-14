@@ -41,7 +41,7 @@ namespace Content.Client.Access.UI
 
         public void SetAllowedIcons(string currentJobIconId)
         {
-            IconGrid.RemoveAllChildren(); // Starlight-edit
+            IconGrid.RemoveAllChildren();
 
             var jobIconButtonGroup = new ButtonGroup();
             var i = 0;

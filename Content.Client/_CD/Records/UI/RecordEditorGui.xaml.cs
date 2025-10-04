@@ -108,7 +108,11 @@ public sealed partial class RecordEditorGui : Control
     public void Update(HumanoidCharacterProfile? profile)
     {
         _profile = profile;
-        _records = profile?.CDCharacterRecords ?? PlayerProvidedCharacterRecords.DefaultRecords();
+        //this line is evil. basically.
+        // check if we have set records. if we do use those
+        // check if we have a HumanoidCharacter profile. if we do get it's species and use that
+        // and if we dont just spitball a random guess.
+        _records = profile?.CDCharacterRecords ?? (_profile != null ? PlayerProvidedCharacterRecords.DefaultRecords(_prototype.Index(_profile.Species)) : PlayerProvidedCharacterRecords.DefaultRecords());
 
         // Sync calculated height/weight immediately so the tab mirrors the sizing sliders.
         var metricsPersisted = TryPersistComputedMetrics();

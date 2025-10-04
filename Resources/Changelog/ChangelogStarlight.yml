@@ -16836,5 +16836,114 @@ Entries:
   id: 168200
   time: '2025-10-03T03:48:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1682
+- author: CawsForConcern
+  changes:
+  - message: Updated label on one TTS voice
+    type: Tweak
+  id: 182600
+  time: '2025-10-04T03:58:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1826
+- author: walksanatora
+  changes:
+  - message: Added upstream content
+    type: Add
+  id: 181200
+  time: '2025-10-04T05:01:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1812
+- author: walksanatora
+  changes:
+  - message: Sans antag rolebans (we need more time to bake those)
+    type: Remove
+  id: 181201
+  time: '2025-10-04T05:01:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1812
+- author: walsanator
+  changes:
+  - message: Fixed station-AI able to RR other AIs by shunting into the same chassis
+      as them
+    type: Fix
+  id: 182900
+  time: '2025-10-04T06:33:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1829
+- author: CrazyPhantom
+  changes:
+  - message: Changed 'Cryogenics' access name to 'Cryosleep'.
+    type: Tweak
+  id: 184100
+  time: '2025-10-04T16:41:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1841
+- author: CrazyPhantom
+  changes:
+  - message: Door electronics not showing UI
+    type: Fix
+  id: 182700
+  time: '2025-10-04T19:38:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1827
+- author: CrazyPhantom
+  changes:
+  - message: Central Command, Syndicate and Xenoborg Door electronics
+    type: Add
+  id: 182701
+  time: '2025-10-04T19:38:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1827
+- author: CrazyPhantom
+  changes:
+  - message: Changed the door electronics inside Central Command, Syndicate and Xenoborg
+      Airlocks
+    type: Tweak
+  id: 182702
+  time: '2025-10-04T19:38:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1827
+- author: CrazyPhantom
+  changes:
+  - message: Door electronics access's have been limited to their type
+    type: Tweak
+  id: 182703
+  time: '2025-10-04T19:38:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1827
+- author: CrazyPhantom
+  changes:
+  - message: Access Configurators shown access is now limited to Door electronics
+      (If changing airlock) Privileged ID and Access configurators access's
+    type: Tweak
+  id: 182704
+  time: '2025-10-04T19:38:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1827
+- author: CrazyPhantom
+  changes:
+  - message: Syndicate Access Configurator
+    type: Add
+  id: 182705
+  time: '2025-10-04T19:38:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1827
+- author: CrazyPhantom
+  changes:
+  - message: Access's required to change access that arent shown now show unknown
+      in the required access message
+    type: Tweak
+  id: 182706
+  time: '2025-10-04T19:38:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1827
+- author: CorruptOmega
+  changes:
+  - message: Cat ears in the Hug Dispenser are now the non-contraband white cat ears.
+    type: Tweak
+  id: 184200
+  time: '2025-10-04T19:43:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1842
+- author: CorruptOmega
+  changes:
+  - message: White cat ears can now be found in some loot tables and presents.
+    type: Add
+  id: 184201
+  time: '2025-10-04T19:43:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1842
+- author: CorruptOmega
+  changes:
+  - message: Janitor Cat Maid now uses white cat ears instead of contraband version.
+    type: Tweak
+  id: 184202
+  time: '2025-10-04T19:43:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1842
 Order: -1
 

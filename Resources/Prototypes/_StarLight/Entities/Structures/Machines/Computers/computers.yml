@@ -222,6 +222,7 @@
     - CentralCommand
     - Syndicate
     - Silicon
+    - Xenoborg
     privilegedIdSlot:
       name: UniversalIdConsole-privilegedId
       ejectSound: /Audio/Machines/id_swipe.ogg

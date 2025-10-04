@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMob, StripableInventoryBase]
+  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages
   id: BaseBorgChassisNotIonStormable
   name: cyborg
   description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
@@ -253,29 +253,6 @@
   - type: StationAIShunt
   - type: Crawler
   #endregion
-  # Starlight-start: Languages
-  - type: LanguageKnowledge
-    speaks:
-    - GalacticCommon
-    - Machine
-    understands:
-    - GalacticCommon
-    - Machine
-    - Canilunzt
-    - Sign
-    - Bubblish
-    - Chittin
-    - Draconic
-    - Marish
-    - Moffic
-    - Nekomimetic
-    - Sylvan
-    - Terrum
-    - VoxPidgin
-    - Scratch
-    - SolCommon
-    - Thaveyan
-  # Starlight-end
 
 - type: entity
   abstract: true
