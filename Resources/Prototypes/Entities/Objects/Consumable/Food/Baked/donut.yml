@@ -10,7 +10,6 @@
   - type: ItemPrice
     priceCategory: food_cheap
   # Starlight-end
-  - type: Food
   - type: Tag
     tags:
     - Donut

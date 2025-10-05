@@ -95,6 +95,11 @@
     fireCost: 80
   - type: Appearance
   - type: AmmoCounter
+  # region starlight
+  - type: Tag
+    tags:
+    - PaddyMech
+  # end region
 
 - type: entity
   id: InternalMechCombatTeslaCannon
@@ -147,6 +152,11 @@
     fireCost: 60
   - type: Appearance
   - type: AmmoCounter
+  # region starlight
+  - type: Tag
+    tags:
+    - PaddyMech
+  # end region
 
 - type: entity
   id: InternalMechCombatTaser
@@ -171,6 +181,11 @@
     fireCost: 40
   - type: Appearance
   - type: AmmoCounter
+  # region starlight
+  - type: Tag
+    tags:
+    - PaddyMech
+  # end region
 
 - type: entity
   id: InternalMechCombatShotgun
@@ -195,6 +210,11 @@
     fireCost: 50
   - type: Appearance
   - type: AmmoCounter
+  # region starlight
+  - type: Tag
+    tags:
+    - PaddyMech
+  # end region
 
 - type: entity
   id: InternalMechCombatShotgunIncendiary
@@ -408,3 +428,8 @@
     fireCost: 60
   - type: Appearance
   - type: AmmoCounter
+  # region starlight
+  - type: Tag
+    tags:
+    - PaddyMech
+  # end region

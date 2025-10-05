@@ -115,9 +115,10 @@
   - type: Store
     name: vendor-fashion-o-mat
     categories:
-    - SLFahsionSkirt
-    - SLFahsionSuit
-    - SLFahsionOther
+    - SLFashionSkirt
+    - SLFashionSuit
+    - SLFashionHead
+    - SLFashionOther
         
 - type: entity
   parent: SLVendingMachine
@@ -197,6 +198,23 @@
     - SalvageMercenaryEquipment
     currencyWhitelist:
     - SalvageTicket
+
+- type: entity
+  parent: SLVendingMachine
+  id: SLVendingMachineMining
+  name: mining ticket machine
+  components:
+    - type: AccessReader
+      access: [["Mining"]]
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/VendingMachines/mining.rsi
+    - type: Store
+      name: vendor-mining-ticket-machine
+      categories:
+        - MiningEquipment
+        - MiningConsumeables
+      currencyWhitelist:
+        - SalvageTicket # Same currency as salvage vendor to promote sharing
 
 - type: entity
   parent: VendingMachine

@@ -1,7 +1,8 @@
 id-card-access-level-command = Command
 id-card-access-level-captain = Captain
 id-card-access-level-head-of-personnel = Head of Personnel
-id-card-access-level-cryogenics = Cryogenics
+# Starlight edit: Changed 'Cryogenics' to 'Cryosleep"
+id-card-access-level-cryogenics = Cryosleep
 id-card-access-level-emergency-shuttle-repeal = E.Shuttle Repeal All
 
 id-card-access-level-head-of-security = Head of Security
