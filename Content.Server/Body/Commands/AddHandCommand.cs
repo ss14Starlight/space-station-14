@@ -6,6 +6,7 @@ using Content.Shared.Administration;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
+using Content.Shared.Interaction.Components;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
 
@@ -112,6 +113,10 @@ namespace Content.Server.Body.Commands
                     shell.WriteLine(Help);
                     return;
             }
+
+            // STARLIGHT PRETTY MUCH ALWAYS WANTS THESE
+            _entManager.EnsureComponent<HandsComponent>(entity);
+            _entManager.EnsureComponent<ComplexInteractionComponent>(entity);
 
             if (!_entManager.TryGetComponent(entity, out BodyComponent? body) || body.RootContainer.ContainedEntity == null)
             {
