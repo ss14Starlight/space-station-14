@@ -89,6 +89,10 @@
       - id: ClothingUniformJumpsuitLoungewear
       - id: ClothingHeadHatCowboyRed
       - id: ClothingNeckOldMantle # Starlight
+      - id: TatteredClothesUniformSuit #SL
+      - id: CamoUniformSuit #SL
+      - id: ClothingOuterBurnedRobes #SL
+      - id: ClothingNeckTatteredHood #SL
     # Uncommon Group
     - !type:GroupSelector
       weight: 23
@@ -115,6 +119,7 @@
       - id: ToySkeleton
       - id: Basketball
       - id: Football
+      - id: TennisBall
       - id: BalloonNT
       - id: BalloonCorgi
       - id: MysteryFigureBox

@@ -13,6 +13,7 @@ using Content.Shared.Roles;
 using Content.Shared.Starlight.TextToSpeech;
 using Robust.Shared;
 using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -41,7 +42,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly ISerializationManager _serManager = default!;
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
-    [Dependency] private readonly SharedIdentitySystem _identity = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
 
@@ -119,7 +120,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         if (string.IsNullOrEmpty(humanoid.Initial)
-            || !_proto.TryIndex(humanoid.Initial, out HumanoidProfilePrototype? startingSet))
+            || !_proto.Resolve(humanoid.Initial, out HumanoidProfilePrototype? startingSet))
         {
             LoadProfile(uid, HumanoidCharacterProfile.DefaultWithSpecies(humanoid.Species), humanoid);
             return;
@@ -182,16 +183,14 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.EyeColor = sourceHumanoid.EyeColor;
         targetHumanoid.EyeGlowing = sourceHumanoid.EyeGlowing; //starlight
         targetHumanoid.Age = sourceHumanoid.Age;
-        SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
+        targetHumanoid.Width = sourceHumanoid.Width; //starlight
+        targetHumanoid.Height = sourceHumanoid.Height; //starlight
         targetHumanoid.CustomBaseLayers = new(sourceHumanoid.CustomBaseLayers);
         targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
 
-        targetHumanoid.Gender = sourceHumanoid.Gender;
+        SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
+        SetGender((target, targetHumanoid), sourceHumanoid.Gender);
 
-        if (TryComp<GrammarComponent>(target, out var grammar))
-            _grammarSystem.SetGender((target, grammar), sourceHumanoid.Gender);
-
-        _identity.QueueIdentityUpdate(target);
         Dirty(target, targetHumanoid);
     }
 
@@ -295,6 +294,23 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     }
 
     /// <summary>
+    /// Sets the gender in the entity's HumanoidAppearanceComponent and GrammarComponent.
+    /// </summary>
+    public void SetGender(Entity<HumanoidAppearanceComponent?> ent, Gender gender)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        ent.Comp.Gender = gender;
+        Dirty(ent);
+
+        if (TryComp<GrammarComponent>(ent, out var grammar))
+            _grammarSystem.SetGender((ent, grammar), gender);
+
+        _identity.QueueIdentityUpdate(ent);
+    }
+
+    /// <summary>
     ///     Sets the skin color of this humanoid mob. Will only affect base layers that are not custom,
     ///     custom base layers should use <see cref="SetBaseLayerColor"/> instead.
     /// </summary>
@@ -308,14 +324,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         if (!Resolve(uid, ref humanoid))
             return;
 
-        if (!_proto.TryIndex<SpeciesPrototype>(humanoid.Species, out var species))
+        if (!_proto.Resolve<SpeciesPrototype>(humanoid.Species, out var species))
         {
             return;
         }
 
-        if (verify && !SkinColor.VerifySkinColor(species.SkinColoration, skinColor))
+        if (verify && _proto.Resolve(species.SkinColoration, out var index))
         {
-            skinColor = SkinColor.ValidSkinTone(species.SkinColoration, skinColor);
+            var strategy = index.Strategy;
+            skinColor = strategy.EnsureVerified(skinColor);
         }
 
         humanoid.SkinColor = skinColor;
@@ -448,6 +465,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var ev = new EyeColorInitEvent(); //starlight
         RaiseLocalEvent(uid, ref ev); //starlight
 
+        humanoid.Width = profile.Appearance.Width; //starlight
+        humanoid.Height = profile.Appearance.Height; //starlight
+
         SetSkinColor(uid, profile.Appearance.SkinColor, false);
 
         humanoid.MarkingSet.Clear();
@@ -516,6 +536,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.CustomSpecieName = profile.CustomSpecieName; // Starlight
 
         Dirty(uid, humanoid);
+        var update = new MarkingsUpdateEvent(); //starlight
+        RaiseLocalEvent(uid, ref update); //starlight
     }
 
     /// <summary>
@@ -536,7 +558,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     /// </summary>
     public HumanoidCharacterProfile? GetBaseProfile(Entity<HumanoidAppearanceComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp, false))
             return null;
 
         return ent.Comp.BaseProfile;
@@ -575,6 +597,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         if (sync)
             Dirty(uid, humanoid);
+
+        var ev = new MarkingsUpdateEvent(); //starlight
+        RaiseLocalEvent(uid, ref ev); //starlight
     }
 
     private void EnsureDefaultMarkings(EntityUid uid, HumanoidAppearanceComponent? humanoid)
@@ -612,6 +637,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         if (sync)
             Dirty(uid, humanoid);
+
+        var ev = new MarkingsUpdateEvent(); //starlight
+        RaiseLocalEvent(uid, ref ev); //starlight
     }
     //Starlight
     public void SetTTSVoice(EntityUid uid, string voiceId, HumanoidAppearanceComponent humanoid)
@@ -660,3 +688,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         return Loc.GetString("identity-age-old");
     }
 }
+
+#region Starlight
+[ByRefEvent]
+public record struct MarkingsUpdateEvent();
+#endregion

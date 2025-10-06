@@ -18,9 +18,7 @@
     <PackageReference Include="NetCord" />
     <PackageReference Include="Microsoft.Orleans.Client" />
     <PackageReference Include="Microsoft.Orleans.Clustering.Redis" />
-    <PackageReference Include="Microsoft.Orleans.Sdk"
-                      OutputItemType="Analyzer"
-                      PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Orleans.Sdk" OutputItemType="Analyzer" PrivateAssets="all" />
     <PackageReference Include="NAudio" />
     <PackageReference Include="OggVorbisEncoder" />
     <PackageReference Include="SS14.Starlight.NullLink" />
@@ -34,6 +32,7 @@
     <ProjectReference Include="..\RobustToolbox\Robust.Shared\Robust.Shared.csproj" />
     <ProjectReference Include="..\RobustToolbox\Robust.Server\Robust.Server.csproj" />
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
+    <ProjectReference Include="..\Content.Starlight.Codegen\Content.Starlight.Codegen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Objectives\Interfaces\" />

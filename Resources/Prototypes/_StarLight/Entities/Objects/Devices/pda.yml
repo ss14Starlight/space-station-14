@@ -123,6 +123,37 @@
 
 - type: entity
   parent: BasePDA
+  id: SalvageLeadPDA
+  name: salvage lead PDA
+  description: Smells like blood and ash.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/pda.rsi
+    - type: Pda
+      id: SalvageLeadIDCard
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-salvagelead
+    - type: PdaBorderColor
+      borderColor: "#af9366"
+      accentHColor: "#8900c9"
+      accentVColor: "#8900c9"
+    - type: Icon
+      sprite: _Starlight/Objects/Devices/pda.rsi
+      state: pda-salvagelead
+    - type: CartridgeLoader
+      uiKey: enum.PdaUiKey.Key
+      preinstalled:
+        - CrewManifestCartridge
+        - NotekeeperCartridge
+        - NanoTaskCartridge
+        - NewsReaderCartridge
+        - AstroNavCartridge
+
+- type: entity
+  parent: BasePDA
   id: MiningPDA
   name: mining PDA
   description: there is dirt in every crack.
@@ -147,6 +178,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
+    - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
 
@@ -196,13 +228,13 @@
 
 - type: entity
   parent: BasePDA
-  id: NTCCBlueShieldPDA
-  name: consortium officer's PDA
+  id: NTNCBlueShieldPDA
+  name: naval officer's PDA
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
-    id: NTCCBlueShieldIDCard
+    id: NTNCBlueShieldIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -225,21 +257,21 @@
 
 - type: entity
   parent: BasePDA
-  id: NTCCCSPDA
-  name: nt cc consortium officer's PDA
+  id: NTNCCSPDA
+  name: nt nc naval officer's PDA
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
-    id: NTCCBlueShieldIDCard
+    id: NTNCBlueShieldIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-ntcc-cs
+       pda-ntnc-cs
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
-    state: pda-ntcc-cs
+    state: pda-ntnc-cs
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -251,3 +283,14 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+
+- type: entity
+  parent: ClearPDA
+  id: BorgiClearPDA
+  suffix: Borgi
+  components:
+  - type: Pda
+    id: AssistantDerelictBorgiIDCard
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener

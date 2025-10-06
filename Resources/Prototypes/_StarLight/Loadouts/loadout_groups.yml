@@ -1,4 +1,30 @@
 - type: loadoutGroup
+  id: Scarves
+  name: loadout-group-scarves
+  minLimit: 0
+  loadouts:
+  - ScarfRed
+  - ScarfBlue
+  - ScarfGreen
+  - ScarfBlack
+  - ScarfBrown
+  - ScarfLightBlue
+  - ScarfOrange
+  - ScarfPurple
+  - ScarfPrideAce
+  - ScarfPrideAro
+  - ScarfPrideAroace
+  - ScarfPrideBisexual
+  - ScarfPrideGay
+  - ScarfPrideIntersex
+  - ScarfPrideLesbian
+  - ScarfPridePansexual
+  - ScarfPrideNonbinary
+  - ScarfPrideRainbow
+  - ScarfPrideTrans
+  - ScarfPrideLongBacon
+
+- type: loadoutGroup
   id: AssistantGlasses
   name: loadout-group-assistant-glasses
   minLimit: 0
@@ -7,6 +33,7 @@
   - GlassesJamjar
   - GlassesJensen
   - CheapSunnies
+  - AssistantNoirGlasses
 
 - type: loadoutGroup
   id: AssistantHead
@@ -22,6 +49,8 @@
   - GreyFedoraA
   - SolidHeadband
   - GreytideBizarreAdventures
+  - BrimHat
+  - FeatheredHat
 
 - type: loadoutGroup
   id: AssistantBackpack
@@ -30,6 +59,7 @@
   - CommonBackpack
   - CommonSatchel
   - CommonDuffel
+  - LeatherSatchel
 
 - type: loadoutGroup
   id: RoboticistJumpsuit
@@ -70,8 +100,7 @@
   loadouts:
   - RoboticistWeldingGoggles
   - RoboticistDiagnosticsHud
-  
-  
+
 - type: loadoutGroup
   id: RoboticistBackpack
   name: loadout-group-roboticist-backpack
@@ -79,7 +108,16 @@
   - RoboticistBackpack
   - RoboticistSatchel
   - RoboticistDuffel
-  
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: NanoTrasenRepresentativeHead
+  name: loadout-group-nanotrasenrepresentative-head
+  loadouts:
+  - NanoTrasenRepresentativeTophat
+  - NanoTrasenRepresentativeEliteTophat
+  - NanoTrasenRepresentativeCap
+
 - type: loadoutGroup
   id: NanoTrasenRepresentativeJumpsuit
   name: loadout-group-nanotrasenrepresentative-jumpsuit
@@ -87,6 +125,8 @@
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeJumpskirt
   - NanoTrasenRepresentativeJumpsuitFormal
+  - NanoTrasenRepresentativeTurtleneck
+  - NanoTrasenRepresentativeTurtleneckSkirt
 
 - type: loadoutGroup
   id: NanoTrasenRepresentativeEyewear
@@ -94,7 +134,15 @@
   loadouts:
   - NanoTrasenRepresentativeGlasses
   - NanoTrasenRepresentativeHud
-  
+  - NanoTrasenRepresentativeMonocle
+
+- type: loadoutGroup
+  id: BlueShieldHead
+  name: loadout-group-blueshield-head
+  loadouts:
+  - BlueShieldBeret
+  - BlueShieldBountyHat
+
 - type: loadoutGroup
   id: BlueShieldBackpack
   name: loadout-group-blueshield-backpack
@@ -102,6 +150,7 @@
   - BlueShieldBackpack
   - BlueShieldSatchel
   - BlueShieldDuffel
+  - LeatherSatchel
 
 - type: loadoutGroup
   id: BlueShieldJumpsuit
@@ -112,6 +161,7 @@
   - EliteBlueShieldJumpsuit
   - EliteBlueShieldJumpskirt
   - BlueShieldShirt
+  - FormalBlueShieldJumpsuit
 
 - type: loadoutGroup
   id: BlueShieldOuterclothing
@@ -119,21 +169,22 @@
   loadouts:
   - BlueShieldVest
   - BlueShieldCoat
-  
+
 - type: loadoutGroup
   id: BlueShieldNeck
   name: Loadout-group-blueshield-neck
   loadouts:
   - BlueShieldFormalCloak
   - BlueShieldEliteCloak
-  
+  - BlueShieldPoncho
+
 - type: loadoutGroup
   id: BlueShieldEyewear
   name: loadout-group-blueshield-eyewear
   loadouts:
   - BlueShieldGlasses
   - BlueShieldHud
-    
+
 - type: loadoutGroup
   id: SecurityNonLethalWeapon
   name: loadout-group-security-non-lethal-weapon
@@ -147,6 +198,7 @@
   loadouts:
   - SecurityMk58
   - SecurityPistolDP
+  - SecurityPistolEnforcer
 
 # Assorted Boots
 - type: loadoutGroup
@@ -167,9 +219,10 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
-  - CowboyBootsBrown
-  - CowboyBootsBlack
-  - CowboyBootsWhite
+  - CowboyBootsBrownFilled
+  - CowboyBootsBlackFilled
+  - CowboyBootsWhiteFilled
+  - HighHeelBootsFilled
 
 - type: loadoutGroup
   id: HoPShoes
@@ -206,11 +259,11 @@
   - JackBoots
   - SecurityWinterBoots
   - LaceupShoes
-  - CowboyBootsBrown
-  - CowboyBootsBlack
-  - CowboyBootsWhite
+  - CowboyBootsBrownFilled
+  - CowboyBootsBlackFilled
+  - CowboyBootsWhiteFilled
   - Heels
-  - HighHeelBoots
+  - HighHeelBootsFilled
 
 - type: loadoutGroup
   id: CivilianShoes
@@ -234,3 +287,25 @@
   - Heels
   - LeatherShoes
 
+- type: loadoutGroup
+  id: BlueShieldShoes
+  name: loadout-group-security-shoes
+  loadouts:
+  - CombatBoots
+  - HighHeelBootsFilled
+
+# Salvage Lead
+- type: loadoutGroup
+  id: SalvageLeadJumpsuit
+  name: loadout-group-salvage-lead-jumpsuit
+  loadouts:
+    - SalvageLeadJumpsuit
+    - SalvageLeadJumpskirt
+
+# Mining Specialist
+- type: loadoutGroup
+  id: MiningSpecialistJumpsuit
+  name: loadout-group-mining-specialist-jumpsuit
+  loadouts:
+    - MiningSpecialistJumpsuit
+    - MiningSpecialistJumpskirt

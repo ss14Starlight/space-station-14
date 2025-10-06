@@ -1,6 +1,7 @@
 ﻿using Content.Server._Starlight.Objectives.Events;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
+using Content.Server.Database.Migrations.Postgres;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles.UI;
 using Content.Shared._Starlight.Railroading;
@@ -11,27 +12,36 @@ using Content.Shared.Database;
 using Content.Shared.Examine;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingSystem : SharedRailroadingSystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IAdminManager _admins = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly EuiManager _euiManager = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
-
+    [Dependency] private readonly RailroadRuleSystem _railroadRule = default!;
+    
     public readonly ProtoId<AlertPrototype> AlertProtoId = "RailroadingChoice";
 
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<RailroadCardComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<RailroadableComponent, OpenCardsAlertEvent>(ShowCardsUi);
         SubscribeLocalEvent<RailroadableComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<RailroadableComponent, CollectObjectivesEvent>(OnCollectObjectiveInfo);
+    }
+
+    private void OnMapInit(Entity<RailroadCardComponent> ent, ref MapInitEvent args)
+    {
+        if (ent.Comp.Images != null && ent.Comp.Images.Count != 0)
+            ent.Comp.Image = _random.Pick(ent.Comp.Images); // Randomly picks Image from collection.
     }
 
     private void OnCollectObjectiveInfo(Entity<RailroadableComponent> ent, ref CollectObjectivesEvent args)
@@ -62,8 +72,8 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
                     ("Color", card.Comp1.Color),
                     ("IconColor", card.Comp1.IconColor),
                     ("Icon", card.Comp1.Icon),
-                    ("Title", card.Comp1.Title),
-                    ("Desc", card.Comp1.Description),
+                    ("Title", Loc.GetString(card.Comp1.Title)),
+                    ("Desc", Loc.GetString(card.Comp1.Description)),
                 ];
                 args.PushMarkup(Loc.GetString("railroading-card-examined", @params));
             }
@@ -75,7 +85,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
                         ("Color", item.Comp1.Color),
                         ("IconColor", item.Comp1.IconColor),
                         ("Icon", item.Comp1.Icon),
-                        ("Title", item.Comp1.Title)
+                        ("Title", Loc.GetString(item.Comp1.Title))
                     ];
                     args.PushMarkup(Loc.GetString("railroading-issued-card", @params));
                 }
@@ -106,7 +116,8 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         };
         _euiManager.OpenEui(eui, user);
         eui.StateDirty();
-        _alerts.ClearAlert(ent, AlertProtoId);
+        if (TryComp<AlertsComponent>(ent, out var alerts))
+            _alerts.ClearAlert((ent,alerts), AlertProtoId);
     }
 
     // todo: timer
@@ -123,11 +134,15 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
             {
                 subject.Comp.ActiveCard = card;
                 _adminLogger.Add(LogType.Railroading, LogImpact.Medium, $"{ToPrettyString(subject)} selected card {ToPrettyString(cardUid)}.");
+
+                var cardPerformer = EnsureComp<RailroadCardPerformerComponent>(card);
+                cardPerformer.Performer = subject;
+
                 var @event = new RailroadingCardChosenEvent(subject);
                 RaiseLocalEvent(card, ref @event);
             }
             else if (_entitySystem.TryEntity<RailroadRuleComponent>(card.Comp2.RuleOwner, out var rule))
-                rule.Comp.Pool.Add(card);
+                _railroadRule.AddCardToPool(rule, card);
 
         subject.Comp.IssuedCards = null;
     }
@@ -158,6 +173,21 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         RaiseLocalEvent(ent.Comp.ActiveCard.Value, ref completedEvent);
 
         _adminLogger.Add(LogType.Railroading, LogImpact.Medium, $"{ToPrettyString(ent)} completed card {ToPrettyString(ent.Comp.ActiveCard.Value)}.");
+        ent.Comp.Completed ??= [];
+        ent.Comp.Completed.Add(ent.Comp.ActiveCard.Value);
+        ent.Comp.ActiveCard = null;
+    }
+
+    internal void CardFailed(Entity<RailroadableComponent> ent)
+    {
+        if (ent.Comp.ActiveCard is null)
+            return;
+
+        var @event = new RailroadingCardFailedEvent(ent);
+        RaiseLocalEvent(ent.Comp.ActiveCard.Value, ref @event);
+        RaiseLocalEvent(ent, ref @event);
+
+        _adminLogger.Add(LogType.Railroading, LogImpact.Medium, $"{ToPrettyString(ent)} failed card {ToPrettyString(ent.Comp.ActiveCard.Value)}.");
         ent.Comp.Completed ??= [];
         ent.Comp.Completed.Add(ent.Comp.ActiveCard.Value);
         ent.Comp.ActiveCard = null;

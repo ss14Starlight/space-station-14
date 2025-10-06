@@ -1,0 +1,37 @@
+- type: entity
+  parent: BaseAction
+  id: ActionSummonCheese
+  name: Summon Cheese
+  description: Places a slice of cheese in your hand. delicious!
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: Objects/Consumable/Food/ingredients.rsi
+      state: cheesewedge
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: FoodCheeseSlice
+
+- type: entity
+  parent: BaseAction
+  id: ActionRandomizeLanguages
+  name: Language Shift
+  description: You ever heard of the tower of babel?
+  components:
+  - type: Magic
+    requiresClothes: true
+    requiresSpeech: true
+  - type: Action
+    useDelay: 3600 # full hour use delay. you get ONE mabey TWO on beta.
+    itemIconStyle: BigAction
+    icon: 
+      sprite: _Starlight/Actions/wizard.rsi
+      state: babel_spell
+  - type: SpeakOnAction
+    sentence: action-speech-spell-babel
+  - type: InstantAction
+    event: !type:TowerOfBabelEvent

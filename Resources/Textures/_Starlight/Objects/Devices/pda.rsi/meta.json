@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from ParadiseStation",
+  "copyright": "Taken from ParadiseStation | Salvage Lead/Medic PDAs by mikeysaurus",
   "size": {
     "x": 32,
     "y": 32
@@ -45,10 +45,13 @@
       "name": "pda-mailtech"
     },
     {
-      "name": "pda-ntcc-cs"
+      "name": "pda-ntnc-cs"
     },
     {
       "name": "pda-commander"
+    },
+    {
+      "name": "pda-salvagelead"
     }
   ]
 }

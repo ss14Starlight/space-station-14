@@ -1,3 +1,4 @@
+using System.Numerics; //starlight
 using Content.Client.DisplacementMap;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
@@ -56,9 +57,11 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         //starlight start
         if (humanoidAppearance.EyeGlowing)
             sprite.LayerSetShader(HumanoidVisualLayers.Eyes, "unshaded");
-        else 
+        else
             if(_sprite.LayerMapTryGet((entity.Owner, sprite), HumanoidVisualLayers.Eyes, out var layerIndex, true))
                 sprite.LayerSetShader(layerIndex, (ShaderInstance?)null);
+
+        sprite.Scale = new Vector2(humanoidAppearance.Width * humanoidAppearance.Height, humanoidAppearance.Height);
         //starlight end
     }
 
@@ -232,6 +235,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         humanoid.SkinColor = profile.Appearance.SkinColor; //starlight
         humanoid.EyeColor = profile.Appearance.EyeColor;
         humanoid.EyeGlowing = profile.Appearance.EyeGlowing;
+        humanoid.Width = profile.Appearance.Width; //starlight
+        humanoid.Height = profile.Appearance.Height; //starlight
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
@@ -244,7 +249,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         {
             return;
         }
-        
+
         humanoid.CustomBaseLayers = layers;
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
@@ -311,25 +316,26 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     private void RemoveMarking(Marking marking, Entity<SpriteComponent> spriteEnt)
     {
         if (!_markingManager.TryGetMarking(marking, out var prototype))
-        {
             return;
-        }
 
         foreach (var sprite in prototype.Sprites)
         {
             if (sprite is not SpriteSpecifier.Rsi rsi)
-            {
                 continue;
-            }
 
             var layerId = $"{marking.MarkingId}-{rsi.RsiState}";
             if (!_sprite.LayerMapTryGet(spriteEnt.AsNullable(), layerId, out var index, false))
-            {
                 continue;
-            }
 
             _sprite.LayerMapRemove(spriteEnt.AsNullable(), layerId);
             _sprite.RemoveLayer(spriteEnt.AsNullable(), index);
+
+            // If this marking is one that can be displaced, we need to remove the displacement as well; otherwise
+            // altering a marking at runtime can lead to the renderer falling over.
+            // The Vulps must be shaved.
+            // (https://github.com/space-wizards/space-station-14/issues/40135).
+            if (prototype.CanBeDisplaced)
+                _displacement.EnsureDisplacementIsNotOnSprite(spriteEnt, layerId);
         }
     }
 
@@ -369,9 +375,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         var sprite = entity.Comp2;
 
         if (!_sprite.LayerMapTryGet((entity.Owner, sprite), markingPrototype.BodyPart, out var targetLayer, false))
-        {
             return;
-        }
 
         visible &= !IsHidden(humanoid, markingPrototype.BodyPart);
         visible &= humanoid.BaseLayers.TryGetValue(markingPrototype.BodyPart, out var setting)
@@ -382,9 +386,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             var markingSprite = markingPrototype.Sprites[j];
 
             if (markingSprite is not SpriteSpecifier.Rsi rsi)
-            {
-                continue;
-            }
+                return;
 
             var layerId = $"{markingPrototype.ID}-{rsi.RsiState}";
 
@@ -398,26 +400,19 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             _sprite.LayerSetVisible((entity.Owner, sprite), layerId, visible);
 
             if (!visible || setting == null) // this is kinda implied
-            {
                 continue;
-            }
 
             // Okay so if the marking prototype is modified but we load old marking data this may no longer be valid
             // and we need to check the index is correct.
             // So if that happens just default to white?
             if (colors != null && j < colors.Count)
-            {
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
-            }
             else
-            {
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
-            }
 
             if (humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced)
-            {
                 _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _);
-            }
+            
             //starlight start
             if (isGlowing)
             {

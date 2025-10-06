@@ -13,6 +13,7 @@ using Content.Shared.Popups;
 using Content.Shared.Strip;
 using Content.Shared.Strip.Components;
 using Content.Shared.Whitelist;
+using Content.Shared._Starlight.Inventory; // starlight
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -97,6 +98,14 @@ public abstract partial class InventorySystem
         // unequip the item.
         if (itemUid != null)
         {
+            // starlight start
+            // raise our event so that we can do equip mode behaviour elsewhere
+            var useEvt = new InventoryUseSlotEvent(actor, (EntityUid)itemUid);
+            RaiseLocalEvent(itemUid.Value, ref useEvt);
+            
+            if(useEvt.Handled) return;
+            // starlight end
+
             if (!TryUnequip(actor, ev.Slot, out var item, predicted: true, inventory: inventory, checkDoafter: true, triggerHandContact: true))
                 return;
 
@@ -193,8 +202,6 @@ public abstract partial class InventorySystem
         // If new gloves are equipped, trigger OnContactInteraction for held items
         if (triggerHandContact && !((slotDefinition.SlotFlags & SlotFlags.GLOVES) == 0))
             TriggerHandContactInteraction(target);
-
-        Dirty(target, inventory);
 
         _movementSpeed.RefreshMovementSpeedModifiers(target);
 
@@ -486,8 +493,6 @@ public abstract partial class InventorySystem
         // If gloves are unequipped, OnContactInteraction should trigger for held items
         if (triggerHandContact && !((slotDefinition.SlotFlags & SlotFlags.GLOVES) == 0))
             TriggerHandContactInteraction(target);
-
-        Dirty(target, inventory);
 
         _movementSpeed.RefreshMovementSpeedModifiers(target);
 

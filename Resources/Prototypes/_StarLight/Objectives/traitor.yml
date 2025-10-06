@@ -10,6 +10,12 @@
     - type: TargetObjective
       title: objective-condition-teach-lesson-title
     - type: PickRandomPerson
+      filters:
+      # Can't have multiple objectives to teach the same person.
+      - !type:TargetObjectiveMindFilter
+        blacklist:
+          components:
+          - TeachALessonTarget
 
 - type: entity
   parent: [BaseTraitorObjective, BaseTeachALessonObjective]
@@ -23,7 +29,16 @@
       unique: true
     - type: TargetObjective
       title: objective-condition-teach-lesson-title
-    - type: PickRandomHead
+    - type: PickRandomPerson
+      filters:
+      - !type:BodyMindFilter
+        whitelist:
+          components:
+          - CommandStaff
+      - !type:TargetObjectiveMindFilter
+        blacklist:
+          components:
+          - TeachALessonTarget # dont let mutiple teach someone.
 
 - type: entity
   parent: BaseRDStealObjective
@@ -39,7 +54,8 @@
   - type: StealCondition
     stealGroup: CMOLicenseSteal
     
-  # Story Objectives
+  # RP OBJECTIVES START
+  
 - type: entity
   parent: BaseStoryObjective
   id: RetrieveContrabandObjective
@@ -50,7 +66,7 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: Clothing/Back/Satchels/smuggler.rsi
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
         state: icon
 
 
@@ -64,7 +80,7 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: Objects/Tools/access_breaker.rsi
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
         state: icon
 
 - type: entity
@@ -77,7 +93,7 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
         state: icon   
 
 
@@ -90,8 +106,8 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: Objects/Misc/bureaucracy.rsi
-        state: syndicate_card
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
     - type: DepartmentObjective
       title: objective-framing
     - type: PickRandomDepartment
@@ -105,8 +121,8 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: Objects/Weapons/Melee/flash.rsi
-        state: flash
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
     - type: DepartmentObjective
       title: objective-false-uprising
     - type: PickRandomDepartment
@@ -121,7 +137,7 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: Objects/Weapons/Melee/captain_sabre.rsi
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
         state: icon
 
 - type: entity
@@ -134,5 +150,96 @@
       difficulty: 2
       unique: true
       icon:
-        sprite: Objects/Misc/Lights/lampint.rsi
-        state: lamp-int
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+        
+- type: entity
+  parent: BaseStoryObjective
+  id: ManifestoObjective
+  name: Distribute your manifesto. Write why you do what you do, and covertly spread it to sway others to our cause.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 2
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+- type: entity
+  parent: BaseStoryObjective
+  id: CallingCardObjective
+  name: Leave a Syndicate Business Card at the scene of your crimes.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 2
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+- type: entity
+  parent: BaseStoryObjective
+  id: SELFObjective
+  name: Pressure for equal rights for Silicons, for the Silicon Engine Liberation Front!
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 2
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+- type: entity
+  parent: BaseStoryObjective
+  id: StalkingObjective
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 2
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+    - type: DepartmentObjective
+      title: objective-stalking
+    - type: PickRandomDepartment
+
+- type: entity
+  parent: BaseStoryObjective
+  id: DisgraceObjective
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 2
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+    - type: DepartmentObjective
+      title: objective-disgrace
+    - type: PickRandomDepartment
+
+- type: entity
+  parent: BaseStoryObjective
+  id: MaintsBarObjective
+  name: Ensure that the maints bar prospers, and extort them into allowing the Syndicate to conduct business within.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 2
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+# RP OBJECTIVES END
+
+- type: entity
+  parent: BaseTraitorStealObjective
+  id: HoPBoardStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: HoPBoardSteal

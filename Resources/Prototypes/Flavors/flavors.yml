@@ -595,9 +595,9 @@
   description: flavor-complex-vermouth
 
 - type: flavor
-  id: irishslammer
+  id: irishcarbomb #Starlight Change
   flavorType: Complex
-  description: flavor-complex-irish-slammer
+  description: flavor-complex-irish-car-bomb #Starlight Change
 
 - type: flavor
   id: alienbrainhemorrhage
@@ -1483,3 +1483,13 @@
   id: artifactglue
   flavorType: Complex
   description: flavor-complex-artifact-glue
+
+- type: flavor
+  id: alkaline
+  flavorType: Base
+  description: flavor-base-alkaline
+
+- type: flavor
+  id: motivating
+  flavorType: Base
+  description: flavor-base-motivating

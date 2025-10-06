@@ -31,6 +31,10 @@
       whitelist:
         components:
           - Hands
+    - type: TriggerOnActivateImplant
+    - type: PolymorphOnTrigger
+      polymorph: RampagingGorilla
+      targetUser: true
 
 - type: entity
   parent: BaseSubdermalImplant

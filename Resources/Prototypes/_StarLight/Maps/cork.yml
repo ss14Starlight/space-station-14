@@ -24,8 +24,8 @@
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
-            MiningSpecialist: [ 2, 2 ]
             MailTech: [ 1, 1 ]
+            SalvageLead: [ 1, 1 ]
             # engineering
             ChiefEngineer: [ 1, 1 ]
             StationEngineer: [ 2, 2 ]

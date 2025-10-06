@@ -123,7 +123,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (!TryComp<AirlockComponent>(uid, out var airlock))
             return;
 
-        if (IsBolted(uid) || !airlock.Powered)
+        if (!airlock.Powered) //starlight change
             return;
 
         if (door.State != DoorState.Closed)
@@ -534,7 +534,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
             if (door.CrushDamage != null)
                 _damageableSystem.TryChangeDamage(entity, door.CrushDamage, origin: uid);
 
-            _stunSystem.TryParalyze(entity, stunTime, true);
+            _stunSystem.TryUpdateParalyzeDuration(entity, stunTime);
         }
 
         if (door.CurrentlyCrushing.Count == 0)

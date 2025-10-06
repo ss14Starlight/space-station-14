@@ -6,7 +6,6 @@ using Content.Server.Disposal.Tube;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles;
 using Content.Server.Mind;
-using Content.Server.Mind.Commands;
 using Content.Server.Prayer;
 using Content.Server.Preferences.Managers;
 using Content.Server.Silicons.Laws;
@@ -39,6 +38,10 @@ using Robust.Shared.Timing;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Utility;
 using static Content.Shared.Configurable.ConfigurationComponent;
+using Content.Shared._Starlight.Thaven.Components; //Starlight
+using Content.Server._Starlight.Thaven; //Starlight
+using Content.Server.Traits; // Starlight
+using Content.Shared._Starlight.Character.Info; //Starlight
 
 namespace Content.Server.Administration.Systems
 {
@@ -71,6 +74,9 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly SiliconLawSystem _siliconLawSystem = default!;
         [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
         [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
+        [Dependency] private readonly ThavenMoodsSystem _moods = default!; //Starlight
+        [Dependency] private readonly TraitSystem _traitSystem = default!; //Starlight
+        [Dependency] private readonly SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
 
         private readonly Dictionary<ICommonSession, List<EditSolutionsEui>> _openSolutionUis = new();
 
@@ -157,6 +163,9 @@ namespace Content.Server.Administration.Systems
 
                                 var mobUid = _spawning.SpawnPlayerMob(coords.Value, null, humanoid, stationUid);
 
+                                _traitSystem.ApplyTraits(mobUid, humanoid); // Starlight
+                                _sLSharedCharacterInfoSystem.ApplyCharacterInfo(mobUid, humanoid); // Starlight
+
                                 if (_mindSystem.TryGetMind(args.Target, out var mindId, out var mindComp))
                                     _mindSystem.TransferTo(mindId, mobUid, true, mind: mindComp);
 
@@ -181,7 +190,12 @@ namespace Content.Server.Administration.Systems
 
                             var stationUid = _stations.GetOwningStation(args.Target);
                             var profile = _humanoidAppearance.GetBaseProfile(args.Target);
-                            _spawning.SpawnPlayerMob(coords.Value, null, profile, stationUid);
+                            var mobUid = _spawning.SpawnPlayerMob(coords.Value, null, profile, stationUid);
+                            if (profile is HumanoidCharacterProfile humanoid) // Starlight
+                            {
+                                _traitSystem.ApplyTraits(mobUid, humanoid);
+                                _sLSharedCharacterInfoSystem.ApplyCharacterInfo(mobUid, humanoid);
+                            }
                         },
                         ConfirmationPopup = true,
                         Impact = LogImpact.High,
@@ -400,6 +414,45 @@ namespace Content.Server.Administration.Systems
                         Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Actions/actions_borg.rsi"), "state-laws"),
                     });
                 }
+
+                // open camera
+                args.Verbs.Add(new Verb()
+                {
+                    Priority = 10,
+                    Text = Loc.GetString("admin-verbs-camera"),
+                    Message = Loc.GetString("admin-verbs-camera-description"),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/vv.svg.192dpi.png")),
+                    Category = VerbCategory.Admin,
+                    Act = () =>
+                    {
+                        var ui = new AdminCameraEui(args.Target);
+                        _euiManager.OpenEui(ui, player);
+                    },
+                    Impact = LogImpact.Low
+                });
+
+                #region Starlight Thaven
+                // Begin Impstation Additions
+                if (TryComp<ThavenMoodsComponent>(args.Target, out var moods))
+                {
+                    args.Verbs.Add(new Verb()
+                    {
+                        Text = Loc.GetString("thaven-moods-ui-verb"),
+                        Category = VerbCategory.Admin,
+                        Act = () =>
+                        {
+                            var ui = new ThavenMoodsEui(_moods, EntityManager, _adminManager);
+                            if (!_playerManager.TryGetSessionByEntity(args.User, out var session))
+                                return;
+
+                            _euiManager.OpenEui(ui, session);
+                            ui.UpdateMoods((args.Target, moods));
+                        },
+                        Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Actions/actions_borg.rsi"), "state-laws"),
+                    });
+                }
+                #endregion
+                // End Impstation Additions
             }
         }
 
@@ -417,7 +470,7 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("delete-verb-get-data-text"),
                     Category = VerbCategory.Debug,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png")), //Starlight
                     Act = () => Del(args.Target),
                     Impact = LogImpact.Medium,
                     ConfirmationPopup = true
@@ -467,8 +520,8 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("make-sentient-verb-get-data-text"),
                     Category = VerbCategory.Debug,
-                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")),
-                    Act = () => MakeSentientCommand.MakeSentient(args.Target, EntityManager),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")), //Starlight
+                    Act = () => _mindSystem.MakeSentient(args.Target),
                     Impact = LogImpact.Medium
                 };
                 args.Verbs.Add(verb);

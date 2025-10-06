@@ -3,20 +3,21 @@
   name: guide-entry-species
   text: "/ServerInfo/Guidebook/Mobs/Species.xml"
   children:
-    - Arachnid
-    - Diona
-    - Dwarf
-    - Human
-    - Moth
-    - Reptilian
-    - SlimePerson
-    - Vox
-    - Felionoid
-    - Cyclorite
-    - Vulpkanin
-    - Resomi
-    - Avali
-    - Shadekin
+  - Arachnid
+  - Avali
+  - Cyclorite
+  - Diona
+  - Dwarf
+  - Felionoid
+  - Human
+  - SlimePerson
+  - Moth
+  - Reptilian
+  - Resomi
+  - Shadekin
+  - Vox
+  - Vulpkanin
+  - Thaven #Starlight
 
 - type: guideEntry
   id: Arachnid
@@ -59,6 +60,12 @@
   text: "/ServerInfo/Guidebook/Mobs/Vox.xml"
 
 - type: guideEntry
+  id: Vulpkanin
+  name: species-name-vulpkanin
+  text: "/ServerInfo/Guidebook/Mobs/Vulpkanin.xml"
+
+#TODO: Move below into _Starlight
+- type: guideEntry
   id: Felionoid
   name: species-name-felionoid
   text: "/ServerInfo/Guidebook/Mobs/Felionoid.xml"
@@ -67,11 +74,6 @@
   id: Cyclorite
   name: species-name-cyclorite
   text: "/ServerInfo/Guidebook/Mobs/Cyclorite.xml"
-
-- type: guideEntry
-  id: Vulpkanin
-  name: species-name-vulpkanin
-  text: "/ServerInfo/Guidebook/Mobs/Vulpkanin.xml"
 
 - type: guideEntry
   id: Resomi
@@ -87,4 +89,5 @@
   id: Shadekin
   name: species-name-shadekin
   text: "/ServerInfo/Guidebook/Mobs/Shadekin.xml"
+
 

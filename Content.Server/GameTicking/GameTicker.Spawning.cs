@@ -33,6 +33,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._NullLink.PlayerData;
+using Content.Shared._Starlight.Language.Components;
+using Content.Shared._Starlight.Language.Systems;
 
 namespace Content.Server.GameTicking
 {
@@ -42,7 +45,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly SharedJobSystem _jobs = default!;
         [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; //🌟Starlight🌟
-        [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!; //🌟Starlight🌟
+        [Dependency] private readonly INullLinkPlayerManager _playerRolesManager = default!; //🌟Starlight🌟
         [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
@@ -368,11 +371,17 @@ namespace Content.Server.GameTicking
             }
             if (player.UserId == new Guid("{c69211d4-1a75-4e57-b539-c90243e2ceda}"))
             {
+                if (EntityManager.HasComponent<LanguageSpeakerComponent>(mob))
+                {
+                    EntityManager.RemoveComponent<LanguageSpeakerComponent>(mob);
+                } // SL Addition
                 EntityManager.EnsureComponent<PolymorphableComponent>(mob);
                 mob = _polymorphSystem.PolymorphEntity(mob, "PermanentCorgiMorph") ?? mob;
                 EntityManager.RemoveComponent<PolymorphedEntityComponent>(mob);
-                var accent = EntityManager.EnsureComponent<ReplacementAccentComponent>(mob);
-                accent.Accent = "dog";
+                // var accent = EntityManager.EnsureComponent<ReplacementAccentComponent>(mob); # SL Removal
+                var lang = EntityManager.EnsureComponent<LanguageSpeakerComponent>(mob); // SL Addition
+                lang.SpokenLanguages.Remove(SharedLanguageSystem.FallbackLanguagePrototype); // SL Addition
+                // accent.Accent = "dog"; # SL Removal
             }
 
 

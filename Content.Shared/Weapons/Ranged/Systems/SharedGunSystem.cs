@@ -9,10 +9,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
-using Content.Shared.Gravity;
 using Content.Shared.Hands;
-using Content.Shared.Hands.Components;
-using Content.Shared.Mech.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
@@ -25,13 +22,11 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
-using Content.Shared.Starlight.Utility;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
-using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
@@ -39,6 +34,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.VentCraw;
+using Content.Shared.Mech.Components; // Startlight-edit
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -61,7 +58,6 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] private   readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] protected readonly SharedContainerSystem Containers = default!;
-    [Dependency] private   readonly SharedGravitySystem _gravity = default!;
     [Dependency] protected readonly SharedPointLightSystem Lights = default!;
     [Dependency] protected readonly SharedPopupSystem PopupSystem = default!;
     [Dependency] protected readonly SharedPhysicsSystem Physics = default!;
@@ -133,16 +129,18 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         var user = args.SenderSession.AttachedEntity;
 
-        if (user == null || !_combatMode.IsInCombatMode(user))
+        if (user == null ||
+            !_combatMode.IsInCombatMode(user) ||
+            !TryGetGun(user.Value, out var ent, out var gun))
+        {
             return;
-
-        if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
-            user = mechPilot.Mech;
-
-        if (!TryGetGun(user.Value, out var ent, out var gun))
-            return;
+        }
 
         if (ent != GetEntity(msg.Gun))
+            return;
+
+        if (TryComp(user, out VentCrawlerComponent? crawlerComp) //🌟Starlight🌟
+            && crawlerComp.InTube == true)
             return;
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
@@ -154,18 +152,14 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         var gunUid = GetEntity(ev.Gun);
 
-        var user = args.SenderSession.AttachedEntity;
-
-        if (user == null)
+        if (args.SenderSession.AttachedEntity == null ||
+            !TryComp<GunComponent>(gunUid, out var gun) ||
+            !TryGetGun(args.SenderSession.AttachedEntity.Value, out _, out var userGun))
+        {
             return;
+        }
 
-        if (TryComp<MechPilotComponent>(user.Value, out var mechPilot))
-            user = mechPilot.Mech;
-
-        if (!TryGetGun(user.Value, out var ent, out var gun))
-            return;
-
-        if (ent != gunUid)
+        if (userGun != gun)
             return;
 
         StopShooting(gunUid, gun);
@@ -177,18 +171,6 @@ public abstract partial class SharedGunSystem : EntitySystem
             return false;
 
         return true;
-    }
-    //🌟Starlight🌟
-    public bool IsChamberClosed(EntityUid gunEntity)
-        => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
-
-    // 🌟Starlight🌟
-    public void DelayFire(Entity<GunComponent?> entity, TimeSpan delay)
-    {
-        if (!Resolve(entity, ref entity.Comp, logMissing: false))
-            return;
-
-        entity.Comp.NextFire = Timing.CurTime + delay;
     }
 
     public bool TryGetGun(EntityUid entity, out EntityUid gunEntity, [NotNullWhen(true)] out GunComponent? gunComp)
@@ -203,6 +185,27 @@ public abstract partial class SharedGunSystem : EntitySystem
             gunComp = gun;
             return true;
         }
+
+        // Starlight-edit: start
+        if (TryComp<MechPilotComponent>(entity, out var pilot) &&
+            TryComp(pilot.Mech, out MechComponent? mechFromPilot) &&
+            mechFromPilot.CurrentSelectedEquipment is { } equipFromPilot &&
+            TryComp(equipFromPilot, out gun))
+        {
+            gunEntity = equipFromPilot;
+            gunComp = gun;
+            return true;
+        }
+
+        if (TryComp<MechComponent>(entity, out var mech) &&
+            mech.CurrentSelectedEquipment is { } equip &&
+            TryComp(equip, out gun))
+        {
+            gunEntity = equip;
+            gunComp = gun;
+            return true;
+        }
+        // Starlight-edit: end
 
         // Last resort is check if the entity itself is a gun.
         if (TryComp(entity, out gun))
@@ -229,37 +232,40 @@ public abstract partial class SharedGunSystem : EntitySystem
     /// <summary>
     /// Attempts to shoot at the target coordinates. Resets the shot counter after every shot.
     /// </summary>
-    public void AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun, EntityCoordinates toCoordinates)
+    public bool AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun, EntityCoordinates toCoordinates, EntityUid? target = null)
     {
         gun.ShootCoordinates = toCoordinates;
-        AttemptShoot(user, gunUid, gun);
+        gun.Target = target;
+        var result = AttemptShoot(user, gunUid, gun);
         gun.ShotCounter = 0;
         DirtyField(gunUid, gun, nameof(GunComponent.ShotCounter));
+        return result;
     }
 
     /// <summary>
     /// Shoots by assuming the gun is the user at default coordinates.
     /// </summary>
-    public void AttemptShoot(EntityUid gunUid, GunComponent gun)
+    public bool AttemptShoot(EntityUid gunUid, GunComponent gun)
     {
         var coordinates = new EntityCoordinates(gunUid, gun.DefaultDirection);
         gun.ShootCoordinates = coordinates;
-        AttemptShoot(gunUid, gunUid, gun);
+        var result = AttemptShoot(gunUid, gunUid, gun);
         gun.ShotCounter = 0;
+        return result;
     }
 
-    private void AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun)
+    private bool AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun)
     {
         if (gun.FireRateModified <= 0f ||
             !_actionBlockerSystem.CanAttack(user))
         {
-            return;
+            return false;
         }
 
         var toCoordinates = gun.ShootCoordinates;
 
         if (toCoordinates == null)
-            return;
+            return false;
 
         var curTime = Timing.CurTime;
 
@@ -271,16 +277,16 @@ public abstract partial class SharedGunSystem : EntitySystem
         };
         RaiseLocalEvent(gunUid, ref prevention);
         if (prevention.Cancelled)
-            return;
+            return false;
 
         RaiseLocalEvent(user, ref prevention);
         if (prevention.Cancelled)
-            return;
+            return false;
 
         // Need to do this to play the clicking sound for empty automatic weapons
         // but not play anything for burst fire.
         if (gun.NextFire > curTime)
-            return;
+            return false;
 
         var fireRate = TimeSpan.FromSeconds(1f / gun.FireRateModified);
 
@@ -296,11 +302,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         var shots = 0;
         var lastFire = gun.NextFire;
 
-        Log.Debug($"Nextfire={gun.NextFire} curTime={curTime}");
-
         while (gun.NextFire <= curTime)
         {
-            Log.Debug("Shots++");
             gun.NextFire += fireRate;
             shots++;
         }
@@ -330,8 +333,6 @@ public abstract partial class SharedGunSystem : EntitySystem
             shots = Math.Min(shots, gun.ShotsPerBurstModified - gun.ShotCounter);
         }
 
-        Log.Debug($"Shots fired: {shots}");
-
         var attemptEv = new AttemptShootEvent(user, null);
         RaiseLocalEvent(gunUid, ref attemptEv);
 
@@ -344,7 +345,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             gun.BurstActivated = false;
             gun.BurstShotsCount = 0;
             gun.NextFire = TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.NextFire.TotalSeconds));
-            return;
+            return false;
         }
 
         var fromCoordinates = Transform(user).Coordinates;
@@ -367,7 +368,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (ev.Ammo.Count <= 0)
         {
             // triggers effects on the gun if it's empty
-            var emptyGunShotEvent = new OnEmptyGunShotEvent();
+            var emptyGunShotEvent = new OnEmptyGunShotEvent(user);
             RaiseLocalEvent(gunUid, ref emptyGunShotEvent);
 
             gun.BurstActivated = false;
@@ -384,14 +385,16 @@ public abstract partial class SharedGunSystem : EntitySystem
                 // May cause prediction issues? Needs more tweaking
                 gun.NextFire = TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.NextFire.TotalSeconds));
                 Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
-                return;
+                return false;
             }
 
-            return;
+            return false;
         }
 
+        //Starlight start
         var NonEmptyGunShotEvent = new OnNonEmptyGunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gunUid, ref NonEmptyGunShotEvent);
+        //starlight end
 
         // Handle burstfire
         if (gun.SelectedMode == SelectiveFire.Burst)
@@ -415,13 +418,14 @@ public abstract partial class SharedGunSystem : EntitySystem
         RaiseLocalEvent(gunUid, ref shotEv);
 
         if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
-            return;
+            return true;
 
         var shooterEv = new ShooterImpulseEvent();
         RaiseLocalEvent(user, ref shooterEv);
 
-        if (shooterEv.Push || _gravity.IsWeightless(user, userPhysics)) // TODO: Make IsWeightless Event Based
+        if (shooterEv.Push)
             CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
+        return true;
     }
 
     public void Shoot(
@@ -460,7 +464,19 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         var projectile = EnsureComp<ProjectileComponent>(uid);
         projectile.Weapon = gunUid;
-        var shooter = user ?? gunUid;
+
+        // Starlight-edit: start
+        EntityUid? shooter = null;
+        if (user != null && TryComp<MechPilotComponent>(user.Value, out var pilotComp))
+        {
+            shooter = pilotComp.Mech;
+        }
+        else
+        {
+            shooter = user ?? gunUid;
+        }
+        // Starlight-edit: end
+
         if (shooter != null)
             Projectiles.SetShooter(uid, projectile, shooter.Value);
 
@@ -482,15 +498,20 @@ public abstract partial class SharedGunSystem : EntitySystem
         cartridge.Spent = spent;
         Appearance.SetData(uid, AmmoVisuals.Spent, spent);
     }
-    // 🌟Starlight🌟
+
+    #region Starlight
+    public bool IsChamberClosed(EntityUid gunEntity)
+        => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
+
     protected void SetCartridgeSpent(EntityUid uid, HitScanCartridgeAmmoComponent cartridge, bool spent)
     {
         if (cartridge.Spent != spent)
-            DirtyField(uid, cartridge, nameof(HitScanCartridgeAmmoComponent.Spent));
+            DirtyField(uid, cartridge, nameof(CartridgeAmmoComponent.Spent));
 
         cartridge.Spent = spent;
         Appearance.SetData(uid, AmmoVisuals.Spent, spent);
     }
+    #endregion
 
     /// <summary>
     /// Drops a single cartridge / shell
@@ -503,9 +524,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         // TODO: Sound limit version.
         var offsetPos = Random.NextVector2(EjectOffset);
         var xform = Transform(entity);
-
-        var coordinates = xform.Coordinates;
-        coordinates = coordinates.Offset(offsetPos);
+        // Starlight-edit: start
+        TransformSystem.AttachToGridOrMap(entity, xform);
+        var coordinates = xform.Coordinates.Offset(offsetPos);
+        // Starlight-edit: end
 
         TransformSystem.SetLocalRotation(entity, Random.NextAngle(), xform);
         TransformSystem.SetCoordinates(entity, xform, coordinates);
@@ -525,8 +547,10 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     protected IShootable EnsureShootable(EntityUid uid)
     {
+        // Starlight start
         if (TryComp<HitScanCartridgeAmmoComponent>(uid, out var hitscanCartridge))
             return hitscanCartridge;
+        // Starlight end
 
         if (TryComp<CartridgeAmmoComponent>(uid, out var cartridge))
             return cartridge;
@@ -645,6 +669,8 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     protected abstract void CreateEffect(EntityUid gunUid, MuzzleFlashEvent message, EntityUid? user = null);
 
+    // Starlight start
+
     /// <summary>
     /// Used for animated effects on the client.
     /// </summary>
@@ -666,6 +692,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         public NetEntity? ImpactEnt;
 
     }
+    // Starlight end
+
 }
 
 /// <summary>
@@ -687,9 +715,15 @@ public record struct AttemptShootEvent(EntityUid User, string? Message, bool Can
 [ByRefEvent]
 public record struct GunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootable Shootable)> Ammo);
 
+//starlight start
 [ByRefEvent]
 public record struct OnNonEmptyGunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootable Shootable)> Ammo);
+//starlight end
 
+/// <summary>
+/// Raised on an entity after firing a gun to see if any components or systems would allow this entity to be pushed
+/// by the gun they're firing. If true, GunSystem will create an impulse on our entity.
+/// </summary>
 [ByRefEvent]
 public record struct ShooterImpulseEvent()
 {

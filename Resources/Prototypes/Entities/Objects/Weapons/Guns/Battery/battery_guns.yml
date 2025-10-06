@@ -10,7 +10,7 @@
     - abductor-gun-restricted-1
   - type: Sprite
   - type: Item
-    size: Huge
+    size: Large # Starlight
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
     quickEquip: false
@@ -30,6 +30,43 @@
     startingCharge: 1000
   - type: StaticPrice
     price: 500
+
+- type: entity
+  parent: [BaseWeaponBattery, BaseGunWieldable]
+  id: BaseLaserRifle
+  abstract: true
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+  - type: Gun #Starlight - Start
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto #Just allows people to hold down left click
+  - type: Battery 
+    maxCharge: 1500 # ~1:30 minutes for recharge
+    startingCharge: 1500
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 30 #Starlight - End
+  - type: StaticPrice
+    price: 420
 
 - type: entity
   id: BaseWeaponPowerCell
@@ -121,6 +158,10 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Item
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: 0,-7
     sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
   - type: MagazineVisuals
     magState: mag
@@ -141,6 +182,8 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    storedOffset: 0,-5
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 62.5
@@ -164,6 +207,8 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    storedOffset: 0,-4
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -184,6 +229,10 @@
   id: WeaponTeslaGun
   description: The power of the primordial element of lightning in your hands.
   components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/tesla_gun.rsi
     layers:
@@ -208,41 +257,16 @@
   - type: Appearance
 
 - type: entity
-  name: practice laser rifle
-  parent: [BaseWeaponBattery, BaseGunWieldable]
-  id: WeaponLaserCarbinePractice
-  description: This modified laser rifle fires nearly harmless beams in the 40-watt range, for target practice.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: false
-  - type: Appearance
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
-  - type: Gun
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-  - type: HitscanBatteryAmmoProvider
-    proto: RedLaserPractice
-    fireCost: 62.5
-  - type: StaticPrice
-    price: 300
-
-- type: entity
-  name: laser rifle
-  parent: [WeaponLaserCarbinePractice, BaseGunWieldable, BaseSecurityContraband]
+  name: laser carbine
+  parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponLaserCarbine
   description: Favoured by Nanotrasen Security for being cheap and easy to use.
+
+- type: entity
+  name: practice laser carbine
+  parent: [BaseLaserRifle, BaseGunWieldable]
+  id: WeaponLaserCarbinePractice
+  description: This modified laser carbine fires nearly harmless beams in the 40-watt range, for target practice.
   components:
   - type: StaticPrice
     price: 420
@@ -252,9 +276,11 @@
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: PacifismAllowedGun
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
-    fireCost: 62.5
+    proto: RedLaserPractice
+    fireCost: 30 # Starlight
+
 
 #- type: entity
 #  name: pulse pistol
@@ -349,6 +375,10 @@
   id: WeaponLaserCannon
   description: A heavy duty, high powered laser weapon.
   components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
     layers:
@@ -370,7 +400,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 100
+    fireCost: 40 #Starlight
   - type: Tag
     tags:
     - TurretCompatibleWeapon
@@ -412,6 +442,10 @@
   id: WeaponXrayCannon
   description: An experimental weapon that uses concentrated x-ray energy against its target.
   components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/xray.rsi
     layers:
@@ -427,7 +461,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: XrayLaser
-    fireCost: 100
+    fireCost: 40 #Starlight
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -448,6 +482,8 @@
     - state: mag-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    storedOffset: -1,-5
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/practice_disabler.rsi
     quickEquip: false
@@ -472,6 +508,7 @@
     tags:
     - Taser
     - Sidearm
+  - type: PacifismAllowedGun
 
 - type: entity
   name: disabler
@@ -500,6 +537,7 @@
     guides:
     - Security
     - Antagonists
+  - type: PacifismAllowedGun
 
 - type: entity
   name: disabler SMG
@@ -509,6 +547,8 @@
   components:
   - type: Item
     size: Large
+    shape:
+    - 0,0,2,1
   - type: Tag
     tags:
       - Taser
@@ -538,6 +578,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 260
+  - type: PacifismAllowedGun
 
 - type: entity
   name: taser
@@ -643,7 +684,9 @@
   description: An experimental high-energy laser pistol with a self-charging nuclear battery.
   components:
   - type: Item
-    size: Normal  # Intentionally larger than other pistols
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
     layers:
@@ -686,6 +729,8 @@
       visible: false
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Item
+    storedOffset: 0,-6
   - type: Appearance
   - type: MagazineVisuals
     magState: mag
@@ -786,20 +831,18 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserSpreadNarrow
-    fireCost: 150
+    proto: BulletLaserSpread
+    fireCost: 60
   - type: BatteryWeaponFireModes
     fireModes:
-    #- proto: BulletLaserSpread
-      #fireCost: 150
-    - proto: BulletLaserSpreadNarrow
-      fireCost: 200
-    - proto: BulletDisablerSmgSpread
+#    - proto: BulletLaserSpread Starlight
+#      fireCost: 65
+    - proto: BulletLaserSpreadNarrow #Starlight
       fireCost: 120
+    - proto: BulletDisablerSmgSpread #Starlight
+      fireCost: 75
   - type: Item
     size: Large
-    shape:
-    - 0,0,3,1
     sprite: Objects/Weapons/Guns/Battery/inhands_64x.rsi
     heldPrefix: energy
   - type: Tag

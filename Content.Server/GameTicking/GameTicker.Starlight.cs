@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading;
+using Content.Server.Administration.Systems;
 using Content.Server.Database;
 using Content.Server.Discord;
 using Content.Shared.Starlight;
@@ -12,6 +13,14 @@ using static Content.Shared.Administration.Notes.AdminMessageEuiState;
 namespace Content.Server.GameTicking;
 public sealed partial class GameTicker //🌟Starlight🌟
 {
+
+    #region Starlight
+    [ViewVariables]
+    public string GamemodeNameOverride = "";
+    [ViewVariables]
+    public string GamemodeDescOverride = "";
+    #endregion
+
     private WebhookIdentifier? _statusWebhookIdentifier;
     private WebhookIdentifier? _statusWebhookStaffIdentifier;
     private ulong _statusMessageId = 0;
@@ -50,6 +59,11 @@ public sealed partial class GameTicker //🌟Starlight🌟
                                Name  = "Round duration",
                                Inline = true,
                                Value = ""
+                            },
+                            new(){
+                               Name  = "Panic Bunker",
+                               Inline = true,
+                               Value = "N/A"
                             }
                         ],
                         Thumbnail = new WebhookEmbedImage
@@ -101,6 +115,11 @@ public sealed partial class GameTicker //🌟Starlight🌟
                                Name  = "Round duration",
                                Inline = true,
                                Value = ""
+                            },
+                            new(){
+                               Name  = "Panic Bunker",
+                               Inline = true,
+                               Value = "N/A"
                             }
                         ],
                         Thumbnail = new WebhookEmbedImage
@@ -125,6 +144,9 @@ public sealed partial class GameTicker //🌟Starlight🌟
         Subs.CVar(_cfg, StarlightCCVars.StatusMessageId, v => _statusMessageId = v, true);
         Subs.CVar(_cfg, StarlightCCVars.StatusMessageStaffId, v => _statusStaffMessageId = v, true);
         Subs.CVar(_cfg, CVars.GameHostName, v => _serverName = v[..Math.Min(v.Length, 1500)], true);
+        Subs.CVar(_cfg, StarlightCCVars.OverrideGamemodeName, v => GamemodeNameOverride = v, true);
+        Subs.CVar(_cfg, StarlightCCVars.OverrideGamemodeDescription, v => GamemodeDescOverride = v, true);
+
 
         _timer = new(StarlightStatus, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
     }
@@ -146,8 +168,9 @@ public sealed partial class GameTicker //🌟Starlight🌟
 
         embed.Fields[0] = embed.Fields[0] with { Value = $"{_playerManager.PlayerCount}/{_playerManager.MaxPlayers}" };
         embed.Fields[1] = embed.Fields[1] with { Value = mapName };
-        embed.Fields[2] = embed.Fields[2] with { Value = preset };
+        embed.Fields[2] = embed.Fields[2] with { Value = string.IsNullOrWhiteSpace(GamemodeDescOverride) ? preset : Loc.GetString(GamemodeDescOverride) };
         embed.Fields[3] = embed.Fields[3] with { Value = RoundDuration().ToString("hh\\:mm\\:ss") };
+        embed.Fields[4] = embed.Fields[4] with { Value = _admin.PanicBunker.Enabled ? "On" : "Off" };
 
         _payload.Embeds[0] = embed;
 
@@ -178,6 +201,7 @@ public sealed partial class GameTicker //🌟Starlight🌟
         embed.Fields[3] = embed.Fields[3] with { Value = mapName };
         embed.Fields[4] = embed.Fields[4] with { Value = preset };
         embed.Fields[5] = embed.Fields[5] with { Value = RoundDuration().ToString("hh\\:mm\\:ss") };
+        embed.Fields[6] = embed.Fields[6] with { Value = _admin.PanicBunker.Enabled ? "On" : "Off" };
 
         _payloadWithAdmins.Embeds[0] = embed;
 

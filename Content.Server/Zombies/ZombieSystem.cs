@@ -6,7 +6,6 @@ using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Emoting.Systems;
 using Content.Server.Speech.EntitySystems;
-using Content.Server.Roles;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Armor;
 using Content.Shared.Bed.Sleep;
@@ -21,11 +20,13 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Language.Components;
 
 namespace Content.Server.Zombies
 {
@@ -183,7 +184,7 @@ namespace Content.Server.Zombies
             if (args.Handled)
                 return;
 
-            _protoManager.TryIndex(component.EmoteSoundsId, out var sounds);
+            _protoManager.Resolve(component.EmoteSoundsId, out var sounds);
 
             args.Handled = _chat.TryPlayEmoteSound(uid, sounds, args.Emote);
         }
@@ -254,7 +255,16 @@ namespace Content.Server.Zombies
                 if (HasComp<ZombieComponent>(entity))
                 {
                     args.BonusDamage = -args.BaseDamage;
+                    _popup.PopupEntity(Loc.GetString("zombie-bite-zombie-dissuade"), uid, uid); // Starlight
                 }
+                // Starlight Start
+                // Zombies cannot attack initial infected
+                if (HasComp<InitialInfectedComponent>(entity))
+                {
+                    args.BonusDamage = -args.BaseDamage;
+                    _popup.PopupEntity(Loc.GetString("zombie-bite-initialinfected-dissuade"), uid, uid);
+                }
+                // Starlight End
                 else
                 {
                     if (!HasComp<ZombieImmuneComponent>(entity) && !HasComp<NonSpreaderZombieComponent>(args.User) && _random.Prob(GetZombieInfectionChance(entity, component)))
@@ -302,7 +312,7 @@ namespace Content.Server.Zombies
             }
             _humanoidAppearance.SetSkinColor(target, zombiecomp.BeforeZombifiedSkinColor, false);
             _bloodstream.ChangeBloodReagent(target, zombiecomp.BeforeZombifiedBloodReagent);
-
+            _language.RestoreCache((target, EnsureComp<LanguageCacheComponent>(target))); //Starlight UnZombiby fix
             return true;
         }
 

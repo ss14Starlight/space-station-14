@@ -105,6 +105,15 @@
     price: 40
   - type: IgnitionSource
     temperature: 700
+  # 🌟Starlight-start🌟
+  - type: SurgeryTool
+    successRate: 0.75
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+  - type: Cautery
+  # 🌟Starlight-end🌟
 
 - type: entity
   name: industrial welding tool
@@ -207,8 +216,8 @@
 - type: entity
   parent: [ Welder, BaseXenoborgContraband ]
   id: RefuelingWelder
-  name: refuling welding tool
-  description: "An slow welder that can refuel itself over time."
+  name: refueling welding tool
+  description: "A slow welder that can refuel itself over time."
   components:
   - type: Tool
     speedModifier: 0.5

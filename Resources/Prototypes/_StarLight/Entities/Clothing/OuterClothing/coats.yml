@@ -48,7 +48,7 @@
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterCoatCorpsman
-  name: Corpsman's Armored Jacket
+  name: corpsman's armored jacket
   description: Tacticool never looked so good..However, impractical armor placement makes it just as effective as the normal coat.
   components:
   - type: Sprite
@@ -65,6 +65,17 @@
         Piercing: 0.65
         Heat: 0.85
         Caustic: 0.75
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSquidPrisoner
+  name: last coat
+  description: Will look great on your body! Oh.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/squid_prisoner.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/squid_prisoner.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -106,6 +117,22 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.8
-        Heat: 0.65
+        Piercing: 0.60
+        Heat: 0.60
         Radiation: 0.9
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ClothingOuterCoatGreytiderTrenchcoat
+  name: greytider trenchcoat
+  description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/greytider_trenchcoat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/greytider_trenchcoat.rsi
+  - type: StorageFill
+    contents:
+    - id: Cigarette
+      amount: 3
+    - id: CheapLighter

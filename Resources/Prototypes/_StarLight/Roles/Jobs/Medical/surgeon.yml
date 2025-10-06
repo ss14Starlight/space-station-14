@@ -14,10 +14,27 @@
   access:
   - Medical
   - Maintenance
+  - Surgery 
+  extendedAccess:
+  - Paramedic
+  - Surgery
+  - Chemistry
 
 - type: startingGear
   id: SurgeonGear
   equipment:
     ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
   inhand:
     - ClothingBackpackDuffelSurgeryFilled
+
+- type: chameleonOutfit
+  id: SurgeonChameleonOutfit
+  job: Surgeon
+  equipment:
+    head: ClothingHeadNurseHat
+    eyes: ClothingEyesHudMedical
+    mask: ClothingMaskSterile
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatLab
+    gloves: ClothingHandsGlovesLatex

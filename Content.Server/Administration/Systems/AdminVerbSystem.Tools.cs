@@ -3,15 +3,13 @@ using System.Linq;
 using System.Numerics;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Components;
-using Content.Server.Atmos;
-using Content.Server.Atmos.Components;
 using Content.Server.Cargo.Components;
 using Content.Server.Doors.Systems;
 using Content.Server.Hands.Systems;
+using Content.Server._Starlight.Thaven; // 🌟Starlight🌟
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Access;
@@ -29,10 +27,11 @@ using Content.Shared.Database;
 using Content.Shared.Doors.Components;
 using Content.Shared.Electrocution;
 using Content.Shared.Hands.Components;
-using Content.Shared.Humanoid;
+using Content.Shared._Starlight.Thaven.Components; // 🌟Starlight🌟
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
 using Content.Shared.Stacks;
+using Content.Shared.Station.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Server.Physics;
@@ -43,8 +42,9 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Overlays; // 🌟Starlight🌟
+using Content.Shared.Overlays;
 using Content.Shared.Contraband; // 🌟Starlight🌟
+using Content.Shared.Humanoid; // 🌟Starlight🌟
 
 namespace Content.Server.Administration.Systems;
 
@@ -64,10 +64,10 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly GunSystem _gun = default!;
 
-    //🌟Starlight🌟 start
+    #region Starlight
     [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
-    //🌟Starlight🌟 end
+    #endregion
 
     private void AddTricksVerbs(GetVerbsEvent<Verb> args)
     {
@@ -96,31 +96,30 @@ public sealed partial class AdminVerbSystem
                 Message = Loc.GetString(bolts.BoltsDown
                     ? "admin-trick-unbolt-description"
                     : "admin-trick-bolt-description"),
-                Priority = (int) (bolts.BoltsDown ? TricksVerbPriorities.Unbolt : TricksVerbPriorities.Bolt),
+                Priority = (int)(bolts.BoltsDown ? TricksVerbPriorities.Unbolt : TricksVerbPriorities.Bolt),
             };
             args.Verbs.Add(bolt);
         }
-            
-        if (TryComp<ElectrifiedComponent>(args.Target, out var electrified) && HasComp<DoorComponent>(args.Target))
-            {
-                Verb electrify = new()
-                {
-                    Text = electrified.Enabled ? "Unelectrify" : "Electrify",
-                    Category = VerbCategory.Tricks,
-                    Icon =  new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/smite.svg.192dpi.png")),
-                    Act = () =>
-                    {
-                        _electrocution.SetElectrified((args.Target, electrified), !electrified.Enabled);
-                    },
-                    Impact = LogImpact.Medium,
-                    Message = Loc.GetString(electrified.Enabled
-                        ? "admin-trick-unelectrify-description"
-                        : "admin-trick-electrify-description"),
-                    Priority = (int) (electrified.Enabled ? TricksVerbPriorities.Unelectrify : TricksVerbPriorities.Electrify),
-                };
-                args.Verbs.Add(electrify);
-            }
 
+        if (TryComp<ElectrifiedComponent>(args.Target, out var electrified) && HasComp<DoorComponent>(args.Target))
+        {
+            Verb electrify = new()
+            {
+                Text = electrified.Enabled ? "Unelectrify" : "Electrify",
+                Category = VerbCategory.Tricks,
+                Icon =  new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/smite.svg.192dpi.png")),
+                Act = () =>
+                {
+                    _electrocution.SetElectrified((args.Target, electrified), !electrified.Enabled);
+                },
+                Impact = LogImpact.Medium,
+                Message = Loc.GetString(electrified.Enabled
+                    ? "admin-trick-unelectrify-description"
+                    : "admin-trick-electrify-description"),
+                Priority = (int) (electrified.Enabled ? TricksVerbPriorities.Unelectrify : TricksVerbPriorities.Electrify),
+            };
+            args.Verbs.Add(electrify);
+        }
 
         if (TryComp<AirlockComponent>(args.Target, out var airlockComp))
         {
@@ -453,7 +452,7 @@ public sealed partial class AdminVerbSystem
                 },
                 Impact = LogImpact.Medium,
                 Message = Loc.GetString("admin-trick-adjust-stack-description"),
-                Priority = (int) TricksVerbPriorities.AdjustStack,
+                Priority = (int)TricksVerbPriorities.AdjustStack,
             };
             args.Verbs.Add(adjustStack);
 
@@ -468,7 +467,7 @@ public sealed partial class AdminVerbSystem
                 },
                 Impact = LogImpact.Medium,
                 Message = Loc.GetString("admin-trick-fill-stack-description"),
-                Priority = (int) TricksVerbPriorities.FillStack,
+                Priority = (int)TricksVerbPriorities.FillStack,
             };
             args.Verbs.Add(fillStack);
         }
@@ -487,7 +486,7 @@ public sealed partial class AdminVerbSystem
             },
             Impact = LogImpact.Medium,
             Message = Loc.GetString("admin-trick-rename-description"),
-            Priority = (int) TricksVerbPriorities.Rename,
+            Priority = (int)TricksVerbPriorities.Rename,
         };
         args.Verbs.Add(rename);
 
@@ -505,7 +504,7 @@ public sealed partial class AdminVerbSystem
             },
             Impact = LogImpact.Medium,
             Message = Loc.GetString("admin-trick-redescribe-description"),
-            Priority = (int) TricksVerbPriorities.Redescribe,
+            Priority = (int)TricksVerbPriorities.Redescribe,
         };
         args.Verbs.Add(redescribe);
 
@@ -526,7 +525,7 @@ public sealed partial class AdminVerbSystem
             },
             Impact = LogImpact.Medium,
             Message = Loc.GetString("admin-trick-rename-and-redescribe-description"),
-            Priority = (int) TricksVerbPriorities.RenameAndRedescribe,
+            Priority = (int)TricksVerbPriorities.RenameAndRedescribe,
         };
         args.Verbs.Add(renameAndRedescribe);
 
@@ -548,7 +547,7 @@ public sealed partial class AdminVerbSystem
                     },
                     Impact = LogImpact.Extreme,
                     Message = Loc.GetString("admin-trick-bar-job-slots-description"),
-                    Priority = (int) TricksVerbPriorities.BarJobSlots,
+                    Priority = (int)TricksVerbPriorities.BarJobSlots,
                 };
                 args.Verbs.Add(barJobSlots);
             }
@@ -569,7 +568,7 @@ public sealed partial class AdminVerbSystem
                 },
                 Impact = LogImpact.Low,
                 Message = Loc.GetString("admin-trick-locate-cargo-shuttle-description"),
-                Priority = (int) TricksVerbPriorities.LocateCargoShuttle,
+                Priority = (int)TricksVerbPriorities.LocateCargoShuttle,
             };
             args.Verbs.Add(locateCargoShuttle);
         }
@@ -593,7 +592,7 @@ public sealed partial class AdminVerbSystem
                 },
                 Impact = LogImpact.Extreme,
                 Message = Loc.GetString("admin-trick-refill-battery-description"),
-                Priority = (int) TricksVerbPriorities.RefillBattery,
+                Priority = (int)TricksVerbPriorities.RefillBattery,
             };
             args.Verbs.Add(refillBattery);
 
@@ -614,7 +613,7 @@ public sealed partial class AdminVerbSystem
                 },
                 Impact = LogImpact.Extreme,
                 Message = Loc.GetString("admin-trick-drain-battery-description"),
-                Priority = (int) TricksVerbPriorities.DrainBattery,
+                Priority = (int)TricksVerbPriorities.DrainBattery,
             };
             args.Verbs.Add(drainBattery);
 
@@ -641,7 +640,7 @@ public sealed partial class AdminVerbSystem
                 },
                 Impact = LogImpact.Extreme,
                 Message = Loc.GetString("admin-trick-infinite-battery-description"),
-                Priority = (int) TricksVerbPriorities.InfiniteBattery,
+                Priority = (int)TricksVerbPriorities.InfiniteBattery,
             };
             args.Verbs.Add(infiniteBattery);
         }
@@ -660,7 +659,7 @@ public sealed partial class AdminVerbSystem
                 },
                 Impact = LogImpact.Medium,
                 Message = Loc.GetString("admin-trick-halt-movement-description"),
-                Priority = (int) TricksVerbPriorities.HaltMovement,
+                Priority = (int)TricksVerbPriorities.HaltMovement,
             };
             args.Verbs.Add(haltMovement);
         }
@@ -682,7 +681,7 @@ public sealed partial class AdminVerbSystem
                         },
                         Impact = LogImpact.Extreme,
                         Message = Loc.GetString("admin-trick-unpause-map-description"),
-                        Priority = (int) TricksVerbPriorities.Unpause,
+                        Priority = (int)TricksVerbPriorities.Unpause,
                     };
                     args.Verbs.Add(unpauseMap);
                 }
@@ -699,7 +698,7 @@ public sealed partial class AdminVerbSystem
                         },
                         Impact = LogImpact.Extreme,
                         Message = Loc.GetString("admin-trick-pause-map-description"),
-                        Priority = (int) TricksVerbPriorities.Pause,
+                        Priority = (int)TricksVerbPriorities.Pause,
                     };
                     args.Verbs.Add(pauseMap);
                 }
@@ -719,7 +718,7 @@ public sealed partial class AdminVerbSystem
                 },
                 Impact = LogImpact.Medium,
                 Message = Loc.GetString("admin-trick-snap-joints-description"),
-                Priority = (int) TricksVerbPriorities.SnapJoints,
+                Priority = (int)TricksVerbPriorities.SnapJoints,
             };
             args.Verbs.Add(snapJoints);
         }
@@ -738,7 +737,7 @@ public sealed partial class AdminVerbSystem
                 },
                 Impact = LogImpact.Medium,
                 Message = Loc.GetString("admin-trick-minigun-fire-description"),
-                Priority = (int) TricksVerbPriorities.MakeMinigun,
+                Priority = (int)TricksVerbPriorities.MakeMinigun,
             };
             args.Verbs.Add(minigunFire);
         }
@@ -768,7 +767,7 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(setCapacity);
         }
 
-        // 🌟Starlight🌟 start 
+        #region Starlight 
         // Add toggle overlays verb
         Verb toggleOverlays = new()
         {
@@ -849,7 +848,45 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(reaperArm);
         }
-        // 🌟Starlight🌟 end
+
+
+        if (TryComp<ThavenMoodsComponent>(args.Target, out var moods))
+        {
+            Verb addRandomMood = new()
+            {
+                Text = "Add Random Mood",
+                Category = VerbCategory.Tricks,
+                // TODO: Icon
+                Act = () =>
+                {
+                    _moods.TryAddRandomMood((args.Target, moods));
+                },
+                Impact = LogImpact.High,
+                Message = Loc.GetString("admin-trick-add-random-mood-description"),
+                Priority = (int)TricksVerbPriorities.AddRandomMood,
+            };
+            args.Verbs.Add(addRandomMood);
+        }
+        else
+        {
+            Verb giveMoods = new()
+            {
+                Text = "Give Moods",
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Rsi(new ResPath("Interface/Actions/actions_borg.rsi"), "state-laws"),
+                Act = () =>
+                {
+                    if (!EnsureComp<ThavenMoodsComponent>(args.Target, out moods))
+                        _moods.NotifyMoodChange((args.Target, moods));
+                },
+                Impact = LogImpact.High,
+                Message = Loc.GetString("admin-trick-give-moods-description"),
+                Priority = (int)TricksVerbPriorities.AddRandomMood,
+            };
+            args.Verbs.Add(giveMoods);
+        }
+        #endregion
+        // End Impstation Additions
     }
 
     private void RefillEquippedTanks(EntityUid target, Gas gasType)
@@ -998,5 +1035,7 @@ public sealed partial class AdminVerbSystem
         MakeMinigun = -30,
         SetBulletAmount = -31,
         ToggleOverlays = -32, // #🌟Starlight🌟
+        AddRandomMood = -32, //Starlight Thaven
+        AddCustomMood = -33, //Starlight Thaven
     }
 }
