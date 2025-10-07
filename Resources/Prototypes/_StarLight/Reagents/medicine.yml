@@ -139,9 +139,9 @@
           max: 250
         damage:
           groups:
-            Brute: -1
+            Brute: -0.3
           types:
-            Poison: -0.5 ##Should be about what it was when it healed the toxin group
-            Heat: -0.33
-            Shock: -0.33
-            Cold: -0.33
+            Poison: -0.33 ##Should be about what it was when it healed the toxin group
+            Heat: -0.1
+            Shock: -0.1
+            Cold: -0.1
