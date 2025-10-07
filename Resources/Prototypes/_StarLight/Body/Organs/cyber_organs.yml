@@ -219,7 +219,7 @@
   # This is done because these chemicals need to have some effect even if they aren't being filtered out of your body.
   # You're technically 'immune to poison' without a heart, but.. uhh, you'll have bigger problems on your hands.
   - type: Metabolizer
-    maxReagents: 2
+    maxReagents: 3
     metabolizerTypes: [Human]
     groups:
     - id: Medicine
@@ -228,11 +228,6 @@
   - type: Item
     size: Small
     heldPrefix: heart
-  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.85
-  - type: MovementBodyPart
-    sprintSpeed : 5 # +5%
-    maxDensity: 111
     
 - type: entity
   id: CyberStomach
@@ -490,3 +485,39 @@
     comps: 
     - type: ThirstRateMultiplier
       multiplier: 2
+
+
+   ### special cyberware
+
+- type: entity
+  id: CyberjackHeart
+  parent: [OrganCyber, BaseOrganHeart]
+  name: cyberjack heart
+  description: Nanomachines, son!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/cyber_organs.rsi
+    state: cj-heart-on
+  # The heart 'metabolizes' medicines and poisons that aren't filtered out by other organs.
+  # This is done because these chemicals need to have some effect even if they aren't being filtered out of your body.
+  # You're technically 'immune to poison' without a heart, but.. uhh, you'll have bigger problems on your hands.
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [Human]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+  - type: Item
+    size: Small
+    heldPrefix: heart
+  - type: SolutionContainerManager
+    solutions:
+      cyberjack:
+        maxVol: 2
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: CyberjackNanites
+        Quantity: 1
