@@ -62,16 +62,7 @@
             Quantity: 90
           - ReagentId: Slime
             Quantity: 8
-  - type: DrainableSolution
-    solution: drainBuffer
-  - type: InteractionPopup
-    successChance: 0.9
-    interactDelay: 1
-    interactSuccessString: petting-success-cleanbot
-    interactFailureString: petting-failure-cleanbot
-    interactSuccessSpawn: EffectHearts
-    interactSuccessSound:
-      path: /Audio/Voice/Moth/moth_squeak.ogg
+
 
 - type: entity
   parent: MobMoproach
