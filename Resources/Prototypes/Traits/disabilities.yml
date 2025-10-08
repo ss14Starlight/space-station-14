@@ -61,7 +61,12 @@
     components:
       - BorgChassis
   components:
-    - type: Muted
+  - type: Muted
+  - type: LanguageSpeaker # Starlight start
+  languagesSpoken:
+    - Sign
+  languagesUnderstood:
+    - Sign # Starlight end
 
 - type: trait
   id: Paracusia
