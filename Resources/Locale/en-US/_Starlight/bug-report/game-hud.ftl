@@ -1,0 +1,1 @@
+game-hud-open-bug-report-window-button-tooltip = Open bug report menu.
