@@ -7,10 +7,6 @@
     "y": 32
   },
   "states": [
-    {
-      "name": "id_overlay"
-    },
-    "states": [
         {
             "name": "id_overlay"
         },
