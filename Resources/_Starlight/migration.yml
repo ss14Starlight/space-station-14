@@ -3,9 +3,6 @@
 # ItemIdFrom: ItemIdTo - Change item
 # ItemIdFrom: null - Removes item from map
 
-# 2025-10-03
-#SyndiAgentPDA: SyndiCorpsmanPDA # This no longer exists?
-
 # 2025-06-11
 
 CrateNPCGorilla: null

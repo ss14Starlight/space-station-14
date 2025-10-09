@@ -61,7 +61,7 @@
     back: ClothingBackpackDuffelSyndicateMedical
     shoes: ClothingShoesBootsMagSyndie
     outerClothing: ClothingOuterHardsuitSyndieMedic
-    id: SyndiCorpsmanPDA
+    id: SyndiAgentPDA
     eyes: ClothingEyesHudSyndicateAgent
     ears: ClothingHeadsetAltSyndicateAgent
     mask: ClothingMaskGasSyndicate
