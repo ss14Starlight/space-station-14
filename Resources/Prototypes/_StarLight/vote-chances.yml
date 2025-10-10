@@ -4,9 +4,6 @@
   - id: Survival
     chance: 0.1
     memorizeCount: 1
-  - id: KesslerSyndrome
-    chance: 0.1
-    memorizeCount: 1
   - id: Greenshift
     chance: 0.4
     memorizeCount: 1
