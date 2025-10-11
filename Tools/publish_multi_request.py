@@ -16,8 +16,8 @@ RELEASE_DIR = "release"
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://cdn.starlight.network/"
-FORK_ID = os.environ.get("FORK_ID", "starlight")
+ROBUST_CDN_URL = "https://cdn.simplestation.org/"
+FORK_ID = os.environ.get("FORK_ID", "spacebreak")
 
 def main():
     parser = argparse.ArgumentParser()
