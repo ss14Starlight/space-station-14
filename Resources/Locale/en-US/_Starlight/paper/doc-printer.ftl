@@ -52,8 +52,8 @@ doc-text-printer-atmos-engineering-permission-station-modification =
     
     
     ​[italic]Place for Engineering / Command Stamps and Signatures[/italic]
-
-
+    ​
+    ​
 
 # Command & Emergency
 
@@ -97,8 +97,8 @@ doc-text-printer-command-emergency-comm-centcom =
     
     
     ​[italic]Place for Command Signature / Stamp[/italic]
-
-
+    ​
+    ​
 
 # title: Report_Situation
 # slug: Report_Situation_on_Station
@@ -160,8 +160,8 @@ doc-text-printer-command-emergency-report-situation-on-station =
     
     
     ​[italic]Place for Command Stamps / Additional Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Emergency Response Team Request
 # slug: Request_ERT
@@ -210,8 +210,8 @@ doc-text-printer-command-emergency-request-ert =
     
     
     ​[italic]Place for Command Signatures / Stamps[/italic]
-
-
+    ​
+    ​
 
 # title: Evacuation Request
 # slug: Request_Evacuation
@@ -261,8 +261,8 @@ doc-text-printer-command-emergency-request-evacuation =
     
     
     ​[italic]Place for Command Signatures / Stamps[/italic]
-
-
+    ​
+    ​
 
 # title: Command Succession
 # slug: Statement_Command_Succession
@@ -309,8 +309,8 @@ doc-text-printer-command-emergency-statement-command-succession =
     
     
     ​[color=#aaaaaa][italic]Place for Additional Stamps / Central Command Validation[/italic][/color]
-
-
+    ​
+    ​
 
 # title: Sentience Acknowledgment
 # slug: Statement_Sentience_Acknowledgement
@@ -363,8 +363,8 @@ doc-text-printer-command-emergency-statement-sentience-acknowledgement =
     
     
     ​[italic]Place for Command / Departmental Stamps and Signatures[/italic]
-
-
+    ​
+    ​
 
 # Identity & Employment
 
@@ -411,8 +411,8 @@ doc-text-printer-identity-employment-form-lost-and-found =
     
     
     ​[italic]Place for Stamps / Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Visitor Registration Form
 # slug: Form_Visitor
@@ -466,8 +466,8 @@ doc-text-printer-identity-employment-form-visitor =
     
     
     ​[italic]Place for Stamps / Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Head of Staff Appointment Order
 # slug: Order_Command_Appointment
@@ -522,8 +522,8 @@ doc-text-printer-identity-employment-order-command-appointment =
     
     
     ​[italic]Place for Command / Administrative Stamps and Signatures[/italic]  
-
-
+    ​
+    ​
 
 # title: Demotion / Termination Order
 # slug: Order_Demotion
@@ -575,8 +575,8 @@ doc-text-printer-identity-employment-order-demotion =
     
     
     ​[italic]Place for Command Stamps / Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Request Access Change
 # slug: Request_Access_Change
@@ -638,8 +638,8 @@ doc-text-printer-identity-employment-request-access-change =
     
     
     ​[color=#aaaaaa][italic]Place for Signatures / Stamps[/italic][/color]
-
-
+    ​
+    ​
 
 # title: Job Reallocation Form
 # slug: Request_Employment_Transfer
@@ -697,8 +697,8 @@ doc-text-printer-identity-employment-request-employment-transfer =
     
     
     ​[color=#aaaaaa][italic]Place for Signatures / Stamps[/italic][/color]
-
-
+    ​
+    ​
 
 # title: ID Card Replacement Request
 # slug: Request_ID_Replacement
@@ -742,8 +742,8 @@ doc-text-printer-identity-employment-request-id-replacement =
     
     
     ​[color=#aaaaaa][italic]Place for Signatures / Stamps[/italic][/color]
-
-
+    ​
+    ​
 
 # title: Statement of Resignation
 # slug: Statement_Resignation
@@ -781,8 +781,8 @@ doc-text-printer-identity-employment-statement-resignation =
     
     
     ​[color=#aaaaaa][italic]Place for Command Signatures / Stamps (HoP or Captain required)[/italic][/color]
-
-
+    ​
+    ​
 
 # Medical
 
@@ -838,8 +838,8 @@ doc-text-printer-medical-form-emergency-medical-waiver =
     
     
     ​[italic]Place for Medical / Command Stamps and Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Medical Consent Form
 # slug: Form_Medical_Consent
@@ -891,8 +891,8 @@ doc-text-printer-medical-form-medical-consent =
     
     
     ​[italic]Place for Medical Signatures / Stamps[/italic]
-
-
+    ​
+    ​
 
 # title: Medical Prescription Form
 # slug: Form_Medical_Prescription
@@ -944,8 +944,8 @@ doc-text-printer-medical-form-medical-prescription =
     
     
     ​[italic]Place for Medical Stamp / Signature[/italic]
-
-
+    ​
+    ​
 
 # title: Therapy Session Record
 # slug: Form_Therapy_Session_Record
@@ -1003,8 +1003,8 @@ doc-text-printer-medical-form-therapy-session-record =
     
     
     ​[italic]Place for Medical / Command Stamps and Signatures[/italic]  
-
-
+    ​
+    ​
 
 # title: Quarantine Notice
 # slug: Notice_Quarantine
@@ -1053,8 +1053,8 @@ doc-text-printer-medical-notice-quarantine =
     
     
     ​[italic]Place for Medical / Command Stamps and Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Hazardous Experiment Permit
 # slug: Permission_Hazardous_Experiment
@@ -1108,8 +1108,8 @@ doc-text-printer-medical-permission-hazardous-experiment =
     
     
     ​[italic]Place for Stamps / Signatures[/italic]
-
-
+    ​
+    ​
 
 # Science
 
@@ -1164,8 +1164,8 @@ doc-text-printer-science-form-anomalous-bonding-consent =
     
     
     ​[italic]Place for Subject / Medical / Science / Command Stamps and Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Cyborg Chassis Transfer Record
 # slug: Form_Cyborg_Chassis_Transfer
@@ -1215,8 +1215,8 @@ doc-text-printer-science-form-cyborg-chassis-transfer =
     
     
     ​[italic]Place for Science / Command Stamps and Signatures[/itali]()
-
-
+    ​
+    ​
 
 # title: Cyborg Conversion Record
 # slug: Form_Cyborg_Conversion_Record
@@ -1275,8 +1275,8 @@ doc-text-printer-science-form-cyborg-conversion-record =
     
     
     ​[italic]Place for Science / Medical / Command Stamps and Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Voluntary Conversion Consent
 # slug: Form_Cyborg_Voluntary_Conversion_Consent
@@ -1325,8 +1325,8 @@ doc-text-printer-science-form-cyborg-voluntary-conversion-consent =
     
     
     ​[italic]Place for Subject / Medical / Science / Command Stamps and Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Hazardous Equipment Release Permit
 # slug: Permission_Hazardous_Equipment_Release
@@ -1381,8 +1381,8 @@ doc-text-printer-science-permission-hazardous-equipment-release =
     
     
     ​[italic]Place for Science / Command / Departmental Stamps and Signatures[/italic]
-
-
+    ​
+    ​
 
 # Security & Law
 
@@ -1435,8 +1435,8 @@ doc-text-printer-security-law-complaint-labor-violation =
     
     
     ​[italic]Place for Internal Affairs Stamp / Signature[/italic]
-
-
+    ​
+    ​
 
 # title: Offense Complaint
 # slug: Complaint_Offense
@@ -1490,8 +1490,8 @@ doc-text-printer-security-law-complaint-offense =
     
     
     ​[italic]Place for Security Stamps / Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Do Not Resuscitate Order
 # slug: Order_DNR
@@ -1543,8 +1543,8 @@ doc-text-printer-security-law-order-dnr =
     
     
     ​[italic]Place for Stamps / Final Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Execution Order
 # slug: Order_Execution
@@ -1598,8 +1598,8 @@ doc-text-printer-security-law-order-execution =
     
     
     ​[italic]Place for Stamps / Final Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Execution & DNR Order
 # slug: Order_Execution_and_DNR
@@ -1661,8 +1661,8 @@ doc-text-printer-security-law-order-execution-and-dnr =
     
     
     ​[italic]Place for Command / Security / Medical Stamps and Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Parole Order
 # slug: Order_Parole
@@ -1711,8 +1711,8 @@ doc-text-printer-security-law-order-parole =
     
     
     ​[italic]Place for Stamps / Final Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Contraband Permit
 # slug: Permission_Contraband
@@ -1764,8 +1764,8 @@ doc-text-printer-security-law-permission-contraband =
     ​[/italic][/color]
     
     ​[color=#aaaaaa][italic]Place for Stamps / Additional Signatures[/italic][/color]
-
-
+    ​
+    ​
 
 # title: Equipment Authorization
 # slug: Permission_Equipment
@@ -1818,8 +1818,8 @@ doc-text-printer-security-law-permission-equipment =
     
     
     ​[color=#aaaaaa][italic]Place for Stamps / Additional Signatures[/italic][/color]
-
-
+    ​
+    ​
 
 # title: Weapon Authorization
 # slug: Permission_Firearm
@@ -1885,8 +1885,8 @@ doc-text-printer-security-law-permission-firearm =
     
     
     ​[color=#aaaaaa][italic]Place for Signatures / Stamps[/italic][/color]
-
-
+    ​
+    ​
 
 # title: Search Warrant
 # slug: Permission_Search_Warrant
@@ -1939,8 +1939,8 @@ doc-text-printer-security-law-permission-search-warrant =
     
     
     ​[color=#aaaaaa][italic]Place for Signatures / Stamps[/italic][/color]
-
-
+    ​
+    ​
 
 # title: Special Armament Permit
 # slug: Permission_Special_Amarment
@@ -1993,8 +1993,8 @@ doc-text-printer-security-law-permission-special-amarment =
     
     
     ​[color=#aaaaaa][italic]Place for Authorizing Command Stamp(s) & Witness Stamps (stamps preferred over signatures)[/italic][/color]
-
-
+    ​
+    ​
 
 # title: Arrest Report
 # slug: Report_Arrest
@@ -2061,8 +2061,8 @@ doc-text-printer-security-law-report-arrest =
     
     
     ​[italic]Place for Security Stamps / Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Case File
 # slug: Report_Case_file
@@ -2127,8 +2127,8 @@ doc-text-printer-security-law-report-case-file =
     
     
     ​[italic]Place for Security / IA Stamps and Signatures[/italic]
-
-
+    ​
+    ​
 
 # title: Department Oversight Report
 # slug: Report_Department_Oversight
@@ -2195,8 +2195,8 @@ doc-text-printer-security-law-report-department-oversight =
     
     
     ​[italic]Place for IAA Stamp / Signature[/italic]
-
-
+    ​
+    ​
 
 # title: Internal Affairs Report
 # slug: Report_Internal_Affairs
@@ -2255,6 +2255,6 @@ doc-text-printer-security-law-report-internal-affairs =
     
     
     ​[italic]Place for IAA Stamp / Signature[/italic]
-
-
+    ​
+    ​
 
