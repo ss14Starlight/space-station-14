@@ -4,15 +4,9 @@ lathe-category-implants = Implants
 
 # Doc Printer
 
-lathe-category-reports = Reports
-lathe-category-statements = Statements
-lathe-category-inquiries-and-appeals = Inquiries and appeals
-lathe-category-complaints = Complaints
-lathe-category-permissions = Permissions
-lathe-category-orders-and-instructions = Orders and instructions
-lathe-category-evidence = Evidence
-lathe-category-conclusions-and-decisions = Conclusions and decisions
-lathe-category-error = Error
-lathe-category-communication = Communication
-
-lathe-category-silicon = Silicon
+lathe-category-identity-employment = Identity & Employment
+lathe-category-security-law = Security & Law
+lathe-category-medical = Medical
+lathe-category-science = Science
+lathe-category-command-emergency = Command & Emergency
+lathe-category-atmos-engineering = Atmos & Engineering
