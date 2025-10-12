@@ -425,7 +425,7 @@
     pitch: 1.25
 
 - type: emoteSounds
-  id: RMCUnisexRodentia
+  id: UnisexRodentia
   sounds:
     Scream:
       path: /Audio/Animals/mouse_squeak.ogg
@@ -433,9 +433,9 @@
       path: /Audio/Animals/mouse_squeak.ogg
 
 - type: emoteSounds
-  parent: [RMCUnisexRodentia, RMCMaleHuman]
-  id: RMCMaleRodentia
+  parent: UnisexRodentia
+  id: MaleRodentia
 
 - type: emoteSounds
-  parent: [RMCUnisexRodentia, RMCFemaleHuman]
-  id: RMCFemaleRodentia
+  parent: UnisexRodentia
+  id: FemaleRodentia

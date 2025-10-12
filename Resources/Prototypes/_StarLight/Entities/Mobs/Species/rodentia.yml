@@ -1,9 +1,9 @@
 - type: entity
   save: false
   name: Urist McRat
-  parent: CMBaseMobSpeciesOrganic
-  id: CMMobRodentia
-  suffix: RMC14
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
+  id: BaseMobRodentia
+  abstract: true
   components:
   - type: HumanoidAppearance
     species: Rodentia
@@ -24,54 +24,54 @@
     noRot: true
     drawdepth: Mobs
     # scale: 1, 0.8        # same as RMC dwarves (please reconsider allowing dwarf-sized rodentia)
-    layers:
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
-      - map: [ "enum.HumanoidVisualLayers.Head" ]
-      - map: [ "enum.HumanoidVisualLayers.Snout" ]
-      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
-      - map: [ "enum.HumanoidVisualLayers.LArm" ]
-      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.Undershirt" ]
-      - map: [ "enum.HumanoidVisualLayers.Underwear" ]
-      - map: [ "jumpsuit" ]
-      - map: [ "enum.HumanoidVisualLayers.LHand" ]
-      - map: [ "enum.HumanoidVisualLayers.RHand" ]
-      - map: [ "enum.HumanoidVisualLayers.LFoot" ]
-      - map: [ "enum.HumanoidVisualLayers.RFoot" ]
-      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - map: [ "id" ]
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "ears" ]
-      - map: [ "outerClothing" ]
-      - map: [ "eyes" ]
-      - map: [ "belt" ]
-      - map: [ "neck" ]
-      - map: [ "back" ]
-      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-      - map: [ "enum.HumanoidVisualLayers.Hair" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
-      - map: [ "mask" ]
-      - map: [ "head" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
+#    layers:
+#      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+#      - map: [ "enum.HumanoidVisualLayers.Head" ]
+#      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+#      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+#      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+#      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+#      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+#      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+#      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+#      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+#      - map: [ "jumpsuit" ]
+#      - map: [ "enum.HumanoidVisualLayers.LHand" ]
+#      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+#      - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+#      - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+#      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+#        color: "#ffffff"
+#        sprite: Objects/Misc/handcuffs.rsi
+#        state: body-overlay-2
+#        visible: false
+#      - map: [ "id" ]
+#      - map: [ "gloves" ]
+#      - map: [ "shoes" ]
+#      - map: [ "ears" ]
+#      - map: [ "outerClothing" ]
+#      - map: [ "eyes" ]
+#      - map: [ "belt" ]
+#      - map: [ "neck" ]
+#      - map: [ "back" ]
+#      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+#      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+#      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+#      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+#      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+#      - map: [ "mask" ]
+#      - map: [ "head" ]
+#      - map: [ "pocket1" ]
+#      - map: [ "pocket2" ]
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/pierce.ogg
     animation: WeaponArcClaw
   - type: Vocal
     sounds:
-      Male: RMCMaleRodentia
-      Female: RMCFemaleRodentia
-      Unsexed: RMCMaleRodentia
+      Male: MaleRodentia
+      Female: FemaleRodentia
+      Unsexed: MaleRodentia
   - type: Inventory
     speciesId: rodentia
 
