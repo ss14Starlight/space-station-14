@@ -11,9 +11,9 @@
     default:
       type: !type:TattooColoring
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: mouse
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: mouse_overlay
 
 - type: marking
@@ -25,7 +25,7 @@
     default:
       type: !type:TattooColoring
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: mouse
 
 ## EARS
@@ -36,7 +36,7 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: bat
 
 - type: marking
@@ -45,7 +45,7 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: bat_large
 
 - type: marking
@@ -54,9 +54,9 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: hamster
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: hamster_overlay
 
 - type: marking
@@ -65,9 +65,9 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: long
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: long_overlay
 
 - type: marking
@@ -76,9 +76,9 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: mouse
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: mouse_overlay
 
 - type: marking
@@ -87,9 +87,9 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: mouse_large
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: mouse_large_overlay
 
 - type: marking
@@ -98,7 +98,7 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: none
 
 - type: marking
@@ -107,7 +107,7 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: pointy
 
 - type: marking
@@ -116,9 +116,9 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: rabbit
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: rabbit_overlay
 
 - type: marking
@@ -127,7 +127,7 @@
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/ear_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
       state: small
 
 ## SNOUTS
@@ -138,9 +138,9 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: bat
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: bat_nose
 
 - type: marking
@@ -149,11 +149,11 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: bat
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: bat_nose
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: bat_overlay
 
 - type: marking
@@ -162,9 +162,9 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: flat
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: flat_nose
 
 - type: marking
@@ -173,11 +173,11 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: flat
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: flat_nose
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: flat_overlay
 
 - type: marking
@@ -186,9 +186,9 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: round
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: round_nose
 
 - type: marking
@@ -197,11 +197,11 @@
   bodyPart: Snout
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: round
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: round_nose
-    - sprite: _RMC14/Mobs/Rodentia/snout_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/snout_markings.rsi
       state: round_overlay
 
 ## CHEEKS
@@ -212,7 +212,7 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/cheek_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/cheek_markings.rsi
       state: cheeks
 
 - type: marking
@@ -221,9 +221,9 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/cheek_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/cheek_markings.rsi
       state: cheeks
-    - sprite: _RMC14/Mobs/Rodentia/cheek_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/cheek_markings.rsi
       state: cheeks_overlay
 
 - type: marking
@@ -232,7 +232,7 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/cheek_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/cheek_markings.rsi
       state: fluff
 
 - type: marking
@@ -241,9 +241,9 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/cheek_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/cheek_markings.rsi
       state: fluff
-    - sprite: _RMC14/Mobs/Rodentia/cheek_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/cheek_markings.rsi
       state: fluff_overlay
 
 - type: marking
@@ -252,7 +252,7 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/cheek_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/cheek_markings.rsi
       state: fluff_alt
 
 - type: marking
@@ -261,9 +261,9 @@
   bodyPart: HeadSide
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/cheek_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/cheek_markings.rsi
       state: fluff_alt
-    - sprite: _RMC14/Mobs/Rodentia/cheek_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/cheek_markings.rsi
       state: fluff_alt_overlay
 
 - type: marking
@@ -272,7 +272,7 @@
   bodyPart: HeadTop # for layering
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/cheek_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/cheek_markings.rsi
       state: whiskers
 
 # BODY
@@ -285,7 +285,7 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: beaver
 
 - type: marking
@@ -294,7 +294,7 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: hamster
 
 - type: marking
@@ -303,7 +303,7 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: long
 
 - type: marking
@@ -312,9 +312,9 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: long
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: long_overlay
 
 - type: marking
@@ -323,11 +323,11 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: long
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: long_overlay
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: long_tip
 
 - type: marking
@@ -336,7 +336,7 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: mouse
 
 - type: marking
@@ -345,7 +345,7 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: rabbit
 
 - type: marking
@@ -354,9 +354,9 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: rabbit
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: rabbit_overlay
 
 - type: marking
@@ -365,7 +365,7 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: short
 
 - type: marking
@@ -374,7 +374,7 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: squirrel
 
 - type: marking
@@ -383,9 +383,9 @@
   bodyPart: Tail
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: squirrel
-    - sprite: _RMC14/Mobs/Rodentia/tail_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: squirrel_overlay
 
 ## PATTERNS
@@ -397,7 +397,7 @@
   speciesRestriction: [Rodentia]
   sexRestriction: Male
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/body_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/body_markings.rsi
       state: countershade
 
 - type: marking
@@ -407,7 +407,7 @@
   speciesRestriction: [Rodentia]
   sexRestriction: Female
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/body_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/body_markings.rsi
       state: countershade_f
 
 - type: marking
@@ -416,9 +416,9 @@
   bodyPart: LLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: l_leg
-    - sprite: _RMC14/Mobs/Rodentia/body_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/body_markings.rsi
       state: countershade_lleg
 
 - type: marking
@@ -427,9 +427,9 @@
   bodyPart: RLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: r_leg
-    - sprite: _RMC14/Mobs/Rodentia/body_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/body_markings.rsi
       state: countershade_rleg
 
 - type: marking
@@ -438,7 +438,7 @@
   bodyPart: Chest
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/body_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/body_markings.rsi
       state: fawn
 
 - type: marking
@@ -448,7 +448,7 @@
   speciesRestriction: [Rodentia]
   sexRestriction: Male
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/body_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/body_markings.rsi
       state: hooded
 
 - type: marking
@@ -458,7 +458,7 @@
   speciesRestriction: [Rodentia]
   sexRestriction: Female
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/body_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/body_markings.rsi
       state: hooded_f
 
 ### HEAD PATTERNS
@@ -469,9 +469,9 @@
   bodyPart: Head
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: head_m
-    - sprite: _RMC14/Mobs/Rodentia/head_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/head_markings.rsi
       state: blaze
 
 - type: marking
@@ -480,9 +480,9 @@
   bodyPart: Head
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: head_m
-    - sprite: _RMC14/Mobs/Rodentia/head_markings.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/head_markings.rsi
       state: round
 
 # BASE BODY PARTS
@@ -495,7 +495,7 @@
   bodyPart: Head
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: head_m
 
 ## ARMS
@@ -506,7 +506,7 @@
   bodyPart: LArm
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: l_arm
 
 - type: marking
@@ -515,7 +515,7 @@
   bodyPart: RArm
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: r_arm
 
 ## LEGS
@@ -526,7 +526,7 @@
   bodyPart: LLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: l_leg
 
 - type: marking
@@ -535,7 +535,7 @@
   bodyPart: RLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: r_leg
 
 ## HANDS
@@ -546,7 +546,7 @@
   bodyPart: LHand
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: l_hand
 
 - type: marking
@@ -555,7 +555,7 @@
   bodyPart: RHand
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: r_hand
 
 ## FEET
@@ -566,7 +566,7 @@
   bodyPart: LFoot
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: l_foot
 
 - type: marking
@@ -575,5 +575,5 @@
   bodyPart: RFoot
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _RMC14/Mobs/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: r_foot
