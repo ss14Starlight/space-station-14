@@ -145,6 +145,9 @@
   id: PatchPack
 
 - type: Tag
+  id: paladinshield
+
+- type: Tag
   id: PowerCellTiny
 
 - type: Tag
@@ -197,6 +200,9 @@
 
 - type: Tag
   id: Table
+
+- type: Tag
+  id: tidebreaker
 
 - type: Tag
   id: SecuredLocker
