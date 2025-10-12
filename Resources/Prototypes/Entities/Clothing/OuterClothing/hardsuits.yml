@@ -1009,6 +1009,10 @@
     staminaModifier: 0.1
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+  - type: Tag
+    tags:
+    - Hardsuit
+    - RequiredForLmgTag # Starlight
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -1071,6 +1075,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - RequiredForLmgTag # Starlight
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -1125,6 +1130,10 @@
     walkModifier: 1.0
     sprintModifier: 1.0
   - type: HeldSpeedModifier
+  - type: Tag
+    tags:
+    - Hardsuit
+    - RequiredForLmgTag # Starlight
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
 
