@@ -1,3 +1,4 @@
+### ripperdoc
 - type: constructionGraph
   id: RipperLeftGraph
   start: start
@@ -113,3 +114,80 @@
         doAfter: 1
   - node: right
     entity: RightArmCyberRipper
+
+### bastion
+- type: constructionGraph
+  id: BastionLeftGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: left
+      steps:
+      - material: Plasteel
+        amount: 12
+        doAfter: 5
+      - material: Steel
+        amount: 15
+        doAfter: 1
+      - tag: tidebreaker
+        icon:
+          sprite: _Starlight/Objects/Weapons/Melee/tidebreaker.rsi
+          state: icon
+        name: crafting-menu-name-TDEBRK
+      - tag: paladinshield
+        icon:
+          sprite: _Starlight/Objects/Weapons/Melee/paladin_shield.rsi
+          state: icon
+        name: crafting-menu-name-PLDSHL
+      - tag: ModularReceiver
+        icon:
+          sprite: Objects/Misc/modular_receiver.rsi
+          state: icon
+        name: construction-graph-tag-modular-receiver
+      - material: Cloth
+        amount: 10
+        doAfter: 2
+      - material: Cable
+        amount: 15
+        doAfter: 1
+  - node: left
+    entity: LeftArmCyberBastion
+
+- type: constructionGraph
+  id: BastionRightGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: right
+      steps:
+      - material: Plasteel
+        amount: 12
+        doAfter: 5
+      - material: Steel
+        amount: 15
+        doAfter: 1
+      - tag: tidebreaker
+        icon:
+          sprite: _Starlight/Objects/Weapons/Melee/tidebreaker.rsi
+          state: icon
+        name: crafting-menu-name-TDEBRK
+      - tag: paladinshield
+        icon:
+          sprite: _Starlight/Objects/Weapons/Melee/paladin_shield.rsi
+          state: icon
+        name: crafting-menu-name-PLDSHL
+      - tag: ModularReceiver
+        icon:
+          sprite: Objects/Misc/modular_receiver.rsi
+          state: icon
+        name: construction-graph-tag-modular-receiver
+      - material: Cloth
+        amount: 10
+        doAfter: 2
+      - material: Cable
+        amount: 15
+        doAfter: 1
+  - node: right
+    entity: RightArmCyberBastion
