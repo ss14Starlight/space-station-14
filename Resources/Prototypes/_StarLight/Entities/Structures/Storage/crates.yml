@@ -77,3 +77,25 @@
             - !type:PlaySoundBehavior
               sound:
                 collection: MetalBreak
+
+- type: entity
+  parent: CratePlastic
+  id: CrateLibrary
+  name: library crate
+  components:
+  - type: Icon
+    sprite: _Starlight/Structures/Storage/Crates/library.rsi
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/Crates/library.rsi
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateLibrarySecure
+  name: secure library crate
+  components:
+  - type: Icon
+    sprite: _Starlight/Structures/Storage/Crates/library_secure.rsi
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/Crates/library_secure.rsi
+  - type: AccessReader
+    access: [["Library"]]

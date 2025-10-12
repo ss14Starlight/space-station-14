@@ -183,6 +183,31 @@
   - type: Paintable
     group: AirlockGlass
 
+# Library Airlocks
+- type: entity
+  parent: Airlock
+  id: AirlockLibrary
+  suffix: Library
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/hydroponics.rsi
+  - type: Paintable
+    group: AirlockStandard
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockLibraryGlass
+  suffix: Library
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/hydroponics.rsi
+  - type: Paintable
+    group: AirlockGlass
+  - type: Wires
+    layoutId: AirlockService
+
 ## AirlockSalvage is in Wizden airlocks.yml
 ## AirlockSalvageGlass is in Wizden airlocks.yml
 

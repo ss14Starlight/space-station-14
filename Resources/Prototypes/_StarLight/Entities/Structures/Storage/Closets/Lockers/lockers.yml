@@ -159,3 +159,13 @@
   components:
     - type: AccessReader
       access: [["CentralCommand"]]
+
+# Librarian
+- type: entity
+  id: LockerLibrarian
+  parent: LockerBooze
+  name: librarian's cabinet
+  description: Smells faintly of leather and old paper.
+  components:
+  - type: AccessReader
+    access: [["Library"]]

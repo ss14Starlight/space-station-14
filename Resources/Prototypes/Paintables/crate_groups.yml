@@ -19,6 +19,7 @@
     hydroponics: CrateHydroponics
     medical: CrateMedical
     oxygen: CrateInternals
+    library: CrateLibrary # Starlight-edit: add library
 
 - type: paintableGroup
   id: CrateSecure
@@ -36,3 +37,4 @@
     science: CrateScienceSecure
     secgear: CrateSecgear
     weapon: CrateWeaponSecure
+    library: CrateLibrarySecure # Starlight-edit: add library

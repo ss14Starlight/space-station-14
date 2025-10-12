@@ -9,6 +9,7 @@
   access:
   - Service
   - Maintenance
+  - Library # Starlight-edit
   special: # Starlight start - librarian starts with crew languages
   - !type:AddComponentSpecial
     components:

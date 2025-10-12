@@ -309,3 +309,22 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSalvageMining ]
+
+# Library
+- type: entity
+  parent: AirlockLibrary
+  id: AirlockLibraryLocked
+  suffix: Library, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLibrary ]
+
+- type: entity
+  parent: AirlockLibraryGlass
+  id: AirlockLibraryGlassLocked
+  suffix: Library, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLibrary ]

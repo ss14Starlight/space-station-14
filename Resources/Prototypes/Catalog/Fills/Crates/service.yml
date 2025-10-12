@@ -214,7 +214,7 @@
         - id: BoxID
 
 - type: entity
-  parent: CrateGenericSteel
+  parent: CrateLibrary
   id: CrateServiceBooks
   name: books crate
   description: Contains 10 empty books of random appearance.
@@ -226,7 +226,7 @@
         amount: 10
 
 - type: entity
-  parent: CrateGenericSteel
+  parent: CrateLibrary
   id: CrateServiceGuidebooks
   name: guidebooks crate
   description: Contains guidebooks.
