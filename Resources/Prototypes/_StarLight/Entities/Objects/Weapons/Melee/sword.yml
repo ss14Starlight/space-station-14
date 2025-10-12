@@ -176,3 +176,34 @@
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+
+- type: entity
+  name: tidebreaker
+  parent: [ BaseSword, BaseMajorContraband ]
+  id: ClaymoreForgedCyber
+  description: The perfect weapon for an aspiring maints cyberknight!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/tidebreaker.rsi
+  - type: MeleeWeapon
+    attackRate: 0.75    
+    autoAttack: true
+    damage:
+      types:
+        Slash: 20
+        Structural: 10
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Melee/tidebreaker.rsi
+    slots:
+    - suitStorage
+  - type: DisarmMalus
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
