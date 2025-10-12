@@ -40,6 +40,9 @@
           Blunt: 14 #Bonk!
       soundHit:
         path: "/Audio/Weapons/smash.ogg"
+    - type: Tag
+      tags:
+      - CyberHandItem
     - type: Damageable
       damageContainer: Shield
     - type: Destructible
@@ -299,3 +302,49 @@
                 SheetSteel:
                   min: 2
                   max: 10
+
+- type: entity
+  name: paladin shield
+  parent: [ BaseItem, BaseMajorContraband ] # Easier to remake it than inheret it, due to wiz keeping all shields in one folder and mine doing the opposite, due to the suitslot sprites.
+  id: PaladinShieldCyber
+  description: A shield for a true paladin! Good at deflecting hits with swords and absorbing the impact from bats, but not much else.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/paladin_shield.rsi
+      state: base
+    - type: Item
+      sprite: _Starlight/Objects/Weapons/Melee/paladin_shield.rsi
+      size: Ginormous
+    - type: Clothing
+      sprite: _Starlight/Objects/Weapons/Melee/paladin_shield.rsi
+      quickEquip: false
+      slots:
+      - Back
+      - suitStorage
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.5 #Encourages long swordfights, which I really, really want to see.
+          Piercing: 0.8
+          Heat: 0.85
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.3
+          Piercing: 0.7
+          Heat: 0.75
+        flatReductions:
+          Blunt: 1
+          Slash: 1
+          Piercing: 1
+          Heat: 1
+    - type: MeleeWeapon
+      damage:
+        types:
+          Blunt: 14 #Bonk!
+      soundHit:
+        path: "/Audio/Weapons/smash.ogg"
+    - type: Tag
+      tags:
+      - CyberHandItem
