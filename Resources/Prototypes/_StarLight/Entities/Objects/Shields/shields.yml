@@ -42,7 +42,7 @@
         path: "/Audio/Weapons/smash.ogg"
     - type: Tag
       tags:
-      - CyberHandItem
+      - paladinshield
     - type: Damageable
       damageContainer: Shield
     - type: Destructible
