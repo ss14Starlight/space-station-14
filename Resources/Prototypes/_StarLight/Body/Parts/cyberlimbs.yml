@@ -495,3 +495,71 @@
     - type: Construction
       graph: RipperRightGraph
       node: right
+
+# bastion
+
+- type: entity
+  id: LeftArmCyberBastion
+  name: "left bastion arm"
+  parent: [PartCyber, BaseLeftArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmBastion
+    - type: BaseLayerIdToggled
+      layer: CyberLArmBastionActive
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bastion_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bastion_arm"
+    - type: LimbItemStorage
+      items:
+        - PaladinShield
+        - ClaymoreForgedCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound: 
+        path: /Audio/Effects/metal_scrape1.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyber
+    - type: Construction
+      graph: BastionLeftGraph
+      node: left
+
+- type: entity
+  id: RightArmCyberBastion
+  name: "right bastion arm"
+  parent: [PartCyber, BaseRightArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmBastion
+    - type: BaseLayerIdToggled
+      layer: CyberRArmBastionActive
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bastion_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bastion_arm"
+    - type: LimbItemStorage
+      items:
+        - PaladinShield
+        - ClaymoreForgedCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound: 
+        path: /Audio/Effects/metal_scrape1.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyber
+    - type: Construction
+      graph: BastionRightGraph
+      node: right
