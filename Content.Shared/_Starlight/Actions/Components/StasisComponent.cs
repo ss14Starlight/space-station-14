@@ -121,7 +121,7 @@ public sealed partial class StasisComponent : Component
     /// <summary>
     /// The lifetime of the entering stasis effect in seconds.
     /// </summary>
-    [DataField] [AutoNetworkedField] public float StasisEnterEffectLifetime = 2.7f;
+    [DataField] [AutoNetworkedField] public float StasisEnterEffectLifetime = 1.7f;
 
     /// <summary>
     /// The sound to play when entering stasis.
@@ -136,7 +136,7 @@ public sealed partial class StasisComponent : Component
     /// <summary>
     /// The lifetime of the exit stasis effect in seconds.
     /// </summary>
-    [DataField] [AutoNetworkedField] public float StasisExitEffectLifetime = 2.7f;
+    [DataField] [AutoNetworkedField] public float StasisExitEffectLifetime = 1.7f;
 
     /// <summary>
     /// The sound to play when exiting stasis.

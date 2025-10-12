@@ -1,4 +1,4 @@
-# base
+﻿# base
 
 - type: entity
   id: VendingMachine
@@ -878,7 +878,7 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     ejectDelay: 0.6
-    showPrices: false # Starlight-edit: Vending Machines Prices
+    showPrices: True # Starlight-edit: Vending Machines Prices
   - type: DatasetVocalizer
     dataset: NanoMedAds
   - type: SpeakOnUIClosed
@@ -905,13 +905,12 @@
   parent: VendingMachineMedicalBase
   id: VendingMachineMedical
   name: NanoMed Plus
-  description: It's a medical drug dispenser. Natural chemicals only!
   components:
   - type: VendingMachine
     pack: NanoMedPlusInventory
     offState: off
+    showPrices: false  # Starlight-edit: Vending Machines Prices
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/medical.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -1317,7 +1316,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Research"]]
+    access: [["Robotics"]] # Starlight
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -1449,7 +1448,7 @@
     energy: 1.6
     color: "#b89f25"
   - type: AccessReader
-    access: [["Salvage"]]
+    access: [["Salvage"],["Mining"]]
   - type: GuideHelp
     guides:
     - Salvage
@@ -2015,7 +2014,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Research"]]
+    access: [["Robotics"]] # Starlight
 
 - type: entity
   parent: VendingMachine
@@ -2259,12 +2258,12 @@
   parent: VendingMachineWallmount
   id: VendingMachineWallMedicalCivilian
   name: NanoMed band-aid
-  description: "It's a wall-mounted medical equipment dispenser. Natural chemicals only!"
+  description: It's a wall-mounted medical equipment dispenser. Natural chemicals only!
   components:
   - type: VendingMachine
     pack: NanoMedCivilianWallInventory
     offState: off-civilian
-    showPrices: false # Starlight-edit: Vending Machines Prices
+    showPrices: True # Starlight-edit: Vending Machines Prices
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
@@ -2290,13 +2289,12 @@
   parent: VendingMachineWallMedicalCivilian
   id: VendingMachineWallMedical
   name: NanoMed
-  description: "It's a wall-mounted medical equipment dispenser. Natural chemicals only!"
   components:
   - type: VendingMachine
     pack: NanoMedInventory
     offState: off
+    showPrices: false # Starlight-edit: Vending Machines Prices
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/wallmed.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]

@@ -38,28 +38,6 @@
   description: A smart dog, loves stating it's laws.
   id: StationBorgiChassis
   components:
-    - type: LanguageKnowledge
-      speaks:
-      - Machine
-      - Dog
-      understands:
-      - GalacticCommon
-      - Machine
-      - Dog
-      - Canilunzt
-      - Sign
-      - Bubblish
-      - Chittin
-      - Draconic
-      - Marish
-      - Moffic
-      - Nekomimetic
-      - Sylvan
-      - Terrum
-      - VoxPidgin
-      - Scratch
-      - Thaveyan
-      - SolCommon
     - type: ItemSlots
       slots:
         cell_slot:
@@ -95,28 +73,6 @@
   name: SubWoofer
   description: A smart dog, with an obsession for sick bass beats and stating laws.
   components:
-    - type: LanguageKnowledge
-      speaks:
-      - Machine
-      - Dog
-      understands:
-      - GalacticCommon
-      - Machine
-      - Dog
-      - Canilunzt
-      - Sign
-      - Bubblish
-      - Chittin
-      - Draconic
-      - Marish
-      - Moffic
-      - Nekomimetic
-      - Sylvan
-      - Terrum
-      - VoxPidgin
-      - Scratch
-      - Thaveyan
-      - SolCommon
     - type: ItemSlots
       slots:
         cell_slot:
@@ -230,28 +186,6 @@
       coldDamage:
         types:
           Cold: 0.01
-    - type: LanguageKnowledge
-      speaks:
-      - GalacticCommon
-      - Machine
-      - Dog
-      understands:
-      - GalacticCommon
-      - SolCommon
-      - Machine
-      - Canilunzt
-      - Sign
-      - Bubblish
-      - Chittin
-      - Draconic
-      - Marish
-      - Moffic
-      - Nekomimetic
-      - Sylvan
-      - Terrum
-      - VoxPidgin
-      - Scratch
-      - Dog
     - type: Inventory
       speciesId: dog
       templateId: SmartCorgi

@@ -12,6 +12,10 @@
   # Inherited
   - type: StaticPrice
     price: 0
+  # Starlight-edit: start
+  - type: ItemPrice
+    priceCategory: medical  
+  #Starlight-edit: end
 
 - type: entity
   name: ointment
