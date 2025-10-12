@@ -176,6 +176,9 @@
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  - type: Tag
+    tags:
+    - tidebreaker
 
 - type: entity
   name: tidebreaker
