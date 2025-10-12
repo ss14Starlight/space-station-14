@@ -1,4 +1,30 @@
 - type: loadoutGroup
+  id: Scarves
+  name: loadout-group-scarves
+  minLimit: 0
+  loadouts:
+  - ScarfRed
+  - ScarfBlue
+  - ScarfGreen
+  - ScarfBlack
+  - ScarfBrown
+  - ScarfLightBlue
+  - ScarfOrange
+  - ScarfPurple
+  - ScarfPrideAce
+  - ScarfPrideAro
+  - ScarfPrideAroace
+  - ScarfPrideBisexual
+  - ScarfPrideGay
+  - ScarfPrideIntersex
+  - ScarfPrideLesbian
+  - ScarfPridePansexual
+  - ScarfPrideNonbinary
+  - ScarfPrideRainbow
+  - ScarfPrideTrans
+  - ScarfPrideLongBacon
+
+- type: loadoutGroup
   id: AssistantGlasses
   name: loadout-group-assistant-glasses
   minLimit: 0
@@ -75,7 +101,6 @@
   - RoboticistWeldingGoggles
   - RoboticistDiagnosticsHud
 
-
 - type: loadoutGroup
   id: RoboticistBackpack
   name: loadout-group-roboticist-backpack
@@ -109,6 +134,14 @@
   loadouts:
   - NanoTrasenRepresentativeGlasses
   - NanoTrasenRepresentativeHud
+  - NanoTrasenRepresentativeMonocle
+
+- type: loadoutGroup
+  id: BlueShieldHead
+  name: loadout-group-blueshield-head
+  loadouts:
+  - BlueShieldBeret
+  - BlueShieldBountyHat
 
 - type: loadoutGroup
   id: BlueShieldBackpack
@@ -143,6 +176,7 @@
   loadouts:
   - BlueShieldFormalCloak
   - BlueShieldEliteCloak
+  - BlueShieldPoncho
 
 - type: loadoutGroup
   id: BlueShieldEyewear
@@ -259,3 +293,19 @@
   loadouts:
   - CombatBoots
   - HighHeelBootsFilled
+
+# Salvage Lead
+- type: loadoutGroup
+  id: SalvageLeadJumpsuit
+  name: loadout-group-salvage-lead-jumpsuit
+  loadouts:
+    - SalvageLeadJumpsuit
+    - SalvageLeadJumpskirt
+
+# Mining Specialist
+- type: loadoutGroup
+  id: MiningSpecialistJumpsuit
+  name: loadout-group-mining-specialist-jumpsuit
+  loadouts:
+    - MiningSpecialistJumpsuit
+    - MiningSpecialistJumpskirt

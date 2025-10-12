@@ -346,6 +346,8 @@
   parent: BaseScissors
   description: A surgical tool used to hold open incisions.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi #Starlight
   - type: Retractor
   - type: SurgeryTool
     startSound:
@@ -437,6 +439,7 @@
   description: A surgical tool used to compress blood vessels to prevent bleeding.
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi #Starlight
     state: hemostat
   - type: Item
     heldPrefix: hemostat
@@ -516,6 +519,7 @@
   description: A surgical tool used for setting bones.
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi #Starlight
     state: setter
   - type: Item
     heldPrefix: setter

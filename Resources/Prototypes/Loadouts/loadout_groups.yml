@@ -833,15 +833,14 @@
   loadouts:
   - SalvageSpecialistWintercoat
 
-- type: loadoutGroup # afterlight start
+- type: loadoutGroup
   id: SalvageSpecialistJumpsuit
   name: loadout-group-salvage-specialist-jumpsuit
-  minLimit: 0
   loadouts:
-  - ClothingUniformJumpsuitMiningSpecialist
-  - ClothingUniformJumpskirtCargoSalvage
-  - ClothingUniformJumpskirtCargoSalvageFormal
-  - ClothingUniformJumpsuitSalvageFormal # afterlight end
+  - SalvageSpecialistJumpsuit # 🌟Starlight🌟
+  - SalvageSpecialistJumpskirt # 🌟Starlight🌟
+  - SalvageSpecialistJumpsuitFormal # 🌟Starlight🌟
+  - SalvageSpecialistJumpskirtFormal # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SalvageSpecialistShoes
@@ -1154,6 +1153,7 @@
   name: loadout-group-head-of-security-neck
   minLimit: 0
   loadouts:
+  - ClothingNeckCloakHosVar #STARLIGHT
   - HeadofSecurityCloak
   - HeadofSecurityMantle
 

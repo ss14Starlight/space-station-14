@@ -4,7 +4,6 @@ using Content.Server.Chat;
 using Content.Server.Chat.Managers;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Humanoid;
-using Content.Server.IdentityManagement;
 using Content.Server.Inventory;
 using Content.Server.Mind;
 using Content.Server.NPC;
@@ -36,6 +35,7 @@ using Content.Shared.Prying.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Ghost.Roles.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Tag;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -122,9 +122,11 @@ public sealed partial class ZombieSystem
         RemComp<SentienceTargetComponent>(target);
 
         // Starlight-start: Add Zombie Language - Starlight
-        RemComp<UniversalLanguageSpeakerComponent>(target);
         EnsureComp<LanguageKnowledgeComponent>(target, out var knowledge);
+        _language.CaptureCache((target, knowledge));
+        RemComp<UniversalLanguageSpeakerComponent>(target);
         EnsureComp<LanguageSpeakerComponent>(target, out var speaker);
+        EnsureComp<RestoreLanguageCacheOnCloneComponent>(target);
 
         knowledge.SpokenLanguages.Clear();
         knowledge.UnderstoodLanguages.Clear();

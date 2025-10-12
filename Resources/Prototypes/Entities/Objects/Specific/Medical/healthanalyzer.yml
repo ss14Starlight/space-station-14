@@ -41,6 +41,10 @@
   - type: GuideHelp
     guides:
     - MedicalDoctor
+  # Starlight-edit: start
+  - type: ItemPrice 
+    fallbackPrice: 50
+  # Starlight-edit: end
 
 - type: entity
   id: HandheldHealthAnalyzer

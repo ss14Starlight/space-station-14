@@ -90,7 +90,7 @@
 - type: entity
   parent: BaseWall
   id: WallConcrete
-  name: conrete wall
+  name: concrete wall
   suffix: Reinforced
   components:
   - type: Damageable

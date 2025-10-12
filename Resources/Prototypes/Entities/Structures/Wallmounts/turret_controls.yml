@@ -170,7 +170,7 @@
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelBase
   id: WeaponEnergyTurretAIControlPanel
-  suffix: AI, Silicon
+  suffix: AI # Starlight edit
   components:
   - type: AccessReader
     access: [["StationAi"], ["ResearchDirector"]]
@@ -185,12 +185,14 @@
     exemptAccessLevels:
     - BasicSilicon
     - Borg
-  - type: DeployableTurretController
-    accessGroups:
-    - Silicon
-    accessLevels:
-    - BasicSilicon
-    - Borg
+  # Starlight edit Start: AI turret controller All Access
+  # - type: DeployableTurretController
+  #   accessGroups:
+  #   - Silicon
+  #   accessLevels:
+  #   - BasicSilicon
+  #   - Borg
+  # Starligh edit End
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelBase

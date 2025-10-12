@@ -16,6 +16,10 @@
             "directions": 4
         },
         {
+            "name": "borg_e_r",
+            "directions": 4
+        },
+        {
             "name": "borg_l",
             "directions": 4
         }

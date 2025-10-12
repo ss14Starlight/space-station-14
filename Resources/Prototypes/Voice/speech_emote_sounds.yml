@@ -757,6 +757,24 @@
     Salute:
       collection: Salutes
 
+# Starlight BEGIN: Moths used to just use GenericBodyEmotes
+- type: emoteSounds
+  id: MothBodyEmotes
+  sounds:
+    FlapWings: # Starlight: Flap wings
+      path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Salute:
+      collection: Salutes
+# Starlight END
+
 # mobs
 - type: emoteSounds
   id: Zombie

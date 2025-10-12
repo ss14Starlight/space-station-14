@@ -490,6 +490,8 @@
   - type: Jump
     action: JumpJet
     isEquipment: true
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
   - type: UserInterface
     interfaces:
       enum.SharedGasTankUiKey.Key:
@@ -548,3 +550,18 @@
     tags:
     - CorgiWearable
     - Hardsuit
+
+# Golden
+
+- type: entity
+  parent: ClothingOuterHardsuitAtmos
+  id: ClothingOuterHardsuitAtmosGolden
+  name: atmos hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/atmospherics_golden.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/atmospherics_golden.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAtmosGolden

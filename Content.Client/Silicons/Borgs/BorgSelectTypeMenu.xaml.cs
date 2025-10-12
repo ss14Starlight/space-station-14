@@ -1,6 +1,10 @@
 ﻿using System.Linq;
+using Content.Client._Afterlight.Silicons.Borgs.UI; // Afterlight
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._Afterlight.Prototypes; // Afterlight
+using Content.Shared._Afterlight.Silicons; // Afterlight
+using Content.Shared._Afterlight.Silicons.Borgs; // Afterlight
 using Content.Shared.Guidebook;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
@@ -24,6 +28,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
     private BorgTypePrototype? _selectedBorgType;
 
     public event Action<ProtoId<BorgTypePrototype>>? ConfirmedBorgType;
+    public event Action<EntityPrototype?>? ConfirmBorgSubtype; // Starlight event - borg subtypes
 
     private static readonly List<ProtoId<GuideEntryPrototype>> GuidebookEntries = new() { "Cyborgs", "Robotics" };
 
@@ -50,6 +55,10 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
 
         ConfirmTypeButton.OnPressed += ConfirmButtonPressed;
         HelpGuidebookIds = GuidebookEntries;
+
+        // Afterlight - borg subtypes
+        ChassisSpriteSelection.SubtypeSelected += () => ConfirmTypeButton.Disabled = false;
+        // Afterlight end
     }
 
     private void UpdateInformation(BorgTypePrototype prototype)
@@ -58,7 +67,15 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
 
         InfoContents.Visible = true;
         InfoPlaceholder.Visible = false;
-        ConfirmTypeButton.Disabled = false;
+        // ConfirmTypeButton.Disabled = false; Starlight
+
+        // Afterlight - borg subtype
+        if (_selectedBorgType != null)
+        {
+            ChassisSpriteSelection.Update(_selectedBorgType);
+            ConfirmTypeButton.Disabled = ChassisSpriteSelection.SubtypePrototype == null;
+        }
+        // Afterlight end
 
         NameLabel.Text = PrototypeName(prototype);
         DescriptionLabel.Text = Loc.GetString($"borg-type-{prototype.ID}-desc");
@@ -70,6 +87,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         if (_selectedBorgType == null)
             return;
 
+        ConfirmBorgSubtype?.Invoke(ChassisSpriteSelection.SubtypePrototype); // Afterlight
         ConfirmedBorgType?.Invoke(_selectedBorgType);
     }
 

@@ -16,6 +16,10 @@ using Content.Shared.Security.Components;
 using System.Linq;
 using Content.Shared.Roles.Jobs;
 
+// Cosmatic Drift Record System: imports
+using Content.Server._CD.Records;
+using Content.Shared._CD.Records;
+
 namespace Content.Server.CriminalRecords.Systems;
 
 /// <summary>
@@ -36,6 +40,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         SubscribeLocalEvent<CriminalRecordsConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<CriminalRecordsConsoleComponent, AfterGeneralRecordCreatedEvent>(UpdateUserInterface);
 
+        /* CD: We disable the wizden Criminal Records computer and reuse some of the Bui events
         Subs.BuiEvents<CriminalRecordsConsoleComponent>(CriminalRecordsConsoleKey.Key, subs =>
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
@@ -45,7 +50,21 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             subs.Event<CriminalRecordAddHistory>(OnAddHistory);
             subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
             subs.Event<CriminalRecordSetStatusFilter>(OnStatusFilterPressed);
+        }); */
+
+        // Cosmatic Drift Record System-start: also subscribe to status changes from the CD records console
+        Subs.BuiEvents<CriminalRecordsConsoleComponent>(CharacterRecordConsoleKey.Key, subs =>
+        {
+            subs.Event<SelectStationRecord>(OnKeySelected);
+            subs.Event<CriminalRecordAddHistory>(OnAddHistory);
+            subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
+            subs.Event((Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordChangeStatus args) =>
+            {
+                OnChangeStatus(ent, ref args);
+                RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent());
+            });
         });
+        // Cosmatic Drift Record System-end
     }
 
     private void UpdateUserInterface<T>(Entity<CriminalRecordsConsoleComponent> ent, ref T args)
@@ -114,8 +133,8 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         // fallback exists if the player was not set to wanted beforehand
         if (msg.Status == SecurityStatus.Detained)
         {
-            var oldReason = record.Reason ?? Loc.GetString("criminal-records-console-unspecified-reason");
-            var history = Loc.GetString("criminal-records-console-auto-history", ("reason", oldReason));
+            var oldReason = string.IsNullOrWhiteSpace(record.Reason) ? null : record.Reason;
+            var history = FormatStatusHistory(SecurityStatus.Detained, oldReason);
             _criminalRecords.TryAddHistory(key.Value, history, officer);
         }
 
@@ -133,7 +152,13 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         if (tryGetIdentityShortInfoEvent.Title != null)
             officer = tryGetIdentityShortInfoEvent.Title;
 
-        _criminalRecords.TryChangeStatus(key.Value, msg.Status, msg.Reason, officer);
+        // Cosmatic Drift Record System-start
+        if (!_criminalRecords.TryChangeStatus(key.Value, msg.Status, msg.Reason, officer))
+            return;
+        // Cosmatic Drift Record System-end
+
+        var statusHistory = FormatStatusHistory(msg.Status, reason);
+        _criminalRecords.TryAddHistory(key.Value, statusHistory, officer);
 
         (string, object)[] args;
         if (reason != null)
@@ -169,6 +194,12 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             ent.Comp.SecurityChannel, ent);
 
         UpdateUserInterface(ent);
+        // Cosmatic Drift Record System-start
+
+        // Notify the character record consoles so their view refreshes with the
+        // latest security status.
+        RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent());
+        // Cosmatic Drift Record System-end
     }
 
     private void OnAddHistory(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordAddHistory msg)
@@ -188,6 +219,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         // no radio message since its not crucial to officers patrolling
 
         UpdateUserInterface(ent);
+        RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent());
     }
 
     private void OnDeleteHistory(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordDeleteHistory msg)
@@ -201,6 +233,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         // a bit sus but not crucial to officers patrolling
 
         UpdateUserInterface(ent);
+        RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent());
     }
 
     private void UpdateUserInterface(Entity<CriminalRecordsConsoleComponent> ent)
@@ -268,6 +301,16 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         key = new StationRecordKey(id, station);
         mob = user;
         return true;
+    }
+
+    private string FormatStatusHistory(SecurityStatus status, string? reason)
+    {
+        var statusName = Loc.GetString("criminal-records-status-" + status.ToString().ToLower());
+        var sanitizedReason = string.IsNullOrWhiteSpace(reason) ? null : reason.Trim();
+        if (sanitizedReason != null)
+            return Loc.GetString("criminal-records-console-status-history-reason", ("status", statusName), ("reason", sanitizedReason));
+
+        return Loc.GetString("criminal-records-console-status-history", ("status", statusName));
     }
 
     /// <summary>

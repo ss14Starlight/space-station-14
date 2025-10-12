@@ -17,13 +17,15 @@
   - Mining
   - Maintenance
   - External
+  extendedAccess:
+  - Salvage
 
 - type: startingGear
   id: MiningSpecialistGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitMiningSpecialist
     id: MiningPDA
     ears: ClothingHeadsetMining
+    belt: OreBag
     #storage:
     #back:
     #- Stuff
