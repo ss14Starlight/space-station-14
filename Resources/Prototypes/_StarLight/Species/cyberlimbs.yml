@@ -210,3 +210,37 @@
   baseSprite:
     sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
     state: r_ripper_arm_SURG
+
+
+#bastion
+- type: humanoidBaseSprite
+  id: CyberLArmBastion
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_bastion_arm
+
+- type: humanoidBaseSprite
+  id: CyberLArmBastionActive
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_bastion_arm_ACTIVE
+
+- type: humanoidBaseSprite
+  id: CyberRArmBastion
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_bastion_arm
+
+- type: humanoidBaseSprite
+  id: CyberRArmBastionActive
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_bastion_arm_ACTIVE
