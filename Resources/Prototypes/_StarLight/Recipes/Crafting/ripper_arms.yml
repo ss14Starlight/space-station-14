@@ -1,3 +1,4 @@
+### ripperdoc
 - type: construction
   name: crafting-menu-name-RIPRL
   id: ArmRipperLeft
@@ -17,3 +18,25 @@
   category: construction-category-tools
   objectType: Item
   description: crafting-menu-text-RIPRR
+
+
+### bastion
+- type: construction
+  name: crafting-menu-name-BSTNL
+  id: ArmBastionLeft
+  graph: BastionLeftGraph
+  startNode: start
+  targetNode: left
+  category: construction-category-tools
+  objectType: Item
+  description: crafting-menu-text-BSTNL
+
+- type: construction
+  name: crafting-menu-name-BSTNR
+  id: ArmBastionRight
+  graph: BastionRightGraph
+  startNode: start
+  targetNode: right
+  category: construction-category-tools
+  objectType: Item
+  description: crafting-menu-text-BSTNR
