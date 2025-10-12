@@ -515,7 +515,7 @@
       state: "l_bastion_arm"
     - type: LimbItemStorage
       items:
-        - PaladinShield
+        - PaladinShieldCyber
         - ClaymoreForgedCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandLeft
@@ -548,7 +548,7 @@
       state: "r_bastion_arm"
     - type: LimbItemStorage
       items:
-        - PaladinShield
+        - PaladinShieldCyber
         - ClaymoreForgedCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandRight
