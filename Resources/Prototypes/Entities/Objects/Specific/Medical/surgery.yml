@@ -800,8 +800,6 @@
     state: bone-gel
   - type: SurgeryTool
     speed: 1
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9
