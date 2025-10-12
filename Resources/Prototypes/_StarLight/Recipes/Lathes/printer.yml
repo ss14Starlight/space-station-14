@@ -6,7 +6,7 @@
   id: PrintedDocumentIdentityEmploymentOrderDemotionRecipe
   result: PrintedDocumentIdentityEmploymentOrderDemotion
   categories:
-    - IdentityEmployment
+    - DocumentIdentityEmployment
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -16,7 +16,7 @@
   id: PrintedDocumentIdentityEmploymentOrderCommandAppointmentRecipe
   result: PrintedDocumentIdentityEmploymentOrderCommandAppointment
   categories:
-    - IdentityEmployment
+    - DocumentIdentityEmployment
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -26,7 +26,7 @@
   id: PrintedDocumentIdentityEmploymentRequestIdReplacementRecipe
   result: PrintedDocumentIdentityEmploymentRequestIdReplacement
   categories:
-    - IdentityEmployment
+    - DocumentIdentityEmployment
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -36,7 +36,7 @@
   id: PrintedDocumentIdentityEmploymentRequestEmploymentTransferRecipe
   result: PrintedDocumentIdentityEmploymentRequestEmploymentTransfer
   categories:
-    - IdentityEmployment
+    - DocumentIdentityEmployment
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -46,7 +46,7 @@
   id: PrintedDocumentIdentityEmploymentFormLostAndFoundRecipe
   result: PrintedDocumentIdentityEmploymentFormLostAndFound
   categories:
-    - IdentityEmployment
+    - DocumentIdentityEmployment
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -56,7 +56,7 @@
   id: PrintedDocumentIdentityEmploymentRequestAccessChangeRecipe
   result: PrintedDocumentIdentityEmploymentRequestAccessChange
   categories:
-    - IdentityEmployment
+    - DocumentIdentityEmployment
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -66,7 +66,7 @@
   id: PrintedDocumentIdentityEmploymentStatementResignationRecipe
   result: PrintedDocumentIdentityEmploymentStatementResignation
   categories:
-    - IdentityEmployment
+    - DocumentIdentityEmployment
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -76,7 +76,7 @@
   id: PrintedDocumentIdentityEmploymentFormVisitorRecipe
   result: PrintedDocumentIdentityEmploymentFormVisitor
   categories:
-    - IdentityEmployment
+    - DocumentIdentityEmployment
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -89,7 +89,7 @@
   id: PrintedDocumentSecurityLawReportArrestRecipe
   result: PrintedDocumentSecurityLawReportArrest
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -99,7 +99,7 @@
   id: PrintedDocumentSecurityLawReportCaseFileRecipe
   result: PrintedDocumentSecurityLawReportCaseFile
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -109,7 +109,7 @@
   id: PrintedDocumentSecurityLawPermissionContrabandRecipe
   result: PrintedDocumentSecurityLawPermissionContraband
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -119,7 +119,7 @@
   id: PrintedDocumentSecurityLawReportDepartmentOversightRecipe
   result: PrintedDocumentSecurityLawReportDepartmentOversight
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -129,7 +129,7 @@
   id: PrintedDocumentSecurityLawOrderDnrRecipe
   result: PrintedDocumentSecurityLawOrderDnr
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -139,7 +139,7 @@
   id: PrintedDocumentSecurityLawPermissionEquipmentRecipe
   result: PrintedDocumentSecurityLawPermissionEquipment
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -149,7 +149,7 @@
   id: PrintedDocumentSecurityLawOrderExecutionAndDnrRecipe
   result: PrintedDocumentSecurityLawOrderExecutionAndDnr
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -159,7 +159,7 @@
   id: PrintedDocumentSecurityLawOrderExecutionRecipe
   result: PrintedDocumentSecurityLawOrderExecution
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -169,7 +169,7 @@
   id: PrintedDocumentSecurityLawReportInternalAffairsRecipe
   result: PrintedDocumentSecurityLawReportInternalAffairs
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -179,7 +179,7 @@
   id: PrintedDocumentSecurityLawComplaintLaborViolationRecipe
   result: PrintedDocumentSecurityLawComplaintLaborViolation
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -189,7 +189,7 @@
   id: PrintedDocumentSecurityLawComplaintOffenseRecipe
   result: PrintedDocumentSecurityLawComplaintOffense
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -199,7 +199,7 @@
   id: PrintedDocumentSecurityLawOrderParoleRecipe
   result: PrintedDocumentSecurityLawOrderParole
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -209,7 +209,7 @@
   id: PrintedDocumentSecurityLawPermissionSearchWarrantRecipe
   result: PrintedDocumentSecurityLawPermissionSearchWarrant
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -219,7 +219,7 @@
   id: PrintedDocumentSecurityLawPermissionSpecialAmarmentRecipe
   result: PrintedDocumentSecurityLawPermissionSpecialAmarment
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -229,7 +229,7 @@
   id: PrintedDocumentSecurityLawPermissionFirearmRecipe
   result: PrintedDocumentSecurityLawPermissionFirearm
   categories:
-    - SecurityLaw
+    - DocumentSecurityLaw
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -242,7 +242,7 @@
   id: PrintedDocumentMedicalFormEmergencyMedicalWaiverRecipe
   result: PrintedDocumentMedicalFormEmergencyMedicalWaiver
   categories:
-    - Medical
+    - DocumentMedical
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -252,7 +252,7 @@
   id: PrintedDocumentMedicalPermissionHazardousExperimentRecipe
   result: PrintedDocumentMedicalPermissionHazardousExperiment
   categories:
-    - Medical
+    - DocumentMedical
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -262,7 +262,7 @@
   id: PrintedDocumentMedicalFormMedicalConsentRecipe
   result: PrintedDocumentMedicalFormMedicalConsent
   categories:
-    - Medical
+    - DocumentMedical
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -272,7 +272,7 @@
   id: PrintedDocumentMedicalFormMedicalPrescriptionRecipe
   result: PrintedDocumentMedicalFormMedicalPrescription
   categories:
-    - Medical
+    - DocumentMedical
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -282,7 +282,7 @@
   id: PrintedDocumentMedicalNoticeQuarantineRecipe
   result: PrintedDocumentMedicalNoticeQuarantine
   categories:
-    - Medical
+    - DocumentMedical
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -292,7 +292,7 @@
   id: PrintedDocumentMedicalFormTherapySessionRecordRecipe
   result: PrintedDocumentMedicalFormTherapySessionRecord
   categories:
-    - Medical
+    - DocumentMedical
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -305,7 +305,7 @@
   id: PrintedDocumentScienceFormAnomalousBondingConsentRecipe
   result: PrintedDocumentScienceFormAnomalousBondingConsent
   categories:
-    - Science
+    - DocumentScience
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -315,7 +315,7 @@
   id: PrintedDocumentScienceFormCyborgChassisTransferRecipe
   result: PrintedDocumentScienceFormCyborgChassisTransfer
   categories:
-    - Science
+    - DocumentScience
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -325,7 +325,7 @@
   id: PrintedDocumentScienceFormCyborgConversionRecordRecipe
   result: PrintedDocumentScienceFormCyborgConversionRecord
   categories:
-    - Science
+    - DocumentScience
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -335,7 +335,7 @@
   id: PrintedDocumentSciencePermissionHazardousEquipmentReleaseRecipe
   result: PrintedDocumentSciencePermissionHazardousEquipmentRelease
   categories:
-    - Science
+    - DocumentScience
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -345,7 +345,7 @@
   id: PrintedDocumentScienceFormCyborgVoluntaryConversionConsentRecipe
   result: PrintedDocumentScienceFormCyborgVoluntaryConversionConsent
   categories:
-    - Science
+    - DocumentScience
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -358,7 +358,7 @@
   id: PrintedDocumentCommandEmergencyCommCentcomRecipe
   result: PrintedDocumentCommandEmergencyCommCentcom
   categories:
-    - CommandEmergency
+    - DocumentCommandEmergency
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -368,7 +368,7 @@
   id: PrintedDocumentCommandEmergencyStatementCommandSuccessionRecipe
   result: PrintedDocumentCommandEmergencyStatementCommandSuccession
   categories:
-    - CommandEmergency
+    - DocumentCommandEmergency
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -378,7 +378,7 @@
   id: PrintedDocumentCommandEmergencyRequestErtRecipe
   result: PrintedDocumentCommandEmergencyRequestErt
   categories:
-    - CommandEmergency
+    - DocumentCommandEmergency
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -388,7 +388,7 @@
   id: PrintedDocumentCommandEmergencyRequestEvacuationRecipe
   result: PrintedDocumentCommandEmergencyRequestEvacuation
   categories:
-    - CommandEmergency
+    - DocumentCommandEmergency
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -398,7 +398,7 @@
   id: PrintedDocumentCommandEmergencyReportSituationOnStationRecipe
   result: PrintedDocumentCommandEmergencyReportSituationOnStation
   categories:
-    - CommandEmergency
+    - DocumentCommandEmergency
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -408,7 +408,7 @@
   id: PrintedDocumentCommandEmergencyStatementSentienceAcknowledgementRecipe
   result: PrintedDocumentCommandEmergencyStatementSentienceAcknowledgement
   categories:
-    - CommandEmergency
+    - DocumentCommandEmergency
   completetime: 2
   applyMaterialDiscount: false
   materials:
@@ -421,7 +421,7 @@
   id: PrintedDocumentAtmosEngineeringPermissionStationModificationRecipe
   result: PrintedDocumentAtmosEngineeringPermissionStationModification
   categories:
-    - AtmosEngineering
+    - DocumentAtmosEngineering
   completetime: 2
   applyMaterialDiscount: false
   materials:
