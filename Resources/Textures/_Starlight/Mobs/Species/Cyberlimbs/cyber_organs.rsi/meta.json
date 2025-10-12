@@ -94,6 +94,16 @@
     },
     {
       "name": "tongue"
+    },
+    {
+      "name": "cyberjack-heart-on",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
     }
   ]
 }
