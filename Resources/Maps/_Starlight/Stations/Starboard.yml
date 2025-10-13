@@ -210796,14 +210796,14 @@ entities:
     - type: Transform
       pos: 4.504363,-6.4443984
       parent: 2
-- proto: PrintedDocumentComplaintViolationLaborRules
+- proto: PrintedDocumentSecurityLawComplaintLaborViolation
   entities:
   - uid: 29787
     components:
     - type: Transform
       pos: 73.69854,-31.25274
       parent: 2
-- proto: PrintedDocumentConstructionPermit
+- proto: PrintedDocumentAtmosEngineeringPermissionStationModification
   entities:
   - uid: 29788
     components:
