@@ -1,6 +1,5 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Botany.Components;
-using Content.Server.Botany.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Shared.Administration.Logs;
@@ -9,10 +8,8 @@ using Content.Shared.Atmos;
 using Content.Shared.Botany;
 using Content.Shared.Burial.Components;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -26,12 +23,13 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Timing;
 using Content.Shared.Chemistry.Reaction;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.EntityEffects;
 using Content.Shared.Kitchen.Components;
+
 using LogType = Content.Shared.Database.LogType;
 using Content.Shared.Labels.Components;
-using System.Linq;
 
 namespace Content.Server.Botany.Systems;
 
@@ -424,7 +422,7 @@ public sealed partial class PlantHolderSystem : EntitySystem
         // ForceUpdate is used for external triggers like swabbing
         if (component.ForceUpdate)
             component.ForceUpdate = false;
-        else if (curTime < (component.LastCycle + component.CycleDelay))
+        else if (curTime < component.LastCycle + component.CycleDelay)
         {
             if (component.UpdateSpriteAfterUpdate)
                 UpdateSprite(uid, component);

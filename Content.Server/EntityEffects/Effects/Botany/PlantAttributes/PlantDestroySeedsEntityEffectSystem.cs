@@ -16,7 +16,10 @@ public sealed partial class PlantDestroySeedsEntityEffectSystem : EntityEffectSy
         if (entity.Comp.Seed == null || entity.Comp.Dead || entity.Comp.Seed.Immutable)
             return;
 
-        if (entity.Comp.Seed.Seedless)
+        if (!TryComp<PlantTraitsComponent>(entity, out var traits))
+            return;
+
+        if (traits.Seedless)
             return;
 
         _popup.PopupEntity(
@@ -24,6 +27,6 @@ public sealed partial class PlantDestroySeedsEntityEffectSystem : EntityEffectSy
             entity,
             PopupType.SmallCaution
         );
-        entity.Comp.Seed.Seedless = true;
+        traits.Seedless = true;
     }
 }
