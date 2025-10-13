@@ -58,6 +58,11 @@
     whitelist:
       tags:
       - Ore
+  - type: MaterialStorage # Starlight
+    ignoreColor: true
+    whitelist:
+      tags:
+        - Ore
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
