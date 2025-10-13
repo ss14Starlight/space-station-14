@@ -61,3 +61,17 @@
   - RipleyAPLU
   radioChannels:
   - Supply
+
+- type: technology
+  id: PointDefenseWeaponry
+  name: research-technology-point-defense
+  icon:
+    sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+    state: base
+  discipline: Industrial
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - WeaponTurretPointDefenseMachineCircuitboard
+  radioChannels:
+  - Engineering

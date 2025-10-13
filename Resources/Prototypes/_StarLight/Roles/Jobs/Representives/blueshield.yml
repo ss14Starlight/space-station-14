@@ -45,6 +45,8 @@
     - BlueShield
     - Surgery
     - Paramedic
+    - Mining
+    - SalvageLead
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

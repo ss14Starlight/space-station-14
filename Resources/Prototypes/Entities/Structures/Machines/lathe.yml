@@ -209,7 +209,6 @@
     - Janitor
     - Instruments
     - Equipment
-    - FauxTiles
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -264,7 +263,6 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    - CircuitFloorsStatic
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
@@ -275,9 +273,12 @@
     - MechBoards
     - ShuttleBoards
     - StarlightMechBoards
+    - StarlightLawboards
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
+    emagStaticPacks: # Starlight
+    - StarlightDangerousLawboards # Starlight
   - type: MaterialStorage
     whitelist:
       tags:
@@ -297,6 +298,17 @@
     sprite: Structures/Machines/circuit_imprinter_hypercon.rsi
   - type: Machine
     board: CircuitImprinterHyperConvectionMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    - StarlightSecurityBoards
+    emagStaticPacks: # Starlight
+    - StarlightDangerousLawboards # Starlight
 
 - type: entity
   id: ExosuitFabricator
@@ -417,15 +429,19 @@
     dynamicPacks:
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
-    - StarlightDefenseStatic
+    - SecurityDisablers
+    - StarlightDefenseStatic # starlight start
+    - SecurityCyberLimbs
     - StarlightSecurityEquipment
     - StarlightSecurityBoards
     - StarlightSecurityExplosives
     - StarlightSecurityAmmoDynamic
     - StarlightSecurityWeapons
-    - SecurityDisablers
-    - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
+    - StarlightSecurityGrenades
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    - StarlightSecurityGrenadesEmag # starlight end
   - type: MaterialStorage
     whitelist:
       tags:
@@ -708,7 +724,16 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - FloorTilesStatic
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    dynamicPacks:
+    - FauxTiles
   - type: MaterialStorage
     whitelist:
       tags:

@@ -82,48 +82,70 @@ namespace Content.Client.Access.UI
             if (state.MissingPrivilegesList != null && state.MissingPrivilegesList.Any())
             {
                 var missingPrivileges = new List<string>();
+                var unknownCount = 0;
 
                 foreach (string tag in state.MissingPrivilegesList)
                 {
-                    var privilege = Loc.GetString(protoManager.Index<AccessLevelPrototype>(tag)?.Name ?? "generic-unknown");
-                    missingPrivileges.Add(privilege);
-                }
+                // Starlight edit Start
+                    var canDisplay = state.AccessGroups?.Any(group => 
+                        protoManager.TryIndex(group, out AccessGroupPrototype? groupProto) && 
+                        groupProto.Tags.Contains(tag)) ?? false;
 
-                MissingPrivilegesLabel.Text = Loc.GetString("access-overrider-window-missing-privileges");
-                MissingPrivilegesText.Text = string.Join(", ", missingPrivileges);
+                    if (canDisplay && protoManager.TryIndex<AccessLevelPrototype>(tag, out var accessProto))
+                    {
+                        var privilege = Loc.GetString(accessProto.Name ?? "generic-unknown");
+                        missingPrivileges.Add(privilege);
+                    }
+                    else
+                    {
+                        unknownCount++;
+                    }
+                }
+                if (unknownCount > 0)
+                {
+                    if (unknownCount == 1)
+                        missingPrivileges.Add("Unknown");
+                    else
+                        missingPrivileges.Add($"Unknown ({unknownCount})");
+                }
+                if (missingPrivileges.Any())
+                {
+                    MissingPrivilegesLabel.Text = Loc.GetString("access-overrider-window-missing-privileges");
+                    MissingPrivilegesText.Text = string.Join(", ", missingPrivileges);
+                }
+                // Starlight edit End
             }
 
             var interfaceEnabled = state.IsPrivilegedIdPresent && state.IsPrivilegedIdAuthorized;
 
-            // Starlight-edit: Start
-            var allowedAccess = interfaceEnabled && state.AllowedModifyAccessList != null
-                ? state.AllowedModifyAccessList.ToList()
-                : new List<ProtoId<AccessLevelPrototype>>();
+            // Starlight edit Start
+            var availableAccess = state.AvailableAccessLevels?.ToList() ?? new List<ProtoId<AccessLevelPrototype>>();
+            var pressedAccess = state.PressedAccessLevels?.ToList() ?? new List<ProtoId<AccessLevelPrototype>>();
 
             var groupsWithCoverage = new List<ProtoId<AccessGroupPrototype>>();
-            if (allowedAccess.Count > 0 && state.AccessGroups != null)
+            if (availableAccess.Count > 0 && state.AccessGroups != null)
             {
                 foreach (var g in state.AccessGroups)
                 {
                     if (!protoManager.TryIndex(g, out AccessGroupPrototype? gp))
                         continue;
-                    
-                    var groupTags = gp.Tags.Where(tag => 
-                        protoManager.TryIndex<AccessLevelPrototype>(tag, out var accessProto) && 
-                        accessProto.CanAddToIdCard).ToList();
-                    
+
+                    var groupTags = gp.Tags.Where(tag =>
+                        protoManager.TryIndex<AccessLevelPrototype>(tag, out var accessProto) &&
+                        accessProto.CanAddToIdCard && availableAccess.Contains(tag)).ToList();
+
                     if (groupTags.Count == 0)
                         continue;
-                        
-                    var matchingTags = groupTags.Count(tag => allowedAccess.Contains(tag));
+
+                    var matchingTags = groupTags.Count;
                     var threshold = Math.Max(1, Math.Min(3, groupTags.Count / 2));
-                    
+
                     if (matchingTags >= threshold)
                         groupsWithCoverage.Add(gp.ID);
                 }
             }
 
-            var showGroups = groupsWithCoverage.Count > 1;
+            var showGroups = groupsWithCoverage.Count > 0;
 
             AccessGroupControlContainer.RemoveAllChildren();
             AccessLevelControlContainer.RemoveAllChildren();
@@ -151,10 +173,10 @@ namespace Content.Client.Access.UI
                 showGroups ? state.CurrentAccessGroup : null;
 
             _accessButtons.UpdateState(
-                state.TargetAccessReaderIdAccessList?.ToList() ?? new List<ProtoId<AccessLevelPrototype>>(),
+                pressedAccess,
                 effectiveGroup,
                 protoManager,
-                allowedAccess);
+                availableAccess);
             AccessLevelControlContainer.AddChild(_accessButtons);
 
             foreach (var (id, button) in _accessButtons.ButtonsList)

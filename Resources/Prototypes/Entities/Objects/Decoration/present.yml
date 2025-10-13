@@ -342,6 +342,8 @@
         orGroup: GiftPool
       - id: ClothingHeadHatCatEars
         orGroup: GiftPool
+      - id: ClothingHeadHatWhiteCatEars #Starlight
+        orGroup: GiftPool
       - id: ClothingHeadHatDogEars
         orGroup: GiftPool
       - id: ToySword

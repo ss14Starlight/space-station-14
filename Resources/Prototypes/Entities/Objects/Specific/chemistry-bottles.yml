@@ -95,6 +95,10 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: DnaSubstanceTrace
+  # SL-edit: start
+  - type: ItemPrice
+    priceCategory: miscellaneous
+  #SL-edit: end
 
 - type: entity
   parent: BaseChemistryEmptyBottle
@@ -147,6 +151,10 @@
   - type: Tag
     tags:
     - Bottle
+  #SL-edit: start
+  - type: ItemPrice
+    priceCategory: medical
+  #SL-edit: end
 
 # Medicine bottles
 

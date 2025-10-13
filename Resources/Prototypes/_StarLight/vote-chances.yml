@@ -31,3 +31,6 @@
   - id: Extended
     chance: 0.2
     memorizeCount: 1
+  - id: Revolutionary
+    chance: 0.2
+    memorizeCount: 1

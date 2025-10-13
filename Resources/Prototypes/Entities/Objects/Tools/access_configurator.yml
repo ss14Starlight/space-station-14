@@ -27,7 +27,6 @@
       - Command
       - Research
       - Medical
-      - Security
       - Service
       - Engineering
       # Starlight-edit: End
@@ -84,6 +83,8 @@
       - Misc
       - CentralCommand
       - Syndicate
+      - Silicon
+      - Xenoborg
       privilegedIdSlot:
         name: AccessOverrider-privilegedId # Starlight-edit
         startingItem: UniversalIDCard

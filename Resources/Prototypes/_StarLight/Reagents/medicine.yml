@@ -120,3 +120,47 @@
           damage:
             types:
               Radiation: -5
+
+- type: reagent
+  id: BarozinePlus
+  name: reagent-name-barozine-plus
+  group: Medicine
+  desc: reagent-desc-barozine-plus
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: medicine
+  color: "#ff867d"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        probability: 0.3
+        damage:
+          types:
+            Heat: 0.4
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold
+            min: 50
+        damage:
+          types:
+            Poison: 1
+      - !type:ChemVomit
+        probability: 0.1
+        conditions:
+          - !type:ReagentThreshold
+            min: 30
+      - !type:GenericStatusEffect
+        key: PressureImmunity
+        component: PressureImmunity
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+      - !type:Jitter
+      - !type:Emote
+        emote: Scream
+        probability: 0.1
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "barozine-effect-skin-burning", "barozine-effect-muscle-contract" ]
+        probability: 0.1

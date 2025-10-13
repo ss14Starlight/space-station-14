@@ -133,6 +133,8 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
+            
+            _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();

@@ -235,6 +235,8 @@
   id: RandomSoakedSmokeTable
   table: !type:GroupSelector
     children:
+    - id: CigaretteLead
+      weight: 1
     - id: CigaretteLicoxide
       weight: 1
     - id: CigaretteFrezon
@@ -287,6 +289,7 @@
       weight: 7
 
 ### begin SL
+
 - type: entity
   id: CigPackRollie
   parent: PackPaperRolling
@@ -318,4 +321,16 @@
       amount: 1
     - id: Blunt
       amount: 2
+
+- type: entity
+  id: CigPackBub
+  parent: PackPaperRolling
+  name: greyman's specials pack
+  description: An old rolling paper packet full of Greyman's special cigarettes. You feel more surgically inclined while smoking them.
+  components:
+  - type: StorageFill
+    contents:
+    - id: CigaretteBub
+      amount: 10
+
 ### end SL

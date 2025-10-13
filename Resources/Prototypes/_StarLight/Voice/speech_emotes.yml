@@ -26,7 +26,7 @@
   name: chat-emote-name-mew
   category: Vocal
   available: false
-  icon: _Starlight/Actions/felionoid.rsi/cat_print.png
+  icon: { sprite: _Starlight/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -49,7 +49,7 @@
   name: chat-emote-name-hiss
   category: Vocal
   available: false
-  icon: _Starlight/Actions/felionoid.rsi/cat_print.png
+  icon: { sprite: _Starlight/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -76,7 +76,7 @@
   name: chat-emote-name-meow
   category: Vocal
   available: false
-  icon: _Starlight/Actions/felionoid.rsi/cat_print.png
+  icon: { sprite: _Starlight/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -103,7 +103,7 @@
   name: chat-emote-name-purr
   category: Vocal
   available: false
-  icon: _Starlight/Actions/felionoid.rsi/cat_print.png
+  icon: { sprite: _Starlight/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -130,7 +130,7 @@
   name: chat-emote-name-trill
   category: Vocal
   available: false
-  icon: _Starlight/Actions/felionoid.rsi/cat_print.png
+  icon: { sprite: _Starlight/Actions/felionoid.rsi, state: cat_print }
   whitelist:
     components:
     - Vocal
@@ -201,7 +201,7 @@
   name: chat-emote-name-scree
   category: Vocal
   available: false
-  icon: _Starlight/Actions/resomi.rsi/bird_call.png
+  icon: { sprite: _Starlight/Actions/resomi.rsi, state: bird_call }
   whitelist:
     components:
     - Vocal
@@ -228,7 +228,7 @@
   name: chat-emote-name-call
   category: Vocal
   available: false
-  icon: _Starlight/Actions/resomi.rsi/bird_call.png
+  icon: { sprite: _Starlight/Actions/resomi.rsi, state: bird_call }
   whitelist:
     components:
     - Vocal
@@ -255,7 +255,7 @@
   name: chat-emote-name-squawk
   category: Vocal
   available: false
-  icon: _Starlight/Actions/resomi.rsi/bird_call.png
+  icon: { sprite: _Starlight/Actions/resomi.rsi, state: bird_call }
   whitelist:
     components:
     - Vocal
@@ -282,7 +282,7 @@
   name: chat-emote-name-lizardpurr
   category: Vocal
   available: false
-  icon: /Textures/_Starlight/Actions/retilian.rsi/reptile_call.png
+  icon: { sprite: _Starlight/Actions/retilian.rsi, state: reptile_call }
   whitelist:
     components:
     - Vocal
@@ -309,7 +309,7 @@
   name: chat-emote-name-lizardhiss
   category: Vocal
   available: false
-  icon: /Textures/_Starlight/Actions/retilian.rsi/reptile_call.png
+  icon: { sprite: _Starlight/Actions/retilian.rsi, state: reptile_call }
   whitelist:
     components:
     - Vocal
@@ -336,7 +336,7 @@
   name: chat-emote-name-lizardrattle
   category: Vocal
   available: false
-  icon: /Textures/_Starlight/Actions/retilian.rsi/rattle.png
+  icon: { sprite: _Starlight/Actions/retilian.rsi, state: rattle }
   whitelist:
     components:
     - Vocal
@@ -357,3 +357,32 @@
   - rattles.
   - rattles!
   - rattles?
+
+- type: emote
+  id: FlapWings
+  name: chat-emote-name-flap-wings
+  category: Hands
+  available: false
+  icon:
+    sprite: Clothing/Neck/Cloaks/moth.rsi
+    state: icon
+  blacklist:
+    components:
+      - BorgChassis
+  chatMessages: ["chat-emote-msg-flap-wings"]
+  chatTriggers:
+    - flaps
+    - flaps.
+    - flaps!
+    - flaps his wings
+    - flaps his wings.
+    - flaps his wings!
+    - flaps her wings
+    - flaps her wings.
+    - flaps her wings!
+    - flaps their wings
+    - flaps their wings.
+    - flaps their wings!
+    - flaps its wings
+    - flaps its wings.
+    - flaps its wings!

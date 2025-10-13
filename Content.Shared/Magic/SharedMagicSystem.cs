@@ -23,6 +23,7 @@ using Content.Shared.Ninja.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Speech.Muting;
+using Content.Shared.Station;
 using Content.Shared.Storage;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
@@ -72,8 +73,9 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
     #region Starlight
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedLanguageSystem _language = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedStationSystem _station = default!;
+
+    private static readonly EntProtoId TowerOfBabel = "TowerOfBabel";
     #endregion
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
@@ -555,44 +557,23 @@ public abstract class SharedMagicSystem : EntitySystem
     {
         if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
             return;
-        var languages = new HashSet<ProtoId<LanguagePrototype>>();
-        foreach (var language in _prototype.EnumeratePrototypes<LanguagePrototype>())
+        if (_net.IsClient)
+            return;
+        var xform = Transform(ev.Performer);
+
+        foreach (var station in _station.GetStations())
         {
-            languages.Add(language.ID);
+            if (_station.GetLargestGrid(station) is not { } grid)
+                continue;
+
+            if (xform.GridUid != grid)
+                continue;
+
+            var ent = PredictedSpawnAtPosition(TowerOfBabel, xform.Coordinates);
+            ev.Handled = true;
+            return;
         }
-
-        var allLangs = languages.ToList(); //this list is going to be shuffled... ALOT...
-        foreach (var languageKnower in EntityManager.AllEntities<LanguageKnowledgeComponent>())
-        {
-            var comp = languageKnower.Comp;
-            if (
-                comp.SpokenLanguages.Contains(SharedLanguageSystem.UniversalPrototype) ||
-                comp.UnderstoodLanguages.Contains(SharedLanguageSystem.UniversalPrototype)
-                )
-                continue; // One who knows the knowledge of all things cannot know less.
-
-            if (comp.SpokenLanguages.Count > comp.UnderstoodLanguages.Count)
-            {
-                _random.Shuffle(allLangs);
-                comp.SpokenLanguages = [.. allLangs.Take(comp.SpokenLanguages.Count)];
-                var spoken = comp.SpokenLanguages.ToList();
-                _random.Shuffle(spoken);
-                comp.UnderstoodLanguages = [.. spoken.Take(comp.UnderstoodLanguages.Count())];
-            }
-            else
-            {
-                _random.Shuffle(allLangs);
-                comp.UnderstoodLanguages = [.. allLangs.Take(comp.UnderstoodLanguages.Count)];
-                var understood = comp.UnderstoodLanguages.ToList();
-                _random.Shuffle(understood);
-                comp.SpokenLanguages = [.. understood.Take(comp.SpokenLanguages.Count())];
-            }
-
-            if (TryComp<LanguageSpeakerComponent>(languageKnower, out var speaker))
-                _language.UpdateEntityLanguages((languageKnower, speaker));
-        }
-
-        ev.Handled = true;
+        _popup.PopupClient(Loc.GetString("spell-requirements-failed"), ev.Performer, ev.Performer);
     }
     #endregion
 

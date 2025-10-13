@@ -397,6 +397,10 @@
     tags:
     - Syringe
     - Trash
+  #SL-edit: start
+  - type: ItemPrice
+    priceCategory: miscellaneous
+  #SL-edit: end
 
 - type: entity
   name: mini syringe
@@ -617,3 +621,7 @@
       tags:
       - Pill
   - type: Dumpable
+  #SL-edit: start
+  - type: ItemPrice
+    priceCategory: medical_container_filled
+  #SL-edit: end

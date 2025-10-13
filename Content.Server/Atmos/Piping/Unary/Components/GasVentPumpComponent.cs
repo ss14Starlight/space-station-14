@@ -41,7 +41,7 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         /// </summary>
         [DataField]
         [GuidebookData]
-        public float UnderPressureLockoutThreshold = 80; // this must be tuned in conjunction with atmos.mmos_spacing_speed
+        public float UnderPressureLockoutThreshold = 50; // this must be tuned in conjunction with atmos.mmos_spacing_speed // Starlight: Make repressurizing less miserable: Was 80kPa, now 50kPa.
 
         /// <summary>
         ///     Pressure locked vents still leak a little (leading to eventual pressurization of sealed sections)

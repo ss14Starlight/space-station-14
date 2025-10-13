@@ -4,7 +4,7 @@ meta:
   engineVersion: 266.0.0
   forkId: ""
   forkVersion: ""
-  time: 09/22/2025 19:08:53
+  time: 09/30/2025 18:45:24
   entityCount: 29004
 maps:
 - 1
@@ -353,7 +353,7 @@ entities:
           version: 7
         -3,2:
           ind: -3,2
-          tiles: EAAAAAAAABAAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAABAAAAAAAAAQAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAABgAAAAADAAEAAAAAAgABAAAAAAMAAQAAAAAAAAEAAAAAAgABAAAAAAAAAgAAAAAAAAIAAAAAAAAQAAAAAAAAEAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAYAAAAAAQABAAAAAAIAAQAAAAADAAEAAAAAAQABAAAAAAMAAQAAAAADAAIAAAAAAAACAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAGAAAAAAAAAQAAAAADAA0AAAAAAwANAAAAAAIADQAAAAABAAEAAAAAAgACAAAAAAAAAgAAAAAAABAAAAAAAAAQAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAABgAAAAADAAEAAAAAAQANAAAAAAMADQAAAAABAA0AAAAAAQABAAAAAAIABgAAAAACAAEAAAAAAQAQAAAAAAAAEAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAEAAAAAAAAAcAAAAAAgABAAAAAAAADQAAAAACAA0AAAAAAgANAAAAAAMAAQAAAAADAAYAAAAAAAABAAAAAAEAEAAAAAAAABAAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAGAAAAAAMAAQAAAAAAAAEAAAAAAAABAAAAAAEAAQAAAAAAAAEAAAAAAAACAAAAAAAAAQAAAAADAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAABAAAAAAAAAQAAAAAAAAIAAAAAAAABAAAAAAEAAgAAAAAAAAIAAAAAAAACAAAAAAAAGgAAAAAAABoAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAwAAAAAAAAMAAAAAAAACAAAAAAAABwAAAAAAAAEAAAAAAwACAAAAAAAAAQAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAABoAAAAAAAADAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAMAAAAAAAADAAAAAAAAAgAAAAAAAAEAAAAAAAABAAAAAAMAAQAAAAABAAEAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAaAAAAAAAAAwAAAAAAABoAAAAAAAACAAAAAAAAAgAAAAAAABoAAAAAAAADAAAAAAAAAwAAAAAAABoAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAGgAAAAAAAAMAAAAAAAAaAAAAAAAAAgAAAAAAAAIAAAAAAAAaAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAABoAAAAAAAADAAAAAAAAGgAAAAAAAAIAAAAAAAACAAAAAAAAGgAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAaAAAAAAAAAwAAAAAAABoAAAAAAAACAAAAAAAAAgAAAAAAABoAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAGgAAAAAAAAMAAAAAAAAaAAAAAAAAAgAAAAAAAAIAAAAAAAAaAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAGgAAAAAAABoAAAAAAAAaAAAAAAAAGgAAAAAAABoAAAAAAAAaAAAAAAAAGgAAAAAAABoAAAAAAAADAAAAAAAAGgAAAAAAAAIAAAAAAAACAAAAAAAAGgAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAA==
+          tiles: EAAAAAAAABAAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAGAAAAAAAAAgAAAAAAAAYAAAAAAAACAAAAAAAAAgAAAAAAABAAAAAAAAAQAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAABgAAAAADAAEAAAAAAgABAAAAAAMAAQAAAAAAAAEAAAAAAgABAAAAAAAAAgAAAAAAAAIAAAAAAAAQAAAAAAAAEAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAYAAAAAAQABAAAAAAIAAQAAAAADAAEAAAAAAQABAAAAAAMAAQAAAAADAAIAAAAAAAACAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAGAAAAAAAAAQAAAAADAA0AAAAAAwANAAAAAAIADQAAAAABAAEAAAAAAgACAAAAAAAAAgAAAAAAABAAAAAAAAAQAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAABgAAAAADAAEAAAAAAQANAAAAAAMADQAAAAABAA0AAAAAAQABAAAAAAIABgAAAAACAAEAAAAAAQAQAAAAAAAAEAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAEAAAAAAAAAcAAAAAAgABAAAAAAAADQAAAAACAA0AAAAAAgANAAAAAAMAAQAAAAADAAYAAAAAAAABAAAAAAEAEAAAAAAAABAAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAGAAAAAAMAAQAAAAAAAAEAAAAAAAABAAAAAAEAAQAAAAAAAAEAAAAAAAACAAAAAAAAAQAAAAADAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAABAAAAAAAAAQAAAAAAAAIAAAAAAAABAAAAAAEAAgAAAAAAAAIAAAAAAAACAAAAAAAAGgAAAAAAABoAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAwAAAAAAAAMAAAAAAAACAAAAAAAABwAAAAAAAAEAAAAAAwACAAAAAAAAAQAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAABoAAAAAAAADAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAMAAAAAAAADAAAAAAAAAgAAAAAAAAEAAAAAAAABAAAAAAMAAQAAAAABAAEAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAaAAAAAAAAAwAAAAAAABoAAAAAAAACAAAAAAAAAgAAAAAAABoAAAAAAAADAAAAAAAAAwAAAAAAABoAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAGgAAAAAAAAMAAAAAAAAaAAAAAAAAAgAAAAAAAAIAAAAAAAAaAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAABoAAAAAAAADAAAAAAAAGgAAAAAAAAIAAAAAAAACAAAAAAAAGgAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAaAAAAAAAAAwAAAAAAABoAAAAAAAACAAAAAAAAAgAAAAAAABoAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAGgAAAAAAAAMAAAAAAAAaAAAAAAAAAgAAAAAAAAIAAAAAAAAaAAAAAAAAAwAAAAAAAAMAAAAAAAADAAAAAAAAGgAAAAAAABoAAAAAAAAaAAAAAAAAGgAAAAAAABoAAAAAAAAaAAAAAAAAGgAAAAAAABoAAAAAAAADAAAAAAAAGgAAAAAAAAIAAAAAAAACAAAAAAAAGgAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAA==
           version: 7
         -6,0:
           ind: -6,0
@@ -10202,7 +10202,7 @@ entities:
       pos: -57.5,40.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -23643.56
+      secondsUntilStateChange: -23995.475
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10617,7 +10617,7 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: Door
-      secondsUntilStateChange: -160482.88
+      secondsUntilStateChange: -160834.78
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -11978,18 +11978,6 @@ entities:
     - type: Transform
       pos: 63.5,-23.5
       parent: 2
-- proto: AirlockMiningGlassLocked
-  entities:
-  - uid: 484
-    components:
-    - type: Transform
-      pos: -33.5,36.5
-      parent: 2
-  - uid: 485
-    components:
-    - type: Transform
-      pos: -33.5,37.5
-      parent: 2
 - proto: AirlockNrepLocked
   entities:
   - uid: 486
@@ -12052,19 +12040,31 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 30.5,35.5
       parent: 2
-- proto: AirlockSalvageGlassLocked
+- proto: AirlockSalvageMiningGlassLocked
   entities:
-  - uid: 495
+  - uid: 20815
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -34.5,32.5
+      rot: 3.141592653589793 rad
+      pos: -33.5,37.5
       parent: 2
-  - uid: 496
+  - uid: 20816
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: 3.141592653589793 rad
+      pos: -33.5,36.5
+      parent: 2
+  - uid: 20817
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
       pos: -36.5,32.5
+      parent: 2
+  - uid: 20818
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -34.5,32.5
       parent: 2
 - proto: AirlockScienceGlass
   entities:
@@ -12407,7 +12407,7 @@ entities:
       pos: 21.5,-4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -49421.457
+      secondsUntilStateChange: -49773.37
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12431,7 +12431,7 @@ entities:
       pos: 18.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -49439.957
+      secondsUntilStateChange: -49791.87
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12443,7 +12443,7 @@ entities:
       pos: 17.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -49434.89
+      secondsUntilStateChange: -49786.805
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12477,7 +12477,7 @@ entities:
       pos: 21.5,-3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -49422.793
+      secondsUntilStateChange: -49774.707
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -71324,6 +71324,14 @@ entities:
     - type: Transform
       pos: 89.534134,-9.590595
       parent: 2
+- proto: CompuerShuttleSalvage
+  entities:
+  - uid: 20918
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -39.5,38.5
+      parent: 2
 - proto: ComputerAlert
   entities:
   - uid: 11820
@@ -71856,6 +71864,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -26.5,21.5
+      parent: 2
+- proto: ComputerShuttleMining
+  entities:
+  - uid: 20919
+    components:
+    - type: Transform
+      pos: -28.5,38.5
       parent: 2
 - proto: ComputerSolarControl
   entities:
@@ -85873,7 +85888,7 @@ entities:
       pos: -43.5,-6.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -24960.357
+      secondsUntilStateChange: -25312.271
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -87855,12 +87870,12 @@ entities:
   - uid: 14171
     components:
     - type: Transform
-      pos: -32.544403,38.809277
+      pos: -28.490297,33.877544
       parent: 2
   - uid: 14172
     components:
     - type: Transform
-      pos: -32.481903,38.54365
+      pos: -28.50194,33.47026
       parent: 2
   - uid: 14173
     components:
@@ -136361,29 +136376,6 @@ entities:
     - type: Transform
       pos: 66.51195,9.667839
       parent: 2
-- proto: JetpackMiniFilled
-  entities:
-  - uid: 20816
-    components:
-    - type: Transform
-      parent: 20815
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 20818
-    components:
-    - type: Transform
-      parent: 20817
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 20820
-    components:
-    - type: Transform
-      parent: 20819
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: JetpackSecurityFilled
   entities:
   - uid: 4
@@ -137142,22 +137134,17 @@ entities:
     - type: Transform
       pos: 38.5,-16.5
       parent: 2
-- proto: LockerMiningSpecialistFilled
+- proto: LockerMiningSpecialistLargeFilledHardsuit
   entities:
-  - uid: 20918
+  - uid: 485
     components:
     - type: Transform
-      pos: -28.5,36.5
+      pos: -28.5,34.5
       parent: 2
-  - uid: 20919
+  - uid: 20933
     components:
     - type: Transform
-      pos: -28.5,37.5
-      parent: 2
-  - uid: 20920
-    components:
-    - type: Transform
-      pos: -28.5,38.5
+      pos: -28.5,35.5
       parent: 2
 - proto: LockerParamedicFilled
   entities:
@@ -137234,22 +137221,24 @@ entities:
     - type: Transform
       pos: 27.5,36.5
       parent: 2
-- proto: LockerSalvageSpecialistFilled
+- proto: LockerSalvageLeadFilledHardsuit
   entities:
-  - uid: 20932
+  - uid: 495
     components:
     - type: Transform
-      pos: -39.5,38.5
+      pos: -39.5,33.5
       parent: 2
-  - uid: 20933
+- proto: LockerSalvageSpecialistLargeFilledHardsuit
+  entities:
+  - uid: 496
     components:
     - type: Transform
-      pos: -39.5,36.5
+      pos: -39.5,34.5
       parent: 2
-  - uid: 20934
+  - uid: 24186
     components:
     - type: Transform
-      pos: -38.5,38.5
+      pos: -39.5,35.5
       parent: 2
 - proto: LockerScienceFilled
   entities:
@@ -154623,6 +154612,16 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: SignMining
+  entities:
+  - uid: 24188
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -33.5,32.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignMorgue
   entities:
   - uid: 23518
@@ -154657,6 +154656,16 @@ entities:
     components:
     - type: Transform
       pos: -36.5,-27.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+- proto: SignSalvage
+  entities:
+  - uid: 24187
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -35.5,32.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -155070,15 +155079,20 @@ entities:
       parent: 2
     - type: StockLimitedProcessing
       processingListings: {}
-- proto: SLVendingMachineSalvage
+- proto: SLVendingMachineMining
   entities:
-  - uid: 23581
+  - uid: 24451
     components:
     - type: Transform
-      pos: -35.5,38.5
+      pos: -32.5,38.5
       parent: 2
-    - type: StockLimitedProcessing
-      processingListings: {}
+- proto: SLVendingMachineSalvage
+  entities:
+  - uid: 20920
+    components:
+    - type: Transform
+      pos: -39.5,36.5
+      parent: 2
 - proto: SLVendingMachineSecurity
   entities:
   - uid: 23582
@@ -156756,20 +156770,25 @@ entities:
       parent: 2
 - proto: SpawnPointminingspecialist
   entities:
-  - uid: 23891
+  - uid: 20932
     components:
     - type: Transform
-      pos: -29.5,36.5
+      pos: -31.5,35.5
+      parent: 2
+  - uid: 20934
+    components:
+    - type: Transform
+      pos: -29.5,34.5
+      parent: 2
+  - uid: 23581
+    components:
+    - type: Transform
+      pos: -29.5,35.5
       parent: 2
   - uid: 23892
     components:
     - type: Transform
-      pos: -29.5,37.5
-      parent: 2
-  - uid: 23893
-    components:
-    - type: Transform
-      pos: -29.5,38.5
+      pos: -30.5,36.5
       parent: 2
 - proto: SpawnPointMusician
   entities:
@@ -156852,22 +156871,24 @@ entities:
     - type: Transform
       pos: 45.5,18.5
       parent: 2
-- proto: SpawnPointSalvageSpecialist
+- proto: SpawnPointSalvageLead
   entities:
-  - uid: 23907
+  - uid: 23891
     components:
     - type: Transform
       pos: -38.5,33.5
+      parent: 2
+- proto: SpawnPointSalvageSpecialist
+  entities:
+  - uid: 484
+    components:
+    - type: Transform
+      pos: -38.5,35.5
       parent: 2
   - uid: 23908
     components:
     - type: Transform
       pos: -38.5,34.5
-      parent: 2
-  - uid: 23909
-    components:
-    - type: Transform
-      pos: -38.5,35.5
       parent: 2
 - proto: SpawnPointScientist
   entities:
@@ -158472,83 +158493,6 @@ entities:
     components:
     - type: Transform
       pos: 28.5,30.5
-      parent: 2
-- proto: SuitStorageSalv
-  entities:
-  - uid: 20815
-    components:
-    - type: Transform
-      pos: -28.5,33.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 20816
-  - uid: 20817
-    components:
-    - type: Transform
-      pos: -28.5,34.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 20818
-  - uid: 20819
-    components:
-    - type: Transform
-      pos: -28.5,35.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 20820
-  - uid: 24186
-    components:
-    - type: Transform
-      pos: -39.5,35.5
-      parent: 2
-  - uid: 24187
-    components:
-    - type: Transform
-      pos: -39.5,34.5
-      parent: 2
-  - uid: 24188
-    components:
-    - type: Transform
-      pos: -39.5,33.5
       parent: 2
 - proto: SuitStorageSec
   entities:
@@ -160356,11 +160300,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -26.5,18.5
       parent: 2
-  - uid: 24451
-    components:
-    - type: Transform
-      pos: -32.5,38.5
-      parent: 2
   - uid: 24452
     components:
     - type: Transform
@@ -160641,6 +160580,11 @@ entities:
     components:
     - type: Transform
       pos: -30.5,42.5
+      parent: 2
+  - uid: 28706
+    components:
+    - type: Transform
+      pos: -28.5,33.5
       parent: 2
 - proto: TableCarpet
   entities:
@@ -184375,13 +184319,32 @@ entities:
       parent: 2
     - type: DeltaPressure
       gridUid: 2
-- proto: WindoorSecureSalvageLocked
+- proto: WindoorSecureMiningLocked
   entities:
-  - uid: 28706
+  - uid: 20819
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -30.5,32.5
+      pos: -28.5,37.5
+      parent: 2
+    - type: DeltaPressure
+      gridUid: 2
+- proto: WindoorSecureSalvageLocked
+  entities:
+  - uid: 20820
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -38.5,38.5
+      parent: 2
+    - type: DeltaPressure
+      gridUid: 2
+- proto: WindoorSecureSalvageMiningLocked
+  entities:
+  - uid: 23909
+    components:
+    - type: Transform
+      pos: -30.5,33.5
       parent: 2
     - type: DeltaPressure
       gridUid: 2
@@ -185233,6 +185196,21 @@ entities:
       gridUid: 2
 - proto: WindowReinforcedDirectional
   entities:
+  - uid: 23893
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -28.5,38.5
+      parent: 2
+    - type: DeltaPressure
+      gridUid: 2
+  - uid: 23907
+    components:
+    - type: Transform
+      pos: -39.5,38.5
+      parent: 2
+    - type: DeltaPressure
+      gridUid: 2
   - uid: 28817
     components:
     - type: Transform

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from https://github.com/tgstation/tgstation at 0d9c9a8233dfc3fc55edc538955a761a6328bee0 | Edited by CrazyPhantom",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "centralcommand_door_electronics"
+    },
+    {
+      "name": "syndicate_door_electronics"
+    },
+    {
+      "name": "xenoborg_door_electronics"
+    }
+  ]
+}

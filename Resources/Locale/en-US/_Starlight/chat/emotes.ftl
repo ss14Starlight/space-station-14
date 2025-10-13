@@ -13,6 +13,7 @@ chat-emote-name-squawk = Squawk
 chat-emote-name-lizardpurr = Purr
 chat-emote-name-lizardhiss = Hiss
 chat-emote-name-lizardrattle = Rattle
+chat-emote-name-flap-wings = Flap wings
 
 # Emote Messages
 chat-emote-msg-mew = mews
@@ -33,3 +34,4 @@ chat-emote-msg-squawk = squawks
 chat-emote-msg-lurr = purrs
 chat-emote-msg-liss = hisses
 chat-emote-msg-rattle = rattles
+chat-emote-msg-flap-wings = flaps {POSS-ADJ($entity)} wings.

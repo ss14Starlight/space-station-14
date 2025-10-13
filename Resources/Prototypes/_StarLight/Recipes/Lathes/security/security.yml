@@ -20,7 +20,7 @@
     Glass: 1000
     Gold: 1000
     Silver: 500
-    
+
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
   id: WeaponIonCarbine
@@ -29,7 +29,7 @@
     Steel: 1500
     Gold: 1000
     Silver: 1000
-    
+
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
   id: WeaponLaserImmolator
@@ -38,7 +38,7 @@
     Steel: 2000
     Plasma: 1000
     Silver: 1000
-    
+
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
   id: WeaponDecloner
@@ -77,3 +77,47 @@
     Silver: 100
     Glass: 100
     Plasma: 100
+
+- type: latheRecipe
+  id: MagazineGrenadeEMP
+  result: MagazineGrenadeEMP
+  completetime: 6 # one second per grenade
+  materials:
+    Plastic: 600
+    Steel: 1200
+    Uranium: 600
+    Plasma: 600
+
+- type: latheRecipe
+  id: MagazineGrenadeBaton
+  result: MagazineGrenadeBaton
+  completetime: 6
+  materials:
+    Plastic: 600
+    Steel: 1650
+
+- type: latheRecipe
+  id: MagazineGrenadeFlash
+  result: MagazineGrenadeFlash
+  completetime: 6
+  materials:
+    Plastic: 1650
+    Steel: 1200
+    Glass: 600
+
+- type: latheRecipe
+  id: MagazineGrenadeBlast
+  result: MagazineGrenadeBlast
+  completetime: 6
+  materials:
+    Plastic: 600
+    Steel: 1200
+    Uranium: 300
+
+- type: latheRecipe
+  id: MagazineGrenadeFrag
+  result: MagazineGrenadeFrag
+  completetime: 6
+  materials:
+    Plastic: 600
+    Steel: 2000
