@@ -20,6 +20,8 @@ paper-too-quiet-need-chaos-few = Do you feel like this shift has been way too qu
   
                                  For the glory of NanoTrasen
 
+doc-text-printer-station-location = Hello, I am not supposed to be telling you this, but we accidentally bluespaced your station into NT aligned space. We have left enough spesos in your QM's locker for a nice Pizza party.                                                                                                             [color=white].[/color]                                   - NTCC Corrections Officer "Envy"
+                                    
 paper-ionstorm-borgs = {"[color=green][bold]Robots Too Orderly?[/bold][/color]"}
                        
                        Is your robotics department feeling a bit... predictable?

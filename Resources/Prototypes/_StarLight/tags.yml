@@ -239,6 +239,12 @@
 
 - type: Tag
   id: PettyCriminalTraitBackground
+  
+- type: Tag
+  id: ThermiteIgnitor
+  
+- type: Tag
+  id: UnDissolvable
 
 - type: Tag
   id: ScanGateMachineBoard

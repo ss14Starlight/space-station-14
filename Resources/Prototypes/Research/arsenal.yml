@@ -146,6 +146,11 @@
   - FlashPayload
   - ExplosivePayload
   - ChemicalPayload
+  - MagazineGrenadeEMP # SL start
+  - MagazineGrenadeFrag
+  - MagazineGrenadeBlast
+  - MagazineGrenadeBaton
+  - MagazineGrenadeFlash # SL end
   radioChannels:
   - Security
 
@@ -194,7 +199,7 @@
   - WeaponXrayCannon
   radioChannels:
   - Security
-  
+
 - type: technology
   id: KineticModifications
   name: research-technology-kinetic-modifications

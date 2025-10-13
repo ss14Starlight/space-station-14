@@ -97,6 +97,8 @@
   - MagicCrayon #SL
   - HappyHonk #SL
   - leftripperarm #SL
+  - CigPackBub #SL
+  - PillCanisterPsicodine #SL
 
 - type: loadoutGroup
   id: Glasses
@@ -782,6 +784,7 @@
   - CargoTechnicianJumpsuitFormal # afterlight
   - CargoTechnicianJumpskirt
   - CargoTechnicianJumpskirtFormal # afterlight
+  - CargoTechnicianOveralls #Starlight
 
 - type: loadoutGroup
   id: CargoTechnicianBackpack
@@ -1278,6 +1281,7 @@
   - SeniorOfficerJumpskirt
   - TrooperUniform
   - SecurityJumpsuitBlue
+  - SecurityTshirt #Starlight
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -1305,6 +1309,7 @@
   - ArmorVestStab
   - ArmorVestHeatAbsorb
   - SecurityOfficerWintercoat
+  - SecurityBomber #Starlight
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1359,6 +1364,7 @@
   loadouts:
   - RedJumpsuit
   - RedJumpskirt
+  - SecurityCadetTshirt #Starlight
 
 - type: loadoutGroup
   id: SurvivalSecurity

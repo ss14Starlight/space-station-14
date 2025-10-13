@@ -1,7 +1,7 @@
 - type: entity
   id: BaseMagazineGrenade
   name: grenade cartridge
-  parent: [ BaseItem, BaseSecurityContraband ]
+  parent: BaseItem # Starlight edit: Security -> No contra
   abstract: true
   components:
   - type: Tag
@@ -35,7 +35,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 5
+    steps: 6 # starlight change: 5 -> 6 to fit the hydra
     zeroVisible: false
   - type: Appearance
 
@@ -49,7 +49,7 @@
 - type: entity
   id: MagazineGrenadeFrag
   name: frag grenade cartridge
-  parent: BaseMagazineGrenade
+  parent: [ BaseMagazineGrenade, BaseSyndicateContraband ] # Starlight edit: Security -> Syndicate contraband
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeFrag
@@ -57,7 +57,7 @@
 - type: entity
   id: MagazineGrenadeEMP
   name: EMP grenade cartridge
-  parent: BaseMagazineGrenade
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # Starlight edit: Re-add Security contraband
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeEMP
@@ -65,7 +65,7 @@
 - type: entity
   id: MagazineGrenadeFlash
   name: flash grenade cartridge
-  parent: BaseMagazineGrenade
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # Starlight edit: Re-add Security contraband
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeFlash
@@ -73,7 +73,7 @@
 - type: entity
   id: MagazineGrenadeBlast
   name: blast grenade cartridge
-  parent: BaseMagazineGrenade
+  parent: [ BaseMagazineGrenade, BaseSyndicateContraband ] # Starlight edit: Security -> Syndicate contraband
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeBlast
@@ -81,7 +81,7 @@
 - type: entity
   id: MagazineGrenadeBaton
   name: baton grenade cartridge
-  parent: BaseMagazineGrenade
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # Starlight edit: Re-add Security contraband
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeBaton

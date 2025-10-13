@@ -455,3 +455,14 @@
   components:
     - type: Paper
       content: doc-text-printer-centcomm-communication
+
+#greenshift alert
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentGreenshiftAlert
+  name: Notice of Station Location
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-station-location

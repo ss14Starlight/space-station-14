@@ -1,7 +1,7 @@
 #Normal windoors
 - type: entity
   id: BaseWindoor
-  parent: [BaseDeltaPressureGlassQuarter, BaseStructure]
+  parent: [BaseDeltaPressureGlassQuarter, BaseStructure, BaseStructureDissolvable] # Starlight-edit
   abstract: true
   placement:
     mode: SnapgridCenter

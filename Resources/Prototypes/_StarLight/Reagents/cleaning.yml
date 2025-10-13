@@ -1,0 +1,21 @@
+- type: reagent
+  id: SyndicateSpaceCleaner
+  name: reagent-name-syndicate-space-cleaner
+  desc: reagent-desc-syndicate-space-cleaner
+  physicalDesc: reagent-physical-desc-suspicious
+  flavor: evil
+  color: "#c8ff69"
+  recognizable: false
+  boilingPoint: 147.0 # Made this up, loosely based on bleach
+  meltingPoint: -11.0
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 15
+  tileReactions:
+    - !type:CleanTileReaction {}
+    - !type:CleanDecalsReaction {}

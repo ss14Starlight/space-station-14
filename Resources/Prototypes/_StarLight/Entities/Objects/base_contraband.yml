@@ -81,3 +81,12 @@
   components:
   - type: Contraband
     allowedDepartments: [ Law ]
+
+- type: entity
+  id: BaseJanitorSecurityContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ Janitor ]
+    allowedDepartments: [ Security ]
