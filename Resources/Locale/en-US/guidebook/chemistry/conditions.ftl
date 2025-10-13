@@ -3,7 +3,7 @@ reagent-effect-condition-guidebook-total-damage =
         [2147483648] it has at least {NATURALFIXED($min, 2)} total damage
         *[other] { $min ->
                     [0] it has at most {NATURALFIXED($max, 2)} total damage
-                    *[other] it has between {NATURALFIXED($min, 2)} and {NATURALFIXED($max, 2)} total damage
+                    *[other] it has beteen {NATURALFIXED($min, 2)} and {NATURALFIXED($max, 2)} total damage
                  }
     }
 
@@ -18,10 +18,10 @@ reagent-effect-condition-guidebook-total-hunger =
 
 reagent-effect-condition-guidebook-reagent-threshold =
     { $max ->
-        [2147483648] there's at least {NATURALFIXED($min, 2)}u of {$reagent}
+        [2147483648] there's more than {NATURALFIXED($min, 2)}u of {$reagent}
         *[other] { $min ->
                     [0] there's at most {NATURALFIXED($max, 2)}u of {$reagent}
-                    *[other] there's between {NATURALFIXED($min, 2)}u and {NATURALFIXED($max, 2)}u of {$reagent}
+                    *[other] there's more than {NATURALFIXED($min, 2)}u and at most {NATURALFIXED($max, 2)}u of {$reagent}
                  }
     }
 

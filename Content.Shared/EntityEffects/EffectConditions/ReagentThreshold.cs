@@ -19,6 +19,9 @@ public sealed partial class ReagentThreshold : EntityEffectCondition
     [DataField]
     public FixedPoint2 Max = FixedPoint2.MaxValue;
 
+    [DataField] public bool InclusiveMinimum = false;
+    [DataField] public bool InclusiveMaximum = true;
+
     // TODO use ReagentId
     [DataField]
     public string? Reagent;
@@ -35,7 +38,7 @@ public sealed partial class ReagentThreshold : EntityEffectCondition
             if (reagentArgs.Source != null)
                 quant = reagentArgs.Source.GetTotalPrototypeQuantity(reagent);
 
-            return quant > Min && quant <= Max; // SL change: make thresholds exclusive
+            return (InclusiveMinimum ? quant >= Min : quant > Min) && (InclusiveMaximum ? quant <= Max : quant < Max); // SL change: make thresholds exclusive
         }
 
         // TODO: Someone needs to figure out how to do this for non-reagent effects.

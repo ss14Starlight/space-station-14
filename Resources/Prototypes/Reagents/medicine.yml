@@ -696,6 +696,7 @@
           conditions:
             - !type:ReagentThreshold
               min: 10
+              inclusiveMiniimum: true # Starlight
 
 - type: reagent
   id: AmbuzolPlus
@@ -713,6 +714,7 @@
           conditions:
             - !type:ReagentThreshold
               min: 5
+              inclusiveMiniimum: true # Starlight
 
 - type: reagent
   id: PulpedBananaPeel
