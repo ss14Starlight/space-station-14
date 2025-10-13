@@ -34,6 +34,8 @@ using Content.Shared.Actions.Components;
 using Content.Server.Administration.Systems;
 using Content.Shared.Maps;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Stacks;
+using Content.Shared.Tag;
 
 namespace Content.Server.Vampire;
 
@@ -75,6 +77,8 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly IngestionSystem _ingestion = default!;
+    [Dependency] private readonly SharedStackSystem _stacks = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public override void Initialize()
     {

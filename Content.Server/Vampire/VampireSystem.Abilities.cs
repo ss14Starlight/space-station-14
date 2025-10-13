@@ -31,11 +31,14 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Flash.Components;
 using Content.Shared.Storage.Components;
+using Content.Shared.Stacks;
 
 namespace Content.Server.Vampire;
 
 public sealed partial class VampireSystem
 {
+    private static readonly FixedPoint2 BloodPackDrinkVolume = FixedPoint2.New(15);
+
     private FrozenDictionary<string, VampirePowerProtype> _powerCache = default!;
     private FrozenDictionary<string, VampirePassiveProtype> _passiveCache = default!;
 
@@ -220,10 +223,13 @@ public sealed partial class VampireSystem
     }
     private void OnInteractHandEvent(EntityUid uid, VampireComponent component, BeforeInteractHandEvent args)
     {
-        if (!HasComp<HumanoidAppearanceComponent>(args.Target))
+        var target = args.Target;
+        var isBloodPack = _tag.HasTag(target, "Bloodpack");
+
+        if (!isBloodPack && !HasComp<HumanoidAppearanceComponent>(target))
             return;
 
-        if (args.Target == uid)
+        if (target == uid)
             return;
 
         if (!TryGetPowerDefinition(VampireComponent.DrinkBloodPrototype, out var def))
@@ -231,7 +237,7 @@ public sealed partial class VampireSystem
 
         var vampire = new Entity<VampireComponent>(uid, component);
 
-        args.Handled = TryDrink(vampire, args.Target, def.DoAfterDelay!.Value);
+        args.Handled = TryDrink(vampire, target, def.DoAfterDelay!.Value, isBloodPack);
     }
     #endregion
 
@@ -667,7 +673,7 @@ public sealed partial class VampireSystem
     /// <summary>
     /// Check and start drinking blood from a humanoid
     /// </summary>
-    private bool TryDrink(Entity<VampireComponent> vampire, EntityUid target, TimeSpan doAfterDelay)
+    private bool TryDrink(Entity<VampireComponent> vampire, EntityUid target, TimeSpan doAfterDelay, bool fromBloodPack = false)
     {
         //Do a precheck
         if (!HasComp<VampireFangsExtendedComponent>(vampire))
@@ -682,14 +688,32 @@ public sealed partial class VampireSystem
         if (!_ingestion.HasMouthAvailable(vampire, target))
             return false;
 
-        if (_rotting.IsRotten(target))
+        if (!fromBloodPack)
         {
-            _popup.PopupEntity(Loc.GetString("vampire-blooddrink-rotted"), vampire, vampire, PopupType.SmallCaution);
-            return false;
+            if (_rotting.IsRotten(target))
+            {
+                _popup.PopupEntity(Loc.GetString("vampire-blooddrink-rotted"), vampire, vampire, PopupType.SmallCaution);
+                return false;
+            }
+
+            if (!TryComp<BloodstreamComponent>(target, out var targetBloodstream) || targetBloodstream == null || targetBloodstream.BloodSolution == null)
+                return false;
+        }
+        else
+        {
+            if (!TryComp<StackComponent>(target, out var stack) || stack.Count <= 0)
+            {
+                _popup.PopupEntity(Loc.GetString("vampire-blooddrink-empty"), vampire.Owner, vampire.Owner, PopupType.SmallCaution);
+                return false;
+            }
         }
 
         var doAfterEventArgs = new DoAfterArgs(EntityManager, vampire, doAfterDelay,
-        new VampireDrinkBloodDoAfterEvent() { Volume = vampire.Comp.MouthVolume },
+        new VampireDrinkBloodDoAfterEvent()
+        {
+            Volume = fromBloodPack ? BloodPackDrinkVolume.Float() : vampire.Comp.MouthVolume,
+            FromBloodPack = fromBloodPack
+        },
         eventTarget: vampire,
         target: target,
         used: target)
@@ -715,6 +739,34 @@ public sealed partial class VampireSystem
 
         if (!_ingestion.HasMouthAvailable(entity, entity))
             return;
+
+        if (args.Target == null)
+            return;
+
+        if (args.FromBloodPack)
+        {
+            if (!_tag.HasTag(args.Target.Value, "Bloodpack"))
+                return;
+
+            if (!TryComp<StackComponent>(args.Target.Value, out var stack) || stack.Count <= 0)
+            {
+                _popup.PopupEntity(Loc.GetString("vampire-blooddrink-empty"), entity.Owner, entity.Owner, PopupType.SmallCaution);
+                return;
+            }
+
+            var bloodAmount = FixedPoint2.New(args.Volume);
+            var bloodSolution = new Solution("Blood", bloodAmount);
+
+            if (!TryIngestBlood(entity, bloodSolution))
+                return;
+
+            if (!_stacks.Use(args.Target.Value, 1, stack))
+                return;
+
+            _audio.PlayPvs(entity.Comp.BloodDrainSound, entity.Owner, AudioParams.Default.WithVolume(-3f));
+            AddBloodEssence(entity, bloodAmount);
+            return;
+        }
 
         if (_rotting.IsRotten(args.Target!.Value))
         {

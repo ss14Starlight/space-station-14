@@ -50,6 +50,9 @@ public sealed partial class VampireDrinkBloodDoAfterEvent : DoAfterEvent
     [DataField]
     public float Volume = 0;
 
+    [DataField]
+    public bool FromBloodPack = false;
+
     public override DoAfterEvent Clone() => this;
 }
 
