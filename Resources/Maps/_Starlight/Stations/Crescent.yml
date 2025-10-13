@@ -100087,7 +100087,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -71.24162,86.701996
       parent: 2
-- proto: PrintedDocumentResignationStatement
+- proto: PrintedDocumentIdentityEmploymentStatementResignation
   entities:
   - uid: 15220
     components:

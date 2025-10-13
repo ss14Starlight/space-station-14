@@ -210754,7 +210754,7 @@ entities:
     - type: Transform
       pos: -48.455067,-10.470369
       parent: 2
-- proto: PrintedDocumentArrestReport
+- proto: PrintedDocumentSecurityLawReportArrest
   entities:
   - uid: 29779
     components:

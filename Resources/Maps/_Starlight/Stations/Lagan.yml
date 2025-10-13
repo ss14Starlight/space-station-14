@@ -135973,7 +135973,7 @@ entities:
     - type: Transform
       pos: 86.504555,-15.503023
       parent: 2
-- proto: PrintedDocumentSurgeryConsentPermit
+- proto: PrintedDocumentMedicalFormMedicalConsent
   entities:
   - uid: 21473
     components:
