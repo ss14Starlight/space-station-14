@@ -8,13 +8,23 @@
   components:
     - type: Paper
 
+- type: entity
+  id: BoxFolderClipboardFilled
+  suffix: Filled
+  parent: BoxFolderClipboard
+  components:
+    - type: StorageFill
+      contents:
+        - id: Paper
+          amount: 24
+
 # Identity & Employment
 
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentIdentityEmploymentOrderDemotion
   name: Demotion / Termination Order
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-identity-employment-order-demotion
@@ -23,7 +33,7 @@
   parent: PrintedDocument
   id: PrintedDocumentIdentityEmploymentOrderCommandAppointment
   name: Head of Staff Appointment Order
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-identity-employment-order-command-appointment
@@ -32,7 +42,7 @@
   parent: PrintedDocument
   id: PrintedDocumentIdentityEmploymentRequestIdReplacement
   name: ID Card Replacement Request
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-identity-employment-request-id-replacement
@@ -41,7 +51,7 @@
   parent: PrintedDocument
   id: PrintedDocumentIdentityEmploymentRequestEmploymentTransfer
   name: Job Reallocation Form
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-identity-employment-request-employment-transfer
@@ -50,7 +60,7 @@
   parent: PrintedDocument
   id: PrintedDocumentIdentityEmploymentFormLostAndFound
   name: Lost & Found Form
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-identity-employment-form-lost-and-found
@@ -59,7 +69,7 @@
   parent: PrintedDocument
   id: PrintedDocumentIdentityEmploymentRequestAccessChange
   name: Request Access Change
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-identity-employment-request-access-change
@@ -68,7 +78,7 @@
   parent: PrintedDocument
   id: PrintedDocumentIdentityEmploymentStatementResignation
   name: Statement of Resignation
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-identity-employment-statement-resignation
@@ -77,11 +87,10 @@
   parent: PrintedDocument
   id: PrintedDocumentIdentityEmploymentFormVisitor
   name: Visitor Registration Form
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-identity-employment-form-visitor
-
 
 # Security & Law
 
@@ -89,7 +98,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawReportArrest
   name: Arrest Report
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-report-arrest
@@ -98,7 +107,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawReportCaseFile
   name: Case File
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-report-case-file
@@ -107,7 +116,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawPermissionContraband
   name: Contraband Permit
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-permission-contraband
@@ -116,7 +125,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawReportDepartmentOversight
   name: Department Oversight Report
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-report-department-oversight
@@ -125,7 +134,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawOrderDnr
   name: Do Not Resuscitate Order
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-order-dnr
@@ -134,7 +143,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawPermissionEquipment
   name: Equipment Authorization
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-permission-equipment
@@ -143,7 +152,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawOrderExecutionAndDnr
   name: Execution & DNR Order
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-order-execution-and-dnr
@@ -152,7 +161,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawOrderExecution
   name: Execution Order
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-order-execution
@@ -161,7 +170,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawReportInternalAffairs
   name: Internal Affairs Report
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-report-internal-affairs
@@ -170,7 +179,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawComplaintLaborViolation
   name: Labor Violation Complaint
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-complaint-labor-violation
@@ -179,7 +188,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawComplaintOffense
   name: Offense Complaint
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-complaint-offense
@@ -188,7 +197,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawOrderParole
   name: Parole Order
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-order-parole
@@ -197,7 +206,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawPermissionSearchWarrant
   name: Search Warrant
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-permission-search-warrant
@@ -206,7 +215,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawPermissionSpecialAmarment
   name: Special Armament Permit
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-permission-special-amarment
@@ -215,11 +224,10 @@
   parent: PrintedDocument
   id: PrintedDocumentSecurityLawPermissionFirearm
   name: Weapon Authorization
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-security-law-permission-firearm
-
 
 # Medical
 
@@ -227,7 +235,7 @@
   parent: PrintedDocument
   id: PrintedDocumentMedicalFormEmergencyMedicalWaiver
   name: Emergency Medical Waiver
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-medical-form-emergency-medical-waiver
@@ -236,7 +244,7 @@
   parent: PrintedDocument
   id: PrintedDocumentMedicalPermissionHazardousExperiment
   name: Hazardous Experiment Permit
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-medical-permission-hazardous-experiment
@@ -245,7 +253,7 @@
   parent: PrintedDocument
   id: PrintedDocumentMedicalFormMedicalConsent
   name: Medical Consent Form
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-medical-form-medical-consent
@@ -254,7 +262,7 @@
   parent: PrintedDocument
   id: PrintedDocumentMedicalFormMedicalPrescription
   name: Medical Prescription Form
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-medical-form-medical-prescription
@@ -263,7 +271,7 @@
   parent: PrintedDocument
   id: PrintedDocumentMedicalNoticeQuarantine
   name: Quarantine Notice
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-medical-notice-quarantine
@@ -272,11 +280,10 @@
   parent: PrintedDocument
   id: PrintedDocumentMedicalFormTherapySessionRecord
   name: Therapy Session Record
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-medical-form-therapy-session-record
-
 
 # Science
 
@@ -284,7 +291,7 @@
   parent: PrintedDocument
   id: PrintedDocumentScienceFormAnomalousBondingConsent
   name: Anomalous Bonding Consent
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-science-form-anomalous-bonding-consent
@@ -293,7 +300,7 @@
   parent: PrintedDocument
   id: PrintedDocumentScienceFormCyborgChassisTransfer
   name: Cyborg Chassis Transfer Record
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-science-form-cyborg-chassis-transfer
@@ -302,7 +309,7 @@
   parent: PrintedDocument
   id: PrintedDocumentScienceFormCyborgConversionRecord
   name: Cyborg Conversion Record
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-science-form-cyborg-conversion-record
@@ -311,7 +318,7 @@
   parent: PrintedDocument
   id: PrintedDocumentSciencePermissionHazardousEquipmentRelease
   name: Hazardous Equipment Release Permit
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-science-permission-hazardous-equipment-release
@@ -320,11 +327,10 @@
   parent: PrintedDocument
   id: PrintedDocumentScienceFormCyborgVoluntaryConversionConsent
   name: Voluntary Conversion Consent
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-science-form-cyborg-voluntary-conversion-consent
-
 
 # Command & Emergency
 
@@ -332,7 +338,7 @@
   parent: PrintedDocument
   id: PrintedDocumentCommandEmergencyCommCentcom
   name: CentComm Communication
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-command-emergency-comm-centcom
@@ -341,7 +347,7 @@
   parent: PrintedDocument
   id: PrintedDocumentCommandEmergencyStatementCommandSuccession
   name: Command Succession
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-command-emergency-statement-command-succession
@@ -350,7 +356,7 @@
   parent: PrintedDocument
   id: PrintedDocumentCommandEmergencyRequestErt
   name: Emergency Response Team Request
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-command-emergency-request-ert
@@ -359,7 +365,7 @@
   parent: PrintedDocument
   id: PrintedDocumentCommandEmergencyRequestEvacuation
   name: Evacuation Request
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-command-emergency-request-evacuation
@@ -368,7 +374,7 @@
   parent: PrintedDocument
   id: PrintedDocumentCommandEmergencyReportSituationOnStation
   name: Report_Situation
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-command-emergency-report-situation-on-station
@@ -377,11 +383,10 @@
   parent: PrintedDocument
   id: PrintedDocumentCommandEmergencyStatementSentienceAcknowledgement
   name: Sentience Acknowledgment
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-command-emergency-statement-sentience-acknowledgement
-
 
 # Atmos & Engineering
 
@@ -389,7 +394,7 @@
   parent: PrintedDocument
   id: PrintedDocumentAtmosEngineeringPermissionStationModification
   name: Station Modification Permit
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-atmos-engineering-permission-station-modification
