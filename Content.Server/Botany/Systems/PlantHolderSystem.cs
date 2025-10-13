@@ -518,6 +518,7 @@ public sealed partial class PlantHolderSystem : EntitySystem
         component.ImproperPressure = false;
         component.WeedLevel += 1;
         component.PestLevel = 0;
+
         UpdateSprite(uid, component);
     }
 
@@ -615,13 +616,21 @@ public sealed partial class PlantHolderSystem : EntitySystem
         if (!TryComp<AppearanceComponent>(uid, out var app))
             return;
 
-        TryComp<PlantTraitsComponent>(uid, out var traits);
-
-        if (traits == null)
-            return;
-
-        if (component.Seed != null)
+        // If no seed, clear visuals regardless of traits.
+        if (component.Seed == null)
         {
+            _appearance.SetData(uid, PlantHolderVisuals.PlantState, "", app);
+            _appearance.SetData(uid, PlantHolderVisuals.HealthLight, false, app);
+            _appearance.SetData(uid, PlantHolderVisuals.HarvestLight, false, app);
+        }
+        else
+        {
+            // Have a seed, require traits for detailed visuals.
+            TryComp<PlantTraitsComponent>(uid, out var traits);
+
+            if (traits == null)
+                return;
+
             if (component.DrawWarnings)
             {
                 _appearance.SetData(uid, PlantHolderVisuals.HealthLight, component.Health <= traits.Endurance / 2f);
@@ -653,11 +662,6 @@ public sealed partial class PlantHolderSystem : EntitySystem
                     _appearance.SetData(uid, PlantHolderVisuals.PlantState, $"stage-{traits.GrowthStages}", app);
                 }
             }
-        }
-        else
-        {
-            _appearance.SetData(uid, PlantHolderVisuals.PlantState, "", app);
-            _appearance.SetData(uid, PlantHolderVisuals.HealthLight, false, app);
         }
 
         if (!component.DrawWarnings)
