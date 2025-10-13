@@ -77,6 +77,9 @@
     price: 500
   - type: UseDelay
     delay: 1
+  - type: RestrictByEquippedTag # Starlight start
+    requiredTag: "RequiredForLmgTag"
+    denialMessage: "lmg-restricted-to-hardsuit-message" # Starlight end
 
 - type: entity
   name: L6 SAW
