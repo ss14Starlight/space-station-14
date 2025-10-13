@@ -563,3 +563,7 @@
     - type: Construction
       graph: BastionRightGraph
       node: right
+
+
+   ### TODO (posting here cause i'm frequently here
+   ### add a cybernetics loadout menu in interim while someone is working on making the cybernetics menu respect playtime and organs
