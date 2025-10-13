@@ -13,6 +13,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Flash;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
@@ -32,12 +33,15 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Flash.Components;
 using Content.Shared.Storage.Components;
 using Content.Shared.Stacks;
+using Content.Shared.Tag;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Vampire;
 
 public sealed partial class VampireSystem
 {
     private static readonly FixedPoint2 BloodPackDrinkVolume = FixedPoint2.New(15);
+    private static readonly ProtoId<TagPrototype> BloodpackTag = "Bloodpack";
 
     private FrozenDictionary<string, VampirePowerProtype> _powerCache = default!;
     private FrozenDictionary<string, VampirePassiveProtype> _passiveCache = default!;
@@ -64,6 +68,7 @@ public sealed partial class VampireSystem
 
         //Drink Blood
         SubscribeLocalEvent<VampireComponent, BeforeInteractHandEvent>(OnInteractHandEvent);
+        SubscribeLocalEvent<StackComponent, UseInHandEvent>(OnBloodpackUse);
         SubscribeLocalEvent<VampireComponent, VampireDrinkBloodDoAfterEvent>(DrinkDoAfter);
 
         //Deaths embrace
@@ -224,9 +229,12 @@ public sealed partial class VampireSystem
     private void OnInteractHandEvent(EntityUid uid, VampireComponent component, BeforeInteractHandEvent args)
     {
         var target = args.Target;
-        var isBloodPack = _tag.HasTag(target, "Bloodpack");
+        var isBloodPack = _tag.HasTag(target, BloodpackTag);
 
-        if (!isBloodPack && !HasComp<HumanoidAppearanceComponent>(target))
+        if (isBloodPack)
+            return;
+
+        if (!HasComp<HumanoidAppearanceComponent>(target))
             return;
 
         if (target == uid)
@@ -238,6 +246,44 @@ public sealed partial class VampireSystem
         var vampire = new Entity<VampireComponent>(uid, component);
 
         args.Handled = TryDrink(vampire, target, def.DoAfterDelay!.Value, isBloodPack);
+    }
+
+    private void OnBloodpackUse(EntityUid uid, StackComponent stack, UseInHandEvent args)
+    {
+        if (args.Handled || stack.StackTypeId != "Bloodpack")
+            return;
+
+        if (!TryComp<VampireComponent>(args.User, out var vampireComp))
+            return;
+
+        if (!_tag.HasTag(uid, BloodpackTag))
+            return;
+
+        // Only drain the pack when the vampire is actively baring their fangs.
+        if (!HasComp<VampireFangsExtendedComponent>(args.User))
+            return;
+
+        if (!TryGetPowerDefinition(VampireComponent.DrinkBloodPrototype, out var def))
+        {
+            Logger.Error("Failed to resolve DrinkBlood power definition for vampire blood pack use.");
+            return;
+        }
+
+        if (def.DoAfterDelay is not { } delay)
+        {
+            Logger.Error("DrinkBlood power is missing a do-after delay; cannot start blood pack consumption.");
+            return;
+        }
+
+        var vampire = new Entity<VampireComponent>(args.User, vampireComp);
+
+        if (!IsAbilityUsable(vampire, def))
+            return;
+
+        if (!TryDrink(vampire, uid, delay, fromBloodPack: true))
+            return;
+
+        args.Handled = true;
     }
     #endregion
 
@@ -745,7 +791,7 @@ public sealed partial class VampireSystem
 
         if (args.FromBloodPack)
         {
-            if (!_tag.HasTag(args.Target.Value, "Bloodpack"))
+            if (!_tag.HasTag(args.Target.Value, BloodpackTag))
                 return;
 
             if (!TryComp<StackComponent>(args.Target.Value, out var stack) || stack.Count <= 0)
