@@ -17399,5 +17399,72 @@ Entries:
   id: 188102
   time: '2025-10-11T14:10:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1881
+- author: redmushie
+  changes:
+  - message: Changed air vent under-pressure lockout threshold to 50kPa (down from
+      80kPa)
+    type: Tweak
+  id: 190000
+  time: '2025-10-12T17:40:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1900
+- author: walksanatora
+  changes:
+  - message: Nothing playerfacing but a ton of stuff with the signing system was changes.
+      expect cool signable things to come.
+    type: Tweak
+  id: 95500
+  time: '2025-10-12T21:31:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/955
+- author: Conflee
+  changes:
+  - message: Added 'Cloning Systems' as a Tier 3 Medical Research for 25000 points.
+      Grants the station access to the Cloning Console, Cloning Pod, and Medical Scanner
+      boards more consistently rather than relying on RNG, but makes it still very
+      expensive. Allows for revival of Zombified Crew on rounds where Zombies wipe
+      early and CBURN/EVAC isn't needed.
+    type: Add
+  id: 191700
+  time: '2025-10-12T22:28:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1917
+- author: Conflee
+  changes:
+  - message: Added 'Point Defense Weaponry' as a Tier 2 Industrial Research for 10000
+      points. Grants the station access to Point Defense Batteries, which can be built
+      in sensitive areas (outside Tesla/Singulo, Bridge, Arrivals, Evac) to automatically
+      shoot down meteors. Gives Engineers counterplay to meteors that still requires
+      them to engage with their job.
+    type: Add
+  id: 191701
+  time: '2025-10-12T22:28:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1917
+- author: OrksAreDaBest, Gensy, Happyrobot33
+  changes:
+  - message: roller skates are now much faster
+    type: Tweak
+  id: 192000
+  time: '2025-10-12T23:41:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1920
+- author: OrksAreDaBest, Gensy, Happyrobot33
+  changes:
+  - message: firing weapons while skating now deals knockback and stamina damage
+    type: Tweak
+  id: 192001
+  time: '2025-10-12T23:41:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1920
+- author: OrksAreDaBest, Gensy, Happyrobot33
+  changes:
+  - message: Knockback system now adds all knockback sources together
+    type: Fix
+  id: 192002
+  time: '2025-10-12T23:41:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1920
+- author: CawsForConcern
+  changes:
+  - message: Made amoxla, chronexaline, and barozine plus' names lowercase for consistency
+      with other chemical names
+    type: Tweak
+  id: 189500
+  time: '2025-10-12T23:45:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1895
 Order: -1
 

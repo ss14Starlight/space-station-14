@@ -12,6 +12,9 @@
     - abductor-gun-restricted-1
   - type: KnockbackByUserTag # Starlight
     doestContain:
+      Skating:
+        knockback: 5
+        staminaMultiplier: 20
       Resomi:
         knockback: 10
         staminaMultiplier: 8
@@ -128,6 +131,8 @@
   components:
   - type: KnockbackByUserTag # Starlight
     doestContain:
+      Skating:
+        knockback: -2.5
       Resomi:
         knockback: -5
       Avali:

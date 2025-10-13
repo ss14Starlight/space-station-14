@@ -67,6 +67,14 @@
       conditions:
       - !type:PlayerCountCondition
         max: 15
+    #region Starlight
+    # - id: PaperEndGreenshift
+    #   conditions:
+    #   - !type:GamemodeCondition
+    #     presets:
+    #     - Greenshift
+    #     - Sandbox
+    #endregion Starlight
 
 
 # No laser table + Laser table
@@ -307,7 +315,11 @@
     - id: CargoRequestScienceComputerCircuitboard
     - id: StationAiFixerCircuitboard
     - id: RubberStampRd
-    - id: RDDiploma #STARLIGHT
+    #region Starlight
+    - id: RDDiploma
+    #- id: PaperIonstormBorgs
+    #  prob: 0.10 #1/10 rounds will have this paper that can be signed repeatedly for no discernable effect!
+    #endregion Starlight
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
