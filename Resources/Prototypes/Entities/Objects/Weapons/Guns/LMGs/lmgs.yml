@@ -78,7 +78,7 @@
   - type: UseDelay
     delay: 1
   - type: RestrictByEquippedTag # Starlight start
-    requiredTag: "RequiredForLmgTag"
+    requiredTag: "RequiredForL6Tag"
     denialMessage: "lmg-restricted-to-hardsuit-message" # Starlight end
 
 - type: entity

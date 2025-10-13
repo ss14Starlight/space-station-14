@@ -670,6 +670,7 @@
     - WhitelistChameleon
     - CorgiWearable
     - ScurretWearable
+    - RequiredForL6Tag # Starlight
   - type: StaticPrice
     price: 5000
 
@@ -692,6 +693,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - RequiredForL6Tag # Starlight
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -741,6 +743,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - RequiredForL6Tag # Starlight
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -783,6 +786,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - RequiredForL6Tag # Starlight
 
 
 #Cybersun Juggernaut Hardsuit
@@ -838,6 +842,7 @@
     - Hardsuit
     - WhitelistChameleon
     - RequiredForLmgTag #Starlight
+    - RequiredForL6Tag # Starlight
 
 #Wizard Hardsuit
 - type: entity

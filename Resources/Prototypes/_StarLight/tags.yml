@@ -50,7 +50,7 @@
 
 - type: Tag
   id: ClownKudzu
-  
+
 - type: Tag
   id: CyberHandItem
 
@@ -152,6 +152,9 @@
 
 - type: Tag
   id: PrototypeVibroblade
+
+- type: Tag
+  id: RequiredForL6Tag
 
 - type: Tag
   id: RequiredForLmgTag
