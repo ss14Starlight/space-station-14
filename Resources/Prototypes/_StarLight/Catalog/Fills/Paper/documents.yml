@@ -18,6 +18,7 @@
         - id: Paper
           amount: 24
 
+# Auto-Generated Documents Start
 # Identity & Employment
 
 - type: entity
@@ -398,3 +399,15 @@
   components:
     - type: Paper
       content: doc-text-printer-atmos-engineering-permission-station-modification
+
+# Auto-Generated Documents End
+
+#greenshift alert
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentGreenshiftAlert
+  name: Notice of Station Location
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-printer-station-location
