@@ -70,6 +70,17 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepturtleneck.rsi
 
 - type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitNtrepNoble
+  name: nt representive's noble jumpsuit
+  description: A more classical and elegant style of clothing, designed to emulate the fashion of old earth nobility.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepnoble.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepnoble.rsi
+
+- type: entity
   parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpsuitBlueShield
   name: blueshield officer's suit
@@ -428,3 +439,25 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcom_official.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcom_official.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseSecurityContraband]
+  id: ClothingUniformSecurityTshirt
+  name: t-shirt security uniform
+  description: Light and unrestrictive uniform, so that nothing can stop you from swinging a stunbaton.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/security_tshirt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/security_tshirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRisk
+  name: station daredevil's  jumpsuit
+  description: A jumpsuit with red lines along the sides. 
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi

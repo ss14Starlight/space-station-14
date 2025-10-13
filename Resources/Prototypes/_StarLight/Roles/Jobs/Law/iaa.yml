@@ -17,10 +17,8 @@
   canBeAntag: false
   displayWeight: 40
   access:
-  - Service
   - Brig
   - Maintenance
-  - External
   - Lawyer
   special:
   - !type:AddImplantSpecial

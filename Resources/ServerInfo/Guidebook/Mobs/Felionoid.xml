@@ -4,13 +4,24 @@
   <Box>
     <GuideEntityEmbed Entity="MobFelionoid" Caption=""/>
   </Box>
+  
+  A smaller feline species that is light on their feet.
+  
+  ## Racial Features
+  Their unarmed claw attacks deal [color=red]3[/color] points of Slash damage with a hit rate that is [color=yellow]2[/color] times faster than humans.
 
-  [color=#ffa500]Caution! This species has a severely limiting game mechanic and is not recommended for new players. [/color]
+  Additionally, Felionoids can run [color=lightgreen]25%[/color] faster than humans but are more vulnerable:
+  - They fall into a critical state at [color=red]75[/color] points of damage.
+  - They die at [color=red]150[/color] points of damage.
 
-  Their unarmed claw attacks deal 3 points of Slash damage with a hit rate that is 2 times faster than humans.
+  ## Weapon Knockback
+  Felionoids will find that large caliber weapons will push them around. They receive [color=yellow]Stun Damage[/color] for every shot fired from a large caliber weapon.
+  
+  In general, the weapons that will give you knockback are [color=yellow]Rifles, Sniper Rifles, Shotguns, LMGs, HMGs, and Grenade Launchers.[/color]
 
-  Additionally, Felionoids can run 1.3 times faster than humans but are more vulnerable:
-  - They fall into a critical state at 75 points of damage.
-  - They die at 150 points of damage.
+  Look out especially on Rocket launchers, as since they are recoilless, you will actually get [color=red]pulled forward with the rocket[/color] for a short distance.
+  - The safest weapons to use that will give you no knockback are [color=green]Pistols and SMGs[/color].
+  - No slips can help mitigate some of the knockback from firing weapons, but not all of it!
+  - Also keep in mind that any stamina resistance you have DOES work to reduce the stamina damage from these weapons.
 
 </Document>

@@ -60,14 +60,14 @@
   # Starlight-start: Generatable Reagents
   - type: ReagentDispenser
     generatableReagents:
-      Aluminium: 1 # For 1 quantity
-      Carbon: 1
-      Copper: 1
-      Hydrogen: 1
+      Iron: 2 # ReagentId: x energy for 1 quantity
+      Carbon: 2
+      Copper: 2
+      Hydrogen: 2
       Oxygen: 0 # You really can't pump oxygen or generate it on 2525?
-      Sugar: 1
-      Silicon: 10
-      Phosphorus: 10
+      Sugar: 2
+      Silicon: 5
+      Phosphorus: 5
   - type: WiresVisuals
   - type: Appearance
   - type: GenericVisualizer
@@ -89,7 +89,7 @@
       - id: JugEthanol
       - id: JugFluorine
       - id: JugIodine
-      - id: JugIron
+      - id: JugAluminium
       - id: JugLithium
       - id: JugMercury
       - id: JugNitrogen

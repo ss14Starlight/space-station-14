@@ -141,6 +141,19 @@
   categories:
     - UplinkWeaponry
 
+- type: listing
+  id: UplinkHomerunBat
+  name: uplink-homerun-bat-name
+  description: uplink-homerun-bat-desc
+  productEntity: HomerunBat
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkWeaponry
+
 # Ammo
 
 - type: listing
@@ -458,6 +471,21 @@
     Telecrystal: 1
   cost:
     Telecrystal: 2
+  categories:
+  - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkCleanerKit
+  name: uplink-cleaner-kit-name
+  description: uplink-cleaner-kit-desc
+  productEntity: ToolboxArtisticFilledCleaner
+  cost:
+    Telecrystal: 3
   categories:
   - UplinkDisruption
   conditions:

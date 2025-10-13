@@ -10,6 +10,11 @@
     jumpsuit: ClothingUniformJumpsuitNtrepTurtleNeck
 
 - type: loadout  
+  id: NanoTrasenRepresentativeNoble
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNtrepNoble
+
+- type: loadout  
   id: NanoTrasenRepresentativeTurtleneckSkirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtNtrepTurtleneck

@@ -16,6 +16,7 @@
     ClothingUniformJumpsuitSecGrey: 3
     ClothingUniformJumpskirtSecGrey: 3
     ClothingUniformJumpsuitSecBlue: 3
+    ClothingUniformSecurityTshirt: 3 #SL Edit
     ClothingHeadsetSecurity: 3
     ClothingOuterWinterSec: 2
     ClothingOuterArmorBasic: 2
@@ -30,6 +31,7 @@
     ClothingEyesBlindfold: 1
     ClothingShoesBootsCombat: 1
     ClothingShoesBootsWinterSec: 2
+    ClothingOuterSecurityBomber: 2 #SL Edit
     ClothingHeadHelmetJustice: 1
   contrabandInventory:
     ClothingMaskClownSecurity: 1

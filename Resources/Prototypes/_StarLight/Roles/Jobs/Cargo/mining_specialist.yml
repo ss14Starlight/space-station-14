@@ -17,6 +17,8 @@
   - Mining
   - Maintenance
   - External
+  extendedAccess:
+  - Salvage
 
 - type: startingGear
   id: MiningSpecialistGear

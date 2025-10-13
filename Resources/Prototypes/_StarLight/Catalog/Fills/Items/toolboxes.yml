@@ -1,0 +1,15 @@
+- type: entity
+  id: ToolboxArtisticFilledCleaner
+  name: artistic toolbox
+  suffix: Cleaner
+  parent: ToolboxArtistic
+  components:
+  - type: StorageFill
+    contents:
+    - id: SoapletSyndie
+    - id: CleanerGrenade
+      amount: 2
+    - id: SprayBottleSpaceCleaner
+      amount: 2
+    - id: ClothingHeadHatPurplesoft
+    - id: ClothingHandsGlovesJanitor

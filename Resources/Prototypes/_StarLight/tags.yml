@@ -172,6 +172,9 @@
   id: ShowWires
 
 - type: Tag
+  id: Skating
+  
+- type: Tag
   id: SovietDungeon
 
 - type: Tag
@@ -230,6 +233,12 @@
 
 - type: Tag
   id: PettyCriminalTraitBackground
+  
+- type: Tag
+  id: ThermiteIgnitor
+  
+- type: Tag
+  id: UnDissolvable
 
 - type: Tag
   id: ScanGateMachineBoard

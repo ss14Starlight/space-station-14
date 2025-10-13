@@ -127,6 +127,7 @@
   - NanoTrasenRepresentativeJumpsuitFormal
   - NanoTrasenRepresentativeTurtleneck
   - NanoTrasenRepresentativeTurtleneckSkirt
+  - NanoTrasenRepresentativeNoble
 
 - type: loadoutGroup
   id: NanoTrasenRepresentativeEyewear

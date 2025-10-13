@@ -346,6 +346,8 @@
   parent: BaseScissors
   description: A surgical tool used to hold open incisions.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi #Starlight
   - type: Retractor
   - type: SurgeryTool
     startSound:
@@ -360,6 +362,7 @@
   description: A surgical tool used to hold open incisions.
   components:
   - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
     state: advanced-retractor
   - type: Item
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
@@ -378,6 +381,7 @@
   description: A surgical tool used to hold open incisions.
   components:
   - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
     state: abductor-retractor
   - type: Item
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
@@ -437,6 +441,7 @@
   description: A surgical tool used to compress blood vessels to prevent bleeding.
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi #Starlight
     state: hemostat
   - type: Item
     heldPrefix: hemostat
@@ -453,6 +458,7 @@
   description: A surgical tool used to compress blood vessels to prevent bleeding.
   components:
   - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
     state: advanced-hemostat
   - type: SurgeryTool
     speed: 0.6
@@ -466,6 +472,7 @@
   description: A surgical tool used to compress blood vessels to prevent bleeding.
   components:
   - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
     state: abductor-hemostat
   - type: SurgeryTool
     speed: 0.4
@@ -516,6 +523,7 @@
   description: A surgical tool used for setting bones.
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi #Starlight
     state: setter
   - type: Item
     heldPrefix: setter
@@ -536,6 +544,7 @@
       groups:
         Brute: 15
   - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
     state: advanced-setter
   - type: Item
     heldPrefix: setter
@@ -552,6 +561,7 @@
   description: A surgical tool used for setting bones. It also breaks them quite well.
   components:
   - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
     state: abductor-setter
   - type: Item
     heldPrefix: setter

@@ -10,12 +10,17 @@
     - Abductor
     messages:
     - abductor-gun-restricted-1
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
+      Skating:
+        knockback: 1.0
+        staminaMultiplier: 100
       Resomi:
         knockback: 0.1
       Avali:
         knockback: 0.05 # Bigger bird, more sturdy bones.. or something.
+      Felionoid:
+        knockback: 0.05 #half of what resomi take
   - type: Sprite
   - type: Item
     size: Huge
@@ -306,9 +311,13 @@
   id: WeaponRifleFoam
   description: A premium foam rifle of the highest quality. Its plastic feels rugged, and its mechanisms sturdy.
   components:
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
       Resomi:
+        knockback: 0
+      Avali:
+        knockback: 0
+      Felionoid:
         knockback: 0
   - type: Sprite
     sprite: Objects/Fun/Foam/foam_rifle.rsi

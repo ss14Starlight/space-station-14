@@ -106,6 +106,9 @@
   - type: IgnitionSource
     temperature: 700
   # 🌟Starlight-start🌟
+  - type: Tag
+    tags:
+    - ThermiteIgnitor
   - type: SurgeryTool
     successRate: 0.75
     startSound:
