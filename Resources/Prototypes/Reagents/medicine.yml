@@ -235,7 +235,7 @@
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
-          min: 10
+          min: 20 # SL change: 10 -> 20
         damage:
           types:
             Asphyxiation: 1
@@ -245,7 +245,7 @@
       - !type:Jitter
         conditions:
         - !type:ReagentThreshold
-          min: 10
+          min: 20 # SL change: 10 -> 20
 
 - type: reagent
   id: Dexalin
@@ -286,7 +286,7 @@
         damage:
           types:
             Poison: 1.5 #Avali blood is ammonia based, so chems made to treat normal bloodloss poison them instead (Lethal Dose: 20u)
-            Asphyxiation: 1 
+            Asphyxiation: 1
             Bloodloss: 1
       - !type:HealthChange #Starlight
         conditions:
@@ -296,7 +296,7 @@
         damage:
           types:
             Poison: 1.5 #Resomi blood is ammonia based, so chems made to treat normal bloodloss poison them instead (Lethal Dose: 20u)
-            Asphyxiation: 1 
+            Asphyxiation: 1
             Bloodloss: 1
 
 - type: reagent
