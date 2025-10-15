@@ -7,6 +7,8 @@ namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
 
 public sealed partial class PlantAdjustPotencyEntityEffectSystem : EntityEffectSystem<PlantHolderComponent, PlantAdjustPotency>
 {
+    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+
     protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEffectEvent<PlantAdjustPotency> args)
     {
         if (entity.Comp.Seed == null || entity.Comp.Dead)
@@ -14,7 +16,7 @@ public sealed partial class PlantAdjustPotencyEntityEffectSystem : EntityEffectS
 
         if (!TryComp<PlantTraitsComponent>(entity, out var traits))
             return;
-        _plantHolder.EnsureUniqueSeed(entity, entity.Comp);
-        traits.Potency = Math.Max(traits.Potency + args.Effect.Amount, 1);
+
+        _plantTraits.AdjustPotency((entity.Owner, traits), args.Effect.Amount);
     }
 }
