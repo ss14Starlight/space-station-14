@@ -239,6 +239,16 @@
 # Medical
 
 - type: latheRecipe
+  id: PrintedDocumentMedicalFormBodyRepossessionRecipe
+  result: PrintedDocumentMedicalFormBodyRepossession
+  categories:
+    - DocumentMedical
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
   id: PrintedDocumentMedicalFormEmergencyMedicalWaiverRecipe
   result: PrintedDocumentMedicalFormEmergencyMedicalWaiver
   categories:
@@ -279,8 +289,38 @@
     SheetPrinter: 100
 
 - type: latheRecipe
+  id: PrintedDocumentMedicalReportMorgueRecipe
+  result: PrintedDocumentMedicalReportMorgue
+  categories:
+    - DocumentMedical
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedicalFormPostTransplantIdentityAcknowledgementRecipe
+  result: PrintedDocumentMedicalFormPostTransplantIdentityAcknowledgement
+  categories:
+    - DocumentMedical
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
   id: PrintedDocumentMedicalNoticeQuarantineRecipe
   result: PrintedDocumentMedicalNoticeQuarantine
+  categories:
+    - DocumentMedical
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedicalStatementReintegrationBriefingRecipe
+  result: PrintedDocumentMedicalStatementReintegrationBriefing
   categories:
     - DocumentMedical
   completetime: 2

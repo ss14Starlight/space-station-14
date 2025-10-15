@@ -234,6 +234,15 @@
 
 - type: entity
   parent: PrintedDocument
+  id: PrintedDocumentMedicalFormBodyRepossession
+  name: Body Repossession / Donor Allocation
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-printer-medical-form-body-repossession
+
+- type: entity
+  parent: PrintedDocument
   id: PrintedDocumentMedicalFormEmergencyMedicalWaiver
   name: Emergency Medical Waiver
   categories: [HideSpawnMenu]
@@ -270,12 +279,39 @@
 
 - type: entity
   parent: PrintedDocument
+  id: PrintedDocumentMedicalReportMorgue
+  name: Morgue Report
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-printer-medical-report-morgue
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentMedicalFormPostTransplantIdentityAcknowledgement
+  name: Post-Transplant Identity Acknowledgment
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-printer-medical-form-post-transplant-identity-acknowledgement
+
+- type: entity
+  parent: PrintedDocument
   id: PrintedDocumentMedicalNoticeQuarantine
   name: Quarantine Notice
   categories: [HideSpawnMenu]
   components:
     - type: Paper
       content: doc-text-printer-medical-notice-quarantine
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentMedicalStatementReintegrationBriefing
+  name: Reintegration Briefing
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-printer-medical-statement-reintegration-briefing
 
 - type: entity
   parent: PrintedDocument
@@ -347,7 +383,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentCommandEmergencyStatementCommandSuccession
-  name: Command Succession
+  name: Command Succession Order
   categories: [HideSpawnMenu]
   components:
     - type: Paper

@@ -264,51 +264,55 @@ doc-text-printer-command-emergency-request-evacuation =
     ​
     ​
 
-# title: Command Succession
+# title: Command Succession Order
 # slug: Statement_Command_Succession
 doc-text-printer-command-emergency-statement-command-succession =
     ​[logo]
     
     
-    ​[head=1][color=#1b67a5]STATION COMMAND[/head][/color]
-    ────────────────────────────────────────
-    ​[head=2][color=#003366][bold]STATEMENT[/bold][/color][/head] – [color=#0055aa][bolditalic]SUCCESSION OF COMMAND[/bolditalic][/color]
-    ────────────────────────────────────────
-    ​[center][color=#aaaaaa][italic]Issued under NanoTrasen Command Protocols – Confers Acting Captain authority in absence of a Station Captain[/italic][/color][/center]
+    ​[head=1][color=#1b67a5]STATION COMMAND[/color][/head]  
+    ────────────────────────────────────────  
+    ​[head=2][color=#003366][bold]ORDER[/bold][/color][/head] – [color=#0055aa][bolditalic]COMMAND SUCCESSION[/bolditalic][/color]  
+    ────────────────────────────────────────  
+    ​[center][color=#aaaaaa][italic]Formal declaration of change in station command authority due to the absence, incapacitation, or death of the commanding officer[/italic][/color][/center]  
     
-    ​[head=2]Details[/head]
-    ​[bold]Date & Time:[/bold] [form]
-    ​[bold]Documenting Individual:[/bold] [signature]
+    ​[head=2]Succession Context[/head]  
+    ​[bold]Date & Time Issued:[/bold] [form]  
+    ​[bold]Reason for Succession:[/bold]  
+    ​[check] Captain did not arrive for assigned shift  
+    ​[check] Captain incapacitated / medically unfit for duty  
+    ​[check] Captain deceased or confirmed missing  
+    ​[check] Command override by Central Command  
+    ​[check] Other: [form]  
     
-    ​[head=2]Situation[/head]
-    ​[check] Captain absent at shift start
-    ​[check] Captain incapacitated / missing
-    ​[check] Captain deceased
-    ​[check] Other: [form]
+    ​[bold]Incident Summary (if applicable):[/bold]  
+    ​[form]  
     
-    ​[head=2]Appointed Acting Captain[/head]
-    ​[bold]Name:[/bold] [form]
-    ​[bold]Current Position:[/bold] [form]
-    ​[bold]Reason for Selection[/bold]
-    ​[check] Highest remaining chain in command
-    ​[check] Other: [form]
+    ​[head=2]Acting Command Appointment[/head]  
+    ​[bold]Name of Acting Captain / Commanding Officer:[/bold] [form]  
+    ​[bold]Department / Previous Position:[/bold] [form]  
+    ​[bold]Authority Level Granted:[/bold]  
+    ​[check] Full station command authority  
+    ​[check] Interim authority – pending Central Command confirmation  
+    ​[check] Emergency authority – valid for duration of crisis  
+    ​[check] Other: [form]  
     
+    ​[head=2]Succession Chain[/head]  
+    ​[bold]Next in Command (if Acting Captain becomes incapacitated):[/bold] [form]  
+    ​[bold]Additional Notes / Conditions (if any):[/bold] [form]  
     
-    ​[head=2](Required) Authorization[/head]
-    ​[italic]All available Heads of Staff must confirm this appointment with signature or departmental stamp.[/italic]
+    ​[head=2]Authorization[/head]  
+    ​[bold]Required Stamps/Signatures:[/bold]  
+    ​[bullet] Head of Personnel  
+    ​[bullet] Remaining Command Staff (minimum 2/3 available required)  
+    ​[bullet] Internal Affairs Agent (if present for verification)  
     
-    ​[head=2]Final Confirmation[/head]
-    ​[bold]Appointed Acting Captain Acknowledgement:[/bold] [signature]
+    ────────────────────────────────────────  
+    ​[color=#aaaaaa][italic]  
+    NOTICE: This order establishes legitimate command authority aboard the station in accordance with NanoTrasen Command Directive §11-C. Unauthorized assumption of command or falsification of this document constitutes mutiny under Corporate Law and may result in immediate dismissal or prosecution.  
+    ​[/italic][/color]  
     
-    ────────────────────────────────────────
-    ​[color=#aaaaaa][italic]
-    NOTICE: This document formalizes station command succession under NanoTrasen protocols. The appointed Acting Captain holds the listed authority only while valid signatures/stamps from available Command are present.
-    ​[/italic][/color]
-    
-    
-    
-    
-    ​[color=#aaaaaa][italic]Place for Additional Stamps / Central Command Validation[/italic][/color]
+    ​[italic]Place for Command / Administrative Stamps and Signatures[/italic]  
     ​
     ​
 
@@ -786,6 +790,64 @@ doc-text-printer-identity-employment-statement-resignation =
 
 # Medical
 
+# title: Body Repossession / Donor Allocation
+# slug: Form_Body_Repossession
+doc-text-printer-medical-form-body-repossession =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]BODY REPOSSESSION / DONOR ALLOCATION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Authorization to repurpose a recovered biological body as a donor chassis for transplantation, cloning, or integration with a healthy brain when original brain consent is unavailable or impossible.[/italic][/color][/center]
+    
+    ​[head=2]Case Reference[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Processing Individual:[/bold] [form]
+    
+    ​[head=2]Body Identification[/head]
+    ​[bold]Name on Record (if any):[/bold] [form]
+    ​[bold]Species / Biological Type:[/bold] [form]
+    ​[bold]Condition Summary:[/bold] [form]
+    
+    ​[head=2]Eligibility Checks (tick all that apply)[/head]
+    ​[check] Original brain absent or irreparably destroyed
+    ​[check] Body tissues intact and viable for transplant / hosting
+    ​[check] No active infectious / anomalous agent detected
+    ​[check] No forensic hold or active criminal investigation
+    ​[check] Ethical review completed / waiver documented
+    ​[check] Other conditions / notes: [form]
+    
+    ​[head=2]Intended Use (select primary purpose)[/head]
+    ​[check] Donor body for biological brain transplant
+    ​[check] Host chassis for synthetic / cyborg integration
+    ​[check] Research specimen
+    ​[check] Medical training / study
+    ​[check] Other: [form]
+    
+    ​[head=2]Processing & Safety Measures[/head]
+    ​[bold]Planned Procedure / Protocols:[/bold]
+    ​[form]
+    
+    ​[head=2]Authorization (required)[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Chief Medical Officer (CMO) – medical viability & ethics sign-off
+    ​[bullet] Captain – Command authorization for body repossession / allocation
+    
+    ​[bold]Recommended Additional Stamps (if applicable):[/bold]
+    ​[bullet] Head of Security – confirm no investigative hold
+    ​[bullet] Research Director / Ethics Board – confirm research clearance
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Repossession and allocation of biological bodies is a serious act governed by NanoTrasen Medical Directive §18 and Synthetic Oversight Protocols. This form documents combined medical, ethical, and command authorization when original brain consent is unavailable. Bodies repurposed under this authorization must be logged, tracked, and cross-referenced with all related records. Unauthorized reuse, concealment of holds, or falsification of clearances constitutes a Class-A corporate offense.
+    ​[/italic][/color]
+    
+    ​[italic]Place for Medical / Command / Security Stamps and Signatures[/italic]
+    ​
+    ​
+
 # title: Emergency Medical Waiver
 # slug: Form_Emergency_Medical_Waiver
 doc-text-printer-medical-form-emergency-medical-waiver =
@@ -944,6 +1006,70 @@ doc-text-printer-medical-form-medical-prescription =
     
     
     ​[italic]Place for Medical Stamp / Signature[/italic]
+    ​
+    ​
+
+# title: Post-Transplant Identity Acknowledgment
+# slug: Form_Post-Transplant_Identity_Acknowledgement
+doc-text-printer-medical-form-post-transplant-identity-acknowledgement =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]POST-TRANSPLANT IDENTITY ACKNOWLEDGMENT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Issued to individuals revived or reconstructed within a new biological body under NanoTrasen medical recovery programs[/italic][/color][/center]
+    
+    ​[head=2]Patient Information[/head]
+    ​[bold]Date & Time of Revival:[/bold] [form]
+    ​[bold]Recovered Name (if remembered):[/bold] [form]
+    ​[bold]Previous Occupation / Department (if remembered):[/bold] [form]
+    ​[bold]Species / Classification (current body):[/bold] [form]
+    
+    ​[head=2]Medical Summary[/head]
+    ​[color=#aaaaaa][italic]The following summary is provided for your awareness and medical record:[/italic][/color]
+    ​[bullet] Your original body sustained irreversible damage and could not be repaired or revived.
+    ​[bullet] Your neural substrate or consciousness pattern was successfully transferred into a compatible donor body.
+    ​[bullet] This donor body was medically verified as unclaimed and viable under Corporate Directive §18.
+    ​[bullet] Your genetic, biometric, and neurological signatures now correspond to the new body.
+    ​[bullet] Your current biological and psychological adaptation will be monitored by Medical.
+    
+    ​[bold]Additional Notes from Medical Staff:[/bold]
+    ​[form]
+    
+    ​[head=2]Orientation & Expectations[/head]
+    ​[color=#aaaaaa][italic]Please review the following informational statements:[/italic][/color]
+    ​[bullet] Some residual memory gaps, dissociation, or identity confusion are normal during adaptation.
+    ​[bullet] Physical coordination and reflexes may differ due to new muscular or skeletal structure.
+    ​[bullet] You may request counseling or therapy support at any time through the Medical Department.
+    ​[bullet] You are expected to resume your duties once medically cleared by the Chief Medical Officer.
+    
+    ​[head=2]Patient Acknowledgment[/head]
+    ​[color=#aaaaaa][italic]Please complete the section below to update your identification and acknowledge the procedure:[/italic][/color]
+    
+    ​[bold]I hereby confirm that I have read and understood the summary above and acknowledge possession of a new biological body provided by NanoTrasen Medical Services.[/bold]
+    
+    ​[bold]Current Name / Identity (as chosen or remembered):[/bold] [form]
+    ​[bold]Preferred Name (if different):[/bold] [form]
+    ​[bold]Statement or Reflection (optional):[/bold] [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Patient / Subject
+    ​[bullet] Attending Physician or Chief Medical Officer
+    ​[bullet] Counselor / Therapist (if present during reawakening)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This document serves as both identity confirmation and psychological stabilization aid following a post-mortem neural recovery. The use of donor bodies is regulated under NanoTrasen Medical and Ethical Directive §18. All records remain confidential. Attempts to claim ownership of previous biological remains or assets will be reviewed by Corporate Legal Division.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Medical / Patient Signatures and Stamps[/italic]
     ​
     ​
 
@@ -1108,6 +1234,136 @@ doc-text-printer-medical-permission-hazardous-experiment =
     
     
     ​[italic]Place for Stamps / Signatures[/italic]
+    ​
+    ​
+
+# title: Morgue Report
+# slug: Report_Morgue
+doc-text-printer-medical-report-morgue =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REPORT[/bold][/color][/head] – [color=#0055aa][bolditalic]MORGUE RECORD[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Official record documenting the confirmed death or cognitive loss of a crew member, including post-mortem assessment and reason for non-revival[/italic][/color][/center]
+    
+    ​[head=2]Deceased Information[/head]
+    ​[bold]Date & Time of Death / Pronouncement:[/bold] [form]
+    ​[bold]Full Name of Deceased / Subject:[/bold] [form]
+    ​[bold]Department / Position:[/bold] [form]
+    ​[bold]Species / Biological Type:[/bold] [form]
+    ​[bold]Body Recovered By:[/bold] [form]
+    
+    ​[head=2]Type of Death[/head]
+    ​[check] Biological death – no vital signs detected
+    ​[check] Cognitive death / SSD (Space Sleep Disorder – brain unresponsive, body viable)
+    ​[check] Confirmed brain destruction / irreversible neural loss
+    ​[check] Other (specify): [form]
+    
+    ​[head=2]Death Details[/head]
+    ​[bold]Location of Death (if known):[/bold] [form]
+    ​[bold]Condition of Body on Arrival:[/bold] [form]
+    ​[bold]Presumed Time Since Death / Brain Death:[/bold] [form]
+    ​[bold]Observed Injuries / Anomalies:[/bold] [form]
+    
+    ​[head=2]Cause of Death[/head]
+    ​[check] Blunt or crushing trauma
+    ​[check] Ballistic or piercing wound
+    ​[check] Burn / thermal damage
+    ​[check] Asphyxiation / decompression
+    ​[check] Toxin or chemical exposure
+    ​[check] Radiation or environmental hazard
+    ​[check] Biological / anomalous infection
+    ​[check] Cardiac or medical failure
+    ​[check] Cognitive failure (SSD)
+    ​[check] Unknown – under investigation
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Findings / Notes:[/bold]
+    ​[form]
+    
+    ​[head=2]Processing Assessment[/head]
+    ​[check] Valid DNR order present
+    ​[check] Body unrevivable – catastrophic damage or incompatibility
+    ​[check] No viable clone data / failed cloning attempt
+    ​[check] Brain absent, missing, or non-functional (SSD)
+    ​[check] Consciousness confirmed destroyed (positronic / organic)
+    ​[check] Body processed for reuse (healthy chassis / transplant candidate)
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Non-Revival or Processing Decision:[/bold]
+    ​[form]
+    
+    ​[head=2]Post-Mortem Handling[/head]
+    ​[check] Body stored in morgue
+    ​[check] Released to Security (for investigation)
+    ​[check] Released to crew memorial / next of kin
+    ​[check] Cremated
+    ​[check] Spaced / ejected per regulation
+    ​[check] Transferred to Science for study
+    ​[check] Body repurposed / reassigned to new brain
+    ​[check] Other: [form]
+    
+    ​[bold]Additional Remarks / Identification Notes:[/bold]
+    ​[form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Attending Physician / Coroner
+    ​[bullet] Chief Medical Officer
+    ​[bullet] Head of Security (if under investigation)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This record documents both biological and cognitive fatalities as defined under NanoTrasen Medical Directive §14-D and Synthetic Oversight §9-B.
+    “Space Sleep Disorder” constitutes irreversible cognitive death for medical and legal purposes. Bodies repurposed for brain transfer or research must be logged under this report and cross-referenced with cloning or processing records.
+    Falsifying or omitting death data constitutes a Class-A corporate offense.
+    ​[/italic][/color]
+    
+    ​[italic]Place for Medical / Security Stamps and Signatures[/italic]
+    ​
+    ​
+
+# title: Reintegration Briefing
+# slug: Statement_Reintegration_Briefing
+doc-text-printer-medical-statement-reintegration-briefing =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]WELCOME BACK TO SERVICE[/color][/head]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Issued by NanoTrasen Medical & Personnel Administration – “Every mind deserves a second chance.”[/italic][/color][/center]
+    
+    ​[head=2]Your Revival Was a Success[/head]
+    Congratulations, crew member! Following the unfortunate loss of your prior body, NanoTrasen’s cutting-edge [bold]Neural Recovery & Reinstantiation Program[/bold] has successfully restored your consciousness to operational status. You are alive, alert, and ready to return to duty — in a slightly improved, or at least different, condition.
+    
+    ​[head=2]About Your New Body[/head]
+    ​[bullet] Your current body was obtained from [bold]approved donor stock[/bold] under Medical Directive §18.
+    ​[bullet] While it may not be “yours” in the traditional sense, it now fully qualifies as [bold]your authorized biological vessel[/bold].
+    ​[bullet] Any differences in height, build, or complexion are purely cosmetic and should not affect your work performance.
+    ​[bullet] If you experience mild detachment, phantom memories, or existential unease, please report to the [bold]Therapy Office[/bold]. These effects typically resolve within one to three shifts.
+    
+    ​[head=2]Your Responsibilities[/head]
+    ​[bullet] Treat your new body as corporate property entrusted to your care.
+    ​[bullet] Follow all Medical and Security protocols regarding neural or genetic maintenance.
+    ​[bullet] Report any unfamiliar physical impulses, memory inconsistencies, or unexplained abilities to the Chief Medical Officer immediately.
+    ​[bullet] Remember: you are still you — but a safer, stronger, and more [italic]asset-friendly[/italic] version of yourself.
+    
+    ​[head=2]Adjustment & Aftercare[/head]
+    ​[bullet] Avoid strenuous activity or combat within the first 30 minutes of reactivation.
+    ​[bullet] Hydrate frequently; foreign tissue integration can cause dehydration.
+    ​[bullet] Expect minor neural echo phenomena (“voices,” “shadows,” “lingering smells”). These are harmless artifacts of consciousness upload latency.
+    ​[bullet] If symptoms persist, your therapist may prescribe mild sedatives or personality resynchronization therapy.
+    
+    ​[head=2]Identity & Records[/head]
+    Your personnel records have been updated to reflect your revival and reassignment. If your [bold]previous body remains unrecovered[/bold], your file now lists [bold]“Reinstantiated”[/bold] as your physical status. You may select a [bold]preferred name or pronouns[/bold] if your current ID tag does not match your previous record.
+    
+    ​[head=2]Final Note[/head]
+    NanoTrasen thanks you for your continued dedication and flexibility in the face of mortality. Your resilience reflects the best of our corporate values: [center][color=#5b97bc][bolditalic]“Efficiency, Continuity, Immortality.”[/bolditalic][/color][/center]
+    
+    ​[color=#aaaaaa][italic]Remember: death is temporary — employment is not.[/italic][/color]
     ​
     ​
 
@@ -2257,4 +2513,3 @@ doc-text-printer-security-law-report-internal-affairs =
     ​[italic]Place for IAA Stamp / Signature[/italic]
     ​
     ​
-
