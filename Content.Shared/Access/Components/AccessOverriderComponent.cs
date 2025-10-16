@@ -22,6 +22,22 @@ public sealed partial class AccessOverriderComponent : Component
 
     public EntityUid TargetAccessReaderId = new();
 
+    // Starlight-edit: Start
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<AccessGroupPrototype>> AccessGroups = new();
+
+    [AutoNetworkedField]
+    public ProtoId<AccessGroupPrototype>? CurrentAccessGroup;
+
+    // Keep existing AccessLevels (backwards-compatible)
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<AccessLevelPrototype>> AccessLevels = new();
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public float DoAfter;
+    // Starlight-edit: End
+
     [Serializable, NetSerializable]
     public sealed class WriteToTargetAccessReaderIdMessage : BoundUserInterfaceMessage
     {
@@ -33,12 +49,18 @@ public sealed partial class AccessOverriderComponent : Component
         }
     }
 
-    [DataField, AutoNetworkedField]
-    public List<ProtoId<AccessLevelPrototype>> AccessLevels = new();
+    // Starlight-edit: Start
+    [Serializable, NetSerializable]
+    public sealed class AccessGroupSelectedMessage : BoundUserInterfaceMessage
+    {
+        public readonly ProtoId<AccessGroupPrototype> SelectedGroup;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField]
-    public float DoAfter;
+        public AccessGroupSelectedMessage(ProtoId<AccessGroupPrototype> selectedGroup)
+        {
+            SelectedGroup = selectedGroup;
+        }
+    }
+    // Starlight-edit: End
 
     [Serializable, NetSerializable]
     public sealed class AccessOverriderBoundUserInterfaceState : BoundUserInterfaceState
@@ -48,27 +70,45 @@ public sealed partial class AccessOverriderComponent : Component
         public readonly string PrivilegedIdName;
         public readonly bool IsPrivilegedIdPresent;
         public readonly bool IsPrivilegedIdAuthorized;
-        public readonly ProtoId<AccessLevelPrototype>[]? TargetAccessReaderIdAccessList;
-        public readonly ProtoId<AccessLevelPrototype>[]? AllowedModifyAccessList;
+        public readonly ProtoId<AccessLevelPrototype>[]? AvailableAccessLevels; // Starlight edit
+        public readonly ProtoId<AccessLevelPrototype>[]? PressedAccessLevels; // Starlight edit
         public readonly ProtoId<AccessLevelPrototype>[]? MissingPrivilegesList;
 
-        public AccessOverriderBoundUserInterfaceState(bool isPrivilegedIdPresent,
+        // Starlight-edit: Start
+        public readonly ProtoId<AccessGroupPrototype>[]? AccessGroups;
+        public readonly ProtoId<AccessGroupPrototype>? CurrentAccessGroup;
+        // Starlight-edit: End
+
+        public AccessOverriderBoundUserInterfaceState(
+            bool isPrivilegedIdPresent,
             bool isPrivilegedIdAuthorized,
-            ProtoId<AccessLevelPrototype>[]? targetAccessReaderIdAccessList,
-            ProtoId<AccessLevelPrototype>[]? allowedModifyAccessList,
+            ProtoId<AccessLevelPrototype>[]? availableAccessLevels,
+            ProtoId<AccessLevelPrototype>[]? pressedAccessLevels,
             ProtoId<AccessLevelPrototype>[]? missingPrivilegesList,
             string privilegedIdName,
             string targetLabel,
-            Color targetLabelColor)
+            // Starlight-edit: Start
+            Color targetLabelColor,
+            ProtoId<AccessGroupPrototype>[]? accessGroups,
+            ProtoId<AccessGroupPrototype>? currentAccessGroup)
+            // Starlight-edit: End
         {
             IsPrivilegedIdPresent = isPrivilegedIdPresent;
             IsPrivilegedIdAuthorized = isPrivilegedIdAuthorized;
-            TargetAccessReaderIdAccessList = targetAccessReaderIdAccessList;
-            AllowedModifyAccessList = allowedModifyAccessList;
+            // Starlight edit Start
+            // TargetAccessReaderIdAccessList = targetAccessReaderIdAccessList;
+            // AllowedModifyAccessList = allowedModifyAccessList;
+            // Starlight edit End
             MissingPrivilegesList = missingPrivilegesList;
             PrivilegedIdName = privilegedIdName;
             TargetLabel = targetLabel;
             TargetLabelColor = targetLabelColor;
+            // Starlight-edit: Start
+            AvailableAccessLevels = availableAccessLevels;
+            PressedAccessLevels = pressedAccessLevels;
+            AccessGroups = accessGroups;
+            CurrentAccessGroup = currentAccessGroup;
+            // Starlight-edit: End
         }
     }
 

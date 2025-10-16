@@ -1,4 +1,8 @@
+using System.Linq;
 using System.Numerics;
+using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.Language.Components;
+using Content.Shared._Starlight.Language.Systems;
 using Content.Shared._Starlight.Magic.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
@@ -19,6 +23,7 @@ using Content.Shared.Ninja.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Speech.Muting;
+using Content.Shared.Station;
 using Content.Shared.Storage;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
@@ -66,8 +71,12 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-    //starlight
+    #region Starlight
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedStationSystem _station = default!;
+
+    private static readonly EntProtoId TowerOfBabel = "TowerOfBabel";
+    #endregion
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
 
@@ -89,6 +98,7 @@ public abstract class SharedMagicSystem : EntitySystem
         SubscribeLocalEvent<VoidApplauseSpellEvent>(OnVoidApplause);
         #region Starlight
         SubscribeLocalEvent<SpawnItemInHandEvent>(OnSpawnItemInHand);
+        SubscribeLocalEvent<TowerOfBabelEvent>(OnTowerOfBabel);
         #endregion
     }
 
@@ -541,6 +551,29 @@ public abstract class SharedMagicSystem : EntitySystem
         else
             _hands.TryPickupAnyHand(user, star);
         ev.Handled = true;
+    }
+
+    private void OnTowerOfBabel(TowerOfBabelEvent ev)
+    {
+        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
+            return;
+        if (_net.IsClient)
+            return;
+        var xform = Transform(ev.Performer);
+
+        foreach (var station in _station.GetStations())
+        {
+            if (_station.GetLargestGrid(station) is not { } grid)
+                continue;
+
+            if (xform.GridUid != grid)
+                continue;
+
+            var ent = PredictedSpawnAtPosition(TowerOfBabel, xform.Coordinates);
+            ev.Handled = true;
+            return;
+        }
+        _popup.PopupClient(Loc.GetString("spell-requirements-failed"), ev.Performer, ev.Performer);
     }
     #endregion
 

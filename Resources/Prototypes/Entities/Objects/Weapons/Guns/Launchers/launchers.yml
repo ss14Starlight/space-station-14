@@ -10,16 +10,19 @@
     - Abductor
     messages:
     - abductor-gun-restricted-1
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
+      Skating:
+        knockback: 5
+        staminaMultiplier: 20
       Resomi:
         knockback: 10
         staminaMultiplier: 8
       Avali:
-        knockback: 3 # Bigger bird, more sturdy bones.. or something.
+        knockback: 5 # half of what resomi take
         staminaMultiplier: 8
       Felionoid:
-        knockback: 5 #half of what resomi take
+        knockback: 5 # half of what resomi take
         staminaMultiplier: 8
   - type: Sprite
   - type: Clothing
@@ -126,14 +129,16 @@
   id: WeaponLauncherRocket
   description: A modified ancient rocket-propelled grenade launcher.
   components:
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
+      Skating:
+        knockback: -2.5
       Resomi:
         knockback: -5
-      Felionoid:
-        knockback: -2.5 #half of what resomi take
       Avali:
-        knockback: -1.5
+        knockback: -2.5 # half of what resomi take
+      Felionoid:
+        knockback: -2.5 # half of what resomi take
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
     layers:
@@ -167,13 +172,16 @@
   id: WeaponLauncherMultipleRocket
   description: A modified ancient rocket-propelled grenade launcher.
   components:
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
       Resomi:
         knockback: 10
         staminaMultiplier: 8
+      Avali:
+        knockback: 5 # half of what resomi take
+        staminaMultiplier: 8
       Felionoid:
-        knockback: 5 #half of what resomi take
+        knockback: 5 # half of what resomi take
         staminaMultiplier: 8
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi

@@ -9,6 +9,11 @@
   result: StoveMachineCircuitboard
 
 - type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ScanGateMachineCircuitboard
+  result: ScanGateMachineCircuitboard
+
+- type: latheRecipe
   parent: BaseGoldCircuitboardRecipe
   id: ClarkeCentralElectronics
   result: ClarkeCentralElectronics
@@ -47,3 +52,23 @@
   parent: BaseSilverCircuitboardRecipe
   id: DurandTargetingElectronics
   result: DurandTargetingElectronics
+
+- type: latheRecipe
+  parent: BaseSilverCircuitboardRecipe
+  id: WeaponTurretPointDefenseMachineCircuitboard
+  result: WeaponTurretPointDefenseMachineCircuitboard
+
+- type: latheRecipe
+  parent: BaseSilverCircuitboardRecipe
+  id: CloningConsoleComputerCircuitboard
+  result: CloningConsoleComputerCircuitboard
+
+- type: latheRecipe
+  parent: BaseSilverCircuitboardRecipe
+  id: CloningPodMachineCircuitboard
+  result: CloningPodMachineCircuitboard
+
+- type: latheRecipe
+  parent: BaseSilverCircuitboardRecipe
+  id: MedicalScannerMachineCircuitboard
+  result: MedicalScannerMachineCircuitboard

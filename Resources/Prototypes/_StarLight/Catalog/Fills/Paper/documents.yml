@@ -9,6 +9,16 @@
     - type: Paper
     
 # Reports
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentReportMorgue
+  name: Morgue report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-report-morgue
+      
     
 - type: entity
   parent: PrintedDocument
@@ -434,3 +444,25 @@
     contents:
       - id: Paper
         amount: 24
+
+# Communications
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentCentCommCommunication
+  name: Centcomm communication
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-centcomm-communication
+
+#greenshift alert
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentGreenshiftAlert
+  name: Notice of Station Location
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-station-location

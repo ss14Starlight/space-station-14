@@ -10,6 +10,7 @@
 
   Their wings give them better acceleration if there is no gravity on the station, but they still can't move without equipment when floating out in space.
 
-  They take [color=#1e90ff]30% less Cold damage[/color] but [color=#ffa500]30% more Heat damage, and catch on fire more easily[/color].
+  They take [color=#1e90ff]30% less Cold damage[/color] but [color=#ffa500]20% more Heat damage, and catch on fire more easily[/color].
 
+  They are able to jump short distances, allowing them to move around station hallways quickly. They can jump up to [color=yellow]3[/color] times in a row, and will regain one 'charge' of this ability every [color=yellow]30[/color] seconds.
 </Document>

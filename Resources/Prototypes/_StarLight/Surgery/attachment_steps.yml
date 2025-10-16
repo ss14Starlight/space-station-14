@@ -48,6 +48,8 @@
     duration: 4
     tools:
     - type: BoneGel
+    reagentId: BoneGel
+    reagentQuantity: 5
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel

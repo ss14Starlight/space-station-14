@@ -3,6 +3,9 @@
 # ItemIdFrom: ItemIdTo - Change item
 # ItemIdFrom: null - Removes item from map
 
+# 2025-10-03
+SyndiAgentPDA: SyndiCorpsmanPDA
+
 # 2025-06-11
 
 CrateNPCGorilla: null
@@ -33,3 +36,16 @@ ClothingOuterHardsuitNTCCConsortiumMedic: ClothingOuterHardsuitNTNCConsortiumMed
 ClothingUniformNTCCFatigues: ClothingUniformNTNCFatigues
 NTCCBlueShieldPDA: NTNCBlueShieldPDA
 NTCCBlueShieldIDCard: NTNCBlueShieldIDCard
+
+# 2025-08-31
+PosterContrabandRealExomorph: PosterContrabandLustyExomorph
+MagazinePistol: MagazinePistolSP
+
+# 2025-09-02
+PosterContrabandRouny: RandomPosterLegit
+SpeedLoaderMagnum: SpeedLoaderMagnumBasic
+WeaponShotgunEnforcerRubber: WeaponShotgunEnforcer
+MagazineBoxMagnum: MagazineBoxMagnumSP
+CartridgeMagnum: CartridgeMagnumSP
+CartridgePistol: CartridgePistolSP
+CartridgeRifle: CartridgeRifleSP

@@ -4,12 +4,12 @@ using Content.Server.Chat;
 using Content.Server.Chat.Managers;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Humanoid;
-using Content.Server.IdentityManagement;
 using Content.Server.Inventory;
 using Content.Server.Mind;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
+using Content.Server.StationEvents.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
 using Content.Shared.Body.Components;
@@ -35,6 +35,7 @@ using Content.Shared.Prying.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Ghost.Roles.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Tag;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -109,7 +110,7 @@ public sealed partial class ZombieSystem
         var zombiecomp = AddComp<ZombieComponent>(target);
 
         //we need to basically remove all of these because zombies shouldn't
-        //get diseases, breath, be thirst, be hungry, die in space, have offspring or be paraplegic.
+        //get diseases, breath, be thirst, be hungry, die in space, get double sentience, have offspring or be paraplegic.
         RemComp<RespiratorComponent>(target);
         RemComp<BarotraumaComponent>(target);
         RemComp<HungerComponent>(target);
@@ -118,11 +119,14 @@ public sealed partial class ZombieSystem
         RemComp<ReproductivePartnerComponent>(target);
         RemComp<LegsParalyzedComponent>(target);
         RemComp<ComplexInteractionComponent>(target);
+        RemComp<SentienceTargetComponent>(target);
 
         // Starlight-start: Add Zombie Language - Starlight
-        RemComp<UniversalLanguageSpeakerComponent>(target);
         EnsureComp<LanguageKnowledgeComponent>(target, out var knowledge);
+        _language.CaptureCache((target, knowledge));
+        RemComp<UniversalLanguageSpeakerComponent>(target);
         EnsureComp<LanguageSpeakerComponent>(target, out var speaker);
+        EnsureComp<RestoreLanguageCacheOnCloneComponent>(target);
 
         knowledge.SpokenLanguages.Clear();
         knowledge.UnderstoodLanguages.Clear();
@@ -206,6 +210,10 @@ public sealed partial class ZombieSystem
 
             Dirty(target, pryComp);
         }
+
+        //starlight start
+        if(!melee.Damage.AnyPositive()) melee.Damage = zombiecomp.MinimumDamageOnBite;
+        //starlight end
 
         Dirty(target, melee);
 

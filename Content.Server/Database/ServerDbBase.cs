@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
@@ -8,9 +8,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
+using Content.Server.Humanoid.Markings.Extensions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
+// Cosmatic Drift Record System-start
+using Content.Shared._CD.Records;
+using Content.Server._CD.Records;
+// Cosmatic Drift Record System-end
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -23,11 +28,10 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Server.Humanoid.Markings.Extensions;
 
 namespace Content.Server.Database
 {
-    public abstract class ServerDbBase
+    public abstract partial class ServerDbBase
     {
         private readonly ISawmill _opsLog;
 
@@ -53,10 +57,18 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
                 .Include(p => p.Profiles) // Starlight
                     .ThenInclude(h => h.StarLightProfile) // Starlight
+                .Include(p => p.Profiles).ThenInclude(h => h.CharacterInfo)// Starlight
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
+                // Cosmatic Drift Record System-start: Hydrate CD profiles and their denormalized entries so the client editor has data ready
+                .Include(p => p.Profiles)
+                    .ThenInclude(h => h.CDProfile)
+                    // Entity Framework will populate CharacterRecordEntries for any existing CDProfile,
+                    // so it's safe to suppress the nullable warning here.
+                    .ThenInclude(cdProfile => cdProfile!.CharacterRecordEntries)
+                // Cosmatic Drift Record System-end
                 .Include(p => p.JobPriorities)
                 .AsSplitQuery()
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
@@ -75,7 +87,7 @@ namespace Content.Server.Database
             foreach (var favorite in prefs.ConstructionFavorites)
                 constructionFavorites.Add(new ProtoId<ConstructionPrototype>(favorite));
 
-            var jobPriorities = prefs.JobPriorities.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
+            var jobPriorities = prefs.JobPriorities.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority)j.Priority);
 
             return new PlayerPreferences(profiles, Color.FromHex(prefs.AdminOOCColor), constructionFavorites, jobPriorities);
         }
@@ -107,6 +119,13 @@ namespace Content.Server.Database
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
+                .Include(p => p.CharacterInfo) // Starlight-edit
+                // Cosmatic Drift Record System-start: Pull forward existing CD profile state when editing a saved slot
+                .Include(p => p.CDProfile)
+                    // Entity Framework will populate CharacterRecordEntries for any existing CDProfile,
+                    // so it's safe to suppress the nullable warning here as well.
+                    .ThenInclude(cdProfile => cdProfile!.CharacterRecordEntries)
+                // Cosmatic Drift Record System-end
                 .AsSplitQuery()
                 .SingleOrDefault(h => h.Slot == slot);
 
@@ -189,7 +208,7 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
 
             return new PlayerPreferences(
-                new[] {new KeyValuePair<int, ICharacterProfile>(0, defaultProfile)},
+                new[] { new KeyValuePair<int, ICharacterProfile>(0, defaultProfile) },
                 Color.FromHex(prefs.AdminOOCColor),
                 [],
                 priorities
@@ -277,11 +296,46 @@ namespace Content.Server.Database
                 loadouts[role.RoleName] = loadout;
             }
 
-            return new HumanoidCharacterProfile(
+            //start starlight
+            string physicalDesc = string.Empty;
+            string personalityDesc = string.Empty;
+            string personalNotes = string.Empty;
+            string oocNotes = string.Empty;
+            string characterSecrets = string.Empty;
+            string exploitableInfo = string.Empty;
+
+            if (profile.CharacterInfo != null)
+            {
+                physicalDesc = profile.CharacterInfo.PhysicalDesc;
+                if (string.IsNullOrEmpty(physicalDesc))
+                {
+                    physicalDesc = profile.FlavorText;
+                }
+                personalityDesc = profile.CharacterInfo.PersonalityDesc;
+                personalNotes = profile.CharacterInfo.PersonalNotes;
+                oocNotes = profile.CharacterInfo.OOCNotes;
+                characterSecrets = profile.CharacterInfo.CharacterSecrets;
+                exploitableInfo = profile.CharacterInfo.ExploitableInfo;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(physicalDesc))
+                {
+                    physicalDesc = profile.FlavorText;
+                }
+            }
+            //end starlight
+            // Cosmatic Drift Record System-start: Build a humanoid profile so CD record data can be attached before returning
+            var humanoid = new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.Voice,
                 profile.SiliconVoice, // 🌟Starlight🌟
-                profile.FlavorText,
+                physicalDesc, // Starlight
+                personalityDesc, // Starlight
+                personalNotes, // Starlight
+                oocNotes, // Starlight
+                characterSecrets,// Starlight
+                exploitableInfo,// Starlight
                 profile.Species,
                 profile.StarLightProfile?.CustomSpecieName ?? "", // Starlight
                 profile.Age,
@@ -310,6 +364,19 @@ namespace Content.Server.Database
                 profile.StarLightProfile?.CyberneticIds ?? [], // Starlight
                 profile.Enabled
             );
+            // Cosmatic Drift Record System: Rehydrate saved CD records into the mutable profile copy
+            if (profile.CDProfile?.CharacterRecords != null)
+            {
+                var records = RecordsSerialization.Deserialize(profile.CDProfile.CharacterRecords, profile.CDProfile.CharacterRecordEntries); // Load player-authored records from storage
+                humanoid = humanoid.WithCDCharacterRecords(records);
+            }
+            else
+            {
+                humanoid = humanoid.WithCDCharacterRecords(PlayerProvidedCharacterRecords.DefaultRecords()); // Seed with empty records when nothing has been saved yet
+            }
+
+            return humanoid;
+            // Cosmatic Drift Record System-end
         }
 
         private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
@@ -326,7 +393,14 @@ namespace Content.Server.Database
             profile.CharacterName = humanoid.Name;
             profile.Voice = humanoid.Voice;
             profile.SiliconVoice = humanoid.SiliconVoice; // 🌟Starlight🌟
-            profile.FlavorText = humanoid.FlavorText;
+            profile.FlavorText = string.Empty; //Starlight
+            profile.CharacterInfo ??= new StarLightModel.CharacterInfo();//Starlight
+            profile.CharacterInfo.PhysicalDesc = humanoid.PhysicalDescription;//Starlight
+            profile.CharacterInfo.PersonalityDesc = humanoid.PersonalityDescription;//Starlight
+            profile.CharacterInfo.PersonalNotes = humanoid.PersonalNotes;//Starlight
+            profile.CharacterInfo.OOCNotes = humanoid.OOCNotes;//Starlight
+            profile.CharacterInfo.CharacterSecrets = humanoid.Secrets;//Starlight
+            profile.CharacterInfo.ExploitableInfo = humanoid.ExploitableInfo;//Starlight
             profile.Species = humanoid.Species;
             profile.StarLightProfile ??= new StarLightModel.StarLightProfile(); // Starlight
             profile.StarLightProfile.CustomSpecieName = humanoid.CustomSpecieName; // Starlight
@@ -353,7 +427,7 @@ namespace Content.Server.Database
             profile.Jobs.Clear();
             profile.Jobs.AddRange(
                 humanoid.JobPreferences
-                    .Select(j => new Job {JobName = j})
+                    .Select(j => new Job { JobName = j })
             );
 
             profile.Antags.Clear();
@@ -367,6 +441,13 @@ namespace Content.Server.Database
                 humanoid.TraitPreferences
                         .Select(t => new Trait { TraitName = t })
             );
+            // Cosmatic Drift Record System-start: Persist CD record updates back onto the database profile
+            profile.CDProfile ??= new CDModel.CDProfile(); // Ensure the EF entity exists before serializing records
+            var storedRecords = humanoid.CDCharacterRecords ?? PlayerProvidedCharacterRecords.DefaultRecords();
+            profile.CDProfile.CharacterRecords = JsonSerializer.SerializeToDocument(storedRecords); // Store player-authored data as JSON for SQLite/Postgres
+            profile.CDProfile.CharacterRecordEntries.Clear(); // Keep denormalized entries in sync with the serialized blob
+            profile.CDProfile.CharacterRecordEntries.AddRange(RecordsSerialization.GetEntries(storedRecords));
+            // Cosmatic Drift Record System-end
 
             profile.Loadouts.Clear();
 
@@ -753,33 +834,7 @@ namespace Content.Server.Database
         }
 
         #endregion
-        #region Player data
-        /*
-         * Player data 🌟Starlight🌟
-         */
-        public async Task<PlayerDataDTO?> GetPlayerDataDTOForAsync(NetUserId userId, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
-            return await db.DbContext.PlayerData
-                .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
-        }
-        public async Task SetPlayerDataForAsync(NetUserId userId, PlayerDataDTO data, CancellationToken cancel)
-        {
-            await using var db = await GetDb(cancel);
 
-            var obj = await db.DbContext.PlayerData
-                .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
-            if (obj != null)
-            {
-                obj.Balance = data.Balance;
-                obj.GhostTheme = data.GhostTheme;
-            }
-            else
-                db.DbContext.PlayerData.Add(data);
-
-            await db.DbContext.SaveChangesAsync();
-        }
-        #endregion
         #region Admin Ranks
         /*
          * ADMIN RANKS

@@ -20,6 +20,7 @@ public sealed partial class ActorRouter : IActorRouter, IDisposable
 
     private ISawmill _sawmill = default!;
     private string _clusterConnectionString = string.Empty;
+    private string _token = string.Empty;
 
     private string? _project;
     private string? _server;
@@ -50,6 +51,7 @@ public sealed partial class ActorRouter : IActorRouter, IDisposable
         OrleansClientHolder.OnConnected += _onConnectedProxy;
 
         _cfg.OnValueChanged(NullLinkCCVars.ClusterConnectionString, OnConnStringChanged, true);
+        _cfg.OnValueChanged(NullLinkCCVars.Token, OnTokenChanged, true);
         _cfg.OnValueChanged(NullLinkCCVars.Enabled, OnEnabledChanged, true);
 
         _cfg.OnValueChanged(NullLinkCCVars.Project, x => _project = x, true);
@@ -75,8 +77,12 @@ public sealed partial class ActorRouter : IActorRouter, IDisposable
     private void OnEnabledChanged(bool enabled)
     {
         Enabled = enabled;
+
+        if (string.IsNullOrEmpty(_token) || string.IsNullOrEmpty(_clusterConnectionString))
+            return;
+
         if (Enabled)
-            OrleansClientHolder.Configure(_clusterConnectionString, _sawmill).FireAndForget();
+            OrleansClientHolder.Configure(_clusterConnectionString, _token, _sawmill).FireAndForget();
         else
             OrleansClientHolder.Shutdown().FireAndForget();
     }
@@ -84,8 +90,20 @@ public sealed partial class ActorRouter : IActorRouter, IDisposable
     private void OnConnStringChanged(string conn)
     {
         _clusterConnectionString = conn;
+        if (string.IsNullOrEmpty(_token) || string.IsNullOrEmpty(_clusterConnectionString))
+            return;
+
         if (Enabled)
-            OrleansClientHolder.Configure(_clusterConnectionString, _sawmill, rebuild: true).FireAndForget();
+            OrleansClientHolder.Configure(_clusterConnectionString, _token, _sawmill, rebuild: true).FireAndForget();
+    }
+    private void OnTokenChanged(string token)
+    {
+        _token = token;
+        if (string.IsNullOrEmpty(_token) || string.IsNullOrEmpty(_clusterConnectionString))
+            return;
+
+        if (Enabled)
+            OrleansClientHolder.Configure(_clusterConnectionString, _token, _sawmill, rebuild: true).FireAndForget();
     }
 
     public void Dispose()

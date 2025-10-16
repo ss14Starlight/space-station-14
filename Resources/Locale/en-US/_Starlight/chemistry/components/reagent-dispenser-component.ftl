@@ -1,0 +1,1 @@
+reagent-dispenser-popup-no-energy = Not enough energy!

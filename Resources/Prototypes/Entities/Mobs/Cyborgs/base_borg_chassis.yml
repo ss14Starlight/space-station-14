@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMob, StripableInventoryBase]
+  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages
   id: BaseBorgChassisNotIonStormable
   name: cyborg
   description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
@@ -248,30 +248,14 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
-  - type: CyborgSparkEffect #starlight
+  #region Starlight
+  - type: CyborgSparkEffect
   - type: StationAIShunt #Starlight allow shunting into all borgs
-  # Starlight-start: Languages
-  - type: LanguageKnowledge
-    speaks:
-    - GalacticCommon
-    - Machine
-    understands:
-    - GalacticCommon
-    - Machine
-    - Canilunzt
-    - Sign
-    - Bubblish
-    - Chittin
-    - Draconic
-    - Marish
-    - Moffic
-    - Nekomimetic
-    - Sylvan
-    - Terrum
-    - VoxPidgin
-    - Scratch
-    - SolCommon
-  # Starlight-end
+  - type: BorgSwitchableSubtype # Afterlight change
+  - type: Crawler
+  - type: Blindable
+  - type: EyeProtection
+  #endregion
 
 - type: entity
   abstract: true
@@ -350,7 +334,7 @@
     tags:
     - Borg
   - type: AccessReader
-    access: [["Command"], ["Research"]]
+    access: [["Command"], ["Robotics"]] # Starlight
   - type: ShowJobIcons
   - type: InteractionPopup
     interactSuccessSound:
@@ -407,12 +391,52 @@
     groups:
     - AllAccess #Randomized access would be fun. AllAccess is the best i can think of right now that does make it too hard for it to enter the station or navigate it..
   - type: AccessReader
-    access: [["Command"], ["Research"]]
+    access: [["Command"], ["Robotics"]] # Starlight
   - type: StartIonStormed
     ionStormAmount: 3
   - type: IonStormTarget
     chance: 1
   - type: ShowJobIcons
+
+- type: entity
+  id: BaseBorgChassisSyndicateDerelict #For assault borg and maybe others in time
+  parent: BaseBorgChassisSyndicate # Starlight
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws: SyndicateStatic #Non-subverted version so they can still be changed
+  - type: StartIonStormed
+    ionStormAmount: 3
+  - type: IonStormTarget
+    chance: 1
+  - type: ShowJobIcons
+#  region starlight - reverting syndicate derelict cyborg 1984
+#  - type: NpcFactionMember # They're still syndicate even if they can't listen to the radio or see icons
+#      factions:
+#    - Syndicate
+#  - type: Access
+#    tags:
+#    - NuclearOperative
+#    - SyndicateAgent
+#  - type: AccessReader
+#    access: [ [ "SyndicateAgent" ], [ "NuclearOperative" ] ]
+#  - type: IntrinsicRadioTransmitter # Copy components from base SyndiBorg but without the stuff we don't want
+#    channels:
+#    - Binary #1984
+#  - type: ActiveRadio
+#    channels:
+#    - Binary
+#  - type: MovementAlwaysTouching
+#  - type: Speech
+#    speechSounds: SyndieBorg
+#    allowedEmotes:
+#    - Laugh
+#  - type: Vocal
+#    sounds:
+#      Unsexed: UnisexSiliconSyndicate
+#  - type: PointLight
+#    color: "#dd200b"
+# end region starlight
 
 - type: entity
   parent: BaseBorgChassisNotIonStormable

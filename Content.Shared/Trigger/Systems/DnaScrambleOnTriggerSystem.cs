@@ -13,7 +13,7 @@ public sealed class DnaScrambleOnTriggerSystem : EntitySystem
 {
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
-    [Dependency] private readonly SharedIdentitySystem _identity = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -53,7 +53,8 @@ public sealed class DnaScrambleOnTriggerSystem : EntitySystem
         _forensics.RandomizeDNA(target.Value);
         _forensics.RandomizeFingerprint(target.Value);
 
-        RemComp<DetailExaminableComponent>(target.Value); // remove MRP+ custom description if one exists
+        //Starlight remove
+        //RemComp<DetailExaminableComponent>(target.Value); // remove MRP+ custom description if one exists
         _identity.QueueIdentityUpdate(target.Value); // manually queue identity update since we don't raise the event
 
         // Can't use PopupClient or PopupPredicted because the trigger might be unpredicted.
