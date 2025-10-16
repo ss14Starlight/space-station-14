@@ -101,7 +101,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             _ui.IsUiOpen(user, SurgeryUIKey.Key, user) ||
             !HasComp<SurgeryTargetComponent>(args.Target)) return;
 
-        if (user == args.Target)
+        if (user == args.Target && !HasComp<CanPerformSurgeryOnSelfComponent>(user))
         {
             _popup.PopupEntity("You can't perform surgery on yourself!", user, user);
             return;
