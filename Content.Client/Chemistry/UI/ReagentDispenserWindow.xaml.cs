@@ -19,7 +19,7 @@ namespace Content.Client.Chemistry.UI
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
-        public event Action<ItemStorageLocation>? OnDispenseReagentButtonPressed;
+        public event Action<ReagentDispenseData>? OnDispenseReagentButtonPressed; // Starlight-edit
         public event Action<ItemStorageLocation>? OnEjectJugButtonPressed;
 
         /// <summary>
@@ -70,6 +70,11 @@ namespace Content.Client.Chemistry.UI
             // Disable the Clear & Eject button if no beaker
             ClearButton.Disabled = castState.OutputContainer is null;
             EjectButton.Disabled = castState.OutputContainer is null;
+
+            // Starlight-start
+            EnergyDisplayBar.Value = castState.EnergyAmount;
+            EnergyDisplay.Text = Loc.GetString("mech-energy-display", ("amount", (int)Math.Round(castState.EnergyAmount * 100)));
+            // Starlight-end
 
             AmountGrid.Selected = ((int)castState.SelectedDispenseAmount).ToString();
         }

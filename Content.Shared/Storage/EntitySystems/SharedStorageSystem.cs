@@ -67,6 +67,7 @@ public abstract class SharedStorageSystem : EntitySystem
     [Dependency] protected readonly SharedItemSystem ItemSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private   readonly SharedHandsSystem _sharedHandsSystem = default!;
+    [Dependency] private   readonly SharedMaterialStorageSystem MaterialStorage = default!; // Starlight-edit
     [Dependency] private   readonly SharedStackSystem _stack = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
@@ -486,6 +487,22 @@ public abstract class SharedStorageSystem : EntitySystem
 
             args.Verbs.Add(verb);
         }
+
+        // Starlight-begin: transfer all to material storage
+        // if the target is a material storage, add a verb to transfer storage.
+        if (TryComp(args.Target, out MaterialStorageComponent? materialTargetStorage)
+            && (!TryComp(args.Target, out LockComponent? materialTargetLock) || !materialTargetLock.Locked))
+        {
+            UtilityVerb verb = new()
+            {
+                Text = Loc.GetString("storage-component-transfer-verb"),
+                IconEntity = GetNetEntity(args.Using),
+                Act = () => TransferMaterialEntities(uid, args.Target, args.User, component, null, materialTargetStorage, materialTargetLock)
+            };
+
+            args.Verbs.Add(verb);
+        }
+        // Starlight-end: transfer all to material storage
     }
 
     /// <summary>
@@ -579,7 +596,7 @@ public abstract class SharedStorageSystem : EntitySystem
             {
                 if (entity == args.User
                     || !_itemQuery.TryGetComponent(entity, out var itemComp) // Need comp to get item size to get weight
-                    || !_prototype.TryIndex(itemComp.Size, out var itemSize)
+                    || !_prototype.Resolve(itemComp.Size, out var itemSize)
                     || !CanInsert(uid, entity, out _, storageComp, item: itemComp)
                     || !_interactionSystem.InRangeUnobstructed(args.User, entity))
                 {
@@ -1024,6 +1041,39 @@ public abstract class SharedStorageSystem : EntitySystem
                 || !_tag.HasTag(user.Value, targetComp.SilentStorageUserTag)))
             Audio.PlayPredicted(sourceComp.StorageInsertSound, target, user, _audioParams);
     }
+
+    // Starlight-begin: transfer to material storage
+    /// <summary>
+    ///     Move entities from one storage to a material storage.
+    /// </summary>
+    public void TransferMaterialEntities(EntityUid source, EntityUid target, EntityUid? user = null,
+        StorageComponent? sourceComp = null, LockComponent? sourceLock = null,
+        MaterialStorageComponent? targetComp = null, LockComponent? targetLock = null)
+    {
+        if (!Resolve(source, ref sourceComp) || !Resolve(target, ref targetComp))
+            return;
+
+        var entities = sourceComp.Container.ContainedEntities;
+        if (entities.Count == 0)
+            return;
+
+        if (Resolve(source, ref sourceLock, false) && sourceLock.Locked
+            || Resolve(target, ref targetLock, false) && targetLock.Locked)
+            return;
+
+        // Check needed because TryInsertMaterialEntity requires a non-null user.
+        if (user is null)
+            return;
+
+        foreach (var entity in entities.ToArray())
+        {
+            MaterialStorage.TryInsertMaterialEntity((EntityUid)user, entity, target, targetComp);
+        }
+        if (user != null
+            && !_tag.HasTag(user.Value, sourceComp.SilentStorageUserTag))
+            Audio.PlayPredicted(sourceComp.StorageInsertSound, target, user, _audioParams);
+    }
+    // Starlight-end: transfer to material storage
 
     /// <summary>
     ///     Verifies if an entity can be stored and if it fits
@@ -1822,7 +1872,7 @@ public abstract class SharedStorageSystem : EntitySystem
         // If we specify a max item size, use that
         if (uid.Comp.MaxItemSize != null)
         {
-            if (_prototype.TryIndex(uid.Comp.MaxItemSize.Value, out var proto))
+            if (_prototype.Resolve(uid.Comp.MaxItemSize.Value, out var proto))
                 return proto;
 
             Log.Error($"{ToPrettyString(uid.Owner)} tried to get invalid item size prototype: {uid.Comp.MaxItemSize.Value}. Stack trace:\\n{Environment.StackTrace}");

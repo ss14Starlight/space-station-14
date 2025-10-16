@@ -62,6 +62,10 @@
                     0.1
                 ]
             ]
+        },
+        {
+            "name": "borg_e_r",
+            "directions": 4
         }
     ]
 }

@@ -1,0 +1,28 @@
+- type: loadout
+  id: HeadofSecurityBlackSuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSBlack
+  groupBy: "jumpsuit"
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: loadout
+  id: HeadofSecurityBlackSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtHoSBlack
+  groupBy: "jumpskirt"
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+
+- type: loadout
+  id: ClothingNeckCloakHosVar
+  equipment:
+    neck: ClothingNeckCloakHosFireline
+  effects:
+  - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfSecurity
+        time: 180000 #50 hrs

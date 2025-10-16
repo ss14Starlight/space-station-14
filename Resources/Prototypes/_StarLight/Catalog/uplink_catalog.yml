@@ -141,6 +141,19 @@
   categories:
     - UplinkWeaponry
 
+- type: listing
+  id: UplinkHomerunBat
+  name: uplink-homerun-bat-name
+  description: uplink-homerun-bat-desc
+  productEntity: HomerunBat
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkWeaponry
+
 # Ammo
 
 - type: listing
@@ -380,6 +393,25 @@
   categories:
   - UplinkWearables
 
+# Disruption
+- type: listing
+  id: SyndimovCircuitBoard
+  name: uplink-syndimov-law-name
+  description: uplink-syndimov-law-desc
+  productEntity: SyndimovCircuitBoard
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 14
+  categories:
+  - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
 - type: listing
   id: UplinkClothingOuterArmorBasic
   name: uplink-clothing-outer-armor-basic-name
@@ -392,6 +424,7 @@
     Telecrystal: 3 #SL / Rebalanced pricing: Armor Vest 3, Web Vest 4, Elite Web vest 5
   categories:
   - UplinkWearables
+
 
 # Devices
 
@@ -407,3 +440,56 @@
     Telecrystal: 4
   categories:
   - UplinkDisruption
+
+#Disruption / Distractions
+
+- type: listing
+  id: UplinkLubeGrenade
+  name: uplink-lube-grenade-name
+  description: uplink-lube-grenade-desc
+  productEntity: LubeGrenade
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkGlueGrenade
+  name: uplink-glue-grenade-name
+  description: uplink-glue-grenade-desc
+  productEntity: GlueGrenade
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkCleanerKit
+  name: uplink-cleaner-kit-name
+  description: uplink-cleaner-kit-desc
+  productEntity: ToolboxArtisticFilledCleaner
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink

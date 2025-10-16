@@ -37,7 +37,7 @@
     accent: zombieMoth
   - type: Speech
     speechVerb: Moth
-    allowedEmotes: ['Chitter', 'Squeak']
+    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings']
   - type: TypingIndicator
     proto: moth
   - type: Butcherable
@@ -60,6 +60,8 @@
       Male: UnisexMoth
       Female: UnisexMoth
       Unsexed: UnisexMoth
+  - type: BodyEmotes # Starlight: Add separate sound set for Moth bodies
+    soundsId: MothBodyEmotes
   - type: MovementSpeedModifier
     baseWeightlessAcceleration: 1.5 # Move around more easily in space.
     baseWeightlessFriction: 1
@@ -67,7 +69,7 @@
   - type: Flammable
     damage:
       types:
-        Heat: 4.5 # moths burn more easily
+        Heat: 2.5 # moths burn more easily
   - type: Temperature # Moths hate the heat and thrive in the cold.
     heatDamageThreshold: 320
     coldDamageThreshold: 230
@@ -118,6 +120,7 @@
       - map: [ "enum.HumanoidVisualLayers.Tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
       - map: [ "back" ]
       - map: [ "neck" ]
+      - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.Hair" ]
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

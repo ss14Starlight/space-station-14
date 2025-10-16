@@ -11,6 +11,17 @@
       tags:
         - DoorElectronics
     - type: DoorElectronics
+      # Starlight Start
+      accessGroups:
+      - General
+      - Security
+      - Cargo
+      - Command
+      - Research
+      - Medical
+      - Service
+      - Engineering
+      # Starlight End
     - type: StaticPrice
       price: 55
     - type: AccessReader

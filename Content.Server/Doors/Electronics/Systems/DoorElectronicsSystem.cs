@@ -27,19 +27,27 @@ public sealed class DoorElectronicsSystem : EntitySystem
 
     public void UpdateUserInterface(EntityUid uid, DoorElectronicsComponent component)
     {
-        var accesses = new List<ProtoId<AccessLevelPrototype>>();
+        // var accesses = new List<ProtoId<AccessLevelPrototype>>(); // Starlight edit
 
+        // Starlight edit Start
+        var protoMan = IoCManager.Resolve<IPrototypeManager>();
+        var allLevels = new HashSet<ProtoId<AccessLevelPrototype>>();
+        foreach (var group in component.AccessGroups)
+        {
+            if (protoMan.TryIndex(group, out AccessGroupPrototype? groupProto))
+                allLevels.UnionWith(groupProto.Tags);
+        }
+        var possibleAccesses = allLevels.OrderBy(x => x).ToList();
+
+        var pressedAccesses = new List<ProtoId<AccessLevelPrototype>>();
         if (TryComp<AccessReaderComponent>(uid, out var accessReader))
         {
             foreach (var accessList in accessReader.AccessLists)
-            {
-                var access = accessList.FirstOrDefault();
-                accesses.Add(access);
-            }
+                pressedAccesses.AddRange(accessList);
         }
-
-        var state = new DoorElectronicsConfigurationState(accesses);
+        var state = new DoorElectronicsConfigurationState(possibleAccesses, component.AccessGroups, pressedAccesses);
         _uiSystem.SetUiState(uid, DoorElectronicsConfigurationUiKey.Key, state);
+        // Starlight edit End
     }
 
     private void OnChangeConfiguration(
@@ -48,7 +56,7 @@ public sealed class DoorElectronicsSystem : EntitySystem
         DoorElectronicsUpdateConfigurationMessage args)
     {
         var accessReader = EnsureComp<AccessReaderComponent>(uid);
-        _accessReader.SetAccesses((uid, accessReader), args.AccessList);
+        _accessReader.TrySetAccesses((uid, accessReader), args.AccessList);
     }
 
     private void OnAccessReaderChanged(

@@ -62,7 +62,7 @@
   - ClothingUnderSocksCoder # 🌟Starlight🌟
   - ClothWrap # 🌟Starlight🌟
   - ClothingUniformJumpskirtElegantMaid # 🌟Starlight🌟
-  - ClothingHeadHatCatEars # 🌟Starlight🌟
+  - ClothingHeadHatWhiteCatEars # 🌟Starlight🌟
   - RolliePack #SL
   - GoldRing #SL
   - SilverRing #SL
@@ -96,6 +96,9 @@
   - LighterGatcha #SL
   - MagicCrayon #SL
   - HappyHonk #SL
+  - leftripperarm #SL
+  - CigPackBub #SL
+  - PillCanisterPsicodine #SL
 
 - type: loadoutGroup
   id: Glasses
@@ -167,6 +170,8 @@
   - CaptainJumpskirt
   - CaptainFormalSuit
   - CaptainFormalSkirt
+  - CapTurtleneckJumpskirt
+  - CapTurtleneckJumpsuit
 
 - type: loadoutGroup
   id: CaptainNeck
@@ -213,6 +218,8 @@
   loadouts:
   - HoPJumpsuit
   - HoPJumpskirt
+  - HoPTurtleneckJumpsuit # afterlight
+  - HoPTurtleneckJumpskirt # afterlight
 
 - type: loadoutGroup
   id: HoPNeck
@@ -773,7 +780,11 @@
   name: loadout-group-cargo-technician-jumpsuit
   loadouts:
   - CargoTechnicianJumpsuit
+  - CargoTechnicianJumpsuitAlt # afterlight
+  - CargoTechnicianJumpsuitFormal # afterlight
   - CargoTechnicianJumpskirt
+  - CargoTechnicianJumpskirtFormal # afterlight
+  - CargoTechnicianOveralls #Starlight
 
 - type: loadoutGroup
   id: CargoTechnicianBackpack
@@ -803,6 +814,13 @@
   - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
+  id: CargoTechnicianID
+  name: loadout-group-cargo-technician-id
+  loadouts:
+  - CargoTechnicianPDA
+  - SeniorCourierPDA
+
+- type: loadoutGroup
   id: SalvageSpecialistBackpack
   name: loadout-group-salvage-specialist-backpack
   loadouts:
@@ -817,6 +835,15 @@
   minLimit: 0
   loadouts:
   - SalvageSpecialistWintercoat
+
+- type: loadoutGroup
+  id: SalvageSpecialistJumpsuit
+  name: loadout-group-salvage-specialist-jumpsuit
+  loadouts:
+  - SalvageSpecialistJumpsuit # 🌟Starlight🌟
+  - SalvageSpecialistJumpskirt # 🌟Starlight🌟
+  - SalvageSpecialistJumpsuitFormal # 🌟Starlight🌟
+  - SalvageSpecialistJumpskirtFormal # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SalvageSpecialistShoes
@@ -994,6 +1021,8 @@
   loadouts:
   - ResearchDirectorJumpsuit
   - ResearchDirectorJumpskirt
+  - RDClassicalJumpsuit
+  - RDClassicalJumpskirt
 
 - type: loadoutGroup
   id: ResearchDirectorOuterClothing
@@ -1037,6 +1066,7 @@
   loadouts:
   - ScientistJumpsuit
   - ScientistJumpskirt
+  - ScientistJumpskirtFormal # afterlight
   - RoboticistJumpsuit
   - RoboticistJumpskirt
   - SeniorResearcherJumpsuit
@@ -1116,6 +1146,8 @@
   - HeadofSecurityTurtleneckSkirt
   - HeadofSecurityFormalSuit
   - HeadofSecurityFormalSkirt
+  - HeadofSecurityBlackSuit
+  - HeadofSecurityBlackSkirt
   - HeadofSecurityBlueJumpsuit
   - HeadofSecurityGreyJumpsuit
 
@@ -1124,6 +1156,7 @@
   name: loadout-group-head-of-security-neck
   minLimit: 0
   loadouts:
+  - ClothingNeckCloakHosVar #STARLIGHT
   - HeadofSecurityCloak
   - HeadofSecurityMantle
 
@@ -1248,6 +1281,7 @@
   - SeniorOfficerJumpskirt
   - TrooperUniform
   - SecurityJumpsuitBlue
+  - SecurityTshirt #Starlight
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -1275,6 +1309,7 @@
   - ArmorVestStab
   - ArmorVestHeatAbsorb
   - SecurityOfficerWintercoat
+  - SecurityBomber #Starlight
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1329,6 +1364,7 @@
   loadouts:
   - RedJumpsuit
   - RedJumpskirt
+  - SecurityCadetTshirt #Starlight
 
 - type: loadoutGroup
   id: SurvivalSecurity
@@ -1417,6 +1453,10 @@
   - MedicalBlueScrubs
   - MedicalGreenScrubs
   - MedicalPurpleScrubs
+  - NurseJumpskirt # afterlight
+  - CoronerJumpskirt # afterlight
+  - CoronerJumpsuit # afterlight
+  - CoronerJumpsuitAlt # afterlight
 
 - type: loadoutGroup
   id: MedicalDoctorOuterClothing
@@ -1560,6 +1600,8 @@
   loadouts:
   - ReporterJumpsuit
   - JournalistJumpsuit
+  - ReporterJumpskirt
+  - JournalistJumpskirt
 
 - type: loadoutGroup
   id: PsychologistJumpsuit

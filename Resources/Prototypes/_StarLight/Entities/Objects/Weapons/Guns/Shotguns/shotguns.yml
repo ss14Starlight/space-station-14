@@ -21,7 +21,7 @@
     graph: ShotgunRiotSawn
     node: start
     deconstructionTarget: null
-    
+
 - type: entity
   name: sawn-off riot shotgun
   parent: [BaseWeaponShotgun, BaseSecurityContraband]
@@ -44,7 +44,7 @@
     graph: ShotgunRiotSawn
     node: shotgunsawn
     deconstructionTarget: null
-    
+
 - type: entity
   parent: [WeaponShotgunRiotSawn, BaseSecurityContraband]
   id: WeaponShotgunRiotSawnEmpty
@@ -56,7 +56,7 @@
     graph: ShotgunRiotSawn
     node: shotgunsawn
     deconstructionTarget: null
-    
+
 - type: entity
   name: combat shotgun
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
@@ -74,7 +74,7 @@
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 7
-    
+
 - type: entity
   name: cycler shotgun
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecuritySalvageContraband]
@@ -146,7 +146,7 @@
       tags:
       - ShellShotgun
       - SpeedLoaderShotgun
-    proto: ShellShotgunSlug
+    proto: ShellShotgun
     capacity: 3
     chambers: [ True, True, True ]
     ammoSlots: [ null, null, null ]

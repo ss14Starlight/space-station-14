@@ -204,8 +204,7 @@ public abstract partial class SharedMoverController : VirtualController
         }
 
         // If the body is in air but isn't weightless then it can't move
-        // TODO: MAKE ISWEIGHTLESS EVENT BASED
-        var weightless = _gravity.IsWeightless(uid, physicsComponent, xform);
+        var weightless = _gravity.IsWeightless(uid);
         var inAirHelpless = false;
 
         if (physicsComponent.BodyStatus != BodyStatus.OnGround && !CanMoveInAirQuery.HasComponent(uid))
@@ -341,7 +340,8 @@ public abstract partial class SharedMoverController : VirtualController
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&
                 TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef))
             {
-                var soundModifier = mover.Sprinting ? 3.5f : 1.5f;
+                var soundModifier = mover.Sprinting ? InputMoverComponent.SprintingSoundModifier
+                    : InputMoverComponent.WalkingSoundModifier;
 
                 var audioParams = sound.Params
                     .WithVolume(sound.Params.Volume + soundModifier)
@@ -642,8 +642,7 @@ public abstract partial class SharedMoverController : VirtualController
         if (!TryComp<PhysicsComponent>(ent, out var physicsComponent) || !XformQuery.TryComp(ent, out var xform))
             return;
 
-        // TODO: Make IsWeightless event based!!!
-        if (physicsComponent.BodyStatus != BodyStatus.OnGround || _gravity.IsWeightless(ent, physicsComponent, xform))
+        if (physicsComponent.BodyStatus != BodyStatus.OnGround || _gravity.IsWeightless(ent.Owner))
             args.Modifier *= ent.Comp.BaseWeightlessFriction;
         else
             args.Modifier *= ent.Comp.BaseFriction;

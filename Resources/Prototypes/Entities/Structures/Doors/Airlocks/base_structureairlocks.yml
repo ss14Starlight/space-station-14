@@ -1,9 +1,13 @@
 ﻿- type: entity
   id: Airlock
-  parent: BaseStructure
+  parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
   name: airlock
   description: It opens, it closes, and maybe crushes you.
   components:
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
   - type: Ricochetable
     chance: 1
   - type: Pierceable

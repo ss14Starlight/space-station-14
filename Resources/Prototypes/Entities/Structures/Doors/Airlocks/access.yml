@@ -440,14 +440,14 @@
     containers:
       board: [ DoorElectronicsVault ]
 
-- type: entity
-  parent: AirlockCommand
+- type: entity # 🌟Starlight begin
+  parent: AirlockEVA
   id: AirlockEVALocked
-  suffix: EVA, Locked
+  suffix: Command (EVA), Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsExternal ]
+      board: [ DoorElectronicsCommand ] # Starlight end🌟
 
 # Glass Airlocks
 - type: entity
@@ -843,14 +843,14 @@
     containers:
       board: [ DoorElectronicsArmory ]
 
-- type: entity
-  parent: AirlockCommandGlassLocked
+- type: entity # 🌟Starlight begin
+  parent: AirlockEVAGlass
   id: AirlockEVAGlassLocked
-  suffix: EVA, Locked
+  suffix: Command (EVA), Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsExternal ]
+      board: [ DoorElectronicsCommand ] # Starlight end🌟
 
 - type: entity
   parent: AirlockSyndicateGlass
@@ -1133,6 +1133,17 @@
     containers:
       board: [ DoorElectronicsNukeop ]
 
+- type: entity
+  parent: AirlockXenoborg
+  id: AirlockXenoborgLocked
+  suffix: Xenoborg, Locked
+  components:
+  - type: StationAiWhitelist
+    enabled: false
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsXenoborg ]
+
 # Shuttle airlocks
 - type: entity
   parent: AirlockShuttle
@@ -1160,6 +1171,17 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsNukeop ]
+
+- type: entity
+  parent: AirlockShuttleXenoborg
+  id: AirlockGlassShuttleXenoborgLocked
+  suffix: External, Docking, Xenoborg, Locked
+  components:
+  - type: StationAiWhitelist
+    enabled: false
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsXenoborg ]
 
 - type: entity
   parent: AirlockGlassShuttle

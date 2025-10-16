@@ -66,7 +66,7 @@ public sealed partial class DamageVisualsComponent : Component
     ///
     ///     This cannot be set to false if:
     ///     - There are no target layers
-    ///     - There is no damage group
+    ///     - There is no damage group (Starlight: this is no longer true. you can ignore this line)
     /// </summary>
     [DataField("overlay")] public  bool Overlay = true;
 
