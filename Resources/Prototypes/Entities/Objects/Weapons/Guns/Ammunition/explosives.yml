@@ -45,7 +45,7 @@
 - type: entity
   id: BaseGrenade
   name: base grenade
-  parent: BaseItem # Starlight edit: Removes major contraband from grenades
+  parent: [BaseItem, BaseMajorContraband]
   abstract: true
   components:
   - type: Tag
@@ -58,7 +58,7 @@
 - type: entity
   id: GrenadeBaton
   name: baton grenade
-  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
+  parent: BaseGrenade
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBaton
@@ -75,7 +75,7 @@
 - type: entity
   id: GrenadeBlast
   name: blast grenade
-  parent: [ BaseGrenade, BaseSyndicateContraband ] # Starlight edit: Major -> Syndicate contraband
+  parent: BaseGrenade
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBlast
@@ -92,7 +92,7 @@
 - type: entity
   id: GrenadeFlash
   name: flash grenade
-  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
+  parent: BaseGrenade
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeFlash
@@ -109,7 +109,7 @@
 - type: entity
   id: GrenadeFrag
   name: frag grenade
-  parent: [ BaseGrenade, BaseSyndicateContraband ] # Starlight edit: Major -> Syndicate contraband
+  parent: BaseGrenade
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeFrag
@@ -124,7 +124,7 @@
     suffix: false
 
 - type: entity
-  parent: [ BaseGrenade, BaseJanitorContraband ] # Starlight edit: Major -> Janitor contraband
+  parent: BaseGrenade
   id: GrenadeCleanade
   name: cleanade grenade round
   components:
@@ -137,13 +137,13 @@
       map: [ "enum.AmmoVisualLayers.Base" ]
   - type: Appearance
   - type: SpentAmmoVisuals
-    state: cleanade # Starlight edit: frag -> cleanade (bugfix)
+    state: frag
     suffix: false
 
 - type: entity
   id: GrenadeEMP
   name: EMP grenade
-  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
+  parent: BaseGrenade
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeEMP
@@ -154,7 +154,7 @@
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals
-    state: emp # Starlight edit: frag -> emp (bugfix)
+    state: frag
     suffix: false
 
 # Cannon Balls

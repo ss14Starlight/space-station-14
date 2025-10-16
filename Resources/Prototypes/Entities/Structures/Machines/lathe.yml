@@ -429,19 +429,15 @@
     dynamicPacks:
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
-    - SecurityDisablers
-    - StarlightDefenseStatic # starlight start
-    - SecurityCyberLimbs
+    - StarlightDefenseStatic
     - StarlightSecurityEquipment
     - StarlightSecurityBoards
     - StarlightSecurityExplosives
     - StarlightSecurityAmmoDynamic
     - StarlightSecurityWeapons
+    - SecurityDisablers
+    - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
-    - StarlightSecurityGrenades
-  - type: EmagLatheRecipes
-    emagDynamicPacks:
-    - StarlightSecurityGrenadesEmag # starlight end
   - type: MaterialStorage
     whitelist:
       tags:
