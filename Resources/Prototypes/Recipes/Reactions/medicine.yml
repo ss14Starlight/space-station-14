@@ -457,26 +457,26 @@
   Razorium: 1
 
 - type: reaction
- id: BicarPuncturase # mixing any two brute medications will make Razorium
- impact: Medium
- reactants:
-   Puncturase:
-     amount: 1
-   Bicaridine:
-     amount: 1
- products:
-   Razorium: 1
+  id: BicarPuncturase # mixing any two brute medications will make Razorium
+  impact: Medium
+  reactants:
+    Puncturase:
+      amount: 1
+    Bicaridine:
+      amount: 1
+  products:
+    Razorium: 1
 
 - type: reaction
- id: BicarBruizine # mixing any two brute medications will make Razorium
- impact: Medium
- reactants:
-   Bruizine:
-     amount: 1
-   Bicaridine:
-     amount: 1
- products:
-   Razorium: 1
+  id: BicarBruizine # mixing any two brute medications will make Razorium
+  impact: Medium
+  reactants:
+    Bruizine:
+      amount: 1
+    Bicaridine:
+      amount: 1
+  products:
+    Razorium: 1
 
 - type: reaction
   id: BruizineLacerinol # mixing any two brute medications will make Razorium
