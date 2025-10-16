@@ -10,6 +10,7 @@ lathe-category-document-medical = Medical
 lathe-category-document-science = Science
 lathe-category-document-command-emergency = Command & Emergency
 lathe-category-document-atmos-engineering = Atmos & Engineering
+lathe-category-document-cargo = Cargo
 
 # Doc Printer End
 

@@ -82,7 +82,6 @@
   materials:
     SheetPrinter: 100
 
-
 # Security & Law
 
 - type: latheRecipe
@@ -235,7 +234,6 @@
   materials:
     SheetPrinter: 100
 
-
 # Medical
 
 - type: latheRecipe
@@ -338,7 +336,6 @@
   materials:
     SheetPrinter: 100
 
-
 # Science
 
 - type: latheRecipe
@@ -390,7 +387,6 @@
   applyMaterialDiscount: false
   materials:
     SheetPrinter: 100
-
 
 # Command & Emergency
 
@@ -454,7 +450,6 @@
   materials:
     SheetPrinter: 100
 
-
 # Atmos & Engineering
 
 - type: latheRecipe
@@ -467,13 +462,13 @@
   materials:
     SheetPrinter: 100
 
-# Other
+# Cargo
 
 - type: latheRecipe
-  id: PrintedDocumentSalvageLeadReportRecipe
-  result: PrintedDocumentSalvageLeadReport
+  id: PrintedDocumentCargoReportSalvageLeaderRecipe
+  result: PrintedDocumentCargoReportSalvageLeader
   categories:
-    - Reports
+    - DocumentCargo
   completetime: 2
   applyMaterialDiscount: false
   materials:

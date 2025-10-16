@@ -40,4 +40,8 @@
 - type: latheCategory
   id: DocumentAtmosEngineering
   name: lathe-category-document-atmos-engineering
+
+- type: latheCategory
+  id: DocumentCargo
+  name: lathe-category-document-cargo
 # Doc Printer End

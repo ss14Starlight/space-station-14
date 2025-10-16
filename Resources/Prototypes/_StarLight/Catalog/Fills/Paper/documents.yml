@@ -436,6 +436,17 @@
     - type: Paper
       content: doc-text-printer-atmos-engineering-permission-station-modification
 
+# Cargo
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentCargoReportSalvageLeader
+  name: Salvage Operation Report
+  categories: [HideSpawnMenu]
+  components:
+    - type: Paper
+      content: doc-text-printer-cargo-report-salvage-leader
+
 # Auto-Generated Documents End
 
 #greenshift alert
@@ -447,12 +458,3 @@
   components:
     - type: Paper
       content: doc-text-printer-station-location
-      
-- type: entity
-  parent: PrintedDocument
-  id: PrintedDocumentSalvageLeadReport
-  name: Salvage Lead report
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Paper
-      content: doc-text-printer-salvagelead-report
