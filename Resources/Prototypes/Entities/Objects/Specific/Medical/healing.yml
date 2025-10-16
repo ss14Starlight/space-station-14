@@ -1118,3 +1118,41 @@
     - id: SyringeSaline
     - id: SyringeSigynate
     - id: SyringeTranexamicAcid
+
+
+### SL start
+
+- type: entity
+  name: pill
+  suffix: Psicodine 10u
+  parent: Pill
+  id: PillPsicodine
+  components:
+  - type: Pill
+    pillType: 2
+  - type: Sprite
+    state: pill3
+  - type: Label
+    currentLabel: psicodine 10u
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Psicodine
+          Quantity: 10
+
+- type: entity
+  name: pill canister
+  parent: PillCanister
+  id: PillCanisterPsicodine
+  suffix: Psicodine 10u, 5
+  components:
+  - type: Label
+    currentLabel: psicodine 10u
+  - type: StorageFill
+    contents:
+    - id: PillPsicodine
+      amount: 5
+
+### SL end

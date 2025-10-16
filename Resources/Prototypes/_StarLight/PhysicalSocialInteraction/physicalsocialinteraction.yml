@@ -1,0 +1,13 @@
+# MUST be added to the InteractionPrototypes list of a PhysicalSocialInteractionReceiver component to be usable
+
+- type: physicalSocialInteraction
+  id: Pet
+  verbName: pet-verb
+  interactString: petting-success
+  messagePerceivedByOthers: petting-success-others
+
+- type: physicalSocialInteraction
+  id: Boop
+  verbName: boop-verb
+  interactString: booping-success
+  messagePerceivedByOthers: booping-success

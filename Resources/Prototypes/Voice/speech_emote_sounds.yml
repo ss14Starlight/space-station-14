@@ -775,6 +775,17 @@
       collection: Salutes
 # Starlight END
 
+# Starlight BEGIN: Mothroaches and moproaches get wing flap
+- type: emoteSounds
+  id: MothroachBodyEmotes
+  sounds:
+    FlapWings:
+      path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
+      params:
+        pitch: 1.45
+    
+# Starlight END
+
 # mobs
 - type: emoteSounds
   id: Zombie

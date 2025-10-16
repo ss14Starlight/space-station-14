@@ -30,6 +30,7 @@
 - type: entity
   id: BaseCycloriteOrgan
   parent: BaseCycloriteOrganUnGibbable
+  suffix: Cyclorite
   abstract: true
   components:
   - type: Gibbable
@@ -47,7 +48,7 @@
   id: OrganCycloriteEye
   parent: [BaseCycloriteOrgan, BaseOrganEyes]
   name: eye
-  description: "I see you!"
+  description: "Cyclorites see the world slightly differently."
   components:
   - type: Sprite
     layers:
@@ -82,7 +83,7 @@
   id: OrganCycloriteLungs
   parent: [BaseCycloriteOrgan, BaseOrganLungs]
   name: lungs
-  description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
+  description: "Cyclorite lungs filter nitrogen from the atmosphere to breathe."
   components:
   - type: Sprite
     layers:

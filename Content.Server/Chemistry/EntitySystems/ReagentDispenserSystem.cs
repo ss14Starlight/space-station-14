@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Chemistry.Components;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.PowerCell; // Starlight-edit
+using Content.Server.Popups; // Starlight-edit
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent; // Starlight-edit
@@ -15,7 +16,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Containers; // Starlight-edit: Empty container on destruct
 using Content.Shared.Labels.Components;
 using Content.Shared.Storage;
 using Content.Server.Hands.Systems;
@@ -39,8 +39,11 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly OpenableSystem _openable = default!;
         [Dependency] private readonly HandsSystem _handsSystem = default!;
         
-        [Dependency] private readonly PowerCellSystem _powercell = default!; // Starlight-edit
-        [Dependency] private readonly SharedContainerSystem _container = default!; // Starlight-edit
+        // Starlight-start
+        [Dependency] private readonly PowerCellSystem _powercell = default!;
+        [Dependency] private readonly SharedContainerSystem _container = default!;
+        [Dependency] private readonly PopupSystem _popup = default!;
+        // Starlight-end
 
         public override void Initialize()
         {
@@ -82,7 +85,9 @@ namespace Content.Server.Chemistry.EntitySystems
 
             var inventory = GetInventory(reagentDispenser);
 
-            var state = new ReagentDispenserBoundUserInterfaceState(outputContainerInfo, GetNetEntity(outputContainer), inventory, reagentDispenser.Comp.DispenseAmount);
+            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? battery.CurrentCharge / battery.MaxCharge : 1f; // Starlight-edit: Energy bar
+
+            var state = new ReagentDispenserBoundUserInterfaceState(outputContainerInfo, GetNetEntity(outputContainer), inventory, reagentDispenser.Comp.DispenseAmount, energy); // Starlight-edit: Energy bar
             _userInterfaceSystem.SetUiState(reagentDispenser.Owner, ReagentDispenserUiKey.Key, state);
         }
 
@@ -179,7 +184,7 @@ namespace Content.Server.Chemistry.EntitySystems
                             (int)reagentDispenser.Comp.DispenseAmount);
                 }
             }
-            
+
             // Starlight-start: Generatable Reagents
             if (message.Data.ReagentID is { } reagentID && reagentDispenser.Comp.GeneratableReagents.TryGetValue(reagentID, out var powerDrain) && _powercell.HasCharge(reagentDispenser.Owner, powerDrain * (float)reagentDispenser.Comp.DispenseAmount))
             {
@@ -191,6 +196,12 @@ namespace Content.Server.Chemistry.EntitySystems
                     && _solutionContainerSystem.TryAddReagent(dst.Value, reagentID.ToString(), FixedPoint2.New((int)reagentDispenser.Comp.DispenseAmount)))
                     _powercell.TryUseCharge(reagentDispenser.Owner, powerDrain * (float)reagentDispenser.Comp.DispenseAmount);
             }
+            else if (reagentDispenser.Comp.NoEnergyPopup is { } popup
+                && TryComp<UserInterfaceComponent>(reagentDispenser.Owner, out var ui)
+                && ui.Actors is { } actors
+                && actors.TryGetValue(ReagentDispenserUiKey.Key, out var entities))
+                foreach (var entity in entities)
+                    _popup.PopupCursor(Loc.GetString(popup), entity);
 
             UpdateUiState(reagentDispenser);
             ClickSound(reagentDispenser);

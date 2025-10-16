@@ -19,7 +19,7 @@
 #  - type: Hunger # starlight
 #  - type: Thirst # starlight
   - type: MessyDrinker
-    spillChance: 0.33
+    spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid
   - type: Icon
     sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi #Starlight
     state: full
@@ -76,11 +76,6 @@
   #       pitch: 1.33
   #       volume: -5
   #       variation: 0.05
-  - type: InteractionPopup # Crucial detail. they tried to take it from us
-    successChance: 1
-    interactSuccessString: petting-success-soft-floofy-vulp
-    messagePerceivedByOthers: petting-success-soft-floofy-vulp-others
-    interactFailureString: petting-failure-generic
   # STARLIGHT END
   - type: Sprite # Drawlayers. Top to bottom in order I believe.
     netsync: false

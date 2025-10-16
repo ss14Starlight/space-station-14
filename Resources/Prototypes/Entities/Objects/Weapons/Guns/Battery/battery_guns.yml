@@ -506,6 +506,7 @@
     fireCost: 62.5
   - type: Tag
     tags:
+    - Disabler # Starlight-edit
     - Taser
     - Sidearm
   - type: PacifismAllowedGun

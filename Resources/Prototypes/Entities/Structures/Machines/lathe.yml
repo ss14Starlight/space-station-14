@@ -438,6 +438,11 @@
     - SecurityDisablers
     - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
+  #region Starlight secfab emagging
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSyndicateModulesSecfab
+  #endregion Starlight secfab emagging
   - type: MaterialStorage
     whitelist:
       tags:

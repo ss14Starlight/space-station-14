@@ -282,11 +282,14 @@
   - type: Item
     sprite: Clothing/Shoes/Specific/skates.rsi
   - type: ClothingSpeedModifier
-    walkModifier: 1.1
-    sprintModifier: 1.1
+    walkModifier: 1.5 #starlight
+    sprintModifier: 1.5 #starlight
   - type: Skates
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSkates
       params:
         variation: 0.08
+  - type: AddTagsOnClothingEquip #starlight
+    tagsToAdd:
+      - Skating

@@ -30,7 +30,63 @@
         visible: false
 
 - type: entity
-  parent: Paper
+  parent: BaseItem
+  id: BaseUnburnablePaper
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Document
+    - Paper
+  - type: Appearance
+  - type: FireVisuals
+    sprite: Effects/fire.rsi
+    normalState: fire
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Food
+    solution: food
+    delay: 7
+    forceFeedDelay: 7
+  - type: FlavorProfile
+    flavors:
+    - paper
+  - type: BadFood
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      SheetPrinter: 100
+  - type: Item
+    size: Tiny
+  - type: PaperVisuals
+  - type: PaperLabelType
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+    requiresComplex: false
+  - type: UserInterface
+    interfaces:
+      enum.PaperUiKey.Key:
+        type: PaperBoundUserInterface
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+
+- type: entity
+  parent: BaseUnburnablePaper
   id: BasePaperQuietChaos
   name: end of Q # no longer "the" since when you emote it would come out to "the the end of Q x"
   description: dreadful paper that cant be faxed. but has it's own ways of getting around.
@@ -66,11 +122,6 @@
     - type: Examiner # allow inspecting stuff and using verbs (you still dont have hands though)
       skipChecks: true #anything on screen is fair game to be observed.
     - type: Polymorphable # so the paper CAN jaunt.
-    - type: ActionGrant
-      actions:
-        # I would give it ghost Boo! action. but that requires ghost component...
-        - ActionPolymorphJauntIII
-        - ActionVoidApplause
 
 - type: entity
   parent: BasePaperQuietChaos
@@ -80,24 +131,10 @@
   components:
     - type: Paper
       content: paper-too-quiet-need-chaos
-    - type: GameruleOnSign
-      remaining: 9 # command, security, cargo, science, medical, engineering, service, and 2 members of sec outside of hos (or more sec/salv and less heads... or people who you mindshielded JUST to get this signed)
-      whitelist: 
-        components:
-          - MindShield
-      rules: #this will DEFINETLY end the "quiet" you so hate
-        - AbductorsSpawn
-        - AnomalySpawn
-        - AnomalySpawn
-        - AnomalySpawn
-        - AnomalySpawn
-        - AnomalySpawn # ATTENTION spam warning but there is no silent anom spawn sadly
-        - UnknownShuttleHonki
-        - LoneOpsSpawn
-        - WizardSpawn
-        - DragonSpawn
-        - NinjaSpawn
-        - ParadoxCloneSpawn
+    - type: ActionsOnSign
+      instant: false
+      charges: 3
+      actions: EndOfQHighpop3
     
 - type: entity
   parent: BasePaperQuietChaos
@@ -118,3 +155,30 @@
         - UnknownShuttleHonki
         - WizardSpawn
         - NinjaSpawn #spawns less cause there is also less people to take said roles. and I deem these to be the less "chaotic" ones
+
+- type: entity
+  id: PaperIonstormBorgs
+  name: robots too orderly?
+  description: A paper. it seems to feel slightly electric in your hands. would probally destroy a fax if you insered it.
+  parent: [ Paper ]
+  components:
+    - type: Paper
+      content: paper-ionstorm-borgs
+    - type: ActionsOnSign
+      actions: IonStormInfinite
+
+- type: entity
+  parent: BaseStarlightAdmemePaper
+  id: PaperEndGreenshift
+  name: restart the clock.
+  description: A paper that seems to "start the clock" again? the countdown causes it to be too big to fix into a fax.
+  components:
+    - type: Paper
+      content: paper-end-greenshift-vote
+      editingDisabled: true
+    - type: ActionsOnSign
+      actions: AddSecretRule
+      instant: false
+    - type: ChargesExamine
+    - type: AdjustChargesPopBased
+      percent: 0.65 # 65% of pop has to sign.

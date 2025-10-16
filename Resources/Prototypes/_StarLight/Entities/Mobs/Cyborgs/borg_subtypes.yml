@@ -364,3 +364,77 @@
       spriteHasMindState: cricket_e
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
+
+# Security
+
+- type: entity
+  parent: BorgSecuritySubtypeBase
+  id: BorgSecuritySubtypeRedKnight
+  name: Red Knight
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: red-knight
+      spriteHasMindState: red-knight_e
+      spriteNoMindState: red-knight_e_r
+      spriteToggleLightState: red-knight_l
+
+- type: entity
+  parent: BorgSecuritySubtypeBase
+  id: BorgSecuritySubtypeBlackKnight
+  name: Black Knight
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: black-knight
+      spriteHasMindState: black-knight_e
+      spriteNoMindState: black-knight_e_r
+      spriteToggleLightState: black-knight_l
+
+- type: entity
+  parent: BorgSecuritySubtypeBase
+  id: BorgSecuritySubtypeStandard
+  name: Standard
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: standard
+      spriteHasMindState: standard_e
+      spriteNoMindState: standard_e_r
+      spriteToggleLightState: standard_l
+
+- type: entity
+  parent: BorgSecuritySubtypeBase
+  id: BorgSecuritySubtypeNoble
+  name: Noble-SEC
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: noble
+      spriteHasMindState: noble_e
+      spriteNoMindState: noble_e_r
+      spriteToggleLightState: noble_l
+
+- type: entity
+  parent: BorgSecuritySubtypeBase
+  id: BorgSecuritySubtypeCricket
+  name: Cricket
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: cricket
+      spriteHasMindState: cricket_e
+      spriteNoMindState: cricket_e_r
+      spriteToggleLightState: cricket_l
+
+- type: entity
+  parent: BorgSecuritySubtypeBase
+  id: BorgSecuritySubtypeHeavy
+  name: Heavy
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: heavy
+      spriteHasMindState: heavy_e
+      spriteNoMindState: heavy_e_r
+      spriteToggleLightState: heavy_l

@@ -1,4 +1,62 @@
 - type: entity
+  id: BorgChassisSelectableSyndicate
+  parent: BaseBorgChassisSyndicate
+  components:
+  - type: TextToSpeech
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Chassis/syndicate.rsi
+    layers:
+    - state: borg
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light", "enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+  - type: BorgChassis
+    # Default borg can take no modules until selected type.
+    maxModules: 0
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: _Starlight/Mobs/Silicon/Chassis/syndicate.rsi
+      state: borg
+    name: cyborg
+  - type: InteractionPopup
+    interactSuccessString: petting-success-generic-cyborg
+    interactFailureString: petting-failure-generic-cyborg
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - Common
+    - Binary
+    availableTypes:
+    - SyndicateAssault
+    - SyndicateMedical
+    - SyndicateSaboteur
+    - SyndicateStealth
+
+- type: entity
+  id: BorgChassisSecurity
+  parent: BorgChassisSelectable
+  name: security cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: security
+
+- type: entity
+  id: BorgChassisSyndicateStealth
+  parent: BorgChassisSelectableSyndicate
+  name: syndicate stealth cyborg
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: SyndicateStealth
+    
+- type: entity
   id: BorgChassisPurrfus
   parent: BorgChassisSelectable
   name: purrfus cyborg
