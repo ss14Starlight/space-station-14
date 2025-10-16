@@ -5,11 +5,23 @@
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:OverallPlaytimeRequirement
-      time: 360000 # Originally 50 hours for SuperSynth but changed to Harmonica
+      time: 36000 # 10h
   storage:
     back:
     - HarmonicaInstrument
   groupBy: "Instruments"
+
+# Instruments
+- type: loadout
+  id: SuperSynthesizerInstrument
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 180000 #50 hours of activity in the Starlight sectors
+  storage:
+    back:
+    - SuperSynthesizerInstrument
 
 - type: loadout
   id: FluteInstrument
@@ -486,7 +498,7 @@
         role: JobSurgeon
         time: 72000 # 20 hours of turning her into a papa johns
   storage:
-    back: 
+    back:
       - LeftArmCyberRipper
 
 - type: loadout
@@ -498,7 +510,7 @@
         department: Medical
         time: 72000 # 20hrs of treating patients as Dr. House
   storage:
-    back: 
+    back:
       - CigPackBub
   groupBy: "smokeables"
 
