@@ -9,34 +9,107 @@ using Content.Client.Doors.Electronics;
 using Content.Shared.Access;
 using Content.Shared.Doors.Electronics;
 using FancyWindow = Content.Client.UserInterface.Controls.FancyWindow;
+// Starlight Start
+using Content.Client._Starlight.Access.UI;
+using System.Collections.Generic;
+// Starlight End
 
 namespace Content.Client.Doors.Electronics;
 
 [GenerateTypedNameReferences]
-public sealed partial class DoorElectronicsConfigurationMenu : FancyWindow
+// Starlight edit Start
+public sealed partial class DoorElectronicsConfigurationMenu : DefaultWindow
 {
-    private readonly AccessLevelControl _buttonsList = new();
-
+    // private readonly AccessLevelControl _buttonsList = new();
+    // Starlight edit End
     public event Action<List<ProtoId<AccessLevelPrototype>>>? OnAccessChanged;
+    // Starlight Start
+    private AccessGroupControl _accessGroups = new();
+    private AccessLevelControl _accessButtons = new();
+    private ProtoId<AccessGroupPrototype>? _selectedGroup = null;
+    private List<ProtoId<AccessGroupPrototype>> _groups = new();
+    private List<ProtoId<AccessLevelPrototype>> _allLevels = new();
+    private HashSet<ProtoId<AccessLevelPrototype>> _pressedLevels = new();
+    private ButtonGroup _accessGroupButtonGroup = new();
+    public event Action<List<ProtoId<AccessLevelPrototype>>>? OnSubmit;
+    public event Action<ProtoId<AccessGroupPrototype>>? OnGroupSelected;
+    // Starlight End
 
     public DoorElectronicsConfigurationMenu()
     {
         RobustXamlLoader.Load(this);
-        AccessLevelControlContainer.AddChild(_buttonsList);
+        // Starlight edit Start
+        // Title = Loc.GetString("door-electronics-title");
+        AccessGroupControlContainer.AddChild(_accessGroups);
+        AccessLevelControlContainer.AddChild(_accessButtons);
+        // Starlight edit End
     }
 
     public void Reset(IPrototypeManager protoManager, List<ProtoId<AccessLevelPrototype>> accessLevels)
     {
-        _buttonsList.Populate(accessLevels, protoManager);
-
-        foreach (var button in _buttonsList.ButtonsList.Values)
-        {
-            button.OnPressed += _ => OnAccessChanged?.Invoke(_buttonsList.ButtonsList.Where(x => x.Value.Pressed).Select(x => x.Key).ToList());
-        }
+    // Starlight edit Start
+        _accessButtons.Populate(accessLevels, protoManager);
     }
 
-    public void UpdateState(DoorElectronicsConfigurationState state)
+    public void UpdateState(List<ProtoId<AccessLevelPrototype>> possibleAccessList, List<ProtoId<AccessGroupPrototype>> accessGroups, List<ProtoId<AccessLevelPrototype>>? pressedAccessList = null)
     {
-        _buttonsList.UpdateState(state.AccessList, null); // Starlight-edit
+        _groups = accessGroups;
+        _allLevels = possibleAccessList.Distinct().ToList();
+        if (_selectedGroup == null || !_groups.Contains(_selectedGroup.Value))
+        {
+            if (_groups.Count > 0)
+                _selectedGroup = _groups[0];
+        }
+
+        _accessGroups.Populate(_groups, _selectedGroup ?? (_groups.Count > 0 ? _groups[0] : default), IoCManager.Resolve<IPrototypeManager>());
+
+        foreach (var button in _accessGroups.ButtonsList.Values)
+        {
+            button.Group = _accessGroupButtonGroup;
+            button.ToggleMode = true;
+        }
+        foreach (var (id, button) in _accessGroups.ButtonsList)
+        {
+            button.OnPressed += _ =>
+            {
+                if (_selectedGroup != id)
+                {
+                    _selectedGroup = id;
+                    UpdateAccessButtons();
+                    OnGroupSelected?.Invoke(id);
+                }
+                if (!button.Pressed)
+                    button.Pressed = true;
+            };
+        }
+
+        _pressedLevels = (pressedAccessList ?? new List<ProtoId<AccessLevelPrototype>>()).ToHashSet();
+        UpdateAccessButtons();
+    }
+
+    private void UpdateAccessButtons()
+    {
+        var protoMan = IoCManager.Resolve<IPrototypeManager>();
+        List<ProtoId<AccessLevelPrototype>> levels = new();
+        if (_selectedGroup != null && protoMan.TryIndex(_selectedGroup.Value, out var group))
+            levels = group.Tags.ToList();
+
+        _accessButtons.Populate(levels, protoMan);
+
+        foreach (var (id, button) in _accessButtons.ButtonsList)
+        {
+            button.Pressed = _pressedLevels.Contains(id);
+            button.Group = null;
+            button.ToggleMode = true;
+            button.OnPressed += _ =>
+            {
+                if (button.Pressed)
+                    _pressedLevels.Add(id);
+                else
+                    _pressedLevels.Remove(id);
+                OnAccessChanged?.Invoke(_pressedLevels.Where(level => levels.Contains(level)).ToList());
+            };
+        }
+    // Starlight edit End
     }
 }

@@ -136,3 +136,28 @@
     - id: Cigarette
       amount: 3
     - id: CheapLighter
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  id: ClothingOuterSecurityBomber
+  name: security bomber
+  description: A regular bomber, but with armored inserts.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/security_bomber.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/security_bomber.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.75
+        Piercing: 0.95
+        Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterSecurityBomber]
+  id: ClothingOuterSecurityBomberOpened
+  name: security bomber

@@ -5,14 +5,46 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/faf6db214927874c19b8fa8585d26b5d40de1acc",
+    "copyright": "Cricket, Borg, Mopbot, and Noble by Conflee. Edits by Conflee, originals taken from Paradise Station at https://github.com/ParadiseSS13/Paradise/commit/34f3823923b7692533b7a99c6f2a8bc91c834870",
     "states": [
         {
             "name": "borg",
             "directions": 4
         },
         {
-            "name": "borg_moving",
+            "name": "borg_e",
+            "directions": 4
+        },
+        {
+            "name": "borg_e_r",
+            "directions": 4
+        },
+        {
+            "name": "borg_l",
+            "directions": 4
+        },
+        {
+            "name": "mopbot",
+            "directions": 4
+        },
+        {
+            "name": "mopbot_e",
+            "directions": 4
+        },
+        {
+            "name": "mopbot_e_r",
+            "directions": 4
+        },
+        {
+            "name": "mopbot_l",
+            "directions": 4
+        },
+        {
+            "name": "rex",
+            "directions": 4
+        },
+        {
+            "name": "rex_moving",
             "directions": 4,
             "delays": [
                 [
@@ -42,15 +74,63 @@
             ]
         },
         {
-            "name": "borg_e",
+            "name": "rex_e",
             "directions": 4
         },
         {
-            "name": "borg_e_r",
+            "name": "rex_e_r",
             "directions": 4
         },
         {
-            "name": "borg_l",
+            "name": "rex_l",
+            "directions": 4
+        },
+        {
+            "name": "standard",
+            "directions": 4
+        },
+        {
+            "name": "standard_e",
+            "directions": 4
+        },
+        {
+            "name": "standard_e_r",
+            "directions": 4
+        },
+        {
+            "name": "standard_l",
+            "directions": 4
+        },
+        {
+            "name": "noble",
+            "directions": 4
+        },
+        {
+            "name": "noble_e",
+            "directions": 4
+        },
+        {
+            "name": "noble_e_r",
+            "directions": 4
+        },
+        {
+            "name": "noble_l",
+            "directions": 4
+        },
+        {
+            "name": "cricket",
+            "directions": 4
+        },
+        {
+            "name": "cricket_e",
+            "directions": 4
+        },
+        {
+            "name": "cricket_e_r",
+            "directions": 4
+        },
+        {
+            "name": "cricket_l",
             "directions": 4
         }
     ]

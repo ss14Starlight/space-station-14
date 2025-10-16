@@ -500,6 +500,39 @@ namespace Content.Shared.Preferences
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
+        #region Starlight, walksanator fucking loses it and makes a throwing version of MemberwiseEquals
+        public void AssertEquals(ICharacterProfile maybeOther)
+        {
+            if (maybeOther is not HumanoidCharacterProfile other) throw new DebugAssertException($"other is not HumanoidCharacterProfile it is {maybeOther.GetType()}");
+            if (Name != other.Name) throw new DebugAssertException($"Name doesn't match expected '{Name}' got '{other.Name}'");
+            if (Age != other.Age) throw new DebugAssertException($"Age doesn't match expected '{Age}' got '{other.Age}'");
+            if (Sex != other.Sex) throw new DebugAssertException($"Sex doesn't match expected '{Sex}' got '{other.Sex}'");
+            if (Gender != other.Gender) throw new DebugAssertException($"Gender doesn't match expected '{Gender}' got '{other.Gender}'");;
+            if (Species != other.Species) throw new DebugAssertException($"Species doesn't match expected '{Species.Id}' got '{other.Species.Id}'");;
+            if (CustomSpecieName != other.CustomSpecieName) throw new DebugAssertException($"CustomSpecieName doesn't match expected '{CustomSpecieName}' got '{other.CustomSpecieName}'");
+            if (!Cybernetics.SequenceEqual(other.Cybernetics)) throw new DebugAssertException($"Cybernetics doesn't match expected '{Cybernetics}' got '{other.Cybernetics}'");
+            if (SpawnPriority != other.SpawnPriority) throw new DebugAssertException($"SpawnPriority doesn't match expected '{SpawnPriority}' got '{other.SpawnPriority}'");
+            if (!_jobPreferences.SequenceEqual(other._jobPreferences)) throw new DebugAssertException($"_jobPreferences doesn't match expected '{_jobPreferences}' got '{other._jobPreferences}'");;
+            if (!_antagPreferences.SequenceEqual(other._antagPreferences)) throw new DebugAssertException($"_antagPreferences doesn't match expected '{_antagPreferences}' got '{other._antagPreferences}'");
+            if (!_traitPreferences.SequenceEqual(other._traitPreferences)) throw new DebugAssertException($"_traitPreferences doesn't match expected '{_traitPreferences}' got '{other._traitPreferences}'");
+            if (!Loadouts.SequenceEqual(other.Loadouts))  throw new DebugAssertException($"Loadouts doesn't match expected '{Loadouts}' got '{other.Loadouts}'");
+            if (FlavorText != other.FlavorText) throw new DebugAssertException($"FlavorText doesn't match expected '{FlavorText}' got '{other.FlavorText}'");
+            if (Enabled != other.Enabled) throw new DebugAssertException($"Enabled doesn't match expected '{Enabled}' got '{other.Enabled}'");
+            // Cosmatic Drift Record System-start
+            if (CDCharacterRecords != null)
+            {
+                if (other.CDCharacterRecords == null)
+                    throw new DebugAssertException($"CDCharacterRecords doesn't match expected '{CDCharacterRecords}' got null");
+                CDCharacterRecords.AssertEquals(other.CDCharacterRecords);
+            }
+            else if (other.CDCharacterRecords != null)
+            {
+                throw new DebugAssertException($"CDCharacterRecords doesn't match expected null got '{other.CDCharacterRecords}'");
+            }
+            // Cosmatic Drift Record System-end
+            Appearance.MemberwiseEquals(other.Appearance);
+        }
+        #endregion
         public void EnsureValid(ICommonSession session, IDependencyCollection collection)
         {
             var configManager = collection.Resolve<IConfigurationManager>();

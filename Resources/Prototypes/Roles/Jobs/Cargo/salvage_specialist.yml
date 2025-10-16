@@ -16,6 +16,8 @@
   - Salvage
   - Maintenance
   - External
+  extendedAccess:
+  - Mining # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

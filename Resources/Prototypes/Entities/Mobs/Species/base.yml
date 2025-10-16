@@ -296,6 +296,12 @@
   - type: FireVisuals
     alternateState: Standing
   - type: StunVisuals
+  #starlight, they can give and receive physical social interactions
+  - type: PhysicalSocialInteractionGiver
+  - type: PhysicalSocialInteractionReceiver
+    interactionPrototypes:
+    - Pet
+    - Boop
 
 - type: entity
   save: false

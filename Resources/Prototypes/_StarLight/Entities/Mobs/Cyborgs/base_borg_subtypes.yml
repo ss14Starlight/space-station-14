@@ -1,0 +1,12 @@
+# security
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgSecuritySubtypeBase
+  name: borg security subtype
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: security
+
+      # Description
+      dummyPrototype: BorgChassisSecurity

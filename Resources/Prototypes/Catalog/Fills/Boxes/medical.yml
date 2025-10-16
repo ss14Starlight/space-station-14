@@ -42,6 +42,10 @@
     layers:
       - state: box
       - state: bottle
+  #SL-edit: start
+  - type: ItemPrice
+    fallbackPrice: 15
+  #SL-edit: end
 
 - type: entity
   name: sterile mask box

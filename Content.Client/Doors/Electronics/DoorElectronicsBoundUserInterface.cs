@@ -21,7 +21,11 @@ public sealed class DoorElectronicsBoundUserInterface : BoundUserInterface
         base.Open();
         _window = this.CreateWindow<DoorElectronicsConfigurationMenu>();
         _window.OnAccessChanged += UpdateConfiguration;
-        Reset();
+        // Starlight edit Start
+        if (EntMan.TryGetComponent<MetaDataComponent>(Owner, out var meta))
+            _window.Title = meta.EntityName;
+        // Reset();
+        // Starlight edit End
     }
 
     public override void OnProtoReload(PrototypesReloadedEventArgs args)
@@ -31,32 +35,20 @@ public sealed class DoorElectronicsBoundUserInterface : BoundUserInterface
         if (!args.WasModified<AccessLevelPrototype>())
             return;
 
-        Reset();
-    }
-
-    private void Reset()
-    {
-        List<ProtoId<AccessLevelPrototype>> accessLevels = new();
-
-        foreach (var accessLevel in _prototypeManager.EnumeratePrototypes<AccessLevelPrototype>())
-        {
-            if (accessLevel.Name != null)
-            {
-                accessLevels.Add(accessLevel.ID);
-            }
-        }
-
-        accessLevels.Sort();
-        _window?.Reset(_prototypeManager, accessLevels);
+        // Starlight edit Start
+        if (State is DoorElectronicsConfigurationState cast)
+            _window?.UpdateState(cast.AccessList, cast.AccessGroups);
+        // Starlight edit End
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
+        // Starlight Start
         base.UpdateState(state);
-
-        var castState = (DoorElectronicsConfigurationState) state;
-
-        _window?.UpdateState(castState);
+        if (state is not DoorElectronicsConfigurationState cast)
+            return;
+        // Starlight End
+        _window?.UpdateState(cast.AccessList, cast.AccessGroups, cast.PressedAccessList); // Starlight edit
     }
 
     public void UpdateConfiguration(List<ProtoId<AccessLevelPrototype>> newAccessList)

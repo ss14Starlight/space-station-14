@@ -1724,6 +1724,29 @@
       path: /Audio/Animals/cat_hiss.ogg
 
 - type: entity
+  parent: BaseAvaliPlushie
+  id: PlushieNebula
+  name: nebula plushie
+  description: A marketable plushie of Beta sector's lovable Central Domestic Division official. Toy "Deckard" revolver not included.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/nebula_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/nebula_plushie.rsi
+    state: icon
+  - type: ItemToggle
+    onUse: false
+    verbToggleOn: plushie-voicebox-activate
+    verbToggleOff: plushie-voicebox-deactivate
+  - type: ComponentToggler
+    components:
+      - type: DatasetVocalizer
+        dataset: PlushiesNebula
+      - type: TextToSpeech
+        voice: hiyokosaionji
+
+- type: entity
   parent: BaseVulpkaninPlushie
   id: PlushieKilla
   name: killa plushie

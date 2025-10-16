@@ -1,4 +1,21 @@
 - type: entity
+  parent:  [ClothingNeckBase, BaseCommandContraband ]
+  id: ClothingNeckCloakHosFireline
+  name: M-81 Fireline Cloak
+  description: A cloak made for the most dedicated head of securities, it comes with durable warming fabric and has a fireline-like glow to it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/hos_poncho.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+  - type: PointLight
+    radius: 2
+    energy: 2.2
+    color: "#DE3A3A"
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCloakCapElite
   name: elite captain's cloak

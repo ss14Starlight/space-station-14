@@ -12,11 +12,11 @@
   upperBound: !type:AlarmThresholdSetting
     threshold: 393.15 # T20C + 200
   lowerBound: !type:AlarmThresholdSetting
-    threshold: 193.15 # T20C - 100
+    threshold: 233.15 # T20C - 100 # Starlight: Was -80C. Changed to -40C.
   upperWarnAround: !type:AlarmThresholdSetting
     threshold: 0.8
   lowerWarnAround: !type:AlarmThresholdSetting
-    threshold: 1.1
+    threshold: 1.1286 # Starlight: Was -60C. Changed to -10C (when uninsulated reptilians start taking damage).
 
 - type: alarmThreshold
   id: stationPressure
@@ -34,13 +34,13 @@
 - type: alarmThreshold
   id: stationOxygen
   lowerBound: !type:AlarmThresholdSetting
-    threshold: 0.10
+    threshold: 0.17 # Starlight: Was 0.10, now 0.17. Danger triggers <=17% oxygenation.
   upperBound: !type:AlarmThresholdSetting
-    threshold: 0.3
+    threshold: 0.45 # Starlight: Was 30% o2, now 45% o2.
   lowerWarnAround: !type:AlarmThresholdSetting
-    threshold: 1.5
+    threshold: 1.179 # Starlight: Was 1.5x, now 1.179x. Warning triggers <=20% oxygenation.
   upperWarnAround: !type:AlarmThresholdSetting
-    threshold: 0.8
+    threshold: 0.8 # Starlight: Was 0.8x, now 0.8x. Warning triggers >=36% oxygenation.
 
 - type: alarmThreshold
   id: stationNitrogen

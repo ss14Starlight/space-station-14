@@ -56,6 +56,8 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         Subs.BuiEvents<CriminalRecordsConsoleComponent>(CharacterRecordConsoleKey.Key, subs =>
         {
             subs.Event<SelectStationRecord>(OnKeySelected);
+            subs.Event<CriminalRecordAddHistory>(OnAddHistory);
+            subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
             subs.Event((Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordChangeStatus args) =>
             {
                 OnChangeStatus(ent, ref args);
@@ -131,8 +133,8 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         // fallback exists if the player was not set to wanted beforehand
         if (msg.Status == SecurityStatus.Detained)
         {
-            var oldReason = record.Reason ?? Loc.GetString("criminal-records-console-unspecified-reason");
-            var history = Loc.GetString("criminal-records-console-auto-history", ("reason", oldReason));
+            var oldReason = string.IsNullOrWhiteSpace(record.Reason) ? null : record.Reason;
+            var history = FormatStatusHistory(SecurityStatus.Detained, oldReason);
             _criminalRecords.TryAddHistory(key.Value, history, officer);
         }
 
@@ -154,6 +156,9 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         if (!_criminalRecords.TryChangeStatus(key.Value, msg.Status, msg.Reason, officer))
             return;
         // Cosmatic Drift Record System-end
+
+        var statusHistory = FormatStatusHistory(msg.Status, reason);
+        _criminalRecords.TryAddHistory(key.Value, statusHistory, officer);
 
         (string, object)[] args;
         if (reason != null)
@@ -214,6 +219,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         // no radio message since its not crucial to officers patrolling
 
         UpdateUserInterface(ent);
+        RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent());
     }
 
     private void OnDeleteHistory(Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordDeleteHistory msg)
@@ -227,6 +233,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         // a bit sus but not crucial to officers patrolling
 
         UpdateUserInterface(ent);
+        RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent());
     }
 
     private void UpdateUserInterface(Entity<CriminalRecordsConsoleComponent> ent)
@@ -294,6 +301,16 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         key = new StationRecordKey(id, station);
         mob = user;
         return true;
+    }
+
+    private string FormatStatusHistory(SecurityStatus status, string? reason)
+    {
+        var statusName = Loc.GetString("criminal-records-status-" + status.ToString().ToLower());
+        var sanitizedReason = string.IsNullOrWhiteSpace(reason) ? null : reason.Trim();
+        if (sanitizedReason != null)
+            return Loc.GetString("criminal-records-console-status-history-reason", ("status", statusName), ("reason", sanitizedReason));
+
+        return Loc.GetString("criminal-records-console-status-history", ("status", statusName));
     }
 
     /// <summary>

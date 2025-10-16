@@ -119,7 +119,17 @@
   applyMaterialDiscount: false
   materials:
     SheetPrinter: 100
-    
+
+- type: latheRecipe
+  id: PrintedDocumentSalvageLeadReportRecipe
+  result: PrintedDocumentSalvageLeadReport
+  categories:
+    - Reports
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
 # Statements
 
 - type: latheRecipe

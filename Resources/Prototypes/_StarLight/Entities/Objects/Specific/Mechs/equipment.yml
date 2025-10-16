@@ -1,0 +1,20 @@
+- type: entity
+  id: MechEquipmentBorgPilot
+  parent: [ BaseMechEquipment ]
+  name: exosuit AI control beacon
+  description: A device used to transmit exosuit data. Also allows active AI units to take control of said exosuit.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Mechs/equipment.rsi
+    state: exosuit_beacon
+  - type: Item
+  - type: MultiHandedItem
+  - type: PilotSupportModule
+    pilotWhitelist:
+      components:
+        - BorgChassis
+  - type: Tag
+    tags:
+    - CombatMech
+    - IndustrialMech
+    - SpecialMech

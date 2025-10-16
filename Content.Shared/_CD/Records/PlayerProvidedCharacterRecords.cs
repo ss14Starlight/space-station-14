@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text.Json.Serialization;
+using Content.Shared.Humanoid.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._CD.Records;
 
@@ -144,7 +147,26 @@ public sealed partial class PlayerProvidedCharacterRecords
     {
         return new PlayerProvidedCharacterRecords(
             hasWorkAuthorization: true,
-            height: 170, weight: 70,
+            height: 164, weight: 74,
+            emergencyContactName: string.Empty,
+            identifyingFeatures: string.Empty,
+            allergies: "None",
+            drugAllergies: "None",
+            postmortemInstructions: "Return home",
+            medicalEntries: new List<RecordEntry>(),
+            securityEntries: new List<RecordEntry>(),
+            employmentEntries: new List<RecordEntry>(),
+            adminEntries: new List<RecordEntry>()
+        );
+    }
+
+    // Template with sensible defaults used when a profile has no saved character records.
+    public static PlayerProvidedCharacterRecords DefaultRecords(SpeciesPrototype species)
+    {
+        return new PlayerProvidedCharacterRecords(
+            hasWorkAuthorization: true,
+            height: (int)(species.StandardSize * (species.DefaultHeight - 1f) * 2f + species.StandardSize),
+            weight: (int)(species.StandardWeight + species.StandardDensity * (species.DefaultWidth * species.DefaultHeight * species.DefaultHeight - 1)),
             emergencyContactName: string.Empty,
             identifyingFeatures: string.Empty,
             allergies: "None",
@@ -169,6 +191,35 @@ public sealed partial class PlayerProvidedCharacterRecords
                    && PostmortemInstructions == other.PostmortemInstructions;
         if (!matches)
             return false;
+        if (MedicalEntries.Count != other.MedicalEntries.Count)
+            return false;
+        if (SecurityEntries.Count != other.SecurityEntries.Count)
+            return false;
+        if (EmploymentEntries.Count != other.EmploymentEntries.Count)
+            return false;
+        if (AdminEntries.Count != other.AdminEntries.Count)
+            return false;
+        if (MedicalEntries.Where((t, i) => !t.MemberwiseEquals(other.MedicalEntries[i])).Any())
+            return false;
+        if (SecurityEntries.Where((t, i) => !t.MemberwiseEquals(other.SecurityEntries[i])).Any())
+            return false;
+        if (EmploymentEntries.Where((t, i) => !t.MemberwiseEquals(other.EmploymentEntries[i])).Any())
+            return false;
+        if (AdminEntries.Where((t, i) => !t.MemberwiseEquals(other.AdminEntries[i])).Any())
+            return false;
+        return true;
+    }
+
+    public bool AssertEquals(PlayerProvidedCharacterRecords other)
+    {
+        if (Height != other.Height) throw new DebugAssertException($"Height does not match expected got '{Height}' expected '{other.Height}'");
+        if (Weight != other.Weight) throw new DebugAssertException($"Weight does not match expected got '{Weight}' expected '{other.Weight}'");
+        if (EmergencyContactName != other.EmergencyContactName) throw new DebugAssertException($"EmergencyContactName does not match expected got '{EmergencyContactName}' expected '{other.EmergencyContactName}'");
+        if (HasWorkAuthorization != other.HasWorkAuthorization) throw new DebugAssertException($"HasWorkAuthorization does not match expected got '{HasWorkAuthorization}' expected '{other.HasWorkAuthorization}'");
+        if (IdentifyingFeatures != other.IdentifyingFeatures) throw new DebugAssertException($"IdentifyingFeatures does not match expected got '{IdentifyingFeatures}' expected '{other.IdentifyingFeatures}'");
+        if (Allergies != other.Allergies) throw new DebugAssertException($"Allergies does not match expected got '{Allergies}' expected '{other.Allergies}'");
+        if (DrugAllergies != other.DrugAllergies) throw new DebugAssertException($"DrugAllergies does not match expected got '{DrugAllergies}' expected '{other.DrugAllergies}'");
+        if (PostmortemInstructions != other.PostmortemInstructions) throw new DebugAssertException($"PostmortemInstructions does not match expected got '{PostmortemInstructions}' expected '{other.PostmortemInstructions}'");
         if (MedicalEntries.Count != other.MedicalEntries.Count)
             return false;
         if (SecurityEntries.Count != other.SecurityEntries.Count)

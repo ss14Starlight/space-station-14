@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMob, StripableInventoryBase]
+  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages
   id: BaseBorgChassisNotIonStormable
   name: cyborg
   description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
@@ -250,32 +250,12 @@
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
   #region Starlight
   - type: CyborgSparkEffect
-  - type: StationAIShunt
+  - type: StationAIShunt #Starlight allow shunting into all borgs
+  - type: BorgSwitchableSubtype # Afterlight change
   - type: Crawler
+  - type: Blindable
+  - type: EyeProtection
   #endregion
-  # Starlight-start: Languages
-  - type: LanguageKnowledge
-    speaks:
-    - GalacticCommon
-    - Machine
-    understands:
-    - GalacticCommon
-    - Machine
-    - Canilunzt
-    - Sign
-    - Bubblish
-    - Chittin
-    - Draconic
-    - Marish
-    - Moffic
-    - Nekomimetic
-    - Sylvan
-    - Terrum
-    - VoxPidgin
-    - Scratch
-    - SolCommon
-    - Thaveyan
-  # Starlight-end
 
 - type: entity
   abstract: true

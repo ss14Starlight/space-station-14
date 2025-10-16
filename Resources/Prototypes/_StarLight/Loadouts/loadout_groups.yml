@@ -127,6 +127,7 @@
   - NanoTrasenRepresentativeJumpsuitFormal
   - NanoTrasenRepresentativeTurtleneck
   - NanoTrasenRepresentativeTurtleneckSkirt
+  - NanoTrasenRepresentativeNoble
 
 - type: loadoutGroup
   id: NanoTrasenRepresentativeEyewear
@@ -302,6 +303,13 @@
     - SalvageLeadJumpsuit
     - SalvageLeadJumpskirt
 
+- type: loadoutGroup
+  id: SalvageLeadPDA
+  name: loadout-group-salvagelead-id
+  loadouts:
+  - SalvageLeadPDA
+  - VeteranSalvageLeadPDA
+
 # Mining Specialist
 - type: loadoutGroup
   id: MiningSpecialistJumpsuit
@@ -309,3 +317,18 @@
   loadouts:
     - MiningSpecialistJumpsuit
     - MiningSpecialistJumpskirt
+
+- type: loadoutGroup
+  id: MiningSpecialistPDA
+  name: loadout-group-mining-id
+  loadouts:
+  - MiningPDA
+  - VeteranMiningPDA
+
+# Salvage Specialist
+- type: loadoutGroup
+  id: SalvageSpecialistPDA
+  name: loadout-group-salvage-id
+  loadouts:
+    - SalvagePDA
+    - VeteranSalvagePDA

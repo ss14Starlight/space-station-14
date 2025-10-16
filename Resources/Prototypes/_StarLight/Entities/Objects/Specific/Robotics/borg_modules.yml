@@ -1,4 +1,82 @@
+- type: entity
+  id: BaseBorgModuleSecurity
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModuleSecurity
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#a0322c"
+      - state: base-module-inhand-left
+        color: "#444444"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#5b5b5b"
+      right:
+      - state: base-icon-inhand-right
+        color: "#a0322c"
+      - state: base-module-inhand-right
+        color: "#444444"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#5b5b5b"
+
 # generic modules
+- type: entity
+  id: BorgModuleSecurity
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: security cyborg module
+  description: A security cyborg module which allows the unit to use unlethal equipment.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-nt
+  - type: ItemBorgModule
+    hands:
+    - item: Flash
+      hand:
+        emptyRepresentative: Flash
+        emptyLabel: borg-slot-flash-empty
+        whitelist:
+          components:
+          - Flash
+    - item: Crowbar
+    - item: Zipties
+      hand:
+        emptyRepresentative: Zipties
+        emptyLabel: borg-slot-zipties-empty
+        whitelist:
+          tags:
+          - Handcuffs # Can be replaced by handcuffs or zipties
+    - item: Stunbaton
+      hand:
+        emptyRepresentative: Stunbaton
+        emptyLabel: borg-slot-stunbaton-empty
+        whitelist:
+          components:
+          - Stunbaton
+    - item: WeaponDisabler
+      hand:
+        emptyRepresentative: WeaponDisabler
+        emptyLabel: borg-slot-disabler-empty
+        whitelist:
+          tags:
+          - Disabler
+    - item: HoloprojectorSecurity
+      hand:
+        emptyRepresentative: HoloprojectorSecurity
+        emptyLabel: borg-slot-holoprojector-empty
+        whitelist:
+          components:
+          - HolosignProjector
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
+    
 - type: entity
   id: BorgModuleUppies
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
@@ -90,4 +168,3 @@
           - Stamp
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
-

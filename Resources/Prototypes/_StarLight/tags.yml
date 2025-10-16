@@ -172,6 +172,9 @@
   id: ShowWires
 
 - type: Tag
+  id: Skating
+  
+- type: Tag
   id: SovietDungeon
 
 - type: Tag
@@ -208,6 +211,18 @@
   id: Locker
 
 - type: Tag
+  id: BorgModuleSecurity
+
+- type: Tag
+  id: Disabler
+
+- type: Tag
+  id: L6Saw
+
+- type: Tag
+  id: MagazineBoxLightRifle
+  
+- type: Tag
   id: CivilianTraitBackground
 
 - type: Tag
@@ -230,6 +245,12 @@
 
 - type: Tag
   id: PettyCriminalTraitBackground
+  
+- type: Tag
+  id: ThermiteIgnitor
+  
+- type: Tag
+  id: UnDissolvable
 
 - type: Tag
   id: ScanGateMachineBoard

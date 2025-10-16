@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, BaseSiliconLanguages ]
   id: AiInterfaceCube
   name: AI Interface
   description: An artificial brain capable of allowing remote AI takeover.
@@ -47,23 +47,3 @@
         - SecretStash
     - type: StationAIShunt # allow shunting into this brain.
     - type: LanguageSpeaker
-    - type: LanguageKnowledge
-      speaks:
-      - GalacticCommon
-      - Machine
-      understands:
-      - GalacticCommon
-      - Machine
-      - Canilunzt
-      - Sign
-      - Bubblish
-      - Chittin
-      - Draconic
-      - Marish
-      - Moffic
-      - Nekomimetic
-      - Sylvan
-      - Terrum
-      - VoxPidgin
-      - Scratch
-      - SolCommon

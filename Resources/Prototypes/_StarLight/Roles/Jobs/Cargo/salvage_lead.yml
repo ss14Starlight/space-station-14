@@ -17,6 +17,8 @@
   - SalvageLead
   - Maintenance
   - External
+  extendedAccess:
+  - Mining
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

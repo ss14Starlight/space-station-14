@@ -45,6 +45,11 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: jumpsuit
+        outerClothing:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: outerclothing
         shoes: # DM only for colored shoes!
           sizeMaps:
             32:
@@ -160,6 +165,11 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: jumpsuit
+        outerClothing:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: outerclothing
         shoes: # DM only for colored shoes!
           sizeMaps:
             32:

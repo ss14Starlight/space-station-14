@@ -61,6 +61,13 @@
   petSuccessString: petting-success-engineer-cyborg
   petFailureString: petting-failure-engineer-cyborg
 
+  # Starlight-start: Requirements
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobTechnicalAssistant
+    time: 3600 # 1 hour as Technical Assistant
+  # Starlight-end
+
 
 # Salvage borg
 - type: borgType
@@ -94,6 +101,13 @@
   # Pet
   petSuccessString: petting-success-salvage-cyborg
   petFailureString: petting-failure-salvage-cyborg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobCargoTechnician
+    time: 5400 # 1 hour 30 minutes as Cargo Technician
+  # Starlight-end
 
 
 # Janitor borg
@@ -174,6 +188,13 @@
   # Sounds
   footstepCollection:
     collection: FootstepHoverBorg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobMedicalIntern
+    time: 3600 # 1 hour as Medical Intern
+  # Starlight-end
 
 
 # Service borg

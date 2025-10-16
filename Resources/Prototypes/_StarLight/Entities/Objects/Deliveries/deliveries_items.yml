@@ -108,6 +108,7 @@
         - HandTeleporterStealObjective
         - EnergyShotgunStealObjective
 
+
 #USSP
 - type: entity
   id: MailSovietSpamLetter100
@@ -156,3 +157,4 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
+

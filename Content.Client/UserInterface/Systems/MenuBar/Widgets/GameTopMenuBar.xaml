@@ -115,6 +115,17 @@
         HorizontalExpand="True"
         AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
         />
+    <!-- Starlight begin -->
+    <ui:MenuButton
+        Name="ReportBugButton"
+        Access="Internal"
+        Icon="{xe:Tex '/Textures/_Starlight/Interface/bug.svg.192dpi.png'}"
+        ToolTip="{Loc 'game-hud-open-bug-report-window-button-tooltip'}"
+        MinSize="42 64"
+        HorizontalExpand="True"
+        AppendStyleClass="{x:Static style:StyleBase.ButtonSquare}"
+    />
+    <!-- Starlight end -->
     <ui:MenuButton
         Name="AHelpButton"
         Access="Internal"
