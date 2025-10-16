@@ -1,0 +1,11 @@
+# Silicon turret controllers send data to their turrets on this frequency
+- type: deviceFrequency
+  id: TurretControlSilicon
+  name: device-frequency-prototype-name-turret-control
+  frequency: 2155
+
+# Silicon turrets send data to their controllers on this frequency
+- type: deviceFrequency
+  id: TurretSilicon
+  name: device-frequency-prototype-name-turret
+  frequency: 2156

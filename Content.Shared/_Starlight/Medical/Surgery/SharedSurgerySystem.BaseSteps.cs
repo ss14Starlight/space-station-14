@@ -1,6 +1,9 @@
 ﻿using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
+using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle.Components;
@@ -24,6 +27,7 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryClearProgressComponent, SurgeryStepCompleteEvent>(OnClearProgressStep);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepEvent>(OnStep);
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
+        SubscribeLocalEvent<SurgeryTargetComponent, AccessibleOverrideEvent>(OnOverrideAccess);
 
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryCanPerformStepEvent>(OnCanPerformStep);
 
@@ -107,6 +111,8 @@ public abstract partial class SharedSurgerySystem
 
             if (_net.IsServer && TryComp(tool, out SurgeryToolComponent? toolComp) && toolComp.EndSound != null)
                 _audio.PlayPvs(toolComp.EndSound, tool);
+            if (ent.Comp.ReagentId != null && _solutionContainerSystem.TryGetSolution(tool, "drink", out var solution))
+                _solutionContainerSystem.RemoveReagent(solution.Value, new ReagentQuantity(ent.Comp.ReagentId, ent.Comp.ReagentQuantity));
         }
 
         foreach (var reg in (ent.Comp.Add ?? []).Values)
@@ -127,6 +133,24 @@ public abstract partial class SharedSurgerySystem
 
         foreach (var reg in (ent.Comp.BodyRemove ?? []).Values)
             RemComp(args.Body, reg.Component.GetType());
+    }
+
+    private void OnOverrideAccess(Entity<SurgeryTargetComponent> ent, ref AccessibleOverrideEvent args)
+    {
+        // Check if the entity is the target to avoid giving the hooked entity access to everything.
+        // If we already have access we don't need to run more code.
+        if (args.Accessible || args.Target != ent.Owner)
+            return;
+
+        var xform = Transform(ent);
+        var root = _containers.GetContainingContainers((ent, xform)).FirstOrDefault(x => x.ID == SharedBodySystem.BodyRootContainerId); //get the root container
+        if (root == null)
+            return;
+        if (!_interaction.CanAccess(args.User, root.Owner))
+            return;
+
+        args.Accessible = true;
+        args.Handled = true;
     }
 
     private void OnCanPerformStep(Entity<SurgeryStepComponent> ent, ref SurgeryCanPerformStepEvent args)
@@ -189,6 +213,13 @@ public abstract partial class SharedSurgerySystem
             else if (TryComp<SurgeryItemSizeConditionComponent>(ent, out var itemSizeComp) && TryComp<ItemComponent>(tool, out var item) && _item.GetSizePrototype(item.Size) > _item.GetSizePrototype(itemSizeComp.Size))
             {
                 args.Invalid = StepInvalidReason.TooHigh;
+                return;
+            }
+            else if (ent.Comp.ReagentId != null && _solutionContainerSystem.GetTotalPrototypeQuantity(tool, ent.Comp.ReagentId) < ent.Comp.ReagentQuantity)
+            {
+                args.Invalid = StepInvalidReason.NotEnoughReagent;
+                if (reg.Component is ISurgeryToolComponent toolComp)
+                    args.Popup = $"You need at least {ent.Comp.ReagentQuantity}u of {ent.Comp.ReagentId} in {toolComp.ToolName} to perform this step!";
                 return;
             }
 

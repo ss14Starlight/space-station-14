@@ -16,6 +16,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Examine;
 
 namespace Content.Shared.Starlight.Knockback;
+
 public abstract partial class SharedKnockbackSystem : EntitySystem
 {
     [Dependency] private readonly TagSystem _tagSystem = default!;
@@ -25,7 +26,7 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     public override void Initialize()
     {
-        SubscribeLocalEvent<KnockbackByUserTagComponent, TakeAmmoEvent>(OnGunShot);
+        SubscribeLocalEvent<KnockbackByUserTagComponent, OnNonEmptyGunShotEvent>(OnGunShot);
         SubscribeLocalEvent<KnockbackByUserTagComponent, ExaminedEvent>(OnExamined);
     }
 
@@ -34,9 +35,8 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
         if (args.IsInDetailsRange)
         {
             //check if the examiner has any tags that match the component's tags
-            if (_tagSystem.HasAnyTag(args.Examiner, ent.Comp.DoestContain.Keys))
+            if (GetKnockbackData(ent, args.Examiner, out KnockbackData data))
             {
-                var data = GetKnockbackData(ent, args.Examiner);
                 var knockback = CalculateKnockback(args.Examiner, data);
                 //figure out the forwards/backwards direction
                 var direction = knockback < 0 ? "forwards" : "backwards";
@@ -46,12 +46,12 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
         }
     }
 
-    private void OnGunShot(Entity<KnockbackByUserTagComponent> ent, ref TakeAmmoEvent args)
+    private void OnGunShot(Entity<KnockbackByUserTagComponent> ent, ref OnNonEmptyGunShotEvent args)
     {
         //make sure the ammo is shootable
         foreach (var ammo in args.Ammo)
         {
-            if (TryComp<HitScanCartridgeAmmoComponent>(ammo.Entity, out var hitscanCartridge))
+            if (TryComp<HitScanCartridgeAmmoComponent>(ammo.Uid, out var hitscanCartridge))
             {
                 //check if its spent
                 if (hitscanCartridge.Spent)
@@ -60,7 +60,7 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
                 }
             }
 
-            if (TryComp<CartridgeAmmoComponent>(ammo.Entity, out var cartridge))
+            if (TryComp<CartridgeAmmoComponent>(ammo.Uid, out var cartridge))
             {
                 //check if its spent
                 if (cartridge.Spent)
@@ -70,14 +70,11 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
             }
         }
 
-        if (args.User == null)
-            return;
-        EntityUid user = args.User.Value;
+        EntityUid user = args.User;
 
         //check for tags
-        if (_tagSystem.HasAnyTag(user, ent.Comp.DoestContain.Keys))
+        if (GetKnockbackData(ent, user, out var data))
         {
-            var data = GetKnockbackData(ent, user);
             //get the gun component
             if (TryComp<GunComponent>(ent, out var gunComponent))
             {
@@ -117,8 +114,26 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
         }
     }
 
-    private KnockbackData GetKnockbackData(Entity<KnockbackByUserTagComponent> ent, EntityUid user) =>            //get the specific knockback data for this tag
-                ent.Comp.DoestContain.FirstOrDefault(x => _tagSystem.HasTag(user, x.Key)).Value;
+    private bool GetKnockbackData(Entity<KnockbackByUserTagComponent> ent, EntityUid user, out KnockbackData data)
+    {
+        KnockbackData totalData = new();
+        bool hadAnyMatches = false;
+        //get all matching tags
+        foreach (var tag in ent.Comp.DoestContain.Keys)
+        {
+            if (_tagSystem.HasTag(user, tag))
+            {
+                var tagdata = ent.Comp.DoestContain[tag];
+                totalData.Knockback += tagdata.Knockback;
+                totalData.StaminaMultiplier += tagdata.StaminaMultiplier;
+                hadAnyMatches = true;
+            }
+        }
+
+        data = totalData;
+
+        return hadAnyMatches;
+    }
 
     private float CalculateKnockback(EntityUid user, KnockbackData data)
     {

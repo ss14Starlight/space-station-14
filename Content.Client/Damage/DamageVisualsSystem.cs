@@ -111,12 +111,14 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
                 return;
             }
 
-            if (damageVisComp.DamageGroup == null)
-            {
-                Log.Error($"Disabled overlay without defined damage group on {entity}.");
-                damageVisComp.Valid = false;
-                return;
-            }
+            //#Starlight turns out this check does literally nothing and it works even when it is removed
+            // by removing this check it allows us to use the "all groups" option even when overlay = false
+            // if (damageVisComp.DamageGroup == null)
+            // {
+            //     Log.Error($"Disabled overlay without defined damage group on {entity}.");
+            //     damageVisComp.Valid = false;
+            //     return;
+            // }
         }
 
         if (damageVisComp.DamageOverlayGroups != null && damageVisComp.DamageGroup != null)
@@ -150,7 +152,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
         // If the damage container on our entity's DamageableComponent
         // is not null, we can try to check through its groups.
         if (damageComponent.DamageContainerID != null
-            && _prototypeManager.TryIndex<DamageContainerPrototype>(damageComponent.DamageContainerID, out var damageContainer))
+            && _prototypeManager.Resolve<DamageContainerPrototype>(damageComponent.DamageContainerID, out var damageContainer))
         {
             // Are we using damage overlay sprites by group?
             // Check if the container matches the supported groups,

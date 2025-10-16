@@ -4,6 +4,7 @@
   id: BaseHighlyIllegalContraband
   abstract: true
   components:
+  - type: ScanDetectable # Starlight
   - type: Contraband
     severity: HighlyIllegal
 
@@ -12,14 +13,16 @@
   id: BaseXenoborgContraband
   abstract: true
   components:
+  - type: ScanDetectable # Starlight
   - type: Contraband
-    severity: Major # placeholder until they make a better severity
+    severity: HighlyIllegal
 
 # any type of magical items used by wizards and similiar
 - type: entity
   id: BaseMagicalContraband
   abstract: true
   components:
+  - type: ScanDetectable # Starlight
   - type: Contraband
     severity: Magical
 
@@ -28,6 +31,7 @@
   id: BaseSyndicateContraband
   abstract: true
   components:
+  - type: ScanDetectable # Starlight
   - type: Contraband
     severity: Syndicate
 
@@ -44,6 +48,7 @@
   id: BaseMajorContraband
   abstract: true
   components:
+  - type: ScanDetectable # Starlight
   - type: Contraband
     severity: Major
 

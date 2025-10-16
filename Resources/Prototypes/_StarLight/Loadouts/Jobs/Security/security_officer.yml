@@ -37,3 +37,15 @@
     back:
     - WeaponPistolEnforcer
     - MagazinePistolSP
+
+# Jumpsuit
+- type: loadout
+  id: SecurityTshirt
+  equipment:
+    jumpsuit: ClothingUniformSecurityTshirt
+
+#Outerclothes
+- type: loadout
+  id: SecurityBomber
+  equipment:
+    outerClothing: ClothingOuterSecurityBomber

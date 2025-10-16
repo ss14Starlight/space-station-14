@@ -10,6 +10,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Traits.Assorted;
+using Content.Shared.Bed.Sleep;
 using Microsoft.CodeAnalysis;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
@@ -80,9 +81,12 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     }
 
     private void OnStepBleedComplete(Entity<SurgeryStepBleedEffectComponent> ent, ref SurgeryStepEvent args)
-    {        
+    {      
+        if (ent.Comp.Damage == null)
+            return;
+        var damage = ent.Comp.Damage;  
         if (ent.Comp.Damage is not null && TryComp<DamageableComponent>(args.Body, out var comp))
-            _damageableSystem.TryChangeDamage(args.Body, ent.Comp.Damage);
+            _damageableSystem.TryChangeDamage(args.Body, damage);
     }
 
     private void OnStepClampBleedComplete(Entity<SurgeryClampBleedEffectComponent> ent, ref SurgeryStepEvent args)
@@ -154,11 +158,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
     private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        
-        if (!HasComp<PainNumbnessComponent>(args.Body))
-        {
-             _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
-        }
+
+        if (!HasComp<PainNumbnessComponent>(args.Body) && !HasComp<SleepingComponent>(args.Body))
+            _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
+        else
+            _sleeping.TryWaking(args.Body); // If the patient sleeping without n2o or reagents, wake them up.
     }
 
     private void OnStepSpawnComplete(Entity<SurgeryStepSpawnEffectComponent> ent, ref SurgeryStepEvent args)

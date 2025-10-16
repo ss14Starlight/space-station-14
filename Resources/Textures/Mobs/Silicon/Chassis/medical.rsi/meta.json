@@ -5,59 +5,11 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/faf6db214927874c19b8fa8585d26b5d40de1acc",
+    "copyright": "Cricket, Borg, Needles, and Noble by Conflee. Edits by Conflee, originals taken from Paradise Station at https://github.com/ParadiseSS13/Paradise/commit/34f3823923b7692533b7a99c6f2a8bc91c834870",
     "states": [
         {
             "name": "borg",
-            "directions": 4,
-            "delays": [
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ]
-            ]
-        },
-        {
-            "name": "borg_moving",
-            "directions": 4,
-            "delays": [
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ]
-            ]
+            "directions": 4
         },
         {
             "name": "borg_e",
@@ -69,6 +21,138 @@
         },
         {
             "name": "borg_l",
+            "directions": 4
+        },
+        {
+            "name": "surgeon",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "surgeon_moving",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "surgeon_e",
+            "directions": 4
+        },
+        {
+            "name": "surgeon_e_r",
+            "directions": 4
+        },
+        {
+            "name": "surgeon_l",
+            "directions": 4
+        },
+        {
+            "name": "droid",
+            "directions": 4
+        },
+        {
+            "name": "droid_e",
+            "directions": 4
+        },
+        {
+            "name": "droid_e_r",
+            "directions": 4
+        },
+        {
+            "name": "droid_l",
+            "directions": 4
+        },
+        {
+            "name": "needles",
+            "directions": 4
+        },
+        {
+            "name": "standard",
+            "directions": 4
+        },
+        {
+            "name": "standard_e",
+            "directions": 4
+        },
+        {
+            "name": "standard_e_r",
+            "directions": 4
+        },
+        {
+            "name": "standard_l",
+            "directions": 4
+        },
+        {
+            "name": "noble",
+            "directions": 4
+        },
+        {
+            "name": "noble_e",
+            "directions": 4
+        },
+        {
+            "name": "noble_e_r",
+            "directions": 4
+        },
+        {
+            "name": "noble_l",
+            "directions": 4
+        },
+        {
+            "name": "cricket",
+            "directions": 4
+        },
+        {
+            "name": "cricket_e",
+            "directions": 4
+        },
+        {
+            "name": "cricket_e_r",
+            "directions": 4
+        },
+        {
+            "name": "cricket_l",
             "directions": 4
         }
     ]

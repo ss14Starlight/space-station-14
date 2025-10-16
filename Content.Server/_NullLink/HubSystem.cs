@@ -6,6 +6,8 @@ using Content.Server._NullLink.Helpers;
 using Content.Shared._NullLink;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
+using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Starlight.NullLink;
@@ -115,7 +117,7 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
         while (processed < MaxEventsPerTick && _updateEvents.TryDequeue(out var ev))
         {
             foreach (var (session, lastSeen) in _subscriptions)
-                if (_timing.RealTime - lastSeen > _subLifetime)
+                if (session.State.Status == SessionStatus.Disconnected || _timing.RealTime - lastSeen > _subLifetime)
                     _toRemove.Add(session);
                 else
                     RaiseNetworkEvent(ev, session);

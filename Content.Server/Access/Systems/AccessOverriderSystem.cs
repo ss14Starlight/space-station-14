@@ -28,6 +28,7 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Starlight-edit
 
     public override void Initialize()
     {
@@ -38,6 +39,8 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
         SubscribeLocalEvent<AccessOverriderComponent, EntRemovedFromContainerMessage>(UpdateUserInterface);
         SubscribeLocalEvent<AccessOverriderComponent, AfterInteractEvent>(AfterInteractOn);
         SubscribeLocalEvent<AccessOverriderComponent, AccessOverriderDoAfterEvent>(OnDoAfter);
+
+        SubscribeLocalEvent<AccessOverriderComponent, AccessGroupSelectedMessage>(OnAccessGroupSelected); // Starlight-edit
 
         Subs.BuiEvents<AccessOverriderComponent>(AccessOverriderUiKey.Key, subs =>
         {
@@ -98,6 +101,14 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
         UpdateUserInterface(uid, component, args);
     }
 
+    // Starlight-edit: Start
+    private void OnAccessGroupSelected(EntityUid uid, AccessOverriderComponent component, AccessGroupSelectedMessage args)
+    {
+        component.CurrentAccessGroup = args.SelectedGroup;
+        UpdateUserInterface(uid, component, args);
+    }
+    // Starlight-edit: End
+
     private void UpdateUserInterface(EntityUid uid, AccessOverriderComponent component, EntityEventArgs args)
     {
         if (!component.Initialized)
@@ -107,9 +118,55 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
         var targetLabel = Loc.GetString("access-overrider-window-no-target");
         var targetLabelColor = Color.Red;
 
-        ProtoId<AccessLevelPrototype>[]? possibleAccess = null;
-        ProtoId<AccessLevelPrototype>[]? currentAccess = null;
-        ProtoId<AccessLevelPrototype>[]? missingAccess = null;
+        // Starlight edit Start
+        HashSet<ProtoId<AccessLevelPrototype>> allowedByConfigurator = new();
+        HashSet<ProtoId<AccessLevelPrototype>> privilegedIdAccess = new();
+        if (component.PrivilegedIdSlot.Item is { Valid: true } privilegedIdCard)
+        {
+            privilegedIdAccess = _accessReader.FindAccessTags(privilegedIdCard).ToHashSet();
+            privilegedIdName = Comp<MetaDataComponent>(privilegedIdCard).EntityName;
+        }
+        if (component.AccessGroups != null && component.AccessGroups.Count > 0)
+        {
+            foreach (var group in component.AccessGroups)
+            {
+                if (_prototypeManager.TryIndex(group, out AccessGroupPrototype? groupProto))
+                {
+                    var intersectedTags = groupProto.Tags.Intersect(privilegedIdAccess);
+                    allowedByConfigurator.UnionWith(intersectedTags);
+                }
+            }
+        }
+        else
+        {
+            var intersectedLevels = component.AccessLevels.Intersect(privilegedIdAccess);
+            allowedByConfigurator.UnionWith(intersectedLevels);
+        }
+        List<ProtoId<AccessGroupPrototype>> availableGroups = new();
+        if (component.AccessGroups != null && privilegedIdAccess.Count > 0)
+        {
+            foreach (var group in component.AccessGroups)
+            {
+                if (_prototypeManager.TryIndex(group, out AccessGroupPrototype? groupProto))
+                {
+                    if (groupProto.Tags.Intersect(privilegedIdAccess).Any())
+                        availableGroups.Add(group);
+                }
+            }
+        }
+        if (component.CurrentAccessGroup == null || !availableGroups.Contains(component.CurrentAccessGroup.Value))
+        {
+            if (availableGroups.Count > 0)
+                component.CurrentAccessGroup = availableGroups[0];
+        }
+
+        HashSet<ProtoId<AccessLevelPrototype>> allowedByDoorGroups = new();
+        HashSet<ProtoId<AccessLevelPrototype>> actuallySetOnDoor = new();
+
+        ProtoId<AccessLevelPrototype>[] availableAccess;
+        ProtoId<AccessLevelPrototype>[] pressedAccess;
+        ProtoId<AccessLevelPrototype>[] missingAccess;
+        // Starlight edit End
 
         if (component.TargetAccessReaderId is { Valid: true } accessReader)
         {
@@ -119,36 +176,88 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
             if (!_accessReader.GetMainAccessReader(accessReader, out var accessReaderEnt))
                 return;
 
-            var currentAccessHashsets = accessReaderEnt.Value.Comp.AccessLists;
-            currentAccess = ConvertAccessHashSetsToList(currentAccessHashsets).ToArray();
-        }
+            // Starlight edit Start
+            bool foundDoorElectronics = false;
 
-        if (component.PrivilegedIdSlot.Item is { Valid: true } idCard)
+            if (TryComp(accessReader, out ContainerManagerComponent? containers))
+            {
+                foreach (var container in containers.Containers.Values)
+                {
+                    foreach (var entity in container.ContainedEntities)
+                    {
+                        if (TryComp(entity, out Content.Shared.Doors.Electronics.DoorElectronicsComponent? doorElectronics)
+                            && doorElectronics.AccessGroups != null && doorElectronics.AccessGroups.Count > 0)
+                        {
+                            foreach (var group in doorElectronics.AccessGroups)
+                            {
+                                if (_prototypeManager.TryIndex(group, out AccessGroupPrototype? groupProto))
+                                    allowedByDoorGroups.UnionWith(groupProto.Tags);
+                            }
+                            foundDoorElectronics = true;
+                            break;
+                        }
+                    }
+                    if (foundDoorElectronics)
+                        break;
+                }
+            }
+            if (!foundDoorElectronics &&
+                TryComp(accessReader, out Content.Shared.Doors.Electronics.DoorElectronicsComponent? doorElectronicsSelf)
+                && doorElectronicsSelf.AccessGroups != null && doorElectronicsSelf.AccessGroups.Count > 0)
+            {
+                foreach (var group in doorElectronicsSelf.AccessGroups)
+                {
+                    if (_prototypeManager.TryIndex(group, out AccessGroupPrototype? groupProto))
+                        allowedByDoorGroups.UnionWith(groupProto.Tags);
+                }
+                foundDoorElectronics = true;
+            }
+
+            if (!foundDoorElectronics)
+            {
+                allowedByDoorGroups.UnionWith(allowedByConfigurator);
+            }
+
+            availableAccess = allowedByConfigurator.Intersect(allowedByDoorGroups).ToArray();
+
+            foreach (var set in accessReaderEnt.Value.Comp.AccessLists)
+                actuallySetOnDoor.UnionWith(set);
+
+            pressedAccess = actuallySetOnDoor.Intersect(availableAccess).ToArray();
+
+            if (component.PrivilegedIdSlot.Item is { Valid: true } idCard)
+            {
+                var privTags = _accessReader.FindAccessTags(idCard).ToArray();
+                var actuallyRequiredAccess = actuallySetOnDoor.Except(privTags);
+                var hiddenSetAccess = actuallySetOnDoor.Except(allowedByConfigurator).Except(privTags);
+                missingAccess = actuallyRequiredAccess.Union(hiddenSetAccess).ToArray();
+            }
+            else
+            {
+                missingAccess = actuallySetOnDoor.ToArray();
+            }
+        }
+        else
         {
-            privilegedIdName = Comp<MetaDataComponent>(idCard).EntityName;
-
-            if (component.TargetAccessReaderId is { Valid: true })
-            {
-                possibleAccess = _accessReader.FindAccessTags(idCard).ToArray();
-            }
-
-            if (currentAccess != null && possibleAccess != null)
-            {
-                missingAccess = currentAccess.Except(possibleAccess).ToArray();
-            }
+            availableAccess = Array.Empty<ProtoId<AccessLevelPrototype>>();
+            pressedAccess = Array.Empty<ProtoId<AccessLevelPrototype>>();
+            missingAccess = Array.Empty<ProtoId<AccessLevelPrototype>>();
         }
-
-        AccessOverriderBoundUserInterfaceState newState;
-
-        newState = new AccessOverriderBoundUserInterfaceState(
+        var groupsArray = availableGroups.ToArray();
+        // Starlight edit End
+        var newState = new AccessOverriderBoundUserInterfaceState(
             component.PrivilegedIdSlot.HasItem,
             PrivilegedIdIsAuthorized(uid, component),
-            currentAccess,
-            possibleAccess,
+            // Starlight edit Start
+            availableAccess,
+            pressedAccess,
+            // Starlight edit End
             missingAccess,
             privilegedIdName,
             targetLabel,
-            targetLabelColor);
+            targetLabelColor,
+            groupsArray,
+            component.CurrentAccessGroup); // Starlight
 
         _userInterface.SetUiState(uid, AccessOverriderUiKey.Key, newState);
     }
@@ -189,10 +298,32 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
             return;
         }
 
-        if (newAccessList.Count > 0 && !newAccessList.TrueForAll(x => component.AccessLevels.Contains(x)))
+        // Starlight-edit: Start
+        if (component.AccessGroups != null && component.AccessGroups.Count > 0)
         {
-            _sawmill.Warning($"User {ToPrettyString(uid)} tried to write unknown access tag.");
-            return;
+            // flatten all group tags
+            var allGroupTags = new HashSet<ProtoId<AccessLevelPrototype>>();
+            foreach (var g in component.AccessGroups)
+            {
+                if (!_prototypeManager.TryIndex(g, out AccessGroupPrototype? gp))
+                    continue;
+                allGroupTags.UnionWith(gp.Tags);
+            }
+
+            if (newAccessList.Count > 0 && !newAccessList.TrueForAll(x => allGroupTags.Contains(x)))
+            {
+                _sawmill.Warning($"User {ToPrettyString(uid)} tried to write unknown access tag.");
+                return;
+            }
+        }
+        else
+        {
+            if (newAccessList.Count > 0 && !newAccessList.TrueForAll(x => component.AccessLevels.Contains(x)))
+        // Starlight-edit: End
+            {
+                _sawmill.Warning($"User {ToPrettyString(uid)} tried to write unknown access tag.");
+                return;
+            }
         }
 
         if (!_accessReader.GetMainAccessReader(component.TargetAccessReaderId, out var accessReaderEnt))
@@ -229,7 +360,7 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
         _adminLogger.Add(LogType.Action, LogImpact.High,
             $"{ToPrettyString(player):player} has modified {ToPrettyString(accessReaderEnt.Value):entity} with the following allowed access level holders: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
 
-        _accessReader.SetAccesses(accessReaderEnt.Value, newAccessList);
+        _accessReader.TrySetAccesses(accessReaderEnt.Value, newAccessList);
 
         var ev = new OnAccessOverriderAccessUpdatedEvent(player);
         RaiseLocalEvent(component.TargetAccessReaderId, ref ev);
@@ -246,10 +377,10 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
         if (!Resolve(uid, ref component))
             return true;
 
-        if (_accessReader.GetMainAccessReader(uid, out var accessReader))
+        if (!_accessReader.GetMainAccessReader(uid, out var accessReader)) // Starlight edit
             return true;
 
         var privilegedId = component.PrivilegedIdSlot.Item;
-        return privilegedId != null && _accessReader.IsAllowed(privilegedId.Value, uid, accessReader);
+        return privilegedId != null && _accessReader.IsAllowed(privilegedId.Value, uid, accessReader.Value.Comp); // Starlight edit
     }
 }

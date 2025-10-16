@@ -14,16 +14,29 @@
   supervisors: job-supervisors-qm
   access:
   - Cargo
-  - Salvage
+  - Mining
   - Maintenance
   - External
-#job_id
+  extendedAccess:
+  - Salvage
+
 - type: startingGear
   id: MiningSpecialistGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitMiningSpecialist
     id: MiningPDA
     ears: ClothingHeadsetMining
+    belt: OreBag
     #storage:
     #back:
     #- Stuff
+
+- type: chameleonOutfit
+  id: MiningSpecialistChameleonOutfit
+  job: MiningSpecialist
+  equipment:
+    head: ClothingHeadHatCargosoft
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGasExplorer
+    outerClothing: ClothingOuterWinterMiner
+    neck: ClothingNeckScarfStripedBrown
+    gloves: ClothingHandsGlovesColorBlack

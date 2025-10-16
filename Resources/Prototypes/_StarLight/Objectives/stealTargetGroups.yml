@@ -6,7 +6,7 @@
   sprite:
     sprite: _Starlight/Objects/Specific/legalpapers/rd-diploma.rsi
     state: rd-diploma
-    
+
 - type: stealTargetGroup
   id: CMOLicenseSteal
   name: steal-target-groups-cmolicense
@@ -15,8 +15,31 @@
     state: cmo-license
 
 - type: stealTargetGroup
+  id: MiningShuttleConsoleCircuitboard
+  name: steal-target-groups-mining-shuttle-console-circuitboard
+  sprite:
+    sprite: Objects/Misc/module.rsi
+    state: cpuboard
+
+- type: stealTargetGroup
   id: SalvageShuttleConsoleCircuitboard
   name: steal-target-groups-salvage-shuttle-console-circuitboard
   sprite:
     sprite: Objects/Misc/module.rsi
     state: cpuboard
+
+- type: stealTargetGroup
+  id: HoPBoardSteal
+  name: steal-target-groups-hopboard
+  sprite:
+    sprite: _Starlight/Objects/Misc/hop_clipboard.rsi
+    state: hop_clipboard
+
+#Thief single items
+
+- type: stealTargetGroup
+  id: Proto5x
+  name: steal-target-groups-proto5x
+  sprite:
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
+    state: icon

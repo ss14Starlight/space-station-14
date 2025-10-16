@@ -10,13 +10,16 @@
     - Abductor
     messages:
     - abductor-gun-restricted-1
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
+      Skating:
+        knockback: 2
+        staminaMultiplier: 50
       Resomi:
         knockback: 3
         staminaMultiplier: 20
       Avali:
-        knockback: 1 # Bigger bird, more sturdy bones.. or something.
+        knockback: 1 # half of what resomi take
         staminaMultiplier: 20
       Felionoid:
         knockback: 1.5 #half of what resomi take
@@ -51,7 +54,7 @@
         ents: []
   - type: StaticPrice
     price: 500
-    
+
 - type: entity
   parent: BaseWeaponShotgunAny
   id: BaseWeaponShotgun
@@ -162,7 +165,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/sentiel_inhands_64x.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 

@@ -1,0 +1,91 @@
+- type: entity
+  id: BaseDoorElectronicsSyndicate
+  parent: [DoorElectronics, BaseSyndicateContraband]
+  name: Syndicate door electronics
+  description: An electronics board used in doors and airlocks.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/module.rsi
+      state: syndicate_door_electronics
+    - type: Tag
+      tags:
+        - DoorElectronics
+    - type: DoorElectronics
+      accessGroups:
+      - Syndicate
+    - type: StaticPrice
+      price: 55
+    - type: AccessReader
+    - type: ActivatableUI
+      key: enum.DoorElectronicsConfigurationUiKey.Key
+      requiredItems:
+        tags:
+        - DoorElectronicsConfigurator
+    - type: UserInterface
+      interfaces:
+        enum.DoorElectronicsConfigurationUiKey.Key:
+          type: DoorElectronicsBoundUserInterface
+
+- type: entity
+  id: BaseDoorElectronicsCentComm
+  parent: [DoorElectronics, BaseCentcommContraband]
+  name: Central Command door electronics
+  description: An electronics board used in doors and airlocks.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/module.rsi
+      state: centralcommand_door_electronics
+    - type: Tag
+      tags:
+        - DoorElectronics
+    - type: DoorElectronics
+      accessGroups:
+      - General
+      - Security
+      - Cargo
+      - Command
+      - Research
+      - Medical
+      - Service
+      - Engineering
+      - CentralCommand
+    - type: StaticPrice
+      price: 55
+    - type: AccessReader
+    - type: ActivatableUI
+      key: enum.DoorElectronicsConfigurationUiKey.Key
+      requiredItems:
+        tags:
+        - DoorElectronicsConfigurator
+    - type: UserInterface
+      interfaces:
+        enum.DoorElectronicsConfigurationUiKey.Key:
+          type: DoorElectronicsBoundUserInterface
+
+- type: entity
+  id: BaseDoorElectronicsXenoborg
+  parent: [DoorElectronics, BaseXenoborgContraband]
+  name: Xenoborg door electronics
+  description: An electronics board used in doors and airlocks.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/module.rsi
+      state: xenoborg_door_electronics
+    - type: Tag
+      tags:
+        - DoorElectronics
+    - type: DoorElectronics
+      accessGroups: 
+      - Xenoborg
+    - type: StaticPrice
+      price: 55
+    - type: AccessReader
+    - type: ActivatableUI
+      key: enum.DoorElectronicsConfigurationUiKey.Key
+      requiredItems:
+        tags:
+        - DoorElectronicsConfigurator
+    - type: UserInterface
+      interfaces:
+        enum.DoorElectronicsConfigurationUiKey.Key:
+          type: DoorElectronicsBoundUserInterface

@@ -3,18 +3,61 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+// Starlight Start: DockCableSystem
+using System.Collections.Generic;
+using Robust.Shared.Utility;
+// Starlight End
 
 namespace Content.Server.Power.Nodes
 {
     [DataDefinition]
     public sealed partial class CableNode : Node
     {
+        // Starlight Start: DockCableSystem
+        private HashSet<CableNode>? _alwaysReachable;
+
+        public void AddAlwaysReachable(CableNode node)
+        {
+            if (node == this) return;
+            _alwaysReachable ??= new();
+            _alwaysReachable.Add(node);
+        }
+
+        public void RemoveAlwaysReachable(CableNode node)
+        {
+            if (_alwaysReachable == null) return;
+            _alwaysReachable.Remove(node);
+        }
+
+        public HashSet<CableNode>? GetAlwaysReachable() => _alwaysReachable;
+        // Starlight End
         public override IEnumerable<Node> GetReachableNodes(TransformComponent xform,
             EntityQuery<NodeContainerComponent> nodeQuery,
             EntityQuery<TransformComponent> xformQuery,
             MapGridComponent? grid,
             IEntityManager entMan)
         {
+            // Starlight Start: DockCableSystem
+            if (_alwaysReachable != null)
+            {
+                var remQ = new RemQueue<CableNode>();
+                foreach (var node in _alwaysReachable)
+                {
+                    if (node.Deleting)
+                    {
+                        remQ.Add(node);
+                    }
+                    else
+                    {
+                        yield return node;
+                    }
+                }
+                foreach (var node in remQ)
+                {
+                    _alwaysReachable.Remove(node);
+                }
+            }
+            // Starlight End
             if (!xform.Anchored || grid == null)
                 yield break;
 
@@ -66,5 +109,21 @@ namespace Content.Server.Power.Nodes
                 yield return node;
             }
         }
+        // Starlight Start: DockCableSystem
+        public override void OnAnchorStateChanged(IEntityManager entityManager, bool anchored)
+        {
+            base.OnAnchorStateChanged(entityManager, anchored);
+
+            var dockCableSystem = entityManager.System<Content.Server.Power.EntitySystems.DockCableSystem>();
+            if (anchored)
+            {
+                dockCableSystem.TryConnectDockedCable(this);
+            }
+            else
+            {
+                dockCableSystem.RemoveDockConnections(this);
+            }
+        }
+        // Starlight End
     }
 }
