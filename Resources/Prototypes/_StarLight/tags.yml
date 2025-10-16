@@ -211,6 +211,18 @@
   id: Locker
 
 - type: Tag
+  id: BorgModuleSecurity
+
+- type: Tag
+  id: Disabler
+
+- type: Tag
+  id: L6Saw
+
+- type: Tag
+  id: MagazineBoxLightRifle
+  
+- type: Tag
   id: CivilianTraitBackground
 
 - type: Tag

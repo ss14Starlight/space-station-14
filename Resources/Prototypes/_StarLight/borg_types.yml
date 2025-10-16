@@ -1,4 +1,170 @@
-# Purrfus borg
+# Security borg
+- type: borgType
+  id: security
+
+  # Description
+  dummyPrototype: BorgChassisSecurity
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSecurity
+
+  defaultModules:
+  - BorgModuleTool
+  - BorgModuleSecurity
+
+  radioChannels:
+  - Science
+  - Security
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+
+  # Pet
+  petSuccessString: petting-success-security-cyborg
+  petFailureString: petting-failure-security-cyborg
+
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 36000 #10 hrs
+
+# Syndicate borgs
+
+- type: borgType
+  id: SyndicateAssault
+
+  # Description
+  dummyPrototype: BorgChassisSyndicateAssault
+
+  # Functional
+  extraModuleCount: 4
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSyndicate
+    - BorgModuleSyndicateAssault
+
+  defaultModules:
+  - BorgModuleTool
+  - BorgModuleOperative
+  - BorgModuleL6C
+  - BorgModuleEsword
+
+  radioChannels:
+  - Syndicate
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spritePath: Mobs/Silicon/Chassis/synd_sec.rsi
+
+  # Pet
+  petSuccessString: petting-success-syndicate-cyborg
+  petFailureString: petting-failure-syndicate-cyborg
+
+- type: borgType
+  id: SyndicateMedical
+
+  # Description
+  dummyPrototype: BorgChassisSyndicateMedical
+
+  # Functional
+  extraModuleCount: 4
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleMedical
+    - BorgModuleSyndicate
+
+  defaultModules:
+  - BorgModuleTool
+  - BorgModuleChemical
+  - BorgModuleTopicals
+  - BorgModuleSyndicateWeapon
+
+  radioChannels:
+  - Syndicate
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spritePath: Mobs/Silicon/Chassis/synd_medical.rsi
+
+  # Pet
+  petSuccessString: petting-success-syndicate-cyborg
+  petFailureString: petting-failure-syndicate-cyborg
+
+- type: borgType
+  id: SyndicateSaboteur
+
+  # Description
+  dummyPrototype: BorgChassisSyndicateSaboteur
+
+  # Functional
+  extraModuleCount: 4
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleEngineering
+    - BorgModuleSyndicate
+
+  defaultModules:
+  - BorgModuleTool
+  - BorgModuleRCD
+  - BorgModuleOperative
+  - BorgModuleSyndicateWeapon
+
+  radioChannels:
+  - Syndicate
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spritePath: Mobs/Silicon/Chassis/synd_eng.rsi
+
+  # Pet
+  petSuccessString: petting-success-syndicate-cyborg
+  petFailureString: petting-failure-syndicate-cyborg
+
+- type: borgType
+  id: SyndicateStealth
+
+  # Description
+  dummyPrototype: BorgChassisSyndicateStealth
+
+  # Functional
+  extraModuleCount: 4
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSyndicate
+
+  defaultModules:
+  - BorgModuleTool
+  - BorgModuleOperative
+
+  radioChannels:
+  - Syndicate
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spritePath: _Starlight/Mobs/Silicon/Chassis/synd_stealth.rsi
+
+  # Pet
+  petSuccessString: petting-success-syndicate-cyborg
+  petFailureString: petting-failure-syndicate-cyborg
+
+  # Components
+  addComponents:
+  - type: VentCrawler
+  - type: Stealth
+    maxVisibility: 1.2
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.37
+    movementVisibilityRate: 0.20
+
 - type: borgType
   id: purrfus
 
@@ -28,4 +194,4 @@
 
   # Pet
   petSuccessString: petting-success-generic-cyborg
-  petFailureString: petting-failure-generic-cyborg
+  petFailureString: petting-failure-generic-cyborg# Purrfus borg

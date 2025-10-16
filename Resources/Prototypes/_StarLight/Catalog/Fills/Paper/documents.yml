@@ -447,3 +447,12 @@
   components:
     - type: Paper
       content: doc-text-printer-station-location
+      
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentSalvageLeadReport
+  name: Salvage Lead report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-salvagelead-report

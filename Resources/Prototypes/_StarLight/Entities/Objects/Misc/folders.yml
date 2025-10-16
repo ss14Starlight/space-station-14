@@ -179,3 +179,14 @@
         pen_slot: !type:ContainerSlot
         IdCardConsole-privilegedId: !type:ContainerSlot
         IdCardConsole-targetId: !type:ContainerSlot
+
+- type: entity
+  parent: [BoxFolderClipboardEmpty]
+  id: BoxFolderClipboardSalvageLead
+  name: salvage lead clipboard
+  description: Looks like its been taped back together. Covered in space dust.
+  components:
+  - type: StorageFill
+    contents:
+    - id: PrintedDocumentSalvageLeadReport
+      amount: 7

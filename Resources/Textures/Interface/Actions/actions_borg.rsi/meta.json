@@ -168,6 +168,9 @@
         },
         {
             "name": "select-type"
+        },
+        {
+            "name": "security-unlethal-module"
         }
     ]
 }

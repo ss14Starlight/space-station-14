@@ -127,30 +127,75 @@
   name: salvage lead PDA
   description: Smells like blood and ash.
   components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Devices/pda.rsi
-    - type: Pda
-      id: SalvageLeadIDCard
-    - type: Appearance
-      appearanceDataInit:
-        enum.PdaVisuals.PdaType:
-          !type:String
-          pda-salvagelead
-    - type: PdaBorderColor
-      borderColor: "#af9366"
-      accentHColor: "#8900c9"
-      accentVColor: "#8900c9"
-    - type: Icon
-      sprite: _Starlight/Objects/Devices/pda.rsi
-      state: pda-salvagelead
-    - type: CartridgeLoader
-      uiKey: enum.PdaUiKey.Key
-      preinstalled:
-        - CrewManifestCartridge
-        - NotekeeperCartridge
-        - NanoTaskCartridge
-        - NewsReaderCartridge
-        - AstroNavCartridge
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: SalvageLeadIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-salvagelead
+  - type: PdaBorderColor
+    borderColor: "#af9366"
+    accentHColor: "#8900c9"
+    accentVColor: "#8900c9"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-salvagelead
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+
+- type: entity
+  parent: SalvageLeadPDA
+  id: VeteranSalvageLeadPDA
+  name: veteran salvage lead PDA
+  description: looks like this was patched up with a bunch of scrap. barely.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: SalvageLeadIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-veteransalvagelead
+  - type: PdaBorderColor
+    borderColor: "#af9366"
+    accentHColor: "#8900c9"
+    accentVColor: "#8f36c6"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veteransalvagelead
+
+- type: entity
+  parent: SalvagePDA
+  id: VeteranSalvagePDA
+  name: veteran salvage PDA
+  description: looks like this was patched up with a bunch of scrap. barely.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: SalvageIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-veteransalvage
+  - type: PdaBorderColor
+    borderColor: "#af9366"
+    accentVColor: "#8f36c6"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veteransalvage
 
 - type: entity
   parent: BasePDA
@@ -181,6 +226,28 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+
+- type: entity
+  parent: MiningPDA
+  id: VeteranMiningPDA
+  name: veteran mining PDA
+  description: the screen is cracked, and the buttons barely work.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: MiningIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-veteranmining
+  - type: PdaBorderColor
+    borderColor: "#af9366"
+    accentVColor: "#6e63be"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veteranmining
 
 - type: entity
   parent: BasePDA

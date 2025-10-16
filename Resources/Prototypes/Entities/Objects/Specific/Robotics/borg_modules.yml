@@ -1305,24 +1305,52 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-desword-module }
 
 - type: entity
-  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule, BaseSyndicateContraband ]
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #Starlight L6 printing
   id: BorgModuleL6C
   name: L6C ROW cyborg module
   description: A weapons module that comes with a L6C.
   components:
-  - type: Sprite
-    layers:
-    - state: syndicate
-    - state: icon-syndicate
-  - type: ItemBorgModule
-    hands:
-    - item: WeaponLightMachineGunL6C
-    - item: PinpointerSyndicateNuclear
-  - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
-
+    - type: Sprite
+      layers:
+      - state: syndicate
+      - state: icon-syndicate
+    - type: ItemBorgModule
+      hands:
+      # starlight start: cyborgs l6 actually use ammo
+      - item: WeaponLightMachineGunL6
+        hand:
+          emptyRepresentative: WeaponLightMachineGunL6
+          emptyLabel: borg-slot-l6-empty
+          whitelist:
+            tags:
+            - L6Saw
+      - hand:
+          emptyRepresentative: WeaponLightMachineGunL6
+          emptyLabel: borg-slot-l6-empty
+          whitelist:
+            tags:
+            - L6Saw
+      - item: MagazineLightRifleBoxSP
+        hand:
+          emptyRepresentative: MagazineLightRifleBoxSP
+          emptyLabel: borg-slot-light-box-empty
+          whitelist:
+            tags:
+            - MagazineLightRifleBox
+      - item: MagazineBoxLightRifleSP
+        hand:
+          emptyRepresentative: MagazineBoxLightRifleSP
+          emptyLabel: borg-slot-light-ammo-box-empty
+          whitelist:
+            tags:
+            - MagazineBoxLightRifle
+      - item: PinpointerSyndicateNuclear
+      # Starlight end
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
+      
 - type: entity
-  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule, BaseSyndicateContraband ]
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #Starlight c20 printing
   id: BorgModuleC20r
   name: C-20r ROW cyborg module
   description: A weapons module that comes with a burst-fire C-20r.

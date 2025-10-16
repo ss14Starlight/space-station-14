@@ -41,6 +41,13 @@ public sealed partial class BorgSwitchableTypeComponent : Component
     public ProtoId<BorgTypePrototype>? SelectedBorgType;
 
     /// <summary>
+    /// The list of borg types that this borg can select from.
+    /// If empty, all <see cref="BorgTypePrototype"/>s will be available
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<BorgTypePrototype>> AvailableTypes = []; // Starlight-edit
+
+    /// <summary>
     /// Radio channels that the borg will always have. These are added on top of the selected type's radio channels.
     /// </summary>
     [DataField]

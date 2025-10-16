@@ -494,6 +494,10 @@
     - Moffic
     - Mothroach
   # Starlight-end
+  # Starlight-start: Body emotes (wing flap!)
+  - type: BodyEmotes
+    soundsId: MothroachBodyEmotes
+  # Starlight-end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -518,7 +522,7 @@
   - type: Speech
     speechVerb: Moth
     speechSounds: Squeak
-    allowedEmotes: ['Chitter', 'Squeak']
+    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: FaxableObject
     insertingState: inserting_mothroach
   - type: MothAccent

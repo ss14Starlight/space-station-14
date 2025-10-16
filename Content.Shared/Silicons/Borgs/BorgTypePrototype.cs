@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Radio;
+using Content.Shared.Roles; // Starlight-edit
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
@@ -162,5 +163,8 @@ public sealed partial class BorgTypePrototype : IPrototype
     // Starlight-start
     [DataField]
     public string? DefaultSubtype;
+    
+    [DataField]
+    public HashSet<JobRequirement> Requirements = new (); // Starlight-edit
     // Starlight-end
 }

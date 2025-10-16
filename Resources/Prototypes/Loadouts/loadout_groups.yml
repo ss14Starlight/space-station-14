@@ -58,7 +58,10 @@
   - TowelColorSilver
   - TowelColorWhite
   - TowelColorYellow
-  - SuperSynthesizerInstrument # 🌟Starlight🌟
+  - HarmonicaInstrument # 🌟Starlight🌟
+  - FluteInstrument #Starlight
+  - AcousticGuitarInstrument #Starlight
+  - TrumpetInstrument #Starlight
   - ClothingUnderSocksCoder # 🌟Starlight🌟
   - ClothWrap # 🌟Starlight🌟
   - ClothingUniformJumpskirtElegantMaid # 🌟Starlight🌟
@@ -722,6 +725,7 @@
   - PanFlute
   - Ocarina
   - Bagpipe
+  - SuperSynth #Starlight
 
 # Cargo
 - type: loadoutGroup

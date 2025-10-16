@@ -104,6 +104,11 @@
   - type: Appearance
   - type: StaticPrice
     price: 10000
+  # Starlight-start
+  - type: Tag
+    tags:
+    - L6Saw
+  # Starlight-end
 
 - type: entity
   name: L6C ROW

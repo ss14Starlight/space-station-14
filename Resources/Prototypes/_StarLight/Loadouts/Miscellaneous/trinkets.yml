@@ -1,14 +1,55 @@
-# Super Synth
+# Instruments
 - type: loadout
-  id: SuperSynthesizerInstrument
+  id: HarmonicaInstrument
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:OverallPlaytimeRequirement
-      time: 180000 #50 hours of activity in the Starlight sectors ##changed from musician because musician isn't mechanically fun to play, and the slot was always hogged for playtime for this item
+      time: 360000 # Originally 50 hours for SuperSynth but changed to Harmonica
   storage:
     back:
-    - SuperSynthesizerInstrument
+    - HarmonicaInstrument
+  groupBy: "Instruments"
+
+- type: loadout
+  id: FluteInstrument
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMusician
+      time: 36000 # 10hr
+  storage:
+    back:
+    - FluteInstrument
+  groupBy: "Instruments"
+
+- type: loadout
+  id: AcousticGuitarInstrument
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMusician
+      time: 54000 # 15hr
+  storage:
+    back:
+    - AcousticGuitarInstrument
+  groupBy: "Instruments"
+
+- type: loadout
+  id: TrumpetInstrument
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMusician
+      time: 72000 # 10hr
+  storage:
+    back:
+    - TrumpetInstrument
+  groupBy: "Instruments"
+
 
 # Meow mrrp ## shut up
 - type: loadout
