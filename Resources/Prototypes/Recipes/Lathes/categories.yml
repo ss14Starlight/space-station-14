@@ -20,14 +20,6 @@
   name: lathe-category-parts
 
 - type: latheCategory
-  id: Robotics
-  name: lathe-category-robotics
-
-- type: latheCategory
-  id: Tiles
-  name: lathe-category-tiles
-
-- type: latheCategory
   id: Tools
   name: lathe-category-tools
 
@@ -83,28 +75,57 @@
 
 # Cutter machine
 - type: latheCategory
+  id: Tiles
+  name: lathe-category-tiles
+
+- type: latheCategory
+  id: Circuit
+  name: lathe-category-circuit-tile
+
+- type: latheCategory
   id: Concrete
-  name: lathe-category-concrete
+  name: lathe-category-concrete-tile
 
 - type: latheCategory
   id: Dark
-  name: lathe-category-dark
+  name: lathe-category-dark-tile
+
+- type: latheCategory
+  id: Faux
+  name: lathe-category-faux-tile
 
 - type: latheCategory
   id: Maints
-  name: lathe-category-maints
+  name: lathe-category-maints-tile
 
 - type: latheCategory
   id: Steel
-  name: lathe-category-steel
+  name: lathe-category-steel-tile
 
 - type: latheCategory
   id: White
-  name: lathe-category-white
+  name: lathe-category-white-tile
 
 - type: latheCategory
   id: Wood
-  name: lathe-category-wood
+  name: lathe-category-wood-tile
+
+- type: latheCategory
+  id: Marble
+  name: lathe-category-marble
+
+# Science
+- type: latheCategory
+  id: Mech
+  name: lathe-category-mechs
+
+- type: latheCategory
+  id: Modules
+  name: lathe-category-modules
+
+- type: latheCategory
+  id: Robotics
+  name: lathe-category-robotics
 
 # Security TechFab
 - type: latheCategory
@@ -147,52 +168,3 @@
 - type: latheCategory
   id: Neck
   name: lathe-category-neck
-  
-# Exosuit
-- type: latheCategory
-  id: Mech
-  name: lathe-category-mechs
-
-- type: latheCategory
-  id: Vim
-  name: lathe-category-mechs-vim
-
-- type: latheCategory
-  id: Honker
-  name: lathe-category-mechs-honker
-
-- type: latheCategory
-  id: Hamptr
-  name: lathe-category-mechs-hamptr
-
-- type: latheCategory
-  id: Ripley
-  name: lathe-category-mechs-ripley
-
-- type: latheCategory
-  id: RipleyMKII
-  name: lathe-category-mechs-ripleymkii
-
-- type: latheCategory
-  id: Paddy
-  name: lathe-category-mechs-paddy
-
-- type: latheCategory
-  id: Clarke
-  name: lathe-category-mechs-clarke
-
-- type: latheCategory
-  id: Gygax
-  name: lathe-category-mechs-gygax
-
-- type: latheCategory
-  id: Durand
-  name: lathe-category-mechs-durand
-
-- type: latheCategory
-  id: MechEquipment
-  name: lathe-category-mechs-equipment
-
-- type: latheCategory
-  id: MechWeapons
-  name: lathe-category-mechs-weapons

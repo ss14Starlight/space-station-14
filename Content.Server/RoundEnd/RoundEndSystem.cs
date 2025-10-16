@@ -8,7 +8,6 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Screen.Components;
 using Content.Shared.Database;
@@ -20,6 +19,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Station.Components;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.RoundEnd
@@ -58,6 +58,12 @@ namespace Content.Server.RoundEnd
 
         public TimeSpan AutoCallStartTime;
         private bool _autoCalledBefore = false;
+        // Starlight Start
+        public TimeSpan? CallCooldownRemaining => _cooldownTokenSource != null
+            ? DefaultCooldownDuration - (_gameTiming.CurTime - (_countdownTokenSource?.Token.CanBeCanceled ?? false ? LastCountdownStart : _gameTiming.CurTime))
+            : null;
+        private bool _shuttleCallsEnabled = true;
+        // Starlight End
 
         public override void Initialize()
         {
@@ -97,10 +103,10 @@ namespace Content.Server.RoundEnd
         /// </summary>
         public EntityUid? GetStation()
         {
-            AllEntityQuery<StationEmergencyShuttleComponent, StationDataComponent>().MoveNext(out _, out _, out var data);
+            AllEntityQuery<StationEmergencyShuttleComponent, StationDataComponent>().MoveNext(out var uid, out _, out var data);
             if (data == null)
                 return null;
-            var targetGrid = _stationSystem.GetLargestGrid(data);
+            var targetGrid = _stationSystem.GetLargestGrid((uid, data));
             return targetGrid == null ? null : Transform(targetGrid.Value).MapUid;
         }
 
@@ -147,6 +153,10 @@ namespace Content.Server.RoundEnd
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
                 return;
 
+            // Starlight Start
+            if (!_shuttleCallsEnabled)
+                return;
+            // Starlight End
             if (checkCooldown && _cooldownTokenSource != null)
                 return;
 
@@ -213,6 +223,11 @@ namespace Content.Server.RoundEnd
                 _deviceNetworkSystem.QueuePacket(shuttle.Value, null, payload, net.TransmitFrequency);
             }
         }
+        // Starlight Start
+        public void SetShuttleCallsEnabled(bool enabled) => _shuttleCallsEnabled = enabled;
+
+        public bool GetShuttleCallsEnabled() => _shuttleCallsEnabled;
+        // Starlight End
 
         public void CancelRoundEndCountdown(EntityUid? requester = null, bool checkCooldown = true)
         {

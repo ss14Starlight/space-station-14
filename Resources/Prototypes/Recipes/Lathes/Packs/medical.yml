@@ -44,6 +44,8 @@
   - DiseaseSwab
   - BodyBag
   - WhiteCane
+  - OffsetCane
+  - OffsetCaneWood
 
 - type: latheRecipePack
   id: RollerBedsStatic
@@ -102,3 +104,6 @@
   - StasisBedMachineCircuitboard
   - CryoPodMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
+  - CloningConsoleComputerCircuitboard #Starlight
+  - CloningPodMachineCircuitboard #Starlight
+  - MedicalScannerMachineCircuitboard #Starlight

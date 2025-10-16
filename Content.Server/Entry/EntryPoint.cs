@@ -1,3 +1,8 @@
+using Content.Server._NullLink;
+using Content.Server._NullLink.Core;
+using Content.Server._NullLink.EventBus;
+using Content.Server._NullLink.PlayerData;
+using Content.Server._Starlight.BugReports; // Staright
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -11,6 +16,7 @@ using Content.Server.EUI;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;
 using Content.Server.GuideGenerator;
+using Content.Server.Holiday;
 using Content.Server.Info;
 using Content.Server.IoC;
 using Content.Server.Maps;
@@ -25,7 +31,7 @@ using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Starlight.TextToSpeech;
 using Content.Server.Voting.Managers;
-using Content.Server.Holiday;
+using Content.Shared._NullLink;
 using Content.Shared.CCVar;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
@@ -81,7 +87,7 @@ namespace Content.Server.Entry
 
             foreach (var callback in TestingCallbacks)
             {
-                var cast = (ServerModuleTestingCallbacks) callback;
+                var cast = (ServerModuleTestingCallbacks)callback;
                 cast.ServerBeforeIoC?.Invoke();
             }
 
@@ -121,9 +127,11 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<JobWhitelistManager>().Initialize();
                 IoCManager.Resolve<PlayerRateLimitManager>().Initialize();
 
-                //🌟Starlight🌟
+                //🌟Starlight🌟 start
                 IoCManager.Resolve<ITTSManager>().Initialize();
                 IoCManager.Resolve<HolidaySystem>().Initialize();
+                IoCManager.Resolve<IBugReportManager>().Initialize();
+                //🌟Starlight🌟 end
             }
         }
 
@@ -166,6 +174,13 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<IConnectionManager>().PostInit();
                 IoCManager.Resolve<MultiServerKickManager>().Initialize();
                 IoCManager.Resolve<CVarControlManager>().Initialize();
+
+                // NullLink start
+                IoCManager.Resolve<IActorRouter>().Initialize();
+                IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().Initialize();
+                IoCManager.Resolve<INullLinkEventBusManager>().Initialize();
+                IoCManager.Resolve<INullLinkPlayerManager>().Initialize();
+                // NullLink end
             }
         }
 
@@ -196,9 +211,14 @@ namespace Content.Server.Entry
             _playTimeTracking?.Shutdown();
             _dbManager?.Shutdown();
             IoCManager.Resolve<ServerApi>().Shutdown();
-
             IoCManager.Resolve<DiscordLink>().Shutdown();
             IoCManager.Resolve<DiscordChatLink>().Shutdown();
+            // Nullink start
+            IoCManager.Resolve<INullLinkPlayerManager>().Shutdown();
+            IoCManager.Resolve<INullLinkEventBusManager>().Shutdown();
+            IoCManager.Resolve<IActorRouter>().Shutdown();
+            IoCManager.Resolve<IBugReportManager>().Shutdown();
+            // Nullink end
         }
 
         private static void LoadConfigPresets(IConfigurationManager cfg, IResourceManager res, ISawmill sawmill)

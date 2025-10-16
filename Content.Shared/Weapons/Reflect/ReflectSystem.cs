@@ -11,11 +11,14 @@ using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Weapons.Melee; //STARLIGHT
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Content.Shared.Examine;
+using Content.Shared.Localizations;
 
 namespace Content.Shared.Weapons.Reflect;
 
@@ -46,6 +49,7 @@ public sealed class ReflectSystem : EntitySystem
         SubscribeLocalEvent<ReflectComponent, GotUnequippedEvent>(OnReflectUnequipped);
         SubscribeLocalEvent<ReflectComponent, GotEquippedHandEvent>(OnReflectHandEquipped);
         SubscribeLocalEvent<ReflectComponent, GotUnequippedHandEvent>(OnReflectHandUnequipped);
+        SubscribeLocalEvent<ReflectComponent, ExaminedEvent>(OnExamine);
     }
 
     private void OnReflectUserCollide(Entity<ReflectComponent> ent, ref ProjectileReflectAttemptEvent args)
@@ -68,7 +72,7 @@ public sealed class ReflectSystem : EntitySystem
         if (!ent.Comp.InRightPlace)
             return; // only reflect when equipped correctly
 
-        if (TryReflectHitscan(ent, ent.Owner, args.Shooter, args.SourceItem, args.Direction, args.Reflective, out var dir))
+        if (TryReflectHitscan(ent, ent.Owner, args.Shooter, args.SourceItem, args.Direction, args.Reflective, args.HitscanId, out var dir)) //STARLIGHT
         {
             args.Direction = dir.Value;
             args.Reflected = true;
@@ -89,7 +93,7 @@ public sealed class ReflectSystem : EntitySystem
         if (args.Reflected)
             return;
 
-        if (TryReflectHitscan(ent, ent.Owner, args.Shooter, args.SourceItem, args.Direction, args.Reflective, out var dir))
+        if (TryReflectHitscan(ent, ent.Owner, args.Shooter, args.SourceItem, args.Direction, args.Reflective, args.HitscanId, out var dir)) //STARLIGHT
         {
             args.Direction = dir.Value;
             args.Reflected = true;
@@ -101,13 +105,30 @@ public sealed class ReflectSystem : EntitySystem
         if (!TryComp<ReflectiveComponent>(projectile, out var reflective) ||
             (reflector.Comp.Reflects & reflective.Reflective) == 0x0 ||
             !_toggle.IsActivated(reflector.Owner) ||
-            !_random.Prob(reflector.Comp.ReflectProb) ||
             !TryComp<PhysicsComponent>(projectile, out var physics))
         {
             return false;
         }
 
         // 🌟Starlight🌟 start
+        var reflectionChance = reflector.Comp.ReflectProb;
+
+        // Check for enhanced reflection against specific projectile types
+        if (TryComp<MetaDataComponent>(projectile, out var metaData) && metaData.EntityPrototype != null)
+        {
+            var projectileId = metaData.EntityPrototype.ID;
+            if (reflector.Comp.EnhancedReflection.TryGetValue(projectileId, out var enhancedChance))
+            {
+                reflectionChance = enhancedChance;
+            }
+        }
+
+        if (!_random.Prob(reflectionChance))
+        {
+            return false;
+        }
+
+
         if (reflector.Comp.OverrideAngle is not null)
         {
             var overrideAngle = _transform.GetWorldRotation(reflector) + reflector.Comp.OverrideAngle.Value;
@@ -164,11 +185,27 @@ public sealed class ReflectSystem : EntitySystem
         EntityUid shotSource,
         Vector2 direction,
         ReflectType hitscanReflectType,
+        // 🌟Starlight🌟 start
+        string? hitscanId,
         [NotNullWhen(true)] out Vector2? newDirection)
     {
         if ((reflector.Comp.Reflects & hitscanReflectType) == 0x0 ||
-            !_toggle.IsActivated(reflector.Owner) ||
-            !_random.Prob(reflector.Comp.ReflectProb))
+            !_toggle.IsActivated(reflector.Owner))
+        {
+            newDirection = null;
+            return false;
+        }
+
+        // Get reflection probability - check for enhanced reflection against specific bullet types
+        var reflectionChance = reflector.Comp.ReflectProb;
+
+        // Check for enhanced reflection against specific bullet types
+        if (hitscanId != null && reflector.Comp.EnhancedReflection.TryGetValue(hitscanId, out var enhancedChance))
+        {
+            reflectionChance = enhancedChance;
+        }
+
+        if (!_random.Prob(reflectionChance))
         {
             newDirection = null;
             return false;
@@ -176,7 +213,6 @@ public sealed class ReflectSystem : EntitySystem
 
         PlayAudioAndPopup(reflector.Comp, user);
 
-        // 🌟Starlight🌟 start
         if (reflector.Comp.OverrideAngle is { } newAngle)
         {
             var overrideAngle = _transform.GetWorldRotation(reflector) + newAngle;
@@ -231,4 +267,30 @@ public sealed class ReflectSystem : EntitySystem
         ent.Comp.InRightPlace = false;
         Dirty(ent);
     }
+
+    #region Examine
+    private void OnExamine(Entity<ReflectComponent> ent, ref ExaminedEvent args)
+    {
+        // This isn't examine verb or something just because it looks too much bad.
+        // Trust me, universal verb for the potential weapons, armor and walls looks awful.
+        var value = MathF.Round(ent.Comp.ReflectProb * 100, 1);
+
+        if (!_toggle.IsActivated(ent.Owner) || value == 0 || ent.Comp.Reflects == ReflectType.None)
+            return;
+
+        var compTypes = ent.Comp.Reflects.ToString().Split(", ");
+
+        List<string> typeList = new(compTypes.Length);
+
+        for (var i = 0; i < compTypes.Length; i++)
+        {
+            var type = Loc.GetString(("reflect-component-" + compTypes[i]).ToLower());
+            typeList.Add(type);
+        }
+
+        var msg = ContentLocalizationManager.FormatList(typeList);
+
+        args.PushMarkup(Loc.GetString("reflect-component-examine", ("value", value), ("type", msg)));
+    }
+    #endregion
 }

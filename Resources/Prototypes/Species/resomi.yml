@@ -17,6 +17,9 @@
   oldAge: 257
   maxAge: 430
   customName: true # Starlight
+  standardSize: 150
+  standardWeight: 40
+  standardDensity: 17
 
 - type: speciesBaseSprites
   id: MobResomiSprites
@@ -29,6 +32,8 @@
     RArm: MobResomiRArm
     LHand: MobResomiLHand
     RHand: MobResomiRHand
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     LLeg: MobResomiLLeg
     RLeg: MobResomiRLeg
     LFoot: MobResomiLFoot
@@ -39,6 +44,9 @@
   id: MobResomiMarkingLimits
   onlyWhitelisted: true
   points:
+    Special:
+      points: 10
+      required: false
     Hair:
       points: 1
       required: false

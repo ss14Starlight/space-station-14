@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Art by Way,wayiscool,wayiscute, or https://github.com/wayiscool for the SS14 Starlight project",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+    {
+        "name": "bush01"
+    },
+    {
+        "name": "bush02"
+    },
+    {
+        "name": "bush03"
+    },
+    {
+        "name": "bush04"
+    }
+    ]
+}

@@ -93,7 +93,7 @@ namespace Content.Shared.Damage
         private void DamageableInit(EntityUid uid, DamageableComponent component, ComponentInit _)
         {
             if (component.DamageContainerID != null &&
-                _prototypeManager.TryIndex<DamageContainerPrototype>(component.DamageContainerID,
+                _prototypeManager.Resolve<DamageContainerPrototype>(component.DamageContainerID,
                 out var damageContainerPrototype))
             {
                 // Initialize damage dictionary, using the types and groups from the damage
@@ -172,8 +172,16 @@ namespace Content.Shared.Damage
         ///     Returns a <see cref="DamageSpecifier"/> with information about the actual damage changes. This will be
         ///     null if the user had no applicable components that can take damage.
         /// </returns>
-        public DamageSpecifier? TryChangeDamage(EntityUid? uid, DamageSpecifier damage, bool ignoreResistances = false,
-            bool interruptsDoAfters = true, DamageableComponent? damageable = null, EntityUid? origin = null, float armorPenetration = 0f)
+        public DamageSpecifier? TryChangeDamage(
+            EntityUid? uid,
+            DamageSpecifier damage,
+            bool ignoreResistances = false,
+            bool interruptsDoAfters = true,
+            DamageableComponent? damageable = null,
+            EntityUid? origin = null,
+            float armorPenetration = 0f, // 🌟Starlight🌟
+            bool canHeal = true // 🌟Starlight🌟
+        )
         {
             if (!uid.HasValue || !_damageableQuery.Resolve(uid.Value, ref damageable, false))
             {
@@ -196,14 +204,14 @@ namespace Content.Shared.Damage
             if (!ignoreResistances)
             {
                 if (damageable.DamageModifierSetId != null &&
-                    _prototypeManager.TryIndex<DamageModifierSetPrototype>(damageable.DamageModifierSetId, out var modifierSet))
+                    _prototypeManager.Resolve<DamageModifierSetPrototype>(damageable.DamageModifierSetId, out var modifierSet))
                 {
                     // TODO DAMAGE PERFORMANCE
                     // use a local private field instead of creating a new dictionary here..
                     damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
                 }
 
-                var ev = new DamageModifyEvent(damage, origin, armorPenetration);
+                var ev = new DamageModifyEvent(damage, origin, armorPenetration, canHeal);    // 🌟Starlight🌟
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
 
@@ -365,7 +373,7 @@ namespace Content.Shared.Damage
 
             // Has the damage actually changed?
             DamageSpecifier newDamage = new() { DamageDict = new(state.DamageDict) };
-            var delta = component.Damage - newDamage;
+            var delta = newDamage - component.Damage;
             delta.TrimZeros();
 
             if (!delta.Empty)
@@ -397,14 +405,16 @@ namespace Content.Shared.Damage
         public readonly DamageSpecifier OriginalDamage;
         public DamageSpecifier Damage;
         public EntityUid? Origin;
-        public float ArmorPenetration;
+        public float ArmorPenetration;   // 🌟Starlight🌟
+        public bool CanHeal;  // 🌟Starlight🌟
 
-        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, float armorPenetration = 0f)
+        public DamageModifyEvent(DamageSpecifier damage, EntityUid? origin = null, float armorPenetration = 0f, bool canHeal = false) // 🌟Starlight🌟
         {
             OriginalDamage = damage;
             Damage = damage;
             Origin = origin;
-            ArmorPenetration = armorPenetration;
+            ArmorPenetration = armorPenetration;   // 🌟Starlight🌟
+            CanHeal = canHeal; // 🌟Starlight🌟
         }
     }
 

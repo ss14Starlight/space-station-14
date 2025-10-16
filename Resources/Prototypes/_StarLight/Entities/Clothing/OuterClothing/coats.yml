@@ -48,7 +48,7 @@
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterCoatCorpsman
-  name: Corpsman's Armored Jacket
+  name: corpsman's armored jacket
   description: Tacticool never looked so good..However, impractical armor placement makes it just as effective as the normal coat.
   components:
   - type: Sprite
@@ -66,6 +66,37 @@
         Heat: 0.85
         Caustic: 0.75
 
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSquidPrisoner
+  name: last coat
+  description: Will look great on your body! Oh.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/squid_prisoner.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/squid_prisoner.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatInspector
+  name: inspector's coat
+  description: A strict inspector's coat from a bygone era.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/insp_coat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/insp_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Caustic: 0.9
+
+#USSP
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSovietContraband]
   id: ClothingOuterSovietCoat
@@ -86,6 +117,47 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.8
-        Heat: 0.65
+        Piercing: 0.60
+        Heat: 0.60
         Radiation: 0.9
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ClothingOuterCoatGreytiderTrenchcoat
+  name: greytider trenchcoat
+  description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/greytider_trenchcoat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/greytider_trenchcoat.rsi
+  - type: StorageFill
+    contents:
+    - id: Cigarette
+      amount: 3
+    - id: CheapLighter
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  id: ClothingOuterSecurityBomber
+  name: security bomber
+  description: A regular bomber, but with armored inserts.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/security_bomber.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/security_bomber.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.75
+        Piercing: 0.95
+        Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterSecurityBomber]
+  id: ClothingOuterSecurityBomberOpened
+  name: security bomber

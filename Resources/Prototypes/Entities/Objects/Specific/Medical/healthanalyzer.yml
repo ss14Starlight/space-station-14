@@ -40,7 +40,11 @@
           False: { visible: false }
   - type: GuideHelp
     guides:
-    - Medical Doctor
+    - MedicalDoctor
+  # Starlight-edit: start
+  - type: ItemPrice 
+    fallbackPrice: 50
+  # Starlight-edit: end
 
 - type: entity
   id: HandheldHealthAnalyzer

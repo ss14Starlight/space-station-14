@@ -10,6 +10,7 @@ using Content.Shared.Power;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Systems;
+using Content.Server._Starlight.Physics;
 
 namespace Content.Server.Physics.Controllers;
 
@@ -19,10 +20,11 @@ public sealed class ConveyorController : SharedConveyorController
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
     [Dependency] private readonly MaterialReclaimerSystem _materialReclaimer = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     public override void Initialize()
     {
-        UpdatesAfter.Add(typeof(MoverController));
+        UpdatesAfter.Add(typeof(SLMoverController)); // Starlight
         SubscribeLocalEvent<ConveyorComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<ConveyorComponent, ComponentShutdown>(OnConveyorShutdown);
         SubscribeLocalEvent<ConveyorComponent, BreakageEventArgs>(OnBreakage);
@@ -123,7 +125,7 @@ public sealed class ConveyorController : SharedConveyorController
 
         var xform = ent.Comp;
 
-        var beltTileRef = xform.Coordinates.GetTileRef(EntityManager, MapManager);
+        var beltTileRef = _turf.GetTileRef(xform.Coordinates);
 
         if (beltTileRef != null)
         {

@@ -13,8 +13,10 @@ using Content.Shared.Popups;
 using Content.Shared.Strip;
 using Content.Shared.Strip.Components;
 using Content.Shared.Whitelist;
+using Content.Shared._Starlight.Inventory; // starlight
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -35,8 +37,7 @@ public abstract partial class InventorySystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedStrippableSystem _strippable = default!;
 
-    [ValidatePrototypeId<ItemSizePrototype>]
-    private const string PocketableItemSize = "Small";
+    private static readonly ProtoId<ItemSizePrototype> PocketableItemSize = "Small";
 
     private void InitializeEquip()
     {
@@ -83,7 +84,7 @@ public abstract partial class InventorySystem
         if (!TryComp(actor, out InventoryComponent? inventory) || !TryComp<HandsComponent>(actor, out var hands))
             return;
 
-        var held = hands.ActiveHandEntity;
+        var held = _handsSystem.GetActiveItem((actor, hands));
         TryGetSlotEntity(actor, ev.Slot, out var itemUid, inventory);
 
         // attempt to perform some interaction
@@ -97,6 +98,14 @@ public abstract partial class InventorySystem
         // unequip the item.
         if (itemUid != null)
         {
+            // starlight start
+            // raise our event so that we can do equip mode behaviour elsewhere
+            var useEvt = new InventoryUseSlotEvent(actor, (EntityUid)itemUid);
+            RaiseLocalEvent(itemUid.Value, ref useEvt);
+            
+            if(useEvt.Handled) return;
+            // starlight end
+
             if (!TryUnequip(actor, ev.Slot, out var item, predicted: true, inventory: inventory, checkDoafter: true, triggerHandContact: true))
                 return;
 
@@ -115,7 +124,7 @@ public abstract partial class InventorySystem
             return;
         }
 
-        if (!_handsSystem.CanDropHeld(actor, hands.ActiveHand!, checkActionBlocker: false))
+        if (!_handsSystem.CanDropHeld(actor, hands.ActiveHandId!, checkActionBlocker: false))
             return;
 
         RaiseLocalEvent(held.Value, new HandDeselectedEvent(actor));
@@ -193,8 +202,6 @@ public abstract partial class InventorySystem
         // If new gloves are equipped, trigger OnContactInteraction for held items
         if (triggerHandContact && !((slotDefinition.SlotFlags & SlotFlags.GLOVES) == 0))
             TriggerHandContactInteraction(target);
-
-        Dirty(target, inventory);
 
         _movementSpeed.RefreshMovementSpeedModifiers(target);
 
@@ -486,8 +493,6 @@ public abstract partial class InventorySystem
         // If gloves are unequipped, OnContactInteraction should trigger for held items
         if (triggerHandContact && !((slotDefinition.SlotFlags & SlotFlags.GLOVES) == 0))
             TriggerHandContactInteraction(target);
-
-        Dirty(target, inventory);
 
         _movementSpeed.RefreshMovementSpeedModifiers(target);
 

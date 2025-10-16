@@ -123,6 +123,7 @@
     - PartsStatic
     - AtmosStatic
     - CablesStatic
+    - PaperworkStatic
     - CargoStatic
     - MaterialsStatic
     - BasicChemistryStatic
@@ -208,13 +209,13 @@
     - Janitor
     - Instruments
     - Equipment
-    - FauxTiles
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
     - StarlightCyberlimbDynamic
     - StarlightCyberOrgansDynamic
     - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
 
     - StarlightSecurityAmmoDynamic
     - StarlightSecurityExplosives
@@ -262,7 +263,6 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    - CircuitFloorsStatic
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
@@ -273,9 +273,12 @@
     - MechBoards
     - ShuttleBoards
     - StarlightMechBoards
+    - StarlightLawboards
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
+    emagStaticPacks: # Starlight
+    - StarlightDangerousLawboards # Starlight
   - type: MaterialStorage
     whitelist:
       tags:
@@ -295,6 +298,17 @@
     sprite: Structures/Machines/circuit_imprinter_hypercon.rsi
   - type: Machine
     board: CircuitImprinterHyperConvectionMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    - StarlightSecurityBoards
+    emagStaticPacks: # Starlight
+    - StarlightDangerousLawboards # Starlight
 
 - type: entity
   id: ExosuitFabricator
@@ -382,25 +396,6 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - HostileCubesStatic
-
-- type: entity
-  id: ShadowBorgiFabricator
-  parent: Biofabricator
-  name: shadow borgi cube fabricator
-  description: Produces creatures of evil.
-  components:
-  - type: Lathe
-    idleState: icon
-    runningState: building
-    staticPacks:
-    - ShadowBorgiCubeRecipePack
-  - type: MaterialStorage
-    ignoreColor: true
-    whitelist:
-      tags:
-      - Sheet
-      - Ingot
-      - RawMaterial
 
 - type: entity
   id: SecurityTechFab
@@ -514,12 +509,14 @@
     - RollerBedsStatic
     - MedicalClothingStatic
     - EmptyMedkitsStatic
+    - StarlightMedicalStatic # Starlight
     dynamicPacks:
     - StarlightSurgeryDynamic
     - StarlightCyberlimbDynamic
     - StarlightCyberOrgansDynamic
     - StarlightImplantDynamic
     - Chemistry
+    - StarlightBudgetCyberOrgansDynamic
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -723,7 +720,16 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - FloorTilesStatic
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    dynamicPacks:
+    - FauxTiles
   - type: MaterialStorage
     whitelist:
       tags:

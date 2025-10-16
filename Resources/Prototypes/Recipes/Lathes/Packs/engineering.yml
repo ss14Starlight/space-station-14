@@ -12,6 +12,7 @@
   - NetworkConfigurator
   - Signaller
   - SprayPainter
+  - SprayPainterAmmo
   - FlashlightLantern
   - HandheldGPSBasic
   - TRayScanner
@@ -88,3 +89,4 @@
   - TelecomServerCircuitboard
   - SMESAdvancedMachineCircuitboard
   - HolopadMachineCircuitboard
+  - WeaponTurretPointDefenseMachineCircuitboard #Starlight

@@ -49,6 +49,12 @@
   - Cargo
   - Atmospherics
   - Medical
+  - Robotics # Starlight
+  - Brigmedic # Starlight
+  - Surgery # Starlight
+  - Paramedic # Starlight
+  - Mining # Starlight
+  - SalvageLead # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -63,7 +69,8 @@
     id: HoPPDA
     gloves: ClothingHandsGlovesHop
     ears: ClothingHeadsetHoP
-    belt: BoxFolderClipboard
+    belt: BoxFolderClipboardThreePapers
+    #eyes: ClothingEyesHudCommand #Starlight
   storage:
     back:
     - Flash

@@ -10,13 +10,16 @@
     - Abductor
     messages:
     - abductor-gun-restricted-1
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
+      Skating:
+        knockback: 2
+        staminaMultiplier: 50
       Resomi:
         knockback: 3
         staminaMultiplier: 20
       Avali:
-        knockback: 1 # Bigger bird, more sturdy bones.. or something.
+        knockback: 1 # half of what resomi take
         staminaMultiplier: 20
       Felionoid:
         knockback: 1.5 #half of what resomi take
@@ -26,8 +29,9 @@
     - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Item
-    # If you update this also update the bulldog's size.
     size: Large
+    shape:
+    - 0,0,4,0
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
     quickEquip: false
@@ -50,7 +54,7 @@
         ents: []
   - type: StaticPrice
     price: 500
-    
+
 - type: entity
   parent: BaseWeaponShotgunAny
   id: BaseWeaponShotgun
@@ -111,6 +115,8 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: StaticPrice
+    price: 5000
 
 - type: entity
   name: double-barreled shotgun
@@ -121,14 +127,13 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
   - type: Item
-    size: Normal
-    shape:
-    - 0,0,4,0
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     spread: 10
     fireRate: 3
+  - type: GunSpreadModifier
+    spread: 0.6
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -160,7 +165,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/sentiel_inhands_64x.rsi
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
@@ -179,9 +184,6 @@
   description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells.
   components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
   - type: Item
-    size: Normal
-    shape:
-    - 0,0,4,0
     sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
   - type: Gun
     spread: 15
@@ -208,10 +210,14 @@
     sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: Item
     size: Small
+    shape:
+    - 0,0,2,0
     sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
   - type: Gun
     spread: 40
     fireRate: 3
+  - type: GunSpreadModifier
+    spread: 1.4
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -241,7 +247,10 @@
   components:
   - type: Item
     size: Small
-    storedRotation: 90
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: 0,-5
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
   - type: Clothing
@@ -265,10 +274,6 @@
   suffix: Pirate
   description: Deadly at close range.
   components:
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,4,0
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/blunderbuss.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
@@ -291,9 +296,6 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun.rsi
   - type: Item
-    size: Normal
-    shape:
-    - 0,0,4,0
     sprite: Objects/Weapons/Guns/Shotguns/improvised_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun

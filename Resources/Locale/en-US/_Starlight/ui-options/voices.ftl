@@ -1,4 +1,3 @@
-tts-voice-name-acorn = [YouTuber] Acorn
 tts-voice-name-drekthar = [warcraft] Drek`Thar
 tts-voice-name-stephen = [] Stephen
 tts-voice-name-pudge = [warcraft] Pudge
@@ -190,3 +189,6 @@ tts-voice-name-klaasjeamandou = [disco elysium] Klaasje Amandou
 tts-voice-name-horrificnecktie = [disco elysium] Horrific Necktie
 tts-voice-name-ancientreptilianbrain = [disco elysium] Ancient Reptilian Brain
 tts-voice-name-galadriel = [LOTR] Galadriel
+
+tts-voice-name-cawsforconcern = [SL] CawsForConcern
+tts-voice-name-oliveoffender = [SL] OliveOffender

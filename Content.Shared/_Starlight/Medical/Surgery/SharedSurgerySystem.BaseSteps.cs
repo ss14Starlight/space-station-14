@@ -1,6 +1,8 @@
 ﻿using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle.Components;
@@ -24,6 +26,7 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryClearProgressComponent, SurgeryStepCompleteEvent>(OnClearProgressStep);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepEvent>(OnStep);
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
+        SubscribeLocalEvent<SurgeryTargetComponent, AccessibleOverrideEvent>(OnOverrideAccess);
 
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryCanPerformStepEvent>(OnCanPerformStep);
 
@@ -119,20 +122,32 @@ public abstract partial class SharedSurgerySystem
             AddComp(args.Part, newComp);
         }
 
-        foreach (var reg in (ent.Comp.BodyAdd ?? []).Values)
-        {
-            var compType = reg.Component.GetType();
-            if (HasComp(args.Body, compType))
-                continue;
-
-            AddComp(args.Part, _compFactory.GetComponent(compType));
-        }
+        if (ent.Comp.BodyAdd != null)
+            EntityManager.AddComponents(args.Body, ent.Comp.BodyAdd, false);
 
         foreach (var reg in (ent.Comp.Remove ?? []).Values)
             RemComp(args.Part, reg.Component.GetType());
 
         foreach (var reg in (ent.Comp.BodyRemove ?? []).Values)
             RemComp(args.Body, reg.Component.GetType());
+    }
+
+    private void OnOverrideAccess(Entity<SurgeryTargetComponent> ent, ref AccessibleOverrideEvent args)
+    {
+        // Check if the entity is the target to avoid giving the hooked entity access to everything.
+        // If we already have access we don't need to run more code.
+        if (args.Accessible || args.Target != ent.Owner)
+            return;
+
+        var xform = Transform(ent);
+        var root = _containers.GetContainingContainers((ent, xform)).FirstOrDefault(x => x.ID == SharedBodySystem.BodyRootContainerId); //get the root container
+        if (root == null)
+            return;
+        if (!_interaction.CanAccess(args.User, root.Owner))
+            return;
+
+        args.Accessible = true;
+        args.Handled = true;
     }
 
     private void OnCanPerformStep(Entity<SurgeryStepComponent> ent, ref SurgeryCanPerformStepEvent args)
@@ -148,7 +163,7 @@ public abstract partial class SharedSurgerySystem
 
         if (args.Invalid != StepInvalidReason.None)
             return;
-        
+
         if (_inventory.TryGetContainerSlotEnumerator(args.Body, out var enumerator, args.TargetSlots))
         {
             var items = 0f;
@@ -156,7 +171,7 @@ public abstract partial class SharedSurgerySystem
             while (enumerator.MoveNext(out var con))
             {
                 total++;
-                if (con.ContainedEntity != null)
+                if (con.ContainedEntity != null && !_tag.HasTag(con.ContainedEntity.Value, "SurgeryCompatibleArmor"))
                     items++;
             }
 
@@ -270,7 +285,7 @@ public abstract partial class SharedSurgerySystem
             foreach (var requirementId in requirementsIds)
             {
                 if (!_entitySystem.TryGetSingleton(requirementId, out var requirement)
-                    && GetNextStep(body, part, requirement, requirements) is { } requiredNext 
+                    && GetNextStep(body, part, requirement, requirements) is { } requiredNext
                     && IsSurgeryValid(body, part, requirementId, requiredNext.Surgery.Comp.Steps[requiredNext.Step], out _, out _, out _))
                     return requiredNext;
             }
@@ -296,8 +311,8 @@ public abstract partial class SharedSurgerySystem
             foreach (var requirement in requirements)
             {
                 if (!_entitySystem.TryGetSingleton(requirement, out var requiredEnt)
-                    || !TryComp(requiredEnt, out SurgeryComponent? requiredComp) 
-                    || !PreviousStepsComplete(body, part, (requiredEnt, requiredComp), step) 
+                    || !TryComp(requiredEnt, out SurgeryComponent? requiredComp)
+                    || !PreviousStepsComplete(body, part, (requiredEnt, requiredComp), step)
                     && IsSurgeryValid(body, part, requirement, step, out _, out _, out _))
                     return false;
             }

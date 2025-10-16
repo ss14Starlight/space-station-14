@@ -95,7 +95,7 @@ reagent-name-banana-honk = Banana Honk
 reagent-desc-banana-honk = A drink from Clown Heaven.
 
 reagent-name-barefoot = barefoot
-reagent-desc-barefoot = Barefoot and pregnant.
+reagent-desc-barefoot = A cassis milkshake, made from cream, fruit juice, and vermouth wine.
 
 reagent-name-beepsky-smash = Beepsky smash
 reagent-desc-beepsky-smash = Deny drinking this and prepare for THE LAW.
@@ -175,8 +175,9 @@ reagent-desc-hooch = Either someone's failure at cocktail making or attempt in a
 reagent-name-iced-beer = iced beer
 reagent-desc-iced-beer = A beer which is so cold the air around it freezes.
 
-reagent-name-irish-slammer = Grenade Penguin
-reagent-desc-irish-slammer = What's black and white and red all over?
+reagent-name-irish-car-bomb = Irish car bomb 
+reagent-desc-irish-car-bomb = What's black and white and red all over? 
+#Starlight Change Above
 
 reagent-name-irish-cream = Irish cream
 reagent-desc-irish-cream = Whiskey-imbued cream. What else could you expect from the Irish.
@@ -287,7 +288,7 @@ reagent-name-toxins-special = toxins special
 reagent-desc-toxins-special = This thing is ON FIRE! CALL THE DAMN SHUTTLE!
 
 reagent-name-vampiro = vampiro
-reagent-desc-vampiro = Popular in Mexico and Transylvania.
+reagent-desc-vampiro = Popular in Mexico and Transylvania. Not quite a vampire favorite though.
 
 reagent-name-vodka-martini = vodka martini
 reagent-desc-vodka-martini = Vodka instead of Gin. Not quite how 007 enjoyed it, but still delicious.

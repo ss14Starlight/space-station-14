@@ -5,10 +5,15 @@
   id: BaseMob
   abstract: true
   components:
+  # Starlight-start
+  - type: LanguageSpeaker
+  - type: ParentCanBlockVision
+  # Starlight-end
   - type: Sprite
     noRot: true
     drawdepth: Mobs
   - type: MobCollision
+  - type: GravityAffected
   - type: Physics
     bodyType: KinematicController
   - type: Fixtures
@@ -44,6 +49,7 @@
   - type: MovementSpeedModifier
   - type: RequireProjectileTarget
     active: False
+  - type: StunVisuals
   - type: TextToSpeech
   - type: CollectiveMind
   - type: CustomLimbVisualizer
@@ -128,6 +134,21 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
   - type: RadiationReceiver
   - type: Stamina
   - type: MobState
@@ -152,6 +173,8 @@
     - Shock
     - Cold
     - Caustic
+    - Asphyxiation
+    - Radiation
   - type: DamageOnHighSpeedImpact
     damage:
       types:

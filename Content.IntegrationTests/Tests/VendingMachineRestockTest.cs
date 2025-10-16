@@ -6,6 +6,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Prototypes;
+using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Storage.Components;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wires;
@@ -20,6 +21,8 @@ namespace Content.IntegrationTests.Tests
     [TestOf(typeof(VendingMachineSystem))]
     public sealed class VendingMachineRestockTest : EntitySystem
     {
+        private static readonly ProtoId<DamageTypePrototype> TestDamageType = "Blunt";
+
         [TestPrototypes]
         private const string Prototypes = @"
 - type: entity
@@ -130,6 +133,14 @@ namespace Content.IntegrationTests.Tests
 
                     restocks.Add(proto.ID);
                 }
+
+                // Starlight start
+                foreach (var listing in prototypeManager.EnumeratePrototypes<AbductorListingPrototype>())
+                {
+                    // Ignore any prototypes that are listed as abductor listings instead
+                    restocks.Remove(listing.ProductEntity);
+                }
+                // Starlight end
 
                 // Collect all the prototypes with StorageFills referencing those entities.
                 foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
@@ -293,7 +304,7 @@ namespace Content.IntegrationTests.Tests
                     "Did not start with zero ramen.");
 
                 restock = entityManager.SpawnEntity("TestRestockExplode", coordinates);
-                var damageSpec = new DamageSpecifier(prototypeManager.Index<DamageTypePrototype>("Blunt"), 100);
+                var damageSpec = new DamageSpecifier(prototypeManager.Index(TestDamageType), 100);
                 var damageResult = damageableSystem.TryChangeDamage(restock, damageSpec);
 
 #pragma warning disable NUnit2045

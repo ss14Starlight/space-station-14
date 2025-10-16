@@ -1,5 +1,4 @@
-﻿using Content.Server.Ghost.Roles.Raffles;
-using Robust.Shared.Prototypes;
+﻿using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Ghost.Roles.Raffles;
 
@@ -19,4 +18,12 @@ public sealed partial class GhostRoleRaffleSettingsPrototype : IPrototype
     /// <seealso cref="GhostRoleRaffleSettings"/>
     [DataField(required: true)]
     public GhostRoleRaffleSettings Settings { get; private set; } = new();
+
+    #region Starlight
+    /// <summary>
+    /// Is this the default when using the MakeGhostRole admin verb?
+    /// </summary>
+    [DataField]
+    public bool Default = false;
+    #endregion
 }

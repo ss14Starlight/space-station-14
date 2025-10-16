@@ -199,6 +199,8 @@
       orGroup: Clothes
     - id: ClothingHeadHatCatEars
       prob: 0.01
+    - id: ClothingHeadHatWhiteCatEars #Starlight
+      prob: 0.05
       orGroup: Clothes
     - id: ClothingHeadHatDogEars
       prob: 0.01
@@ -239,6 +241,9 @@
     - id: ClothingUniformJumpskirtOfLife
       prob: 0.01
       orGroup: Clothes
+    - id: ClothingOuterHardsuitLuxmax #starlight
+      prob: 0.001
+      orGroup: Clothes #/starlight
     #swag
     - id: ClothingNeckBling
       prob: 0.01

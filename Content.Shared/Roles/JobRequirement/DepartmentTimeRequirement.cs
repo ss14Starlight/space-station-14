@@ -1,7 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._NullLink;
 using Content.Shared.Localizations;
-using Content.Shared.Starlight;
 using Content.Shared.Preferences;
+using Content.Shared.Starlight;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -41,10 +42,10 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
 
         var playtime = TimeSpan.Zero;
 
-        //🌟Starlight🌟 start
-        if(player is not null && IoCManager.Resolve<ISharedPlayersRoleManager>().IsAllRolesAvailable(player))
+        //NullLink start
+        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player))
             return true;
-        //🌟Starlight🌟 end
+        //NullLink end
 
         // Check all jobs' departments
         var department = protoManager.Index(Department);
@@ -66,7 +67,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
         var formattedDeptDiff = ContentLocalizationManager.FormatPlaytime(deptDiffSpan);
         var nameDepartment = "role-timer-department-unknown";
 
-        if (protoManager.TryIndex(Department, out var departmentIndexed))
+        if (protoManager.Resolve(Department, out var departmentIndexed))
         {
             nameDepartment = departmentIndexed.Name;
         }

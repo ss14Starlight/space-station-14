@@ -27,12 +27,11 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.05
-      - !type:GenericStatusEffect
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
         conditions:
         - !type:ReagentThreshold
           min: 10
-        key: SeeingRainbows
-        component: SeeingRainbows
         type: Add
         time: 5
         refresh: false
@@ -170,9 +169,24 @@
         - !type:OrganType
           type: Dwarf
           shouldHave: false
+        # Starlight
+        - !type:OrganType
+          type: BudgetCyber
+          shouldHave: false
         damage:
           types:
             Poison: 1
+      # Starlight
+      # Budget CyberLiver will cause you to take more damage from less alcohol
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        - !type:OrganType
+          type: BudgetCyber
+        damage:
+          types:
+            Poison: 1.2
       # dwarves take less toxin damage and heal a marginal amount of brute
       - !type:HealthChange
         conditions:
@@ -204,6 +218,11 @@
           shouldHave: false
       - !type:Drunk
         boozePower: 2
+        # Starlight
+        conditions:
+          - !type:OrganType
+            type: BudgetCyber
+            shouldHave: false
 
 - type: reagent
   id: Gin
@@ -919,6 +938,17 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   fizziness: 0.3
+  metabolisms: # SL vampires
+    Drink:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Bloodsucker
+        damage:
+          groups:
+            Brute: -3
+            Burn: -1.25
 
 - type: reagent
   id: DevilsKiss
@@ -934,6 +964,17 @@
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
+  metabolisms: # SL vampires
+    Drink:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Bloodsucker
+        damage:
+          groups:
+            Brute: -3
+            Burn: -1.25
 
 - type: reagent
   id: DoctorsDelight
@@ -1186,12 +1227,12 @@
   fizziness: 0.6
 
 - type: reagent
-  id: IrishSlammer
-  name: reagent-name-irish-slammer
+  id: IrishCarBomb #Starlight Change
+  name: reagent-name-irish-car-bomb #Starlight Change
   parent: BaseAlcohol
-  desc: reagent-desc-irish-slammer
+  desc: reagent-desc-irish-car-bomb #Starlight Change
   physicalDesc: reagent-physical-desc-bubbly
-  flavor: irishslammer
+  flavor: irishcarbomb
   color: "#2E6671"
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/irishslammer.rsi
@@ -1573,6 +1614,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+      - !type:HealthChange # SL vampires
+        conditions:
+        - !type:OrganType
+          type: Bloodsucker
+        damage:
+          groups:
+            Brute: -3
+            Burn: -1.25
 
 - type: reagent
   id: PinaColada
@@ -2018,9 +2067,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.25
 
@@ -2049,9 +2098,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.15
 
@@ -2080,9 +2129,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.15
 
@@ -2111,9 +2160,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.25
 
@@ -2142,9 +2191,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.15
 
@@ -2173,9 +2222,9 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
-        - !type:GenericStatusEffect
-          key: Drowsiness
-          time: 1.0
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 1
           type: Remove
   fizziness: 0.25
 

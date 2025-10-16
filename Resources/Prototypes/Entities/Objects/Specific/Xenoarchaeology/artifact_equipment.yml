@@ -126,7 +126,7 @@
       components:
       - XenoArtifact
   - type: Item
-    sprite: Objects/Storage/artifact_container.rsi  
+    sprite: Objects/Storage/artifact_container.rsi
     size: Huge
   - type: MeleeWeapon
     damage:
@@ -138,6 +138,7 @@
   - type: AccessReader
     access: [["Research"], ["Cargo"]]
   - type: Lock
+  - type: LockedStorage
   - type: SuppressArtifactContainer
   - type: RadiationBlockingContainer
     resistance: 5

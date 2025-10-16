@@ -1,10 +1,10 @@
 using Content.Shared.Actions;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Item;
+using Content.Shared.Light;
 using Content.Shared.Light.Components;
 using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
@@ -22,18 +22,18 @@ public abstract class SharedHandheldLightSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<HandheldLightComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<HandheldLightComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<HandheldLightComponent, ComponentHandleState>(OnHandleState);
 
         SubscribeLocalEvent<HandheldLightComponent, GetVerbsEvent<ActivationVerb>>(AddToggleLightVerb);
     }
 
-    private void OnInit(EntityUid uid, HandheldLightComponent component, ComponentInit args)
+    public virtual void OnMapInit(Entity<HandheldLightComponent> ent, ref MapInitEvent args)
     {
-        UpdateVisuals(uid, component);
+        UpdateVisuals(ent, ent.Comp);
 
         // Want to make sure client has latest data on level so battery displays properly.
-        Dirty(uid, component);
+        Dirty(ent, ent.Comp);
     }
 
     private void OnHandleState(EntityUid uid, HandheldLightComponent component, ref ComponentHandleState args)
@@ -63,6 +63,9 @@ public abstract class SharedHandheldLightSystem : EntitySystem
 
         Dirty(uid, component);
         UpdateVisuals(uid, component);
+
+        var ev = new LightToggleEvent(activated);
+        RaiseLocalEvent(uid, ev);
     }
 
     public void UpdateVisuals(EntityUid uid, HandheldLightComponent? component = null, AppearanceComponent? appearance = null)

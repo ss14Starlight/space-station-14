@@ -25,36 +25,6 @@
     BuzzochloricBees: 3
 
 - type: reaction
-  id: CreateSoap
-  impact: Low
-  quantized: true
-  reactants:
-    Fat:
-      amount: 15
-    TableSalt:
-      amount: 10
-    Water:
-      amount: 10
-  effects:
-    - !type:CreateEntityReactionEffect
-      entity: Soap
-
-- type: reaction
-  id: CreateSoapHomemade
-  impact: Low
-  quantized: true
-  reactants:
-    Fat:
-      amount: 15
-    TableSalt:
-      amount: 10
-    Blood:
-      amount: 10
-  effects:
-    - !type:CreateEntityReactionEffect
-      entity: SoapHomemade
-
-- type: reaction
   id: Meatification
   impact: Low
   quantized: true
@@ -251,48 +221,9 @@
   reactants:
     UncookedAnimalProteins:
       amount: 1
-    Happiness:
-      amount: 1
     JuiceThatMakesYouWeh:
       amount: 1
-  products:
-    CorgiJuice: 2
-- type: reaction
-  id: CorgiJuiceHew
-  reactants:
-    UncookedAnimalProteins:
-      amount: 1
-    JuiceThatMakesYouHew:
-      amount: 1
     Happiness:
-      amount: 1
-  products:
-    CorgiJuice: 4
-
-- type: reaction
-  id: CorgiJuiceWaterDestruction
-  reactants:
-    CorgiJuice:
-      amount: 1
-    Water:
-      amount: 1
-  products:
-    CorgiJuice: 1
-- type: reaction
-  id: CorgiJuiceFluoroDestruction
-  reactants:
-    CorgiJuice:
-      amount: 1
-    Fluorosurfactant:
-      amount: 1
-  products:
-    CorgiJuice: 1
-- type: reaction
-  id: CorgiJuiceWateredDown
-  reactants:
-    ConcentratedCorgiJuice:
-      amount: 1
-    Water:
       amount: 1
   products:
     CorgiJuice: 2
