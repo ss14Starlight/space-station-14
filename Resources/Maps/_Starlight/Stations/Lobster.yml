@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.1.0
   forkId: ""
   forkVersion: ""
-  time: 10/10/2025 07:12:09
-  entityCount: 23858
+  time: 10/16/2025 05:10:30
+  entityCount: 23867
 maps:
 - 1
 grids:
@@ -9050,7 +9050,7 @@ entities:
       pos: -1.5,5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -4156.13
+      secondsUntilStateChange: -4754.6753
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9283,7 +9283,7 @@ entities:
       pos: 67.5,48.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -40976.46
+      secondsUntilStateChange: -41575.008
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9738,7 +9738,7 @@ entities:
       pos: 87.5,-23.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -92116.65
+      secondsUntilStateChange: -92715.195
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -120949,6 +120949,13 @@ entities:
       parent: 2
     - type: StockLimitedProcessing
       processingListings: {}
+- proto: SLVendingMachineHugDispenser
+  entities:
+  - uid: 23754
+    components:
+    - type: Transform
+      pos: 42.5,-12.5
+      parent: 2
 - proto: SLVendingMachineMedical
   entities:
   - uid: 19212
@@ -130338,6 +130345,13 @@ entities:
     - type: Transform
       pos: -26.5,-0.5
       parent: 2
+- proto: VendingMachineMedicalBase
+  entities:
+  - uid: 23860
+    components:
+    - type: Transform
+      pos: 50.5,-12.5
+      parent: 2
 - proto: VendingMachineMediDrobe
   entities:
   - uid: 20668
@@ -130465,6 +130479,45 @@ entities:
     components:
     - type: Transform
       pos: 8.5,-34.5
+      parent: 2
+- proto: VendingMachineWallMedicalCivilian
+  entities:
+  - uid: 23861
+    components:
+    - type: Transform
+      pos: -3.5,17.5
+      parent: 2
+  - uid: 23862
+    components:
+    - type: Transform
+      pos: -12.5,34.5
+      parent: 2
+  - uid: 23863
+    components:
+    - type: Transform
+      pos: 56.5,-7.5
+      parent: 2
+  - uid: 23864
+    components:
+    - type: Transform
+      pos: 79.5,-12.5
+      parent: 2
+  - uid: 23865
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,-28.5
+      parent: 2
+  - uid: 23866
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 54.5,-35.5
+      parent: 2
+  - uid: 23867
+    components:
+    - type: Transform
+      pos: 22.5,16.5
       parent: 2
 - proto: VendingMachineWinter
   entities:

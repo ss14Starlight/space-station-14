@@ -18046,5 +18046,100 @@ Entries:
   id: 197100
   time: '2025-10-16T16:45:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1971
+- author: CawsForConcern
+  changes:
+  - message: (Manor) Sprinkled some NanoMed Civilian vending machines around the map
+    type: Add
+  id: 196600
+  time: '2025-10-16T16:54:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1966
+- author: CawsForConcern
+  changes:
+  - message: (Manor) Disposals wiring, stuff shouldn't get stuck anymore
+    type: Fix
+  id: 196601
+  time: '2025-10-16T16:54:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1966
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Hug dispenser by the park, across from the Kitchen
+    type: Add
+  id: 196400
+  time: '2025-10-16T16:54:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1964
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Sprinkled some NanoMed Civilian vending machines around the
+      map
+    type: Add
+  id: 196401
+  time: '2025-10-16T16:54:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1964
+- author: CawsForConcern
+  changes:
+  - message: (Orwell) Sprinkled some NanoMed Civilian vending machines around the
+      map
+    type: Add
+  id: 196500
+  time: '2025-10-16T17:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1965
+- author: CawsForConcern
+  changes:
+  - message: (Orwell) Disposals wiring, stuff shouldn't get stuck anymore
+    type: Fix
+  id: 196501
+  time: '2025-10-16T17:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1965
+- author: CawsForConcern
+  changes:
+  - message: (Oasis) Sprinkled some NanoMed Civilian vending machines around the map
+    type: Add
+  id: 196700
+  time: '2025-10-16T17:03:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1967
+- author: CawsForConcern
+  changes:
+  - message: (Oasis) Disposals wiring, stuff shouldn't get stuck anymore
+    type: Fix
+  id: 196701
+  time: '2025-10-16T17:03:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1967
+- author: CawsForConcern
+  changes:
+  - message: (Oasis) Botany's mailing and disposal units are actually connected to
+      the disposals network now
+    type: Fix
+  id: 196702
+  time: '2025-10-16T17:03:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1967
+- author: CawsForConcern
+  changes:
+  - message: (Oasis) Disposals routing issue where Chemistry couldn't send stuff to
+      Botany with mailing units
+    type: Fix
+  id: 196703
+  time: '2025-10-16T17:03:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1967
+- author: Fractalflower
+  changes:
+  - message: Borgs can now pilot mechs
+    type: Add
+  id: 170600
+  time: '2025-10-16T17:49:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1706
+- author: Fractalflower
+  changes:
+  - message: Un-nerfed L6C.
+    type: Tweak
+  id: 197600
+  time: '2025-10-16T18:44:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1976
+- author: Fractalflower
+  changes:
+  - message: Super synth now buyable for 2k spesos
+    type: Add
+  id: 197800
+  time: '2025-10-16T19:36:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1978
 Order: -1
 
