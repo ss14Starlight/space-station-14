@@ -10,11 +10,12 @@
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
-    - BorgModuleSecurity
+    - BaseBorgModuleSecurity
 
   defaultModules:
   - BorgModuleTool
-  - BorgModuleSecurity
+  - BorgModuleBaton
+  - BorgModuleDominator
 
   radioChannels:
   - Science

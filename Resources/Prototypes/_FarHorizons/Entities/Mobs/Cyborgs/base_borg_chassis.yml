@@ -12,28 +12,31 @@
 
 - type: entity # TODO implement sirens
   parent: [BaseBorgChassis, BaseSecBorgTransponder]
-  id: BorgChassisSecurity
+  id: BorgChassisSelectableSecurity # Starlight
   name: security cyborg
   description: A special chassis produced by Nanotrasen to aid station side security forces in their duties.
   components:
   - type: BorgTransponder
     name: security cyborg
     sprite:
-      sprite: _FarHorizons/Mobs/Silicon/chassis.rsi
-      state: secborg
+      sprite: _Starlight/Mobs/Silicon/Chassis/security.rsi # starlight
+      state: borg
   - type: TextToSpeech
+  # region starlight
   - type: Sprite
-    sprite: _FarHorizons/Mobs/Silicon/chassis.rsi
+    sprite: _Starlight/Mobs/Silicon/Chassis/security.rsi
     layers:
-      - state: secborg
-      - state: secborg_e
-        map: ["enum.BorgVisualLayers.Light"]
-        shader: unshaded
-        visible: false
-      - state: secborg_l
-        shader: unshaded
-        map: ["light"]
-        visible: false
+    - state: borg
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light", "enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+  # end region
       # - state: secborg_siren_on
       #   map: [ "enum.BorgVisualLayers.Siren" ]
       #   shader: unshaded
@@ -56,18 +59,6 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: FlashImmunity
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
-    - Common
-    - Science
-    - Security
-  - type: ActiveRadio
-    channels:
-    - Binary
-    - Common
-    - Science
-    - Security
   # - type: ActionGrant
   #   actions:
   #   - ActionBorgToggleSirens
@@ -76,9 +67,18 @@
   - type: SiliconLawProvider
     laws: RobocopLawset
   - type: BorgChassis
-    maxModules: 6
-    hasMindState: secborg_e
-    noMindState: secborg_e_r
+    maxModules: 0 # starlight
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  # region starlight
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - Binary
+    - Common
+    availableTypes:
+    - security
+  # end region
+    
 
 - type: entity
   parent: BorgChassisSecurity
