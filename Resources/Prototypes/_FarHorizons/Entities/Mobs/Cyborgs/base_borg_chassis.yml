@@ -1,0 +1,93 @@
+- type: entity
+  abstract: true
+  parent: BaseBorgTransponder
+  id: BaseSecBorgTransponder
+  components:
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: SecborgControl
+    transmitFrequencyId: SecurityRoboticsConsole
+    savableAddress: false
+
+
+- type: entity # TODO implement sirens
+  parent: [BaseBorgChassis, BaseSecBorgTransponder]
+  id: BorgChassisSecurity
+  name: security cyborg
+  description: A special chassis produced by Nanotrasen to aid station side security forces in their duties.
+  components:
+  - type: BorgTransponder
+    name: security cyborg
+    sprite:
+      sprite: _FarHorizons/Mobs/Silicon/chassis.rsi
+      state: secborg
+  - type: TextToSpeech
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Silicon/chassis.rsi
+    layers:
+      - state: secborg
+      - state: secborg_e
+        map: ["enum.BorgVisualLayers.Light"]
+        shader: unshaded
+        visible: false
+      - state: secborg_l
+        shader: unshaded
+        map: ["light"]
+        visible: false
+      # - state: secborg_siren_on
+      #   map: [ "enum.BorgVisualLayers.Siren" ]
+      #   shader: unshaded
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBorg
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasenSilicon
+  - type: Access
+    enabled: false
+    groups:
+    - Security # Ensure it can go anywhere inside of sec.
+  - type: AccessReader
+    access: [["Command"], ["Security"]]
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: FlashImmunity
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Science
+    - Security
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Science
+    - Security
+  # - type: ActionGrant
+  #   actions:
+  #   - ActionBorgToggleSirens
+  - type: EmagSiliconLaw
+    stunTime: 5
+  - type: SiliconLawProvider
+    laws: RobocopLawset
+  - type: BorgChassis
+    maxModules: 6
+    hasMindState: secborg_e
+    noMindState: secborg_e_r
+
+- type: entity
+  parent: BorgChassisSecurity
+  id: BorgChassisSecurityModule
+  suffix: Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - BorgModuleTool
+      - BorgModuleBaton
+      - BorgModuleDominator

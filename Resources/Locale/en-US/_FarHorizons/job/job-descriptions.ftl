@@ -1,0 +1,1 @@
+job-description-secborg = Half-human, Half-machine, and purpose-built for security work. Follow (and uphold) your laws, serve the crew, or harm baton them them when they won't consent to a search.

@@ -1,4 +1,5 @@
-﻿using Content.Shared.Alert;
+﻿using Content.Shared.Actions;
+using Content.Shared.Alert;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -27,6 +28,13 @@ public sealed partial class BorgChassisComponent : Component
     /// </summary>
     [DataField("brainContainerId")]
     public string BrainContainerId = "borg_brain";
+
+    /// <summary>
+    /// Far Horizons - borg siren TODO IMPLEMENT
+    /// </summary>
+    [DataField("sirenToggled")]
+    [AutoNetworkedField]
+    public bool Siren = false;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public ContainerSlot BrainContainer = default!;
@@ -103,4 +111,14 @@ public enum BorgVisualLayers : byte
     /// Layer for the borg flashlight status.
     /// </summary>
     LightStatus,
+
+    /// <summary>
+    /// Starlight, Layer for the borg siren status
+    /// </summary>
+
+    Siren
+}
+// Far Horizons, borg siren
+public sealed partial class BorgToggleSirensEvent : InstantActionEvent
+{
 }

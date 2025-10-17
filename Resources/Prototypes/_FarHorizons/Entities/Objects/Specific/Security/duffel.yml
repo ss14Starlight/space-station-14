@@ -1,0 +1,23 @@
+- type: entity
+  parent: ClothingBackpackDuffelSecurity
+  id: BorgContraDuffel
+  name: Cyborg contraband storage.
+  description: Using the technology of ore bags, NanoTrasen developed a duffel bag specifically for securing contraband by cyborgs.
+  components:
+  - type: ItemToggle
+    onUse: false
+    verbToggleOn: "Activate Magnet"
+    verbToggleOff: "Deactivate Magnet"
+  - type: ComponentToggler
+    components: 
+    - type: MagnetPickup
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,8,3
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      components:
+        - Contraband # please work
+  - type: Dumpable

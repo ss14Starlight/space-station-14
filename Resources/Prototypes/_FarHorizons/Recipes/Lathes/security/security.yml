@@ -1,0 +1,9 @@
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModuleLaserCarbine
+  result: BorgModuleLaserCarbine
+
+- type: latheRecipe
+  parent: CyborgEndoskeleton
+  id: SecborgEndoskeleton
+  result: SecborgEndoskeleton

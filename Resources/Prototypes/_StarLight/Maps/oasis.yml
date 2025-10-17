@@ -53,6 +53,7 @@
             Detective: [ 1, 1 ]
             SecurityCadet: [ 5, 5 ]
             Brigmedic: [ 1, 1 ]
+            SecBorg: [1,1] #Far Horizons
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 4 ]

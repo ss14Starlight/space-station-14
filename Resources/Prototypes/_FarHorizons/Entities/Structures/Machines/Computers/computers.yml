@@ -1,0 +1,17 @@
+- type: entity
+  parent: ComputerRoboticsControl
+  id: ComputerSecurityRoboticsControl
+  name: security robotics control console
+  description: A variant of the robotics control console, specifically meant to control security cyborgs.
+  components:
+  - type: RoboticsConsole
+  - type: ActiveRadio
+    channels:
+    - Science
+    - Security
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: SecurityRoboticsConsole
+    transmitFrequencyId: SecborgControl
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]

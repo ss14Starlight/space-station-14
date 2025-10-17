@@ -1,0 +1,17 @@
+- type: job
+  id: SecBorg
+  name: job-name-secborg
+  description: job-description-secborg
+  playTimeTracker: JobSecBorg
+  requirements:
+    - !type:DepartmentTimeRequirement
+        department: Security
+        time: 36000 # 10 hours
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 54000  # 15 hrs
+  canBeAntag: false
+  icon: JobIconSecBorg # todo secborg ID
+  supervisors: job-supervisors-hos
+  jobEntity: PlayerSecBorgBattery
+  applyTraits: false

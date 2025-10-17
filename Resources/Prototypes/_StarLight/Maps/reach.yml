@@ -45,6 +45,7 @@
             Warden: [ 1, 1 ]
             SecurityOfficer: [ 2, 3 ]
             SecurityCadet: [ 1, 1 ]
+            SecBorg: [1,1] #Far Horizons
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 1, 2 ]

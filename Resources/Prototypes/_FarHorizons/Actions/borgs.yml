@@ -1,0 +1,16 @@
+- type: entity
+  id: ActionBorgToggleSirens
+  name: Toggle Sirens
+  description: Turn on mech-mounted siren for everyone knows who's coming.
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_siren_off
+    iconOn:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_siren_on
+  - type: InstantAction
+    event: !type:BorgToggleSirensEvent

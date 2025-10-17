@@ -1,0 +1,85 @@
+- type: entity
+  parent: BaseBorgModule
+  id: BaseBorgModuleSecurity
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BaseBorgModuleSecurity
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Robotics/borgmodule.rsi
+  - type: Item
+    inhandVisuals: # todo fix these
+      left:
+      - state: base-icon-inhand-left
+        color: "#6E9EE0"
+      - state: base-module-inhand-left
+        color: "#337dd6"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#FF00CC"
+      right:
+      - state: base-icon-inhand-right
+        color: "#6E9EE0"
+      - state: base-module-inhand-right
+        color: "#337dd6"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#FF00CC"
+
+- type: entity
+  parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
+  id: BorgModuleBaton
+  name: Baton Cyborg module.
+  description: Now even cyborgs can enjoy harm batong.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-security
+  - type: ItemBorgModule
+    hands:
+    - item: Stunbaton
+    - item: BorgFlash
+    - item: Handcuffs
+      hand:
+        emptyLabel: borg-slot-handcuffs-empty
+        emptyRepresentative: Handcuffs
+        whitelist:
+          tags:
+          - Handcuffs
+    - item: BorgContraDuffel
+  - type: BorgModuleIcon
+    icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: stunbaton-module } # TODO icon
+
+- type: entity
+  parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
+  id: BorgModuleDominator
+  name: Dominator Cyborg module.
+  description: Module with a dominator specifically designed for cyborgs.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-security
+  - type: ItemBorgModule
+    hands:
+    - item: BorgWeaponDominator
+  - type: BorgModuleIcon
+    icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: dominator-module } # TODO icon
+
+- type: entity
+  parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
+  id: BorgModuleLaserCarbine
+  name: Laser Carbine Cyborg module.
+  description: Module with a Laser Carbine specifically designed for cyborgs.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-security
+  - type: ItemBorgModule
+    hands:
+    - item: BorgWeaponWeaponLaserCarbine
+  - type: BorgModuleIcon
+    icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: laser-carbine-module } # TODO icon

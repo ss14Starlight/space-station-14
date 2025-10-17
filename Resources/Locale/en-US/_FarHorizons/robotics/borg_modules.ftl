@@ -1,0 +1,1 @@
+borg-slot-handcuffs-empty = handcuffs

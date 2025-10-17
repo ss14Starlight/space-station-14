@@ -1,0 +1,20 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Created by Road-Train (github) for Space Station 14. Sprites by Abby (happymemories11 - discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "stunbaton-module"
+        },
+        {
+            "name": "dominator-module"
+        },
+        {
+            "name": "laser-carbine-module"
+        }
+    ]
+}

@@ -185,6 +185,17 @@
     - type: LimitedCharges
       maxCharges: 2
 
+# Far Horizons - sec borg flash
+- type: entity
+  name: cyborg flash
+  parent: SciFlash
+  suffix: 2 charges, recharging
+  id: BorgFlash
+  description: Special flash adapted for cyborgs. Has a lower charge capacity than the security one, but won't burn out.
+  components:
+    - type: AutoRecharge
+      rechargeDuration: 60
+
 - type: entity
   name: portable flasher
   parent: [BaseMachine, BaseSecurityContraband]

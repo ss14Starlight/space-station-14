@@ -1,0 +1,15 @@
+- type: technology
+  id: secborg
+  name: research-technology-mechanised-security
+  icon:
+    sprite: _FarHorizons\Mobs\Silicon\chassis.rsi
+    state: secborg
+  discipline: Arsenal
+  tier: 2
+  cost: 9000
+  recipeUnlocks:
+  - SecborgEndoskeleton
+  technologyPrerequisites:
+  - BasicRobotics
+  radioChannels:
+  - Security

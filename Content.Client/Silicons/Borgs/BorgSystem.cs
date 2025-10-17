@@ -64,6 +64,9 @@ public sealed class BorgSystem : SharedBorgSystem
 
         if (!_appearance.TryGetData<bool>(uid, BorgVisuals.HasPlayer, out var hasPlayer, appearance))
             hasPlayer = false;
+        // Far Horizons, sirens. TODO IMPLEMENT
+        // if (sprite.LayerMapTryGet(BorgVisualLayers.Siren, out var sirenId) && sprite.TryGetLayer(sirenId, out var sirenLayer) && _appearance.TryGetData<bool>(uid, BorgVisualLayers.Siren, out var siren, appearance))
+        //     sirenLayer.Visible = siren;
 
         _sprite.LayerSetVisible((uid, sprite), BorgVisualLayers.Light, component.BrainEntity != null || hasPlayer);
         _sprite.LayerSetRsiState((uid, sprite), BorgVisualLayers.Light, hasPlayer ? component.HasMindState : component.NoMindState);

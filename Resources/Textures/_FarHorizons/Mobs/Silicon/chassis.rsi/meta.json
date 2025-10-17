@@ -1,0 +1,31 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Base sprites by happymemories11 (github), animations of said sprites by salem-uwu (github)",
+    "states": [
+        {
+            "name":"secborg",
+            "directions":4
+        },
+        {
+            "name": "secborg_e",
+            "directions": 4
+        },
+        {
+            "name": "secborg_e_r",
+            "directions": 4
+        },
+        {
+            "name": "secborg_l",
+            "directions": 4
+        },
+        {
+            "name": "secborg_siren_on",
+            "directions": 4
+        }
+    ]
+}

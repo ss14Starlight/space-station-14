@@ -146,3 +146,18 @@
   id: Mothership
   name: device-frequency-prototype-name-mothership
   frequency: 2005
+
+# region Far Horizons
+# Putting this in the same file because it's going to be HELLA annoying to have to compare frequencies across 2 files.
+
+# Secborgs broadcast to consoles on this frequency
+- type: deviceFrequency
+  id: SecurityRoboticsConsole
+  name: device-frequency-prototype-name-robotics-console
+  frequency: 1293
+
+# Console sends commands to secborgs on this frequency
+- type: deviceFrequency
+  id: SecborgControl
+  name: device-frequency-prototype-name-cyborg-control
+  frequency: 1294

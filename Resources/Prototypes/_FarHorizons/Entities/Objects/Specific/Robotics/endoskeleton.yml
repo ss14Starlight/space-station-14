@@ -1,0 +1,12 @@
+- type: entity
+  parent: CyborgEndoskeleton
+  id: SecborgEndoskeleton
+  name: security cyborg endoskeleton
+  components:
+  - type: Construction
+    graph: Secborg
+    node: start
+    defaultTarget: secborg
+    containers:
+    - part-container
+    - cell_slot

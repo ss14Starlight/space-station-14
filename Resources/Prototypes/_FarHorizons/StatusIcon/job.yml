@@ -1,0 +1,7 @@
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSecBorg
+  icon:
+    sprite: /Textures/_FarHorizons/Interface/Misc/job_icons.rsi
+    state: SecBorg
+  jobName: job-name-secborg

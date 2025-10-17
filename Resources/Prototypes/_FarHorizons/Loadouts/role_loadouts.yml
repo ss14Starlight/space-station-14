@@ -1,0 +1,4 @@
+- type: roleLoadout
+  id: JobSecBorg
+  nameDataset: NamesBorg
+  canCustomizeName: true
