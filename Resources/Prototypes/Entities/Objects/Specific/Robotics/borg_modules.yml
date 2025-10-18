@@ -1337,18 +1337,32 @@
           whitelist:
             tags:
             - MagazineLightRifleBox
-      - item: MagazineBoxLightRifleSP
+      - item: MagazineLightRifleBoxSP
         hand:
-          emptyRepresentative: MagazineBoxLightRifleSP
-          emptyLabel: borg-slot-light-ammo-box-empty
+          emptyRepresentative: MagazineLightRifleBoxSP
+          emptyLabel: borg-slot-light-box-empty
           whitelist:
             tags:
-            - MagazineBoxLightRifle
+            - MagazineLightRifleBox
+      - item: MagazineLightRifleBoxSP
+        hand:
+          emptyRepresentative: MagazineLightRifleBoxSP
+          emptyLabel: borg-slot-light-box-empty
+          whitelist:
+            tags:
+            - MagazineLightRifleBox
+      - item: MagazineLightRifleBoxSP
+        hand:
+          emptyRepresentative: MagazineLightRifleBoxSP
+          emptyLabel: borg-slot-light-box-empty
+          whitelist:
+            tags:
+            - MagazineLightRifleBox
       - item: PinpointerSyndicateNuclear
       # Starlight end
     - type: BorgModuleIcon
       icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
-      
+
 - type: entity
   parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #Starlight c20 printing
   id: BorgModuleC20r
