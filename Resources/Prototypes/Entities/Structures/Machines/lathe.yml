@@ -132,10 +132,11 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
-  - type: EmagLatheRecipes
+  - type: EmagLatheRecipes # Starlight start
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
+    - StarlightSecurityAmmoEmagStatic # Starlight end
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -422,10 +423,11 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - SecurityEquipmentStatic
+    - SecurityEquipmentStatic # Starlight start
     - SecurityPracticeStatic
     - StarlightSecurityAmmoStatic
-    - SecurityWeaponsStatic
+    - StarlightSecurityAmmoEmagStatic
+    - SecurityWeaponsStatic # Starlight end
     dynamicPacks:
     - SalvageSecurityBoards
     - SalvageSecurityWeapons

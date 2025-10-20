@@ -1,27 +1,4 @@
-# engineering
-- type: entity
-  parent: BorgEngineerSubtypeBase
-  id: BorgEngineerSubtypeAntique
-  name: Antique
-  components:
-    - type: BorgSubtypeDefinition
-      spritePath: Mobs/Silicon/Chassis/engineer.rsi
-      spriteBodyState: antique
-      spriteHasMindState: antique_e
-      spriteNoMindState: antique_e_r
-      spriteToggleLightState: antique_l
-
-- type: entity
-  parent: BorgEngineerSubtypeBase
-  id: BorgEngineerSubtypeLandmate
-  name: Landmate
-  components:
-    - type: BorgSubtypeDefinition
-      spritePath: Mobs/Silicon/Chassis/engineer.rsi
-      spriteBodyState: landmate
-      spriteHasMindState: landmate_e
-      spriteNoMindState: landmate_e_r
-      spriteToggleLightState: landmate_l
+# region engineering
 
 - type: entity
   parent: BorgEngineerSubtypeBase
@@ -34,6 +11,30 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+
+- type: entity
+  parent: BorgEngineerSubtypeBase
+  id: BorgEngineerSubtypeGeneric
+  name: Generic
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/engineer.rsi
+      spriteBodyState: generic
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
+
+- type: entity
+  parent: BorgEngineerSubtypeBase
+  id: BorgEngineerSubtypeAntique
+  name: Antique
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/engineer.rsi
+      spriteBodyState: antique
+      spriteHasMindState: antique_e
+      spriteNoMindState: antique_e_r
+      spriteToggleLightState: antique_l
 
 - type: entity
   parent: BorgEngineerSubtypeBase
@@ -59,19 +60,19 @@
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
 
-# Generic
+# region Generic
 
 - type: entity
   parent: BorgGenericSubtypeBase
-  id: BorgGenericSubtypeStandard
-  name: Standard # ITS ISNT A TYPO ITS STANDARD INSTEAD OF STANDART
+  id: BorgGenericSubtypeGeneric
+  name: Generic
   components:
     - type: BorgSubtypeDefinition
       spritePath: Mobs/Silicon/Chassis/generic.rsi
-      spriteBodyState: standard
-      spriteHasMindState: standard_e
-      spriteNoMindState: standard_e_r
-      spriteToggleLightState: standard_l
+      spriteBodyState: generic
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
 
 - type: entity
   parent: BorgGenericSubtypeBase
@@ -97,32 +98,7 @@
       spriteNoMindState: noble_e_r
       spriteToggleLightState: noble_l
 
-# Janitor
-
-- type: entity
-  parent: BorgJanitorSubtypeBase
-  id: BorgJanitorSubtypeMopbot
-  name: Mopbot
-  components:
-    - type: BorgSubtypeDefinition
-      spritePath: Mobs/Silicon/Chassis/janitor.rsi
-      spriteBodyState: mopbot
-      spriteHasMindState: mopbot_e
-      spriteNoMindState: mopbot_e_r
-      spriteToggleLightState: mopbot_l
-
-- type: entity
-  parent: BorgJanitorSubtypeBase
-  id: BorgJanitorSubtypeRex
-  name: Mop Gear REX
-  components:
-    - type: BorgSubtypeDefinition
-      spritePath: Mobs/Silicon/Chassis/janitor.rsi
-      spriteBodyState: rex
-      spriteHasMindState: rex_e
-      spriteNoMindState: rex_e_r
-      spriteToggleLightState: rex_l
-      spriteBodyMovementState: rex_moving
+# region Janitor
 
 - type: entity
   parent: BorgJanitorSubtypeBase
@@ -135,6 +111,30 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+
+- type: entity
+  parent: BorgJanitorSubtypeBase
+  id: BorgJanitorSubtypeGeneric
+  name: Generic
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/janitor.rsi
+      spriteBodyState: generic
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
+
+- type: entity
+  parent: BorgJanitorSubtypeBase
+  id: BorgJanitorSubtypeMopbot
+  name: Mopbot
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/janitor.rsi
+      spriteBodyState: mopbot
+      spriteHasMindState: mopbot_e
+      spriteNoMindState: mopbot_e_r
+      spriteToggleLightState: mopbot_l
 
 - type: entity
   parent: BorgJanitorSubtypeBase
@@ -160,41 +160,7 @@
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
 
-# Medical
-
-- type: entity
-  parent: BorgMedicalSubtypeBase
-  id: BorgMedicalSubtypeSurgeon
-  name: Surgeon
-  components:
-    - type: BorgSubtypeDefinition
-      spritePath: Mobs/Silicon/Chassis/medical.rsi
-      spriteBodyState: surgeon
-      spriteHasMindState: surgeon_e
-      spriteNoMindState: surgeon_e_r
-      spriteToggleLightState: surgeon_l
-      spriteBodyMovementState: surgeon_moving
-
-- type: entity
-  parent: BorgMedicalSubtypeBase
-  id: BorgMedicalSubtypeDroid
-  name: Advanced Android
-  components:
-    - type: BorgSubtypeDefinition
-      spritePath: Mobs/Silicon/Chassis/medical.rsi
-      spriteBodyState: droid
-      spriteHasMindState: droid_e
-      spriteNoMindState: droid_e_r
-      spriteToggleLightState: droid_l
-
-- type: entity
-  parent: BorgMedicalSubtypeBase
-  id: BorgMedicalSubtypeNeedles
-  name: Needles
-  components:
-    - type: BorgSubtypeDefinition
-      spritePath: Mobs/Silicon/Chassis/medical.rsi
-      spriteBodyState: needles
+# region Medical
 
 - type: entity
   parent: BorgMedicalSubtypeBase
@@ -207,6 +173,42 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+
+- type: entity
+  parent: BorgMedicalSubtypeBase
+  id: BorgMedicalSubtypeGeneric
+  name: Generic
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/medical.rsi
+      spriteBodyState: generic
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
+
+- type: entity
+  parent: BorgMedicalSubtypeBase
+  id: BorgMedicalSubtypeNeedles
+  name: Needles
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/medical.rsi
+      spriteBodyState: needles
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
+
+- type: entity
+  parent: BorgMedicalSubtypeBase
+  id: BorgMedicalSubtypeDroid
+  name: Advanced Android
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/medical.rsi
+      spriteBodyState: droid
+      spriteHasMindState: droid_e
+      spriteNoMindState: droid_e_r
+      spriteToggleLightState: droid_l
 
 - type: entity
   parent: BorgMedicalSubtypeBase
@@ -232,32 +234,7 @@
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
 
-# Mining(Salvage)
-
-- type: entity
-  parent: BorgMiningSubtypeBase
-  id: BorgMiningSubtypeDroid
-  name: Advanced Android
-  components:
-    - type: BorgSubtypeDefinition
-      spritePath: Mobs/Silicon/Chassis/miner.rsi
-      spriteBodyState: droid
-      spriteHasMindState: droid_e
-      spriteNoMindState: droid_e_r
-      spriteToggleLightState: droid_l
-
-- type: entity
-  parent: BorgMiningSubtypeBase
-  id: BorgMiningSubtypeMiningThreadhead
-  name: Threadhead
-  components:
-    - type: BorgSubtypeDefinition
-      spritePath: Mobs/Silicon/Chassis/miner.rsi
-      spriteBodyState: threadhead
-      spriteHasMindState: threadhead_e
-      spriteNoMindState: threadhead_e_r
-      spriteToggleLightState: threadhead_l
-      spriteBodyMovementState: threadhead_moving
+# region Mining(Salvage)
 
 - type: entity
   parent: BorgMiningSubtypeBase
@@ -270,6 +247,30 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+
+- type: entity
+  parent: BorgMiningSubtypeBase
+  id: BorgMiningSubtypeMiningGeneric
+  name: Generic
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/miner.rsi
+      spriteBodyState: generic
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
+
+- type: entity
+  parent: BorgMiningSubtypeBase
+  id: BorgMiningSubtypeDroid
+  name: Advanced Android
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/miner.rsi
+      spriteBodyState: droid
+      spriteHasMindState: droid_e
+      spriteNoMindState: droid_e_r
+      spriteToggleLightState: droid_l
 
 - type: entity
   parent: BorgMiningSubtypeBase
@@ -295,7 +296,28 @@
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
 
-# Service
+# region Service
+
+- type: entity
+  parent: BorgServiceSubtypeBase
+  id: BorgServiceSubtypeStandard
+  name: Standard
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/service.rsi
+      spriteBodyState: standard
+      spriteHasMindState: standard_e
+      spriteNoMindState: standard_e_r
+      spriteToggleLightState: standard_l
+
+- type: entity
+  parent: BorgServiceSubtypeBase
+  id: BorgServiceSubtypeGeneric
+  name: Generic
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/service.rsi
+      spriteBodyState: generic
 
 - type: entity
   parent: BorgServiceSubtypeBase
@@ -328,18 +350,6 @@
       spriteHasMindState: maximillion_e
       spriteNoMindState: maximillion_e_r
       price: 500
-
-- type: entity
-  parent: BorgServiceSubtypeBase
-  id: BorgServiceSubtypeStandard
-  name: Standard
-  components:
-    - type: BorgSubtypeDefinition
-      spritePath: Mobs/Silicon/Chassis/service.rsi
-      spriteBodyState: standard
-      spriteHasMindState: standard_e
-      spriteNoMindState: standard_e_r
-      spriteToggleLightState: standard_l
 
 - type: entity
   parent: BorgServiceSubtypeBase

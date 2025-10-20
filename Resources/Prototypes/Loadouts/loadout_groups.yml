@@ -1603,8 +1603,8 @@
   name: loadout-group-reporter-jumpsuit
   loadouts:
   - ReporterJumpsuit
-  - JournalistJumpsuit
   - ReporterJumpskirt
+  - JournalistJumpsuit
   - JournalistJumpskirt
 
 - type: loadoutGroup

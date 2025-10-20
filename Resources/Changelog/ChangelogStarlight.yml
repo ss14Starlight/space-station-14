@@ -18141,5 +18141,151 @@ Entries:
   id: 197800
   time: '2025-10-16T19:36:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1978
+- author: Fractalflower
+  changes:
+  - message: The L6 SAW module now comes with four magazines.
+    type: Add
+  id: 198200
+  time: '2025-10-17T14:20:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1982
+- author: Fractalflower
+  changes:
+  - message: You can now print L6 SAW magazines at an emagged autolathe or secfab.
+    type: Add
+  id: 198201
+  time: '2025-10-17T14:20:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1982
+- author: Way
+  changes:
+  - message: Fix vox sprite
+    type: Fix
+  id: 197900
+  time: '2025-10-17T14:24:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1979
+- author: CawForConcern
+  changes:
+  - message: Updated Corporate Law to match the wiki
+    type: Tweak
+  id: 198300
+  time: '2025-10-17T14:25:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1983
+- author: CawsForConcern
+  changes:
+  - message: (Origin) Sprinkled some NanoMed Civilian vending machines around the
+      map
+    type: Add
+  id: 196900
+  time: '2025-10-17T14:32:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1969
+- author: CawsForConcern
+  changes:
+  - message: (Origin) Fax machine to IAA office
+    type: Add
+  id: 196901
+  time: '2025-10-17T14:32:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1969
+- author: CawsForConcern
+  changes:
+  - message: (Origin) BSO's fax machine is now properly named (no longer shows up
+      as 'unknown')
+    type: Fix
+  id: 196902
+  time: '2025-10-17T14:32:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1969
+- author: CawsForConcern
+  changes:
+  - message: Cannabis seeds added the Manager wire inventory of MegaSeed Servitors
+    type: Add
+  id: 196300
+  time: '2025-10-17T14:33:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1963
+- author: CawsForConcern
+  changes:
+  - message: Reporter's "Journalist Suit" is now locked behind seniority playtime
+      (60h)
+    type: Tweak
+  id: 195300
+  time: '2025-10-17T14:45:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1953
+- author: CawsForConcern
+  changes:
+  - message: Reporter's "Reporter Jumpskirt" is no longer locked behind seniority
+      playtime
+    type: Fix
+  id: 195301
+  time: '2025-10-17T14:45:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1953
+- author: CawsForConcern
+  changes:
+  - message: Medical Doctor & Surgeon's "Medical Doctor Jumpskirt" is no longer locked
+      behind seniority playtime
+    type: Fix
+  id: 195302
+  time: '2025-10-17T14:45:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1953
+- author: Fractalflower
+  changes:
+  - message: You can now use the Dominator's lethals on delta.
+    type: Add
+  id: 196000
+  time: '2025-10-17T14:39:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1960
+- author: aneyeforsecrets
+  changes:
+  - message: Animals can now tug things!
+    type: Tweak
+  id: 195800
+  time: '2025-10-17T14:43:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1958
+- author: aneyeforsecrets
+  changes:
+  - message: Automenders can now have their reagents removed.
+    type: Tweak
+  id: 195900
+  time: '2025-10-17T14:42:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1959
+- author: Happyrobot33
+  changes:
+  - message: Fixed no distance limit on social interactions
+    type: Fix
+  id: 194800
+  time: '2025-10-17T14:51:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1948
+- author: mikeysaurus
+  changes:
+  - message: Fixed mining and advanced mining hardsuits headlamps so they actually
+      exist and work now. They are slightly stronger than salvage headlamps.
+    type: Fix
+  id: 195200
+  time: '2025-10-17T14:52:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1952
+- author: mikeysaurus
+  changes:
+  - message: Added vulp/reptilian/corgi sprites to mining and salvage hardsuits
+    type: Add
+  id: 195201
+  time: '2025-10-17T14:52:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1952
+- author: Revelation
+  changes:
+  - message: re-adds the OG service borg chassis
+    type: Add
+  id: 196100
+  time: '2025-10-17T14:57:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1961
+- author: Revelation
+  changes:
+  - message: Cyborgs default to their 'normal' chassis from pre-subtypes.
+    type: Tweak
+  id: 196101
+  time: '2025-10-17T14:57:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1961
+- author: aneyeforsecrets
+  changes:
+  - message: Record system search and desync issues
+    type: Fix
+  id: 192200
+  time: '2025-10-17T15:00:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1922
 Order: -1
 

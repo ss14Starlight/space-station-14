@@ -20,6 +20,10 @@
         maxVol: 35
   - type: RefillableSolution
     solution: injector
+  - type: DrawableSolution
+    solution: injector
+  - type: DrainableSolution
+    solution: injector
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 3
