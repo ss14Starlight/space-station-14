@@ -23,9 +23,6 @@
     - !type:AddComponentSpecial
       components:
         - type: CanPerformSurgeryOnSelf
-          conditions:
-            - !type:PlayerCountCondition
-              max: 25
 
 - type: startingGear
   id: SurgeonGear
