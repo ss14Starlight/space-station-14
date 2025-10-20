@@ -13,3 +13,19 @@
   components:
     - type: Thruster
       enabled: false
+
+- type: entity
+  id: ThrusterStatic
+  parent: Thruster
+  suffix: Static
+  components:
+  - type: Anchorable
+    flags: 1
+
+- type: entity
+  id: ThrusterDebugStatic
+  parent: DebugThruster
+  suffix: Static, Debug
+  components:
+  - type: Anchorable
+    flags: 1
