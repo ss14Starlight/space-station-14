@@ -1,0 +1,64 @@
+# BoneGel
+
+- type: entity
+  id: BoneGelBase
+  parent: BaseToolSurgery
+  abstract: true
+  components:
+  - type: BoneGel
+  - type: Tag
+    tags:
+    - BoneGel
+  - type: SolutionContainerManager
+    solutions:
+      container:
+        maxVol: 30
+  - type: MixableSolution
+    solution: container
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: DrawableSolution
+    solution: container
+  - type: RefillableSolution
+    solution: container
+  - type: DrainableSolution
+    solution: container
+  - type: ExaminableSolution
+    solution: container
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: DnaSubstanceTrace
+
+- type: entity
+  name: abductor's bottle of bone gel
+  id: BoneGelAbductor
+  parent: BoneGel
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: abductor
+  - type: SolutionRegeneration
+    solution: container
+    generated: 
+      reagents:
+      - ReagentId: BoneGel
+        Quantity: 1
+
+- type: entity
+  name: bottle of bone gel
+  id: BoneGelRipper
+  parent: BoneGel
+  description: A container for bone gel that often needs to be refilled from a specialized machine.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+  - type: SurgeryTool
+    speed: 1
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+  - type: HeldSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9

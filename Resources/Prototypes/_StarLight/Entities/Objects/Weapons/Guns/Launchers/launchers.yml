@@ -7,13 +7,3 @@
   components:
   - type: RevolverAmmoProvider
     proto: GrenadeEMP
-
-- type: entity
-  parent: WeaponLauncherHydra
-  id: WeaponLauncherHydraSyndicate
-  name: hydra
-  suffix: Syndicate
-  description: PLOOP... AAAAAAAA
-  components:
-  - type: RevolverAmmoProvider
-    proto: GrenadeCleanadeSyndicate

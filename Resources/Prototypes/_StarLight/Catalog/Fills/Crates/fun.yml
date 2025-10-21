@@ -1,0 +1,9 @@
+- type: entity
+  id: CrateFunSuperSynth
+  parent: CrateGenericSteel
+  name: super synthesizer crate
+  description: Contains one Super Synthesizer instrument. Groovy!
+  components:
+  - type: StorageFill
+    contents:
+      - id: SuperSynthesizerInstrument

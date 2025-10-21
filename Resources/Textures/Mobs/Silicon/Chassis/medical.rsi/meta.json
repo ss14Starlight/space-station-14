@@ -9,7 +9,55 @@
     "states": [
         {
             "name": "borg",
-            "directions": 4
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "borg_moving",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ]
+            ]
         },
         {
             "name": "borg_e",
@@ -24,67 +72,19 @@
             "directions": 4
         },
         {
-            "name": "surgeon",
-            "directions": 4,
-            "delays": [
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ]
-            ]
-        },
-        {
-            "name": "surgeon_moving",
-            "directions": 4,
-            "delays": [
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ]
-            ]
-        },
-        {
-            "name": "surgeon_e",
+            "name": "generic",
             "directions": 4
         },
         {
-            "name": "surgeon_e_r",
+            "name": "generic_e",
             "directions": 4
         },
         {
-            "name": "surgeon_l",
+            "name": "generic_e_r",
+            "directions": 4
+        },
+        {
+            "name": "generic_l",
             "directions": 4
         },
         {

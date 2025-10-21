@@ -361,7 +361,7 @@
 - type: emote
   id: FlapWings
   name: chat-emote-name-flap-wings
-  category: Hands
+  category: General # Can't be hands since mothroaches don't have those!
   available: false
   icon:
     sprite: Clothing/Neck/Cloaks/moth.rsi
@@ -374,6 +374,9 @@
     - flaps
     - flaps.
     - flaps!
+    - flaps wings
+    - flaps wings.
+    - flaps wings!
     - flaps his wings
     - flaps his wings.
     - flaps his wings!

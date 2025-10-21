@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from ParadiseStation | Salvage Lead/Medic PDAs by mikeysaurus",
+  "copyright": "Taken from ParadiseStation | Salvage/Mining PDAs by mikeysaurus, Veteran Salvage/Mining PDAs by PeterPoley for Starlight",
   "size": {
     "x": 32,
     "y": 32
@@ -52,6 +52,15 @@
     },
     {
       "name": "pda-salvagelead"
+    },
+    {
+      "name": "pda-veteransalvagelead"
+    },
+    {
+      "name": "pda-veteransalvage"
+    },
+    {
+      "name": "pda-veteranmining"
     }
   ]
 }

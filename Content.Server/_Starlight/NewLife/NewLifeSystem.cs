@@ -51,18 +51,28 @@ public sealed class NewLifeSystem : EntitySystem
     private readonly Dictionary<ICommonSession, NewLifeEui> _openUis = [];
     private readonly Dictionary<NetUserId, HashSet<int>> _roundCharactersUsed = [];
     private readonly Dictionary<NetUserId, int> _newLifesLeft = [];
+    private readonly Dictionary<NetUserId, TimeSpan> _lastGhostTime = [];
     private int MaxNewLifes = 5;
+    private TimeSpan Cooldown;
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<RoundEndSystemChangedEvent>(ClearRoundCharacterUsed);
         //cvar for max new lifes
         _configuration.OnValueChanged(StarlightCCVars.MaxNewLifes, UpdateMaxNewLifes, true);
+        _configuration.OnValueChanged(StarlightCCVars.NewLifeGhostCooldown, UpdateCooldown, true);
     }
 
     private void UpdateMaxNewLifes(int value)
     {
         MaxNewLifes = value;
+        //update all open uis
+        UpdateAllEui();
+    }
+
+    private void UpdateCooldown(int value)
+    {
+        Cooldown = TimeSpan.FromSeconds(value);
         //update all open uis
         UpdateAllEui();
     }
@@ -77,6 +87,7 @@ public sealed class NewLifeSystem : EntitySystem
         {
             _roundCharactersUsed.Clear();
             _newLifesLeft.Clear();
+            _lastGhostTime.Clear();
         }
     }
 
@@ -91,7 +102,8 @@ public sealed class NewLifeSystem : EntitySystem
 
         var usedSlots = _roundCharactersUsed.TryGetValue(session.UserId, out var slots) ? slots : [];
         var remainingLives = _newLifesLeft.TryGetValue(session.UserId, out var remaining) ? remaining : MaxNewLifes;
-        var eui = _openUis[session] = new NewLifeEui(usedSlots, remainingLives, MaxNewLifes);
+        var lastGhostTime = _lastGhostTime.TryGetValue(session.UserId, out var last) ? last : TimeSpan.Zero;
+        var eui = _openUis[session] = new NewLifeEui(usedSlots, remainingLives, MaxNewLifes, lastGhostTime, Cooldown);
 
         _euiManager.OpenEui(eui, session);
         eui.StateDirty();
@@ -116,6 +128,14 @@ public sealed class NewLifeSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+    }
+
+    public void SaveGhostTime(NetUserId userId, TimeSpan time)
+    {
+        if (_lastGhostTime.ContainsKey(userId))
+            _lastGhostTime[userId] = time;
+        else
+            _lastGhostTime.Add(userId, time);
     }
 
     internal void SaveCharacterToUsed(NetUserId userId, int slot)

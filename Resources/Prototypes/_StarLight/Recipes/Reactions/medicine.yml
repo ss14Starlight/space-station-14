@@ -13,6 +13,19 @@
     Amoxla: 2
 
 - type: reaction
+  id: BoneGel
+  impact: Medium
+  reactants:
+    Kelotane:
+      amount: 1
+    Mannitol:
+      amount: 1
+    Water:
+      amount: 2
+  products:
+    BoneGel: 3
+
+- type: reaction
   id: Chronexaline
   reactants:
     Hyronalin:

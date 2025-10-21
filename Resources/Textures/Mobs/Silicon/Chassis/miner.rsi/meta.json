@@ -12,6 +12,28 @@
             "directions": 4
         },
         {
+            "name": "borg_moving",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
             "name": "borg_e",
             "directions": 4
         },
@@ -21,6 +43,22 @@
         },
         {
             "name": "borg_l",
+            "directions": 4
+        },
+        {
+            "name": "generic",
+            "directions": 4
+        },
+        {
+            "name": "generic_e",
+            "directions": 4
+        },
+        {
+            "name": "generic_e_r",
+            "directions": 4
+        },
+        {
+            "name": "generic_l",
             "directions": 4
         },
         {
@@ -121,44 +159,6 @@
         },
         {
             "name": "droid_l",
-            "directions": 4
-        },
-        {
-            "name": "threadhead",
-            "directions": 4
-        },
-        {
-            "name": "threadhead_moving",
-            "directions": 4,
-            "delays": [
-                [
-                    0.1,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.1
-                ]
-            ]
-        },
-        {
-            "name": "threadhead_e",
-            "directions": 4
-        },
-        {
-            "name": "threadhead_e_r",
-            "directions": 4
-        },
-        {
-            "name": "threadhead_l",
             "directions": 4
         },
         {

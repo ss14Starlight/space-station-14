@@ -1,3 +1,4 @@
+using System.Linq; // Starlight-edit
 using Content.Shared._Afterlight.Silicons.Borgs; // Afterlight
 using Content.Shared.Starlight; // Starlight-edit
 using Content.Shared.Actions;
@@ -51,9 +52,7 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
         Dirty(ent);
 
         if (ent.Comp.SelectedBorgType != null)
-        {
             SelectBorgModule(ent, ent.Comp.SelectedBorgType.Value);
-        }
     }
 
     private void OnShutdown(Entity<BorgSwitchableTypeComponent> ent, ref ComponentShutdown args)
@@ -140,5 +139,28 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
         {
             footstepModifier.FootstepSoundCollection = prototype.FootstepCollection;
         }
+
+        // Starlight-start: Movement sprite state
+
+        if (prototype.SpriteBodyMovementState is { } movementState)
+        {
+            var spriteMovement = EnsureComp<SpriteMovementComponent>(entity);
+            spriteMovement.NoMovementLayers.Clear();
+            spriteMovement.NoMovementLayers["movement"] = new PrototypeLayerData
+            {
+                State = prototype.SpriteBodyState,
+            };
+            spriteMovement.MovementLayers.Clear();
+            spriteMovement.MovementLayers["movement"] = new PrototypeLayerData
+            {
+                State = movementState,
+            };
+        }
+        else
+        {
+            RemComp<SpriteMovementComponent>(entity);
+        }
+
+        // Starlight-end
     }
 }

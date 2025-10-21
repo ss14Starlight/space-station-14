@@ -39,6 +39,8 @@ public sealed class EntityWhitelistSystem : EntitySystem
         return whitelist == null || IsValid(whitelist, uid);
     }
 
+    public void ClearRegistrations(EntityWhitelist list) => list.Registrations = null; // Starlight
+
     /// <summary>
     /// Checks whether a given entity satisfies a whitelist.
     /// </summary>

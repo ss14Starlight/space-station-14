@@ -71,6 +71,14 @@
   recipes:
     - BorgModuleMartyr
     - BorgModuleSyndicateWeapon
+    - BorgModuleC20r
+
+- type: latheRecipePack
+  id: StarlightSyndicateModulesSecfab
+  recipes:
+    - BorgModuleMartyr
+    - BorgModuleSyndicateWeapon
+    - BorgModuleC20r
     - BorgModuleL6C
 
 # Lawboards

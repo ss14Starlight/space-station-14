@@ -25,6 +25,11 @@
   - WeaponLaserCarbinePractice
   - WeaponFlareGunSecurity
 
+- type: latheRecipePack
+  id: StarlightSecurityAmmoEmagStatic
+  recipes:
+  - L6SawMagazine
+
 # Shared between secfab and emagged autolathe
 - type: latheRecipePack
   id: StarlightSecurityAmmoStatic
@@ -286,17 +291,3 @@
   recipes:
   - LeftArmCyberBulwark
   - RightArmCyberBulwark
-
-- type: latheRecipePack
-  id: StarlightSecurityGrenades
-  recipes:
-  - MagazineGrenadeEMP
-  - MagazineGrenadeFlash
-  - MagazineGrenadeBaton
-
-- type: latheRecipePack
-  id: StarlightSecurityGrenadesEmag
-  recipes:
-  - MagazineGrenadeFrag
-  - MagazineGrenadeBlast
-

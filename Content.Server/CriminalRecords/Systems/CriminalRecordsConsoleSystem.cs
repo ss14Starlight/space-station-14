@@ -15,6 +15,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Security.Components;
 using System.Linq;
 using Content.Shared.Roles.Jobs;
+using Robust.Shared.Log;
 
 // Cosmatic Drift Record System: imports
 using Content.Server._CD.Records;
@@ -34,6 +35,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    private static readonly ISawmill Sawmill = Logger.GetSawmill("crimrecords.console");
 
     public override void Initialize()
     {
@@ -214,7 +216,10 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         GetOfficer(mob.Value, out var officer);
 
         if (!_criminalRecords.TryAddHistory(key.Value, line, officer))
+        {
+            Sawmill.Warning($"Failed to append manual history entry for record {key.Value.Id} on station {key.Value.OriginStation}.");
             return;
+        }
 
         // no radio message since its not crucial to officers patrolling
 
@@ -228,7 +233,10 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             return;
 
         if (!_criminalRecords.TryDeleteHistory(key.Value, msg.Index))
+        {
+            Sawmill.Warning($"Failed to delete history index {msg.Index} for record {key.Value.Id} on station {key.Value.OriginStation}.");
             return;
+        }
 
         // a bit sus but not crucial to officers patrolling
 
@@ -303,6 +311,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         return true;
     }
 
+    /// <summary>Builds the localized text for a shift-history entry, trimming empty reasons.</summary>
     private string FormatStatusHistory(SecurityStatus status, string? reason)
     {
         var statusName = Loc.GetString("criminal-records-status-" + status.ToString().ToLower());

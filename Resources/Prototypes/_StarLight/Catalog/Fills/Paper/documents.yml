@@ -120,6 +120,15 @@
     - type: Paper
       content: doc-text-printer-arrest-report
 
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentSalvageLeadReport
+  name: Salvage Lead report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-salvagelead-report
+
 # Statements
 
 - type: entity

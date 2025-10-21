@@ -132,10 +132,11 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
-  - type: EmagLatheRecipes
+  - type: EmagLatheRecipes # Starlight start
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
+    - StarlightSecurityAmmoEmagStatic # Starlight end
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -422,26 +423,28 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - SecurityEquipmentStatic
+    - SecurityEquipmentStatic # Starlight start
     - SecurityPracticeStatic
     - StarlightSecurityAmmoStatic
-    - SecurityWeaponsStatic
+    - StarlightSecurityAmmoEmagStatic
+    - SecurityWeaponsStatic # Starlight end
     dynamicPacks:
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
-    - SecurityDisablers
-    - StarlightDefenseStatic # starlight start
-    - SecurityCyberLimbs
+    - StarlightDefenseStatic
     - StarlightSecurityEquipment
     - StarlightSecurityBoards
     - StarlightSecurityExplosives
     - StarlightSecurityAmmoDynamic
     - StarlightSecurityWeapons
+    - SecurityDisablers
+    - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
-    - StarlightSecurityGrenades
+  #region Starlight secfab emagging
   - type: EmagLatheRecipes
-    emagDynamicPacks:
-    - StarlightSecurityGrenadesEmag # starlight end
+    emagStaticPacks:
+    - StarlightSyndicateModulesSecfab
+  #endregion Starlight secfab emagging
   - type: MaterialStorage
     whitelist:
       tags:

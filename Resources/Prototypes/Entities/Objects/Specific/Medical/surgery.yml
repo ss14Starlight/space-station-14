@@ -779,7 +779,7 @@
 - type: entity
   name: bottle of bone gel
   id: BoneGel
-  parent: BaseToolSurgery
+  parent: BoneGelBase
   description: A container for bone gel that often needs to be refilled from a specialized machine.
   components:
   - type: Sprite
@@ -813,3 +813,10 @@
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9
+  - type: SolutionContainerManager
+    solutions:
+      container:
+        maxVol: 30
+        reagents:
+        - ReagentId: BoneGel
+          Quantity: 30

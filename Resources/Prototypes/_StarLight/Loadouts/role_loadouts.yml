@@ -89,6 +89,7 @@
   - MiningSpecialistJumpsuit
   - SalvageSpecialistOuterClothing
   - SalvageSpecialistShoes
+  - MiningSpecialistPDA
   - Glasses
   - Survival
   - Trinkets
@@ -136,6 +137,7 @@
     - SalvageLeadJumpsuit
     - SalvageSpecialistOuterClothing
     - SalvageSpecialistShoes
+    - SalvageLeadPDA
     - Glasses
     - Survival
     - Trinkets

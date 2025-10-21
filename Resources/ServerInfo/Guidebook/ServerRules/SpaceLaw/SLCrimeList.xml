@@ -439,7 +439,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To inflict unnecessary suffering or harm on a non-sapient being with malicious intent. This does not include legitimate and authorized animal testing, or the butchering of livestock for meat. This also does not extend to vermin, or hostile creatures.
+        To inflict unnecessary suffering or harm on a non-sentient being with malicious intent. This does not include legitimate and authorized animal testing, or the butchering of livestock for meat. This also does not extend to vermin, or hostile creatures.
       </Box>
     </ColorBox>
     <ColorBox Color="#2f3832">
@@ -719,7 +719,7 @@
     </ColorBox>
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      	To incidentally kill a sapient being without intent. This includes manslaughter in self-defense and negligent manslaughter.
+      	To incidentally kill a sentient humanoid without intent. This includes manslaughter in self-defense and negligent manslaughter.
       </Box>
     </ColorBox>
     <ColorBox Color="#3b4354">
@@ -754,7 +754,9 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To break out of a cell or custody with the intention of escaping. This applies to people breaking others out. \nRepeat offenses may have this charge increased to permanent confinement and later elevated to an execution with the Captain’s authority only if the suspect has repeatedly committed breach of custody. \nBreach of custody for the preservation of life, not including to escape execution, such as to vacate a location made dangerous due to gunfire, fire, spacing, or lack of oxygen- may be reduced or ignored at the Warden or Head of Security’s discretion.
+        To break out of a cell or custody with the intention of escaping. This applies to people breaking others out. Repeat offenses may have this charge increased to permanent confinement and later elevated to an execution with the Captain's authority only if the suspect has repeatedly committed breach of custody.
+        
+        Breach of custody for the preservation of life, not including to escape execution, such as to vacate a location made dangerous due to gunfire, fire, spacing, or lack of oxygen- may be reduced or ignored at the Warden or Head of Security's discretion.
       </Box>
     </ColorBox>
     <ColorBox Color="#2f3832">
@@ -776,7 +778,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To unlawfully restrain, transport, control, or confine a sapient being against that individual’s will. This is a catchall to cover any form of kidnapping or forced control.
+        To unlawfully restrain, transport, control, or confine a sentient humanoid being against that individual's will. This is a catchall to cover any form of kidnapping or forced control.
       </Box>
     </ColorBox>
     <ColorBox Color="#4d2e2e">
@@ -796,7 +798,7 @@
     </ColorBox>
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To kill a sapient being with malicious intent. If the victim must be revived, it is murder and not attempted murder.
+        To kill a sentient humanoid with malicious intent. If the victim must be revived, it is murder and not attempted murder.
       </Box>
     </ColorBox>
     <ColorBox Color="#475c7d">
@@ -806,7 +808,7 @@
     </ColorBox>
     <ColorBox Color="#475c7d">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To willfully betray allegiances to NanoTrasen. This includes collaborating with terrorists, and especially applies to members of Command attempting to illegally forsake their duties to the detriment of the Station and Nanotrasen. 
+        To willfully betray allegiances to NanoTrasen. This includes collaborating with terrorists, and especially applies to members of Command attempting to illegally forsake their duties to the detriment of the Station and Nanotrasen.
       </Box>
     </ColorBox>
     <ColorBox>
@@ -816,7 +818,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To consume any part of a sapient being. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed. Consumption of blood is not considered cannibalism, but if the source is non-consensual or stolen it may be assault or theft.
+        To consume any part of a sentient humanoid. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed. Consumption of blood is not considered cannibalism, but if the source is non-consensual or stolen it may be assault or theft.
       </Box>
     </ColorBox>
   </Table>
@@ -841,7 +843,7 @@
     </ColorBox>
     <ColorBox Color="#593a4e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To refuse to comply with a reasonable Mind Shielding procedure. Applies if the suspect is excessively uncooperative or the implant fails to function due to the mental state of the prisoner being too far gone. If the implant fails, execution is heavily recommended and may be approved by the Captain or Central Command. See Implantation for more.
+        To refuse to comply with a reasonable Mind Shielding procedure. Applies if the suspect is excessively uncooperative or the implant fails to function due to the mental state of the prisoner being too far gone. [bold]If the implant fails, execution is heavily recommended and may be approved by the Captain or Central Command. See Implantation for more.[/bold]
       </Box>
     </ColorBox>
     <ColorBox Color="#2e422e">
@@ -881,7 +883,7 @@
     </ColorBox>
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To kill three or more sapient beings with malicious intent. Only applies when there have been multiple killings with intention.
+        To kill three or more sentient humanoid with malicious intent. Only applies when there have been multiple killings with intention.
       </Box>
     </ColorBox>
     <ColorBox Color="#475c7d">
