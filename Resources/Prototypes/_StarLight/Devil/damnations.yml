@@ -5,11 +5,3 @@
   cost: -5
   components:
   - type: Cluwne
-
-- type: damnation
-  id: TestFailDamnation
-  name: Test Failure
-  description: it don't fit! it won't fit!
-  cost: 5
-  components:
-  - type: TestFailDamnation

@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Devil.Damnations;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Devil;
@@ -37,6 +38,12 @@ public sealed partial class DamnationPrototype : IPrototype
     /// </summary>
     [DataField("removedComponents")]
     public ComponentRegistry RemovedComponents = new();
+
+    /// <summary>
+    /// List of actions to run
+    /// </summary>
+    [DataField("actions")]
+    public List<DamnationAction> Actions = new();
 
     /// <summary>
     /// Should the added components be removed if the damnation is undone?

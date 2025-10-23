@@ -102,13 +102,17 @@ public abstract partial class SharedDevilSystem : EntitySystem
     {
         if (args.Cancelled || contractComp.Completed) return;
 
-        if (GetContractValidity(uid) != InfernalContractValidity.Valid || HasComp<DevilComponent>(args.Signer))
+        if (GetContractValidity(uid) != InfernalContractValidity.Valid)
         {
-            args.FailReason = HasComp<DevilComponent>(args.Signer) ?
-                Loc.GetString("infernal-contract-popup-fail-self") :
-                Loc.GetString("infernal-contract-popup-fail");
+            args.FailReason = Loc.GetString("infernal-contract-popup-fail");
             args.Cancelled = true;
+            return;
+        }
 
+        if (HasComp<DevilComponent>(args.Signer) || HasComp<DamnedComponent>(args.Signer))
+        {
+            args.FailReason = Loc.GetString("infernal-contract-popup-fail-self");
+            args.Cancelled = true;
             return;
         }
     }

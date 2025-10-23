@@ -27,6 +27,18 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         _entityManager.AddComponents(entity.Owner, damnationPrototype.Components);
         _entityManager.RemoveComponents(entity.Owner, damnationPrototype.RemovedComponents);
+
+        foreach (var action in damnationPrototype.Actions)
+        {
+            if (!action.IocResolved)
+            {
+                action.ResolveIoC();
+                action.IocResolved = true;
+            }
+
+            if (!action.Action(entity)) return false;
+        }
+
         entity.Comp.NetCost += damnationPrototype.Cost;
         entity.Comp.Damnations.Add(proto);
 
@@ -61,6 +73,11 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         if (damnationPrototype.ReverseOnRemove)
             _entityManager.RemoveComponents(entity.Owner, damnationPrototype.Components);
+        
+        foreach (var action in damnationPrototype.Actions)
+        {
+            action.ReverseAction(entity);
+        }
 
         entity.Comp.Damnations.Remove(damnation);
 

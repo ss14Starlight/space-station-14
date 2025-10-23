@@ -55,7 +55,9 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         var contract = GetContractContent(uid);
         if (contract == null) return;
-        DamnEntity(args.Signer, (InfernalContractData)contract, contractComp.Author);
+        if (contract?.Damnations.Count == 0) return;
+
+        DamnEntity(args.Signer, (InfernalContractData)contract!, contractComp.Author);
 
         contractComp.Completed = true;
         Dirty(uid, contractComp);
