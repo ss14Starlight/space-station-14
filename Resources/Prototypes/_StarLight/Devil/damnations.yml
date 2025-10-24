@@ -1,7 +1,38 @@
+# CURSES
+
 - type: damnation
-  id: Cluwnification
-  name: Cluwnification
-  description: Oh. Oh no.
-  cost: -5
+  id: Soul
+  name: give up my soul
+  description: The signator forfeits their soul to you. Upon death, their soul will be sent to the depths of hell, rendering their corpse unrevivable.
+  cost: -10
   components:
-  - type: Cluwne
+  - type: Unrevivable
+    reasonMessage: defibrillator-damned
+
+- type: damnation
+  id: Pacifism
+  name: give up my will to fight
+  description: The signator gives up their inner fight, becoming unable to bring harm to anything living or inanimate.
+  cost: -3
+  components:
+  - type: PacifiedComponent
+    disallowAllCombat: true
+
+- type: damnation
+  id: Blindness
+  name: give up my sight
+  description: The signator forfeits their ability to see.
+  cost: -3
+  components:
+  - type: PermanentBlindness
+    blindness: 0
+
+# REWARDS
+- type: damnation
+  id: SpaceImmunity
+  name: be unafraid of space
+  description: The signator becomes immune to space, no longer bound by their fear.
+  cost: 10
+  removedComponents:
+  - type: Barotrauma
+  - type: Respirator
