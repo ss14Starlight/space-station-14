@@ -28,7 +28,7 @@ public sealed partial class DamnConditionComponent : Component
     /// </summary>
     [DataField]
     public List<ProtoId<DamnationPrototype>> RequiredDamnations = [
-        "Cluwnification" // test, todo replace with soul ownership
+        "Soul"
     ];
 
     [DataField(required: true)]
