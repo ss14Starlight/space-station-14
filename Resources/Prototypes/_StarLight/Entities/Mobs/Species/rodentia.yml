@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McRat
+  name: Urist McRat # MIKEY - compare to resomi. lookup 'Urist McRaptor'
   parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
   id: BaseMobRodentia
   abstract: true
@@ -8,22 +8,35 @@
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
-    - Mouse # MIKEY - replace "Mouse" with new language?
+    - Crittish # MIKEY - is "crittish" the right word for it
     understands:
     - GalacticCommon
+    - Crittish
     - Mouse
   - type: Absorbable
   - type: Hunger
   - type: Icon
     sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
     state: full
+  - type: Body
+    prototype: Rodentia
+    requiredLegs: 2
   - type: Thirst
   - type: Butcherable
     butcheringType: Spike
     spawned:
-      - id: FoodMeatHuman # MIKEY - replace with foodmeatrodentia
+      - id: FoodMeat
         amount: 5
-  - type: HumanoidAppearance # MIKEY - waht is this???
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      85: Critical
+      170: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      51: 0.7  #Basicly 60% and 80% 
+      68: 0.5
+  - type: HumanoidAppearance
     species: Rodentia
     hideLayersOnEquip:
     - Hair
@@ -31,20 +44,23 @@
     - HeadSide
     - Snout
   - type: TypingIndicator
-    proto: spider # MIKEY - replace with rodent one
+    proto: default # MIKEY - replace with rodent one?
   - type: Speech
     speechVerb: Rodentia
     speechSounds: Squeak
-    allowedEmotes: ['Squeak']
+    allowedEmotes: ['Squeak'] # MIKEY - add more emotes. Look at MobMouse for inspo?
   - type: Sprite
     netsync: false
     noRot: true
     drawdepth: Mobs
-    # scale: 1, 0.8        # same as RMC dwarves (please reconsider allowing dwarf-sized rodentia)
   - type: MeleeWeapon
     soundHit:
-      path: /Audio/Weapons/pierce.ogg
+      collection: AlienClaw
+    angle: 30
     animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
   - type: Vocal
     sounds:
       Male: MaleRodentia
@@ -52,6 +68,7 @@
       Unsexed: MaleRodentia
   - type: Inventory
     speciesId: rodentia
+#    displacements: # MIKEY - add displacements when Zeyria finishes them
 
 - type: entity
   save: false

@@ -173,3 +173,11 @@
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
     state: thaveyan
   allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: LanguageIconCrittish
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: buzz # MIKEY - replace with custom icon
+  allowSelection: false

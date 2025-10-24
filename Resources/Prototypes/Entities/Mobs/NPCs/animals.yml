@@ -1719,6 +1719,7 @@
     - Mouse
     understands:
     - Mouse
+    - Crittish # Rodentia
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: Body
@@ -3449,6 +3450,7 @@
     - Mouse
     understands:
     - Mouse
+    - Crittish # Rodentia
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: GhostRole
