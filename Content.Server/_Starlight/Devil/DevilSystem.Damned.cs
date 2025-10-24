@@ -72,7 +72,10 @@ public sealed partial class DevilSystem : SharedDevilSystem
         if (!_prototype.TryIndex(damnation, out var damnationPrototype)) return false;
 
         if (damnationPrototype.ReverseOnRemove)
+        {
             _entityManager.RemoveComponents(entity.Owner, damnationPrototype.Components);
+            _entityManager.AddComponents(entity.Owner, damnationPrototype.RemovedComponents);
+        }  
         
         foreach (var action in damnationPrototype.Actions)
         {

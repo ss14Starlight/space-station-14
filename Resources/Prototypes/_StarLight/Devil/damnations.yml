@@ -38,7 +38,8 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.15
+        Blunt: 0.85
+        Heat: 0.1
   - type: Respirator
     damage:
       types:
@@ -46,3 +47,4 @@
     damageRecovery:
       types:
         Asphyxiation: -1.0
+  - type: Temperature
