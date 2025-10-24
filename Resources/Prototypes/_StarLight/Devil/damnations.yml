@@ -15,7 +15,7 @@
   description: The signator gives up their inner fight, becoming unable to bring harm to anything living or inanimate.
   cost: -3
   components:
-  - type: PacifiedComponent
+  - type: Pacified
     disallowAllCombat: true
 
 - type: damnation
@@ -28,6 +28,7 @@
     blindness: 0
 
 # REWARDS
+
 - type: damnation
   id: SpaceImmunity
   name: be unafraid of space
@@ -35,4 +36,13 @@
   cost: 10
   removedComponents:
   - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.15
   - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
