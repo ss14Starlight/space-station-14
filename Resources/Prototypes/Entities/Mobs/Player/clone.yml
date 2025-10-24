@@ -59,6 +59,8 @@
     # Languages - Starlight
   - LanguageSpeaker
   - ForeignerTrait
+    # TTS - Starlight
+  - TextToSpeech
   eventComponents: 
   - LanguageKnowledge #Clone languages via event so if they get changed you dont suddently re-learn languages.
 
@@ -121,6 +123,13 @@
   - TemperatureProtection
   - TypingIndicator
   - ScaleVisuals # for dwarf height
+  # Extended Character Descriptions - Starlight
+  - CharacterDescription
+  - CharacterSecrets
+  - ExploitableInfo
+  - MindSecrets
+  - RoleplayInfo
+  # Starlight end
   eventComponents:
   # these need special treatment in the event subscription
   - Inventory # arachnid pockets and diona feet

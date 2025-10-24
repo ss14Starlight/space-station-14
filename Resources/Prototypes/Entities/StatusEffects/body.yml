@@ -13,6 +13,6 @@
   id: StatusEffectBloodloss
   name: bloodloss
   components:
-    - type: StutteringAccent
+   #- type: StutteringAccent # 🌟Starlight🌟
     - type: DrunkStatusEffect
     - type: RejuvenateRemovedStatusEffect

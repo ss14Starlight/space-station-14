@@ -1,7 +1,7 @@
 {
 	"version": 1,
 	"license": "CC-BY-NC-SA-3.0",
-	"copyright": "Made by Killer Tamashi (Discord)",
+	"copyright": "Made by Zeyria (Discord)",
 	"size": {
 		"x": 64,
 		"y": 64
@@ -11,15 +11,15 @@
 			"name": "nanite-building",
             "delays": [
               [
-                0.3,
-                0.3,
-                0.3,
-                0.3,
-                0.3,
-                0.3,
-                0.3,
-                0.3,
-                0.4
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2
               ]
             ]
 		},
@@ -27,20 +27,33 @@
 			"name": "nanite-deconstructing",
             "delays": [
               [
-                0.3,
-                0.3,
-                0.3,
-                0.3,
-                0.3,
-                0.3,
-                0.3,
-                0.3,
-                0.4
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2
               ]
             ]
 		},
-    {
-			"name": "shell"
-		}
+        {
+            "name": "shell",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        }
 	]
 }

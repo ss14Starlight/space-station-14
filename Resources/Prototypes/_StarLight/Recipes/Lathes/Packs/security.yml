@@ -25,6 +25,11 @@
   - WeaponLaserCarbinePractice
   - WeaponFlareGunSecurity
 
+- type: latheRecipePack
+  id: StarlightSecurityAmmoEmagStatic
+  recipes:
+  - L6SawMagazine
+
 # Shared between secfab and emagged autolathe
 - type: latheRecipePack
   id: StarlightSecurityAmmoStatic
@@ -105,7 +110,7 @@
   - MagazineShotgun
   - MagazineShotgunEmpty
   - MagazineShotgunSlug
-  
+
   - SpeedLoaderMagnumBasic
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug

@@ -1,0 +1,97 @@
+#Cacti Large
+- type: decal
+  id: CactiLarge1
+  tags: ["Cacti"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
+    state: cacti_large01
+
+- type: decal
+  id: CactiLarge2
+  tags: ["Cacti"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
+    state: cacti_large02
+
+- type: decal
+  id: CactiLarge3
+  tags: ["Cacti"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
+    state: cacti_large03
+
+#Cacti Small
+- type: decal
+  id: CactiSmall1
+  tags: ["Cacti"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
+    state: cacti_small01
+
+- type: decal
+  id: CactiSmall2
+  tags: ["Cacti"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
+    state: cacti_small02
+
+- type: decal
+  id: CactiSmall3
+  tags: ["Cacti"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/Foliage/desert/cacti.rsi
+    state: cacti_small03
+
+#Rocks Large
+
+#Rocks Small
+
+#Shrubs/Bushes
+- type: decal
+  id: DesertBush1
+  tags: ["Cacti", "arid"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/Foliage/desert/bushes.rsi
+    state: bush01
+
+- type: decal
+  id: DesertBush2
+  tags: ["Cacti", "arid"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/Foliage/desert/bushes.rsi
+    state: bush02
+
+- type: decal
+  id: DesertBush3
+  tags: ["Cacti", "arid"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/Foliage/desert/bushes.rsi
+    state: bush03
+
+- type: decal
+  id: DesertBush4
+  tags: ["Cacti", "arid"]
+  snapCardinals: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/Foliage/desert/bushes.rsi
+    state: bush04
+

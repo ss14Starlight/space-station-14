@@ -4,10 +4,10 @@ using Content.Server._NullLink.Helpers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Orleans;
 using Orleans.GrainReferences;
 using Orleans.Hosting;
-using Orleans.Runtime;
 using Robust.Shared.Physics;
 using StackExchange.Redis;
 
@@ -22,7 +22,7 @@ internal static class OrleansClientHolder
 
     public static Task Connection => _connectionTcs.Task;
     public static IClusterClient? Client { get; private set; }
-    public static async ValueTask Configure(string conn, ISawmill log, bool rebuild = false)
+    public static async ValueTask Configure(string conn, string token, ISawmill log, bool rebuild = false)
     {
         await _semaphore.WaitAsync();
         try
@@ -35,9 +35,12 @@ internal static class OrleansClientHolder
             s_host = new HostBuilder()
                 .UseOrleansClient((ctx, client)
                     => client.UseRedisClustering(opt => opt.ConfigurationOptions = ConfigurationOptions.Parse(conn))
+                          .AddOutgoingGrainCallFilter<TokenOutgoingFilter>()
                           .AddRobustSawmill(log)
                           .AddGatewayCountChangedHandler(GatewayHandler)
-                          .Services.AddTransient<IClientConnectionRetryFilter, ClientConnectRetryFilter>())
+                          .Services
+                            .AddTransient<IClientConnectionRetryFilter, ClientConnectRetryFilter>()
+                            .AddSingleton(new TokenHolder { Token = token }))
                 .Build();
 
             await s_host.StartAsync();

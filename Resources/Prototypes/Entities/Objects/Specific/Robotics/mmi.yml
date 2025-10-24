@@ -1,19 +1,9 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, BaseSiliconBrainLanguages] #Starlight
   id: MMI
   name: man-machine interface
   description: A machine able to facilitate communication between a biological brain and electronics, enabling crew to continue to provide value after work-related incidents.
   components:
-  # Starlight-start: Languages
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - GalacticCommon
-    - Machine
-    understands:
-    - GalacticCommon
-    - Machine
-  # Starlight-end
   - type: Sprite
     sprite: Objects/Specific/Robotics/mmi.rsi
     layers:
@@ -63,6 +53,10 @@
     whitelist:
       components:
       - SecretStash
+  # Starlight Start
+  - type: Blindable
+  - type: ParentCanBlockVision
+  # Starlight End
 
 - type: entity
   parent: MMI
@@ -79,20 +73,11 @@
             - Brain
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, BaseSiliconBrainLanguages] #Starlight Languages
   id: PositronicBrain
   name: positronic brain
   description: An artificial brain capable of spontaneous neural activity.
   components:
-  # Starlight-start: Languages
-    - type: LanguageKnowledge
-      speaks:
-      - GalacticCommon
-      - Machine
-      understands:
-      - GalacticCommon
-      - Machine
-  # Starlight-end
     - type: Sprite
       sprite: Objects/Specific/Robotics/mmi.rsi
       layers:
@@ -134,9 +119,11 @@
       proto: robot
     - type: Speech
       speechSounds: Pai
+    - type: Alerts
     - type: MobState
       allowedStates:
       - Alive
+      - Dead
     - type: Appearance
     - type: Tag
       tags:
@@ -156,3 +143,7 @@
       whitelist:
         components:
         - SecretStash
+    # Starlight Start
+    - type: Blindable
+    - type: ParentCanBlockVision
+    # Starlight End

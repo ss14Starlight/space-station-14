@@ -22,3 +22,14 @@
         amount: 1
         defaultPrototype: PowerCellMedium
         examineName: construction-insert-info-examine-name-power-cell 
+
+- type: entity
+  parent: WeaponEnergyTurretStationMachineCircuitboardBase
+  id: WeaponEnergyTurretSiliconMachineCircuitboard
+  suffix: Silicon
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: science
+  - type: MachineBoard
+    prototype: WeaponEnergyTurretSilicon

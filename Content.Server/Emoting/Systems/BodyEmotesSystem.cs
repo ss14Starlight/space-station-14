@@ -24,7 +24,11 @@ public sealed class BodyEmotesSystem : EntitySystem
             return;
 
         var cat = args.Emote.Category;
-        if (cat.HasFlag(EmoteCategory.Hands))
+        if (cat.HasFlag(EmoteCategory.General)) // Starlight: Make General sounds *actually* not require Vocal/Hands
+        {
+            args.Handled = TryEmoteBody(uid, args.Emote, component);
+        }
+        else if (cat.HasFlag(EmoteCategory.Hands))
         {
             args.Handled = TryEmoteHands(uid, args.Emote, component);
         }
@@ -36,6 +40,27 @@ public sealed class BodyEmotesSystem : EntitySystem
         if (!TryComp(uid, out HandsComponent? hands) || hands.Count <= 0)
             return false;
 
+        if (!_proto.Resolve(component.SoundsId, out var sounds))
+            return false;
+
+        return _chat.TryPlayEmoteSound(uid, sounds, emote);
+    }
+    
+    /// <summary>
+    /// Starlight.
+    ///
+    /// Due to how emoting is set up (bitmasks/flags) it just happens that the EmoteCategory "General" classifies as
+    /// both "Vocal" and "Hands". By pure coincidence, this works out for the deathgasp sound (the only sound currently
+    /// in the General category), which will play if you have either of those components.
+    ///
+    /// But, if you don't have either of those, General emotes will never play. This method fixes that. 
+    /// </summary>
+    /// <param name="uid"></param>
+    /// <param name="emote"></param>
+    /// <param name="component"></param>
+    /// <returns></returns>
+    private bool TryEmoteBody(EntityUid uid, EmotePrototype emote, BodyEmotesComponent component)
+    {
         if (!_proto.Resolve(component.SoundsId, out var sounds))
             return false;
 

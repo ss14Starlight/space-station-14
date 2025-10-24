@@ -19,6 +19,7 @@
   parent: BasePyrotechnic
   desc: reagent-desc-thermite
   physicalDesc: reagent-physical-desc-grainy
+  contrabandSeverity: Minor
   flavor: bitter
   color: "#757245"
   boilingPoint: 2977.0 # Aluminum oxide
@@ -26,6 +27,16 @@
   tileReactions:
   - !type:FlammableTileReaction
     temperatureMultiplier: 2
+  # Starlight-start: Working thermite
+  reactiveEffects:
+    Dissolvable:
+      methods: [ Touch ]
+      effects:
+      - !type:DissolvableReaction
+        multiplier: 1
+        damage: 
+          types:
+            Structural: 3
   metabolisms:
     Poison:
       effects:
@@ -34,6 +45,7 @@
           types:
             Heat: 2
             Poison: 1
+  # Starlight-end
 
 - type: reagent
   id: Napalm
@@ -41,6 +53,7 @@
   parent: BasePyrotechnic
   desc: reagent-desc-napalm
   physicalDesc: reagent-physical-desc-soapy
+  contrabandSeverity: Major
   flavor: bitter
   color: "#FA00AF"
   tileReactions:
@@ -70,6 +83,7 @@
   parent: BasePyrotechnic
   desc: reagent-desc-phlogiston
   physicalDesc: reagent-physical-desc-burning
+  contrabandSeverity: Major
   flavor: bitter
   color: "#D4872A"
   metabolisms:
@@ -99,6 +113,7 @@
   parent: BasePyrotechnic
   desc: reagent-desc-chlorine-trifluoride
   physicalDesc: reagent-physical-desc-blazing
+  contrabandSeverity: Major
   flavor: bitter
   color: "#FFC8C8"
   tileReactions:

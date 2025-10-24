@@ -13,6 +13,7 @@
   - PrintedDocumentExperimentReportRecipe
   - PrintedDocumentDisposalReportRecipe
   - PrintedDocumentArrestReportRecipe
+  - PrintedDocumentSalvageLeadReportRecipe
   # Statements
   - PrintedDocumentStatementAppointmentInterimChapterRecipe
   - PrintedDocumentEmploymentStatementRecipe

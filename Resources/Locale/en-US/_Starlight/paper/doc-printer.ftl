@@ -1182,3 +1182,35 @@ doc-text-printer-centcomm-communication =
             - [signature]
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+
+doc-text-printer-salvagelead-report =
+    ⠀[logo]            [cclogo] 
+    
+                              [head=3]NT-CC Consortium Services[/head]
+    
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+     ────────────────────────────────────────
+    ⠀⠀                             [bold]Salvage Lead Report[/bold]
+     ────────────────────────────────────────
+    
+    Date and Time: [form]
+    
+    Compiler of the Document: [signature]
+    
+    Expeditionary Threat: [form]
+    
+    Observations: [form]
+    
+    Contraband collected in span of Expedition, with understanding that all contraband must be turned over to Security at the time of station arrival:
+     • [form]
+     • [form]
+     • [form]
+    
+    Team status and overall readiness: [form]
+    
+    Further Notes: [form]
+    
+    
+     ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]

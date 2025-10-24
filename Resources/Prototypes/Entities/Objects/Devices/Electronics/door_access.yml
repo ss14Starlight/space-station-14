@@ -271,7 +271,7 @@
 
 # Syndicate
 - type: entity
-  parent: DoorElectronics
+  parent: BaseDoorElectronicsSyndicate # Starlight edit
   id: DoorElectronicsNukeop
   suffix: Nukeop, Locked
   components:
@@ -279,7 +279,7 @@
     access: [["NuclearOperative"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: BaseDoorElectronicsSyndicate # Starlight edit
   id: DoorElectronicsSyndicateAgent
   suffix: SyndicateAgent, Locked
   components:
@@ -288,7 +288,7 @@
 
 # Misc
 - type: entity
-  parent: DoorElectronics
+  parent: BaseDoorElectronicsCentComm # Starlight edit
   id: DoorElectronicsCentralCommand
   suffix: CentralCommand, Locked
   components:
@@ -320,7 +320,7 @@
     access: [["Security"], ["Command"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: BaseDoorElectronicsXenoborg
   id: DoorElectronicsXenoborg
   suffix: Xenoborg, Locked
   components:

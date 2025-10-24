@@ -100,6 +100,26 @@
         amount: 3
 
 - type: reagent
+  id: BoneGel
+  group: Medicine
+  name: reagent-name-bonegel
+  desc: reagent-desc-bonegel
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: medicine
+  color: "#dadada"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:GenericStatusEffect
+        key: Drunk
+        time: 1.0
+        type: Remove
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.5 # You don't want to drink bonegel, because it's for bones and joints
+
+- type: reagent
   id: Chronexaline
   name: reagent-name-chronexaline
   group: Medicine
@@ -120,3 +140,47 @@
           damage:
             types:
               Radiation: -5
+
+- type: reagent
+  id: BarozinePlus
+  name: reagent-name-barozine-plus
+  group: Medicine
+  desc: reagent-desc-barozine-plus
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: medicine
+  color: "#ff867d"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        probability: 0.3
+        damage:
+          types:
+            Heat: 0.4
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold
+            min: 50
+        damage:
+          types:
+            Poison: 1
+      - !type:ChemVomit
+        probability: 0.1
+        conditions:
+          - !type:ReagentThreshold
+            min: 30
+      - !type:GenericStatusEffect
+        key: PressureImmunity
+        component: PressureImmunity
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+      - !type:Jitter
+      - !type:Emote
+        emote: Scream
+        probability: 0.1
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "barozine-effect-skin-burning", "barozine-effect-muscle-contract" ]
+        probability: 0.1

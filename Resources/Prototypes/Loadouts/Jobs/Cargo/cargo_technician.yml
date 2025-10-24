@@ -30,25 +30,24 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitCargo
 
-- type: loadout
-  id: CargoTechnicianJumpsuitAlt
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitCargoAlt
-
-- type: loadout
-  id: CargoTechnicianJumpsuitFormal
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitCargoFormal
-
+# Jumpskirt
 - type: loadout
   id: CargoTechnicianJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtCargo
 
-- type: loadout
-  id: CargoTechnicianJumpskirtFormal
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtCargoFormal
+#- type: loadout
+#  id: CargoTechnicianJumpskirtFormal
+#  equipment:
+#    jumpsuit: ClothingUniformJumpskirtCargoFormal
+
+- type: loadout #Starlight
+  id: CargoTechnicianOveralls #Starlight
+  effects: #Starlight
+  - !type:GroupLoadoutEffect #Starlight
+    proto: SeniorCargo #Starlight
+  equipment: #Starlight
+    jumpsuit: CargoOverallsUniformSuit #Starlight
 
 # Back
 - type: loadout

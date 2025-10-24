@@ -123,12 +123,19 @@
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
-  parent: AirlockSecurity # if you get syndie door somehow it counts as sec
+  parent: Airlock # if you get syndie door somehow it counts as sec # Starlight edit: Thats stupid. Now its Normal Airlock
   id: AirlockSyndicate
   suffix: Syndicate
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/syndicate.rsi
+  # Starlight Start
+  - type: Wires
+    layoutId: AirlockSyndicate
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsSyndicate ]
+  # Starlight End
 
 - type: entity
   parent: AirlockCargo
@@ -143,12 +150,19 @@
     group: null
 
 - type: entity
-  parent: AirlockCommand # if you get centcom door somehow it counts as command, also inherit panel
+  parent: Airlock # if you get centcom door somehow it counts as command, also inherit panel # Starlight edit: Again. Stupid. Now its Normal Airlock
   id: AirlockCentralCommand
   suffix: Central Command
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/centcomm.rsi
+  # Starlight Start
+  - type: Wires
+    layoutId: AirlockCentralCommand
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsCentComm ]
+  # Starlight End
 
 - type: entity
   parent: Airlock
@@ -169,6 +183,11 @@
     sprite: Structures/Doors/Airlocks/Standard/xenoborg.rsi
   - type: Paintable
     group: null
+  # Starlight Start
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsXenoborg ]
+  # Starlight End
 
 - type: entity
   parent: Airlock
@@ -296,12 +315,19 @@
     layoutId: AirlockSecurity
 
 - type: entity
-  parent: AirlockSecurityGlass # see standard
+  parent: AirlockGlass # see standard # Starlight edit: Not anymore
   id: AirlockSyndicateGlass
   suffix: Syndicate
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/syndicate.rsi
+  # Starlight Start
+  - type: Wires
+    layoutId: AirlockSyndicate
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsSyndicate ]
+  # Starlight End
 
 - type: entity
   parent: AirlockCargoGlass
@@ -314,12 +340,19 @@
     group: null
 
 - type: entity
-  parent: AirlockCommandGlass # see standard
+  parent: AirlockGlass # see standard # Starlight edit: Nuh uh
   id: AirlockCentralCommandGlass
   suffix: Central Command
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/centcomm.rsi
+  # Starlight Start
+  - type: Wires
+    layoutId: AirlockCentralCommand
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsCentComm ]
+  # Starlight End
 
 - type: entity
   parent: AirlockGlass

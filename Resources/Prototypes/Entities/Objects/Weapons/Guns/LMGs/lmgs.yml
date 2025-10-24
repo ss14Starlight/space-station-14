@@ -10,13 +10,19 @@
     - Abductor
     messages:
     - abductor-gun-restricted-1
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
+      Skating:
+        knockback: 0.5
+        staminaMultiplier: 100
       Resomi:
         knockback: 0.02
         staminaMultiplier: 100
       Avali:
-        knockback: 0.01 # Bigger bird, more sturdy bones.. or something.
+        knockback: 0.01 # half of what resomi take
+        staminaMultiplier: 100
+      Felionoid:
+        knockback: 0.01 #half of what resomi take
         staminaMultiplier: 100
   - type: Sprite
   - type: Item
@@ -98,6 +104,11 @@
   - type: Appearance
   - type: StaticPrice
     price: 10000
+  # Starlight-start
+  - type: Tag
+    tags:
+    - L6Saw
+  # Starlight-end
 
 - type: entity
   name: L6C ROW

@@ -1,14 +1,19 @@
 using Content.Shared._Starlight.Polymorph.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.Chat;
 using Content.Shared.Follower;
 using Content.Shared.Follower.Components;
 using Content.Shared.Mind;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Verbs;
+using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Silicons.Borgs;
@@ -21,6 +26,10 @@ public sealed class StationAIShuntSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedSiliconLawSystem _siliconLaw = default!;
     [Dependency] private readonly FollowerSystem _follower = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly INetManager _net = default!;
+
+
     public override void Initialize()
     {
         base.Initialize();
@@ -43,6 +52,8 @@ public sealed class StationAIShuntSystem : EntitySystem
             return;
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var _))
             return;
+        if (!TryComp<MobStateComponent>(uid, out var state) || state.CurrentState != MobState.Alive)
+            return;
 
         if (TryComp<BorgChassisComponent>(target, out var chassisComp))
         {
@@ -51,10 +62,21 @@ public sealed class StationAIShuntSystem : EntitySystem
                 return; //Chassis has no posibrian so cant shunt into it.
             if (!TryComp<StationAIShuntComponent>(brain, out var brainShunt))
                 return; //Chassis brain is not able to be shunted into so obviously we cant.
+            if (brainShunt.Return != null)
+            {
+                if (_net.IsServer) //only send on server cause client is confused somehow?
+                    _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);
+                return; //Chassis is allready inhabited.
+            }
             brainShunt.Return = uid;
             brainShunt.ReturnAction = _actionSystem.AddAction(brain.Value, shuntable.UnshuntAction.Id);
         }
-
+        if (shunt.Return != null)
+        {
+            if (_net.IsServer) //only send on server cause client is confused somehow?
+                _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);
+            return; //target is allready inhabited.
+        }
         shunt.Return = uid;
         _mindSystem.TransferTo(mindId, target);
         shunt.ReturnAction = _actionSystem.AddAction(target, shuntable.UnshuntAction.Id);
@@ -151,7 +173,7 @@ public sealed class StationAIShuntSystem : EntitySystem
         {
             if (!comp.Return.HasValue)
                 return; //we are in something not inhabited. so obvs we cant shunt out of it.
-            
+
             var unshuntVerb = new AlternativeVerb()
             {
                 Text = Loc.GetString("ai-shunt-out-of"),

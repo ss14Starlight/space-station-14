@@ -50,6 +50,9 @@
 
 - type: Tag
   id: ClownKudzu
+  
+- type: Tag
+  id: CyberHandItem
 
 - type: Tag
   id: Diona
@@ -130,6 +133,9 @@
   id: ModularBarrel
 
 - type: Tag
+  id: PaddyMech
+
+- type: Tag
   id: OmniCyberEyes
 
 - type: Tag
@@ -165,6 +171,9 @@
 - type: Tag
   id: ShowWires
 
+- type: Tag
+  id: Skating
+  
 - type: Tag
   id: SovietDungeon
 
@@ -202,6 +211,18 @@
   id: Locker
 
 - type: Tag
+  id: BorgModuleSecurity
+
+- type: Tag
+  id: Disabler
+
+- type: Tag
+  id: L6Saw
+
+- type: Tag
+  id: MagazineBoxLightRifle
+  
+- type: Tag
   id: CivilianTraitBackground
 
 - type: Tag
@@ -224,6 +245,12 @@
 
 - type: Tag
   id: PettyCriminalTraitBackground
+  
+- type: Tag
+  id: ThermiteIgnitor
+  
+- type: Tag
+  id: UnDissolvable
 
 - type: Tag
   id: ScanGateMachineBoard

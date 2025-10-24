@@ -312,5 +312,13 @@
     - Write
     - Crayon
     - Recyclable
-    - Trash
+    - Trash  
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: MindbreakerToxin
+          Quantity: 20
 # end SL

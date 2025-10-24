@@ -10,13 +10,16 @@
     - Abductor
     messages:
     - abductor-gun-restricted-1
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
+      Skating:
+        knockback: 2.0
+        staminaMultiplier: 50
       Resomi:
         knockback: 4
         staminaMultiplier: 15
       Avali:
-        knockback: 1 # Bigger bird, more sturdy bones.. or something.
+        knockback: 2 # half of what resomi take
         staminaMultiplier: 15
       Felionoid:
         knockback: 2 #half of what resomi take
@@ -61,12 +64,14 @@
   id: WeaponSniperMosin
   description: A weapon of the masses, a true relic. The Kardashev-Mosin has served in nearly every armed conflict since its creation 670 years ago. The bolt-action design of the rifle remains virtually identical to its original design, whether used for hunting, sniping, or endless trench warfare. Uses .45 magnum ammo.
   components:
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
       Resomi:
         knockback: 2
+      Avali:
+        knockback: 1 # half of what resomi take
       Felionoid:
-        knockback: 1 #half of what resomi take
+        knockback: 1 # half of what resomi take
   - type: BallisticAmmoProvider # Starlight
     capacity: 10
     proto: CartridgeMagnumSP

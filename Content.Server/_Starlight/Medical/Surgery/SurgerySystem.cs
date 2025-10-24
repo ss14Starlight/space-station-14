@@ -9,6 +9,7 @@ using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Prototypes;
+using Content.Shared.Bed.Sleep;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
@@ -27,6 +28,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ContainerSystem _containers = default!;
+    [Dependency] private readonly SleepingSystem _sleeping = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()
