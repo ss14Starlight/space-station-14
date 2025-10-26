@@ -18373,5 +18373,12 @@ Entries:
   id: 200500
   time: '2025-10-26T16:13:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2005
+- author: Vonte
+  changes:
+  - message: adds "The mid-round antag's bane" lobby art by @voy0099
+    type: Add
+  id: 204000
+  time: '2025-10-26T16:45:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2040
 Order: -1
 
