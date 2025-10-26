@@ -233,7 +233,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         var language = languageOverride ?? _language.GetLanguage(source); // Starlight
 
         bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
-        bool shouldPunctuate = _configurationManager.GetCVar(StarlightCCVars.ChatPunctuation) || player != null && _netConfigManager.GetClientCVar(player.Channel, CCVars.AutoPunctuate); // Starlight
+        bool shouldPunctuate = _configurationManager.GetCVar(StarlightCCVars.ChatPunctuation) || player != null && _netConfigManager.GetClientCVar(player.Channel, StarlightCCVars.AutoPunctuate); // Starlight
         // Capitalizing the word I only happens in English, so we check language here
         bool shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
             || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
