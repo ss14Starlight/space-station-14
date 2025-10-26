@@ -53,9 +53,9 @@ public sealed partial class MiscTab : Control
         Control.AddOptionCheckBox(CCVars.ChatEnableFancyBubbles, FancySpeechBubblesCheckBox);
         Control.AddOptionCheckBox(CCVars.ChatFancyNameBackground, FancyNameBackgroundsCheckBox);
         Control.AddOptionCheckBox(CCVars.StaticStorageUI, StaticStorageUI);
-        Control.AddOptionCheckBox(CCVars.AutoPunctuate, AutoPunctuate);
         //starlight
         Control.AddOptionSlider(StarlightCCVars.ChatSeparatedMinWidth, SeparatedChatWidthSlider, 300, 580);
+        Control.AddOptionCheckBox(StarlightCCVars.AutoPunctuate, AutoPunctuate);
         //starlight end
 
         Control.Initialize();
