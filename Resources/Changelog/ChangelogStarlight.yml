@@ -18344,5 +18344,41 @@ Entries:
   id: 201000
   time: '2025-10-22T22:23:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2010
+- author: CrazyPhantom
+  changes:
+  - message: Roundstart and Built Station AI's now understand the correct languages.
+    type: Fix
+  id: 201300
+  time: '2025-10-23T17:36:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2013
+- author: CrazyPhantom
+  changes:
+  - message: Medical, Mining and Janitor borgs will no longer force you to use the
+      default sprite.
+    type: Fix
+  id: 202900
+  time: '2025-10-24T11:11:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2029
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed PDA light being too dim.
+    type: Fix
+  id: 204200
+  time: '2025-10-26T16:07:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2042
+- author: CrazyPhantom
+  changes:
+  - message: Zombies no longer slowly die to nothing!
+    type: Fix
+  id: 200500
+  time: '2025-10-26T16:13:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2005
+- author: Vonte
+  changes:
+  - message: adds "The mid-round antag's bane" lobby art by @voy0099
+    type: Add
+  id: 204000
+  time: '2025-10-26T16:45:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2040
 Order: -1
 
