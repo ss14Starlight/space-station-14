@@ -99,7 +99,7 @@
         borg_module:
         - BorgModuleOperative
         - BorgModuleL6C
-        - BorgModuleEsword
+        - BorgModuleEsword # We're not giving the double e-sword to the borgi. Buy the proper borg.
 
 - type: entity
   parent: BaseSyndicateBorgiChassis

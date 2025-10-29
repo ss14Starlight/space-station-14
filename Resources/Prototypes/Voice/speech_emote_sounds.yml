@@ -572,7 +572,7 @@
     Sigh:
       collection: FemaleSigh
     Crying:
-      path: /Audio/Voice/Resomi/resomi_cry.ogg
+      collection: ResomiCry
     Cough:
       collection: FemaleCoughs
     Yawn:

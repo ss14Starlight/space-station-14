@@ -18380,5 +18380,71 @@ Entries:
   id: 204000
   time: '2025-10-26T16:45:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2040
+- author: Revelation
+  changes:
+  - message: Syndicate Assault Borgs get the Double Esword once more, as intended.
+    type: Fix
+  id: 203400
+  time: '2025-10-28T16:49:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2034
+- author: Revelation
+  changes:
+  - message: Syndicate cyborgs in general don't get overloaded with modules anymore.
+    type: Fix
+  id: 203401
+  time: '2025-10-28T16:49:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2034
+- author: Revelation
+  changes:
+  - message: Syndicate cyborgs are no longer able to accept more modules than they
+      start with.
+    type: Fix
+  id: 203402
+  time: '2025-10-28T16:49:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2034
+- author: Revelation
+  changes:
+  - message: Syndicate cyborg teleporter now works again and has a better description.
+    type: Fix
+  id: 203403
+  time: '2025-10-28T16:49:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2034
+- author: Revelation
+  changes:
+  - message: Syndicate borgis have been brought down in price now that the L6 module
+      got massively nerfed. They don't get the Double ESword though. Buy a proper
+      borg for that.
+    type: Tweak
+  id: 203404
+  time: '2025-10-28T16:49:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2034
+- author: Rinary
+  changes:
+  - message: Added new tts voice.
+    type: Add
+  id: 205500
+  time: '2025-10-28T16:47:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2055
+- author: Rinary
+  changes:
+  - message: Changed some of Felionoid emote sounds to fix license issues.
+    type: Tweak
+  id: 205800
+  time: '2025-10-28T18:10:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2058
+- author: Rinary
+  changes:
+  - message: Removed one of Felionoid hiss sound to fix license issue.
+    type: Remove
+  id: 205801
+  time: '2025-10-28T18:10:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2058
+- author: Rinary
+  changes:
+  - message: Reverted resomi cry to old variant to fix license issue.
+    type: Remove
+  id: 205802
+  time: '2025-10-28T18:10:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2058
 Order: -1
 
