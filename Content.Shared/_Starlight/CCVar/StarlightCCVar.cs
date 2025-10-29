@@ -16,6 +16,12 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<string> ServerName =
         CVarDef.Create("lobby.server_name", "☆ Starlight ☆", CVar.SERVER | CVar.REPLICATED);
 
+    public static readonly CVarDef<bool> ChatPunctuation =
+            CVarDef.Create("ic.punctuation", false, CVar.SERVER);
+
+    public static readonly CVarDef<bool> AutoPunctuate =
+        CVarDef.Create("ic.auto_punctuate", false, CVar.REPLICATED | CVar.CLIENT | CVar.ARCHIVE);
+
     [CVarControl(AdminFlags.Adminchat)]
     public static readonly CVarDef<string> OverrideGamemodeName =
         CVarDef.Create("lobby.gamemode_name_override", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
