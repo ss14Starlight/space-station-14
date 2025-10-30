@@ -25,6 +25,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
     private readonly ISawmill _automodLog = Logger.GetSawmill("automod");
+    [Dependency] private readonly Content.Server.Administration.Logs.IAdminLogManager _adminLogger = default!;
 
     public const string NotificationChannel = "automod_rules";
 
@@ -35,21 +36,21 @@ public sealed partial class AutoModSystem : SharedChatSystem
         base.Initialize();
         SubscribeLocalEvent<ChatAttemptEvent>(OnChatAttempt);
 
-        _db.SubscribeToNotifications(notification =>
+        _db.SubscribeToNotifications(async notification =>
         {
             //check if the notification is for the automod rules
             if (notification.Channel == NotificationChannel)
             {
                 //update the cache
                 _automodLog.Info($"AutoModSystem received notification. Updating cache.");
-                UpdateCache();
+                await UpdateCache();
             }
         });
 
         //TODO: Make our cache update automatically somehow. For now this works
         //but this will need to be fixed for runtime changes
         _automodLog.Info($"AutoModSystem initialized. Updating cache.");
-        UpdateCache();
+        _ = UpdateCache(); // fire and forget
     }
 
     //task to update cache
@@ -65,7 +66,6 @@ public sealed partial class AutoModSystem : SharedChatSystem
         //set the message to nothing
         string message = args.Message;
 
-        //_automodLog.Info($"Checking message: {message} against {_rules.Count} rules.");
         //check if the message contains any of the rules
         foreach (var rule in _rules)
         {
@@ -76,15 +76,12 @@ public sealed partial class AutoModSystem : SharedChatSystem
             //convert the rule to a regex
             var regex = new Regex(rule.Regex);
 
-            //_automodLog.Info($"Checking against rule: {rule.Regex}");
-
             //check for match
             if (regex.IsMatch(message))
             {
-                //_automodLog.Info($"Rule matched: {rule.Regex}");
                 if (rule.CancelSpeech)
                 {
-                    //_automodLog.Info($"Rule cancelled speech: {rule.Regex}");
+                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Cleared speech of user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex}");
                     //cancel the speech if the rule is set to do so
                     args.Cancel();
                 }
@@ -95,7 +92,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
                         break;
                     case AutoModSeverity.Warning:
                         //send a warning to the user
-                        // _automodLog.Info($"Warning user {args.Sender} for rule: {rule.Regex}");
+                        _adminLogger.Add(LogType.AdminCommands, LogImpact.Medium, $"[AutoMod] Warned user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} - Reason: {rule.Message}");
                         _chat.ChatMessageToOne(ChatChannel.Server,
                             rule.Message,
                             rule.Message,
@@ -105,28 +102,29 @@ public sealed partial class AutoModSystem : SharedChatSystem
                         break;
                     case AutoModSeverity.Kick:
                         //kick the user from the server
-                        // _automodLog.Info($"Kicking user {args.Sender} for rule: {rule.Regex}");
-                        string kickReason = string.IsNullOrWhiteSpace(rule.Message) ? "Kicked by AutoMod" : rule.Message;
+                        string kickReason = string.IsNullOrWhiteSpace(rule.Message)
+                            ? "Kicked by AutoMod"
+                            : $"Kicked by AutoMod for: {rule.Message}";
+                        _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Kicked user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} - Reason: {kickReason}");
                         _netManager.DisconnectChannel(args.Sender.Channel, kickReason);
                         break;
                     case AutoModSeverity.Ban:
                         //ban the user from the server
-                        // _automodLog.Info($"Banning user {args.Sender} for rule: {rule.Regex}");
                         string banReason = string.IsNullOrWhiteSpace(rule.Message)
                             ? "Banned by AutoMod"
                             : $"Banned by AutoMod for: {rule.Message}";
-                        // Ban for 7 days by default, or make this configurable per rule
                         uint? duration = 60 * 24 * 7;
                         _banManager.CreateServerBan(
                             args.Sender.UserId,
                             args.Sender.Name,
-                            null, // banningAdmin
+                            null,
                             null,
                             null,
                             duration,
                             NoteSeverity.High,
                             banReason
                         );
+                        _adminLogger.Add(LogType.AdminCommands, LogImpact.Extreme, $"[AutoMod] Banned user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} - Reason: {banReason} - Duration: {duration} minutes");
                         _netManager.DisconnectChannel(args.Sender.Channel, banReason);
                         break;
                 }

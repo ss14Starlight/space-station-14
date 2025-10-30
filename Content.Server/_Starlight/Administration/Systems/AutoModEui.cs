@@ -11,6 +11,7 @@ using Robust.Shared.Network;
 using DbAdminRank = Content.Server.Database.AdminRank;
 using static Content.Shared.Administration.PermissionsEuiMsg;
 using static Content.Shared.Administration.AutoModEuiMsg;
+using Content.Shared.Database;
 
 
 namespace Content.Server.Administration.UI
@@ -18,6 +19,7 @@ namespace Content.Server.Administration.UI
     public sealed class AutoModEui : BaseEui
     {
         [Dependency] private readonly IServerDbManager _db = default!;
+        [Dependency] private readonly Content.Server.Administration.Logs.IAdminLogManager _adminLogger = default!;
         private List<AutoModRule> _rules = new();
         public AutoModEui()
         {
@@ -49,7 +51,19 @@ namespace Content.Server.Administration.UI
         {
             //delete the rule from the database
             await _db.DeleteAutoModRule(rule.Id);
-
+            var adminId = Player?.UserId.ToString() ?? "unknown";
+            var adminName = Player?.Name ?? "unknown";
+            _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
+                $"""
+                [AutoMod] Rule Deleted by {adminName} ({adminId})
+                ───────────────────────────────
+                Regex:         {rule.Regex}
+                Severity:      {rule.Severity}
+                Message:       {rule.Message}
+                Count:         {rule.Count}
+                Enabled:       {rule.Enabled}
+                CancelSpeech:  {rule.CancelSpeech}
+                """);
             LoadFromDb();
             // Ensure the runtime cache is refreshed even on SQLite (no notifications there)
             await RefreshAutomodCacheAsync();
@@ -59,7 +73,19 @@ namespace Content.Server.Administration.UI
         {
             //add the rule to the database
             await _db.AddAutoModRule(rule);
-
+            var adminId = Player?.UserId.ToString() ?? "unknown";
+            var adminName = Player?.Name ?? "unknown";
+            _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
+                $"""
+                [AutoMod] Rule Created by {adminName} ({adminId})
+                ───────────────────────────────
+                Regex:         {rule.Regex}
+                Severity:      {rule.Severity}
+                Message:       {rule.Message}
+                Count:         {rule.Count}
+                Enabled:       {rule.Enabled}
+                CancelSpeech:  {rule.CancelSpeech}
+                """);
             LoadFromDb();
             await RefreshAutomodCacheAsync();
         }
@@ -67,17 +93,76 @@ namespace Content.Server.Administration.UI
         public async void UpdateRule(AutoModRule rule)
         {
             //update the rule in the database
+            var oldRule = _rules.FirstOrDefault(r => r.Id == rule.Id);
+            var adminId = Player?.UserId.ToString() ?? "unknown";
+            var adminName = Player?.Name ?? "unknown";
+            if (oldRule != null && (
+                oldRule.Regex != rule.Regex ||
+                oldRule.Severity != rule.Severity ||
+                oldRule.Message != rule.Message ||
+                oldRule.Count != rule.Count ||
+                oldRule.Enabled != rule.Enabled ||
+                oldRule.CancelSpeech != rule.CancelSpeech))
+            {
+                _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
+                    $"""
+                    [AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {rule.Id})
+                    ────── Before ──────
+                    Regex:         {oldRule.Regex}
+                    Severity:      {oldRule.Severity}
+                    Message:       {oldRule.Message}
+                    Count:         {oldRule.Count}
+                    Enabled:       {oldRule.Enabled}
+                    CancelSpeech:  {oldRule.CancelSpeech}
+                    ────── After ──────
+                    Regex:         {rule.Regex}
+                    Severity:      {rule.Severity}
+                    Message:       {rule.Message}
+                    Count:         {rule.Count}
+                    Enabled:       {rule.Enabled}
+                    CancelSpeech:  {rule.CancelSpeech}
+                    """);
+            }
             await _db.UpdateAutoModRule(rule);
-
             LoadFromDb();
             await RefreshAutomodCacheAsync();
         }
 
         public async void BulkUpdateRules(List<AutoModRule> rules)
         {
-            //update all rules in the database
+            //update all rules in the database and log edits
+            var adminId = Player?.UserId.ToString() ?? "unknown";
+            var adminName = Player?.Name ?? "unknown";
             foreach (var rule in rules)
             {
+                var oldRule = _rules.FirstOrDefault(r => r.Id == rule.Id);
+                if (oldRule != null && (
+                    oldRule.Regex != rule.Regex ||
+                    oldRule.Severity != rule.Severity ||
+                    oldRule.Message != rule.Message ||
+                    oldRule.Count != rule.Count ||
+                    oldRule.Enabled != rule.Enabled ||
+                    oldRule.CancelSpeech != rule.CancelSpeech))
+                {
+                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
+                        $"""
+                        [AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {rule.Id})
+                        ────── Before ──────
+                        Regex:         {oldRule.Regex}
+                        Severity:      {oldRule.Severity}
+                        Message:       {oldRule.Message}
+                        Count:         {oldRule.Count}
+                        Enabled:       {oldRule.Enabled}
+                        CancelSpeech:  {oldRule.CancelSpeech}
+                        ────── After ──────
+                        Regex:         {rule.Regex}
+                        Severity:      {rule.Severity}
+                        Message:       {rule.Message}
+                        Count:         {rule.Count}
+                        Enabled:       {rule.Enabled}
+                        CancelSpeech:  {rule.CancelSpeech}
+                        """);
+                }
                 await _db.UpdateAutoModRule(rule);
             }
 
