@@ -11,6 +11,9 @@ using Content.Shared.Chat.V2.Repository;
 using Content.Shared.Emoting;
 using Content.Shared.Speech;
 using Robust.Server.Player;
+using Robust.Shared.Network;
+using Content.Server.Administration.Managers;
+using Content.Shared.Database;
 
 namespace Content.Server.Starlight.Chat.Systems;
 public sealed partial class AutoModSystem : SharedChatSystem
@@ -19,6 +22,8 @@ public sealed partial class AutoModSystem : SharedChatSystem
     [Dependency] private readonly IEntitySystemManager _manager = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IServerNetManager _netManager = default!;
+    [Dependency] private readonly IBanManager _banManager = default!;
     private readonly ISawmill _automodLog = Logger.GetSawmill("automod");
 
     public const string NotificationChannel = "automod_rules";
@@ -90,6 +95,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
                         break;
                     case AutoModSeverity.Warning:
                         //send a warning to the user
+                        // _automodLog.Info($"Warning user {args.Sender} for rule: {rule.Regex}");
                         _chat.ChatMessageToOne(ChatChannel.Server,
                             rule.Message,
                             rule.Message,
@@ -99,13 +105,29 @@ public sealed partial class AutoModSystem : SharedChatSystem
                         break;
                     case AutoModSeverity.Kick:
                         //kick the user from the server
-                        _automodLog.Info($"Kicking user {args.Sender} for rule: {rule.Regex}");
-                        //_player.Kick(args.Sender, rule.Message);
+                        // _automodLog.Info($"Kicking user {args.Sender} for rule: {rule.Regex}");
+                        string kickReason = string.IsNullOrWhiteSpace(rule.Message) ? "Kicked by AutoMod" : rule.Message;
+                        _netManager.DisconnectChannel(args.Sender.Channel, kickReason);
                         break;
                     case AutoModSeverity.Ban:
                         //ban the user from the server
-                        _automodLog.Info($"Banning user {args.Sender} for rule: {rule.Regex}");
-                        //_player.Ban(args.Sender, rule.Message);
+                        // _automodLog.Info($"Banning user {args.Sender} for rule: {rule.Regex}");
+                        string banReason = string.IsNullOrWhiteSpace(rule.Message)
+                            ? "Banned by AutoMod"
+                            : $"Banned by AutoMod for: {rule.Message}";
+                        // Ban for 7 days by default, or make this configurable per rule
+                        uint? duration = 60 * 24 * 7;
+                        _banManager.CreateServerBan(
+                            args.Sender.UserId,
+                            args.Sender.Name,
+                            null, // banningAdmin
+                            null,
+                            null,
+                            duration,
+                            NoteSeverity.High,
+                            banReason
+                        );
+                        _netManager.DisconnectChannel(args.Sender.Channel, banReason);
                         break;
                 }
             }

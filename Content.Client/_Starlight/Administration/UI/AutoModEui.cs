@@ -270,7 +270,6 @@ namespace Content.Client.Administration.UI
                 //add the row to the bottom of the window
                 rulesVBox.AddChild(rulesLowerBarBox);
 
-
                 var testerVBox = new BoxContainer
                 {
                     Orientation = LayoutOrientation.Vertical,
@@ -334,7 +333,7 @@ namespace Content.Client.Administration.UI
                 var cheatSheetLabel = new Label { Text = Loc.GetString("automod-tester-cheatsheet-title") };
                 var cheatSheet = new RichTextLabel { HorizontalExpand = true, VerticalExpand = true };
                 
-                // Build the cheat sheet from individual localization lines
+                // Build the cheat sheet
                 var cheatSheetText = new System.Text.StringBuilder();
                 for (int i = 1; i <= 12; i++)
                 {
