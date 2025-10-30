@@ -974,6 +974,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             return false;
         }
 
+        if (!_chatManager.MessageCancelCheck(player, message))
+        {
+            return false;
+        }
+
         return !_chatManager.MessageCharacterLimit(player, message);
     }
 

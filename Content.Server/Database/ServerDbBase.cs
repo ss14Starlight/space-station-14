@@ -28,6 +28,9 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Administration;
+using Content.Server.Starlight.Chat.Systems;
+using Content.Server.Humanoid.Markings.Extensions;
 
 namespace Content.Server.Database
 {
@@ -1983,5 +1986,79 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         {
 
         }
+
+        //starlight start
+        //generator for DB notification
+        public void SendAutoModNotification()
+        {
+            var notif = new DatabaseNotification
+            {
+                Channel = AutoModSystem.NotificationChannel
+            };
+
+            SendNotification(notif);
+        }
+        public async Task<bool> AddAutoModRule(AutoModRule rule)
+        {
+            await using var db = await GetDb();
+
+            db.DbContext.AutoModRules.Add(rule);
+            await db.DbContext.SaveChangesAsync();
+            SendAutoModNotification();
+            return true;
+        }
+
+        public async Task<List<AutoModRule>> GetAutoModRules()
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.AutoModRules.ToListAsync();
+        }
+
+        public async Task<int> GetAutoModRuleCount()
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.AutoModRules.CountAsync();
+        }
+
+        public async Task<bool> DeleteAutoModRule(int id)
+        {
+            await using var db = await GetDb();
+
+            var rule = await db.DbContext.AutoModRules.SingleOrDefaultAsync(r => r.Id == id);
+            if (rule == null)
+                return false;
+
+            db.DbContext.AutoModRules.Remove(rule);
+            await db.DbContext.SaveChangesAsync();
+            SendAutoModNotification();
+            return true;
+        }
+
+        public async Task<bool> UpdateAutoModRule(AutoModRule rule)
+        {
+            await using var db = await GetDb();
+
+            //debug message
+            _opsLog.Info($"Updating AutoMod rule: {rule.Id}");
+
+            var existingRule = await db.DbContext.AutoModRules.SingleOrDefaultAsync(r => r.Id == rule.Id);
+            if (existingRule == null)
+            {
+                _opsLog.Error($"AutoMod rule {rule.Id} not found in database.");
+                return false;
+            }
+
+            existingRule.Regex = rule.Regex;
+            existingRule.Severity = rule.Severity;
+            existingRule.Message = rule.Message;
+            existingRule.Count = rule.Count;
+            existingRule.Enabled = rule.Enabled;
+            existingRule.CancelSpeech = rule.CancelSpeech;
+
+            await db.DbContext.SaveChangesAsync();
+            SendAutoModNotification();
+            return true;
+        }
+        //starlight end
     }
 }

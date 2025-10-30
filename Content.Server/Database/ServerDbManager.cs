@@ -5,6 +5,8 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
+using Content.Server.Starlight.Administration.Systems;
+using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
@@ -368,6 +370,14 @@ namespace Content.Server.Database
         Task SendNotification(DatabaseNotification notification);
 
         #endregion
+
+        //starlight
+        Task<bool> AddAutoModRule(AutoModRule rule);
+        Task<bool> UpdateAutoModRule(AutoModRule rule);
+        Task<bool> DeleteAutoModRule(int id);
+        Task<List<AutoModRule>> GetAutoModRules();
+        Task<int> GetAutoModRuleCount();
+        //end starlight
     }
 
     /// <summary>
@@ -1216,6 +1226,36 @@ namespace Content.Server.Database
         private void SetupLogging(DbContextOptionsBuilder builder)
         {
             builder.UseLoggerFactory(_msLoggerFactory);
+        }
+
+        public Task<bool> AddAutoModRule(AutoModRule rule)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddAutoModRule(rule));
+        }
+
+        public Task<bool> UpdateAutoModRule(AutoModRule rule)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.UpdateAutoModRule(rule));
+        }
+
+        public Task<bool> DeleteAutoModRule(int id)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeleteAutoModRule(id));
+        }
+
+        public Task<List<AutoModRule>> GetAutoModRules()
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAutoModRules());
+        }
+
+        public Task<int> GetAutoModRuleCount()
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAutoModRuleCount());
         }
 
         private sealed class LoggingProvider : ILoggerProvider

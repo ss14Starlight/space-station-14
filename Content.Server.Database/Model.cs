@@ -10,6 +10,7 @@ using System.Text.Json;
 using Content.Shared.Database;
 using Microsoft.EntityFrameworkCore;
 using NpgsqlTypes;
+using Content.Shared.Administration;
 
 namespace Content.Server.Database
 {
@@ -46,6 +47,7 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        public DbSet<AutoModRule> AutoModRules { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -411,6 +413,16 @@ namespace Content.Server.Database
                 .OwnsOne(p => p.HWId)
                 .Property(p => p.Type)
                 .HasDefaultValue(HwidType.Legacy);
+
+            modelBuilder.Entity<AutoModRule>()
+                .HasIndex(p => p.Id)
+                .IsUnique();
+            
+            modelBuilder.Entity<AutoModRule>()
+                .Property(p => p.Regex);
+            
+            modelBuilder.Entity<AutoModRule>()
+                .Property(p => p.Message);
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)

@@ -20,6 +20,9 @@
             <!-- Cosmatic Drift Record System-start: Provide admin access to the CD record purge tool -->
             <cc:UICommandButton Command="purgecharacterrecords" Text="{Loc admin-player-actions-window-cd-record-purge}" WindowType="{x:Type cdAdmin:ModifyCharacterRecords}"/>
             <!-- Cosmatic Drift Record System-end -->
+            <!-- Starlight Start: Automod -->
+            <cc:CommandButton Command="automod" Text="{Loc admin-player-actions-window-automod}"/>
+            <!-- Starlight End-->
             <cc:CommandButton Command="achatwindow" Text="{Loc admin-player-actions-window-admin-chat}"/>
         </GridContainer>
     </BoxContainer>

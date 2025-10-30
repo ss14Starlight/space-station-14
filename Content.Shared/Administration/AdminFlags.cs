@@ -133,5 +133,6 @@
         ///     Dangerous host permissions like scsi.
         /// </summary>
         Host = 1u << 31,
+        AutoMod = 1 << 22,
     }
 }

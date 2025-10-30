@@ -250,7 +250,9 @@ internal sealed partial class ChatManager : IChatManager
         switch (type)
         {
             case OOCChatType.OOC:
-                SendOOC(player, message);
+                //check if allowed to send
+                if(MessageCancelCheck(player, message))
+                    SendOOC(player, message);
                 break;
             case OOCChatType.Admin:
                 SendAdminChat(player, message);
@@ -438,6 +440,22 @@ internal sealed partial class ChatManager : IChatManager
         return isOverLength;
     }
 
+    public bool MessageCancelCheck(ICommonSession? player, string message)
+    {
+        if (player == null)
+            return false;
+
+        var ev = new ChatAttemptEvent(player, message);
+        _entityManager.EventBus.RaiseEvent(EventSource.Local, ev); //cursed but works
+
+        if (ev.Cancelled)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     #endregion
 }
 
@@ -445,4 +463,16 @@ public enum OOCChatType : byte
 {
     OOC,
     Admin
+}
+
+public sealed class ChatAttemptEvent : CancellableEntityEventArgs
+{
+    public ICommonSession Sender;
+    public string Message;
+
+    public ChatAttemptEvent(ICommonSession sender, string message)
+    {
+        Sender = sender;
+        Message = message;
+    }
 }
