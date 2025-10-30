@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Linq;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Chat.V2.Repository;
@@ -28,6 +29,9 @@ public sealed partial class AutoModSystem : SharedChatSystem
     [Dependency] private readonly Content.Server.Administration.Logs.IAdminLogManager _adminLogger = default!;
 
     public const string NotificationChannel = "automod_rules";
+    private readonly Dictionary<(NetUserId, int), int> _userOffenceCounts = new();
+    // Tracks last offence time for each user/rule
+    private readonly Dictionary<(NetUserId, int), DateTime> _userOffenceTimes = new();
 
     //cache the rules list
     private List<AutoModRule> _rules = new();
@@ -75,59 +79,93 @@ public sealed partial class AutoModSystem : SharedChatSystem
 
             //convert the rule to a regex
             var regex = new Regex(rule.Regex);
+            if (!regex.IsMatch(message))
+                continue;
 
-            //check for match
-            if (regex.IsMatch(message))
+            // Track and increment offence count for this user/rule
+            var key = (args.Sender.UserId, rule.Id);
+            // Decay logic: if enough time has passed since last offence, decrement offenceIndex
+            int offenceIndex = 0;
+            if (_userOffenceCounts.TryGetValue(key, out var storedIndex))
             {
-                if (rule.CancelSpeech)
+                offenceIndex = storedIndex;
+                if (offenceIndex > 0 && rule.Offences != null && offenceIndex < rule.Offences.Count)
                 {
-                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Cleared speech of user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex}");
-                    //cancel the speech if the rule is set to do so
-                    args.Cancel();
+                    // Only decay if not first offence and decay is set
+                    var lastTime = _userOffenceTimes.TryGetValue(key, out var t) ? t : DateTime.MinValue;
+                    var decaySeconds = rule.Offences[offenceIndex].DecaySeconds;
+                    if (decaySeconds > 0 && (DateTime.UtcNow - lastTime).TotalSeconds >= decaySeconds)
+                    {
+                        offenceIndex--;
+                    }
                 }
+                offenceIndex++;
+            }
+            // Always update last offence time
+            _userOffenceCounts[key] = offenceIndex;
+            _userOffenceTimes[key] = DateTime.UtcNow;
 
-                switch (rule.Severity)
-                {
-                    case AutoModSeverity.None:
-                        break;
-                    case AutoModSeverity.Warning:
-                        //send a warning to the user
-                        _adminLogger.Add(LogType.AdminCommands, LogImpact.Medium, $"[AutoMod] Warned user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} - Reason: {rule.Message}");
-                        _chat.ChatMessageToOne(ChatChannel.Server,
-                            rule.Message,
-                            rule.Message,
-                            EntityUid.Invalid,
-                            false,
-                            args.Sender.Channel);
-                        break;
-                    case AutoModSeverity.Kick:
-                        //kick the user from the server
-                        string kickReason = string.IsNullOrWhiteSpace(rule.Message)
-                            ? "Kicked by AutoMod"
-                            : $"Kicked by AutoMod for: {rule.Message}";
-                        _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Kicked user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} - Reason: {kickReason}");
-                        _netManager.DisconnectChannel(args.Sender.Channel, kickReason);
-                        break;
-                    case AutoModSeverity.Ban:
-                        //ban the user from the server
-                        string banReason = string.IsNullOrWhiteSpace(rule.Message)
-                            ? "Banned by AutoMod"
-                            : $"Banned by AutoMod for: {rule.Message}";
-                        uint? duration = 60 * 24 * 7;
-                        _banManager.CreateServerBan(
-                            args.Sender.UserId,
-                            args.Sender.Name,
-                            null,
-                            null,
-                            null,
-                            duration,
-                            NoteSeverity.High,
-                            banReason
-                        );
-                        _adminLogger.Add(LogType.AdminCommands, LogImpact.Extreme, $"[AutoMod] Banned user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} - Reason: {banReason} - Duration: {duration} minutes");
-                        _netManager.DisconnectChannel(args.Sender.Channel, banReason);
-                        break;
-                }
+            // Pick the correct offence (if out of range, use last offence)
+            AutoModOffence? offence = null;
+            if (rule.Offences != null && rule.Offences.Count > 0)
+            {
+                offence = offenceIndex < rule.Offences.Count ? rule.Offences[offenceIndex] : rule.Offences.Last();
+            }
+            // Fallback if no offences defined
+            if (offence == null)
+            {
+                offence = new AutoModOffence { Message = "", Action = (int)AutoModOffenceAction.Clear };
+            }
+
+            // Cancel speech if rule or offence says so
+            if (rule.CancelSpeech || (AutoModOffenceAction)offence.Action == AutoModOffenceAction.Clear)
+            {
+                _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Cleared speech of user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} (Offence {offenceIndex + 1})");
+                args.Cancel();
+            }
+
+            switch ((AutoModOffenceAction)offence.Action)
+            {
+                case AutoModOffenceAction.Clear:
+                    // Already handled above
+                    break;
+                case AutoModOffenceAction.Warn:
+                    _adminLogger.Add(LogType.AdminCommands, LogImpact.Medium, $"[AutoMod] Warned user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} (Offence {offenceIndex + 1}) - Reason: {offence.Message}");
+                    _chat.ChatMessageToOne(ChatChannel.Server,
+                        offence.Message,
+                        offence.Message,
+                        EntityUid.Invalid,
+                        false,
+                        args.Sender.Channel);
+                    break;
+                case AutoModOffenceAction.Kick:
+                    string kickReason = string.IsNullOrWhiteSpace(offence.Message)
+                        ? "Kicked by AutoMod"
+                        : $"Kicked by AutoMod for: {offence.Message}";
+                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Kicked user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} (Offence {offenceIndex + 1}) - Reason: {kickReason}");
+                    _netManager.DisconnectChannel(args.Sender.Channel, kickReason);
+                    break;
+                case AutoModOffenceAction.Ban:
+                    string banReason = string.IsNullOrWhiteSpace(offence.Message)
+                        ? "Banned by AutoMod"
+                        : $"Banned by AutoMod for: {offence.Message}";
+                    uint? duration = null;
+                    if (offence.BanDurationSeconds > 0)
+                        duration = (uint)offence.BanDurationSeconds / 60; // BanManager expects minutes
+                    // If 0, treat as permanent ban (duration = null)
+                    _banManager.CreateServerBan(
+                        args.Sender.UserId,
+                        args.Sender.Name,
+                        null,
+                        null,
+                        null,
+                        duration,
+                        NoteSeverity.High,
+                        banReason
+                    );
+                    _adminLogger.Add(LogType.AdminCommands, LogImpact.Extreme, $"[AutoMod] Banned user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} (Offence {offenceIndex + 1}) - Reason: {banReason} - Duration: {(duration.HasValue ? duration + " minutes" : "permanent")}");
+                    _netManager.DisconnectChannel(args.Sender.Channel, banReason);
+                    break;
             }
         }
     }

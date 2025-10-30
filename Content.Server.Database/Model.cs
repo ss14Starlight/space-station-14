@@ -11,6 +11,7 @@ using Content.Shared.Database;
 using Microsoft.EntityFrameworkCore;
 using NpgsqlTypes;
 using Content.Shared.Administration;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Content.Server.Database
 {
@@ -414,6 +415,10 @@ namespace Content.Server.Database
                 .Property(p => p.Type)
                 .HasDefaultValue(HwidType.Legacy);
 
+            var autoModOffenceConverter = new ValueConverter<List<AutoModOffence>, string>(
+                v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
+                v => JsonSerializer.Deserialize<List<AutoModOffence>>(v, (JsonSerializerOptions?)null) ?? new List<AutoModOffence>());
+
             modelBuilder.Entity<AutoModRule>()
                 .HasIndex(p => p.Id)
                 .IsUnique();
@@ -423,7 +428,8 @@ namespace Content.Server.Database
                 .IsRequired();
             
             modelBuilder.Entity<AutoModRule>()
-                .Property(p => p.Message)
+                .Property(p => p.Offences)
+                .HasConversion(autoModOffenceConverter)
                 .IsRequired();
         }
 
@@ -1383,4 +1389,33 @@ namespace Content.Server.Database
         /// </summary>
         public float Score { get; set; }
     }
+}
+
+// Database model for AutoModRule
+[Table("AutoModRules")]
+public class AutoModRule
+{
+    [Key]
+    public int Id { get; set; }
+    [Required]
+    public string Regex { get; set; } = string.Empty;
+    [Required]
+    public int Severity { get; set; }
+    [Required]
+    public int Count { get; set; }
+    [Required]
+    public bool Enabled { get; set; }
+    [Required]
+    public bool CancelSpeech { get; set; }
+    [Required]
+    public List<AutoModOffence> Offences { get; set; } = new();
+}
+
+// Database model for AutoModOffence
+public class AutoModOffence
+{
+    public string Message { get; set; } = string.Empty;
+    public int Action { get; set; }
+    public int BanDurationSeconds { get; set; } = 0;
+    public int DecaySeconds { get; set; } = 0;
 }

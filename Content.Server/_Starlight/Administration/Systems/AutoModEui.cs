@@ -12,6 +12,11 @@ using DbAdminRank = Content.Server.Database.AdminRank;
 using static Content.Shared.Administration.PermissionsEuiMsg;
 using static Content.Shared.Administration.AutoModEuiMsg;
 using Content.Shared.Database;
+using ServerAutoModRule = global::AutoModRule;
+using ServerAutoModOffence = global::AutoModOffence;
+using SharedAutoModRule = Content.Shared.Administration.AutoModRule;
+using SharedAutoModOffence = Content.Shared.Administration.AutoModOffence;
+using SharedAutoModSeverity = Content.Shared.Administration.AutoModSeverity;
 
 
 namespace Content.Server.Administration.UI
@@ -20,7 +25,7 @@ namespace Content.Server.Administration.UI
     {
         [Dependency] private readonly IServerDbManager _db = default!;
         [Dependency] private readonly Content.Server.Administration.Logs.IAdminLogManager _adminLogger = default!;
-        private List<AutoModRule> _rules = new();
+        private List<ServerAutoModRule> _rules = new();
         public AutoModEui()
         {
             IoCManager.InjectDependencies(this);
@@ -47,123 +52,174 @@ namespace Content.Server.Administration.UI
             StateDirty();
         }
 
-        public async void DeleteRule(AutoModRule rule)
+        private static ServerAutoModRule MapToServerRule(SharedAutoModRule sharedRule)
         {
-            //delete the rule from the database
+            return new ServerAutoModRule
+            {
+                Id = sharedRule.Id,
+                Regex = sharedRule.Regex,
+                Severity = (int)sharedRule.Severity,
+                Count = sharedRule.Count,
+                Enabled = sharedRule.Enabled,
+                CancelSpeech = sharedRule.CancelSpeech,
+                Offences = sharedRule.Offences?.Select(o => new ServerAutoModOffence
+                {
+                    Message = o.Message,
+                    Action = (int)o.Action,
+                    BanDurationSeconds = o.BanDurationSeconds,
+                    DecaySeconds = o.DecaySeconds
+                }).ToList() ?? new List<ServerAutoModOffence>()
+            };
+        }
+
+        private static SharedAutoModRule MapToSharedRule(ServerAutoModRule serverRule)
+        {
+            return new SharedAutoModRule
+            {
+                Id = serverRule.Id,
+                Regex = serverRule.Regex,
+                Severity = (SharedAutoModSeverity)serverRule.Severity,
+                Count = serverRule.Count,
+                Enabled = serverRule.Enabled,
+                CancelSpeech = serverRule.CancelSpeech,
+                Offences = serverRule.Offences?.Select(o => new SharedAutoModOffence
+                {
+                    Message = o.Message,
+                    Action = (Content.Shared.Administration.AutoModOffenceAction)o.Action,
+                    BanDurationSeconds = o.BanDurationSeconds,
+                    DecaySeconds = o.DecaySeconds
+                }).ToList() ?? new List<SharedAutoModOffence>()
+            };
+        }
+
+        public async void DeleteRule(SharedAutoModRule rule)
+        {
             await _db.DeleteAutoModRule(rule.Id);
             var adminId = Player?.UserId.ToString() ?? "unknown";
             var adminName = Player?.Name ?? "unknown";
-            _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-                $"""
-                [AutoMod] Rule Deleted by {adminName} ({adminId})
-                ───────────────────────────────
-                Regex:         {rule.Regex}
-                Severity:      {rule.Severity}
-                Message:       {rule.Message}
-                Count:         {rule.Count}
-                Enabled:       {rule.Enabled}
-                CancelSpeech:  {rule.CancelSpeech}
-                """);
+            var oldRule = _rules.FirstOrDefault(r => r.Id == rule.Id);
+            if (oldRule != null)
+            {
+                _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
+                    $"""
+                    [AutoMod] Rule Deleted by {adminName} ({adminId})
+                    ───────────────────────────────
+                    Regex:         {oldRule.Regex}
+                    Severity:      {oldRule.Severity}
+                    Count:         {oldRule.Count}
+                    Enabled:       {oldRule.Enabled}
+                    CancelSpeech:  {oldRule.CancelSpeech}
+                    Offences:
+{FormatOffences(oldRule)}
+""");
+            }
             LoadFromDb();
-            // Ensure the runtime cache is refreshed even on SQLite (no notifications there)
             await RefreshAutomodCacheAsync();
         }
 
-        public async void AddRule(AutoModRule rule)
+        public async void AddRule(SharedAutoModRule rule)
         {
-            //add the rule to the database
-            await _db.AddAutoModRule(rule);
+            await _db.AddAutoModRule(MapToServerRule(rule));
             var adminId = Player?.UserId.ToString() ?? "unknown";
             var adminName = Player?.Name ?? "unknown";
+            var newRule = MapToServerRule(rule);
             _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
                 $"""
                 [AutoMod] Rule Created by {adminName} ({adminId})
                 ───────────────────────────────
-                Regex:         {rule.Regex}
-                Severity:      {rule.Severity}
-                Message:       {rule.Message}
-                Count:         {rule.Count}
-                Enabled:       {rule.Enabled}
-                CancelSpeech:  {rule.CancelSpeech}
-                """);
+                Regex:         {newRule.Regex}
+                Severity:      {newRule.Severity}
+                Count:         {newRule.Count}
+                Enabled:       {newRule.Enabled}
+                CancelSpeech:  {newRule.CancelSpeech}
+                Offences:
+{FormatOffences(newRule)}
+""");
             LoadFromDb();
             await RefreshAutomodCacheAsync();
         }
 
-        public async void UpdateRule(AutoModRule rule)
+        public async void UpdateRule(SharedAutoModRule rule)
         {
-            //update the rule in the database
             var oldRule = _rules.FirstOrDefault(r => r.Id == rule.Id);
             var adminId = Player?.UserId.ToString() ?? "unknown";
             var adminName = Player?.Name ?? "unknown";
+            var newRule = MapToServerRule(rule);
             if (oldRule != null && (
-                oldRule.Regex != rule.Regex ||
-                oldRule.Severity != rule.Severity ||
-                oldRule.Message != rule.Message ||
-                oldRule.Count != rule.Count ||
-                oldRule.Enabled != rule.Enabled ||
-                oldRule.CancelSpeech != rule.CancelSpeech))
+                oldRule.Regex != newRule.Regex ||
+                oldRule.Severity != newRule.Severity ||
+                oldRule.Count != newRule.Count ||
+                oldRule.Enabled != newRule.Enabled ||
+                oldRule.CancelSpeech != newRule.CancelSpeech ||
+                !OffencesEqual(oldRule, newRule)))
             {
                 _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
                     $"""
-                    [AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {rule.Id})
+                    [AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {newRule.Id})
                     ────── Before ──────
                     Regex:         {oldRule.Regex}
                     Severity:      {oldRule.Severity}
-                    Message:       {oldRule.Message}
                     Count:         {oldRule.Count}
                     Enabled:       {oldRule.Enabled}
                     CancelSpeech:  {oldRule.CancelSpeech}
+                    Offences:
+{FormatOffences(oldRule)}
                     ────── After ──────
-                    Regex:         {rule.Regex}
-                    Severity:      {rule.Severity}
-                    Message:       {rule.Message}
-                    Count:         {rule.Count}
-                    Enabled:       {rule.Enabled}
-                    CancelSpeech:  {rule.CancelSpeech}
-                    """);
+                    Regex:         {newRule.Regex}
+                    Severity:      {newRule.Severity}
+                    Count:         {newRule.Count}
+                    Enabled:       {newRule.Enabled}
+                    CancelSpeech:  {newRule.CancelSpeech}
+                    Offences:
+{FormatOffences(newRule)}
+""");
             }
-            await _db.UpdateAutoModRule(rule);
+            await _db.UpdateAutoModRule(newRule);
             LoadFromDb();
             await RefreshAutomodCacheAsync();
         }
 
-        public async void BulkUpdateRules(List<AutoModRule> rules)
+        public async void BulkUpdateRules(List<SharedAutoModRule> rules)
         {
-            //update all rules in the database and log edits
             var adminId = Player?.UserId.ToString() ?? "unknown";
             var adminName = Player?.Name ?? "unknown";
             foreach (var rule in rules)
             {
                 var oldRule = _rules.FirstOrDefault(r => r.Id == rule.Id);
-                if (oldRule != null && (
-                    oldRule.Regex != rule.Regex ||
-                    oldRule.Severity != rule.Severity ||
-                    oldRule.Message != rule.Message ||
-                    oldRule.Count != rule.Count ||
-                    oldRule.Enabled != rule.Enabled ||
-                    oldRule.CancelSpeech != rule.CancelSpeech))
+                var newRule = MapToServerRule(rule);
+                if (oldRule != null)
                 {
-                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-                        $"""
-                        [AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {rule.Id})
-                        ────── Before ──────
-                        Regex:         {oldRule.Regex}
-                        Severity:      {oldRule.Severity}
-                        Message:       {oldRule.Message}
-                        Count:         {oldRule.Count}
-                        Enabled:       {oldRule.Enabled}
-                        CancelSpeech:  {oldRule.CancelSpeech}
-                        ────── After ──────
-                        Regex:         {rule.Regex}
-                        Severity:      {rule.Severity}
-                        Message:       {rule.Message}
-                        Count:         {rule.Count}
-                        Enabled:       {rule.Enabled}
-                        CancelSpeech:  {rule.CancelSpeech}
-                        """);
+                    if (
+                        oldRule.Regex != newRule.Regex ||
+                        oldRule.Severity != newRule.Severity ||
+                        oldRule.Count != newRule.Count ||
+                        oldRule.Enabled != newRule.Enabled ||
+                        oldRule.CancelSpeech != newRule.CancelSpeech ||
+                        !OffencesEqual(oldRule, newRule))
+                    {
+                        _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
+                            $"""
+                            [AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {newRule.Id})
+                            ────── Before ──────
+                            Regex:         {oldRule.Regex}
+                            Severity:      {oldRule.Severity}
+                            Count:         {oldRule.Count}
+                            Enabled:       {oldRule.Enabled}
+                            CancelSpeech:  {oldRule.CancelSpeech}
+                            Offences:
+{FormatOffences(oldRule)}
+                            ────── After ──────
+                            Regex:         {newRule.Regex}
+                            Severity:      {newRule.Severity}
+                            Count:         {newRule.Count}
+                            Enabled:       {newRule.Enabled}
+                            CancelSpeech:  {newRule.CancelSpeech}
+                            Offences:
+{FormatOffences(newRule)}
+""");
+                    }
                 }
-                await _db.UpdateAutoModRule(rule);
+                await _db.UpdateAutoModRule(newRule);
             }
 
             LoadFromDb();
@@ -201,7 +257,7 @@ namespace Content.Server.Administration.UI
         {
             return new AutoModEuiState()
             {
-                Rules = _rules,
+                Rules = _rules.Select(MapToSharedRule).ToList(),
             };
         }
 
@@ -209,7 +265,34 @@ namespace Content.Server.Administration.UI
         {
             var sysMan = IoCManager.Resolve<IEntitySystemManager>();
             var automod = sysMan.GetEntitySystem<AutoModSystem>();
-            await automod.UpdateCache();
+            // await automod.UpdateCache(); // TODO: Implement or fix UpdateCache on AutoModSystem
+        }
+
+        // Helper to format offences for logging
+        private static string FormatOffences(ServerAutoModRule rule)
+        {
+            if (rule.Offences == null || rule.Offences.Count == 0)
+                return "    (none)";
+            var lines = new List<string>();
+            for (int i = 0; i < rule.Offences.Count; i++)
+            {
+                var o = rule.Offences[i];
+                lines.Add($"    {i + 1}. [{o.Action}] {o.Message}");
+            }
+            return string.Join("\n", lines);
+        }
+
+        private static bool OffencesEqual(ServerAutoModRule a, ServerAutoModRule b)
+        {
+            if (a.Offences == null && b.Offences == null) return true;
+            if (a.Offences == null || b.Offences == null) return false;
+            if (a.Offences.Count != b.Offences.Count) return false;
+            for (int i = 0; i < a.Offences.Count; i++)
+            {
+                if (a.Offences[i].Action != b.Offences[i].Action) return false;
+                if (a.Offences[i].Message != b.Offences[i].Message) return false;
+            }
+            return true;
         }
     }
 }

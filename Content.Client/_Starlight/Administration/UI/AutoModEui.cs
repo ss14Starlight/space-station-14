@@ -123,18 +123,89 @@ namespace Content.Client.Administration.UI
                 rule.rule.Severity = (AutoModSeverity)args.Id;
             };
 
-            var message = new LineEdit()
+            // Offences UI
+            // Ensure offences list exists
+            if (rule.rule.Offences == null)
+                rule.rule.Offences = new List<AutoModOffence>();
+
+            var offencesVBox = new BoxContainer { Orientation = LayoutOrientation.Vertical, HorizontalExpand = true, VerticalExpand = true };
+            for (int i = 0; i < rule.rule.Offences.Count; i++)
             {
-                Text = rule.rule.Message ?? string.Empty,
-                PlaceHolder = Loc.GetString("automod-message-placeholder"),
-                HorizontalExpand = true,
-                VerticalExpand = true,
+                var offence = rule.rule.Offences[i];
+                var offenceRow = new BoxContainer { Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true };
+                var offenceLabel = new Label { Text = $"Offence {i + 1}", HorizontalExpand = false };
+                var offenceMsg = new LineEdit
+                {
+                    Text = offence.Message ?? string.Empty,
+                    PlaceHolder = Loc.GetString("automod-message-placeholder"),
+                    HorizontalExpand = true
+                };
+                offenceMsg.OnTextChanged += args => offence.Message = offenceMsg.Text;
+
+                var actionDropdown = new OptionButton { HorizontalExpand = false };
+                foreach (var action in Enum.GetValues(typeof(AutoModOffenceAction)).Cast<AutoModOffenceAction>())
+                {
+                    actionDropdown.AddItem(action.ToString(), (int)action);
+                }
+                actionDropdown.SelectId((int)offence.Action);
+                actionDropdown.OnItemSelected += args => offence.Action = (AutoModOffenceAction)args.Id;
+
+                // Ban duration (only relevant for Ban action)
+                var banDurationEdit = new LineEdit
+                {
+                    Text = offence.BanDurationSeconds.ToString(),
+                    PlaceHolder = Loc.GetString("Ban duration (seconds, 0=perm)"),
+                    HorizontalExpand = false,
+                    MinSize = new Vector2(80, 0)
+                };
+                banDurationEdit.OnTextChanged += args => {
+                    if (int.TryParse(banDurationEdit.Text, out var val))
+                        offence.BanDurationSeconds = val;
+                };
+
+                // Decay timer (not used for first offence)
+                // Add a header label for decay
+                var decayHeader = new Label
+                {
+                    Text = Loc.GetString("Decay (seconds, 0=never)"),
+                    HorizontalExpand = false,
+                    Margin = new Thickness(0, 0, 0, 2)
+                };
+                var decayEdit = new LineEdit
+                {
+                    Text = offence.DecaySeconds.ToString(),
+                    HorizontalExpand = false,
+                    MinSize = new Vector2(80, 0)
+                };
+                decayEdit.OnTextChanged += args => {
+                    if (int.TryParse(decayEdit.Text, out var val))
+                        offence.DecaySeconds = val;
+                };
+
+                var removeBtn = new Button { Text = "-", HorizontalExpand = false };
+                removeBtn.OnPressed += _ => {
+                    rule.rule.Offences.Remove(offence);
+                    // Force UI refresh
+                    _menu.RulesList.PopulateList(recentState.Rules.Select(r => new AutoModListData(r)).ToList());
+                };
+                offenceRow.AddChild(offenceLabel);
+                offenceRow.AddChild(offenceMsg);
+                offenceRow.AddChild(actionDropdown);
+                offenceRow.AddChild(banDurationEdit);
+                var decayVBox = new BoxContainer { Orientation = LayoutOrientation.Vertical, HorizontalExpand = false };
+                decayVBox.AddChild(decayHeader);
+                decayVBox.AddChild(decayEdit);
+                offenceRow.AddChild(decayVBox);
+                if (rule.rule.Offences.Count > 1) offenceRow.AddChild(removeBtn);
+                offencesVBox.AddChild(offenceRow);
+            }
+            // Add offence button
+            var addOffenceBtn = new Button { Text = "+", HorizontalExpand = false };
+            addOffenceBtn.OnPressed += _ => {
+                rule.rule.Offences.Add(new AutoModOffence { Message = "", Action = AutoModOffenceAction.Clear, BanDurationSeconds = 0, DecaySeconds = 0 });
+                _menu.RulesList.PopulateList(recentState.Rules.Select(r => new AutoModListData(r)).ToList());
             };
-            message.OnTextChanged += args =>
-            {
-                //set the message of the rule
-                rule.rule.Message = message.Text;
-            };
+            offencesVBox.AddChild(addOffenceBtn);
 
             //disabled for now, needs more database work to be useful
             /* var count = new LineEdit()
@@ -183,7 +254,7 @@ namespace Content.Client.Administration.UI
             };
 
             TopRow.AddChild(regex);
-            TopRow.AddChild(message);
+            TopRow.AddChild(offencesVBox);
             BottomRow.AddChild(severityDropdown);
             /* BottomRow.AddChild(count); */
             BottomRow.AddChild(enabled);
