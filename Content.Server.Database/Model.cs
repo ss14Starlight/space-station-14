@@ -419,10 +419,12 @@ namespace Content.Server.Database
                 .IsUnique();
             
             modelBuilder.Entity<AutoModRule>()
-                .Property(p => p.Regex);
+                .Property(p => p.Regex)
+                .IsRequired();
             
             modelBuilder.Entity<AutoModRule>()
-                .Property(p => p.Message);
+                .Property(p => p.Message)
+                .IsRequired();
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)

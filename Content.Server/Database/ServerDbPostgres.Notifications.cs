@@ -19,6 +19,7 @@ public sealed partial class ServerDbPostgres
     [
         BanManager.BanNotificationChannel,
         MultiServerKickManager.NotificationChannel,
+        "automod_rules", // Starlight: Listen for AutoMod rule update
     ];
 
     private static readonly TimeSpan ReconnectWaitIncrease = TimeSpan.FromSeconds(10);
