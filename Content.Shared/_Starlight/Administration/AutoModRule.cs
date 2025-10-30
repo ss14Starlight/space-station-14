@@ -24,12 +24,11 @@ namespace Content.Shared.Administration
     public string Message = string.Empty;
     public AutoModOffenceAction Action = AutoModOffenceAction.Clear;
     /// <summary>
-    /// Ban duration in seconds (only used if Action is Ban). 0 = permanent ban.
+    /// Ban duration in seconds. 0 = permanent ban.
     /// </summary>
     public int BanDurationSeconds = 0;
     /// <summary>
     /// How long (in seconds) to wait before decaying to the previous offence level. 0 = never decay.
-    /// Not used for the first offence.
     /// </summary>
     public int DecaySeconds = 0;
     }
