@@ -96,6 +96,7 @@ namespace Content.Client.Administration.UI
             var regex = new LineEdit()
             {
                 Text = rule.rule.Regex ?? string.Empty,
+                PlaceHolder = Loc.GetString("automod-pattern-placeholder"),
                 HorizontalExpand = true,
                 VerticalExpand = true,
             };
@@ -125,6 +126,7 @@ namespace Content.Client.Administration.UI
             var message = new LineEdit()
             {
                 Text = rule.rule.Message ?? string.Empty,
+                PlaceHolder = Loc.GetString("automod-message-placeholder"),
                 HorizontalExpand = true,
                 VerticalExpand = true,
             };
@@ -209,7 +211,7 @@ namespace Content.Client.Administration.UI
                     HorizontalExpand = true,
                     VerticalExpand = true,
                 };
-                // Header for Pattern and Message
+                // Header row to label the text fields (Pattern/Regex and Message/Reason)
                 var headerRow = new BoxContainer
                 {
                     Orientation = LayoutOrientation.Horizontal,
@@ -276,15 +278,74 @@ namespace Content.Client.Administration.UI
                     VerticalExpand = true,
                 };
 
-                tabs.AddChild(testerVBox);
-                /* refresh = new Button
+                // Rule Tester UI
+                var testerPatternLabel = new Label { Text = Loc.GetString("automod-tester-pattern-label") };
+                var testerPatternInput = new LineEdit { PlaceHolder = Loc.GetString("automod-pattern-placeholder"), HorizontalExpand = true };
+
+                var testerTextLabel = new Label { Text = Loc.GetString("automod-tester-text-label") };
+                var testerTextInput = new LineEdit { PlaceHolder = Loc.GetString("automod-tester-text-placeholder"), HorizontalExpand = true };
+
+                var testerButton = new Button { Text = Loc.GetString("automod-tester-test-button"), HorizontalExpand = false };
+                var testerResult = new RichTextLabel { HorizontalExpand = true, VerticalExpand = true };
+
+                testerButton.OnPressed += _ =>
                 {
-                    Text = Loc.GetString("automod-refresh"),
-                    HorizontalExpand = true,
-                    VerticalExpand = true,
+                    var pattern = testerPatternInput.Text;
+                    var text = testerTextInput.Text;
+
+                    if (string.IsNullOrWhiteSpace(pattern))
+                    {
+                        testerResult.SetMessage(FormattedMessage.FromMarkup(
+                            Loc.GetString("automod-tester-error-no-pattern")));
+                        return;
+                    }
+
+                    try
+                    {
+                        var regex = new System.Text.RegularExpressions.Regex(pattern);
+                        var match = regex.Match(text);
+
+                        if (match.Success)
+                        {
+                            testerResult.SetMessage(FormattedMessage.FromMarkup(
+                                Loc.GetString("automod-tester-match-success", ("match", match.Value))));
+                        }
+                        else
+                        {
+                            testerResult.SetMessage(FormattedMessage.FromMarkup(
+                                Loc.GetString("automod-tester-no-match")));
+                        }
+                    }
+                    catch (System.ArgumentException ex)
+                    {
+                        testerResult.SetMessage(FormattedMessage.FromMarkup(
+                            Loc.GetString("automod-tester-error-invalid-regex", ("error", ex.Message))));
+                    }
                 };
 
-                rulesVBox.AddChild(refresh); */
+                testerVBox.AddChild(testerPatternLabel);
+                testerVBox.AddChild(testerPatternInput);
+                testerVBox.AddChild(testerTextLabel);
+                testerVBox.AddChild(testerTextInput);
+                testerVBox.AddChild(testerButton);
+                testerVBox.AddChild(testerResult);
+
+                // Regex cheat sheet
+                var cheatSheetLabel = new Label { Text = Loc.GetString("automod-tester-cheatsheet-title") };
+                var cheatSheet = new RichTextLabel { HorizontalExpand = true, VerticalExpand = true };
+                
+                // Build the cheat sheet from individual localization lines
+                var cheatSheetText = new System.Text.StringBuilder();
+                for (int i = 1; i <= 12; i++)
+                {
+                    cheatSheetText.AppendLine(Loc.GetString($"automod-tester-cheatsheet-{i}"));
+                }
+                cheatSheet.SetMessage(FormattedMessage.FromMarkup(cheatSheetText.ToString()));
+
+                testerVBox.AddChild(cheatSheetLabel);
+                testerVBox.AddChild(cheatSheet);
+
+                tabs.AddChild(testerVBox);
 
                 tabs.SetTabTitle(0, Loc.GetString("automod-eui-menu-rules-tab-title"));
                 tabs.SetTabTitle(1, Loc.GetString("automod-eui-menu-tester-tab-title"));
