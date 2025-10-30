@@ -43,11 +43,11 @@
   - type: StorageFill
     contents:
       - id: MagazineLightRifleSP
-        amount: 1
-      - id: MagazineLightRifleHP
-        amount: 1
-      - id: MagazineLightRifleFMJ
-        amount: 1
+        amount: 3
+      #- id: MagazineLightRifleHP
+      #  amount: 1
+      #- id: MagazineLightRifleFMJ
+      #  amount: 1
       - id: MagazineLightRifleAP
         amount: 1
         
@@ -85,11 +85,11 @@
   - type: StorageFill
     contents:
       - id: MagazinePistolSP
-        amount: 2
-      - id: MagazinePistolHP
-        amount: 1
-      - id: MagazinePistolFMJ
-        amount: 1
+        amount: 4
+      #- id: MagazinePistolHP
+      #  amount: 1
+      #- id: MagazinePistolFMJ
+      # amount: 1
 
 - type: entity
   name: box of pistol .35 auto (practice) magazines
@@ -208,12 +208,12 @@
     - 0,0,2,3
   - type: StorageFill
     contents:
-      - id: MagazineRifleFMJ
-        amount: 2
+      #- id: MagazineRifleFMJ
+      #  amount: 2
       - id: MagazineRifleSP
-        amount: 1
-      - id: MagazineRifleHP
-        amount: 1
+        amount: 4
+      #- id: MagazineRifleHP
+      #  amount: 1
       - id: MagazineRifleAP
         amount: 1
         

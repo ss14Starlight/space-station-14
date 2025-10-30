@@ -239,11 +239,11 @@
     #- id: WeaponMachinePistolMk64
       #amount: 1
     - id: MagazinePistolSP
-      amount: 4
-    - id: MagazinePistolHP
-      amount: 2
-    - id: MagazinePistolFMJ
-      amount: 2
+      amount: 8 #added four due to HP & FMJ removal
+    #- id: MagazinePistolHP
+    #  amount: 2
+    #- id: MagazinePistolFMJ
+    #  amount: 2
     #- id: MagazinePistolHighCapacitySP
       #amount: 2
 
@@ -265,10 +265,10 @@
       amount: 1
     - id: WeaponRifleLeikha
       amount: 1
-    - id: MagazineRifleHP
-      amount: 3
+    #- id: MagazineRifleHP
+    #  amount: 3
     - id: MagazineRifleSP
-      amount: 3
+      amount: 6 #added three due to HP removal
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]

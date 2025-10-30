@@ -171,9 +171,9 @@
     - id: WeaponLightMachineGunM492
       amount: 1
     - id: LightRifleHeavyMagazineSP
-      amount: 1
-    - id: LightRifleHeavyMagazineHP
-      amount: 1
+      amount: 2 #added one due to HP removal
+    #- id: LightRifleHeavyMagazineHP
+    #  amount: 1
     - id: ClothingOuterHardsuitSecurityExperimental
       amount: 1
     - id: ClothingShoesBootsMagSec

@@ -526,16 +526,17 @@
   categories:
   - UplinkAmmo
 
-- type: listing
-  id: UplinkPistol9mmMagazineFMJ
-  name: uplink-pistol-magazine-name
-  description: uplink-pistol-magazine-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: fmj }
-  productEntity: MagazinePistolFMJ
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
+# FMJ dead, and murdered, by my own two hands
+#- type: listing
+#  id: UplinkPistol9mmMagazineFMJ
+#  name: uplink-pistol-magazine-name
+#  description: uplink-pistol-magazine-desc
+#  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: fmj }
+#  productEntity: MagazinePistolFMJ
+#  cost:
+#    Telecrystal: 1
+#  categories:
+#  - UplinkAmmo
 
 # For the C20R
 - type: listing
@@ -601,7 +602,7 @@
   id: UplinkMosinAmmo
   name: uplink-mosin-ammo-name
   description: uplink-mosin-ammo-desc
-  productEntity: MagazineBoxLightRifleFMJ
+  productEntity: MagazineBoxLightRifleSP
   cost:
     Telecrystal: 1
   categories:
