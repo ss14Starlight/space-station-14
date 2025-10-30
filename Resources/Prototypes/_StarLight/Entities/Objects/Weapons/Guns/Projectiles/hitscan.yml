@@ -93,7 +93,7 @@
   damage:
     types:
       Piercing: 35
-  armorPenetration: -0.13
+  armorPenetration: 0 #previous value: -0.13
   pierceChance: 0.40
   derivation: 0.05
   ricochetChance: 0.30
@@ -219,7 +219,7 @@
   damage:
     types:
       Piercing: 16
-  armorPenetration: -0.13
+  armorPenetration: 0 #previous value: -0.13
   pierceChance: 0.40
   derivation: 0.2
   ricochetChance: 0.30
@@ -348,7 +348,7 @@
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
       state: sp
-  armorPenetration: -0.5
+  armorPenetration: 0 #previous value: -0.5
   pierceChance: 0.30
   derivation: 0.15
   ricochetChance: 0.20
@@ -445,7 +445,7 @@
   damage:
     types:
       Piercing: 19
-  armorPenetration: -0.13
+  armorPenetration: 0 #previous value: -0.13
   staminaDamage: 2
   pierceChance: 0.40
   derivation: 0.05
@@ -574,7 +574,7 @@
   damage:
     types:
       Piercing: 17
-  armorPenetration: -0.13
+  armorPenetration: 0 #previous value: -0.13
   pierceChance: 0.40
   ricochetChance: 0.30
   staminaDamage: 2
