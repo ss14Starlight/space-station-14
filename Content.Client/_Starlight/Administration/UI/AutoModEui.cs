@@ -209,10 +209,28 @@ namespace Content.Client.Administration.UI
                     HorizontalExpand = true,
                     VerticalExpand = true,
                 };
+                // Header for Pattern and Message
+                var headerRow = new BoxContainer
+                {
+                    Orientation = LayoutOrientation.Horizontal,
+                    HorizontalExpand = true,
+                };
+                headerRow.AddChild(new Label
+                {
+                    Text = Loc.GetString("automod-label-pattern"),
+                    HorizontalExpand = true,
+                });
+                headerRow.AddChild(new Label
+                {
+                    Text = Loc.GetString("automod-label-message"),
+                    HorizontalExpand = true,
+                });
+
                 var rulesVBox = new BoxContainer
                 {
                     Orientation = LayoutOrientation.Vertical,
                     Children = {
+                        headerRow,
                         RulesList
                     }
                 };

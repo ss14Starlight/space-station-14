@@ -14,3 +14,5 @@ automod-eui-menu-rules-tab-title = Rules
 automod-eui-menu-tester-tab-title = Rule Tester
 
 admin-player-actions-window-automod = Auto Mod Rules
+automod-label-pattern = Pattern (Regex)
+automod-label-message = Message/Reason
