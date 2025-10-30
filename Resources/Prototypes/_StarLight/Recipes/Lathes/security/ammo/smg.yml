@@ -12,19 +12,19 @@
   materials:
     Steel: 300
 
-- type: latheRecipe
-  parent: BaseEmptyAmmoRecipe
-  id: MagazinePistolSubMachineGunHP
-  result: MagazinePistolSubMachineGunHP
-  materials:
-    Steel: 300
+#- type: latheRecipe
+#  parent: BaseEmptyAmmoRecipe
+#  id: MagazinePistolSubMachineGunHP
+#  result: MagazinePistolSubMachineGunHP
+#  materials:
+#    Steel: 300
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolSubMachineGunFMJ
-  result: MagazinePistolSubMachineGunFMJ
-  materials:
-    Steel: 300
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazinePistolSubMachineGunFMJ
+#  result: MagazinePistolSubMachineGunFMJ
+#  materials:
+#   Steel: 300
 
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe

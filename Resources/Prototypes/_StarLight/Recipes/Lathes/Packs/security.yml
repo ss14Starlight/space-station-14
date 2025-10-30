@@ -32,25 +32,25 @@
 ######################BOX#######################
 # Light Rifle
   - MagazineBoxLightRifleSP
-  - MagazineBoxLightRifleHP
-  - MagazineBoxLightRifleFMJ
+  #- MagazineBoxLightRifleHP
+  #- MagazineBoxLightRifleFMJ
 # Magnum
   - MagazineBoxMagnumSP
-  - MagazineBoxMagnumHP
-  - MagazineBoxMagnumFMJ
+  #- MagazineBoxMagnumHP
+  #- MagazineBoxMagnumFMJ
 # Pistol
   - MagazineBoxCaselessRifle
   - MagazineBoxCaselessRifleRubber
   - MagazineBoxPistolSP
-  - MagazineBoxPistolHP
-  - MagazineBoxPistolFMJ
+  #- MagazineBoxPistolHP
+  #- MagazineBoxPistolFMJ
   - MagazineBoxPistol40SP
-  - MagazineBoxPistol40HP
-  - MagazineBoxPistol40FMJ
+  #- MagazineBoxPistol40HP
+  #- MagazineBoxPistol40FMJ
 # Rifle
   - MagazineBoxRifleSP
-  - MagazineBoxRifleHP
-  - MagazineBoxRifleFMJ
+  #- MagazineBoxRifleHP
+  #- MagazineBoxRifleFMJ
 # Shotgun
   - BoxLethalshot
   - BoxShotgunSlug
@@ -58,20 +58,20 @@
 #####################MAGAZINE#######################
 # LMG
   - LightRifleHeavyMagazineSP
-  - LightRifleHeavyMagazineHP
-  - LightRifleHeavyMagazineFMJ
+  #- LightRifleHeavyMagazineHP
+  #- LightRifleHeavyMagazineFMJ
   - LightRifleHeavyMagazineEmpty
 # Light Rifle
   - MagazineLightRifleSP
-  - MagazineLightRifleHP
-  - MagazineLightRifleFMJ
+  #- MagazineLightRifleHP
+  #- MagazineLightRifleFMJ
   - MagazineLightRifleMaxim
   - SpeedLoaderLightRifle
   - MagazineLightRifleEmpty
 # Magnum
   - SpeedLoaderMagnumSP
-  - SpeedLoaderMagnumHP
-  - SpeedLoaderMagnumFMJ
+  #- SpeedLoaderMagnumHP
+  #- SpeedLoaderMagnumFMJ
   - MagazineMagnum
   - MagazineMagnumRifleSP
   - MagazineMagnumEmpty
@@ -80,17 +80,17 @@
   - MagazinePistolCaselessRifle
   - MagazineCaselessRifleRubber
   - MagazinePistolSP
-  - MagazinePistolHP
-  - MagazinePistolFMJ
+  #- MagazinePistolHP
+  #- MagazinePistolFMJ
   - MagazinePistolEmpty
   - MagazinePistol40SP
-  - MagazinePistol40HP
-  - MagazinePistol40FMJ
+  #- MagazinePistol40HP
+  #- MagazinePistol40FMJ
   - MagazinePistol40Empty
 # SMG
   - MagazinePistolSubMachineGunSP
-  - MagazinePistolSubMachineGunHP
-  - MagazinePistolSubMachineGunFMJ
+  #- MagazinePistolSubMachineGunHP
+  #- MagazinePistolSubMachineGunFMJ
   - MagazinePistolSubMachineGunEmpty
   - MagazinePistolSubMachineGunTopMounted
   - MagazinePistolSubMachineGunTopMountedEmpty
@@ -98,8 +98,8 @@
   - MagazinePistolSubMachineGunPPSH
 # Rifle
   - MagazineRifleSP
-  - MagazineRifleHP
-  - MagazineRifleFMJ
+  #- MagazineRifleHP
+  #- MagazineRifleFMJ
   - MagazineRifleEmpty
 # Shotgun
   - MagazineShotgun

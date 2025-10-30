@@ -64,19 +64,19 @@
   materials:
     Steel: 145
     
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolHP
-  result: MagazinePistolHP
-  materials:
-    Steel: 145
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazinePistolHP
+#  result: MagazinePistolHP
+#  materials:
+#    Steel: 145
     
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolFMJ
-  result: MagazinePistolFMJ
-  materials:
-    Steel: 145
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazinePistolFMJ
+#  result: MagazinePistolFMJ
+#  materials:
+#    Steel: 145
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -117,19 +117,19 @@
   materials:
     Steel: 145
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolHighCapacityFMJ
-  result: MagazinePistolHighCapacityFMJ
-  materials:
-    Steel: 145
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazinePistolHighCapacityFMJ
+#  result: MagazinePistolHighCapacityFMJ
+#  materials:
+#    Steel: 145
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolHighCapacityHP
-  result: MagazinePistolHighCapacityHP
-  materials:
-    Steel: 145
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazinePistolHighCapacityHP
+#  result: MagazinePistolHighCapacityHP
+#  materials:
+#    Steel: 145
 
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
@@ -154,19 +154,19 @@
   materials:
     Steel: 167
     
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistol40HP
-  result: MagazinePistol40HP
-  materials:
-    Steel: 167
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazinePistol40HP
+#  result: MagazinePistol40HP
+#  materials:
+#    Steel: 167
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistol40FMJ
-  result: MagazinePistol40FMJ
-  materials:
-    Steel: 167
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazinePistol40FMJ
+#  result: MagazinePistol40FMJ
+#  materials:
+#    Steel: 167
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -196,19 +196,19 @@
   materials:
     Steel: 600
         
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistolHP
-  result: MagazineBoxPistolHP
-  materials:
-    Steel: 600
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazineBoxPistolHP
+#  result: MagazineBoxPistolHP
+#  materials:
+#    Steel: 600
         
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistolFMJ
-  result: MagazineBoxPistolFMJ
-  materials:
-    Steel: 600
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazineBoxPistolFMJ
+#  result: MagazineBoxPistolFMJ
+#  materials:
+#    Steel: 600
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -250,19 +250,19 @@
   materials:
     Steel: 334
     
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistol40HP
-  result: MagazineBoxPistol40HP
-  materials:
-    Steel: 334
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazineBoxPistol40HP
+#  result: MagazineBoxPistol40HP
+#  materials:
+#    Steel: 334
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistol40FMJ
-  result: MagazineBoxPistol40FMJ
-  materials:
-    Steel: 334
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazineBoxPistol40FMJ
+#  result: MagazineBoxPistol40FMJ
+#  materials:
+#   Steel: 334
     
 - type: latheRecipe
   parent: BaseAmmoRecipe

@@ -24,19 +24,19 @@
   materials:
     Steel: 455
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleHP
-  result: MagazineRifleHP
-  materials:
-    Steel: 425
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazineRifleHP
+#  result: MagazineRifleHP
+#  materials:
+#    Steel: 425
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleFMJ
-  result: MagazineRifleFMJ
-  materials:
-    Steel: 555
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazineRifleFMJ
+#  result: MagazineRifleFMJ
+#  materials:
+#    Steel: 555
 
 
 - type: latheRecipe

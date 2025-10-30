@@ -24,19 +24,19 @@
   materials:
     Steel: 565
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineLightRifleHP
-  result: MagazineLightRifleHP
-  materials:
-    Steel: 565
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazineLightRifleHP
+#  result: MagazineLightRifleHP
+#  materials:
+#    Steel: 565
     
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineLightRifleFMJ
-  result: MagazineLightRifleFMJ
-  materials:
-    Steel: 565
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazineLightRifleFMJ
+#  result: MagazineLightRifleFMJ
+#  materials:
+#    Steel: 565
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -86,19 +86,19 @@
   materials:
     Steel: 1412
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: LightRifleHeavyMagazineHP
-  result: LightRifleHeavyMagazineHP
-  materials:
-    Steel: 1412
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: LightRifleHeavyMagazineHP
+#  result: LightRifleHeavyMagazineHP
+#  materials:
+#    Steel: 1412
     
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: LightRifleHeavyMagazineFMJ
-  result: LightRifleHeavyMagazineFMJ
-  materials:
-    Steel: 1412
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: LightRifleHeavyMagazineFMJ
+#  result: LightRifleHeavyMagazineFMJ
+#  materials:
+#    Steel: 1412
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -158,19 +158,19 @@
   materials:
     Steel: 900
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleHP
-  result: MagazineBoxLightRifleHP
-  materials:
-    Steel: 900
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazineBoxLightRifleHP
+#  result: MagazineBoxLightRifleHP
+#  materials:
+#    Steel: 900
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleFMJ
-  result: MagazineBoxLightRifleFMJ
-  materials:
-    Steel: 900
+#- type: latheRecipe
+#  parent: BaseAmmoRecipe
+#  id: MagazineBoxLightRifleFMJ
+#  result: MagazineBoxLightRifleFMJ
+#  materials:
+#    Steel: 900
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
