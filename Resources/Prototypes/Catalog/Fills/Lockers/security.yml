@@ -239,7 +239,7 @@
     #- id: WeaponMachinePistolMk64
       #amount: 1
     - id: MagazinePistolSP
-      amount: 8 #added four due to HP & FMJ removal
+      amount: 8 #Starlight | increased due to hp and fmj removal
     #- id: MagazinePistolHP
     #  amount: 2
     #- id: MagazinePistolFMJ
@@ -268,7 +268,7 @@
     #- id: MagazineRifleHP
     #  amount: 3
     - id: MagazineRifleSP
-      amount: 6 #added three due to HP removal
+      amount: 6 #Starlight | increased due to hp and fmj removal
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]

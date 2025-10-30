@@ -210,7 +210,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistol40SP
+        startingItem: MagazinePistol40SP #FMJ -> SP
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -220,7 +220,7 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol40SP
+        startingItem: CartridgePistol40SP #FMJ -> SP
         priority: 1
         whitelist:
           tags:

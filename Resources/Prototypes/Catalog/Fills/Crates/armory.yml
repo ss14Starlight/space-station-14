@@ -70,7 +70,7 @@
     - id: WeaponPistolMk58
       amount: 2
     - id: MagazinePistolSP
-      amount: 4
+      amount: 4 #Starlight | increased due to hp and fmj removal
     #- id: MagazinePistolHP
     #  amount: 1
     #- id: MagazinePistolFMJ

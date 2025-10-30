@@ -217,7 +217,7 @@
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
           name: Chamber
-          startingItem: CartridgePistolSP
+          startingItem: CartridgePistolSP #Starlight | FMJ -> SP
           priority: 1
           whitelist:
             tags:
@@ -279,7 +279,7 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolSP
+        startingItem: CartridgePistolSP #Starlight | FMJ -> SP
         priority: 1
         whitelist:
           tags:

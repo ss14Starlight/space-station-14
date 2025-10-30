@@ -43,7 +43,7 @@
   - type: StorageFill
     contents:
       - id: MagazineLightRifleSP
-        amount: 3
+        amount: 3  #Starlight | increased due to hp and fmj removal
       #- id: MagazineLightRifleHP
       #  amount: 1
       #- id: MagazineLightRifleFMJ
@@ -85,7 +85,7 @@
   - type: StorageFill
     contents:
       - id: MagazinePistolSP
-        amount: 4
+        amount: 4 #Starlight | increased due to hp and fmj removal
       #- id: MagazinePistolHP
       #  amount: 1
       #- id: MagazinePistolFMJ
@@ -211,7 +211,7 @@
       #- id: MagazineRifleFMJ
       #  amount: 2
       - id: MagazineRifleSP
-        amount: 4
+        amount: 4 #Starlight | increased due to hp and fmj removal
       #- id: MagazineRifleHP
       #  amount: 1
       - id: MagazineRifleAP

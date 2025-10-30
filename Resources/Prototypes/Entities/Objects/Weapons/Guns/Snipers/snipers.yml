@@ -44,7 +44,7 @@
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
   - type: BallisticAmmoProvider
     capacity: 10
-    proto: CartridgeLightRifleSP
+    proto: CartridgeLightRifleSP #Starlight | FMJ -> SP
     whitelist:
       tags:
       - CartridgeLightRifle
