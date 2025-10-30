@@ -49,3 +49,21 @@ MagazineBoxMagnum: MagazineBoxMagnumSP
 CartridgeMagnum: CartridgeMagnumSP
 CartridgePistol: CartridgePistolSP
 CartridgeRifle: CartridgeRifleSP
+
+# 2025-10-30
+MagazineBoxPistol40HP: MagazineBoxPistol40SP
+MagazineBoxPistol40FMJ: MagazineBoxPistol40SP
+LightRifleHeavyMagazineHP: LightRifleHeavyMagazineSP
+LightRifleHeavyMagazineFMJ: LightRifleHeavyMagazineSP
+MagazinePistolHP: MagazinePistolSP
+MagazinePistolFMJ: MagazinePistolSP
+MagazinePistolHighCapacityHP: MagazinePistolHighCapacitySP
+MagazinePistolHighCapacityFMJ: MagazinePistolHighCapacitySP
+MagazinePistolSubMachineGunHP: MagazinePistolSubMachineGunSP
+MagazinePistolSubMachineGunFMJ: MagazinePistolSubMachineGunSP
+MagazinePistol40HP: MagazinePistol40SP
+MagazinePistol40FMJ: MagazinePistol40SP
+MagazineRifleHP: MagazineRifleSP
+MagazineRifleFMJ: MagazineRifleSP
+MagazineRifleM52HP: MagazineRifleM52SP
+MagazineRifleM52FMJ: MagazineRifleM52SP
