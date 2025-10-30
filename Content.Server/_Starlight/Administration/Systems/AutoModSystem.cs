@@ -118,7 +118,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
             }
 
             // Cancel speech if rule or offence says so
-            if (rule.CancelSpeech || (AutoModOffenceAction)offence.Action == AutoModOffenceAction.Clear)
+            if (offence.CancelSpeech || (AutoModOffenceAction)offence.Action == AutoModOffenceAction.Clear)
             {
                 _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Cleared speech of user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} (Offence {offenceIndex + 1})");
                 args.Cancel();
@@ -150,8 +150,8 @@ public sealed partial class AutoModSystem : SharedChatSystem
                         ? "Banned by AutoMod"
                         : $"Banned by AutoMod for: {offence.Message}";
                     uint? duration = null;
-                    if (offence.BanDurationSeconds > 0)
-                        duration = (uint)offence.BanDurationSeconds / 60; // BanManager expects minutes
+                    if (offence.BanDurationMinutes > 0)
+                        duration = (uint)offence.BanDurationMinutes;
                     // If 0, treat as permanent ban (duration = null)
                     _banManager.CreateServerBan(
                         args.Sender.UserId,

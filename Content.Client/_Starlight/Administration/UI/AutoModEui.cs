@@ -41,12 +41,12 @@ namespace Content.Client.Administration.UI
 
             _menu.addRuleButton.OnPressed += args =>
             {
-                //make a blank rule
+                // Make a blank rule and add to local state only
                 var rule = new AutoModRule();
-                //ENSURE the rule starts off
                 rule.Enabled = false;
-                //send message to add rule
-                SendMessage(new AddRuleRequest(rule));
+                recentState.Rules.Add(rule);
+                var data = recentState.Rules.Select(r => new AutoModListData(r)).ToList();
+                _menu.RulesList.PopulateList(data);
             };
 
             _menu.saveAllButton.OnPressed += args =>
@@ -83,91 +83,86 @@ namespace Content.Client.Administration.UI
 
         private void GenerateItem(ListData data, ListContainerButton button)
         {
-            var rule = (AutoModListData)data;
-            
-            var ItemBox = new BoxContainer() { Orientation = LayoutOrientation.Vertical, VerticalExpand = true };
-            var TopRow = new BoxContainer() { Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true };
-            var BottomRow = new BoxContainer() { Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true };
-            
-            ItemBox.AddChild(TopRow);
-            ItemBox.AddChild(BottomRow);
+            // Always clear children to avoid reparenting
+            button.RemoveAllChildren();
 
-            //text entry
-            var regex = new LineEdit()
+            var rule = (AutoModListData)data;
+
+            var itemBox = new BoxContainer { Orientation = LayoutOrientation.Vertical, VerticalExpand = true };
+            var topRow = new BoxContainer { Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true };
+            var bottomRow = new BoxContainer { Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true };
+
+            // Regex field
+            var regex = new LineEdit
             {
                 Text = rule.rule.Regex ?? string.Empty,
                 PlaceHolder = Loc.GetString("automod-pattern-placeholder"),
                 HorizontalExpand = true,
                 VerticalExpand = true,
+                MinSize = new Vector2(200, 0)
             };
-            regex.OnTextChanged += args =>
-            {
-                //set the regex of the rule
-                rule.rule.Regex = regex.Text;
-            };
-
-            var severityDropdown = new OptionButton()
-            {
-                HorizontalExpand = true,
-                VerticalExpand = true,
-            };
-            foreach (var severity in Enum.GetValues(typeof(AutoModSeverity)).Cast<AutoModSeverity>())
-            {
-                severityDropdown.AddItem(Loc.GetString($"automod-severity-{severity.ToString().ToLower()}"), (int)severity);
-            }
-            severityDropdown.SelectId((int)rule.rule.Severity); //set the selected item to the current severity
-            severityDropdown.OnItemSelected += args =>
-            {
-                severityDropdown.SelectId(args.Id); //very weird that I have to manually do this....
-                //set the severity of the rule
-                rule.rule.Severity = (AutoModSeverity)args.Id;
-            };
+            regex.OnTextChanged += args => rule.rule.Regex = regex.Text;
+            topRow.AddChild(regex);
+            itemBox.AddChild(topRow);
 
             // Offences UI
-            // Ensure offences list exists
             if (rule.rule.Offences == null)
                 rule.rule.Offences = new List<AutoModOffence>();
 
             var offencesVBox = new BoxContainer { Orientation = LayoutOrientation.Vertical, HorizontalExpand = true, VerticalExpand = true };
-            for (int i = 0; i < rule.rule.Offences.Count; i++)
+            int offenceIndex = 0;
+            foreach (var offence in rule.rule.Offences.ToList())
             {
-                var offence = rule.rule.Offences[i];
                 var offenceRow = new BoxContainer { Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true };
-                var offenceLabel = new Label { Text = $"Offence {i + 1}", HorizontalExpand = false };
+                var offenceLabel = new Label { Text = Loc.GetString("automod-offence-label", ("index", (offenceIndex + 1).ToString())), HorizontalExpand = false, MinSize = new Vector2(70, 0) };
                 var offenceMsg = new LineEdit
                 {
                     Text = offence.Message ?? string.Empty,
-                    PlaceHolder = Loc.GetString("automod-message-placeholder"),
-                    HorizontalExpand = true
+                    MinSize = new Vector2(150, 0)
                 };
+                // Only update model, don't refresh UI on every keystroke
                 offenceMsg.OnTextChanged += args => offence.Message = offenceMsg.Text;
 
-                var actionDropdown = new OptionButton { HorizontalExpand = false };
+                var actionDropdown = new OptionButton { HorizontalExpand = false, MinSize = new Vector2(100, 0) };
                 foreach (var action in Enum.GetValues(typeof(AutoModOffenceAction)).Cast<AutoModOffenceAction>())
                 {
+                    if (action == AutoModOffenceAction.Clear)
+                        continue; // Remove 'Clear' option
                     actionDropdown.AddItem(action.ToString(), (int)action);
                 }
                 actionDropdown.SelectId((int)offence.Action);
+                // Only update model, don't refresh UI on every change
                 actionDropdown.OnItemSelected += args => offence.Action = (AutoModOffenceAction)args.Id;
 
-                // Ban duration (only relevant for Ban action)
+                // Add CancelSpeech toggle for this offence
+                var cancelSpeechToggle = new CheckBox
+                {
+                    Pressed = offence.CancelSpeech,
+                    HorizontalExpand = false,
+                    Text = Loc.GetString("automod-cancel-speech"),
+                    Margin = new Thickness(5, 0, 0, 0)
+                };
+                cancelSpeechToggle.OnToggled += args => offence.CancelSpeech = cancelSpeechToggle.Pressed;
+
+                // Ban duration moved below action dropdown for visibility
+                var banDurationVBox = new BoxContainer { Orientation = LayoutOrientation.Vertical, HorizontalExpand = false };
+                var banDurationLabel = new Label { Text = Loc.GetString("automod-ban-duration-label"), HorizontalExpand = false };
                 var banDurationEdit = new LineEdit
                 {
-                    Text = offence.BanDurationSeconds.ToString(),
-                    PlaceHolder = Loc.GetString("Ban duration (seconds, 0=perm)"),
+                    Text = offence.BanDurationMinutes.ToString(),
                     HorizontalExpand = false,
-                    MinSize = new Vector2(80, 0)
+                    MinSize = new Vector2(100, 0)
                 };
                 banDurationEdit.OnTextChanged += args => {
                     if (int.TryParse(banDurationEdit.Text, out var val))
-                        offence.BanDurationSeconds = val;
+                        offence.BanDurationMinutes = val;
                 };
+                banDurationVBox.AddChild(banDurationLabel);
+                banDurationVBox.AddChild(banDurationEdit);
 
-                // Decay timer (not used for first offence)
-                // Add a header label for decay
                 var decayHeader = new Label
                 {
-                    Text = Loc.GetString("Decay (seconds, 0=never)"),
+                    Text = Loc.GetString("automod-decay-label"),
                     HorizontalExpand = false,
                     Margin = new Thickness(0, 0, 0, 2)
                 };
@@ -175,73 +170,49 @@ namespace Content.Client.Administration.UI
                 {
                     Text = offence.DecaySeconds.ToString(),
                     HorizontalExpand = false,
-                    MinSize = new Vector2(80, 0)
+                    MinSize = new Vector2(100, 0)
                 };
                 decayEdit.OnTextChanged += args => {
                     if (int.TryParse(decayEdit.Text, out var val))
                         offence.DecaySeconds = val;
                 };
 
-                var removeBtn = new Button { Text = "-", HorizontalExpand = false };
+                var removeBtn = new Button { Text = "-", HorizontalExpand = false, MinSize = new Vector2(30, 0) };
                 removeBtn.OnPressed += _ => {
                     rule.rule.Offences.Remove(offence);
-                    // Force UI refresh
                     _menu.RulesList.PopulateList(recentState.Rules.Select(r => new AutoModListData(r)).ToList());
                 };
                 offenceRow.AddChild(offenceLabel);
                 offenceRow.AddChild(offenceMsg);
                 offenceRow.AddChild(actionDropdown);
-                offenceRow.AddChild(banDurationEdit);
+                offenceRow.AddChild(cancelSpeechToggle);
+                offenceRow.AddChild(banDurationVBox);
                 var decayVBox = new BoxContainer { Orientation = LayoutOrientation.Vertical, HorizontalExpand = false };
                 decayVBox.AddChild(decayHeader);
                 decayVBox.AddChild(decayEdit);
                 offenceRow.AddChild(decayVBox);
-                if (rule.rule.Offences.Count > 1) offenceRow.AddChild(removeBtn);
+                offenceRow.AddChild(removeBtn);
                 offencesVBox.AddChild(offenceRow);
+                offenceIndex++;
             }
-            // Add offence button
-            var addOffenceBtn = new Button { Text = "+", HorizontalExpand = false };
+            var addOffenceBtn = new Button { Text = "+", HorizontalExpand = false, MinSize = new Vector2(30, 0) };
             addOffenceBtn.OnPressed += _ => {
-                rule.rule.Offences.Add(new AutoModOffence { Message = "", Action = AutoModOffenceAction.Clear, BanDurationSeconds = 0, DecaySeconds = 0 });
+                rule.rule.Offences.Add(new AutoModOffence { Message = "", Action = AutoModOffenceAction.Warn, BanDurationMinutes = 0, DecaySeconds = 0, CancelSpeech = false });
                 _menu.RulesList.PopulateList(recentState.Rules.Select(r => new AutoModListData(r)).ToList());
             };
             offencesVBox.AddChild(addOffenceBtn);
+            itemBox.AddChild(offencesVBox);
 
-            //disabled for now, needs more database work to be useful
-            /* var count = new LineEdit()
-            {
-                Text = rule.rule.Count.ToString(),
-                HorizontalExpand = true,
-                VerticalExpand = true,
-            }; */
-
-            var enabled = new CheckBox()
+            var enabled = new CheckBox
             {
                 Pressed = rule.rule.Enabled,
                 HorizontalExpand = true,
                 VerticalExpand = true,
                 Text = Loc.GetString("automod-enabled"),
             };
-            enabled.OnToggled += args =>
-            {
-                //set the enabled state of the rule
-                rule.rule.Enabled = enabled.Pressed;
-            };
+            enabled.OnToggled += args => rule.rule.Enabled = enabled.Pressed;
 
-            var cancel = new CheckBox()
-            {
-                Pressed = rule.rule.CancelSpeech,
-                HorizontalExpand = true,
-                VerticalExpand = true,
-                Text = Loc.GetString("automod-cancel-speech"),
-            };
-            cancel.OnToggled += args =>
-            {
-                //set the cancel speech state of the rule
-                rule.rule.CancelSpeech = cancel.Pressed;
-            };
-
-            var deleteButton = new Button()
+            var deleteButton = new Button
             {
                 Text = Loc.GetString("automod-delete-rule"),
                 HorizontalExpand = true,
@@ -249,18 +220,16 @@ namespace Content.Client.Administration.UI
             };
             deleteButton.OnPressed += args =>
             {
-                //send delete message
-                SendMessage(new DeleteRuleRequest(rule.rule));
+                recentState.Rules.Remove(rule.rule);
+                var data = recentState.Rules.Select(r => new AutoModListData(r)).ToList();
+                _menu.RulesList.PopulateList(data);
             };
 
-            TopRow.AddChild(regex);
-            TopRow.AddChild(offencesVBox);
-            BottomRow.AddChild(severityDropdown);
-            /* BottomRow.AddChild(count); */
-            BottomRow.AddChild(enabled);
-            BottomRow.AddChild(cancel);
-            BottomRow.AddChild(deleteButton);
-            button.AddChild(ItemBox);
+            // Removed rule-level severity; now handled per-offence if needed.
+            bottomRow.AddChild(enabled);
+            bottomRow.AddChild(deleteButton);
+            itemBox.AddChild(bottomRow);
+            button.AddChild(itemBox);
         }
 
         private sealed class Menu : DefaultWindow
@@ -276,6 +245,7 @@ namespace Content.Client.Administration.UI
                 Title = Loc.GetString("automod-eui-menu-title");
 
                 var tabs = new TabContainer();
+
 
                 RulesList = new ListContainer
                 {
@@ -299,12 +269,21 @@ namespace Content.Client.Administration.UI
                     HorizontalExpand = true,
                 });
 
+                // Add a ScrollContainer to prevent scrolling past content and keep UI stable
+                var rulesScroll = new ScrollContainer
+                {
+                    HorizontalExpand = true,
+                    VerticalExpand = true,
+                    MinSize = new Vector2(600, 300), // Adjust as needed for your UI
+                };
+                rulesScroll.AddChild(RulesList);
+
                 var rulesVBox = new BoxContainer
                 {
                     Orientation = LayoutOrientation.Vertical,
                     Children = {
                         headerRow,
-                        RulesList
+                        rulesScroll
                     }
                 };
                 tabs.AddChild(rulesVBox);
@@ -423,7 +402,7 @@ namespace Content.Client.Administration.UI
                 Contents.AddChild(tabs);
             }
 
-            protected override Vector2 ContentsMinimumSize => new Vector2(600, 400);
+            protected override Vector2 ContentsMinimumSize => new Vector2(900, 600);
         }
 
        internal record AutoModListData(AutoModRule rule) : ListData;

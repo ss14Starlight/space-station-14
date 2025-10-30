@@ -1,3 +1,6 @@
+automod-offence-label = Offence { $index }
+automod-ban-duration-label = Ban duration (minutes, 0=perm)
+automod-decay-label = Decay (seconds, 0=never)
 automod-severity-none = None
 automod-severity-warning = Warning
 automod-severity-kick = Kick

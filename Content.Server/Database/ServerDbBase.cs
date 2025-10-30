@@ -2049,10 +2049,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             }
 
             existingRule.Regex = rule.Regex;
-            existingRule.Severity = rule.Severity;
-            existingRule.Count = rule.Count;
             existingRule.Enabled = rule.Enabled;
-            existingRule.CancelSpeech = rule.CancelSpeech;
             existingRule.Offences = rule.Offences;
 
             await db.DbContext.SaveChangesAsync();

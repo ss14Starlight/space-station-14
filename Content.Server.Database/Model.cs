@@ -1400,13 +1400,7 @@ public class AutoModRule
     [Required]
     public string Regex { get; set; } = string.Empty;
     [Required]
-    public int Severity { get; set; }
-    [Required]
-    public int Count { get; set; }
-    [Required]
     public bool Enabled { get; set; }
-    [Required]
-    public bool CancelSpeech { get; set; }
     [Required]
     public List<AutoModOffence> Offences { get; set; } = new();
 }
@@ -1416,6 +1410,7 @@ public class AutoModOffence
 {
     public string Message { get; set; } = string.Empty;
     public int Action { get; set; }
-    public int BanDurationSeconds { get; set; } = 0;
+    public int BanDurationMinutes { get; set; } = 0;
     public int DecaySeconds { get; set; } = 0;
+    public bool CancelSpeech { get; set; } = false;
 }
