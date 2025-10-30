@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Database;
+using Content.Server.Starlight.Chat.Systems;
 using Content.Server.EUI;
 using Content.Shared.Administration;
 using Content.Shared.Eui;
@@ -50,6 +51,8 @@ namespace Content.Server.Administration.UI
             await _db.DeleteAutoModRule(rule.Id);
 
             LoadFromDb();
+            // Ensure the runtime cache is refreshed even on SQLite (no notifications there)
+            await RefreshAutomodCacheAsync();
         }
 
         public async void AddRule(AutoModRule rule)
@@ -58,6 +61,7 @@ namespace Content.Server.Administration.UI
             await _db.AddAutoModRule(rule);
 
             LoadFromDb();
+            await RefreshAutomodCacheAsync();
         }
 
         public async void UpdateRule(AutoModRule rule)
@@ -66,6 +70,7 @@ namespace Content.Server.Administration.UI
             await _db.UpdateAutoModRule(rule);
 
             LoadFromDb();
+            await RefreshAutomodCacheAsync();
         }
 
         public async void BulkUpdateRules(List<AutoModRule> rules)
@@ -77,6 +82,7 @@ namespace Content.Server.Administration.UI
             }
 
             LoadFromDb();
+            await RefreshAutomodCacheAsync();
         }
 
         //message handler
@@ -112,6 +118,13 @@ namespace Content.Server.Administration.UI
             {
                 Rules = _rules,
             };
+        }
+
+        private static async Task RefreshAutomodCacheAsync()
+        {
+            var sysMan = IoCManager.Resolve<IEntitySystemManager>();
+            var automod = sysMan.GetEntitySystem<AutoModSystem>();
+            await automod.UpdateCache();
         }
     }
 }
