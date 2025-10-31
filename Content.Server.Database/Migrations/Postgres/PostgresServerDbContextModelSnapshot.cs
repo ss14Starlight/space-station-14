@@ -35,14 +35,6 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("CancelSpeech")
-                        .HasColumnType("boolean")
-                        .HasColumnName("cancel_speech");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("integer")
-                        .HasColumnName("count");
-
                     b.Property<bool>("Enabled")
                         .HasColumnType("boolean")
                         .HasColumnName("enabled");
@@ -56,10 +48,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("regex");
-
-                    b.Property<int>("Severity")
-                        .HasColumnType("integer")
-                        .HasColumnName("severity");
 
                     b.HasKey("Id")
                         .HasName("PK_auto_mod_rules");
