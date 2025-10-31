@@ -26,6 +26,38 @@ namespace Content.Server.Database.Migrations.Postgres
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("AutoModRule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("auto_mod_rules_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Enabled")
+                        .HasColumnType("boolean")
+                        .HasColumnName("enabled");
+
+                    b.Property<string>("Offences")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("offences");
+
+                    b.Property<string>("Regex")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("regex");
+
+                    b.HasKey("Id")
+                        .HasName("PK_auto_mod_rules");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.ToTable("AutoModRules");
+                });
+
             modelBuilder.Entity("Content.Server.Database.Admin", b =>
                 {
                     b.Property<Guid>("UserId")
