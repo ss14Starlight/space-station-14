@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 266.0.0
+  engineVersion: 267.1.0
   forkId: ""
   forkVersion: ""
-  time: 09/30/2025 18:33:18
-  entityCount: 14078
+  time: 10/31/2025 09:26:46
+  entityCount: 14116
 maps:
 - 1
 grids:
@@ -18775,6 +18775,166 @@ entities:
     - type: Transform
       pos: 32.5,-8.5
       parent: 2
+  - uid: 13723
+    components:
+    - type: Transform
+      pos: -44.5,2.5
+      parent: 2
+  - uid: 13724
+    components:
+    - type: Transform
+      pos: -43.5,2.5
+      parent: 2
+  - uid: 13725
+    components:
+    - type: Transform
+      pos: -42.5,2.5
+      parent: 2
+  - uid: 13726
+    components:
+    - type: Transform
+      pos: -44.5,0.5
+      parent: 2
+  - uid: 13727
+    components:
+    - type: Transform
+      pos: -43.5,0.5
+      parent: 2
+  - uid: 13728
+    components:
+    - type: Transform
+      pos: -42.5,0.5
+      parent: 2
+  - uid: 13974
+    components:
+    - type: Transform
+      pos: -44.5,10.5
+      parent: 2
+  - uid: 14086
+    components:
+    - type: Transform
+      pos: -43.5,10.5
+      parent: 2
+  - uid: 14087
+    components:
+    - type: Transform
+      pos: -42.5,10.5
+      parent: 2
+  - uid: 14088
+    components:
+    - type: Transform
+      pos: -44.5,8.5
+      parent: 2
+  - uid: 14089
+    components:
+    - type: Transform
+      pos: -43.5,8.5
+      parent: 2
+  - uid: 14090
+    components:
+    - type: Transform
+      pos: -42.5,8.5
+      parent: 2
+  - uid: 14091
+    components:
+    - type: Transform
+      pos: 9.5,30.5
+      parent: 2
+  - uid: 14092
+    components:
+    - type: Transform
+      pos: 23.5,34.5
+      parent: 2
+  - uid: 14093
+    components:
+    - type: Transform
+      pos: 23.5,33.5
+      parent: 2
+  - uid: 14094
+    components:
+    - type: Transform
+      pos: 23.5,32.5
+      parent: 2
+  - uid: 14095
+    components:
+    - type: Transform
+      pos: 25.5,34.5
+      parent: 2
+  - uid: 14096
+    components:
+    - type: Transform
+      pos: 25.5,33.5
+      parent: 2
+  - uid: 14097
+    components:
+    - type: Transform
+      pos: 25.5,32.5
+      parent: 2
+  - uid: 14098
+    components:
+    - type: Transform
+      pos: 31.5,34.5
+      parent: 2
+  - uid: 14099
+    components:
+    - type: Transform
+      pos: 31.5,33.5
+      parent: 2
+  - uid: 14100
+    components:
+    - type: Transform
+      pos: 31.5,32.5
+      parent: 2
+  - uid: 14101
+    components:
+    - type: Transform
+      pos: 33.5,34.5
+      parent: 2
+  - uid: 14102
+    components:
+    - type: Transform
+      pos: 33.5,33.5
+      parent: 2
+  - uid: 14103
+    components:
+    - type: Transform
+      pos: 33.5,32.5
+      parent: 2
+  - uid: 14104
+    components:
+    - type: Transform
+      pos: 47.5,19.5
+      parent: 2
+  - uid: 14105
+    components:
+    - type: Transform
+      pos: 46.5,19.5
+      parent: 2
+  - uid: 14106
+    components:
+    - type: Transform
+      pos: 47.5,9.5
+      parent: 2
+  - uid: 14107
+    components:
+    - type: Transform
+      pos: 46.5,9.5
+      parent: 2
+  - uid: 14108
+    components:
+    - type: Transform
+      pos: 47.5,2.5
+      parent: 2
+  - uid: 14109
+    components:
+    - type: Transform
+      pos: 46.5,2.5
+      parent: 2
+  - uid: 14110
+    components:
+    - type: Transform
+      pos: 0.5,-37.5
+      parent: 2
 - proto: CableApcStack
   entities:
   - uid: 2403
@@ -34423,10 +34583,10 @@ entities:
       parent: 2
 - proto: DefaultStationBeaconEscapePodS
   entities:
-  - uid: 5350
+  - uid: 14111
     components:
     - type: Transform
-      pos: 0.5,-36.5
+      pos: 0.5,-37.5
       parent: 2
 - proto: DefaultStationBeaconEscapePodW
   entities:
@@ -34549,10 +34709,10 @@ entities:
       parent: 2
 - proto: DefaultStationBeaconSecurity
   entities:
-  - uid: 5368
+  - uid: 5350
     components:
     - type: Transform
-      pos: 11.5,11.5
+      pos: 11.5,7.5
       parent: 2
 - proto: DefaultStationBeaconSingularity
   entities:
@@ -67736,15 +67896,11 @@ entities:
     - type: Transform
       pos: 33.5,-21.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9965
     components:
     - type: Transform
       pos: 34.5,-21.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerBoozeFilled
   entities:
   - uid: 9966
@@ -67752,15 +67908,11 @@ entities:
     - type: Transform
       pos: 0.5,2.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9967
     components:
     - type: Transform
       pos: -28.5,-16.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerBotanistFilled
   entities:
   - uid: 9968
@@ -67768,15 +67920,11 @@ entities:
     - type: Transform
       pos: -1.5,-4.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9969
     components:
     - type: Transform
       pos: -1.5,-5.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerBrigmedicFilled
   entities:
   - uid: 9970
@@ -67784,8 +67932,6 @@ entities:
     - type: Transform
       pos: 22.733797,12.51059
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerBSOFilled
   entities:
   - uid: 9971
@@ -67793,8 +67939,6 @@ entities:
     - type: Transform
       pos: -16.5,25.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerCaptainFilledNoLaser
   entities:
   - uid: 9972
@@ -67802,8 +67946,6 @@ entities:
     - type: Transform
       pos: 2.5,24.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerChemistryFilled
   entities:
   - uid: 9973
@@ -67811,15 +67953,11 @@ entities:
     - type: Transform
       pos: -14.5,10.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9974
     components:
     - type: Transform
       pos: 22.243006,12.51059
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerChiefEngineerFilled
   entities:
   - uid: 9975
@@ -67827,8 +67965,6 @@ entities:
     - type: Transform
       pos: 17.5,-19.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerChiefMedicalOfficerFilled
   entities:
   - uid: 13689
@@ -67843,8 +67979,6 @@ entities:
     - type: Transform
       pos: 26.5,3.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerElectricalSuppliesFilled
   entities:
   - uid: 9978
@@ -67852,43 +67986,31 @@ entities:
     - type: Transform
       pos: 17.5,-8.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9979
     components:
     - type: Transform
       pos: 7.5,-18.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9980
     components:
     - type: Transform
       pos: -29.5,24.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9981
     components:
     - type: Transform
       pos: -22.5,-27.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9982
     components:
     - type: Transform
       pos: 7.5,26.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9983
     components:
     - type: Transform
       pos: -3.5,43.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerEngineerFilled
   entities:
   - uid: 9984
@@ -67896,29 +68018,21 @@ entities:
     - type: Transform
       pos: 22.5,-7.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9985
     components:
     - type: Transform
       pos: 22.5,-8.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9986
     components:
     - type: Transform
       pos: 22.5,-9.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9987
     components:
     - type: Transform
       pos: 18.5,-6.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerFreezerVaultFilled
   entities:
   - uid: 9988
@@ -67933,8 +68047,6 @@ entities:
     - type: Transform
       pos: -5.5,18.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerHeadOfSecurityFilled
   entities:
   - uid: 9990
@@ -67942,8 +68054,6 @@ entities:
     - type: Transform
       pos: 24.5,11.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerMedicalFilled
   entities:
   - uid: 9991
@@ -67951,22 +68061,16 @@ entities:
     - type: Transform
       pos: -27.5,6.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9992
     components:
     - type: Transform
       pos: -26.5,6.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9993
     components:
     - type: Transform
       pos: -24.5,6.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerMedicineFilled
   entities:
   - uid: 9994
@@ -67974,15 +68078,11 @@ entities:
     - type: Transform
       pos: -19.5,8.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 9995
     components:
     - type: Transform
       pos: -20.5,8.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerMiningSpecialistLargeFilledHardsuit
   entities:
   - uid: 5917
@@ -68002,8 +68102,6 @@ entities:
     - type: Transform
       pos: -10.5,2.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerPrisoner
   entities:
   - uid: 9998
@@ -68011,8 +68109,6 @@ entities:
     - type: Transform
       pos: 13.5,8.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerPrisoner2
   entities:
   - uid: 9999
@@ -68020,8 +68116,6 @@ entities:
     - type: Transform
       pos: 14.5,8.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerPrisoner3
   entities:
   - uid: 10000
@@ -68029,8 +68123,6 @@ entities:
     - type: Transform
       pos: 16.5,8.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerPrisoner4
   entities:
   - uid: 10001
@@ -68038,8 +68130,6 @@ entities:
     - type: Transform
       pos: 17.5,8.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerQuarterMasterFilled
   entities:
   - uid: 10002
@@ -68047,8 +68137,6 @@ entities:
     - type: Transform
       pos: 3.5,-17.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerRepresentativeFilled
   entities:
   - uid: 10003
@@ -68056,8 +68144,6 @@ entities:
     - type: Transform
       pos: -12.5,28.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerResearchDirectorFilled
   entities:
   - uid: 10004
@@ -68065,8 +68151,6 @@ entities:
     - type: Transform
       pos: -23.5,-5.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerSalvageLeadFilledHardsuit
   entities:
   - uid: 5476
@@ -68088,29 +68172,21 @@ entities:
     - type: Transform
       pos: -19.5,-3.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 10008
     components:
     - type: Transform
       pos: -18.5,-3.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 10009
     components:
     - type: Transform
       pos: -16.5,-3.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 10010
     components:
     - type: Transform
       pos: -15.5,-3.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerSecurityLargeFilled
   entities:
   - uid: 10011
@@ -68118,22 +68194,16 @@ entities:
     - type: Transform
       pos: 24.5,15.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 10012
     components:
     - type: Transform
       pos: 25.5,15.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 10013
     components:
     - type: Transform
       pos: 26.5,15.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerWallMedicalFilled
   entities:
   - uid: 10014
@@ -68151,8 +68221,6 @@ entities:
     - type: Transform
       pos: 16.5,12.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LockerWeldingSuppliesFilled
   entities:
   - uid: 10016
@@ -68160,36 +68228,26 @@ entities:
     - type: Transform
       pos: 17.5,-9.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 10017
     components:
     - type: Transform
       pos: 13.5,-17.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 10018
     components:
     - type: Transform
       pos: -28.5,24.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 10019
     components:
     - type: Transform
       pos: -22.5,-28.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
   - uid: 10020
     components:
     - type: Transform
       pos: 7.5,27.5
       parent: 2
-    - type: WiresPanelSecurity
-      wiresAccessible: True
 - proto: LootSpawnerCableCoil
   entities:
   - uid: 10021
@@ -71667,6 +71725,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,-9.5
       parent: 2
+  - uid: 14112
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 47.5,19.5
+      parent: 2
 - proto: PoweredlightBlue
   entities:
   - uid: 10601
@@ -73172,11 +73236,6 @@ entities:
     components:
     - type: Transform
       pos: -42.5,12.5
-      parent: 2
-  - uid: 10861
-    components:
-    - type: Transform
-      pos: -33.5,-2.5
       parent: 2
   - uid: 10862
     components:
@@ -82978,6 +83037,18 @@ entities:
     - type: Transform
       pos: -21.5,8.5
       parent: 2
+- proto: VendingMachineMedicalBase
+  entities:
+  - uid: 5368
+    components:
+    - type: Transform
+      pos: -7.5,11.5
+      parent: 2
+  - uid: 10861
+    components:
+    - type: Transform
+      pos: -33.5,-2.5
+      parent: 2
 - proto: VendingMachineMediDrobe
   entities:
   - uid: 12268
@@ -83171,6 +83242,32 @@ entities:
     components:
     - type: Transform
       pos: -18.5,18.5
+      parent: 2
+- proto: VendingMachineWallMedicalCivilian
+  entities:
+  - uid: 14113
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -17.5,-29.5
+      parent: 2
+  - uid: 14114
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-19.5
+      parent: 2
+  - uid: 14115
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-38.5
+      parent: 2
+  - uid: 14116
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 47.5,18.5
       parent: 2
 - proto: VendingMachineWinter
   entities:
@@ -92610,7 +92707,7 @@ entities:
       pos: -38.5,9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -76384.5
+      secondsUntilStateChange: -76673.13
       state: Opening
   - uid: 14065
     components:
@@ -92618,7 +92715,7 @@ entities:
       pos: -35.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -76385
+      secondsUntilStateChange: -76673.63
       state: Opening
 - proto: WoodenBench
   entities:
