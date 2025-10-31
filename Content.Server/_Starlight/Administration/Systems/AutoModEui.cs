@@ -62,7 +62,8 @@ namespace Content.Server.Administration.UI
                     Message = o.Message,
                     Action = (int)o.Action,
                     BanDurationMinutes = o.BanDurationMinutes,
-                    DecaySeconds = o.DecaySeconds
+                    DecaySeconds = o.DecaySeconds,
+                    CancelSpeech = o.CancelSpeech
                 }).ToList() ?? new List<ServerAutoModOffence>()
             };
         }
@@ -79,7 +80,8 @@ namespace Content.Server.Administration.UI
                     Message = o.Message,
                     Action = (Content.Shared.Administration.AutoModOffenceAction)o.Action,
                     BanDurationMinutes = o.BanDurationMinutes,
-                    DecaySeconds = o.DecaySeconds
+                    DecaySeconds = o.DecaySeconds,
+                    CancelSpeech = o.CancelSpeech
                 }).ToList() ?? new List<SharedAutoModOffence>()
             };
         }
@@ -91,17 +93,7 @@ namespace Content.Server.Administration.UI
             var adminName = Player?.Name ?? "unknown";
             var oldRule = _rules.FirstOrDefault(r => r.Id == rule.Id);
             if (oldRule != null)
-            {
-                _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-                    $"""
-                    [AutoMod] Rule Deleted by {adminName} ({adminId})
-                    ───────────────────────────────
-                    Regex:         {oldRule.Regex}
-                    Enabled:       {oldRule.Enabled}
-                    Offences:
-{FormatOffences(oldRule)}
-""");
-            }
+                LogAdminAutoModAction("Deleted", adminName, adminId, oldRule, null);
             LoadFromDb();
             await RefreshAutomodCacheAsync();
         }
@@ -112,15 +104,7 @@ namespace Content.Server.Administration.UI
             var adminId = Player?.UserId.ToString() ?? "unknown";
             var adminName = Player?.Name ?? "unknown";
             var newRule = MapToServerRule(rule);
-            _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-                $"""
-                [AutoMod] Rule Created by {adminName} ({adminId})
-                ───────────────────────────────
-                Regex:         {newRule.Regex}
-                Enabled:       {newRule.Enabled}
-                Offences:
-{FormatOffences(newRule)}
-""");
+            LogAdminAutoModAction("Created", adminName, adminId, null, newRule);
             LoadFromDb();
             await RefreshAutomodCacheAsync();
         }
@@ -136,20 +120,7 @@ namespace Content.Server.Administration.UI
                 oldRule.Enabled != newRule.Enabled ||
                 !OffencesEqual(oldRule, newRule)))
             {
-                _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-                    $"""
-                    [AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {newRule.Id})
-                    ────── Before ──────
-                    Regex:         {oldRule.Regex}
-                    Enabled:       {oldRule.Enabled}
-                    Offences:
-{FormatOffences(oldRule)}
-                    ────── After ──────
-                    Regex:         {newRule.Regex}
-                    Enabled:       {newRule.Enabled}
-                    Offences:
-{FormatOffences(newRule)}
-""");
+                LogAdminAutoModAction("Edited", adminName, adminId, oldRule, newRule);
             }
             await _db.UpdateAutoModRule(newRule);
             LoadFromDb();
@@ -171,20 +142,7 @@ namespace Content.Server.Administration.UI
                         oldRule.Enabled != newRule.Enabled ||
                         !OffencesEqual(oldRule, newRule))
                     {
-                        _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-                            $"""
-                            [AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {newRule.Id})
-                            ────── Before ──────
-                            Regex:         {oldRule.Regex}
-                            Enabled:       {oldRule.Enabled}
-                            Offences:
-{FormatOffences(oldRule)}
-                            ────── After ──────
-                            Regex:         {newRule.Regex}
-                            Enabled:       {newRule.Enabled}
-                            Offences:
-{FormatOffences(newRule)}
-""");
+                        LogAdminAutoModAction("Edited", adminName, adminId, oldRule, newRule);
                     }
                     await _db.UpdateAutoModRule(newRule);
                 }
@@ -192,15 +150,7 @@ namespace Content.Server.Administration.UI
                 {
                     // New rule, add it
                     await _db.AddAutoModRule(newRule);
-                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-                        $"""
-                        [AutoMod] Rule Created by {adminName} ({adminId})
-                        ───────────────────────────────
-                        Regex:         {newRule.Regex}
-                        Enabled:       {newRule.Enabled}
-                        Offences:
-{FormatOffences(newRule)}
-""");
+                    LogAdminAutoModAction("Created", adminName, adminId, null, newRule);
                 }
             }
 
@@ -211,15 +161,7 @@ namespace Content.Server.Administration.UI
                 if (!incomingIds.Contains(dbRule.Id))
                 {
                     await _db.DeleteAutoModRule(dbRule.Id);
-                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
-                        $"""
-                        [AutoMod] Rule Deleted by {adminName} ({adminId})
-                        ───────────────────────────────
-                        Regex:         {dbRule.Regex}
-                        Enabled:       {dbRule.Enabled}
-                        Offences:
-{FormatOffences(dbRule)}
-""");
+                    LogAdminAutoModAction("Deleted", adminName, adminId, dbRule, null);
                 }
             }
 
@@ -265,7 +207,11 @@ namespace Content.Server.Administration.UI
         private static async Task RefreshAutomodCacheAsync()
         {
             var sysMan = IoCManager.Resolve<IEntitySystemManager>();
-            var automod = sysMan.GetEntitySystem<AutoModSystem>();
+            var automod = sysMan.GetEntitySystem<Content.Server.Starlight.Chat.Systems.AutoModSystem>();
+            if (automod != null)
+            {
+                await automod.UpdateCache();
+            }
         }
 
         // Helper to format offences for logging
@@ -291,8 +237,30 @@ namespace Content.Server.Administration.UI
             {
                 if (a.Offences[i].Action != b.Offences[i].Action) return false;
                 if (a.Offences[i].Message != b.Offences[i].Message) return false;
+                if (a.Offences[i].BanDurationMinutes != b.Offences[i].BanDurationMinutes) return false;
+                if (a.Offences[i].DecaySeconds != b.Offences[i].DecaySeconds) return false;
+                if (a.Offences[i].CancelSpeech != b.Offences[i].CancelSpeech) return false;
             }
             return true;
+        }
+
+        // Helper to log admin actions for automod changes
+        private void LogAdminAutoModAction(string action, string adminName, string adminId, ServerAutoModRule? before, ServerAutoModRule? after)
+        {
+            var beforeText = before != null ? $"Regex:         {before.Regex}\nEnabled:       {before.Enabled}\nOffences:\n{FormatOffences(before)}" : string.Empty;
+            var afterText = after != null ? $"Regex:         {after.Regex}\nEnabled:       {after.Enabled}\nOffences:\n{FormatOffences(after)}" : string.Empty;
+            switch (action)
+            {
+                case "Created":
+                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Rule Created by {adminName} ({adminId})\n───────────────────────────────\n{afterText}");
+                    break;
+                case "Deleted":
+                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Rule Deleted by {adminName} ({adminId})\n───────────────────────────────\n{beforeText}");
+                    break;
+                case "Edited":
+                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {after?.Id})\n────── Before ──────\n{beforeText}\n────── After ──────\n{afterText}");
+                    break;
+            }
         }
     }
 }

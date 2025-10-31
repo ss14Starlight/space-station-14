@@ -73,7 +73,6 @@ namespace Content.Client.Administration.UI
             
             recentState = (AutoModEuiState)state;
 
-            //ensure that there is actually a state to use
             if (recentState == null)
                 return;
 
@@ -83,7 +82,6 @@ namespace Content.Client.Administration.UI
 
         private void GenerateItem(ListData data, ListContainerButton button)
         {
-            // Always clear children to avoid reparenting
             button.RemoveAllChildren();
 
             var rule = (AutoModListData)data;
@@ -101,7 +99,9 @@ namespace Content.Client.Administration.UI
                 VerticalExpand = true,
                 MinSize = new Vector2(200, 0)
             };
-            regex.OnTextChanged += args => rule.rule.Regex = regex.Text;
+            regex.OnTextChanged += args => {
+                rule.rule.Regex = regex.Text;
+            };
             topRow.AddChild(regex);
             itemBox.AddChild(topRow);
 
@@ -120,19 +120,22 @@ namespace Content.Client.Administration.UI
                     Text = offence.Message ?? string.Empty,
                     MinSize = new Vector2(150, 0)
                 };
-                // Only update model, don't refresh UI on every keystroke
-                offenceMsg.OnTextChanged += args => offence.Message = offenceMsg.Text;
+                offenceMsg.OnTextChanged += args => {
+                    offence.Message = offenceMsg.Text;
+                };
 
                 var actionDropdown = new OptionButton { HorizontalExpand = false, MinSize = new Vector2(100, 0) };
                 foreach (var action in Enum.GetValues(typeof(AutoModOffenceAction)).Cast<AutoModOffenceAction>())
                 {
                     if (action == AutoModOffenceAction.Clear)
-                        continue; // Remove 'Clear' option
+                        continue;
                     actionDropdown.AddItem(action.ToString(), (int)action);
                 }
                 actionDropdown.SelectId((int)offence.Action);
-                // Only update model, don't refresh UI on every change
-                actionDropdown.OnItemSelected += args => offence.Action = (AutoModOffenceAction)args.Id;
+                actionDropdown.OnItemSelected += args => {
+                    offence.Action = (AutoModOffenceAction)args.Id;
+                    actionDropdown.SelectId((int)offence.Action);
+                };
 
                 // Add CancelSpeech toggle for this offence
                 var cancelSpeechToggle = new CheckBox
@@ -142,7 +145,9 @@ namespace Content.Client.Administration.UI
                     Text = Loc.GetString("automod-cancel-speech"),
                     Margin = new Thickness(5, 0, 0, 0)
                 };
-                cancelSpeechToggle.OnToggled += args => offence.CancelSpeech = cancelSpeechToggle.Pressed;
+                cancelSpeechToggle.OnToggled += args => {
+                    offence.CancelSpeech = cancelSpeechToggle.Pressed;
+                };
 
                 // Ban duration moved below action dropdown for visibility
                 var banDurationVBox = new BoxContainer { Orientation = LayoutOrientation.Vertical, HorizontalExpand = false };
@@ -225,7 +230,6 @@ namespace Content.Client.Administration.UI
                 _menu.RulesList.PopulateList(data);
             };
 
-            // Removed rule-level severity; now handled per-offence if needed.
             bottomRow.AddChild(enabled);
             bottomRow.AddChild(deleteButton);
             itemBox.AddChild(bottomRow);
@@ -269,12 +273,11 @@ namespace Content.Client.Administration.UI
                     HorizontalExpand = true,
                 });
 
-                // Add a ScrollContainer to prevent scrolling past content and keep UI stable
                 var rulesScroll = new ScrollContainer
                 {
                     HorizontalExpand = true,
                     VerticalExpand = true,
-                    MinSize = new Vector2(600, 300), // Adjust as needed for your UI
+                    MinSize = new Vector2(600, 300),
                 };
                 rulesScroll.AddChild(RulesList);
 
