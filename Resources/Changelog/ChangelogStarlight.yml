@@ -19219,5 +19219,13 @@ Entries:
   id: 199401
   time: '2025-10-30T21:48:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1994
+- author: R3v3l4t1on
+  changes:
+  - message: You can no longer drop the L6 from the L6 module. No infinite LMG's for
+      you.
+    type: Fix
+  id: 207800
+  time: '2025-10-31T17:54:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2078
 Order: -1
 
