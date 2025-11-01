@@ -1318,12 +1318,6 @@
       hands:
       # starlight start: cyborgs l6 actually use ammo
       - item: WeaponLightMachineGunL6
-        hand:
-          emptyRepresentative: WeaponLightMachineGunL6
-          emptyLabel: borg-slot-l6-empty
-          whitelist:
-            tags:
-            - L6Saw
       - hand:
           emptyRepresentative: WeaponLightMachineGunL6
           emptyLabel: borg-slot-l6-empty
