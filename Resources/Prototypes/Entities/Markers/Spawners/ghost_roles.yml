@@ -1,3 +1,7 @@
+# The mind roles specified here will be overwritten by the actual entities' GhostRoleComponent when they spawn
+# But the mind roles specified here are the ones checked for role bans when taking a ghost role!
+# TODO make this simpler
+
 - type: entity
   abstract: true
   parent: MarkerBase
@@ -88,7 +92,7 @@
   - type: GhostRole
     rules: ghost-role-information-rules-default-team-antagonist
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleNukeops
     raffle:
       settings: default
     requirements:
@@ -159,16 +163,16 @@
     description: roles-antag-nuclear-operative-commander-objective
     rules: ghost-role-information-rules-default-team-antagonist
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleNukeopsCommander
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
+      time: 24h # STARLIGHT
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 43200 # 12h STARLIGHT
+      time: 12h # STARLIGHT
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 21600 # 6h STARLIGHT
+      time: 6h # STARLIGHT
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -180,19 +184,19 @@
     description: roles-antag-nuclear-operative-agent-objective
     rules: ghost-role-information-rules-default-team-antagonist
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleNukeopsMedic
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
+      time: 24h # STARLIGHT
     - !type:RoleTimeRequirement
       role: JobChemist
-      time: 10800 # 3h STARLIGHT
+      time: 3h # STARLIGHT
     - !type:RoleTimeRequirement
       role: JobSurgeon
-      time: 10800 # 3h STARLIGHT
+      time: 3h # STARLIGHT
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 21600 # 6h STARLIGHT
+      time: 6h # STARLIGHT
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -204,7 +208,7 @@
     description: roles-antag-nuclear-operative-objective
     rules: ghost-role-information-rules-default-team-antagonist
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleNukeops
     #inherits requirements from lone op
 
 - type: entity
@@ -217,11 +221,11 @@
     description: ghost-role-information-space-dragon-description
     rules: ghost-role-information-space-dragon-rules
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleDragon
     requirements:
     - !type:RoleTimeRequirement
       role: JobSalvageSpecialist
-      time: 10800 # 3h STARLIGHT
+      time: 3h # STARLIGHT
   - type: Sprite
     layers:
     - state: green
@@ -238,7 +242,7 @@
     description: ghost-role-information-space-ninja-description
     rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleNinja
     raffle:
       settings: default
     requirements:
@@ -262,7 +266,7 @@
     description: ghost-role-information-paradox-clone-description
     rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleParadoxClone
     raffle:
       settings: default
     requirements:
@@ -296,6 +300,8 @@
     name: ghost-role-information-derelict-cyborg-name
     description: ghost-role-information-derelict-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleSubvertedSilicon
     raffle:
       settings: default
     requirements:
@@ -370,7 +376,7 @@
     name: ghost-role-information-wizard-name
     description: ghost-role-information-wizard-desc
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleWizard
     raffle:
       settings: default
     requirements:

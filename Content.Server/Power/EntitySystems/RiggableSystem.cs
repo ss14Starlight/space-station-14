@@ -3,6 +3,7 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
+using Content.Shared.Power.Components;
 using Content.Shared.Kitchen.Components; // Starlight-edit
 using Content.Shared.Rejuvenate;
 

@@ -586,7 +586,7 @@
     color: "#b53ca1"
   - type: GuideHelp
     guides:
-    - Xenoarchaeology
+    - AnalysisConsole
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -654,7 +654,7 @@
   - type: PointLight
     radius: 1.5
     energy: 1.6
-    color: "#D3D310"
+    color: "#3c5eb5"
   - type: Tag
     tags:
     - AccessBreakerImmune

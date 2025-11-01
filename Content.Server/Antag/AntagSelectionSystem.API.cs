@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Antag.Components;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Objectives;
 using Content.Shared.Antag;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking.Components;
@@ -244,6 +243,7 @@ public sealed partial class AntagSelectionSystem
         return false;
     }
 
+    /// Checks if a given session has enabled the antag preferences for a given definition,
     /// <summary>
     /// Check if a player's session has any character that can become a primary antag in <paramref name="def"/>.
     /// </summary>
@@ -257,7 +257,7 @@ public sealed partial class AntagSelectionSystem
         if (session == null)
             return true;
 
-        if (def.PrefRoles.Count == 0)
+        if (roles.Count == 0)
             return false;
 
         return job is null

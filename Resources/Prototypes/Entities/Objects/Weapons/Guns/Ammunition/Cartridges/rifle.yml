@@ -6,7 +6,6 @@
   components:
   - type: Tag
     tags:
-      - Cartridge
       - CartridgeRifle
   - type: HitScanCartridgeAmmo
     hitscan: BulletRifleTrace
@@ -38,6 +37,7 @@
   id: CartridgeRifleHP
   name: cartridge (.20 rifle HP)
   parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Standard kinetic ammunition is common and useful in most situations.
   components:
   - type: HitScanCartridgeAmmo
     hitscan: BulletRifleTraceHP

@@ -6,7 +6,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
@@ -25,7 +24,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -70,7 +68,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -157,7 +154,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -190,7 +186,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite

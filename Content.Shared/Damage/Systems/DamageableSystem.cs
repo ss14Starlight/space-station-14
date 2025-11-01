@@ -3,9 +3,9 @@ using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
-using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Radiation.Events;
@@ -26,10 +26,10 @@ namespace Content.Shared.Damage
         [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
         [Dependency] private readonly IConfigurationManager _config = default!;
         [Dependency] private readonly SharedChemistryGuideDataSystem _chemistryGuideData = default!;
+        [Dependency] private readonly SharedExplosionSystem _explosion = default!;
 
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
-        private EntityQuery<MindContainerComponent> _mindContainerQuery;
 
         public float UniversalAllDamageModifier { get; private set; } = 1f;
         public float UniversalAllHealModifier { get; private set; } = 1f;
@@ -53,7 +53,6 @@ namespace Content.Shared.Damage
 
             _appearanceQuery = GetEntityQuery<AppearanceComponent>();
             _damageableQuery = GetEntityQuery<DamageableComponent>();
-            _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
 
             // Damage modifier CVars are updated and stored here to be queried in other systems.
             // Note that certain modifiers requires reloading the guidebook.
@@ -61,6 +60,7 @@ namespace Content.Shared.Damage
             {
                 UniversalAllDamageModifier = value;
                 _chemistryGuideData.ReloadAllReagentPrototypes();
+                _explosion.ReloadMap();
             }, true);
             Subs.CVar(_config, CCVars.PlaytestAllHealModifier, value =>
             {
@@ -81,7 +81,11 @@ namespace Content.Shared.Damage
                  UniversalReagentHealModifier = value;
                  _chemistryGuideData.ReloadAllReagentPrototypes();
             }, true);
-            Subs.CVar(_config, CCVars.PlaytestExplosionDamageModifier, value => UniversalExplosionDamageModifier = value, true);
+            Subs.CVar(_config, CCVars.PlaytestExplosionDamageModifier, value =>
+            {
+                UniversalExplosionDamageModifier = value;
+                _explosion.ReloadMap();
+            }, true);
             Subs.CVar(_config, CCVars.PlaytestThrownDamageModifier, value => UniversalThrownDamageModifier = value, true);
             Subs.CVar(_config, CCVars.PlaytestTopicalsHealModifier, value => UniversalTopicalsHealModifier = value, true);
             Subs.CVar(_config, CCVars.PlaytestMobDamageModifier, value => UniversalMobDamageModifier = value, true);
@@ -157,6 +161,9 @@ namespace Content.Shared.Damage
                 var data = new DamageVisualizerGroupData(component.DamagePerGroup.Keys.ToList());
                 _appearance.SetData(uid, DamageVisualizerKeys.DamageUpdateGroups, data, appearance);
             }
+
+            // TODO DAMAGE
+            // byref struct event.
             RaiseLocalEvent(uid, new DamageChangedEvent(component, damageDelta, interruptsDoAfters, origin));
         }
 
@@ -172,6 +179,11 @@ namespace Content.Shared.Damage
         ///     Returns a <see cref="DamageSpecifier"/> with information about the actual damage changes. This will be
         ///     null if the user had no applicable components that can take damage.
         /// </returns>
+        /// <param name="ignoreResistances">If true, this will ignore the entity's damage modifier (<see cref="DamageableComponent.DamageModifierSetId"/> and skip raising a <see cref="DamageModifyEvent"/>.</param>
+        /// <param name="interruptsDoAfters">Whether the damage should cancel any damage sensitive do-afters</param>
+        /// <param name="origin">The entity that is causing this damage</param>
+        /// <param name="ignoreGlobalModifiers">If true, this will skip over applying the universal damage modifiers (see <see cref="ApplyUniversalAllModifiers"/>).</param>
+        /// <returns></returns>
         public DamageSpecifier? TryChangeDamage(
             EntityUid? uid,
             DamageSpecifier damage,
@@ -179,13 +191,14 @@ namespace Content.Shared.Damage
             bool interruptsDoAfters = true,
             DamageableComponent? damageable = null,
             EntityUid? origin = null,
+            bool ignoreGlobalModifiers = false,
             float armorPenetration = 0f, // 🌟Starlight🌟
-            bool canHeal = true // 🌟Starlight🌟
-        )
+            bool canHeal = true) // 🌟Starlight🌟
         {
             if (!uid.HasValue || !_damageableQuery.Resolve(uid.Value, ref damageable, false))
             {
                 // TODO BODY SYSTEM pass damage onto body system
+                // BOBBY WHEN?
                 return null;
             }
 
@@ -204,13 +217,13 @@ namespace Content.Shared.Damage
             if (!ignoreResistances)
             {
                 if (damageable.DamageModifierSetId != null &&
-                    _prototypeManager.Resolve<DamageModifierSetPrototype>(damageable.DamageModifierSetId, out var modifierSet))
+                    _prototypeManager.Resolve(damageable.DamageModifierSetId, out var modifierSet))
                 {
-                    // TODO DAMAGE PERFORMANCE
-                    // use a local private field instead of creating a new dictionary here..
                     damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
                 }
 
+                // TODO DAMAGE
+                // byref struct event.
                 var ev = new DamageModifyEvent(damage, origin, armorPenetration, canHeal);    // 🌟Starlight🌟
                 RaiseLocalEvent(uid.Value, ev);
                 damage = ev.Damage;
@@ -232,11 +245,9 @@ namespace Content.Shared.Damage
                 return damage;
             // 🌟Starlight🌟 end
             
-            damage = ApplyUniversalAllModifiers(damage);
+            if (!ignoreGlobalModifiers)
+                damage = ApplyUniversalAllModifiers(damage);
 
-            // TODO DAMAGE PERFORMANCE
-            // Consider using a local private field instead of creating a new dictionary here.
-            // Would need to check that nothing ever tries to cache the delta.
             var delta = new DamageSpecifier();
             delta.DamageDict.EnsureCapacity(damage.DamageDict.Count);
 

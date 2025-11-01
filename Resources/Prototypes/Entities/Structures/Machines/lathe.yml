@@ -124,6 +124,7 @@
     - AtmosStatic
     - CablesStatic
     - PaperworkStatic
+    - TowelsStatic
     - CargoStatic
     - MaterialsStatic
     - BasicChemistryStatic
@@ -132,11 +133,14 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
-  - type: EmagLatheRecipes # Starlight start
+  - type: EmagLatheRecipes
     emagStaticPacks:
+    - SyndicateAmmoStatic
+    # Starlight start
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
-    - StarlightSecurityAmmoEmagStatic # Starlight end
+    - StarlightSecurityAmmoEmagStatic
+    # Starlight end
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -440,11 +444,10 @@
     - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
     - StarlightSecurityMechsSystems
-  #region Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - StarlightSyndicateModulesSecfab
-  #endregion Starlight secfab emagging
+    - SyndicateAmmoStatic
+    - StarlightSyndicateModulesSecfab # Starlight-edit
   - type: MaterialStorage
     whitelist:
       tags:
@@ -479,6 +482,9 @@
       runningState: icon
       staticPacks:
       - StarlightSecurityAmmoStatic
+    - type: EmagLatheRecipes
+      emagStaticPacks:
+      - SyndicateAmmoStatic
     - type: MaterialStorage
       whitelist:
         tags:
@@ -551,6 +557,7 @@
     idleState: icon
     runningState: building
     staticPacks:
+    - TowelsStatic
     - ClothingCivilian
     - ClothingCargo
     - ClothingCommand
@@ -618,6 +625,10 @@
     staticPacks:
     - BioGenIngredientsStatic
     - BioGenMaterialsStatic
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - BioGenEmagStatic
+    - HostileCubesStatic
 
 - type: entity
   parent: BaseLathe

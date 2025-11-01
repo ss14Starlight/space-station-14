@@ -140,29 +140,23 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
             footstepModifier.FootstepSoundCollection = prototype.FootstepCollection;
         }
 
-        // Starlight-start: Movement sprite state
-        if (!(TryComp<BorgSwitchableSubtypeComponent>(entity, out var subtype) && subtype.BorgSubtype != null))
+        if (prototype.SpriteBodyMovementState is { } movementState)
         {
-            if (prototype.SpriteBodyMovementState is { } movementState)
+            var spriteMovement = EnsureComp<SpriteMovementComponent>(entity);
+            spriteMovement.NoMovementLayers.Clear();
+            spriteMovement.NoMovementLayers["movement"] = new PrototypeLayerData
             {
-                var spriteMovement = EnsureComp<SpriteMovementComponent>(entity);
-                spriteMovement.NoMovementLayers.Clear();
-                spriteMovement.NoMovementLayers["movement"] = new PrototypeLayerData
-                {
-                    State = prototype.SpriteBodyState,
-                };
-                spriteMovement.MovementLayers.Clear();
-                spriteMovement.MovementLayers["movement"] = new PrototypeLayerData
-                {
-                    State = movementState,
-                };
-            }
-            else
+                State = prototype.SpriteBodyState,
+            };
+            spriteMovement.MovementLayers.Clear();
+            spriteMovement.MovementLayers["movement"] = new PrototypeLayerData
             {
-                RemComp<SpriteMovementComponent>(entity);
-            }
+                State = movementState,
+            };
         }
-
-        // Starlight-end
+        else
+        {
+            RemComp<SpriteMovementComponent>(entity);
+        }
     }
 }

@@ -258,11 +258,18 @@ binds:
   type: State
   key: E
   mod1: Shift
-  # Starlight Start - Suit storage equip
-- function: SmartEquipSuitStorage
+- function: SmartEquipPocket1
   type: State
   key: F
-  # Starlight End
+  mod1: Shift
+- function: SmartEquipPocket2
+  type: State
+  key: G
+  mod1: Shift
+- function: SmartEquipSuitStorage
+  type: State
+  key: H
+  mod1: Shift
 - function: OpenBackpack
   type: State
   key: V

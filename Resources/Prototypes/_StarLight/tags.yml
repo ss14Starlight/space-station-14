@@ -1,4 +1,16 @@
-# ALPHABETIZE
+# PUT YOUR TAGS IN ALPHABETICAL ORDER: RUN tag_alphabetize.py AT Tools/_Starlight(requires python3 + pyyaml).
+# ALSO DOCUMENT WHAT THE HELL THEY DO
+
+
+
+
+#######
+#  A  #
+#######
+
+
+- type: Tag
+  id: AbductedTraitBackground
 
 - type: Tag
   id: Arachnid
@@ -8,6 +20,12 @@
 
 - type: Tag
   id: AvianFood
+
+
+#######
+#  B  #
+#######
+
 
 - type: Tag
   id: BibleThwackRemovable
@@ -26,6 +44,18 @@
 
 - type: Tag
   id: BorgModulePurrfus
+
+- type: Tag
+  id: BorgModuleSecurity
+
+- type: Tag
+  id: BloodSplatter
+
+
+#######
+#  C  #
+#######
+
 
 - type: Tag
   id: CantInteract
@@ -49,13 +79,52 @@
   id: CentcommVibroblade
 
 - type: Tag
+  id: CivilianTraitBackground
+
+- type: Tag
   id: ClownKudzu
-  
+
+- type: Tag
+  id: Compy
+
 - type: Tag
   id: CyberHandItem
 
 - type: Tag
+  id: CluwneBeastWearable
+
+- type: Tag
+  id: ClarkeCentralControlModule
+
+- type: Tag
+  id: ClarkePeripheralsControlModule
+
+- type: Tag
+  id: ClarkeHead
+
+- type: Tag
+  id: ClarkeLArm
+
+- type: Tag
+  id: ClarkeRArm
+
+- type: Tag
+  id: ClarkeTreads
+
+
+#######
+#  D  #
+#######
+
+
+- type: Tag
+  id: DeificEncounterTraitBackground
+
+- type: Tag
   id: Diona
+
+- type: Tag
+  id: Disabler
 
 - type: Tag
   id: DockEscape
@@ -64,19 +133,106 @@
   id: DockGamma
 
 - type: Tag
+  id: DurandArmor
+
+- type: Tag
+  id: DurandCentralControlModule
+
+- type: Tag
+  id: DurandPeripheralsControlModule
+
+- type: Tag
+  id: DurandTargetingControlModule
+
+- type: Tag
+  id: DurandHead
+
+- type: Tag
+  id: DurandLArm
+
+- type: Tag
+  id: DurandLLeg
+
+- type: Tag
+  id: DurandRArm
+
+- type: Tag
+  id: DurandRLeg
+
+
+#######
+#  E  #
+#######
+
+
+- type: Tag
   id: ElderArena
 
 - type: Tag
   id: EmergencyWelder
 
+
+#######
+#  F  #
+#######
+
+
 - type: Tag
   id: Felionoid
+
+- type: Tag
+  id: FormerSoldierTraitBackground
+
+
+#######
+#  G  #
+#######
+
+
+- type: Tag
+  id: GygaxArmor
+
+- type: Tag
+  id: GygaxCentralControlModule
+
+- type: Tag
+  id: GygaxPeripheralsControlModule
+
+- type: Tag
+  id: GygaxTargetingControlModule
+
+- type: Tag
+  id: GygaxHead
+
+- type: Tag
+  id: GygaxLArm
+
+- type: Tag
+  id: GygaxLLeg
+
+- type: Tag
+  id: GygaxRArm
+
+- type: Tag
+  id: GygaxRLeg
+
+
+#######
+#  H  #
+#######
+
 
 - type: Tag
   id: HiltPlasteel
 
 - type: Tag
   id: HiltWood
+
+
+#######
+#  I  #
+#######
+
 
 - type: Tag
   id: ImprovisedAmmoBox
@@ -96,11 +252,47 @@
 - type: Tag
   id: ImprovisedWrench
 
+
+#######
+#  J  #
+#######
+
+
+
+#######
+#  K  #
+#######
+
+
+
+#######
+#  L  #
+#######
+
+
+- type: Tag
+  id: L6Saw
+
 - type: Tag
   id: LightRifleHeavy
 
 - type: Tag
+  id: Lighters
+
+- type: Tag
+  id: Locker
+
+
+#######
+#  M  #
+#######
+
+
+- type: Tag
   id: MagazineBattery
+
+- type: Tag
+  id: MagazineBoxLightRifle
 
 - type: Tag
   id: MagazineMagnumSubMachineGun
@@ -124,6 +316,9 @@
   id: MagazineSMGUzi
 
 - type: Tag
+  id: MagicalEncounterTraitBackground
+
+- type: Tag
   id: MedCyberEyes
 
 - type: Tag
@@ -132,14 +327,32 @@
 - type: Tag
   id: ModularBarrel
 
-- type: Tag
-  id: PaddyMech
+
+#######
+#  N  #
+#######
+
+
+
+#######
+#  O  #
+#######
+
 
 - type: Tag
   id: OmniCyberEyes
 
 - type: Tag
   id: OvenMachineBoard
+
+
+#######
+#  P  #
+#######
+
+
+- type: Tag
+  id: PaddyMech
 
 - type: Tag
   id: Patch
@@ -148,10 +361,25 @@
   id: PatchPack
 
 - type: Tag
+  id: PettyCriminalTraitBackground
+
+- type: Tag
   id: PowerCellTiny
 
 - type: Tag
   id: PrototypeVibroblade
+
+
+#######
+#  Q  #
+#######
+
+
+
+#######
+#  R  #
+#######
+
 
 - type: Tag
   id: RequiredForLmgTag
@@ -160,7 +388,22 @@
   id: Resomi
 
 - type: Tag
+  id: RomerolDisasterSurvivorTraitBackground
+
+
+#######
+#  S  #
+#######
+
+
+- type: Tag
+  id: ScanGateMachineBoard
+
+- type: Tag
   id: SecCyberEyes
+
+- type: Tag
+  id: SecuredLocker
 
 - type: Tag
   id: ShellShotgunImprovised
@@ -173,7 +416,7 @@
 
 - type: Tag
   id: Skating
-  
+
 - type: Tag
   id: SovietDungeon
 
@@ -198,59 +441,58 @@
 - type: Tag
   id: SyndieDungeon
 
-- type: Tag
-  id: Compy
+
+#######
+#  T  #
+#######
+
 
 - type: Tag
   id: Table
 
 - type: Tag
-  id: SecuredLocker
+  id: ThermiteIgnitor
+
+
+#######
+#  U  #
+#######
+
 
 - type: Tag
-  id: Locker
+  id: UnDissolvable
 
-- type: Tag
-  id: BorgModuleSecurity
 
-- type: Tag
-  id: Disabler
+#######
+#  V  #
+#######
 
-- type: Tag
-  id: L6Saw
 
-- type: Tag
-  id: MagazineBoxLightRifle
-  
-- type: Tag
-  id: CivilianTraitBackground
 
-- type: Tag
-  id: FormerSoldierTraitBackground
+#######
+#  W  #
+#######
 
-- type: Tag
-  id: RomerolDisasterSurvivorTraitBackground
+
+
+#######
+#  X  #
+#######
+
 
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground
 
-- type: Tag
-  id: DeificEncounterTraitBackground
 
-- type: Tag
-  id: MagicalEncounterTraitBackground
+#######
+#  Y  #
+#######
 
-- type: Tag
-  id: AbductedTraitBackground
 
-- type: Tag
-  id: PettyCriminalTraitBackground
-  
-- type: Tag
-  id: ThermiteIgnitor
-  
-- type: Tag
-  id: UnDissolvable
 
-- type: Tag
-  id: ScanGateMachineBoard
+#######
+#  Z  #
+#######
+
+
+

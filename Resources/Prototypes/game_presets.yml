@@ -155,6 +155,7 @@
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Traitor
+  - SubGamemodesRuleNoWizard
   - SubGamemodesRuleNoChangelings #Starlight
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
@@ -187,7 +188,7 @@
   rules:
   - Nukeops
   # - DummyNonAntagChance 🌟Starlight🌟
-  - SubGamemodesRule
+  - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -206,7 +207,7 @@
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Revolutionary
-  - SubGamemodesRule
+  - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler

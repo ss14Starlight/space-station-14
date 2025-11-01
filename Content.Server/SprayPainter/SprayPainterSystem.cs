@@ -60,7 +60,7 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
         if (!TryComp(ent, out LimitedChargesComponent? charges))
             return;
 
-        if (!_charges.TryUseCharges((ent, charges), ent.Comp.DecalChargeCost))
+        if (_charges.GetCurrentCharges((ent, charges)) < ent.Comp.DecalChargeCost)
         // Starlight-edit: End
         {
             _popup.PopupEntity(Loc.GetString("spray-painter-interact-no-charges"), args.User, args.User);
@@ -172,7 +172,7 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
             return;
         }
 
-        if (!_charges.TryUseCharges((args.Used, charges), painter.PipeChargeCost))
+        if (_charges.GetCurrentCharges((args.Used, charges)) < painter.PipeChargeCost)
         {
             _popup.PopupEntity(Loc.GetString("spray-painter-interact-no-charges"), args.User, args.User);
             // Starlight-edit: End

@@ -31,6 +31,7 @@
     - id: ClothingHeadsetSecurityWarden #Starlight
     - id: FlashlightSeclite
     - id: WeaponDisabler
+    - id: WeaponTaser
     - id: ClothingBeltSecurityFilled
     - id: Flash
     - id: ClothingEyesGlassesSecurity
@@ -48,6 +49,7 @@
       amount: 2
     - id: NetworkConfigurator
     - id: Binoculars
+    - id: WeaponEnergyShotgun
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -77,6 +79,7 @@
     - id: FlashlightSeclite
       prob: 0.8
     - id: WeaponDisabler
+    - id: WeaponTaser
     - id: ClothingUniformJumpsuitSecGrey
       prob: 0.3
     - id: ClothingHeadHelmetBasic

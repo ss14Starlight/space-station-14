@@ -10,6 +10,7 @@ using Content.Shared.Anomaly.Components;
 using Content.Shared.Armor;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning.Events;
+using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
@@ -236,52 +237,47 @@ namespace Content.Server.Zombies
             return MathF.Max(chance, zombieComponent.MinZombieInfectionChance);
         }
 
-        private void OnMeleeHit(EntityUid uid, ZombieComponent component, MeleeHitEvent args)
+        private void OnMeleeHit(Entity<ZombieComponent> entity, ref MeleeHitEvent args)
         {
-            if (!TryComp<ZombieComponent>(args.User, out _))
+            if (!args.IsHit)
                 return;
 
-            if (!args.HitEntities.Any())
-                return;
+            var cannotSpread = HasComp<NonSpreaderZombieComponent>(args.User);
 
-            foreach (var entity in args.HitEntities)
+            foreach (var uid in args.HitEntities)
             {
-                if (args.User == entity)
+                if (args.User == uid)
                     continue;
 
-                if (!TryComp<MobStateComponent>(entity, out var mobState))
+                if (!TryComp<MobStateComponent>(uid, out var mobState))
                     continue;
 
-                if (HasComp<ZombieComponent>(entity))
+                if (HasComp<ZombieComponent>(uid) || HasComp<IncurableZombieComponent>(uid) || HasComp<InitialInfectedComponent>(entity)) // Starlight-edit: Zombies cannot attack initial infected
                 {
-                    args.BonusDamage = -args.BaseDamage;
-                    _popup.PopupEntity(Loc.GetString("zombie-bite-zombie-dissuade"), uid, uid); // Starlight
+                    // Don't infect, don't deal damage, do not heal from bites, don't pass go!
+                    args.Handled = true;
+                    continue;
                 }
-                // Starlight Start
-                // Zombies cannot attack initial infected
-                else if (HasComp<InitialInfectedComponent>(entity))
+
+                if (_mobState.IsAlive(uid, mobState))
                 {
-                    args.BonusDamage = -args.BaseDamage;
-                    _popup.PopupEntity(Loc.GetString("zombie-bite-initialinfected-dissuade"), uid, uid);
+                    _damageable.TryChangeDamage(args.User, entity.Comp.HealingOnBite, true, false);
+
+                    // If we cannot infect the living target, the zed will just heal itself.
+                    if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread || _random.Prob(GetZombieInfectionChance(uid, entity.Comp)))
+                        continue;
+
+                    EnsureComp<PendingZombieComponent>(uid);
+                    EnsureComp<ZombifyOnDeathComponent>(uid);
                 }
-                // Starlight End
                 else
                 {
-                    if (!HasComp<ZombieImmuneComponent>(entity) && !HasComp<NonSpreaderZombieComponent>(args.User) && _random.Prob(GetZombieInfectionChance(entity, component)))
-                    {
-                        EnsureComp<PendingZombieComponent>(entity);
-                        EnsureComp<ZombifyOnDeathComponent>(entity);
-                    }
-                }
+                    if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread)
+                        continue;
 
-                if (_mobState.IsIncapacitated(entity, mobState) && !HasComp<ZombieComponent>(entity) && !HasComp<ZombieImmuneComponent>(entity))
-                {
-                    ZombifyEntity(entity);
-                    args.BonusDamage = -args.BaseDamage;
-                }
-                else if (mobState.CurrentState == MobState.Alive) //heals when zombies bite live entities
-                {
-                    _damageable.TryChangeDamage(uid, component.HealingOnBite, true, false);
+                    // If the target is dead and can be infected, infect.
+                    ZombifyEntity(uid);
+                    args.Handled = true;
                 }
             }
         }

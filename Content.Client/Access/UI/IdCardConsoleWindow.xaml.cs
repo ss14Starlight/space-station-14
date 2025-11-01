@@ -90,6 +90,18 @@ namespace Content.Client.Access.UI
                 JobPresetOptionButton.AddItem(Loc.GetString(job.Name), _jobPrototypeIds.Count - 1);
             }
 
+            SelectAllButton.OnPressed += _ =>
+            {
+                SetAllAccess(true);
+                SubmitData();
+            };
+
+            DeselectAllButton.OnPressed += _ =>
+            {
+                SetAllAccess(false);
+                SubmitData();
+            };
+
             JobPresetOptionButton.OnItemSelected += SelectJobPreset;
             // Starlight-edit: Start
             _accessGroups = new AccessGroupControl();
@@ -109,6 +121,9 @@ namespace Content.Client.Access.UI
             }
         }
 
+        /// <param name="enabled">If true, every individual access button will be pressed. If false, each will be depressed.</param>
+        private void SetAllAccess(bool enabled)
+        
         public void Initialize(IdCardConsoleBoundUserInterface owner)
         {
             _owner = owner;
@@ -121,7 +136,10 @@ namespace Content.Client.Access.UI
         {
             _pendingPressedAccessLevels.Clear(); // Starlight-edit
             foreach (var button in _accessButtons.ButtonsList.Values)
-                button.Pressed = false; // Starlight-edit
+            {
+                if (!button.Disabled && button.Pressed != enabled)
+                    button.Pressed = enabled;
+            }
         }
 
         private void SelectJobPreset(OptionButton.ItemSelectedEventArgs args)
@@ -134,7 +152,7 @@ namespace Content.Client.Access.UI
             JobTitleLineEdit.Text = Loc.GetString(job.Name);
             args.Button.SelectId(args.Id);
 
-            ClearAllAccess();
+            SetAllAccess(false);
 
             // Collect all access levels for this job (direct + all groups)
             // Starlight-edit: Start

@@ -30,6 +30,7 @@ public sealed partial class GhostGui : UIWidget
         GhostWarpButton.OnPressed += _ => RequestWarpsPressed?.Invoke();
         ReturnToBodyButton.OnPressed += _ => ReturnToBodyPressed?.Invoke();
         GhostRolesButton.OnPressed += _ => GhostRolesPressed?.Invoke();
+        GhostRolesButton.OnPressed += _ => GhostRolesButton.StyleClasses.Remove(StyleClass.Negative);
         NewLifeButton.OnPressed += _ => NewLifePressed?.Invoke(); //🌟Starlight🌟
         GhostThemeButton.OnPressed += _ => GhostThemePressed?.Invoke(); //🌟Starlight🌟
         NewLifeButton.StyleClasses.Add(StyleBase.ButtonCaution);  //🌟Starlight🌟
@@ -51,7 +52,7 @@ public sealed partial class GhostGui : UIWidget
 
             if (roles > _prevNumberRoles)
             {
-                GhostRolesButton.StyleClasses.Add(StyleBase.ButtonCaution);
+                GhostRolesButton.StyleClasses.Add(StyleClass.Negative);
             }
 
             _prevNumberRoles = (int)roles;

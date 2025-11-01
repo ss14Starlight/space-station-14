@@ -61,6 +61,16 @@ namespace Content.Client.Lobby.UI
             _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
             _sawmill = _logManager.GetSawmill("latejoin.panel");
 
+            Title = Loc.GetString("late-join-gui-title");
+
+            _base = new BoxContainer()
+            {
+                Orientation = LayoutOrientation.Vertical,
+                VerticalExpand = true,
+            };
+
+            ContentsContainer.AddChild(_base);
+
             _jobRequirements.Updated += RebuildUI;
             RebuildUI();
 

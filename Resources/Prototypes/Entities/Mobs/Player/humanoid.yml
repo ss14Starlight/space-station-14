@@ -61,10 +61,10 @@
       job: DeathSquad
       requirements:
       - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
+        time: 20h
       - !type:DepartmentTimeRequirement
         department: Security
-        time: 36000 # 10h
+        time: 10h
     - type: Loadout
       prototypes: [ DeathSquadGear ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -106,13 +106,13 @@
       job: ERTLeader
       requirements:
       - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
+        time: 20h
       - !type:DepartmentTimeRequirement
         department: CentralCommand
-        time: 36000 # 10h
+        time: 10h
       - !type:DepartmentTimeRequirement
         department: Command
-        time: 36000 # 10h
+        time: 10h
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
       roleLoadout: [ RoleSurvivalExtended ]
@@ -191,10 +191,10 @@
       job: ERTChaplain
       requirements:
       - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
+        time: 20h
       - !type:RoleTimeRequirement
         role: JobChaplain
-        time: 18000 # 5h
+        time: 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -257,10 +257,10 @@
       job: ERTJanitor
       requirements:
       - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
+        time: 20h
       - !type:RoleTimeRequirement
         role: JobJanitor
-        time: 18000 # 5h
+        time: 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -322,10 +322,10 @@
       job: ERTEngineer
       requirements:
       - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
+        time: 20h
       - !type:RoleTimeRequirement
         role: JobStationEngineer
-        time: 18000 # 5h
+        time: 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -387,10 +387,10 @@
       job: ERTSecurity
       requirements:
       - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
+        time: 20h
       - !type:RoleTimeRequirement
         role: JobSecurityOfficer
-        time: 18000 # 5h
+        time: 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -468,13 +468,13 @@
       job: ERTMedical
       requirements:
       - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
+        time: 20h
       - !type:RoleTimeRequirement
         role: JobMedicalDoctor
-        time: 18000 # 5h
+        time: 5h
       - !type:RoleTimeRequirement
         role: JobChemist
-        time: 18000 # 5h
+        time: 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -533,13 +533,13 @@
       job: CBURN
       requirements:
       - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
+        time: 20h
       - !type:RoleTimeRequirement
         role: JobMedicalDoctor
-        time: 18000 # 5h
+        time: 5h
       - !type:RoleTimeRequirement
         role: JobSecurityOfficer
-        time: 18000 # 5h
+        time: 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -568,6 +568,7 @@
       rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: default
+      job: CentralCommandOfficial
       requirements:
       - !type:RolesRequirement
         proto: StaffAndMentorOnlyRolesReq
