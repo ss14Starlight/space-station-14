@@ -23,7 +23,6 @@ using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Shared.Animations;
-using Robust.Shared.Audio;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -444,7 +443,6 @@ public sealed partial class GunSystem : SharedGunSystem
                 continue;
             }
 
-            // TODO: Clean this up in a gun refactor at some point - too much copy pasting
             switch (shootable)
             {
                 //🌟Starlight🌟
@@ -497,7 +495,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     else
                         RemoveShootable(ent.Value);
                     break;
-                case HitscanAmmoComponent:
+                case HitscanPrototype:
                     Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
                     Recoil(user, direction, gun.CameraRecoilScalarModified);
                     break;
@@ -635,7 +633,4 @@ public sealed partial class GunSystem : SharedGunSystem
         _animPlayer.Stop(gunUid, uidPlayer, "muzzle-flash-light");
         _animPlayer.Play((gunUid, uidPlayer), animTwo, "muzzle-flash-light");
     }
-
-    // TODO: Move RangedDamageSoundComponent to shared so this can be predicted.
-    public override void PlayImpactSound(EntityUid otherEntity, DamageSpecifier? modifiedDamage, SoundSpecifier? weaponSound, bool forceWeaponSound) {}
 }
