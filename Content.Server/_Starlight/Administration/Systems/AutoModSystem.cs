@@ -149,6 +149,10 @@ public sealed partial class AutoModSystem : SharedChatSystem
                     string banReason = string.IsNullOrWhiteSpace(offence.Message)
                         ? "Banned by AutoMod"
                         : $"Banned by AutoMod for: {offence.Message}";
+                    
+                    // Add appeal message with two new lines before it
+                    banReason += "\n\nYou may appeal this ban in our discord at: https://discord.gg/acnGGZsY";
+                    
                     uint? duration = null;
                     if (offence.BanDurationMinutes > 0)
                         duration = (uint)offence.BanDurationMinutes;
