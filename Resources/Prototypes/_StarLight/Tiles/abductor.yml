@@ -2,9 +2,9 @@
   id: FloorAbductor
   name: tiles-abductor-floor
   sprite: /Textures/_Starlight/Tiles/abductor_tile.png
-  isSubfloor: true
+  isSubfloor: false
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 10000
-  weather: true
+  weather: false
   indestructible: true

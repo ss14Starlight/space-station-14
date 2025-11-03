@@ -132,6 +132,8 @@
   - type: Construction
     graph: FireBot
     node: bot
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-mechanical #Starlight
   - type: HTN
     rootTask:
       task: FirebotCompound
@@ -284,6 +286,8 @@
   - type: Construction
     graph: CleanBot
     node: bot
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-mechanical #Starlight
   - type: Absorbent
     pickupAmount: 10
   - type: UseDelay
@@ -368,6 +372,8 @@
   - type: Construction
     graph: MediBot
     node: bot
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-mechanical #Starlight
   - type: Anchorable
   - type: InteractionPopup
     interactSuccessString: petting-success-medibot

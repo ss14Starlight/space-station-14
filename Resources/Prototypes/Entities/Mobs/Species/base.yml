@@ -226,6 +226,13 @@
     - DoorBumpOpener
     - AnomalyHost
   - type: ActiveInputMover # Starlight
+  # Starlight Start: Social Interactions
+  - type: PhysicalSocialInteractionGiver
+  - type: PhysicalSocialInteractionReceiver
+    interactionPrototypes:
+    - Pet
+    - Boop
+  # Starlight End
 
 - type: entity
   save: false
@@ -296,12 +303,6 @@
   - type: FireVisuals
     alternateState: Standing
   - type: StunVisuals
-  #starlight, they can give and receive physical social interactions
-  - type: PhysicalSocialInteractionGiver
-  - type: PhysicalSocialInteractionReceiver
-    interactionPrototypes:
-    - Pet
-    - Boop
 
 - type: entity
   save: false

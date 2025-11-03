@@ -1,0 +1,69 @@
+- type: decal
+  id: bold0
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bold0
+
+- type: decal
+  id: bold1
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bold1
+
+- type: decal
+  id: bold2
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bold2
+
+- type: decal
+  id: bold3
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bold3
+
+- type: decal
+  id: bold4
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bold4
+
+- type: decal
+  id: bold5
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bold5
+
+- type: decal
+  id: bold6
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bold6
+
+- type: decal
+  id: bold7
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bold7
+
+- type: decal
+  id: bold8
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bold8
+
+- type: decal
+  id: bold9
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bold9

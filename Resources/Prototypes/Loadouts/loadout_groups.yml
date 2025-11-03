@@ -805,6 +805,7 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianWintercoat
+  - WindbreakerCargo #Starlight
 
 - type: loadoutGroup
   id: CargoTechnicianShoes
@@ -943,6 +944,7 @@
   loadouts:
   - StationEngineerOuterVest
   - StationEngineerWintercoat
+  - WindbreakerEngineering #Starlight
 
 - type: loadoutGroup
   id: StationEngineerShoes
@@ -1096,6 +1098,7 @@
   - RoboticistLabCoat
   - RoboticistWintercoat
   - SeniorResearcherLabCoat
+  - WindbreakerScience #Starlight
 
 - type: loadoutGroup
   id: ScientistShoes
@@ -1314,6 +1317,7 @@
   - ArmorVestHeatAbsorb
   - SecurityOfficerWintercoat
   - SecurityBomber #Starlight
+  - WindbreakerSecurity #Starlight
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1470,6 +1474,7 @@
   - RegularLabCoat
   - MedicalDoctorWintercoat
   - SeniorPhysicianLabCoat
+  - WindbreakerMedical #Starlight
 
 - type: loadoutGroup
   id: MedicalBackpack

@@ -65,6 +65,11 @@
     - WeaponMechCombatDisabler
     - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatMissileRack8
+    - WeaponMechCombatXray
+    - WeaponMechChainSword
+    - WeaponMechCombatIon
+    - WeaponMechCombatAMLG90
+    - WeaponMechCombatTaser
 
 - type: latheRecipePack
   id: StarlightSyndicateModules

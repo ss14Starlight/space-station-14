@@ -35,3 +35,28 @@
     sentence: action-speech-spell-babel
   - type: InstantAction
     event: !type:TowerOfBabelEvent
+      
+- type: entity
+  parent: BaseAction
+  id: ActionRetractableItemManaBlade
+  name: Manifest Spectral Blade
+  description: Channel your power into your hand and create a sword out of hardened mana.
+  components:
+    - type: Action
+      useDelay: 2
+      raiseOnAction: true
+      itemIconStyle: BigAction
+      icon:
+        sprite: _Starlight/Objects/Weapons/Melee/Mana_Blade.rsi
+        state: icon
+      sound: !type:SoundPathSpecifier
+        path: /Audio/Magic/staff_healing.ogg
+    - type: InstantAction
+      event: !type:OnRetractableItemActionEvent
+    - type: RetractableItemAction
+      spawnedPrototype: ManaBlade
+      #summonSounds:
+       # collection: gib # Placeholder
+      #retractSounds:
+       # collection: gib # Placeholder
+    #Starlight edit: changeling action costs

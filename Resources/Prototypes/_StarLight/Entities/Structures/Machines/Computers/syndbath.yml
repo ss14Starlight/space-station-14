@@ -54,7 +54,7 @@
       collection: IntoWater
     buckleOffset: "0.05,-0.15"
   - type: RemoteEyeConsole
-    remoteEntityProto: SyndrunnerConsoleEye
+    remoteEntityProto: SyndicateConsoleEye
     color: "#650000"
     actions:
     - SyntrunnerActionExitConsole
@@ -87,7 +87,7 @@
   parent:
   - Incorporeal
   - BaseMob
-  id: SyndrunnerConsoleEye
+  id: SyndicateConsoleEye
   name: "???"
   description: "ERROR"
   categories: [ HideSpawnMenu ]
@@ -115,7 +115,7 @@
         - Ghost
     passedLayers:
       base:
-        state: syndrunner
+        state: syndicate
     failedLayers:
       base:
         state: enemy

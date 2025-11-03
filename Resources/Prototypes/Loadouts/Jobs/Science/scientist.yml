@@ -103,6 +103,11 @@
     outerClothing: ClothingOuterCoatRnd
 
 - type: loadout
+  id: WindbreakerScience
+  equipment:
+    outerClothing: ClothingOuterWindbreakerScience
+
+- type: loadout
   id: ScienceWintercoat
   equipment:
     outerClothing: ClothingOuterWinterSci

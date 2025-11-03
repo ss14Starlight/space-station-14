@@ -341,7 +341,6 @@
     - MechParts
     - MechEquipment
     - StarlightMechEquipment
-    - StarlightMechWeapon
     - StarlightSecurityMechs
     - StarlightMechParts
   - type: EmagLatheRecipes
@@ -440,6 +439,7 @@
     - SecurityDisablers
     - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
+#    - StarlightSecurityMechsSystems
   #region Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:

@@ -39,6 +39,7 @@ public partial class NavMapControl : MapGridControl
 
     // Actions
     public event Action<NetEntity?>? TrackedEntitySelectedAction;
+    public event Action<EntityCoordinates>? MapClickedAction; // Starlight
     public event Action<DrawingHandleScreen>? PostWallDrawingAction;
 
     // Tracked data
@@ -203,10 +204,8 @@ public partial class NavMapControl : MapGridControl
 
         if (args.Function == EngineKeyFunctions.UIClick)
         {
-            if (TrackedEntitySelectedAction == null)
-                return;
+            if (_xform == null || _physics == null) // Starlight
 
-            if (_xform == null || _physics == null || TrackedEntities.Count == 0)
                 return;
 
             // If the cursor has moved a significant distance, exit
@@ -221,28 +220,54 @@ public partial class NavMapControl : MapGridControl
             var unscaledPosition = (localPosition - MidPointVector) / MinimapScale;
             var worldPosition = Vector2.Transform(new Vector2(unscaledPosition.X, -unscaledPosition.Y) + offset, _transformSystem.GetWorldMatrix(_xform));
 
-            // Find closest tracked entity in range
-            var closestEntity = NetEntity.Invalid;
-            var closestDistance = float.PositiveInfinity;
-
-            foreach ((var currentEntity, var blip) in TrackedEntities)
+            // Starlight-start
+            EntityCoordinates? clickCoords = null;
+            if (MapClickedAction != null)
             {
-                if (!blip.Selectable)
-                    continue;
+                var mapCoordinates = new MapCoordinates(worldPosition, _xform.MapID);
+                var coordinates = _transformSystem.ToCoordinates(mapCoordinates);
 
-                var currentDistance = (_transformSystem.ToMapCoordinates(blip.Coordinates).Position - worldPosition).Length();
+                if (_transformSystem.IsValid(coordinates))
+                    clickCoords = coordinates;
+            }
+            // Starlight-end
 
-                if (closestDistance < currentDistance || currentDistance * MinimapScale > MaxSelectableDistance)
-                    continue;
+            var invokedSelection = false;
 
-                closestEntity = currentEntity;
-                closestDistance = currentDistance;
+            if (TrackedEntitySelectedAction != null && TrackedEntities.Count != 0)
+            {
+                // Find closest tracked entity in range
+                var closestEntity = NetEntity.Invalid;
+                var closestDistance = float.PositiveInfinity;
+
+                foreach ((var currentEntity, var blip) in TrackedEntities)
+                {
+                    if (!blip.Selectable)
+                        continue;
+
+                    var currentDistance = (_transformSystem.ToMapCoordinates(blip.Coordinates).Position - worldPosition).Length();
+
+                    if (closestDistance < currentDistance || currentDistance * MinimapScale > MaxSelectableDistance)
+                        continue;
+
+                    closestEntity = currentEntity;
+                    closestDistance = currentDistance;
+                }
+
+                if (closestEntity.IsValid() && closestDistance <= MaxSelectableDistance)
+                {
+                    TrackedEntitySelectedAction?.Invoke(closestEntity);
+                    invokedSelection = true;
+                }
             }
 
-            if (closestDistance > MaxSelectableDistance || !closestEntity.IsValid())
-                return;
+            // Starlight-start
+            if (clickCoords != null)
+                MapClickedAction?.Invoke(clickCoords.Value);
+            // Starlight-end
 
-            TrackedEntitySelectedAction.Invoke(closestEntity);
+            if (!invokedSelection && clickCoords == null)
+                return;
         }
 
         else if (args.Function == EngineKeyFunctions.UIRightClick)

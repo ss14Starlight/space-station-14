@@ -7,3 +7,13 @@
   id: draganspecial
   flavorType: Complex
   description: flavor-complex-dragan-special
+
+- type: flavor
+  id: wrong
+  flavorType: Base
+  description: flavor-base-wrong
+
+- type: flavor
+  id: struggle
+  flavorType: Complex
+  description: flavor-complex-struggle

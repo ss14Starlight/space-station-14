@@ -1,0 +1,16 @@
+- type: entity
+  id: MechCartridge
+  abstract: true
+  components:
+    - type: HitScanCartridgeAmmo
+      deleteOnSpawn: true
+
+- type: entity
+  id: ShellShotgunMechIncendiary
+  parent: [ShellShotgunIncendiary, MechCartridge]
+
+- type: entity
+  id: ShellShotgunMech
+  parent: [ShellShotgun, MechCartridge]
+
+
