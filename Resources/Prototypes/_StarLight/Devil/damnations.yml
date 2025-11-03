@@ -27,6 +27,15 @@
   - type: PermanentBlindness
     blindness: 0
 
+- type: damnation
+  id: Time
+  name: give up my life
+  description: The signator forfeits their life, leaving them with five minutes left to live.
+  cost: -8
+  reverseOnRemove: false # prevent cheesing it for points
+  components:
+  - type: Doomed
+
 # REWARDS
 
 - type: damnation
