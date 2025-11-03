@@ -6,6 +6,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
 using Content.Client._Starlight.NanoChat;
+using Robust.Shared.Utility; // Funky Station
+using Content.Client._Funkystation.NanoChat; // Funky Station
 
 namespace Content.Client._CD.CartridgeLoader.Cartridges;
 
@@ -25,6 +27,7 @@ public sealed partial class NanoChatMessageBubble : BoxContainer
         RobustXamlLoader.Load(this);
     }
 
+    // Funky Station - Added senderName and showSenderName parameters
     public void SetMessage(NanoChatMessage message, bool isOwnMessage, string? senderName = null, bool showSenderName = false)
     {
         if (MessagePanel.PanelOverride is not StyleBoxFlat)
@@ -35,13 +38,12 @@ public sealed partial class NanoChatMessageBubble : BoxContainer
         style.BackgroundColor = isOwnMessage ? OwnMessageColor : OtherMessageColor;
         style.BorderColor = BorderColor;
 
-        // Escape user content to prevent markup abuse, then apply emoji replacements
-        var escapedContent = FormattedMessage.EscapeText(message.Content);
-        var contentWithEmoji = EmojiRegex.Replace(escapedContent, "[emote=\"$1\"]");
+        // Funky Station Start - Emoji Support & Sender Names for groupchats
+        var contentWithEmoji = EmojiRegex.Replace(message.Content, "[emoji=\"$1\"]");
 
         MessageText.SetMessage(
             FormattedMessage.FromMarkupPermissive(contentWithEmoji),
-            new[] { typeof(NanoChatEmoteMarkup) }
+            new[] { typeof(EmojiTag) }
         );
 
         SenderNameLabel.Visible = showSenderName && !string.IsNullOrEmpty(senderName);
@@ -50,6 +52,7 @@ public sealed partial class NanoChatMessageBubble : BoxContainer
             SenderNameLabel.Text = senderName;
             SenderNameLabel.Modulate = TextColor;
         }
+        // Funky Station End
 
         MessageText.Modulate = TextColor;
 
