@@ -32,13 +32,18 @@ public sealed partial class CollectiveMind : SharedCollectiveMindSystem
     {
         var uid = ent.Owner;
 
-        if (ent.Comp.CorruptWhenUnconscious)
+        if (ent.Comp.CorruptWhenUnconscious || !ent.Comp.UsableWhenCrit)
         {
             //we need to check if the entity is sleeping, or crit
             if (TryComp<MobStateComponent>(uid, out var mobState))
             {
                 if (mobState.CurrentState == MobState.Critical || TryComp<SleepingComponent>(uid, out _))
                 {
+                    if (!ent.Comp.UsableWhenCrit)
+                    {
+                        args.Cancel();
+                        return;
+                    }
                     args.Message = Corrupt(args.Message, ref ent.Comp);
                 }
             }

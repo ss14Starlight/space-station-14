@@ -11,6 +11,8 @@ public sealed partial class CollectiveMindComponent : Component
     public Dictionary<CollectiveMindPrototype, CollectiveMindMemberData> Minds = new();
     public bool CorruptWhenUnconscious = true;
     public float CorruptionChanceWhenUnconscious = 0.5f;
+
+    [DataField] public bool UsableWhenCrit = false;
 }
 
 /// <summary>
