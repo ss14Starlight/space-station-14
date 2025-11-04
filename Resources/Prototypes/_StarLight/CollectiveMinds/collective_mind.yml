@@ -37,7 +37,7 @@
   name: collective-mind-changeling
   keycode: 'h'
   color: "#ff75a8"
-  corruptWhenOnconscious: false
+  corruptWhenUnconscious: false
   usableWhenCrit: true
   requiredComponents:
   - Hivemind
