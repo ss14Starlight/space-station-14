@@ -37,12 +37,14 @@ public sealed partial class MechGrabberComponent : Component
     /// </summary>
     [DataField("maxContents")]
     public int MaxContents = 10;
+    // Starlight change start: Adds a value if a claw should be able to pick up mobs
 
     /// <summary>
     /// Allows to grab mobs and people
     /// </summary>
     [DataField("CanGrabMobs")]
     public bool CanGrabMobs = false;
+    // Starlight change end
 
     /// <summary>
     /// The sound played when a mech is grabbing something

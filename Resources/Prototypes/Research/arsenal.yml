@@ -75,7 +75,7 @@
   - WeaponDisabler
   - WeaponMechCombatDisabler
   - WeaponMechCombatFlashbangLauncher
-  - WeaponMechCombatTaser
+  - WeaponMechCombatTaser # 🌟Starlight-change🌟
   - CartridgePistolRubber
   - CartridgeMagnumRubber
   - CartridgeLightRifleRubber
@@ -193,7 +193,7 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
-  - WeaponMechCombatXray
+  - WeaponMechCombatXray # 🌟Starlight-change🌟
   radioChannels:
   - Security
   
@@ -262,7 +262,7 @@
   - WeaponAdvancedLaser
   - PortableRecharger
   - WeaponMechCombatImmolationGun
-  - WeaponMechCombatAMLG90
+  - WeaponMechCombatAMLG90 # 🌟Starlight-change🌟
   radioChannels:
   - Security
 

@@ -10,9 +10,11 @@
     state: mecha_pulse
   - type: Gun
     fireRate: 1.5
+# 🌟Starlight-start🌟
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+# 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
@@ -32,22 +34,26 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_immolator
   - type: Gun
+# 🌟Starlight-start🌟
     fireRate: 2
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+# 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
+# 🌟Starlight-start🌟
     proto: IgnitionRedLaser
     fireCost: 40
+# 🌟Starlight-end🌟
   - type: Appearance
   - type: AmmoCounter
 
 - type: entity
   id: WeaponMechCombatSolarisLaser
   name: CH-LC "Solaris" laser cannon
-  description: An experimental combat mounted laser cannon, with the same output as the Firedart, but boasting a much more efficient cycling system.
+  description: An experimental combat mounted laser cannon that causes more damage, but also has a greater cooldown than a "Firedart".
   suffix: Mech Weapon, Gun, Combat, Laser
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
   components:
@@ -55,15 +61,19 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_solaris
   - type: Gun
+# 🌟Starlight-start🌟
     fireRate: 1.5
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+# 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: HitscanBatteryAmmoProvider
+# 🌟Starlight-start🌟
     proto: RedHeavyLaser
     fireCost: 28
+# 🌟Starlight-start🌟
   - type: Appearance
   - type: AmmoCounter
 # region starlight
@@ -78,7 +88,7 @@
 - type: entity
   id: WeaponMechCombatFiredartLaser
   name: CH-PS "Firedart" Laser
-  description: The standard combat armament of the mechs. Weak, but cheap
+  description: The standard combat armament of the mechs is a combat mounted laser.
   suffix: Mech Weapon, Gun, Combat, Laser
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
   components:
@@ -86,15 +96,17 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_firedart
   - type: Gun
+# 🌟Starlight-start🌟
     fireRate: 2
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+# 🌟Starlight-start🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
-    fireCost: 14
+    fireCost: 14 # 🌟Starlight-Change
   - type: Appearance
   - type: AmmoCounter
   # region starlight
@@ -117,9 +129,11 @@
     projectileSpeed: 3
     projectileSpeedModified: 6
     fireRate: 0.8
+# 🌟Starlight-start🌟
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+# 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
@@ -141,15 +155,17 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_disabler
   - type: Gun
+# 🌟Starlight-start🌟
     fireRate: 1.5
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+# 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisablerSmgSpread
-    fireCost: 30
+    fireCost: 30 # 🌟Starlight-Change
   - type: Appearance
   - type: AmmoCounter
   # region starlight
@@ -170,9 +186,11 @@
     state: mecha_taser
   - type: Gun
     fireRate: 1
+# 🌟Starlight-start🌟
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+# 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: HitscanBatteryAmmoProvider
@@ -189,7 +207,7 @@
 - type: entity
   id: WeaponMechCombatShotgun
   name: LBX AC 10 "Scattershot"
-  description: A mounted shotgun able to dispatch targets quickly in a CQC environement.
+  description: A mounted shotgun able to dispatch targets quickly in a CQC environement. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Shotgun
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
   components:
@@ -204,15 +222,17 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: ProjectileBatteryAmmoProvider
+# 🌟Starlight-start🌟
     proto: ShellShotgunMech
     fireCost: 80
+# 🌟Starlight-end🌟
   - type: Appearance
   - type: AmmoCounter
 
 - type: entity
   id: WeaponMechCombatShotgunIncendiary
   name: FNX-99 "Hades" Carbine
-  description: Mounted shotgun, refit to fire incendiary ammo.
+  description: Mounted shotgun, refit to fire incendiary ammo. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Shotgun, Incendiary
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
   components:
@@ -227,15 +247,17 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: ProjectileBatteryAmmoProvider
+# 🌟Starlight-start🌟
     proto: ShellShotgunMechIncendiary
     fireCost: 80
+# 🌟Starlight-end🌟
   - type: Appearance
   - type: AmmoCounter
 
 - type: entity
   id: WeaponMechCombatUltraRifle
   name: Ultra AC-2
-  description: A cheap and reliable burst rifle.
+  description: A cheap and reliable burst rifle. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Rifle
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
   components:
@@ -288,8 +310,10 @@
     
 - type: entity
   id: WeaponMechCombatAMLG90
+# 🌟Starlight-start🌟
   name: AMLG-90 "Reaver"
   description: A powerful and advanced burst-laser machine gun designed for maximum firepower.
+# 🌟Starlight-end🌟
   suffix: Mech Weapon, Gun, Combat, Laser
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
   components:
@@ -299,7 +323,7 @@
   - type: Gun
     fireRate: 4
     shotsPerBurst: 3
-    burstCooldown: 1
+    burstCooldown: 1 # 🌟Starlight-Change
     selectedMode: Burst
     availableModes:
       - Burst
@@ -316,7 +340,7 @@
 - type: entity
   id: WeaponMechCombatXray
   name: S-1 X-Ray Projector
-  description: Experimental mech weapon that fires X-rays, causing both surface and deep radiation burns.
+  description: Experimental mech weapon that fires X-rays, causing both surface and deep radiation burns. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, X-Ray
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
   components:
@@ -324,15 +348,17 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_xray
   - type: Gun
+# 🌟Starlight-start🌟
     fireRate: 2
     selectedMode: FullAuto
     availableModes:
       - FullAuto
+# 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: XrayLaser
-    fireCost: 48
+    fireCost: 48 # 🌟Starlight-Change
   - type: Appearance
   - type: AmmoCounter
   - type: Battery
@@ -342,7 +368,7 @@
 - type: entity
   id: WeaponMechCombatMissileRack8
   name: SRM-8 Light Missile Rack
-  description: Launches low-explosive missiles. Relatively weak but able to supress enemy positions.
+  description: Launches low-explosive missiles. Relatively weak but able to supress enemy positions. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Light Missile
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
   components:
@@ -365,7 +391,7 @@
 - type: entity
   id: WeaponMechCombatMissileRack6
   name: BRM-6 Missile Rack
-  description: A set of heavy missiles designed to unleash utter carnage upon your foes.
+  description: A set of heavy missiles designed to unleash utter carnage upon your foes. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Missile
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
   components:
@@ -391,7 +417,7 @@
 - type: entity
   id: WeaponMechCombatFlashbangLauncher
   name: SGL-6 Flashbang Launcher
-  description: A rotary grenade launcher able to manufacture and launch flash charges at unruly crowds.
+  description: A rotary grenade launcher able to manufacture and launch flash charges at unruly crowds. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Flashbang
   parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
   components:

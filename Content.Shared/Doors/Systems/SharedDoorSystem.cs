@@ -203,10 +203,14 @@ public abstract partial class SharedDoorSystem : EntitySystem
     #region Interactions
     protected void OnActivate(EntityUid uid, DoorComponent door, ActivateInWorldEvent args)
     {
-
+        // Starlight edit start: Enable entities with prying capabilities on themselves to open doors
         var pryingCapable = args.Complex || HasComp<PryingComponent>(args.User);
         if (args.Handled || !pryingCapable || !door.ClickOpen)
             return;
+        // Starlight edit end
+        
+        if (!TryToggleDoor(uid, door, args.User, predicted: true))
+            _pryingSystem.TryPry(uid, args.User, out _);
 
         args.Handled = true;
     }

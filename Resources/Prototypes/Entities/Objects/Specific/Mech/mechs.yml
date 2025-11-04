@@ -8,6 +8,10 @@
       tags:
       - CombatMech
       - PaddyMech
+# 🌟Starlight-start🌟
+  - type: Prying
+    pryPowered: true
+# 🌟Starlight-end🌟
 
 - type: entity
   id: IndustrialMech
@@ -179,10 +183,12 @@
     drawRate: 1
     delay: 3
   - type: ActiveInputMover
+# 🌟Starlight-start🌟
   - type: Prying
     pryPowered: false
     force: false
     useSound: /Audio/Items/jaws_pry.ogg
+# 🌟Starlight-end🌟
 
 # Ripley MK-I
 - type: entity
@@ -248,7 +254,7 @@
   id: MechRipley2
   parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
   name: Ripley APLU MK-II
-  description: The "MK-II" has a pressurized cabin for space operations, but the added weight has slowed it down.
+  description: The "MK-II" has a pressurized cabin for space operations, and stronger clamps are able to force doors open, but the added weight has slowed it down. # 🌟Starlight-Change
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -294,8 +300,10 @@
     graph: PaddyUpgrade
     node: start
     defaultTarget: paddy
+# 🌟Starlight-start🌟
   - type: Prying
     pryPowered: true
+# 🌟Starlight-end🌟
 
 - type: entity
   id: MechRipley2Battery
@@ -339,7 +347,7 @@
     brokenState: base-broken
     mechToPilotDamageMultiplier: 0.60
     airtight: true
-    maxEquipmentAmount: 4
+    maxEquipmentAmount: 4 # 🌟Starlight-Change
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -347,10 +355,10 @@
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
-    bluntStaminaDamageFactor: 1.5
+    bluntStaminaDamageFactor: 1.5 # 🌟Starlight-Change
     damage:
       types:
-        Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech.
+        Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. # 
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4
@@ -645,8 +653,10 @@
         Blunt: 30 #THWACK
         Structural: 180
   - type: MovementSpeedModifier
+# 🌟Starlight-start🌟
     baseWalkSpeed: 2.4
     baseSprintSpeed: 3.7
+# 🌟Starlight-end🌟
   - type: Damageable
     damageModifierSet: LightArmor
   - type: MechThrusters
@@ -656,8 +666,6 @@
     radius: 6
     energy: 5
     enabled: false
-  - type: Prying
-    pryPowered: true
 
 - type: entity
   id: MechGygaxBattery
@@ -720,8 +728,6 @@
     radius: 7
     energy: 5
     enabled: false
-  - type: Prying
-    pryPowered: true
 
 - type: entity
   id: MechDurandBattery
@@ -781,8 +787,6 @@
   - type: Repairable
     fuelCost: 30
     doAfterDelay: 15
-  - type: Prying
-    pryPowered: true
 
 - type: entity
   id: MechMarauderBattery
@@ -852,8 +856,6 @@
   - type: Repairable
     fuelCost: 30
     doAfterDelay: 20
-  - type: Prying
-    pryPowered: true
 
 - type: entity
   id: MechSeraphBattery
@@ -919,7 +921,7 @@
         Structural: 200
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
-    baseSprintSpeed: 4.0
+    baseSprintSpeed: 4.0 # 🌟Starlight-Change
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: MechThrusters
@@ -932,8 +934,6 @@
     radius: 7
     energy: 6
     enabled: false
-  - type: Prying
-    pryPowered: true
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -1003,8 +1003,6 @@
   - type: Repairable
     fuelCost: 50
     doAfterDelay: 25
-  - type: Prying
-    pryPowered: true
 
 - type: entity
   id: MechMaulerSyndieBattery

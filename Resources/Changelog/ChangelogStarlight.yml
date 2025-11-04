@@ -19227,5 +19227,41 @@ Entries:
   id: 207800
   time: '2025-10-31T17:54:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2078
+- author: CMDROverwerk
+  changes:
+  - message: Fixed bug when you can't open doors via click/interaction
+    type: Fix
+  id: 207900
+  time: '2025-11-02T20:33:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2079
+- author: CMDROverwerk
+  changes:
+  - message: Unmaps SecGrabber from laithe so it does not cause validation failure
+      (until re-implementation)
+    type: Fix
+  id: 207901
+  time: '2025-11-02T20:33:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2079
+- author: Conflee
+  changes:
+  - message: Fixed Pew camera rotation error with sprites
+    type: Fix
+  id: 210100
+  time: '2025-11-02T20:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2101
+- author: stickycheZ101
+  changes:
+  - message: added a new crafting station used for mass producing forged gear
+    type: Add
+  id: 200400
+  time: '2025-11-03T19:13:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2004
+- author: stickycheZ101
+  changes:
+  - message: added an in depth, lengthy method of crafting insuls
+    type: Add
+  id: 200401
+  time: '2025-11-03T19:13:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2004
 Order: -1
 

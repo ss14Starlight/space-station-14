@@ -439,7 +439,7 @@
     - SecurityDisablers
     - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
-    - StarlightSecurityMechsSystems
+#    - StarlightSecurityMechsSystems
   #region Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:
