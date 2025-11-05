@@ -17,6 +17,9 @@
     layers:
     - state: internals
     - state: emergencytank
+  - type: Item # Starlight start
+    shape:
+    - 0,0,2,2 # Starlight end
 
 - type: entity
   parent: BoxSurvival
