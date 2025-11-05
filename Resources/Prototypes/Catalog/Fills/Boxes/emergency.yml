@@ -41,23 +41,6 @@
   - type: Label
     currentLabel: reagent-name-nitrogen
 
-- type: entity #🌟Starlight🌟
-  parent: BoxSurvival
-  id: BoxSurvivalNonBreather
-  description: It's a box with survival supplies for those with no need to breathe.
-  suffix: Nonbreather
-  components:
-  - type: StorageFill
-    contents:
-    - id: EmergencyMedipen
-    - id: FoodSnackNutribrick
-    - id: DrinkWaterBottleFull
-    - id: Flare
-  - type: Sprite
-    layers:
-    - state: internals
-    - state: shadekin
-
 - type: entity
   parent: BoxCardboard
   id: BoxSurvivalEngineering
