@@ -10,7 +10,6 @@ namespace Content.Server._Starlight.Paper;
 
 public sealed class ObjectiveOnSignSystem : EntitySystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
@@ -36,7 +35,7 @@ public sealed class ObjectiveOnSignSystem : EntitySystem
             return; // no charges left. dont run the component
 
         var signer = args.Signer;
-        
+
         if (!_whitelistSystem.CheckBoth(signer, component.Blacklist, component.Whitelist))
             return;
 
@@ -56,7 +55,7 @@ public sealed class ObjectiveOnSignSystem : EntitySystem
 
         if (!component.Append)
         {
-            while (_mind.TryRemoveObjective(mindId.Value, mind, 0)) {}// basically just keep trying to remove the 0th objective until there is none           
+            while (_mind.TryRemoveObjective(mindId.Value, mind, 0)) {}// basically just keep trying to remove the 0th objective until there is none
         }
 
         foreach (var rule in component.Objectives)

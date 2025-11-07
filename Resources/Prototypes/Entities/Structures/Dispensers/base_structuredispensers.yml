@@ -86,6 +86,10 @@
   id: ReagentDispenserBasePowerCell
   parent: ReagentDispenserBaseUnpowered
   components:
+  - type: ApcPowerReceiver
+    needsPower: true
+    powerLoad: 5 # Draw power for charging cell
+  - type: ExtensionCableReceiver
   - type: PowerCellDraw
     drawRate: 0
     useRate: 5

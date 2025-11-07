@@ -1,0 +1,58 @@
+# Attempted to keep the files in alphabetical order so its easier to audit.
+# Finding individual authors is an unfeasible task. If you can reference the author please do so.
+
+- files: ["hierophant.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["sepia.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["tile_sepia.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["terracotta.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["terracotta_diagonal.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["terracotta_small.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["tile_terracotta.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["tile_terracotta_diagonal.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["tile_terracotta_small.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["tile_carpet_deco.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["tile_hierophant.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+

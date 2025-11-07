@@ -7,6 +7,11 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+      - PaddyMech
+# 🌟Starlight-start🌟
+  - type: Prying
+    pryPowered: true
+# 🌟Starlight-end🌟
 
 - type: entity
   id: IndustrialMech
@@ -37,7 +42,7 @@
     equipmentWhitelist:
       tags:
       - SmallMech
-      
+
 - type: entity
   id: NanotrasenMech
   abstract: true
@@ -49,7 +54,7 @@
       path: /Audio/Mecha/lowpowernano.ogg
     nominalSound:
       path: /Audio/Mecha/nominalnano.ogg
-      
+
 - type: entity
   id: SyndieMech
   abstract: true
@@ -178,6 +183,12 @@
     drawRate: 1
     delay: 3
   - type: ActiveInputMover
+# 🌟Starlight-start🌟
+  - type: Prying
+    pryPowered: false
+    force: false
+    useSound: /Audio/Items/jaws_pry.ogg
+# 🌟Starlight-end🌟
 
 # Ripley MK-I
 - type: entity
@@ -243,7 +254,7 @@
   id: MechRipley2
   parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
   name: Ripley APLU MK-II
-  description: The "MK-II" has a pressurized cabin for space operations, but the added weight has slowed it down.
+  description: The "MK-II" has a pressurized cabin for space operations, and stronger clamps are able to force doors open, but the added weight has slowed it down. # 🌟Starlight-Change
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -289,6 +300,10 @@
     graph: PaddyUpgrade
     node: start
     defaultTarget: paddy
+# 🌟Starlight-start🌟
+  - type: Prying
+    pryPowered: true
+# 🌟Starlight-end🌟
 
 - type: entity
   id: MechRipley2Battery
@@ -301,7 +316,7 @@
       - PowerCellHigh
       mech-gas-tank-slot:
       - MechAirTankFilled
-      
+
 # Paddy
 - type: entity
   id: MechPaddy
@@ -325,13 +340,14 @@
   - type: Mech
     equipmentWhitelist:
       tags:
-      - CombatMech
+      - PaddyMech
       - IndustrialMech
     baseState: base
     openState: base-open
     brokenState: base-broken
     mechToPilotDamageMultiplier: 0.60
     airtight: true
+    maxEquipmentAmount: 4 # 🌟Starlight-Change
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -339,9 +355,10 @@
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
+    bluntStaminaDamageFactor: 1.5 # 🌟Starlight-Change
     damage:
       types:
-        Blunt: 30 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. # 
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4
@@ -363,7 +380,7 @@
       - PowerCellHigh
       mech-gas-tank-slot:
       - MechAirTankFilled
-      
+
 - type: entity
   id: MechPaddyFilled
   parent: MechPaddyBattery
@@ -373,6 +390,7 @@
     startingEquipment:
       - WeaponMechCombatDisabler
       - WeaponMechCombatFlashbangLauncher
+#      - MechEquipmentSecGrabber
 
 # Clarke
 - type: entity
@@ -632,11 +650,15 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 25
+        Blunt: 30 #THWACK
         Structural: 180
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2.6
+# 🌟Starlight-start🌟
+    baseWalkSpeed: 2.4
+    baseSprintSpeed: 3.7
+# 🌟Starlight-end🌟
+  - type: Damageable
+    damageModifierSet: LightArmor
   - type: MechThrusters
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
@@ -899,7 +921,7 @@
         Structural: 200
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.7
+    baseSprintSpeed: 4.0 # 🌟Starlight-Change
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: MechThrusters

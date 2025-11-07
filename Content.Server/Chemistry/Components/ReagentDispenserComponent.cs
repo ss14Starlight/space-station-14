@@ -24,8 +24,14 @@ namespace Content.Server.Chemistry.Components
 
         [ViewVariables(VVAccess.ReadWrite)]
         public ReagentDispenserDispenseAmount DispenseAmount = ReagentDispenserDispenseAmount.U10;
-        
+
+        #region Starlight
+
         [DataField]
-        public Dictionary<ProtoId<ReagentPrototype>, float> GeneratableReagents = new(); // Starlight-edit
+        public Dictionary<ProtoId<ReagentPrototype>, float> GeneratableReagents = new();
+
+        [DataField]
+        public LocId? NoEnergyPopup = "reagent-dispenser-popup-no-energy";
+        #endregion
     }
 }

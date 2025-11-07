@@ -3,8 +3,10 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Shared.Localization; // Starlight
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -26,6 +28,8 @@ public abstract partial class SharedStationAiSystem
         SubscribeLocalEvent<StationAiHeldComponent, InteractionAttemptEvent>(OnHeldInteraction);
         SubscribeLocalEvent<StationAiHeldComponent, AttemptRelayActionComponentChangeEvent>(OnHeldRelay);
         SubscribeLocalEvent<StationAiHeldComponent, JumpToCoreEvent>(OnCoreJump);
+        SubscribeLocalEvent<StationAiHeldComponent, StationAiOpenWarpActionEvent>(OnOpenWarpAction); // Starlight
+
         SubscribeLocalEvent<TryGetIdentityShortInfoEvent>(OnTryGetIdentityShortInfo);
     }
 
@@ -49,20 +53,23 @@ public abstract partial class SharedStationAiSystem
         if (!TryGetCore(ent.Owner, out var core) || core.Comp?.RemoteEntity == null)
             return;
 
-        _xforms.DropNextTo(core.Comp.RemoteEntity.Value, core.Owner) ;
+        _xforms.DropNextTo(core.Comp.RemoteEntity.Value, core.Owner);
     }
 
     /// <summary>
-    /// Tries to get the entity held in the AI core using StationAiCore.
+    /// Tries to find an AI being held in by an entity using <see cref="StationAiHolderComponent"/>.
     /// </summary>
-    public bool TryGetHeld(Entity<StationAiCoreComponent?> entity, out EntityUid held)
+    /// <param name="entity">The station AI holder.</param>
+    /// <param name="held">The found AI.</param>
+    /// <returns>True if an AI is found.</returns>
+    public bool TryGetHeld(Entity<StationAiHolderComponent?> entity, [NotNullWhen(true)] out EntityUid? held)
     {
         held = EntityUid.Invalid;
 
         if (!Resolve(entity.Owner, ref entity.Comp))
             return false;
 
-        if (!_containers.TryGetContainer(entity.Owner, StationAiCoreComponent.Container, out var container) ||
+        if (!_containers.TryGetContainer(entity.Owner, StationAiHolderComponent.Container, out var container) ||
             container.ContainedEntities.Count == 0)
             return false;
 
@@ -70,26 +77,32 @@ public abstract partial class SharedStationAiSystem
         return true;
     }
 
-    /// <summary>
-    /// Tries to get the entity held in the AI using StationAiHolder.
-    /// </summary>
-    public bool TryGetHeld(Entity<StationAiHolderComponent?> entity, out EntityUid held)
-    {
-        TryComp<StationAiCoreComponent>(entity.Owner, out var stationAiCore);
 
-        return TryGetHeld((entity.Owner, stationAiCore), out held);
+    /// <summary>
+    /// Tries to find an AI being held in by an entity using <see cref="StationAiCoreComponent"/>.
+    /// </summary>
+    /// <param name="entity">The station AI core.</param>
+    /// <param name="held">The found AI.</param>
+    /// <returns>True if an AI is found.</returns>
+    public bool TryGetHeld(Entity<StationAiCoreComponent?> entity, [NotNullWhen(true)] out EntityUid? held)
+    {
+        held = null;
+
+        return TryComp<StationAiHolderComponent>(entity.Owner, out var holder) &&
+            TryGetHeld((entity, holder), out held);
     }
 
+    /// <summary>
+    /// Tries to find the station AI core holding an AI.
+    /// </summary>
+    /// <param name="entity">The AI.</param>
+    /// <param name="core">The found AI core.</param>
+    /// <returns>True if an AI core is found.</returns>
     public bool TryGetCore(EntityUid entity, out Entity<StationAiCoreComponent?> core)
     {
-        var xform = Transform(entity);
-        var meta = MetaData(entity);
-        var ent = new Entity<TransformComponent?, MetaDataComponent?>(entity, xform, meta);
-
-        if (!_containers.TryGetContainingContainer(ent, out var container) ||
+        if (!_containers.TryGetContainingContainer(entity, out var container) ||
             container.ID != StationAiCoreComponent.Container ||
-            !TryComp(container.Owner, out StationAiCoreComponent? coreComp) ||
-            coreComp.RemoteEntity == null)
+            !TryComp(container.Owner, out StationAiCoreComponent? coreComp))
         {
             core = (EntityUid.Invalid, null);
             return false;
@@ -106,6 +119,12 @@ public abstract partial class SharedStationAiSystem
 
         args.Target = core.Comp?.RemoteEntity;
     }
+    // Starlight-start
+    protected virtual void OnOpenWarpAction(Entity<StationAiHeldComponent> ent, ref StationAiOpenWarpActionEvent args)
+    {
+        args.Handled = true;
+    }
+    // Starlight-end
 
     private void OnRadialMessage(StationAiRadialMessage ev)
     {

@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: FunClownPinata
+  icon:
+    sprite: _Starlight/Objects/Fun/Pinatas/clown.rsi
+    state: pinata
+  product: CrateFunPinata
+  cost: 800
+  category: cargoproduct-category-name-fun
+  group: market

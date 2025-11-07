@@ -3,6 +3,9 @@
   name: reagent-name-bleach
   desc: reagent-desc-bleach
   physicalDesc: reagent-physical-desc-strong-smelling
+  allowedJobs:
+  - Janitor
+  - Chemist
   flavor: bitter
   color: "#a1000b"
   boilingPoint: 111.0
@@ -59,6 +62,11 @@
         - !type:ReagentThreshold
           min: 6
         probability: 0.20
+      # STARLIGHT START
+      - !type:GenericStatusEffect
+        key: PoliteLanguage
+        component: PoliteAccent
+      # STARLIGHT END
     Drink:
       effects:
       - !type:ChemVomit
@@ -66,6 +74,11 @@
         - !type:ReagentThreshold
           min: 6
         probability: 0.20
+      # STARLIGHT START
+      - !type:GenericStatusEffect
+        key: PoliteLanguage
+        component: PoliteAccent
+      # STARLIGHT END
 
 - type: reagent
   id: SpaceLube

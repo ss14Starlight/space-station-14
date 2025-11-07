@@ -7,3 +7,63 @@
   sprite:
     sprite: _Starlight/Effects/crayondecals.rsi
     state: ussp
+
+- type: decal
+  id: bee
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: bee
+
+- type: decal
+  id: borgsrogue
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: borgsrogue
+
+- type: decal
+  id: crab
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: crab
+
+- type: decal
+  id: lies
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: lies
+
+- type: decal
+  id: skullsketch
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: skull_sketch
+
+- type: decal
+  id: yip
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: yip

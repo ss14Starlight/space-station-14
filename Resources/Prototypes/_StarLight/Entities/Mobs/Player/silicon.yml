@@ -1,0 +1,31 @@
+# Borgs
+- type: entity
+  id: PlayerSyndicateBorgBattery
+  parent: BorgChassisSelectableSyndicate
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+
+- type: entity
+  id: PlayerSyndicateBorgBatteryGhostRole
+  parent: PlayerSyndicateBorgBattery
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-name
+      description: ghost-role-information-syndicate-cyborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable

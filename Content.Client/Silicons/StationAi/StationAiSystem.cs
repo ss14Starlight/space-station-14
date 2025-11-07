@@ -1,3 +1,4 @@
+using Content.Shared.Intellicard;
 using Content.Shared.Silicons.StationAi;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -20,12 +21,14 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         base.Initialize();
         InitializeAirlock();
         InitializePowerToggle();
+        InitializeWarp(); // Starlight
 
         SubscribeLocalEvent<StationAiOverlayComponent, LocalPlayerAttachedEvent>(OnAiAttached);
         SubscribeLocalEvent<StationAiOverlayComponent, LocalPlayerDetachedEvent>(OnAiDetached);
         SubscribeLocalEvent<StationAiOverlayComponent, ComponentInit>(OnAiOverlayInit);
         SubscribeLocalEvent<StationAiOverlayComponent, ComponentRemove>(OnAiOverlayRemove);
         SubscribeLocalEvent<StationAiCoreComponent, AppearanceChangeEvent>(OnAppearanceChange);
+        SubscribeLocalEvent<IntellicardComponent, AppearanceChangeEvent>(OnIntellicardAppearanceChange);
     }
 
     private void OnAiOverlayInit(Entity<StationAiOverlayComponent> ent, ref ComponentInit args)
@@ -81,15 +84,27 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         if (args.Sprite == null)
             return;
 
-        if (_appearance.TryGetData<PrototypeLayerData>(entity.Owner, StationAiVisualState.Key, out var layerData, args.Component))
-            _sprite.LayerSetData((entity.Owner, args.Sprite), StationAiVisualState.Key, layerData);
+        if (_appearance.TryGetData<PrototypeLayerData>(entity.Owner, StationAiVisualLayers.Icon, out var layerData, args.Component))
+            _sprite.LayerSetData((entity.Owner, args.Sprite), StationAiVisualLayers.Icon, layerData);
 
-        _sprite.LayerSetVisible((entity.Owner, args.Sprite), StationAiVisualState.Key, layerData != null);
+        _sprite.LayerSetVisible((entity.Owner, args.Sprite), StationAiVisualLayers.Icon, layerData != null);
+    }
+
+    private void OnIntellicardAppearanceChange(Entity<IntellicardComponent> entity, ref AppearanceChangeEvent args)
+    {
+        if (args.Sprite == null)
+            return;
+
+        if (_appearance.TryGetData<PrototypeLayerData>(entity.Owner, StationAiVisualLayers.Icon, out var layerData, args.Component))
+            _sprite.LayerSetData((entity.Owner, args.Sprite), StationAiVisualLayers.Icon, layerData);
+
+        _sprite.LayerSetVisible((entity.Owner, args.Sprite), StationAiVisualLayers.Icon, layerData != null);
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
+        ShutdownWarp(); // Starlight
         _overlayMgr.RemoveOverlay<StationAiOverlay>();
     }
 }

@@ -101,6 +101,15 @@
         - id: Paper
           amount: 10
     - type: IdCardConsole
+      accessGroups:
+      - General
+      - Security
+      - Cargo
+      - Command
+      - Research
+      - Medical
+      - Service
+      - Engineering
       privilegedIdSlot:
         name: id-card-clipboard-priviliged-id
         ejectSound: /Audio/Machines/id_swipe.ogg
@@ -170,3 +179,14 @@
         pen_slot: !type:ContainerSlot
         IdCardConsole-privilegedId: !type:ContainerSlot
         IdCardConsole-targetId: !type:ContainerSlot
+
+- type: entity
+  parent: [BoxFolderClipboardEmpty]
+  id: BoxFolderClipboardSalvageLead
+  name: salvage lead clipboard
+  description: Looks like its been taped back together. Covered in space dust.
+  components:
+  - type: StorageFill
+    contents:
+    - id: PrintedDocumentSalvageLeadReport
+      amount: 7

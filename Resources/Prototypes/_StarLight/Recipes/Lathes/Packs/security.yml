@@ -25,6 +25,11 @@
   - WeaponLaserCarbinePractice
   - WeaponFlareGunSecurity
 
+- type: latheRecipePack
+  id: StarlightSecurityAmmoEmagStatic
+  recipes:
+  - L6SawMagazine
+
 # Shared between secfab and emagged autolathe
 - type: latheRecipePack
   id: StarlightSecurityAmmoStatic
@@ -105,7 +110,7 @@
   - MagazineShotgun
   - MagazineShotgunEmpty
   - MagazineShotgunSlug
-  
+
   - SpeedLoaderMagnumBasic
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug
@@ -255,7 +260,22 @@
   - WeaponMechCombatShotgun
   - WeaponMechCombatShotgunIncendiary
   - WeaponMechCombatUltraRifle
+  - WeaponMechCombatXray
+  - WeaponMechChainSword
+  - WeaponMechCombatIon
+  - WeaponMechCombatAMLG90
+  - WeaponMechCombatDisabler
+  - WeaponMechCombatFlashbangLauncher
+  - WeaponMechCombatTaser
+  - WeaponMechCombatImmolationGun
+  - WeaponMechCombatSolarisLaser
+  - WeaponMechCombatFiredartLaser
 
+- type: latheRecipePack
+  id: StarlightSecurityMechsSystems
+  recipes:
+  - MechEquipmentSecGrabber
+  
 - type: latheRecipePack
   id: StarlightSecurityMechs
   recipes:

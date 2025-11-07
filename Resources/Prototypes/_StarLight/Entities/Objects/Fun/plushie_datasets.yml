@@ -149,6 +149,12 @@
     count: 10
 
 - type: localizedDataset
+  id: PlushiesNebula
+  values:
+    prefix: plushie-nebula-
+    count: 8
+
+- type: localizedDataset
   id: PlushiesKilla
   values:
     prefix: plushie-killa-

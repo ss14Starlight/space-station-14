@@ -1,7 +1,7 @@
 ﻿{
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "ported from cosmatic drift, who in turn ported them from /TG/ station.",
+    "copyright": "ported from cosmatic drift, who in turn ported them from /TG/ station, ai_cloudkat from Paradise.",
     "size": {
         "x": 32,
         "y": 32
@@ -374,6 +374,20 @@
                     0.1,
                     0.1,
                     0.1
+                ]
+            ]
+        },
+        {
+            "name": "ai_cloudkat",
+            "delays": [
+                [
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15
                 ]
             ]
         }

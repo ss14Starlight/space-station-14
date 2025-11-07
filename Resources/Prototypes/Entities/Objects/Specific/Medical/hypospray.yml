@@ -482,7 +482,7 @@
   name: space medipen
   parent: ChemicalMedipen
   id: SpaceMedipen
-  description: Contains a mix of chemicals that protect you from the deadly effects of space.
+  description: Contains a mix of chemicals that protect you from the deadly effects of space. Only use one! #Starlight
   components:
   - type: Item
     inhandVisuals:
@@ -518,7 +518,7 @@
         reagents:
           - ReagentId: Leporazine
             Quantity: 10
-          - ReagentId: Barozine
+          - ReagentId: BarozinePlus #Starlight, minimizes OD risk, makes Space Medipens less viable as assassination tools
             Quantity: 20
 
 - type: entity

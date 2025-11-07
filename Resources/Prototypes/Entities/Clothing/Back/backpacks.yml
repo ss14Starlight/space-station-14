@@ -25,6 +25,7 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+  - type: SwitchableEquipMode # Starlight
   # to prevent bag open/honk spam
   - type: UseDelay
     delay: 0.5
@@ -127,6 +128,9 @@
   components:
   - type: Sprite
     sprite: Clothing/Back/Backpacks/mime.rsi
+  - type: Storage
+    storageOpenSound: null
+    storageInsertSound: null
 
 - type: entity
   parent: ClothingBackpack

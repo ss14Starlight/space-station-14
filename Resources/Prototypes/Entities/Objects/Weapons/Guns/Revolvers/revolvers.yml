@@ -95,6 +95,11 @@
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
+  - type: StealTarget
+    stealGroup: OfficerHandgun
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-inanimate #Starlight
+    weight: 0.01 #Starlight
 
 - type: entity
   name: Mateba

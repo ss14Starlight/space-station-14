@@ -22,6 +22,7 @@
   id: CartridgeRifleSP
   name: cartridge (.20 rifle SP)
   parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Standard kinetic ammunition is common and useful in most situations.
   components:
   - type: HitScanCartridgeAmmo
     hitscan: BulletRifleTraceSP
@@ -82,6 +83,7 @@
   id: CartridgeRiflePractice
   name: cartridge (.20 rifle practice)
   parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Chalk ammunition is generally non-harmful, used for practice.
   components:
   - type: HitScanCartridgeAmmo
     hitscan: BulletRifleTracePractice
@@ -97,6 +99,7 @@
   id: CartridgeRifleIncendiary
   name: cartridge (.20 rifle incendiary)
   parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
   components:
   - type: HitScanCartridgeAmmo
     hitscan: BulletRifleTraceIncendiary
@@ -112,6 +115,7 @@
   id: CartridgeRifleUranium
   name: cartridge (.20 rifle uranium)
   parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
   components:
   - type: HitScanCartridgeAmmo
     hitscan: BulletRifleTraceUranium

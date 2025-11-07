@@ -257,3 +257,93 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/fents.rsi
     state: fents
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandWantedClown
+  name: "Wanted, Clown"
+  description: "A wanted poster for a Clown. Thanks to the mask, you have no idea who."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
+    state: wanted_clown
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandWantedFreak
+  name: "Wanted, Freak"
+  description: "A wanted poster for Freak the Clown. It's outdated, you think."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
+    state: wanted_freak
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandWantedIan
+  name: "Wanted, Ian"
+  description: "A wanted poster for Ian the Corgi. What sins has he committed? What unseen cruelty lies behind those empty eyes?"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
+    state: wanted_ian
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandWantedJohnToe
+  name: "Wanted, John Toe"
+  description: "A wanted poster for John Toe. Anyone who tries to claim this bounty is already dead, they just dont know it yet."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
+    state: wanted_johntoe
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandWantedMimeSexy
+  name: "Wanted, Mime"
+  description: "A wanted poster for a rather attractive looking Mime... They've been convicted of ERP and sentenced to death."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
+    state: wanted_mimesexy
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandWantedPunPun
+  name: "Wanted, Pun Pun"
+  description: "A wanted poster for Pun Pun the Bar Monkey. Broke into EVA and then tried to steal Captain's spare ID. Classic."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
+    state: wanted_punpun
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandWantedStirStir
+  name: "Wanted, Stir Stir"
+  description: "A wanted poster for Stir Stir, Pun's cousin. He's a real cell stuffer, been in and out of Genpop almost every day for years. You dont know why Sec hasn't just executed him already."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
+    state: wanted_stirstir
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandWantedTraitor
+  name: "Wanted, Unknown"
+  description: "A wanted poster for someone in very valid looking gear. You wish you had their mask. And their insulated combat gloves."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
+    state: wanted_traitor
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSaline
+  name: "NO SALINE!"
+  description: "An advisory from NanoTrasen's medical department reminding doctors to check their patients' species before administering airloss-related medicines. Saline can kill!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/saline.rsi
+    state: saline

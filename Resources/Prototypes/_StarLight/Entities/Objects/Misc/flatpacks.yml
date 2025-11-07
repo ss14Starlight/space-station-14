@@ -37,3 +37,12 @@
   components:
   - type: Flatpack
     entity: KitchenStove
+
+- type: entity
+  parent: BaseFlatpack
+  id: SlopDispenserFlatpack
+  name: nutrient paste dispenser flatpack
+  description: A flatpack used for constructing a nutrient paste dispenser.
+  components:
+  - type: Flatpack
+    entity: SlopDispenser

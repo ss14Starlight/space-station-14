@@ -11,11 +11,11 @@
         borg_module:
           - BorgModuleTool
           - BorgModuleFireExtinguisher
-        ears: 
+        ears:
           - ClothingHeadsetAssistant
-        head: 
+        head:
           - ClothingHeadHelmetEVALarge
-        outerClothing: 
+        outerClothing:
           - ClothingOuterHardsuitEVA
         mask:
           - ClothingMaskBreath
@@ -38,8 +38,6 @@
   description: A smart dog, loves stating it's laws.
   id: StationBorgiChassis
   components:
-    - type: ReplacementAccent
-      accent: dog
     - type: ItemSlots
       slots:
         cell_slot:
@@ -75,8 +73,6 @@
   name: SubWoofer
   description: A smart dog, with an obsession for sick bass beats and stating laws.
   components:
-    - type: ReplacementAccent
-      accent: dog
     - type: ItemSlots
       slots:
         cell_slot:
@@ -103,7 +99,7 @@
         borg_module:
         - BorgModuleOperative
         - BorgModuleL6C
-        - BorgModuleEsword
+        - BorgModuleEsword # We're not giving the double e-sword to the borgi. Buy the proper borg.
 
 - type: entity
   parent: BaseSyndicateBorgiChassis
@@ -190,28 +186,6 @@
       coldDamage:
         types:
           Cold: 0.01
-    - type: LanguageKnowledge
-      speaks:
-      - GalacticCommon
-      - Machine
-      - Dog
-      understands:
-      - GalacticCommon
-      - SolCommon
-      - Machine
-      - Canilunzt
-      - Sign
-      - Bubblish
-      - Chittin
-      - Draconic
-      - Marish
-      - Moffic
-      - Nekomimetic
-      - Sylvan
-      - Terrum
-      - VoxPidgin
-      - Scratch
-      - Dog
     - type: Inventory
       speciesId: dog
       templateId: SmartCorgi
@@ -247,18 +221,31 @@
     - type: ContainerFill
       containers:
         borg_brain:
-        - MMI
+          - MMI
         borg_module:
-        - XenoborgModuleBasic
-        - XenoborgModuleTool
-        - BorgModuleSyndicateWeapon
-        - BorgModuleTopicals
+          - XenoborgModuleBasic
+          - XenoborgModuleTool
+          - BorgModuleSyndicateWeapon
+          - BorgModuleTopicals
+        ears:
+          - ClothingHeadsetAssistant
+        head:
+          - ClothingHeadHelmetEVALarge
+        outerClothing:
+          - ClothingOuterHardsuitEVA
+        mask:
+          - ClothingMaskBreath
+        suitstorage:
+          - OxygenTankFilled
+        id:
+          - BorgiClearPDA
+        back:
+          - ClothingBagPet
     - type: ItemSlots
       slots:
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHyper
-
 
 - type: entity
   parent: XenoBorgiPrinted
@@ -276,9 +263,23 @@
     - type: ContainerFill
       containers:
         borg_brain:
-        - MMIFilled
+          - MMIFilled
         borg_module:
-        - XenoborgModuleBasic
-        - XenoborgModuleTool
-        - BorgModuleSyndicateWeapon
-        - BorgModuleTopicals
+          - XenoborgModuleBasic
+          - XenoborgModuleTool
+          - BorgModuleSyndicateWeapon
+          - BorgModuleTopicals
+        ears:
+          - ClothingHeadsetAssistant
+        head:
+          - ClothingHeadHelmetEVALarge
+        outerClothing:
+          - ClothingOuterHardsuitEVA
+        mask:
+          - ClothingMaskBreath
+        suitstorage:
+          - OxygenTankFilled
+        id:
+          - BorgiClearPDA
+        back:
+          - ClothingBagPet

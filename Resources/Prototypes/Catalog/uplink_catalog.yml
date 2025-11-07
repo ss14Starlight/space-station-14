@@ -1106,23 +1106,25 @@
         components:
           - SurplusBundle
 
-- type: listing
-  id: UplinkAntimovCircuitBoard
-  name: uplink-antimov-law-name
-  description: uplink-antimov-law-desc
-  productEntity: AntimovCircuitBoard
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 10
-  cost:
-    Telecrystal: 14
-  categories:
-  - UplinkDisruption
-  conditions:
-  - !type:StoreWhitelistCondition
-     blacklist:
-       tags:
-       - NukeOpsUplink
+# Starlight start edit: Syndimov
+# - type: listing
+#   id: UplinkAntimovCircuitBoard
+#   name: uplink-antimov-law-name
+#   description: uplink-antimov-law-desc
+#   productEntity: AntimovCircuitBoard
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Telecrystal: 10
+#   cost:
+#     Telecrystal: 14
+#   categories:
+#   - UplinkDisruption
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#      blacklist:
+#        tags:
+#        - NukeOpsUplink
+# Starlight end edit: Syndimov
 
 - type: listing
   id: UplinkNukieAntimovCircuitBoard
@@ -1199,19 +1201,20 @@
         components:
         - SurplusBundle
 
-
-- type: listing
-  id: UplinkSingarityBeacon
-  name: uplink-singularity-beacon-name
-  description: uplink-singularity-beacon-desc
-  productEntity: SingularityBeacon
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 4
-  cost:
-    Telecrystal: 12
-  categories:
-    - UplinkDisruption
+# Starlight edit Start: Disable singularity beacon as its ban bait
+# - type: listing
+#   id: UplinkSingarityBeacon
+#   name: uplink-singularity-beacon-name
+#   description: uplink-singularity-beacon-desc
+#   productEntity: SingularityBeacon
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Telecrystal: 4
+#   cost:
+#     Telecrystal: 12
+#   categories:
+#     - UplinkDisruption
+# Starlight edit end
 
 - type: listing
   id: UplinkCameraBug
@@ -1280,13 +1283,13 @@
           - NukeOpsUplink
 
 - type: listing
-  id: UplinkReinforcementRadioSyndicateCyborgAssault
-  name:  uplink-reinforcement-radio-cyborg-assault-name
-  description: uplink-reinforcement-radio-cyborg-assault-desc
-  productEntity: ReinforcementRadioSyndicateCyborgAssault
+  id: ReinforcementRadioSyndicateCyborg # Starlight-edit: Selectable chassis for syndie borgs
+  name:  uplink-reinforcement-radio-cyborg-name # Starlight-edit: Selectable chassis for syndie borgs
+  description: uplink-reinforcement-radio-cyborg-desc # Starlight-edit: Selectable chassis for syndie borgs
+  productEntity: ReinforcementRadioSyndicateCyborg # Starlight-edit: Selectable chassis for syndie borgs
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
   cost:
-    Telecrystal: 65
+    Telecrystal: 30 # Starlight-edit: Selectable chassis for syndie borgs
   categories:
     - UplinkAllies
   conditions:

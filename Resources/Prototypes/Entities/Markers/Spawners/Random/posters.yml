@@ -91,6 +91,7 @@
       - PosterContrabandInterdyne
       - PosterContrabandWaffleCorp
       - PosterContrabandMissingSpacepen
+      #region Starlight
       - PosterContrabandYoutoolpia
       - PosterContrabandDoCauseCancer
       - PosterContrabandLnuGlorf
@@ -101,6 +102,15 @@
       - PosterContrabandIlluminatePropaganda
       - PosterContrabandHolyInsuls
       - PosterContrabandFentsAndCo
+      - PosterContrabandWantedClown
+      - PosterContrabandWantedFreak
+      - PosterContrabandWantedIan
+      - PosterContrabandWantedJohnToe
+      - PosterContrabandWantedMimeSexy
+      - PosterContrabandWantedPunPun
+      - PosterContrabandWantedStirStir
+      - PosterContrabandWantedTraitor
+      #endregion Starlight
     chance: 1
 
 - type: entity
@@ -181,5 +191,6 @@
       - PosterLegitRipleyCertified
       - PosterLegitKillersClinic
       - PosterlegitLawPoster
+      - PosterLegitSaline
       #endregion Starlight
     chance: 1

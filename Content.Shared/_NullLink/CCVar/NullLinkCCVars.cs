@@ -13,6 +13,9 @@ public sealed partial class NullLinkCCVars
     public static readonly CVarDef<string> Project =
         CVarDef.Create("nulllink.id.project", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
+    public static readonly CVarDef<string> Token =
+        CVarDef.Create("nulllink.id.token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
     public static readonly CVarDef<string> Server =
         CVarDef.Create("nulllink.id.server", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 

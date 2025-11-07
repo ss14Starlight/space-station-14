@@ -137,6 +137,11 @@
     outerClothing: ClothingOuterWinterMed
 
 - type: loadout
+  id: WindbreakerMedical
+  equipment:
+    outerClothing: ClothingOuterWindbreakerMedical
+
+- type: loadout
   id: SeniorPhysicianLabCoat
   effects:
   - !type:GroupLoadoutEffect

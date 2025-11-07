@@ -5,6 +5,7 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Revolutionary.Components;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared.Mind.Filters;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -23,7 +24,17 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
 
         SubscribeLocalEvent<PickSpecificPersonComponent, ObjectiveAssignedEvent>(OnSpecificPersonAssigned);
         SubscribeLocalEvent<PickRandomPersonComponent, ObjectiveAssignedEvent>(OnRandomPersonAssigned);
+        SubscribeLocalEvent<PickRandomPersonComponent, MapInitEvent>(OnMapInit); // SL add
     }
+
+    // SL start
+    private void OnMapInit(Entity<PickRandomPersonComponent> ent, ref MapInitEvent args)
+    {
+        // inject new filter blacklisting NoObjectiveTargetComponent
+        var filter = new BodyMindFilter { Whitelist = { Components = ["NoObjectiveTarget"] }, Inverted = true };
+        ent.Comp.Filters.Add(filter);
+    }
+    // SL end
 
     private void OnSpecificPersonAssigned(Entity<PickSpecificPersonComponent> ent, ref ObjectiveAssignedEvent args)
     {

@@ -120,6 +120,15 @@
     - type: Paper
       content: doc-text-printer-arrest-report
 
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentSalvageLeadReport
+  name: Salvage Lead report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-salvagelead-report
+
 # Statements
 
 - type: entity
@@ -455,3 +464,14 @@
   components:
     - type: Paper
       content: doc-text-printer-centcomm-communication
+
+#greenshift alert
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentGreenshiftAlert
+  name: Notice of Station Location
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-station-location

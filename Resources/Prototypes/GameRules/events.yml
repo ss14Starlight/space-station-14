@@ -43,9 +43,10 @@
     - id: NinjaSpawn
     - id: ParadoxCloneSpawn
     - id: SleeperAgents
-    - id: ZombieOutbreak
+ #   - id: ZombieOutbreak starlight - no more midround zeds
     - id: LoneOpsSpawn
     - id: WizardSpawn
+    - id: AbductorsSpawn # Starlight
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -61,13 +62,11 @@
         - id: DerelictJanitorCyborgSpawn
         - id: DerelictMedicalCyborgSpawn
         - id: DerelictMiningCyborgSpawn
+        - id: DerelictBorgiSpawn # Starlight
     - !type:GroupSelector # Other Borgs
       weight: 15
       children:
         - id: DerelictSyndicateAssaultCyborgSpawn
-
-    - id: AbductorsSpawn # Starlight
-    - id: DerelictBorgiSpawn # Starlight
     
 - type: entity
   id: BaseStationEvent
@@ -154,7 +153,7 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-bureaucratic-error-announcement
-    earliestStart: 45 # 🌟Starlight🌟 Why could this happen roundstart?!
+    earliestStart: 40 # 🌟Starlight🌟 Why could this happen roundstart?!
     minimumPlayers: 40 # 🌟Starlight🌟
     weight: 3
     duration: 1
@@ -193,10 +192,10 @@
   id: DragonSpawn
   components:
   - type: StationEvent
-    weight: 5.5 # 🌟Starlight🌟 Casualization
+    weight: 3 # 🌟Starlight🌟 Casualization
     earliestStart: 50 # 🌟Starlight🌟 Casualization
     reoccurrenceDelay: 45 # 🌟Starlight🌟 Casualization
-    minimumPlayers: 20
+    minimumPlayers: 40 # 🌟Starlight🌟 Casualization
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
@@ -224,7 +223,7 @@
   id: NinjaSpawn
   components:
   - type: StationEvent
-    weight: 5 # 🌟Starlight🌟 Casualization
+    weight: 3 # 🌟Starlight🌟 Casualization
     duration: null
     earliestStart: 45 # 🌟Starlight🌟 Casualization
     reoccurrenceDelay: 45 # 🌟Starlight🌟 Casualization
@@ -318,7 +317,7 @@
   - type: StationEvent
     weight: 7.5
     duration: 1
-    earliestStart: 45
+    earliestStart: 30 # SL 45 -> 30
     minimumPlayers: 20
   - type: RandomSpawnRule
     prototype: MobRevenant
@@ -521,7 +520,7 @@
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
-    earliestStart: 20
+    earliestStart: 40 # 🌟Starlight🌟 Casualization
     minimumPlayers: 20
     weight: 1.5
     duration: 60
@@ -571,7 +570,7 @@
   components:
   - type: StationEvent
     earliestStart: 55 # 🌟Starlight🌟 Casualization
-    weight: 4.5 # 🌟Starlight🌟 Casualization
+    weight: 3 # 🌟Starlight🌟 Casualization
     minimumPlayers: 20
     duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
   - type: RuleGrids
@@ -714,7 +713,7 @@
     earliestStart: 0
     duration: 1
     minimumPlayers: 1
-    maxOccurrences: 2
+    maxOccurrences: 4 #SL 2 -> 4
     weight: 10
   - type: RandomSpawnRule
     prototype: RandomSatchelSpawner

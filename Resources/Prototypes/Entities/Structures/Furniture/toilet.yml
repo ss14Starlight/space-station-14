@@ -82,7 +82,9 @@
     interfaces:
       enum.DisposalUnitUiKey.Key:
         type: DisposalUnitBoundUserInterface
-  - type: RatKingRummageable
+  - type: Rummageable
+    table: !type:NestedSelector
+      tableId: RatKingLoot
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
@@ -115,6 +117,8 @@
         ToolOpenableVisualState.StashOpen:
           Open: { state: disposal-open }
           Closed: { state: disposal-closed }
+  - type: ChildBlockVision # Starlight
+    enabled: false # Starlight
 
 - type: entity
   name: toilet

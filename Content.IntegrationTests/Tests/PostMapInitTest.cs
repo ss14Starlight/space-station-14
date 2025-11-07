@@ -98,7 +98,8 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_Starlight/Stations/Lobster.yml",
             "/Maps/_Starlight/Stations/Orwell.yml",
             "/Maps/_Starlight/Stations/Remix.yml",
-            "/Maps/_Starlight/Stations/Starboard.yml"
+            "/Maps/_Starlight/Stations/Starboard.yml",
+            "/Maps/_Starlight/Shuttles/RecluseClassSHC.yml"
             #endregion
         };
 
@@ -139,6 +140,7 @@ namespace Content.IntegrationTests.Tests
             #region Starlight
             "Gateway",
             "Leth",
+            "Ming",
             "Origin",
             "Orwell",
             "Prism",
@@ -163,7 +165,8 @@ namespace Content.IntegrationTests.Tests
             "StarlightPacked",
             "StarlightReach",
             "StarlightSaltern",
-            "StarlightSilica"
+            "StarlightSilica",
+            "StarlightCluster"
             #endregion
         };
 

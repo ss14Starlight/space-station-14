@@ -38,4 +38,16 @@ public sealed partial class AlertArmoryDefinition
     ///</summary>
     [DataField]
     public Color? AnnouncementColor;
+
+    ///<summary>
+    /// Announcement message which will be sent when armory is recalled.
+    /// </summary>
+    [DataField]
+    public string? RecallAnnouncement;
+
+    ///<summary>
+    /// Color of announcement message which will be sended when armory is recalled.
+    ///</summary>
+    [DataField]
+    public Color? RecallAnnouncementColor;
 }

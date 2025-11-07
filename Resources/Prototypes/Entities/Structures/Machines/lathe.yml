@@ -132,10 +132,11 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
-  - type: EmagLatheRecipes
+  - type: EmagLatheRecipes # Starlight start
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
+    - StarlightSecurityAmmoEmagStatic # Starlight end
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -209,7 +210,6 @@
     - Janitor
     - Instruments
     - Equipment
-    - FauxTiles
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -264,7 +264,6 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    - CircuitFloorsStatic
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
@@ -275,9 +274,12 @@
     - MechBoards
     - ShuttleBoards
     - StarlightMechBoards
+    - StarlightLawboards
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
+    emagStaticPacks: # Starlight
+    - StarlightDangerousLawboards # Starlight
   - type: MaterialStorage
     whitelist:
       tags:
@@ -297,6 +299,17 @@
     sprite: Structures/Machines/circuit_imprinter_hypercon.rsi
   - type: Machine
     board: CircuitImprinterHyperConvectionMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: EmagLatheRecipes
+    emagDynamicPacks:
+    - StarlightSecurityBoards
+    emagStaticPacks: # Starlight
+    - StarlightDangerousLawboards # Starlight
 
 - type: entity
   id: ExosuitFabricator
@@ -328,7 +341,6 @@
     - MechParts
     - MechEquipment
     - StarlightMechEquipment
-    - StarlightMechWeapon
     - StarlightSecurityMechs
     - StarlightMechParts
   - type: EmagLatheRecipes
@@ -410,10 +422,11 @@
     idleState: icon
     runningState: icon
     staticPacks:
-    - SecurityEquipmentStatic
+    - SecurityEquipmentStatic # Starlight start
     - SecurityPracticeStatic
     - StarlightSecurityAmmoStatic
-    - SecurityWeaponsStatic
+    - StarlightSecurityAmmoEmagStatic
+    - SecurityWeaponsStatic # Starlight end
     dynamicPacks:
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
@@ -426,6 +439,12 @@
     - SecurityDisablers
     - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
+#    - StarlightSecurityMechsSystems
+  #region Starlight secfab emagging
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSyndicateModulesSecfab
+  #endregion Starlight secfab emagging
   - type: MaterialStorage
     whitelist:
       tags:
@@ -708,7 +727,16 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - FloorTilesStatic
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    dynamicPacks:
+    - FauxTiles
   - type: MaterialStorage
     whitelist:
       tags:
