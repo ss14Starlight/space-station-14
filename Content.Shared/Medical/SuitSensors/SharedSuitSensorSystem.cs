@@ -1,4 +1,5 @@
 using System.Numerics;
+using Robust.Shared.GameObjects; // Starlight
 using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Clothing;
@@ -153,6 +154,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             case SuitSensorMode.SensorCords:
                 msg = "suit-sensor-examine-cords";
                 break;
+
             default:
                 return;
         }
@@ -290,6 +292,10 @@ public abstract class SharedSuitSensorSystem : EntitySystem
 
         sensors.Comp.Mode = mode;
         Dirty(sensors);
+
+        // Starlight-start
+        RaiseLocalEvent(sensors.Owner, new SuitSensorModeChangedEvent(mode));
+        // Starlight-end
 
         if (userUid != null)
         {
@@ -466,3 +472,15 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         return status;
     }
 }
+
+// Starlight-start
+public sealed class SuitSensorModeChangedEvent : EntityEventArgs
+{
+    public SuitSensorMode Mode { get; }
+
+    public SuitSensorModeChangedEvent(SuitSensorMode mode)
+    {
+        Mode = mode;
+    }
+}
+// Starlight-end

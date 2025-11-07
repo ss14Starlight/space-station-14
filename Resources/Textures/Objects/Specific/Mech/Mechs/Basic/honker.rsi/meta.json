@@ -9,7 +9,25 @@
   "states": [
     {
       "name": "base",
-      "directions": 4
+      "directions": 4,
+      "delays": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ]
     },
     {
       "name": "base-open"
@@ -19,7 +37,25 @@
     },
     {
       "name": "dark",
-      "directions": 4
+      "directions": 4,
+      "delays": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ]
     },
     {
       "name": "dark-open"

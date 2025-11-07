@@ -1,0 +1,8 @@
+﻿- type: latheRecipe
+  id: NutrientPasteDispenserSlop
+  result: FoodThaSlop
+  categories:
+    - Food
+  completetime: 3
+  materials:
+    Biomass: 15

@@ -210,12 +210,9 @@
     - id: LoneOpsSpawn
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
-    - id: DerelictBorgiSpawn
     - id: WizardSpawn
-
-    # Starlight gamerules
+    # Starlight gamerules:
     - id: AbductorsSpawn
-    - id: DerelictBorgiSpawn
 
 - type: entity
   parent: BaseGameRule

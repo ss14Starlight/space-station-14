@@ -140,6 +140,7 @@ namespace Content.IntegrationTests.Tests
             #region Starlight
             "Gateway",
             "Leth",
+            "Ming",
             "Origin",
             "Orwell",
             "Prism",

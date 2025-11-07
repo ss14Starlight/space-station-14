@@ -350,7 +350,7 @@
   icon: { sprite:  Objects/Fun/Balloons/corgi.rsi, state: icon }
   productEntity: SyndiBorgiKit1
   cost:
-    Telecrystal: 60
+    Telecrystal: 30
   categories:
     - UplinkAllies
   conditions:
@@ -368,7 +368,7 @@
   icon: { sprite:  Objects/Fun/Balloons/corgi.rsi, state: icon }
   productEntity: SyndiBorgiKit2
   cost:
-    Telecrystal: 50
+    Telecrystal: 30
   categories:
     - UplinkAllies
   conditions:

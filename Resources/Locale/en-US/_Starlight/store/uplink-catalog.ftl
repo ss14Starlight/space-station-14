@@ -42,7 +42,7 @@ uplink-syndicate-borgi-name = Syndicate Borgi
 uplink-syndicate-borgi-desc = A basic syndicate borgi
 
 uplink-syndicate-borgi-kitted-name = Kitted Syndicate Borgi
-uplink-syndicate-borgi-kitted-desc = A syndicate borgi, with assault modules
+uplink-syndicate-borgi-kitted-desc = A syndicate borgi, outfitted with an L6 module, operative module and E-sword module.
 
 uplink-syndicate-borgi-speed-name = Speed Syndicate Borgi
 uplink-syndicate-borgi-speed-desc = A syndicate borgi, with dagger modules and additional speed

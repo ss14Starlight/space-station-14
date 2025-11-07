@@ -42,7 +42,6 @@
   dummyPrototype: BorgChassisSyndicateAssault
 
   # Functional
-  extraModuleCount: 4
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
@@ -53,7 +52,7 @@
   - BorgModuleTool
   - BorgModuleOperative
   - BorgModuleL6C
-  - BorgModuleEsword
+  - BorgModuleDoubleEsword
 
   radioChannels:
   - Syndicate
@@ -73,7 +72,6 @@
   dummyPrototype: BorgChassisSyndicateMedical
 
   # Functional
-  extraModuleCount: 4
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
@@ -104,7 +102,6 @@
   dummyPrototype: BorgChassisSyndicateSaboteur
 
   # Functional
-  extraModuleCount: 4
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
@@ -135,7 +132,6 @@
   dummyPrototype: BorgChassisSyndicateStealth
 
   # Functional
-  extraModuleCount: 4
   moduleWhitelist:
     tags:
     - BorgModuleGeneric

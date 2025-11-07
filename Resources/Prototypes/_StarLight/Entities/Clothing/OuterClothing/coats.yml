@@ -161,3 +161,136 @@
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterSecurityBomber]
   id: ClothingOuterSecurityBomberOpened
   name: security bomber
+
+# Security Windbreaker
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  id: ClothingOuterWindbreakerSecurity
+  name: security windbreaker
+  description: A stylish red windbreaker with additional inserted plate padding for security usage.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_security
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_security
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.80
+        Piercing: 0.70 
+        Heat: 0.90
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerSecurity]
+  id: ClothingOuterWindbreakerSecurityOpened
+  name: security windbreaker
+
+# Cargo Windbreaker
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing]
+  id: ClothingOuterWindbreakerCargo
+  name: cargo windbreaker
+  description: A simple windbreaker with a fur collar.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_cargo
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_cargo
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerCargo]
+  id: ClothingOuterWindbreakerCargoOpened
+  name: cargo windbreaker
+
+# Engineering Windbreaker
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing]
+  id: ClothingOuterWindbreakerEngineering
+  name: engineering windbreaker
+  description: A reflective windbreaker for engineers.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_engineering
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_engineering
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+  - type: Reflect
+    reflectProb: 0.02
+    reflects:
+    - Energy
+    reflectingInHands: false
+  - type: Tag
+    tags:
+    - HiViz
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerEngineering]
+  id: ClothingOuterWindbreakerEngineeringOpened
+  name: engineering windbreaker
+
+# Medical Windbreaker
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing]
+  id: ClothingOuterWindbreakerMedical
+  name: medical windbreaker
+  description: A light windbreaker to see when you accidentally cut an artery.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_medical
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_medical
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerMedical]
+  id: ClothingOuterWindbreakerMedicalOpened
+  name: medical windbreaker
+
+#Science Windbreaker
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing]
+  id: ClothingOuterWindbreakerScience
+  name: science windbreaker
+  description: a labcoat style windbreaker with a pocket for all of your pens.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_science
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_science
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerScience]
+  id: ClothingOuterWindbreakerScienceOpened
+  name: science windbreaker
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCentcommContraband]
+  id: ClothingOuterCoatWardenCentcomm
+  name: Central Command Armored Winter Coat
+  description: A extremely durable, stylish winter coat made for central command Operators to survive even in the coldest of winter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/Centcomm_coatWarden.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/Centcomm_coatWarden.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Item

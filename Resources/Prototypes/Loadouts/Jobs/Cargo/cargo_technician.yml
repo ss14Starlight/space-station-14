@@ -71,6 +71,11 @@
   equipment:
     outerClothing: ClothingOuterWinterCargo
 
+- type: loadout
+  id: WindbreakerCargo
+  equipment:
+    outerClothing: ClothingOuterWindbreakerCargo
+
 # Shoes
 - type: loadout
   id: CargoWinterBoots

@@ -83,19 +83,25 @@
   name: personnel transport cyborg module
   description: A universal cyborg module which allows the unit to carry small personnel.
   components:
+  - type: Tag
+    tags:
+      - BorgModuleGeneric
+      - PersonnelStorage
   - type: Sprite
     layers:
     - state: generic
     - state: icon-hands
   - type: ItemBorgModule
     hands:
-    - hand:
+    - forceRemovable: true
+      hand:
         emptyRepresentative: MobResomi
         emptyLabel: borg-slot-uppies-empty
         whitelist:
           components:
           - HumanoidAppearance
-    - hand:
+    - forceRemovable: true
+      hand:
         emptyRepresentative: MobResomi
         emptyLabel: borg-slot-uppies-empty
         whitelist:

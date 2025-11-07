@@ -50,6 +50,13 @@
   - type: Storage
     grid:
     - 0,0,4,1
+    # 🌟Starlight - Start🌟
+    whitelist:
+      components:
+        - Smokable
+        - Welder # for lighters
+        - Crayon # they're ciggie shaped
+    # 🌟Starlight - End🌟
   - type: StorageFill
     contents:
     - id: Cigarette
@@ -119,6 +126,13 @@
   - type: Storage
     grid:
     - 0,0,4,1
+    # 🌟Starlight - Start🌟
+    whitelist:
+      components:
+        - Smokable
+        - Welder # for lighters
+        - Crayon # they're ciggie shaped
+    # 🌟Starlight - End🌟
   - type: ItemCounter
     count:
       tags: [Cigarette]
