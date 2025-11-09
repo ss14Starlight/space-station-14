@@ -112,6 +112,7 @@
       components:
       - BorgChassis
       - RoboticsConsole
+      - SiliconLawUpdater
   - type: WiresPanel
   - type: ActivatableUIRequiresPanel
   - type: NameIdentifier
