@@ -276,7 +276,7 @@
   - type: RevolutionaryRule
   - type: SpecialLobbyContent
     music: "/Audio/_Starlight/Music/Lobby/Liberation.ogg"
-    background: "/Textures/_Starlight/LobbyScreens/rev-clown.webp"
+    background: RevClown
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:

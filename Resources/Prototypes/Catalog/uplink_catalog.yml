@@ -1201,19 +1201,20 @@
         components:
         - SurplusBundle
 
-
-- type: listing
-  id: UplinkSingarityBeacon
-  name: uplink-singularity-beacon-name
-  description: uplink-singularity-beacon-desc
-  productEntity: SingularityBeacon
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 4
-  cost:
-    Telecrystal: 12
-  categories:
-    - UplinkDisruption
+# Starlight edit Start: Disable singularity beacon as its ban bait
+# - type: listing
+#   id: UplinkSingarityBeacon
+#   name: uplink-singularity-beacon-name
+#   description: uplink-singularity-beacon-desc
+#   productEntity: SingularityBeacon
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Telecrystal: 4
+#   cost:
+#     Telecrystal: 12
+#   categories:
+#     - UplinkDisruption
+# Starlight edit end
 
 - type: listing
   id: UplinkCameraBug

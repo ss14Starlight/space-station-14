@@ -9,6 +9,11 @@
   description: flavor-complex-dragan-special
 
 - type: flavor
+  id: thaslop
+  flavorType: complex
+  description: flavor-complex-tha-slop
+
+- type: flavor
   id: wrong
   flavorType: Base
   description: flavor-base-wrong

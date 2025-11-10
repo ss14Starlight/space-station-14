@@ -68,3 +68,20 @@
     IsLawboard: true 
   - type: StaticPrice 
     price: 1000
+
+- type: entity
+  id: CommiemovCircuitBoard
+  parent: [BaseElectronics, BaseSovietContraband]
+  name: law board (commiemov)
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: CommiemovLawset
+    lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg # todo make this the conversion noise
+    IsLawboard: true
+    components:
+    - type: Revolutionary # behold. you can now see revs. 
+  - type: StaticPrice 
+    price: 1000

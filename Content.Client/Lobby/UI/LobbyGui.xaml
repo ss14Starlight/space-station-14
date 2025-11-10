@@ -61,11 +61,17 @@
                     
                     <nulllink:Hub />
                     
-                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <!-- Starlight, change to vertical-->
+                    <BoxContainer Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                         <info:DevInfoBanner Name="DevInfoBanner" VerticalExpand="false" Margin="3 3 3 3" />
-                        <PanelContainer StyleClasses="AngleRect">
+                        <PanelContainer StyleClasses="AngleRect" Margin="3 3 3 3"> <!-- Starlight margin added-->
                             <RichTextLabel Name="LobbySong" Access="Public" HorizontalAlignment="Center" />
                         </PanelContainer>
+                        <!-- Starlight start-->
+                        <PanelContainer StyleClasses="AngleRect" Margin="3 3 3 3">
+                            <RichTextLabel Name="LobbyBackground" Access="Public" HorizontalAlignment="Center" />
+                        </PanelContainer>
+                        <!-- Starlight end-->
                     </BoxContainer>
                   </BoxContainer>
                   <!-- NullLink end -->

@@ -1,11 +1,11 @@
 - type: gameMap
-  id: Manor
+  id: StarlightManor
   mapName: 'Manor Station'
   mapPath: /Maps/_Starlight/Stations/Manor.yml
   minPlayers: 50
   maxPlayers: 180
   stations:
-    Manor:
+    StarlightManor:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

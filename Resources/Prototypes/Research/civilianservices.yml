@@ -89,6 +89,7 @@
   - FatExtractorMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
+  - SlopDispenserMachineCircuitboard #SL
   radioChannels:
   - Service
 

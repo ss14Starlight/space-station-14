@@ -568,3 +568,10 @@
   objectType: Item
   description: crafting-menu-text-IRS
 
+- type: construction
+  id: pneumaticcrewcannon
+  graph: PneumaticCrewCannon
+  startNode: start
+  targetNode: cannon
+  category: construction-category-weapons
+  objectType: Item

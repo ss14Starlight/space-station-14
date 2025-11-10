@@ -66,6 +66,19 @@
   - !type:StockLimitedListingCondition
     stockLimit: 4
 
+- type: listing
+  id: UplinkCommiemovCircuitBoard
+  name: lawboard-name
+  description: lawboard-desc
+  productEntity: CommiemovCircuitBoard
+  cost:
+    Conversion: 18
+  categories:
+  - RevUplinkPassive
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
+
 # 500 crates
 - type: listing
   id: RevSupplyRiftListing

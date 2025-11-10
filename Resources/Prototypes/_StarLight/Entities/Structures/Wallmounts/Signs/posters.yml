@@ -338,3 +338,12 @@
     sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
     state: wanted_traitor
 
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSaline
+  name: "NO SALINE!"
+  description: "An advisory from NanoTrasen's medical department reminding doctors to check their patients' species before administering airloss-related medicines. Saline can kill!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/saline.rsi
+    state: saline
