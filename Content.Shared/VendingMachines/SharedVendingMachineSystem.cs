@@ -16,6 +16,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Network;
 
 namespace Content.Shared.VendingMachines;
 

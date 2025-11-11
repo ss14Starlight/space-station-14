@@ -6,12 +6,11 @@ using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Content.Shared.Starlight.EntityEffects.Components;
 using Content.Shared.Starlight.EntityEffects.EntitySystems;
-using Content.Shared.Starlight.EntityEffects.Components;
 
 namespace Content.Shared.Starlight.EntityEffects.Effects;
 
 [UsedImplicitly]
-public sealed partial class DissolvableReaction : EntityEffect
+public sealed partial class Dissolvable : EntityEffectBase<Dissolvable>
 {
     [DataField]
     public float Multiplier = 0.05f;
@@ -23,12 +22,10 @@ public sealed partial class DissolvableReaction : EntityEffect
     [ViewVariables(VVAccess.ReadWrite)]
     public DamageSpecifier Damage = new();
 
-    public override bool ShouldLog => true;
-
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-dissolvable-reaction", ("chance", Probability));
 
-    public override LogImpact LogImpact => LogImpact.Medium;
+    public override LogImpact? Impact => LogImpact.Low;
 
     public override void Effect(EntityEffectBaseArgs args)
     {
