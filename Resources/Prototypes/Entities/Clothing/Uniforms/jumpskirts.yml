@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtAssistant
-  name: assistant jumpskirt
-  description: A tasteful green jumpskirt that reminds you of the good old days.
+  name: oppressive jumpskirt
+  description: An oppressive green jumpskirt that reminds you of who we were foreced to be.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/color.rsi

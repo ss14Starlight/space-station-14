@@ -1143,7 +1143,7 @@
           Quantity: 10
 
 - type: entity
-  name: pill canister
+  name: psicodine pill canister
   parent: PillCanister
   id: PillCanisterPsicodine
   suffix: Psicodine 10u, 5
@@ -1154,5 +1154,38 @@
     contents:
     - id: PillPsicodine
       amount: 5
+
+- type: entity
+  name: pill
+  suffix: Ethylredoxrazine 10u
+  parent: Pill
+  id: PillEthylredoxrazine
+  components:
+    - type: Pill
+      pillType: 2
+    - type: Sprite
+      state: pill3
+    - type: Label
+      currentLabel: Ethylredoxrazine 5u
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 20
+          reagents:
+            - ReagentId: Ethylredoxrazine
+              Quantity: 5
+
+- type: entity
+  name: ethylredoxrazine pill canister
+  parent: PillCanister
+  id: PillCanisterEthylredoxrazine
+  suffix: Ethylredoxrazine 5u, 5
+  components:
+    - type: Label
+      currentLabel: ethylredoxrazine 10u
+    - type: StorageFill
+      contents:
+        - id: PillEthylredoxrazine
+          amount: 5
 
 ### SL end

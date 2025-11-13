@@ -300,7 +300,7 @@
   description: A magical crayon. Looks tasty. Mmmm...
   components:
   - type: Sprite
-    state: rainbow
+    state: magic
   - type: Item
     heldPrefix: magic
   - type: Crayon

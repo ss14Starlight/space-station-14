@@ -347,4 +347,33 @@
     - id: CigaretteBub
       amount: 10
 
+- type: entity
+  id: CigPackBluespace
+  parent: CigPackBase
+  name: Bluespace packet
+  description: For those who somehow want to obtain the record for the most amount of cancerous tumors.
+  components:
+    - type: Sprite
+      sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/bluespace.rsi
+    - type: Item
+      sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/bluespace.rsi
+    - type: ItemPrice
+      priceCategory: cigaretes
+    - type: Storage
+      grid:
+      - 0,0,7,4
+      whitelist:
+      tags:
+      - Smokable
+      - Welder # for lighters
+      - Crayon # they're ciggie shaped
+      - RollingPaper
+      - CigFilter
+      - Cigarette
+      - Lighters
+    - type: StorageFill
+      contents:
+        - id: Cigarette
+          amount: 40
+
 ### end SL

@@ -116,17 +116,11 @@
 # Jumpsuit
 - type: loadout
   id: GreyJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: HonoredAssistant
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorGrey
 
 - type: loadout
   id: GreyJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: HonoredAssistant
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorGrey
 

@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitAssistant
-  name: assistant jumpsuit
-  description: A tasteful green jumpsuit that reminds you of the good old days.
+  name: oppressive jumpsuit
+  description: An oppressive green jumpsuit that reminds you of who we were foreced to be.
   components:
   - type: RollUpSleeves
   - type: Sprite

@@ -19,6 +19,8 @@
     tags:
     - Matchstick
     - Trash
+    - Lighters #SL
+    - Cigarette #SL
   - type: SpaceGarbage
   - type: Sprite
     sprite: Objects/Tools/matches.rsi

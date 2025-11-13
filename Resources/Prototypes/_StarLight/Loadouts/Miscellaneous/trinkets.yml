@@ -507,3 +507,31 @@
   storage:
     back:
     - PillCanisterPsicodine
+  groupBy: "drugs"
+
+
+- type: loadout
+  id: PillCanisterEthylredoxrazine
+  storage:
+    back:
+      - PillCanisterEthylredoxrazine
+  groupBy: "drugs"
+
+- type: loadout
+  id: WehMedipen
+  storage:
+    back:
+      - WehMedipen
+  groupBy: "drugs"
+  
+- type: loadout
+  id: CigPackMixed
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 36000 # 10hr
+  storage:
+    back:
+      - CigPackMixed
+  groupBy: "smokeables"

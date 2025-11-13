@@ -102,6 +102,9 @@
   - leftripperarm #SL
   - CigPackBub #SL
   - PillCanisterPsicodine #SL
+  - WehMedipen #SL
+  - PillCanisterEthylredoxrazine #SL
+  - CigPackMixed #SL
 
 - type: loadoutGroup
   id: Glasses
@@ -255,13 +258,13 @@
   id: AssistantJumpsuit
   name: loadout-group-assistant-jumpsuit
   loadouts:
+  - GreyJumpsuit #starlight
+  - GreyJumpskirt #starlight
   - BasicJumpsuit
   - BasicJumpskirt
   - AncientJumpsuit
   - RainbowJumpsuit
   - RainbowJumpskirt
-  - GreyJumpsuit #starlight
-  - GreyJumpskirt #starlight
   - WhiteJumpsuitLoadout #SL
   - WhiteJumpskirtLoadout #SL
   - BlackJumpsuitLoadout #SL
