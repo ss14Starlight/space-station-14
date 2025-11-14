@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. Vox states by Flareguy for Space Station 14. Dog states modified from base states by Sparlight (GitHub). Vulpkanin and Reptilian states by TiniestShark (Github). | recolor by mikeysaurus",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. Vox states by Flareguy for Space Station 14. Dog states modified from base states by Sparlight (GitHub). Vulpkanin and Reptilian states by TiniestShark (Github). | recolor by mikeysaurus. Avali state by DocMoth (Github).",
     "size": {
         "x": 32,
         "y": 32
@@ -40,6 +40,10 @@
             "directions": 4
         },
         {
+            "name": "equipped-head-avali",
+            "directions": 4
+        },
+        {
             "name": "equipped-head-light",
             "directions": 4
         },
@@ -60,6 +64,10 @@
             "directions": 4
         },
         {
+            "name": "equipped-head-light-avali",
+            "directions": 4
+        },
+        {
             "name": "equipped-head-unshaded",
             "directions": 4
         },
@@ -77,6 +85,10 @@
         },
         {
             "name": "equipped-head-unshaded-vulpkanin",
+            "directions": 4
+        },
+        {
+            "name": "equipped-head-unshaded-avali",
             "directions": 4
         }
     ]

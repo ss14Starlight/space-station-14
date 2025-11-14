@@ -22,6 +22,8 @@
     - type: Absorbable
     - type: HumanoidAppearance
       species: Avali
+      hideLayersOnEquip:
+      - Tail
     - type: Hunger # on 2x more
       thresholds:
         Overfed: 250
@@ -70,6 +72,11 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: back
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: gloves
     - type: Butcherable
       butcheringType: Spike
       spawned:
@@ -190,5 +197,10 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: back
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: gloves
 
 # Chirp!

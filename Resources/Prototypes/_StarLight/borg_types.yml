@@ -36,36 +36,6 @@
 # Syndicate borgs
 
 - type: borgType
-  id: SyndicateAssault
-
-  # Description
-  dummyPrototype: BorgChassisSyndicateAssault
-
-  # Functional
-  moduleWhitelist:
-    tags:
-    - BorgModuleGeneric
-    - BorgModuleSyndicate
-    - BorgModuleSyndicateAssault
-
-  defaultModules:
-  - BorgModuleTool
-  - BorgModuleOperative
-  - BorgModuleL6C
-  - BorgModuleDoubleEsword
-
-  radioChannels:
-  - Syndicate
-
-  # Visual
-  inventoryTemplateId: borgShort
-  spritePath: Mobs/Silicon/Chassis/synd_sec.rsi
-
-  # Pet
-  petSuccessString: petting-success-syndicate-cyborg
-  petFailureString: petting-failure-syndicate-cyborg
-
-- type: borgType
   id: SyndicateMedical
 
   # Description

@@ -91,6 +91,14 @@
   - type: Storage
     grid:
     - 0,0,2,1
+  # 🌟Starlight - Start🌟
+    whitelist:
+      components:
+        - Smokable
+        - Matchstick
+        - Welder # for lighters
+        - Crayon # they're ciggie shaped
+    # 🌟Starlight - End🌟
   - type: StorageFill
     contents:
       - id: Matchstick

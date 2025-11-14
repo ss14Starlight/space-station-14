@@ -255,3 +255,41 @@
     sprite: _Starlight/Clothing/Head/Hats/CC_Bounty_Hunter_hat.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/CC_Bounty_Hunter_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretCargo
+  name: cargo beret
+  description: A beret with the cargo department's insignia. Deliver crates in style.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/cargo_beret.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/cargo_beret.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretCargoFormal
+  name: formal cargo beret
+  description: A distinguished beret with the cargo department's insignia. Reserved for cargo's finest.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/cargo_beret_formal.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/cargo_beret_formal.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon

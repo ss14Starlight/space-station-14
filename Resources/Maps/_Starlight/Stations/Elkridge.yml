@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.1.0
   forkId: ""
   forkVersion: ""
-  time: 11/04/2025 08:00:19
+  time: 11/10/2025 01:34:25
   entityCount: 19071
 maps:
 - 1
@@ -13341,7 +13341,7 @@ entities:
       pos: 14.5,32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -8953.173
+      secondsUntilStateChange: -8979.54
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -112151,8 +112151,6 @@ entities:
       accessListsOriginal:
       - - GenpopEnter
       - - Security
-      access:
-      - - Lawyer
 - proto: TurnstileGenpopLeave
   entities:
   - uid: 16211
@@ -112165,8 +112163,6 @@ entities:
       accessListsOriginal:
       - - GenpopLeave
       - - Security
-      access:
-      - - Lawyer
   - uid: 16212
     components:
     - type: Transform
@@ -112177,8 +112173,6 @@ entities:
       accessListsOriginal:
       - - GenpopLeave
       - - Security
-      access:
-      - - Lawyer
 - proto: TwoWayLever
   entities:
   - uid: 16213

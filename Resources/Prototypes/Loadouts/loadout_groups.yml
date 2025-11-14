@@ -796,6 +796,8 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianHead
+  - CargoTechnicianBeret # 🌟Starlight🌟
+  - CargoTechnicianBeretFormal # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: CargoTechnicianJumpsuit

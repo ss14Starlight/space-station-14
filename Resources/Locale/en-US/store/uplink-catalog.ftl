@@ -151,9 +151,8 @@ uplink-reinforcement-radio-traitor-desc =  Radio in a reinforcement agent of ext
 uplink-reinforcement-radio-nukeops-name = Nuclear Operative Teleporter
 uplink-reinforcement-radio-nukeops-desc =  Radio in a nuclear operative of extremely questionable quality. No off button, buy this if you're ready to party. They have basic nuclear operative gear.
 
-# starlight fix the names of these to work again
-uplink-reinforcement-radio-cyborg-name = Syndicate Cyborg Teleporter
-uplink-reinforcement-radio-cyborg-desc = Radio in a syndicate cyborg which has a variety of frames to choose from (Do make sure to instruct them which one to pick!)
+uplink-reinforcement-radio-assault-cyborg-name = Syndicate Assault Cyborg Teleporter
+uplink-reinforcement-radio-assault-cyborg-desc = Radio in a syndicate assault cyborg, equipped with a modified L6, a double esword and basic hacking tools.
 
 uplink-mech-teleporter-heavy-name = Heavy Mech teleporter
 uplink-mech-teleporter-heavy-desc = Contains Cybersan heavy armored mech with integrated chainsword, Ultra AC-2, LBX AC 10 "Scattershot", BRM-6 Missile Rack and P-X Tesla Cannon.

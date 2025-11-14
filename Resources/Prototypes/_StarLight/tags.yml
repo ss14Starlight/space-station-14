@@ -235,6 +235,9 @@
   id: BorgModuleSecurity
 
 - type: Tag
+  id: BorgModuleSyndicateStealth
+
+- type: Tag
   id: Disabler
 
 - type: Tag

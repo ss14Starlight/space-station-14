@@ -551,18 +551,18 @@
 - type: entity
   id: PlayerBorgSyndicateAssaultBattery
   parent: BorgChassisSyndicateAssault
-  suffix: Battery, Operative # Starlight
+  suffix: Battery, Module, Operative
   components:
   - type: NukeOperative
   - type: ContainerFill
     containers:
       borg_brain:
         - PositronicBrain
-      # borg_module: Starlight, these are switchable so no need to specify their modules
-      #   - BorgModuleTool
-      #   - BorgModuleOperative
-      #   - BorgModuleL6C
-      #   - BorgModuleDoubleEsword
+      borg_module:
+        - BorgModuleTool
+        - BorgModuleOperative
+        - BorgModuleL6C
+        - BorgModuleDoubleEsword
   - type: ItemSlots
     slots:
       cell_slot:
@@ -585,18 +585,19 @@
 - type: entity
   id: PlayerBorgSyndicateSaboteurBattery
   parent: BorgChassisSyndicateSaboteur
-  suffix: Battery, Operative # Starlight
+  suffix: Battery, Module, Operative
   components:
   - type: NukeOperative
   - type: ContainerFill
     containers:
       borg_brain:
         - PositronicBrain
-      # borg_module: Starlight, these are switchable so no need to specify their modules.
-      #   - BorgModuleTool
-      #   - BorgModuleRCD
-      #   - BorgModuleOperative
-      #   - BorgModuleSyndicateWeapon
+      borg_module:
+        - BorgModuleSyndicateAdvancedTool # Starlight
+        - BorgModuleConstruction
+        - BorgModuleRCD
+        - BorgModuleOperative
+        - BorgModuleSyndicateWeapon
   - type: ItemSlots
     slots:
       cell_slot:
@@ -619,18 +620,19 @@
 - type: entity
   id: PlayerBorgSyndicateMedicalBattery
   parent: BorgChassisSyndicateMedical
-  suffix: Battery, Operative # Starlight
+  suffix: Battery, Module, Operative
   components:
   - type: NukeOperative
   - type: ContainerFill
     containers:
       borg_brain:
         - PositronicBrain
-      # borg_module: Starlight, these are switchable so no need to specify their modules.
-      #   - BorgModuleTool
-      #   - BorgModuleChemical
-      #   - BorgModuleTopicals
-      #   - BorgModuleSyndicateWeapon
+      borg_module:
+        - BorgModuleTool
+        - BorgModuleSyndicateAdvancedChemical # starlight
+        - BorgModuleTopicals
+        - BorgModuleSyndicateRescue # starlight
+        - BorgModuleSyndicateWeapon
   - type: ItemSlots
     slots:
       cell_slot:
