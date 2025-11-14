@@ -462,9 +462,11 @@
     table: !type:GroupSelector
       rolls: 4, 8
       children:
-      - id: MobAdultSlimesBlueAngry
-      - id: MobAdultSlimesGreenAngry
-      - id: MobAdultSlimesYellowAngry
+      # Moffstation - Start - Make mobs smash stuff
+      - id: MobAdultSlimesBlueAngrySmasher
+      - id: MobAdultSlimesGreenAngrySmasher
+      - id: MobAdultSlimesYellowAngrySmasher
+    # Moffstation - End
 
 - type: entity
   id: SnakeSpawnHorde
@@ -484,9 +486,11 @@
     table: !type:GroupSelector
       rolls: 4, 8
       children:
-      - id: MobPurpleSnake
-      - id: MobSmallPurpleSnake
-      - id: MobCobraSpace
+      # Moffstation - Start - Make mobs smash stuff
+      - id: MobPurpleSnakeSmasher
+      - id: MobSmallPurpleSnakeSmasher
+      - id: MobCobraSpaceSmasher
+    # Moffstation - End
 
 - type: entity
   id: SpiderSpawnHorde
@@ -506,7 +510,9 @@
     table: !type:GroupSelector
       rolls: 4, 8
       children:
-      - id: MobGiantSpiderAngry
+      # Moffstation - Start - Make mobs smash stuff
+      - id: MobGiantSpiderAngrySmasher
+    # Moffstation - End
 
 - type: entity
   id: SpiderClownSpawnHorde
@@ -526,7 +532,7 @@
     table: !type:GroupSelector
       rolls: 4, 8
       children:
-      - id: MobClownSpider
+      - id: MobClownSpiderSmasher # Moffstation - Make mobs smash stuff
 
 - type: entity
   id: ZombieOutbreak

@@ -1,0 +1,57 @@
+- type: entity
+  abstract: true
+  id: BaseSmasherHostile
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+
+- type: entity
+  parent: [BaseSmasherHostile, MobAdultSlimesBlueAngry]
+  id: MobAdultSlimesBlueAngrySmasher
+  suffix: Angry, Smasher
+
+- type: entity
+  parent: [BaseSmasherHostile, MobAdultSlimesGreenAngry]
+  id: MobAdultSlimesGreenAngrySmasher
+  suffix: Angry, Smasher
+
+- type: entity
+  parent: [BaseSmasherHostile, MobAdultSlimesYellowAngry]
+  id: MobAdultSlimesYellowAngrySmasher
+  suffix: Angry, Smasher
+
+- type: entity
+  parent: [BaseSmasherHostile, MobPurpleSnake]
+  id: MobPurpleSnakeSmasher
+  suffix: Angry, Smasher
+
+- type: entity
+  parent: [BaseSmasherHostile, MobSmallPurpleSnake]
+  id: MobSmallPurpleSnakeSmasher
+  suffix: Angry, Smasher
+
+- type: entity
+  parent: [BaseSmasherHostile, MobCobraSpace]
+  id: MobCobraSpaceSmasher
+  suffix: Angry, Smasher
+
+- type: entity
+  parent: [BaseSmasherHostile, MobGiantSpiderAngry]
+  id: MobGiantSpiderAngrySmasher
+  suffix: Angry, Smasher
+
+- type: entity
+  parent: [BaseSmasherHostile, MobClownSpider]
+  id: MobClownSpiderSmasher
+  suffix: Angry, Smasher
+
