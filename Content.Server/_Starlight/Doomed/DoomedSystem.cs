@@ -16,26 +16,17 @@ public sealed partial class DoomedSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<DoomedComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<DoomedComponent, ComponentShutdown>(OnComponentShutdown);
-        SubscribeLocalEvent<DoomedComponent, StatusEffectRemovedEvent>(OnStatusEffectRemoved);
     }
 
     private void OnMapInit(Entity<DoomedComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.TimeApplied = _timing.CurTime;
         _statusEffects.TryAddStatusEffectDuration(ent.Owner, ent.Comp.StatusEffect, ent.Comp.TimeToDeath);
+        Timer.Spawn(ent.Comp.TimeToDeath, () => Die(ent));
     }
 
-    private void OnComponentShutdown(Entity<DoomedComponent> ent, ref ComponentShutdown args)
+    private void Die(Entity<DoomedComponent> ent)
     {
-        _statusEffects.TryRemoveStatusEffect(ent.Owner, ent.Comp.StatusEffect);
-    }
-    
-    private void OnStatusEffectRemoved(Entity<DoomedComponent> ent, ref StatusEffectRemovedEvent args)
-    {
-        // if this has happened, the component was removed externally before the status effect ran out
-        if (_timing.CurTime - ent.Comp.TimeApplied < ent.Comp.TimeToDeath) return;
-
         Spawn(ent.Comp.DamageEffect, Transform(ent.Owner).Coordinates);
         _damageable.TryChangeDamage(ent.Owner, ent.Comp.Damage);
     }
