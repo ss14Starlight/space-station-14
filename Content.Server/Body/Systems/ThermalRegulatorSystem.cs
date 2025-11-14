@@ -2,6 +2,7 @@ using Content.Server.Body.Components;
 using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Mobs.Systems; // Starlight edit
 using Robust.Shared.Timing;
 
 namespace Content.Server.Body.Systems;
@@ -11,6 +12,7 @@ public sealed class ThermalRegulatorSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly TemperatureSystem _tempSys = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSys = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;  // Starlight edit
 
     public override void Initialize()
     {
@@ -54,24 +56,32 @@ public sealed class ThermalRegulatorSystem : EntitySystem
         // TODO: Why do we have two datafields for this if they are only ever used once here?
         var totalMetabolismTempChange = ent.Comp1.MetabolismHeat - ent.Comp1.RadiatedHeat;
 
-        // implicit heat regulation
-        var tempDiff = Math.Abs(ent.Comp2.CurrentTemperature - ent.Comp1.NormalBodyTemperature);
+        // Starlight edit start - Don't do implicit heat regulation if the entity is dead
+        // Fixes Avali not rotting
         var heatCapacity = _tempSys.GetHeatCapacity(ent, ent);
-        var targetHeat = tempDiff * heatCapacity;
-        if (ent.Comp2.CurrentTemperature > ent.Comp1.NormalBodyTemperature)
+        if (!_mobState.IsDead(ent))
         {
-            totalMetabolismTempChange -= Math.Min(targetHeat, ent.Comp1.ImplicitHeatRegulation);
+            // implicit heat regulation
+            var implicitTempDiff = Math.Abs(ent.Comp2.CurrentTemperature - ent.Comp1.NormalBodyTemperature);
+            var implicitTargetHeat = implicitTempDiff * heatCapacity;
+            if (ent.Comp2.CurrentTemperature > ent.Comp1.NormalBodyTemperature)
+            {
+                totalMetabolismTempChange -= Math.Min(implicitTargetHeat, ent.Comp1.ImplicitHeatRegulation);
+            }
+            else
+            {
+                totalMetabolismTempChange += Math.Min(implicitTargetHeat, ent.Comp1.ImplicitHeatRegulation);
+            }
         }
-        else
-        {
-            totalMetabolismTempChange += Math.Min(targetHeat, ent.Comp1.ImplicitHeatRegulation);
-        }
+        // Starlight edit end
 
         _tempSys.ChangeHeat(ent, totalMetabolismTempChange, ignoreHeatResistance: true, ent);
 
         // recalc difference and target heat
-        tempDiff = Math.Abs(ent.Comp2.CurrentTemperature - ent.Comp1.NormalBodyTemperature);
-        targetHeat = tempDiff * heatCapacity;
+        // Starlight edit start
+        var tempDiff = Math.Abs(ent.Comp2.CurrentTemperature - ent.Comp1.NormalBodyTemperature);
+        var targetHeat = tempDiff * heatCapacity;
+        // Starlight edit end
 
         // if body temperature is not within comfortable, thermal regulation
         // processes starts

@@ -1,12 +1,12 @@
 - type: entity
   parent: ReinforcementRadio
-  id: ReinforcementRadioSyndicateCyborg # Reinforcement radio exclusive to nukeops uplink
-  name: syndicate cyborg reinforcement radio
-  description: Call in a assault cyborg, instantly!
+  id: ReinforcementRadioSyndicateCyborgMedical # Reinforcement radio exclusive to nukeops uplink
+  name: syndicate medical cyborg reinforcement radio
+  description: Call in a medical cyborg, instantly!
   suffix: NukeOps
   components:
     - type: GhostRole
-      name: ghost-role-information-syndicate-cyborg-name
+      name: ghost-role-information-syndicate-cyborg-medical-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
       mindRoles:
@@ -14,4 +14,40 @@
       raffle:
         settings: default
     - type: GhostRoleMobSpawner
-      prototype: PlayerSyndicateBorgBattery
+      prototype: PlayerBorgSyndicateMedicalBattery
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateCyborgSaboteur # Reinforcement radio exclusive to nukeops uplink
+  name: syndicate support saboteur reinforcement radio
+  description: Call in a saboteur cyborg, instantly!
+  suffix: NukeOps
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-saboteur-name
+      description: ghost-role-information-syndicate-cyborg-description
+      rules: ghost-role-information-silicon-rules
+      mindRoles:
+      - MindRoleGhostRoleSilicon
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: PlayerBorgSyndicateSaboteurBattery
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateCyborgStealth # Reinforcement radio exclusive to nukeops uplink
+  name: syndicate stealth cyborg reinforcement radio
+  description: Call in a stealth cyborg, instantly!
+  suffix: NukeOps
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-stealth-name
+      description: ghost-role-information-syndicate-cyborg-description
+      rules: ghost-role-information-silicon-rules
+      mindRoles:
+      - MindRoleGhostRoleSilicon
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: PlayerBorgSyndicateStealthBattery

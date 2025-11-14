@@ -24,27 +24,7 @@
             "directions": 4
         },
         {
-            "name": "mopbot",
-            "directions": 4
-        },
-        {
-            "name": "mopbot_e",
-            "directions": 4
-        },
-        {
-            "name": "mopbot_e_r",
-            "directions": 4
-        },
-        {
-            "name": "mopbot_l",
-            "directions": 4
-        },
-        {
-            "name": "rex",
-            "directions": 4
-        },
-        {
-            "name": "rex_moving",
+            "name": "borg_moving",
             "directions": 4,
             "delays": [
                 [
@@ -74,15 +54,35 @@
             ]
         },
         {
-            "name": "rex_e",
+            "name": "mopbot",
             "directions": 4
         },
         {
-            "name": "rex_e_r",
+            "name": "mopbot_e",
             "directions": 4
         },
         {
-            "name": "rex_l",
+            "name": "mopbot_e_r",
+            "directions": 4
+        },
+        {
+            "name": "mopbot_l",
+            "directions": 4
+        },
+        {
+            "name": "generic",
+            "directions": 4
+        },
+        {
+            "name": "generic_e",
+            "directions": 4
+        },
+        {
+            "name": "generic_e_r",
+            "directions": 4
+        },
+        {
+            "name": "generic_l",
             "directions": 4
         },
         {

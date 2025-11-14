@@ -96,6 +96,20 @@ namespace Content.Shared.Chemistry
 
     }
 
+    // Starlight Start
+    // Required for UI to not flash while cell is charging/discharging
+    [Serializable, NetSerializable]
+    public sealed class ReagentDispenserEnergyUpdateMessage : BoundUserInterfaceMessage
+    {
+        public readonly float EnergyAmount;
+
+        public ReagentDispenserEnergyUpdateMessage(float energyAmount)
+        {
+            EnergyAmount = energyAmount;
+        }
+    }
+    // Starlight End
+
     public enum ReagentDispenserDispenseAmount
     {
         U1 = 1,

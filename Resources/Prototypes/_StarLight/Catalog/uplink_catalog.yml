@@ -329,6 +329,7 @@
   categories:
   - UplinkWearables
 
+# Allies
 - type: listing
   id: UplinkSyndicateBorgi
   name: uplink-syndicate-borgi-name
@@ -350,7 +351,7 @@
   icon: { sprite:  Objects/Fun/Balloons/corgi.rsi, state: icon }
   productEntity: SyndiBorgiKit1
   cost:
-    Telecrystal: 60
+    Telecrystal: 40
   categories:
     - UplinkAllies
   conditions:
@@ -368,7 +369,7 @@
   icon: { sprite:  Objects/Fun/Balloons/corgi.rsi, state: icon }
   productEntity: SyndiBorgiKit2
   cost:
-    Telecrystal: 50
+    Telecrystal: 30
   categories:
     - UplinkAllies
   conditions:
@@ -378,6 +379,54 @@
     whitelist:
       tags:
       - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgMedical
+  name: uplink-reinforcement-radio-medical-cyborg-name
+  description: uplink-reinforcement-radio-medical-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgMedical
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault } # TODO BETTER ICON
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgSabotur
+  name: uplink-reinforcement-radio-saboteur-cyborg-name
+  description: uplink-reinforcement-radio-saboteur-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgSaboteur
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault } # TODO BETTER ICON
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgStealth
+  name: uplink-reinforcement-radio-stealth-cyborg-name
+  description: uplink-reinforcement-radio-stealth-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgStealth
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault } # TODO BETTER ICON
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
 
 #Dunnow about upstream. but we L O V E our stealth traitors.
 - type: listing

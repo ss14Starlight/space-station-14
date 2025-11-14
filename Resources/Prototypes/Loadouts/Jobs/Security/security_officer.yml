@@ -164,6 +164,11 @@
   equipment:
     outerClothing: ClothingOuterWinterSec
 
+- type: loadout
+  id: WindbreakerSecurity
+  equipment:
+    outerClothing: ClothingOuterWindbreakerSecurity
+
 # Shoes
 - type: loadout
   id: CombatBoots

@@ -17,7 +17,7 @@ jobs:
           script: |
             const labelToAssign = {
               "Changes: Sprites": ["Conflee"],
-              "Changes: Map": ["PubliclyExecutedPig, CawsForConcern"],
+              "Changes: Map": ["APOCAMANDER, CawsForConcern"],
               "Changes: UI": ["ss14-Starlight"],
               "Changes: Shaders": ["ss14-Starlight, Happyrobot33, FoxxoTrystan"],
               "Changes: Audio": ["ss14-Starlight, Happyrobot33, FoxxoTrystan"],

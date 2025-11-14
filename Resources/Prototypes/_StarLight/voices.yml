@@ -1023,3 +1023,10 @@
   sex: Male
   silicon: false
   voice: 510002
+
+- type: voice
+  id: rinary
+  name: tts-voice-name-rinary
+  sex: Male
+  silicon: false
+  voice: 510003

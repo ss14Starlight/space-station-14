@@ -1,4 +1,6 @@
-﻿using Robust.Shared.Prototypes;
+//moved to shared, starlight
+/*
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Server.GameTicking.Prototypes;
@@ -19,3 +21,4 @@ public sealed partial class LobbyBackgroundPrototype : IPrototype
     [DataField("background", required: true)]
     public ResPath Background = default!;
 }
+*/

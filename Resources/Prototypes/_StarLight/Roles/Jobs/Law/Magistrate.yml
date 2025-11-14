@@ -25,6 +25,8 @@
   - Security
   - Command
   - Maintenance
+  - GenpopEnter
+  - GenpopLeave
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

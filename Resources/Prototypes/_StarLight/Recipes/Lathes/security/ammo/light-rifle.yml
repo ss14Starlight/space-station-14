@@ -30,7 +30,7 @@
   result: MagazineLightRifleHP
   materials:
     Steel: 565
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineLightRifleFMJ
@@ -92,7 +92,7 @@
   result: LightRifleHeavyMagazineHP
   materials:
     Steel: 1412
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: LightRifleHeavyMagazineFMJ
@@ -138,6 +138,14 @@
   result: SpeedLoaderLightRifle
   materials:
     Steel: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: L6SawMagazine
+  result: MagazineLightRifleBoxSP
+  materials:
+    Steel: 1600
+
 
 ############ BOXES ############
 

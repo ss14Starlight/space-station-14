@@ -53,3 +53,7 @@ secrets_exploitable = true
 
 [ooc]
 rp_notes = true
+
+[newlife]
+ghost_cooldown = 0
+max_new_lifes = 100

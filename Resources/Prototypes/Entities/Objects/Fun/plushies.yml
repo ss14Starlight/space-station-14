@@ -110,6 +110,9 @@
     - ForceableFollow
     - PlushieGhost
     - Payload
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-inanimate #Starlight
+    weight: 0.01 #Starlight
 
 - type: entity
   parent: PlushieGhost
@@ -131,6 +134,9 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: RevenantPlushie
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-inanimate #Starlight
+    weight: 0.01 #Starlight
 
 - type: entity
   parent: BasePlushie

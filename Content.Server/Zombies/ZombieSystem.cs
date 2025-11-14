@@ -259,7 +259,7 @@ namespace Content.Server.Zombies
                 }
                 // Starlight Start
                 // Zombies cannot attack initial infected
-                if (HasComp<InitialInfectedComponent>(entity))
+                else if (HasComp<InitialInfectedComponent>(entity))
                 {
                     args.BonusDamage = -args.BaseDamage;
                     _popup.PopupEntity(Loc.GetString("zombie-bite-initialinfected-dissuade"), uid, uid);

@@ -14,6 +14,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Localization;
 using Content.Shared.Preferences; // Loc.TryGetString
+using Robust.Shared.Log;
 
 namespace Content.Server._CD.Records;
 
@@ -22,6 +23,8 @@ namespace Content.Server._CD.Records;
 /// </summary>
 public sealed class CharacterRecordsSystem : EntitySystem
 {
+    private static readonly ISawmill Sawmill = Logger.GetSawmill("characterrecords");
+
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
@@ -38,26 +41,32 @@ public sealed class CharacterRecordsSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn, after: new[] { typeof(StationRecordsSystem) });
     }
 
+    /// <summary>
+    /// Seeds the runtime record cache whenever a player joins or respawns.
+    /// </summary>
     private void OnPlayerSpawn(PlayerSpawnCompleteEvent args)
     {
         if (!HasComp<StationRecordsComponent>(args.Station))
         {
-            Log.Error("Tried to add CharacterRecords on a station without StationRecords.");
+            Sawmill.Error($"Tried to add character records on station {ToPrettyString(args.Station)} which is missing {nameof(StationRecordsComponent)}.");
             return;
         }
 
         if (!HasComp<CharacterRecordsComponent>(args.Station))
+        {
             AddComp<CharacterRecordsComponent>(args.Station);
+            Sawmill.Debug($"Attached {nameof(CharacterRecordsComponent)} to station {ToPrettyString(args.Station)}.");
+        }
 
         if (args.Profile is null)
         {
-            Log.Error($"Null Profile in CharacterRecordsSystem::OnPlayerSpawn for player {args.Player?.Name ?? "<unknown>"}.");
+            Sawmill.Error($"Null profile in {nameof(CharacterRecordsSystem)}.{nameof(OnPlayerSpawn)} for player {args.Player?.Name ?? "<unknown>"}.");
             return;
         }
 
         if (string.IsNullOrEmpty(args.JobId))
         {
-            Log.Error($"Null/Empty JobId in CharacterRecordsSystem::OnPlayerSpawn for character {args.Profile.Name} played by {args.Player.Name}.");
+            Sawmill.Error($"Null or empty JobId in {nameof(OnPlayerSpawn)} for character {args.Profile.Name} played by {args.Player.Name}.");
             return;
         }
 
@@ -72,7 +81,7 @@ public sealed class CharacterRecordsSystem : EntitySystem
         if (!CharacterRecordSizeHelper.TryCalculateMetrics(profile, _prototype, out var derivedHeight, out var derivedWeight))
         {
             // Fall back to whatever the profile already stored if we cannot resolve the species sizing data.
-            Log.Warning($"Failed to resolve species sizing while constructing records for {profile.Name}. Using stored values.");
+            Sawmill.Warning($"Failed to resolve species sizing while constructing records for {profile.Name}. Using stored values.");
         }
         else
         {
@@ -80,7 +89,7 @@ public sealed class CharacterRecordsSystem : EntitySystem
         }
         if (!_prototype.TryIndex(args.JobId, out JobPrototype? jobPrototype))
         {
-            Log.Error($"Invalid job prototype ID '{args.JobId}' while creating records for {profile.Name}.");
+            Sawmill.Error($"Invalid job prototype ID '{args.JobId}' while creating records for {profile.Name}.");
             return;
         }
 
@@ -93,6 +102,10 @@ public sealed class CharacterRecordsSystem : EntitySystem
 
         // Cross-reference the station data so we can keep the runtime record in sync.
         var stationRecordsKey = FindStationRecordsKey(player);
+        if (stationRecordsKey == null)
+        {
+            Sawmill.Debug($"No station record key found for {profile.Name} ({ToPrettyString(player)}) while creating character records.");
+        }
 
         if (stationRecordsKey != null && _records.TryGetRecord<GeneralStationRecord>(stationRecordsKey.Value, out var stationRecord))
         {
@@ -170,6 +183,9 @@ public sealed class CharacterRecordsSystem : EntitySystem
         return baseDisplay;
     }
 
+    /// <summary>
+    /// Traces the owning ID card (inside a PDA if needed) and returns its station record key.
+    /// </summary>
     private StationRecordKey? FindStationRecordsKey(EntityUid uid)
     {
         if (!_inventory.TryGetSlotEntity(uid, "id", out var idUid))
@@ -182,11 +198,17 @@ public sealed class CharacterRecordsSystem : EntitySystem
             keyStorageEntity = id;
 
         if (!TryComp<StationRecordKeyStorageComponent>(keyStorageEntity, out var storage))
+        {
+            Sawmill.Warning($"Entity {ToPrettyString(keyStorageEntity)} is missing {nameof(StationRecordKeyStorageComponent)} while locating station record key for {ToPrettyString(uid)}.");
             return null;
+        }
 
         return storage.Key;
     }
 
+    /// <summary>
+    /// Persists a newly constructed record and links it back to the owning player.
+    /// </summary>
     private void AddRecord(EntityUid station, EntityUid player, FullCharacterRecords records, CharacterRecordsComponent? recordsDb = null)
     {
         if (!Resolve(station, ref recordsDb))
@@ -194,13 +216,29 @@ public sealed class CharacterRecordsSystem : EntitySystem
 
         // Persist the record and remember which entry belongs to the player for later lookups.
         var key = recordsDb.CreateNewKey();
-        recordsDb.Records.Add(key, records);
+        if (!recordsDb.Records.TryAdd(key, records))
+        {
+            Sawmill.Warning($"Duplicate character record key {key} encountered for {ToPrettyString(player)} on {ToPrettyString(station)}. Overwriting existing entry.");
+            recordsDb.Records[key] = records;
+        }
         var playerKey = new CharacterRecordKey { Station = station, Index = key };
-        AddComp(player, new CharacterRecordKeyStorageComponent(playerKey));
+        if (TryComp<CharacterRecordKeyStorageComponent>(player, out var existing))
+        {
+            existing.Key = playerKey;
+        }
+        else
+        {
+            AddComp(player, new CharacterRecordKeyStorageComponent(playerKey));
+        }
+
+        Sawmill.Debug($"Stored character record {key} for {ToPrettyString(player)} on {ToPrettyString(station)} (station record id: {records.StationRecordsKey?.ToString() ?? "none"}).");
 
         RaiseLocalEvent(station, new CharacterRecordsModifiedEvent());
     }
 
+    /// <summary>
+    /// Removes a single entry from one category of the player-authored record.
+    /// </summary>
     public void DelEntry(
         EntityUid station,
         EntityUid player,
@@ -213,7 +251,10 @@ public sealed class CharacterRecordsSystem : EntitySystem
             return;
 
         if (!recordsDb.Records.TryGetValue(key.Key.Index, out var value))
+        {
+            Sawmill.Warning($"Attempted to delete {type} entry {index} for {ToPrettyString(player)} but no record exists on station {ToPrettyString(station)}.");
             return;
+        }
 
         var playerRecords = value.PRecords;
 
@@ -241,9 +282,13 @@ public sealed class CharacterRecordsSystem : EntitySystem
                 break;
         }
 
+        Sawmill.Debug($"Deleted {type} entry {index} for {ToPrettyString(player)} on {ToPrettyString(station)}.");
         RaiseLocalEvent(station, new CharacterRecordsModifiedEvent());
     }
 
+    /// <summary>
+    /// Resets all player-authored information back to the default template.
+    /// </summary>
     public void ResetRecord(
         EntityUid station,
         EntityUid player,
@@ -254,7 +299,10 @@ public sealed class CharacterRecordsSystem : EntitySystem
             return;
 
         if (!recordsDb.Records.TryGetValue(key.Key.Index, out var value))
+        {
+            Sawmill.Warning($"Attempted to reset records for {ToPrettyString(player)} but no entry exists on station {ToPrettyString(station)}.");
             return;
+        }
 
         // Replace the player-authored information with a clean template.
         var records = PlayerProvidedCharacterRecords.DefaultRecords();
@@ -263,9 +311,13 @@ public sealed class CharacterRecordsSystem : EntitySystem
             value.Name = meta.EntityName;
 
         value.PRecords = records;
+        Sawmill.Debug($"Reset character records for {ToPrettyString(player)} on {ToPrettyString(station)}.");
         RaiseLocalEvent(station, new CharacterRecordsModifiedEvent());
     }
 
+    /// <summary>
+    /// Removes the entire runtime record for a player and clears their storage component.
+    /// </summary>
     public void DeleteAllRecords(EntityUid player, CharacterRecordKeyStorageComponent? key = null)
     {
         if (!Resolve(player, ref key))
@@ -277,7 +329,16 @@ public sealed class CharacterRecordsSystem : EntitySystem
             return;
 
         // Remove the entire record entry for this player, e.g., when the entity is deleted mid-round.
-        records.Records.Remove(key.Key.Index);
+        if (records.Records.Remove(key.Key.Index))
+        {
+            Sawmill.Debug($"Removed character record {key.Key.Index} for {ToPrettyString(player)} from {ToPrettyString(station)}.");
+        }
+        else
+        {
+            Sawmill.Warning($"Attempted to remove missing character record {key.Key.Index} for {ToPrettyString(player)} from {ToPrettyString(station)}.");
+        }
+
+        RemComp<CharacterRecordKeyStorageComponent>(player);
         RaiseLocalEvent(station, new CharacterRecordsModifiedEvent());
     }
 

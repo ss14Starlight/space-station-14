@@ -1,0 +1,9 @@
+stack-carpet-deco-tile = deco carpet tile
+stack-dark-bitile-tile = dark bi tile
+stack-steel-bitile-tile = steel bi tile
+stack-white-bitile-tile = white bi tile
+stack-hierophant-tile = hierophant carpet tile
+stack-sepia-tile = sepia tile
+stack-terracotta-tile = terracotta tile
+stack-terracotta-diagonal-tile = diagonal terracotta tile
+stack-terracotta-small-tile = small terracotta tile

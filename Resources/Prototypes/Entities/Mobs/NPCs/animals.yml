@@ -1234,8 +1234,6 @@
   - type: Vocal
     sounds:
       Unsexed: Kangaroo
-  - type: Puller
-    needsHands: false
   - type: StaminaDamageOnHit
     damage: 8 #Stam damage values seem a bit higher than regular damage because of the decay, etc
     # This needs to be moved to boxinggloves
@@ -1365,8 +1363,6 @@
     spawned:
     - id: FoodMeat
       amount: 3
-  - type: Puller
-    needsHands: false
   - type: CanHostGuardian
   - type: NPCRetaliation
     attackMemoryLength: 10
@@ -2744,6 +2740,8 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: Puller
+    needsHands: false
 
 - type: entity
   name: possum
@@ -2818,6 +2816,8 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: Puller
+    needsHands: false
 
 - type: entity
   name: fox
@@ -2902,6 +2902,8 @@
     rootTask:
       task: RuminantHostileCompound
   - type: MessyDrinker
+  - type: Puller
+    needsHands: false
   - type: Tag
     tags:
     - VimPilot
@@ -2949,6 +2951,8 @@
   - type: MobPrice
     price: 200
   - type: MessyDrinker
+  - type: Puller
+    needsHands: false
 
 - type: entity
   parent: MobCorgiBase
@@ -3149,6 +3153,8 @@
       gender: epicene
   - type: MobPrice
     price: 200
+  - type: Puller
+    needsHands: false
   - type: Tag
     tags:
     - VimPilot
@@ -3437,6 +3443,8 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: Puller
+    needsHands: false
 
 - type: entity
   name: hamster
@@ -3833,8 +3841,6 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: Puller
-    needsHands: false
 
 - type: entity
   name: reindeer doe
@@ -3946,3 +3952,4 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+  - type: AlwaysRevolutionaryConvertible

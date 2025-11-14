@@ -40,6 +40,7 @@
     - ActionSurvCameraLights
     - ActionAIViewLaws
     - ActionAIShunt # Starlight AI Shunt ability
+    - ActionAIWarp # Starlight
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -411,7 +412,7 @@
 # The actual brain inside the core
 - type: entity
   id: StationAiBrain
-  parent: PositronicBrain
+  parent: [ BaseSiliconLanguages, PositronicBrain ] # Starlight edit: Languages
   categories: [ HideSpawnMenu, DoNotMap ]
   components:
   - type: Sprite
@@ -592,7 +593,8 @@
       borg_brain:
         - PositronicBrain
       borg_module:
-        - BorgModuleTool
+        - BorgModuleSyndicateAdvancedTool # Starlight
+        - BorgModuleConstruction
         - BorgModuleRCD
         - BorgModuleOperative
         - BorgModuleSyndicateWeapon
@@ -627,8 +629,9 @@
         - PositronicBrain
       borg_module:
         - BorgModuleTool
-        - BorgModuleChemical
+        - BorgModuleSyndicateAdvancedChemical # starlight
         - BorgModuleTopicals
+        - BorgModuleSyndicateRescue # starlight
         - BorgModuleSyndicateWeapon
   - type: ItemSlots
     slots:

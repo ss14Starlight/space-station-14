@@ -23,6 +23,7 @@
     # Starlight-start
     KitchenOvenFlatpack: 1
     KitchenStoveFlatpack: 1
+    SlopDispenserFlatpack: 1
     # Starlight-end
   contrabandInventory:
     EggBoxBroken: 1

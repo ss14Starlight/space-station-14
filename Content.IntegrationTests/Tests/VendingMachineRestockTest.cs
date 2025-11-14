@@ -23,6 +23,18 @@ namespace Content.IntegrationTests.Tests
     {
         private static readonly ProtoId<DamageTypePrototype> TestDamageType = "Blunt";
 
+        // Starlight begin
+        /// <summary>
+        /// A list of restock kits that aren't intended to be purchasable (mapper/admeme only).
+        /// </summary>
+        private readonly HashSet<string> _ignoredPrototypes = new()
+        {
+            "VendingMachineRestockMagical",
+            "VendingMachineRestockSyndicate",
+            "VendingMachineRestockCentComm",
+        };
+        // Starlight end
+
         [TestPrototypes]
         private const string Prototypes = @"
 - type: entity
@@ -140,6 +152,9 @@ namespace Content.IntegrationTests.Tests
                     // Ignore any prototypes that are listed as abductor listings instead
                     restocks.Remove(listing.ProductEntity);
                 }
+
+                // Don't check ones we explicitly marked as not obtainable
+                restocks.RemoveWhere(x => _ignoredPrototypes.Contains(x));
                 // Starlight end
 
                 // Collect all the prototypes with StorageFills referencing those entities.

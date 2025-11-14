@@ -13,7 +13,10 @@
         gamma:
           shuttle: /Maps/_Starlight/Shuttles/CC-NT/GammaWeaponry.yml
           announcement: announcement-gamma-armory
+          recallAnnouncement: announcement-gamma-armory-recall
         psi:
           shuttle: /Maps/_Starlight/Shuttles/CC-NT/PsiArmory.yml
           announcement: announcement-psi-armory
           announcementColor: "#2288ff"
+          recallAnnouncement: announcement-psi-armory-recall
+          recallAnnouncementColor: "#2288ff"

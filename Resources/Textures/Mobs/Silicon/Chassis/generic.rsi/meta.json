@@ -24,19 +24,19 @@
             "directions": 4
         },
         {
-            "name": "standard",
+            "name": "generic",
             "directions": 4
         },
         {
-            "name": "standard_e",
+            "name": "generic_e",
             "directions": 4
         },
         {
-            "name": "standard_e_r",
+            "name": "generic_e_r",
             "directions": 4
         },
         {
-            "name": "standard_l",
+            "name": "generic_l",
             "directions": 4
         },
         {

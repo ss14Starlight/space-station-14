@@ -169,6 +169,36 @@
     tags:
     - CantInteract
 
+# Base enemy Eye for Admin uses.
+- type: entity
+  parent:
+  - Incorporeal
+  - BaseMob
+  id: EnemyConsoleEye
+  name: "???"
+  description: "ERROR"
+  categories: [ HideSpawnMenu ]
+  suffix: DO NOT MAP
+  components:
+  - type: NoFTL
+  - type: WarpPoint
+    follow: true
+  - type: Eye
+    pvsScale: 1.5
+  - type: StationAiOverlay
+    allowCrossGrid: true
+  - type: Visibility
+    layer: 32768
+  - type: Sprite
+    sprite: _Starlight/Mobs/Net/net_eye.rsi
+    layers:
+    - map: ["base"]
+      state: enemy
+      shader: unshaded
+  - type: Tag
+    tags:
+    - CantInteract
+
 - type: entity
   parent: BaseComputerShuttle
   id: CompuerShuttleSalvage

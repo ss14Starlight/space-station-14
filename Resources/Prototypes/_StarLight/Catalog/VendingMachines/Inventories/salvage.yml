@@ -184,15 +184,25 @@
   conditions:
   - !type:BuyerAccessCondition
 
+#- type: listing
+  #id: VendorSalvageWeaponPistolDeagle
+  #productEntity: WeaponPistolDeagle
+  #cost:
+    #SalvageTicket: 300
+  #categories:
+  #- SalvageWeapons
+  #conditions:
+  #- !type:BuyerAccessCondition
+
 - type: listing
-  id: VendorSalvageWeaponPistolDeagle
-  productEntity: WeaponPistolDeagle
+  id: VendorSalvageWeaponPistolMK58
+  productEntity: WeaponPistolMk58
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
   - SalvageWeapons
   conditions:
-  - !type:BuyerAccessCondition
+  - !type:BuyerAccessCondition 
 
 - type: listing
   id: VendorSalvageWeaponShotgunCycler
@@ -235,11 +245,21 @@
   conditions:
   - !type:BuyerAccessCondition
 
+#- type: listing
+  #id: VendorSalvageMagazineMagnum
+  #productEntity: MagazineMagnum
+  #cost:
+    #SalvageTicket: 150
+  #categories:
+  #- SalvageConsumeables
+  #conditions:
+  #- !type:BuyerAccessCondition
+
 - type: listing
-  id: VendorSalvageMagazineMagnum
-  productEntity: MagazineMagnum
+  id: VendorSalvageMagazineMK58
+  productEntity: MagazinePistolSP
   cost:
-    SalvageTicket: 150
+    SalvageTicket: 75
   categories:
   - SalvageConsumeables
   conditions:
@@ -420,7 +440,7 @@
   id: VendorSalvageClothingOuterVestWebMerc
   productEntity: ClothingOuterVestWebMerc
   cost:
-    SalvageTicket: 200
+    SalvageTicket: 350
   categories:
   - SalvageMercenaryEquipment
   conditions:

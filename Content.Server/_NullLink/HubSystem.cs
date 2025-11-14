@@ -72,7 +72,7 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
 
         SendUpdate();
 
-        if (_processingResubscribe) return;
+        if (_processingResubscribe || (_timing.RealTime - _lastResubscribe) < _grainDelay) return;
         _processingResubscribe = true;
         Resubscribe();
     }
@@ -196,6 +196,6 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
             Status = (NullLink.ServerStatus)info.Status,
             Players = info.Players,
             MaxPlayers = info.MaxPlayers,
-            СurrentStateStartedAt = info.СurrentStateStartedAt
+            СurrentStateStartedAt = info.CurrentStateStartedAt
         };
 }

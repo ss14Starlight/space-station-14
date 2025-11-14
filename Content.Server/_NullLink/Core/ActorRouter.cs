@@ -67,7 +67,7 @@ public sealed partial class ActorRouter : IActorRouter, IDisposable
     {
         if (!string.IsNullOrEmpty(_project)
             && !string.IsNullOrEmpty(_server)
-            && TryGetGrain($"{_project}.{_server}", out serverGrain))
+            && TryGetGrain($"{_project.ToUpper()}.{_server.ToLower()}", out serverGrain))
             return true;
 
         serverGrain = default;

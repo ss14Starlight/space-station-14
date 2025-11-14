@@ -43,8 +43,11 @@
       - id: ClothingHandsGlovesCombat
       - id: ClothingShoesBootsCombat
       - id: TrackingImplanter
-        amount: 1
+        amount: 3
       - id: MedkitAdvancedFilled
+      - id: WeaponPistolSP8T
+      - id: MagazinePistol40SP
+        amount: 2
       - id: ClothingEyesGlassesBlueShield
       - id: ClothingEyesHudBlueShield
       - id: ClothingHeadHatBeretBlueShield
