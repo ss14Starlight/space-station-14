@@ -1,0 +1,133 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:controls="clr-namespace:Robust.Client.UserInterface.Controls;assembly=Robust.Client"
+               SetSize="1000 700"
+               MinSize="800 600"
+               Title="{Loc 'automod-eui-menu-title'}">
+    <BoxContainer Orientation="Vertical" Margin="10">
+        <!-- Header with action buttons and rule count -->
+        <PanelContainer StyleClasses="AngleRect" Margin="0 0 0 10">
+            <BoxContainer Orientation="Horizontal" Margin="8 6">
+                <Button Name="RefreshButton" Access="Public" 
+                        Text="{Loc 'automod-eui-menu-refresh'}" 
+                        MinSize="80 0" />
+                <Button Name="AddRuleButton" Access="Public" 
+                        Text="{Loc 'automod-eui-menu-add-rule'}" 
+                        StyleClasses="ButtonColorGreen" 
+                        MinSize="80 0" 
+                        Margin="4 0 0 0" />
+                <Button Name="SaveAllButton" Access="Public" 
+                        Text="{Loc 'automod-eui-menu-save-all'}" 
+                        MinSize="80 0" 
+                        Margin="4 0 0 0" />
+                <Button Name="ManageCategoriesButton" Access="Public" 
+                        Text="{Loc 'automod-ui-categories'}" 
+                        MinSize="80 0" 
+                        Margin="4 0 0 0" />
+                <Label Name="RuleCountLabel" Access="Public" 
+                       Text="{Loc 'automod-loading-rules'}" 
+                       HorizontalExpand="True" 
+                       HorizontalAlignment="Right" />
+            </BoxContainer>
+        </PanelContainer>
+        
+        <!-- Search Bar -->
+        <PanelContainer StyleClasses="AngleRect" Margin="0 0 0 8">
+            <BoxContainer Name="SearchContainer" Access="Public" Orientation="Horizontal" Margin="8 6">
+                <!-- Search bar will be populated dynamically -->
+            </BoxContainer>
+        </PanelContainer>
+        
+        <!-- Tab container -->
+        <TabContainer Name="MainTabs" Access="Public" VerticalExpand="True">
+            <!-- Rules Tab -->
+            <ScrollContainer Name="RulesScrollContainer">
+                <BoxContainer Name="RulesContainer" Access="Public" Orientation="Vertical" />
+            </ScrollContainer>
+            
+            <!-- Tester Tab -->
+            <BoxContainer Orientation="Vertical">
+                <!-- Tester Header -->
+                <PanelContainer StyleClasses="AngleRect" Margin="0 0 0 10">
+                    <BoxContainer Orientation="Vertical" Margin="8 6">
+                        <Label Text="{Loc 'automod-eui-tester-title'}" 
+                               StyleClasses="LabelHeading" />
+                        <Label Text="{Loc 'automod-eui-tester-description'}" 
+                               StyleClasses="LabelSubText" 
+                               Margin="0 2 0 0" />
+                    </BoxContainer>
+                </PanelContainer>
+                
+                <!-- Tester Input Controls -->
+                <BoxContainer Orientation="Vertical" Margin="0 5">
+                    <Label Text="{Loc 'automod-ui-regex-pattern'}" />
+                    <LineEdit Name="TesterPatternInput" Access="Public" 
+                              PlaceHolder="{Loc 'automod-tester-pattern-placeholder'}" 
+                              Margin="0 2 0 8" />
+                    
+                    <Label Text="{Loc 'automod-ui-test-text'}" />
+                    <LineEdit Name="TesterTextInput" Access="Public" 
+                              PlaceHolder="{Loc 'automod-tester-text-placeholder'}" 
+                              Margin="0 2 0 8" />
+                    
+                    <Button Name="TesterTestButton" Access="Public" 
+                            Text="{Loc 'automod-ui-test-button'}" 
+                            StyleClasses="ButtonColorGreen" 
+                            MinSize="80 0" />
+                </BoxContainer>
+                
+                <!-- Tester Results Panel -->
+                <PanelContainer StyleClasses="AngleRect" Margin="0 10 0 0">
+                    <BoxContainer Orientation="Vertical" Margin="8 6">
+                        <Label Text="{Loc 'automod-ui-result'}" 
+                               StyleClasses="LabelKeyText" />
+                        <RichTextLabel Name="TesterResultLabel" Access="Public" 
+                                       Margin="0 4 0 0" />
+                    </BoxContainer>
+                </PanelContainer>
+                
+                <!-- Tester Cheat Sheet Panel -->
+                <PanelContainer StyleClasses="AngleRect" 
+                                Margin="0 10 0 0" 
+                                VerticalExpand="True">
+                    <ScrollContainer>
+                        <RichTextLabel Name="TesterCheatSheet" Access="Public" 
+                                       Margin="8 6" />
+                    </ScrollContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </TabContainer>
+        
+        <!-- Hidden template containers for reusable UI components -->
+        <!-- These are not visible but serve as templates for dynamically created elements -->
+        <BoxContainer Name="UITemplates" Access="Public" Visible="False">
+            
+            <!-- Simple Dialog Template -->
+            <BoxContainer Name="SimpleDialogTemplate" Orientation="Vertical" Margin="10">
+                <PanelContainer StyleClasses="AngleRect" Margin="0 0 0 10">
+                    <Label Name="DialogMessage" Margin="10" />
+                </PanelContainer>
+                <Button Name="DialogOkButton" 
+                        Text="{Loc 'automod-ui-ok'}" 
+                        StyleClasses="ButtonColorGreen" />
+            </BoxContainer>
+            
+            <!-- Category Filter Button Template -->
+            <Button Name="CategoryFilterButtonTemplate" 
+                    MinSize="80 0" 
+                    ToggleMode="True" 
+                    Margin="4 0 0 0" />
+            
+            <!-- Rule Panel Separator Template -->
+            <PanelContainer Name="RuleSeparatorTemplate" 
+                            StyleClasses="LoweredPanel" 
+                            MinSize="0 1" 
+                            Margin="0 8 0 8" />
+            
+            <!-- Standard Button Template -->
+            <Button Name="StandardButtonTemplate" 
+                    MinSize="80 0" 
+                    Margin="4 0 0 0" />
+                    
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

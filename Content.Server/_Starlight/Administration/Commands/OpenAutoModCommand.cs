@@ -2,28 +2,33 @@ using Content.Server.Administration.UI;
 using Content.Server.EUI;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
+using Robust.Shared.Localization;
 
-namespace Content.Server.Administration.Commands
+namespace Content.Server.Administration.Commands;
+
+[AdminCommand(AdminFlags.AutoMod)]
+public sealed class OpenAutoModCommand : IConsoleCommand
 {
-    [AdminCommand(AdminFlags.AutoMod)]
-    public sealed class OpenAutoModCommand : IConsoleCommand
+    [Dependency] private readonly EuiManager _euiManager = default!;
+
+    public string Command => "automod";
+    public string Description => Loc.GetString("automod-command-description");
+    public string Help => Loc.GetString("automod-command-help");
+
+    public OpenAutoModCommand()
     {
-        public string Command => "automod";
-        public string Description => "Opens the admin auto mod panel.";
-        public string Help => "Usage: automod";
+        IoCManager.InjectDependencies(this);
+    }
 
-        public void Execute(IConsoleShell shell, string argStr, string[] args)
+    public void Execute(IConsoleShell shell, string argStr, string[] args)
+    {
+        if (shell.Player == null)
         {
-            var player = shell.Player;
-            if (player == null)
-            {
-                shell.WriteLine("This does not work from the server console.");
-                return;
-            }
-
-            var eui = IoCManager.Resolve<EuiManager>();
-            var ui = new AutoModEui();
-            eui.OpenEui(ui, player);
+            shell.WriteLine(Loc.GetString("automod-command-no-server-console"));
+            return;
         }
+
+        var ui = new AutoModEui();
+        _euiManager.OpenEui(ui, shell.Player);
     }
 }

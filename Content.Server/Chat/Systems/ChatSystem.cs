@@ -827,6 +827,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
             return;
 
+        // Starlight Start: AutoMod
+        // Check if message should be cancelled
+        if (!_chatManager.MessageCancelCheck(player, message, ChatChannel.LOOC))
+            return;
+        // Starlight End
         var wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
             ("entityName", name),
             ("message", FormattedMessage.EscapeText(message)));
@@ -843,6 +848,11 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     private void SendDeadChat(EntityUid source, ICommonSession player, string message, bool hideChat)
     {
+        // Starlight Start: AutoMod
+        // Check if message should be cancelled
+        if (!_chatManager.MessageCancelCheck(player, message, ChatChannel.Dead))
+            return;
+        // Starlight End
         var clients = GetDeadChatClients();
         var playerName = Name(source);
         string wrappedMessage;

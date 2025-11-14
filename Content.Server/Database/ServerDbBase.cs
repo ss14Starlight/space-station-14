@@ -28,9 +28,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Administration;
-using Content.Server.Starlight.Chat.Systems;
-using Content.Server.Humanoid.Markings.Extensions;
+using Content.Shared.Administration; // Starlight: AutoMod
 
 namespace Content.Server.Database
 {
@@ -1542,7 +1540,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             note.Message = message;
             note.Severity = severity;
             note.Secret = secret;
-            note.LastEditedById = editedBy;
+            // Allow system edits without a real editor by treating Guid.Empty as null
+            note.LastEditedById = editedBy == Guid.Empty ? null : editedBy;
             note.LastEditedAt = editedAt.UtcDateTime;
             note.ExpirationTime = expiryTime?.UtcDateTime;
 
@@ -1987,13 +1986,13 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
 
         }
 
-        //starlight start
+        // Starlight Start: AutoMod
         //generator for DB notification
         public void SendAutoModNotification()
         {
             var notif = new DatabaseNotification
             {
-                Channel = AutoModSystem.NotificationChannel
+                Channel = "automod_rules"
             };
 
             SendNotification(notif);
@@ -2048,14 +2047,76 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 return false;
             }
 
+            existingRule.Category = rule.Category;
+            existingRule.Severity = rule.Severity;
             existingRule.Regex = rule.Regex;
             existingRule.Enabled = rule.Enabled;
+            existingRule.WatchOOC = rule.WatchOOC;
             existingRule.Offences = rule.Offences;
+            existingRule.LastModifiedBy = rule.LastModifiedBy;
+            existingRule.LastModifiedAt = rule.LastModifiedAt;
 
             await db.DbContext.SaveChangesAsync();
             SendAutoModNotification();
             return true;
         }
-        //starlight end
+
+        public async Task<bool> AddAutoModCategory(AutoModCategory category)
+        {
+            await using var db = await GetDb();
+
+            db.DbContext.AutoModCategories.Add(category);
+            await db.DbContext.SaveChangesAsync();
+            SendAutoModNotification();
+            return true;
+        }
+
+        public async Task<bool> UpdateAutoModCategory(AutoModCategory category)
+        {
+            await using var db = await GetDb();
+
+            var existingCategory = await db.DbContext.AutoModCategories.SingleOrDefaultAsync(c => c.Id == category.Id);
+            if (existingCategory == null)
+            {
+                _opsLog.Error($"AutoMod category {category.Id} not found in database.");
+                return false;
+            }
+
+            existingCategory.Name = category.Name;
+            existingCategory.Color = category.Color;
+            existingCategory.IsCollapsed = category.IsCollapsed;
+            existingCategory.SortOrder = category.SortOrder;
+            existingCategory.LastModifiedBy = category.LastModifiedBy;
+            existingCategory.LastModifiedAt = category.LastModifiedAt;
+
+            await db.DbContext.SaveChangesAsync();
+            SendAutoModNotification();
+            return true;
+        }
+
+        public async Task<bool> DeleteAutoModCategory(int id)
+        {
+            await using var db = await GetDb();
+
+            var category = await db.DbContext.AutoModCategories.SingleOrDefaultAsync(c => c.Id == id);
+            if (category == null)
+            {
+                _opsLog.Error($"AutoMod category {id} not found in database.");
+                return false;
+            }
+
+            db.DbContext.AutoModCategories.Remove(category);
+            await db.DbContext.SaveChangesAsync();
+            SendAutoModNotification();
+            return true;
+        }
+
+        public async Task<List<AutoModCategory>> GetAutoModCategories()
+        {
+            await using var db = await GetDb();
+            return await db.DbContext.AutoModCategories.OrderBy(c => c.SortOrder).ThenBy(c => c.Name).ToListAsync();
+        }
+
+        // Starlight End
     }
 }

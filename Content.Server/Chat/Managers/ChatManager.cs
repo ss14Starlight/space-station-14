@@ -251,7 +251,7 @@ internal sealed partial class ChatManager : IChatManager
         {
             case OOCChatType.OOC:
                 //check if allowed to send
-                if(MessageCancelCheck(player, message))
+                if(MessageCancelCheck(player, message, ChatChannel.OOC)) // Starlight Edit: AutoMod
                     SendOOC(player, message);
                 break;
             case OOCChatType.Admin:
@@ -440,12 +440,12 @@ internal sealed partial class ChatManager : IChatManager
         return isOverLength;
     }
 
-    public bool MessageCancelCheck(ICommonSession? player, string message)
+    public bool MessageCancelCheck(ICommonSession? player, string message, ChatChannel? channel = null) // Starlight Edit: AutoMod
     {
         if (player == null)
             return false;
 
-        var ev = new ChatAttemptEvent(player, message);
+        var ev = new ChatAttemptEvent(player, message, channel); // Starlight Edit: AutoMod
         _entityManager.EventBus.RaiseEvent(EventSource.Local, ev); //cursed but works
 
         if (ev.Cancelled)
@@ -469,10 +469,12 @@ public sealed class ChatAttemptEvent : CancellableEntityEventArgs
 {
     public ICommonSession Sender;
     public string Message;
+    public ChatChannel? Channel; // Starlight: AutoMod
 
-    public ChatAttemptEvent(ICommonSession sender, string message)
+    public ChatAttemptEvent(ICommonSession sender, string message, ChatChannel? channel = null) // Starlight Edit: AutoMod
     {
         Sender = sender;
         Message = message;
+        Channel = channel; // Starlight: AutoMod
     }
 }

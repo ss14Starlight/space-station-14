@@ -10,8 +10,7 @@ using System.Text.Json;
 using Content.Shared.Database;
 using Microsoft.EntityFrameworkCore;
 using NpgsqlTypes;
-using Content.Shared.Administration;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion; // Starlight: AutoMod
 
 namespace Content.Server.Database
 {
@@ -48,7 +47,10 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        // Starlight Start: AutoMod
         public DbSet<AutoModRule> AutoModRules { get; set; } = null!;
+        public DbSet<AutoModCategory> AutoModCategories { get; set; } = null!;
+        // Starlight End: AutoMod
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -415,22 +417,33 @@ namespace Content.Server.Database
                 .Property(p => p.Type)
                 .HasDefaultValue(HwidType.Legacy);
 
+            // Starlight Start: AutoMod
             var autoModOffenceConverter = new ValueConverter<List<AutoModOffence>, string>(
                 v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
                 v => JsonSerializer.Deserialize<List<AutoModOffence>>(v, (JsonSerializerOptions?)null) ?? new List<AutoModOffence>());
 
+            var autoModOffenceComparer = new Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<List<AutoModOffence>>(
+                (c1, c2) => JsonSerializer.Serialize(c1, (JsonSerializerOptions?)null) == JsonSerializer.Serialize(c2, (JsonSerializerOptions?)null),
+                c => c.Aggregate(0, (a, v) => HashCode.Combine(a, JsonSerializer.Serialize(v, (JsonSerializerOptions?)null).GetHashCode())),
+                c => JsonSerializer.Deserialize<List<AutoModOffence>>(JsonSerializer.Serialize(c, (JsonSerializerOptions?)null), (JsonSerializerOptions?)null) ?? new List<AutoModOffence>());
+
             modelBuilder.Entity<AutoModRule>()
                 .HasIndex(p => p.Id)
                 .IsUnique();
-            
+
             modelBuilder.Entity<AutoModRule>()
                 .Property(p => p.Regex)
                 .IsRequired();
-            
+
             modelBuilder.Entity<AutoModRule>()
                 .Property(p => p.Offences)
                 .HasConversion(autoModOffenceConverter)
+                .Metadata.SetValueComparer(autoModOffenceComparer);
+
+            modelBuilder.Entity<AutoModRule>()
+                .Property(p => p.Offences)
                 .IsRequired();
+            // Starlight End
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -1389,28 +1402,72 @@ namespace Content.Server.Database
         /// </summary>
         public float Score { get; set; }
     }
-}
 
-// Database model for AutoModRule
-[Table("AutoModRules")]
-public class AutoModRule
-{
-    [Key]
-    public int Id { get; set; }
-    [Required]
-    public string Regex { get; set; } = string.Empty;
-    [Required]
-    public bool Enabled { get; set; }
-    [Required]
-    public List<AutoModOffence> Offences { get; set; } = new();
-}
+    // Starlight Start: AutoMod
+    #region AutoMod Models
+    // Database model for AutoModRule
+    [Table("AutoModRules")]
+    public class AutoModRule
+    {
+        [Key]
+        public int Id { get; set; }
+        public string? Category { get; set; }
+        [Required]
+        public int Severity { get; set; } = 1;
+        [Required]
+        public string Regex { get; set; } = string.Empty;
+        [Required]
+        public bool Enabled { get; set; }
+        [Required]
+        public bool WatchOOC { get; set; } = false;
+        [Required]
+        public List<AutoModOffence> Offences { get; set; } = new();
+        [Required]
+        public Guid CreatedBy { get; set; }
+        [Required]
+        public DateTime CreatedAt { get; set; }
+        [Required]
+        public Guid LastModifiedBy { get; set; }
+        [Required]
+        public DateTime LastModifiedAt { get; set; }
+    }
 
-// Database model for AutoModOffence
-public class AutoModOffence
-{
-    public string Message { get; set; } = string.Empty;
-    public int Action { get; set; }
-    public int BanDurationMinutes { get; set; } = 0;
-    public int DecaySeconds { get; set; } = 0;
-    public bool CancelSpeech { get; set; } = false;
+    // Database model for AutoModCategory
+    [Table("AutoModCategories")]
+    public class AutoModCategory
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; } = string.Empty;
+        [Required]
+        public string Color { get; set; } = "#FFFFFF"; // Hex color code
+        [Required]
+        public bool IsCollapsed { get; set; } = false;
+        [Required]
+        public int SortOrder { get; set; } = 0;
+        [Required]
+        public Guid CreatedBy { get; set; }
+        [Required]
+        public DateTime CreatedAt { get; set; }
+        [Required]
+        public Guid LastModifiedBy { get; set; }
+        [Required]
+        public DateTime LastModifiedAt { get; set; }
+    }
+
+    // Database model for AutoModOffence
+    public class AutoModOffence
+    {
+        public string Message { get; set; } = string.Empty;
+        public int Action { get; set; }
+        public int BanDurationMinutes { get; set; } = 0;
+        public int DecaySeconds { get; set; } = 0;
+        public bool CancelSpeech { get; set; } = false;
+        public bool Persistent { get; set; } = true;
+        public int DecayLevels { get; set; } = 1;
+    }
+
+    #endregion
+    // Starlight End
 }

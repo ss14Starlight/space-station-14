@@ -5,8 +5,6 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
-using Content.Server.Starlight.Administration.Systems;
-using Content.Shared.Administration;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
@@ -24,6 +22,10 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using LogLevel = Robust.Shared.Log.LogLevel;
 using MSLogLevel = Microsoft.Extensions.Logging.LogLevel;
+// Starlight Start: AutoMod
+using Content.Server.Starlight.Administration.Systems;
+using Content.Shared.Administration;
+// Starlight End
 
 namespace Content.Server.Database
 {
@@ -371,13 +373,22 @@ namespace Content.Server.Database
 
         #endregion
 
-        //starlight
+        // Starlight Start: AutoMod
+        #region AutoMod
+
         Task<bool> AddAutoModRule(AutoModRule rule);
         Task<bool> UpdateAutoModRule(AutoModRule rule);
         Task<bool> DeleteAutoModRule(int id);
         Task<List<AutoModRule>> GetAutoModRules();
         Task<int> GetAutoModRuleCount();
-        //end starlight
+        // Category management
+        Task<bool> AddAutoModCategory(AutoModCategory category);
+        Task<bool> UpdateAutoModCategory(AutoModCategory category);
+        Task<bool> DeleteAutoModCategory(int id);
+        Task<List<AutoModCategory>> GetAutoModCategories();
+
+        #endregion
+        // Starlight End
     }
 
     /// <summary>
@@ -876,8 +887,10 @@ namespace Content.Server.Database
             var note = new AdminNote
             {
                 RoundId = roundId,
-                CreatedById = createdBy,
-                LastEditedById = createdBy,
+                // Starlight edit Start: AutoMod, Allow null for notes
+                CreatedById = createdBy == Guid.Empty ? null : createdBy,
+                LastEditedById = createdBy == Guid.Empty ? null : createdBy,
+                // Starlight edit End
                 PlayerUserId = player,
                 PlaytimeAtNote = playtimeAtNote,
                 Message = message,
@@ -1227,7 +1240,7 @@ namespace Content.Server.Database
         {
             builder.UseLoggerFactory(_msLoggerFactory);
         }
-
+        // Starlight Start: AutoMod
         public Task<bool> AddAutoModRule(AutoModRule rule)
         {
             DbWriteOpsMetric.Inc();
@@ -1258,6 +1271,30 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.GetAutoModRuleCount());
         }
 
+        public Task<bool> AddAutoModCategory(AutoModCategory category)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddAutoModCategory(category));
+        }
+
+        public Task<bool> UpdateAutoModCategory(AutoModCategory category)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.UpdateAutoModCategory(category));
+        }
+
+        public Task<bool> DeleteAutoModCategory(int id)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.DeleteAutoModCategory(id));
+        }
+
+        public Task<List<AutoModCategory>> GetAutoModCategories()
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetAutoModCategories());
+        }
+        // Starlight End
         private sealed class LoggingProvider : ILoggerProvider
         {
             private readonly ILogManager _logManager;

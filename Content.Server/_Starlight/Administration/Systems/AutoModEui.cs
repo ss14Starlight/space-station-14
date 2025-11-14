@@ -1,266 +1,355 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Server.Starlight.Chat.Systems;
 using Content.Server.EUI;
-using Content.Shared.Administration;
-using Content.Shared.Eui;
-using Robust.Server.Player;
-using Robust.Shared.Network;
-using DbAdminRank = Content.Server.Database.AdminRank;
-using static Content.Shared.Administration.PermissionsEuiMsg;
-using static Content.Shared.Administration.AutoModEuiMsg;
+using Content.Shared._Starlight.Administration;
 using Content.Shared.Database;
-using ServerAutoModRule = global::AutoModRule;
-using ServerAutoModOffence = global::AutoModOffence;
-using SharedAutoModRule = Content.Shared.Administration.AutoModRule;
-using SharedAutoModOffence = Content.Shared.Administration.AutoModOffence;
+using Content.Shared.Eui;
+using static Content.Shared._Starlight.Administration.AutoModEuiMsg;
+using ServerAutoModRule = Content.Server.Database.AutoModRule;
+using ServerAutoModOffence = Content.Server.Database.AutoModOffence;
+using SharedAutoModRule = Content.Shared._Starlight.Administration.AutoModRule;
+using SharedAutoModOffence = Content.Shared._Starlight.Administration.AutoModOffence;
 
-namespace Content.Server.Administration.UI
+namespace Content.Server.Administration.UI;
+
+public sealed class AutoModEui : BaseEui
 {
-    public sealed class AutoModEui : BaseEui
+    [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private readonly Content.Server.Administration.Logs.IAdminLogManager _adminLogger = default!;
+    
+    private List<ServerAutoModRule> _rules = new();
+    
+    // Server-side blacklisted words that cannot be used in AutoMod rules
+    private readonly HashSet<string> _blacklistedWords = new() { "space", "station", "fourteen" };
+
+    public AutoModEui()
     {
-        [Dependency] private readonly IServerDbManager _db = default!;
-        [Dependency] private readonly Content.Server.Administration.Logs.IAdminLogManager _adminLogger = default!;
-        private List<ServerAutoModRule> _rules = new();
-        public AutoModEui()
-        {
-            IoCManager.InjectDependencies(this);
-        }
+        IoCManager.InjectDependencies(this);
+    }
 
-        public override void Opened()
-        {
-            base.Opened();
+    public override void Opened()
+    {
+        base.Opened();
+        StateDirty();
+        LoadFromDb();
+    }
 
-            StateDirty();
-            LoadFromDb();
-        }
+    public override void Closed()
+    {
+        base.Closed();
+    }
 
-        public override void Closed()
+    private async void LoadFromDb()
+    {
+        try
         {
-            base.Closed();
-        }
-
-        private async void LoadFromDb()
-        {
-            //get the automod rules
             _rules = await _db.GetAutoModRules();
-
             StateDirty();
         }
-
-        private static ServerAutoModRule MapToServerRule(SharedAutoModRule sharedRule)
+        catch (Exception ex)
         {
-            return new ServerAutoModRule
-            {
-                Id = sharedRule.Id,
-                Regex = sharedRule.Regex,
-                Enabled = sharedRule.Enabled,
-                Offences = sharedRule.Offences?.Select(o => new ServerAutoModOffence
-                {
-                    Message = o.Message,
-                    Action = (int)o.Action,
-                    BanDurationMinutes = o.BanDurationMinutes,
-                    DecaySeconds = o.DecaySeconds,
-                    CancelSpeech = o.CancelSpeech
-                }).ToList() ?? new List<ServerAutoModOffence>()
-            };
+            Logger.GetSawmill("automod").Error($"Error loading AutoMod rules from database: {ex}");
         }
+    }
 
-        private static SharedAutoModRule MapToSharedRule(ServerAutoModRule serverRule)
-        {
-            return new SharedAutoModRule
-            {
-                Id = serverRule.Id,
-                Regex = serverRule.Regex,
-                Enabled = serverRule.Enabled,
-                Offences = serverRule.Offences?.Select(o => new SharedAutoModOffence
-                {
-                    Message = o.Message,
-                    Action = (Content.Shared.Administration.AutoModOffenceAction)o.Action,
-                    BanDurationMinutes = o.BanDurationMinutes,
-                    DecaySeconds = o.DecaySeconds,
-                    CancelSpeech = o.CancelSpeech
-                }).ToList() ?? new List<SharedAutoModOffence>()
-            };
-        }
 
-        public async void DeleteRule(SharedAutoModRule rule)
+    private static ServerAutoModRule MapToServerRule(SharedAutoModRule shared) => new()
+    {
+        Id = shared.Id,
+        Category = shared.Category,
+        Severity = shared.Severity,
+        Regex = shared.Regex,
+        Enabled = shared.Enabled,
+        WatchOOC = shared.WatchOOC,
+        CreatedBy = shared.CreatedBy,
+        CreatedAt = shared.CreatedAt,
+        LastModifiedBy = shared.LastModifiedBy,
+        LastModifiedAt = shared.LastModifiedAt,
+        Offences = shared.Offences?.Select(o => new ServerAutoModOffence
         {
-            await _db.DeleteAutoModRule(rule.Id);
-            var adminId = Player?.UserId.ToString() ?? "unknown";
-            var adminName = Player?.Name ?? "unknown";
-            var oldRule = _rules.FirstOrDefault(r => r.Id == rule.Id);
-            if (oldRule != null)
-                LogAdminAutoModAction("Deleted", adminName, adminId, oldRule, null);
+            Message = o.Message,
+            Action = (int)o.Action,
+            BanDurationMinutes = o.BanDurationMinutes,
+            DecaySeconds = o.DecaySeconds,
+            DecayLevels = o.DecayLevels,
+            Persistent = o.Persistent,
+            CancelSpeech = o.CancelSpeech
+        }).ToList() ?? new List<ServerAutoModOffence>()
+    };
+
+    private static SharedAutoModRule MapToSharedRule(ServerAutoModRule server) => new()
+    {
+        Id = server.Id,
+        Category = server.Category,
+        Severity = server.Severity,
+        Regex = server.Regex,
+        Enabled = server.Enabled,
+        WatchOOC = server.WatchOOC,
+        CreatedBy = server.CreatedBy,
+        CreatedAt = server.CreatedAt,
+        LastModifiedBy = server.LastModifiedBy,
+        LastModifiedAt = server.LastModifiedAt,
+        Offences = server.Offences?.Select(o => new SharedAutoModOffence
+        {
+            Message = o.Message,
+            Action = (AutoModOffenceAction)o.Action,
+            BanDurationMinutes = o.BanDurationMinutes,
+            DecaySeconds = o.DecaySeconds,
+            DecayLevels = o.DecayLevels,
+            Persistent = o.Persistent,
+            CancelSpeech = o.CancelSpeech
+        }).ToList() ?? new List<SharedAutoModOffence>()
+    };
+    
+    // Helper properties for admin tracking
+    private string _adminName => Player?.Name ?? "unknown";
+    private string _adminId => Player?.UserId.ToString() ?? "unknown";
+    private Guid _adminGuid => Player?.UserId ?? Guid.Empty;
+
+    // Helper method for database operations with common error handling and refresh
+    private async Task ExecuteDbOperation(Func<Task> operation, string operationName)
+    {
+        try
+        {
+            await operation();
             LoadFromDb();
             await RefreshAutomodCacheAsync();
         }
-
-        public async void AddRule(SharedAutoModRule rule)
+        catch (Exception ex)
         {
-            await _db.AddAutoModRule(MapToServerRule(rule));
-            var adminId = Player?.UserId.ToString() ?? "unknown";
-            var adminName = Player?.Name ?? "unknown";
-            var newRule = MapToServerRule(rule);
-            LogAdminAutoModAction("Created", adminName, adminId, null, newRule);
-            LoadFromDb();
-            await RefreshAutomodCacheAsync();
+            Logger.GetSawmill("automod").Error($"Error {operationName} AutoMod rule: {ex}");
         }
+    }
 
-        public async void UpdateRule(SharedAutoModRule rule)
+    /// <summary>
+    /// Validates that a rule doesn't contain blacklisted words in its regex pattern
+    /// </summary>
+    private bool ValidateRule(SharedAutoModRule rule)
+    {
+        if (string.IsNullOrWhiteSpace(rule.Regex)) return true;
+            
+        var regexLower = rule.Regex.ToLower();
+        var blacklistedWord = _blacklistedWords.FirstOrDefault(word => regexLower.Contains(word.ToLower()));
+        
+        if (blacklistedWord == null) return true;
+        
+        Logger.GetSawmill("automod").Warning($"Admin {_adminName} ({_adminId}) attempted to create rule with blacklisted word '{blacklistedWord}' in pattern: {rule.Regex}");
+        SendMessage(new ValidationErrorResponse("Rule contains blacklisted word", blacklistedWord, rule.Regex));
+        return false;
+    }
+
+    public async void DeleteRule(SharedAutoModRule rule) => await ExecuteDbOperation(async () =>
+    {
+        await _db.DeleteAutoModRule(rule.Id);
+        var oldRule = _rules.FirstOrDefault(r => r.Id == rule.Id);
+        if (oldRule != null)
+            LogAdminAutoModAction("Deleted", _adminName, _adminId, oldRule, null);
+    }, "deleting");
+
+    public async void AddRule(SharedAutoModRule rule)
+    {
+        if (!ValidateRule(rule)) return;
+        
+        await ExecuteDbOperation(async () =>
+        {
+            var now = DateTime.UtcNow;
+            rule.CreatedBy = rule.LastModifiedBy = _adminGuid;
+            rule.CreatedAt = rule.LastModifiedAt = now;
+            
+            var newRule = MapToServerRule(rule);
+            await _db.AddAutoModRule(newRule);
+            LogAdminAutoModAction("Created", _adminName, _adminId, null, newRule);
+        }, "adding");
+    }
+
+    // Helper to check if rule has meaningful changes
+    private bool HasRuleChanged(ServerAutoModRule oldRule, ServerAutoModRule newRule) =>
+        oldRule.Category != newRule.Category ||
+        oldRule.Severity != newRule.Severity ||
+        oldRule.Regex != newRule.Regex ||
+        oldRule.Enabled != newRule.Enabled ||
+        oldRule.WatchOOC != newRule.WatchOOC ||
+        !OffencesEqual(oldRule, newRule);
+
+    public async void UpdateRule(SharedAutoModRule rule)
+    {
+        if (!ValidateRule(rule)) return;
+            
+        await ExecuteDbOperation(async () =>
         {
             var oldRule = _rules.FirstOrDefault(r => r.Id == rule.Id);
-            var adminId = Player?.UserId.ToString() ?? "unknown";
-            var adminName = Player?.Name ?? "unknown";
+            rule.LastModifiedBy = _adminGuid;
+            rule.LastModifiedAt = DateTime.UtcNow;
+            
             var newRule = MapToServerRule(rule);
-            if (oldRule != null && (
-                oldRule.Regex != newRule.Regex ||
-                oldRule.Enabled != newRule.Enabled ||
-                !OffencesEqual(oldRule, newRule)))
+            
+            // Debug log the rule update
+            Logger.GetSawmill("automod").Info($"[AutoMod Debug] Updating rule ID {rule.Id}: Regex='{rule.Regex}', Severity={rule.Severity}");
+            if (rule.Offences?.Count > 0)
             {
-                LogAdminAutoModAction("Edited", adminName, adminId, oldRule, newRule);
+                var offenceDetails = string.Join("; ", rule.Offences.Select((o, i) => $"Offence{i+1}: Action={o.Action}({(int)o.Action}), Message='{o.Message}'"));
+                Logger.GetSawmill("automod").Info($"[AutoMod Debug] Rule offences: {offenceDetails}");
             }
+            
+            if (oldRule != null && HasRuleChanged(oldRule, newRule))
+                LogAdminAutoModAction("Edited", _adminName, _adminId, oldRule, newRule);
+            
             await _db.UpdateAutoModRule(newRule);
-            LoadFromDb();
-            await RefreshAutomodCacheAsync();
-        }
+        }, "updating");
+    }
 
-        public async void BulkUpdateRules(List<SharedAutoModRule> rules)
+    public async void BulkUpdateRules(List<SharedAutoModRule> rules)
+    {
+        if (rules.Any(rule => !ValidateRule(rule))) return; // Reject if any rule is invalid
+        
+        Logger.GetSawmill("automod").Info($"[AutoMod Debug] BulkUpdateRules called with {rules.Count} rules");
+            
+        await ExecuteDbOperation(async () =>
         {
-            var adminId = Player?.UserId.ToString() ?? "unknown";
-            var adminName = Player?.Name ?? "unknown";
+            var now = DateTime.UtcNow;
+            var operationsSummary = new List<string>();
+            
+            // Process incoming rules (update existing, add new)
             foreach (var rule in rules)
             {
                 var oldRule = _rules.FirstOrDefault(r => r.Id == rule.Id);
+                rule.LastModifiedBy = _adminGuid;
+                rule.LastModifiedAt = now;
+                
                 var newRule = MapToServerRule(rule);
+                
+                // Debug log each rule being processed
+                Logger.GetSawmill("automod").Info($"[AutoMod Debug] Processing rule ID {rule.Id}: Regex='{rule.Regex}', Severity={rule.Severity}");
+                if (rule.Offences?.Count > 0)
+                {
+                    var offenceDetails = string.Join("; ", rule.Offences.Select((o, i) => $"Offence{i+1}: Action={o.Action}({(int)o.Action}), Message='{o.Message}'"));
+                    Logger.GetSawmill("automod").Info($"[AutoMod Debug] Rule offences: {offenceDetails}");
+                }
+                
                 if (oldRule != null)
                 {
-                    if (
-                        oldRule.Regex != newRule.Regex ||
-                        oldRule.Enabled != newRule.Enabled ||
-                        !OffencesEqual(oldRule, newRule))
+                    if (HasRuleChanged(oldRule, newRule))
                     {
-                        LogAdminAutoModAction("Edited", adminName, adminId, oldRule, newRule);
+                        LogAdminAutoModAction("Edited", _adminName, _adminId, oldRule, newRule);
+                        operationsSummary.Add($"Updated rule ID {rule.Id} ({rule.Regex})");
                     }
                     await _db.UpdateAutoModRule(newRule);
                 }
                 else
                 {
-                    // New rule, add it
+                    rule.CreatedBy = _adminGuid;
+                    rule.CreatedAt = now;
+                    newRule = MapToServerRule(rule);
                     await _db.AddAutoModRule(newRule);
-                    LogAdminAutoModAction("Created", adminName, adminId, null, newRule);
+                    LogAdminAutoModAction("Created", _adminName, _adminId, null, newRule);
+                    operationsSummary.Add($"Created rule ({rule.Regex})");
                 }
             }
 
-            // 2. Delete rules that are in the DB but not in the incoming list
+            // Delete rules not in incoming list
             var incomingIds = rules.Select(r => r.Id).ToHashSet();
-            foreach (var dbRule in _rules)
+            foreach (var dbRule in _rules.Where(r => !incomingIds.Contains(r.Id)))
             {
-                if (!incomingIds.Contains(dbRule.Id))
-                {
-                    await _db.DeleteAutoModRule(dbRule.Id);
-                    LogAdminAutoModAction("Deleted", adminName, adminId, dbRule, null);
-                }
+                await _db.DeleteAutoModRule(dbRule.Id);
+                LogAdminAutoModAction("Deleted", _adminName, _adminId, dbRule, null);
+                operationsSummary.Add($"Deleted rule ID {dbRule.Id} ({dbRule.Regex})");
             }
-
-            LoadFromDb();
-            await RefreshAutomodCacheAsync();
-        }
-
-        //message handler
-        public override void HandleMessage(EuiMessageBase message)
-        {
-            base.HandleMessage(message);
-
-            switch (message)
+            
+            // Log bulk operation summary
+            if (operationsSummary.Count > 0)
             {
-                case DeleteRuleRequest msg:
-                    DeleteRule(msg.Rule);
-                    break;
-                case AddRuleRequest msg:
-                    AddRule(msg.Rule);
-                    break;
-                case UpdateRuleRequest msg:
-                    UpdateRule(msg.Rule);
-                    break;
-                case RefreshRequest msg:
-                    LoadFromDb();
-                    break;
-                case BulkUpdateRulesRequest msg:
-                    BulkUpdateRules(msg.Rules);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(message), message, null);
+                _adminLogger.Add(LogType.AdminCommands, LogImpact.High, 
+                    $"[AutoMod] Bulk Update by {_adminName} ({_adminId}) - {operationsSummary.Count} operations:\n{string.Join("\n", operationsSummary.Select(op => $"  • {op}"))}");
             }
-        }
+        }, "bulk updating");
+    }
 
-        public override EuiStateBase GetNewState()
-        {
-            return new AutoModEuiState
-            {
-                Rules = _rules.Select(MapToSharedRule).ToList()
-            };
-        }
+    public override void HandleMessage(EuiMessageBase message)
+    {
+        base.HandleMessage(message);
 
-        private static async Task RefreshAutomodCacheAsync()
+        switch (message)
         {
-            var sysMan = IoCManager.Resolve<IEntitySystemManager>();
-            var automod = sysMan.GetEntitySystem<Content.Server.Starlight.Chat.Systems.AutoModSystem>();
-            if (automod != null)
-            {
-                await automod.UpdateCache();
-            }
+            case DeleteRuleRequest msg:
+                DeleteRule(msg.Rule);
+                break;
+            case AddRuleRequest msg:
+                AddRule(msg.Rule);
+                break;
+            case UpdateRuleRequest msg:
+                UpdateRule(msg.Rule);
+                break;
+            case RefreshRequest msg:
+                LoadFromDb();
+                break;
+            case BulkUpdateRulesRequest msg:
+                BulkUpdateRules(msg.Rules);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(message), message, null);
         }
+    }
 
-        // Helper to format offences for logging
-        private static string FormatOffences(ServerAutoModRule rule)
-        {
-            if (rule.Offences == null || rule.Offences.Count == 0)
-                return "    (none)";
-            var lines = new List<string>();
-            for (int i = 0; i < rule.Offences.Count; i++)
-            {
-                var o = rule.Offences[i];
-                lines.Add($"    {i + 1}. [{o.Action}] {o.Message}");
-            }
-            return string.Join("\n", lines);
-        }
+    // Helper methods
+    public override EuiStateBase GetNewState() => new AutoModEuiState
+    {
+        Rules = _rules.Select(MapToSharedRule).ToList()
+    };
 
-        private static bool OffencesEqual(ServerAutoModRule a, ServerAutoModRule b)
-        {
-            if (a.Offences == null && b.Offences == null) return true;
-            if (a.Offences == null || b.Offences == null) return false;
-            if (a.Offences.Count != b.Offences.Count) return false;
-            for (int i = 0; i < a.Offences.Count; i++)
-            {
-                if (a.Offences[i].Action != b.Offences[i].Action) return false;
-                if (a.Offences[i].Message != b.Offences[i].Message) return false;
-                if (a.Offences[i].BanDurationMinutes != b.Offences[i].BanDurationMinutes) return false;
-                if (a.Offences[i].DecaySeconds != b.Offences[i].DecaySeconds) return false;
-                if (a.Offences[i].CancelSpeech != b.Offences[i].CancelSpeech) return false;
-            }
-            return true;
-        }
+    private static async Task RefreshAutomodCacheAsync()
+    {
+        var automod = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<AutoModSystem>();
+        if (automod != null) await automod.UpdateCache();
+    }
 
-        // Helper to log admin actions for automod changes
-        private void LogAdminAutoModAction(string action, string adminName, string adminId, ServerAutoModRule? before, ServerAutoModRule? after)
+    private static string FormatOffences(ServerAutoModRule rule) =>
+        rule.Offences?.Count > 0 
+            ? string.Join("\n", rule.Offences.Select((o, i) => $"    {i + 1}. [{o.Action}] {o.Message}"))
+            : "    (none)";
+
+    private static bool OffencesEqual(ServerAutoModRule a, ServerAutoModRule b)
+    {
+        if (a.Offences == null && b.Offences == null) return true;
+        if (a.Offences?.Count != b.Offences?.Count) return false;
+        
+        return a.Offences!.Zip(b.Offences!).All(pair => 
+            pair.First.Action == pair.Second.Action &&
+            pair.First.Message == pair.Second.Message &&
+            pair.First.BanDurationMinutes == pair.Second.BanDurationMinutes &&
+            pair.First.DecaySeconds == pair.Second.DecaySeconds &&
+            pair.First.DecayLevels == pair.Second.DecayLevels &&
+            pair.First.Persistent == pair.Second.Persistent &&
+            pair.First.CancelSpeech == pair.Second.CancelSpeech);
+    }
+
+    private string FormatRuleDetails(ServerAutoModRule rule) =>
+        $"Category:      {rule.Category ?? "None"}\n" +
+        $"Severity:      {(AutoModSeverity)rule.Severity}\n" +
+        $"Regex:         {rule.Regex}\n" +
+        $"Enabled:       {rule.Enabled}\n" +
+        $"Watch OOC:     {rule.WatchOOC}\n" +
+        $"Offences:\n{FormatOffences(rule)}";
+
+    /// <summary>
+    /// Logs admin actions for AutoMod rule changes
+    /// </summary>
+    private void LogAdminAutoModAction(string action, string adminName, string adminId, ServerAutoModRule? before, ServerAutoModRule? after)
+    {
+        switch (action)
         {
-            var beforeText = before != null ? $"Regex:         {before.Regex}\nEnabled:       {before.Enabled}\nOffences:\n{FormatOffences(before)}" : string.Empty;
-            var afterText = after != null ? $"Regex:         {after.Regex}\nEnabled:       {after.Enabled}\nOffences:\n{FormatOffences(after)}" : string.Empty;
-            switch (action)
-            {
-                case "Created":
-                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Rule Created by {adminName} ({adminId})\n───────────────────────────────\n{afterText}");
-                    break;
-                case "Deleted":
-                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Rule Deleted by {adminName} ({adminId})\n───────────────────────────────\n{beforeText}");
-                    break;
-                case "Edited":
-                    _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {after?.Id})\n────── Before ──────\n{beforeText}\n────── After ──────\n{afterText}");
-                    break;
-            }
+            case "Created":
+                _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Rule Created by {adminName} ({adminId})\n───────────────────────────────\n{FormatRuleDetails(after!)}");
+                break;
+            case "Deleted":
+                _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Rule Deleted by {adminName} ({adminId})\n───────────────────────────────\n{FormatRuleDetails(before!)}");
+                break;
+            case "Edited":
+                _adminLogger.Add(LogType.AdminCommands, LogImpact.High, $"[AutoMod] Rule Edited by {adminName} ({adminId}) (ID: {after?.Id})\n────── Before ──────\n{FormatRuleDetails(before!)}\n────── After ──────\n{FormatRuleDetails(after!)}");
+                break;
+            default:
+                throw new ArgumentException($"Unknown action: {action}");
         }
     }
 }
