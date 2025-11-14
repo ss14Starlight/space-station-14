@@ -210,38 +210,34 @@
   result: MagazineBoxImprovisedPistol
   completetime: 60
   materials:
-    Steel: 1300
-    Plastic: 300
-    Cloth: 20
-    CrushedPhosphorus: 700
+    Steel: 3000
+    Cloth: 300
+    CrushedPhosphorus: 2500
 
 - type: latheRecipe
   id: MagazineBoxImprovisedRifleTA
   result: MagazineBoxImprovisedRifle
   completetime: 60
   materials:
-    Steel: 1300
-    Plastic: 600
-    Cloth: 20
-    CrushedPhosphorus: 1500
+    Steel: 3000
+    Cloth: 300
+    CrushedPhosphorus: 4500
 
 - type: latheRecipe
   id: MagazineBoxImprovisedMagnumTA
   result: MagazineBoxImprovisedMagnum
   completetime: 60
   materials:
-    Steel: 1300
-    Plastic: 600
-    Cloth: 20
-    CrushedPhosphorus: 1500
+    Steel: 3000
+    Cloth: 300
+    CrushedPhosphorus: 4500
 
 - type: latheRecipe
   id: MagazineBoxImprovisedShotgunTA
   result: MagazineBoxImprovisedShotgun
   completetime: 60
   materials:
-    Steel: 1300
-    Plastic: 600
-    Glass: 700
-    Cloth: 20
-    CrushedPhosphorus: 1500
+    Steel: 3000
+    Glass: 2500
+    Cloth: 300
+    CrushedPhosphorus: 4500
