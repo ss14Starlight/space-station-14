@@ -183,3 +183,8 @@
     Plastic: 500
     Gold: 1000
     Silver: 500
+
+- type: latheRecipe
+  parent: [ BaseCheapElectronicsRecipe, BaseCircuitryRecipeCategory ]
+  id: WallmountMassScannerElectronics
+  result: WallmountMassScannerCircuitboard

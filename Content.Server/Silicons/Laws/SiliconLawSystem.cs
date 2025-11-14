@@ -33,6 +33,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly IEntityManager _entMan = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -330,10 +331,12 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         var lawset = provider.Lawset ?? GetLawset(provider.Laws);
 
         var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components);
-
         while (query.MoveNext(out var update))
         {
             SetLaws(lawset.Laws, update, provider.LawUploadSound);
+            // Starlight: Components on lawboards TODO remove components provided by the old board when it is removed.
+            if (provider.Components != null)
+                _entMan.AddComponents(update, provider.Components);
         }
     }
 }

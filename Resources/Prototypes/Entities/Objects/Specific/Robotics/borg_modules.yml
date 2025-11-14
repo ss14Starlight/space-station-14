@@ -47,6 +47,9 @@
   - type: ContainerContainer
     containers:
       holding_container: !type:Container { }
+  - type: Tag # Starlight Change - Allows for people to escape from borg modules when they are picked up
+    tags:
+      - PersonnelStorage # Starlight Change - Allows for people to escape from borg modules when they are picked up
 
 - type: entity
   parent: BaseAction
@@ -1318,12 +1321,6 @@
       hands:
       # starlight start: cyborgs l6 actually use ammo
       - item: WeaponLightMachineGunL6
-        hand:
-          emptyRepresentative: WeaponLightMachineGunL6
-          emptyLabel: borg-slot-l6-empty
-          whitelist:
-            tags:
-            - L6Saw
       - hand:
           emptyRepresentative: WeaponLightMachineGunL6
           emptyLabel: borg-slot-l6-empty

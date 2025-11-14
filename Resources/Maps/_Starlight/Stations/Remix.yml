@@ -2210,7 +2210,7 @@ entities:
     - type: RadiationGridResistance
     - type: ImplicitRoof
     - type: BecomesStation
-      id: Remix
+      id: StarlightRemix
 - proto: AbductorOperatingTable
   entities:
   - uid: 3

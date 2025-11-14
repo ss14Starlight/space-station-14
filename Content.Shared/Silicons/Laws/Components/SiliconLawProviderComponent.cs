@@ -41,4 +41,11 @@ public sealed partial class SiliconLawProviderComponent : Component
     /// </summary>
     [DataField("IsLawboard")]
     public bool IsLawboard { get; set; } = false;
+
+    /// <summary>
+    /// Starlight: Components on lawboards
+    /// What components should be added to the AI upon lawset upload.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry? Components = null;
 }

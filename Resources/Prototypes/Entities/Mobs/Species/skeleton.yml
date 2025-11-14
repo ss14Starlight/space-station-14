@@ -26,6 +26,9 @@
         color: "#555555AA"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
+  - type: Tag
+    tags:
+    - Unimplantable # _Starlight
   - type: MobState
   - type: MobThresholds
     thresholds:

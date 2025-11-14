@@ -141,6 +141,7 @@
     - Flashed
     - RadiationProtection
     - Adrenaline
+    - PoliteLanguage # STARLIGHT
   - type: Body
     prototype: Human
     requiredLegs: 2

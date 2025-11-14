@@ -141,9 +141,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.6
-        Piercing: 0.65
+      # region starlight: lowered values
+        Blunt: 0.8 
+        Slash: 0.8 
+        Piercing: 0.75 
+        # end region starlight
         Heat: 0.7
         Radiation: 0.3
         Caustic: 0.7
@@ -204,7 +206,7 @@
   parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ] #Starlight salvContra
   id: ClothingOuterHardsuitMaxim
   name: salvager maxim hardsuit
-  description: Fire. Heat. These things forge great weapons, they also forge great salvagers.  Has built-in battery-powered energy barrier technology.
+  description: Fire. Heat. These things forge great weapons, they also forge great salvagers. #Has built-in battery-powered energy barrier technology.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/maxim.rsi
@@ -213,50 +215,58 @@
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
   - type: Pierceable
     level: Metal
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.5
-        Heat: 0.3
-        Radiation: 0.1
+      # region starlight: maxim lowered values
+        Blunt: 0.65 
+        Slash: 0.65 
+        Piercing: 0.65 
+        Heat: 0.6 
+        Radiation: 0.3 
+        Caustic: 0.8 
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85 
+    sprintModifier: 0.85 
   - type: ExplosionResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.4 
+    # end region starlight
+  - type: HeldSpeedModifier #Starlight addition
   - type: TemperatureProtection
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMaxim
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-      toggleable-clothing: !type:ContainerSlot
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
-        whitelist:
-          tags:
-            - PowerCell
-            - PowerCellSmall
-  - type: EnergyDomeGenerator
-    damageEnergyDraw: 6
-    domePrototype: EnergyDomeSmallPink
-  - type: PowerCellDraw
-    enabled: false
-    drawRate: 8
-    useRate: 0
-  - type: UseDelay
-    delay: 10.0
+    # region starlight: bubble shield removal
+  #- type: ContainerContainer
+    #containers:
+      #cell_slot: !type:ContainerSlot
+      #toggleable-clothing: !type:ContainerSlot
+  #- type: PowerCellSlot
+    #cellSlotId: cell_slot
+  #- type: ItemSlots
+    #slots:
+      #cell_slot:
+        #name: power-cell-slot-component-slot-name-default
+        #startingItem: PowerCellSmall
+        #whitelist:
+          #tags:
+            #- PowerCell
+            #- PowerCellSmall
+  #- type: EnergyDomeGenerator
+    #damageEnergyDraw: 6
+    #domePrototype: EnergyDomeSmallPink
+  #- type: PowerCellDraw
+    #enabled: false
+    #drawRate: 8
+    #useRate: 0
+  #- type: UseDelay
+    #delay: 10.0
+
+#Starlight edit. maxim bubble shield was buggy, made no sense for salvs, and was on a suit with better stats than a blood red.
+# end region starlight
 
 #Security Hardsuit
 - type: entity

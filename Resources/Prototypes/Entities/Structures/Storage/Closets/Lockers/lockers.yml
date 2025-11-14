@@ -46,6 +46,8 @@
     stateDoorClosed: qm_door
   - type: AccessReader
     access: [["Quartermaster"]]
+  - type: WiresPanelSecurity # Starlight: Maintenance panel
+    securityLevel: medSecurity
 
 - type: entity
   id: LockerSalvageSpecialist
@@ -626,3 +628,5 @@
     stateBaseClosed: hop
     stateDoorOpen: hop_open
     stateDoorClosed: representative_door
+  - type: WiresPanelSecurity # Starlight: Maintenance panel
+    securityLevel: medSecurity

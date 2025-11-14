@@ -65,6 +65,11 @@
     - WeaponMechCombatDisabler
     - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatMissileRack8
+    - WeaponMechCombatXray
+    - WeaponMechChainSword
+    - WeaponMechCombatIon
+    - WeaponMechCombatAMLG90
+    - WeaponMechCombatTaser
 
 - type: latheRecipePack
   id: StarlightSyndicateModules
@@ -106,3 +111,80 @@
   id: StarlightDangerousLawboards
   recipes:
     - OverlordCircuitBoard
+
+- type: latheRecipePack
+  id: StarlightVendorBoards
+  recipes:
+    - VendingMachineCondimentsCircuitboard
+    - VendingMachineAmmoCircuitboard
+    - VendingMachineBoozeCircuitboard
+    - VendingMachineCartCircuitboard
+    - VendingMachineChefvendCircuitboard
+    - VendingMachineCigsCircuitboard
+    - VendingMachineClothingCircuitboard
+    - VendingMachineWinterCircuitboard
+    - VendingMachineCoffeeCircuitboard
+    - VendingMachineColaBlackCircuitboard
+    - VendingMachineColaRedCircuitboard
+    - VendingMachineSpaceUpCircuitboard
+    - VendingMachineStarkistCircuitboard
+    - VendingMachineShamblersJuiceCircuitboard
+    - VendingMachinePwrGameCircuitboard
+    - VendingMachineDrGibbCircuitboard
+    - VendingMachineSmiteCircuitboard
+    - VendingMachineDinnerwareCircuitboard
+    - VendingMachineDiscountCircuitboard
+    - VendingMachineEngivendCircuitboard
+    - VendingMachineMedicalCircuitboard
+    - VendingMachineNutriCircuitboard
+    - VendingMachineSecCircuitboard
+    - VendingMachineSeedsUnlockedCircuitboard
+    - VendingMachineSeedsCircuitboard
+    - VendingMachineSnackCircuitboard
+    - VendingMachineSustenanceCircuitboard
+    - VendingMachineSnackBlueCircuitboard
+    - VendingMachineSnackOrangeCircuitboard
+    - VendingMachineSnackGreenCircuitboard
+    - VendingMachineSnackTealCircuitboard
+    - VendingMachineSovietSodaCircuitboard
+    - VendingMachineTheaterCircuitboard
+    - VendingMachineVendomatCircuitboard
+    - VendingMachineRoboticsCircuitboard
+    - VendingMachineYouToolCircuitboard
+    - VendingMachineGamesCircuitboard
+    - VendingMachineChangCircuitboard
+    - VendingMachineSalvageCircuitboard
+    - VendingMachineDonutCircuitboard
+    - VendingMachineHydrobeCircuitboard
+    - VendingMachineLawDrobeCircuitboard
+    - VendingMachineSecDrobeCircuitboard
+    - VendingBarDrobeCircuitboard
+    - VendingMachineChapelCircuitboard
+    - VendingMachineCargoDrobeCircuitboard
+    - VendingMachineMediDrobeCircuitboard
+    - VendingMachineChemDrobeCircuitboard
+    - VendingMachineCuraDrobeCircuitboard
+    - VendingMachineAtmosDrobeCircuitboard
+    - VendingMachineEngiDrobeCircuitboard
+    - VendingMachineChefDrobeCircuitboard
+    - VendingMachineDetDrobeCircuitboard
+    - VendingMachineJaniDrobeCircuitboard
+    - VendingMachineSciDrobeCircuitboard
+    - VendingMachineRoboDrobeCircuitboard
+    - VendingMachineGeneDrobeCircuitboard
+    - VendingMachineViroDrobeCircuitboard
+    - VendingMachineCentDrobeCircuitboard
+    - VendingMachineHappyHonkCircuitboard
+    - VendingMachinePrideCircuitboard
+    - VendingMachineTankDispenserEVACircuitboard
+    - VendingMachineTankDispenserEngineeringCircuitboard
+    - VendingMachineChemicalsCircuitboard
+
+
+# Contraband Vendor Boards (Emag only)
+- type: latheRecipePack
+  id: StarlightSyndicateVendorBoards
+  recipes:
+    - VendingMachineBoozeSyndicateCircuitboard
+    - VendingMachineSyndieDrobeCircuitboard
+    - VendingMachineChemicalsSyndicateCircuitboard

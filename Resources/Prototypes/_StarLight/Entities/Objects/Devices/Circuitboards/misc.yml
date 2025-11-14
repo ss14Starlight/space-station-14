@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseElectronics
+  id: WallmountMassScannerCircuitboard
+  name: wallmount mass scanner electronics
+  description: An electronics board used in wall-mounted mass scanners.
+  components:
+  - type: Item
+    storedRotation: 0
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: airalarm_electronics
+  - type: Tag
+    tags:
+      - WallmountMassScannerElectronics
+  - type: StaticPrice
+    price: 30

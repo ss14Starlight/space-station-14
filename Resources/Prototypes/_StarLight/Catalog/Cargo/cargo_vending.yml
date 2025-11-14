@@ -1,0 +1,19 @@
+# Copying the informative message from the upstream file:
+#
+# If you've arrived here after a failed NoCargoOrderArbitrage test, it's likely
+# because the product in question contains a restock box which links to a
+# vending machine inventory that has had items added to it recently and caused
+# its calculated price to exceed the cost below.
+#
+# The costs will need to be kept in line with the inventory of the respective
+# vending machines. An extra hundred or two profit margin should be fine.
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockSustenance
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: CrateVendingMachineRestockSustenanceFilled
+  cost: 1000
+  category: cargoproduct-category-name-service
+  group: market

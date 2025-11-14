@@ -200,7 +200,7 @@
         maxVol: 12 #uses less fuel than a welder, so this isnt as bad as it looks
   - type: Welder
     fuelConsumption: 0.01
-    fuelLitCost: 0.1
+    fuelLitCost: 0.2 # Starlight-edit
     tankSafe: true
   - type: ToggleableVisuals
     spriteLayer: lighter_flame
@@ -336,7 +336,7 @@
       - Lighters #SL
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseSyndicateContraband]
+  parent: [BaseBrandedLighter, BaseSyndicateContraband] 
   id: SyndicateFlippo
   name: Blood-red flippo
   description: "A 'Valid' choice in lighters. Contains no copper."
@@ -346,7 +346,7 @@
   - type: Item
     sprite: Objects/Tools/Lighters/syndielighter.rsi
   - type: Welder
-    fuelConsumption: 0.005
+    fuelConsumption: 0.01 # Starlight-edit
     fuelLitCost: 0.01
     tankSafe: true
   - type: PointLight
@@ -421,7 +421,7 @@
   - type: Item
     sprite: Objects/Tools/Lighters/cybersun.rsi
   - type: Welder #
-    fuelConsumption: 0.005
+    fuelConsumption: 0.01 # Starlight-edit
     fuelLitCost: 0.01
     tankSafe: true
   - type: PointLight
@@ -441,7 +441,7 @@
   - type: Item
     sprite: Objects/Tools/Lighters/interdyne.rsi
   - type: Welder #
-    fuelConsumption: 0.005
+    fuelConsumption: 0.01 # Starlight-edit
     fuelLitCost: 0.01
     tankSafe: true
   - type: ItemToggleMeleeWeapon
@@ -465,8 +465,8 @@
   - type: Item
     sprite: Objects/Tools/Lighters/nanotrasen.rsi
   - type: Welder #
-    fuelConsumption: 0.005
-    fuelLitCost: 1
+    fuelConsumption: 0.1 # Starlight-start
+    fuelLitCost: 0 # Starlight-end
     fuelReagent: Plasma
     tankSafe: true
   - type: PointLight
@@ -561,8 +561,8 @@
   - type: Item
     sprite: Objects/Tools/Lighters/waffleco.rsi
   - type: Welder #
-    fuelConsumption: 0.005
-    fuelLitCost: 0.05
+    fuelConsumption: 0.01 # Starlight-start
+    fuelLitCost: 0.1 # Starlight-end
     tankSafe: true
   - type: PointLight
     enabled: false
@@ -606,8 +606,8 @@
           mask:
           - ItemMask
   - type: Welder #
-    fuelConsumption: 0.1
-    fuelLitCost: 1
+    fuelConsumption: 0.02 # Starlight-start
+    fuelLitCost: 0.01 # Starlight-end
     tankSafe: true
   - type: PointLight
     enabled: false
@@ -626,8 +626,8 @@
   - type: Item
     sprite: Objects/Tools/Lighters/donkco.rsi
   - type: Welder #
-    fuelConsumption: 0.02
-    fuelLitCost: 0.1
+    fuelConsumption: 0.02 
+    fuelLitCost: 0.01 # Starlight-edit
     tankSafe: true
   - type: Tag
     tags:

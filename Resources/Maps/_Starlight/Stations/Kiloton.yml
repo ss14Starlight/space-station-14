@@ -13519,7 +13519,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: Kiloton
+      id: StarlightKiloton
     - type: ImplicitRoof
 - proto: ActionToggleInternals
   entities:

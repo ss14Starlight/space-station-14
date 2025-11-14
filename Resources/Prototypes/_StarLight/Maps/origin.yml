@@ -1,10 +1,10 @@
 - type: gameMap
-  id: Origin
+  id: StarlightOrigin
   mapName: 'Origin'
   mapPath: /Maps/_Starlight/Stations/Origin.yml
   minPlayers: 50
   stations:
-    Origin:
+    StarlightOrigin:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

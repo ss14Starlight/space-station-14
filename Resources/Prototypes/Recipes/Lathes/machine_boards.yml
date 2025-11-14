@@ -392,6 +392,11 @@
   result: BiofabricatorMachineCircuitboard
 
 - type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: SlopDispenserMachineCircuitboard
+  result: SlopDispenserMachineCircuitboard
+
+- type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
   id: OreProcessorMachineCircuitboard
   result: OreProcessorMachineCircuitboard

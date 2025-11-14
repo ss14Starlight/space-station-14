@@ -61,3 +61,1054 @@
     - type: Tag
       tags:
       - ScanGateMachineBoard
+
+- type: entity
+  id: SlopDispenserMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: nutrient paste dispenser machine board
+  description: A machine printed circuit board for a nutrient paste dispenser.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: SlopDispenser
+      stackRequirements:
+        Manipulator: 4
+        Glass: 1
+        
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AssortedForgeParts
+  name: assorted forge parts
+  description: A small pile of components for making a forge for an anvil, contains an igniter and valves.
+  components:
+  - type: MachineBoard
+    prototype: TiderLathe
+    stackRequirements:
+      Plasteel: 13
+      Steel: 5
+    tagRequirements:
+      GasTank:
+        amount: 2
+        defaultPrototype: OxygenTank
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/assorted_forge_parts.rsi
+    state: icon
+  - type: Construction
+    graph: AssortedForgeParts
+    node: finish
+
+- type: entity
+  id: VendingMachineCondimentsCircuitboard
+  parent: BaseMachineCircuitboard
+  name: condiment station circuitboard
+  description: A machine printed circuit board for a condiment station machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineCondimentsEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineAmmoCircuitboard
+  parent: BaseMachineCircuitboard
+  name: liberation station circuitboard
+  description: A machine printed circuit board for a liberation station machine
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: VendingMachineAmmoEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineBoozeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Booze-O-Mat circuitboard
+  description: A machine printed circuit board for a Booze-O-Mat machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineBoozeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineBoozeSyndicateCircuitboard
+  parent: [BaseMachineCircuitboard, BaseMinorContraband]
+  name: Bruise-O-Mat circuitboard
+  description: A machine printed circuit board for a Bruise-O-Mat machine
+  components:
+    - type: Sprite
+      state: cpu_syndicate
+    - type: MachineBoard
+      prototype: VendingMachineBoozeSyndicateEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineCartCircuitboard
+  parent: BaseMachineCircuitboard
+  name: PTech circuitboard
+  description: A machine printed circuit board for a PTech machine
+  components:
+    - type: Sprite
+      state: command
+    - type: MachineBoard
+      prototype: VendingMachineCartEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineChefvendCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ChefVend circuitboard
+  description: A machine printed circuit board for a ChefVend machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineChefvendEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineCigsCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ShadyCigs Deluxe circuitboard
+  description: A machine printed circuit board for a ShadyCigs Deluxe machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineCigsEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineClothingCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ClothesMate circuitboard
+  description: A machine printed circuit board for a ClothesMate machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineClothingEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineWinterCircuitboard
+  parent: BaseMachineCircuitboard
+  name: WinterDrobe circuitboard
+  description: A machine printed circuit board for a WinterDrobe machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineWinterEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineCoffeeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Solar's Best Hot Drinks circuitboard
+  description: A machine printed circuit board for a Solar's Best Hot Drinks machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineCoffeeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineColaCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Robust Softdrinks (cola) circuitboard
+  description: A machine printed circuit board for a Robust Softdrinks machine serving cola
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineColaEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineColaBlackCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Robust Softdrinks (cola, black) circuitboard
+  description: A machine printed circuit board for a Robust Softdrinks machine serving cola, colored black
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineColaBlackEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineColaRedCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Space Cola Vendor circuitboard
+  description: A machine printed circuit board for a Space Cola Vendor machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineColaRedEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSodaCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Robust Softdrinks (soda) circuitboard
+  description: A machine printed circuit board for a Robust Softdrinks machine serving soda
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineSodaEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSpaceUpCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Space-Up! Vendor circuitboard
+  description: A machine printed circuit board for a Space-Up! Vendor machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineSpaceUpEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineStarkistCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Star-kist Vendor circuitboard
+  description: A machine printed circuit board for a Star-kist Vendor machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineStarkistEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineShamblersJuiceCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Shambler's Juice Vendor circuitboard
+  description: A machine printed circuit board for a Shambler's Juice Vendor machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineShamblersJuiceEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachinePwrGameCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Pwr Game Vendor circuitboard
+  description: A machine printed circuit board for a Pwr Game Vendor machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachinePwrGameEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineDrGibbCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Dr. Gibb Vendor circuitboard
+  description: A machine printed circuit board for a Dr. Gibb Vendor machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineDrGibbEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSmiteCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Smite Vendor circuitboard
+  description: A machine printed circuit board for a Smite Vendor machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineSmiteEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineDinnerwareCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Plasteel Chef's Dinnerware Vendor circuitboard
+  description: A machine printed circuit board for a Plasteel Chef's Dinnerware Vendor machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineDinnerwareEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineDiscountCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Discount Dan's circuitboard
+  description: A machine printed circuit board for a Discount Dan's machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineDiscountEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineEngivendCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Engi-Vend circuitboard
+  description: A machine printed circuit board for a Engi-Vend machine
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: VendingMachineEngivendEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineMedicalCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NanoMed Plus circuitboard
+  description: A machine printed circuit board for a NanoMed Plus machine
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: VendingMachineMedicalEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineNutriCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NutriMax circuitboard
+  description: A machine printed circuit board for a NutriMax machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineNutriEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSecCircuitboard
+  parent: BaseMachineCircuitboard
+  name: SecTech circuitboard
+  description: A machine printed circuit board for a SecTech machine
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: VendingMachineSecEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSeedsUnlockedCircuitboard
+  parent: BaseMachineCircuitboard
+  name: MegaSeed Servitor (unlocked) circuitboard
+  description: A machine printed circuit board for a MegaSeed Servitor machine, set to public access
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineSeedsUnlockedEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSeedsCircuitboard
+  parent: BaseMachineCircuitboard
+  name: MegaSeed Servitor circuitboard
+  description: A machine printed circuit board for a MegaSeed Servitor machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineSeedsEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSnackCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Getmore Chocolate Corp circuitboard
+  description: A machine printed circuit board for a Getmore Chocolate Corp machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineSnackEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSustenanceCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Sustenance Vendor circuitboard
+  description: A machine printed circuit board for a Sustenance Vendor machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineSustenanceEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSnackBlueCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Sustenance Vendor (blue) circuitboard
+  description: A machine printed circuit board for a Sustenance Vendor machine, in blue
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineSnackBlueEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSnackOrangeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Sustenance Vendor (orange) circuitboard
+  description: A machine printed circuit board for a Sustenance Vendor machine, in orange
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineSnackOrangeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSnackGreenCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Sustenance Vendor (green) circuitboard
+  description: A machine printed circuit board for a Sustenance Vendor machine, in green
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineSnackGreenEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSnackTealCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Sustenance Vendor (teal) circuitboard
+  description: A machine printed circuit board for a Sustenance Vendor machine, in teal
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineSnackTealEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSovietSodaCircuitboard
+  parent: BaseMachineCircuitboard
+  name: BODA circuitboard
+  description: A machine printed circuit board for a BODA machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineSovietSodaEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineTheaterCircuitboard
+  parent: BaseMachineCircuitboard
+  name: AutoDrobe circuitboard
+  description: A machine printed circuit board for a AutoDrobe machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineTheaterEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineVendomatCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Vendomat circuitboard
+  description: A machine printed circuit board for a Vendomat machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineVendomatEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineRoboticsCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Robotech Deluxe circuitboard
+  description: A machine printed circuit board for a Robotech Deluxe machine
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: VendingMachineRoboticsEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineYouToolCircuitboard
+  parent: BaseMachineCircuitboard
+  name: YouTool circuitboard
+  description: A machine printed circuit board for a YouTool machine
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: VendingMachineYouToolEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineGamesCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Good Clean Fun circuitboard
+  description: A machine printed circuit board for a Good Clean Fun machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineGamesEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineChangCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Mr. Chang circuitboard
+  description: A machine printed circuit board for a Mr. Chang machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineChangEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSalvageCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Salvage Vendor circuitboard
+  description: A machine printed circuit board for a Salvage Vendor machine
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: VendingMachineSalvageEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineDonutCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Monkin' Donuts circuitboard
+  description: A machine printed circuit board for a Monkin' Donuts machine
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: VendingMachineDonutEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineHydrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: HyDrobe circuitboard
+  description: A machine printed circuit board for a HyDrobe machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineHydrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineLawDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: LawDrobe circuitboard
+  description: A machine printed circuit board for a LawDrobe machine
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: VendingMachineLawDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSecDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: SecDrobe circuitboard
+  description: A machine printed circuit board for a SecDrobe machine
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: VendingMachineSecDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingBarDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: BarDrobe circuitboard
+  description: A machine printed circuit board for a BarDrobe machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingBarDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineChapelCircuitboard
+  parent: BaseMachineCircuitboard
+  name: PietyVend circuitboard
+  description: A machine printed circuit board for a PietyVend machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineChapelEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineCargoDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: CargoDrobe circuitboard
+  description: A machine printed circuit board for a CargoDrobe machine
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: VendingMachineCargoDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineMediDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: MediDrobe circuitboard
+  description: A machine printed circuit board for a MediDrobe machine
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: VendingMachineMediDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineChemDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ChemDrobe circuitboard
+  description: A machine printed circuit board for a ChemDrobe machine
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: VendingMachineChemDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineCuraDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: CuraDrobe circuitboard
+  description: A machine printed circuit board for a CuraDrobe machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineCuraDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineAtmosDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: AtmosDrobe circuitboard
+  description: A machine printed circuit board for a AtmosDrobe machine
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: VendingMachineAtmosDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineEngiDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: EngiDrobe circuitboard
+  description: A machine printed circuit board for a EngiDrobe machine
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: VendingMachineEngiDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineChefDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ChefDrobe circuitboard
+  description: A machine printed circuit board for a ChefDrobe machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineChefDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineDetDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: DetDrobe circuitboard
+  description: A machine printed circuit board for a DetDrobe machine
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: VendingMachineDetDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineJaniDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: JaniDrobe circuitboard
+  description: A machine printed circuit board for a JaniDrobe machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineJaniDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSciDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: SciDrobe circuitboard
+  description: A machine printed circuit board for a SciDrobe machine
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: VendingMachineSciDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSyndieDrobeCircuitboard
+  parent: [BaseMachineCircuitboard, BaseMinorContraband]
+  name: SyndieDrobe circuitboard
+  description: A machine printed circuit board for a SyndieDrobe machine
+  components:
+    - type: Sprite
+      state: cpu_syndicate
+    - type: MachineBoard
+      prototype: VendingMachineSyndieDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineRoboDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: RoboDrobe circuitboard
+  description: A machine printed circuit board for a RoboDrobe machine
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: VendingMachineRoboDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineGeneDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: GeneDrobe circuitboard
+  description: A machine printed circuit board for a GeneDrobe machine
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: VendingMachineGeneDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineViroDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ViroDrobe circuitboard
+  description: A machine printed circuit board for a ViroDrobe machine
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: VendingMachineViroDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineCentDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: CentDrobe circuitboard
+  description: A machine printed circuit board for a CentDrobe machine
+  components:
+    - type: Sprite
+      state: command
+    - type: MachineBoard
+      prototype: VendingMachineCentDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineHappyHonkCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Happy Honk Dispenser circuitboard
+  description: A machine printed circuit board for a Happy Honk Dispenser machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineHappyHonkEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachinePrideCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Pride-O-Mat circuitboard
+  description: A machine printed circuit board for a Pride-O-Mat machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachinePrideEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineTankDispenserEVACircuitboard
+  parent: BaseMachineCircuitboard
+  name: gas tank dispenser circuitboard
+  description: A machine printed circuit board for a gas tank dispenser machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineTankDispenserEVAEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineTankDispenserEngineeringCircuitboard
+  parent: BaseMachineCircuitboard
+  name: gas tank dispenser (with plasma) circuitboard
+  description: A machine printed circuit board for a gas tank dispenser (with plasma) machine
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: VendingMachineTankDispenserEngineeringEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineChemicalsCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ChemVend circuitboard
+  description: A machine printed circuit board for a ChemVend machine
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: VendingMachineChemicalsEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineChemicalsSyndicateCircuitboard
+  parent: [BaseMachineCircuitboard, BaseMinorContraband]
+  name: SyndieJuice circuitboard
+  description: A machine printed circuit board for a SyndieJuice machine
+  components:
+    - type: Sprite
+      state: cpu_syndicate
+    - type: MachineBoard
+      prototype: VendingMachineChemicalsSyndicateEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineWallMedicalCivilianCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NanoMed band-aid circuitboard
+  description: A machine printed circuit board for a NanoMed band-aid machine
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: VendingMachineWallMedicalCivilianEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineWallMedicalCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NanoMed circuitboard
+  description: A machine printed circuit board for a NanoMed machine
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: VendingMachineWallMedicalEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2

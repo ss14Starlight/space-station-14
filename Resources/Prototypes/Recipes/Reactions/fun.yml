@@ -172,6 +172,24 @@
     - !type:CreateEntityReactionEffect
       entity: MaterialGunpowder
 
+#starlight start
+- type: reaction
+  id: CrushedPhosphorus
+  impact: Low
+  quantized: true
+  minTemp: 500
+  reactants:
+    Phosphorus:
+      amount: 4
+    Hydrogen:
+      amount: 2
+    Ethanol:
+      amount: 2
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: CrushedPhosphorus1
+#starlight end
+
 - type: reaction
   id: SolidifyGold
   impact: Low
