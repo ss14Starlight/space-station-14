@@ -57,3 +57,21 @@
       types:
         Asphyxiation: -1.0
   - type: Temperature
+
+- type: damnation
+  id: AllSeeing
+  name: gain knowledge of my surroundings
+  description: the signator can perceive through walls.
+  cost: 7
+  components:
+    - type: ThermalVision
+  reverseOnRemove: true
+
+- type: damnation
+  id: Magic
+  name: gain arcane powers
+  description: the signator learns some magical transport spells.
+  cost: 7
+  components:
+    - type: Jaunt
+  reverseOnRemove: true
