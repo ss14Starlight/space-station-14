@@ -117,6 +117,11 @@ public sealed partial class InjectorComponent : Component
     [DataField]
     public float MovementThreshold = 0.1f;
 
+    // Starlight edit start - Add hidden argument to allow for injections without showing them to other people
+    /// <inheritdoc cref=DoAfterArgs.Hidden>
+    [DataField]
+    public bool Hidden = false;
+    // Starlight edit end
     #endregion
 }
 

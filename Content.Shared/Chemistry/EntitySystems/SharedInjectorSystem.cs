@@ -181,17 +181,21 @@ public abstract class SharedInjectorSystem : EntitySystem
 
         if (user != target) // injecting someone else
         {
-            // Create a pop-up for the target
-            var userName = Identity.Entity(user, EntityManager);
-            if (injector.Comp.ToggleState == InjectorToggleMode.Draw)
+            // Starlight edit start - Allow for the component to hide popups from others
+            if (!injector.Comp.Hidden)
             {
-                _popup.PopupEntity(Loc.GetString("injector-component-drawing-target",
-    ("user", userName)), user, target);
-            }
-            else
-            {
-                _popup.PopupEntity(Loc.GetString("injector-component-injecting-target",
-    ("user", userName)), user, target);
+                var userName = Identity.Entity(user, EntityManager);
+                if (injector.Comp.ToggleState == InjectorToggleMode.Draw)
+                {
+                    _popup.PopupEntity(Loc.GetString("injector-component-drawing-target",
+        ("user", userName)), user, target);
+                }
+                else
+                {
+                    _popup.PopupEntity(Loc.GetString("injector-component-injecting-target",
+        ("user", userName)), user, target);
+                }
+                // Starlight edit end
             }
 
 
@@ -244,6 +248,7 @@ public abstract class SharedInjectorSystem : EntitySystem
             NeedHand = injector.Comp.NeedHand,
             BreakOnHandChange = injector.Comp.BreakOnHandChange,
             MovementThreshold = injector.Comp.MovementThreshold,
+            Hidden = injector.Comp.Hidden, // Starlight edit - Allow for the component to hide its doafter from others
         });
     }
 

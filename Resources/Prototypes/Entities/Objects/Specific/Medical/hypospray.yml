@@ -657,18 +657,23 @@
   components:
   - type: SolutionContainerManager
     solutions:
-      hypospray:
+      injector: # Starlight edit
         maxVol: 10
   - type: RefillableSolution
-    solution: hypospray
+    solution: injector # Starlight edit
   - type: ExaminableSolution
-    solution: hypospray
+    solution: injector # Starlight edit
     heldOnly: true # Allow examination only when held in hand.
     exactVolume: true
-  - type: Hypospray
-    onlyAffectsMobs: false
-  - type: UseDelay
-    delay: 0.5
+    # Starlight edit start - change injector to work like a syringe 
+  - type: Injector
+    injectOnly: false
+    transferAmounts:
+    - 5
+    - 10
+    currentTransferAmount: 10
+    hidden: true
+    # Starlight edit end
   - type: StaticPrice # A new shitcurity meta
     price: 75
   - type: EmitSoundOnUse
