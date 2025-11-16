@@ -14,10 +14,7 @@ public sealed class OpenAutoModCommand : IConsoleCommand
     public string Description => Loc.GetString("automod-command-description");
     public string Help => Loc.GetString("automod-command-help");
 
-    public OpenAutoModCommand()
-    {
-        IoCManager.InjectDependencies(this);
-    }
+    public OpenAutoModCommand() => IoCManager.InjectDependencies(this);
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {

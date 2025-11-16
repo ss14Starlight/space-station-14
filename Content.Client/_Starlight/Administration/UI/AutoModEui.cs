@@ -10,10 +10,7 @@ public sealed class AutoModEui : BaseEui
 {
     private readonly AutoModWindow _window;
 
-    public AutoModEui()
-    {
-        _window = new AutoModWindow(this);
-    }
+    public AutoModEui() => _window = new AutoModWindow(this);
 
     public override void Closed()
     {
@@ -22,10 +19,7 @@ public sealed class AutoModEui : BaseEui
         _window.Close();
     }
 
-    public override void Opened()
-    {
-        _window.OpenCentered();
-    }
+    public override void Opened() => _window.OpenCentered();
 
     public override void HandleState(EuiStateBase state)
     {
@@ -49,10 +43,7 @@ public sealed class AutoModEui : BaseEui
         }
     }
 
-    public void SendRefreshRequest()
-    {
-        SendMessage(new RefreshRequest());
-    }
+    public void SendRefreshRequest() => SendMessage(new RefreshRequest());
 
     public void SendBulkUpdate(List<AutoModRule> rules)
     {
@@ -72,8 +63,5 @@ public sealed class AutoModEui : BaseEui
         SendMessage(new BulkUpdateRulesRequest(rules));
     }
 
-    public void SendDeleteRequest(AutoModRule rule)
-    {
-        SendMessage(new DeleteRuleRequest(rule));
-    }
+    public void SendDeleteRequest(AutoModRule rule) => SendMessage(new DeleteRuleRequest(rule));
 }

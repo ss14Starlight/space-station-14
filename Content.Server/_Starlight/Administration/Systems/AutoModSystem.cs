@@ -25,14 +25,10 @@ public sealed partial class AutoModSystem : SharedChatSystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly IAdminNotesManager _adminNotesManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly Content.Server.Administration.Logs.IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly Server.Administration.Logs.IAdminLogManager _adminLogger = default!;
     
     private readonly ISawmill _automodLog = Logger.GetSawmill("automod");
-    private const string AutoModSystemName = "AutoMod System";
     public const string NotificationChannel = "automod_rules";
     
     private readonly Dictionary<(NetUserId, string), DateTime> _recentMessages = new();

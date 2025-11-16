@@ -16,10 +16,7 @@ public static class AutoModEuiMsg
     {
         public AutoModRule Rule { get; set; }
         
-        public DeleteRuleRequest(AutoModRule rule)
-        {
-            Rule = rule;
-        }
+        public DeleteRuleRequest(AutoModRule rule) => Rule = rule;
     }
 
     [Serializable, NetSerializable]
@@ -27,10 +24,7 @@ public static class AutoModEuiMsg
     {
         public AutoModRule Rule { get; set; }
         
-        public AddRuleRequest(AutoModRule rule)
-        {
-            Rule = rule;
-        }
+        public AddRuleRequest(AutoModRule rule) => Rule = rule;
     }
 
     [Serializable, NetSerializable]
@@ -38,10 +32,7 @@ public static class AutoModEuiMsg
     {
         public AutoModRule Rule { get; set; }
         
-        public UpdateRuleRequest(AutoModRule rule)
-        {
-            Rule = rule;
-        }
+        public UpdateRuleRequest(AutoModRule rule) => Rule = rule;
     }
 
     [Serializable, NetSerializable]
@@ -49,10 +40,7 @@ public static class AutoModEuiMsg
     {
         public List<AutoModRule> Rules { get; set; }
         
-        public BulkUpdateRulesRequest(List<AutoModRule> rules)
-        {
-            Rules = rules;
-        }
+        public BulkUpdateRulesRequest(List<AutoModRule> rules) => Rules = rules;
     }
 
     [Serializable, NetSerializable]

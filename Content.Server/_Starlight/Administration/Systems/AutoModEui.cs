@@ -24,10 +24,7 @@ public sealed class AutoModEui : BaseEui
     // Server-side blacklisted words that cannot be used in AutoMod rules
     private readonly HashSet<string> _blacklistedWords = new() { "space", "station", "fourteen" };
 
-    public AutoModEui()
-    {
-        IoCManager.InjectDependencies(this);
-    }
+    public AutoModEui() => IoCManager.InjectDependencies(this);
 
     public override void Opened()
     {
@@ -36,10 +33,7 @@ public sealed class AutoModEui : BaseEui
         LoadFromDb();
     }
 
-    public override void Closed()
-    {
-        base.Closed();
-    }
+    public override void Closed() => base.Closed();
 
     private async void LoadFromDb()
     {
@@ -53,7 +47,6 @@ public sealed class AutoModEui : BaseEui
             Logger.GetSawmill("automod").Error($"Error loading AutoMod rules from database: {ex}");
         }
     }
-
 
     private static ServerAutoModRule MapToServerRule(SharedAutoModRule shared) => new()
     {
