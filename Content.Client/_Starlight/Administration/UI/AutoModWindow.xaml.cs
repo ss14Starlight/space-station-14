@@ -46,7 +46,27 @@ public sealed partial class AutoModWindow : DefaultWindow
         SetupSearchBar();
     }
 
-    private void SetupCheatSheet() => TesterCheatSheet.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("automod-eui-tester-cheat-sheet")));
+    private void SetupCheatSheet()
+    {
+    // This could be localized but I had issues with the .ftl eccepting it cause of special characters.
+        var cheatSheetText = @"[bold]Regex Quick Reference:[/bold]
+
+    • [bold]Common Patterns:[/bold]
+    • [color=#88ccff](?i)[/color] - Case-insensitive (put at start)
+    • [color=#88ccff]\b[/color] - Word boundary (e.g., [color=#88ccff]\b[/color][color=#ffdd88]word[/color][color=#88ccff]\b[/color] matches [color=#90ee90]""word""[/color] but not [color=#ff8888]""password""[/color])
+    • [color=#88ccff]|[/color] - OR (e.g., [color=#88ccff][/color][color=#ffdd88]space[/color][color=#88ccff]|[/color][color=#ffdd88]station[/color] matches [color=#90ee90]""space""[/color] or [color=#90ee90]""station""[/color])
+    • [color=#88ccff].[/color] - Match any one character (e.g., [color=#ffdd88]a[/color][color=#88ccff].[/color][color=#ffdd88]c[/color] matches [color=#90ee90]""abc""[/color], [color=#90ee90]""a1c""[/color], [color=#90ee90]""a@c""[/color])
+    • [color=#88ccff]*[/color] - Match 0 or more times (e.g., [color=#ffdd88]a[/color][color=#88ccff]*[/color] matches [color=#90ee90]""""[/color], [color=#90ee90]""a""[/color], [color=#90ee90]""aa""[/color], [color=#90ee90]""aaa""[/color])
+    • [color=#88ccff]+[/color] - Match 1 or more times (e.g., [color=#ffdd88]a[/color][color=#88ccff]+[/color] matches [color=#90ee90]""a""[/color], [color=#90ee90]""aa""[/color], [color=#90ee90]""aaaa""[/color] but not [color=#ff8888]""""[/color] or [color=#ff8888]""b""[/color])
+    • [color=#88ccff]?[/color] - Match 0 or 1 time (e.g., [color=#ffdd88]colou[/color][color=#88ccff]?[/color][color=#ffdd88]r[/color] matches [color=#90ee90]""color""[/color] or [color=#90ee90]""colour""[/color])
+
+    [bold]Examples:[/bold]
+    • Case-insensitive word: [color=#88ccff](?i)\b[/color][color=#ffdd88]word[/color][color=#88ccff]\b[/color]
+    • Multiple words: [color=#88ccff](?i)\b([/color][color=#ffdd88]space[/color][color=#88ccff]|[/color][color=#ffdd88]station[/color][color=#88ccff]|[/color][color=#ffdd88]fourteen[/color][color=#88ccff])\b[/color]
+    • Special characters: [color=#88ccff]\Q[/color][color=#ffdd88]text[/color][color=#88ccff]\E[/color]";
+        
+        TesterCheatSheet.SetMessage(FormattedMessage.FromMarkupOrThrow(cheatSheetText));
+    }
 
     private void SetupSearchBar()
     {
