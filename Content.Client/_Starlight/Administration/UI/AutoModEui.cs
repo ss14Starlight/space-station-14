@@ -1,14 +1,11 @@
 using Content.Client.Eui;
 using Content.Shared._Starlight.Administration;
 using Content.Shared.Eui;
-using JetBrains.Annotations;
-using Robust.Shared.Log;
 using System.Linq;
 using static Content.Shared._Starlight.Administration.AutoModEuiMsg;
 
 namespace Content.Client._Starlight.Administration.UI;
 
-[UsedImplicitly]
 public sealed class AutoModEui : BaseEui
 {
     private readonly AutoModWindow _window;

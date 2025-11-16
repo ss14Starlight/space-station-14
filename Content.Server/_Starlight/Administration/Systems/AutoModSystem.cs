@@ -1,5 +1,3 @@
-using System;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Linq;
@@ -10,7 +8,6 @@ using Content.Server.Database;
 using Content.Server.Administration.Notes;
 using Content.Shared._Starlight.Administration;
 using Content.Shared.Administration;
-using Content.Shared.Administration.Notes;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Robust.Shared.Network;
@@ -60,7 +57,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
         });
 
         _automodLog.Info("AutoModSystem initialized. Updating cache.");
-        _ = UpdateCache(); // fire and forget
+        _ = UpdateCache();
     }
 
     public async Task UpdateCache()
@@ -207,7 +204,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
     
     #endregion
 
-    #region Admin Notifications
+    #region Ahelp Notification
 
     /// <summary>
     /// Formats a concise AutoMod violation bwoink message
@@ -487,8 +484,8 @@ public sealed partial class AutoModSystem : SharedChatSystem
             
             // Create system notes without requiring a valid player foreign key
             // We'll bypass the admin notes manager to avoid session requirements
-            var roundId = (int?)null; // System notes don't track rounds
-            var playtime = TimeSpan.Zero; // System notes don't track playtime
+            var roundId = (int?)null;
+            var playtime = TimeSpan.Zero;
 
             if (existingNote != null)
             {
@@ -569,7 +566,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
         return violations;
     }
 
-    #region Statistics and Public API
+    #region Statistics
 
     /// <summary>
     /// Gets AutoMod violation statistics for display in admin panels
@@ -580,11 +577,11 @@ public sealed partial class AutoModSystem : SharedChatSystem
         {
             var violations = await GetPlayerAutoModViolations(userId);
             
-            // Rules Broken = Number of distinct rules that have active violations
+            // Number of distinct rules that have active violations
             var rulesBroken = violations.Select(v => v.RuleId).Distinct().Count();
             
-            // Total Offences = Sum of all incidents across all violation notes
-            var totalOffences = violations.Sum(v => v.Incidents?.Count ?? 1); // Fallback to 1 if no incidents list
+            // Sum of all incidents across all violation notes
+            var totalOffences = violations.Sum(v => v.Incidents?.Count ?? 1);
             
             return (rulesBroken, totalOffences);
         }

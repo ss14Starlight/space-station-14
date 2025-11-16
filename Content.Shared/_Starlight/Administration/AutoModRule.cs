@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using Robust.Shared.Serialization;
 
-// Starlight AutoMod shared data
 namespace Content.Shared._Starlight.Administration;
 
 [Serializable, NetSerializable]
@@ -13,12 +10,7 @@ public sealed class AutoModRule
     public int Severity { get; set; } = 1;
     public string Regex { get; set; } = string.Empty;
     public bool Enabled { get; set; }
-    
-    /// <summary>
-    /// If true, this rule will also watch OOC channels (LOOC, OOC, Dead/Ghost chat). Default is false.
-    /// </summary>
     public bool WatchOOC { get; set; } = false;
-    
     public List<AutoModOffence> Offences { get; set; } = new();
     public Guid CreatedBy { get; set; }
     public DateTime CreatedAt { get; set; }
@@ -31,7 +23,6 @@ public sealed class AutoModOffence
 {
     public string Message { get; set; } = string.Empty;
     public AutoModOffenceAction Action { get; set; } = AutoModOffenceAction.None;
-    
     public int BanDurationMinutes { get; set; } = 0;
     public int DecaySeconds { get; set; } = 0;
     public int DecayLevels { get; set; } = 1;

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -31,15 +29,12 @@ public sealed partial class AutoModWindow : DefaultWindow
     {
         RobustXamlLoader.Load(this);
         _eui = eui;
-        
-        // Wire up event handlers
         RefreshButton.OnPressed += _ => _eui.SendRefreshRequest();
         AddRuleButton.OnPressed += _ => AddNewRule();
         SaveAllButton.OnPressed += _ => SaveAllRules();
         ManageCategoriesButton.OnPressed += _ => OpenCategoryManager();
         TesterTestButton.OnPressed += _ => RunTest();
-        
-        // Set tab titles and initialize UI
+        // Set tab titles and init UI
         MainTabs.SetTabTitle(0, Loc.GetString("automod-eui-menu-rules-tab-title"));
         MainTabs.SetTabTitle(1, Loc.GetString("automod-eui-menu-tester-tab-title"));
         SetupCheatSheet();
@@ -48,23 +43,22 @@ public sealed partial class AutoModWindow : DefaultWindow
 
     private void SetupCheatSheet()
     {
-    // This could be localized but I had issues with the .ftl eccepting it cause of special characters.
+    // This could be localized but I had issues with the .ftl accepting it cause of special characters.
         var cheatSheetText = @"[bold]Regex Quick Reference:[/bold]
 
-    • [bold]Common Patterns:[/bold]
-    • [color=#88ccff](?i)[/color] - Case-insensitive (put at start)
-    • [color=#88ccff]\b[/color] - Word boundary (e.g., [color=#88ccff]\b[/color][color=#ffdd88]word[/color][color=#88ccff]\b[/color] matches [color=#90ee90]""word""[/color] but not [color=#ff8888]""password""[/color])
-    • [color=#88ccff]|[/color] - OR (e.g., [color=#88ccff][/color][color=#ffdd88]space[/color][color=#88ccff]|[/color][color=#ffdd88]station[/color] matches [color=#90ee90]""space""[/color] or [color=#90ee90]""station""[/color])
-    • [color=#88ccff].[/color] - Match any one character (e.g., [color=#ffdd88]a[/color][color=#88ccff].[/color][color=#ffdd88]c[/color] matches [color=#90ee90]""abc""[/color], [color=#90ee90]""a1c""[/color], [color=#90ee90]""a@c""[/color])
-    • [color=#88ccff]*[/color] - Match 0 or more times (e.g., [color=#ffdd88]a[/color][color=#88ccff]*[/color] matches [color=#90ee90]""""[/color], [color=#90ee90]""a""[/color], [color=#90ee90]""aa""[/color], [color=#90ee90]""aaa""[/color])
-    • [color=#88ccff]+[/color] - Match 1 or more times (e.g., [color=#ffdd88]a[/color][color=#88ccff]+[/color] matches [color=#90ee90]""a""[/color], [color=#90ee90]""aa""[/color], [color=#90ee90]""aaaa""[/color] but not [color=#ff8888]""""[/color] or [color=#ff8888]""b""[/color])
-    • [color=#88ccff]?[/color] - Match 0 or 1 time (e.g., [color=#ffdd88]colou[/color][color=#88ccff]?[/color][color=#ffdd88]r[/color] matches [color=#90ee90]""color""[/color] or [color=#90ee90]""colour""[/color])
+• [bold]Common Patterns:[/bold]
+• [color=#88ccff](?i)[/color] - Case-insensitive (put at start)
+• [color=#88ccff]\b[/color] - Word boundary (e.g., [color=#88ccff]\b[/color][color=#ffdd88]word[/color][color=#88ccff]\b[/color] matches [color=#90ee90]""word""[/color] but not [color=#ff8888]""password""[/color])
+• [color=#88ccff]|[/color] - OR (e.g., [color=#88ccff][/color][color=#ffdd88]space[/color][color=#88ccff]|[/color][color=#ffdd88]station[/color] matches [color=#90ee90]""space""[/color] or [color=#90ee90]""station""[/color])
+• [color=#88ccff].[/color] - Match any one character (e.g., [color=#ffdd88]a[/color][color=#88ccff].[/color][color=#ffdd88]c[/color] matches [color=#90ee90]""abc""[/color], [color=#90ee90]""a1c""[/color], [color=#90ee90]""a@c""[/color])
+• [color=#88ccff]*[/color] - Match 0 or more times (e.g., [color=#ffdd88]a[/color][color=#88ccff]*[/color] matches [color=#90ee90]""""[/color], [color=#90ee90]""a""[/color], [color=#90ee90]""aa""[/color], [color=#90ee90]""aaa""[/color])
+• [color=#88ccff]+[/color] - Match 1 or more times (e.g., [color=#ffdd88]a[/color][color=#88ccff]+[/color] matches [color=#90ee90]""a""[/color], [color=#90ee90]""aa""[/color], [color=#90ee90]""aaaa""[/color] but not [color=#ff8888]""""[/color] or [color=#ff8888]""b""[/color])
+• [color=#88ccff]?[/color] - Match 0 or 1 time (e.g., [color=#ffdd88]colou[/color][color=#88ccff]?[/color][color=#ffdd88]r[/color] matches [color=#90ee90]""color""[/color] or [color=#90ee90]""colour""[/color])
 
-    [bold]Examples:[/bold]
-    • Case-insensitive word: [color=#88ccff](?i)\b[/color][color=#ffdd88]word[/color][color=#88ccff]\b[/color]
-    • Multiple words: [color=#88ccff](?i)\b([/color][color=#ffdd88]space[/color][color=#88ccff]|[/color][color=#ffdd88]station[/color][color=#88ccff]|[/color][color=#ffdd88]fourteen[/color][color=#88ccff])\b[/color]
-    • Special characters: [color=#88ccff]\Q[/color][color=#ffdd88]text[/color][color=#88ccff]\E[/color]";
-        
+[bold]Examples:[/bold]
+• Case-insensitive word: [color=#88ccff](?i)\b[/color][color=#ffdd88]word[/color][color=#88ccff]\b[/color]
+• Multiple words: [color=#88ccff](?i)\b([/color][color=#ffdd88]space[/color][color=#88ccff]|[/color][color=#ffdd88]station[/color][color=#88ccff]|[/color][color=#ffdd88]fourteen[/color][color=#88ccff])\b[/color]
+• Special characters: [color=#88ccff]\Q[/color][color=#ffdd88]text[/color][color=#88ccff]\E[/color]";
         TesterCheatSheet.SetMessage(FormattedMessage.FromMarkupOrThrow(cheatSheetText));
     }
 
@@ -76,7 +70,7 @@ public sealed partial class AutoModWindow : DefaultWindow
         searchEdit.OnTextChanged += args => { _searchTerm = args.Text; RefreshRulesDisplay(); };
         SearchContainer.AddChild(searchEdit);
         
-        var clearSearchBtn = new Button { Text = "✖", MinSize = new Vector2(30, 0), Margin = new Thickness(4, 0, 0, 0) };
+        var clearSearchBtn = new Button { Text = "X", MinSize = new Vector2(30, 0), Margin = new Thickness(4, 0, 0, 0) };
         clearSearchBtn.OnPressed += _ => { _searchTerm = ""; searchEdit.Text = ""; RefreshRulesDisplay(); };
         SearchContainer.AddChild(clearSearchBtn);
     }
@@ -91,12 +85,9 @@ public sealed partial class AutoModWindow : DefaultWindow
     public void UpdateRules(List<AutoModRule> rules)
     {
         _allRules = rules.ToList();
-        // Don't sync UI state - we want to discard local changes on refresh
         RebuildUIFromRules();
-        // Clear any unsaved changes state
         _hasUnsavedChanges = false;
         SaveAllButton.StyleClasses.Remove("ButtonColorGreen");
-        // Refresh category manager if it's open
         RefreshCategoryManager();
     }
 
@@ -112,39 +103,22 @@ public sealed partial class AutoModWindow : DefaultWindow
     private bool MatchesSearchTerm(AutoModRule rule, string searchTermLower)
     {
         // Search in rule properties
-        if (!string.IsNullOrEmpty(rule.Category) && rule.Category.ToLower().Contains(searchTermLower))
-            return true;
-            
-        if (!string.IsNullOrEmpty(rule.Regex) && rule.Regex.ToLower().Contains(searchTermLower))
+        if ((!string.IsNullOrEmpty(rule.Category) && rule.Category.ToLower().Contains(searchTermLower)) ||
+            (!string.IsNullOrEmpty(rule.Regex) && rule.Regex.ToLower().Contains(searchTermLower)))
             return true;
 
         // Search in severity
-        var severityName = ((AutoModSeverity)rule.Severity).ToString().ToLower();
-        if (severityName.Contains(searchTermLower))
+        if (((AutoModSeverity)rule.Severity).ToString().ToLower().Contains(searchTermLower))
             return true;
 
         // Search in offences
-        if (rule.Offences != null)
-        {
-            foreach (var offence in rule.Offences)
-            {
-                if (!string.IsNullOrEmpty(offence.Message) && offence.Message.ToLower().Contains(searchTermLower))
-                    return true;
-                    
-                if (offence.Action.ToString().ToLower().Contains(searchTermLower))
-                    return true;
-            }
-        }
+        if (rule.Offences?.Any(o => (!string.IsNullOrEmpty(o.Message) && o.Message.ToLower().Contains(searchTermLower)) || 
+                                     o.Action.ToString().ToLower().Contains(searchTermLower)) ?? false)
+            return true;
 
         // Search for common terms
-        if (searchTermLower.Contains("enabled") && rule.Enabled)
-            return true;
-        if (searchTermLower.Contains("disabled") && !rule.Enabled)
-            return true;
-        if (searchTermLower.Contains("ooc") && rule.WatchOOC)
-            return true;
-
-        return false;
+        return (searchTermLower.Contains("enabled") && rule.Enabled) || 
+               (searchTermLower.Contains("disabled") && !rule.Enabled);
     }
 
     private void AddCategoryHeader(string? category, int ruleCount)
@@ -152,16 +126,11 @@ public sealed partial class AutoModWindow : DefaultWindow
         var categoryKey = category ?? "__uncategorized__";
         var displayName = category ?? Loc.GetString("automod-category-uncategorized");
         var isCollapsed = _categoryCollapsed.GetValueOrDefault(categoryKey);
-        
         var headerPanel = new PanelContainer { StyleClasses = { "AngleRect" }, Margin = new Thickness(0, 4, 0, 4) };
         var headerBox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(8, 6) };
-        
-        // Collapse button
         var collapseButton = new Button { Text = isCollapsed ? ">" : "v", MinSize = new Vector2(30, 0) };
         collapseButton.OnPressed += _ => { _categoryCollapsed[categoryKey] = !_categoryCollapsed.GetValueOrDefault(categoryKey); RefreshRulesDisplay(); };
         headerBox.AddChild(collapseButton);
-        
-        // Category name with color and count
         var nameLabel = new RichTextLabel { VerticalAlignment = Control.VAlignment.Center, Margin = new Thickness(8, 0, 0, 0) };
         var nameMsg = new FormattedMessage();
         if (category != null && _categoryColors.TryGetValue(category, out var color))
@@ -177,7 +146,7 @@ public sealed partial class AutoModWindow : DefaultWindow
         headerBox.AddChild(nameLabel);
         headerBox.AddChild(new Control { HorizontalExpand = true });
         
-        // Action buttons for real categories
+        // Action buttons
         if (category != null)
         {
             var addBtn = new Button { Text = Loc.GetString("automod-add-rule"), MinSize = new Vector2(80, 0), StyleClasses = { "ButtonColorGreen" }, Margin = new Thickness(4, 0, 0, 0) };
@@ -201,14 +170,10 @@ public sealed partial class AutoModWindow : DefaultWindow
         RulesContainer.AddChild(headerPanel);
     }
 
-    private static Color GetCategoryColor(int index)
+    private static Color GetCategoryColor(string categoryName)
     {
-        var colors = new[] {
-            Color.FromHex("#FF6B6B"), Color.FromHex("#4ECDC4"), Color.FromHex("#45B7D1"),
-            Color.FromHex("#96CEB4"), Color.FromHex("#FFEAA7"), Color.FromHex("#DFE6E9"),
-            Color.FromHex("#A29BFE"), Color.FromHex("#FD79A8"), Color.FromHex("#FDCB6E"), Color.FromHex("#6C5CE7")
-        };
-        return colors[index % colors.Length];
+        var random = new Random(categoryName.GetHashCode());
+        return Color.FromHex($"#{random.Next(0x1000000):X6}");
     }
 
     private void BulkCategoryAction(string? category, bool enable)
@@ -223,8 +188,7 @@ public sealed partial class AutoModWindow : DefaultWindow
     {
         // Remove rules with this category from persistent storage
         _allRules.RemoveAll(r => r.Category == category);
-        
-        // Remove category metadata
+        // Remove metadata
         _categories.Remove(category);
         _categoryColors.Remove(category);
         MarkDirty();
@@ -233,36 +197,22 @@ public sealed partial class AutoModWindow : DefaultWindow
 
     private void RefreshRulesDisplay()
     {
-        // Sync current UI state to _allRules before refreshing
         SyncUIToRules();
-        
-        // Now rebuild UI from persistent storage
         RebuildUIFromRules();
-        
-        // Refresh category manager if it's open
         RefreshCategoryManager();
     }
 
     private void SyncUIToRules()
     {
-        // Update _allRules with current UI state for visible rules
+        // Update with current UI state for visible rules
         foreach (var kvp in _ruleControls)
         {
-            var control = kvp.Key;
-            var uiRule = kvp.Value;
+            var persistentRule = _allRules.FirstOrDefault(r => r.Id == kvp.Value.Id);
+            if (persistentRule == null) continue;
             
-            // Find corresponding rule in _allRules and update it
-            var persistentRule = _allRules.FirstOrDefault(r => r.Id == uiRule.Id);
-            if (persistentRule != null)
-            {
-                // Copy UI state back to persistent storage
-                persistentRule.Enabled = uiRule.Enabled;
-                persistentRule.Category = uiRule.Category;
-                persistentRule.Severity = uiRule.Severity;
-                persistentRule.Regex = uiRule.Regex;
-                persistentRule.WatchOOC = uiRule.WatchOOC;
-                persistentRule.Offences = uiRule.Offences?.ToList() ?? new List<AutoModOffence>();
-            }
+            (persistentRule.Enabled, persistentRule.Category, persistentRule.Severity, persistentRule.Regex, persistentRule.WatchOOC) = 
+                (kvp.Value.Enabled, kvp.Value.Category, kvp.Value.Severity, kvp.Value.Regex, kvp.Value.WatchOOC);
+            persistentRule.Offences = kvp.Value.Offences?.ToList() ?? new List<AutoModOffence>();
         }
     }
 
@@ -271,15 +221,14 @@ public sealed partial class AutoModWindow : DefaultWindow
         RulesContainer.RemoveAllChildren();
         _ruleControls.Clear();
         
-        // Filter rules based on search term
+        // Filter rules
         var filteredRules = FilterRulesBySearch(_allRules).ToList();
         RuleCountLabel.Text = Loc.GetString("automod-window-rules-count", ("count", filteredRules.Count));
 
         _categories.Clear();
-        var categoryIndex = 0;
         foreach (var rule in filteredRules.Where(r => !string.IsNullOrWhiteSpace(r.Category)))
             if (_categories.Add(rule.Category!))
-                _categoryColors[rule.Category!] = GetCategoryColor(categoryIndex++);
+                _categoryColors[rule.Category!] = GetCategoryColor(rule.Category!);
 
         var categorizedRules = filteredRules.Where(r => !string.IsNullOrWhiteSpace(r.Category)).GroupBy(r => r.Category).OrderBy(g => g.Key);
         var uncategorizedRules = filteredRules.Where(r => string.IsNullOrWhiteSpace(r.Category)).ToList();
@@ -305,25 +254,17 @@ public sealed partial class AutoModWindow : DefaultWindow
 
     private void AddNewRule(string? categoryOverride = null)
     {
-        var newRule = new AutoModRule { Enabled = false, Severity = 1, Offences = new List<AutoModOffence>(), Category = categoryOverride };
-        
-        // Add to persistent storage
-        _allRules.Add(newRule);
+        _allRules.Add(new AutoModRule { Enabled = false, Severity = 1, Offences = new List<AutoModOffence>(), Category = categoryOverride });
         MarkDirty();
         RefreshRulesDisplay();
     }
 
     private void SaveAllRules()
     {
-        // Sync UI changes to persistent storage first
         SyncUIToRules();
-        
-        // Send all rules from persistent storage
         _eui.SendBulkUpdate(_allRules);
         _hasUnsavedChanges = false;
         SaveAllButton.StyleClasses.Remove("ButtonColorGreen");
-        
-        // Refresh category manager if it's open
         RefreshCategoryManager();
     }
 
@@ -386,20 +327,12 @@ public sealed partial class AutoModWindow : DefaultWindow
         basicRow.AddChild(new Control { MinSize = new Vector2(3, 0) });
         
         var severityOption = new OptionButton { MinSize = new Vector2(110, 0) };
-        foreach (var severity in Enum.GetValues<AutoModSeverity>()) 
-        {
+        foreach (var severity in Enum.GetValues<AutoModSeverity>())
             severityOption.AddItem(severity.ToString(), (int)severity);
-            Logger.GetSawmill("automod").Info($"[AutoMod Debug UI] Added severity: {severity} ({(int)severity})");
-        }
-        Logger.GetSawmill("automod").Info($"[AutoMod Debug UI] Setting initial severity to: {rule.Severity} ({(AutoModSeverity)rule.Severity})");
         severityOption.SelectId((int)rule.Severity);
         severityOption.OnItemSelected += args => { 
-            var oldSeverity = rule.Severity;
-            var newSeverity = args.Id;
-            rule.Severity = newSeverity;
-            // Force the dropdown to show the new selection
-            severityOption.SelectId(newSeverity);
-            Logger.GetSawmill("automod").Info($"[AutoMod Debug UI] Severity changed from {oldSeverity} to {newSeverity} (args.Id={args.Id}, SelectedId={severityOption.SelectedId})");
+            rule.Severity = args.Id;
+            severityOption.SelectId(args.Id);
             MarkDirty(); 
         };
         basicRow.AddChild(severityOption);
@@ -461,29 +394,20 @@ public sealed partial class AutoModWindow : DefaultWindow
         var banLabel = new Label { Text = Loc.GetString("automod-field-ban-time"), MinSize = new Vector2(75, 0), Visible = offence.Action == AutoModOffenceAction.Ban };
         var banEdit = new LineEdit { Text = FormatMinutes(offence.BanDurationMinutes), PlaceHolder = Loc.GetString("automod-message-placeholder"), MinSize = new Vector2(150, 0), Visible = offence.Action == AutoModOffenceAction.Ban };
 
-        // Action and message row
+        // Action and message
         var row1 = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 4) };
         row1.AddChild(new Label { Text = Loc.GetString("automod-field-action"), MinSize = new Vector2(75, 0) });
         row1.AddChild(new Control { MinSize = new Vector2(3, 0) });
         var actionOption = new OptionButton { MinSize = new Vector2(100, 0) };
         foreach (var action in Enum.GetValues<AutoModOffenceAction>())
-        {
             actionOption.AddItem(action.ToString(), (int)action);
-            Logger.GetSawmill("automod").Info($"[AutoMod Debug UI] Added action: {action} ({(int)action})");
-        }
-        var currentAction = offence.Action;
-        Logger.GetSawmill("automod").Info($"[AutoMod Debug UI] Setting initial action to: {currentAction} ({(int)currentAction})");
-        actionOption.SelectId((int)currentAction);
+        actionOption.SelectId((int)offence.Action);
         actionOption.OnItemSelected += args => { 
-            var oldAction = offence.Action;
-            var newAction = (AutoModOffenceAction)args.Id;
-            offence.Action = newAction;
-            // Force the dropdown to show the new selection
+            offence.Action = (AutoModOffenceAction)args.Id;
             actionOption.SelectId(args.Id);
             var isBan = offence.Action == AutoModOffenceAction.Ban; 
             banLabel.Visible = isBan; 
             banEdit.Visible = isBan; 
-            Logger.GetSawmill("automod").Info($"[AutoMod Debug UI] Action changed from {oldAction} to {newAction} (args.Id={args.Id}, SelectedId={actionOption.SelectedId})");
             MarkDirty(); 
         };
         row1.AddChild(actionOption);
@@ -495,7 +419,7 @@ public sealed partial class AutoModWindow : DefaultWindow
         row1.AddChild(msgEdit);
         offenceBox.AddChild(row1);
 
-        // Ban time row
+        // Ban time
         var row2 = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 4) };
         banEdit.OnTextChanged += args => { offence.BanDurationMinutes = ParseBanTimeString(args.Text); MarkDirty(); };
         row2.AddChild(banLabel);
@@ -503,7 +427,7 @@ public sealed partial class AutoModWindow : DefaultWindow
         row2.AddChild(banEdit);
         offenceBox.AddChild(row2);
 
-        // Decay controls and checkboxes row
+        // Decay controls and checkboxes
         var row3 = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 4) };
         row3.AddChild(new Label { Text = Loc.GetString("automod-field-decay-time"), MinSize = new Vector2(75, 0) });
         row3.AddChild(new Control { MinSize = new Vector2(3, 0) });
@@ -520,14 +444,13 @@ public sealed partial class AutoModWindow : DefaultWindow
         var cancelCheck = new CheckBox { Text = Loc.GetString("automod-cancel-speech"), Pressed = offence.CancelSpeech };
         cancelCheck.OnToggled += args => { offence.CancelSpeech = args.Pressed; MarkDirty(); };
         row3.AddChild(cancelCheck);
-        // Persistent is always true and not toggleable
         offence.Persistent = true;
         offenceBox.AddChild(row3);
 
         return offencePanel;
     }
 
-    private void OpenCategoryManager()
+    private void OpenCategoryManager(Vector2? position = null)
     {
         // If category manager window already exists, refresh it and bring to front
         if (_categoryManagerWindow != null && !_categoryManagerWindow.Disposed)
@@ -642,137 +565,23 @@ public sealed partial class AutoModWindow : DefaultWindow
         mainBox.AddChild(closeBtn);
 
         _categoryManagerWindow.AddChild(mainBox);
-        _categoryManagerWindow.OpenCentered();
+        
+        if (position.HasValue)
+            _categoryManagerWindow.Open(position.Value);
+        else
+            _categoryManagerWindow.OpenCentered();
     }
 
     private void RefreshCategoryManager()
     {
         if (_categoryManagerWindow == null || _categoryManagerWindow.Disposed) return;
-        
-        // Store the current window position before closing
         var currentPosition = _categoryManagerWindow.Position;
-        var currentSize = _categoryManagerWindow.Size;
-        
-        // Close the existing window
         _categoryManagerWindow.Close();
         _categoryManagerWindow = null;
-        
-        // Create new window with stored position and size
-        OpenCategoryManagerAt(currentPosition);
+        OpenCategoryManager(currentPosition);
     }
 
-    private void OpenCategoryManagerAt(Vector2 position)
-    {
-        _categories.Clear();
-        var categoryStats = new Dictionary<string, (int ruleCount, int enabledCount, int totalTriggers)>();
-        
-        // Count uncategorized rules
-        var uncategorizedCount = 0;
-        var uncategorizedEnabled = 0;
-        var uncategorizedTriggers = 0;
-        
-        foreach (var rule in _allRules)
-        {
-            if (string.IsNullOrWhiteSpace(rule.Category))
-            {
-                uncategorizedCount++;
-                if (rule.Enabled) uncategorizedEnabled++;
-            }
-            else
-            {
-                _categories.Add(rule.Category);
-                if (!categoryStats.ContainsKey(rule.Category)) categoryStats[rule.Category] = (0, 0, 0);
-                var (ruleCount, enabledCount, totalTriggers) = categoryStats[rule.Category];
-                categoryStats[rule.Category] = (ruleCount + 1, enabledCount + (rule.Enabled ? 1 : 0), totalTriggers);
-            }
-        }
-
-        _categoryManagerWindow = new DefaultWindow { Title = Loc.GetString("automod-category-dialog-title"), MinSize = new Vector2(550, 400) };
-        _categoryManagerWindow.OnClose += () => _categoryManagerWindow = null;
-        
-        var mainBox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(10) };
-
-        // Header
-        var headerPanel = new PanelContainer { StyleClasses = { "AngleRect" }, Margin = new Thickness(0, 0, 0, 10) };
-        var headerBox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(8, 6) };
-        headerBox.AddChild(new Label { Text = Loc.GetString("automod-category-management-title"), StyleClasses = { "LabelHeading" } });
-        var totalRules = _categories.Count > 0 ? _allRules.Count : uncategorizedCount;
-        var totalCategories = _categories.Count + (uncategorizedCount > 0 ? 1 : 0);
-        headerBox.AddChild(new Label { Text = Loc.GetString("automod-category-stats-summary", ("categories", totalCategories), ("rules", totalRules)), StyleClasses = { "LabelSubText" }, Margin = new Thickness(0, 2, 0, 0) });
-        headerPanel.AddChild(headerBox);
-        mainBox.AddChild(headerPanel);
-
-        // Category list
-        var scrollContainer = new ScrollContainer { VerticalExpand = true };
-        var categoryList = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(0, 5) };
-        
-        // Add uncategorized section if there are uncategorized rules
-        if (uncategorizedCount > 0)
-        {
-            var uncategorizedPanel = new PanelContainer { StyleClasses = { "AngleRect" }, Margin = new Thickness(0, 3, 0, 0) };
-            
-            var mainRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(8, 5) };
-            var nameRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 4) };
-            nameRow.AddChild(new Label { Text = Loc.GetString("automod-category-uncategorized"), StyleClasses = { "LabelHeading" }, VerticalAlignment = Control.VAlignment.Center });
-            nameRow.AddChild(new Control { HorizontalExpand = true });
-            nameRow.AddChild(new Label { Text = Loc.GetString("automod-category-rule-stats", ("rules", uncategorizedCount), ("enabled", uncategorizedEnabled), ("triggers", uncategorizedTriggers)), StyleClasses = { "LabelSubText" }, VerticalAlignment = Control.VAlignment.Center });
-            mainRow.AddChild(nameRow);
-            
-            var buttonRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
-            var enableBtn = new Button { Text = Loc.GetString("automod-category-enable-all"), MinSize = new Vector2(80, 0) };
-            enableBtn.OnPressed += _ => BulkCategoryAction(null, true);
-            buttonRow.AddChild(enableBtn);
-            buttonRow.AddChild(new Control { MinSize = new Vector2(5, 0) });
-            var disableBtn = new Button { Text = Loc.GetString("automod-category-disable-all"), MinSize = new Vector2(80, 0) };
-            disableBtn.OnPressed += _ => BulkCategoryAction(null, false);
-            buttonRow.AddChild(disableBtn);
-            mainRow.AddChild(buttonRow);
-            
-            uncategorizedPanel.AddChild(mainRow);
-            categoryList.AddChild(uncategorizedPanel);
-        }
-        
-        foreach (var category in _categories.OrderBy(c => c))
-        {
-            var (ruleCount, enabledCount, totalTriggers) = categoryStats[category];
-            var categoryPanel = new PanelContainer { StyleClasses = { "AngleRect" }, Margin = new Thickness(0, 3, 0, 0) };
-            if (_categoryColors.TryGetValue(category, out var color)) categoryPanel.Modulate = color;
-            
-            var mainRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(8, 5) };
-            var nameRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 4) };
-            nameRow.AddChild(new Label { Text = category, StyleClasses = { "LabelHeading" }, VerticalAlignment = Control.VAlignment.Center });
-            nameRow.AddChild(new Control { HorizontalExpand = true });
-            nameRow.AddChild(new Label { Text = Loc.GetString("automod-category-rule-stats", ("rules", ruleCount), ("enabled", enabledCount), ("triggers", totalTriggers)), StyleClasses = { "LabelSubText" }, VerticalAlignment = Control.VAlignment.Center });
-            mainRow.AddChild(nameRow);
-            
-            var buttonRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal };
-            var enableBtn = new Button { Text = Loc.GetString("automod-category-enable-all"), MinSize = new Vector2(80, 0) };
-            enableBtn.OnPressed += _ => { BulkCategoryAction(category, true); RefreshRulesDisplay(); RefreshCategoryManager(); };
-            buttonRow.AddChild(enableBtn);
-            var disableBtn = new Button { Text = Loc.GetString("automod-category-disable-all"), MinSize = new Vector2(80, 0), Margin = new Thickness(4, 0, 0, 0) };
-            disableBtn.OnPressed += _ => { BulkCategoryAction(category, false); RefreshRulesDisplay(); RefreshCategoryManager(); };
-            buttonRow.AddChild(disableBtn);
-            buttonRow.AddChild(new Control { HorizontalExpand = true });
-            var deleteBtn = new Button { Text = Loc.GetString("automod-category-delete"), StyleClasses = { "ButtonColorRed" }, MinSize = new Vector2(100, 0), Margin = new Thickness(4, 0, 0, 0) };
-            deleteBtn.OnPressed += _ => { DeleteCategory(category); RefreshRulesDisplay(); RefreshCategoryManager(); };
-            buttonRow.AddChild(deleteBtn);
-            mainRow.AddChild(buttonRow);
-            categoryPanel.AddChild(mainRow);
-            categoryList.AddChild(categoryPanel);
-        }
-        
-        scrollContainer.AddChild(categoryList);
-        mainBox.AddChild(scrollContainer);
-
-        var closeBtn = new Button { Text = Loc.GetString("automod-ui-close"), Margin = new Thickness(0, 10, 0, 0) };
-        closeBtn.OnPressed += _ => _categoryManagerWindow?.Close();
-        mainBox.AddChild(closeBtn);
-
-        _categoryManagerWindow.AddChild(mainBox);
-        _categoryManagerWindow.Open(position);
-    }
-
-    // Time parsing utilities
+    // Time parsing utils
     private static int ParseTimeString(string input) => ParseTimeInternal(input, new Dictionary<string, int> { ["s"] = 1, ["sec"] = 1, ["second"] = 1, ["seconds"] = 1, ["m"] = 60, ["min"] = 60, ["minute"] = 60, ["minutes"] = 60, ["h"] = 3600, ["hr"] = 3600, ["hour"] = 3600, ["hours"] = 3600, ["d"] = 86400, ["day"] = 86400, ["days"] = 86400 });
     
     private static int ParseBanTimeString(string input) => ParseTimeInternal(input, new Dictionary<string, int> { ["m"] = 1, ["min"] = 1, ["minute"] = 1, ["minutes"] = 1, ["h"] = 60, ["hr"] = 60, ["hour"] = 60, ["hours"] = 60, ["d"] = 1440, ["day"] = 1440, ["days"] = 1440 });

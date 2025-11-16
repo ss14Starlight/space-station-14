@@ -97,8 +97,6 @@
             </BoxContainer>
         </TabContainer>
         
-        <!-- Hidden template containers for reusable UI components -->
-        <!-- These are not visible but serve as templates for dynamically created elements -->
         <BoxContainer Name="UITemplates" Access="Public" Visible="False">
             
             <!-- Simple Dialog Template -->
