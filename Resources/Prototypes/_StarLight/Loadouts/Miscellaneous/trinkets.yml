@@ -535,3 +535,64 @@
     back:
       - CigPackMixed
   groupBy: "smokeables"
+
+- type: loadout
+  id: RevolverCapGun
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 360000 # 100 hours of honk
+  storage:
+    back:
+    - RevolverCapGun
+  groupBy: "clowning shit"
+
+- type: loadout
+  id: CrazyGlue
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 36000 # 10hr
+  storage:
+    back:
+    - CrazyGlue
+  groupBy: "drugs"
+
+- type: loadout
+  id: ClothingEyesBlindfold
+  storage:
+    back:
+      - ClothingEyesBlindfold
+
+- type: loadout
+  id: TennisBall
+  storage:
+    back:
+      - TennisBall
+
+- type: loadout
+  id: ClothingHandsCatPaws
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  storage:
+    back:
+    - ClothingHandsCatPaws
+  groupBy: "cat maid"
+
+- type: loadout
+  id: ClothingUnderSocksStirrup
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  storage:
+    back:
+    - ClothingUnderSocksStirrup
+  groupBy: "cat maid"
