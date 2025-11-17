@@ -3,7 +3,7 @@
   id: Trinkets
   name: loadout-group-trinkets
   minLimit: 0
-  maxLimit: 5
+  maxLimit: 6
   loadouts:
   - FlowerWreath
   - Hairflower
@@ -105,6 +105,8 @@
   - WehMedipen #SL
   - PillCanisterEthylredoxrazine #SL
   - CigPackMixed #SL
+  - CrazyGlue #SL
+  - RevolverCapGun #SL
 
 - type: loadoutGroup
   id: Glasses
