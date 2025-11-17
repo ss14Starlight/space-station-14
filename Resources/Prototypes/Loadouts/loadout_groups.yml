@@ -107,6 +107,10 @@
   - CigPackMixed #SL
   - CrazyGlue #SL
   - RevolverCapGun #SL
+  - ClothingEyesBlindfold
+  - TennisBall
+  - ClothingHandsCatPaws
+  - ClothingUnderSocksStirrup
 
 - type: loadoutGroup
   id: Glasses
