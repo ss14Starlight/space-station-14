@@ -1,0 +1,4 @@
+- type: marking
+  parent: LizardChestDragonwings
+  id: DemonicWings
+  speciesRestriction: [Human, Vulpkanin]
