@@ -11,11 +11,9 @@ using Content.Shared._Starlight.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Database;
-using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Content.Server.Administration.Managers;
 using AutoModRule = Content.Server.Database.AutoModRule;
 using AutoModOffence = Content.Server.Database.AutoModOffence;
@@ -41,15 +39,15 @@ public sealed partial class AutoModSystem : SharedChatSystem
     private List<AutoModRule> _rules = new();
     
     // Compiled regex patterns for parsing AutoMod notes
-    private static readonly Regex OffenseLevelRegex = new(@"Offense Level:\[\/color\]\s*\[bold\]\[color=[^\]]+\](\d+)\[\/color\]\[\/bold\]", RegexOptions.Compiled);
-    private static readonly Regex ActionTakenRegex = new(@"Action Taken:\[\/color\]\s*\[bold\]\[color=[^\]]+\]([^\[]+)\[\/color\]\[\/bold\]", RegexOptions.Compiled);
-    private static readonly Regex ChannelRegex = new(@"Channel:\[\/color\]\s*\[color=[^\]]+\]([^\[]+)\[\/color\]", RegexOptions.Compiled);
-    private static readonly Regex CategoryRegex = new(@"Category:\[\/color\]\s*\[color=[^\]]+\]([^\[]+)\[\/color\]", RegexOptions.Compiled);
-    private static readonly Regex ViolatingMessageRegex = new(@"Violating Message:\[\/color\]\[\/bold\]\s*\[color=[^\]]+\]""([^""]+)""", RegexOptions.Compiled);
-    private static readonly Regex RuleNameRegex = new(@"╔══ AUTOMOD VIOLATION ══╗\[\/color\]\[\/bold\]\s*\[bold\]\[color=[^\]]+\]([^\[]+)\[\/color\]\[\/bold\]", RegexOptions.Compiled);
-    private static readonly Regex RuleIdRegex = new(@"Rule ID: (\d+)\[\/color\]", RegexOptions.Compiled);
-    private static readonly Regex HistorySectionRegex = new(@"── Recent History \((\d+) total\) ──\[\/color\](.*?)(?=\[color=#ff4444\]╚|$)", RegexOptions.Compiled | RegexOptions.Singleline);
-    private static readonly Regex IncidentRegex = new(@"Lvl (\d+) \[([^\]]+)\]\[\/color\] - \[color=[^\]]+\]""([^""]+)""", RegexOptions.Compiled);
+    private static readonly Regex _offenseLevelRegex = new(@"Offense Level:\[\/color\]\s*\[bold\]\[color=[^\]]+\](\d+)\[\/color\]\[\/bold\]", RegexOptions.Compiled);
+    private static readonly Regex _actionTakenRegex = new(@"Action Taken:\[\/color\]\s*\[bold\]\[color=[^\]]+\]([^\[]+)\[\/color\]\[\/bold\]", RegexOptions.Compiled);
+    private static readonly Regex _channelRegex = new(@"Channel:\[\/color\]\s*\[color=[^\]]+\]([^\[]+)\[\/color\]", RegexOptions.Compiled);
+    private static readonly Regex _categoryRegex = new(@"Category:\[\/color\]\s*\[color=[^\]]+\]([^\[]+)\[\/color\]", RegexOptions.Compiled);
+    private static readonly Regex _violatingMessageRegex = new(@"Violating Message:\[\/color\]\[\/bold\]\s*\[color=[^\]]+\]""([^""]+)""", RegexOptions.Compiled);
+    private static readonly Regex _ruleNameRegex = new(@"╔══ AUTOMOD VIOLATION ══╗\[\/color\]\[\/bold\]\s*\[bold\]\[color=[^\]]+\]([^\[]+)\[\/color\]\[\/bold\]", RegexOptions.Compiled);
+    private static readonly Regex _ruleIdRegex = new(@"Rule ID: (\d+)\[\/color\]", RegexOptions.Compiled);
+    private static readonly Regex _historySectionRegex = new(@"── Recent History \((\d+) total\) ──\[\/color\](.*?)(?=\[color=#ff4444\]╚|$)", RegexOptions.Compiled | RegexOptions.Singleline);
+    private static readonly Regex _incidentRegex = new(@"Lvl (\d+) \[([^\]]+)\](?:\s*\[color=[^\]]+\]\[DECAYED\]\[\/color\])?\[\/color\] - \[color=[^\]]+\]""([^""]+)""", RegexOptions.Compiled);
     
     #endregion
 
@@ -102,7 +100,6 @@ public sealed partial class AutoModSystem : SharedChatSystem
         string message = args.Message;
         var userKey = args.Sender.UserId;
         var now = DateTime.UtcNow;
-        // Only block if the user is sending messages extremely rapidly (anti-flood, not deduplication)
         if (_recentMessages.TryGetValue((userKey, "*"), out var recentMessageTime) && (now - recentMessageTime).TotalSeconds < 0.5)
             return;
         _recentMessages[(userKey, "*")] = now;
@@ -138,7 +135,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 if (activeViolations.Any())
                 {
                     var mostRecentViolation = activeViolations.OrderByDescending(v => v.CreatedAt).First();
-                    offenceIndex = mostRecentViolation.ViolationCount; // ViolationCount is the number of offenses already applied
+                    offenceIndex = mostRecentViolation.ViolationCount;
                     _automodLog.Debug($"[AutoMod] Found existing violation for rule {rule.Id}, offense count so far: {mostRecentViolation.ViolationCount}");
                 }
             }
@@ -150,12 +147,8 @@ public sealed partial class AutoModSystem : SharedChatSystem
             bool hasOffences = rule.Offences != null && rule.Offences.Count > 0;
             if (hasOffences)
             {
-                // offenceIndex represents how many offenses have been applied (0 = none yet, 1 = first applied, etc.)
-                // Since arrays are 0-indexed, offenceIndex is ALSO the index of the next offense to apply
-                // Example: offenceIndex=0 → this is the 1st violation, apply Offences[0]
-                //          offenceIndex=1 → we applied Offences[0] already, now apply Offences[1]
                 offence = (rule.Offences != null && offenceIndex < rule.Offences.Count) ? rule.Offences[offenceIndex] : rule.Offences?.Last();
-                displayLevel = offenceIndex + 1; // Display is 1-based for humans (offense #1, #2, etc)
+                displayLevel = offenceIndex + 1;
                 _automodLog.Debug($"[AutoMod] Rule {rule.Id}: Applying offense at index {offenceIndex} (will be stored as display level {displayLevel}), action: {offence?.Action}");
             }
             else
@@ -369,7 +362,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 violatorUserId, 
                 new NetUserId(Guid.Empty), // System user ID
                 message, 
-                playSound: true, 
+                playSound: false, 
                 adminOnly: true
             );
 
@@ -390,7 +383,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
     {
         public int NoteId { get; set; } // Database note ID for updates
         public string Type => "automod_violation";
-        public string UniqueId { get; set; } = Guid.NewGuid().ToString(); // Unique identifier for edit protection
+        public string UniqueId { get; set; } = Guid.NewGuid().ToString(); // Unique identifier
         public string RulePlayerKey { get; set; } = ""; // Unique key for this rule+player combination
         public int RuleId { get; set; }
         public string RuleName { get; set; } = "";
@@ -416,9 +409,10 @@ public sealed partial class AutoModSystem : SharedChatSystem
         public string Channel { get; set; } = "";
         public string ActionTaken { get; set; } = "";
         public int OffenseLevel { get; set; }
-        public int DecaySeconds { get; set; } // How long until this offense decays
-        public int DecayLevel { get; set; } // How much to decrement when this offense decays
-        public DateTime? ExpiresAt { get; set; } // When this specific offense expires
+        public int DecaySeconds { get; set; }
+        public int DecayLevel { get; set; }
+        public DateTime? ExpiresAt { get; set; }
+        public bool IsDecayed { get; set; }
     }
 
     /// <summary>
@@ -439,14 +433,35 @@ public sealed partial class AutoModSystem : SharedChatSystem
 
     /// <summary>
     /// Helper method to format AutoMod violation data for admin notes
-    /// All data is stored in human-readable format and can be edited by admins
     /// </summary>
     private string FormatViolationMessage(AutoModRule rule, NetUserId playerId, int offenseLevel, string originalMessage, string channel, string action, List<ViolationIncident> incidents, string? existingId = null)
+    // Helper to balance BBCode tags for color and bold
     {
+        string BalanceTags(string input)
+        {
+            // Count [color and [/color]
+            int openColor = Regex.Matches(input, "\\[color[=\"]?").Count;
+            int closeColor = Regex.Matches(input, "\\[/color\\]").Count;
+            // Count [bold] and [/bold]
+            int openBold = Regex.Matches(input, "\\[bold\\]").Count;
+            int closeBold = Regex.Matches(input, "\\[/bold\\]").Count;
+            var sb = new StringBuilder(input);
+            for (int i = 0; i < openColor - closeColor; i++) sb.Append("[/color]");
+            for (int i = 0; i < openBold - closeBold; i++) sb.Append("[/bold]");
+            for (int i = 0; i < closeColor - openColor; i++) sb.Insert(0, "[color=white]");
+            for (int i = 0; i < closeBold - openBold; i++) sb.Insert(0, "[bold]");
+            return sb.ToString();
+        }
         var rulePlayerKey = $"automod_{rule.Id}_{playerId}";
         var uniqueId = existingId ?? Guid.NewGuid().ToString();
-        var ruleName = rule.Category ?? $"Rule #{rule.Id}";
-        var category = rule.Category ?? "Uncategorized";
+        // Escape all dynamic fields for BBCode safety
+        static string EscapeBB(string s) => s.Replace("[", "\\[").Replace("]", "\\]");
+        var ruleName = EscapeBB(rule.Category ?? $"Rule #{rule.Id}");
+        var category = EscapeBB(rule.Category ?? "Uncategorized");
+        var channelEsc = EscapeBB(channel);
+        var actionEsc = EscapeBB(action);
+        var regexEsc = EscapeBB(rule.Regex);
+        var originalMessageEsc = EscapeBB(originalMessage);
         
         _automodLog.Debug($"[AutoMod] Creating note with RulePlayerKey={rulePlayerKey}, UniqueId={uniqueId}");
         
@@ -467,24 +482,17 @@ public sealed partial class AutoModSystem : SharedChatSystem
             3 => "#ff8800",
             _ => "#ff0000"
         };
-        var actionColor = action.ToLower() switch
-        {
-            "ban" => "#ff0000",
-            "kick" => "#ff8800",
-            "warn" => "#ffff00",
-            _ => "#00ff00"
-        };
+        var actionColor = GetColorForAction(action);
         
         formattedNote.AppendLine($"[color=#00ddff]Offense Level:[/color] [bold][color={levelColor}]{offenseLevel}[/color][/bold]");
-        formattedNote.AppendLine($"[color=#00ddff]Action Taken:[/color] [bold][color={actionColor}]{action}[/color][/bold]");
-        formattedNote.AppendLine($"[color=#00ddff]Channel:[/color] [color=#ffffff]{channel}[/color]");
+        formattedNote.AppendLine($"[color=#00ddff]Action Taken:[/color] [bold][color={actionColor}]{actionEsc}[/color][/bold]");
+        formattedNote.AppendLine($"[color=#00ddff]Channel:[/color] [color=#ffffff]{channelEsc}[/color]");
         formattedNote.AppendLine($"[color=#00ddff]Category:[/color] [color=#bb88ff]{category}[/color]");
         
         // Message content
         formattedNote.AppendLine();
         formattedNote.AppendLine($"[bold][color=#00ddff]Violating Message:[/color][/bold]");
-        var escapedMessage = originalMessage.Replace("[", "\\[").Replace("]", "\\]");
-        formattedNote.AppendLine($"[color=#ffcccc]\"{escapedMessage}\"[/color]");
+        formattedNote.AppendLine($"[color=#ffcccc]\"{originalMessageEsc}\"[/color]");
         
         // Incident history
         if (incidents.Count > 0)
@@ -493,35 +501,72 @@ public sealed partial class AutoModSystem : SharedChatSystem
             formattedNote.AppendLine($"[color=#888888]── Recent History ({incidents.Count} total) ──[/color]");
             foreach (var incident in incidents.OrderByDescending(i => i.Timestamp).Take(5))
             {
-                // Color based on action severity
-                var incidentColor = incident.ActionTaken.ToLower() switch
-                {
-                    "ban" => "#ff4444",      // Red for bans
-                    "kick" => "#ff8844",     // Orange for kicks
-                    "warn" => "#ffff44",     // Yellow for warnings
-                    "none" => "#44ff44",     // Green for no action
-                    _ => "#88aaff"           // Blue for other/unknown
-                };
+                // Check if this incident has decayed
+                var isDecayed = incident.IsDecayed || (incident.ExpiresAt.HasValue && DateTime.UtcNow > incident.ExpiresAt.Value);
+                
+                // Color based on action severity (dimmed if decayed)
+                var incidentColor = GetColorForAction(incident.ActionTaken, isDecayed);
                 
                 var msgPreview = incident.Message.Length > 40 
                     ? incident.Message[..40] + "..." 
                     : incident.Message;
                 
-                var escapedPreview = msgPreview.Replace("[", "\\[").Replace("]", "\\]");
+                var escapedPreview = EscapeBB(msgPreview);
+                var escapedAction = EscapeBB(incident.ActionTaken);
+                
+                // Build decay status tag
+                var decayTag = "";
+                if (isDecayed)
+                {
+                    decayTag = " [color=#666666]\\[DECAYED\\][/color]";
+                }
+                else if (incident.ExpiresAt.HasValue)
+                {
+                    var timeRemaining = incident.ExpiresAt.Value - DateTime.UtcNow;
+                    if (timeRemaining.TotalSeconds > 0)
+                    {
+                        var timeStr = timeRemaining.TotalHours >= 1 
+                            ? $"{timeRemaining.TotalHours:F1}h"
+                            : timeRemaining.TotalMinutes >= 1
+                            ? $"{timeRemaining.TotalMinutes:F0}m"
+                            : $"{timeRemaining.TotalSeconds:F0}s";
+                        decayTag = $" [color=#888888]\\[Decays by: {incident.DecayLevel} on {timeStr}\\][/color]";
+                    }
+                }
                     
-                formattedNote.AppendLine($"[color={incidentColor}]  • Lvl {incident.OffenseLevel} [{incident.ActionTaken}][/color] - [color=#cccccc]\"{escapedPreview}\"[/color]");
+                formattedNote.AppendLine($"[color={incidentColor}]  • Lvl {incident.OffenseLevel} \\[{escapedAction}\\]{decayTag}[/color] - [color=#cccccc]\"{escapedPreview}\"[/color]");
             }
             if (incidents.Count > 5)
                 formattedNote.AppendLine($"[color=#666666]  ... and {incidents.Count - 5} more incidents[/color]");
         }
         
-        // Footer with unique identifier ("DO NOT DELETE" - used to track this specific note)
+        // Footer with unique identifier ("DO NOT EDIT" - used to track this specific note)
         formattedNote.AppendLine();
         formattedNote.AppendLine($"[color=#ff4444]╚══════════════════════╝[/color]");
         formattedNote.AppendLine($"[color=#444444]────────────────────────[/color]");
         formattedNote.Append($"[color=#333333]AUTOMOD_ID:{rulePlayerKey}:{uniqueId}[/color]");
         
-        return formattedNote.ToString();
+        // Ensure BBCode tags are balanced before returning
+        return BalanceTags(formattedNote.ToString());
+    }
+
+    // Add a dictionary to centralize color mappings
+    private static readonly Dictionary<string, string> _actionColorMap = new()
+    {
+        { "ban", "#ff0000" },      // Red for bans
+        { "kick", "#ff8800" },     // Orange for kicks
+        { "warn", "#ffff00" },     // Yellow for warnings
+        { "none", "#00ff00" },     // Green for no action
+        { "default", "#88aaff" }   // Blue for other/unknown
+    };
+
+    // Add a method to get color from the dictionary
+    private static string GetColorForAction(string action, bool isDecayed = false)
+    {
+        if (isDecayed)
+            return "#444444"; // Dimmed color for decayed incidents
+
+        return _actionColorMap.TryGetValue(action.ToLower(), out var color) ? color : _actionColorMap["default"];
     }
 
     /// <summary>
@@ -593,7 +638,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
             
             // Parse offense level (displayed as 1-based, stored as 0-based index)
             var offenseLevel = 1; // Default display level
-            var offenseLevelMatch = OffenseLevelRegex.Match(msg);
+            var offenseLevelMatch = _offenseLevelRegex.Match(msg);
             if (offenseLevelMatch.Success)
                 int.TryParse(offenseLevelMatch.Groups[1].Value, out offenseLevel);
             
@@ -601,31 +646,31 @@ public sealed partial class AutoModSystem : SharedChatSystem
             
             // Parse action
             var action = "Unknown";
-            var actionMatch = ActionTakenRegex.Match(msg);
+            var actionMatch = _actionTakenRegex.Match(msg);
             if (actionMatch.Success)
                 action = actionMatch.Groups[1].Value.Trim();
             
             // Parse channel
             var channel = "Unknown";
-            var channelMatch = ChannelRegex.Match(msg);
+            var channelMatch = _channelRegex.Match(msg);
             if (channelMatch.Success)
                 channel = channelMatch.Groups[1].Value.Trim();
             
             // Parse category
             var category = "Uncategorized";
-            var categoryMatch = CategoryRegex.Match(msg);
+            var categoryMatch = _categoryRegex.Match(msg);
             if (categoryMatch.Success)
                 category = categoryMatch.Groups[1].Value.Trim();
             
             // Parse violating message
             var originalMessage = "";
-            var messageMatch = ViolatingMessageRegex.Match(msg);
+            var messageMatch = _violatingMessageRegex.Match(msg);
             if (messageMatch.Success)
                 originalMessage = messageMatch.Groups[1].Value;
             
             // Parse rule name
             var ruleName = category;
-            var ruleNameMatch = RuleNameRegex.Match(msg);
+            var ruleNameMatch = _ruleNameRegex.Match(msg);
             if (ruleNameMatch.Success)
                 ruleName = ruleNameMatch.Groups[1].Value.Trim();
             
@@ -636,7 +681,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 int.TryParse(keyParts[1], out ruleId);
             
             // Parse Rule ID from note text (if available)
-            var ruleIdMatch = RuleIdRegex.Match(msg);
+            var ruleIdMatch = _ruleIdRegex.Match(msg);
             if (ruleIdMatch.Success && int.TryParse(ruleIdMatch.Groups[1].Value, out var parsedRuleId))
                 ruleId = parsedRuleId;
             
@@ -644,24 +689,30 @@ public sealed partial class AutoModSystem : SharedChatSystem
             
             // Parse incidents
             var incidents = new List<ViolationIncident>();
-            var historySection = HistorySectionRegex.Match(msg);
+            var historySection = _historySectionRegex.Match(msg);
             if (historySection.Success)
             {
-                var incidentMatches = IncidentRegex.Matches(historySection.Groups[2].Value);
+                var historyText = historySection.Groups[2].Value;
+                var incidentMatches = _incidentRegex.Matches(historyText);
                 foreach (Match incidentMatch in incidentMatches)
                 {
                     if (int.TryParse(incidentMatch.Groups[1].Value, out var level))
                     {
+                        // Check if this incident line contains [DECAYED]
+                        var incidentLine = incidentMatch.Value;
+                        var isDecayed = incidentLine.Contains("[DECAYED]");
+                        
                         incidents.Add(new ViolationIncident
                         {
                             OffenseLevel = level,
                             ActionTaken = incidentMatch.Groups[2].Value.Trim(),
                             Message = incidentMatch.Groups[3].Value,
-                            Timestamp = DateTime.UtcNow, // Can't reliably parse timestamp from display
+                            Timestamp = DateTime.UtcNow,
                             Channel = channel,
                             DecaySeconds = 0,
                             DecayLevel = 1,
-                            ExpiresAt = note.ExpiryTime
+                            ExpiresAt = note.ExpiryTime,
+                            IsDecayed = isDecayed
                         });
                     }
                 }
@@ -731,6 +782,17 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 if (existingData != null)
                 {
                     _automodLog.Debug($"[AutoMod] UPDATING existing note {existingData.NoteId}, old ViolationCount={existingData.ViolationCount}, new ViolationCount={newOffenseLevel}");
+                    
+                    // Mark expired incidents as decayed
+                    var currentTime = DateTime.UtcNow;
+                    foreach (var incident in existingData.Incidents)
+                    {
+                        if (incident.ExpiresAt.HasValue && currentTime > incident.ExpiresAt.Value && !incident.IsDecayed)
+                        {
+                            incident.IsDecayed = true;
+                            _automodLog.Debug($"[AutoMod] Marking incident (Lvl {incident.OffenseLevel}) as DECAYED");
+                        }
+                    }
                     
                     existingData.Incidents.Add(new ViolationIncident
                     {
