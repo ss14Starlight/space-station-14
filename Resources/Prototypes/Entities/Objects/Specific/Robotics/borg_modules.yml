@@ -1650,6 +1650,7 @@
     - item: SuperCloakingDevice
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye2-module }
+    
 # Starlight-start
 - type: entity
   id: BorgModulePKA
@@ -1657,7 +1658,7 @@
   name: Proto-Kinetic Module
   description: An advanced mining module equipped with a Proto-Kinetic Accelerator.
   components:
-  - type: Sprite
+  - type: SpriteS
     layers:
     - state: cargo
     - state: icon-mining-adv

@@ -88,7 +88,6 @@
   - BorgModuleMining
   - BorgModuleTraversal
   - BorgModuleAppraisal
-  - BorgModulePKA #Starlight
 
   radioChannels:
   - Supply

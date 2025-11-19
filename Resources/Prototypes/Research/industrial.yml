@@ -16,6 +16,7 @@
   - ClothingMaskWeldingGas
   - ClothingShoesBootsJump
   - MechEquipmentDrill
+  - BorgModulePKA #Starlight
   radioChannels:
   - Supply
 
