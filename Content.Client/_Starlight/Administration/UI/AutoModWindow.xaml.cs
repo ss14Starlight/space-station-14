@@ -210,8 +210,8 @@ public sealed partial class AutoModWindow : DefaultWindow
             var persistentRule = _allRules.FirstOrDefault(r => r.Id == kvp.Value.Id);
             if (persistentRule == null) continue;
             
-            (persistentRule.Enabled, persistentRule.Category, persistentRule.Severity, persistentRule.Regex, persistentRule.WatchOOC) = 
-                (kvp.Value.Enabled, kvp.Value.Category, kvp.Value.Severity, kvp.Value.Regex, kvp.Value.WatchOOC);
+            (persistentRule.Enabled, persistentRule.Category, persistentRule.Severity, persistentRule.Regex, persistentRule.WatchOOC, persistentRule.Secret) = 
+                (kvp.Value.Enabled, kvp.Value.Category, kvp.Value.Severity, kvp.Value.Regex, kvp.Value.WatchOOC, kvp.Value.Secret);
             persistentRule.Offences = kvp.Value.Offences?.ToList() ?? new List<AutoModOffence>();
         }
     }
@@ -352,6 +352,11 @@ public sealed partial class AutoModWindow : DefaultWindow
         var watchOOCCheck = new CheckBox { Text = Loc.GetString("automod-watch-ooc"), Pressed = rule.WatchOOC, Margin = new Thickness(0, 0, 0, 8) };
         watchOOCCheck.OnToggled += args => { rule.WatchOOC = args.Pressed; MarkDirty(); };
         mainBox.AddChild(watchOOCCheck);
+
+        // Admin Only Notes
+        var secretCheck = new CheckBox { Text = Loc.GetString("automod-admin-only-notes"), Pressed = rule.Secret, Margin = new Thickness(0, 0, 0, 8) };
+        secretCheck.OnToggled += args => { rule.Secret = args.Pressed; MarkDirty(); };
+        mainBox.AddChild(secretCheck);
 
         // Offences
         mainBox.AddChild(new PanelContainer { StyleClasses = { "LoweredPanel" }, MinSize = new Vector2(0, 1), Margin = new Thickness(0, 10, 0, 10) });

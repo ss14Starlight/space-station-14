@@ -91,17 +91,21 @@ public sealed partial class AdminNotesLine : BoxContainer
         }
         else if (Note.ExpiryTime is not null)
         {
+            // Starlight Start: AutoMod
+            // AutoMod note to use "Decays" instead of "Expires"
+            var isAutoMod = Note.Message.Contains("AUTOMOD_ID:");
+            var labelPrefix = isAutoMod ? "Decays" : "Expires";
+            // Starlight End
+            
             // Notes should never be visible when expired, bans should
             if (Note.ExpiryTime.Value > DateTime.UtcNow)
             {
-                ExpiresLabel.Text = Loc.GetString("admin-note-editor-expiry-label-params",
-                    ("date", Note.ExpiryTime.Value.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")),
-                    ("expiresIn", (Note.ExpiryTime.Value - DateTime.UtcNow).ToString("d'd 'hh':'mm")));
+                ExpiresLabel.Text = $"{labelPrefix} {Note.ExpiryTime.Value.ToLocalTime():yyyy-MM-dd HH:mm:ss} ({Note.ExpiryTime.Value - DateTime.UtcNow:d'd 'hh':'mm})"; // Starlight edit: AutoMod
                 ExpiresLabel.Modulate = Color.FromHex("#86DC3D");
             }
             else
             {
-                ExpiresLabel.Text = Loc.GetString("admin-note-editor-expiry-label-expired");
+                ExpiresLabel.Text = isAutoMod ? "Decayed" : Loc.GetString("admin-note-editor-expiry-label-expired"); // Starlight edit: AutoMod
             }
             ExpiresLabel.Visible = true;
         }
@@ -124,7 +128,17 @@ public sealed partial class AdminNotesLine : BoxContainer
             case NoteType.Watchlist:
             case NoteType.Message:
             default:
-                NoteLabel.SetMessage(Note.Message);
+                try
+                {
+                    NoteLabel.Text = Note.Message; // Starlight edit: AutoMod
+                }
+                catch (InvalidOperationException ex) when (ex.Message.Contains("Stack empty"))
+                {
+                    // BBCode parsing failed - likely malformed tags in old note
+                    // Display plain text without BBCode parsing
+                    Logger.GetSawmill("admin.notes").Warning($"BBCode parsing failed for note {Note.Id}: {ex.Message}");
+                    NoteLabel.SetMessage(Note.Message.Replace("[", "").Replace("]", ""));
+                }
                 break;
         }
 

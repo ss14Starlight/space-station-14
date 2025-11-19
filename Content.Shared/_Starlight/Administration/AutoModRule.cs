@@ -11,6 +11,7 @@ public sealed class AutoModRule
     public string Regex { get; set; } = string.Empty;
     public bool Enabled { get; set; }
     public bool WatchOOC { get; set; } = false;
+    public bool Secret { get; set; } = false;
     public List<AutoModOffence> Offences { get; set; } = new();
     public Guid CreatedBy { get; set; }
     public DateTime CreatedAt { get; set; }

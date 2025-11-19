@@ -11,6 +11,7 @@ public interface IAdminNotesManager
     event Action<SharedAdminNote>? NoteAdded;
     event Action<SharedAdminNote>? NoteModified;
     event Action<SharedAdminNote>? NoteDeleted;
+    event Func<Guid, List<IAdminRemarksRecord>, Task>? NotesRetrieved; // Starlight: AutoMod
 
     bool CanCreate(ICommonSession admin);
     bool CanDelete(ICommonSession admin);

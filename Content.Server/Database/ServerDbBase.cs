@@ -1517,8 +1517,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             notes.AddRange(
                 (await (from note in db.DbContext.AdminNotes
                         where note.PlayerUserId == player &&
-                              !note.Deleted &&
-                              (note.ExpirationTime == null || DateTime.UtcNow < note.ExpirationTime)
+                              !note.Deleted // Starlight edit: AutoMod, Return all notes
                         select note)
                     .Include(note => note.Round)
                     .ThenInclude(r => r!.Server)
@@ -2052,6 +2051,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             existingRule.Regex = rule.Regex;
             existingRule.Enabled = rule.Enabled;
             existingRule.WatchOOC = rule.WatchOOC;
+            existingRule.Secret = rule.Secret;
             existingRule.Offences = rule.Offences;
             existingRule.LastModifiedBy = rule.LastModifiedBy;
             existingRule.LastModifiedAt = rule.LastModifiedAt;

@@ -55,6 +55,7 @@ public sealed class AutoModEui : BaseEui
         Severity = shared.Severity,
         Regex = shared.Regex,
         Enabled = shared.Enabled,
+        Secret = shared.Secret,
         WatchOOC = shared.WatchOOC,
         CreatedBy = shared.CreatedBy,
         CreatedAt = shared.CreatedAt,
@@ -80,6 +81,7 @@ public sealed class AutoModEui : BaseEui
         Regex = server.Regex,
         Enabled = server.Enabled,
         WatchOOC = server.WatchOOC,
+        Secret = server.Secret,
         CreatedBy = server.CreatedBy,
         CreatedAt = server.CreatedAt,
         LastModifiedBy = server.LastModifiedBy,
@@ -164,6 +166,7 @@ public sealed class AutoModEui : BaseEui
         oldRule.Regex != newRule.Regex ||
         oldRule.Enabled != newRule.Enabled ||
         oldRule.WatchOOC != newRule.WatchOOC ||
+        oldRule.Secret != newRule.Secret ||
         !OffencesEqual(oldRule, newRule);
 
     public async void UpdateRule(SharedAutoModRule rule)

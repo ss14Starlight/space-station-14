@@ -28,6 +28,7 @@ automod-message-placeholder = Message/Reason
 automod-enabled = Enabled
 automod-cancel-speech = Cancel Chat Message
 automod-watch-ooc = Watch OOC
+automod-admin-only-notes = Admin Only Notes
 
 # Offences
 automod-offence-label = Offence { $index }

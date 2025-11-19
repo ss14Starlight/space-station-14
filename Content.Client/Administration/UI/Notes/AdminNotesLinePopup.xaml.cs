@@ -39,10 +39,32 @@ public sealed partial class AdminNotesLinePopup : Popup
         CreatedAtLabel.Text = Loc.GetString("admin-notes-created-at", ("date", note.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")));
         EditedByLabel.Text = Loc.GetString("admin-notes-last-edited-by", ("author", note.EditedByName));
         EditedAtLabel.Text = Loc.GetString("admin-notes-last-edited-at", ("date", note.LastEditedAt?.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss") ?? Loc.GetString("admin-notes-edited-never")));
-        ExpiryTimeLabel.Text = note.ExpiryTime == null
-            ? Loc.GetString("admin-notes-expires-never")
-            : Loc.GetString("admin-notes-expires", ("expires", note.ExpiryTime.Value.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")));
-        NoteTextEdit.InsertAtCursor(note.Message);
+        // Starlight edit Start: AutoMod
+        
+        // AutoMod note to use "Decays" instead of "Expires"
+        var isAutoMod = note.Message.Contains("AUTOMOD_ID:");
+        if (note.ExpiryTime == null)
+        {
+            ExpiryTimeLabel.Text = Loc.GetString("admin-notes-expires-never");
+        }
+        else
+        {
+            var labelPrefix = isAutoMod ? "Decays" : "Expires";
+            ExpiryTimeLabel.Text = $"{labelPrefix}: {note.ExpiryTime.Value.ToLocalTime():yyyy-MM-dd HH:mm:ss}";
+        }
+        
+        try
+        {
+            NoteTextLabel.Text = note.Message; // Notes support colors
+        }
+        catch (InvalidOperationException ex) when (ex.Message.Contains("Stack empty"))
+        {
+            // BBCode parsing failed - likely malformed tags in old note
+            // Display plain text without BBCode parsing
+            Logger.GetSawmill("admin.notes").Warning($"BBCode parsing failed for note {note.Id}: {ex.Message}");
+            NoteTextLabel.SetMessage(note.Message.Replace("[", "").Replace("]", ""));
+        }
+        // Starlight edit End
 
         if (note.NoteType is NoteType.ServerBan or NoteType.RoleBan)
         {

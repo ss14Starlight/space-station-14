@@ -1421,6 +1421,8 @@ namespace Content.Server.Database
         [Required]
         public bool WatchOOC { get; set; } = false;
         [Required]
+        public bool Secret { get; set; } = false;
+        [Required]
         public List<AutoModOffence> Offences { get; set; } = new();
         [Required]
         public Guid CreatedBy { get; set; }

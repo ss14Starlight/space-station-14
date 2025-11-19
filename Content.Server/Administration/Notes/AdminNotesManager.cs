@@ -29,6 +29,7 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
     public event Action<SharedAdminNote>? NoteAdded;
     public event Action<SharedAdminNote>? NoteModified;
     public event Action<SharedAdminNote>? NoteDeleted;
+    public event Func<Guid, List<IAdminRemarksRecord>, Task>? NotesRetrieved; // Starlight: AutoMod
 
     private ISawmill _sawmill = default!;
 
@@ -308,7 +309,15 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
 
     public async Task<List<IAdminRemarksRecord>> GetAllAdminRemarks(Guid player)
     {
-        return await _db.GetAllAdminRemarks(player);
+        // Starlight edit Start: AutoMod
+        var notes = await _db.GetAllAdminRemarks(player);
+        
+        // Post process notes, used for AutoMod
+        if (NotesRetrieved != null)
+            await NotesRetrieved.Invoke(player, notes);
+        
+        return notes;
+        // Starlight edit End
     }
 
     public async Task<List<IAdminRemarksRecord>> GetVisibleRemarks(Guid player)

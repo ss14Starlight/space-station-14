@@ -16,7 +16,9 @@
             <Label Name="EditedByLabel"/>
             <Label Name="EditedAtLabel"/>
             <Label Name="ExpiryTimeLabel"/>
-            <TextEdit Name="NoteTextEdit" Editable="False" MinHeight="24" />
+            <!-- Starlight edit Start: Support colors in notes -->
+            <RichTextLabel Name="NoteTextLabel" MinHeight="24" />
+            <!-- Starlight edit End -->
             <BoxContainer Orientation="Horizontal">
                 <Button Name="EditButton" Text="{Loc admin-notes-edit}"/>
                 <Control HorizontalExpand="True"/>
