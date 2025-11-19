@@ -1650,7 +1650,7 @@
     - item: SuperCloakingDevice
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye2-module }
-
+# Starlight-start
 - type: entity
   id: BorgModulePKA
   parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
@@ -1666,3 +1666,4 @@
     - item: WeaponProtoKineticAcceleratorMounted
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: Pro-Kinetic-Module }
+# Starlight-end
