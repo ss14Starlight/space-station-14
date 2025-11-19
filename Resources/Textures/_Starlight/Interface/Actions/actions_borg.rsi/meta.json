@@ -13,6 +13,9 @@
         {
             "name": "hands",
             "directions": 1
+        },
+        {
+            "name": "Pro-Kinetic-Module"
         }
     ]
 }
