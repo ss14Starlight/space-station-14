@@ -128,17 +128,17 @@ public sealed partial class AdminNotesLine : BoxContainer
             case NoteType.Watchlist:
             case NoteType.Message:
             default:
+                // Starlight edit Start: AutoMod
                 try
                 {
-                    NoteLabel.Text = Note.Message; // Starlight edit: AutoMod
+                    NoteLabel.Text = Note.Message;
                 }
                 catch (InvalidOperationException ex) when (ex.Message.Contains("Stack empty"))
                 {
-                    // BBCode parsing failed - likely malformed tags in old note
-                    // Display plain text without BBCode parsing
                     Logger.GetSawmill("admin.notes").Warning($"BBCode parsing failed for note {Note.Id}: {ex.Message}");
                     NoteLabel.SetMessage(Note.Message.Replace("[", "").Replace("]", ""));
                 }
+                // Starlight edit End
                 break;
         }
 
