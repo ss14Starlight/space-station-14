@@ -48,6 +48,13 @@
   parent: BaseGoldBorgModuleRecipe
   id: BorgModuleAdvancedMining
   result: BorgModuleAdvancedMining
+  
+#Starlight-start
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModulePKA
+  result: BorgModulePKA
+#Starlight-end
 
 # Engineering Modules
 

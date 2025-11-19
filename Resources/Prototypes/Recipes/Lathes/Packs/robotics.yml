@@ -49,6 +49,7 @@
   - BorgModuleAdvancedClowning
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedMining
+  - BorgModulePKA
 
 - type: latheRecipePack
   id: MechParts

@@ -13,6 +13,7 @@
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
   - MechEquipmentKineticAccelerator
+  - BorgModulePKA #Starlight
   radioChannels:
   - Supply
   # These are roundstart but not replenishable for salvage
