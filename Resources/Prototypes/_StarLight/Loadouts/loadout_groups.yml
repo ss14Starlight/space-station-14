@@ -198,7 +198,6 @@
   name: loadout-group-security-sidearm
   loadouts:
   - SecurityMk58
-  - SecurityPistolDP
   - SecurityPistolEnforcer
 
 # Assorted Boots
