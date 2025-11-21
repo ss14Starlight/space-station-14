@@ -582,7 +582,7 @@
         time: 144000 # 40hr
   storage:
     back:
-    - ClothingHandsCatPaws
+    - ClothingHandsCatPawsWhite
   groupBy: "cat maid"
 
 - type: loadout

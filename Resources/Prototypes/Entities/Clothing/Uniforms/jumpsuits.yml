@@ -2,7 +2,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitAssistant
   name: oppressive jumpsuit
-  description: An oppressive green jumpsuit that reminds you of who we were foreced to be.
+  description: An oppressive green jumpsuit that reminds you of who we were forced to be.
   components:
   - type: RollUpSleeves
   - type: Sprite
