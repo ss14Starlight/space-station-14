@@ -1112,3 +1112,22 @@
         Steel: 5
         Manipulator: 1
         Glass: 2
+
+- type: entity
+  id: BrewMasterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: BrewMaster 4000 machine board
+  description: A machine printed circuit board for a BrewMaster 4000.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: BrewMaster
+      stackRequirements:
+        Manipulator: 1
+        Glass: 1
+        Cable: 1
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
