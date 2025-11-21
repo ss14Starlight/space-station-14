@@ -47,6 +47,7 @@
     DrinkSakeBottleFull: 3
     DrinkBeerCan: 5
     DrinkWineCan: 5
+    BrewMasterFlatpack: 1
   contrabandInventory:
     ChemistryBottleEthanol: 3
     DrinkBottleOfNothingFull: 1

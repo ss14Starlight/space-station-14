@@ -46,3 +46,12 @@
   components:
   - type: Flatpack
     entity: SlopDispenser
+    
+- type: entity
+  parent: BaseFlatpack
+  id: BrewMasterFlatpack
+  name: BrewMaster 4000 flatpack
+  description: A flatpack used for constructing a BrewMaster 4000.
+  components:
+    - type: Flatpack
+      entity: BrewMaster

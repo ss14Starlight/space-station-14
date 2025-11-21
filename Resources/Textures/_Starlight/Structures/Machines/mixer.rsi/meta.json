@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Modified by Conflee, taken from Aurora Station at [https://github.com/Aurorastation/Aurora.3/blob/HEAD/icons/obj/machinery/cooking_machines.dmi]",
+  "states": [
+    {
+      "name": "mixer_empty",
+      "delays": [
+        [
+          0.1,
+		  0.1,
+		  0.1,
+		  0.1
+        ]
+      ]
+    },
+    {
+      "name": "mixer_broken",
+      "delays": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "name": "mixer_loaded",
+      "delays": [
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "name": "mixer_screens",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "mixer_screen_broken",
+      "delays": [
+        [
+          1
+        ]
+      ]
+    },
+	{
+      "name": "icon",
+      "delays": [
+        [
+          1
+        ]
+      ]
+    }
+  ]
+}
