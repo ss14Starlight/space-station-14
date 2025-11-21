@@ -40,9 +40,6 @@
   suffix: Full
   components:
   - type: Material
-  - type: PhysicalComposition
-    materialComposition:
-      CrushedPhosphorus: 100
   - type: Stack
     stackType: CrushedPhosphorus
     baseLayer: base
@@ -57,9 +54,6 @@
     - state: phosphorus_3
       map: ["base"]
   - type: Appearance
-  - type: Tag
-    tags:
-    - TiderAnvilParts
   - type: Item
     heldPrefix: phosphorus
 

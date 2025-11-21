@@ -1,10 +1,10 @@
 - type: gameMap
-  id: StarlightStarboard
+  id: Starboard
   mapName: 'Starboard'
   mapPath: /Maps/_Starlight/Stations/Starboard.yml
   minPlayers: 90
   stations:
-    StarlightStarboard:
+    Starboard:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

@@ -1,11 +1,11 @@
 - type: gameMap
-  id: StarlightPrism
+  id: Prism
   mapName: 'Prism Station'
   mapPath: /Maps/_Starlight/Stations/Prism.yml
   minPlayers: 25
   maxPlayers: 80
   stations:
-    StarlightPrism:
+    Prism:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

@@ -369,19 +369,20 @@ namespace Content.Server.GameTicking
             {
                 AddComp<OwOAccentComponent>(mob);
             }
-            if (player.UserId == new Guid("{c69211d4-1a75-4e57-b539-c90243e2ceda}")) // Sparlight Start
+            if (player.UserId == new Guid("{c69211d4-1a75-4e57-b539-c90243e2ceda}"))
             {
+                if (EntityManager.HasComponent<LanguageSpeakerComponent>(mob))
+                {
+                    EntityManager.RemoveComponent<LanguageSpeakerComponent>(mob);
+                } // SL Addition
                 EntityManager.EnsureComponent<PolymorphableComponent>(mob);
-                EntityManager.RemoveComponent<LanguageSpeakerComponent>(mob);
-                EntityManager.RemoveComponent<LanguageKnowledgeComponent>(mob);
                 mob = _polymorphSystem.PolymorphEntity(mob, "PermanentCorgiMorph") ?? mob;
                 EntityManager.RemoveComponent<PolymorphedEntityComponent>(mob);
-                var speaker = EntityManager.EnsureComponent<LanguageSpeakerComponent>(mob);
-                var knowledge = EntityManager.EnsureComponent<LanguageKnowledgeComponent>(mob);
-                speaker.SpokenLanguages.Remove(SharedLanguageSystem.FallbackLanguagePrototype);
-                knowledge.SpokenLanguages = speaker.SpokenLanguages;
-                knowledge.UnderstoodLanguages = speaker.UnderstoodLanguages;
-            } // Starlight End
+                // var accent = EntityManager.EnsureComponent<ReplacementAccentComponent>(mob); # SL Removal
+                var lang = EntityManager.EnsureComponent<LanguageSpeakerComponent>(mob); // SL Addition
+                lang.SpokenLanguages.Remove(SharedLanguageSystem.FallbackLanguagePrototype); // SL Addition
+                // accent.Accent = "dog"; # SL Removal
+            }
 
 
             _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);

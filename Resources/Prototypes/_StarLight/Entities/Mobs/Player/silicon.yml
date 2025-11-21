@@ -1,28 +1,25 @@
 # Borgs
 - type: entity
-  id: PlayerBorgSyndicateStealthBattery
-  parent: BorgChassisSyndicateStealth
-  suffix: Battery, Module, Operative
+  id: PlayerSyndicateBorgBattery
+  parent: BorgChassisSelectableSyndicate
+  suffix: Battery
   components:
-  - type: NukeOperative
   - type: ContainerFill
     containers:
       borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleTool
-        - BorgModuleOperative
-        - BorgModuleSyndicateStealth
-        - BorgModuleSyndicateChameleonProjector
+      - PositronicBrain
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
 
 - type: entity
-  id: PlayerBorgSyndicateStealthGhostRole
-  parent: PlayerBorgSyndicateStealthBattery
+  id: PlayerSyndicateBorgBatteryGhostRole
+  parent: PlayerSyndicateBorgBattery
   suffix: Ghost role
   components:
     - type: GhostRole

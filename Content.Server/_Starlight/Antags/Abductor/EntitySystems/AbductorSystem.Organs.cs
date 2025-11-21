@@ -67,12 +67,12 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                 victim.LastActivation = _time.CurTime;
                 _damageable.TryChangeDamage(uid, _passiveHealing);
                 break;
-            case AbductorOrganType.NitrousOxide:
+            case AbductorOrganType.Plasma:
                 if (_time.CurTime - victim.LastActivation < TimeSpan.FromSeconds(120))
                     return;
                 victim.LastActivation = _time.CurTime;
                 var mix = _atmos.GetContainingMixture((uid, Transform(uid)), true, true) ?? new();
-                mix.AdjustMoles(Gas.NitrousOxide, 30);
+                mix.AdjustMoles(Gas.Plasma, 30);
                 _chat.TryEmoteWithChat(uid, "Cough");
                 break;
             case AbductorOrganType.Gravity:

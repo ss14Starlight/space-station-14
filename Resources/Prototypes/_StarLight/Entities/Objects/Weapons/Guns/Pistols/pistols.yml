@@ -195,7 +195,7 @@
 
 - type: entity
   name: stechkin pistol
-  parent: [BaseSecurityContraband, WeaponPistolMk58]
+  parent: [WeaponPistolMk58, BaseSecurityContraband]
   id: WeaponPistolStechkin
   description: A small, easily concealable .40 handgun. Has a threaded barrel for suppressors. Uses .40 ammo.
   components:
@@ -268,7 +268,7 @@
 
 - type: entity
   name: Jungle Hawk
-  parent: [ BaseSyndicateContraband, WeaponPistolN1984 ]
+  parent: [ BaseSecuritySalvageContraband, WeaponPistolN1984 ]
   id: WeaponPistolDeagle
   description: A high-caliber handgun designed for putting down large game.
   components:

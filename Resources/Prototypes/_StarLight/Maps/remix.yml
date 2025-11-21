@@ -1,11 +1,11 @@
 - type: gameMap
-  id: StarlightRemix
+  id: Remix
   mapName: 'Remix'
   mapPath: /Maps/_Starlight/Stations/Remix.yml
   minPlayers: 0
   maxPlayers: 100
   stations:
-    StarlightRemix:
+    Remix:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

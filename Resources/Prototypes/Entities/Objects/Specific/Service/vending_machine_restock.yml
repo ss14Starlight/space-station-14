@@ -135,10 +135,6 @@
     - ViroDrobeInventory
     - WinterDrobeInventory
     - CuraDrobeInventory
-# Starlight begin
-    - PietyVendInventory
-    - PrideDrobeInventory
-# Starlight end
   - type: Sprite
     layers:
     - state: base
@@ -359,7 +355,6 @@
   - type: VendingMachineRestock
     canRestock:
     - SecTechInventory
-    - AmmoVendInventory # Starlight
   - type: Sprite
     layers:
     - state: base

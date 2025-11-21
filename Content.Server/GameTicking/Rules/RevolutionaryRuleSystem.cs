@@ -52,8 +52,6 @@ using Robust.Shared.Audio.Systems;
 using Content.Shared.Implants.Components;
 using Robust.Shared.Player;
 using Content.Shared.Silicons.Borgs.Components;
-using Content.Shared._Starlight.Silicons.Borgs;
-using Content.Shared.Silicons.Laws.Components; //Starlight
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -615,7 +613,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             var rev = AllEntityQuery<RevolutionaryComponent, MindContainerComponent>();
             while (rev.MoveNext(out var uid, out _, out var mc))
             {
-                if (HasComp<HeadRevolutionaryComponent>(uid)||HasComp<SiliconLawBoundComponent>(uid)) // Starlight silicons cannot be deconverted
+                if (HasComp<HeadRevolutionaryComponent>(uid))
                     continue;
 
                 // Play the deconversion sound for the revolutionary

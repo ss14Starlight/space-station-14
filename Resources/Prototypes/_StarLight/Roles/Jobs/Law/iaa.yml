@@ -20,8 +20,6 @@
   - Brig
   - Maintenance
   - Lawyer
-  - GenpopEnter
-  - GenpopLeave
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

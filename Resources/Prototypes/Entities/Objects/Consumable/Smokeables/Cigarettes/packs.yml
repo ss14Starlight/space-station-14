@@ -54,7 +54,6 @@
     whitelist:
       components:
         - Smokable
-        - Matchstick
         - Welder # for lighters
         - Crayon # they're ciggie shaped
     # 🌟Starlight - End🌟
@@ -131,7 +130,6 @@
     whitelist:
       components:
         - Smokable
-        - Matchstick
         - Welder # for lighters
         - Crayon # they're ciggie shaped
     # 🌟Starlight - End🌟

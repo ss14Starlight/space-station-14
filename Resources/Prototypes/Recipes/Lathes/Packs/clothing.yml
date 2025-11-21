@@ -26,8 +26,6 @@
   - ClothingUniformJumpsuitQMTurtleneck
   - ClothingUniformJumpskirtQMTurtleneck
   - ClothingUniformJumpsuitQMFormal
-  - ClothingHeadHatBeretCargo # starlight
-  - ClothingHeadHatBeretCargoFormal # starlight
 
 - type: latheRecipePack
   id: ClothingCommand

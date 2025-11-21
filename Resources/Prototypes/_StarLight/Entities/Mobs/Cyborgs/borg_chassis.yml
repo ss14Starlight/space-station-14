@@ -1,37 +1,43 @@
 - type: entity
-  id: BorgChassisSyndicateStealth
+  id: BorgChassisSelectableSyndicate
   parent: BaseBorgChassisSyndicate
-  name: syndicate stealth cyborg
   components:
   - type: TextToSpeech
   - type: Sprite
-    sprite: _Starlight/Mobs/Silicon/Chassis/synd_stealth.rsi
+    sprite: _Starlight/Mobs/Silicon/Chassis/syndicate.rsi
     layers:
     - state: borg
-    - state: borg_e
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
+    - state: borg_e_r
       map: [ "enum.BorgVisualLayers.Light" ]
       shader: unshaded
       visible: false
     - state: borg_l
       shader: unshaded
-      map: [ "light" ]
+      map: [ "light", "enum.BorgVisualLayers.LightStatus" ]
       visible: false
   - type: BorgChassis
-    maxModules: 4
-    moduleWhitelist:
-      tags:
-      - BorgModuleGeneric
-      - BorgModuleSyndicate
-      - BorgModuleSyndicateStealth
+    # Default borg can take no modules until selected type.
+    maxModules: 0
     hasMindState: borg_e
     noMindState: borg_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: _Starlight/Mobs/Silicon/Chassis/syndicate.rsi
+      state: borg
+    name: cyborg
   - type: InteractionPopup
-    interactSuccessString: petting-success-syndicate-cyborg
-    interactFailureString: petting-failure-syndicate-cyborg
-  - type: VentCrawler
-  - type: Thieving
-    stealthy: true
-  - type: Pacified # THE STEALTH BORG DOES NOT FUCKING GET GUNS
+    interactSuccessString: petting-success-generic-cyborg
+    interactFailureString: petting-failure-generic-cyborg
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - Common
+    - Binary
+    availableTypes:
+    - SyndicateAssault
+    - SyndicateMedical
+    - SyndicateSaboteur
+    - SyndicateStealth
 
 - type: entity
   id: BorgChassisSecurity
@@ -40,6 +46,15 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: security
+
+- type: entity
+  id: BorgChassisSyndicateStealth
+  parent: BorgChassisSelectableSyndicate
+  name: syndicate stealth cyborg
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: SyndicateStealth
     
 - type: entity
   id: BorgChassisPurrfus

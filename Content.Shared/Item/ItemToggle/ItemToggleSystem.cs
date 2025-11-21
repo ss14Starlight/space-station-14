@@ -1,7 +1,6 @@
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item.ItemToggle.Components;
-using Content.Shared.Mech.Components; // Starlight Edit
 using Content.Shared.Popups;
 using Content.Shared.Temperature;
 using Content.Shared.Toggleable;
@@ -108,12 +107,6 @@ public sealed class ItemToggleSystem : EntitySystem
     {
         if (args.Handled || !ent.Comp.OnActivate)
             return;
-
-        // Starlight edit start - skip if the user is a mech, allows picking up items with this component using a clamp
-        // none of these items should ever be interacted with anyway
-        if (HasComp<MechComponent>(args.User))
-            return;
-        // Starlight edit end
 
         args.Handled = true;
         Toggle((ent.Owner, ent.Comp), args.User, predicted: ent.Comp.Predictable);

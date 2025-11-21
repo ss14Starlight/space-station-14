@@ -235,9 +235,6 @@
   id: BorgModuleSecurity
 
 - type: Tag
-  id: BorgModuleSyndicateStealth
-
-- type: Tag
   id: Disabler
 
 - type: Tag
@@ -281,9 +278,3 @@
 
 - type: Tag
   id: PersonnelStorage
-
-- type: Tag
-  id: DisposalPipe
-
-- type: Tag
-  id: WallmountMassScannerElectronics

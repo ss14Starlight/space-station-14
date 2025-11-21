@@ -290,20 +290,12 @@ namespace Content.Server.Voting.Managers
                     {
                         _presetCooldown[key]--;
                         if (_presetCooldown[key] <= 0)
-                        {
                             _presetCooldown.Remove(key);
-                            _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset {key} removed from cooldown.");
-                        }
                     }
                 }
 
                 //add the key we picked to the cooldown list
-                //if its secret, never add it
-                if (!(secretPreset != null && pickedPreset.ID == secretPreset.ID))
-                {
-                    _presetCooldown.Add(pickedPreset.ID, pickedPreset.VoteCooldown);
-                    _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset {pickedPreset.ID} added to cooldown for {pickedPreset.VoteCooldown} votes.");
-                }
+                _presetCooldown.Add(pickedPreset.ID, pickedPreset.VoteCooldown);
                 //starlight end
                 ticker.SetGamePreset(pickedPreset.ID);
             };
@@ -667,16 +659,8 @@ namespace Content.Server.Voting.Managers
 
                 //STARLIGHT
                 //check if its on the cooldown list
-                //if the cooldown number is 0 or lower, we dont cooldown this selection anyway
-                if (preset.VoteCooldown > 0)
-                {
-                    if (_presetCooldown.ContainsKey(preset.ID))
-                    {
-                        //admin log it
-                        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset {preset.ID} skipped for vote selection due to being on cooldown ({_presetCooldown[preset.ID]} votes remaining).");
-                        continue;
-                    }
-                }
+                if (_presetCooldown.ContainsKey(preset.ID))
+                    continue;
                 //STARLIGHT END
 
                 if (chancesPrototype.Chances.TryGetValue(preset.ID, out var chance))

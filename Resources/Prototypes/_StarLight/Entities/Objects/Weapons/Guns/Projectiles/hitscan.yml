@@ -125,9 +125,10 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 45 # +30%
+      Blunt: 35
+      Piercing: 10 # +30%
   staminaDamage: 10    
-  armorPenetration: -1.00
+  armorPenetration: -0.55
   pierceChance: 0.03
   derivation: 0.05
   ricochetChance: 0.15
@@ -250,8 +251,9 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 21 # +30%
-  armorPenetration: -1.00
+      Blunt: 16
+      Piercing: 5 # +30%
+  armorPenetration: -0.55
   staminaDamage: 5
   pierceChance: 0.03
   derivation: 0.2
@@ -357,12 +359,13 @@
   staminaDamage: 20
   damage:
     types:
-      Piercing: 26 # +30%
+      Blunt: 20
+      Piercing: 6 # +30%
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
       state: bullet
-  armorPenetration: -1.00
+  armorPenetration: -0.55
   pierceChance: 0.02
   derivation: 0.15
   ricochetChance: 0.10
@@ -476,9 +479,10 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 25 # +30%
+      Blunt: 19
+      Piercing: 6 # +30%
   pierceLevel: Wood
-  armorPenetration: -1.00
+  armorPenetration: -0.55
   staminaDamage: 6
   pierceChance: 0.03
   derivation: 0.05
@@ -585,8 +589,9 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 23 # +30%
-  armorPenetration: -1.00
+      Blunt: 17
+      Piercing: 6 # +30%
+  armorPenetration: -0.55
   staminaDamage: 5
   pierceChance: 0.03
   ricochetChance: 0.15

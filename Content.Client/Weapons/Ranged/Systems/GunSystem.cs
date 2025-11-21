@@ -433,7 +433,6 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             if (throwItems)
             {
-                Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user); // Starlight-edit: fix pneumatic cannon sounds
                 Recoil(user, direction, gun.CameraRecoilScalarModified);
                 if (IsClientSide(ent!.Value))
                     Del(ent.Value);

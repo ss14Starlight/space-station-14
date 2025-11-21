@@ -1,11 +1,11 @@
 - type: gameMap
-  id: StarlightBarratry
+  id: Barratry
   mapName: 'Barratry'
   mapPath: /Maps/_Starlight/Stations/Barratry.yml
   minPlayers: 40
   maxPlayers: 130
   stations:
-    StarlightBarratry:
+    Barratry:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

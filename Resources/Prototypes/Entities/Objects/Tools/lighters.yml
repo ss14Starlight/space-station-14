@@ -200,7 +200,7 @@
         maxVol: 12 #uses less fuel than a welder, so this isnt as bad as it looks
   - type: Welder
     fuelConsumption: 0.01
-    fuelLitCost: 0.2 # Starlight-edit
+    fuelLitCost: 0.1
     tankSafe: true
   - type: ToggleableVisuals
     spriteLayer: lighter_flame
@@ -336,26 +336,19 @@
       - Lighters #SL
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseSyndicateContraband, FlippoLighter] #SL Edit: added flippolighter parent
+  parent: [BaseBrandedLighter, BaseSyndicateContraband]
   id: SyndicateFlippo
   name: Blood-red flippo
-  description: "A 'Valid' choice in lighters. Contains no copper. Causes nasty burns if mishandled."
+  description: "A 'Valid' choice in lighters. Contains no copper."
   components:
   - type: Sprite
     sprite: Objects/Tools/Lighters/syndielighter.rsi
   - type: Item
     sprite: Objects/Tools/Lighters/syndielighter.rsi
   - type: Welder
-    fuelConsumption: 0.01 # Starlight-edit
+    fuelConsumption: 0.005
     fuelLitCost: 0.01
     tankSafe: true
-  - type: ItemToggleMeleeWeapon #Starlight-start
-    activatedDamage:
-        types:
-            Heat: 8
-  - type: ItemToggleSize
-    activatedSize: Small
-  - type: ItemToggleHot #Starlight-end
   - type: PointLight
     enabled: false
     netsync: false
@@ -418,7 +411,7 @@
         maxVol: 3
 
 - type: entity
-  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
+  parent: [BaseBrandedLighter] #SL Edit: Non Contra
   id: CybersunFlippo
   name: CyberSun Flippo
   description: "A Sleek black and magenta flippo lighter, bearing the logo and iconography of CyberSun Industries."
@@ -428,7 +421,7 @@
   - type: Item
     sprite: Objects/Tools/Lighters/cybersun.rsi
   - type: Welder #
-    fuelConsumption: 0.01 # Starlight-edit
+    fuelConsumption: 0.005
     fuelLitCost: 0.01
     tankSafe: true
   - type: PointLight
@@ -438,7 +431,7 @@
     color: magenta
 
 - type: entity
-  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
+  parent: [BaseBrandedLighter] #SL Edit: Non Contra
   id: InterdyneFlippo
   name: Interdyne Flippo
   description: "A deep blue flippo lighter, decorated with the logo of Interdyne Pharmaceuticals' 'Gene Clean' clinics. Become the master of your own cigarette."
@@ -448,7 +441,7 @@
   - type: Item
     sprite: Objects/Tools/Lighters/interdyne.rsi
   - type: Welder #
-    fuelConsumption: 0.01 # Starlight-edit
+    fuelConsumption: 0.005
     fuelLitCost: 0.01
     tankSafe: true
   - type: ItemToggleMeleeWeapon
@@ -462,27 +455,20 @@
     color: cyan
 
 - type: entity
-  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
+  parent: [BaseBrandedLighter]
   id: NanotrasenFlippo
   name: Nanotrasen Flippo
-  description: "A navy blue luxury flippo, generally handed out to loyal heads of staff instead of a payraise. Fueled with liquid plasma and burns a little hotter than usual."
+  description: "A navy blue luxury flippo, generally handed out to loyal heads of staff instead of a payraise. Fueled with liquid plasma"
   components:
   - type: Sprite
     sprite: Objects/Tools/Lighters/nanotrasen.rsi
   - type: Item
     sprite: Objects/Tools/Lighters/nanotrasen.rsi
   - type: Welder #
-    fuelConsumption: 0.1 # Starlight-start
-    fuelLitCost: 0 # Starlight-end
+    fuelConsumption: 0.005
+    fuelLitCost: 1
     fuelReagent: Plasma
     tankSafe: true
-  - type: ItemToggleMeleeWeapon #Starlight-start
-    activatedDamage:
-        types:
-            Heat: 4
-  - type: ItemToggleSize
-    activatedSize: Small 
-  - type: ItemToggleHot #Starlight-end
   - type: PointLight
     enabled: false
     netsync: false
@@ -545,7 +531,7 @@
     access: [["CentralCommand"]]
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseMajorContraband, FlippoLighter] #SL Edit: added flippolighter parent
+  parent: [BaseBrandedLighter, BaseMajorContraband]
   id: SpiderclanFlippo
   name: Spider-Clan lighter
   description: "A high tech jet lighter, engineered to function even in deep space. Runs on a tiny microfusion cell."
@@ -565,7 +551,7 @@
     color: green
 
 - type: entity
-  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
+  parent: [BaseBrandedLighter] #SL Edit: Non Contra
   id: WaffleCoFlippo
   name: Waffle Co. flippo
   description: "A robust mass produced lighter. The Waffle Co. logo turns the spark wheel when pushed up, minimising risk of lighter burns for even the most inept user."
@@ -575,8 +561,8 @@
   - type: Item
     sprite: Objects/Tools/Lighters/waffleco.rsi
   - type: Welder #
-    fuelConsumption: 0.01 # Starlight-start
-    fuelLitCost: 0.1 # Starlight-end
+    fuelConsumption: 0.005
+    fuelLitCost: 0.05
     tankSafe: true
   - type: PointLight
     enabled: false
@@ -585,7 +571,7 @@
     color: brown
 
 - type: entity
-  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
+  parent: [BaseBrandedLighter]
   id: HonkCoFlippo
   name: Honk Co. flippo
   description: "A slippery gag lighter produced by Honk Co. hidden inside of a real banana peel."
@@ -620,8 +606,8 @@
           mask:
           - ItemMask
   - type: Welder #
-    fuelConsumption: 0.02 # Starlight-start
-    fuelLitCost: 0.01 # Starlight-end
+    fuelConsumption: 0.1
+    fuelLitCost: 1
     tankSafe: true
   - type: PointLight
     enabled: false
@@ -630,7 +616,7 @@
     color: yellow
 
 - type: entity
-  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
+  parent: [BaseBrandedLighter]
   id: DonkcoLighter
   name: Donk Co. flippo
   description: "The flippo of choice for terrible cooks. A Breaded novelty lighter made by Donk Co. Somehow edible while lit." #SL Edit: decription edit to remove 'traitor' reference
@@ -640,8 +626,8 @@
   - type: Item
     sprite: Objects/Tools/Lighters/donkco.rsi
   - type: Welder #
-    fuelConsumption: 0.02 
-    fuelLitCost: 0.01 # Starlight-edit
+    fuelConsumption: 0.02
+    fuelLitCost: 0.1
     tankSafe: true
   - type: Tag
     tags:

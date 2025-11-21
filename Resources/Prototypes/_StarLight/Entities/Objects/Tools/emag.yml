@@ -8,7 +8,7 @@
   - type: Emag
     lawset: CommiemovLawset
     components:
-      - type: Revolutionary # behold. you can now see revs.
+      - type: ShowAntagIcons # behold. you can now see revs.
     channelAdd:
       - Soviet # Report in comrade.
   - type: Sprite

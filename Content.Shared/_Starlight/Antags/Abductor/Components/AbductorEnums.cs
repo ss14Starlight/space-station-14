@@ -12,7 +12,7 @@ public enum AbductorOrganType : byte
 {
     None,
     Health,
-    NitrousOxide,
+    Plasma,
     Gravity,
     Egg,
     Spider,

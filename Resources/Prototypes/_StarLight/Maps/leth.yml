@@ -1,11 +1,11 @@
 - type: gameMap
-  id: StarlightLeth
+  id: Leth
   mapName: 'Leth Vessel'
   mapPath: /Maps/_Starlight/Stations/Leth.yml
   minPlayers: 15
   maxPlayers: 65
   stations:
-    StarlightLeth:
+    Leth:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
