@@ -21971,5 +21971,19 @@ Entries:
   id: 173101
   time: '2025-11-14T21:41:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1731
+- author: CawsForConcern
+  changes:
+  - message: New lobby art "Blackfeathers" by Gib Schmib
+    type: Add
+  id: 221500
+  time: '2025-11-16T21:11:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2215
+- author: Trep_Maul
+  changes:
+  - message: Adjusted language costs. Foreigner traits now give more options.
+    type: Tweak
+  id: 223100
+  time: '2025-11-18T15:32:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2231
 Order: -1
 
