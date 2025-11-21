@@ -365,7 +365,6 @@
       whitelist:
         tags:
         - Smokable
-        - Welder # for lighters
         - Crayon # they're ciggie shaped
         - RollingPaper
         - CigFilter
