@@ -204,3 +204,44 @@
   materials:
     Cloth: 600
     Plasteel: 1900
+
+- type: latheRecipe
+  id: MagazineBoxImprovisedPistolTA
+  result: MagazineBoxImprovisedPistol
+  completetime: 60
+  materials:
+    Steel: 1300
+    Plastic: 300
+    Cloth: 20
+    CrushedPhosphorus: 700
+
+- type: latheRecipe
+  id: MagazineBoxImprovisedRifleTA
+  result: MagazineBoxImprovisedRifle
+  completetime: 60
+  materials:
+    Steel: 1300
+    Plastic: 600
+    Cloth: 20
+    CrushedPhosphorus: 1500
+
+- type: latheRecipe
+  id: MagazineBoxImprovisedMagnumTA
+  result: MagazineBoxImprovisedMagnum
+  completetime: 60
+  materials:
+    Steel: 1300
+    Plastic: 600
+    Cloth: 20
+    CrushedPhosphorus: 1500
+
+- type: latheRecipe
+  id: MagazineBoxImprovisedShotgunTA
+  result: MagazineBoxImprovisedShotgun
+  completetime: 60
+  materials:
+    Steel: 1300
+    Plastic: 600
+    Glass: 700
+    Cloth: 20
+    CrushedPhosphorus: 1500

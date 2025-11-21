@@ -82,6 +82,6 @@
     lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg # todo make this the conversion noise
     IsLawboard: true
     components:
-    - type: ShowAntagIcons # behold. you can now see revs. 
+    - type: Revolutionary # behold. you can now see revs. 
   - type: StaticPrice 
     price: 1000

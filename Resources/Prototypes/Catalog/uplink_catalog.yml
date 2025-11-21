@@ -1283,13 +1283,13 @@
           - NukeOpsUplink
 
 - type: listing
-  id: ReinforcementRadioSyndicateCyborg # Starlight-edit: Selectable chassis for syndie borgs
-  name:  uplink-reinforcement-radio-cyborg-name # Starlight-edit: Selectable chassis for syndie borgs
-  description: uplink-reinforcement-radio-cyborg-desc # Starlight-edit: Selectable chassis for syndie borgs
-  productEntity: ReinforcementRadioSyndicateCyborg # Starlight-edit: Selectable chassis for syndie borgs
+  id: UplinkReinforcementRadioSyndicateCyborgAssault
+  name:  uplink-reinforcement-radio-assault-cyborg-name
+  description: uplink-reinforcement-radio-assault-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgAssault
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
   cost:
-    Telecrystal: 30 # Starlight-edit: Selectable chassis for syndie borgs
+    Telecrystal: 40 # Starlight
   categories:
     - UplinkAllies
   conditions:

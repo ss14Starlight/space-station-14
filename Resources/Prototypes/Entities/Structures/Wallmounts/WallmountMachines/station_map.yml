@@ -117,6 +117,7 @@
           assembly: { state: station_map_frame0 }
           wired: { state: station_map_frame1 }
           electronics: { state: station_map_frame2 }
+          scanner_electronics: { state: station_map_frame2 } # Starlight
   - type: Construction
     graph: StationMap
     node: assembly

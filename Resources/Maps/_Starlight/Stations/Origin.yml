@@ -10515,7 +10515,7 @@ entities:
             Oxygen: 6666.982
         chunkSize: 4
     - type: BecomesStation
-      id: Origin
+      id: StarlightOrigin
     - type: OccluderTree
     - type: Shuttle
       dampingModifier: 0.25

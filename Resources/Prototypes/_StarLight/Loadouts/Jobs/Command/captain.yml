@@ -13,3 +13,9 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorCommand
+
+#
+- type: loadout
+  id: CaptainJumpsuitNoble
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCaptainNoble

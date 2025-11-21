@@ -1,10 +1,10 @@
 - type: gameMap
-  id: Ming
+  id: StarlightMing
   mapName: 'Ming "Complex" Station'
   mapPath: /Maps/_Starlight/Stations/Ming.yml
   minPlayers: 55
   stations:
-    Ming:
+    StarlightMing:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

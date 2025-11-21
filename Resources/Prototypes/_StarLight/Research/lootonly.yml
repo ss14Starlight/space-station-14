@@ -1,0 +1,63 @@
+# These research technologies are defined, but hidden;
+# the purpose is so that the recipes listed here are
+# available as random tech disk spawns, but not as true
+# research targets for sci. Tiers control frequency of
+# appearance.
+
+# Tier 1
+- type: technology
+  id: LootableTech1
+  name: research-technology-loot-only-1
+  icon:
+    sprite: Objects/Misc/books.rsi
+    state: icon_question
+  discipline: Experimental
+  tier: 1
+  cost: 9999999
+  hidden: true
+  recipeUnlocks:
+  - CowToolboxFilled
+  - AssistantPDA
+  - AstroNavCartridge
+  - MedTekCartridge
+  radioChannels:
+  - Binary
+
+# Tier 2
+- type: technology
+  id: LootableTech2
+  name: research-technology-loot-only-2
+  icon:
+    sprite: Objects/Misc/books.rsi
+    state: icon_question
+  discipline: Experimental
+  tier: 2
+  cost: 9999999
+  hidden: true
+  recipeUnlocks:
+  - SeismicCharge
+  - WallmountGeneratorElectronics
+  - LogProbeCartridge
+  - DefibrillatorCompact
+  - AirGrenade
+  - ComputerIFFCircuitboard
+  radioChannels:
+  - Binary
+
+# Tier 3
+- type: technology
+  id: LootableTech3
+  name: research-technology-loot-only-3
+  icon:
+    sprite: Objects/Misc/books.rsi
+    state: icon_question
+  discipline: Experimental
+  tier: 3
+  cost: 9999999
+  hidden: true
+  recipeUnlocks:
+  - ScurretCube
+  - C4
+  - RCDAmmo
+  radioChannels:
+  - Binary

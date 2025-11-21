@@ -2,7 +2,7 @@
   id: Vampire
   name: roles-antag-vamire-name
   antagonist: true
-  setPreference: true
+  setPreference: false # 🌟Starlight🌟 - disabled until reworked
   objective: roles-antag-vampire-description
 #  guides: [ Changelings ]
   requirements:

@@ -38,6 +38,14 @@
   - type: Storage
     grid:
     - 0,0,3,1
+  # 🌟Starlight - Start🌟
+    whitelist:
+      components:
+        - Smokable
+        - Matchstick
+        - Welder # for lighters
+        - Crayon # they're ciggie shaped
+    # 🌟Starlight - End🌟
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigars/case.rsi
     size: Normal

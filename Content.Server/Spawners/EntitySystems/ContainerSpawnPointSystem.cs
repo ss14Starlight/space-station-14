@@ -33,7 +33,28 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
         if (args.HumanoidCharacterProfile?.SpawnPriority != SpawnPriorityPreference.Cryosleep &&
             (!_proto.Resolve(args.Job, out var jobProto) || jobProto.JobEntity == null))
         {
-            return;
+            //starlight
+            //check if we should be allowed to skip by seeing if there is a normal spawn point available
+            //ripped from normal spawn point system code (lazy I know but I cant be arsed)
+            var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
+            {
+                if (args.Station != null && _station.GetOwningStation(uid, xform) != args.Station)
+                    continue;
+
+                if (_gameTicker.RunLevel == GameRunLevel.InRound && spawnPoint.SpawnType == SpawnPointType.LateJoin)
+                {
+                    return;
+                }
+
+                if (_gameTicker.RunLevel != GameRunLevel.InRound &&
+                    spawnPoint.SpawnType == SpawnPointType.Job &&
+                    (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job))
+                {
+                    return;
+                }
+            }
+            //starlight end
         }
 
         var query = EntityQueryEnumerator<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>();

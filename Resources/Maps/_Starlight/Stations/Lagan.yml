@@ -8296,7 +8296,7 @@ entities:
     - type: RadiationGridResistance
     - type: NavMap
     - type: BecomesStation
-      id: Lagan
+      id: StarlightLagan
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 3

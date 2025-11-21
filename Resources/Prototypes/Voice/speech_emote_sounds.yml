@@ -631,9 +631,9 @@
     Sigh:
       collection: MaleSigh
     Scream:
-      collection: MaleScreams # Starlight
+      collection: VulpkaninScreams
     Growl:
-      collection: Growl #Starlight bark
+      collection: Growl #Starlight growl
     Snarl:
       collection: VulpkaninSnarls
     Bark:
@@ -677,9 +677,9 @@
     Sigh:
       collection: FemaleSigh
     Scream:
-      collection: FemaleScreams # Starlight
+      collection: VulpkaninScreams
     Growl:
-      collection: Growl #Starlight bark
+      collection: Growl #Starlight growl
     Snarl:
       collection: VulpkaninSnarls
     Bark:

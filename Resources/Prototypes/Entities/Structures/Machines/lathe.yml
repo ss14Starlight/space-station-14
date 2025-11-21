@@ -132,7 +132,9 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
-  - type: EmagLatheRecipes # Starlight start
+    dynamicPacks: # Starlight start
+    - StarlightAutolatheLootable
+  - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
@@ -210,6 +212,7 @@
     - Janitor
     - Instruments
     - Equipment
+    - StarlightProtolatheLootable
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -264,6 +267,7 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
+    - StarlightVendorBoards # Starlight
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
@@ -275,11 +279,13 @@
     - ShuttleBoards
     - StarlightMechBoards
     - StarlightLawboards
+    - StarlightCircuitImprinterLootable
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
     emagStaticPacks: # Starlight
     - StarlightDangerousLawboards # Starlight
+    - StarlightSyndicateVendorBoards # Starlight
   - type: MaterialStorage
     whitelist:
       tags:
@@ -393,6 +399,8 @@
     runningState: building
     staticPacks:
     - FriendlyCubesStatic
+    dynamicPacks:
+    - StarlightBiofabricatorLootable
   - type: EmagLatheRecipes
     emagStaticPacks:
     - HostileCubesStatic
@@ -439,7 +447,7 @@
     - SecurityDisablers
     - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
-#    - StarlightSecurityMechsSystems
+    - StarlightSecurityTechFabLootable
   #region Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:
@@ -524,6 +532,7 @@
     - StarlightImplantDynamic
     - Chemistry
     - StarlightBudgetCyberOrgansDynamic
+    - StarlightMedicalTechFabLootable
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -564,6 +573,8 @@
     - Scarves
     - Carpets
     - Bedsheets
+    dynamicPacks:
+    - StarlightUniformPrinterLootable
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ClothingCentComm
@@ -651,6 +662,27 @@
       staticPacks:
       - OreSmelting
       - RGlassSmelting
+    # starlight edit start - add magnet pickup to ore processors
+    - type: ItemToggle
+      onUse: false
+      onActivate: false
+      verbToggleOn: "Activate Magnet"
+      verbToggleOff: "Deactivate Magnet"
+      soundActivate:
+        collection: sparks
+        params:
+          variation: 0.250
+      soundDeactivate:
+        collection: sparks
+        params:
+          variation: 0.250
+    - type: AltUseToggle
+    - type: ComponentToggler
+      components: 
+      - type: MagnetPickup
+        range: 3
+        slotFlags: 0
+    # starlight edit end
 
 - type: entity
   parent: OreProcessor
