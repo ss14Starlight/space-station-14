@@ -43,11 +43,11 @@
     DrinkVodkaBottleFull: 5
     DrinkWhiskeyBottleFull: 5
     DrinkWineBottleFull: 5
-    DrinkChampagneBottleFull: 2 #because the premium drink
+    DrinkChampagneBottleFull: 2 #because the premium drank
     DrinkSakeBottleFull: 3
     DrinkBeerCan: 5
     DrinkWineCan: 5
-    BrewMasterFlatpack: 1
+    BrewMasterFlatpack: 1 #SL
   contrabandInventory:
     ChemistryBottleEthanol: 3
     DrinkBottleOfNothingFull: 1
