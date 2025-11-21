@@ -363,14 +363,14 @@
       grid:
       - 0,0,7,4
       whitelist:
-      tags:
-      - Smokable
-      - Welder # for lighters
-      - Crayon # they're ciggie shaped
-      - RollingPaper
-      - CigFilter
-      - Cigarette
-      - Lighters
+        tags:
+        - Smokable
+        - Welder # for lighters
+        - Crayon # they're ciggie shaped
+        - RollingPaper
+        - CigFilter
+        - Cigarette
+        - Lighters
     - type: StorageFill
       contents:
         - id: Cigarette
