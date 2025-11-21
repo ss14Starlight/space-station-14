@@ -271,6 +271,11 @@
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
   id: SodaDispenserMachineCircuitboard
   result: SodaDispenserMachineCircuitboard
+  
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: BrewMasterMachineCircuitboard
+  result: BrewMasterMachineCircuitboard
 
 # Hydroponics
 - type: latheRecipe
