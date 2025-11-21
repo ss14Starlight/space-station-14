@@ -58,3 +58,8 @@
   parent: BaseBorgModuleRecipe
   id: BorgModuleUppies
   result: BorgModuleUppies
+
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModulePKA
+  result: BorgModulePKA

@@ -174,3 +174,27 @@
           - Stamp
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
+
+# Salvage
+
+- type: entity
+  id: BorgModulePKA
+  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  name: Proto-Kinetic Module
+  description: An advanced mining module equipped with a Proto-Kinetic Accelerator.
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-mining-adv
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponProtoKineticAcceleratorMounted
+    - hand:
+        emptyRepresentative: PKAUpgradeDamage
+        emptyLabel: borg-slot-PKA-Upgrade-empty
+        whitelist:
+          tags:
+          - PKAUpgrade
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: Pro-Kinetic-Module }
