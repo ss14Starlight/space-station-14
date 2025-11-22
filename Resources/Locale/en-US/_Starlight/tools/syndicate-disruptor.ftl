@@ -1,3 +1,5 @@
+syndicate-disruptor-selector-name = Set type
+
 syndicate-disruptor-gas-leak-verb = gas leak
 syndicate-disruptor-bureaucratic-error = bureaucratic error
 syndicate-disruptor-clerical-error = clerical error

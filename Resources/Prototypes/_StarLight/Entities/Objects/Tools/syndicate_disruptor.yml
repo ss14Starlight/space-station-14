@@ -10,7 +10,7 @@
         - state: old-radio
     - type: SelectableComponentAdder
       selections: 1
-      verbCategoryName: Setup type
+      verbCategoryName: syndicate-disruptor-selector-name
       entries:
         - verbName: syndicate-disruptor-gas-leak-verb
           popup: null
