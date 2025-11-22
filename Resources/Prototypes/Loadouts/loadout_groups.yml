@@ -109,8 +109,12 @@
   - RevolverCapGun #SL
   - ClothingEyesBlindfold #SL
   - TennisBall #SL
-  - ClothingHandsCatPaws #SL
+  - ClothingHeadHatBunny #SL
   - ClothingUnderSocksStirrup #SL
+  - ClothingHandsCatPawsWhite #SL
+  - ClothingHandsCatPawsBrown #SL
+  - ClothingHandsCatPawsBlack #SL
+  - ClothingHandsCatPawsBlackWhite #SL
 
 - type: loadoutGroup
   id: Glasses
@@ -364,6 +368,7 @@
   - WhiteShoes
   - WinterBoots
   - Heels # 🌟Starlight🌟
+  - HighHeelBoots #SL
 
 - type: loadoutGroup
   id: BartenderHead
