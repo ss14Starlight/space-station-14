@@ -6,3 +6,6 @@ uplink-cleaner-kit-desc = Clean up any evidence, make sure it can't be traced ba
 
 uplink-homerun-bat-name = Homerun Bat
 uplink-homerun-bat-desc = Send your enemies flying. Hey batta batta batta SWING batta!
+
+uplink-disruptor-name = Syndicate Disruptor
+uplink-disruptor-desc = Call in various dangerous threats to help escape or cause chaos!

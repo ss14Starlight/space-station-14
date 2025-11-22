@@ -1,0 +1,88 @@
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: SyndicateDisruptor
+  name: syndicate disruptor
+  description: Call in a staged accident of your choice.
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/communication.rsi
+      layers:
+        - state: old-radio
+    - type: SelectableComponentAdder
+      selections: 1
+      verbCategoryName: Setup type
+      entries:
+        - verbName: syndicate-disruptor-gas-leak-verb
+          popup: null
+          componentsToAdd:
+            - type: AddGameRuleOnTrigger
+              gameRule: GasLeak
+            - type: UseDelay
+              delay: 10m
+        - verbName: syndicate-disruptor-bureaucratic-error
+          popup: null
+          componentsToAdd:
+            - type: AddGameRuleOnTrigger
+              gameRule: BureaucraticError
+            - type: UseDelay
+              delay: 10m
+        - verbName: syndicate-disruptor-clerical-error
+          popup: null
+          componentsToAdd:
+            - type: AddGameRuleOnTrigger
+              gameRule: ClericalError
+            - type: UseDelay
+              delay: 10m
+        - verbName: syndicate-disruptor-breaker-flip
+          popup: null
+          componentsToAdd:
+            - type: AddGameRuleOnTrigger
+              gameRule: BreakerFlip
+            - type: UseDelay
+              delay: 10m
+        - verbName: syndicate-disruptor-ion-storm
+          popup: null
+          componentsToAdd:
+            - type: AddGameRuleOnTrigger
+              gameRule: IonStorm
+            - type: UseDelay
+              delay: 40m
+        - verbName: syndicate-disruptor-mass-hallucinations
+          popup: null
+          componentsToAdd:
+            - type: AddGameRuleOnTrigger
+              gameRule: MassHallucinations
+            - type: UseDelay
+              delay: 15m
+        - verbName: syndicate-disruptor-power-solar-flare
+          popup: null
+          componentsToAdd:
+            - type: AddGameRuleOnTrigger
+              gameRule: SolarFlare
+            - type: UseDelay
+              delay: 30m
+        - verbName: syndicate-disruptor-power-grid-check
+          popup: null
+          componentsToAdd:
+            - type: AddGameRuleOnTrigger
+              gameRule: PowerGridCheck
+            - type: UseDelay
+              delay: 25m
+        - verbName: syndicate-disruptor-door-lagging-virus
+          popup: null
+          componentsToAdd:
+            - type: AddGameRuleOnTrigger
+              gameRule: DoorLaggingVirus
+            - type: UseDelay
+              delay: 20m
+    - type: UseDelayTriggerCondition
+    - type: TriggerOnActivate
+    - type: TriggerOnSignal
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - Trigger
