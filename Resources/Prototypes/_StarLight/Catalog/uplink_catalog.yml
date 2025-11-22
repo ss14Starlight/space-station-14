@@ -544,9 +544,9 @@
           - NukeOpsUplink
 
 - type: listing
-  id: UplinkLubeGrenade
-  name: uplink-lube-grenade-name
-  description: uplink-lube-grenade-desc
+  id: UplinkSyndicateDisruptor
+  name: uplink-disruptor-name
+  description: uplink-disruptor-desc
   productEntity: SyndicateDisruptor
   discountCategory: usualDiscounts
   discountDownTo:
