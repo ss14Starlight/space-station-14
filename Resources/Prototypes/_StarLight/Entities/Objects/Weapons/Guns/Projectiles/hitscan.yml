@@ -338,7 +338,6 @@
 - type: hitscan
   id: BulletPistolTrace40SP
   parent: BulletTrace
-  staminaDamage: 5
   damage:
     types:
       Piercing: 25
@@ -349,7 +348,7 @@
   armorPenetration: -0.13
   pierceChance: 0.40
   derivation: 0.12
-  ricochetChance: 0.20
+  ricochetChance: 0.30
   
 - type: hitscan
   id: BulletPistolTrace40HP
@@ -363,9 +362,9 @@
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
       state: bullet
   armorPenetration: -1.00
-  pierceChance: 0.02
+  pierceChance: 0.03
   derivation: 0.12
-  ricochetChance: 0.10
+  ricochetChance: 0.15
   
 - type: hitscan
   id: BulletPistolTrace40FMJ
@@ -378,15 +377,14 @@
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
       state: fmj
   armorPenetration: 0.25
-  pierceChance: 0.55
+  pierceChance: 0.69
   derivation: 0.12
-  ricochetChance: 0.70
+  ricochetChance: 0.80
   pierceLevel: Wood
   
 - type: hitscan
   id: BulletPistolTrace40AP
   parent: BulletTrace
-  staminaDamage: 10
   damage:
     types:
       Piercing: 18
@@ -395,7 +393,7 @@
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
       state: ap
   armorPenetration: 0.69
-  pierceChance: 0.63
+  pierceChance: 0.69
   derivation: 0.12
   ricochetChance: 0.35
   pierceLevel: Metal
