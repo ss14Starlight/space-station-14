@@ -574,7 +574,31 @@
       - TennisBall
 
 - type: loadout
-  id: ClothingHandsCatPaws
+  id: ClothingUnderSocksStirrup
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  storage:
+    back:
+    - ClothingUnderSocksStirrup
+  groupBy: "cat maid"
+
+- type: loadout
+  id: ClothingHeadHatBunny
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  storage:
+    back:
+    - ClothingHeadHatBunny
+  groupBy: "cat maid"
+
+- type: loadout
+  id: ClothingHandsCatPawsWhite
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -586,7 +610,7 @@
   groupBy: "cat maid"
 
 - type: loadout
-  id: ClothingUnderSocksStirrup
+  id: ClothingHandsCatPawsBrown
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -594,5 +618,29 @@
         time: 144000 # 40hr
   storage:
     back:
-    - ClothingUnderSocksStirrup
+    - ClothingHandsCatPawsBrown
+  groupBy: "cat maid"
+
+- type: loadout
+  id: ClothingHandsCatPawsBlack
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  storage:
+    back:
+    - ClothingHandsCatPawsBlack
+  groupBy: "cat maid"
+
+- type: loadout
+  id: ClothingHandsCatPawsBlackWhite
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  storage:
+    back:
+    - ClothingHandsCatPawsBlackWhite
   groupBy: "cat maid"
