@@ -2,11 +2,13 @@
     "version": 1,
     "license": "CC-BY-SA-3.0",
     "copyright": "Starlight, IAA/Magistrate Icons by Chim | CentComm and CentComm Operator Icon by Happyrobot33 and fqqf | MailTech Icon by Happyrobot33 | HeadRevolutionary and Revolutionary by JustAdler | NTCCBlueShield by conf | Syndicate Cargo, Chef, Warden, Science, Security, Engineer, Janitor Icons by IamSidzilla | SalvageLead,SalvageSpecialist icons by mikeysaurus",
-    "size": {
+    "size":
+    {
         "x": 8,
         "y": 8
     },
-    "states": [
+    "states":
+    [
         {
             "name": "Magistrate"
         },
@@ -24,7 +26,7 @@
         },
         {
             "name": "MailTech"
-         },
+        },
         {
             "name": "CentComm"
         },
@@ -75,6 +77,168 @@
         },
         {
             "name": "SalvageSpecialist"
+        },
+        {
+            "name": "VisitorMagistrate"
+        },
+        {
+            "name": "VisitorIAA"
+        },
+        {
+            "name": "VisitorBlueShield"
+        },
+        {
+            "name": "VisitorSurgeon"
+        },
+        {
+            "name": "VisitorMailTech"
+        },
+        {
+            "name": "VisitorSalvageLead"
+        },
+        {
+            "name": "VisitorSalvageSpecialist"
+        },
+        {
+            "name": "VisitorAssistant"
+        },
+        {
+            "name": "VisitorDetective"
+        },
+        {
+            "name": "VisitorQuarterMaster"
+        },
+        {
+            "name": "VisitorBotanist"
+        },
+        {
+            "name": "VisitorBorg"
+        },
+        {
+            "name": "VisitorBoxer"
+        },
+        {
+            "name": "VisitorAtmosphericTechnician"
+        },
+        {
+            "name": "VisitorNanotrasen"
+        },
+        {
+            "name": "VisitorJanitor"
+        },
+        {
+            "name": "VisitorChemist"
+        },
+        {
+            "name": "VisitorStationEngineer"
+        },
+        {
+            "name": "VisitorSecurityOfficer"
+        },
+        {
+            "name": "VisitorNoId"
+        },
+        {
+            "name": "VisitorChiefMedicalOfficer"
+        },
+        {
+            "name": "VisitorRoboticist"
+        },
+        {
+            "name": "VisitorChaplain"
+        },
+        {
+            "name": "VisitorLawyer"
+        },
+        {
+            "name": "VisitorLibrarian"
+        },
+        {
+            "name": "VisitorCargoTechnician"
+        },
+        {
+            "name": "VisitorScientist"
+        },
+        {
+            "name": "VisitorGeneticist"
+        },
+        {
+            "name": "VisitorClown"
+        },
+        {
+            "name": "VisitorCaptain"
+        },
+        {
+            "name": "VisitorHeadOfPersonnel"
+        },
+        {
+            "name": "VisitorVirologist"
+        },
+        {
+            "name": "VisitorShaftMiner"
+        },
+        {
+            "name": "VisitorChiefEngineer"
+        },
+        {
+            "name": "VisitorBartender"
+        },
+        {
+            "name": "VisitorHeadOfSecurity"
+        },
+        {
+            "name": "VisitorBrigmedic"
+        },
+        {
+            "name": "VisitorMedicalDoctor"
+        },
+        {
+            "name": "VisitorParamedic"
+        },
+        {
+            "name": "VisitorChef"
+        },
+        {
+            "name": "VisitorWarden"
+        },
+        {
+            "name": "VisitorResearchDirector"
+        },
+        {
+            "name": "VisitorMime"
+        },
+        {
+            "name": "VisitorMusician"
+        },
+        {
+            "name": "VisitorReporter"
+        },
+        {
+            "name": "VisitorPsychologist"
+        },
+        {
+            "name": "VisitorServiceWorker"
+        },
+        {
+            "name": "VisitorZookeeper"
+        },
+        {
+            "name": "VisitorStationAi"
+        },
+        {
+            "name": "VisitorSyndicate"
+        },
+        {
+            "name": "CultistChaplain"
+        },
+        {
+            "name": "Skub"
+        },
+        {
+            "name": "Mothership"
+        },
+        {
+            "name": "Xenoborg"
         }
     ]
 }

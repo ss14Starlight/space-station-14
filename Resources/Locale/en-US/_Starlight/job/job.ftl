@@ -8,6 +8,8 @@ job-name-surgeon = Surgeon
 job-name-mailtech = Mail Technician
 job-name-centcomm = CentComm Official
 job-name-centcommoperator = CentComm Operator
+job-name-Xenoborg = Xenoborg
+job-name-XenoborgMothership = Mothership Core
 
 job-name-salvagelead = Salvage Lead
 job-name-abductor = Abductor

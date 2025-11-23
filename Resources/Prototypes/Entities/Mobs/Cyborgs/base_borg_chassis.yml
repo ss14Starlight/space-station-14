@@ -475,6 +475,8 @@
   - type: Repairable
     doAfterDelay: 13 # 25% more HP, so 30% more time to heal
   - type: BorgChassis
+    jobIconOverride: JobIconXenoborg
+    localizedJobTitle: job-name-Xenoborg
     maxModules: 0
     hasMindState: robot_e
     noMindState: robot_e_r

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Starlight.Chat;
 using Content.Server._Starlight.Language;
 using Content.Server._Starlight.Radio.Systems;
 using Content.Server.Administration.Logs;
@@ -229,7 +230,7 @@ public sealed class RadioSystem : EntitySystem
     {
         var iconId = "JobIconNoId";
         var jobName = "";
-
+        
         if (_accessReader.FindAccessItemsInventory(messageSource, out var items))
         {
             foreach (var item in items)
@@ -254,10 +255,10 @@ public sealed class RadioSystem : EntitySystem
             }
         }
 
-        if (HasComp<BorgChassisComponent>(messageSource) || HasComp<BorgBrainComponent>(messageSource))
+        if (TryComp<BorgChassisComponent>(messageSource, out var chassis) || HasComp<BorgBrainComponent>(messageSource))
         {
-            iconId = "JobIconBorg";
-            jobName = Loc.GetString("job-name-borg");
+            iconId = chassis?.JobIconOverride ?? "JobIconBorg";
+            jobName = Loc.GetString(chassis?.LocalizedJobTitle ?? "job-name-borg");
         }
 
         if (HasComp<StationAiHeldComponent>(messageSource) || (TryComp<StationAIShuntComponent>(messageSource, out var aiShunt) && aiShunt.Return.HasValue))
@@ -265,6 +266,14 @@ public sealed class RadioSystem : EntitySystem
             iconId = "JobIconStationAi";
             jobName = Loc.GetString("job-name-station-ai");
         }
+        
+        // Starlight start - Ability to force a job icon when chatting.
+        if (TryComp<ChatForceJobIconComponent>(messageSource, out var comp))
+        {
+            iconId = comp.JobIcon;
+            jobName = comp.LocalizedJobTitle;
+        }
+        // Starlight end
 
         jobName ??= "";
 
