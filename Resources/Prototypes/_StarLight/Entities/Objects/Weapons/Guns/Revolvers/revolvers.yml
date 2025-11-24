@@ -76,7 +76,7 @@
   name: Forged Revolver
   parent: WeaponRevolverImprovised
   id: WeaponRevolverForged
-  description: The best Tider engineering can offer, a revolver with the ability to hold 4 bullets! 
+  description: A design tested by time and blood. It can hold four shots and probably won't blow up in your face.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Revolvers/forged_revolver.rsi
