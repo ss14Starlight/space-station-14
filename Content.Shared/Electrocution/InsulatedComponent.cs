@@ -1,9 +1,11 @@
 using Robust.Shared.GameStates;
+using Content.Shared.Genetics;
 
 namespace Content.Shared.Electrocution
 {
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     [Access(typeof(SharedElectrocutionSystem))]
+    [GeneticComponent(5,2)] // Starlight - add genetics for biological insulation
     public sealed partial class InsulatedComponent : Component
     {
         // Technically, people could cheat and figure out which budget insulated gloves are gud and which ones are bad.

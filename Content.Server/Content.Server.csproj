@@ -7,6 +7,8 @@
     <NoWarn>1998</NoWarn>
     <WarningsAsErrors>RA0032;nullable</WarningsAsErrors>
     <ServerGarbageCollection>true</ServerGarbageCollection>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(OutputPath)Generated</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
   <Import Project="../MSBuild/Content.props" />
   <ItemGroup>

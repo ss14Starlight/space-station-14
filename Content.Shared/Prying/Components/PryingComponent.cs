@@ -1,9 +1,11 @@
+using Content.Shared.Genetics;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Prying.Components;
 
 [RegisterComponent, NetworkedComponent]
+[GeneticComponent(4)] // Starlight - add genetics for biological prying ability
 public sealed partial class PryingComponent : Component
 {
     /// <summary>

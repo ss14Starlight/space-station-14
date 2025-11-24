@@ -1,5 +1,6 @@
 using Content.Server.Animals.Systems;
 using Content.Shared.Storage;
+using Content.Shared.Genetics;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
@@ -11,12 +12,14 @@ namespace Content.Server.Animals.Components;
 /// </summary>
 
 [RegisterComponent, Access(typeof(EggLayerSystem)), AutoGenerateComponentPause]
+[GeneticComponent(4, 6)]
 public sealed partial class EggLayerComponent : Component
 {
     /// <summary>
     ///     The item that gets laid/spawned, retrieved from animal prototype.
     /// </summary>
     [DataField(required: true)]
+    //[GeneticsFieldValues()]
     public List<EntitySpawnEntry> EggSpawn = new();
 
     /// <summary>

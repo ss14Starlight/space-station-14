@@ -23,6 +23,10 @@ using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 using Content.Shared.Hands.Components;
 
+#region Starlight
+using Content.Server.Genetics;
+#endregion Starlight
+
 namespace Content.Server.Forensics
 {
     public sealed class ForensicsSystem : SharedForensicsSystem
@@ -326,7 +330,16 @@ namespace Content.Server.Forensics
             if (!Resolve(ent, ref ent.Comp, false))
                 return;
 
-            ent.Comp.DNA = GenerateDNA();
+            // Starlight start
+            var conev = new ConstructDnaEvent { Owner = ent.Owner };
+            RaiseLocalEvent(ent.Owner, ref conev);
+            if (string.IsNullOrEmpty(conev.DNA))
+            {
+                conev.DNA = GenerateDNA();
+            }
+            // Starlight end
+            //ent.Comp.DNA = GenerateDNA();
+            ent.Comp.DNA = conev.DNA;
             Dirty(ent);
 
             var ev = new GenerateDnaEvent { Owner = ent.Owner, DNA = ent.Comp.DNA };
