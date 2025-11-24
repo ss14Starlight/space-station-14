@@ -305,7 +305,7 @@
   name: forged SMG
   parent: WeaponSubMachineGunImprovised
   id: WeaponSubMachineGunForged
-  description: The best a tider could get, steel and plasteel welded together for a pretty decent SMG, though the heavy bolt on it does slow the shooting down.
+  description: The best a blacksmith can make. Steel and plasteel welded together for a pretty decent SMG, though the heavy bolt on it does slow the shooting down.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/SMGs/forged_smg.rsi

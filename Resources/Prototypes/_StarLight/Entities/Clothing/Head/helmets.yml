@@ -220,7 +220,7 @@
   parent: [ClothingHeadHelmetBase, BaseMinorContraband]
   id: ClothingHeadHelmetForged
   name: forged helmet
-  description: A high-quality helmet made by some of the best Tidersmiths, it is finally worthwhile to have it on your head.
+  description: A high-quality helmet made by some of the best blacksmiths, it is finally worthwhile to have it on your head.
   components:
   - type: Armor
     modifiers:

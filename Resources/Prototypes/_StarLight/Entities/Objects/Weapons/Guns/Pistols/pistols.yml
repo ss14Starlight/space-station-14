@@ -476,7 +476,7 @@
   name: forged pistol
   parent: [BaseWeaponPistol, BaseMinorContraband]
   id: WeaponPistolForged
-  description: A reliable magazine-fed pistol made by the best tider blacksmiths.
+  description: A reliable magazine-fed pistol made by the best blacksmiths.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/forged_pistol.rsi
