@@ -23,7 +23,7 @@ crafting-menu-name-IR = improvised revolver
 crafting-menu-text-IR = An odd double-barrel revolver with no cylinder. The unique construction lowers the chance of a backfire, but does not eliminate it.
 
 crafting-menu-name-FR = forged revolver
-crafting-menu-text-FR = The best Tider Engineering can provide. Has 4 shots and will NOT blow up in your face, but needs welding supplies to make.
+crafting-menu-text-FR = A design tested by time and blood. Has 4 shots and will NOT blow up in your face, but needs welding supplies to make.
 
 crafting-menu-name-IMB = improvised magnum bullet
 crafting-menu-text-IMB = Better than nothing. Stuffed to the brim with phosphorus but still won't hit as hard.
@@ -56,25 +56,25 @@ crafting-menu-name-IRR = improvised repeater rifle
 crafting-menu-text-IRR = The weird in-between cousin, too big to be stored comfortably, but also not that inaccurate.
 
 crafting-menu-name-FRR = forged repeater rifle
-crafting-menu-text-FRR = The peak of tider engineering. But does need welding supplies to finish.
+crafting-menu-text-FRR = The peak of improvised engineering. But does need welding supplies to finish.
 
 crafting-menu-name-IRB = improvised rifle bullet
 crafting-menu-text-IRB = Better than nothing. Fairly full with phosphorus but still won't hit as hard.
 
 crafting-menu-name-IMGB = improvised ammo box
-crafting-menu-text-IMGB = Organization is not the strong suit of any tider. Can hold all kinds of bullets.
+crafting-menu-text-IMGB = A makeshift box for storing ammunition. Can hold all kinds of bullets.
 
 crafting-menu-name-IMGP = improvised ammo box (.35 auto)
-crafting-menu-text-IMGP = Organization is not the strong suit of any tider. Holds 40 improvised .35 auto rounds.
+crafting-menu-text-IMGP = A makeshift box for storing ammunition. Holds 40 improvised .35 auto rounds.
 
 crafting-menu-name-IMGR = improvised ammo box (.30 rifle)
-crafting-menu-text-IMGR = Organization is not the strong suit of any tider. Holds 40 improvised .30 rifle rounds.
+crafting-menu-text-IMGR = A makeshift box for storing ammunition. Holds 40 improvised .30 rifle rounds.
 
 crafting-menu-name-IMGM = improvised ammo box (.45 magnum)
-crafting-menu-text-IMGM = Organization is not the strong suit of any tider. Holds 40 improvised .45 magnum rounds.
+crafting-menu-text-IMGM = A makeshift box for storing ammunition. Holds 40 improvised .45 magnum rounds.
 
 crafting-menu-name-IMGS = improvised ammo box (.50 shotgun)
-crafting-menu-text-IMGS = Organization is not the strong suit of any tider. Holds 40 improvised .50 shotgun shells.
+crafting-menu-text-IMGS = A makeshift box for storing ammunition. Holds 40 improvised .50 shotgun shells.
 
 crafting-menu-name-phosphorus = crushed phosphorus
 crafting-menu-text-phosphorus = Crushing the tips off of matches yields this bright red, exceedingly volatile compound.
@@ -97,7 +97,7 @@ crafting-menu-text-IM = The best you're gonna get. Needs welding supplies to fin
 crafting-menu-name-EW = emergency welder
 
 crafting-menu-name-IO = improvised omnitool
-crafting-menu-text-IO = The fact that this abomination of tiderkind actually works is nothing short of a miracle.
+crafting-menu-text-IO = The fact that this abomination actually works is nothing short of a miracle.
 
 crafting-menu-name-FO = forged omnitool
 crafting-menu-text-FO = The better, but more psychopathic omnitool.
@@ -133,7 +133,7 @@ crafting-menu-name-ISH = improvised shield
 crafting-menu-text-ISH = Keep a solid sheet of metal between you and your enemies. Needs welding supplies to finish.
 
 crafting-menu-name-FSH = forged buckler shield
-crafting-menu-text-FSH = Lightweight plasteel shield forged by the best tidersmiths, does a good job of keeping you alive. Needs welding supplies to finish.
+crafting-menu-text-FSH = Lightweight plasteel shield forged by a blacksmith, does a good job of keeping you alive. Needs welding supplies to finish.
 
 crafting-menu-name-FSHT = forged tower shield
 crafting-menu-text-FSHT = Heavily armored plasteel shield, the extra plating and size making it more durable but heavier to hold. Needs welding supplies to finish.
@@ -154,7 +154,7 @@ crafting-menu-name-FVT = forged vest
 crafting-menu-text-FVT = A high quality armor vest based upon old earth mongolian designs, it is very effective at what it does.
 
 crafting-menu-name-PVT = paladin suit
-crafting-menu-text-PVT = The best a tidersmith can make! Don this suit of armor and deal swift justice to evildoers! Or.. do the evil yourself, I won't judge.
+crafting-menu-text-PVT = The best a blacksmith can make! Don this suit of armor and deal swift justice to evildoers! Or.. do the evil yourself, I won't judge.
 
 crafting-menu-name-MVTH = makeshift helmet
 crafting-menu-text-MVTH = Nothing is, somehow, still better than this. Provides minimal protection, MIGHT save your head from a bullet.
@@ -163,10 +163,10 @@ crafting-menu-name-IVTH = improvised helmet
 crafting-menu-text-IVTH = Better than nothing, by a slim margin.
 
 crafting-menu-name-FVTH = forged helmet
-crafting-menu-text-FVTH = Almost the best a tidersmith can offer, it'll reliably stop a bullet and protect your head from being smashed in.
+crafting-menu-text-FVTH = Almost the best a blacksmith can offer, it'll reliably stop a bullet and protect your head from being smashed in.
 
 crafting-menu-name-PVTH = paladin helmet
-crafting-menu-text-PVTH = The best a tidersmith can offer, no holy crusade is fit to go on without a matching helmet!
+crafting-menu-text-PVTH = The best a blacksmith can offer, no holy crusade is fit to go on without a matching helmet!
 
 crafting-menu-name-ETX = emergency toolbox
 
