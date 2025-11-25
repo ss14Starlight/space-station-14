@@ -134,7 +134,7 @@
       animation: WeaponArcClaw
       damage:
         types:
-          Slash: 6.25
+          Slash: 6
     - type: Temperature
       heatDamageThreshold: 310
       coldDamageThreshold: 223
