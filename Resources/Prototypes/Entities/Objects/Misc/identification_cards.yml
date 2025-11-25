@@ -445,14 +445,17 @@
   name: visitor ID card
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
     - state: default
     - state: idvisitor
+    - state: outofrange
   - type: IdCard
     jobTitle: job-title-visitor
     jobIcon: JobIconVisitor
   - type: PresetIdCard
     job: Visitor
+  - type: VisitorIdCard # Starlight
 
 - type: entity
   parent: IDCardStandard

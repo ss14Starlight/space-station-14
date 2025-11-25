@@ -1,59 +1,181 @@
 {
-  "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "taken from the game, Abductor ID by Walksanator | Salvage Lead/Medic/Specialist icons by mikeysaurus",
-  "size": {
-    "x": 32,
-    "y": 32
-  },
-  "states": [
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "taken from the game, Abductor ID by Walksanator | Salvage Lead/Medic/Specialist icons by mikeysaurus",
+    "size":
     {
-      "name": "default"
+        "x": 32,
+        "y": 32
     },
-    {
-      "name": "gold"
-    },
-    {
-      "name": "silver"
-    },
-    {
-      "name": "idmagistrate"
-    },
-    {
-      "name": "idiaa"
-    },
-    {
-      "name": "idblueshield"
-    },
-    {
-      "name": "idsalvagelead"
-    },
-    {
-      "name": "idsalvagespecialist"
-    },
-    {
-      "name": "idstationminer"
-    },
-    {
-      "name": "idmailtech"
-    },
-    {
-      "name": "sovietid"
-    },
-    {
-      "name": "syndi"
-    },
-    {
-      "name": "idcommander"
-    },
-    {
-      "name": "idsyndiagent"
-    },
-    {
-      "name": "idoperative"
-    },
-    {
-      "name": "abductor"
-    }
-  ]
+    "states":
+    [
+        {
+            "name": "default"
+        },
+        {
+            "name": "gold"
+        },
+        {
+            "name": "silver"
+        },
+        {
+            "name": "idmagistrate"
+        },
+        {
+            "name": "idiaa"
+        },
+        {
+            "name": "idblueshield"
+        },
+        {
+            "name": "idsalvagelead"
+        },
+        {
+            "name": "idsalvagespecialist"
+        },
+        {
+            "name": "idstationminer"
+        },
+        {
+            "name": "idmailtech"
+        },
+        {
+            "name": "sovietid"
+        },
+        {
+            "name": "syndi"
+        },
+        {
+            "name": "idcommander"
+        },
+        {
+            "name": "idsyndiagent"
+        },
+        {
+            "name": "idoperative"
+        },
+        {
+            "name": "abductor"
+        },
+        {
+            "name": "centcom-nojob"
+        },
+        {
+            "name": "outofrange"
+        },
+        {
+            "name": "outofsector"
+        },
+        {
+            "name": "idvisitor"
+        },
+        {
+            "name": "idassistant"
+        },
+        {
+            "name": "idatmospherictechnician"
+        },
+        {
+            "name": "idbartender"
+        },
+        {
+            "name": "idbotanist"
+        },
+        {
+            "name": "idboxer"
+        },
+        {
+            "name": "idcaptain"
+        },
+        {
+            "name": "idcargotechnician"
+        },
+        {
+            "name": "idcentcom"
+        },
+        {
+            "name": "idchaplain"
+        },
+        {
+            "name": "idchemist"
+        },
+        {
+            "name": "idchiefengineer"
+        },
+        {
+            "name": "idchiefmedicalofficer"
+        },
+        {
+            "name": "idclown"
+        },
+        {
+            "name": "idcook"
+        },
+        {
+            "name": "idcurator"
+        },
+        {
+            "name": "iddetective"
+        },
+        {
+            "name": "idheadofpersonnel"
+        },
+        {
+            "name": "idheadofsecurity"
+        },
+        {
+            "name": "idbrigmedic"
+        },
+        {
+            "name": "idjanitor"
+        },
+        {
+            "name": "idlawyer"
+        },
+        {
+            "name": "idmedicaldoctor"
+        },
+        {
+            "name": "idmime"
+        },
+        {
+            "name": "idparamedic"
+        },
+        {
+            "name": "idpsychologist"
+        },
+        {
+            "name": "idreporter"
+        },
+        {
+            "name": "idquartermaster"
+        },
+        {
+            "name": "idresearchdirector"
+        },
+        {
+            "name": "idroboticist"
+        },
+        {
+            "name": "idscientist"
+        },
+        {
+            "name": "idsecurityofficer"
+        },
+        {
+            "name": "idshaftminer"
+        },
+        {
+            "name": "idstationengineer"
+        },
+        {
+            "name": "idwarden"
+        },
+        {
+            "name": "idmusician"
+        },
+        {
+            "name": "idzookeeper"
+        }
+    ]
 }

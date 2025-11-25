@@ -301,6 +301,18 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(player):player} has modified {ToPrettyString(targetId):entity} with the following accesses: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
+
+        // Starlight begin
+        if (TryComp<VisitorIdCardComponent>(targetId, out var comp)) comp.AccessSet = true;
+        
+        var ev = new IdCardAccessUpdatedEvent
+        {
+            TargetId = GetNetEntity(targetId),
+            OldAccesses = oldTags.ToList(),
+            NewAccesses = finalTags.ToList(),
+        };
+        RaiseNetworkEvent(ev);
+        // Starlignt end
     }
 
     /// <summary>

@@ -361,3 +361,14 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+
+#- type: entity
+#  parent: VisitorPDA
+#  id: VisitorPDA
+#  suffix: Visitor # Starlight
+#  components:
+#    - type: Pda
+#      id: VisitorIDCard
+#    - type: Tag #  Ignore Chameleon tags
+#      tags:
+#        - DoorBumpOpener

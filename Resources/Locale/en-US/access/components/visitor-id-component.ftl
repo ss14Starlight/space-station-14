@@ -1,0 +1,2 @@
+visitor-id-card-access-out-of-range = There's a red LED on the top left, indicating that this ID card can't reach the access server it was last assigned from. This probably won't work on any station in the sector until you get its access reset.
+visitor-id-card-access-out-of-sector = There's a yellow LED on the top left, indicating that this ID card originates from outside the current sector, but has had its accesses set within the one you're currently in.

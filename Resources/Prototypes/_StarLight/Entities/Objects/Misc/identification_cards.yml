@@ -242,3 +242,459 @@
     - Research
     - Engineering
     - Atmospherics
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorSecurityOfficerIDCard
+  name: visitor ID card
+  suffix: SecurityOfficer
+  components:
+    - type: VisitorIdCard
+      visitorType: SecurityOfficer
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorAssistantIDCard
+  name: visitor ID card
+  suffix: Assistant
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idassistant
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: Assistant
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorCargoTechnicianIDCard
+  name: visitor ID card
+  suffix: CargoTechnician
+  components:
+    - type: VisitorIdCard
+      visitorType: CargoTechnician
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorLibrarianIDCard
+  name: visitor ID card
+  suffix: Librarian
+  components:
+    - type: VisitorIdCard
+      visitorType: Librarian
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorLawyerIDCard
+  name: visitor ID card
+  suffix: Lawyer
+  components:
+    - type: VisitorIdCard
+      visitorType: Lawyer
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorJanitorIDCard
+  name: visitor ID card
+  suffix: Janitor
+  components:
+    - type: VisitorIdCard
+      visitorType: Janitor
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorPsychologistIDCard
+  name: visitor ID card
+  suffix: Psychologist
+  components:
+    - type: VisitorIdCard
+      visitorType: Psychologist
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorMusicianIDCard
+  name: visitor ID card
+  suffix: Musician
+  components:
+    - type: VisitorIdCard
+      visitorType: Musician
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorMedicalDoctorIDCard
+  name: visitor ID card
+  suffix: MedicalDoctor
+  components:
+    - type: VisitorIdCard
+      visitorType: MedicalDoctor
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorChemistIDCard
+  name: visitor ID card
+  suffix: Chemist
+  components:
+    - type: VisitorIdCard
+      visitorType: Chemist
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorBotanistIDCard
+  name: visitor ID card
+  suffix: Botanist
+  components:
+    - type: VisitorIdCard
+      visitorType: Botanist
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorAtmosphericTechnicianIDCard
+  name: visitor ID card
+  suffix: AtmosphericTechnician
+  components:
+    - type: VisitorIdCard
+      visitorType: AtmosphericTechnician
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorNanotrasenIDCard
+  name: visitor ID card
+  suffix: Nanotrasen
+  components:
+    - type: Sprite
+      layers:
+        - state: gold
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: Nanotrasen
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorChiefEngineerIDCard
+  name: visitor ID card
+  suffix: ChiefEngineer
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: ChiefEngineer
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorBrigMedicIDCard
+  name: visitor ID card
+  suffix: BrigMedic
+  components:
+    - type: VisitorIdCard
+      visitorType: BrigMedic
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorBartenderIDCard
+  name: visitor ID card
+  suffix: Bartender
+  components:
+    - type: VisitorIdCard
+      visitorType: Bartender
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorZookeeperIDCard
+  name: visitor ID card
+  suffix: Zookeeper
+  components:
+    - type: VisitorIdCard
+      visitorType: Zookeeper
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorClownIDCard
+  name: visitor ID card
+  suffix: Clown
+  components:
+    - type: VisitorIdCard
+      visitorType: Clown
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorWardenIDCard
+  name: visitor ID card
+  suffix: Warden
+  components:
+    - type: VisitorIdCard
+      visitorType: Warden
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorChefIDCard
+  name: visitor ID card
+  suffix: Chef
+  components:
+    - type: VisitorIdCard
+      visitorType: Chef
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorServiceWorkerIDCard
+  name: visitor ID card
+  suffix: ServiceWorker
+  components:
+    - type: VisitorIdCard
+      visitorType: ServiceWorker
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorQuartermasterIDCard
+  name: visitor ID card
+  suffix: Quartermaster
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: Quartermaster
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorScientistIDCard
+  name: visitor ID card
+  suffix: Scientist
+  components:
+    - type: VisitorIdCard
+      visitorType: Scientist
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorResearchDirectorIDCard
+  name: visitor ID card
+  suffix: ResearchDirector
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: ResearchDirector
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorChiefMedicalOfficerIDCard
+  name: visitor ID card
+  suffix: ChiefMedicalOfficer
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: ChiefMedicalOfficer
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorChaplainIDCard
+  name: visitor ID card
+  suffix: Chaplain
+  components:
+    - type: VisitorIdCard
+      visitorType: Chaplain
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorHeadOfPersonnelIDCard
+  name: visitor ID card
+  suffix: HeadOfPersonnel
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: HeadOfPersonnel
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorMimeIDCard
+  name: visitor ID card
+  suffix: Mime
+  components:
+    - type: VisitorIdCard
+      visitorType: Mime
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorCaptainIDCard
+  name: visitor ID card
+  suffix: Captain
+  components:
+    - type: Sprite
+      layers:
+        - state: gold
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: Captain
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorParamedicIDCard
+  name: visitor ID card
+  suffix: Paramedic
+  components:
+    - type: VisitorIdCard
+      visitorType: Paramedic
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorStationEngineerIDCard
+  name: visitor ID card
+  suffix: StationEngineer
+  components:
+    - type: VisitorIdCard
+      visitorType: StationEngineer
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorBoxerIDCard
+  name: visitor ID card
+  suffix: Boxer
+  components:
+    - type: VisitorIdCard
+      visitorType: Boxer
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorHeadOfSecurityIDCard
+  name: visitor ID card
+  suffix: HeadOfSecurity
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: HeadOfSecurity
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorDetectiveIDCard
+  name: visitor ID card
+  suffix: Detective
+  components:
+    - type: VisitorIdCard
+      visitorType: Detective
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorShaftMinerIDCard
+  name: visitor ID card
+  suffix: ShaftMiner
+  components:
+    - type: VisitorIdCard
+      visitorType: ShaftMiner
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorRoboticistIDCard
+  name: visitor ID card
+  suffix: Roboticist
+  components:
+    - type: VisitorIdCard
+      visitorType: Roboticist
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorReporterIDCard
+  name: visitor ID card
+  suffix: Reporter
+  components:
+    - type: VisitorIdCard
+      visitorType: Reporter
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorMailTechIDCard
+  name: visitor ID card
+  suffix: MailTech
+  components:
+    - type: VisitorIdCard
+      visitorType: MailTech
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorMagistrateIDCard
+  name: visitor ID card
+  suffix: Magistrate
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: Magistrate
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorBlueShieldIDCard
+  name: visitor ID card
+  suffix: BlueShield
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: BlueShield
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorSalvageLeadIDCard
+  name: visitor ID card
+  suffix: SalvageLead
+  components:
+    - type: VisitorIdCard
+      visitorType: SalvageLead
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorSalvageSpecialistIDCard
+  name: visitor ID card
+  suffix: SalvageSpecialist
+  components:
+    - type: VisitorIdCard
+      visitorType: SalvageSpecialist
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorIAAIDCard
+  name: visitor ID card
+  suffix: IAA
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idvisitor
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: IAA
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorSurgeonIDCard
+  name: visitor ID card
+  suffix: Surgeon
+  components:
+    - type: VisitorIdCard
+      visitorType: Surgeon

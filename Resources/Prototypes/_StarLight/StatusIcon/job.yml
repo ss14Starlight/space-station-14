@@ -173,3 +173,355 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: Mothership
   jobName: job-name-XenoborgMothership
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorSecurityOfficer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorSecurityOfficer
+  jobName: job-name-VisitorSecurityOfficer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorAssistant
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorAssistant
+  jobName: job-name-VisitorAssistant
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorCargoTechnician
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorCargoTechnician
+  jobName: job-name-VisitorCargoTechnician
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorLibrarian
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorLibrarian
+  jobName: job-name-VisitorLibrarian
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorLawyer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorLawyer
+  jobName: job-name-VisitorLawyer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorJanitor
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorJanitor
+  jobName: job-name-VisitorJanitor
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorPsychologist
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorPsychologist
+  jobName: job-name-VisitorPsychologist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorMusician
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorMusician
+  jobName: job-name-VisitorMusician
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorMedicalDoctor
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorMedicalDoctor
+  jobName: job-name-VisitorMedicalDoctor
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorChemist
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorChemist
+  jobName: job-name-VisitorChemist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorBotanist
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorBotanist
+  jobName: job-name-VisitorBotanist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorAtmosphericTechnician
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorAtmosphericTechnician
+  jobName: job-name-VisitorAtmosphericTechnician
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorNanotrasen
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorNanotrasen
+  jobName: job-name-VisitorNanotrasen
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorChiefEngineer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorChiefEngineer
+  jobName: job-name-VisitorChiefEngineer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorBrigMedic
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorBrigMedic
+  jobName: job-name-VisitorBrigMedic
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorBartender
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorBartender
+  jobName: job-name-VisitorBartender
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorZookeeper
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorZookeeper
+  jobName: job-name-VisitorZookeeper
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorClown
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorClown
+  jobName: job-name-VisitorClown
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorWarden
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorWarden
+  jobName: job-name-VisitorWarden
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorChef
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorChef
+  jobName: job-name-VisitorChef
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorServiceWorker
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorServiceWorker
+  jobName: job-name-VisitorServiceWorker
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorQuartermaster
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorQuartermaster
+  jobName: job-name-VisitorQuartermaster
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorScientist
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorScientist
+  jobName: job-name-VisitorScientist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorResearchDirector
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorResearchDirector
+  jobName: job-name-VisitorResearchDirector
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorChiefMedicalOfficer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorChiefMedicalOfficer
+  jobName: job-name-VisitorChiefMedicalOfficer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorChaplain
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorChaplain
+  jobName: job-name-VisitorChaplain
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorHeadOfPersonnel
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorHeadOfPersonnel
+  jobName: job-name-VisitorHeadOfPersonnel
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorMime
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorMime
+  jobName: job-name-VisitorMime
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorCaptain
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorCaptain
+  jobName: job-name-VisitorCaptain
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorParamedic
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorParamedic
+  jobName: job-name-VisitorParamedic
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorStationEngineer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorStationEngineer
+  jobName: job-name-VisitorStationEngineer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorBoxer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorBoxer
+  jobName: job-name-VisitorBoxer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorHeadOfSecurity
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorHeadOfSecurity
+  jobName: job-name-VisitorHeadOfSecurity
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorDetective
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorDetective
+  jobName: job-name-VisitorDetective
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorShaftMiner
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorShaftMiner
+  jobName: job-name-VisitorShaftMiner
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorRoboticist
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorRoboticist
+  jobName: job-name-VisitorRoboticist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorReporter
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorReporter
+  jobName: job-name-VisitorReporter
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorMailTech
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorMailTech
+  jobName: job-name-VisitorMailTech
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorMagistrate
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorMagistrate
+  jobName: job-name-VisitorMagistrate
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorBlueShield
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorBlueShield
+  jobName: job-name-VisitorBlueShield
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorSalvageLead
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorSalvageLead
+  jobName: job-name-VisitorSalvageLead
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorSalvageSpecialist
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorSalvageSpecialist
+  jobName: job-name-VisitorSalvageSpecialist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorIAA
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorIAA
+  jobName: job-name-VisitorIAA
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorSurgeon
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorSurgeon
+  jobName: job-name-VisitorSurgeon

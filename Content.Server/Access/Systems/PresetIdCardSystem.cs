@@ -2,6 +2,7 @@ using Content.Server.Access.Components;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -57,6 +58,14 @@ public sealed class PresetIdCardSystem : EntitySystem
 
         SetupIdAccess(uid, id, extended);
         SetupIdName(uid, id);
+        
+        // Starlight begin
+        // This is done in here instead of the tiny little system I made for the visitor ID because i need to make sure this happens after and firing an event for this seems pointless.
+        if (!TryComp<VisitorIdCardComponent>(uid, out var vid)) return;
+        if (!_prototypeManager.Resolve(new ProtoId<JobIconPrototype>($"JobIconVisitor{vid.VisitorType}"), out var proto)) return;
+        _cardSystem.TryChangeJobTitle(uid, proto.LocalizedJobName);
+        _cardSystem.TryChangeJobIcon(uid, proto);
+        // Starlight end
     }
 
     private void SetupIdName(EntityUid uid, PresetIdCardComponent id)
