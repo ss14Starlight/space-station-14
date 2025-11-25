@@ -44,7 +44,7 @@
     - HeadSide
     - Snout
   - type: TypingIndicator
-    proto: default # MIKEY - replace with rodent one?
+    proto: rodentia
   - type: Speech
     speechVerb: Rodentia
     speechSounds: Squeak

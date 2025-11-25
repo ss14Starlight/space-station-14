@@ -1,4 +1,3 @@
-species-name-rodentia = Rodentia
 # head markings
 
 ## patterns

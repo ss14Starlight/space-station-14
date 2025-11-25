@@ -23,6 +23,7 @@
   <Box>
   <GuideEntityEmbed Entity="MobThaven" Caption="Thaven"/>
   <GuideEntityEmbed Entity="MobShadekin" Caption="Shadekin"/>
+  <GuideEntityEmbed Entity="MobRodentia" Caption="Rodentia"/>
   </Box>
   <Box>
     <GuideEntityEmbed Entity="MobVulpkanin" Caption="Vulpkanin"/>

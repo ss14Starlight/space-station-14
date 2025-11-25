@@ -331,11 +331,13 @@
 - type: entityTable
   id: RatKingLoot
   table: !type:GroupSelector
-    children:
+    children: # Starlight - Food table update
     - id: RandomSpawner100
-      weight: 66
+      weight: 70
     - id: FoodCheese
-      weight: 28
+      weight: 15
+    - id: FoodCheese
+      weight: 10
     - id: IngotGold1
       weight: 5
 
