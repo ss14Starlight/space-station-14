@@ -5,7 +5,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Timing;
 using static Robust.Client.UserInterface.Controls.BaseButton;
-using System.Text.RegularExpressions; // Starlight
+using Content.Shared._Starlight.Administration; // Starlight
 
 namespace Content.Client.Administration.UI.Notes;
 
@@ -14,7 +14,6 @@ public sealed partial class AdminNotesLinePopup : Popup
 {
     public event Action<int, NoteType>? OnEditPressed;
     public event Action<int, NoteType>? OnDeletePressed;
-    private static readonly Regex _decayLevelRegex = new(@"\[Decays by: (\d+) on", RegexOptions.Compiled); // Starlight
 
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
@@ -41,47 +40,24 @@ public sealed partial class AdminNotesLinePopup : Popup
         CreatedAtLabel.Text = Loc.GetString("admin-notes-created-at", ("date", note.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")));
         EditedByLabel.Text = Loc.GetString("admin-notes-last-edited-by", ("author", note.EditedByName));
         EditedAtLabel.Text = Loc.GetString("admin-notes-last-edited-at", ("date", note.LastEditedAt?.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss") ?? Loc.GetString("admin-notes-edited-never")));
+
         // Starlight edit Start: AutoMod
-        
+        #region Starlight Edit: AutoMod
         // AutoMod note to use "Decays" instead of "Expires"
-        var isAutoMod = note.Message.Contains("AUTOMOD_ID:");
         if (note.ExpiryTime == null)
-        {
             ExpiryTimeLabel.Text = Loc.GetString("admin-notes-expires-never");
+        else if (AutoModFormatting.HasAutoModId(note.Message))
+        {
+            var decayLevel = AutoModFormatting.GetDecayLevel(note.Message);
+            var timeRemaining = note.ExpiryTime.Value - DateTime.UtcNow;
+            
+            ExpiryTimeLabel.Text = timeRemaining.TotalSeconds > 0 
+                ? $"Decays by: {decayLevel} on {AutoModFormatting.FormatTimeRemaining(timeRemaining)}"
+                : "Decayed";
         }
         else
-        {
-            if (isAutoMod)
-            {
-                var decayLevel = 1; // Default decay level
-                // Extract the most recent incident's decay level from the note
-                var decayMatch = _decayLevelRegex.Match(note.Message);
-                if (decayMatch.Success && int.TryParse(decayMatch.Groups[1].Value, out var parsedLevel))
-                {
-                    decayLevel = parsedLevel;
-                }
-                
-                var timeRemaining = note.ExpiryTime.Value - DateTime.UtcNow;
-                if (timeRemaining.TotalSeconds > 0)
-                {
-                    var timeStr = timeRemaining.TotalHours >= 1 
-                        ? $"{timeRemaining.TotalHours:F1}h"
-                        : timeRemaining.TotalMinutes >= 1
-                        ? $"{timeRemaining.TotalMinutes:F0}m"
-                        : $"{timeRemaining.TotalSeconds:F0}s";
-                    ExpiryTimeLabel.Text = $"Decays by: {decayLevel} on {timeStr}";
-                }
-                else
-                {
-                    ExpiryTimeLabel.Text = "Decayed";
-                }
-            }
-            else
-            {
-                ExpiryTimeLabel.Text = $"Expires: {note.ExpiryTime.Value.ToLocalTime():yyyy-MM-dd HH:mm:ss}";
-            }
-        }
-        
+            ExpiryTimeLabel.Text = $"Expires: {note.ExpiryTime.Value.ToLocalTime():yyyy-MM-dd HH:mm:ss}";
+
         try
         {
             NoteTextLabel.Text = note.Message; // Notes support colors
@@ -93,6 +69,7 @@ public sealed partial class AdminNotesLinePopup : Popup
             Logger.GetSawmill("admin.notes").Warning($"BBCode parsing failed for note {note.Id}: {ex.Message}");
             NoteTextLabel.SetMessage(note.Message.Replace("[", "").Replace("]", ""));
         }
+        #endregion
         // Starlight edit End
 
         if (note.NoteType is NoteType.ServerBan or NoteType.RoleBan)

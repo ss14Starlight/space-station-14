@@ -23,7 +23,7 @@ using AutoModOffence = Content.Server.Database.AutoModOffence;
 namespace Content.Server.Starlight.Chat.Systems;
 public sealed partial class AutoModSystem : SharedChatSystem
 {
-    #region Dependencies and Fields
+    #region Dependencys + Fields
     
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IChatManager _chat = default!;
@@ -39,9 +39,9 @@ public sealed partial class AutoModSystem : SharedChatSystem
     
     private readonly Dictionary<(NetUserId, string), DateTime> _recentMessages = new();
     private List<AutoModRule> _rules = new();
-    private readonly Dictionary<int, Regex> _compiledRegexCache = new(); // Cache compiled regex objects by rule ID
-    private readonly Dictionary<int, DateTime> _lastDecayProcessed = new(); // Track last decay time per note ID
-    private static readonly TimeSpan _decayCheckInterval = TimeSpan.FromSeconds(20); // Background decay timer interval
+    private readonly Dictionary<int, Regex> _compiledRegexCache = new();
+    private readonly Dictionary<int, DateTime> _lastDecayProcessed = new();
+    private static readonly TimeSpan _decayCheckInterval = TimeSpan.FromSeconds(20);
     
     #endregion
 
@@ -134,9 +134,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
 
             int offenceIndex = 0;
             var existingViolations = await GetPlayerAutoModViolations(args.Sender.UserId);
-            _automodLog.Debug($"[AutoMod] GetPlayerAutoModViolations returned {existingViolations.Count} total violations for user {args.Sender.UserId}");
             
-            // Find violation for this specific rule (avoid redundant LINQ)
             AutoModViolationData? mostRecentViolation = null;
             foreach (var v in existingViolations)
             {
@@ -145,30 +143,21 @@ public sealed partial class AutoModSystem : SharedChatSystem
             }
             
             if (mostRecentViolation != null)
-            {
                 offenceIndex = mostRecentViolation.ViolationCount;
-                _automodLog.Debug($"[AutoMod] Found existing violation for rule {rule.Id}, current offense level: {mostRecentViolation.ViolationCount}");
-            }
             
-            _automodLog.Debug($"[AutoMod] Rule {rule.Id} triggered for user {args.Sender.UserId}, offense count so far: {offenceIndex}, next offense index to apply: {offenceIndex}");
-            
-            int offenseConfigLevel; // Which offense config was used (1, 2, 3, capped at max)
-            AutoModOffence? offence = null;
+            int offenseConfigLevel;
+            AutoModOffence? offence;
             bool hasOffences = rule.Offences != null && rule.Offences.Count > 0;
             if (hasOffences)
             {
-                // Cap the offense INDEX used to select which action to apply (use last offense if beyond configured list)
                 var cappedOffenceIndex = Math.Min(offenceIndex, rule.Offences!.Count - 1);
                 offence = rule.Offences[cappedOffenceIndex];
-                // Offense level represents which configured offense was applied (1-based, capped at max configured)
                 offenseConfigLevel = cappedOffenceIndex + 1;
-                _automodLog.Debug($"[AutoMod] Rule {rule.Id}: Applying offense config level {offenseConfigLevel} (index {cappedOffenceIndex}), action: {offence?.Action}");
             }
             else
             {
                 offence = new AutoModOffence { Message = "", Action = (int)AutoModOffenceAction.None };
                 offenseConfigLevel = 0;
-                _automodLog.Debug($"[AutoMod] Rule {rule.Id}: No offences configured, offense config level 0");
             }
 
             // Store which offense config level was applied (e.g., Level 1 = Warn, Level 2 = Ban)
@@ -186,10 +175,8 @@ public sealed partial class AutoModSystem : SharedChatSystem
                     (AutoModOffenceAction)(offence?.Action ?? (int)AutoModOffenceAction.None),
                     offence?.DecaySeconds ?? 0,
                     offence?.DecayLevels ?? 1, // Use configured decay level from offense
-                    mostRecentViolation // Pass existing violation to avoid duplicate DB call
+                    mostRecentViolation
                 );
-                
-                _automodLog.Debug($"[AutoMod] Rule {rule.Id}: Created/updated note with DecaySeconds={offence?.DecaySeconds ?? 0}");
             }
             catch (Exception ex)
             {
@@ -225,43 +212,36 @@ public sealed partial class AutoModSystem : SharedChatSystem
     private void HandleOffenceAction(ChatAttemptEvent args, AutoModRule rule, AutoModOffence offence, int offenseConfigLevel, string message)
     {
         var action = (AutoModOffenceAction)offence.Action;
-        var logImpact = action switch
-        {
-            AutoModOffenceAction.None => LogImpact.Low,
-            AutoModOffenceAction.Warn => LogImpact.Medium,
-            AutoModOffenceAction.Kick or AutoModOffenceAction.Ban => LogImpact.High,
-            _ => LogImpact.Low
-        };
+        var logImpact = action is AutoModOffenceAction.Kick or AutoModOffenceAction.Ban ? LogImpact.High : 
+                       action is AutoModOffenceAction.Warn ? LogImpact.Medium : LogImpact.Low;
+        var userName = $"{args.Sender.Name} ({args.Sender.UserId})";
+        var ruleInfo = $"rule: {rule.Regex} (Offence {offenseConfigLevel})";
 
         switch (action)
         {
             case AutoModOffenceAction.None:
-                _adminLogger.Add(LogType.AdminCommands, logImpact, 
-                    $"[AutoMod] Logged violation for user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} (Offence {offenseConfigLevel}) - Message: \"{message}\"");
+                _adminLogger.Add(LogType.AdminCommands, logImpact, $"[AutoMod] Logged violation for {userName} for {ruleInfo} - Message: \"{message}\"");
                 break;
  
             case AutoModOffenceAction.Warn:
-                _adminLogger.Add(LogType.AdminCommands, logImpact, 
-                    $"[AutoMod] Warned user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} (Offence {offenseConfigLevel}) - Reason: {offence.Message} - Message: \"{message}\"");;
-                // Send a red chat message
-                var warnMessage = $"[color=red][bold]AUTOMOD WARNING[/bold][/color]\n[color=orange]{offence.Message}[/color]";
-                _chat.ChatMessageToOne(ChatChannel.Server, warnMessage, warnMessage, EntityUid.Invalid, false, args.Sender.Channel);
+                _adminLogger.Add(LogType.AdminCommands, logImpact, $"[AutoMod] Warned {userName} for {ruleInfo} - Reason: {offence.Message} - Message: \"{message}\"");;
+                _chat.ChatMessageToOne(ChatChannel.Server, $"[color=red][bold]AUTOMOD WARNING[/bold][/color]\n[color=orange]{offence.Message}[/color]", 
+                    $"[color=red][bold]AUTOMOD WARNING[/bold][/color]\n[color=orange]{offence.Message}[/color]", EntityUid.Invalid, false, args.Sender.Channel);
                 break;
 
             case AutoModOffenceAction.Kick:
                 var kickReason = string.IsNullOrWhiteSpace(offence.Message) ? "Kicked by AutoMod" : $"Kicked by AutoMod for: {offence.Message}";
-                _adminLogger.Add(LogType.AdminCommands, logImpact, 
-                    $"[AutoMod] Kicked user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} (Offence {offenseConfigLevel}) - Reason: {kickReason} - Message: \"{message}\"");;
+                _adminLogger.Add(LogType.AdminCommands, logImpact, $"[AutoMod] Kicked {userName} for {ruleInfo} - Reason: {kickReason} - Message: \"{message}\"");;
                 _netManager.DisconnectChannel(args.Sender.Channel, kickReason);
                 break;
 
             case AutoModOffenceAction.Ban:
-                var banReason = string.IsNullOrWhiteSpace(offence.Message) ? "Banned by AutoMod" : $"Banned by AutoMod for: {offence.Message}";
-                banReason += "\n\nYou may appeal this ban in our discord at: https://discord.com/invite/ssJTANEa";
+                var banReason = (string.IsNullOrWhiteSpace(offence.Message) ? "Banned by AutoMod" : $"Banned by AutoMod for: {offence.Message}") + 
+                    "\n\nYou may appeal this ban in our discord at: https://discord.com/invite/ssJTANEa";
                 uint? duration = offence.BanDurationMinutes > 0 ? (uint)offence.BanDurationMinutes : null;
                 _banManager.CreateServerBan(args.Sender.UserId, args.Sender.Name, null, null, null, duration, NoteSeverity.High, banReason);
                 _adminLogger.Add(LogType.AdminCommands, logImpact, 
-                    $"[AutoMod] Banned user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} (Offence {offenseConfigLevel}) - Reason: {banReason} - Duration: {(duration.HasValue ? duration + " minutes" : "permanent")} - Message: \"{message}\"");
+                    $"[AutoMod] Banned {userName} for {ruleInfo} - Duration: {(duration.HasValue ? duration + " minutes" : "permanent")} - Message: \"{message}\"");
                 _netManager.DisconnectChannel(args.Sender.Channel, banReason);
                 break;
         }
@@ -288,35 +268,17 @@ public sealed partial class AutoModSystem : SharedChatSystem
             AutoModOffenceAction.Ban => (offence.BanDurationMinutes > 0 ? $"Ban ({offence.BanDurationMinutes}m)" : "Ban (Permanent)", "red"),
             _ => ("Unknown", "gray")
         };
-
-        // Determine severity color
-        var severityColor = rule.Severity switch
+        var (severityText, severityColor) = rule.Severity switch
         {
-            1 => "yellow",   // Low
-            2 => "orange",   // Medium  
-            3 => "red",      // High
-            4 => "darkred",  // Critical
-            _ => "gray"
+            1 => ("Low", "yellow"),
+            2 => ("Medium", "orange"), 
+            3 => ("High", "red"),
+            4 => ("Critical", "darkred"),
+            _ => ("Unknown", "gray")
         };
+        var levelColor = offenceLevel switch { 0 => "yellow", 1 => "orange", _ => "red" };
 
-        var severityText = rule.Severity switch
-        {
-            1 => "Low",
-            2 => "Medium", 
-            3 => "High",
-            4 => "Critical",
-            _ => "Unknown"
-        };
-
-        // Determine offence level color
-        var levelColor = offenceLevel switch
-        {
-            0 => "yellow",
-            1 => "orange", 
-            _ => "red"
-        };
-
-        // Build the formatted message
+        // Build formatted message
         var result = $"[color=red][bold]AUTOMOD VIOLATION[/bold][/color]\n";
         result += "[color=gray]══════════════════════════════════════[/color]\n";
         result += $"[color=cyan]Channel:[/color] [color=white]{channelName}[/color]\n";
@@ -455,7 +417,6 @@ public sealed partial class AutoModSystem : SharedChatSystem
         return seconds > 0;
     }
 
-
     /// <summary>
     /// Simple AdminNote class for internal use
     /// </summary>
@@ -481,9 +442,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
         var uniqueId = existingId ?? Guid.NewGuid().ToString();
         var ruleName = rule.Category ?? $"Rule #{rule.Id}";
         
-        _automodLog.Debug($"[AutoMod] Creating note with RulePlayerKey={rulePlayerKey}, UniqueId={uniqueId}");
-        
-        // Format note as plain text - colors applied by UI layer
+        // Format note as plain text
         var note = new StringBuilder();
         
         // Header
@@ -510,7 +469,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
             for (int i = 0; i < orderedIncidents.Count; i++)
             {
                 var incident = orderedIncidents[i];
-                var incidentNum = incidents.Count - i; // Most recent = highest number
+                var incidentNum = incidents.Count - i;
                 
                 note.Append($"#{incidentNum}: ");
                 note.Append($"Level {incident.OffenseLevel} | {incident.ActionTaken}");
@@ -559,7 +518,6 @@ public sealed partial class AutoModSystem : SharedChatSystem
         {
             var notes = await _adminNotesManager.GetAllAdminRemarks(playerId.UserId);
             var rulePlayerKey = $"automod_{ruleId}_{playerId}";
-            _automodLog.Debug($"[AutoMod] Searching for RulePlayerKey={rulePlayerKey}");
             foreach (var note in notes)
             {
                 if (note is AdminNoteRecord adminNote)
@@ -574,19 +532,11 @@ public sealed partial class AutoModSystem : SharedChatSystem
                         ExpiryTime = adminNote.ExpirationTime?.DateTime,
                         Secret = adminNote.Secret
                     };
-                    var data = ExtractViolationData(simpleNote);
-                    if (data != null)
-                    {
-                        _automodLog.Debug($"[AutoMod] Note {adminNote.Id} has RulePlayerKey={data.RulePlayerKey}");
-                        if (data.RulePlayerKey == rulePlayerKey)
-                        {
-                            _automodLog.Debug($"[AutoMod] Found existing note for RulePlayerKey={rulePlayerKey} (noteId={adminNote.Id})");
-                            return simpleNote;
-                        }
-                    }
+                    
+                    if (ExtractViolationData(simpleNote)?.RulePlayerKey == rulePlayerKey)
+                        return simpleNote;
                 }
             }
-            _automodLog.Debug($"[AutoMod] No existing note found for RulePlayerKey={rulePlayerKey}");
             return null;
         }
         catch (Exception ex)
@@ -671,21 +621,16 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 }
                 else if (trimmed.StartsWith("Offense Level:"))
                 {
-                    var value = trimmed.Replace("Offense Level:", "").Trim();
-                    if (!int.TryParse(value, out offenseLevel))
+                    if (!int.TryParse(trimmed.Replace("Offense Level:", "").Trim(), out offenseLevel))
                     {
-                        _automodLog.Warning($"[AutoMod] Note {note.Id} has invalid offense level: '{value}'");
+                        _automodLog.Warning($"[AutoMod] Note {note.Id} has invalid offense level");
                         offenseLevel = 1;
                     }
                 }
                 else if (trimmed.StartsWith("Action Taken:"))
-                {
                     action = trimmed.Replace("Action Taken:", "").Trim();
-                }
                 else if (trimmed.StartsWith("Channel:"))
-                {
                     channel = trimmed.Replace("Channel:", "").Trim();
-                }
             }
             
             // Extract rule ID from rulePlayerKey if not found (format: automod_RULEID_PLAYERID)
@@ -695,8 +640,6 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 if (keyParts.Length >= 2)
                     int.TryParse(keyParts[1], out ruleId);
             }
-            
-            _automodLog.Debug($"[AutoMod] ExtractViolationData: Parsed Rule ID: {ruleId}, Offense Level: {offenseLevel}");
             
             // Parse incidents from format
             var incidents = new List<ViolationIncident>();
@@ -724,64 +667,38 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 
                 if (inIncidentSection && trimmed.StartsWith("#") && trimmed.Contains("|"))
                 {
-                    // Parse new format: "#1: Level 2 | Warn | Decay: 1.0h, by 2 | [ACTIVE]"
                     var colonIndex = trimmed.IndexOf(':');
                     if (colonIndex <= 0) continue;
                     
-                    var incidentData = trimmed[(colonIndex + 1)..].Trim();
                     var incident = new ViolationIncident { DecayLevel = 1, DecaySeconds = 0, Timestamp = note.CreatedAt };
                     
-                    var parts = incidentData.Split('|');
-                    foreach (var part in parts)
+                    foreach (var part in trimmed[(colonIndex + 1)..].Trim().Split('|'))
                     {
                         var p = part.Trim();
-                        
-                        // Parse "Level X"
-                        if (p.StartsWith("Level "))
-                        {
-                            var levelStr = p.Replace("Level ", "");
-                            if (int.TryParse(levelStr, out var level))
-                                incident.OffenseLevel = level;
-                        }
-                        // Parse action (Warn, Kick, Ban, None)
+                        if (p.StartsWith("Level ") && int.TryParse(p.Replace("Level ", ""), out var level))
+                            incident.OffenseLevel = level;
                         else if (p is "Warn" or "Kick" or "Ban" or "None")
-                        {
                             incident.ActionTaken = p;
-                        }
-                        // Parse "Decay: 1.5h, by 2" or "Decay: 30m, by 1" or "Decay: 60s"
                         else if (p.StartsWith("Decay:"))
                         {
                             var decayStr = p.Replace("Decay:", "").Trim();
-                            
-                            // Extract decay level if present: "1.5h, by 2" -> level=2, time="1.5h"
                             var byIndex = decayStr.IndexOf(", by ");
                             if (byIndex >= 0)
                             {
-                                var timeStr = decayStr[..byIndex].Trim();
-                                var lvlStr = decayStr[(byIndex + 5)..].Trim();
-                                if (int.TryParse(lvlStr, out var lvl))
+                                if (int.TryParse(decayStr[(byIndex + 5)..].Trim(), out var lvl))
                                     incident.DecayLevel = lvl;
-                                decayStr = timeStr;
+                                decayStr = decayStr[..byIndex].Trim();
                             }
                             
                             if (TryParseDecayTime(decayStr, out var seconds))
-                            {
                                 incident.DecaySeconds = seconds;
-                                // Don't set ExpiresAt here - it will be calculated dynamically
-                            }
                         }
-                        // Parse [ACTIVE] or [DECAYED]
                         else if (p == "[ACTIVE]")
-                        {
                             incident.IsDecayed = false;
-                        }
                         else if (p == "[DECAYED]")
-                        {
                             incident.IsDecayed = true;
-                        }
                     }
                     
-                    // Next line contains the cleaned message: "..."
                     var nextLineIndex = Array.IndexOf(lines, line) + 1;
                     if (nextLineIndex < lines.Length)
                     {
@@ -875,8 +792,6 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 Incidents = incidents
             };
             
-            _automodLog.Debug($"[AutoMod] ExtractViolationData: Parsed offense level: {offenseLevel}, stored as ViolationCount: {violationData.ViolationCount}");
-            
             return violationData;
         }
         catch (Exception ex)
@@ -901,7 +816,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
         retry:
         try
         {
-            // Ensure the noted player exists in the DB to satisfy FK constraints
+            // Ensure the noted player exists in the DB
             if (await _db.GetPlayerRecordByUserId(playerId) is null)
             {
                 _automodLog.Warning($"Skipping AutoMod note: no player record found for {playerId} (FK constraint).");
@@ -922,23 +837,15 @@ public sealed partial class AutoModSystem : SharedChatSystem
             // If we have cached violation data, we know there's an existing note to update
             if (existingViolation != null)
             {
-                var existingData = existingViolation;
-                if (existingData != null)
+                // Mark expired incidents as decayed
+                var currentTime = DateTime.UtcNow;
+                foreach (var incident in existingViolation.Incidents)
                 {
-                    _automodLog.Debug($"[AutoMod] UPDATING existing note {existingData.NoteId}, old ViolationCount={existingData.ViolationCount}, new ViolationCount={newOffenseLevel}");
-                    
-                    // Mark expired incidents as decayed
-                    var currentTime = DateTime.UtcNow;
-                    foreach (var incident in existingData.Incidents)
-                    {
-                        if (incident.ExpiresAt.HasValue && currentTime > incident.ExpiresAt.Value && !incident.IsDecayed)
-                        {
-                            incident.IsDecayed = true;
-                            _automodLog.Debug($"[AutoMod] Marking incident (Lvl {incident.OffenseLevel}) as DECAYED");
-                        }
-                    }
-                    
-                    existingData.Incidents.Add(new ViolationIncident
+                    if (incident.ExpiresAt.HasValue && currentTime > incident.ExpiresAt.Value && !incident.IsDecayed)
+                        incident.IsDecayed = true;
+                }
+                
+                existingViolation.Incidents.Add(new ViolationIncident
                     {
                         Timestamp = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc),
                         Message = cleanedMessage,
@@ -949,90 +856,41 @@ public sealed partial class AutoModSystem : SharedChatSystem
                         DecayLevel = decayLevel,
                         ExpiresAt = decaySeconds > 0 ? DateTime.SpecifyKind(DateTime.UtcNow.AddSeconds(decaySeconds), DateTimeKind.Utc) : null,
                         IsDecayed = false
-                    });
-                    // Use the newOffenseLevel that was calculated based on the previous note
-                    existingData.ViolationCount = newOffenseLevel;
-                    existingData.CurrentAction = action.ToString();
-                    existingData.OriginalMessage = cleanedMessage;
-                    existingData.Channel = channel;
-                    existingData.LastUpdated = DateTime.UtcNow;
+                });
+                
+                existingViolation.ViolationCount = newOffenseLevel;
+                existingViolation.CurrentAction = action.ToString();
+                existingViolation.OriginalMessage = cleanedMessage;
+                existingViolation.Channel = channel;
+                existingViolation.LastUpdated = DateTime.UtcNow;
+                
+                var nextIncidentDecayTime = existingViolation.Incidents
+                    .Where(i => !i.IsDecayed && i.ExpiresAt.HasValue)
+                    .OrderByDescending(i => i.Timestamp)
+                    .FirstOrDefault()?.ExpiresAt;
+                
+                var updatedMessage = FormatViolationMessage(rule, playerId, existingViolation.ViolationCount, channel, action.ToString(), existingViolation.Incidents, existingViolation.UniqueId);
                     
-                    // Set next decay time to the NEWEST incident's expiration (most recently added)
-                    // When you add a new violation, the decay timer resets to that incident's decay time
-                    var nextIncidentDecayTime = existingData.Incidents
-                        .Where(i => !i.IsDecayed && i.ExpiresAt.HasValue)
-                        .OrderByDescending(i => i.Timestamp) // Most recent incident first
-                        .FirstOrDefault()?.ExpiresAt;
-                    
-                    _automodLog.Debug($"[AutoMod] Total incidents: {existingData.Incidents.Count}, Active: {existingData.Incidents.Count(i => !i.IsDecayed)}, Next decay time: {nextIncidentDecayTime}");
-                    foreach (var inc in existingData.Incidents.Where(i => !i.IsDecayed))
-                    {
-                        _automodLog.Debug($"[AutoMod]   Active incident: Level={inc.OffenseLevel}, ExpiresAt={inc.ExpiresAt}, Decayed={inc.IsDecayed}");
-                    }
-                    
-                    var updatedMessage = FormatViolationMessage(rule, playerId, existingData.ViolationCount, channel, action.ToString(), existingData.Incidents, existingData.UniqueId);
-                    _automodLog.Debug($"[AutoMod] Calling EditAdminNote for note {existingData.NoteId} with updated offense level {existingData.ViolationCount}");
-                    _automodLog.Debug($"[AutoMod] Updated message preview (first 500 chars): {updatedMessage[..Math.Min(500, updatedMessage.Length)]}");
-                    _automodLog.Debug($"[AutoMod] Updated message length: {updatedMessage.Length} chars, contains 'Offense Level:' at position {updatedMessage.IndexOf("Offense Level:")}");
-                    
-                    await _db.EditAdminNote(
-                        existingData.NoteId, 
-                        updatedMessage, 
-                        severity, 
-                        rule.Secret, 
-                        Guid.Empty, 
-                        DateTimeOffset.UtcNow, 
-                        nextIncidentDecayTime.HasValue ? new DateTimeOffset(nextIncidentDecayTime.Value) : null
-                    );
-                    _automodLog.Debug($"[AutoMod] Successfully updated note {existingData.NoteId}, now re-querying to verify...");
-                    
-                    // Verify the update by re-reading the note
-                    var verifyNote = await _db.GetAdminNote(existingData.NoteId);
-                    if (verifyNote != null)
-                    {
-                        _automodLog.Debug($"[AutoMod] Verification: Note {existingData.NoteId} message length: {verifyNote.Message.Length}, contains 'Offense Level:' at position {verifyNote.Message.IndexOf("Offense Level:")}");
-                        var verifyData = ExtractViolationData(new AdminNote { Id = verifyNote.Id, Message = verifyNote.Message, CreatedAt = verifyNote.CreatedAt.DateTime, CreatedBy = "System", Severity = verifyNote.Severity, ExpiryTime = verifyNote.ExpirationTime?.DateTime, Secret = verifyNote.Secret });
-                    if (verifyData != null)
-                    {
-                        _automodLog.Debug($"[AutoMod] Verification: Parsed ViolationCount = {verifyData.ViolationCount}");
-                    }
-                }
+                await _db.EditAdminNote(existingViolation.NoteId, updatedMessage, severity, rule.Secret, 
+                    Guid.Empty, DateTimeOffset.UtcNow, 
+                    nextIncidentDecayTime.HasValue ? new DateTimeOffset(nextIncidentDecayTime.Value) : null);
                 return cleanedMessage;
             }
-        }
-    
-    _automodLog.Debug($"[AutoMod] CREATING new note with offense level {newOffenseLevel}");
+            
+            // Create new note
         var now = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
         var incidents = new List<ViolationIncident> { new() { 
-            Timestamp = now, 
-            Message = cleanedMessage, 
-            Channel = channel, 
-            ActionTaken = action.ToString(), 
-            OffenseLevel = newOffenseLevel, // Store the actual offense level (1, 2, 3, etc.)
-            DecaySeconds = decaySeconds,
-            DecayLevel = decayLevel,
+            Timestamp = now, Message = cleanedMessage, Channel = channel, ActionTaken = action.ToString(), 
+            OffenseLevel = newOffenseLevel, DecaySeconds = decaySeconds, DecayLevel = decayLevel,
             ExpiresAt = decaySeconds > 0 ? DateTime.SpecifyKind(now.AddSeconds(decaySeconds), DateTimeKind.Utc) : null
         } };
         
         var noteMessage = FormatViolationMessage(rule, playerId, newOffenseLevel, channel, action.ToString(), incidents, null);
+        var firstIncidentDecayTime = incidents.FirstOrDefault(i => i.ExpiresAt.HasValue)?.ExpiresAt;
         
-        // Set note expiration to when the first incident will decay (for display purposes)
-        var firstIncidentDecayTime = incidents
-            .Where(i => i.ExpiresAt.HasValue)
-            .OrderBy(i => i.ExpiresAt)
-            .FirstOrDefault()?.ExpiresAt;
-        
-        await _db.AddAdminNote(
-            roundId, 
-            playerId, 
-            playtime, 
-            noteMessage, 
-            severity, 
-            rule.Secret, 
-            Guid.Empty, 
-            DateTimeOffset.UtcNow, 
-            firstIncidentDecayTime.HasValue ? new DateTimeOffset(firstIncidentDecayTime.Value) : null
-        );
+        await _db.AddAdminNote(roundId, playerId, playtime, noteMessage, severity, rule.Secret, 
+            Guid.Empty, DateTimeOffset.UtcNow, 
+            firstIncidentDecayTime.HasValue ? new DateTimeOffset(firstIncidentDecayTime.Value) : null);
         
         return cleanedMessage;
     }
@@ -1043,19 +901,10 @@ public sealed partial class AutoModSystem : SharedChatSystem
         {
             retryCount++;
             _automodLog.Warning($"[AutoMod] AddAdminNote hit UNIQUE constraint (race condition), retrying (attempt {retryCount})");
+            await Task.Delay(100 * retryCount);
             
-            // Longer delay to allow the other transaction to complete
-            await Task.Delay(100 * retryCount); // Exponential backoff: 100ms, 200ms, 300ms
-            
-            // Force a fresh query to get the note that was just created by the racing transaction
             var freshViolations = await GetPlayerAutoModViolations(playerId);
-            var freshExisting = freshViolations.FirstOrDefault(v => v.RuleId == rule.Id);
-            
-            if (freshExisting != null)
-            {
-                _automodLog.Debug($"[AutoMod] Found existing note {freshExisting.NoteId} after UNIQUE constraint, will update instead");
-                existingViolation = freshExisting;
-            }
+            existingViolation = freshViolations.FirstOrDefault(v => v.RuleId == rule.Id);
             
             goto retry;
         }
@@ -1079,32 +928,23 @@ public sealed partial class AutoModSystem : SharedChatSystem
 
     /// <summary>
     /// Background task that processes decay for all AutoMod notes automatically
-    /// Runs on a timer every 20 seconds, checking all connected players
     /// </summary>
     private async void ProcessBackgroundDecay()
     {
         try
         {
-            // Get all currently connected players
             var players = _playerManager.Sessions;
-            if (players == null || !players.Any())
-                return;
+            if (!players.Any()) return;
             
             var now = DateTime.UtcNow;
-            
-            // Process decay for each connected player
             foreach (var player in players)
             {
                 try
                 {
                     var playerNotes = await _adminNotesManager.GetAllAdminRemarks(player.UserId.UserId);
-                    
-                    // Check if player has any AutoMod notes
-                    var hasAutoModNotes = playerNotes.Any(n => n is AdminNoteRecord note && note.Message.Contains("Metadata:"));
-                    if (!hasAutoModNotes)
+                    if (!playerNotes.Any(n => n is AdminNoteRecord note && note.Message.Contains("Metadata:")))
                         continue;
                     
-                    // Process decay for this player
                     await ProcessPlayerDecay(player.UserId.UserId, playerNotes, now);
                 }
                 catch (Exception ex)
@@ -1211,10 +1051,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
                     nextDecayTime.HasValue ? new DateTimeOffset(nextDecayTime.Value) : null
                 );
                 
-                // Update the last processed timestamp to prevent rapid re-processing
                 _lastDecayProcessed[adminNote.Id] = now;
-                
-                _automodLog.Debug($"[AutoMod] Background decay processed note {adminNote.Id} for player {playerId}, new violation count: {newViolationCount}");
             }
         }
         catch (Exception ex)
@@ -1224,7 +1061,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
     }
 
     /// <summary>
-    /// Gets all AutoMod violations for a player from admin notes
+    /// Gets all AutoMod violations for a player from admin notes (read-only, no decay processing)
     /// </summary>
     private async Task<List<AutoModViolationData>> GetPlayerAutoModViolations(NetUserId userId)
     {
@@ -1232,14 +1069,13 @@ public sealed partial class AutoModSystem : SharedChatSystem
         try
         {
             var notes = await _adminNotesManager.GetAllAdminRemarks(userId.UserId);
-            var now = DateTime.UtcNow;
             
             foreach (var note in notes)
             {
                 if (note is not AdminNoteRecord adminNote || !adminNote.Message.Contains("Metadata:"))
                     continue;
                 
-                var simpleNote = new AdminNote
+                var violationData = ExtractViolationData(new AdminNote
                 {
                     Id = adminNote.Id,
                     Message = adminNote.Message,
@@ -1248,69 +1084,10 @@ public sealed partial class AutoModSystem : SharedChatSystem
                     Severity = adminNote.Severity,
                     ExpiryTime = adminNote.ExpirationTime?.DateTime,
                     Secret = adminNote.Secret
-                };
+                });
                 
-                var violationData = ExtractViolationData(simpleNote);
                 if (violationData != null)
-                {
-                    _automodLog.Debug($"[AutoMod] GetPlayerAutoModViolations: Found violation for RuleId={violationData.RuleId}, ViolationCount={violationData.ViolationCount}");
-                    
-                    // Check cooldown: don't process decay more than once per second per note
-                    if (_lastDecayProcessed.TryGetValue(adminNote.Id, out var lastProcessed))
-                    {
-                        if ((now - lastProcessed).TotalSeconds < 1.0)
-                        {
-                            violations.Add(violationData);
-                            continue; // Skip decay processing if processed within last second
-                        }
-                    }
-                    
-                    // Process decay for expired incidents within this violation
-                    var expiredIncidents = violationData.Incidents
-                        .Where(i => i.ExpiresAt.HasValue && now >= i.ExpiresAt.Value && !i.IsDecayed)
-                        .OrderBy(i => i.ExpiresAt)
-                        .ToList();
-                    
-                    if (expiredIncidents.Count > 0)
-                    {
-                        // Take only the OLDEST expired incident to process
-                        // Decay happens one incident at a time, not multiple at once
-                        var oldestExpired = expiredIncidents.First();
-                        var decayLevel = oldestExpired.DecayLevel;
-                        
-                        // Mark the oldest N active incidents as decayed (where N = DecayLevel)
-                        var allIncidents = violationData.Incidents.OrderBy(i => i.Timestamp).ToList();
-                        var activeIncidents = allIncidents.Where(i => !i.IsDecayed).ToList();
-                        var toDecay = activeIncidents.Take(decayLevel).ToList();
-                        
-                        foreach (var incident in toDecay)
-                        {
-                            incident.IsDecayed = true;
-                        }
-                        
-                        _automodLog.Debug($"[AutoMod] GetPlayerAutoModViolations: Processed {expiredIncidents.Count} expired incidents, marked {toDecay.Count} total incidents as decayed");
-                        
-                        // Reduce violation count by actual number of decayed incidents
-                        violationData.ViolationCount = Math.Max(0, violationData.ViolationCount - toDecay.Count);
-                        
-                        // Update next decay time to current time + next incident's decay seconds
-                        var nextIncident = violationData.Incidents
-                            .Where(i => !i.IsDecayed && i.DecaySeconds > 0)
-                            .OrderBy(i => i.Timestamp)
-                            .FirstOrDefault();
-                        if (nextIncident != null)
-                        {
-                            nextIncident.ExpiresAt = DateTime.SpecifyKind(now.AddSeconds(nextIncident.DecaySeconds), DateTimeKind.Utc);
-                        }
-                        
-                        _automodLog.Debug($"[AutoMod] GetPlayerAutoModViolations: After decay processing, new ViolationCount={violationData.ViolationCount}");
-                        
-                        // Update the last processed timestamp
-                        _lastDecayProcessed[adminNote.Id] = now;
-                    }
-                    
                     violations.Add(violationData);
-                }
             }
         }
         catch (Exception ex)
@@ -1319,8 +1096,6 @@ public sealed partial class AutoModSystem : SharedChatSystem
         }
         return violations;
     }
-
-    #region Statistics
 
     /// <summary>
     /// Gets AutoMod violation statistics for display in admin panels
@@ -1348,6 +1123,4 @@ public sealed partial class AutoModSystem : SharedChatSystem
             return (0, 0);
         }
     }
-    
-    #endregion
 }
