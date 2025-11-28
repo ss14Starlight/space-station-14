@@ -15,9 +15,12 @@ public static class AutoModFormatting
         { 1, "#00ff00" }, { 2, "#ffff00" }, { 3, "#ff8800" }
     };
 
-    private static readonly Dictionary<string, string> _actionColors = new(StringComparer.OrdinalIgnoreCase)
+    private static readonly Dictionary<string, string> _actionColors = new()
     {
-        { "none", "#00ff00" }, { "warn", "#ffff00" }, { "kick", "#ff8800" }, { "ban", "#ff0000" }
+        { "none", "#00ff00" }, { "None", "#00ff00" },
+        { "warn", "#ffff00" }, { "Warn", "#ffff00" },
+        { "kick", "#ff8800" }, { "Kick", "#ff8800" },
+        { "ban", "#ff0000" }, { "Ban", "#ff0000" }
     };
 
     /// <summary>
@@ -69,12 +72,12 @@ public static class AutoModFormatting
             var trimmed = line.Trim();
             
             if (trimmed.StartsWith("╔══ AUTOMOD VIOLATION ══╗"))
-                result.AppendLine($"[bold][color=#ff4444]{line}[/color][/bold]");
+                result.AppendLine("[bold][color=#ff4444]" + line + "[/color][/bold]");
             else if (trimmed.StartsWith("Rule:"))
             {
                 var parts = line.Split(':', 2);
                 result.AppendLine(parts.Length == 2 
-                    ? $"[color=#00ddff]Rule:[/color] [bold][color=#ffaa00]{parts[1].Trim()}[/color][/bold]"
+                    ? "[color=#00ddff]Rule:[/color] [bold][color=#ffaa00]" + parts[1].Trim() + "[/color][/bold]"
                     : line);
             }
             else if (trimmed.StartsWith("Offense Level:"))
@@ -83,7 +86,7 @@ public static class AutoModFormatting
                 if (parts.Length == 2 && int.TryParse(parts[1].Trim(), out var level))
                 {
                     var color = _levelColors.TryGetValue(level, out var c) ? c : "#ff0000";
-                    result.AppendLine($"[color=#00ddff]Offense Level:[/color] [bold][color={color}]{level}[/color][/bold]");
+                    result.AppendLine("[color=#00ddff]Offense Level:[/color] [bold][color=" + color + "]" + level + "[/color][/bold]");
                 }
                 else
                     result.AppendLine(line);
@@ -95,7 +98,7 @@ public static class AutoModFormatting
                 {
                     var action = parts[1].Trim();
                     var color = _actionColors.TryGetValue(action, out var c) ? c : "#88aaff";
-                    result.AppendLine($"[color=#00ddff]Action Taken:[/color] [bold][color={color}]{action}[/color][/bold]");
+                    result.AppendLine("[color=#00ddff]Action Taken:[/color] [bold][color=" + color + "]" + action + "[/color][/bold]");
                 }
                 else
                     result.AppendLine(line);
@@ -104,18 +107,18 @@ public static class AutoModFormatting
             {
                 var parts = trimmed.Split(':', 2);
                 result.AppendLine(parts.Length == 2 
-                    ? $"[color=#00ddff]{parts[0]}:[/color] [color=#ffffff]{parts[1].Trim()}[/color]"
+                    ? "[color=#00ddff]" + parts[0] + ":[/color] [color=#ffffff]" + parts[1].Trim() + "[/color]"
                     : line);
             }
             else if (trimmed.StartsWith("Violating Message:"))
             {
                 var parts = trimmed.Split(':', 2);
                 result.AppendLine(parts.Length == 2 
-                    ? $"[bold][color=#00ddff]Violating Message:[/color][/bold] [color=#ffcccc]{parts[1].Trim()}[/color]"
+                    ? "[bold][color=#00ddff]Violating Message:[/color][/bold] [color=#ffcccc]" + parts[1].Trim() + "[/color]"
                     : line);
             }
             else if (trimmed.StartsWith("──"))
-                result.AppendLine($"[color=#88aaff]{line}[/color]");
+                result.AppendLine("[color=#88aaff]" + line + "[/color]");
             else if (trimmed.StartsWith("#"))
             {
                 var isDecayed = trimmed.Contains("[DECAYED]");
@@ -127,25 +130,25 @@ public static class AutoModFormatting
                     var part = parts[j].Trim();
                     
                     if (j == 0 && part.StartsWith("#"))
-                        result.Append($"[color=#88aaff]{part}[/color]");
+                        result.Append("[color=#88aaff]" + part + "[/color]");
                     else if (part.StartsWith("Level ") && int.TryParse(part.Replace("Level ", ""), out var level))
                     {
                         var color = isDecayed ? "#555555" : (_levelColors.TryGetValue(level, out var c) ? c : "#ff0000");
-                        result.Append($"[color={color}]Level {level}[/color]");
+                        result.Append("[color=" + color + "]Level " + level + "[/color]");
                     }
                     else if (_actionColors.ContainsKey(part))
                     {
                         var color = isDecayed ? "#555555" : _actionColors[part];
-                        result.Append($"[bold][color={color}]{part}[/color][/bold]");
+                        result.Append("[bold][color=" + color + "]" + part + "[/color][/bold]");
                     }
                     else if (part.StartsWith("Decay:"))
-                        result.Append($"[color=#aaaaaa]{part}[/color]");
+                        result.Append("[color=#aaaaaa]" + part + "[/color]");
                     else if (part == "[ACTIVE]")
                         result.Append("[bold][color=#00ff00][ACTIVE][/color][/bold]");
                     else if (part == "[DECAYED]")
                         result.Append("[bold][color=#ff4444][DECAYED][/color][/bold]");
                     else
-                        result.Append($"[color={baseColor}]{part}[/color]");
+                        result.Append("[color=" + baseColor + "]" + part + "[/color]");
                     
                     if (j < parts.Length - 1)
                         result.Append(" [color=#666666]|[/color] ");
@@ -157,13 +160,13 @@ public static class AutoModFormatting
                 var indent = new string(' ', line.Length - trimmed.Length);
                 var parts = trimmed.Split(':', 2);
                 result.AppendLine(parts.Length == 2 
-                    ? $"{indent}[color=#cccccc]Message:[/color] [color=#ffcccc]{parts[1].Trim()}[/color]"
+                    ? indent + "[color=#cccccc]Message:[/color] [color=#ffcccc]" + parts[1].Trim() + "[/color]"
                     : line);
             }
             else if (trimmed.StartsWith("╚"))
-                result.AppendLine($"[color=#ff4444]{line}[/color]");
+                result.AppendLine("[color=#ff4444]" + line + "[/color]");
             else if (trimmed.StartsWith("Metadata:"))
-                result.AppendLine($"[color=#555555][size=8]{line}[/size][/color]");
+                result.AppendLine("[color=#555555][size=8]" + line + "[/size][/color]");
             else
                 result.AppendLine(line);
         }
