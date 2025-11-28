@@ -1647,7 +1647,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                         where note.PlayerUserId == player &&
                               !note.Secret &&
                               !note.Deleted &&
-                              (note.ExpirationTime == null || DateTime.UtcNow < note.ExpirationTime)
+                              (note.ExpirationTime == null || DateTime.UtcNow < note.ExpirationTime || note.Message.Contains("AUTOMOD VIOLATION")) // Starlight edit: AutoMod
                         select note)
                     .Include(note => note.Round)
                     .ThenInclude(r => r!.Server)

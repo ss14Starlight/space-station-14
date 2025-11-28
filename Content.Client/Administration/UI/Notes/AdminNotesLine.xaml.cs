@@ -8,6 +8,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Input;
 using Robust.Shared.Utility;
+using System.Text.RegularExpressions; // Starlight
 
 namespace Content.Client.Administration.UI.Notes;
 
@@ -91,23 +92,50 @@ public sealed partial class AdminNotesLine : BoxContainer
         }
         else if (Note.ExpiryTime is not null)
         {
-            // Starlight Start: AutoMod
-            // AutoMod note to use "Decays" instead of "Expires"
-            var isAutoMod = Note.Message.Contains("AUTOMOD_ID:");
-            var labelPrefix = isAutoMod ? "Decays" : "Expires";
-            // Starlight End
-            
-            // Notes should never be visible when expired, bans should
-            if (Note.ExpiryTime.Value > DateTime.UtcNow)
+            // Starlight edit Start: AutoMod - Show decay info for AutoMod notes
+            if (Note.Message.Contains("Metadata:") && Note.Message.Contains("\u2554\u2550\u2550 AUTOMOD VIOLATION \u2550\u2550\u2557"))
             {
-                ExpiresLabel.Text = $"{labelPrefix} {Note.ExpiryTime.Value.ToLocalTime():yyyy-MM-dd HH:mm:ss} ({Note.ExpiryTime.Value - DateTime.UtcNow:d'd 'hh':'mm})"; // Starlight edit: AutoMod
-                ExpiresLabel.Modulate = Color.FromHex("#86DC3D");
+                // For AutoMod notes, ExpiryTime indicates when the next incident will decay
+                // Notes are always visible regardless of expiration status
+                if (Note.ExpiryTime.Value > DateTime.UtcNow)
+                {
+                    var timeRemaining = Note.ExpiryTime.Value - DateTime.UtcNow;
+                    var timeStr = timeRemaining.TotalHours >= 1 
+                        ? $"{timeRemaining.TotalHours:F1}h"
+                        : timeRemaining.TotalMinutes >= 1
+                        ? $"{timeRemaining.TotalMinutes:F0}m"
+                        : $"{timeRemaining.TotalSeconds:F0}s";
+                    
+                    ExpiresLabel.Text = $"Next decay in: {timeStr}";
+                    ExpiresLabel.Modulate = Color.FromHex("#86DC3D");
+                    ExpiresLabel.Visible = true;
+                }
+                else
+                {
+                    // Decay processing pending (will happen on next offense or note retrieval)
+                    ExpiresLabel.Text = "Decay processing pending...";
+                    ExpiresLabel.Modulate = Color.FromHex("#FFA500"); // Orange
+                    ExpiresLabel.Visible = true;
+                }
             }
             else
             {
-                ExpiresLabel.Text = isAutoMod ? "Decayed" : Loc.GetString("admin-note-editor-expiry-label-expired"); // Starlight edit: AutoMod
+                // Regular notes with expiration
+                var labelPrefix = "Expires";
+                
+                // Notes should never be visible when expired, bans should
+                if (Note.ExpiryTime.Value > DateTime.UtcNow)
+                {
+                    ExpiresLabel.Text = $"{labelPrefix} {Note.ExpiryTime.Value.ToLocalTime():yyyy-MM-dd HH:mm:ss} ({Note.ExpiryTime.Value - DateTime.UtcNow:d'd 'hh':'mm})";
+                    ExpiresLabel.Modulate = Color.FromHex("#86DC3D");
+                }
+                else
+                {
+                    ExpiresLabel.Text = Loc.GetString("admin-note-editor-expiry-label-expired");
+                }
+                ExpiresLabel.Visible = true;
             }
-            ExpiresLabel.Visible = true;
+            // Starlight edit End
         }
 
         if (Note.LastEditedAt > Note.CreatedAt)
@@ -131,11 +159,24 @@ public sealed partial class AdminNotesLine : BoxContainer
                 // Starlight edit Start: AutoMod
                 try
                 {
-                    NoteLabel.Text = Note.Message;
+                    // Check if this is an AutoMod note with plain text format
+                    if (Note.Message.Contains("Metadata:") && Note.Message.Contains("╔══ AUTOMOD VIOLATION ══╗"))
+                    {
+                        var sawmill = Logger.GetSawmill("admin.notes");
+                        sawmill.Debug($"Applying AutoMod colors to note {Note.Id}");
+                        var coloredMessage = ApplyAutoModColors(Note.Message);
+                        sawmill.Debug($"Colored message preview (first 200 chars): {coloredMessage[..Math.Min(200, coloredMessage.Length)]}");
+                        NoteLabel.Text = coloredMessage; // Use Text property to parse BBCode markup
+                    }
+                    else
+                    {
+                        NoteLabel.SetMessage(Note.Message);
+                    }
                 }
-                catch (InvalidOperationException ex) when (ex.Message.Contains("Stack empty"))
+                catch (Exception ex)
                 {
-                    Logger.GetSawmill("admin.notes").Warning($"BBCode parsing failed for note {Note.Id}: {ex.Message}");
+                    var sawmill = Logger.GetSawmill("admin.notes");
+                    sawmill.Warning($"Failed to apply AutoMod colors for note {Note.Id}: {ex.Message}");
                     NoteLabel.SetMessage(Note.Message.Replace("[", "").Replace("]", ""));
                 }
                 // Starlight edit End
@@ -147,6 +188,220 @@ public sealed partial class AdminNotesLine : BoxContainer
             ExtraLabel.Text = Loc.GetString("admin-notes-message-seen");
             ExtraLabel.Visible = true;
         }
+    }
+
+    /// <summary>
+    /// // Starlight Start: AutoMod
+    /// Applies BBCode coloring to plain text AutoMod notes based on data values
+    /// </summary>
+    private string ApplyAutoModColors(string plainText)
+    {
+        var result = new StringBuilder();
+        var lines = plainText.Split('\n');
+        
+        for (int i = 0; i < lines.Length; i++)
+        {
+            var line = lines[i];
+            var trimmed = line.Trim();
+            
+            // Header
+            if (trimmed.StartsWith("╔══ AUTOMOD VIOLATION ══╗"))
+            {
+                result.AppendLine("[bold][color=#ff4444]" + line + "[/color][/bold]");
+            }
+            // Rule name line
+            else if (trimmed.StartsWith("Rule:"))
+            {
+                var parts = line.Split(':', 2);
+                if (parts.Length == 2)
+                {
+                    result.AppendLine("[color=#00ddff]Rule:[/color] [bold][color=#ffaa00]" + parts[1].Trim() + "[/color][/bold]");
+                }
+                else
+                {
+                    result.AppendLine(line);
+                }
+            }
+            // Offense Level - color based on value
+            else if (trimmed.StartsWith("Offense Level:"))
+            {
+                var parts = trimmed.Split(':', 2);
+                if (parts.Length == 2 && int.TryParse(parts[1].Trim(), out var level))
+                {
+                    var color = level switch
+                    {
+                        1 => "#00ff00",  // Green
+                        2 => "#ffff00",  // Yellow
+                        3 => "#ff8800",  // Orange
+                        _ => "#ff0000"   // Red for 4+
+                    };
+                    result.AppendLine("[color=#00ddff]Offense Level:[/color] [bold][color=" + color + "]" + level + "[/color][/bold]");
+                }
+                else
+                {
+                    result.AppendLine(line);
+                }
+            }
+            // Action Taken - color based on action type
+            else if (trimmed.StartsWith("Action Taken:"))
+            {
+                var parts = trimmed.Split(':', 2);
+                if (parts.Length == 2)
+                {
+                    var action = parts[1].Trim();
+                    var color = action.ToLower() switch
+                    {
+                        "none" => "#00ff00",    // Green
+                        "warn" => "#ffff00",    // Yellow
+                        "kick" => "#ff8800",    // Orange
+                        "ban" => "#ff0000",     // Red
+                        _ => "#88aaff"          // Blue for unknown
+                    };
+                    result.AppendLine("[color=#00ddff]Action Taken:[/color] [bold][color=" + color + "]" + action + "[/color][/bold]");
+                }
+                else
+                {
+                    result.AppendLine(line);
+                }
+            }
+            // Other key fields
+            else if (trimmed.StartsWith("Channel:") || trimmed.StartsWith("Category:"))
+            {
+                var parts = trimmed.Split(':', 2);
+                if (parts.Length == 2)
+                {
+                    result.AppendLine("[color=#00ddff]" + parts[0] + ":[/color] [color=#ffffff]" + parts[1].Trim() + "[/color]");
+                }
+                else
+                {
+                    result.AppendLine(line);
+                }
+            }
+            // Violating Message
+            else if (trimmed.StartsWith("Violating Message:"))
+            {
+                var parts = trimmed.Split(':', 2);
+                if (parts.Length == 2)
+                {
+                    result.AppendLine("[bold][color=#00ddff]Violating Message:[/color][/bold] [color=#ffcccc]" + parts[1].Trim() + "[/color]");
+                }
+                else
+                {
+                    result.AppendLine(line);
+                }
+            }
+            // Section headers
+            else if (trimmed.StartsWith("──"))
+            {
+                result.AppendLine("[color=#88aaff]" + line + "[/color]");
+            }
+            // Incident lines - format: "#N: Level X | Action | Time | Decay: ... | [ACTIVE/DECAYED]"
+            else if (trimmed.StartsWith("#"))
+            {
+                var isDecayed = trimmed.Contains("[DECAYED]");
+                var baseColor = isDecayed ? "#555555" : "#ffffff";
+                
+                var parts = trimmed.Split('|');
+                for (int j = 0; j < parts.Length; j++)
+                {
+                    var part = parts[j].Trim();
+                    
+                    // Color different parts
+                    if (j == 0 && part.StartsWith("#"))
+                    {
+                        // Incident number
+                        result.Append("[color=#88aaff]" + part + "[/color]");
+                    }
+                    else if (part.StartsWith("Level "))
+                    {
+                        var levelStr = part.Replace("Level ", "");
+                        if (int.TryParse(levelStr, out var level))
+                        {
+                            var color = level switch
+                            {
+                                1 => "#00ff00",
+                                2 => "#ffff00",
+                                3 => "#ff8800",
+                                _ => "#ff0000"
+                            };
+                            if (isDecayed) color = "#555555";
+                            result.Append("[color=" + color + "]Level " + level + "[/color]");
+                        }
+                        else
+                        {
+                            result.Append("[color=" + baseColor + "]" + part + "[/color]");
+                        }
+                    }
+                    else if (part == "Warn" || part == "Kick" || part == "Ban" || part == "None")
+                    {
+                        var color = part.ToLower() switch
+                        {
+                            "warn" => "#ffff00",
+                            "kick" => "#ff8800",
+                            "ban" => "#ff0000",
+                            _ => "#00ff00"
+                        };
+                        if (isDecayed) color = "#555555";
+                        result.Append("[bold][color=" + color + "]" + part + "[/color][/bold]");
+                    }
+                    else if (part.StartsWith("Decay:"))
+                    {
+                        result.Append("[color=#aaaaaa]" + part + "[/color]");
+                    }
+                    else if (part == "[ACTIVE]")
+                    {
+                        result.Append("[bold][color=#00ff00]" + part + "[/color][/bold]");
+                    }
+                    else if (part == "[DECAYED]")
+                    {
+                        result.Append("[bold][color=#ff4444]" + part + "[/color][/bold]");
+                    }
+                    else
+                    {
+                        // Time or other
+                        result.Append("[color=" + baseColor + "]" + part + "[/color]");
+                    }
+                    
+                    if (j < parts.Length - 1)
+                        result.Append(" [color=#666666]|[/color] ");
+                }
+                result.AppendLine();
+            }
+            // Incident message lines (indented with two spaces)
+            else if (line.StartsWith("  Message:") || trimmed.StartsWith("Message:"))
+            {
+                // Preserve the indentation in the output
+                var indent = line.Length - trimmed.Length;
+                var indentStr = new string(' ', indent);
+                
+                var parts = trimmed.Split(':', 2);
+                if (parts.Length == 2)
+                {
+                    result.AppendLine(indentStr + "[color=#cccccc]Message:[/color] [color=#ffcccc]" + parts[1].Trim() + "[/color]");
+                }
+                else
+                {
+                    result.AppendLine(line);
+                }
+            }
+            // Footer
+            else if (trimmed.StartsWith("╚"))
+            {
+                result.AppendLine("[color=#ff4444]" + line + "[/color]");
+            }
+            // Metadata (keep at end, dim it)
+            else if (trimmed.StartsWith("Metadata:"))
+            {
+                result.AppendLine("[color=#555555][size=8]" + line + "[/size][/color]");
+            }
+            // Empty lines and other content
+            else
+            {
+                result.AppendLine(line);
+            }
+        }
+        
+        return result.ToString();
     }
 
     private string FormatBanMessage()

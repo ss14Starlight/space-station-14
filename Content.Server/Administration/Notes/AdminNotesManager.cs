@@ -324,7 +324,14 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
     {
         if (_config.GetCVar(CCVars.SeeOwnNotes))
         {
-            return await _db.GetVisibleAdminNotes(player);
+            // Starlight edit Start: AutoMod - Process decay
+            var notes = await _db.GetVisibleAdminNotes(player);
+
+            if (NotesRetrieved != null)
+                await NotesRetrieved.Invoke(player, notes);
+            
+            return notes;
+            // Starlight edit End
         }
         _sawmill.Warning($"Someone tried to call GetVisibleNotes for {player} when see_own_notes was false");
         return new List<IAdminRemarksRecord>();
