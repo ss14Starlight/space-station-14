@@ -3095,6 +3095,7 @@
     - Cat
     - Nekomimetic
   # Starlight-end
+  - type: ProtectedFromStepTriggers # Starlight-edit: cats shouldn't be killed by mousetraps
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi
@@ -3267,7 +3268,6 @@
       - DoorBumpOpener
   - type: MovementAlwaysTouching
   - type: PressureImmunity
-  - type: ProtectedFromStepTriggers
   - type: Insulated
   - type: InteractionPopup
     successChance: 0.7
