@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server.Administration.Managers;
 using AutoModRule = Content.Server.Database.AutoModRule;
@@ -29,6 +32,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
     [Dependency] private readonly IAdminNotesManager _adminNotesManager = default!;
     [Dependency] private readonly Server.Administration.Logs.IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     
     private readonly ISawmill _automodLog = Logger.GetSawmill("automod");
     public const string NotificationChannel = "automod_rules";
@@ -36,6 +40,8 @@ public sealed partial class AutoModSystem : SharedChatSystem
     private readonly Dictionary<(NetUserId, string), DateTime> _recentMessages = new();
     private List<AutoModRule> _rules = new();
     private readonly Dictionary<int, Regex> _compiledRegexCache = new(); // Cache compiled regex objects by rule ID
+    private readonly Dictionary<int, DateTime> _lastDecayProcessed = new(); // Track last decay time per note ID
+    private static readonly TimeSpan _decayCheckInterval = TimeSpan.FromSeconds(20); // Background decay timer interval
     
     #endregion
 
@@ -60,6 +66,10 @@ public sealed partial class AutoModSystem : SharedChatSystem
         
         // Subscribe to notes retrieval for automatic decay processing
         _adminNotesManager.NotesRetrieved += OnNotesRetrieved;
+        
+        // Start background decay timer to process active players
+        Robust.Shared.Timing.Timer.SpawnRepeating(_decayCheckInterval, ProcessBackgroundDecay, CancellationToken.None);
+        _automodLog.Info($"AutoMod background decay timer started (interval: {_decayCheckInterval.TotalSeconds}s)");
     }
 
     public async Task UpdateCache()
@@ -446,7 +456,6 @@ public sealed partial class AutoModSystem : SharedChatSystem
     }
 
 
-
     /// <summary>
     /// Simple AdminNote class for internal use
     /// </summary>
@@ -466,7 +475,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
     /// <summary>
     /// Helper method to format AutoMod violation data for admin notes as plain text
     /// </summary>
-    private string FormatViolationMessage(AutoModRule rule, NetUserId playerId, int offenseLevel, string originalMessage, string channel, string action, List<ViolationIncident> incidents, string? existingId = null)
+    private string FormatViolationMessage(AutoModRule rule, NetUserId playerId, int offenseLevel, string channel, string action, List<ViolationIncident> incidents, string? existingId = null)
     {
         var rulePlayerKey = $"automod_{rule.Id}_{playerId}";
         var uniqueId = existingId ?? Guid.NewGuid().ToString();
@@ -780,7 +789,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
                         if (messageLine.StartsWith("\"") && messageLine.EndsWith("\""))
                         {
                             // Extract cleaned plaintext
-                            incident.Message = messageLine.Substring(1, messageLine.Length - 2); // Remove quotes
+                            incident.Message = messageLine[1..^1]; // Remove quotes
                         }
                     }
                     
@@ -961,7 +970,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
                         _automodLog.Debug($"[AutoMod]   Active incident: Level={inc.OffenseLevel}, ExpiresAt={inc.ExpiresAt}, Decayed={inc.IsDecayed}");
                     }
                     
-                    var updatedMessage = FormatViolationMessage(rule, playerId, existingData.ViolationCount, message, channel, action.ToString(), existingData.Incidents, existingData.UniqueId);
+                    var updatedMessage = FormatViolationMessage(rule, playerId, existingData.ViolationCount, channel, action.ToString(), existingData.Incidents, existingData.UniqueId);
                     _automodLog.Debug($"[AutoMod] Calling EditAdminNote for note {existingData.NoteId} with updated offense level {existingData.ViolationCount}");
                     _automodLog.Debug($"[AutoMod] Updated message preview (first 500 chars): {updatedMessage[..Math.Min(500, updatedMessage.Length)]}");
                     _automodLog.Debug($"[AutoMod] Updated message length: {updatedMessage.Length} chars, contains 'Offense Level:' at position {updatedMessage.IndexOf("Offense Level:")}");
@@ -1005,7 +1014,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
             ExpiresAt = decaySeconds > 0 ? DateTime.SpecifyKind(now.AddSeconds(decaySeconds), DateTimeKind.Utc) : null
         } };
         
-        var noteMessage = FormatViolationMessage(rule, playerId, newOffenseLevel, cleanedMessage, channel, action.ToString(), incidents, null);
+        var noteMessage = FormatViolationMessage(rule, playerId, newOffenseLevel, channel, action.ToString(), incidents, null);
         
         // Set note expiration to when the first incident will decay (for display purposes)
         var firstIncidentDecayTime = incidents
@@ -1057,10 +1066,65 @@ public sealed partial class AutoModSystem : SharedChatSystem
 
 /// <summary>
 /// Process AutoMod decay when notes are retrieved (integrated into admin notes system)
+/// This provides immediate decay processing when admins view notes, supplementing the background timer
 /// </summary>
     private async Task OnNotesRetrieved(Guid playerId, List<IAdminRemarksRecord> notes)
     {
         var now = DateTime.UtcNow;
+        // Use shared decay processing logic
+        await ProcessPlayerDecay(playerId, notes, now);
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Background task that processes decay for all AutoMod notes automatically
+    /// Runs on a timer every 20 seconds, checking all connected players
+    /// </summary>
+    private async void ProcessBackgroundDecay()
+    {
+        try
+        {
+            // Get all currently connected players
+            var players = _playerManager.Sessions;
+            if (players == null || !players.Any())
+                return;
+            
+            var now = DateTime.UtcNow;
+            
+            // Process decay for each connected player
+            foreach (var player in players)
+            {
+                try
+                {
+                    var playerNotes = await _adminNotesManager.GetAllAdminRemarks(player.UserId.UserId);
+                    
+                    // Check if player has any AutoMod notes
+                    var hasAutoModNotes = playerNotes.Any(n => n is AdminNoteRecord note && note.Message.Contains("Metadata:"));
+                    if (!hasAutoModNotes)
+                        continue;
+                    
+                    // Process decay for this player
+                    await ProcessPlayerDecay(player.UserId.UserId, playerNotes, now);
+                }
+                catch (Exception ex)
+                {
+                    _automodLog.Error($"[AutoMod] Failed to process decay for player {player.UserId}: {ex}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _automodLog.Error($"[AutoMod] Background decay processing failed: {ex}");
+        }
+    }
+    
+    /// <summary>
+    /// Processes decay for a specific player's AutoMod notes
+    /// Shared logic used by both background timer and event-driven processing
+    /// </summary>
+    private async Task ProcessPlayerDecay(Guid playerId, List<IAdminRemarksRecord> notes, DateTime now)
+    {
         try
         {
             foreach (var note in notes)
@@ -1082,6 +1146,13 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 var violationData = ExtractViolationData(simpleNote);
                 if (violationData == null)
                     continue;
+                
+                // Check cooldown: don't process decay more than once per second per note
+                if (_lastDecayProcessed.TryGetValue(adminNote.Id, out var lastProcessed))
+                {
+                    if ((now - lastProcessed).TotalSeconds < 1.0)
+                        continue; // Skip if processed within last second
+                }
                 
                 // Find expired incidents that haven't been processed yet
                 var expiredIncidents = violationData.Incidents
@@ -1107,51 +1178,29 @@ public sealed partial class AutoModSystem : SharedChatSystem
                     incident.IsDecayed = true;
                 }
                 
-                _automodLog.Debug($"[AutoMod] Incident expired with DecayLevel={decayLevel}, marked {toDecay.Count} incidents as decayed");
-                
-                // Update violation count by subtracting the actual number of decayed incidents
-                var oldCount = violationData.ViolationCount;
-                var newViolationCount = Math.Max(0, violationData.ViolationCount - toDecay.Count);
+                // Recalculate violation count (only count non-decayed incidents)
+                var newViolationCount = allIncidents.Count(i => !i.IsDecayed);
                 violationData.ViolationCount = newViolationCount;
-                violationData.LastUpdated = now;
                 
-                _automodLog.Info($"[AutoMod] Decayed {toDecay.Count} offense(s) from note {adminNote.Id} for player {new NetUserId(playerId)}. Old count: {oldCount}, New count: {newViolationCount}");
+                // Calculate next decay time (find oldest non-decayed incident with expiry)
+                var nextDecayTime = allIncidents
+                    .Where(i => !i.IsDecayed && i.ExpiresAt.HasValue)
+                    .OrderBy(i => i.ExpiresAt)
+                    .FirstOrDefault()?.ExpiresAt;
                 
-                // Find the next incident to decay (oldest non-decayed with decay seconds)
-                var nextIncident = violationData.Incidents
-                    .Where(i => !i.IsDecayed && i.DecaySeconds > 0)
-                    .OrderBy(i => i.Timestamp)
-                    .FirstOrDefault();
-                
-                DateTime? nextDecayTime = null;
-                if (nextIncident != null)
-                {
-                    // Calculate next decay time from NOW + that incident's decay seconds
-                    nextDecayTime = now.AddSeconds(nextIncident.DecaySeconds);
-                    nextIncident.ExpiresAt = DateTime.SpecifyKind(nextDecayTime.Value, DateTimeKind.Utc);
-                    _automodLog.Debug($"[AutoMod] Next decay in {nextIncident.DecaySeconds}s (incident with DecayLevel={nextIncident.DecayLevel})");
-                }
-                else
-                {
-                    _automodLog.Debug($"[AutoMod] No more incidents to decay for note {adminNote.Id}");
-                }
-                
-                // Keep the note even if violation count reaches 0 - it serves as history
-                // The next violation will increment from the current (possibly 0) level
-                
-                // Update the note with new data and set expiration to next decay time
+                // Format updated note with new violation data
+                var rule = _rules.FirstOrDefault(r => r.Id == violationData.RuleId) ?? new AutoModRule { Id = violationData.RuleId };
                 var updatedMessage = FormatViolationMessage(
-                    new AutoModRule { Id = violationData.RuleId, Category = violationData.RuleName, Regex = violationData.RegexPattern },
+                    rule,
                     new NetUserId(playerId),
-                    violationData.ViolationCount,
-                    violationData.OriginalMessage,
+                    newViolationCount,
                     violationData.Channel,
                     violationData.CurrentAction,
-                    violationData.Incidents,
-                    violationData.UniqueId
+                    allIncidents,
+                    violationData.RulePlayerKey
                 );
                 
-                // Set note expiration to next decay time (for display purposes)
+                // Update the note in the database
                 await _db.EditAdminNote(
                     adminNote.Id,
                     updatedMessage,
@@ -1162,17 +1211,17 @@ public sealed partial class AutoModSystem : SharedChatSystem
                     nextDecayTime.HasValue ? new DateTimeOffset(nextDecayTime.Value) : null
                 );
                 
-                // Note: In-memory note object cannot be updated (init-only properties)
-                // The database is updated, and subsequent retrievals will reflect the changes
+                // Update the last processed timestamp to prevent rapid re-processing
+                _lastDecayProcessed[adminNote.Id] = now;
+                
+                _automodLog.Debug($"[AutoMod] Background decay processed note {adminNote.Id} for player {playerId}, new violation count: {newViolationCount}");
             }
         }
         catch (Exception ex)
         {
-            _automodLog.Error($"[AutoMod] Failed to process decay for player {new NetUserId(playerId)}: {ex}");
+            _automodLog.Error($"[AutoMod] Failed to process decay for player {playerId}: {ex}");
         }
     }
-
-    #endregion
 
     /// <summary>
     /// Gets all AutoMod violations for a player from admin notes
@@ -1205,6 +1254,16 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 if (violationData != null)
                 {
                     _automodLog.Debug($"[AutoMod] GetPlayerAutoModViolations: Found violation for RuleId={violationData.RuleId}, ViolationCount={violationData.ViolationCount}");
+                    
+                    // Check cooldown: don't process decay more than once per second per note
+                    if (_lastDecayProcessed.TryGetValue(adminNote.Id, out var lastProcessed))
+                    {
+                        if ((now - lastProcessed).TotalSeconds < 1.0)
+                        {
+                            violations.Add(violationData);
+                            continue; // Skip decay processing if processed within last second
+                        }
+                    }
                     
                     // Process decay for expired incidents within this violation
                     var expiredIncidents = violationData.Incidents
@@ -1245,6 +1304,9 @@ public sealed partial class AutoModSystem : SharedChatSystem
                         }
                         
                         _automodLog.Debug($"[AutoMod] GetPlayerAutoModViolations: After decay processing, new ViolationCount={violationData.ViolationCount}");
+                        
+                        // Update the last processed timestamp
+                        _lastDecayProcessed[adminNote.Id] = now;
                     }
                     
                     violations.Add(violationData);
