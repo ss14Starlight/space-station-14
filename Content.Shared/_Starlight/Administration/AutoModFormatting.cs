@@ -8,14 +8,14 @@ namespace Content.Shared._Starlight.Administration;
 /// </summary>
 public static class AutoModFormatting
 {
-    private static readonly Regex DecayLevelRegex = new(@"\[Decays by: (\d+) on", RegexOptions.Compiled);
+    private static readonly Regex _decayLevelRegex = new(@"\[Decays by: (\d+) on", RegexOptions.Compiled);
     
-    private static readonly Dictionary<int, string> LevelColors = new()
+    private static readonly Dictionary<int, string> _levelColors = new()
     {
         { 1, "#00ff00" }, { 2, "#ffff00" }, { 3, "#ff8800" }
     };
 
-    private static readonly Dictionary<string, string> ActionColors = new(StringComparer.OrdinalIgnoreCase)
+    private static readonly Dictionary<string, string> _actionColors = new(StringComparer.OrdinalIgnoreCase)
     {
         { "none", "#00ff00" }, { "warn", "#ffff00" }, { "kick", "#ff8800" }, { "ban", "#ff0000" }
     };
@@ -23,25 +23,21 @@ public static class AutoModFormatting
     /// <summary>
     /// Checks if a note message is an AutoMod violation
     /// </summary>
-    public static bool IsAutoModNote(string message)
-    {
-        return message.Contains("Metadata:") && message.Contains("\u2554\u2550\u2550 AUTOMOD VIOLATION");
-    }
+    public static bool IsAutoModNote(string message) =>
+        message.Contains("Metadata:") && message.Contains("\u2554\u2550\u2550 AUTOMOD VIOLATION");
 
     /// <summary>
     /// Checks if a note contains AutoMod ID metadata
     /// </summary>
-    public static bool HasAutoModId(string message)
-    {
-        return message.Contains("AUTOMOD_ID:");
-    }
+    public static bool HasAutoModId(string message) =>
+        message.Contains("AUTOMOD_ID:");
 
     /// <summary>
     /// Extracts the decay level from an AutoMod note message
     /// </summary>
     public static int GetDecayLevel(string message)
     {
-        var match = DecayLevelRegex.Match(message);
+        var match = _decayLevelRegex.Match(message);
         if (match.Success && int.TryParse(match.Groups[1].Value, out var level))
             return level;
         return 1;
@@ -86,7 +82,7 @@ public static class AutoModFormatting
                 var parts = trimmed.Split(':', 2);
                 if (parts.Length == 2 && int.TryParse(parts[1].Trim(), out var level))
                 {
-                    var color = LevelColors.TryGetValue(level, out var c) ? c : "#ff0000";
+                    var color = _levelColors.TryGetValue(level, out var c) ? c : "#ff0000";
                     result.AppendLine($"[color=#00ddff]Offense Level:[/color] [bold][color={color}]{level}[/color][/bold]");
                 }
                 else
@@ -98,7 +94,7 @@ public static class AutoModFormatting
                 if (parts.Length == 2)
                 {
                     var action = parts[1].Trim();
-                    var color = ActionColors.TryGetValue(action, out var c) ? c : "#88aaff";
+                    var color = _actionColors.TryGetValue(action, out var c) ? c : "#88aaff";
                     result.AppendLine($"[color=#00ddff]Action Taken:[/color] [bold][color={color}]{action}[/color][/bold]");
                 }
                 else
@@ -134,12 +130,12 @@ public static class AutoModFormatting
                         result.Append($"[color=#88aaff]{part}[/color]");
                     else if (part.StartsWith("Level ") && int.TryParse(part.Replace("Level ", ""), out var level))
                     {
-                        var color = isDecayed ? "#555555" : (LevelColors.TryGetValue(level, out var c) ? c : "#ff0000");
+                        var color = isDecayed ? "#555555" : (_levelColors.TryGetValue(level, out var c) ? c : "#ff0000");
                         result.Append($"[color={color}]Level {level}[/color]");
                     }
-                    else if (ActionColors.ContainsKey(part))
+                    else if (_actionColors.ContainsKey(part))
                     {
-                        var color = isDecayed ? "#555555" : ActionColors[part];
+                        var color = isDecayed ? "#555555" : _actionColors[part];
                         result.Append($"[bold][color={color}]{part}[/color][/bold]");
                     }
                     else if (part.StartsWith("Decay:"))
@@ -178,16 +174,12 @@ public static class AutoModFormatting
     /// <summary>
     /// Gets the color for a specific offense level
     /// </summary>
-    public static string GetLevelColor(int level)
-    {
-        return LevelColors.TryGetValue(level, out var color) ? color : "#ff0000";
-    }
+    public static string GetLevelColor(int level) =>
+        _levelColors.TryGetValue(level, out var color) ? color : "#ff0000";
 
     /// <summary>
     /// Gets the color for a specific action type
     /// </summary>
-    public static string GetActionColor(string action)
-    {
-        return ActionColors.TryGetValue(action, out var color) ? color : "#88aaff";
-    }
+    public static string GetActionColor(string action) =>
+        _actionColors.TryGetValue(action, out var color) ? color : "#88aaff";
 }
