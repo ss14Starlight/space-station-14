@@ -179,11 +179,7 @@ public sealed class PlayerPanelEui : BaseEui
             _notes = null;
         }
 
-        _sharedConnections = _player.Sessions.Count(s => 
-            s.Channel?.RemoteEndPoint?.Address != null && 
-            _targetPlayer.LastAddress != null &&
-            s.Channel.RemoteEndPoint.Address.Equals(_targetPlayer.LastAddress) && 
-            s.UserId != _targetPlayer.UserId);
+         _sharedConnections = _player.Sessions.Count(s => s.Channel.RemoteEndPoint.Address.Equals(_targetPlayer.LastAddress) && s.UserId != _targetPlayer.UserId);
 
     // Apparently the Bans flag is also used for whitelists
     if (_admins.HasAdminFlag(Player, AdminFlags.Ban))

@@ -984,10 +984,12 @@ public sealed partial class ChatSystem : SharedChatSystem
             return false;
         }
 
+        // Starlight Start: AutoMod
         if (!_chatManager.MessageCancelCheck(player, message))
         {
             return false;
         }
+        // Starlight End
 
         return !_chatManager.MessageCharacterLimit(player, message);
     }

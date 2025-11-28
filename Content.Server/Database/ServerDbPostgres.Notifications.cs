@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using Content.Server.Starlight.Chat.Systems; // Starlight
 
 namespace Content.Server.Database;
 
@@ -19,7 +20,7 @@ public sealed partial class ServerDbPostgres
     [
         BanManager.BanNotificationChannel,
         MultiServerKickManager.NotificationChannel,
-        "automod_rules", // Starlight: Listen for AutoMod rule update
+        AutoModSystem.NotificationChannel, // Starlight: Listen for AutoMod rule update
     ];
 
     private static readonly TimeSpan ReconnectWaitIncrease = TimeSpan.FromSeconds(10);

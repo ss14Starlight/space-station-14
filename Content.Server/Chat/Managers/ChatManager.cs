@@ -250,9 +250,10 @@ internal sealed partial class ChatManager : IChatManager
         switch (type)
         {
             case OOCChatType.OOC:
-                //check if allowed to send
-                if(MessageCancelCheck(player, message, ChatChannel.OOC)) // Starlight Edit: AutoMod
+                // Starlight edit Start: AutoMod
+                if(MessageCancelCheck(player, message, ChatChannel.OOC))
                     SendOOC(player, message);
+                // Starlight edit End
                 break;
             case OOCChatType.Admin:
                 SendAdminChat(player, message);
@@ -440,12 +441,13 @@ internal sealed partial class ChatManager : IChatManager
         return isOverLength;
     }
 
-    public bool MessageCancelCheck(ICommonSession? player, string message, ChatChannel? channel = null) // Starlight Edit: AutoMod
+    // Starlight Start: AutoMod
+    public bool MessageCancelCheck(ICommonSession? player, string message, ChatChannel? channel = null)
     {
         if (player == null)
             return false;
 
-        var ev = new ChatAttemptEvent(player, message, channel); // Starlight Edit: AutoMod
+        var ev = new ChatAttemptEvent(player, message, channel);
         _entityManager.EventBus.RaiseEvent(EventSource.Local, ev); //cursed but works
 
         if (ev.Cancelled)
@@ -455,6 +457,7 @@ internal sealed partial class ChatManager : IChatManager
 
         return true;
     }
+    // Starlight End
 
     #endregion
 }
@@ -465,16 +468,18 @@ public enum OOCChatType : byte
     Admin
 }
 
+// Starlight Start: AutoMod
 public sealed class ChatAttemptEvent : CancellableEntityEventArgs
 {
     public ICommonSession Sender;
     public string Message;
-    public ChatChannel? Channel; // Starlight: AutoMod
+    public ChatChannel? Channel;
 
-    public ChatAttemptEvent(ICommonSession sender, string message, ChatChannel? channel = null) // Starlight Edit: AutoMod
+    public ChatAttemptEvent(ICommonSession sender, string message, ChatChannel? channel = null)
     {
         Sender = sender;
         Message = message;
-        Channel = channel; // Starlight: AutoMod
+        Channel = channel;
     }
 }
+// Starlight End

@@ -37,7 +37,7 @@ namespace Content.Server.Chat.Managers
 
         bool MessageCharacterLimit(ICommonSession player, string message);
 
-        bool MessageCancelCheck(ICommonSession? player, string message, ChatChannel? channel = null); // Starlight Edit: AutoMod
+        bool MessageCancelCheck(ICommonSession? player, string message, ChatChannel? channel = null); // Starlight: AutoMod
 
         void DeleteMessagesBy(NetUserId uid);
 

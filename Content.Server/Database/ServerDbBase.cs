@@ -1539,8 +1539,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             note.Message = message;
             note.Severity = severity;
             note.Secret = secret;
-            // Allow system edits without a real editor by treating Guid.Empty as null
-            note.LastEditedById = editedBy == Guid.Empty ? null : editedBy;
+            note.LastEditedById = editedBy == Guid.Empty ? null : editedBy; // Starlight edit: AutoMod
             note.LastEditedAt = editedAt.UtcDateTime;
             note.ExpirationTime = expiryTime?.UtcDateTime;
 
