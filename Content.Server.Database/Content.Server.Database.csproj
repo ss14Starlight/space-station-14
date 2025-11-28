@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Content.Shared.Database\Content.Shared.Database.csproj" />
+    <!-- Starlight: AutoMod -->
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
   </ItemGroup>
 

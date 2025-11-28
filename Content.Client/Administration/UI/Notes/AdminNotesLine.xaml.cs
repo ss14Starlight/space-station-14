@@ -92,6 +92,7 @@ public sealed partial class AdminNotesLine : BoxContainer
         }
         else if (Note.ExpiryTime is not null)
         {
+            // Notes should never be visible when expired, bans should
             // Starlight edit Start: AutoMod
             if (AutoModFormatting.IsAutoModNote(Note.Message))
             {
@@ -111,7 +112,7 @@ public sealed partial class AdminNotesLine : BoxContainer
             }
             else
             {
-            ExpiresLabel.Text = Loc.GetString("admin-note-editor-expiry-label-expired");
+                ExpiresLabel.Text = Loc.GetString("admin-note-editor-expiry-label-expired");
             }
             ExpiresLabel.Visible = true;
         }
@@ -134,8 +135,8 @@ public sealed partial class AdminNotesLine : BoxContainer
             case NoteType.Watchlist:
             case NoteType.Message:
             default:
-                try
                 // Starlight edit Start: AutoMod
+                try
                 {
                     if (AutoModFormatting.IsAutoModNote(Note.Message))
                         NoteLabel.Text = AutoModFormatting.ApplyColors(Note.Message);
