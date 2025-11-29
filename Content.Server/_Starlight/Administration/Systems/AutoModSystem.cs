@@ -714,8 +714,8 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 }
             }
             
-            // Calculate ExpiresAt for all incidents based on their decay time
-            // The note's ExpiryTime tells us when the NEXT decay will happen
+            // Calculate ExpiresAt for incidents based on their decay time
+            // Only the NEWEST active incident should have ExpiresAt set (LIFO decay)
             if (note.ExpiryTime.HasValue && incidents.Any(i => !i.IsDecayed && i.DecaySeconds > 0))
             {
                 var now = DateTime.UtcNow;
@@ -731,18 +731,15 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 {
                     newestActive.ExpiresAt = nextDecayTime;
                     
-                    // Calculate ExpiresAt for older incidents working backwards
-                    // Each older incident expires earlier based on its decay time
+                    // All older incidents should NOT have ExpiresAt set
+                    // They only decay AFTER the newer ones decay (LIFO)
                     var olderIncidents = incidents
                         .Where(i => !i.IsDecayed && i.DecaySeconds > 0 && i != newestActive)
-                        .OrderByDescending(i => i.Timestamp)
                         .ToList();
                     
                     foreach (var incident in olderIncidents)
                     {
-                        // Older incidents would have expired in the past
-                        // Calculate based on when they were created + their decay time
-                        incident.ExpiresAt = DateTime.SpecifyKind(incident.Timestamp.AddSeconds(incident.DecaySeconds), DateTimeKind.Utc);
+                        incident.ExpiresAt = null;
                     }
                 }
             }
@@ -842,6 +839,9 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 {
                     if (incident.ExpiresAt.HasValue && currentTime > incident.ExpiresAt.Value && !incident.IsDecayed)
                         incident.IsDecayed = true;
+                    
+                    // Clear ExpiresAt for all old incidents - only the newest will have it set
+                    incident.ExpiresAt = null;
                 }
                 
                 existingViolation.Incidents.Add(new ViolationIncident
@@ -863,6 +863,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 existingViolation.Channel = channel;
                 existingViolation.LastUpdated = DateTime.UtcNow;
                 
+                // Only the newest incident (just added) should have ExpiresAt set
                 var nextIncidentDecayTime = existingViolation.Incidents
                     .Where(i => !i.IsDecayed && i.ExpiresAt.HasValue)
                     .OrderByDescending(i => i.Timestamp)
@@ -1002,15 +1003,19 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 if (expiredIncidents.Count == 0)
                     continue;
                 
-                // Take only the OLDEST expired incident to process
-                // Decay happens one incident at a time, not multiple at once
-                var oldestExpired = expiredIncidents.First();
-                var decayLevel = oldestExpired.DecayLevel;
-                
-                // Mark the oldest N active incidents as decayed (where N = DecayLevel)
+                // Decay all incidents at the current highest offense level
+                // LIFO (Last In, First Out) - all incidents at the highest level decay together
                 var allIncidents = violationData.Incidents.OrderBy(i => i.Timestamp).ToList();
-                var activeIncidents = allIncidents.Where(i => !i.IsDecayed).ToList();
-                var toDecay = activeIncidents.Take(decayLevel).ToList();
+                var activeIncidents = allIncidents.Where(i => !i.IsDecayed).OrderByDescending(i => i.Timestamp).ToList();
+                
+                if (!activeIncidents.Any())
+                    continue;
+                
+                // Find the current highest offense level among active incidents
+                var currentHighestLevel = activeIncidents.Max(i => i.OffenseLevel);
+                
+                // Decay ALL incidents at this highest level
+                var toDecay = activeIncidents.Where(i => i.OffenseLevel == currentHighestLevel).ToList();
                 
                 foreach (var incident in toDecay)
                 {
@@ -1021,11 +1026,26 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 var newViolationCount = allIncidents.Count(i => !i.IsDecayed);
                 violationData.ViolationCount = newViolationCount;
                 
-                // Calculate next decay time (find oldest non-decayed incident with expiry)
-                var nextDecayTime = allIncidents
-                    .Where(i => !i.IsDecayed && i.ExpiresAt.HasValue)
-                    .OrderBy(i => i.ExpiresAt)
-                    .FirstOrDefault()?.ExpiresAt;
+                // After decay, set the next decay timer for the newest remaining active incident
+                var remainingActive = allIncidents
+                    .Where(i => !i.IsDecayed && i.DecaySeconds > 0)
+                    .OrderByDescending(i => i.Timestamp)
+                    .ToList();
+                
+                DateTime? nextDecayTime = null;
+                if (remainingActive.Any())
+                {
+                    // The newest remaining active incident is next to decay
+                    var newestActive = remainingActive.First();
+                    nextDecayTime = DateTime.SpecifyKind(now.AddSeconds(newestActive.DecaySeconds), DateTimeKind.Utc);
+                    newestActive.ExpiresAt = nextDecayTime;
+                    
+                    // Clear ExpiresAt for other incidents - they won't decay until the newest one does
+                    foreach (var incident in remainingActive.Skip(1))
+                    {
+                        incident.ExpiresAt = null;
+                    }
+                }
                 
                 // Format updated note with new violation data
                 var rule = _rules.FirstOrDefault(r => r.Id == violationData.RuleId) ?? new AutoModRule { Id = violationData.RuleId };
