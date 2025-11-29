@@ -99,7 +99,7 @@ public sealed class StatusIconOverlay : Overlay
                         countL++;
                     }
                     yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)(accOffsetL - proto.Offset) / EyeManager.PixelsPerMeter;
-                    xOffset = -((bounds.Width + sprite.Offset.X) / 2f + IconOffset / EyeManager.PixelsPerMeter); // Starlight
+                    xOffset = -((bounds.Width + sprite.Offset.X) / 2f + IconOffset / EyeManager.PixelsPerMeter); // Starlight edit
                 }
                 else
                 {
@@ -111,7 +111,7 @@ public sealed class StatusIconOverlay : Overlay
                         countR++;
                     }
                     yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)(accOffsetR - proto.Offset) / EyeManager.PixelsPerMeter;
-                    xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)texture.Width / EyeManager.PixelsPerMeter + IconOffset / EyeManager.PixelsPerMeter; // Starlight
+                    xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)texture.Width / EyeManager.PixelsPerMeter + IconOffset / EyeManager.PixelsPerMeter; // Starlight edit
 
                 }
 
