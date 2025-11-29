@@ -21,8 +21,58 @@ public sealed class AutoModEui : BaseEui
     
     private List<ServerAutoModRule> _rules = new();
     
-    // Server-side blacklisted words that cannot be used in AutoMod rules
-    private readonly HashSet<string> _blacklistedWords = new() { "space", "station", "fourteen" };
+    // Yeah this is a horrible way to do this, what you gonna do about it?
+    private readonly HashSet<string> _blacklistedWords = new()
+    {
+        "space", "station", "fourteen", "ss14", "ss13", "nanotrasen", "syndicate", "starlight", "centralcommand",
+        "the", "and", "for", "with", "from", "about", "into", "through", "after", "before",
+        "get", "got", "have", "has", "had", "use", "used", "using", "make", "made", "making",
+        "take", "took", "taken", "give", "gave", "given", "put", "set", "go", "went", "come",
+        "see", "saw", "look", "looked", "find", "found", "tell", "told", "ask", "asked",
+        "work", "worked", "working", "need", "needed", "want", "wanted", "try", "tried",
+        "help", "helped", "talk", "talked", "know", "knew", "think", "thought",
+        "you", "your", "yours", "me", "my", "mine", "he", "him", "his", "she", "her", "hers",
+        "we", "us", "our", "ours", "they", "them", "their", "theirs", "it", "its",
+        "this", "that", "these", "those", "who", "what", "where", "when", "why", "how",
+        "in", "on", "at", "by", "to", "of", "or", "but", "if", "as", "so", "up", "out", "off",
+        "captain", "hop", "hos", "ce", "cmo", "rd", "qm", "warden", "detective", "officer",
+        "engineer", "atmos", "atmospheric", "doctor", "chemist", "paramedic", "scientist",
+        "roboticist", "botanist", "chef", "cook", "bartender", "janitor", "clown", "mime",
+        "assistant", "passenger", "cargo", "salvage", "medical", "security", "service",
+        "lawyer", "chaplain", "librarian", "musician", "reporter", "boxer", "zookeeper",
+        "medbay", "bridge", "engineering", "atmos", "atmospherics", "cargo", "science",
+        "research", "security", "brig", "arrivals", "departures", "dorms", "hallway",
+        "maintenance", "maint", "bar", "kitchen", "botany", "hydroponics", "chapel",
+        "library", "courtroom", "boxing", "holodeck", "eva", "armory", "vault", "ai",
+        "door", "doors", "wall", "walls", "floor", "floors", "window", "windows", "table",
+        "chair", "light", "lights", "computer", "console", "machine", "device", "tool", "tools",
+        "wrench", "screwdriver", "crowbar", "welder", "multitool", "wirecutters", "cable",
+        "power", "energy", "battery", "cell", "wire", "cable", "sheet", "metal", "glass",
+        "plasteel", "plasma", "oxygen", "nitrogen", "carbon", "gas", "pipe", "pipes",
+        "health", "damage", "injury", "injured", "hurt", "heal", "healed", "healing",
+        "medicine", "medical", "bandage", "ointment", "pill", "syringe", "surgery",
+        "brute", "burn", "toxin", "airloss", "genetic", "clone", "cloning",
+        "round", "shift", "job", "role", "spawn", "respawn", "dead", "death", "kill",
+        "ghost", "antag", "antagonist", "traitor", "nukie", "nukies", "revolutionary",
+        "changeling", "heretic", "wizard", "blob", "dragon", "zombie", "rat", "king",
+        "objective", "objectives", "greentext", "shuttle", "escape", "evac", "evacuation",
+        "radio", "comms", "common", "command", "say", "saying", "said", "chat", "talking",
+        "announce", "announcement", "alert", "warning", "emergency", "pda", "message",
+        "open", "opened", "close", "closed", "lock", "locked", "unlock", "unlocked",
+        "break", "broke", "broken", "fix", "fixed", "repair", "repaired", "build", "built",
+        "destroy", "destroyed", "damage", "damaged", "wear", "wearing", "hold", "holding",
+        "carry", "carrying", "drop", "dropped", "throw", "threw", "thrown", "pull", "pulled",
+        "time", "minute", "minutes", "second", "seconds", "hour", "hours", "now", "then",
+        "soon", "later", "one", "two", "three", "four", "five", "some", "many", "few",
+        "good", "bad", "new", "old", "big", "small", "long", "short", "high", "low",
+        "hot", "cold", "fast", "slow", "hard", "soft", "heavy", "light", "safe", "dangerous",
+        "clean", "dirty", "empty", "full", "ready", "busy", "free", "right", "wrong", "left",
+        "please", "thanks", "thank", "sorry", "yes", "yeah", "yep", "no", "nope", "ok",
+        "okay", "sure", "fine", "alright", "hello", "hi", "hey", "bye", "goodbye", "welcome",
+        "greytide", "shitsec", "validhunting", "robust", "stun", "stunned", "crit",
+        "critical", "gibbed", "spaced", "spacing", "toolbox", "stunbaton", "baton",
+        "disabler", "taser", "laser", "gun", "weapon", "bomb", "explosive", "emag",
+    };
 
     public AutoModEui() => IoCManager.InjectDependencies(this);
 
