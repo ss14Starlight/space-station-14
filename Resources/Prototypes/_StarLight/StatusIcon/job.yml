@@ -291,7 +291,7 @@
   id: JobIconVisitorBrigMedic
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: VisitorBrigMedic
+    state: VisitorBrigmedic
   jobName: job-name-VisitorBrigMedic
 
 - type: jobIcon
@@ -347,7 +347,7 @@
   id: JobIconVisitorQuartermaster
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: VisitorQuartermaster
+    state: VisitorQuarterMaster
   jobName: job-name-VisitorQuartermaster
 
 - type: jobIcon
@@ -533,6 +533,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: VisitorAssistant
   jobName: job-name-VisitorResearchAssistant
+  allowSelection: false # temporary until unique icon is decided on
 
 - type: jobIcon
   parent: JobIcon
@@ -541,6 +542,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: VisitorAssistant
   jobName: job-name-VisitorTechnicalAssistant
+  allowSelection: false # temporary until unique icon is decided on
 
 - type: jobIcon
   parent: JobIcon
@@ -549,6 +551,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: VisitorAssistant
   jobName: job-name-VisitorMedicalIntern
+  allowSelection: false # temporary until unique icon is decided on
 
 - type: jobIcon
   parent: JobIcon
@@ -557,3 +560,4 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: VisitorAssistant
   jobName: job-name-VisitorSecurityCadet
+  allowSelection: false # temporary until unique icon is decided on
