@@ -257,8 +257,10 @@ public sealed class RadioSystem : EntitySystem
 
         if (TryComp<BorgChassisComponent>(messageSource, out var chassis) || HasComp<BorgBrainComponent>(messageSource)) // Starlight edit
         {
+            // Starlight start
             iconId = chassis?.JobIconOverride ?? "JobIconBorg";
             jobName = Loc.GetString(chassis?.LocalizedJobTitle ?? "job-name-borg");
+            // Starlight end
         }
 
         if (HasComp<StationAiHeldComponent>(messageSource) || (TryComp<StationAIShuntComponent>(messageSource, out var aiShunt) && aiShunt.Return.HasValue))

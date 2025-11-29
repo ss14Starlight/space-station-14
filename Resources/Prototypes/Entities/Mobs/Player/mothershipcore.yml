@@ -12,9 +12,11 @@
   name: mothership core
   description: A sentient machine that can produce Xenoborgs. Without this the Xenoborgs are doomed.
   components:
+  # SL start
   - type: ChatForceJobIcon
     localizedJobTitle: job-name-XenoborgMothership
     jobIcon: JobIconXenoborgMothership
+  # SL end
   - type: Appearance
   - type: WiresVisuals
   - type: Fixtures

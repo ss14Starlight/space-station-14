@@ -59,7 +59,7 @@
   - type: Clothing
     quickEquip: false
     slots:
-    - IdCard
+    - idcard
     - Belt
   - type: UnpoweredFlashlight
   - type: PointLight
@@ -373,7 +373,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorClownIDCard # Starlight
+    id: VisitorClownIDCard # Starlight edit
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -451,7 +451,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorChaplainIDCard # Starlight
+    id: VisitorChaplainIDCard # Starlight edit
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -575,7 +575,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorLibrarianIDCard # Starlight
+    id: VisitorLibrarianIDCard # Starlight edit
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -610,7 +610,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorLawyerIDCard # Starlight
+    id: VisitorLawyerIDCard # Starlight edit
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -768,7 +768,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorMedicalDoctorIDCard # Starlight
+    id: VisitorMedicalDoctorIDCard # Starlight edit
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1023,7 +1023,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorMusicianIDCard # Starlight
+    id: VisitorMusicianIDCard # Starlight edit
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1068,7 +1068,7 @@
 - type: entity
   parent: ClearPDA
   id: VisitorPDA
-  suffix: Visitor # Starlight
+  suffix: Visitor # Starlight edit
   components:
   - type: Pda
     id: VisitorIDCard
@@ -1570,7 +1570,7 @@
     tags: # ignore "WhitelistChameleon" tag
     - DoorBumpOpener
   - type: ChameleonClothing
-    slot: [IDCard]
+    slot: [idcard]
     default: AssistantPDA
     requireTag: WhitelistChameleonPDA
   - type: UserInterface
