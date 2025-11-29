@@ -1,9 +1,11 @@
-using Content.Shared.Access;
-using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using JetBrains.Annotations;
+// Starlight Start
+using Content.Shared.Access;
+using Content.Shared.Access.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+// Starlight End
 
 namespace Content.Client.Access
 {
