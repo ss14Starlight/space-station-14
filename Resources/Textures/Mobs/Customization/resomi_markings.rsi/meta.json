@@ -158,6 +158,62 @@
     {
       "name": "resomi_stripe_torso",
       "directions": 4
+    },
+    {
+      "name": "resomi_earring_1_1",
+      "directions": 4
+    },
+    {
+      "name": "resomi_earring_1_2",
+      "directions": 4
+    },
+    {
+      "name": "resomi_earring_2_1",
+      "directions": 4
+    },
+    {
+      "name": "resomi_earring_2_2",
+      "directions": 4
+    },
+    {
+      "name": "resomi_earring_3_1",
+      "directions": 4
+    },
+    {
+      "name": "resomi_earring_3_2",
+      "directions": 4
+    },
+    {
+      "name": "resomi_earring_4_1",
+      "directions": 4
+    },
+    {
+      "name": "resomi_earring_4_2",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tailbands_1_1",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tailbands_1_2",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tailbands_1_3",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tailbands_2_1",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tailbands_2_2",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tailbands_2_3",
+      "directions": 4
     }
   ]
 }

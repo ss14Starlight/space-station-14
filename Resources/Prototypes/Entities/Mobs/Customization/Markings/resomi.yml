@@ -81,6 +81,9 @@
     state: fluff_head_up
 
 # Starlight
+
+
+
 # Ears
 
 - type: marking
@@ -145,6 +148,98 @@
   sprites:
   - sprite: Mobs/Customization/resomi_parts.rsi
     state: resomi_ears_marking_6
+
+# Jewelry
+
+- type: marking
+  id: ResomiEarringOne
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_1_1
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_1_2
+
+- type: marking
+  id: ResomiEarringTwo
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_2_1
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_2_2
+
+- type: marking
+  id: ResomiEarringThree
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_3_1
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_3_2
+
+- type: marking
+  id: ResomiEarringFour
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_4_1
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_4_2
+
+- type: marking
+  id: ResomiEarringCombined
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_combined_1
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_combined_2
+
+- type: marking
+  id: ResomiEarringStuds
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_earring_combined_1
+
+- type: marking
+  id: ResomiTailbandOne
+  bodyPart: Tail
+  markingCategory: Overlay
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_tailbands_1_1
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_tailbands_1_2
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_tailbands_1_3
+
+- type: marking
+  id: ResomiTailbandTwo
+  bodyPart: Tail
+  markingCategory: Overlay
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_tailbands_2_1
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_tailbands_2_2
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_tailbands_2_3
 
 # Tails
 

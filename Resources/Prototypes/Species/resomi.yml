@@ -26,6 +26,7 @@
   sprites:
     Head: MobResomiHead
     HeadSide: MobHumanoidAnyMarking # Starlight
+    HeadTop: MobHumanoidAnyMarking
     Hair: MobResomiHair
     Chest: MobResomiTorso
     Eyes: MobResomiEyes
@@ -65,6 +66,9 @@
       points: 2
       required: false
     Chest:
+      points: 3
+      required: false
+    HeadTop:
       points: 1
       required: false
 
