@@ -88,6 +88,21 @@
             "name": "idcaptain"
         },
         {
+            "name": "idintern-service"
+        },
+        {
+            "name": "idintern-tech"
+        },
+        {
+            "name": "idintern-sci"
+        },
+        {
+            "name": "idintern-med"
+        },
+        {
+            "name": "idintern-cadet"
+        },
+        {
             "name": "idcargotechnician"
         },
         {

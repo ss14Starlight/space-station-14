@@ -249,6 +249,11 @@
   name: visitor ID card
   suffix: SecurityOfficer
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idsecurityofficer
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: SecurityOfficer
 
@@ -272,6 +277,11 @@
   name: visitor ID card
   suffix: CargoTechnician
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idcargotechnician
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: CargoTechnician
 
@@ -281,6 +291,11 @@
   name: visitor ID card
   suffix: Librarian
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idcurator
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Librarian
 
@@ -290,6 +305,11 @@
   name: visitor ID card
   suffix: Lawyer
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idlawyer
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Lawyer
 
@@ -299,6 +319,11 @@
   name: visitor ID card
   suffix: Janitor
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idjanitor
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Janitor
 
@@ -308,6 +333,11 @@
   name: visitor ID card
   suffix: Psychologist
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idpsychologist
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Psychologist
 
@@ -317,6 +347,11 @@
   name: visitor ID card
   suffix: Musician
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idmusician
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Musician
 
@@ -326,6 +361,11 @@
   name: visitor ID card
   suffix: MedicalDoctor
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idmedicaldoctor
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: MedicalDoctor
 
@@ -335,6 +375,11 @@
   name: visitor ID card
   suffix: Chemist
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idchemist
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Chemist
 
@@ -344,6 +389,11 @@
   name: visitor ID card
   suffix: Botanist
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idbotanist
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Botanist
 
@@ -353,6 +403,11 @@
   name: visitor ID card
   suffix: AtmosphericTechnician
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idatmospherictechnician
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: AtmosphericTechnician
 
@@ -365,7 +420,7 @@
     - type: Sprite
       layers:
         - state: gold
-        - state: idvisitor
+        - state: idcentcom
         - state: outofrange
     - type: VisitorIdCard
       visitorType: Nanotrasen
@@ -379,7 +434,7 @@
     - type: Sprite
       layers:
         - state: silver
-        - state: idvisitor
+        - state: idchiefengineer
         - state: outofrange
     - type: VisitorIdCard
       visitorType: ChiefEngineer
@@ -390,6 +445,11 @@
   name: visitor ID card
   suffix: BrigMedic
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idbrigmedic
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: BrigMedic
 
@@ -399,6 +459,11 @@
   name: visitor ID card
   suffix: Bartender
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idbartender
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Bartender
 
@@ -408,6 +473,11 @@
   name: visitor ID card
   suffix: Zookeeper
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idzookeeper
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Zookeeper
 
@@ -417,6 +487,11 @@
   name: visitor ID card
   suffix: Clown
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idclown
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Clown
 
@@ -426,6 +501,11 @@
   name: visitor ID card
   suffix: Warden
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idwarden
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Warden
 
@@ -435,17 +515,13 @@
   name: visitor ID card
   suffix: Chef
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idcook
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Chef
-
-- type: entity
-  parent: VisitorIDCard
-  id: VisitorServiceWorkerIDCard
-  name: visitor ID card
-  suffix: ServiceWorker
-  components:
-    - type: VisitorIdCard
-      visitorType: ServiceWorker
 
 - type: entity
   parent: VisitorIDCard
@@ -456,7 +532,7 @@
     - type: Sprite
       layers:
         - state: silver
-        - state: idvisitor
+        - state: idquartermaster
         - state: outofrange
     - type: VisitorIdCard
       visitorType: Quartermaster
@@ -467,6 +543,11 @@
   name: visitor ID card
   suffix: Scientist
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idscientist
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Scientist
 
@@ -479,7 +560,7 @@
     - type: Sprite
       layers:
         - state: silver
-        - state: idvisitor
+        - state: idresearchdirector
         - state: outofrange
     - type: VisitorIdCard
       visitorType: ResearchDirector
@@ -493,7 +574,7 @@
     - type: Sprite
       layers:
         - state: silver
-        - state: idvisitor
+        - state: idchiefmedicalofficer
         - state: outofrange
     - type: VisitorIdCard
       visitorType: ChiefMedicalOfficer
@@ -504,6 +585,11 @@
   name: visitor ID card
   suffix: Chaplain
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idchaplain
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Chaplain
 
@@ -516,7 +602,7 @@
     - type: Sprite
       layers:
         - state: silver
-        - state: idvisitor
+        - state: idheadofpersonnel
         - state: outofrange
     - type: VisitorIdCard
       visitorType: HeadOfPersonnel
@@ -527,6 +613,11 @@
   name: visitor ID card
   suffix: Mime
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idmime
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Mime
 
@@ -539,7 +630,7 @@
     - type: Sprite
       layers:
         - state: gold
-        - state: idvisitor
+        - state: idcaptain
         - state: outofrange
     - type: VisitorIdCard
       visitorType: Captain
@@ -550,6 +641,11 @@
   name: visitor ID card
   suffix: Paramedic
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idparamedic
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Paramedic
 
@@ -559,6 +655,11 @@
   name: visitor ID card
   suffix: StationEngineer
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idstationengineer
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: StationEngineer
 
@@ -568,6 +669,11 @@
   name: visitor ID card
   suffix: Boxer
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idboxer
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Boxer
 
@@ -580,7 +686,7 @@
     - type: Sprite
       layers:
         - state: silver
-        - state: idvisitor
+        - state: idheadofsecurity
         - state: outofrange
     - type: VisitorIdCard
       visitorType: HeadOfSecurity
@@ -591,6 +697,11 @@
   name: visitor ID card
   suffix: Detective
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: iddetective
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Detective
 
@@ -600,6 +711,11 @@
   name: visitor ID card
   suffix: ShaftMiner
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idshaftminer
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: ShaftMiner
 
@@ -609,6 +725,11 @@
   name: visitor ID card
   suffix: Roboticist
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idroboticist
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Roboticist
 
@@ -618,6 +739,11 @@
   name: visitor ID card
   suffix: Reporter
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idreporter
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Reporter
 
@@ -627,6 +753,11 @@
   name: visitor ID card
   suffix: MailTech
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idmailtech
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: MailTech
 
@@ -639,7 +770,7 @@
     - type: Sprite
       layers:
         - state: silver
-        - state: idvisitor
+        - state: idmagistrate
         - state: outofrange
     - type: VisitorIdCard
       visitorType: Magistrate
@@ -653,7 +784,7 @@
     - type: Sprite
       layers:
         - state: silver
-        - state: idvisitor
+        - state: idblueshield
         - state: outofrange
     - type: VisitorIdCard
       visitorType: BlueShield
@@ -664,6 +795,11 @@
   name: visitor ID card
   suffix: SalvageLead
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idsalvagelead
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: SalvageLead
 
@@ -673,6 +809,11 @@
   name: visitor ID card
   suffix: SalvageSpecialist
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idsalvagespecialist
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: SalvageSpecialist
 
@@ -685,7 +826,7 @@
     - type: Sprite
       layers:
         - state: silver
-        - state: idvisitor
+        - state: idiaa
         - state: outofrange
     - type: VisitorIdCard
       visitorType: IAA
@@ -696,5 +837,80 @@
   name: visitor ID card
   suffix: Surgeon
   components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idmedicaldoctor
+        - state: outofrange
     - type: VisitorIdCard
       visitorType: Surgeon
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorTechnicalAssistantIDCard
+  name: visitor ID card
+  suffix: Technical Assistant
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idintern-tech
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: TechnicalAssistant
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorSecurityCadetIDCard
+  name: visitor ID card
+  suffix: Security Cadet
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idintern-cadet
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: SecurityCadet
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorMedicalInternIDCard
+  name: visitor ID card
+  suffix: Medical Intern
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idintern-med
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: MedicalIntern
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorResearchAssistantIDCard
+  name: visitor ID card
+  suffix: Research Assistant
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idintern-sci
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: ResearchAssistant
+
+- type: entity
+  parent: VisitorIDCard
+  id: VisitorServiceWorkerIDCard
+  name: visitor ID card
+  suffix: ServiceWorker
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idintern-service
+        - state: outofrange
+    - type: VisitorIdCard
+      visitorType: ServiceWorker

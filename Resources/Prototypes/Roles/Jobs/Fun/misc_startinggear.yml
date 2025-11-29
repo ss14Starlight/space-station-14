@@ -169,7 +169,7 @@
 - type: startingGear
   id: BananaClown
   equipment:
-    id: VisitorPDA
+    id: VisitorClownPDA # Starlight
     back: ClothingBackpackClown
     shoes: ClothingShoesClownBanana
     jumpsuit: ClothingUniformJumpsuitClownBanana

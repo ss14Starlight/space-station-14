@@ -525,3 +525,35 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: VisitorSurgeon
   jobName: job-name-VisitorSurgeon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorResearchAssistant
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorAssistant
+  jobName: job-name-VisitorResearchAssistant
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorTechnicalAssistant
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorAssistant
+  jobName: job-name-VisitorTechnicalAssistant
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorMedicalIntern
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorAssistant
+  jobName: job-name-VisitorMedicalIntern
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconVisitorSecurityCadet
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: VisitorAssistant
+  jobName: job-name-VisitorSecurityCadet

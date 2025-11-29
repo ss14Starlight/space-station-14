@@ -59,7 +59,7 @@
   - type: Clothing
     quickEquip: false
     slots:
-    - idcard
+    - IdCard
     - Belt
   - type: UnpoweredFlashlight
   - type: PointLight
@@ -373,7 +373,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorIDCard
+    id: VisitorClownIDCard # Starlight
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -451,7 +451,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorIDCard
+    id: VisitorChaplainIDCard # Starlight
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -575,7 +575,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorIDCard
+    id: VisitorLibrarianIDCard # Starlight
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -610,7 +610,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorIDCard
+    id: VisitorLawyerIDCard # Starlight
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -768,7 +768,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorIDCard
+    id: VisitorMedicalDoctorIDCard # Starlight
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1023,7 +1023,7 @@
   suffix: Visitor
   components:
   - type: Pda
-    id: VisitorIDCard
+    id: VisitorMusicianIDCard # Starlight
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1570,7 +1570,7 @@
     tags: # ignore "WhitelistChameleon" tag
     - DoorBumpOpener
   - type: ChameleonClothing
-    slot: [idcard]
+    slot: [IDCard]
     default: AssistantPDA
     requireTag: WhitelistChameleonPDA
   - type: UserInterface

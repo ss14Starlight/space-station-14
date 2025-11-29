@@ -362,13 +362,453 @@
     tags:
     - DoorBumpOpener
 
-#- type: entity
-#  parent: VisitorPDA
-#  id: VisitorPDA
-#  suffix: Visitor # Starlight
-#  components:
-#    - type: Pda
-#      id: VisitorIDCard
-#    - type: Tag #  Ignore Chameleon tags
-#      tags:
-#        - DoorBumpOpener
+- type: entity
+  parent: AssistantPDA
+  suffix: Visitor
+  id: VisitorAssistantPDA
+  components:
+    - type: Pda
+      id: VisitorAssistantIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: ServiceWorkerPDA
+  suffix: Visitor
+  id: VisitorServiceWorkerPDA
+  components:
+    - type: Pda
+      id: VisitorServiceWorkerIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: ChefPDA
+  suffix: Visitor
+  id: VisitorChefPDA
+  components:
+    - type: Pda
+      id: VisitorChefIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: BotanistPDA
+  suffix: Visitor
+  id: VisitorBotanistPDA
+  components:
+    - type: Pda
+      id: VisitorBotanistIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: MimePDA
+  suffix: Visitor
+  id: VisitorMimePDA
+  components:
+    - type: Pda
+      id: VisitorMimeIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: QuartermasterPDA
+  suffix: Visitor
+  id: VisitorQuartermasterPDA
+  components:
+    - type: Pda
+      id: VisitorQuartermasterIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: CargoPDA
+  suffix: Visitor
+  id: VisitorCargoPDA
+  components:
+    - type: Pda
+      id: VisitorCargoTechnicianIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: SalvagePDA
+  suffix: Visitor
+  id: VisitorSalvagePDA
+  components:
+    - type: Pda
+      id: VisitorSalvageSpecialistIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: BartenderPDA
+  suffix: Visitor
+  id: VisitorBartenderPDA
+  components:
+    - type: Pda
+      id: VisitorBartenderIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: JanitorPDA
+  suffix: Visitor
+  id: VisitorJanitorPDA
+  components:
+    - type: Pda
+      id: VisitorJanitorIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: CaptainPDA
+  suffix: Visitor
+  id: VisitorCaptainPDA
+  components:
+    - type: Pda
+      id: VisitorCaptainIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: HoPPDA
+  suffix: Visitor
+  id: VisitorHoPPDA
+  components:
+    - type: Pda
+      id: VisitorHeadOfPersonnelIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: EngineerPDA
+  suffix: Visitor
+  id: VisitorEngineerPDA
+  components:
+    - type: Pda
+      id: VisitorStationEngineerIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: CEPDA
+  suffix: Visitor
+  id: VisitorCEPDA
+  components:
+    - type: Pda
+      id: VisitorChiefEngineerIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: CMOPDA
+  suffix: Visitor
+  id: VisitorCMOPDA
+  components:
+    - type: Pda
+      id: VisitorChiefMedicalOfficerIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: ParamedicPDA
+  suffix: Visitor
+  id: VisitorParamedicPDA
+  components:
+    - type: Pda
+      id: VisitorParamedicIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: ChemistryPDA
+  suffix: Visitor
+  id: VisitorChemistryPDA
+  components:
+    - type: Pda
+      id: VisitorChemistIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: RnDPDA
+  suffix: Visitor
+  id: VisitorRnDPDA
+  components:
+    - type: Pda
+      id: VisitorResearchDirectorIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: SciencePDA
+  suffix: Visitor
+  id: VisitorSciencePDA
+  components:
+    - type: Pda
+      id: VisitorScientistIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: HoSPDA
+  suffix: Visitor
+  id: VisitorHoSPDA
+  components:
+    - type: Pda
+      id: VisitorHeadOfSecurityIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: WardenPDA
+  suffix: Visitor
+  id: VisitorWardenPDA
+  components:
+    - type: Pda
+      id: VisitorWardenIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: SecurityPDA
+  suffix: Visitor
+  id: VisitorSecurityPDA
+  components:
+    - type: Pda
+      id: VisitorSecurityOfficerIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: AtmosPDA
+  suffix: Visitor
+  id: VisitorAtmosPDA
+  components:
+    - type: Pda
+      id: VisitorAtmosphericTechnicianIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: PsychologistPDA
+  suffix: Visitor
+  id: VisitorPsychologistPDA
+  components:
+    - type: Pda
+      id: VisitorPsychologistIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: ReporterPDA
+  suffix: Visitor
+  id: VisitorReporterPDA
+  components:
+    - type: Pda
+      id: VisitorReporterIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: ZookeeperPDA
+  suffix: Visitor
+  id: VisitorZookeeperPDA
+  components:
+    - type: Pda
+      id: VisitorZookeeperIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: BoxerPDA
+  suffix: Visitor
+  id: VisitorBoxerPDA
+  components:
+    - type: Pda
+      id: VisitorBoxerIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: DetectivePDA
+  suffix: Visitor
+  id: VisitorDetectivePDA
+  components:
+    - type: Pda
+      id: VisitorDetectiveIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: BrigmedicPDA
+  suffix: Visitor
+  id: VisitorBrigmedicPDA
+  components:
+    - type: Pda
+      id: VisitorBrigMedicIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: RoboticistPDA
+  suffix: Visitor
+  id: VisitorRoboticistPDA
+  components:
+    - type: Pda
+      id: VisitorRoboticistIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: MagistratePDA
+  suffix: Visitor
+  id: VisitorMagistratePDA
+  components:
+    - type: Pda
+      id: VisitorMagistrateIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: NanoTrasenRepresentativePDA
+  suffix: Visitor
+  id: VisitorNanoTrasenRepresentativePDA
+  components:
+    - type: Pda
+      id: VisitorNanotrasenIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: IAAPDA
+  suffix: Visitor
+  id: VisitorIAAPDA
+  components:
+    - type: Pda
+      id: VisitorIAAIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: BlueShieldPDA
+  suffix: Visitor
+  id: VisitorBlueShieldPDA
+  components:
+    - type: Pda
+      id: VisitorBlueShieldIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: MiningPDA
+  suffix: Visitor
+  id: VisitorMiningPDA
+  components:
+    - type: Pda
+      id: VisitorShaftMinerIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: SalvageLeadPDA
+  suffix: Visitor
+  id: VisitorSalvageLeadPDA
+  components:
+    - type: Pda
+      id: VisitorSalvageLeadIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: MailPDA
+  suffix: Visitor
+  id: VisitorMailPDA
+  components:
+    - type: Pda
+      id: VisitorMailTechIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: SecurityCadetPDA
+  suffix: Visitor
+  id: VisitorSecurityCadetPDA
+  components:
+    - type: Pda
+      id: VisitorSecurityCadetIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: TechnicalAssistantPDA
+  suffix: Visitor
+  id: VisitorTechnicalAssistantPDA
+  components:
+    - type: Pda
+      id: VisitorTechnicalAssistantIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: MedicalInternPDA
+  suffix: Visitor
+  id: VisitorMedicalInternPDA
+  components:
+    - type: Pda
+      id: VisitorMedicalInternIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
+  parent: ResearchAssistantPDA
+  suffix: Visitor
+  id: VisitorResearchAssistantPDA
+  components:
+    - type: Pda
+      id: VisitorResearchAssistantIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener

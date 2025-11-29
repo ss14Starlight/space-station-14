@@ -11,7 +11,7 @@
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCaptain
     neck: ClothingNeckCloakCap
-    id: VisitorPDA
+    id: VisitorCaptainPDA # Starlight
     belt: WeaponDisabler
     back: ClothingBackpackCaptain
     ears: ClothingHeadsetAltCommand
@@ -27,7 +27,7 @@
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCapcap
     neck: ClothingNeckMantleCap
-    id: VisitorPDA
+    id: VisitorCaptainPDA # Starlight
     belt: WeaponDisabler
     back: ClothingBackpackSatchelCaptain
     ears: ClothingHeadsetAltCommand
@@ -40,8 +40,8 @@
     jumpsuit: ClothingUniformJumpsuitChiefEngineer
     shoes: ClothingShoesColorWhite
     head: ClothingHeadHatBeretEngineering
-    neck: ClothingNeckCloakCe
-    id: VisitorPDA
+    neck: ClothingNeckCloakCe # Starlight
+    id: VisitorCEPDA
     belt: ClothingBeltChiefEngineerFilled
     back: ClothingBackpackDuffelEngineering
     ears: ClothingHeadsetCE
@@ -55,7 +55,7 @@
     shoes: ClothingShoesColorWhite
     head: ClothingHeadHatBeretEngineering
     neck: ClothingNeckMantleCE
-    id: VisitorPDA
+    id: VisitorCEPDA # Starlight
     belt: ClothingBeltChiefEngineerFilled
     back: ClothingBackpackSatchelEngineering
     ears: ClothingHeadsetCE
@@ -70,7 +70,7 @@
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadMirror
     neck: ClothingCloakCmo
-    id: VisitorPDA
+    id: VisitorCMOPDA # Starlight
     back: ClothingBackpackMedical
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
@@ -85,7 +85,7 @@
     gloves: ClothingHandsGlovesNitrile
     head: ClothingHeadHatBeretCmo
     neck: ClothingNeckMantleCMO
-    id: VisitorPDA
+    id: VisitorCMOPDA # Starlight
     back: ClothingBackpackSatchelMedical
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
@@ -99,7 +99,7 @@
     shoes: ClothingShoesLeather
     head: ClothingHeadHatHopcap
     neck: ClothingNeckCloakHop
-    id: VisitorPDA
+    id: VisitorHoPPDA # Starlight
     belt: WeaponDisabler
     back: ClothingBackpackDebug
     ears: ClothingHeadsetHoP
@@ -113,7 +113,7 @@
     shoes: ClothingShoesLeather
     head: ClothingHeadHatHopcap
     neck: ClothingNeckMantleHOP
-    id: VisitorPDA
+    id: VisitorHoPPDA # Starlight
     belt: WeaponDisabler
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetHoP
@@ -128,7 +128,7 @@
     gloves: ClothingHandsGlovesCombat
     head: ClothingHeadHatHoshat
     neck: ClothingNeckCloakHos
-    id: VisitorPDA
+    id: VisitorHoSPDA # Starlight
     belt: ClothingBeltSecurityFilled
     back: ClothingBackpackSatchelSecurity
     ears: ClothingHeadsetAltSecurity
@@ -147,7 +147,7 @@
     gloves: ClothingHandsGlovesColorWhite
     head: ClothingHeadHatCowboyWhite
     neck: SecurityWhistle
-    id: VisitorPDA
+    id: VisitorHoSPDA # Starlight
     belt: ClothingBeltSecurityFilled
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetAltSecurity
@@ -165,7 +165,7 @@
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadHatBeretRND
     neck: ClothingNeckCloakRd
-    id: VisitorPDA
+    id: VisitorRnDPDA # Starlight
     back: ClothingBackpackScience
     ears: ClothingHeadsetRD
     outerClothing: ClothingOuterCoatRD
@@ -179,7 +179,7 @@
     gloves: ClothingHandsGlovesNitrile
     head: ClothingHeadHatBeretRND
     neck: ClothingNeckMantleRD
-    id: VisitorPDA
+    id: VisitorRnDPDA # Starlight
     back: ClothingBackpackSatchelScience
     ears: ClothingHeadsetRD
     outerClothing: ClothingOuterCoatRD
@@ -192,7 +192,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatQMsoft
     neck: ClothingNeckCloakQm
-    id: VisitorPDA
+    id: VisitorQuartermasterPDA # Starlight
     back: ClothingBackpackCargo
     ears: ClothingHeadsetQM
     outerClothing: ClothingOuterWinterQM
@@ -206,7 +206,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretQM
     neck: ClothingNeckMantleQM
-    id: VisitorPDA
+    id: VisitorQuartermasterPDA # Starlight
     back: ClothingBackpackSatchelCargo
     ears: ClothingHeadsetQM
     outerClothing: ClothingOuterWinterQM
@@ -221,7 +221,7 @@
     jumpsuit: ClothingUniformJumpsuitSec
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHelmetBasic
-    id: VisitorPDA
+    id: VisitorSecurityCadetPDA # Starlight
     belt: ClothingBeltSecurityFilled
     back: ClothingBackpackSecurity
     ears: ClothingHeadsetSecurity
@@ -239,7 +239,7 @@
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHelmetBasic
     neck: SecurityWhistle
-    id: VisitorPDA
+    id: VisitorSecurityCadetPDA # Starlight
     belt: ClothingBeltSecurityFilled
     back: ClothingBackpackSatchelSecurity
     ears: ClothingHeadsetSecurity
@@ -256,7 +256,7 @@
     jumpsuit: ClothingUniformJumpsuitSec
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHelmetBasic
-    id: VisitorPDA
+    id: VisitorSecurityPDA # Starlight
     belt: ClothingBeltSecurityWebbingFilled
     back: ClothingBackpackSecurity
     ears: ClothingHeadsetSecurity
@@ -274,7 +274,7 @@
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHatCorpsoft
     neck: SecurityWhistle
-    id: VisitorPDA
+    id: VisitorSecurityPDA # Starlight
     belt: ClothingBeltSecurityFilled
     back: ClothingBackpackSatchelSecurity
     ears: ClothingHeadsetSecurity
@@ -292,7 +292,7 @@
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHatFedoraBrown
     neck: ClothingNeckTieDet
-    id: VisitorPDA
+    id: VisitorDetectivePDA # Starlight
     belt: ClothingBeltHolsterFilled
     back: ClothingBackpackSecurity
     ears: ClothingHeadsetSecurity
@@ -310,7 +310,7 @@
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHatFedoraGrey
     neck: ClothingNeckTieDet
-    id: VisitorPDA
+    id: VisitorDetectivePDA # Starlight
     belt: ClothingBeltHolsterFilled
     back: ClothingBackpackSatchelSecurity
     ears: ClothingHeadsetSecurity
@@ -329,7 +329,7 @@
     gloves: ClothingHandsGlovesCombat
     head: ClothingHeadHatBeretWarden
     neck: SecurityWhistle
-    id: VisitorPDA
+    id: VisitorWardenPDA # Starlight
     belt: ClothingBeltSecurityWebbingFilled
     back: ClothingBackpackSecurity
     ears: ClothingHeadsetSecurity
@@ -348,7 +348,7 @@
     shoes: ClothingShoesBootsCombatFilled
     gloves: ClothingHandsGlovesCombat
     head: ClothingHeadHatWarden
-    id: VisitorPDA
+    id: VisitorWardenPDA # Starlight
     belt: ClothingBeltSecurityFilled
     back: ClothingBackpackSatchelSecurity
     ears: ClothingHeadsetSecurityWarden
@@ -368,7 +368,7 @@
     jumpsuit: ClothingUniformJumpsuitCargo
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatCargosoft
-    id: VisitorPDA
+    id: VisitorCargoPDA # Starlight
     back: ClothingBackpackCargo
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
@@ -382,7 +382,7 @@
     jumpsuit: ClothingUniformJumpsuitCargo
     shoes: ClothingShoesBootsWinterCargo
     head: ClothingHeadHatCargosoft
-    id: VisitorPDA
+    id: VisitorCargoPDA # Starlight
     back: ClothingBackpackDuffelCargo
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
@@ -398,7 +398,7 @@
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     shoes: ClothingShoesBootsSalvage
     head: ClothingHeadHatCargosoftFlipped
-    id: VisitorPDA
+    id: VisitorCargoPDA # Starlight
     belt: ClothingBeltSalvageWebbing
     back: ClothingBackpackSalvage
     ears: ClothingHeadsetCargo
@@ -413,7 +413,7 @@
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     shoes: ClothingShoesBootsSalvage
     head: ClothingHeadHatBrownFlatcap
-    id: VisitorPDA
+    id: VisitorCargoPDA # Starlight
     belt: ClothingBeltSalvageWebbing
     back: ClothingBackpackDuffelSalvage
     ears: ClothingHeadsetCargo
@@ -432,7 +432,7 @@
     shoes: ClothingShoesColorWhite
     gloves: ClothingHandsGlovesFingerlessInsulated
     head: ClothingHeadHelmetFire
-    id: VisitorPDA
+    id: VisitorAtmosPDA # Starlight
     back: ClothingBackpackDuffelAtmospherics
     ears: ClothingHeadsetEngineering
     eyes: ClothingEyesGlassesMeson
@@ -450,7 +450,7 @@
     gloves: ClothingHandsGlovesColorYellow
     head: ClothingHeadHatHardhatYellow
     neck: ClothingNeckScarfStripedLightBlue
-    id: VisitorPDA
+    id: VisitorAtmosPDA # Starlight
     belt: DoubleEmergencyOxygenTankFilled
     back: ClothingBackpackSatchelAtmospherics
     ears: ClothingHeadsetEngineering
@@ -468,7 +468,7 @@
     shoes: ClothingShoesBootsWork
     gloves: ClothingHandsGlovesColorYellowBudget
     head: ClothingHeadHatWelding
-    id: VisitorPDA
+    id: VisitorTechnicalAssistantPDA # Starlight
     back: ClothingBackpackEngineering
     ears: ClothingHeadsetEngineering
     eyes: ClothingEyesGlassesMeson
@@ -484,7 +484,7 @@
     shoes: ClothingShoesColorBlack
     gloves: ClothingHandsGlovesColorYellowBudget
     head: ClothingHeadHatCone
-    id: VisitorPDA
+    id: VisitorTechnicalAssistantPDA # Starlight
     belt: ClothingBeltUtility
     back: ClothingBackpackSatchelEngineering
     ears: ClothingHeadsetEngineering
@@ -502,7 +502,7 @@
     shoes: ClothingShoesBootsWork
     gloves: ClothingHandsGlovesColorYellow
     head: ClothingHeadHatHardhatYellow
-    id: VisitorPDA
+    id: VisitorEngineerPDA # Starlight
     belt: ClothingBeltUtilityEngineering
     back: ClothingBackpackEngineering
     ears: ClothingHeadsetEngineering
@@ -521,7 +521,7 @@
     shoes: ClothingShoesBootsWork
     gloves: ClothingHandsGlovesColorYellow
     head: ClothingHeadHatBeretEngineering
-    id: VisitorPDA
+    id: VisitorEngineerPDA # Starlight
     belt: ClothingBeltUtilityEngineering
     back: ClothingBackpackDuffelEngineering
     ears: ClothingHeadsetEngineering
@@ -540,7 +540,7 @@
     jumpsuit: ClothingUniformJumpsuitChemistry
     shoes: ClothingShoesColorOrange
     gloves: ClothingHandsGlovesLatex
-    id: VisitorPDA
+    id: VisitorChemistPDA # Starlight
     belt: ChemBag
     back: ClothingBackpackChemistry
     ears: ClothingHeadsetMedical
@@ -558,7 +558,7 @@
     jumpsuit: ClothingUniformJumpsuitChemistry
     shoes: ClothingShoesColorOrange
     head: ClothingHeadHatPaper
-    id: VisitorPDA
+    id: VisitorChemistPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelChemistry
     ears: ClothingHeadsetMedical
@@ -577,7 +577,7 @@
     shoes: ClothingShoesColorBlue
     gloves: ClothingHandsGlovesNitrile
     head: ClothingHeadBandGrey
-    id: VisitorPDA
+    id: VisitorMedicalPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackGenetics
     ears: ClothingHeadsetMedical
@@ -595,7 +595,7 @@
     shoes: ClothingShoesColorBlue
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadHatBeretBrigmedic
-    id: VisitorPDA
+    id: VisitorMedicalPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelGenetics
     ears: ClothingHeadsetMedical
@@ -613,7 +613,7 @@
     shoes: ClothingShoesColorGreen
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadMirror
-    id: VisitorPDA
+    id: VisitorMedicalPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackVirology
     ears: ClothingHeadsetMedical
@@ -632,7 +632,7 @@
     gloves: ClothingHandsGlovesNitrile
     head: ClothingHeadHatBeretSeniorPhysician
     neck: ClothingNeckStethoscope
-    id: VisitorPDA
+    id: VisitorMedicalPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelVirology
     ears: ClothingHeadsetMedical
@@ -651,7 +651,7 @@
     gloves: ClothingHandsGlovesNitrile
     head: ClothingHeadHatCorpsoft
     neck: ClothingNeckStethoscope
-    id: VisitorPDA
+    id: VisitorMedicalPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackMedical
     ears: ClothingHeadsetMedical
@@ -670,7 +670,7 @@
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadHatBeretMedic
     neck: ClothingNeckStethoscope
-    id: VisitorPDA
+    id: VisitorMedicalPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelMedical
     ears: ClothingHeadsetMedical
@@ -689,7 +689,7 @@
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadHatSurgcapBlue
 #    mask: ClothingMaskBreathMedical # right now this is broken for vox, but maybe some day.
-    id: VisitorPDA
+    id: VisitorMedicalPDA # Starlight
     belt: ClothingBeltStorageWaistbag
     back: NitrousOxideTankFilled
     ears: ClothingHeadsetMedical
@@ -707,7 +707,7 @@
     shoes: ClothingShoesLeather
     head: ClothingHeadHatMagician
     neck: ClothingNeckTieRed
-    id: VisitorPDA
+    id: VisitorPsychologistPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetMedical
@@ -724,7 +724,7 @@
     jumpsuit: ClothingUniformJumpsuitPsychologist
     shoes: ClothingShoesLeather
     head: ClothingHeadHatAnimalCat
-    id: VisitorPDA
+    id: VisitorPsychologistPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetMedical
@@ -743,7 +743,7 @@
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadHatParamedicsoft
     neck: ClothingNeckStethoscope
-    id: VisitorPDA
+    id: VisitorParamedicPDA # Starlight
     belt: ClothingBeltMedicalEMTFilled
     back: ClothingBackpackDuffelGenetics
     ears: ClothingHeadsetMedical
@@ -763,7 +763,7 @@
     gloves: ClothingHandsGlovesNitrile
     head: ClothingHeadHatParamedicsoftFlipped
     neck: ClothingNeckStethoscope
-    id: VisitorPDA
+    id: VisitorParamedicPDA # Starlight
     belt: ClothingBeltMedicalEMTFilled
     back: ClothingBackpackDuffelGenetics
     ears: ClothingHeadsetMedical
@@ -781,7 +781,7 @@
     jumpsuit: ClothingUniformJumpsuitColorWhite
     shoes: ClothingShoesColorWhite
     head: ClothingHeadBandGreen
-    id: VisitorPDA
+    id: VisitorMedicalInternPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackDuffelMedical
     ears: ClothingHeadsetMedical
@@ -798,7 +798,7 @@
     jumpsuit: ClothingUniformJumpsuitColorWhite
     shoes: ClothingShoesColorWhite
     head: ClothingHeadBandBlue
-    id: VisitorPDA
+    id: VisitorMedicalInternPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackDuffelMedical
     ears: ClothingHeadsetMedical
@@ -816,7 +816,7 @@
     shoes: ClothingShoesColorRed
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadHatSurgcapPurple
-    id: VisitorPDA
+    id: VisitorMedicalPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelMedical
     ears: ClothingHeadsetMedical
@@ -834,7 +834,7 @@
     shoes: ClothingShoesColorGreen
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadHatSurgcapGreen
-    id: VisitorPDA
+    id: VisitorMedicalPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelMedical
     ears: ClothingHeadsetMedical
@@ -852,7 +852,7 @@
     shoes: ClothingShoesColorBlue
     gloves: ClothingHandsGlovesNitrile
     head: ClothingHeadHatSurgcapBlue
-    id: VisitorPDA
+    id: VisitorMedicalPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelMedical
     ears: ClothingHeadsetMedical
@@ -871,7 +871,7 @@
     jumpsuit: ClothingUniformJumpsuitColorPurple
     shoes: ClothingShoesColorBlack
     head: ClothingHeadPaperSack
-    id: VisitorPDA
+    id: VisitorResearchAssistantPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackScience
     ears: ClothingHeadsetScience
@@ -885,7 +885,7 @@
     jumpsuit: ClothingUniformJumpsuitCasualPurple
     shoes: ClothingShoesColorBlack
     neck: ClothingNeckTieSci
-    id: VisitorPDA
+    id: VisitorResearchAssistantPDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelScience
     ears: ClothingHeadsetScience
@@ -899,7 +899,7 @@
     jumpsuit: ClothingUniformJumpsuitScientistFormal
     shoes: ClothingShoesColorPurple
     head: ClothingHeadHatBeretRND
-    id: VisitorPDA
+    id: VisitorSciencePDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackScience
     ears: ClothingHeadsetScience
@@ -914,7 +914,7 @@
     shoes: ClothingShoesBootsWinterSci
     head: ClothingHeadHatPurplesoft
     neck: ClothingNeckTieSci
-    id: VisitorPDA
+    id: VisitorSciencePDA # Starlight
     belt: ClothingBeltMedicalFilled
     back: ClothingBackpackSatchelScience
     ears: ClothingHeadsetScience
@@ -930,7 +930,7 @@
     jumpsuit: ClothingUniformJumpsuitBartender
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatTophat
-    id: VisitorPDA
+    id: VisitorBartenderPDA # Starlight
     back: ClothingBackpack
     suitstorage: WeaponShotgunDoubleBarreledRubber
     ears: ClothingHeadsetService
@@ -946,7 +946,7 @@
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatBowlerHat
     neck: ClothingNeckTieSci
-    id: VisitorPDA
+    id: VisitorBartenderPDA # Starlight
     back: ClothingBackpackSatchel
     ears: ClothingHeadsetService
     eyes: ClothingEyesHudBeer
@@ -960,7 +960,7 @@
     jumpsuit: ClothingUniformJumpsuitHydroponics
     shoes: ClothingShoesColorGreen
     head: ClothingHeadBandGreen
-    id: VisitorPDA
+    id: VisitorBotanistPDA # Starlight
     back: ClothingBackpackDuffelHydroponics
     ears: ClothingHeadsetService
   inhand:
@@ -973,7 +973,7 @@
     jumpsuit: ClothingUniformJumpsuitHydroponics
     shoes: ClothingShoesColorGreen
     head: Bucket
-    id: VisitorPDA
+    id: VisitorBotanistPDA # Starlight
     back: ClothingBackpackHydroponics
     ears: ClothingHeadsetService
     pocket1: HydroponicsToolMiniHoe
@@ -986,7 +986,7 @@
     shoes: ClothingShoesColorBlack
     gloves: ClothingHandsGlovesBoxingBlue
     head: ClothingHeadPaperSackSmile
-    id: VisitorPDA
+    id: VisitorBoxerPDA # Starlight
     ears: ClothingHeadsetService
     pocket1: DrinkVodkaBottleFull
     pocket2: SoapDeluxe
@@ -998,7 +998,7 @@
     shoes: ClothingShoesColorBlack
     gloves: ClothingHandsGlovesBoxingRed
     head: ClothingHeadHatSkub
-    id: VisitorPDA
+    id: VisitorBoxerPDA # Starlight
     ears: ClothingHeadsetService
     outerClothing: ClothingOuterSkub
     pocket1: Skub
@@ -1011,7 +1011,7 @@
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatPlaguedoctor
     mask: ClothingMaskPlague
-    id: VisitorPDA
+    id: VisitorChaplainPDA # Starlight
     belt: Bible
     ears: ClothingHeadsetService
     outerClothing: ClothingOuterPlagueSuit
@@ -1024,7 +1024,7 @@
     jumpsuit: ClothingUniformJumpsuitChaplain
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatHoodNunHood
-    id: VisitorPDA
+    id: VisitorChaplainPDA # Starlight
     belt: Bible
     ears: ClothingHeadsetService
     outerClothing: ClothingOuterNunRobe
@@ -1038,7 +1038,7 @@
     shoes: ClothingShoesChef
     head: ClothingHeadHatChef
 #    mask: ClothingMaskItalianMoustache # right now this is broken for vox, so its inhand.
-    id: VisitorPDA
+    id: VisitorChefPDA # Starlight
     back: ClothingBackpackSatchel
     belt: ClothingBeltChefFilled
     ears: ClothingHeadsetService
@@ -1056,7 +1056,7 @@
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatChef
 #    mask: ClothingMaskItalianMoustache # right now this is broken for vox, so its inhand.
-    id: VisitorPDA
+    id: VisitorChefPDA # Starlight
     back: ClothingBackpack
     belt: ClothingBeltChefFilled
     ears: ClothingHeadsetService
@@ -1072,7 +1072,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitClown
     shoes: ClothingShoesClown
-    id: VisitorPDA
+    id: VisitorClownPDA # Starlight
     back: ClothingBackpackClown
     ears: ClothingHeadsetService
     mask: ClothingMaskClown
@@ -1086,7 +1086,7 @@
     shoes: ClothingShoesGaloshes
     gloves: ClothingHandsGlovesJanitor
     head: ClothingHeadFishCap
-    id: VisitorPDA
+    id: VisitorJanitorPDA # Starlight
     back: ClothingBackpackSatchel
     belt: ClothingBeltJanitorFilled
     ears: ClothingHeadsetService
@@ -1102,7 +1102,7 @@
     shoes: ClothingShoesGaloshes
     gloves: ClothingHandsGlovesJanitor
     head: ClothingHeadHatHoodBioJanitor
-    id: VisitorPDA
+    id: VisitorJanitorPDA # Starlight
     back: ClothingBackpack
     belt: ClothingBeltJanitorFilled
     ears: ClothingHeadsetService
@@ -1118,7 +1118,7 @@
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatFedoraGrey
     neck: ClothingNeckLawyerbadge
-    id: VisitorPDA
+    id: VisitorLawyerPDA # Starlight
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetSecurity
     pocket1: RubberStampLawyer
@@ -1133,7 +1133,7 @@
     shoes: ClothingShoesLeather
     head: ClothingHeadHatFedoraBrown
     neck: ClothingNeckLawyerbadge
-    id: VisitorPDA
+    id: VisitorLawyerPDA # Starlight
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetSecurity
     pocket1: RubberStampLawyer
@@ -1148,7 +1148,7 @@
     shoes: ClothingShoesColorRed
     head: ClothingHeadHatCowboyBrown
     neck: ClothingNeckLawyerbadge
-    id: VisitorPDA
+    id: VisitorLawyerPDA # Starlight
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag
     ears: ClothingHeadsetSecurity
@@ -1166,7 +1166,7 @@
     head: ClothingHeadHatBeaverHat
     neck: ClothingNeckLawyerbadge
     mask: CigarGold
-    id: VisitorPDA
+    id: VisitorLawyerPDA # Starlight
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetSecurity
     outerClothing: ClothingOuterCoatExpensive
@@ -1182,7 +1182,7 @@
     shoes: ClothingShoesLeather
     head: ClothingHeadHatCorpsoft
     neck: ClothingNeckLawyerbadge
-    id: VisitorPDA
+    id: VisitorLawyerPDA # Starlight
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag
     ears: ClothingHeadsetSecurity
@@ -1231,7 +1231,7 @@
     jumpsuit: ClothingUniformJumpsuitCurator
     shoes: ClothingShoesBootsLaceup
     head: ClothingHeadHatGreyFlatcap
-    id: VisitorPDA
+    id: VisitorLibrarianPDA # Starlight
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag
     eyes: ClothingEyesGlasses
@@ -1246,7 +1246,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchelLeather
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1260,7 +1260,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchelLeather
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1274,7 +1274,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchelLeather
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1288,7 +1288,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchelLeather
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1302,7 +1302,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchelLeather
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1316,7 +1316,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchelLeather
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1330,7 +1330,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchelLeather
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1344,7 +1344,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchelLeather
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1358,7 +1358,7 @@
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesColorBrown
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackDuffel
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1372,7 +1372,7 @@
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesColorBlack
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchel
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1386,7 +1386,7 @@
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesColorBlack
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpack
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1400,7 +1400,7 @@
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesColorBrown
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackDuffel
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1414,7 +1414,7 @@
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesColorBlack
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackDuffel
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1428,7 +1428,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
     pocket1: BluntRainbow
@@ -1442,7 +1442,7 @@
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesWizard
     head: ClothingHeadRastaHat
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchel
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1457,7 +1457,7 @@
     jumpsuit: ClothingUniformJumpsuitColorTeal
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatSombrero
-    id: VisitorPDA
+    id: VisitorMusicianPDA # Starlight
     back: ClothingBackpackSatchel
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1475,7 +1475,7 @@
     gloves: ClothingHandsGlovesColorWhite
     head: ClothingHeadBandBlack
     mask: ClothingMaskMime
-    id: VisitorPDA
+    id: VisitorMimePDA # Starlight
     back: ClothingBackpackMime
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1490,7 +1490,7 @@
     gloves: ClothingHandsGlovesColorWhite
     head: ClothingHeadHatAnimalCatBlack
     mask: ClothingMaskMime
-    id: VisitorPDA
+    id: VisitorMimePDA # Starlight
     back: ClothingBackpackMime
     eyes: ClothingEyesGlassesCheapSunglasses
     ears: ClothingHeadsetService
@@ -1505,7 +1505,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitReporter
     shoes: ClothingShoesLeather
-    id: VisitorPDA
+    id: VisitorReporterPDA # Starlight
     back: ClothingBackpackSatchel
     ears: ClothingHeadsetService
     pocket1: MicrophoneInstrument
@@ -1516,7 +1516,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitJournalist
     shoes: ClothingShoesColorBrown
-    id: VisitorPDA
+    id: VisitorReporterPDA # Starlight
     back: ClothingBackpackSatchel
     ears: ClothingHeadsetService
     pocket1: MicrophoneInstrument
@@ -1528,7 +1528,7 @@
     jumpsuit: ClothingUniformJumpsuitBartender
     shoes: ClothingShoesColorBlack
     head: ClothingHeadBandBlue
-    id: VisitorPDA
+    id: VisitorServiceWorkerPDA # Starlight
     back: ClothingBackpack
     ears: ClothingHeadsetService
     pocket1: Fork
@@ -1540,7 +1540,7 @@
     jumpsuit: ClothingUniformJumpsuitColorBlack
     shoes: ClothingShoesColorBlack
     head: ClothingHeadBandBlack
-    id: VisitorPDA
+    id: VisitorServiceWorkerPDA # Starlight
     back: ClothingBackpack
     ears: ClothingHeadsetService
     outerClothing: ClothingOuterApronBar
@@ -1553,7 +1553,7 @@
     jumpsuit: ClothingUniformJumpsuitSafari
     shoes: ClothingShoesBootsSalvage
     head: ClothingHeadSafari
-    id: VisitorPDA
+    id: VisitorZookeeperPDA # Starlight
     belt: ClothingBeltUtility
     back: ClothingBackpackDuffel
     ears: ClothingHeadsetService
@@ -1566,7 +1566,7 @@
     jumpsuit: ClothingUniformJumpsuitSafari
     shoes: ClothingShoesBootsWork
     head: ClothingHeadSafari
-    id: VisitorPDA
+    id: VisitorZookeeperPDA # Starlight
     belt: ClothingBeltStorageWaistbag
     back: WeaponShotgunDoubleBarreledRubber
     ears: ClothingHeadsetService
@@ -1588,7 +1588,7 @@
     jumpsuit: ClothingUniformJumpsuitCargo
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatCargosoft
-    id: VisitorPDA
+    id: VisitorCargoPDA # Starlight
     back: ClothingBackpackCargo
     #ears: null # No headsets.
     pocket1: AppraisalTool
@@ -1599,7 +1599,7 @@
     jumpsuit: ClothingUniformJumpsuitCargo
     shoes: ClothingShoesBootsWinterCargo
     head: ClothingHeadHatCargosoft
-    id: VisitorPDA
+    id: VisitorCargoPDA # Starlight
     back: ClothingBackpackSatchelCargo
     #ears: # No headsets.
     pocket1: AppraisalTool
@@ -1617,7 +1617,7 @@
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCaptain
     neck: ClothingNeckCloakCap
-    id: VisitorPDA
+    id: VisitorCaptainPDA # Starlight
     back: ClothingBackpackCaptain
     #ears: # No headsets.
 
@@ -1630,7 +1630,7 @@
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCapcap
     neck: ClothingNeckMantleCap
-    id: VisitorPDA
+    id: VisitorCaptainPDA # Starlight
     back: ClothingBackpackSatchelCaptain
     #ears: # No headsets.
     outerClothing: ClothingOuterWinterCap
@@ -1645,7 +1645,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadMirror
     neck: ClothingCloakCmo
-    id: VisitorPDA
+    id: VisitorCMOPDA # Starlight
     back: ClothingBackpackMedical
     #ears: # No headsets.
     belt: ClothingBeltMedical
@@ -1658,7 +1658,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretCmo
     neck: ClothingNeckMantleCMO
-    id: VisitorPDA
+    id: VisitorCMOPDA # Starlight
     back: ClothingBackpackSatchelMedical
     #ears: # No headsets.
     belt: ClothingBeltMedical
@@ -1674,7 +1674,7 @@
     shoes: ClothingShoesColorWhite
     head: ClothingHeadHatBeretEngineering
     neck: ClothingNeckCloakCe
-    id: VisitorPDA
+    id: VisitorCEPDA # Starlight
     #belt: ClothingBeltChiefEngineerFilled # probably too strong?
     back: ClothingBackpackDuffelEngineering
     #ears: # No headsets.
@@ -1688,7 +1688,7 @@
     shoes: ClothingShoesColorWhite
     head: ClothingHeadHatBeretEngineering
     neck: ClothingNeckMantleCE
-    id: VisitorPDA
+    id: VisitorCEPDA # Starlight
     belt: ClothingBeltChiefEngineerFilled
     back: ClothingBackpackSatchelEngineering
     #ears: # No headsets.
@@ -1705,7 +1705,7 @@
     shoes: ClothingShoesLeather
     head: ClothingHeadHatHopcap
     neck: ClothingNeckCloakHop
-    id: VisitorPDA
+    id: VisitorHoPPDA # Starlight
     belt: WeaponDisabler
     back: ClothingBackpackDebug
     #ears: #No headsets.
@@ -1718,7 +1718,7 @@
     shoes: ClothingShoesLeather
     head: ClothingHeadHatHopcap
     neck: ClothingNeckMantleHOP
-    id: VisitorPDA
+    id: VisitorHoPPDA # Starlight
     belt: WeaponDisabler
     back: ClothingBackpackSatchelLeather
     #ears: #No headsets.
@@ -1735,7 +1735,7 @@
     gloves: ClothingHandsGlovesCombat
     head: ClothingHeadHatHoshat
     neck: ClothingNeckCloakHos
-    id: VisitorPDA
+    id: VisitorHoSPDA # Starlight
     belt: ClothingBeltSecurityFilled
     back: ClothingBackpackSatchelSecurity
     #ears: #No headsets.
@@ -1750,7 +1750,7 @@
     gloves: ClothingHandsGlovesColorWhite
     head: ClothingHeadHatCowboyWhite
     neck: SecurityWhistle
-    id: VisitorPDA
+    id: VisitorHoSPDA # Starlight
     belt: ClothingBeltSecurityFilled
     back: ClothingBackpackSatchelLeather
     #ears: #No headsets.
@@ -1766,7 +1766,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretRND
     neck: ClothingNeckCloakRd
-    id: VisitorPDA
+    id: VisitorRnDPDA # Starlight
     back: ClothingBackpackScience
     #ears: #No headsets.
     outerClothing: ClothingOuterCoatRD
@@ -1778,7 +1778,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretRND
     neck: ClothingNeckMantleRD
-    id: VisitorPDA
+    id: VisitorRnDPDA # Starlight
     back: ClothingBackpackSatchelScience
     #ears: # No headsets.
     outerClothing: ClothingOuterCoatRD
@@ -1793,7 +1793,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatQMsoft
     neck: ClothingNeckCloakQm
-    id: VisitorPDA
+    id: VisitorQuartermasterPDA # Starlight
     back: ClothingBackpackCargo
     #ears: # No headsets.
     outerClothing: ClothingOuterWinterQM
@@ -1806,7 +1806,7 @@
     shoes: ClothingShoesColorBrown
     head: ClothingHeadHatBeretQM
     neck: ClothingNeckMantleQM
-    id: VisitorPDA
+    id: VisitorQuartermasterPDA # Starlight
     back: ClothingBackpackSatchelCargo
     #ears: # No headsets.
     outerClothing: ClothingOuterWinterQM
