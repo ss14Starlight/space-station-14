@@ -491,15 +491,14 @@ public sealed partial class AutoModWindow : DefaultWindow
         _categoryManagerWindow = new DefaultWindow { Title = Loc.GetString("automod-category-dialog-title"), MinSize = new Vector2(550, 400) };
         _categoryManagerWindow.OnClose += () => _categoryManagerWindow = null;
         
-        var mainBox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(10) };
+        var mainBox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(10, 35, 10, 10) };
 
-        // Header
+        // Summary stats header
         var headerPanel = new PanelContainer { StyleClasses = { "AngleRect" }, Margin = new Thickness(0, 0, 0, 10) };
-        var headerBox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(8, 6) };
-        headerBox.AddChild(new Label { Text = Loc.GetString("automod-category-management-title"), StyleClasses = { "LabelHeading" } });
+        var headerBox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(8) };
         var totalRules = _categories.Count > 0 ? _allRules.Count : uncategorizedCount;
         var totalCategories = _categories.Count + (uncategorizedCount > 0 ? 1 : 0);
-        headerBox.AddChild(new Label { Text = Loc.GetString("automod-category-stats-summary", ("categories", totalCategories), ("rules", totalRules)), StyleClasses = { "LabelSubText" }, Margin = new Thickness(0, 2, 0, 0) });
+        headerBox.AddChild(new Label { Text = Loc.GetString("automod-category-stats-summary", ("categories", totalCategories), ("rules", totalRules)), StyleClasses = { "LabelSubText" } });
         headerPanel.AddChild(headerBox);
         mainBox.AddChild(headerPanel);
 

@@ -6,7 +6,7 @@
     <BoxContainer Orientation="Vertical" Margin="10">
         <!-- Header with action buttons and rule count -->
         <PanelContainer StyleClasses="AngleRect" Margin="0 0 0 10">
-            <BoxContainer Orientation="Horizontal" Margin="8 6">
+            <BoxContainer Orientation="Horizontal" Margin="8 8 8 8">
                 <Button Name="RefreshButton" Access="Public" 
                         Text="{Loc 'automod-eui-menu-refresh'}" 
                         MinSize="80 0" />

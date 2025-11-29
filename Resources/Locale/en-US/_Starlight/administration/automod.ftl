@@ -57,7 +57,6 @@ automod-category-uncategorized = Uncategorized
 automod-category-enable-all = Enable All
 automod-category-disable-all = Disable All
 automod-category-delete = Delete Category
-automod-category-management-title = Category Management & Statistics
 automod-category-default-severity = Default Severity:
 automod-category-add-title = Add New Category
 automod-category-add-button = Add Category
