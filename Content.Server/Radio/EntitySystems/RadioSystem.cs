@@ -255,7 +255,7 @@ public sealed class RadioSystem : EntitySystem
             }
         }
 
-        if (TryComp<BorgChassisComponent>(messageSource, out var chassis) || HasComp<BorgBrainComponent>(messageSource))
+        if (TryComp<BorgChassisComponent>(messageSource, out var chassis) || HasComp<BorgBrainComponent>(messageSource)) // Starlight edit
         {
             iconId = chassis?.JobIconOverride ?? "JobIconBorg";
             jobName = Loc.GetString(chassis?.LocalizedJobTitle ?? "job-name-borg");
