@@ -285,7 +285,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
         result += $"[color=cyan]Severity:[/color] [color={severityColor}]{severityText}[/color]\n";
         result += $"[color=cyan]Offence Level:[/color] [color={levelColor}]{offenceLevel}[/color]\n";
         result += $"[color=cyan]Category:[/color] [color=yellow]{rule.Category ?? "Uncategorized"}[/color]\n";
-        result += $"[color=cyan]Rule Pattern:[/color] [color=gray]{rule.Regex}[/color]\n";
+        result += $"[color=cyan]Rule Pattern:[/color] [color=gray]{FormattedMessage.EscapeText(rule.Regex)}[/color]\n";
         
         if (!string.IsNullOrEmpty(offence.Message))
             result += $"[color=cyan]Reason:[/color] [color=orange]{offence.Message}[/color]\n";

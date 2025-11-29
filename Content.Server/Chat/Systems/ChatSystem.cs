@@ -203,7 +203,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         }
 
-        if (!CanSendInGame(message, shell, player))
+        if (!CanSendInGame(message, desiredType, shell, player)) // Starlight Edit: AutoMod
             return;
 
         ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
@@ -295,8 +295,25 @@ public sealed partial class ChatSystem : SharedChatSystem
         ICommonSession? player = null
         )
     {
-        if (!CanSendInGame(message, shell, player))
-            return;
+        // Starlight edit Start: AutoMod
+        if (player != null)
+        {
+            var mindContainerComponent = player.ContentData()?.Mind;
+
+            if (mindContainerComponent == null)
+            {
+                return;
+            }
+
+            if (player.AttachedEntity is not { Valid: true } _)
+            {
+                return;
+            }
+
+            if (_chatManager.MessageCharacterLimit(player, message))
+                return;
+        }
+        // Starlight edit End
 
         if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
             return;
@@ -964,7 +981,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     Returns true if the given player is 'allowed' to send the given message, false otherwise.
     /// </summary>
-    private bool CanSendInGame(string message, IConsoleShell? shell = null, ICommonSession? player = null)
+    private bool CanSendInGame(string message, InGameICChatType chatType, IConsoleShell? shell = null, ICommonSession? player = null) // Starlight Edit: AutoMod
     {
         // Non-players don't have to worry about these restrictions.
         if (player == null)
@@ -985,7 +1002,15 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         // Starlight Start: AutoMod
-        if (!_chatManager.MessageCancelCheck(player, message))
+        var channel = chatType switch
+        {
+            InGameICChatType.Speak => ChatChannel.Local,
+            InGameICChatType.Whisper => ChatChannel.Whisper,
+            InGameICChatType.Emote => ChatChannel.Emotes,
+            _ => ChatChannel.Local // Default to Local for unknown types
+        };
+        
+        if (!_chatManager.MessageCancelCheck(player, message, channel))
         {
             return false;
         }
