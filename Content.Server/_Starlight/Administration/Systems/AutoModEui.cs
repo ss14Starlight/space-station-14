@@ -169,20 +169,31 @@ public sealed class AutoModEui : BaseEui
     }
 
     /// <summary>
-    /// Validates that a rule doesn't contain blacklisted words in its regex pattern
+    /// Validates that a rule's regex pattern doesn't match any blacklisted words
     /// </summary>
     private bool ValidateRule(SharedAutoModRule rule)
     {
         if (string.IsNullOrWhiteSpace(rule.Regex)) return true;
+        
+        try
+        {
+            var regex = new System.Text.RegularExpressions.Regex(rule.Regex, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             
-        var regexLower = rule.Regex.ToLower();
-        var blacklistedWord = _blacklistedWords.FirstOrDefault(word => regexLower.Contains(word.ToLower()));
-        
-        if (blacklistedWord == null) return true;
-        
-        Logger.GetSawmill("automod").Warning($"Admin {_adminName} ({_adminId}) attempted to create rule with blacklisted word '{blacklistedWord}' in pattern: {rule.Regex}");
-        SendMessage(new ValidationErrorResponse("Rule contains blacklisted word", blacklistedWord, rule.Regex));
-        return false;
+            // Test if the regex matches any blacklisted words
+            var matchedWord = _blacklistedWords.FirstOrDefault(word => regex.IsMatch(word));
+            
+            if (matchedWord == null) return true;
+
+            SendMessage(new ValidationErrorResponse("Rule would match blacklisted word", matchedWord, rule.Regex));
+            return false;
+        }
+        catch (System.ArgumentException ex)
+        {
+            // Invalid regex pattern
+            Logger.GetSawmill("automod").Warning($"Admin {_adminName} ({_adminId}) attempted to create rule with invalid regex: {rule.Regex} - {ex.Message}");
+            SendMessage(new ValidationErrorResponse("Invalid regex pattern", "", rule.Regex));
+            return false;
+        }
     }
 
     public async void DeleteRule(SharedAutoModRule rule) => await ExecuteDbOperation(async () =>
