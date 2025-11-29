@@ -1,5 +1,5 @@
 - type: entity
-  parent: ReagentDispenserBase
+  parent: ReagentDispenserBasePowerCell # Starlight edit: power cell soda dispenser
   id: SodaDispenserEmpty
   name: soda dispenser
   description: A beverage dispenser with a selection of soda and several other common beverages. Has a single fill slot for containers.
@@ -23,6 +23,15 @@
     guides:
     - Bartender
     - Drinks
+  # Starlight start: Power Cell Soda dispenser
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  # Starlight end
 
 - type: entity
   parent: SodaDispenserEmpty

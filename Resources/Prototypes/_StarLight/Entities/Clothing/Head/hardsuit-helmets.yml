@@ -307,6 +307,9 @@
       head-resomi:
         - state: equipped-head-light-resomi
           shader: unshaded
+      head-avali:
+        - state: equipped-head-light-avali
+          shader: unshaded
   - type: Clothing
     clothingVisuals:
       head:
@@ -332,6 +335,10 @@
       head-resomi:
         - state: equipped-head-resomi
         - state: equipped-head-unshaded-resomi
+          shader: unshaded
+      head-avali:
+        - state: equipped-head-avali
+        - state: equipped-head-unshaded-avali
           shader: unshaded
   - type: PointLight
     radius: 6
@@ -378,6 +385,9 @@
       head-dog:
         - state: equipped-head-light-dog
           shader: unshaded
+      head-avali:
+        - state: equipped-head-light-avali
+          shader: unshaded
   - type: Clothing
     clothingVisuals:
       head:
@@ -399,6 +409,10 @@
       head-dog:
         - state: equipped-head-dog
         - state: equipped-head-unshaded-dog
+          shader: unshaded
+      head-avali:
+        - state: equipped-head-avali
+        - state: equipped-head-unshaded-avali
           shader: unshaded
   - type: PressureProtection
     highPressureMultiplier: 0.08
@@ -453,6 +467,9 @@
       head-dog:
         - state: equipped-head-light-dog
           shader: unshaded
+      head-avali:
+        - state: equipped-head-light-avali
+          shader: unshaded
   - type: Clothing
     clothingVisuals:
       head:
@@ -474,6 +491,10 @@
       head-dog:
         - state: equipped-head-dog
         - state: equipped-head-unshaded-dog
+          shader: unshaded
+      head-avali:
+        - state: equipped-head-avali
+        - state: equipped-head-unshaded-avali
           shader: unshaded
   - type: PressureProtection
     highPressureMultiplier: 0.525

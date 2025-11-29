@@ -1037,5 +1037,6 @@ public sealed partial class AdminVerbSystem
         ToggleOverlays = -32, // #🌟Starlight🌟
         AddRandomMood = -32, //Starlight Thaven
         AddCustomMood = -33, //Starlight Thaven
+        BlockObjectiveTargeting = -44, // Starlight
     }
 }

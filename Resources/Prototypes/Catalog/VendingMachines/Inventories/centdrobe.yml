@@ -18,6 +18,8 @@
     ClothingOuterCoatExpensive: 1
     ClothingNeckScarfStripedCentcom: 3
     ClothingNeckCloakCentcom: 3
+    ClothingBackpackSatchelCentcomm: 3
+    ClothingOuterCoatWardenCentcomm: 3
   contrabandInventory:
     ToyFigurineCaptain: 1
     ToyFigurineHeadOfPersonnel: 1

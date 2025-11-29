@@ -4,6 +4,8 @@
   name: exosuit AI control beacon
   description: A device used to transmit exosuit data. Also allows active AI units to take control of said exosuit.
   components:
+  - type: MechEquipment
+    equipmentType: Passive
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Mechs/equipment.rsi
     state: exosuit_beacon
@@ -18,3 +20,36 @@
     - CombatMech
     - IndustrialMech
     - SpecialMech
+
+- type: entity
+  id: MechEquipmentSecGrabber
+  parent: [ BaseMechEquipment, CombatMechEquipment, BaseSecurityContraband]
+  name: Hydraulic Claw
+  description: A specialized Hydraulic claw designed for the containment of multiple subjects. Can hold up to 4 items at once.
+  components:
+  - type: Sprite
+    state: paddy_claw
+  - type: Item
+  - type: MultiHandedItem
+  - type: MechGrabber
+    maxContents: 4
+    grabDelay: 3
+    grabEnergyDelta: -10
+    CanGrabMobs: true
+  - type: UIFragment
+    ui: !type:MechGrabberUi
+  - type: ContainerContainer
+    containers:
+      item-container: !type:Container
+  - type: ChildBlockVision
+  - type: Tag
+    tags:
+    - PaddyMech
+
+
+  - type: Retractor
+  - type: SurgeryTool
+    successRate: 0.5 # they are very much too large
+    speed: 1.5
+    startSound:
+      path: /Audio/Mecha/sound_mecha_hydraulic.ogg

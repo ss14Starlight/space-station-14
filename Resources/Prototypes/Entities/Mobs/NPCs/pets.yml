@@ -903,6 +903,14 @@
     - FootstepSound
   - type: StealTarget
     stealGroup: AnimalShiva
+  # Starlight start: Shiva contains 5 telecrystals
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 3
+    - id: Telecrystal5
+      amount: 1
+  # Starlight end
 
 - type: entity
   name: Willow

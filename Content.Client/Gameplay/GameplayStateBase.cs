@@ -211,20 +211,29 @@ namespace Content.Client.Gameplay
             {
                 var mousePosWorld = vp.PixelToMap(kArgs.PointerLocation.Position);
 
-                if (vp is ScalingViewport svp)
+                if (_mapManager.MapExists(mousePosWorld.MapId))
                 {
-                    entityToClick = GetClickedEntity(mousePosWorld, svp.Eye);
+                    if (vp is ScalingViewport svp)
+                    {
+                        entityToClick = GetClickedEntity(mousePosWorld, svp.Eye);
+                    }
+                    else
+                    {
+                        entityToClick = GetClickedEntity(mousePosWorld);
+                    }
+
+                    var transformSystem = _entitySystemManager.GetEntitySystem<SharedTransformSystem>();
+                    var mapSystem = _entitySystemManager.GetEntitySystem<MapSystem>();
+
+                    coordinates = _mapManager.TryFindGridAt(mousePosWorld, out var uid, out _)
+                        ? mapSystem.MapToGrid(uid, mousePosWorld)
+                        : transformSystem.ToCoordinates(mousePosWorld);
                 }
                 else
                 {
-                    entityToClick = GetClickedEntity(mousePosWorld);
+                    // Happens if the viewport temporarily points at an entity in nullspace; treat as no valid target.
+                    coordinates = EntityCoordinates.Invalid;
                 }
-                var transformSystem = _entitySystemManager.GetEntitySystem<SharedTransformSystem>();
-                var mapSystem = _entitySystemManager.GetEntitySystem<MapSystem>();
-
-                coordinates = _mapManager.TryFindGridAt(mousePosWorld, out var uid, out _) ?
-                    mapSystem.MapToGrid(uid, mousePosWorld) :
-                    transformSystem.ToCoordinates(mousePosWorld);
             }
             else
             {

@@ -183,7 +183,7 @@
   name: nukeops-title
   description: nukeops-description
   minPlayers: 40
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false # 🌟Starlight🌟
   rules:
   - Nukeops
   # - DummyNonAntagChance 🌟Starlight🌟
@@ -202,7 +202,7 @@
   name: rev-title
   description: rev-description
   minPlayers: 30
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false # 🌟Starlight🌟
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Revolutionary
@@ -239,7 +239,7 @@
   name: zombie-title
   description: zombie-description
   minPlayers: 50 # 🌟Starlight🌟
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false # 🌟Starlight🌟
   rules:
   - Zombie
   - BasicStationEventScheduler
@@ -256,7 +256,7 @@
   name: zombieteors-title
   description: zombieteors-description
   minPlayers: 50 # 🌟Starlight🌟
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false # 🌟Starlight🌟
   rules:
   - Zombie
   - BasicStationEventScheduler
@@ -273,7 +273,7 @@
   - vampires
   name: vampire-gamemode-title
   description: vampire-gamemode-description
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false # 🌟Starlight🌟 - Leave disabled until they are reworked
   minPlayers: 50 # 🌟Starlight🌟
   rules:
   - Vampire

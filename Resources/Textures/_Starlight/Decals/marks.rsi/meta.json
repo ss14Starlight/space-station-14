@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Conflee",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "arrowup"
+    },
+    {
+      "name": "bee"
+    },
+    {
+      "name": "borgsrogue"
+    },
+    {
+      "name": "crab"
+    },
+    {
+      "name": "hazard_middle"
+    },
+    {
+      "name": "lies"
+    },
+    {
+      "name": "road_corner"
+    },
+    {
+      "name": "road_straight"
+    },
+    {
+      "name": "skull_sketch"
+    },
+    {
+      "name": "stop_line"
+    },
+    {
+      "name": "yip"
+    }
+  ]
+}

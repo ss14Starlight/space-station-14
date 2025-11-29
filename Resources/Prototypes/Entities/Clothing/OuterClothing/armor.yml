@@ -231,8 +231,9 @@
       coefficients:
         Blunt: 0.7 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
         Slash: 0.7
-        Piercing: 0.5
+        Piercing: 0.6 #Starlight lowered values
         Heat: 0.9
+    staminaModifier: 0.85 #Starlight lowered values
   - type: ExplosionResistance
     damageCoefficient: 0.9
 

@@ -174,17 +174,24 @@
     graph: Seat
     node: chairOfficeDark
 
-- type: entity
-  name: comfy chair
-  id: ComfyChair
-  parent: ChairBase
-  description: It looks comfy.
-  components:
-  - type: Sprite
-    state: comfy
-  - type: Construction
-    graph: Seat
-    node: chairComfy
+# - type: entity
+  # name: comfy chair
+  # id: ComfyChair
+  # parent: ChairBase
+  # description: It looks comfy.
+  # components:
+  # - type: Sprite
+    # sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi #SL Edit
+    # layers:
+    # - state: base
+      # color: "#767e82"
+    # noRot: true
+  # - type: Icon
+    # sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi
+    # state: base
+  # - type: Construction
+    # graph: Seat
+    # node: chairComfy
 
 - type: entity
   name: pilot seat

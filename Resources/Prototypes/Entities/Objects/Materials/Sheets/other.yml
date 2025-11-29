@@ -111,6 +111,7 @@
   - type: Tag
     tags:
     - Sheet
+    - TiderAnvilParts #SL
     - ConstructionMaterial
 
 - type: entity
@@ -144,6 +145,7 @@
     tags:
     - Plastic
     - Sheet
+    - TiderAnvilParts #SL
     - ConstructionMaterial
   - type: Material
   - type: PhysicalComposition

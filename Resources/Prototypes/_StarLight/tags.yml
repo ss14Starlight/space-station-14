@@ -47,6 +47,9 @@
 
 - type: Tag
   id: CentcommVibroblade
+  
+- type: Tag
+  id: CheapInsulatedFabric
 
 - type: Tag
   id: ClownKudzu
@@ -71,6 +74,9 @@
 
 - type: Tag
   id: Felionoid
+  
+- type: Tag
+  id: fingerlessinsuls
 
 - type: Tag
   id: HiltPlasteel
@@ -95,6 +101,12 @@
 
 - type: Tag
   id: ImprovisedWrench
+  
+- type: Tag
+  id: InsulatedFabric
+
+- type: Tag
+  id: InsulatedThread
 
 - type: Tag
   id: LightRifleHeavy
@@ -146,6 +158,9 @@
 
 - type: Tag
   id: PatchPack
+  
+- type: Tag
+  id: PlasteelFilament
 
 - type: Tag
   id: PowerCellTiny
@@ -205,6 +220,12 @@
   id: Table
 
 - type: Tag
+  id: TiderAnvilMats
+
+- type: Tag
+  id: TiderAnvilParts
+
+- type: Tag
   id: SecuredLocker
 
 - type: Tag
@@ -212,6 +233,9 @@
 
 - type: Tag
   id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleSyndicateStealth
 
 - type: Tag
   id: Disabler
@@ -254,3 +278,12 @@
 
 - type: Tag
   id: ScanGateMachineBoard
+
+- type: Tag
+  id: PersonnelStorage
+
+- type: Tag
+  id: DisposalPipe
+
+- type: Tag
+  id: WallmountMassScannerElectronics

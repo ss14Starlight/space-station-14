@@ -1,0 +1,9 @@
+- type: entityTable
+  id: PinataCandyTable
+  table: !type:GroupSelector
+    children:
+    - id: FoodSnackHardCandy
+    - id: FoodSnackHardCandy
+    - id: FoodSnackHardCandy
+    - id: FoodSnackSwirlLollipop
+    - id: FoodSnackCnDs

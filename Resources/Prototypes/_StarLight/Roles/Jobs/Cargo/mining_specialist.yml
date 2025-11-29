@@ -23,7 +23,6 @@
 - type: startingGear
   id: MiningSpecialistGear
   equipment:
-    id: MiningPDA
     ears: ClothingHeadsetMining
     belt: OreBag
     #storage:

@@ -21,6 +21,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         base.Initialize();
         InitializeAirlock();
         InitializePowerToggle();
+        InitializeWarp(); // Starlight
 
         SubscribeLocalEvent<StationAiOverlayComponent, LocalPlayerAttachedEvent>(OnAiAttached);
         SubscribeLocalEvent<StationAiOverlayComponent, LocalPlayerDetachedEvent>(OnAiDetached);
@@ -103,6 +104,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     public override void Shutdown()
     {
         base.Shutdown();
+        ShutdownWarp(); // Starlight
         _overlayMgr.RemoveOverlay<StationAiOverlay>();
     }
 }

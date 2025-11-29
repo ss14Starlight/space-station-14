@@ -175,6 +175,7 @@
   - CaptainFormalSkirt
   - CapTurtleneckJumpskirt
   - CapTurtleneckJumpsuit
+  - CaptainJumpsuitNoble #starlight
 
 - type: loadoutGroup
   id: CaptainNeck
@@ -495,6 +496,23 @@
   - BibleNanoTrasen
   - BibleSatanic
   - BibleTanakh
+  - BibleAlHikma # starlight
+  - BibleBookOfAges # starlight
+  - BibleBookOfAncestors # starlight
+  - BibleTomeOfDread # starlight
+  - BibleBookOfGrudges # starlight
+  - BibleBookOfMormon # starlight
+  - BibleEdda # starlight
+  - BibleKoans # starlight
+  - BibleLiberChaotica # starlight
+  - BibleMalleus # starlight
+  - BibleOrthodox # starlight
+  - BiblePrincipiaDiscordia # starlight
+  - BibleHadith # starlight
+  - BibleTaoTeChing # starlight
+  - BibleTorah # starlight
+  - BibleTripitaka # starlight
+  - BibleRigVeda # starlight
 
 - type: loadoutGroup
   id: JanitorHead
@@ -778,6 +796,8 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianHead
+  - CargoTechnicianBeret # 🌟Starlight🌟
+  - CargoTechnicianBeretFormal # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: CargoTechnicianJumpsuit
@@ -805,6 +825,7 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianWintercoat
+  - WindbreakerCargo #Starlight
 
 - type: loadoutGroup
   id: CargoTechnicianShoes
@@ -943,6 +964,7 @@
   loadouts:
   - StationEngineerOuterVest
   - StationEngineerWintercoat
+  - WindbreakerEngineering #Starlight
 
 - type: loadoutGroup
   id: StationEngineerShoes
@@ -1096,6 +1118,7 @@
   - RoboticistLabCoat
   - RoboticistWintercoat
   - SeniorResearcherLabCoat
+  - WindbreakerScience #Starlight
 
 - type: loadoutGroup
   id: ScientistShoes
@@ -1314,6 +1337,7 @@
   - ArmorVestHeatAbsorb
   - SecurityOfficerWintercoat
   - SecurityBomber #Starlight
+  - WindbreakerSecurity #Starlight
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1470,6 +1494,7 @@
   - RegularLabCoat
   - MedicalDoctorWintercoat
   - SeniorPhysicianLabCoat
+  - WindbreakerMedical #Starlight
 
 - type: loadoutGroup
   id: MedicalBackpack

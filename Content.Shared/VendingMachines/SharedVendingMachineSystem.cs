@@ -201,7 +201,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
     protected virtual void OnMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
     {
-        RestockInventoryFromPrototype(uid, component, component.InitialStockQuality);
+        RestockInventoryFromPrototype(uid, component, component.InitialStockQuality, true); // Starlight-edit: added last parameter
     }
 
     protected virtual void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false) { }
@@ -367,7 +367,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     }
 
     public void RestockInventoryFromPrototype(EntityUid uid,
-        VendingMachineComponent? component = null, float restockQuality = 1f)
+        VendingMachineComponent? component = null, float restockQuality = 1f,
+	bool initialRestock = false) // Starlight-edit: added last parameter
     {
         if (!Resolve(uid, ref component))
         {
@@ -376,6 +377,9 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         if (!PrototypeManager.TryIndex(component.PackPrototypeId, out VendingMachineInventoryPrototype? packPrototype))
             return;
+
+        if (initialRestock && HasComp<EmptyVendingMachineComponent>(component.Owner)) // Starlight
+            return; // Starlight
 
         AddInventoryFromPrototype(uid, packPrototype.StartingInventory, InventoryType.Regular, component, restockQuality);
         AddInventoryFromPrototype(uid, packPrototype.EmaggedInventory, InventoryType.Emagged, component, restockQuality);

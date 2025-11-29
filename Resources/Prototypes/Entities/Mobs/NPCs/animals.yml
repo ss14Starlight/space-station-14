@@ -3950,3 +3950,4 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+  - type: AlwaysRevolutionaryConvertible

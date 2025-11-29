@@ -1,0 +1,14 @@
+- type: entity
+  parent: CrateCommandSecure
+  suffix: Tech Vault, Secure
+  id: CrateEmergencyRestart
+  name: emergency restart crate
+  description: A secure crate with just enough to restart in truly dire situations.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ProtolatheMachineCircuitboard
+    - id: IDComputerCircuitboard
+    - id: CommsComputerCircuitboard
+    - id: AutolatheMachineCircuitboard
+    - id: CircuitImprinterMachineCircuitboard

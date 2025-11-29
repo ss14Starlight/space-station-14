@@ -169,6 +169,36 @@
     tags:
     - CantInteract
 
+# Base enemy Eye for Admin uses.
+- type: entity
+  parent:
+  - Incorporeal
+  - BaseMob
+  id: EnemyConsoleEye
+  name: "???"
+  description: "ERROR"
+  categories: [ HideSpawnMenu ]
+  suffix: DO NOT MAP
+  components:
+  - type: NoFTL
+  - type: WarpPoint
+    follow: true
+  - type: Eye
+    pvsScale: 1.5
+  - type: StationAiOverlay
+    allowCrossGrid: true
+  - type: Visibility
+    layer: 32768
+  - type: Sprite
+    sprite: _Starlight/Mobs/Net/net_eye.rsi
+    layers:
+    - map: ["base"]
+      state: enemy
+      shader: unshaded
+  - type: Tag
+    tags:
+    - CantInteract
+
 - type: entity
   parent: BaseComputerShuttle
   id: CompuerShuttleSalvage
@@ -320,3 +350,33 @@
     - type: StealTarget
       stealGroup: MiningShuttleConsoleCircuitboard
 
+# Security Shuttle Console
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleSecurity
+  name: security shuttle console
+  components:
+    - type: Sprite
+      layers:
+        - map: [ "computerLayerBody" ]
+          state: computer
+        - map: [ "computerLayerKeyboard" ]
+          state: generic_keyboard
+        - map: [ "computerLayerScreen" ]
+          sprite: _Starlight/Structures/Machines/computers.rsi
+          state: shuttle-security
+        - map: [ "computerLayerKeys" ]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: DroneConsole
+      components:
+        - type: SecurityShuttle
+    - type: RadarConsole
+      maxRange: 256
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#d14343"
+    - type: Computer
+      board: SecurityShuttleConsoleCircuitboard

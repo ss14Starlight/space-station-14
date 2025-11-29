@@ -42,7 +42,7 @@
 
 - type: entity
   name: gorlex hypospray
-  parent: BaseItem
+  parent: [BaseItem, BaseSyndicateContraband] # Starlight, this is definitely syndi contra
   description: Using reverse engineered designs from NT, Cybersun produced these in limited quantities for Gorlex Marauder operatives.
   id: SyndiHypo
   components:

@@ -400,7 +400,7 @@
   name: immolator laser gun
   parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecuritySalvageContraband]
   id: WeaponLaserImmolator
-  description: Favoured by Nanotrasen Security for being cheap and easy to use.
+  description: An irregular, unstable firearm. It remains warm to the touch long after it has finished firing.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/immolator.rsi

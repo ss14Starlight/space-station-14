@@ -255,6 +255,7 @@
   - type: Crawler
   - type: Blindable
   - type: EyeProtection
+  - type: Stripping
   #endregion
 
 - type: entity

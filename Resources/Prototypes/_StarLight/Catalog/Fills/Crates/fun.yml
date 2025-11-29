@@ -7,3 +7,14 @@
   - type: StorageFill
     contents:
       - id: SuperSynthesizerInstrument
+
+- type: entity
+  id: CrateFunPinata
+  parent: CrateGenericSteel
+  name: pinata crate
+  description: Contains one Clown Pinata and a bat to beat it with.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClownPinata
+      - id: BaseBallBat
