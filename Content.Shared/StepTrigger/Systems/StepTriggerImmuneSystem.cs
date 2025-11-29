@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Examine;
 using Content.Shared.Inventory;
-using Content.Shared.Mousetrap;
+using Content.Shared.Mousetrap; // Starlight
+using Content.Shared.Popups; // Starlight
 using Content.Shared.StepTrigger.Components;
 
 namespace Content.Shared.StepTrigger.Systems;
@@ -8,6 +9,7 @@ namespace Content.Shared.StepTrigger.Systems;
 public sealed class StepTriggerImmuneSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -22,11 +24,10 @@ public sealed class StepTriggerImmuneSystem : EntitySystem
         {
             args.Cancelled = true;
 
-            // Starlight-start: raise event when entity avoids mousetrap
+            // Starlight-start: show popup when entity avoids mousetrap
             if (HasComp<MousetrapComponent>(ent))
             {
-                var ev = new MousetrapAvoidedEvent(args.Tripper);
-                RaiseLocalEvent(ent, ref ev);
+                _popup.PopupEntity(Loc.GetString("mousetrap-avoided", ("entity", args.Tripper)), ent);
             }
             // Starlight-end
         }
@@ -37,8 +38,3 @@ public sealed class StepTriggerImmuneSystem : EntitySystem
         args.PushMarkup(Loc.GetString("clothing-required-step-trigger-examine"));
     }
 }
-
-// Starlight-start: event for when entity avoids mousetrap
-[ByRefEvent]
-public record struct MousetrapAvoidedEvent(EntityUid Tripper);
-// Starlight-end
