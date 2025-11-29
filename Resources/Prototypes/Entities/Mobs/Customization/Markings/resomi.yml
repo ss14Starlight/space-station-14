@@ -80,3 +80,444 @@
   - sprite: Mobs/Customization/resomi_parts.rsi
     state: fluff_head_up
 
+# Starlight
+# Ears
+
+- type: marking
+  id: ResomiEars
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_ears
+
+- type: marking
+  id: ResomiEarMarkingOne
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_ears_marking_1
+
+- type: marking
+  id: ResomiEarMarkingTwo
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_ears_marking_2
+
+- type: marking
+  id: ResomiEarMarkingThree
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_ears_marking_3
+
+- type: marking
+  id: ResomiEarMarkingFour
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_ears_marking_4
+
+- type: marking
+  id: ResomiEarMarkingFive
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_ears_marking_5
+
+- type: marking
+  id: ResomiEarMarkingSix
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_ears_marking_6
+
+# Tails
+
+- type: marking
+  id: ResomiTailCombined
+  bodyPart: Chest
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: tail
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: tail_feathers
+
+- type: marking
+  id: ResomiTailOne
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_tail_1
+
+- type: marking
+  id: ResomiTailTwo
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_tail_2
+
+- type: marking
+  id: ResomiTailThree
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_tail_3
+
+- type: marking
+  id: ResomiTailFour
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_tail_4
+
+- type: marking
+  id: ResomiTailFive
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: resomi_tail_5
+
+# Resomi Markings ported from ss13 Teshari
+
+# Resomi Coat Markings
+
+- type: marking
+  id: ResomiCoatHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_coat_head
+
+- type: marking
+  id: ResomiCoatLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_coat_l_arm
+  
+- type: marking
+  id: ResomiCoatLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_coat_l_leg
+
+- type: marking
+  id: ResomiCoatRArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_coat_r_arm
+  
+- type: marking
+  id: ResomiCoatRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_coat_r_leg
+  
+- type: marking
+  id: ResomiCoatTorso
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_coat_torso
+
+# Resomi Fluff Markings
+  
+- type: marking
+  id: ResomiFluffGroin
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_fluff_groin
+
+- type: marking
+  id: ResomiFluffHeadMarking
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_fluff_head
+
+- type: marking
+  id: ResomiFluffLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_fluff_l_foot
+
+- type: marking
+  id: ResomiFluffLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_fluff_l_hand
+
+- type: marking
+  id: ResomiFluffLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_fluff_l_leg
+
+- type: marking
+  id: ResomiFluffRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_fluff_r_foot
+
+- type: marking
+  id: ResomiFluffRHand
+  bodyPart: RHand
+  markingCategory: Arms 
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_fluff_r_hand
+
+- type: marking
+  id: ResomiFluffRLeg
+  bodyPart: RLeg
+  markingCategory: Legs 
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_fluff_r_leg
+
+- type: marking
+  id: ResomiFluffTorso
+  bodyPart: Chest 
+  markingCategory: Chest
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_fluff_torso
+
+# Resomi Line Markings
+
+- type: marking
+  id: ResomiLineHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_line_head
+
+- type: marking
+  id: ResomiLineLArm
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_line_l_arm
+
+- type: marking
+  id: ResomiLineLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_line_l_hand
+
+- type: marking
+  id: ResomiLineLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_line_l_leg
+
+- type: marking
+  id: ResomiLineRArm
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_line_r_arm
+
+- type: marking
+  id: ResomiLineRHand
+  bodyPart: RHand
+  markingCategory: Arms 
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_line_r_hand
+
+- type: marking
+  id: ResomiLineRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_line_r_leg
+
+# Resomi SF Markings
+
+- type: marking
+  id: ResomiSFLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_sf_l_foot
+
+- type: marking
+  id: ResomiSFLHand
+  bodyPart: LHand
+  markingCategory: Arms 
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_sf_l_hand
+
+- type: marking
+  id: ResomiSFRFoot
+  bodyPart: RFoot
+  markingCategory:  Legs
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_sf_r_foot
+
+- type: marking
+  id: ResomiSFRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_sf_r_hand
+
+- type: marking
+  id: ResomiSFTorso
+  bodyPart: Chest
+  markingCategory: Chest  
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_sf_torso
+
+# Resomi Stripe Markings
+
+- type: marking
+  id: ResomiStripeGroin
+  bodyPart: Chest
+  markingCategory: Chest  
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stripe_groin
+
+- type: marking
+  id: ResomiStripeHead
+  bodyPart: Head
+  markingCategory: Head 
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stripe_head
+
+- type: marking
+  id: ResomiStripeLHand
+  bodyPart: LHand
+  markingCategory: Arms 
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stripe_l_hand
+
+- type: marking
+  id: ResomiStripeLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stripe_l_leg
+
+- type: marking
+  id: ResomiStripeRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stripe_r_hand
+
+- type: marking
+  id: ResomiStripeRLeg
+  bodyPart: RLeg
+  markingCategory: Legs 
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stripe_r_leg
+
+- type: marking
+  id: ResomiStripeTorso
+  bodyPart: Chest
+  markingCategory: Chest 
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stripe_torso

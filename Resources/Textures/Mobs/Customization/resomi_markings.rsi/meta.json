@@ -1,0 +1,163 @@
+{
+  "version": 1,
+  "license": null,
+  "copyright": null,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "resomi_coat_head",
+      "directions": 4
+    },
+    {
+      "name": "resomi_coat_l_arm",
+      "directions": 4
+    },
+    {
+      "name": "resomi_coat_l_leg",
+      "directions": 4
+    },
+    {
+      "name": "resomi_coat_r_arm",
+      "directions": 4
+    },
+    {
+      "name": "resomi_coat_r_leg",
+      "directions": 4
+    },
+    {
+      "name": "resomi_coat_torso",
+      "directions": 4
+    },
+    {
+      "name": "resomi_fluff_groin",
+      "directions": 4
+    },
+    {
+      "name": "resomi_fluff_head",
+      "directions": 4
+    },
+    {
+      "name": "resomi_fluff_l_foot",
+      "directions": 4
+    },
+    {
+      "name": "resomi_fluff_l_hand",
+      "directions": 4
+    },
+    {
+      "name": "resomi_fluff_l_leg",
+      "directions": 4
+    },
+    {
+      "name": "resomi_fluff_r_foot",
+      "directions": 4
+    },
+    {
+      "name": "resomi_fluff_r_hand",
+      "directions": 4
+    },
+    {
+      "name": "resomi_fluff_r_leg",
+      "directions": 4
+    },
+    {
+      "name": "resomi_fluff_torso",
+      "directions": 4
+    },
+    {
+      "name": "resomi_line_l_arm",
+      "directions": 4
+    },
+    {
+      "name": "resomi_line_head",
+      "directions": 4
+    },
+    {
+      "name": "resomi_line_l_hand",
+      "directions": 4
+    },
+    {
+      "name": "resomi_line_l_leg",
+      "directions": 4
+    },
+    {
+      "name": "resomi_line_r_arm",
+      "directions": 4
+    },
+    {
+      "name": "resomi_line_r_hand",
+      "directions": 4
+    },
+    {
+      "name": "resomi_line_r_leg",
+      "directions": 4
+    },
+    {
+      "name": "resomi_line_tail",
+      "directions": 4
+    },
+    {
+      "name": "resomi_line_tail_alt",
+      "directions": 4
+    },
+    {
+      "name": "resomi_sf_l_foot",
+      "directions": 4
+    },
+    {
+      "name": "resomi_sf_l_hand",
+      "directions": 4
+    },
+    {
+      "name": "resomi_sf_r_foot",
+      "directions": 4
+    },
+    {
+      "name": "resomi_sf_r_hand",
+      "directions": 4
+    },
+    {
+      "name": "resomi_sf_torso",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stripe_groin",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stripe_head",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stripe_l_hand",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stripe_l_leg",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stripe_r_hand",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stripe_r_leg",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stripe_tail",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stripe_tail_alt",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stripe_torso",
+      "directions": 4
+    }
+  ]
+}
