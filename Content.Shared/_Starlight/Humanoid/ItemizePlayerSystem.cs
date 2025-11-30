@@ -11,8 +11,8 @@ namespace Content.Shared.Humanoid;
 public sealed class ItemizePlayerSystem : EntitySystem // uppi
 {
     [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private static readonly IPrototypeManager _manager = default!;
+    [Dependency] private static readonly IConfigurationManager _config = default!;
 
     public override void Initialize()
     {
@@ -29,26 +29,7 @@ public sealed class ItemizePlayerSystem : EntitySystem // uppi
             return;
         }
 
-
-        var targetHeight = 0f;
-        var targetWeight = 0f;
-        var sourceHeight = 0f;
-        var sourceWeight = 0f;
-
-        if (_prototypeManager.TryIndex(target.Species, out var targetSpecies))
-        {
-            targetHeight = targetSpecies.StandardSize * target.Height;
-            targetWeight = (targetSpecies.StandardWeight + targetSpecies.StandardDensity) * ((target.Width * target.Height) - 1);
-
-        }
-
-        if (_prototypeManager.TryIndex(source.Species, out var sourceSpecies))
-        {
-            sourceHeight = sourceSpecies.StandardSize * source.Height;
-            sourceWeight = (sourceSpecies.StandardWeight + sourceSpecies.StandardDensity) * ((source.Width * source.Height) - 1);
-        }
-
-        var difference = Math.Round(targetHeight / sourceHeight * 0.6 + targetWeight / sourceWeight * 0.4, 3);
+        var difference = Math.Round(CalculateHeightDifference(GetHeight(target), GetHeight(source)) + CalculateWeightDifference(GetWeight(target), GetWeight(source)), 3);
         if (difference >= _config.GetCVar(StarlightCCVars.MaxPickupDifference) && !HasComp<SmallSpeciesComponent>(args.Item))
         {
             args.Cancelled = true;
@@ -63,4 +44,24 @@ public sealed class ItemizePlayerSystem : EntitySystem // uppi
         TryComp<ItemComponent>(args.Item, out var item);
         _item.SetShape(args.Item, new List<Box2i> { Box2i.FromDimensions(0, 0, height, width) }, item);
     }
+
+    public static float GetWeight(HumanoidAppearanceComponent component)
+    {
+        var weight = 0f;
+        if (!_manager.TryIndex(component.Species, out var species)) return weight;
+        weight = ((component.Width * component.Height) / species.StandardWeight) * species.StandardDensity;
+        return weight;
+    }
+
+    public static float GetHeight(HumanoidAppearanceComponent component)
+    {
+        var height = 0f;
+        if (!_manager.TryIndex(component.Species, out var species)) return height;
+        height = species.StandardSize * component.Height;
+        return height;
+    }
+
+    // TODO: make this cvars
+    public static double CalculateHeightDifference(float source, float target) => Math.Round(target / source * 0.6);
+    public static double CalculateWeightDifference(float source, float target) => Math.Round(target / source * 0.4);
 }

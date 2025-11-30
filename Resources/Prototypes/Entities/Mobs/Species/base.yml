@@ -9,14 +9,20 @@
   id: BaseMobSpecies
   abstract: true
   components:
-  - type: Railroadable # 🌟Starlight🌟
-  - type: SurgeryTarget # 🌟Starlight🌟
-  # Starlight-start: Languages
+  # Starlight-start
+  - type: Railroadable
+  - type: SurgeryTarget
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
     understands:
     - GalacticCommon
+  - type: MultiHandedItem
+  - type: CanEscapeInventory
+  - type: RestrictNestingItem
+  - type: Item
+    size: Huge
+    allowDirectHandPickup: false
   # Starlight-end
   - type: Sprite
     layers:

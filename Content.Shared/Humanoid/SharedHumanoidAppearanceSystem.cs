@@ -43,7 +43,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly StarlightHumanoidAppearanceSystem _starlight = default!; // starlight
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
 
@@ -472,7 +471,6 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.Width = profile.Appearance.Width; //starlight
         humanoid.Height = profile.Appearance.Height; //starlight
-        _starlight.AddPickupData(uid); // starlight
 
         SetSkinColor(uid, profile.Appearance.SkinColor, false);
 
