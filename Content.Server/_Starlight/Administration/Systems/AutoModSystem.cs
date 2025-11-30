@@ -119,6 +119,8 @@ public sealed partial class AutoModSystem : SharedChatSystem
                 _recentMessages.Remove(key);
         }
 
+        // Check for rule matches and cancel SYNCHRONOUSLY before any async operations
+        AutoModRule? matchedRule = null;
         foreach (var rule in _rules)
         {
             if (!rule.Enabled) continue;
@@ -131,74 +133,95 @@ public sealed partial class AutoModSystem : SharedChatSystem
             }
             if (!regex.IsMatch(message)) continue;
 
-            int offenceIndex = 0;
-            var existingViolations = await GetPlayerAutoModViolations(args.Sender.UserId);
-            
-            AutoModViolationData? mostRecentViolation = null;
-            foreach (var v in existingViolations)
-            {
-                if (v.RuleId == rule.Id && (mostRecentViolation == null || v.CreatedAt > mostRecentViolation.CreatedAt))
-                    mostRecentViolation = v;
-            }
-            
-            if (mostRecentViolation != null)
-                offenceIndex = mostRecentViolation.ViolationCount;
-            
-            int offenseConfigLevel;
-            AutoModOffence? offence;
-            bool hasOffences = rule.Offences != null && rule.Offences.Count > 0;
-            if (hasOffences)
-            {
-                var cappedOffenceIndex = Math.Min(offenceIndex, rule.Offences!.Count - 1);
-                offence = rule.Offences[cappedOffenceIndex];
-                offenseConfigLevel = cappedOffenceIndex + 1;
-            }
-            else
-            {
-                offence = new AutoModOffence { Message = "", Action = (int)AutoModOffenceAction.None };
-                offenseConfigLevel = 0;
-            }
-
-            // Store which offense config level was applied (e.g., Level 1 = Warn, Level 2 = Ban)
-            var storeLevel = hasOffences ? offenseConfigLevel : 0;
-            
-            string cleanedMessage = message; // Default to raw message if note fails
-            try
-            {
-                cleanedMessage = await AddOrUpdateAutoModNote(
-                    rule,
-                    args.Sender.UserId,
-                    storeLevel,
-                    message,
-                    GetChannelDisplayName(args.Channel),
-                    (AutoModOffenceAction)(offence?.Action ?? (int)AutoModOffenceAction.None),
-                    offence?.DecaySeconds ?? 0,
-                    offence?.DecayLevels ?? 1, // Use configured decay level from offense
-                    mostRecentViolation
-                );
-            }
-            catch (Exception ex)
-            {
-                _automodLog.Error($"Failed to create/update AutoMod admin note: {ex}");
-            }
-
-            _adminLogger.Add(LogType.AdminCommands, LogImpact.Low, 
-                $"[AutoMod Debug] Processing offence with action: {(offence != null ? offence.Action.ToString() : "null")} ({(offence != null ? ((AutoModOffenceAction)offence.Action).ToString() : "null")}) for rule: {rule.Regex}");
-
-            bool messageCleared = offence != null && offence.CancelSpeech;
-            if (messageCleared)
-            {
-                _adminLogger.Add(LogType.AdminCommands, LogImpact.High, 
-                    $"[AutoMod] Cleared speech of user {args.Sender.Name} ({args.Sender.UserId}) for rule: {rule.Regex} (Offence {offenseConfigLevel}) - Message: \"{message}\"");
-                args.Cancel();
-            }
-
-            // Pass the offense config level (which configured offense was applied)
-            var safeOffence = offence ?? new AutoModOffence { Message = "", Action = (int)AutoModOffenceAction.None };
-            var adminNotification = FormatAutoModBwoink(rule, safeOffence, offenseConfigLevel, cleanedMessage, args.Channel, messageCleared);
-            SendAdminOnlyBwoink(args.Sender.UserId, adminNotification);
-            HandleOffenceAction(args, rule, safeOffence, offenseConfigLevel, message);
+            matchedRule = rule;
+            break; // Process first matched rule
         }
+
+        if (matchedRule == null)
+            return;
+
+        // Determine if we should cancel the message SYNCHRONOUSLY (before any await)
+        // Check if ANY offense for this rule has CancelSpeech enabled
+        bool shouldCancelMessage = false;
+        if (matchedRule.Offences != null && matchedRule.Offences.Count > 0)
+        {
+            shouldCancelMessage = matchedRule.Offences.Any(o => o.CancelSpeech);
+        }
+
+        // Cancel the message IMMEDIATELY if needed (before any async operations)
+        if (shouldCancelMessage)
+        {
+            args.Cancel();
+        }
+
+        // Now do async processing for logging and actions
+        int offenceIndex = 0;
+        var existingViolations = await GetPlayerAutoModViolations(args.Sender.UserId);
+        
+        AutoModViolationData? mostRecentViolation = null;
+        foreach (var v in existingViolations)
+        {
+            if (v.RuleId == matchedRule.Id && (mostRecentViolation == null || v.CreatedAt > mostRecentViolation.CreatedAt))
+                mostRecentViolation = v;
+        }
+        
+        if (mostRecentViolation != null)
+            offenceIndex = mostRecentViolation.ViolationCount;
+        
+        int offenseConfigLevel;
+        AutoModOffence? offence;
+        bool hasOffences = matchedRule.Offences != null && matchedRule.Offences.Count > 0;
+        if (hasOffences)
+        {
+            var cappedOffenceIndex = Math.Min(offenceIndex, matchedRule.Offences!.Count - 1);
+            offence = matchedRule.Offences[cappedOffenceIndex];
+            offenseConfigLevel = cappedOffenceIndex + 1;
+        }
+        else
+        {
+            offence = new AutoModOffence { Message = "", Action = (int)AutoModOffenceAction.None };
+            offenseConfigLevel = 0;
+        }
+
+        // Store which offense config level was applied (e.g., Level 1 = Warn, Level 2 = Ban)
+        var storeLevel = hasOffences ? offenseConfigLevel : 0;
+        
+        string cleanedMessage = message; // Default to raw message if note fails
+        try
+        {
+            cleanedMessage = await AddOrUpdateAutoModNote(
+                matchedRule,
+                args.Sender.UserId,
+                storeLevel,
+                message,
+                GetChannelDisplayName(args.Channel),
+                (AutoModOffenceAction)(offence?.Action ?? (int)AutoModOffenceAction.None),
+                offence?.DecaySeconds ?? 0,
+                offence?.DecayLevels ?? 1, // Use configured decay level from offense
+                mostRecentViolation
+            );
+        }
+        catch (Exception ex)
+        {
+            _automodLog.Error($"Failed to create/update AutoMod admin note: {ex}");
+        }
+
+        _adminLogger.Add(LogType.AdminCommands, LogImpact.Low, 
+            $"[AutoMod Debug] Processing offence with action: {(offence != null ? offence.Action.ToString() : "null")} ({(offence != null ? ((AutoModOffenceAction)offence.Action).ToString() : "null")}) for rule: {matchedRule.Regex}");
+
+        // Message was already cancelled above if needed, just log if it was
+        bool messageCleared = offence != null && offence.CancelSpeech;
+        if (messageCleared)
+        {
+            _adminLogger.Add(LogType.AdminCommands, LogImpact.High, 
+                $"[AutoMod] Cleared speech of user {args.Sender.Name} ({args.Sender.UserId}) for rule: {matchedRule.Regex} (Offence {offenseConfigLevel}) - Message: \"{message}\"");
+        }
+
+        // Pass the offense config level (which configured offense was applied)
+        var safeOffence = offence ?? new AutoModOffence { Message = "", Action = (int)AutoModOffenceAction.None };
+        var adminNotification = FormatAutoModBwoink(matchedRule, safeOffence, offenseConfigLevel, cleanedMessage, args.Channel, messageCleared);
+        SendAdminOnlyBwoink(args.Sender.UserId, adminNotification);
+        HandleOffenceAction(args, matchedRule, safeOffence, offenseConfigLevel, message);
     }
     
     #endregion
@@ -354,8 +377,8 @@ public sealed partial class AutoModSystem : SharedChatSystem
     {
         public int NoteId { get; set; } // Database note ID for updates
         public string Type => "automod_violation";
-        public string UniqueId { get; set; } = Guid.NewGuid().ToString(); // Unique identifier
-        public string RulePlayerKey { get; set; } = ""; // Unique key for this rule+player combination
+        public string UniqueId { get; set; } = Guid.NewGuid().ToString();
+        public string RulePlayerKey { get; set; } = "";
         public int RuleId { get; set; }
         public string RuleName { get; set; } = "";
         public string Category { get; set; } = "";
@@ -417,7 +440,7 @@ public sealed partial class AutoModSystem : SharedChatSystem
     }
 
     /// <summary>
-    /// Simple AdminNote class for internal use
+    /// Simple AdminNote class
     /// </summary>
     private sealed class AdminNote
     {
