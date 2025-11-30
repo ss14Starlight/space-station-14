@@ -147,6 +147,20 @@
     stockLimit: 6
 
 - type: listing
+  id: SKBMosinAmmo
+  name: mosin-ammo-name
+  description: mosin-ammo-desc
+  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi, state: base }
+  productEntity: MagazineBoxMagnumSP
+  cost:
+    Telebond: 2
+  categories:
+  - RevUplinkWeaponry
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 12
+
+- type: listing
   id: SNKVDAPS
   name: aps-name
   description: aps-desc

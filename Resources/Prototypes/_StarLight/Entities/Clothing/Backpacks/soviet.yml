@@ -120,6 +120,51 @@
     contents:
       - id: WeaponLightMachineGunDP28
       - id: MagazineLightRifleMaxim
+      - id: MagazineLightRifleMaxim
+
+- type: entity
+  id: ClothingBackpackDuffelMosinBundle
+  parent: ClothingBackpackDuffelSSF
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSniperMosin
+      - id: SpeedLoaderLightRifle
+      - id: MagazineBoxMagnumSP
+
+- type: entity
+  id: ClothingBackpackDuffelAKMSBundle
+  parent: ClothingBackpackDuffelSSF
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleAk
+      - id: MagazineLightRifleSP
+      - id: MagazineLightRifleSP
+      - id: MagazineLightRifleFMJ
+
+- type: entity
+  id: BoxSovietCommsKeys
+  parent: [BoxBase, BaseSovietContraband]
+  name: soviet communications box
+  description: A box containing soviet encryption keys.
+  components:
+  - type: StorageFill
+    contents:
+      - id: EncryptionKeySoviet
+      - id: EncryptionKeySoviet
+      - id: EncryptionKeySoviet
+
+- type: entity
+  id: BoxFinkaKnives
+  parent: [BoxBase, BaseSovietContraband]
+  name: finka knife box
+  description: A box containing soviet finka knives.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Finka
+      - id: Finka
 
 - type: entity
   id: ClothingBackpackDuffelPPShBundle
