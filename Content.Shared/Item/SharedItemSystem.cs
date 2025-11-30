@@ -60,6 +60,16 @@ public abstract class SharedItemSystem : EntitySystem
         RaiseLocalEvent(uid, ref ev, broadcast: true);
     }
 
+    // starlight start
+    public void SetDirectPickup(EntityUid uid, bool rule, ItemComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false) || component.AllowDirectHandPickup == rule)
+            return;
+
+        component.AllowDirectHandPickup = rule;
+    }
+    // starlight end
+
     /// <summary>
     /// Sets the offset used for the item's sprite inside the storage UI.
     /// Dirties.
@@ -109,7 +119,7 @@ public abstract class SharedItemSystem : EntitySystem
     {
         if (args.Handled)
             return;
-        
+
         //starlight start
         //check if we WANT to allow direct pickup
         if (!component.AllowDirectHandPickup)
