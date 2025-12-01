@@ -105,4 +105,12 @@
       emergencyLightColor: "#ff8119"
       forceEnableEmergencyLights: true
       shuttleTime: 600
+    magenta:
+      announcement: alert-level-magenta-announcement
+      selectable: true
+      sound: /Audio/Misc/notice1.ogg
+      color: Magenta
+      emergencyLightColor: Magenta
+      forceEnableEmergencyLights: true
+      shuttleTime: 600
       # end starlight

@@ -9,3 +9,7 @@ alert-level-psi-instructions = Avoid Hostile Cyborgs.
 alert-level-orange = Orange
 alert-level-orange-announcement = There is a critical station-wide structural or atmospheric threat and recovery is unlikely. Engineering staff are advised to minimize hazards and secure the Evacuation Dock. Crewmembers are advised to stay away from hazardous areas, and prepare for probable Evacuation.
 alert-level-orange-instructions = Avoid hazards and prepare for Evacuation.
+
+alert-level-magenta = Magenta
+alert-level-magenta-announcement = There is a confirmed threat onboard the station that endangers a large portion of the crew. Security should prepare to use force if required.
+alert-level-magenta-instructions = Crewmembers should find a safe place to shelter in, and are advised to follow any present authorities.
