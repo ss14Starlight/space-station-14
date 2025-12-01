@@ -167,6 +167,8 @@
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
+    soundRack: # Starlight
+      path: /Audio/_Starlight/Weapons/Guns/Cock/Shotgun-Rack.ogg
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
 - type: entity
@@ -193,6 +195,9 @@
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: BallisticAmmoProvider
+    soundRack: # Starlight
+      path: /Audio/_Starlight/Weapons/Guns/Cock/Shotgun-Rack.ogg
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Tag
     tags:

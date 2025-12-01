@@ -34,17 +34,23 @@ public sealed partial class GunSystem
             component.Entities.RemoveAt(component.Entities.Count - 1);
 
             Containers.Remove(existing, component.Container);
-            EnsureShootable(existing);
+            ent = existing;
         }
         else if (component.UnspawnedCount > 0)
         {
             component.UnspawnedCount--;
             ent = Spawn(component.Proto, coordinates);
-            EnsureShootable(ent.Value);
         }
 
-        if (ent != null && IsClientSide(ent.Value))
-            Del(ent.Value);
+        // Starlight: Only call EnsureShootable on server-side entities to prevent crash
+        // Client-side entities (casings) are immediately deleted and shouldn't have components added
+        if (ent != null)
+        {
+            if (!IsClientSide(ent.Value) && Exists(ent.Value))
+                EnsureShootable(ent.Value);
+            else if (Exists(ent.Value))
+                Del(ent.Value);
+        }
 
         var cycledEvent = new GunCycledEvent();
         RaiseLocalEvent(uid, ref cycledEvent);

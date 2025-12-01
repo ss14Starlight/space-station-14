@@ -273,7 +273,9 @@ public abstract partial class SharedGunSystem
             {
                 entity = component.Entities[^1];
 
-                args.Ammo.Add((entity, EnsureShootable(entity)));
+                // Starlight: Validate entity exists before adding components
+                if (Exists(entity))
+                    args.Ammo.Add((entity, EnsureShootable(entity)));
 
                 if (TryComp<GunComponent>(uid, out var gun))
                 {
@@ -307,7 +309,9 @@ public abstract partial class SharedGunSystem
                     }
                 }
 
-                args.Ammo.Add((entity, EnsureShootable(entity)));
+                // Starlight: Validate entity exists before adding components
+                if (Exists(entity))
+                    args.Ammo.Add((entity, EnsureShootable(entity)));
             }
         }
 
