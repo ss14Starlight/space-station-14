@@ -38,7 +38,8 @@
           weight: 3
         - id: ClothingBackpackDuffelDP28Bundle
           weight: 2
+        - id: EmagCommie
+          weight: 2
         - id: SpearUranium
         - id: MedkitCombatFilled
         - id: ClothingBackpackDuffelAKMSBundle
-        - id: EmagCommie
