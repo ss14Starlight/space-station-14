@@ -6,7 +6,6 @@ using Content.Server.Administration.Managers;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.PowerCell;
-using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Actions.Components;
 using Content.Shared.Alert;
 using Content.Shared.Body.Events;
@@ -38,6 +37,10 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+// Starlight Start
+using Content.Shared._Starlight.Silicons.Borgs;
+using Content.Server.Chat.Systems;
+// Starlight End
 
 namespace Content.Server.Silicons.Borgs;
 
@@ -87,6 +90,10 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         SubscribeLocalEvent<BorgBrainComponent, MindAddedMessage>(OnBrainMindAdded);
         SubscribeLocalEvent<BorgBrainComponent, PointAttemptEvent>(OnBrainPointAttempt);
+        // Starlight Start: Allow borgs to LOOC while crit
+        SubscribeLocalEvent<BorgChassisComponent, CheckIgnoreSpeechBlockerEvent>(OnCheckIgnoreSpeechBlockerChassis);
+        SubscribeLocalEvent<BorgBrainComponent, CheckIgnoreSpeechBlockerEvent>(OnCheckIgnoreSpeechBlockerBrain);
+        // Starlight End
 
         InitializeModules();
         InitializeMMI();
@@ -359,6 +366,18 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         args.Cancel();
     }
+
+    // Starlight Start: Allow borgs to LOOC while crit
+    private void OnCheckIgnoreSpeechBlockerChassis(EntityUid uid, BorgChassisComponent component, CheckIgnoreSpeechBlockerEvent args)
+    {
+        args.IgnoreBlocker = true;
+    }
+
+    private void OnCheckIgnoreSpeechBlockerBrain(EntityUid uid, BorgBrainComponent component, CheckIgnoreSpeechBlockerEvent args)
+    {
+        args.IgnoreBlocker = true;
+    }
+    // Starlight End
 
     private void UpdateBatteryAlert(Entity<BorgChassisComponent> ent, PowerCellSlotComponent? slotComponent = null)
     {
