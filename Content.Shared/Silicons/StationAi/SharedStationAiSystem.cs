@@ -63,7 +63,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem PowerReceiver = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!; // Starlight edit: Warning Silence
     [Dependency] private readonly SharedTransformSystem _xforms = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly StationAiVisionSystem _vision = default!;
@@ -81,7 +81,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     private EntityQuery<BroadphaseComponent> _broadphaseQuery;
     private EntityQuery<MapGridComponent> _gridQuery;
 
-    private static readonly EntProtoId DefaultAi = "StationAiBrain";
+    private static readonly EntProtoId _defaultAi = "StationAiBrain"; // Starlight edit: Warning silence
     private readonly ProtoId<ChatNotificationPrototype> _downloadChatNotificationPrototype = "IntellicardDownload";
 
     public override void Initialize()
@@ -138,7 +138,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
                 {
                     if (_net.IsClient)
                         return;
-                    var brain = SpawnInContainerOrDrop(DefaultAi, ent.Owner, StationAiCoreComponent.Container);
+                    var brain = SpawnInContainerOrDrop(_defaultAi, ent.Owner, StationAiCoreComponent.Container); // Starlight edit: Warning silence
                     _mind.ControlMob(user, brain);
                 },
                 Impact = LogImpact.High,
@@ -173,12 +173,10 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         args.Accessible = true;
     }
-
-    private void OnAiMenu(Entity<StationAiOverlayComponent> ent, ref MenuVisibilityEvent args)
-    {
+    // Starlight edit Start: Method expression body
+    private void OnAiMenu(Entity<StationAiOverlayComponent> ent, ref MenuVisibilityEvent args) =>
         args.Visibility &= ~MenuVisibility.NoFov;
-    }
-
+    // Starlight edit End
     private void OnAiBuiCheck(Entity<StationAiWhitelistComponent> ent, ref BoundUserInterfaceCheckRangeEvent args)
     {
         if (!HasComp<StationAiHeldComponent>(args.Actor))
@@ -328,17 +326,12 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         _doAfter.TryStartDoAfter(doAfterArgs);
         args.Handled = true;
     }
-
-    private void OnHolderInit(Entity<StationAiHolderComponent> ent, ref ComponentInit args)
-    {
+    // Starlight edit Start: Method expression body
+    private void OnHolderInit(Entity<StationAiHolderComponent> ent, ref ComponentInit args) =>
         _slots.AddItemSlot(ent.Owner, StationAiHolderComponent.Container, ent.Comp.Slot);
-    }
-
-    private void OnHolderRemove(Entity<StationAiHolderComponent> ent, ref ComponentRemove args)
-    {
+    private void OnHolderRemove(Entity<StationAiHolderComponent> ent, ref ComponentRemove args) =>
         _slots.RemoveItemSlot(ent.Owner, ent.Comp.Slot);
-    }
-
+    // Starlight edit End
     private void OnHolderConInsert(Entity<StationAiHolderComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
         if (_timing.ApplyingState)
@@ -388,10 +381,10 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         // Starlight End
     }
 
-    private void OnHolderMapInit(Entity<StationAiHolderComponent> ent, ref MapInitEvent args)
-    {
+    // Starlight edit Start: Method expression body
+    private void OnHolderMapInit(Entity<StationAiHolderComponent> ent, ref MapInitEvent args) =>
         UpdateAppearance((ent.Owner, ent.Comp));
-    }
+    // Starlight edit End
     private void OnAiShutdown(Entity<StationAiCoreComponent> ent, ref ComponentShutdown args)
     {
         // TODO: Tryqueuedel
