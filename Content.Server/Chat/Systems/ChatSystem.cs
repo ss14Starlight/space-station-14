@@ -1291,7 +1291,7 @@ public sealed class EntitySpokeEvent : EntityEventArgs
         Language = language; // Starlight-edit: Languages
     }
 }
-
+// Starlight Start
 /// <summary>
 ///     Raised on an entity when it sends a LOOC message. Used for holopad/telephone relay.
 /// </summary>
@@ -1306,3 +1306,4 @@ public sealed class EntityLoocEvent : EntityEventArgs
         Message = message;
     }
 }
+// Starlight End
