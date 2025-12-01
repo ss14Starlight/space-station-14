@@ -119,6 +119,7 @@
       - !type:AlertLevelCondition
         alertLevels:
         - blue
+        - magenta
         - red
         - gamma
         - psi
@@ -195,6 +196,7 @@
       - !type:AlertLevelCondition
         alertLevels:
         - blue
+        - magenta
         - violet
         - yellow
         - red
@@ -210,6 +212,7 @@
         alertLevels:
         - violet
         - yellow
+        - magenta
         - red
         - gamma
         - psi
