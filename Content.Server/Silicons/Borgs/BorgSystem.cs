@@ -91,8 +91,8 @@ public sealed partial class BorgSystem : SharedBorgSystem
         SubscribeLocalEvent<BorgBrainComponent, MindAddedMessage>(OnBrainMindAdded);
         SubscribeLocalEvent<BorgBrainComponent, PointAttemptEvent>(OnBrainPointAttempt);
         // Starlight Start: Allow borgs to LOOC while crit
-        SubscribeLocalEvent<BorgChassisComponent, CheckIgnoreSpeechBlockerEvent>(OnCheckIgnoreSpeechBlockerChassis);
-        SubscribeLocalEvent<BorgBrainComponent, CheckIgnoreSpeechBlockerEvent>(OnCheckIgnoreSpeechBlockerBrain);
+        SubscribeLocalEvent<BorgChassisComponent, LoocCritCheckEvent>(OnLoocCritCheckChassis);
+        SubscribeLocalEvent<BorgBrainComponent, LoocCritCheckEvent>(OnLoocCritCheckBrain);
         // Starlight End
 
         InitializeModules();
@@ -368,11 +368,11 @@ public sealed partial class BorgSystem : SharedBorgSystem
     }
 
     // Starlight Start: Allow borgs to LOOC while crit
-    private void OnCheckIgnoreSpeechBlockerChassis(EntityUid uid, BorgChassisComponent component, CheckIgnoreSpeechBlockerEvent args) =>
-        args.IgnoreBlocker = true;
+    private void OnLoocCritCheckChassis(EntityUid uid, BorgChassisComponent component, LoocCritCheckEvent args) =>
+        args.AllowCritLooc = true;
 
-    private void OnCheckIgnoreSpeechBlockerBrain(EntityUid uid, BorgBrainComponent component, CheckIgnoreSpeechBlockerEvent args) =>
-        args.IgnoreBlocker = true;
+    private void OnLoocCritCheckBrain(EntityUid uid, BorgBrainComponent component, LoocCritCheckEvent args) =>
+        args.AllowCritLooc = true;
     // Starlight End
 
     private void UpdateBatteryAlert(Entity<BorgChassisComponent> ent, PowerCellSlotComponent? slotComponent = null)

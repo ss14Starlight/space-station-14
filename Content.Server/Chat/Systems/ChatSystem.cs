@@ -36,10 +36,12 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Content.Shared.Speech; // Starlight
-using Content.Server._Starlight.Language; // Starlight
-using Content.Shared._Starlight.Language; // Starlight
-using Content.Shared.Popups; // Starlight
+// Starlight Start
+using Content.Shared.Speech;
+using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Language;
+using Content.Shared.Popups;
+// Starlight End
 
 namespace Content.Server.Chat.Systems;
 
@@ -319,7 +321,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             sendType = InGameOOCChatType.Dead;
 
         // If crit player LOOC is disabled, don't send the message at all.
-        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
+        // Starlight edit Start
+        var critCheckEvent = new LoocCritCheckEvent(source);
+        RaiseLocalEvent(source, critCheckEvent, true);
+        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source) && !critCheckEvent.AllowCritLooc)
+        // Starlight edit End
             return;
 
         switch (sendType)
@@ -824,7 +830,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         else if (!_loocEnabled) return;
 
         // If crit player LOOC is disabled, don't send the message at all.
-        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
+        // Starlight edit Start
+        var critCheckEvent = new LoocCritCheckEvent(source);
+        RaiseLocalEvent(source, critCheckEvent, true);
+        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source) && !critCheckEvent.AllowCritLooc)
+        // Starlight edit End
             return;
 
         var wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
@@ -1232,6 +1242,23 @@ public sealed class CheckIgnoreSpeechBlockerEvent : EntityEventArgs
         IgnoreBlocker = ignoreBlocker;
     }
 }
+
+// Starlight Start
+/// <summary>
+///     Should entity be exempt from crit LOOC restrictions.
+/// </summary>
+public sealed class LoocCritCheckEvent : EntityEventArgs
+{
+    public EntityUid Source;
+    public bool AllowCritLooc;
+
+    public LoocCritCheckEvent(EntityUid source)
+    {
+        Source = source;
+        AllowCritLooc = false;
+    }
+}
+// Starlight End
 
 /// <summary>
 ///     Raised on an entity when it speaks, either through 'say' or 'whisper'.
