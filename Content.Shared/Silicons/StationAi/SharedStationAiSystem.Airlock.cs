@@ -38,7 +38,7 @@ public abstract partial class SharedStationAiSystem
     /// </summary>
     private void OnAirlockEmergencyAccess(EntityUid ent, AirlockComponent component, StationAiEmergencyAccessEvent args)
     {
-        if (!_powerReceiver.IsPowered(ent)) // Starlight edit: Warning suppression
+        if (!PowerReceiver.IsPowered(ent))
         {
             ShowDeviceNotRespondingPopup(args.User);
             return;
@@ -54,7 +54,7 @@ public abstract partial class SharedStationAiSystem
     {
         if (
             component.IsWireCut
-            || !_powerReceiver.IsPowered(ent) // Starlight edit: Warning suppression
+            || !PowerReceiver.IsPowered(ent)
         )
         {
             ShowDeviceNotRespondingPopup(args.User);

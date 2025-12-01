@@ -1,4 +1,6 @@
+using System.Collections.Generic; // Starlight
 using Content.Server.Chat.Systems;
+using Content.Shared._Starlight.Silicons.Borgs; // Starlight
 using Content.Server.Construction;
 using Content.Server.Destructible;
 using Content.Server.Ghost;
@@ -17,33 +19,33 @@ using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.Follower; // Starlight
+using Content.Shared.Follower.Components; // Starlight
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components; // Starlight
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Medical.SuitSensor; // Starlight
+using Content.Shared.Medical.SuitSensors; // Starlight
 using Content.Shared.Popups;
 using Content.Shared.Power.Components;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Roles;
 using Content.Shared.Silicons.StationAi;
+using Content.Shared.Humanoid; // Starlight
 using Content.Shared.Speech.Components;
 using Content.Shared.StationAi;
 using Content.Shared.Turrets;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Warps; // Starlight
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
+using Robust.Shared.Map; // Starlight
 using Robust.Shared.Map.Components;
+using Robust.Shared.Log; // Starlight
+using Robust.Shared.Localization; // Starlight
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using static Content.Server.Chat.Systems.ChatSystem;
-// Starlight Start
-using Content.Shared.Follower;
-using Content.Shared.Follower.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Medical.SuitSensor;
-using Content.Shared.Medical.SuitSensors;
-using Content.Shared.Humanoid;
-using Content.Shared.Warps;
-using Robust.Shared.Map;
-// Starlight End
 
 namespace Content.Server.Silicons.StationAi;
 
@@ -66,13 +68,18 @@ public sealed class StationAiSystem : SharedStationAiSystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    // Starlight Start
-    [Dependency] private readonly IMapManager _map = default!;
-    [Dependency] private readonly SuitSensorSystem _suitSensors = default!;
-    [Dependency] private readonly FollowerSystem _followerSystem = default!;
-    // Starlight End
+    [Dependency] private readonly IMapManager _map = default!; // Starlight
+    [Dependency] private readonly SuitSensorSystem _suitSensors = default!; // Starlight
+    [Dependency] private readonly FollowerSystem _followerSystem = default!; // Starlight
+
+    private readonly ISawmill _warpSawmill = Logger.GetSawmill("stationai.warp"); // Starlight
 
     private readonly HashSet<Entity<StationAiCoreComponent>> _stationAiCores = new();
+
+    // Starlight-start
+    private readonly Dictionary<EntityUid, EntityUid> _activeFollowTargets = new();
+    // Starlight-end
+
 
     private readonly ProtoId<ChatNotificationPrototype> _turretIsAttackingChatNotificationPrototype = "TurretIsAttacking";
     private readonly ProtoId<ChatNotificationPrototype> _aiWireSnippedChatNotificationPrototype = "AiWireSnipped";
@@ -84,11 +91,6 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
     private readonly ProtoId<AlertPrototype> _batteryAlert = "BorgBattery";
     private readonly ProtoId<AlertPrototype> _damageAlert = "BorgHealth";
-
-    // Starlight Start
-    private readonly ISawmill _warpSawmill = Logger.GetSawmill("stationai.warp");
-    private readonly Dictionary<EntityUid, EntityUid> _activeFollowTargets = new();
-    // Starlight End
 
     public override void Initialize()
     {
@@ -105,12 +107,10 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandICChatRecipients);
         SubscribeLocalEvent<StationAiTurretComponent, AmmoShotEvent>(OnAmmoShot);
-        // Starlight Start
-        SubscribeLocalEvent<SuitSensorComponent, SuitSensorModeChangedEvent>(OnSuitSensorModeChanged);
-        SubscribeLocalEvent<FollowerComponent, StoppedFollowingEntityEvent>(OnFollowerStoppedFollowing);
-        SubscribeNetworkEvent<StationAiWarpRequestEvent>(OnStationAiWarpRequest);
-        SubscribeNetworkEvent<StationAiWarpToTargetEvent>(OnStationAiWarpToTarget);
-        // Starlight End
+        SubscribeLocalEvent<SuitSensorComponent, SuitSensorModeChangedEvent>(OnSuitSensorModeChanged); // Starlight
+        SubscribeLocalEvent<FollowerComponent, StoppedFollowingEntityEvent>(OnFollowerStoppedFollowing); // Starlight
+        SubscribeNetworkEvent<StationAiWarpRequestEvent>(OnStationAiWarpRequest); // Starlight
+        SubscribeNetworkEvent<StationAiWarpToTargetEvent>(OnStationAiWarpToTarget); // Starlight
     }
 
     // Starlight-start
@@ -131,7 +131,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         var aiStation = _station.GetOwningStation(coreEntity.Owner);
         var targets = new List<StationAiWarpTarget>();
 
-        CollectCrewWarpTargets(aiStation, targets); // Starlight edit: Removed unused
+        CollectCrewWarpTargets(actor, aiStation, targets);
         CollectLocationWarpTargets(actor, aiStation, coreEntity.Comp.RemoteEntity, targets);
 
         if (targets.Count == 0)
@@ -162,7 +162,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
     /// <summary>
     /// Populates the warp target buffer with crew members whose suit sensors are broadcasting coordinates.
     /// </summary>
-    private void CollectCrewWarpTargets(EntityUid? aiStation, List<StationAiWarpTarget> buffer) // Starlight edit: Removed unused
+    private void CollectCrewWarpTargets(EntityUid actor, EntityUid? aiStation, List<StationAiWarpTarget> buffer)
     {
         var processed = new HashSet<EntityUid>();
         var enumerator = EntityQueryEnumerator<SuitSensorComponent, TransformComponent>();

@@ -3,6 +3,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Shared.Localization; // Starlight
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
@@ -76,6 +77,7 @@ public abstract partial class SharedStationAiSystem
         return true;
     }
 
+
     /// <summary>
     /// Tries to find an AI being held in by an entity using <see cref="StationAiCoreComponent"/>.
     /// </summary>
@@ -117,10 +119,12 @@ public abstract partial class SharedStationAiSystem
 
         args.Target = core.Comp?.RemoteEntity;
     }
-    // Starlight Start
-    protected virtual void OnOpenWarpAction(Entity<StationAiHeldComponent> ent, ref StationAiOpenWarpActionEvent args) =>
+    // Starlight-start
+    protected virtual void OnOpenWarpAction(Entity<StationAiHeldComponent> ent, ref StationAiOpenWarpActionEvent args)
+    {
         args.Handled = true;
-    // Starlight End
+    }
+    // Starlight-end
 
     private void OnRadialMessage(StationAiRadialMessage ev)
     {
@@ -141,7 +145,7 @@ public abstract partial class SharedStationAiSystem
             !ValidateAi((ev.Actor, aiComp))))
         {
             // Don't allow the AI to interact with anything that isn't powered.
-            if (!_powerReceiver.IsPowered(ev.Target)) // Starlight edit: Warning silence
+            if (!PowerReceiver.IsPowered(ev.Target))
             {
                 ShowDeviceNotRespondingPopup(ev.Actor);
                 ev.Cancel();
@@ -206,10 +210,10 @@ public abstract partial class SharedStationAiSystem
         args.Verbs.Add(verb);
     }
 
-    // Starlight edit Start: Method expression body
-    private void ShowDeviceNotRespondingPopup(EntityUid toEntity) =>
+    private void ShowDeviceNotRespondingPopup(EntityUid toEntity)
+    {
         _popup.PopupClient(Loc.GetString("ai-device-not-responding"), toEntity, PopupType.MediumCaution);
-    // Starlight edit End
+    }
 }
 
 /// <summary>
