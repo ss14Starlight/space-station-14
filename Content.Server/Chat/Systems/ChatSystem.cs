@@ -848,6 +848,12 @@ public sealed partial class ChatSystem : SharedChatSystem
             hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal,
             player.UserId,
             languageOverride: LanguageSystem.Universal); // Starlight
+        
+        // Starlight Start: Telephone Looc
+        var loocEv = new EntityLoocEvent(source, message);
+        RaiseLocalEvent(source, loocEv, true);
+        // Starlight End
+        
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");
     }
 
@@ -1283,5 +1289,20 @@ public sealed class EntitySpokeEvent : EntityEventArgs
         Channel = channel;
         IsWhisper = isWhisper;
         Language = language; // Starlight-edit: Languages
+    }
+}
+
+/// <summary>
+///     Raised on an entity when it sends a LOOC message. Used for holopad/telephone relay.
+/// </summary>
+public sealed class EntityLoocEvent : EntityEventArgs
+{
+    public readonly EntityUid Source;
+    public readonly string Message;
+
+    public EntityLoocEvent(EntityUid source, string message)
+    {
+        Source = source;
+        Message = message;
     }
 }

@@ -16,12 +16,17 @@ public sealed class ListeningSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<EntitySpokeEvent>(OnSpeak);
+        SubscribeLocalEvent<EntityLoocEvent>(OnLooc); // Starlight
     }
 
-    private void OnSpeak(EntitySpokeEvent ev)
-    {
-        PingListeners(ev.Source, ev.Message, ev.IsWhisper); // Starlight
-    }
+    // Starlight edit Start
+    private void OnSpeak(EntitySpokeEvent ev) =>
+        PingListeners(ev.Source, ev.Message, ev.IsWhisper);
+    // Starlight edit End
+    // Starlight Start
+    private void OnLooc(EntityLoocEvent ev) =>
+        PingLoocListeners(ev.Source, ev.Message);
+    // Starlight End
 
     public void PingListeners(EntityUid source, string message, bool isWhisper) // Starlight
     {
@@ -61,4 +66,35 @@ public sealed class ListeningSystem : EntitySystem
                 RaiseLocalEvent(listenerUid, ev);
         }
     }
+    // Starlight Start: Holopads support LOOC
+    public void PingLoocListeners(EntityUid source, string message) // Starlight - For holopad LOOC relay
+    {
+        var xformQuery = GetEntityQuery<TransformComponent>();
+        var sourceXform = xformQuery.GetComponent(source);
+        var sourcePos = _xforms.GetWorldPosition(sourceXform, xformQuery);
+
+        var attemptEv = new ListenAttemptEvent(source);
+        var ev = new LoocListenEvent(message, source);
+        var query = EntityQueryEnumerator<ActiveListenerComponent, TransformComponent>();
+
+        while(query.MoveNext(out var listenerUid, out var listener, out var xform))
+        {
+            if (xform.MapID != sourceXform.MapID)
+                continue;
+
+            var distance = (sourcePos - _xforms.GetWorldPosition(xform, xformQuery)).LengthSquared();
+            if (distance > listener.Range * listener.Range)
+                continue;
+
+            RaiseLocalEvent(listenerUid, attemptEv);
+            if (attemptEv.Cancelled)
+            {
+                attemptEv.Uncancel();
+                continue;
+            }
+
+            RaiseLocalEvent(listenerUid, ev);
+        }
+    }
+    // Starlight End
 }
