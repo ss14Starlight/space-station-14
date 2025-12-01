@@ -368,15 +368,11 @@ public sealed partial class BorgSystem : SharedBorgSystem
     }
 
     // Starlight Start: Allow borgs to LOOC while crit
-    private void OnCheckIgnoreSpeechBlockerChassis(EntityUid uid, BorgChassisComponent component, CheckIgnoreSpeechBlockerEvent args)
-    {
+    private void OnCheckIgnoreSpeechBlockerChassis(EntityUid uid, BorgChassisComponent component, CheckIgnoreSpeechBlockerEvent args) =>
         args.IgnoreBlocker = true;
-    }
 
-    private void OnCheckIgnoreSpeechBlockerBrain(EntityUid uid, BorgBrainComponent component, CheckIgnoreSpeechBlockerEvent args)
-    {
+    private void OnCheckIgnoreSpeechBlockerBrain(EntityUid uid, BorgBrainComponent component, CheckIgnoreSpeechBlockerEvent args) =>
         args.IgnoreBlocker = true;
-    }
     // Starlight End
 
     private void UpdateBatteryAlert(Entity<BorgChassisComponent> ent, PowerCellSlotComponent? slotComponent = null)
