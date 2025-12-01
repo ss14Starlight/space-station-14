@@ -48,9 +48,6 @@ public sealed class StartEndGameRulesTest
             Assert.That(!gameTicker.GetAddedGameRules().Any());
         });
 
-        // Give extra time for all cleanup operations to complete
-        await server.WaitRunTicks(5);
-
         await pair.CleanReturnAsync();
     }
 }
