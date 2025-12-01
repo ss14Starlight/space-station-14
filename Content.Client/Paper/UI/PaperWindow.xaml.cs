@@ -55,6 +55,7 @@ namespace Content.Client.Paper.UI
             typeof(MonoTag),
             typeof(FormTagHandler),
             typeof(SignatureTagHandler),
+            typeof(DateTimeTagHandler),
             typeof(LogoTag),
             typeof(SyndieLogoTag),
             typeof(CCLogoTag),
@@ -63,6 +64,7 @@ namespace Content.Client.Paper.UI
 
         public event Action<string>? OnSaved;
         public event Action<int>? OnSignatureRequested;
+        public event Action<int>? OnDateTimeRequested;
 
         private int _MaxInputLength = -1;
         public int MaxInputLength
@@ -240,6 +242,7 @@ namespace Content.Client.Paper.UI
                 // Set the font line height in tag handlers so buttons match text height
                 FormTagHandler.FontLineHeight = fontLineHeight;
                 SignatureTagHandler.FontLineHeight = fontLineHeight;
+                DateTimeTagHandler.FontLineHeight = fontLineHeight;
                 CheckTagHandler.FontLineHeight = fontLineHeight;
 
                 // Position the background texture so font baseline aligns with texture lines
@@ -264,7 +267,7 @@ namespace Content.Client.Paper.UI
         /// <summary>
         /// Populate the paper window with content based on the current paper state.
         /// Handles both editing mode (showing text input) and reading mode (showing formatted text).
-        /// Processes markup tags like [form] and [signature] for interactive elements.
+        /// Processes markup tags like [form], [signature], and [datetime] for interactive elements.
         /// </summary>
         /// <param name="state">Current paper state containing text, mode, and stamp information</param>
         public void Populate(PaperComponent.PaperBoundUserInterfaceState state)
@@ -306,6 +309,7 @@ namespace Content.Client.Paper.UI
             FormTagHandler.SetFormText(state.Text);
             FormTagHandler.ResetFormCounter();
             SignatureTagHandler.ResetSignatureCounter();
+            DateTimeTagHandler.ResetDateTimeCounter();
             CheckTagHandler.ResetCheckCounter();
 
             // Display text with markup processing (forms, signatures, colors, etc.)
@@ -399,7 +403,7 @@ namespace Content.Client.Paper.UI
         /// <returns>Text with unfilled tags removed</returns>
         public static string CleanUnfilledTags(string text)
         {
-            return text.Replace("[form]", string.Empty).Replace("[signature]", string.Empty);
+            return text.Replace("[form]", string.Empty).Replace("[signature]", string.Empty).Replace("[datetime]", string.Empty);
         }
 
         /// <summary>
@@ -474,6 +478,15 @@ namespace Content.Client.Paper.UI
         public void SendSignatureRequest(int signatureIndex)
         {
             OnSignatureRequested?.Invoke(signatureIndex);
+        }
+
+        /// <summary>
+        /// Sends a datetime request to the server to handle datetime with proper identity system.
+        /// </summary>
+        /// <param name="dateTimeIndex">Zero-based index of which [datetime] tag to replace</param>
+        public void SendDateTimeRequest(int dateTimeIndex)
+        {
+            OnDateTimeRequested?.Invoke(dateTimeIndex);
         }
 
         /// <summary>
@@ -698,50 +711,15 @@ namespace Content.Client.Paper.UI
         }
 
         /// <summary>
-        /// Replaces the nth occurrence of [signature] tag with replacement text.
-        /// Uses IndexOf for efficient searching rather than splitting the entire string.
-        /// </summary>
-        /// <param name="text">The text containing signature tags</param>
-        /// <param name="index">Zero-based index of which signature tag to replace</param>
-        /// <param name="replacement">Text to replace the signature tag with</param>
-        /// <returns>Text with the specified signature tag replaced, or original text if index not found</returns>
-        private static string ReplaceNthSignatureTag(string text, int index, string replacement)
-        {
-            const string signatureTag = "[signature]";
-            var currentIndex = 0;
-            var pos = 0;
-
-            // Search through the text for signature tags
-            while (pos < text.Length)
-            {
-                var foundPos = text.IndexOf(signatureTag, pos);
-                if (foundPos == -1) break; // No more tags found
-
-                // Check if this is the tag we want to replace
-                if (currentIndex == index)
-                {
-                    // Replace this specific occurrence: text before + replacement + text after
-                    return text.Substring(0, foundPos) + replacement + text.Substring(foundPos + signatureTag.Length);
-                }
-
-                // Move to the next tag
-                currentIndex++;
-                pos = foundPos + signatureTag.Length;
-            }
-
-            // Index not found, return original text unchanged
-            return text;
-        }
-        
-        /// <summary>
         /// Counts the total number of interactive tags that create taller buttons.
         /// </summary>
         private static int CountTags(string text)
         {
             var formCount = CountOccurrences(text, "[form]");
             var signatureCount = CountOccurrences(text, "[signature]");
+            var dateTimeCount = CountOccurrences(text, "[datetime]");
             var checkCount = CountOccurrences(text, "[check]");
-            return formCount + signatureCount + checkCount;
+            return formCount + signatureCount + checkCount + dateTimeCount;
         }
         
         /// <summary>

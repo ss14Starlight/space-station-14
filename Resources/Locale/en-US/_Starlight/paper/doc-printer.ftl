@@ -9,7 +9,7 @@ doc-text-printer-report-morgue =
     ────────────────────────────────────────
     ⠀                              [bold]MORGUE DNR REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Name: [form]
@@ -33,7 +33,7 @@ doc-text-printer-report-station =
     ────────────────────────────────────────
    ⠀⠀                            [bold]SITUATION REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Purpose: [form]
@@ -61,7 +61,7 @@ doc-text-printer-report-on-elimination-of-violations =
     ────────────────────────────────────────
    ⠀⠀            [bold]ISSUE RESOLUTION REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Issue(s) identified by: [form]
@@ -84,7 +84,7 @@ doc-text-printer-report-department =
     ────────────────────────────────────────
    ⠀⠀                           [bold]DEPARTMENTAL REVIEW[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Number of employees in the department: [form]
@@ -113,7 +113,7 @@ doc-text-printer-report-employee-performance =
     ─────────────────────────────────────────
    ⠀⠀                 [bold]WORK REPORT[/bold]
     ─────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
    
     I, [signature], have completed the following work: [form]
@@ -133,7 +133,7 @@ doc-text-printer-report-on-the-chapters-meeting =
     ─────────────────────────────────────────
    ⠀⠀                     [bold]VOTE RECORD[/bold]
     ─────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     The question put to the committee: [form]
@@ -179,7 +179,7 @@ doc-text-printer-internal-affairs-agents-report =
     ─────────────────────────────────────────
    ⠀⠀               [bold]AUDIT REPORT[/bold]
     ─────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], during the course of an internal audit requested by [form] for the reason of [form], found the following irregularities: [form]
@@ -199,7 +199,7 @@ doc-text-printer-condition-report =
     ────────────────────────────────────────
    ⠀⠀                           [bold]MAINTENANCE REPORT[/bold]
     ─────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Irregularities were identified in the station's [form].
@@ -223,7 +223,7 @@ doc-text-printer-object-investigation-report =
     ────────────────────────────────────────
    ⠀⠀          [bold]UNKNOWN OBJECT INVESTIGATION REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     A device or artifact of unfamiliar function or provenance has been collected and analyzed.
@@ -249,7 +249,7 @@ doc-text-printer-experiment-report =
     ────────────────────────────────────────
    ⠀⠀                              [bold]EXPERIMENT REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     External description of the object of the experiment: [form]
@@ -278,7 +278,7 @@ doc-text-printer-disposal-report =
     ─────────────────────────────────────────
    ⠀⠀                                [bold]DISPOSAL REPORT[/bold]
     ─────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     The objects at [form] have been disposed of. During the disposal process, the following valuable items and/or materials were sent to the departments indicated below.
@@ -303,7 +303,7 @@ doc-text-printer-arrest-report =
     ────────────────────────────────────────
    ⠀⠀                            [bold]SECURITY ARREST REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Arrestee: [form]
@@ -337,7 +337,7 @@ doc-text-printer-statement-appointment-interim-chapter =
     ────────────────────────────────────────
    ⠀⠀          [bold]INTERIM COMMAND APPOINTMENT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request approval of my appointment to the position of Acting [form]. Upon assuming the position, I agree to follow Standard Operating Procedures and, until the arrival of a replacement from Central Command, shall ensure the order and management of my Department, and the safety of the equipment and tools of my office, including those tools and pieces of equipment that are irreplaceable or essential to the Department's work, or whose misuse might have serious consequences for station safety or security.
@@ -357,7 +357,7 @@ doc-text-printer-employment-statement =
     ────────────────────────────────────────
    ⠀⠀                           [bold]EMPLOYMENT CONTRACT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], formally request to be appointed as an employee of the following department, in the position indicated below, for the remainder of the shift, or until resignation.
@@ -384,7 +384,7 @@ doc-text-printer-resignation-statement =
     ────────────────────────────────────────
    ⠀⠀                          [bold]NOTICE OF RESIGNATION[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], hereby resign my position because of [form].
@@ -406,7 +406,7 @@ doc-text-printer-access-request-statement =
     ────────────────────────────────────────
    ⠀⠀                       [bold]ACCESS REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request the following access be added to my ID card:
@@ -432,7 +432,7 @@ doc-text-printer-equipment-request-statement =
     ────────────────────────────────────────
    ⠀⠀                    [bold]EQUIPMENT REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request the following equipment be issued to me:
@@ -459,7 +459,7 @@ doc-text-printer-invocation =
     ────────────────────────────────────────
    ⠀⠀                         [bold]NOTICE OF SUMMONS[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
    ⠀[form] is hereby asked by [signature] to appear at [form], without delay.
@@ -482,7 +482,7 @@ doc-text-printer-evacuation-shuttle-request =
     ────────────────────────────────────────
    ⠀⠀                    [bold]EVACUATION SHUTTLE REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     To Central Command,
@@ -505,7 +505,7 @@ doc-text-printer-shuttle-registration-request =
     ────────────────────────────────────────
    ⠀⠀                  [bold]SHUTTLE REGISTRATION FORM[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I hereby request that the following shuttle be registered in the NanoTrasen system for identification.
@@ -532,7 +532,7 @@ doc-text-printer-request-call-centcomm-members =
     ────────────────────────────────────────
    ⠀⠀              [bold]REQUEST TO CALL CENTCOMM MEMBERS[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request to be considered for a call with CentComm administrative officers.
@@ -553,7 +553,7 @@ doc-text-printer-request-establish-threat-level =
     ────────────────────────────────────────
    ⠀⠀             [bold]REQUEST TO ESTABLISH THREAT LEVEL[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request that follow threat level be established: [form]
@@ -574,7 +574,7 @@ doc-text-printer-request-change-salary =
     ────────────────────────────────────────
    ⠀⠀                         [bold]SALARY CHANGE REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], hereby a salary increase/decrease of [form] (amount or percentage).
@@ -599,7 +599,7 @@ doc-text-printer-request-for-non-listed-employment =
     ────────────────────────────────────────
    ⠀⠀             [bold]NON-LISTED EMPLOYMENT CONTRACT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Name of applicant: [signature]
@@ -628,7 +628,7 @@ doc-text-printer-request-for-promotion =
     ────────────────────────────────────────
    ⠀⠀                         [bold]REQUEST FOR PROMOTION[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], assert that the following employee has obtained the necessary qualifications and experience to be promoted.
@@ -655,7 +655,7 @@ doc-text-printer-request-documents =
     ──────────────────────────────────────────
    ⠀⠀                  [bold]REQUEST FOR RELEASE OF DOCUMENTS[/bold]
     ──────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
  
     I, [signature], request a copy of the following document(s), in order to verify compliance with Standard Operating Procedures and/or Corporate Law.
@@ -680,7 +680,7 @@ doc-text-printer-request-euthanasia =
     ────────────────────────────────────────
    ⠀⠀                        [bold]PETITION FOR EUTHANASIA[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], hereby request to be euthanized.
@@ -692,7 +692,7 @@ doc-text-printer-request-euthanasia =
    ⠀[check] I am of sound mind, as determined by a member of the Medical Department.
 
    ⠀    Inspecting Doctor: [signature]
-   ⠀    Date and Time: [form]
+   ⠀    Date and Time: [datetime]
 
    ⠀[check] I have no claims against the Medical Department in their adherence to euthanasia protocols.
 
@@ -712,7 +712,7 @@ doc-text-printer-request-construction-work =
     ────────────────────────────────────────
    ⠀⠀                     [bold]CONSTRUCTION REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature] formally request construction work at: [form]
@@ -735,7 +735,7 @@ doc-text-printer-request-modernization =
     ────────────────────────────────────────
    ⠀⠀                         [bold]MODERNIZATION REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request to upgrade the instrumentation in the following department: [form]
@@ -759,7 +759,7 @@ doc-text-printer-request-ert =
     ────────────────────────────────────────
    ⠀⠀           [bold]EMERGENCY RESPONSE TEAM REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request an ERT team to be sent to the station to assist with an ongoing problem that exceeds the station's current resources to resolve.
@@ -789,7 +789,7 @@ doc-text-printer-product-order =
     ────────────────────────────────────────
    ⠀⠀                                 [bold]PRODUCT ORDER[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Request to produce products by the following department: [form]
@@ -817,7 +817,7 @@ doc-text-printer-complaint-violation-labor-rules =
     ────────────────────────────────────────
     ⠀⠀[bold]DEPARTMENTAL COMPLAINT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], believe that major misconduct, constituting either breach of SOP or Corporate Law, has occurred, or is ongoing, as described below.
@@ -846,7 +846,7 @@ doc-text-printer-offense-complaint =
     ────────────────────────────────────────
    ⠀⠀                             [bold]CRIMINAL COMPLAINT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], believe that the following person has violated Corporate Law.
@@ -879,7 +879,7 @@ doc-text-printer-permission-equipment =
     ────────────────────────────────────────
    ⠀⠀                           [bold]EQUIPMENT PERMIT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], authorize the use of departmental work equipment of the following department: [form]
@@ -908,7 +908,7 @@ doc-text-printer-search-permission =
     ────────────────────────────────────────
    ⠀⠀                             [bold]SEARCH WARRANT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], authorize the search of the following person and/or location
@@ -944,7 +944,7 @@ doc-text-printer-permission-to-carry-weapons =
     ────────────────────────────────────────
    ⠀⠀                             [bold]WEAPON PERMIT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], authorize the carrying of the following weapon by the named person, as long as it is used for its intended purpose. In the event of a violation, the authorization will be revoked and the weapon will be confiscated by Security.
@@ -973,7 +973,7 @@ doc-text-printer-permission-dispose-body =
     ────────────────────────────────────────
    ⠀⠀                 [bold]BODY DISPOSAL AUTHORIZATION[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], authorize the disposal of the body of the following person or animal: [form]
@@ -998,7 +998,7 @@ doc-text-printer-construction-permit =
     ────────────────────────────────────────
    ⠀⠀                           [bold]CONSTRUCTION PERMIT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], authorize the redevelopment of the following part of the station: [form]
@@ -1022,7 +1022,7 @@ doc-text-printer-surgery-consent-permit =
     ────────────────────────────────────────
    ⠀⠀                           [bold]SURGERY CONSENT FORM[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     In sound mind I, [signature], authorize the following surgery or surgeries to be performed upon me.
@@ -1060,7 +1060,7 @@ doc-text-printer-dismissal-order =
     ────────────────────────────────────────
    ⠀⠀                               [bold]DISMISSAL ORDER[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], order that the following employee be removed from their current position.
@@ -1085,7 +1085,7 @@ doc-text-printer-access-revocation-order =
     ────────────────────────────────────────
    ⠀⠀                       [bold]ACCESS REVOCATION ORDER[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], hereby order that certain access rights be removed from the ID card of an employee, as specified below.
@@ -1112,7 +1112,7 @@ doc-text-printer-incentive-order =
     ────────────────────────────────────────
    ⠀⠀                       [bold]RECOGNITION OF MERIT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
 
     Dear [form],
 
@@ -1143,7 +1143,7 @@ doc-text-printer-prisoner-parole-order =
     ────────────────────────────────────────
    ⠀⠀                         [bold]ORDER OF MANDATORY PAROLE[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Parolee: [form]
@@ -1172,7 +1172,7 @@ doc-text-printer-order-recognizing-reasonableness-creature =
     ────────────────────────────────────────
    ⠀[bold]DECLARATION OF SENTIENCE[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], in the course of testing the entity described below, have detected signs of intelligence and rationality. It has exhibited an ability to think and learn, and a capacity to comprehend morality.
@@ -1199,7 +1199,7 @@ doc-text-printer-medical-intervention-order =
     ────────────────────────────────────────
    ⠀⠀                [bold]MEDICAL INTERVENTION ORDER[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Pursuant to Corporate Law, the Qualified Medical Officer named herein orders that the following medical intervention be carried out promptly and without delay.
@@ -1228,7 +1228,7 @@ doc-text-printer-execution-dnr-order =
     ────────────────────────────────────────
    ⠀⠀             [bold]EXECUTION AND DO-NOT-REVIVE ORDER[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Name of Prisoner:  [form]
@@ -1262,7 +1262,7 @@ doc-text-printer-centcomm-communication =
     ────────────────────────────────────────
    ⠀⠀                    [bold]CENTCOMM COMMUNICATION[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Greetings CentComm,
@@ -1284,7 +1284,7 @@ doc-text-printer-salvagelead-report =
     ────────────────────────────────────────
     ⠀⠀                   [bold]SALVAGE LEAD REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Expeditionary Threat: [form]

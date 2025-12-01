@@ -1,7 +1,7 @@
 using Content.Client.GameTicking.Managers;
 using Content.Shared.PDA;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Time;
+using Content.Shared._Starlight.Time; // Starlight-edit
 using Content.Shared.CartridgeLoader;
 using Content.Client.Message;
 using Robust.Client.UserInterface;
@@ -181,14 +181,13 @@ namespace Content.Client.PDA
             
 
             var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
-			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
             var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
             
             StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",
                 ("time", startTime.ToString("hh\\:mm"))));
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationDate)));
+                ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationTime.Date)));
                 
             var remaining = TimeSpan.Zero;
 
@@ -385,14 +384,13 @@ namespace Content.Client.PDA
             base.Draw(handle);
 
             var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
-			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
             var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",
                 ("time", startTime.ToString("hh\\:mm"))));
                 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationDate)));
+                ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationTime.Date)));
                 
             var remaining = TimeSpan.Zero;
 

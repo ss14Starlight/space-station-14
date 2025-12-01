@@ -11,29 +11,29 @@ using Robust.Client.Graphics;
 namespace Content.Client.UserInterface.RichText;
 
 /// <summary>
-/// Converts [signature] tags into clickable buttons that sign with the player's name.
+/// Converts [datetime] tags into clickable buttons that sign with the player's name.
 /// </summary>
-public sealed class SignatureTagHandler : IMarkupTagHandler
+public sealed class DateTimeTagHandler : IMarkupTagHandler
 {
-    public string Name => "signature";
-    private static int _signatureCounter = 0;
-    
+    public string Name => "datetime";
+    private static int _dateTimeCounter = 0;
+
     /// <summary>
     /// Font line height set by PaperWindow to ensure buttons match text height
     /// </summary>
     public static float FontLineHeight { get; set; } = 16.0f; // Default fallback
 
-    private static int GetSignatureIndex(MarkupNode node) => _signatureCounter++;
+    private static int GetDateTimeIndex(MarkupNode node) => _dateTimeCounter++;
 
     /// <summary>
-    /// Resets the signature counter to ensure consistent indexing across renders.
+    /// Resets the datetime counter to ensure consistent indexing across renders.
     /// </summary>
-    public static void ResetSignatureCounter() => _signatureCounter = 0;
+    public static void ResetDateTimeCounter() => _dateTimeCounter = 0;
 
     /// <summary>
-    /// Counts signature buttons before the clicked button to determine which [signature] tag it represents.
+    /// Counts datetime buttons before the clicked button to determine which [datetime] tag it represents.
     /// </summary>
-    private static int CountSignatureButtonsBefore(Control clickedButton)
+    private static int CountDateTimeButtonsBefore(Control clickedButton)
     {
         var count = 0;
         var root = clickedButton;
@@ -42,17 +42,17 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
         while (root.Parent != null)
             root = root.Parent;
 
-        // Count signature buttons in document order
+        // Count datetime buttons in document order
         var found = false;
-        CountSignatureButtonsRecursive(root, clickedButton, ref count, ref found);
+        CountDateTimeButtonsRecursive(root, clickedButton, ref count, ref found);
         return found ? count : 0;
     }
 
-    private static void CountSignatureButtonsRecursive(Control control, Control target, ref int count, ref bool found)
+    private static void CountDateTimeButtonsRecursive(Control control, Control target, ref int count, ref bool found)
     {
         if (found) return;
 
-        if (control is Button btn && btn.Text == Loc.GetString("paper-signature-sign-button"))
+        if (control is Button btn && btn.Text == Loc.GetString("paper-datetime-button"))
         {
             if (control == target)
             {
@@ -64,11 +64,11 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
 
         foreach (Control child in control.Children)
         {
-            CountSignatureButtonsRecursive(child, target, ref count, ref found);
+            CountDateTimeButtonsRecursive(child, target, ref count, ref found);
         }
     }
 
-    public SignatureTagHandler()
+    public DateTimeTagHandler()
     {
         IoCManager.InjectDependencies(this);
     }
@@ -79,22 +79,22 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
     public string TextAfter(MarkupNode node) => "";
 
     /// <summary>
-    /// Creates a clickable signature button to replace the [signature] tag.
+    /// Creates a clickable datetime button to replace the [datetime] tag.
     /// </summary>
     public bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
     {
         var btn = new Button
         {
-            Text = Loc.GetString("paper-signature-sign-button"),
-            MinSize = new Vector2(48, FontLineHeight + 4),
-            MaxSize = new Vector2(48, FontLineHeight + 4),
+            Text = Loc.GetString("paper-datetime-button"),
+            MinSize = new Vector2(120, FontLineHeight + 4),
+            MaxSize = new Vector2(120, FontLineHeight + 4),
             Margin = new Thickness(1, 2, 1, 2),
             StyleClasses = { "ButtonSquare" },
             TextAlign = Label.AlignMode.Center
         };
 
-        var signatureIndex = GetSignatureIndex(node);
-        btn.Name = $"signature_{signatureIndex}";
+        var dateTimeIndex = GetDateTimeIndex(node);
+        btn.Name = $"datetime_{dateTimeIndex}";
 
         btn.OnPressed += _ =>
         {
@@ -105,10 +105,10 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
 
             if (parent is PaperWindow paperWindow)
             {
-                // Count buttons to determine which [signature] tag this represents
-                var buttonIndex = CountSignatureButtonsBefore(btn);
-                // Send signature request to server instead of handling client-side
-                paperWindow.SendSignatureRequest(buttonIndex);
+                // Count buttons to determine which [datetime] tag this represents
+                var buttonIndex = CountDateTimeButtonsBefore(btn);
+                // Send datetime request to server instead of handling client-side
+                paperWindow.SendDateTimeRequest(buttonIndex);
             }
         };
 

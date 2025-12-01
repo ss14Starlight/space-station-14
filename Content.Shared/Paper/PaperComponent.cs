@@ -69,6 +69,17 @@ public sealed partial class PaperComponent : Component
             SignatureIndex = signatureIndex;
         }
     }
+
+    [Serializable, NetSerializable]
+    public sealed class PaperDateTimeRequestMessage : BoundUserInterfaceMessage
+    {
+        public readonly int DateTimeIndex;
+
+        public PaperDateTimeRequestMessage(int dateTimeIndex)
+        {
+            DateTimeIndex = dateTimeIndex;
+        }
+    }
     // Starlight-end
     [Serializable, NetSerializable]
     public enum PaperUiKey
