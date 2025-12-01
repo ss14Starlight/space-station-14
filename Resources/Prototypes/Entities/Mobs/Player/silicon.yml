@@ -331,9 +331,6 @@
   # This actually dosent even do anything when on the mind
   # So im not sure why its even used
   # Gonna keep it for potential new stuff tho
-  - type: Speech
-    speechVerb: Robotic
-    speechSounds: Borg
   - type: DamagedSiliconAccent
     startPowerCorruptionAtCharIdx: 4
     maxPowerCorruptionAtCharIdx: 20
@@ -454,10 +451,10 @@
     blockInteraction: false
   - type: GhostOnMove
     mustBeDead: true
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
   # Starlight edit Start
-  # - type: Speech
-  #   speechVerb: Robotic
-  #   speechSounds: Borg
   # - type: DamagedSiliconAccent
   #   startPowerCorruptionAtCharIdx: 4
   #   maxPowerCorruptionAtCharIdx: 20
