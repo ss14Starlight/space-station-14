@@ -13,6 +13,7 @@
   startingGear: IAAGear
   icon: "JobIconIAA"
   rules: job-rules-corporate-aligned
+  mindRole: MindRoleJobCorporateAligned
   supervisors: job-supervisors-magistrate
   canBeAntag: false
   displayWeight: 40

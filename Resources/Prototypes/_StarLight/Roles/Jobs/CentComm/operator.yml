@@ -7,6 +7,7 @@
   startingGear: CentcomOperatorGear
   icon: "JobIconCentCommOperator"
   rules: job-rules-corporate-aligned
+  mindRole: MindRoleJobCorporateAligned
   supervisors: job-supervisors-hos
   canBeAntag: false
   accessGroups:

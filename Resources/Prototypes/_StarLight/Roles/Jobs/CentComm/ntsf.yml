@@ -13,6 +13,7 @@
   startingGear: NanoTrasenSpecialForcesGear
   icon: JobIconNanotrasen
   rules: job-rules-corporate-aligned
+  mindRole: MindRoleJobCorporateAligned
   supervisors: job-supervisors-nanotrasen
   canBeAntag: false
   accessGroups:

@@ -116,6 +116,13 @@ public abstract class SharedRoleSystem : EntitySystem
         if (!Resolve(mindId, ref mind))
             return;
 
+        // Starlight Start: Custom job mind roles
+        var mindRoleProto = "MindRoleJob";
+        if (jobPrototype != null && _prototypes.TryIndex<JobPrototype>(jobPrototype, out var job))
+        {
+            mindRoleProto = job.MindRole;
+        }
+        // Starlight End
         // Can't have someone get paid for two jobs now, can we
         if (MindHasRole<JobRoleComponent>((mindId, mind), out var jobRole)
             && jobRole.Value.Comp1.JobPrototype != jobPrototype)
@@ -127,7 +134,7 @@ public abstract class SharedRoleSystem : EntitySystem
             jobRole.Value.Comp1.JobPrototype = jobPrototype;
         }
         else
-            MindAddRoleDo(mindId, "MindRoleJob", mind, silent, jobPrototype);
+            MindAddRoleDo(mindId, mindRoleProto, mind, silent, jobPrototype); // Starlight edit
     }
 
     /// <summary>

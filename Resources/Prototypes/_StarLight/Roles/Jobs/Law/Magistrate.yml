@@ -15,6 +15,7 @@
   startingGear: MagistrateGear
   icon: "JobIconMagistrate"
   rules: job-rules-corporate-aligned
+  mindRole: MindRoleJobCorporateAligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
   setPreference: true

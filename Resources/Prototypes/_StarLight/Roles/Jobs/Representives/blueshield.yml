@@ -15,6 +15,7 @@
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   rules: job-rules-corporate-aligned
+  mindRole: MindRoleJobCorporateAligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
   access:

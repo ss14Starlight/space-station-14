@@ -70,6 +70,12 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField("rules")] 
         public string JobRules { get; private set; } = string.Empty;
+        
+        /// <summary>
+        ///     Which mind role prototype to use for this job. If not specified, defaults to "MindRoleJob".
+        /// </summary>
+        [DataField("mindRole")]
+        public string MindRole { get; private set; } = "MindRoleJob";
         // Starlight end
         
         /// <summary>
