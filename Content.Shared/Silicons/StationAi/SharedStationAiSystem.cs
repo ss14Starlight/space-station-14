@@ -1,3 +1,5 @@
+using Content.Shared._Starlight.Computers.RemoteEye;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Managers;
@@ -7,6 +9,7 @@ using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.Doors.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.Doors.Systems;
 using Content.Shared.Electrocution;
 using Content.Shared.Intellicard;
 using Content.Shared.Interaction;
@@ -19,6 +22,8 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Starlight;
+using Content.Shared.Starlight.TextToSpeech;
 using Content.Shared.Repairable;
 using Content.Shared.StationAi;
 using Content.Shared.Verbs;
@@ -28,17 +33,11 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-// Starlight Start
-using Content.Shared._Starlight.Silicons.Borgs;
-using Content.Shared.Starlight.TextToSpeech;
-using Robust.Shared.Player;
-using Content.Shared.Speech.Components;
-using Content.Shared.FixedPoint;
-// Starlight End
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -63,7 +62,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!; // Starlight edit: Warning Silence
+    [Dependency] private readonly SharedPowerReceiverSystem PowerReceiver = default!;
     [Dependency] private readonly SharedTransformSystem _xforms = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly StationAiVisionSystem _vision = default!;
@@ -81,7 +80,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     private EntityQuery<BroadphaseComponent> _broadphaseQuery;
     private EntityQuery<MapGridComponent> _gridQuery;
 
-    private static readonly EntProtoId _defaultAi = "StationAiBrain"; // Starlight edit: Warning silence
+    private static readonly EntProtoId DefaultAi = "StationAiBrain";
     private readonly ProtoId<ChatNotificationPrototype> _downloadChatNotificationPrototype = "IntellicardDownload";
 
     public override void Initialize()
@@ -138,7 +137,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
                 {
                     if (_net.IsClient)
                         return;
-                    var brain = SpawnInContainerOrDrop(_defaultAi, ent.Owner, StationAiCoreComponent.Container); // Starlight edit: Warning silence
+                    var brain = SpawnInContainerOrDrop(DefaultAi, ent.Owner, StationAiCoreComponent.Container);
                     _mind.ControlMob(user, brain);
                 },
                 Impact = LogImpact.High,
@@ -173,10 +172,12 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         args.Accessible = true;
     }
-    // Starlight edit Start: Method expression body
-    private void OnAiMenu(Entity<StationAiOverlayComponent> ent, ref MenuVisibilityEvent args) =>
+
+    private void OnAiMenu(Entity<StationAiOverlayComponent> ent, ref MenuVisibilityEvent args)
+    {
         args.Visibility &= ~MenuVisibility.NoFov;
-    // Starlight edit End
+    }
+
     private void OnAiBuiCheck(Entity<StationAiWhitelistComponent> ent, ref BoundUserInterfaceCheckRangeEvent args)
     {
         if (!HasComp<StationAiHeldComponent>(args.Actor))
@@ -237,6 +238,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         args.InRange = _vision.IsAccessible((targetXform.GridUid.Value, broadphase, grid), targetTile);
     }
+
 
     private void OnIntellicardDoAfter(Entity<StationAiHolderComponent> ent, ref IntellicardDoAfterEvent args)
     {
@@ -326,12 +328,17 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         _doAfter.TryStartDoAfter(doAfterArgs);
         args.Handled = true;
     }
-    // Starlight edit Start: Method expression body
-    private void OnHolderInit(Entity<StationAiHolderComponent> ent, ref ComponentInit args) =>
+
+    private void OnHolderInit(Entity<StationAiHolderComponent> ent, ref ComponentInit args)
+    {
         _slots.AddItemSlot(ent.Owner, StationAiHolderComponent.Container, ent.Comp.Slot);
-    private void OnHolderRemove(Entity<StationAiHolderComponent> ent, ref ComponentRemove args) =>
+    }
+
+    private void OnHolderRemove(Entity<StationAiHolderComponent> ent, ref ComponentRemove args)
+    {
         _slots.RemoveItemSlot(ent.Owner, ent.Comp.Slot);
-    // Starlight edit End
+    }
+
     private void OnHolderConInsert(Entity<StationAiHolderComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
         if (_timing.ApplyingState)
@@ -344,17 +351,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         if (ent.Comp.RenameOnInsert)
             _metadata.SetEntityName(ent.Owner, MetaData(args.Entity).EntityName);
-
-        // Starlight Start
-        // Intellicard accent overrides
-        if (TryComp(args.Entity, out DamagedSiliconAccentComponent? accent))
-        {
-            accent.EnableChargeCorruption = false;
-            // accent.EnableDamageCorruption = false; // Enable this if you want it
-
-            Dirty(args.Entity, accent);
-        }
-        // Starlight End
     }
 
     private void OnHolderConRemove(Entity<StationAiHolderComponent> ent, ref EntRemovedFromContainerMessage args)
@@ -369,22 +365,13 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         if (ent.Comp.RenameOnInsert)
             _metadata.SetEntityName(ent.Owner, Prototype(ent.Owner)?.Name ?? string.Empty);
-
-        // Starlight Start
-        // Clear accent overrides
-        if (TryComp(args.Entity, out DamagedSiliconAccentComponent? accent))
-        {
-            accent.EnableChargeCorruption = true;
-            // accent.EnableDamageCorruption = true;
-            Dirty(args.Entity, accent);
-        }
-        // Starlight End
     }
 
-    // Starlight edit Start: Method expression body
-    private void OnHolderMapInit(Entity<StationAiHolderComponent> ent, ref MapInitEvent args) =>
+    private void OnHolderMapInit(Entity<StationAiHolderComponent> ent, ref MapInitEvent args)
+    {
         UpdateAppearance((ent.Owner, ent.Comp));
-    // Starlight edit End
+    }
+
     private void OnAiShutdown(Entity<StationAiCoreComponent> ent, ref ComponentShutdown args)
     {
         // TODO: Tryqueuedel
