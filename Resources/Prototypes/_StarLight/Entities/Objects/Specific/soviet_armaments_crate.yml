@@ -18,33 +18,31 @@
     containers:
       entity_storage: !type:GroupSelector
         children:
-        - id: BoxSovietCommsKeys
-          weight: 5
-        - id: ClothingBackpackDuffelMosinBundle
-          weight: 8
-        - id: ClothingBackpackDuffelSovietEVABundle
-          weight: 7
-        - id: ClothingOuterSovietCoat
-          weight: 6
-        - id: WeaponPistolMakarov
-          weight: 6
-        - id: MedkitFilled
-          weight: 5
-        - id: RevolutionaryHeldBanner
-          weight: 4
-        - id: MedkitAdvancedFilled
-          weight: 3
-        - id: BoxFinkaKnives
-          weight: 3
-        - id: ClothingBackpackDuffelDP28Bundle
-          weight: 2
-        - id: SpearUranium
-          weight: 1
-        - id: MedkitCombatFilled
-          weight: 1
-        - id: ClothingBackpackDuffelAKMSBundle
-          weight: 1
-        - id: EmagCommie
-          weight: 1
-        rolls: !type:ConstantNumberSelector
-          value: 1
+          - id: BoxSovietCommsKeys
+            weight: 9
+          - id: ClothingBackpackDuffelMosinBundle
+            weight: 8
+          - id: ClothingBackpackDuffelSovietEVABundle
+            weight: 7
+          - id: ClothingOuterSovietCoat
+            weight: 6
+          - id: WeaponPistolMakarov
+            weight: 6
+          - id: MedkitFilled
+            weight: 5
+          - id: RevolutionaryHeldBanner
+            weight: 4
+          - id: MedkitAdvancedFilled
+            weight: 3
+          - id: BoxFinkaKnives
+            weight: 3
+          - id: ClothingBackpackDuffelDP28Bundle
+            weight: 2
+          - id: SpearUranium
+            weight: 1
+          - id: MedkitCombatFilled
+            weight: 1
+          - id: ClothingBackpackDuffelAKMSBundle
+            weight: 1
+          - id: EmagCommie
+            weight: 1
