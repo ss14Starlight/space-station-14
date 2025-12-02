@@ -361,7 +361,7 @@
       raffle:
         settings: default
       mindRoles:
-      - MindRoleGhostRoleFreeAgent
+      - MindRoleGhostRoleSentientObject # Starlight edit
     - type: GhostTakeoverAvailable
 
 - type: entity

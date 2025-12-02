@@ -61,7 +61,6 @@
   - type: MindRole
     roleType: FreeAgent
     sortWeight: 0 # Maybe 10?
-
 - type: entity
   parent: MindRoleGhostRoleNeutral
   id: MindRoleGhostRoleSilicon
@@ -147,11 +146,12 @@
 
 # Ninja
 - type: entity
-  parent: BaseMindRoleAntag
+  parent: [MindRoleSpiderClanAligned, BaseMindRoleAntag] # Starlight edit
   id: MindRoleNinja
   name: Space Ninja Role
   components:
   - type: MindRole
+    roleType: SpiderClanAligned # Starlight
     antagPrototype: SpaceNinja
     subtype: role-subtype-ninja
     exclusiveAntag: true
@@ -159,23 +159,24 @@
 
 # Paradox Clone
 - type: entity
-  parent: BaseMindRoleAntag
+  parent: [MindRoleTemporalAnomaly, BaseMindRoleAntag] # Starlight edit
   id: MindRoleParadoxClone
   name: Paradox Clone Role
   components:
   - type: MindRole
+    roleType: TemporalAnomaly # Starlight
     antagPrototype: ParadoxClone
     subtype: role-subtype-paradox-clone
   - type: ParadoxCloneRole
 
 # Nukies
 - type: entity
-  parent: BaseMindRoleAntag
+  parent: [MindRoleSyndicateAligned, BaseMindRoleAntag] # Starlight edit
   id: MindRoleNukeops
   name: Nukeops Operative Role
   components:
   - type: MindRole
-    roleType: TeamAntagonist
+    roleType: SyndicateAligned # Starlight edit
     subtype: role-subtype-nukie
     exclusiveAntag: true
     antagPrototype: Nukeops
@@ -207,7 +208,7 @@
 
 # Revolutionaries
 - type: entity
-  parent: BaseMindRoleAntag
+  parent: [MindRoleUSSPAligned, BaseMindRoleAntag] # Starlight edit
   id: MindRoleHeadRevolutionary
   name: Head Revolutionary Role
   components:
@@ -241,22 +242,24 @@
 
 # Thief
 - type: entity
-  parent: BaseMindRoleAntag
+  parent: [MindRoleCriminal, BaseMindRoleAntag] # Starlight edit
   id: MindRoleThief
   name: Thief Role
   components:
   - type: MindRole
+    roleType: Criminal # Starlight
     antagPrototype: Thief
     subtype: role-subtype-thief
   - type: ThiefRole
 
 # Traitors
 - type: entity
-  parent: BaseMindRoleAntag
+  parent: [MindRoleSyndicateAligned, BaseMindRoleAntag] # Starlight edit
   id: MindRoleTraitor
   name: Traitor Role
   components:
   - type: MindRole
+    roleType: SyndicateAligned # Starlight
     antagPrototype: Traitor
     exclusiveAntag: true
     subtype: role-subtype-traitor
@@ -282,11 +285,12 @@
 
 # Wizards
 - type: entity
-  parent: BaseMindRoleAntag
+  parent: [MindRoleWizardFederationAligned, BaseMindRoleAntag] # Starlight edit
   id: MindRoleWizard
   name: Wizard Role
   components:
   - type: MindRole
+    roleType: WizardFederationAligned # Starlight
     antagPrototype: Wizard
     exclusiveAntag: true
     subtype: role-subtype-wizard
@@ -294,47 +298,27 @@
 
 # Zombie Squad
 - type: entity
-  parent: BaseMindRoleAntag
+  parent: [BaseMindRoleAntag, MindRoleInfected] # Starlight edit
   id: MindRoleInitialInfected
   name: Initial Infected Role
   components:
   - type: MindRole
     antagPrototype: InitialInfected
     exclusiveAntag: true
-    roleType: TeamAntagonist
+    roleType: Infected # Starlight edit
     subtype: role-subtype-initial-infected
   - type: InitialInfectedRole
 
 - type: entity
-  parent: MindRoleGhostRoleTeamAntagonistFlock
+  parent: [MindRoleGhostRoleTeamAntagonistFlock, MindRoleInfected] # Starlight edit
   id: MindRoleZombie
   name: Zombie Role
   components:
   - type: MindRole
     antagPrototype: Zombie
     exclusiveAntag: true
+    roleType: Infected # Starlight
     subtype: role-subtype-zombie
   - type: ZombieRole
 
-#TODO: Move the below to a _Starlight folder and add Upstream's Changeling
-# Changeling
-
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleChangeling
-  name: Changeling Role
-  components:
-  - type: MindRole
-    antagPrototype: Changeling
-  - type: SLChangelingRole
-  
-# Vampire
-
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleVampire
-  name: Vampire Role
-  components:
-  - type: MindRole
-    antagPrototype: Vampire
-  - type: VampireRole
+#TODO: add Upstream's Changeling

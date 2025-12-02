@@ -207,7 +207,8 @@ ghost-role-information-Death-Squad-rules = You are required to obey orders given
 
 ghost-role-information-SyndiCat-name = SyndiCat
 ghost-role-information-SyndiCat-description = You're the faithful trained pet of nuclear operatives with a microbomb. Serve your master to the death!
-ghost-role-information-SyndiCat-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.
+ghost-role-information-SyndiCat-rules = You are [color={role-type-syndicate-aligned-color}][bold]{role-type-syndicate-aligned-name}[/bold][/color] with the agent who summoned you.
+# Starlight Edit ^
 
 ghost-role-information-Cak-name = Cak
 ghost-role-information-Cak-description = You are the chef's favorite child. You're a living cake cat.
@@ -223,7 +224,8 @@ ghost-role-information-paradox-clone-description = A freak space-time anomaly ha
 
 ghost-role-information-syndicate-reinforcement-name = Syndicate Agent
 ghost-role-information-syndicate-reinforcement-description = Someone needs reinforcements. You, the first person the syndicate could find, will help them.
-ghost-role-information-syndicate-reinforcement-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the agent who summoned you.
+ghost-role-information-syndicate-reinforcement-rules = You are [color={role-type-syndicate-aligned-color}][bold]{role-type-syndicate-aligned-name}[/bold][/color] with the agent who summoned you.
+# Starlight Edit ^
 
 ghost-role-information-syndicate-reinforcement-medic-name = Syndicate Medic
 ghost-role-information-syndicate-reinforcement-medic-description = Someone needs reinforcements. Your task is to keep the agent who called you alive.
@@ -236,7 +238,8 @@ ghost-role-information-syndicate-reinforcement-thief-description = Someone needs
 
 ghost-role-information-nukeop-reinforcement-name = Nuclear Operative
 ghost-role-information-nukeop-reinforcement-description = The nuclear operatives need reinforcements. You, a reserve agent, will help them.
-ghost-role-information-nukeop-reinforcement-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with the nuclear operatives who summoned you.
+ghost-role-information-nukeop-reinforcement-rules = You are [color={role-type-syndicate-aligned-color}][bold]{role-type-syndicate-aligned-name}[/bold][/color] with the nuclear operatives who summoned you.
+# Starlight Edit ^
 
 ghost-role-information-syndicate-monkey-reinforcement-name = Syndicate Monkey Agent
 ghost-role-information-syndicate-monkey-reinforcement-description = Someone needs reinforcements. You, a trained monkey, will help them.

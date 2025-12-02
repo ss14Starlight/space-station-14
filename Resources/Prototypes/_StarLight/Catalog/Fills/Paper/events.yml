@@ -113,7 +113,7 @@
       raffle: 
         settings: default
       mindRoles: 
-        - MindRoleGhostRoleFreeAgent
+        - MindRoleGhostRoleSentientObject
     - type: ShowMindShieldIcons # gotta know your targets.
     - type: Speech
     - type: TextToSpeech

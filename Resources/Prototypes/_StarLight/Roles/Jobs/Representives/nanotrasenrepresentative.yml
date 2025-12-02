@@ -12,7 +12,7 @@
   startingGear: NanoTrasenRepresentativeGear
   icon: JobIconNanotrasen
   rules: job-rules-corporate-aligned
-  mindRole: MindRoleJobCorporateAligned
+  mindRole: MindRoleCorporateAligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
   access:

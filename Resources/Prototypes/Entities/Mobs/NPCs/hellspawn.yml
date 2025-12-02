@@ -14,7 +14,7 @@
     description: ghost-role-information-hellspawn-description
     rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleDemonic # Starlight edit
     raffle:
       settings: default
   - type: RotationVisuals

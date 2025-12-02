@@ -11,3 +11,81 @@
   name: role-type-corporate-aligned-name
   color: '#134975'
   symbol: "🗡" # Should never be antag, but just in case.
+
+- type: roleType
+  id: Criminal
+  name: role-type-criminal-name
+  color: '#808080'
+  symbol: "🗡"
+
+- type: roleType
+  id: Critter
+  name: role-type-critter-name
+  color: '#8b4513'
+  symbol: "🗡"
+
+- type: roleType
+  id: Demonic
+  name: role-type-demonic-name
+  color: '#8b0000'
+  symbol: "🗡"
+
+- type: roleType
+  id: DisasterVictim
+  name: role-type-disaster-victim-name
+  color: '#a9a9a9'
+  symbol: "🗡"
+
+- type: roleType
+  id: Freelance
+  name: role-type-freelance-name
+  color: '#4682b4'
+  symbol: "🗡"
+
+- type: roleType
+  id: HonkMotherAligned
+  name: role-type-honk-mother-aligned-name
+  color: '#ff1493'
+  symbol: "🗡"
+
+- type: roleType
+  id: SelfAligned
+  name: role-type-self-serving-name
+  color: '#9400d3'
+  symbol: "🗡"
+
+- type: roleType
+  id: Spectral
+  name: role-type-spectral-name
+  color: '#00ffff'
+  symbol: "🗡"
+
+- type: roleType
+  id: SpiderClanAligned
+  name: role-type-spider-clan-aligned-name
+  color: '#2f4f4f'
+  symbol: "🗡"
+
+- type: roleType
+  id: SyndicateAligned
+  name: role-type-syndicate-aligned-name
+  color: '#8b0000'
+  symbol: "🗡"
+
+- type: roleType
+  id: TemporalAnomaly
+  name: role-type-temporal-anomaly-name
+  color: '#4169e1'
+  symbol: "🗡"
+
+- type: roleType
+  id: USSPAligned
+  name: role-type-ussp-aligned-name
+  color: '#dc143c'
+  symbol: "🗡"
+
+- type: roleType
+  id: WizardFederationAligned
+  name: role-type-wizard-federation-aligned-name
+  color: '#9370db'
+  symbol: "🗡"

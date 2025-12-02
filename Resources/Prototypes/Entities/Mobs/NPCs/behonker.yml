@@ -12,7 +12,7 @@
       description: ghost-role-information-behonker-description
       rules: ghost-role-information-antagonist-rules
       mindRoles:
-      - MindRoleGhostRoleSoloAntagonist
+      - MindRoleGhostRoleHonkMotherAligned # Starlight edit
       raffle:
         settings: default
     - type: GhostTakeoverAvailable

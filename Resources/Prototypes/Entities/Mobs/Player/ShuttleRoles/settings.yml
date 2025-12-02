@@ -755,7 +755,7 @@
       description: ghost-role-information-syndie-soldier-teamlead-description
       rules: ghost-role-information-rules-team-antagonist
       mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
+      - MindRoleGhostRoleSyndicateAligned # Starlight edit
       raffle:
         settings: default
     - type: Loadout
@@ -775,7 +775,7 @@
       description: ghost-role-information-syndie-soldier-description
       rules: ghost-role-information-rules-team-antagonist
       mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
+      - MindRoleGhostRoleSyndicateAligned # Starlight edit
       raffle:
         settings: default
     - type: Loadout
@@ -794,7 +794,7 @@
       description: ghost-role-information-syndie-disaster-victim-description
       rules: ghost-role-information-freeagent-rules
       mindRoles:
-      - MindRoleGhostRoleFreeAgent
+      - MindRoleGhostRoleDisasterVictim # Starlight edit
       raffle:
         settings: short
     - type: Loadout
@@ -813,7 +813,7 @@
       description: ghost-role-information-pirate-description
       rules: ghost-role-information-rules-team-antagonist
       mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
+      - MindRoleGhostRolePirate # Starlight edit
       raffle:
         settings: default
     - type: Loadout
@@ -832,7 +832,7 @@
       description: ghost-role-information-pirate-captain-description
       rules: ghost-role-information-rules-team-antagonist
       mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
+      - MindRoleGhostRolePirate # Starlight edit
       raffle:
         settings: default
     - type: Loadout
@@ -850,7 +850,7 @@
       description: ghost-role-information-blackmarketeer-description
       rules: ghost-role-information-freeagent-rules
       mindRoles:
-      - MindRoleGhostRoleFreeAgent
+      - MindRoleFreelance # Starlight edit
       raffle:
         settings: default
     - type: Loadout
@@ -870,7 +870,7 @@
       description: ghost-role-information-cossack-description
       rules: ghost-role-information-freeagent-rules
       mindRoles:
-      - MindRoleGhostRoleFreeAgent
+      - MindRoleFreelance # Starlight edit
       raffle:
         settings: default
     - type: Loadout

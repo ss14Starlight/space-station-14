@@ -388,7 +388,7 @@
     description: ghost-role-information-snail-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleCritter # Starlight edit
   - type: GhostTakeoverAvailable
   - type: Emoting
   - type: Sprite
@@ -526,7 +526,7 @@
   components:
   - type: GhostRole
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleCritter # Starlight edit
   - type: MobStateActions
     actions:
       Alive:

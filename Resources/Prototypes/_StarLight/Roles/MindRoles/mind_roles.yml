@@ -1,7 +1,281 @@
+## Aligned
+
+# Corporate Aligned
 - type: entity
-  parent: MindRoleGhostRoleNeutral
+  parent: BaseMindRole
+  id: MindRoleCorporateAligned
+  name: Corporate Aligned
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: CorporateAligned
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleCorporateAligned ]
   id: MindRoleGhostCorporateAligned
   name: Ghost Role (Corporate Aligned)
+
+# Spider Clan Aligned
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleSpiderClanAligned
+  name: Spider Clan Aligned
+  abstract: true
   components:
-    - type: MindRole
-      roleType: CorporateAligned
+  - type: MindRole
+    roleType: SpiderClanAligned
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleSpiderClanAligned ]
+  id: MindRoleGhostRoleSpiderClanAligned
+  name: Ghost Role (Spider Clan Aligned)
+
+# Syndicate Aligned
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleSyndicateAligned
+  name: Syndicate Aligned
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: SyndicateAligned
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleSyndicateAligned ]
+  id: MindRoleGhostRoleSyndicateAligned
+  name: Ghost Role (Syndicate Aligned)
+
+# USSP Aligned
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleUSSPAligned
+  name: USSP Aligned
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: USSPAligned
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleUSSPAligned ]
+  id: MindRoleGhostRoleUSSPAligned
+  name: Ghost Role (USSP Aligned)
+
+# Wizard Federation Aligned
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleWizardFederationAligned
+  name: Wizard Federation Aligned
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: WizardFederationAligned
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleWizardFederationAligned ]
+  id: MindRoleGhostRoleWizardFederationAligned
+  name: Ghost Role (Wizard Federation Aligned)
+
+# Honk Mother Aligned
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleHonkMotherAligned
+  name: Honk Mother Aligned
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: HonkMotherAligned
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleHonkMotherAligned ]
+  id: MindRoleGhostRoleHonkMotherAligned
+  name: Ghost Role (Honk Mother Aligned)
+
+## Other
+
+# Criminal
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleCriminal
+  name: Criminal
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: Criminal
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleCriminal ]
+  id: MindRoleGhostRoleCriminal
+  name: Ghost Role (Criminal)
+
+# Pirate
+- type: entity
+  parent: BaseMindRole
+  id: MindRolePirate
+  name: Pirate
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: Pirate
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRolePirate ]
+  id: MindRoleGhostRolePirate
+  name: Ghost Role (Pirate)
+
+# Infected
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleInfected
+  name: Infected
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: Infected
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleInfected ]
+  id: MindRoleGhostRoleInfected
+  name: Ghost Role (Infected)
+
+# Demonic
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleDemonic
+  name: Demonic
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: Demonic
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleDemonic ]
+  id: MindRoleGhostRoleDemonic
+  name: Ghost Role (Demonic)
+
+# Self Aligned
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleSelfAligned
+  name: Self Aligned
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: SelfAligned
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleSelfAligned ]
+  id: MindRoleGhostRoleSelfAligned
+  name: Ghost Role (Self Aligned)
+
+# Spectral
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleSpectral
+  name: Spectral
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: Spectral
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleSpectral ]
+  id: MindRoleGhostRoleSpectral
+  name: Ghost Role (Spectral)
+
+# Temporal Anomaly
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleTemporalAnomaly
+  name: Temporal Anomaly
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: TemporalAnomaly
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleTemporalAnomaly ]
+  id: MindRoleGhostRoleTemporalAnomaly
+  name: Ghost Role (Temporal Anomaly)
+
+# Changeling
+- type: entity
+  parent: [MindRoleSelfAligned, BaseMindRoleAntag]
+  id: MindRoleChangeling
+  name: Changeling Role
+  components:
+  - type: MindRole
+    roleType: SelfAligned
+    antagPrototype: Changeling
+  - type: SLChangelingRole
+
+# Vampire
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleVampire
+  name: Vampire Role
+  components:
+  - type: MindRole
+    antagPrototype: Vampire
+  - type: VampireRole
+
+## Misc
+
+# Critter
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleCritter
+  name: Critter
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: Critter
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleCritter ]
+  id: MindRoleGhostRoleCritter
+  name: Ghost Role (Critter)
+
+# Sentient Object
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleSentientObject
+  name: Sentient Object
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: SentientObject
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleSentientObject ]
+  id: MindRoleGhostRoleSentientObject
+  name: Ghost Role (Sentient Object)
+
+# Disaster Victim
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleDisasterVictim
+  name: Disaster Victim
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: DisasterVictim
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleDisasterVictim ]
+  id: MindRoleGhostRoleDisasterVictim
+  name: Ghost Role (Disaster Victim)
+
+# Freelance
+- type: entity
+  parent: BaseMindRole
+  id: MindRoleFreelance
+  name: Freelance
+  abstract: true
+  components:
+  - type: MindRole
+    roleType: Freelance
+
+- type: entity
+  parent: [ MindRoleGhostRoleNeutral, MindRoleFreelance ]
+  id: MindRoleGhostRoleFreelance
+  name: Ghost Role (Freelance)

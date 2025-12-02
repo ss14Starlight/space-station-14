@@ -44,7 +44,7 @@
     description: ghost-role-information-revenant-description
     rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleSpectral # Starlight edit
     raffle:
       settings: default
   - type: GhostTakeoverAvailable

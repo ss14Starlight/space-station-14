@@ -506,7 +506,7 @@
     description: ghost-role-information-mothroach-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleCritter # Starlight edit
   - type: Fixtures
     fixtures:
       fix1:
@@ -1462,7 +1462,7 @@
     rules: ghost-role-information-syndicate-reinforcement-rules
     mindRoles:
     # This is for syndicate monkeys that randomly gain sentience, thus have no summoner to team with
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleSyndicateAligned # Starlight edit
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -1738,7 +1738,7 @@
     description: ghost-role-information-mouse-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleCritter # Starlight edit
   - type: GhostTakeoverAvailable
   - type: Speech
     speechSounds: Squeak
@@ -3224,7 +3224,7 @@
     description: ghost-role-information-SyndiCat-description
     rules: ghost-role-information-SyndiCat-rules
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleGhostRoleSyndicateAligned # Starlight edit
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -3477,6 +3477,10 @@
     name: ghost-role-information-hamster-name
     description: ghost-role-information-hamster-description
     rules: ghost-role-information-nonantagonist-rules
+    # Starlight Start
+    mindRoles:
+    - MindRoleCritter
+    # Starlight End
   - type: GhostTakeoverAvailable
   - type: Speech
     speechVerb: SmallMob

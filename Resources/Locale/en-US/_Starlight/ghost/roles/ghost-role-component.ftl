@@ -18,7 +18,7 @@ ghost-role-information-horrific-tie-name = Horrific Necktie
 ghost-role-information-horrific-tie-description = You are a horrific necktie from Disco Elysium.
 ghost-role-information-horrific-tie-rules = [bold][color=cyan]ADMIN WARNING: Do not take this role if you don't know what Disco Elysium is and how to roleplay as necktie from it.[/color][/bold]
 
-ghost-role-information-corporate-aligned-rules = You are [color={role-type-corporate-aligned-alternate-color}][bold]{role-type-corporate-aligned-name}[/bold][/color].
+ghost-role-information-corporate-aligned-rules = You are [color={role-type-corporate-aligned-color}][bold]{role-type-corporate-aligned-name}[/bold][/color].
                                              You are to serve the interests of NanoTrasen and Central Command, even if they differ from the stations'. Remember, you do [color=red]NOT[/color] serve the crew.
                                              You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
                                              You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
@@ -32,3 +32,42 @@ ghost-role-information-decimus-description = You are a Decimus Operative. Enact 
 
 ghost-role-information-syndicate-cyborg-stealth-name = Syndicate Stealth Cyborg
 
+# Critter roles
+ghost-role-information-mouse-rules = You are a [color={role-type-critter-color}][bold]{role-type-critter-name}[/bold][/color].
+ghost-role-information-snail-rules = You are a [color={role-type-critter-color}][bold]{role-type-critter-name}[/bold][/color].
+ghost-role-information-hamster-rules = You are a [color={role-type-critter-color}][bold]{role-type-critter-name}[/bold][/color].
+
+# Silicon roles
+ghost-role-information-honkbot-rules = You are a [color={role-type-silicon-color}][bold]{role-type-silicon-name}[/bold][/color].
+ghost-role-information-jonkbot-rules = You are a [color={role-type-silicon-color}][bold]{role-type-silicon-name}[/bold][/color].
+ghost-role-information-mimebot-rules = You are a [color={role-type-silicon-color}][bold]{role-type-silicon-name}[/bold][/color].
+
+# Honk Mother Aligned
+ghost-role-information-behonker-rules = You are [color={role-type-honk-mother-aligned-color}][bold]{role-type-honk-mother-aligned-name}[/bold][/color].
+
+# Demonic
+ghost-role-information-hellspawn-rules = You are [color={role-type-demonic-color}][bold]{role-type-demonic-name}[/bold][/color].
+
+# Spectral
+ghost-role-information-revenant-rules = You are [color={role-type-spectral-color}][bold]{role-type-spectral-name}[/bold][/color].
+
+# Spider Clan Aligned
+ghost-role-information-space-ninja-rules = You are [color={role-type-spider-clan-aligned-color}][bold]{role-type-spider-clan-aligned-name}[/bold][/color].
+
+# Temporal Anomaly
+ghost-role-information-paradox-clone-rules = You are a [color={role-type-temporal-anomaly-color}][bold]{role-type-temporal-anomaly-name}[/bold][/color].
+
+# Wizard Federation Aligned
+ghost-role-information-wizard-rules = You are [color={role-type-wizard-federation-aligned-color}][bold]{role-type-wizard-federation-aligned-name}[/bold][/color].
+
+# Disaster Victim
+ghost-role-information-disaster-victim-rules = You are a [color={role-type-disaster-victim-color}][bold]{role-type-disaster-victim-name}[/bold][/color].
+
+# Freelance
+ghost-role-information-blackmarketeer-rules = You are [color={role-type-freelance-color}][bold]{role-type-freelance-name}[/bold][/color].
+ghost-role-information-cossack-rules = You are [color={role-type-freelance-color}][bold]{role-type-freelance-name}[/bold][/color].
+
+# Syndicate Aligned
+ghost-role-information-syndie-soldier-rules = You are [color={role-type-syndicate-aligned-color}][bold]{role-type-syndicate-aligned-name}[/bold][/color].
+ghost-role-information-syndie-soldier-teamlead-rules = You are [color={role-type-syndicate-aligned-color}][bold]{role-type-syndicate-aligned-name}[/bold][/color].
+ghost-role-information-syndicate-monkey-reinforcement-rules = You are [color={role-type-syndicate-aligned-color}][bold]{role-type-syndicate-aligned-name}[/bold][/color].

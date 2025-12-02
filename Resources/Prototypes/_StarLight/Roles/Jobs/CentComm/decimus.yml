@@ -13,7 +13,7 @@
   startingGear: DecimusGear
   icon: JobIconNanotrasen
   rules: job-rules-corporate-aligned
-  mindRole: MindRoleJobCorporateAligned
+  mindRole: MindRoleCorporateAligned
   supervisors: job-supervisors-none
   canBeAntag: false
   accessGroups:

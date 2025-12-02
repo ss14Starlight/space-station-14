@@ -27,7 +27,7 @@
     description: ghost-role-information-syndicate-reinforcement-spy-description
     rules: ghost-role-information-syndicate-reinforcement-rules
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleGhostRoleSyndicateAligned # Starlight edit
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
@@ -46,7 +46,7 @@
     description: ghost-role-information-nukeop-reinforcement-description
     rules: ghost-role-information-nukeop-reinforcement-rules
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleGhostRoleSyndicateAligned # Starlight edit
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
@@ -63,7 +63,7 @@
     description: ghost-role-information-syndicate-monkey-reinforcement-description
     rules: ghost-role-information-syndicate-reinforcement-rules
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleGhostRoleSyndicateAligned # Starlight edit
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
@@ -92,7 +92,7 @@
     description: ghost-role-information-SyndiCat-description
     rules: ghost-role-information-syndicate-reinforcement-rules
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleGhostRoleSyndicateAligned # Starlight edit
     raffle:
       settings: default
   - type: GhostRoleMobSpawner

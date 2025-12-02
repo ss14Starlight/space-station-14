@@ -10,7 +10,7 @@
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
       mindRoles:
-      - MindRoleGhostRoleSilicon
+      - MindRoleGhostRoleSyndicateAligned
       raffle:
         settings: default
     - type: GhostRoleMobSpawner
@@ -28,7 +28,7 @@
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
       mindRoles:
-      - MindRoleGhostRoleSilicon
+      - MindRoleGhostRoleSyndicateAligned
       raffle:
         settings: default
     - type: GhostRoleMobSpawner
@@ -46,7 +46,7 @@
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
       mindRoles:
-      - MindRoleGhostRoleSilicon
+      - MindRoleGhostRoleSyndicateAligned
       raffle:
         settings: default
     - type: GhostRoleMobSpawner

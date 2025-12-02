@@ -7,7 +7,7 @@
   startingGear: NTNCHardsuitGear
   icon: JobIconNTNCBlueShield
   rules: job-rules-corporate-aligned
-  mindRole: MindRoleJobCorporateAligned
+  mindRole: MindRoleCorporateAligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:

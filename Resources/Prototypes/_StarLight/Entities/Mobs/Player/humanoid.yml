@@ -115,7 +115,7 @@
       raffle:
         settings: default
       mindRoles:
-      - MindRoleGhostRoleFamiliar
+      - MindRoleGhostRoleUSSPAligned
       requirements:
       - !type:OverallPlaytimeRequirement
         time: 72000 # 20h

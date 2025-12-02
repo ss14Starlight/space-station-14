@@ -238,7 +238,7 @@
     description: ghost-role-information-space-ninja-description
     rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleSpiderClanAligned # Starlight edit
     raffle:
       settings: default
     requirements:
@@ -262,7 +262,7 @@
     description: ghost-role-information-paradox-clone-description
     rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleTemporalAnomaly # Starlight edit
     raffle:
       settings: default
     requirements:
@@ -370,7 +370,7 @@
     name: ghost-role-information-wizard-name
     description: ghost-role-information-wizard-desc
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleGhostRoleWizardFederationAligned # Starlight edit
     raffle:
       settings: default
     requirements:
