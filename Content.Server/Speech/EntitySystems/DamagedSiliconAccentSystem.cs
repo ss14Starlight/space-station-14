@@ -6,6 +6,10 @@ using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Speech;
 using Robust.Shared.Random;
+// Starlight Start
+using Content.Shared.Silicons.StationAi;
+using Robust.Shared.Containers;
+// Starlight End
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -14,6 +18,7 @@ public sealed class DamagedSiliconAccentSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!; // Starlight
 
     public override void Initialize()
     {
@@ -27,14 +32,29 @@ public sealed class DamagedSiliconAccentSystem : EntitySystem
 
         if (ent.Comp.EnableChargeCorruption)
         {
-            var currentChargeLevel = 0.0f;
+            var currentChargeLevel = 1.0f; // Starlight edit: Default to full power so intellicard dosent have a stroke
             if (ent.Comp.OverrideChargeLevel.HasValue)
             {
                 currentChargeLevel = ent.Comp.OverrideChargeLevel.Value;
             }
-            else if (_powerCell.TryGetBatteryFromSlot(uid, out var battery))
+            // Starlight edit Start: AI now actually gets low power accent
+            else
             {
-                currentChargeLevel = battery.CurrentCharge / battery.MaxCharge;
+                // Try to get battery from the entity itself first
+                var batteryEntity = uid;
+                
+                // If this entity is inside a StationAiCore container, get the battery from the core instead
+                if (_containerSystem.TryGetContainingContainer(uid, out var container) &&
+                    TryComp<StationAiCoreComponent>(container.Owner, out _))
+                {
+                    batteryEntity = container.Owner;
+                }
+                
+                if (_powerCell.TryGetBatteryFromSlot(batteryEntity, out var battery))
+                {
+                    currentChargeLevel = battery.CurrentCharge / battery.MaxCharge;
+                }
+            // Starlight edit End
             }
             currentChargeLevel = Math.Clamp(currentChargeLevel, 0.0f, 1.0f);
             // Corrupt due to low power (drops characters on longer messages)

@@ -447,8 +447,12 @@
     speechVerb: Robotic
     speechSounds: Borg
   - type: DamagedSiliconAccent
-    startPowerCorruptionAtCharIdx: 4
-    maxPowerCorruptionAtCharIdx: 20
+    # Starlight edit Start: Increased AI core low power accent
+    startPowerCorruptionAtCharIdx: 2
+    maxPowerCorruptionAtCharIdx: 15
+    maxDropProbFromPower: 0.75
+    chargeThresholdForPowerCorruption: 0.25
+    # Starlight edit End
   - type: Tag
     tags:
     - HideContextMenu
