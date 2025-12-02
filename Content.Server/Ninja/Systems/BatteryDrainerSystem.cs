@@ -27,7 +27,7 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BatteryDrainerComponent, ComponentStartup>(OnStartup); // Starlight
+        SubscribeLocalEvent<BatteryDrainerComponent, ComponentStartup>(OnStartup); // imp add
         SubscribeLocalEvent<BatteryDrainerComponent, BeforeInteractHandEvent>(OnBeforeInteractHand);
         SubscribeLocalEvent<BatteryDrainerComponent, NinjaBatteryChangedEvent>(OnBatteryChanged);
     }
@@ -42,6 +42,15 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
             ent.Comp.BatteryUid = ent.Owner;
     }
     // Starlight End
+
+    /// <summary>
+    ///  Imp add. Allow entities who are a battery to use themselves as the battery for this component
+    /// </summary>
+    private void OnStartup(Entity<BatteryDrainerComponent> ent, ref ComponentStartup args)
+    {
+        if (ent.Comp.BatteryUid == null && TryComp<BatteryComponent>(ent.Owner, out _))
+            ent.Comp.BatteryUid = ent.Owner;
+    }
 
     /// <summary>
     /// Start do after for draining a power source.
@@ -125,11 +134,11 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
         var available = targetBattery.CurrentCharge;
         var required = battery.MaxCharge - _predictedBattery.GetCharge((comp.BatteryUid.Value, battery));
         // higher tier storages can charge more
-        // Starlight edit Start: why the fuck does draintime affecting the amount drained go undocumented!!!
+        // IMP EDIT START- why the fuck does draintime affecting the amount drained go undocumented!!!
         var maxDrained = comp.FullDrain ?
             pnb.MaxSupply * comp.DrainTime :
             required;
-        // Starlight edit End
+        // IMP EDIT END
         var input = Math.Min(Math.Min(available, required / comp.DrainEfficiency), maxDrained);
         if (!_battery.TryUseCharge((target, targetBattery), input))
             return false;
@@ -147,11 +156,11 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
         _audio.PlayPvs(comp.SparkSound, target);
         _popup.PopupEntity(Loc.GetString("battery-drainer-success", ("battery", target)), uid, uid);
 
-        // Starlight Start: god this code is a mess. the bool return is only ever used to check if this should repeat
+        // IMP ADD- god this code is a mess. the bool return is only ever used to check if this should repeat
         // we dont want that if we're draining the full thing so whatever
         if (comp.FullDrain)
             return false;
-        // Starlight End
+        // IMP ADD END
 
         // repeat the doafter until battery is full
         return !_predictedBattery.IsFull((comp.BatteryUid.Value, battery));

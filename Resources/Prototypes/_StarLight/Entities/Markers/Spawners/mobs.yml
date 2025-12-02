@@ -42,47 +42,6 @@
         - MobCargorilla
 
 - type: entity
-  name: Eeeplet Spawner
-  id: SpawnMobEeeplet
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: eeeplet
-      sprite: _Starlight/Mobs/Aliens/eeeplet.rsi
-    - state: eeeplet_glow
-      sprite: _Starlight/Mobs/Aliens/eeeplet.rsi
-  - type: ConditionalSpawner
-    prototypes:
-    - MobEeeplet
-
-- type: entity
-  id: SpawnPointGhostEeeplet
-  name: ghost role spawn point
-  suffix: eeeplet
-  categories: [ HideSpawnMenu, Spawner ]
-  parent: MarkerBase
-  components:
-  - type: GhostRole
-    name: ghost-role-information-eeeplet-name
-    description: ghost-role-information-eeeplet-desc
-    rules: ghost-role-information-antagonist-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    raffle:
-      settings: default
-  - type: GhostRoleMobSpawner
-    prototype: MobEeeplet
-  - type: Sprite
-    layers:
-    - state: green
-    - state: eeeplet
-      sprite: _Starlight/Mobs/Aliens/eeeplet.rsi
-    - state: eeeplet_glow
-      sprite: _Starlight/Mobs/Aliens/eeeplet.rsi
-
-- type: entity
   name: Gray Xenobiology Slime Spawner
   id: SpawnGrayXenobiologySlime
   parent: MarkerBase

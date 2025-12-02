@@ -15,17 +15,6 @@
       path: /Audio/Magic/forcewall.ogg
 
 - type: polymorph
-  id: EeepGrow
-  configuration:
-    entity: MobEeep
-    transferName: false
-    transferDamage: false
-    inventory: None
-    forced: true
-    revertOnCrit: false
-    revertOnDeath: false
-
-- type: polymorph
   id: AdminMouse
   configuration:
     entity: MobAdminMouse
