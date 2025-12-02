@@ -15,7 +15,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 60
+        maxVol: 70 # Starlight edit (was 60)
         reagents:
         - ReagentId: Nutriment
           Quantity: 40

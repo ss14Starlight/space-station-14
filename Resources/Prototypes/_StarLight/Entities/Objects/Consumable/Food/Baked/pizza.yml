@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: nutribrick pizza
   parent: FoodPizzaBase
   id: FoodPizzaNutribrick
@@ -16,7 +16,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 80
+        maxVol: 90 # Starlight edit (was 80)
         reagents:
         - ReagentId: Nutriment
           Quantity: 70 # 40 from two bricks, 30 from pizza
@@ -43,7 +43,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 25 # Starlight edit (was 15)
         reagents:
         - ReagentId: Nutriment
           Quantity: 9.5
@@ -70,7 +70,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 120
+        maxVol: 130 # Starlight edit (was 120)
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
@@ -101,7 +101,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 35 # Starlight edit (was 25)
         reagents:
         - ReagentId: Nutriment
           Quantity: 4.5

@@ -15,7 +15,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 50 # Starlight edit (was 40)
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
@@ -48,7 +48,7 @@
     solutions:
       food:
         # Note: Keep FoodPizzaMoldySlice & FoodPizzaSliceBase roughly in sync
-        maxVol: 6
+        maxVol: 16 # Starlight edit (was 6)
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -201,7 +201,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 50 # Starlight edit (was 40)
         reagents:
         - ReagentId: Nutriment
           Quantity: 25
@@ -233,7 +233,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -260,7 +260,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 60 # Starlight edit (was 50)
         reagents:
         - ReagentId: Nutriment
           Quantity: 27
@@ -291,7 +291,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 4.5
@@ -326,7 +326,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 60 # Starlight edit (was 50)
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
@@ -353,7 +353,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 3.5
@@ -477,7 +477,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 85
+        maxVol: 95 # Starlight edit (was 85)
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
@@ -513,7 +513,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 25 # Starlight edit (was 15)
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -554,7 +554,7 @@
     solutions:
       food:
         # Note: Keep FoodPizzaMoldySlice & FoodPizzaSliceBase roughly in sync
-        maxVol: 5
+        maxVol: 15 # Starlight edit (was 5)
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -591,7 +591,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 50 # Starlight edit (was 40)
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
@@ -631,7 +631,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 15 # Starlight edit (was 5)
         reagents:
         - ReagentId: Nutriment
           Quantity: 2.5
@@ -669,7 +669,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 50 # Starlight edit (was 40)
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
@@ -701,7 +701,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 6
+        maxVol: 16 # Starlight edit (was 6)
         reagents:
         - ReagentId: Nutriment
           Quantity: 3.5
@@ -728,7 +728,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 45
+        maxVol: 55 # Starlight edit (was 45)
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
@@ -755,7 +755,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 3.5

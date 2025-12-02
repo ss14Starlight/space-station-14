@@ -40,7 +40,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20 # Room for extra condiments
+        maxVol: 30 # Starlight edit (was 20) # Room for extra condiments
         reagents:
         - ReagentId: Sugar
           Quantity: 15

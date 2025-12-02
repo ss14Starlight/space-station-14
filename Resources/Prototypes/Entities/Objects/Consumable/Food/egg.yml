@@ -21,7 +21,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 6
+        maxVol: 16 # Starlight edit (was 6)
         reagents:
         - ReagentId: Egg
           Quantity: 6
@@ -78,7 +78,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 2
+        maxVol: 12 # Starlight edit (was 2)
         reagents:
         - ReagentId: Egg
           Quantity: 1
@@ -121,7 +121,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 6
+        maxVol: 16 # Starlight edit (was 6)
         reagents:
         - ReagentId: EggCooked
           Quantity: 6

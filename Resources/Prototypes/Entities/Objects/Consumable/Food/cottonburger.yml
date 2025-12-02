@@ -15,7 +15,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 3.33
@@ -65,7 +65,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 15 # Starlight edit (was 5)
         canReact: false # Dont want cause reactions inside burgers after merging ingredients
         reagents:
         - ReagentId: Nutriment
@@ -93,7 +93,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 15 # Starlight edit (was 5)
         reagents:
         - ReagentId: Nutriment
           Quantity: 1.665

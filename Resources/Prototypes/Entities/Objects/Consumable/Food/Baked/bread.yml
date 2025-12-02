@@ -19,7 +19,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 26
+        maxVol: 36 # Starlight edit (was 26)
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
@@ -41,7 +41,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 8
+        maxVol: 18 # Starlight edit (was 8)
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -142,7 +142,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 26
+        maxVol: 36 # Starlight edit (was 26)
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -172,7 +172,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 8
+        maxVol: 18 # Starlight edit (was 8)
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -197,7 +197,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 30 # Starlight edit (was 20)
         reagents:
         - ReagentId: Nutriment
           Quantity: 15
@@ -219,7 +219,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 15 # Starlight edit (was 5)
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -243,7 +243,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 35
+        maxVol: 45 # Starlight edit (was 35)
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
@@ -268,7 +268,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -293,7 +293,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 45
+        maxVol: 55 # Starlight edit (was 45)
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
@@ -321,7 +321,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -351,7 +351,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 50 # Starlight edit (was 40)
         reagents:
         - ReagentId: Nutriment
           Quantity: 15
@@ -379,7 +379,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -430,7 +430,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 45
+        maxVol: 55 # Starlight edit (was 45)
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -459,7 +459,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -491,7 +491,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 45
+        maxVol: 55 # Starlight edit (was 45)
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
@@ -519,7 +519,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 12
+        maxVol: 22 # Starlight edit (was 12)
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -549,7 +549,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 48
+        maxVol: 58 # Starlight edit (was 48)
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
@@ -573,7 +573,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -598,7 +598,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 45
+        maxVol: 55 # Starlight edit (was 45)
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
@@ -626,7 +626,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -654,7 +654,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 25 # Starlight edit (was 15)
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -714,7 +714,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 25 # Starlight edit (was 15)
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -738,7 +738,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 2
+        maxVol: 12 # Starlight edit (was 2)
         reagents:
         - ReagentId: Nutriment
           Quantity: 0.5
@@ -767,7 +767,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 2
+        maxVol: 12 # Starlight edit (was 2)
         reagents:
         - ReagentId: Nutriment
           Quantity: 0.25
@@ -795,7 +795,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -818,7 +818,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -842,7 +842,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 25 # Starlight edit (was 15)
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -866,7 +866,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -889,7 +889,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 25 # Starlight edit (was 15)
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -909,7 +909,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 25 # Starlight edit (was 15)
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -934,7 +934,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 45
+        maxVol: 55 # Starlight edit (was 45)
         reagents:
         - ReagentId: Nutriment
           Quantity: 10

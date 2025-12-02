@@ -60,7 +60,7 @@
     solutions:
       food:
         canReact: false # Dont want cause reactions inside skewers after merging ingredients
-        maxVol: 0
+        maxVol: 10 # Starlight edit (was 0)
   - type: FoodSequenceStartPoint
     key: Skewer
     maxLayers: 4

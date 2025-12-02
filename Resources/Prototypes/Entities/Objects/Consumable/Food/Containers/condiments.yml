@@ -46,7 +46,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
   - type: SolutionTransfer
     maxTransferAmount: 10
   - type: Sprite
@@ -87,7 +87,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Astrotame
           Quantity: 10
@@ -115,7 +115,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: BbqSauce
           Quantity: 10
@@ -135,7 +135,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Cornoil
           Quantity: 10
@@ -155,7 +155,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Coldsauce
           Quantity: 10
@@ -175,7 +175,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: HorseradishSauce
           Quantity: 10
@@ -195,7 +195,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 20 # Starlight edit (was 10)
         reagents:
         - ReagentId: Hotsauce
           Quantity: 10
@@ -348,7 +348,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 40 # Starlight edit (was 30)
   - type: RefillableSolution
     solution: food
   - type: Spillable
@@ -553,7 +553,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 30 # Starlight edit (was 20)
   - type: SolutionTransfer
     canChangeTransferAmount: true
     minTransferAmount: 5
