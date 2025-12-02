@@ -327,14 +327,6 @@
       - StationAiCoreElectronics
   - type: StaticPrice
     price: 5000
-  # Starlight Start
-  # This actually dosent even do anything when on the mind
-  # So im not sure why its even used
-  # Gonna keep it for potential new stuff tho
-  - type: DamagedSiliconAccent
-    startPowerCorruptionAtCharIdx: 4
-    maxPowerCorruptionAtCharIdx: 20
-  # Starlight End
       
 # The job-ready version of an AI spawn.
 - type: entity
@@ -454,11 +446,9 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
-  # Starlight edit Start
-  # - type: DamagedSiliconAccent
-  #   startPowerCorruptionAtCharIdx: 4
-  #   maxPowerCorruptionAtCharIdx: 20
-  # Starlight edit End
+  - type: DamagedSiliconAccent
+    startPowerCorruptionAtCharIdx: 4
+    maxPowerCorruptionAtCharIdx: 20
   - type: Tag
     tags:
     - HideContextMenu
