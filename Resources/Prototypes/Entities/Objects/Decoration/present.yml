@@ -8,10 +8,11 @@
     sprite: Objects/Decoration/present.rsi
     layers:
       - state: present
+  - type: Present # Starlight
 
 - type: entity
   id: Present
-  parent: [PresentBase, BaseStorageItem]
+  parent: [PresentBase, BaseItem] # Starlight edit
   suffix: Empty
   components:
   - type: Item
@@ -455,3 +456,16 @@
     tags:
     - Trash
   - type: SpaceGarbage
+  # Starlight Start
+  - type: GiftWrap
+    presentPrototype: Present
+    wrapDelay: 5
+    wrapSound:
+      path: /Audio/Effects/packetrip.ogg
+    whitelist:
+      components:
+      - Item
+    blacklist:
+      components:
+      - Present # No presents inside presents you goobers
+  # Starlight End
