@@ -49,9 +49,27 @@
   symbol: "🗡"
 
 - type: roleType
+  id: Infected
+  name: role-type-infected-name
+  color: '#228b22'
+  symbol: "🗡"
+
+- type: roleType
+  id: Pirate
+  name: role-type-pirate-name
+  color: '#8b4513'
+  symbol: "🗡"
+
+- type: roleType
   id: SelfAligned
-  name: role-type-self-serving-name
+  name: role-type-self-aligned-name
   color: '#9400d3'
+  symbol: "🗡"
+
+- type: roleType
+  id: SentientObject
+  name: role-type-sentient-object-name
+  color: '#ff8c00'
   symbol: "🗡"
 
 - type: roleType
