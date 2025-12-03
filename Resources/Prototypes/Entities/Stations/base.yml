@@ -115,8 +115,8 @@
           - ChunkDebrisSmall
           - ChunkDebris
         vgroid: !type:DungeonSpawnGroup
-          minimumDistance: 300
-          maximumDistance: 350
+          minimumDistance: 600 # Starlight
+          maximumDistance: 900 # Starlight
           nameDataset: NamesBorer
           stationGrid: false
           addComponents:
