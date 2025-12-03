@@ -43,6 +43,9 @@
     alternateState: Resomi_burning
   - type: HumanoidAppearance
     species: Resomi
+    hideLayersOnEquip:
+      - HeadTop
+      - HeadSide
     undergarmentTop: UndergarmentTopTanktopResomi
     undergarmentBottom: UndergarmentBottomBoxersResomi
   - type: Fixtures

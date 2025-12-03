@@ -57,10 +57,10 @@
       required: true
       defaultMarkings: [ ResomiTail, ResomiTailFeathers ]
     Legs:
-      points: 2
+      points: 4
       required: false
     Arms:
-      points: 4
+      points: 6
       required: false
     Head:
       points: 2

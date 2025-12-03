@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": null,
-  "copyright": null,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by Github @listerla, @NeverKnowWhyThis, and @MistakeNot4892. Originally ported from ss13 by github @pofitlo-Git, Sprites provided by github @Zandario, Sprites ported from ss13 by github @AegisShieldDev and github @Rinary1",
   "size": {
     "x": 32,
     "y": 32
@@ -33,10 +33,6 @@
     },
     {
       "name": "resomi_fluff_groin",
-      "directions": 4
-    },
-    {
-      "name": "resomi_fluff_head",
       "directions": 4
     },
     {
@@ -213,6 +209,66 @@
     },
     {
       "name": "resomi_tailbands_2_3",
+      "directions": 4
+    },
+    {
+      "name": "resomi_earring_combined_1",
+      "directions": 4
+    },
+    {
+      "name": "resomi_earring_combined_2",
+      "directions": 4
+    },
+    {
+      "name": "resomi_ears_marking_1",
+      "directions": 4
+    },
+    {
+      "name": "resomi_ears_marking_2",
+      "directions": 4
+    },
+    {
+      "name": "resomi_ears_marking_3",
+      "directions": 4
+    },
+    {
+      "name": "resomi_ears_marking_4",
+      "directions": 4
+    },
+    {
+      "name": "resomi_ears_marking_5",
+      "directions": 4
+    },
+    {
+      "name": "resomi_ears_marking_6",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tail_1",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tail_2",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tail_3",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tail_4",
+      "directions": 4
+    },
+    {
+      "name": "resomi_tail_5",
+      "directions": 4
+    },
+    {
+      "name": "resomi_holowing_r",
+      "directions": 4
+    },
+    {
+      "name": "resomi_holowing_l",
       "directions": 4
     }
   ]

@@ -1,6 +1,6 @@
 - type: marking
   id: ResomiTail
-  bodyPart: Chest
+  bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Resomi]
   forcedColoring: true
@@ -10,10 +10,12 @@
 
 - type: marking
   id: ResomiTailFeathers
-  bodyPart: Chest
+  bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: tail
   - sprite: Mobs/Customization/resomi_parts.rsi
     state: tail_feathers
 
@@ -69,7 +71,7 @@
   speciesRestriction: [Resomi]
   sprites:
   - sprite: Mobs/Customization/resomi_parts.rsi
-    state: fluff_head
+    state: resomi_fluff_head
 
 - type: marking
   id: ResomiFluffHeadUp
@@ -81,8 +83,6 @@
     state: fluff_head_up
 
 # Starlight
-
-
 
 # Ears
 
@@ -101,7 +101,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_ears_marking_1
 
 - type: marking
@@ -110,7 +110,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_ears_marking_2
 
 - type: marking
@@ -119,7 +119,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_ears_marking_3
 
 - type: marking
@@ -128,7 +128,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_ears_marking_4
 
 - type: marking
@@ -137,7 +137,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_ears_marking_5
 
 - type: marking
@@ -146,7 +146,7 @@
   markingCategory: HeadSide
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_ears_marking_6
 
 # Jewelry
@@ -244,17 +244,6 @@
 # Tails
 
 - type: marking
-  id: ResomiTailCombined
-  bodyPart: Chest
-  markingCategory: Tail
-  speciesRestriction: [Resomi]
-  sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
-    state: tail
-  - sprite: Mobs/Customization/resomi_parts.rsi
-    state: tail_feathers
-
-- type: marking
   id: ResomiTailOne
   bodyPart: Tail
   markingCategory: Tail
@@ -292,8 +281,8 @@
 
 - type: marking
   id: ResomiTailFive
-  bodyPart: Head
-  markingCategory: Head
+  bodyPart: Tail
+  markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:
   - sprite: Mobs/Customization/resomi_parts.rsi
@@ -367,15 +356,6 @@
   sprites:
   - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_fluff_groin
-
-- type: marking
-  id: ResomiFluffHeadMarking
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Resomi]
-  sprites:
-  - sprite: Mobs/Customization/resomi_markings.rsi
-    state: resomi_fluff_head
 
 - type: marking
   id: ResomiFluffLFoot
@@ -616,3 +596,21 @@
   sprites:
   - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_stripe_torso
+
+- type: marking
+  id: ResomiHolowingR
+  bodyPart: RHand
+  markingCategory: Arms 
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_holowing_r
+
+- type: marking
+  id: ResomiHolowingL
+  bodyPart: LHand
+  markingCategory: Arms 
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_holowing_l

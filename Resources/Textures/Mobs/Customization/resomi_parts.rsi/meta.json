@@ -48,47 +48,7 @@
       "directions": 4
     },
     {
-      "name": "resomi_ears_marking_1",
-      "directions": 4
-    },
-    {
-      "name": "resomi_ears_marking_2",
-      "directions": 4
-    },
-    {
-      "name": "resomi_ears_marking_3",
-      "directions": 4
-    },
-    {
-      "name": "resomi_ears_marking_4",
-      "directions": 4
-    },
-    {
-      "name": "resomi_ears_marking_5",
-      "directions": 4
-    },
-    {
-      "name": "resomi_ears_marking_6",
-      "directions": 4
-    },
-    {
-      "name": "resomi_tail_1",
-      "directions": 4
-    },
-    {
-      "name": "resomi_tail_2",
-      "directions": 4
-    },
-    {
-      "name": "resomi_tail_3",
-      "directions": 4
-    },
-    {
-      "name": "resomi_tail_4",
-      "directions": 4
-    },
-    {
-      "name": "resomi_tail_5",
+      "name": "resomi_fluff_head",
       "directions": 4
     }
   ]
