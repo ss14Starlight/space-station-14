@@ -249,7 +249,7 @@
   markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_tail_1
 
 - type: marking
@@ -258,7 +258,7 @@
   markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_tail_2
 
 - type: marking
@@ -267,7 +267,7 @@
   markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_tail_3
 
 - type: marking
@@ -276,7 +276,7 @@
   markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_tail_4
 
 - type: marking
@@ -285,7 +285,7 @@
   markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_tail_5
 
 # Resomi Markings ported from ss13 Teshari
