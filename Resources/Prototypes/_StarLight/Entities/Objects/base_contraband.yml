@@ -47,6 +47,14 @@
     allowedJobs: [ SalvageSpecialist, SalvageLead ]
 
 - type: entity
+  id: BaseSecurityScienceContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Security, Science ]
+
+- type: entity
   id: BaseSecuritySalvageMiningContraband
   parent: BaseRestrictedContraband
   abstract: true

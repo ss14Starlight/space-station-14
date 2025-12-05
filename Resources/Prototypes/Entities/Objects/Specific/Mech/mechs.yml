@@ -320,7 +320,7 @@
 # Paddy
 - type: entity
   id: MechPaddy
-  parent: [ BaseMech, CombatMech, IndustrialMech, BaseSecurityContraband ]
+  parent: [ BaseMech, CombatMech, IndustrialMech, BaseSecurityScienceContraband ] # Starlight change: Sec/Sci contra
   name: Paddy
   description: Autonomous Power Loader Unit Subtype Paddy. A Modified MK-II Ripley design intended for light security use.
   components:
@@ -358,7 +358,7 @@
     bluntStaminaDamageFactor: 1.5 # 🌟Starlight-Change
     damage:
       types:
-        Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. # 
+        Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. #
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4
@@ -622,7 +622,7 @@
 # Gygax
 - type: entity
   id: MechGygax
-  parent: [ BaseMech, CombatMech, BaseSecurityContraband ]
+  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ] # Starlight change: Sec/Sci contra
   name: Gygax
   description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
   components:
@@ -682,7 +682,7 @@
 # Durand
 - type: entity
   id: MechDurand
-  parent: [ BaseMech, CombatMech, BaseSecurityContraband ]
+  parent: [ BaseMech, CombatMech, BaseSecurityScienceContraband ] # Starlight change: Sec/Sci contra
   name: Durand
   description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
   components:
