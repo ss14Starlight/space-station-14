@@ -737,12 +737,14 @@
   flavor: salty
   color: "#0064C8"
   metabolisms:
-    Drink:
-      effects:
-        - !type:SatiateThirst
-          factor: 6
+#    Drink:
+#      effects:
+#       - !type:SatiateThirst    #Starlight - removed metabolizing as a drink, and added the effect to the medicine category to bring saline in line with other medicines
+#          factor: 6
     Medicine: #Starlight
       effects:
+        - !type:SatiateThirst  # Starlight - thirst effect changed from Drink to Medicine
+           factor: 6           #
         - !type:ModifyBloodLevel
           conditions:
           - !type:OrganType
@@ -752,18 +754,6 @@
            type: Resomi
            shouldHave: false
           amount: 6
-        - !type:ModifyBleedAmount
-          conditions:
-          - !type:OrganType
-           type: Avali
-           shouldHave: true
-          amount: 2
-        - !type:ModifyBleedAmount
-          conditions:
-          - !type:OrganType
-           type: Resomi
-           shouldHave: true
-          amount: 2
         - !type:HealthChange
           conditions:
           - !type:OrganType
@@ -771,9 +761,8 @@
            shouldHave: true
           damage:
             types:
-              Poison: 12 #This is on par with giving someone the wrong blood-type (very lethal) / (Lethal Dose: 10u, VERY FAST ACTING)
-              Caustic: 2 #Split to prevent 15u RRing someone, as caustic can be healed with topicals.
-              Slash: 1 #Allows it to heal bleeding.
+              Caustic: 2 # 30 damage per unit was ridiculous, but I'm leaving some damage to punish mistakes without risking round removal. Adding salt to water shouldn't suddenly make it the strongest toxin in the game by far.
+              Heat: 2 
         - !type:HealthChange
           conditions:
           - !type:OrganType
@@ -781,9 +770,8 @@
            shouldHave: true
           damage:
             types:
-              Poison: 12 #This is on par with giving someone the wrong blood-type (very lethal) / (Lethal Dose: 10u, VERY FAST ACTING)
-              Caustic: 2 #Split to prevent 15u RRing someone, as caustic can be healed with topicals.
-              Slash: 1 #Allows it to heal bleeding.
+              Caustic: 2 # 30 damage per unit was ridiculous, but I'm leaving some damage to punish mistakes without risking round removal. Adding salt to water shouldn't suddenly make it the strongest toxin in the game by far.
+              Heat: 2 
 
 - type: reagent
   id: Siderlac

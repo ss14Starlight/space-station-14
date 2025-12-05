@@ -146,8 +146,13 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
             return;
 
         if (!_charges.TryUseCharges((ent, charges), ent.Comp.PipeChargeCost))
-        // Starlight-edit: End
+        {
+            // extra check needed for recharging spraypainters
+            var msg = Loc.GetString("spray-painter-interact-no-charges");
+            _popup.PopupEntity(msg, args.User, args.User);
             return;
+        }
+        // Starlight-edit: End
 
         Audio.PlayPvs(ent.Comp.SpraySound, ent);
         _pipeColor.SetColor(target, color, args.Color);
@@ -165,17 +170,12 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
 
         if (!painter.ColorPalette.TryGetValue(colorName, out var color))
             return;
-        // Starlight-edit: Start
-        if (!TryComp(args.Used, out LimitedChargesComponent? charges))
-        {
-            _popup.PopupEntity(Loc.GetString("spray-painter-interact-no-charges"), args.User, args.User);
-            return;
-        }
 
-        if (!_charges.TryUseCharges((args.Used, charges), painter.PipeChargeCost))
+        if (TryComp<LimitedChargesComponent>(args.Used, out var charges)
+            && _charges.GetCurrentCharges((args.Used, charges)) < painter.PipeChargeCost)
         {
-            _popup.PopupEntity(Loc.GetString("spray-painter-interact-no-charges"), args.User, args.User);
-            // Starlight-edit: End
+            var msg = Loc.GetString("spray-painter-interact-no-charges");
+            _popup.PopupEntity(msg, args.User, args.User);
             return;
         }
 

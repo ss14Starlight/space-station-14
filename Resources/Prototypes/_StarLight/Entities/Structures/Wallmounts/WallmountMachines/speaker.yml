@@ -1,0 +1,59 @@
+- type: entity
+  parent: BaseWallmountMachine
+  id: Speaker
+  name: speaker
+  description: Ensuring you consume a minimum number of advertisements per shift.
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+  - type: WallMount
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: Transform
+    anchored: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _Starlight/Structures/Machines/speaker.rsi
+    state: speaker
+  - type: StaticPrice
+    price: 200
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 75
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+              params:
+                volume: -8
+  - type: SpamEmitSoundRequirePower
+  - type: SpamEmitSound
+    minInterval: 180
+    maxInterval: 210
+    sound:
+      collection: SpeakerAds
+      params:
+        volume: -3
+        maxDistance: 9
+        variation: 0.01
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wallmount
+

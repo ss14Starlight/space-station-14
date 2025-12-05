@@ -4,6 +4,11 @@
   name: bar sign
   abstract: true
   components:
+  - type: AmbientSound #SL
+    volume: -7 #SL
+    range: 4 #SL
+    sound: #SL
+      path: /Audio/_Starlight/Effects/Machinery/electric_buzz.ogg #SL
   - type: WallMount
     arc: 360
   - type: Sprite

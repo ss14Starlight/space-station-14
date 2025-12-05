@@ -40,6 +40,7 @@ using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Starlight;
 using Content.Server.Economy; // Starlight-edit
+using Content.Shared._Starlight.DocumentManager;
 
 namespace Content.Server.IoC
 {
@@ -100,6 +101,7 @@ namespace Content.Server.IoC
             IoCManager.Register<ITTSManager, TTSManager>();
             IoCManager.Register<ItemPriceManager, ItemPriceManager>();
             IoCManager.Register<IBugReportManager, BugReportManager>();
+            IoCManager.Register<PreWrittenDocumentManager>();
             // nulllink
             IoCManager.Register<IActorRouter, ActorRouter>(); 
             IoCManager.Register<INullLinkPlayerManager, NullLinkPlayerManager>();

@@ -25,7 +25,7 @@ public sealed partial class BodyScannerSystem : SharedBodyScannerSystem
     
     private void OnStrapped(Entity<OperatingTableComponent> ent, ref StrappedEvent args)
     {        
-        if (ent.Comp.Scanner != null && TryComp<HealthAnalyzerComponent>(ent.Comp.Scanner, out var analyzer))
+        if (ent.Comp.Scanner != null && TryComp<HealthAnalyzerComponent>(ent.Comp.Scanner, out var analyzer) && Transform(ent.Comp.Scanner.Value).Anchored)
             _healthAnalyzer.BeginAnalyzingEntity((ent.Comp.Scanner.Value, analyzer), args.Buckle.Owner);
     }
     

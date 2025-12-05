@@ -22,7 +22,7 @@
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
 
 # Warden
 - type: entity
@@ -39,7 +39,7 @@
     access: [["Armory"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
-  
+
 # Brigmedic
 - type: entity
   id: LockerBrigmedicLarge
