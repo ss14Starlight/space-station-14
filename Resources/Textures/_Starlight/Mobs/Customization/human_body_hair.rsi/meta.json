@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Conflee",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "hair_back",
+            "directions": 4
+        },
+        {
+            "name": "hair_chest",
+            "directions": 4
+        },
+        {
+            "name": "hair_left_arm",
+            "directions": 4
+        },
+        {
+            "name": "hair_left_leg",
+            "directions": 4
+        },
+        {
+            "name": "hair_right_arm",
+            "directions": 4
+        },
+        {
+            "name": "hair_right_leg",
+            "directions": 4
+        }
+    ]
+}

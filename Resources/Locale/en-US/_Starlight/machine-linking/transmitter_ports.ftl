@@ -6,3 +6,6 @@ signal-port-description-scan-gate-success = Emitted when an entity is successful
 
 signal-port-name-scan-gate-fail = Scan Fail
 signal-port-description-scan-gate-fail = Emitted when an entity fails to be scanned.(E.g. contraband detected)
+
+signal-port-name-mass-driver-console-sender = Mass Driver Console
+signal-port-description-mass-driver-console-sender = Sends options only to Mass Driver.

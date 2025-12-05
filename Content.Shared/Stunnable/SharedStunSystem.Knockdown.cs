@@ -297,7 +297,7 @@ public abstract partial class SharedStunSystem
         var doAfterArgs = new DoAfterArgs(EntityManager, entity, ev.DoAfterTime, new TryStandDoAfterEvent(), entity, entity)
         {
             BreakOnDamage = true,
-            DamageThreshold = 5,
+            DamageThreshold = 15, // Starlight
             CancelDuplicate = true,
             RequireCanInteract = false,
             BreakOnHandChange = true

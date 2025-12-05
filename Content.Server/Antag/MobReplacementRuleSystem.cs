@@ -5,6 +5,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.VendingMachines;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using System.Linq; // Starlight
 
 namespace Content.Server.Antag;
 
@@ -32,7 +33,10 @@ public sealed class MobReplacementRuleSystem : GameRuleSystem<MobReplacementRule
             var coordinates = entity.Coordinates;
             Del(entity.Entity);
 
-            Spawn(component.Proto, coordinates);
+            // Starlight start
+            if(component.Protos.Count == 1) Spawn(component.Protos.First().Key, coordinates);
+            else Spawn(_random.Pick(component.Protos).Key, coordinates);
+            // Starlight end
         }
     }
 }

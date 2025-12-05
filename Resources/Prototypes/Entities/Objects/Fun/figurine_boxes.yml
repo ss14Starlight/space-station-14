@@ -137,7 +137,7 @@
   id: MysteryLighterBox
   name: Novelty lighter mystery box
   suffix: Filled
-  description: A box of discontinued promotional lighters, many of which have since been declared "contraband".
+  description: A box of discontinued promotional lighters. A faded and scratched label on the side reads, "May contain contraband." #Starlight-edit
   components:
   - type: Sprite
     sprite: Objects/Fun/figurines.rsi
@@ -148,27 +148,28 @@
       - id: MysteryFigureBoxTrash
       - id: CybersunFlippo
         orGroup: Lighterbox
-        weight: 0.15
+        weight: 0.15 #Starlight-edit
       - id: InterdyneFlippo
         orGroup: Lighterbox
-        weight: 0.15
+        weight: 0.15 #Starlight-edit
       - id: NanotrasenFlippo
         orGroup: Lighterbox
-        weight: 0.25
+        weight: 0.15 #Starlight-edit
       - id: WaffleCoFlippo
         orGroup: Lighterbox
-        weight: 0.35
+        weight: 0.15 #Starlight-edit
       - id: HonkCoFlippo
         orGroup: Lighterbox
+        weight: 0.15 #Starlight-edit
       - id: GorlexMatchbox
         orGroup: Lighterbox
-        weight: 0.15
+        weight: 0.05 #Starlight-edit
       - id: DonkcoLighter
         orGroup: Lighterbox
-        weight: 0.25
+        weight: 0.15 #Starlight-edit
       - id: SyndicateFlippo
         orGroup: Lighterbox
-        weight: 0.15
+        weight: 0.05 #Starlight-edit
 
 - type: entity
   parent: MysteryLighterBox

@@ -216,7 +216,7 @@
   - type: ShowJobIcons
 
 - type: entity
-  parent: [ ClothingEyesBase, BaseSalvageContraband ] #Starlight salvContra
+  parent: ClothingEyesBase
   id: ClothingEyesGlassesMercenary
   name: mercenary glasses
   description: Glasses made for combat, to protect the eyes from bright blinding flashes.

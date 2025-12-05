@@ -304,6 +304,13 @@
     - SalvageLeadJumpskirt
 
 - type: loadoutGroup
+  id: SalvageLeadNeck
+  name: loadout-group-salvage-lead-mantle
+  loadouts:
+    - SalvageLeaderMantle
+    - SalvageVeteranMantle
+
+- type: loadoutGroup
   id: SalvageLeadPDA
   name: loadout-group-salvagelead-id
   loadouts:

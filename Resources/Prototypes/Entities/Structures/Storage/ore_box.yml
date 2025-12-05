@@ -42,6 +42,11 @@
     - state: orebox-top
       map: [ top ]
       visible: true
+      # Starlight Edit Start - Add magnet indicator layer
+    - state: orebox-on
+      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+      # Starlight Edit End
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -49,6 +54,12 @@
         top:
           True: { visible: false }
           False: { visible: true }
+      # Starlight Edit Start - added magnet indicator
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      # Starlight Edit End
   - type: Storage
     grid:
     - 0,0,11,7 # Starlight - higher capacity buff
@@ -78,3 +89,25 @@
         - MachineMask
         layer:
         - MachineLayer
+    # Starlight Edit Start - added magnet pickup to ore box
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
+    verbToggleOn: "Activate Magnet"
+    verbToggleOff: "Deactivate Magnet"
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+  - type: AltUseToggle
+  - type: ComponentToggler
+    components: 
+    - type: MagnetPickup
+      range: 2
+      slotFlags: 0
+  - type: Dumpable
+    # Starlight Edit End

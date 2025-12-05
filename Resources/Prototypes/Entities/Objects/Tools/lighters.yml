@@ -336,10 +336,10 @@
       - Lighters #SL
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseSyndicateContraband] 
+  parent: [BaseBrandedLighter, BaseSyndicateContraband, FlippoLighter] #SL Edit: added flippolighter parent
   id: SyndicateFlippo
   name: Blood-red flippo
-  description: "A 'Valid' choice in lighters. Contains no copper."
+  description: "A 'Valid' choice in lighters. Contains no copper. Causes nasty burns if mishandled."
   components:
   - type: Sprite
     sprite: Objects/Tools/Lighters/syndielighter.rsi
@@ -349,6 +349,13 @@
     fuelConsumption: 0.01 # Starlight-edit
     fuelLitCost: 0.01
     tankSafe: true
+  - type: ItemToggleMeleeWeapon #Starlight-start
+    activatedDamage:
+        types:
+            Heat: 8
+  - type: ItemToggleSize
+    activatedSize: Small
+  - type: ItemToggleHot #Starlight-end
   - type: PointLight
     enabled: false
     netsync: false
@@ -411,7 +418,7 @@
         maxVol: 3
 
 - type: entity
-  parent: [BaseBrandedLighter] #SL Edit: Non Contra
+  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: CybersunFlippo
   name: CyberSun Flippo
   description: "A Sleek black and magenta flippo lighter, bearing the logo and iconography of CyberSun Industries."
@@ -431,7 +438,7 @@
     color: magenta
 
 - type: entity
-  parent: [BaseBrandedLighter] #SL Edit: Non Contra
+  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: InterdyneFlippo
   name: Interdyne Flippo
   description: "A deep blue flippo lighter, decorated with the logo of Interdyne Pharmaceuticals' 'Gene Clean' clinics. Become the master of your own cigarette."
@@ -455,10 +462,10 @@
     color: cyan
 
 - type: entity
-  parent: [BaseBrandedLighter]
+  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: NanotrasenFlippo
   name: Nanotrasen Flippo
-  description: "A navy blue luxury flippo, generally handed out to loyal heads of staff instead of a payraise. Fueled with liquid plasma"
+  description: "A navy blue luxury flippo, generally handed out to loyal heads of staff instead of a payraise. Fueled with liquid plasma and burns a little hotter than usual."
   components:
   - type: Sprite
     sprite: Objects/Tools/Lighters/nanotrasen.rsi
@@ -469,6 +476,13 @@
     fuelLitCost: 0 # Starlight-end
     fuelReagent: Plasma
     tankSafe: true
+  - type: ItemToggleMeleeWeapon #Starlight-start
+    activatedDamage:
+        types:
+            Heat: 4
+  - type: ItemToggleSize
+    activatedSize: Small 
+  - type: ItemToggleHot #Starlight-end
   - type: PointLight
     enabled: false
     netsync: false
@@ -531,7 +545,7 @@
     access: [["CentralCommand"]]
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseMajorContraband]
+  parent: [BaseBrandedLighter, BaseMajorContraband, FlippoLighter] #SL Edit: added flippolighter parent
   id: SpiderclanFlippo
   name: Spider-Clan lighter
   description: "A high tech jet lighter, engineered to function even in deep space. Runs on a tiny microfusion cell."
@@ -551,7 +565,7 @@
     color: green
 
 - type: entity
-  parent: [BaseBrandedLighter] #SL Edit: Non Contra
+  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: WaffleCoFlippo
   name: Waffle Co. flippo
   description: "A robust mass produced lighter. The Waffle Co. logo turns the spark wheel when pushed up, minimising risk of lighter burns for even the most inept user."
@@ -571,7 +585,7 @@
     color: brown
 
 - type: entity
-  parent: [BaseBrandedLighter]
+  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: HonkCoFlippo
   name: Honk Co. flippo
   description: "A slippery gag lighter produced by Honk Co. hidden inside of a real banana peel."
@@ -616,7 +630,7 @@
     color: yellow
 
 - type: entity
-  parent: [BaseBrandedLighter]
+  parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: DonkcoLighter
   name: Donk Co. flippo
   description: "The flippo of choice for terrible cooks. A Breaded novelty lighter made by Donk Co. Somehow edible while lit." #SL Edit: decription edit to remove 'traitor' reference

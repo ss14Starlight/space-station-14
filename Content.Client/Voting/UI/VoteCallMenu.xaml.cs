@@ -70,6 +70,12 @@ namespace Content.Client.Voting.UI
             foreach (StandardVoteType voteType in Enum.GetValues<StandardVoteType>())
             {
                 var option = AvailableVoteOptions[voteType];
+                //starlight start
+                //ignore preset and map
+                //not a fan of this but I cant be arsed to make a cvar for it
+                if (voteType is StandardVoteType.Preset or StandardVoteType.Map)
+                    continue;
+                //starlight end
                 VoteTypeButton.AddItem(Loc.GetString(option.Name), (int)voteType);
             }
 

@@ -273,7 +273,7 @@
   - vampires
   name: vampire-gamemode-title
   description: vampire-gamemode-description
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false # 🌟Starlight🌟 - Leave disabled until they are reworked
   minPlayers: 50 # 🌟Starlight🌟
   rules:
   - Vampire
