@@ -193,7 +193,7 @@
 # Ripley MK-I
 - type: entity
   id: MechRipley
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseMech, IndustrialMech, BaseCargoScienceContraband ] # Starlight change: Cargo/Sci contra
   name: Ripley APLU
   description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
   components:
@@ -252,7 +252,7 @@
 # Ripley MK-II
 - type: entity
   id: MechRipley2
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseMech, IndustrialMech, BaseCargoScienceContraband ] # Starlight change: Cargo/Sci contra
   name: Ripley APLU MK-II
   description: The "MK-II" has a pressurized cabin for space operations, and stronger clamps are able to force doors open, but the added weight has slowed it down. # 🌟Starlight-Change
   components:
@@ -395,7 +395,7 @@
 # Clarke
 - type: entity
   id: MechClarke
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseMech, IndustrialMech, BaseCargoScienceContraband ] # Starlight change: Cargo/Sci contra
   name: Clarke
   description: A fast-moving mech for space travel. It has built-in trusts.
   components:
@@ -449,7 +449,7 @@
 
 # H.O.N.K.
 - type: entity
-  parent: [ BaseMech, SpecialMech, BaseCivilianContraband ]
+  parent: [ BaseMech, SpecialMech, BaseCivilianScienceContraband ] # Starlight change: Civ/Sci conttra
   id: MechHonker
   name: H.O.N.K.
   description: "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
