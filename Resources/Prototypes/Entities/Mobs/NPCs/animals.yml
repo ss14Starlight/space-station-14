@@ -3829,7 +3829,7 @@
   - type: MeleeWeapon
     damage:
       types:
-        Piercing: 22
+        Piercing: 5 # Starlight change. Whatever the designer was on, I want it.
     animation: WeaponArcFist
   - type: NPCRetaliation
   - type: FactionException
@@ -3848,7 +3848,7 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 15
+        Blunt: 5 # Starlight change. See above.
     animation: WeaponArcFist
   - type: Sprite
     drawdepth: Mobs
