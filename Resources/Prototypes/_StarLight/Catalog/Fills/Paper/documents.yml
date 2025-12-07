@@ -175,6 +175,15 @@
   components:
     - type: Paper
       content: doc-text-printer-equipment-request-statement
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentPsychologicalEvaluation
+  name: Psychological Evaluation
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-psychological-evaluation
       
 # InquiriesAndAppeals
       
@@ -378,7 +387,16 @@
   components:
     - type: Paper
       content: doc-text-printer-surgery-consent-permit
-      
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentMedicalPrescription
+  name: Medical Prescription
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-medical-prescription
+
 # OrdersAndInstructions
 
 - type: entity

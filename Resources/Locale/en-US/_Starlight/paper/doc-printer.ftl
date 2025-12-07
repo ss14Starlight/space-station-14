@@ -448,6 +448,36 @@ doc-text-printer-equipment-request-statement =
 
 
    
+doc-text-printer-psychological-evaluation = 
+   ⠀[logo]            [cclogo] 
+
+                             [head=3]NT-CC Consortium Services[/head]
+
+                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+   ⠀⠀                               [bold]PSYCHOLOGICAL EVALUATION[/bold]
+    ────────────────────────────────────────
+    Time and Date: [form]
+    Patient Name: [form]
+    Attending Medical Officer (Name and Rank): [signature]
+    
+    Reason for Evaluation / Referral:
+    • [form]
+    Behavioral Observations:
+    • [form]
+    Cognitive and Emotional Assessment Notes:
+    • [form]
+    Preliminary Diagnosis (if applicable):
+    • [form]
+    Recommended Treatment, Monitoring, or Clearance Status:
+    • [form]
+
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+
+
+
 # InquiriesAndAppeals
    
 doc-text-printer-invocation =
@@ -1048,7 +1078,36 @@ doc-text-printer-surgery-consent-permit =
 
 
 
-   
+doc-text-printer-medical-prescription = 
+   ⠀[logo]            [cclogo] 
+
+                             [head=3]NT-CC Consortium Services[/head]
+
+                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+   ⠀⠀                               [bold]MEDICAL PRESCRIPTION[/bold]
+    ────────────────────────────────────────
+    Time and Date: [form]
+    Patient Name: [form]
+    Attending Medical Officer (Name and Rank): [signature]
+    
+    Diagnosis / Medical Condition:
+    • [form]
+    Prescribed Medication(s):
+    • [form]
+    • [form]
+    
+    Dosage and Administration Instructions:
+    • [form]
+    
+    Additional Notes or Warnings:
+    • [form]
+
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+
+
 # OrdersAndInstructions
 
 doc-text-printer-dismissal-order =

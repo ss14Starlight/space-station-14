@@ -181,6 +181,17 @@
   applyMaterialDiscount: false
   materials:
     SheetPrinter: 100
+
+
+- type: latheRecipe
+  id: PrintedDocumentPsychologicalEvaluationRecipe
+  result: PrintedDocumentPsychologicalEvaluation
+  categories:
+  - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
     
 # InquiriesAndAppeals
     
@@ -401,6 +412,16 @@
 - type: latheRecipe
   id: PrintedDocumentSurgeryConsentPermitRecipe
   result: PrintedDocumentSurgeryConsentPermit
+  categories:
+  - Permissions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedicalPrescriptionRecipe
+  result: PrintedDocumentMedicalPrescription
   categories:
   - Permissions
   completetime: 2
