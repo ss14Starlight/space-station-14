@@ -17,6 +17,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared.Body.Prototypes; // Starlight - breathing traits
+using Robust.Shared.Serialization.Manager.Attributes; // Starlight - breathing traits
+using Robust.Shared.Serialization.Markdown.Mapping; // Starlight - breathing traits
 
 namespace Content.Shared.Preferences
 {
@@ -413,6 +416,13 @@ namespace Content.Shared.Preferences
 
             var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences) { traitId };
 
+            // Starlight - start: Breathing trait mutual exclusivity
+            if (traitId == "NitrogenBreather")
+                list.Remove("OxygenBreather");
+            else if (traitId == "OxygenBreather")
+                list.Remove("NitrogenBreather");
+            // Starlight - end
+
             if (traitCategory == null || traitCategory.MaxTraitPoints < 0)
             {
                 return new(this)
@@ -724,10 +734,21 @@ namespace Content.Shared.Preferences
             var groups = new Dictionary<string, int>();
             var result = new List<ProtoId<TraitPrototype>>();
 
+            // Starlight - start: Get species lung type for breathing trait validation
+            var speciesBreathType = GetSpeciesBreathingType(protoManager);
+            // Starlight - end
+
             foreach (var trait in traits)
             {
                 if (!protoManager.TryIndex(trait, out var traitProto))
                     continue;
+
+                // Starlight - start: Filter out redundant breathing traits
+                if (trait == "NitrogenBreather" && speciesBreathType == "LowNitrogen")
+                    continue; // Species already breathes nitrogen
+                if (trait == "OxygenBreather" && speciesBreathType == "LowOxygen")
+                    continue; // Species already breathes oxygen
+                // Starlight - end
 
                 // Always valid.
                 if (traitProto.Category == null)
@@ -753,6 +774,41 @@ namespace Content.Shared.Preferences
 
             return result;
         }
+
+        // Starlight - start: Helper method to determine species breathing type
+        private string? GetSpeciesBreathingType(IPrototypeManager protoManager)
+        {
+            if (!protoManager.TryIndex<SpeciesPrototype>(Species, out var speciesProto))
+                return null;
+
+            if (!protoManager.TryIndex<BodyPrototype>(speciesProto.Prototype, out var bodyProto))
+                return null;
+
+            // Check if the torso has lungs defined
+            if (!bodyProto.Slots.TryGetValue("torso", out var torsoSlot))
+                return null;
+
+            if (!torsoSlot.Organs.TryGetValue("lungs", out var lungOrganId))
+                return null;
+
+            // Check the lung organ prototype to see what alert it uses
+            if (!protoManager.TryIndex<EntityPrototype>(lungOrganId, out var lungProto))
+                return null;
+
+            // Try to find the Lung component in the prototype
+            if (lungProto.Components.TryGetValue("Lung", out var lungCompData))
+            {
+                var lungMapping = lungCompData.Mapping;
+                if (lungMapping.TryGet("alert", out var alertNode))
+                {
+                    return alertNode.ToString();
+                }
+            }
+
+            // Default to oxygen breathing if we can't determine
+            return "LowOxygen";
+        }
+        // Starlight - end
 
         public ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection)
         {

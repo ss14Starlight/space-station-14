@@ -1,0 +1,31 @@
+# Breathing adaptation traits
+# Allow species to breathe different atmospheric gases
+# These are mutually exclusive via server-side validation
+
+- type: trait
+  id: NitrogenBreather
+  name: trait-nitrogen-breather-name
+  description: trait-nitrogen-breather-desc
+  category: Quirks
+  cost: 0
+  components:
+  - type: TraitOrganReplacement
+    slot: lungs
+    organ: OrganNitrogenLungs
+    handItem: EmergencyNitrogenTankFilled
+    equipment:
+      mask: ClothingMaskGas
+  - type: NitrogenBreather  # Marker component
+
+- type: trait
+  id: OxygenBreather
+  name: trait-oxygen-breather-name
+  description: trait-oxygen-breather-desc
+  category: Quirks
+  cost: 0
+  components:
+  - type: TraitOrganReplacement
+    slot: lungs
+    organ: OrganOxygenLungs
+    removePoisonRegen: true
+  - type: OxygenBreather  # Marker component

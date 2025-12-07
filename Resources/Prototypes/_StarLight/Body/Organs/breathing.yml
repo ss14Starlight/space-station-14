@@ -1,0 +1,48 @@
+# Nitrogen-breathing lungs for traits
+# Allows any species to breathe nitrogen instead of oxygen
+# Copied from vox lungs to ensure proper functionality
+
+- type: entity
+  id: OrganNitrogenLungs
+  parent: OrganHumanLungs
+  name: nitrogen-adapted lungs
+  description: "Lungs that have been adapted to filter nitrogen from an atmosphere instead of oxygen. Any form of gaseous oxygen is lethally toxic if breathed in."
+  suffix: "nitrogen-breathing"
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Vox/organs.rsi
+  - type: Metabolizer
+    metabolizerTypes: [ Vox ]
+  - type: Lung
+    alert: LowNitrogen
+  - type: Item
+    size: Small
+    heldPrefix: lungs
+
+# Oxygen-breathing lungs for traits
+- type: entity
+  id: OrganOxygenLungs
+  parent: OrganHumanLungs
+  name: oxygen-adapted lungs
+  description: "Standard lungs that filter oxygen from an atmosphere."
+  suffix: "oxygen-breathing"
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    layers:
+      - state: lung-l
+        color: "#FF6B6B"
+      - state: lung-r
+        color: "#FF6B6B"
+  - type: Item
+    size: Small
+    heldPrefix: lungs
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      Lung:
+        maxVol: 100.0
+        canReact: false

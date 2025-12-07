@@ -9,6 +9,10 @@ using Content.Server._Starlight.Language; // Starlight
 using Content.Shared.Tag;
 using System.Linq;
 using Content.Shared.Preferences; // Starlight
+using Content.Shared.Body.Components; // Starlight - breathing traits
+using Content.Shared.Body.Systems; // Starlight - breathing traits
+using Content.Server.Body.Components; // Starlight - breathing traits
+using Content.Shared.Body.Organ; // Starlight - breathing traits
 
 namespace Content.Server.Traits;
 
@@ -18,6 +22,7 @@ public sealed class TraitSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly SharedBodySystem _bodySystem = default!; // Starlight - breathing traits
 
     public override void Initialize()
     {
@@ -43,9 +48,46 @@ public sealed class TraitSystem : EntitySystem
 
     public void ApplyTraits(EntityUid Mob, HumanoidCharacterProfile Profile)
     {
+        // Starlight - start: Track breathing traits to prevent conflicts
+        var hasNitrogenTrait = Profile.TraitPreferences.Contains("NitrogenBreather");
+        var hasOxygenTrait = Profile.TraitPreferences.Contains("OxygenBreather");
+
+        // If both breathing traits are selected, skip both (mutual exclusivity)
+        if (hasNitrogenTrait && hasOxygenTrait)
+        {
+            hasNitrogenTrait = false;
+            hasOxygenTrait = false;
+            Log.Warning($"Player attempted to select both NitrogenBreather and OxygenBreather traits - both will be ignored");
+        }
+
+        // Check existing lung type to prevent redundant traits
+        var existingLungAlert = GetLungAlert(Mob);
+        if (existingLungAlert != null)
+        {
+            if (hasNitrogenTrait && existingLungAlert == "LowNitrogen")
+            {
+                hasNitrogenTrait = false;
+                Log.Info($"Player already breathes nitrogen, skipping NitrogenBreather trait");
+            }
+            else if (hasOxygenTrait && existingLungAlert == "LowOxygen")
+            {
+                hasOxygenTrait = false;
+                Log.Info($"Player already breathes oxygen, skipping OxygenBreather trait");
+            }
+        }
+        // Starlight - end
+
         foreach (var traitId in Profile.TraitPreferences)
         #endregion Starlight Traits on spawn here
         {
+            // Starlight - start: Skip breathing traits if they were filtered out
+            if ((traitId == "NitrogenBreather" && !hasNitrogenTrait) ||
+                (traitId == "OxygenBreather" && !hasOxygenTrait))
+            {
+                continue;
+            }
+            // Starlight - end
+
             if (!_prototypeManager.TryIndex<TraitPrototype>(traitId, out var traitPrototype))
             {
                 Log.Error($"No trait found with ID {traitId}!");
@@ -101,4 +143,33 @@ public sealed class TraitSystem : EntitySystem
                 handsComp: handsComponent);
         }
     }
+
+    // Starlight - start: Helper to detect existing lung type
+    private string? GetLungAlert(EntityUid mob)
+    {
+        if (!TryComp<BodyComponent>(mob, out var body))
+            return null;
+
+        // Look through all body parts for lungs
+        foreach (var (partId, part) in _bodySystem.GetBodyChildren(mob, body))
+        {
+            if (!TryComp<Robust.Shared.Containers.ContainerManagerComponent>(partId, out var containerManager))
+                continue;
+
+            // Check all containers in this body part for organs
+            foreach (var container in containerManager.GetAllContainers())
+            {
+                foreach (var organ in container.ContainedEntities)
+                {
+                    if (TryComp<LungComponent>(organ, out var lung))
+                    {
+                        return lung.Alert;
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+    // Starlight - end
 }
