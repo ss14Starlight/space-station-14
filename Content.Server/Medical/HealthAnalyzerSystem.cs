@@ -1,3 +1,7 @@
+using Content.Server.Body.Components;
+using Content.Server.Body.Systems;
+using Content.Server.Body.Components;
+using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems; // Starlight-edit
 using Content.Server.Medical.Components;
 using Content.Server.PowerCell;
@@ -20,6 +24,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Server.Medical;
 
@@ -35,6 +40,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly ChatSystem _chat = default!; // Starlight-edit
+    [Dependency] private readonly BodySystem _bodySystem = default!;
 
     public override void Initialize()
     {
@@ -233,13 +239,31 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         }
         // Starlight-end
 
+        // Get breathing type
+        string? breathingType = null;
+        if (TryComp<BodyComponent>(target, out var body))
+        {
+            var organs = _bodySystem.GetBodyOrganEntityComps<LungComponent>((target, body));
+            foreach (var organ in organs)
+            {
+                if (organ.Comp1.Alert == "LowOxygen")
+                    breathingType = Loc.GetString("breathing-type-oxygen");
+                else if (organ.Comp1.Alert == "LowNitrogen")
+                    breathingType = Loc.GetString("breathing-type-nitrogen");
+                
+                if (breathingType != null)
+                    break;
+            }
+        }
+
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
             bodyTemperature,
             bloodAmount,
             scanMode,
             bleeding,
-            unrevivable
+            unrevivable,
+            breathingType
         ));
     }
 }

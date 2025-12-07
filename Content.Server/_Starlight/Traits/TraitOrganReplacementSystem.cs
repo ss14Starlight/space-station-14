@@ -98,6 +98,12 @@ public sealed class TraitOrganReplacementSystem : EntitySystem
         if (newOrganIsSameType)
         {
             GiveEquipment(uid, component);
+            
+            // Still remove poison regen if configured, even if not replacing organs
+            if (component.RemovePoisonRegen)
+            {
+                RemovePoisonRegen(uid);
+            }
             return;
         }
         

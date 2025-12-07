@@ -7,3 +7,8 @@
   id: BackgroundTraits
   name: trait-category-background
   maxTraitPoints: 1
+
+- type: traitCategory
+  id: PhysiologyTraits
+  name: trait-category-physiology
+  maxTraitPoints: 1

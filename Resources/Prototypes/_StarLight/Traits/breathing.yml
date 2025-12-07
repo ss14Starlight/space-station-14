@@ -6,8 +6,8 @@
   id: NitrogenBreather
   name: trait-nitrogen-breather-name
   description: trait-nitrogen-breather-desc
-  category: Quirks
-  cost: 0
+  category: PhysiologyTraits
+  cost: 1
   components:
   - type: TraitOrganReplacement
     slot: lungs
@@ -21,8 +21,8 @@
   id: OxygenBreather
   name: trait-oxygen-breather-name
   description: trait-oxygen-breather-desc
-  category: Quirks
-  cost: 0
+  category: PhysiologyTraits
+  cost: 1
   components:
   - type: TraitOrganReplacement
     slot: lungs

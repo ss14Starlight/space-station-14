@@ -100,6 +100,8 @@ namespace Content.Client.HealthAnalyzer.UI
                 ? $"{msg.BloodLevel * 100:F1} %"
                 : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
 
+            BreathingLabel.Text = msg.BreathingType ?? Loc.GetString("health-analyzer-window-entity-unknown-text");
+
             StatusLabel.Text =
                 _entityManager.TryGetComponent<MobStateComponent>(target.Value, out var mobStateComponent)
                     ? GetStatus(mobStateComponent.CurrentState)
