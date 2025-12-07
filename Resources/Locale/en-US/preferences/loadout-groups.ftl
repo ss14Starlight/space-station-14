@@ -1,5 +1,6 @@
 # Errors
 loadout-group-species-restriction = This item is not available for your current species.
+loadout-trait-exclusion = This item conflicts with one of your selected traits.
 
 # Miscellaneous
 loadout-group-trinkets = Trinkets

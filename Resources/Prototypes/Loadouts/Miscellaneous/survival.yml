@@ -7,6 +7,9 @@
     - SlimePerson
     - Vox
     - Cyclorite #🌟Starlight🌟
+  - !type:TraitExclusionLoadoutEffect # 🌟Starlight🌟 - Exclude if character has OxygenBreather trait
+    traits:
+    - OxygenBreather
 
 - type: loadoutEffectGroup
   id: OxygenBreather
@@ -24,6 +27,9 @@
     - Resomi #🌟Starlight🌟
     - Avali #🌟Starlight🌟
     - Thaven # Starlight
+  - !type:TraitExclusionLoadoutEffect # 🌟Starlight🌟 - Exclude if character has NitrogenBreather trait
+    traits:
+    - NitrogenBreather
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox
@@ -31,6 +37,9 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Vox
+  - !type:TraitExclusionLoadoutEffect # 🌟Starlight🌟 - Exclude if character has OxygenBreather trait
+    traits:
+    - OxygenBreather
 
 - type: loadoutEffectGroup #🌟Starlight🌟
   id: NonBreather

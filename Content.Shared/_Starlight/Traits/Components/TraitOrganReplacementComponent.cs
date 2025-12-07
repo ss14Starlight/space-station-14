@@ -39,5 +39,11 @@ public sealed partial class TraitOrganReplacementComponent : Component
     /// </summary>
     [DataField]
     public bool RemovePoisonRegen = false;
+
+    /// <summary>
+    /// If true, spawns a large nitrogen tank on back and optionally a tank harness if no armor is equipped.
+    /// </summary>
+    [DataField]
+    public bool SpawnNitrogenTank = false;
 }
 

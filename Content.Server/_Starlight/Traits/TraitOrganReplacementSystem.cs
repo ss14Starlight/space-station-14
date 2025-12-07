@@ -12,6 +12,10 @@ using Content.Server.Body.Components;
 using Content.Shared.Damage.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Content.Shared.Clothing.Components;
+using Content.Server.Atmos.EntitySystems;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Roles;
 
 namespace Content.Server._Starlight.Traits;
 
@@ -26,6 +30,7 @@ public sealed class TraitOrganReplacementSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly GasTankSystem _gasTankSystem = default!;
 
     public override void Initialize()
     {
@@ -159,11 +164,19 @@ public sealed class TraitOrganReplacementSystem : EntitySystem
     /// </summary>
     private void GiveEquipment(EntityUid uid, TraitOrganReplacementComponent component)
     {
-        // Spawn hand item if configured
-        if (component.HandItem != null && TryComp<HandsComponent>(uid, out var hands))
+        // Handle special nitrogen tank spawning logic
+        if (component.SpawnNitrogenTank)
         {
-            var handItem = Spawn(component.HandItem.Value, Transform(uid).Coordinates);
-            _handsSystem.TryPickup(uid, handItem, checkActionBlocker: false, handsComp: hands);
+            SpawnNitrogenTankEquipment(uid);
+        }
+        else
+        {
+            // Spawn hand item if configured
+            if (component.HandItem != null && TryComp<HandsComponent>(uid, out var hands))
+            {
+                var handItem = Spawn(component.HandItem.Value, Transform(uid).Coordinates);
+                _handsSystem.TryPickup(uid, handItem, checkActionBlocker: false, handsComp: hands);
+            }
         }
 
         // Equip items to inventory slots if configured
@@ -172,6 +185,44 @@ public sealed class TraitOrganReplacementSystem : EntitySystem
             var item = Spawn(itemProto, Transform(uid).Coordinates);
             _inventorySystem.TryEquip(uid, item, slot, true, force: true);
         }
+        
+        // Raise the StartingGearEquippedEvent to trigger automatic internals activation
+        // This is done after all equipment (mask + tank) is equipped
+        if (component.SpawnNitrogenTank)
+        {
+            var gearEvent = new StartingGearEquippedEvent(uid);
+            RaiseLocalEvent(uid, ref gearEvent);
+        }
+    }
+
+    /// <summary>
+    /// Spawns a large nitrogen tank on the entity's back and optionally a tank harness if no armor is equipped.
+    /// Enables the tank immediately so the entity can breathe.
+    /// </summary>
+    private void SpawnNitrogenTankEquipment(EntityUid uid)
+    {
+        // Check if entity has armor equipped in the outerClothing slot
+        var hasArmor = _inventorySystem.TryGetSlotEntity(uid, "outerClothing", out var armorEntity) &&
+                       TryComp<ClothingComponent>(armorEntity, out _);
+
+        // If no armor, equip tank harness
+        if (!hasArmor)
+        {
+            var tankHarness = Spawn("ClothingOuterVestTank", Transform(uid).Coordinates);
+            _inventorySystem.TryEquip(uid, tankHarness, "outerClothing", true, force: true);
+        }
+
+        // Remove any existing item in the suitstorage slot to make room for the nitrogen tank
+        if (_inventorySystem.TryGetSlotEntity(uid, "suitstorage", out var existingItem))
+        {
+            _inventorySystem.TryUnequip(uid, "suitstorage", true, force: true);
+        }
+
+        // Spawn large nitrogen tank
+        var nitrogenTank = Spawn("NitrogenTankFilled", Transform(uid).Coordinates);
+        
+        // Equip it to the suitstorage slot (should succeed since we cleared it)
+        _inventorySystem.TryEquip(uid, nitrogenTank, "suitstorage", true, force: true);
     }
 
     /// <summary>

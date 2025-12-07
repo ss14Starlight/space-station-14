@@ -12,9 +12,9 @@
   - type: TraitOrganReplacement
     slot: lungs
     organ: OrganNitrogenLungs
-    handItem: EmergencyNitrogenTankFilled
+    spawnNitrogenTank: true
     equipment:
-      mask: ClothingMaskGas
+      mask: ClothingMaskBreath
   - type: NitrogenBreather  # Marker component
 
 - type: trait
