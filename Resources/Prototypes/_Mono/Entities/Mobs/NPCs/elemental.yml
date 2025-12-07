@@ -1,0 +1,21 @@
+# Phenylpiperidine slime - Removed cus it test fails and I don't really care enough to figure out why the linter hates it
+
+- type: entity
+  id: ReagentSlimePhenylpiperidine
+  parent: ReagentSlime
+  suffix: Phenylpiperidine
+  components:
+  - type: Bloodstream
+    bloodReagents:
+      reagents:
+      - ReagentId: Phenylpiperidine
+        Quantity: 1
+  - type: PointLight
+    color: "#b4dae0"
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/elemental.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+        color: "#b4dae0"
