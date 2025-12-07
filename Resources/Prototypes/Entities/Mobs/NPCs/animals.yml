@@ -1512,6 +1512,15 @@
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    - Draconic
+    understands:
+    - Ancestor
+    - Draconic
+  # Starlight-end
   - type: NameIdentifier
     group: Kobold
   - type: LizardAccent
@@ -1645,8 +1654,10 @@
   - type: LanguageKnowledge
     speaks:
     - Ancestor
+    - Draconic
     understands:
     - Ancestor
+    - Draconic
     - GalacticCommon
   # Starlight-End
   - type: MobThresholds

@@ -13,6 +13,8 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'VG'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/Shuttles/emergency_crimson.yml
         - type: StationJobs
           availableJobs:
             #service
@@ -36,12 +38,12 @@
             MedicalDoctor: [ 3, 3 ]
             MedicalIntern: [ 2, 2 ]
             Paramedic: [ 1, 1 ]
-            Surgeon: [ 2, 2 ]
+            Surgeon: [ 1, 2 ]
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 4, 4 ]
             ResearchAssistant: [ 2, 2 ]
-            Roboticist: [ 1, 1 ]
+            Roboticist: [ 1, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -51,7 +53,8 @@
             Brigmedic: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 5, 5 ]
+            SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 4, 4 ]
             CargoTechnician: [ 2, 2 ]
             MailTech: [ 1, 2 ]
             MiningSpecialist: [ 2, 3 ]
@@ -62,7 +65,7 @@
             Musician: [ 1, 1 ]
             #silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 1, 1 ]
+            Borg: [ 2, 2 ]
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]

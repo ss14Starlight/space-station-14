@@ -10,9 +10,11 @@
   ## Racial Features
   Their unarmed claw attacks deal [color=red]3[/color] points of Slash damage with a hit rate that is [color=yellow]2[/color] times faster than humans.
 
-  Additionally, Felionoids can run [color=lightgreen]25%[/color] faster than humans but are more vulnerable:
-  - They fall into a critical state at [color=red]75[/color] points of damage.
-  - They die at [color=red]150[/color] points of damage.
+  Additionally, Felionoids can run [color=lightgreen]25%[/color] faster than humans [color=yellow]when not wearing shoes[/color]. They run [color=lightgreen]5%[/color] faster when wearing shoes.
+
+  Felionoids are also more vulnerable to damage:
+  - They fall into a critical state at [color=red]85[/color] points of damage.
+  - They die at [color=red]170[/color] points of damage.
 
   ## Weapon Knockback
   Felionoids will find that large caliber weapons will push them around. They receive [color=yellow]Stun Damage[/color] for every shot fired from a large caliber weapon.

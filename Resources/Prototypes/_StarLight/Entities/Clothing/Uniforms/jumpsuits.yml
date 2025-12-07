@@ -472,3 +472,36 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase , BaseSalvageContraband ]
+  id: ClothingUniformJumpsuitSalvageMercWhite
+  name: white scrapper jumpsuit
+  description: Utilitarian clothing for salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagewhite.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagewhite.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase , BaseSalvageContraband ]
+  id: ClothingUniformJumpsuitSalvageMercGreen
+  name: green scrapper jumpsuit
+  description: Utilitarian clothing for salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagegreen.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagegreen.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase , BaseSalvageContraband ]
+  id: ClothingUniformJumpsuitSalvageMercBrown
+  name: brown scrapper jumpsuit
+  description: Utilitarian clothing for salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagebrown.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagebrown.rsi

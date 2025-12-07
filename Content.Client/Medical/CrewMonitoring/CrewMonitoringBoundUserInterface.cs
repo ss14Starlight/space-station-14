@@ -1,8 +1,10 @@
 using Content.Shared.Medical.CrewMonitoring;
-using Content.Shared.Silicons.StationAi; // Starlight
 using Robust.Client.UserInterface;
+using Content.Shared.Implants.Components; // Starlight
+using Content.Shared.Silicons.StationAi; // Starlight
 using Robust.Shared.Map; // Starlight
 using Robust.Shared.Player; // Starlight
+using System.Linq; // Starlight
 
 namespace Content.Client.Medical.CrewMonitoring;
 
@@ -49,10 +51,47 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
     {
         base.UpdateState(state);
 
+
         switch (state)
         {
             case CrewMonitoringState st:
                 EntMan.TryGetComponent<TransformComponent>(Owner, out var xform);
+                // Starlight begin
+                if (EntMan.TryGetComponent<CrewMonitoringFilterComponent>(Owner, out var filter))
+                {
+                    var filteredSensors = filter.ShownDepartments.Count == 0 ?
+                        st.Sensors.ToList() // We ToList it to ensure we get a copy, for the off chance that someone sets AlwaysShowTrackingImplants without any ShownDepartments
+                        : st.Sensors
+                          .Where(sensor => sensor.JobDepartments.Intersect(filter.ShownDepartments).Count() != 0)
+                          .ToList();
+
+                    if (filter.AlwaysShowTrackingImplants)
+                    {
+                        foreach (var sensor in st.Sensors)
+                        {
+                            //get the client entity
+                            var clientEntity = EntMan.GetEntity(sensor.SuitSensorUid);
+                            if (EntMan.TryGetComponent<SubdermalImplantComponent>(clientEntity, out var suitSensor))
+                            {
+                                filteredSensors.Add(sensor);
+                            }
+                        }
+                    }
+
+                    if (filter.OnlyShowWoundedOrDead)
+                    {
+                        filteredSensors = filteredSensors
+                            .Where(sensor =>
+                                    (!sensor.IsAlive)
+                                    || (sensor.DamagePercentage is not null && sensor.DamagePercentage > 0.5)).ToList();
+                    }
+
+                    filteredSensors = filteredSensors.Distinct().ToList();
+                    _menu?.ShowSensors(filteredSensors, Owner, xform?.Coordinates);
+                    break;
+                }
+                // We let it flow into the upstream code if there's no CrewMonitoringComponent
+                // Starlight end
                 _menu?.ShowSensors(st.Sensors, Owner, xform?.Coordinates);
                 break;
         }

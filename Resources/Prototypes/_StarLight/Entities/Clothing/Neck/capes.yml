@@ -1,0 +1,389 @@
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCapeNTSF1
+  name: nanotrasen special forces cape
+  suffix: One. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/one.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCapeNTSF2
+  name: nanotrasen special forces cape
+  suffix: Two. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/two.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCapeNTSF3
+  name: nanotrasen special forces cape
+  suffix: Three. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/three.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCapeNTSF4
+  name: nanotrasen special forces cape
+  suffix: Four. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/four.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCapeNTSF5
+  name: nanotrasen special forces cape
+  suffix: Five. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/five.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCapeNTSF6
+  name: nanotrasen special forces cape
+  suffix: Six. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/six.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCapeNTSF7
+  name: nanotrasen special forces cape
+  suffix: Seven. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/seven.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCapeNTSF8
+  name: nanotrasen special forces cape
+  suffix: Eight. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/eight.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCapeNTSF9
+  name: nanotrasen special forces cape
+  suffix: Nine. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/nine.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCapeNTSFLead
+  name: nanotrasen special forces cape
+  suffix: NT. Do Not Map
+  description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/NTSF_Capes/nt.rsi
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#5eaad6"
+  - type: StaticPrice
+    price: 10000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallCap
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0

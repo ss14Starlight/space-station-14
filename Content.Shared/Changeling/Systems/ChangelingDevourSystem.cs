@@ -91,7 +91,7 @@ public sealed class ChangelingDevourSystem : EntitySystem
         foreach (var damagePoints in comp.DamagePerTick.DamageDict)
         {
 
-            if (damage.Damage.DamageDict.TryGetValue(damagePoints.Key, out var val) && val > comp.DevourConsumeDamageCap)
+            if (damage.Damage.DamageDict.TryGetValue(damagePoints.Key, out var val) && val >= comp.DevourConsumeDamageCap) // Starlight edit
                 return;
         }
         _damageable.TryChangeDamage(target, comp.DamagePerTick, true, true, damage, user);

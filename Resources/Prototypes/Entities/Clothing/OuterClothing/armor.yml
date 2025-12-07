@@ -215,7 +215,7 @@
 
 #Mercenary web vest
 - type: entity
-  parent: [ BaseSalvageContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo # Starlight salvContra
+  parent: [ BaseMajorContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
   id: ClothingOuterVestWebMerc
   name: mercenary web vest
   description: A high-quality armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating.
@@ -231,9 +231,8 @@
       coefficients:
         Blunt: 0.7 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
         Slash: 0.7
-        Piercing: 0.6 #Starlight lowered values
+        Piercing: 0.5
         Heat: 0.9
-    staminaModifier: 0.85 #Starlight lowered values
   - type: ExplosionResistance
     damageCoefficient: 0.9
 

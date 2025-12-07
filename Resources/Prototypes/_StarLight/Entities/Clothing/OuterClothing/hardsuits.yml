@@ -106,7 +106,7 @@
   parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ]
   id: ClothingOuterHardsuitMercenary
   name: mercenary hardsuit
-  description: It's a hardsuit. It could stop a bullet. It's sealed with top of the line duct tape. 
+  description: It's a hardsuit. It could stop a bullet. It's sealed with top of the line duct tape.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/mercenary.rsi
@@ -254,8 +254,8 @@
             - PowerCell
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitInfiltration
-    
-    
+
+
 #CCNT Consortium medics
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieMedic ] #sl Change
@@ -382,9 +382,8 @@
     zombificationResistanceCoefficient: 0.50
   - type: IdClothingBlocker
     allowedJobs:
-      - SecurityOfficer
-      - Brigmedic
-      - Warden
+      - Security
+      - Armory
       - HeadOfSecurity
       - Captain
       - Detective
@@ -568,3 +567,103 @@
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/atmospherics_golden.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitAtmosGolden
+
+# NanoTrasen Special Forces
+
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitNTSF
+  name: nanotrasen special forces hardsuit
+  description: An advanced hardsuit favored by commandos for use in special operations.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/NTSF_Hardsuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/NTSF_Hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: FireProtection
+    reduction: 0.8
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.25 # Needs 20-ish hits with a disabler to stun :godo:
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.15 #best armor in the game
+        Slash: 0.15
+        Piercing: 0.15
+        Heat: 0.15
+        Radiation: 0.15
+        Caustic: 0.15
+    staminaModifier: 0.0
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: FootstepModifier #starlight
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -7
+        pitch: 0.7
+        variation: 0.025
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNTSF
+
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitDecimus
+  name: decimus hardsuit
+  description: An advanced hardsuit favored by commandos for use in special operations.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/Decimus_Hardsuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/Decimus_Hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.1 #best armor in the game
+        Slash: 0.1
+        Piercing: 0.1
+        Heat: 0.1
+        Radiation: 0.1
+        Caustic: 0.1
+    staminaModifier: 0.0
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: FootstepModifier #starlight
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -7
+        pitch: 0.7
+        variation: 0.025
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitDecimus
+
+

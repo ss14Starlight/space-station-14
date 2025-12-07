@@ -11,7 +11,7 @@
   - type: MobMover
   - type: NpcFactionMember
     factions:
-    - SimpleHostile
+    - SimpleNeutral # Starlight edit
   - type: Sprite
     drawdepth: Mobs
     sprite: Structures/Machines/VendingMachines/cola.rsi
@@ -44,3 +44,16 @@
     spawned:
     - id: DrinkChangelingStingCan
       amount: 1
+
+# Starlight
+- type: entity
+  id: MobMimicHostile
+  parent: MobMimic
+  suffix: Hostile
+  components:
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound

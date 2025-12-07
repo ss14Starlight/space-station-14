@@ -134,7 +134,7 @@ public sealed class RetractableItemActionSystem : EntitySystem
         if (!Resolve(action, ref action.Comp, false))
             return;
 
-        _hands.TryForcePickup(holder, item, hand, checkActionBlocker: false);
+        _hands.TryForcePickupAnyHand(holder, item); //Starlight
         _audio.PlayPredicted(action.Comp.SummonSounds, holder, holder);
         EnsureComp<UnremoveableComponent>(item);
     }

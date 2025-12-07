@@ -9,10 +9,11 @@
   "states": [
     {
       "name": "fireplace",
-      "directions": 1
+      "directions": 4
     },
     {
-      "name": "fireplacefestive"
+      "name": "fireplacefestive",
+	  "directions": 4
     },
     {
       "name": "fireplace_fire4",
