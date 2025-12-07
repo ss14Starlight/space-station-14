@@ -239,7 +239,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         }
         // Starlight-end
 
-        // Get breathing type
+        // Starlight-start: Get breathing type for custom breathing trait system
         string? breathingType = null;
         if (TryComp<BodyComponent>(target, out var body))
         {
@@ -255,6 +255,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
                     break;
             }
         }
+        // Starlight-end
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
