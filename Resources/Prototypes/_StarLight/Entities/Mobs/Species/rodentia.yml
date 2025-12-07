@@ -49,10 +49,22 @@
     speechVerb: Rodentia
     speechSounds: Squeak
     allowedEmotes: ['Squeak'] # MIKEY - add more emotes. Look at MobMouse for inspo?
-  - type: Sprite
-    netsync: false
-    noRot: true
-    drawdepth: Mobs
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.28
+        density: 140
+        restitution: 0.0
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+#  - type: Sprite
+#    netsync: false
+#    noRot: true
+#    drawdepth: Mobs
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -68,6 +80,9 @@
       Unsexed: MaleRodentia
   - type: Inventory
     speciesId: rodentia
+  - type: AlwaysTriggerMousetrap
+  - type: CrawlUnderObjects
+    actionProto: ActionToggleSneakMode
 #    displacements: # MIKEY - add displacements when Zeyria finishes them
 
 - type: entity
