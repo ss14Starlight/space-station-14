@@ -4,6 +4,7 @@ using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Dice; // Starlight
 
 namespace Content.Shared.Dice;
 
@@ -76,6 +77,7 @@ public abstract class SharedDiceSystem : EntitySystem
 
         var roll = rand.Next(1, entity.Comp.Sides + 1);
         SetCurrentSide(entity, roll);
+        RaiseLocalEvent(entity, new DiceRolledEvent(entity.Comp.CurrentValue)); // Starlight
 
         var popupString = Loc.GetString("dice-component-on-roll-land",
             ("die", entity),

@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from vgstation at https://github.com/vgstation-coders/vgstation13/commit/1cdfb0230cc96d0ba751fa002d04f8aa2f25ad7d. Edited by ElectroSR.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+	  {
+		  "name": "die"
+	  },
+	  {
+		  "name": "side_numbers"
+	  },
+	  {
+		  "name": "r0"
+	  },
+	  {
+		  "name": "r1"
+	  },
+	  {
+		  "name": "r2"
+	  },
+	  {
+		  "name": "r3"
+	  },
+	  {
+		  "name": "r4"
+	  },
+	  {
+		  "name": "r5"
+	  },
+	  {
+		  "name": "r6"
+	  },
+	  {
+		  "name": "r7"
+	  },
+	  {
+		  "name": "r8"
+	  },
+	  {
+		  "name": "r9"
+	  },
+	  {
+		  "name": "l0"
+	  },
+	  {
+		  "name": "l1"
+	  },
+	  {
+		  "name": "l2"
+	  },
+	  {
+		  "name": "l3"
+	  },
+	  {
+		  "name": "l4"
+	  },
+	  {
+		  "name": "l5"
+	  },
+	  {
+		  "name": "l6"
+	  },
+	  {
+		  "name": "l7"
+	  },
+	  {
+		  "name": "l8"
+	  },
+	  {
+		  "name": "l9"
+	  }
+  ]
+}

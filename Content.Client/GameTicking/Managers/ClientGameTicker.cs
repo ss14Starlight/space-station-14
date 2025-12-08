@@ -159,5 +159,7 @@ namespace Content.Client.GameTicking.Managers
 
             _userInterfaceManager.GetUIController<RoundEndSummaryUIController>().OpenRoundEndSummaryWindow(message);
         }
+
+        public override EntityUid AddGameRule(string ruleId) => throw new NotImplementedException(); // dont run this on client stingus
     }
 }

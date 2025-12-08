@@ -58,6 +58,8 @@ namespace Content.Shared.GameTicking
         {
             return _gameTiming.CurTime.Subtract(RoundStartTimeSpan);
         }
+
+        public abstract EntityUid AddGameRule(string ruleId); // Starlight | Declaration in shared so that other things in shared are able to add gamerules.
     }
 
     [Serializable, NetSerializable]

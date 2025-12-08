@@ -1,0 +1,156 @@
+- type: entity
+  parent: BaseDice
+  id: DestinyDie
+  name: destiny die
+  description: A magically enhanced d10, capable of rolling many many numbers and granting effects based on the roll.
+  components:
+    - type: Dice
+      sides: 12
+      multiplier: 1
+      offset: 1
+      currentValue: 0
+    - type: DestinyDice
+      noEffectMessage: "Nothing happened..."
+      cooldownMessage: "The destiny die is recharging, nothing happens..."
+      rollDelay: 0
+      effectGroups:
+        0:
+          - successMessage: "You got some free stuff!"
+            effects:
+              - !type:SpawnPrototypeEffect
+                protos:
+                  - Skub
+                  - FoodCheeseSlice
+                  - PlushieRainbowLizard
+                  - MobMothroach
+        1:
+          - successMessage: "You got a koni plush!"
+            effects:
+              - !type:SpawnPrototypeEffect
+                spawnOnPlayer: true
+                protos:
+                  - PlushieKoni
+        2:
+          - successMessage: "EVERYONE GETS A CAPTAIN ID CARD LOL"
+            effects:
+              - !type:SpawnPrototypeEffect
+                spawnOnPlayer: true
+                spawnOnMultiple: true
+                playerRange: 10
+                protos:
+                  - CaptainIDCard
+        3:
+          - successMessage: "FIVE. HUNDRED. MOTHROACHES."
+            effects:
+              - !type:SpawnPrototypeEffect
+                protos:
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+                  - MobMothroach
+        4:
+          - successMessage: "fuck you, dragon spawn."
+            effects:
+              - !type:StationAnnouncementEffect
+                message: terror-dragon
+                color: "#ff0000"
+              - !type:AddGameRuleEffect
+                proto: DragonSpawn
+        5:
+          - successMessage: "death be upon ye"
+            delay: 1
+            effects:
+              - !type:KillRollerEffect
+                delay: 2
+    - type: Sprite
+      sprite: _Starlight/Admeme/neomoth/destinydie.rsi
+      layers:
+        - state: die
+          shader: unshaded
+        - state: side_numbers
+        - state: l0
+        - state: r0
+    - type: PointLight
+      radius: 0.8
+      energy: 1.8
+    - type: RgbLightController
+      layers: [ 0 ]
