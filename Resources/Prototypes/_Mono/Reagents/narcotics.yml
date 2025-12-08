@@ -19,9 +19,10 @@
           max: 5
         damage: # I think it's balanced as a sort of 'cure all' because you have to administer it slowly or it starts killing extremely quickly
           groups:
-            Burn: -3.5 # 17.5 per 5u
-            Brute: -5.5 # 27.5 per 5u, its a painkiller
-            Toxin: -1.5 # 7.5 per 5u
+            Burn: -1.5 # 12.5 heat, shock, and caustic per 5u
+            Brute: -3 # 25 blunt, slash, and pierce per 5u, its a painkiller
+          types:
+            Poison: -0.5 # 12.5 poison per 5u
     Narcotic:
       metabolismRate: 0.2
       effects:
