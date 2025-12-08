@@ -181,7 +181,7 @@
       entity_storage: !type:NestedSelector
         tableId: FillSuitStorageSecurity
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
 
 - type: entityTable
   id: FillSuitStorageSecurity

@@ -118,6 +118,9 @@
         - DiscreteHealthAnalyzer
         - SurgeryTool
         - Dropper
+        - BodyBag
+        - Vial
+        - AutoMender
        components:
         - Hypospray
         - Injector

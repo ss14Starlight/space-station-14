@@ -344,13 +344,25 @@
 - type: entity
   parent: [ ClothingNeckBase, BaseSalvageContraband ]
   id: ClothingNeckMantleDecoratedSalvager
-  name: ceremonial salvage mantle
-  description: A ceremonial mantle worn by salvagers that have distinguished themselves.
+  name: ceremonial salvager's mantle
+  description: A ceremonial mantle, worn by salvagers that have distinguished themselves.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
+
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseSalvageContraband ]
+  id: ClothingNeckMantleDecoratedVeteranSalvager
+  name: veteran salvager's mantle 
+  description: A ceremonial mantle with waist-capes, worn by veteran salvagers that have distinguished themselves even further.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
 
 ## Cool
 

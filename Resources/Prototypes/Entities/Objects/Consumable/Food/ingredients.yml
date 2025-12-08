@@ -243,7 +243,7 @@
   - type: Tag
     tags:
       - Mayo
-
+      - Condiment #Starlight
 # - type: entity
 #   parent: ReagentPacketBase
 #   id: ReagentContainerAllspice

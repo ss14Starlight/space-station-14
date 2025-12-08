@@ -117,7 +117,7 @@
 
 - type: storeCategory
   id: SalvageMercenaryEquipment
-  name: Mercenary
+  name: Scrapper
 
 # mining
 - type: storeCategory

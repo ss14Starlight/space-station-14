@@ -217,6 +217,19 @@
         - Greenshift #SL
         - Sandbox #SL
 
+    # Starlight Start
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: FloraTreeChristmas02Flatpack
+      conditions:
+        - !type:HolidayActiveCondition
+          holiday: FestiveSeason
+    # Starlight End
+
 - type: entity
   id: LockerHeadOfPersonnelFilledHardsuit
   suffix: Filled
@@ -454,6 +467,7 @@
     - id: WeaponDisabler
     - id: WantedListCartridge
     - id: DrinkHosFlask
+    - id: SecurityShuttleConsoleCircuitboard #SL
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL

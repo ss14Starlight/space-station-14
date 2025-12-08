@@ -39,7 +39,10 @@
   # they like eat it idk lol
   - type: Storage
     clickInsert: false
-    showVerb: false # Starlight Edit
+    # Starlight-start
+    showVerb: false
+    openOnActivate: false
+    # Starlight-end
     grid:
     - 0,0,1,2
     maxItemSize: Large

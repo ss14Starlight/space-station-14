@@ -99,3 +99,9 @@
   background: /Textures/_Starlight/LobbyScreens/The_mid-round_antag's_bane.webp
   title: The mid round antag's bane
   artist: voy0099
+
+- type: lobbyBackground
+  id: blackfeathers
+  background: /Textures/_Starlight/LobbyScreens/blackfeathers.webp
+  title: Blackfeathers
+  artist: Gib Schmib
