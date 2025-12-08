@@ -542,3 +542,17 @@
       blacklist:
         tags:
           - NukeOpsUplink
+
+- type: listing
+  id: UplinkObserverBundle
+  name: uplink-observer-bundle-name
+  description: uplink-observer-bundle-desc
+  productEntity: ClothingBackpackSyndicateObserverBundle
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkDisruption
+

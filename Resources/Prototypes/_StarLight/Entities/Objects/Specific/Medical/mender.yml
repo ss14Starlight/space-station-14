@@ -29,6 +29,9 @@
     maxFillLevels: 3
     fillBaseName: mender
     solutionName: injector
+  - type: Tag
+    tags:
+      - AutoMender
     
 - type: entity
   id: AutoMenderBrute

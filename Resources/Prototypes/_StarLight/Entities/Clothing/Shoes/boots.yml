@@ -1,0 +1,10 @@
+- type: entity
+  parent: [ ClothingShoesMilitaryBase, BaseSalvageContraband ]
+  id: ClothingShoesBootsSalvageMerc
+  name: scrapper boots
+  description: Boots capable of withstanding any terrain that a salvager may encounter.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Shoes/Boots/salvage.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Shoes/Boots/salvage.rsi

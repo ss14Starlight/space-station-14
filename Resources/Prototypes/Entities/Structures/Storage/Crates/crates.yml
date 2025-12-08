@@ -202,7 +202,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/sec_gear.rsi
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
 
 - type: entity
   parent: CrateBaseSecure
@@ -608,7 +608,7 @@
   - type: OverrideSell
     overrideAccount: Security
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
 
 - type: entity
   id: CrateLockBoxService

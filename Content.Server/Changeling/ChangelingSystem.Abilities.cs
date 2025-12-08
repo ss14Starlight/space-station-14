@@ -27,6 +27,7 @@ using Content.Shared.RetractableItemAction;
 using Content.Shared.Changeling.Systems;
 using Content.Shared.Changeling.Components;
 using Content.Server.Changeling.Systems;
+using Content.Shared.Humanoid; // Starlight edit
 
 namespace Content.Server.Changeling;
 
@@ -140,12 +141,19 @@ public sealed partial class ChangelingSystem : EntitySystem
             bonusEvolutionPoints += 10;
             comp.MaxBiomass += targetComp.MaxBiomass / 2;
         }
-        else
+        else if (HasComp<HumanoidAppearanceComponent>(target))  // Starlight edit
         {
             popup = Loc.GetString("changeling-absorb-end-self");
             bonusChemicals += 10;
             bonusEvolutionPoints += 2;
         }
+        // Starlight edit start
+        else
+        {
+            popup = Loc.GetString("changeling-absorb-end-self");
+            bonusChemicals += 5;
+        }
+        // Starlight edit end
         TryStealDNA(uid, target, comp, true);
         comp.TotalAbsorbedEntities++;
 

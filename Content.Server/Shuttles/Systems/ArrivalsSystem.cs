@@ -36,6 +36,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Server._Starlight.Station; // Starlight
+using Content.Shared.Station.Components; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -95,6 +97,7 @@ public sealed class ArrivalsSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning, before: new []{ typeof(SpawnPointSystem)}, after: new [] { typeof(ContainerSpawnPointSystem)});
 
         SubscribeLocalEvent<StationArrivalsComponent, StationPostInitEvent>(OnStationPostInit);
+        SubscribeLocalEvent<StationArrivalsComponent, ComponentShutdown>(OnStationShutdown); // Starlight
 
         SubscribeLocalEvent<ArrivalsShuttleComponent, ComponentStartup>(OnShuttleStartup);
         SubscribeLocalEvent<ArrivalsShuttleComponent, FTLTagEvent>(OnShuttleTag);
@@ -584,10 +587,26 @@ public sealed class ArrivalsSystem : EntitySystem
     {
         if (!Enabled)
             return;
+        
+        // Starlight start
+        if (TryComp<StationDataComponent>(uid, out var station))
+            foreach (var grid in station.Grids)
+            {
+                if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                if (!becomesStation.UseArrivals)
+                    return;
+                break; // can break, we already found the grid that created this station
+            }
+        // Starlight end
 
         // If it's a latespawn station then this will fail but that's okey
         SetupShuttle(uid, component);
     }
+
+    //Starlight start
+    private void OnStationShutdown(EntityUid uid, StationArrivalsComponent component, ref ComponentShutdown ev) =>
+        QueueDel(component.Shuttle);
+    //Starlight end
 
     private void SetupShuttle(EntityUid uid, StationArrivalsComponent component)
     {
