@@ -33,6 +33,14 @@
         {
             "name": "equipped-OUTERCLOTHING-avali",
             "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-resomi",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-arachnid",
+            "directions": 4
         }
     ]
 }

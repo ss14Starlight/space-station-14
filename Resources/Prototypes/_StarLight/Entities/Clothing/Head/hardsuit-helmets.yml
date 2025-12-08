@@ -40,6 +40,23 @@
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
 
+#HOP Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitHop
+  categories: [ HideSpawnMenu ]
+  name: head of personnel's hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/HopSuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/HopSuit.rsi
+  - type: PointLight
+    color: "#adeeff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+
 #Clown Battlesuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]

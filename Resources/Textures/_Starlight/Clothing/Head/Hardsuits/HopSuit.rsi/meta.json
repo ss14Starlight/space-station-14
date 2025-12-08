@@ -60,6 +60,22 @@
     {
       "name": "on-equipped-HELMET-avali",
       "directions": 4
+    },
+    {
+      "name": "off-equipped-HELMET-resomi",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-HELMET-resomi",
+      "directions": 4
+    },
+    {
+      "name": "off-equipped-HELMET-arachnid",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-HELMET-arachnid",
+      "directions": 4
     }
   ]
 }

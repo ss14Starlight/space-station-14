@@ -66,6 +66,40 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNtrep
 
+#HOP Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitHop
+  name: head of personnel's hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Designed for the Head of Personnel.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/Hop.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/Hop.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.25
+        Caustic: 0.9
+    staminaModifier: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitHop
+
 #Clown Battlesuit
 - type: entity
   parent: [ClothingOuterHardsuitBase]
