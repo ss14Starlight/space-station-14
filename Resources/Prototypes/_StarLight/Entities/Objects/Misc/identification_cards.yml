@@ -242,3 +242,29 @@
     - Research
     - Engineering
     - Atmospherics
+
+- type: entity
+  parent: IDCardStandard
+  id: CentcomIDCardNTSF
+  name: NTSF ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: ert_commander
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: NanoTrasenSpecialForces
+
+- type: entity
+  parent: IDCardStandard
+  id: CentcomIDCardDecimus
+  name: ERROR ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: Decimus

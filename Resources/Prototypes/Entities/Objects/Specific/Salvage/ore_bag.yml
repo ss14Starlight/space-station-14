@@ -19,11 +19,11 @@
       params:
         variation: 0.250
   - type: AltUseToggle
-    # Starlight End Start
+    # Starlight Edit End
   - type: ComponentToggler
     components: 
     - type: MagnetPickup
-      slotFlags: 0  # Starlight Edit - make it work in slots other than belt - mostly for borgs but this just works better overall
+      requiresEquipping: false  # Starlight Edit - make it work even without being equipped
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Mining/ore_bag.rsi
     state: icon

@@ -89,7 +89,7 @@
     categories: []
     currencyWhitelist:
     - NTCredit
-    
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineHugDispenser
@@ -119,7 +119,7 @@
     - SLFashionSuit
     - SLFashionHead
     - SLFashionOther
-        
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineMedical
@@ -135,7 +135,7 @@
     - SLChemistry
     - SLMedical
     - SLSurgery
-            
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineEngi
@@ -149,7 +149,7 @@
     name: vendor-engineering-dispenser
     categories:
     - SLEnginery
-    
+
 - type: entity
   parent: SLVendingMachine
   id: VendingMachineClown
@@ -164,14 +164,14 @@
     - SLClown
   - type: Sprite
     sprite: _Starlight/Structures/Machines/VendingMachines/hohohonkers.rsi
-        
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSecurity
   name: security dispenser
   components:
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
   - type: Sprite
     sprite: _Starlight/Structures/Machines/VendingMachines/security.rsi
   - type: Store
@@ -179,7 +179,7 @@
     categories:
     - SLSecurity
     - SLBrigmedic
-    
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSalvage

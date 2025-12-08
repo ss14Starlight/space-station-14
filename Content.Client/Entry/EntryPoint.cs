@@ -25,6 +25,7 @@ using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.Ame.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Localizations;
@@ -82,6 +83,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
        	[Dependency] private readonly INullLinkPlayerRolesManager _nullLinkPlayerRolesManager = default!; //NullLink
        	[Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayer = default!; //NullLink
+        [Dependency] private readonly PreWrittenDocumentManager _documentManager = default!; // Starlight
 
         public override void Init()
         {
@@ -135,6 +137,8 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("codewordFaction");
             
             _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
+
+            _documentManager.Initialize(); // Starlight
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();

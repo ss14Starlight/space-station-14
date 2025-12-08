@@ -135,6 +135,7 @@
     - id: MedkitFilled
       prob: 0.3
     - id: PlushieKiosha #starlight
+    - id: EmergencyHandheldCrewMonitor #starlight
 
 - type: entity
   parent: LockerParamedic

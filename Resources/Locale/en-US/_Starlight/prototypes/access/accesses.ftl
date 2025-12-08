@@ -23,3 +23,5 @@ id-card-access-level-paramed = Paramedic
 
 id-card-access-level-salvagelead = Salvage Lead
 id-card-access-level-mining = Mining
+
+id-card-access-level-cadet = Cadet

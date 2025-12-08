@@ -173,12 +173,3 @@
   baseSprite:
     sprite: _Starlight/Mobs/Species/Avali/parts.rsi
     state: r_foot
-
-- type: entity
-  id: Stasis
-  name: Avali Stasis
-  description: Allows Avali to enter nanite induced stasis.
-  components:
-    - type: Stasis
-      enterStasisAction: ActionStasisEnter
-      exitStasisAction: ActionStasisExit

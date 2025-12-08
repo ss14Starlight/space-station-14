@@ -473,8 +473,10 @@
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
-      !type:RoleTimeRequirement
-      role: JobLawyer
+      # !type:RoleTimeRequirement # Starlight start: switch to law dept
+      # role: JobLawyer
+      !type:DepartmentTimeRequirement
+      department: Law # Starlight end
       time: 360000 # 100hr
   storage:
     back:

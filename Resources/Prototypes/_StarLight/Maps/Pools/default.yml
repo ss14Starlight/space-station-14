@@ -5,7 +5,6 @@
   - StarlightBarratry
   - StarlightCog
   - StarlightCork
-  - StarlightExo
   - StarlightFland
   - StarlightHotel
   - StarlightLagan
@@ -26,6 +25,7 @@
   - StarlightSilica
   - StarlightCluster
   - StarlightBox
+  - StarlightPacked
+# - StarlightExo
 # - StarlightMarathon
 # - StarlightMeta
-# - StarlightPacked

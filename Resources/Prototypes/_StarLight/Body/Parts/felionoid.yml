@@ -149,6 +149,8 @@
     - type: MovementBodyPart
       sprintSpeed : 5.625
       maxDensity: 55
+    - type: MovementBodyPartHinderedByShoes
+      hinderModifier: 0.08
 
 - type: entity
   id: RightLegFelionoid
@@ -167,6 +169,8 @@
     - type: MovementBodyPart
       sprintSpeed : 5.625
       maxDensity: 55
+    - type: MovementBodyPartHinderedByShoes
+      hinderModifier: 0.08
 
 - type: entity
   id: LeftFootFelionoid

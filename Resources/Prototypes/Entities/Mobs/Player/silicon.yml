@@ -858,6 +858,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModuleTool # starlight
       - BorgModuleOperative
       - BorgModuleC20r
       - BorgModuleEsword

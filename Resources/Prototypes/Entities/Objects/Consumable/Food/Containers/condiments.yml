@@ -20,6 +20,9 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 0
+  - type: Tag
+    tags:
+    - Condiment #Starlight
 
 # Packets
 
@@ -408,6 +411,7 @@
   - type: Tag
     tags:
       - Coldsauce
+      - Condiment #Starlight
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -434,6 +438,7 @@
   - type: Tag
     tags:
       - Enzyme
+      - Condiment #Starlight
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -457,6 +462,9 @@
       visible: true
   - type: Icon
     state: bottle-vinegar
+  - type: Tag
+    tags:
+    - Condiment #Starlight
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -483,6 +491,7 @@
   - type: Tag
     tags:
       - Hotsauce
+      - Condiment #Starlight
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -509,6 +518,7 @@
   - type: Tag
     tags:
       - Ketchup
+      - Condiment #Starlight
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -536,6 +546,7 @@
   - type: Tag
     tags:
       - BBQsauce
+      - Condiment #Starlight
 
 # Shakers
 

@@ -832,8 +832,8 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserSpread
-    fireCost: 60
+    proto: BulletLaserSpreadNarrow #Starlight
+    fireCost: 120 #Starlight
   - type: BatteryWeaponFireModes
     fireModes:
 #    - proto: BulletLaserSpread Starlight

@@ -33,3 +33,9 @@
 
 - type: playTimeTracker
   id: JobSalvageLead
+
+- type: playTimeTracker
+  id: JobNTSF
+  
+- type: playTimeTracker
+  id: JobDecimus

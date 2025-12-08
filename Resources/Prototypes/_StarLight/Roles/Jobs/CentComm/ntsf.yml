@@ -1,0 +1,57 @@
+- type: job
+  id: NanoTrasenSpecialForces
+  name: job-name-nanotrasen-special-forces
+  description: job-description-nanotrasen-special-forces
+  playTimeTracker: JobNTSF
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 72000 # 20 hrs
+    - !type:RolesRequirement
+      proto: ExtRolesReq
+  setPreference: false
+  startingGear: NanoTrasenSpecialForcesGear
+  icon: JobIconNanotrasen
+  rules: job-rules-corporate-aligned
+  supervisors: job-supervisors-nanotrasen
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: startingGear
+  id: NanoTrasenSpecialForcesGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesBlueShield
+    ears: ClothingHeadsetAltCentComDS
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTSF
+    shoes: ClothingShoesBootsMagAdv
+    id: NTSFPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: EnergyShield
+    belt: PrototypeVibrobladeSheath
+    neck: ClothingNeckCapeNTSF1
+    suitstorage: WeaponPulseRifle
+  storage:
+    back:
+    - WeaponPulsePistol
+    - WeaponRevolverMatebaAP
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - BoxFlashbang
+    - ToolDebug # spanish army knife
+    - WelderExperimental
+    - Hypospray
+    - DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
+    - FreedomImplanter
+  inhand:
+  - PrototypeVibroblade
+
