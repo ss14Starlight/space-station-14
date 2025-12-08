@@ -61,6 +61,6 @@ public sealed partial class EmagComponent : Component
     /// What radio channels should be added to a emagged borg chassis
     /// </summary>
     [DataField]
-    public HashSet<ProtoId<RadioChannelPrototype>> ChannelAdd = ["Syndicate"];
+    public HashSet<ProtoId<RadioChannelPrototype>>? ChannelAdd = ["Syndicate"];
     //#endregion Starlight
 }
