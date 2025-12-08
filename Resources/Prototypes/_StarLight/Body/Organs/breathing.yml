@@ -18,6 +18,15 @@
   - type: Item
     size: Small
     heldPrefix: lungs
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      Lung:
+        maxVol: 100.0
+        canReact: false
 
 # Oxygen-breathing lungs for traits
 - type: entity

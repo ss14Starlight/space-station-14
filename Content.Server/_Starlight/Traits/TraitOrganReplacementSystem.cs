@@ -16,6 +16,10 @@ using Content.Shared.Clothing.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Roles;
+using Robust.Shared.Log;
+using Content.Shared.Damage;
+using Content.Shared.Body.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Traits;
 
@@ -31,11 +35,22 @@ public sealed class TraitOrganReplacementSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly GasTankSystem _gasTankSystem = default!;
+    [Dependency] private readonly SharedInternalsSystem _sharedInternalsSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<TraitOrganReplacementComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<TraitOrganReplacementComponent, MapInitEvent>(OnMapInit);
+    }
+
+    /// <summary>
+    /// Handles organ replacement when the entity is map initialized.
+    /// This ensures the body is fully set up before we try to modify it.
+    /// </summary>
+    private void OnMapInit(EntityUid uid, TraitOrganReplacementComponent component, MapInitEvent args)
+    {
+        PerformOrganReplacement(uid, component);
     }
 
     /// <summary>
@@ -45,9 +60,21 @@ public sealed class TraitOrganReplacementSystem : EntitySystem
     /// </summary>
     private void OnStartup(EntityUid uid, TraitOrganReplacementComponent component, ComponentStartup args)
     {
+        PerformOrganReplacement(uid, component);
+    }
+
+    private void PerformOrganReplacement(EntityUid uid, TraitOrganReplacementComponent component)
+    {
+        // Prevent double execution
+        if (component.HasBeenApplied)
+            return;
+
         // Find the torso part (where lungs typically are)
         if (!TryComp<BodyComponent>(uid, out var body))
+        {
+            Log.Warning($"TraitOrganReplacement: No body component found for {ToPrettyString(uid)}");
             return;
+        }
 
         EntityUid? torsoUid = null;
         BodyPartComponent? torsoPart = null;
@@ -64,16 +91,33 @@ public sealed class TraitOrganReplacementSystem : EntitySystem
         }
 
         if (torsoUid == null || torsoPart == null)
+        {
+            Log.Warning($"TraitOrganReplacement: No torso found for {ToPrettyString(uid)}");
             return;
+        }
 
         // Check if the organ slot exists using the body system
-        if (!_bodySystem.CanInsertOrgan(torsoUid.Value, component.Slot, torsoPart))
-            return;
+        var canInsertOrgan = _bodySystem.CanInsertOrgan(torsoUid.Value, component.Slot, torsoPart);
+        
+        // If slot doesn't exist (like Shadekin with no lungs), create it
+        if (!canInsertOrgan && component.Slot == "lungs")
+        {
+            if (!_bodySystem.TryCreateOrganSlot(torsoUid.Value, component.Slot, out _, torsoPart))
+            {
+                Log.Error($"TraitOrganReplacement: Failed to create lungs slot for {ToPrettyString(uid)}");
+                return;
+            }
+            
+            Dirty(torsoUid.Value, torsoPart);
+        }
 
-        // Get the container for this organ slot
+        // Get the container for this organ slot (create if it doesn't exist)
         var containerId = SharedBodySystem.GetOrganContainerId(component.Slot);
         if (!_containerSystem.TryGetContainer(torsoUid.Value, containerId, out var container))
-            return;
+        {
+            // If container doesn't exist, ensure it's created
+            container = _containerSystem.EnsureContainer<ContainerSlot>(torsoUid.Value, containerId);
+        }
 
         // Remove existing organ if any
         var containedEntities = container.ContainedEntities.ToList();
@@ -125,7 +169,17 @@ public sealed class TraitOrganReplacementSystem : EntitySystem
         var newOrgan = Spawn(component.Organ, Transform(uid).Coordinates);
         if (TryComp<OrganComponent>(newOrgan, out var newOrganComp))
         {
-            _bodySystem.InsertOrgan(torsoUid.Value, newOrgan, component.Slot, torsoPart, newOrganComp);
+            var inserted = _bodySystem.InsertOrgan(torsoUid.Value, newOrgan, component.Slot, torsoPart, newOrganComp);
+            
+            if (inserted)
+            {
+                // Mark as applied to prevent double execution (don't dirty - this is a server-only component)
+                component.HasBeenApplied = true;
+            }
+            else
+            {
+                Log.Error($"TraitOrganReplacement: Failed to insert organ {ToPrettyString(newOrgan)} into slot {component.Slot} for {ToPrettyString(uid)}");
+            }
             
             // Give equipment if configured
             GiveEquipment(uid, component);
@@ -139,6 +193,7 @@ public sealed class TraitOrganReplacementSystem : EntitySystem
         else
         {
             // If spawning failed or it's not an organ, delete it
+            Log.Error($"TraitOrganReplacement: Spawned entity {ToPrettyString(newOrgan)} is not an organ, deleting");
             QueueDel(newOrgan);
         }
     }
@@ -186,12 +241,45 @@ public sealed class TraitOrganReplacementSystem : EntitySystem
             _inventorySystem.TryEquip(uid, item, slot, true, force: true);
         }
         
-        // Raise the StartingGearEquippedEvent to trigger automatic internals activation
-        // This is done after all equipment (mask + tank) is equipped
-        if (component.SpawnNitrogenTank)
+        // Delay the breath tool and tank connection to ensure equipment is fully initialized
+        // This is necessary because GotEquippedEvent doesn't fire reliably during character spawn
+        if (component.SpawnNitrogenTank || component.Equipment.ContainsKey("mask"))
         {
-            var gearEvent = new StartingGearEquippedEvent(uid);
-            RaiseLocalEvent(uid, ref gearEvent);
+            Timer.Spawn(TimeSpan.FromMilliseconds(100), () =>
+            {
+                if (!Exists(uid))
+                    return;
+                    
+                // Connect breath tool if we equipped a mask
+                if (component.Equipment.TryGetValue("mask", out var maskProto) && 
+                    _inventorySystem.TryGetSlotEntity(uid, "mask", out var maskEntity) &&
+                    TryComp<BreathToolComponent>(maskEntity, out var breathTool) && 
+                    TryComp<InternalsComponent>(uid, out var internalsComp))
+                {
+                    breathTool.ConnectedInternalsEntity = uid;
+                    _sharedInternalsSystem.ConnectBreathTool((uid, internalsComp), maskEntity.Value);
+                    Log.Debug($"TraitOrganReplacement: Manually connected breath tool {maskEntity.Value} to {uid}. BreathTools count: {internalsComp.BreathTools.Count}");
+                }
+                
+                // Connect nitrogen tank for nitrogen breathers
+                if (component.SpawnNitrogenTank && TryComp<InternalsComponent>(uid, out var internals))
+                {
+                    Log.Debug($"TraitOrganReplacement: Attempting to connect nitrogen tank for {uid}. BreathTools count: {internals.BreathTools.Count}");
+                    
+                    if (_inventorySystem.TryGetSlotEntity(uid, "suitstorage", out var tankEntity) &&
+                        TryComp<GasTankComponent>(tankEntity, out var gasTank))
+                    {
+                        Log.Debug($"TraitOrganReplacement: Found tank {tankEntity.Value} in suitstorage, connecting to internals");
+                        
+                        var success = _gasTankSystem.ConnectToInternals((tankEntity.Value, gasTank), user: uid);
+                        Log.Debug($"TraitOrganReplacement: ConnectToInternals returned {success}. GasTankEntity: {internals.GasTankEntity}");
+                    }
+                    else
+                    {
+                        Log.Warning($"TraitOrganReplacement: Could not find nitrogen tank in suitstorage slot for {uid}");
+                    }
+                }
+            });
         }
     }
 

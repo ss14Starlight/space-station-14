@@ -15,6 +15,14 @@
     spawnNitrogenTank: true
     equipment:
       mask: ClothingMaskBreath
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1.0
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: Internals
   - type: NitrogenBreather  # Marker component
 
 - type: trait
@@ -28,4 +36,12 @@
     slot: lungs
     organ: OrganOxygenLungs
     removePoisonRegen: true
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1.0
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: Internals
   - type: OxygenBreather  # Marker component

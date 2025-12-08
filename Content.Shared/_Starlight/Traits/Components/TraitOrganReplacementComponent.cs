@@ -45,5 +45,10 @@ public sealed partial class TraitOrganReplacementComponent : Component
     /// </summary>
     [DataField]
     public bool SpawnNitrogenTank = false;
-}
 
+    /// <summary>
+    /// Internal flag to prevent double-execution
+    /// </summary>
+    [DataField]
+    public bool HasBeenApplied = false;
+}
