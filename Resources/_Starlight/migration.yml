@@ -3,6 +3,13 @@
 # ItemIdFrom: ItemIdTo - Change item
 # ItemIdFrom: null - Removes item from map
 
+# 2025-12-09
+PrintedDocumentResignationStatement: PrintedDocumentIdentityEmploymentStatementResignation
+PrintedDocumentSurgeryConsentPermit: PrintedDocumentMedicalFormMedicalConsent
+PrintedDocumentArrestReport: PrintedDocumentSecurityLawReportArrest
+PrintedDocumentComplaintViolationLaborRules: PrintedDocumentSecurityLawComplaintLaborViolation
+PrintedDocumentConstructionPermit: PrintedDocumentAtmosEngineeringPermissionStationModification
+
 # 2025-10-03
 SyndiAgentPDA: SyndiCorpsmanPDA
 

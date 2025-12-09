@@ -188,5 +188,5 @@
   components:
   - type: StorageFill
     contents:
-    - id: PrintedDocumentSalvageLeadReport
+    - id: PrintedDocumentCargoReportSalvageLeader
       amount: 7

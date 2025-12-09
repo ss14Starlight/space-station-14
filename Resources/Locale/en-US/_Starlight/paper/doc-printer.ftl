@@ -1,1309 +1,2545 @@
-# Reports
-
-doc-text-printer-report-morgue =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-    ⠀                              [bold]MORGUE DNR REPORT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Name: [form]
-
-    Job/Occupation: [form]
-
-    Approximate time of death/DNR approval: [form]
-
-    Reason for DNR status: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-report-station =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                            [bold]SITUATION REPORT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Purpose: [form]
-
-    Threat Level Code: [form]
-
-    Reason for establishing the code: [form]
-
-    Active threats: [form]
-
-    Crew casualties: [form]
-
-    Current situation: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-report-on-elimination-of-violations =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀            [bold]ISSUE RESOLUTION REPORT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Issue(s) identified by: [form]
-    Employee position: [form]
-
-    Presented issue(s): [form]
-
-    Measures taken to resolve issue(s): [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-report-department =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]DEPARTMENTAL REVIEW[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Number of employees in the department: [form]
-
-    Number of trainees: [form]
-
-    Inactive employees in the department:
-    ⠀• (Name, position, reason)
-    ⠀• [form]
-     • [form]
-
-    Degree of target readiness: [form]
-
-    General condition of the department: [form]
-
-    ─────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-report-employee-performance =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
-   ⠀⠀                 [bold]WORK REPORT[/bold]
-    ─────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-   
-    I, [signature], have completed the following work: [form]
-
-    I hereby request that the result be accepted by the Head of the [form] Department.
-
-    ─────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-report-on-the-chapters-meeting =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
-   ⠀⠀                     [bold]VOTE RECORD[/bold]
-    ─────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    The question put to the committee: [form]
-
-    Additional context: [form]
-
-    Number of votes [italic]in favor[/italic]: [form]
-    Those voting [italic]in favor[/italic]:
-    • [signature]
-    • [signature]
-    • [signature]
-    • [signature]
-    • [signature]
-    • [signature]
-    Number of votes [italic]against[/italic]: [form]
-    Those voting [italic]against[/italic]:
-    • [signature]
-    • [signature]
-    • [signature]
-    • [signature]
-    • [signature]
-    • [signature]
-    Number of [italic]abstentions[/italic] from voting: [form]
-    Those voting to [italic]abstain[italic]:
-    • [signature]
-    • [signature]
-    • [signature]
-    • [signature]
-    • [signature]
-    • [signature]
-    Resolution of the meeting: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-internal-affairs-agents-report =
-   ⠀[logo]            [cclogo]
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
-   ⠀⠀               [bold]AUDIT REPORT[/bold]
-    ─────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], during the course of an internal audit requested by [form] for the reason of [form], found the following irregularities: [form]
-
-    I also wish to report the following: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-condition-report =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]MAINTENANCE REPORT[/bold]
-    ─────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Irregularities were identified in the station's [form].
-
-    The problems were caused by: [form]
-
-    Damage to the station: [form]
-
-    Repairs performed: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-object-investigation-report =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀          [bold]UNKNOWN OBJECT INVESTIGATION REPORT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    A device or artifact of unfamiliar function or provenance has been collected and analyzed.
-
-    Retrieved by: [form]
-
-    Examined by: [signature]
-
-    External description: [form]
-
-    Identified properties: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-experiment-report =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                              [bold]EXPERIMENT REPORT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    External description of the object of the experiment: [form]
-
-    Experimenter(s): [signature]
-
-    Experiment № [form]
-    Description of experiment: [form]
-
-    Expected result: [form]
-
-    Equipment used: [form]
-
-    Actual result: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-disposal-report =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
-   ⠀⠀                                [bold]DISPOSAL REPORT[/bold]
-    ─────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    The objects at [form] have been disposed of. During the disposal process, the following valuable items and/or materials were sent to the departments indicated below.
-
-    List of items/materials found:
-
-    • [form] - Given to [form] Department
-    • [form] - Given to [form] Department
-    • [form] - Given to [form] Department
-    • [form] - Given to [form] Department
-    • [form] - Given to [form] Department
-    ─────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-arrest-report =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                            [bold]SECURITY ARREST REPORT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Arrestee: [form]
-
-    Arrest reason or complaining witnesses: [form]
-
-    Estimated time of arrest: [form]
-
-    Arresting officer: [form]
-
-    The arrestee was: [check] detained; [check] paroled; [check] released
-
-    Charges filed, if any: [form]
-
-    Duration of detention, if applicable: [form]
-
-    Additional remarks: [form]
-
-    ─────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-# Statements
-
-doc-text-printer-statement-appointment-interim-chapter =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀          [bold]INTERIM COMMAND APPOINTMENT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], request approval of my appointment to the position of Acting [form]. Upon assuming the position, I agree to follow Standard Operating Procedures and, until the arrival of a replacement from Central Command, shall ensure the order and management of my Department, and the safety of the equipment and tools of my office, including those tools and pieces of equipment that are irreplaceable or essential to the Department's work, or whose misuse might have serious consequences for station safety or security.
-
-    Upon arrival of the [form] from Central Command, I shall surrender the privileges and equipment afforded to me in the course of these duties, including access rights.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-employment-statement =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]EMPLOYMENT CONTRACT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], formally request to be appointed as an employee of the following department, in the position indicated below, for the remainder of the shift, or until resignation.
-
-    Name of department: [form]
-
-    Name of position: [form]
-
-   ⠀[check] I assert that I am qualified to hold the position which I am seeking, and acknowledge that my contract will be terminated if this is found not to be the case.
-
-   ⠀[check] I will surrender any current department work gear and equipment upon transfer.
-
-   ⠀[check] I agree to follow all applicable Standard Operating Procedures, and accept that my contract may be terminated if I fail to uphold them.
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-resignation-statement =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                          [bold]NOTICE OF RESIGNATION[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], hereby resign my position because of [form].
-
-   ⠀[check] I accept to pay the penalty established by the terms of termination of my contract at the end of the shift.
-
-   ⠀[check] I will surrender my departmental work gear and equipment.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-access-request-statement =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                       [bold]ACCESS REQUEST[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], request the following access be added to my ID card:
-    • [form]
-    • [form]
-    • [form]
-    • [form]
-    • [form]
-    • [form]
-
-    Reason for gaining elevated access: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-doc-text-printer-equipment-request-statement =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                    [bold]EQUIPMENT REQUEST[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], request the following equipment be issued to me:
-
-    • [form]
-    • [form]
-
-    Reason: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-   
-# InquiriesAndAppeals
-   
-doc-text-printer-invocation =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                         [bold]NOTICE OF SUMMONS[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-   ⠀[form] is hereby asked by [signature] to appear at [form], without delay.
-
-    Reason: [form]
-
-   ⠀[italic]This is an official notice. Penalties may apply for failure to appear.[/italic]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-evacuation-shuttle-request =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                    [bold]EVACUATION SHUTTLE REQUEST[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    To Central Command,
-
-    I, [signature], write to request that you dispatch an evacuation shuttle to the station, without delay, and authorize evacuation of the station via said shuttle.
-
-    Reason for evacuation request: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-shuttle-registration-request =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                  [bold]SHUTTLE REGISTRATION FORM[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I hereby request that the following shuttle be registered in the NanoTrasen system for identification.
-
-    Shuttle size: [form]
-
-    Shuttle class: [form]
-
-    Construction responsible: [form]
-
-    Requested name: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-call-centcomm-members =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀              [bold]REQUEST TO CALL CENTCOMM MEMBERS[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], request to be considered for a call with CentComm administrative officers.
-
-    Reason for the call: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-establish-threat-level =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀             [bold]REQUEST TO ESTABLISH THREAT LEVEL[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], request that follow threat level be established: [form]
-
-    Reason for request: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-change-salary =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                         [bold]SALARY CHANGE REQUEST[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], hereby a salary increase/decrease of [form] (amount or percentage).
-
-    Employee receiving salary change: [form]
-
-    Employee's job title: [form]
-
-    Reason for salary change: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-for-non-listed-employment =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀             [bold]NON-LISTED EMPLOYMENT CONTRACT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Name of applicant: [signature]
-
-    New job title: [form]
-
-    New supervisor: [form]
-
-    Applicable duties under SOP: [form]
-
-    Access provided to the employee: [form]
-
-    Reason for employment: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-for-promotion =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                         [bold]REQUEST FOR PROMOTION[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], assert that the following employee has obtained the necessary qualifications and experience to be promoted.
-
-    Employee to be promoted: [form]
-
-    Requested position: [form]
-
-    Supervisor(s): [form]
-
-    Reason for promotion: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-documents =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ──────────────────────────────────────────
-   ⠀⠀                  [bold]REQUEST FOR RELEASE OF DOCUMENTS[/bold]
-    ──────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
- 
-    I, [signature], request a copy of the following document(s), in order to verify compliance with Standard Operating Procedures and/or Corporate Law.
-
-    Documents sought:
-
-   ⠀ • [form]
-   ⠀ • [form]
-   ⠀ • [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-euthanasia =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                        [bold]PETITION FOR EUTHANASIA[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], hereby request to be euthanized.
-
-    My desire for this is as follows: [form]. 
-
-   ⠀[check] I am aware that this decision is irreversible and will affect compensation given to my next of kin.
-
-   ⠀[check] I am of sound mind, as determined by a member of the Medical Department.
-
-   ⠀    Inspecting Doctor: [signature]
-   ⠀    Date and Time: [form]
-
-   ⠀[check] I have no claims against the Medical Department in their adherence to euthanasia protocols.
-
-    At the end of the procedure, I ask that my body be [form], if possible.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-construction-work =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                     [bold]CONSTRUCTION REQUEST[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature] formally request construction work at: [form]
-
-    Reason for request: [form]
-
-    List of construction work: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-modernization =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                         [bold]MODERNIZATION REQUEST[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], request to upgrade the instrumentation in the following department: [form]
-
-    Reason for request: [form]
-
-    List of upgrades:
-    • [form]
-    • [form]
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-request-ert =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀           [bold]EMERGENCY RESPONSE TEAM REQUEST[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], request an ERT team to be sent to the station to assist with an ongoing problem that exceeds the station's current resources to resolve.
-
-    Threat(s) to the station:
-    ⠀• [form]
-     • [form]
-
-    Type of ERT requested: [form]
-    (Security / Engineering / Janitorial / Medical / ...)
-
-    Fatalities (approximate number): [form]
-    Other casualties (approximate number): [form]
-
-   ⠀ [italic]Abuse of this form may lead to immediate dismissal of the person(s) involved in this request.[/italic]
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-product-order =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                                 [bold]PRODUCT ORDER[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Request to produce products by the following department: [form]
-
-    List of products required:
-    • [form]
-    • [form]
-
-    Reason for order: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-   
-# Complaints
-
-doc-text-printer-complaint-violation-labor-rules =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-    ⠀⠀[bold]DEPARTMENTAL COMPLAINT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], believe that major misconduct, constituting either breach of SOP or Corporate Law, has occurred, or is ongoing, as described below.
-
-    Department(s) involved: [form]
-
-    Violations committed:
-
-   ⠀• [form]
-   ⠀• [form]
-   ⠀• [form]
-
-    I request an internal review of the department(s) in question.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-offense-complaint =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                             [bold]CRIMINAL COMPLAINT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], believe that the following person has violated Corporate Law.
-
-    Name of violator: [form]
-
-    Description of misconduct: [form]
-
-    Criminal charges:
-
-   ⠀• [form]
-   ⠀• [form]
-   ⠀• [form]
-   ⠀• [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-   
-# Permissions
-
-doc-text-printer-permission-equipment =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]EQUIPMENT PERMIT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], authorize the use of departmental work equipment of the following department: [form]
-
-    Equipment to be subject to authorization: [form]
-
-    Authorized person: [form]
-
-    Position of authorized person: [form]
-
-    Reason for seeking permit: [form]
-
-    Terms of use: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-search-permission =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                             [bold]SEARCH WARRANT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], authorize the search of the following person and/or location
-
-    The affidavit below, sworn and subscribed before me, [signature], has established probable cause for this search warrant, which the Security Department is ordered to execute as follows:
-
-    Name of searched person: [form]
-
-    Position of searched person: [form]
-
-    Reason for search: [form]
-
-    Scope of property to be confiscated:
-
-   ⠀[check] Contraband
-   ⠀[check] Items believed to have been involved in a crime
-   ⠀[check] Misappropriated equipment
-   ⠀[check] Other, specify: [form]
-
-    Disposition of property: All property seized pursuant to this search warrant shall be remanded into the custody of the Warden's office, pending further orders by Command.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-permission-to-carry-weapons =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                             [bold]WEAPON PERMIT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], authorize the carrying of the following weapon by the named person, as long as it is used for its intended purpose. In the event of a violation, the authorization will be revoked and the weapon will be confiscated by Security.
-
-    Named of authorized person: [form]
-
-    Position of authorized person: [form]
-
-    The weapon and, if applicable, the type of ammunition for it: [form]
-
-    The method of obtaining the weapon and, if applicable, the ammunition for it: [form]
-
-    Reason for authorization: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-permission-dispose-body =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                 [bold]BODY DISPOSAL AUTHORIZATION[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], authorize the disposal of the body of the following person or animal: [form]
-
-    Former position (if applicable): [form]
-
-    Reason for disposal: [form]
-
-    Method of disposal: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-construction-permit =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]CONSTRUCTION PERMIT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], authorize the redevelopment of the following part of the station: [form]
-
-    Reason for redevelopment: [form]
-
-    Agreed scope of redevelopment: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-
-doc-text-printer-surgery-consent-permit =
-    [logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]SURGERY CONSENT FORM[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    In sound mind I, [signature], authorize the following surgery or surgeries to be performed upon me.
-
-    Authorized surgeon: [signature]
-
-    Reason for surgery: [form]
-
-    Surgical modification(s) to be performed:
-
-    • [form]
-    • [form]
-    • [form]
-
-   ⠀[check] I fully understand the risks associated with the operation(s) to which I have given my consent.
-
-   ⠀[check] I authorize the Medical Department to dispose of any tissues or organs removed from my body as they see fit, including possibly donating such tissues or organs to other patients.
-
-   ⠀ [italic]This form is not legal unless it has been signed by the patient and stamped by the station's Chief Medical Officer or one of the Chief Medical Officer's superiors. It is not required for life-saving surgeries. For punitive and non-elective surgeries, such as those ordered by Security, please file a Medical Intervention Order.[/italic]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-   
-# OrdersAndInstructions
-
-doc-text-printer-dismissal-order =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                               [bold]DISMISSAL ORDER[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], order that the following employee be removed from their current position.
-
-    Employee name: [form]
-
-   ⠀Employee position: [form]
-
-    Reason for dismissal: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-access-revocation-order =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                       [bold]ACCESS REVOCATION ORDER[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], hereby order that certain access rights be removed from the ID card of an employee, as specified below.
-
-    Employee: [form]
-
-   ⠀Position: [form]
-
-    Access rights to be removed: [form]
-
-    Further remarks: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-incentive-order =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                       [bold]RECOGNITION OF MERIT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-
-    Dear [form],
-
-    In the course of your duties to the station, you have proven yourself to be an exemplar to the crew through your record of distinguished conduct. It is therefore my pleasure to grant you the following special commendation.
-
-    Services Performed: [form]
-
-    Medal or Citation: [form]
-
-    May your devotion to the station continue to light the way for your fellow crewmembers.
-
-    Sincerely,
-
-   ⠀[signature]
-
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-prisoner-parole-order =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                         [bold]ORDER OF MANDATORY PAROLE[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Parolee: [form]
-
-    Parole ordered by: [form]
-
-    Upon granting of parole, the Parolee shall enter into a position in the Service Department.
-
-    Failure to perform the duties of this position may result in re-imprisonment.
-
-    Position: [form]
-
-    Additional terms of parole: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-order-recognizing-reasonableness-creature =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀[bold]DECLARATION OF SENTIENCE[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    I, [signature], in the course of testing the entity described below, have detected signs of intelligence and rationality. It has exhibited an ability to think and learn, and a capacity to comprehend morality.
-
-    Based on the principles of equality of rights of all reasonable beings established by the OPRA, I hereby move to declare it as sentient.
-
-    Appearance of the being: [form]
-
-    The established full name of the creature: [form]
-
-    The creature is henceforth to be accepted as an Assistant.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-medical-intervention-order =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                [bold]MEDICAL INTERVENTION ORDER[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Pursuant to Corporate Law, the Qualified Medical Officer named herein orders that the following medical intervention be carried out promptly and without delay.
-
-    Patient: [form]
-
-    Procedure(s) to be performed: [form]
-
-    Circumstances: [form]
-
-   ⠀I hereby affirm that, in my professional opinion as a licensed medical practioner, the ordered intervention is medically or legally necessary.
-
-    Qualified Medical Officer: [signature]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
-
-doc-text-printer-execution-dnr-order =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀             [bold]EXECUTION AND DO-NOT-REVIVE ORDER[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Name of Prisoner:  [form]
-    Former position of Prisoner: [form]
-
-    Crimes committed:
-    ⠀• [form]
-
-    Reason for the execution and DNR:
-    ⠀• [form]
-
-    Authority ordering the Execution (Name + Position): [signature]
-
-   ⠀ [italic]This order can only be issued by the (Acting) Captain of the[/italic]
-   ⠀ [italic]station. If a Magistrate is present, they can overrule the Captain[/italic]
-   ⠀ [italic]on the decision, and their stamp is required.[/italic]
-   ⠀ [italic]The prisoner is to remain securely restrained until the execution.[/italic]
-   ⠀ [italic]The execution method may be chosen by the prisoner, to the[/italic]
-   ⠀ [italic]extent permissible under law, and must be as humane as possible.[/italic]
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-# Communications
-
-doc-text-printer-centcomm-communication =
-   ⠀[logo]            [cclogo] 
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                    [bold]CENTCOMM COMMUNICATION[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Greetings CentComm,
-
-   ⠀[form]
-
-    Sincerely,
-       - [signature]
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
+# Auto-generated by tools/render_ftl.py. Do not edit manually.
+# Source docs: docs/*.txt
+
+# Atmos & Engineering
+
+# title: Station Modification Permit
+# slug: Permission_Station_Modification
+doc-text-printer-atmos-engineering-permission-station-modification =
+    ​[logo]
+    
+    
+    ​[head=1][color=#f39f27]ENGINEERING DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]PERMISSION[/bold][/color][/head] – [color=#0055aa][bolditalic]STATION MODIFICATION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Authorization to alter station infrastructure, layout, or atmospheric systems beyond routine maintenance[/italic][/color][/center]
+    
+    ​[head=2]Modification Details[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Requesting Individual:[/bold] [signature]
+    ​[bold]Department / Role:[/bold] [form]
+    
+    ​[head=2]Proposed Modification[/head]
+    ​[check] Construction of new room / facility
+    ​[check] Modification of existing area
+    ​[check] Atmospheric change (O2, N2, etc.)
+    ​[check] Power grid / equipment reroute
+    ​[check] Other: [form]
+    
+    ​[bold]Description of Work (include purpose, affected area, and required resources):[/bold]
+    ​[form]
+    
+    ​[head=2]Safety Considerations[/head]
+    ​[check] Atmospherics evaluated (pressure, mix, venting)
+    ​[check] Power draw / grid load calculated
+    ​[check] Structural integrity verified
+    ​[check] Fire suppression available
+    ​[check] Other: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Chief Engineer
+    ​[bullet] Relevant Head of Department (if modification affects departmental areas)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Unauthorized modification of station infrastructure is a Class-B corporate offense. Approved modifications remain property of NanoTrasen and may be reversed at any time at Command’s discretion.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Engineering / Command Stamps and Signatures[/italic]
+    ​
+    ​
+
+# Command & Emergency
+
+# title: CentComm Communication
+# slug: Comm_Centcom
+doc-text-printer-command-emergency-comm-centcom =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]STATION COMMAND[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]COMMUNICATION[/bold][/color][/head] – [color=#0055aa][bolditalic]STATION TO CENTRAL COMMAND[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Official correspondence addressed to Central Command for information exchange, clarification, or formal notice[/italic][/color][/center]
+    
+    ​[head=2]Message Origin[/head]
+    ​[bold]Station Name / ID:[/bold] [form]
+    ​[bold]Sender Name & Position:[/bold] [signature]
+    ​[bold]Date & Time:[/bold] [form]
+    
+    ​[head=2]Message Type[/head]
+    ​[check] Routine Status Update
+    ​[check] Request for Guidance
+    ​[check] Incident / Threat Notification
+    ​[check] Resource or Staffing Issue
+    ​[check] Other: [form]
+    
+    ​[head=2]Message Content[/head]
+    ​[form]
+    
+    ​[head=2]Attachments (if any)[/head]
+    ​[form]
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This document is an official communication channel between Station Command and Central Command. Misrepresentation, falsification, or misuse of this form constitutes a Class-B corporate offense and may result in disciplinary review.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Command Signature / Stamp[/italic]
+    ​
+    ​
+
+# title: Report_Situation
+# slug: Report_Situation_on_Station
+doc-text-printer-command-emergency-report-situation-on-station =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]STATION COMMAND[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REPORT[/bold][/color][/head] – [color=#0055aa][bolditalic]SITUATION REPORT (SITREP)[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Regular update on operational status, crew condition, and threats aboard the station[/italic][/color][/center]
+    
+    ​[head=2]Report Origin[/head]
+    ​[bold]Station Name / ID:[/bold] [form]
+    ​[bold]Reporting Officer:[/bold] [signature]
+    ​[bold]Date & Time:[/bold] [form]
+    
+    ​[head=2]Operational Status[/head]
+    ​[check] Normal operations – Station stable
+    ​[check] Minor disruptions – manageable with current resources
+    ​[check] Major disruptions – station function impaired
+    ​[check] Critical – station integrity at risk
+    ​[check] Other: [form]
+    
+    ​[bold]Details / Summary:[/bold]
+    ​[form]
+    
+    ​[head=2]Crew Status[/head]
+    ​[check] Crew morale stable
+    ​[check] Minor injuries reported
+    ​[check] Casualties confirmed
+    ​[check] Medical staff at capacity
+    ​[check] Other: [form]
+    
+    ​[bold]Notable Events (incidents, threats, anomalies):[/bold]
+    ​[form]
+    
+    ​[head=2]Assistance Requested from Central Command[/head]
+    ​[check] None – situation under control
+    ​[check] Advisory guidance
+    ​[check] Supply / equipment support
+    ​[check] Emergency Response Team dispatch
+    ​[check] Evacuation shuttle request (use dedicated form if required)
+    ​[check] Other: [form]
+    
+    ​[head=2]Additional Notes[/head]
+    ​[form]
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This report reflects conditions as observed at the time of filing. Updates should be transmitted as the situation develops. False or misleading reporting constitutes a violation of Corporate Directive §14C and may result in disciplinary review.
+    ​[/italic][/color]
+    
+    ​[color=#aaaaaa][italic]Filed under Station Records – Forwarded to Central Command[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Command Stamps / Additional Signatures[/italic]
+    ​
+    ​
+
+# title: Emergency Response Team Request
+# slug: Request_ERT
+doc-text-printer-command-emergency-request-ert =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]STATION COMMAND[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REQUEST[/bold][/color][/head] – [color=#0055aa][bolditalic]EMERGENCY RESPONSE TEAM (ERT)[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal request for deployment of specialized Central Command personnel to assist in critical station emergencies[/italic][/color][/center]
+    
+    ​[head=2]Request Origin[/head]
+    ​[bold]Station Name / ID:[/bold] [form]
+    ​[bold]Requesting Officer Name:[/bold] [signature]
+    ​[bold]Date & Time:[/bold] [form]
+    
+    ​[head=2]Reason for Request[/head]
+    ​[check] Hostile incursion beyond Security capacity
+    ​[check] Large-scale medical emergency / casualties
+    ​[check] Station infrastructure collapse (power, atmos, engineering)
+    ​[check] Anomalous / xeno threat beyond containment
+    ​[check] Command incapacitated / unable to lead
+    ​[check] Other: [form]
+    
+    ​[head=2]Requested Response Type[/head]
+    ​[check] Security Response Team (combat-capable)
+    ​[check] Medical Response Team (casualty recovery)
+    ​[check] Engineering Response Team (repair / recovery)
+    ​[check] Mixed Response Team
+    ​[check] Other: [form]
+    
+    ​[head=2]Additional Notes to Central Command[/head]
+    ​[form]
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Deployment of an Emergency Response Team is at the discretion of Central Command. Requests should only be filed when station integrity cannot be preserved with available crew. Misuse of this request constitutes a Class-A breach of command protocol.
+    ​[/italic][/color]
+    
+    ​[color=#aaaaaa][italic]Required: Authorization by at least two Command staff (Captain, HoP, or relevant Head of Department).[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Command Signatures / Stamps[/italic]
+    ​
+    ​
+
+# title: Evacuation Request
+# slug: Request_Evacuation
+doc-text-printer-command-emergency-request-evacuation =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]STATION COMMAND[/head][/color]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REQUEST[/bold][/color][/head] – [color=#0055aa][bolditalic]STATION EVACUATION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal request for early evacuation or crew exchange prior to the scheduled shift change[/italic][/color][/center]
+    
+    ​[head=2]Request Origin[/head]
+    ​[bold]Station Name / ID:[/bold] [form]
+    ​[bold]Requesting Officer Name:[/bold] [signature]
+    ​[bold]Date & Time:[/bold] [form]
+    
+    ​[head=2]Reason for Request[/head]
+    ​[check] Containment loss of singularity / Tesla engine
+    ​[check] Station power grid collapse beyond recovery
+    ​[check] Irreversible atmospheric integrity failure
+    ​[check] Biological or anomalous outbreak beyond containment
+    ​[check] Command unable to maintain control of station
+    ​[check] Other: [form]
+    
+    ​[head=2]Evacuation Type Requested[/head]
+    ​[check] Full station evacuation
+    ​[check] Partial evacuation (specify critical personnel/departments): [form]
+    ​[check] Crew exchange shuttle only
+    ​[check] Other: [form]
+    
+    ​[head=2]Additional Notes to Central Command[/head]
+    ​[form]
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Early evacuation is only authorized when station integrity is no longer recoverable by available personnel. This request is subject to Central Command confirmation before shuttle dispatch.
+    ​[/italic][/color]
+    
+    ​[color=#aaaaaa][italic]Required: Authorization by available Command staff via signatures and/or departmental stamps below.[/italic][/color]
+    
+    ────────────────────────────────────────
+    
+    
+    
+    
+    
+    ​[italic]Place for Command Signatures / Stamps[/italic]
+    ​
+    ​
+
+# title: Command Succession Order
+# slug: Statement_Command_Succession
+doc-text-printer-command-emergency-statement-command-succession =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]STATION COMMAND[/color][/head]  
+    ────────────────────────────────────────  
+    ​[head=2][color=#003366][bold]ORDER[/bold][/color][/head] – [color=#0055aa][bolditalic]COMMAND SUCCESSION[/bolditalic][/color]  
+    ────────────────────────────────────────  
+    ​[center][color=#aaaaaa][italic]Formal declaration of change in station command authority due to the absence, incapacitation, or death of the commanding officer[/italic][/color][/center]  
+    
+    ​[head=2]Succession Context[/head]  
+    ​[bold]Date & Time Issued:[/bold] [form]  
+    ​[bold]Reason for Succession:[/bold]  
+    ​[check] Captain did not arrive for assigned shift  
+    ​[check] Captain incapacitated / medically unfit for duty  
+    ​[check] Captain deceased or confirmed missing  
+    ​[check] Command override by Central Command  
+    ​[check] Other: [form]  
+    
+    ​[bold]Incident Summary (if applicable):[/bold]  
+    ​[form]  
+    
+    ​[head=2]Acting Command Appointment[/head]  
+    ​[bold]Name of Acting Captain / Commanding Officer:[/bold] [form]  
+    ​[bold]Department / Previous Position:[/bold] [form]  
+    ​[bold]Authority Level Granted:[/bold]  
+    ​[check] Full station command authority  
+    ​[check] Interim authority – pending Central Command confirmation  
+    ​[check] Emergency authority – valid for duration of crisis  
+    ​[check] Other: [form]  
+    
+    ​[head=2]Succession Chain[/head]  
+    ​[bold]Next in Command (if Acting Captain becomes incapacitated):[/bold] [form]  
+    ​[bold]Additional Notes / Conditions (if any):[/bold] [form]  
+    
+    ​[head=2]Authorization[/head]  
+    ​[bold]Required Stamps/Signatures:[/bold]  
+    ​[bullet] Head of Personnel  
+    ​[bullet] Remaining Command Staff (minimum 2/3 available required)  
+    ​[bullet] Internal Affairs Agent (if present for verification)  
+    
+    ────────────────────────────────────────  
+    ​[color=#aaaaaa][italic]  
+    NOTICE: This order establishes legitimate command authority aboard the station in accordance with NanoTrasen Command Directive §11-C. Unauthorized assumption of command or falsification of this document constitutes mutiny under Corporate Law and may result in immediate dismissal or prosecution.  
+    ​[/italic][/color]  
+    
+    ​[italic]Place for Command / Administrative Stamps and Signatures[/italic]  
+    ​
+    ​
+
+# title: Sentience Acknowledgment
+# slug: Statement_Sentience_Acknowledgement
+doc-text-printer-command-emergency-statement-sentience-acknowledgement =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]STATION COMMAND[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]STATEMENT[/bold][/color][/head] – [color=#0055aa][bolditalic]SENTIENCE ACKNOWLEDGMENT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal declaration acknowledging the full sentience of a being or object, granting rights and protections under NanoTrasen Corporate Law and Space Law[/italic][/color][/center]
+    
+    ​[head=2]Subject Information[/head]
+    ​[bold]Designation / Name:[/bold] [form]
+    ​[bold]Species / Type (biological, synthetic, anomalous):[/bold] [form]
+    
+    ​[head=2]Observed Capabilities[/head]
+    ​[check] Demonstrated reasoning / problem-solving ability
+    ​[check] Self-awareness / independent will
+    ​[check] Capacity for social interaction / empathy
+    ​[check] Communication in recognizable language
+    ​[check] Memory / learning retention
+    ​[check] Moral or ethical decision-making
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Observations:[/bold]
+    ​[form]
+    
+    ​[head=2]Rights & Status Granted[/head]
+    ​[check] Recognition as sentient being under Space Law
+    ​[check] Protection from unlawful harm or destruction
+    ​[check] Eligibility for crew employment / assignment
+    ​[check] Restricted rights only (specify): [form]
+    ​[check] Other: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Captain
+    ​[bullet] Relevant Head of Department (Science/Medical, if applicable)
+    ​[bullet] Internal Affairs Agent (if available)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Acknowledging sentience extends corporate rights and protections to the subject, making destruction or mistreatment a Class-A violation. Command assumes liability for consequences arising from this declaration. Status may only be revoked by Central Command or corporate tribunal.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Command / Departmental Stamps and Signatures[/italic]
+    ​
+    ​
+
+# Identity & Employment
+
+# title: Lost & Found Form
+# slug: Form_Lost_and_found
+doc-text-printer-identity-employment-form-lost-and-found =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]PERSONNEL ADMINISTRATION[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]LOST AND FOUND[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Record for reporting or reclaiming lost property aboard the station[/italic][/color][/center]
+    
+    ​[head=2]Filing Details[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Filed By:[/bold] [signature]
+    ​[bold]Department / Role:[/bold] [form]
+    
+    ​[head=2]Item Information[/head]
+    ​[check] Lost Item
+    ​[check] Found Item
+    
+    ​[bold]Item Name / Description:[/bold] [form]
+    ​[bold]Last Known Location (if lost):[/bold] [form]
+    ​[bold]Recovery Location (if found):[/bold] [form]
+    
+    ​[head=2]Additional Notes[/head]
+    ​[form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Security (for chain of custody if item is valuable, restricted, or sensitive)
+    ​[bullet] Head of Personnel (if ID, access card, or valuables claimed)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Items deposited into Lost & Found remain property of their original owner. Fraudulent claims, misrepresentation, or refusal to surrender lost property may result in disciplinary action under NanoTrasen Corporate Law.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Stamps / Signatures[/italic]
+    ​
+    ​
+
+# title: Visitor Registration Form
+# slug: Form_Visitor
+doc-text-printer-identity-employment-form-visitor =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]PERSONNEL ADMINISTRATION[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]VISITOR REGISTRATION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Required documentation for non-crew personnel arriving aboard NanoTrasen facilities[/italic][/color][/center]
+    
+    ​[head=2]Visitor Information[/head]
+    ​[bold]Date & Time of Arrival:[/bold] [form]
+    ​[bold]Visitor Name:[/bold] [signature]
+    ​[bold]Origin (ship / colony / station):[/bold] [form]
+    ​[bold]Declared Purpose of Visit:[/bold]
+    ​[check] Business / Corporate Representative
+    ​[check] Research / Science Collaboration
+    ​[check] Inspection / Audit
+    ​[check] Emergency Docking / Refugee
+    ​[check] Personal Visit
+    ​[check] Other: [form]
+    
+    ​[head=2]Sponsorship & Access[/head]
+    ​[bold]Station Sponsor / Contact (crew member):[/bold] [form]
+    ​[bold]Required Access:[/bold]
+    ​[check] Public Areas only
+    ​[check] Specific Department (requires HoP/Head approval): [form]
+    ​[check] Other: [form]
+    
+    ​[head=2]Security Verification[/head]
+    ​[check] Visitor searched for contraband
+    ​[check] ID verified / temporary pass issued
+    ​[check] Items declared / logged
+    ​[check] Cleared for entry
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Personnel (or Captain)
+    ​[bullet] Head of Security (if armed escort or restricted access required)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Visitors remain subject to NanoTrasen Corporate Regulations and Station Command authority for the duration of their stay. All violations will be referred to Security and may result in immediate revocation of docking privileges.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Stamps / Signatures[/italic]
+    ​
+    ​
+
+# title: Head of Staff Appointment Order
+# slug: Order_Command_Appointment
+doc-text-printer-identity-employment-order-command-appointment =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]STATION COMMAND[/color][/head]  
+    ────────────────────────────────────────  
+    ​[head=2][color=#003366][bold]ORDER[/bold][/color][/head] – [color=#0055aa][bolditalic]HEAD OF STAFF APPOINTMENT[/bolditalic][/color]  
+    ────────────────────────────────────────  
+    ​[center][color=#aaaaaa][italic]Official order designating a qualified crew member as a Head of Department or Acting Head under NanoTrasen Corporate Command Structure[/italic][/color][/center]  
+    
+    ​[head=2]Appointment Details[/head]  
+    ​[bold]Date & Time:[/bold] [form]  
+    ​[bold]Appointing Officer (Captain / Acting Command):[/bold] [signature]  
+    ​[bold]Department Assigned:[/bold]  
+    ​[check] Engineering  
+    ​[check] Medical  
+    ​[check] Science  
+    ​[check] Security  
+    ​[check] Supply / Cargo  
+    ​[check] Service  
+    ​[check] Personnel / Administration (Head of Personnel)  
+    ​[check] Acting Command (temporary)  
+    ​[check] Other: [form]  
+    
+    ​[head=2]Appointed Individual[/head]  
+    ​[bold]Name of Appointee:[/bold] [form]  
+    ​[bold]Current Position / Role:[/bold] [form]  
+    ​[bold]Qualifications / Experience (brief summary):[/bold] [form]  
+    
+    ​[head=2]Appointment Type[/head]  
+    ​[check] Permanent appointment – full authority of department head  
+    ​[check] Temporary appointment – valid until end of shift or recall  
+    ​[check] Emergency appointment – valid for crisis duration only  
+    ​[check] Other: [form]  
+    
+    ​[head=2]Authorization[/head]  
+    ​[bold]Required Stamps/Signatures:[/bold]  
+    ​[bullet] Appointing Officer (Captain or Acting Command)  
+    ​[bullet] Head of Personnel (for administrative record)  
+    ​[bullet] Internal Affairs Agent (if present for confirmation)  
+    
+    ────────────────────────────────────────  
+    ​[color=#aaaaaa][italic]  
+    NOTICE: This order grants the designated individual full operational authority over the specified department for the duration of their appointment. Abuse of departmental powers, dereliction of duty, or misconduct under this authority constitutes a Class-A violation under Corporate Command Directives §5–9.  
+    ​[/italic][/color]  
+    
+    
+    
+    
+    
+    ​[italic]Place for Command / Administrative Stamps and Signatures[/italic]  
+    ​
+    ​
+
+# title: Demotion / Termination Order
+# slug: Order_Demotion
+doc-text-printer-identity-employment-order-demotion =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]PERSONNEL ADMINISTRATION[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]ORDER[/bold][/color][/head] – [color=#0055aa][bolditalic]DEMOTION / TERMINATION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Official directive reassigning, demoting, or removing an employee due to incompetence, misconduct, or violation of corporate law[/italic][/color][/center]
+    
+    ​[head=2]Subject Information[/head]
+    ​[bold]Name of Individual:[/bold] [form]
+    ​[bold]Department / Current Position:[/bold] [form]
+    
+    ​[head=2]Action Taken[/head]
+    ​[check] Demotion to lower rank/role
+    ​[check] Reassignment to alternate department
+    ​[check] Termination of employment (removal from NT service)
+    ​[check] Other: [form]
+    
+    ​[bold]New Position / Status (if applicable):[/bold] [form]
+    
+    ​[head=2]Reason for Action[/head]
+    ​[check] Incompetence / failure to perform duties
+    ​[check] Criminal behavior / violation of Space Law
+    ​[check] Abuse of authority / misconduct
+    ​[check] Medical or psychological unfitness
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Evidence / Justification:[/bold]
+    ​[form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Personnel
+    ​[bullet] Head of Department (if demotion within department)
+    ​[bullet] Captain (if command)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This order is binding and must be filed in station records. Demotions and terminations require appropriate justification. Abuse of this authority is a Class-B corporate offense and may result in review by Internal Affairs or Central Command.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Command Stamps / Signatures[/italic]
+    ​
+    ​
+
+# title: Request Access Change
+# slug: Request_Access_Change
+doc-text-printer-identity-employment-request-access-change =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]PERSONNEL ADMINISTRATION[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REQUEST[/bold][/color][/head] – [color=#0055aa][bolditalic]ACCESS MODIFICATION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal request for the alteration of accesses granted within a given ID[/italic][/color][/center]
+    
+    ​[head=2]Request Details[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Requesting Individual:[/bold] [signature]
+    
+    ​[head=3]Requested Adjustment[/head]
+    ​[bold]Change type:[/bold]
+    ​[check] Add – grant the following accesses in addition to existing ones
+    ​[check] Remove – revoke the following accesses from current ID
+    ​[check] Set – replace all current accesses with only those selected below
+    
+    ​[bold]Access involved:[/bold]
+    ​[check] Bridge / Command
+    ​[check] Engineering
+    ​[check] Atmospherics
+    ​[check] Research Labs
+    ​[check] Medical Treatment Areas
+    ​[check] Security Restricted
+    ​[check] Armory
+    ​[check] Cargo Logistics
+    ​[check] Salvage
+    ​[check] EVA / External Airlocks
+    ​[check] Vault
+    ​[check] Other: [form]
+    
+    ​[bold]Operational justification:[/bold]
+    ​[form]
+    
+    ​[bold]Time limit (if temporary):[/bold]
+    ​[form]
+    
+    ​[head=3]Authorizations[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Personnel
+    ​[bullet] Head of Department holding requested access
+    ​[bullet] Captain (if Command, Armory, or Vault access requested)
+    
+    ────────────────────────────────────────
+    ​[italic]Filed under Station Records - Valid for duration of shift[/italic]
+    ​[color=#aaaaaa][italic]
+    NOTICE: Elevated access is a privilege, not a right. All additional accesses granted are subject to immediate review and revocation by Command or Security. Misrepresentation of need, misuse of granted access, or falsification of this request constitutes a Class-B corporate offense and may result in demotion, dismissal, or prosecution under NanoTrasen Corporate Law.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    
+    ​[color=#aaaaaa][italic]Place for Signatures / Stamps[/italic][/color]
+    ​
+    ​
+
+# title: Job Reallocation Form
+# slug: Request_Employment_Transfer
+doc-text-printer-identity-employment-request-employment-transfer =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]PERSONNEL ADMINISTRATION[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REQUEST[/bold][/color][/head] – [color=#0055aa][bolditalic]JOB REALLOCATION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal request for the (re)allocation of a work position on station[/italic][/color][/center]
+    
+    ​[head=2]Request Details[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Requesting Individual:[/bold] [signature]
+    
+    ​[bold]Request Type:[/bold]
+    ​[check] New Employment (Unassigned)
+    ​[check] Transfer to Another Department
+    ​[check] Promotion within Department
+    ​[check] Other: [form]
+    
+    ​[bold]This Promotion is[/bold]
+    ​[check] Permanent
+    ​[check] Temporary until [form]
+    
+    ​[bold]Applying for Department:[/bold]
+    ​[check] Engineering
+    ​[check] Medical
+    ​[check] Security
+    ​[check] Science
+    ​[check] Supply / Cargo
+    ​[check] Service
+    ​[check] Command (requires approval)
+    ​[check] Other: [form]
+    
+    
+    ​[bold]Requested Position Title:[/bold] [form]
+    
+    ​[head=3]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Personnel
+    ​[bullet] Head of Requested Department
+    ​[bullet] Captain (if Command role requested)
+    
+    ────────────────────────────────────────
+    ​[italic]Filed under Station Records – Valid for duration of shift[/italic]
+    ​[color=#aaaaaa][italic]
+    ​[color=#aaaaaa][italic]NOTICE: Issuing a replacement ID card does not absolve the holder of responsibility for the original. Lost or stolen cards may be misused to gain unauthorized access. All cases of ID replacement are subject to review by Security and Internal Affairs. Multiple losses may result in disciplinary action up to termination.[/italic][/color]
+    
+    
+    
+    
+    
+    
+    ​[color=#aaaaaa][italic]Place for Signatures / Stamps[/italic][/color]
+    ​
+    ​
+
+# title: ID Card Replacement Request
+# slug: Request_ID_Replacement
+doc-text-printer-identity-employment-request-id-replacement =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]PERSONNEL ADMINISTRATION[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REQUEST[/bold][/color][/head] – [color=#0055aa][bolditalic]ID CARD REPLACEMENT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal application for the issuance of a replacement NanoTrasen identification card, subject to departmental approval, security verification, and corporate archival processing.[/italic][/color][/center]
+    
+    ​[head=2]Request Details[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Requesting Individual:[/bold] [signature]
+    
+    ​[bold]Reason:[/bold]
+    ​[check] Lost ID
+    ​[check] Stolen ID
+    ​[check] Damaged / Unreadable
+    ​[check] Other: [form]
+    
+    ​[bold]Last seen location of old ID:[/bold]
+    ​[form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Personnel
+    ​[bullet] Head of Requested Department
+    ​[bullet] Captain (if Command role requested)
+    
+    ────────────────────────────────────────
+    ​[italic]Filed under Station Records – Valid for duration of shift[/italic]
+    ​[color=#aaaaaa][italic]
+    NOTICE: Application for employment constitutes acceptance of NanoTrasen employment terms, codes of conduct, and disciplinary structures. All employees acknowledge that duties may be reassigned at any time for operational necessity. Positions of trust (Command, Security, Research) require adherence to elevated background standards; falsification of details is a Class-B corporate offense. NanoTrasen reserves the right to terminate employment without cause, in accordance with the Galactic Employment Waiver Act and Corporate Security Directive §12F.[/italic][/color]
+    
+    
+    
+    
+    
+    
+    ​[color=#aaaaaa][italic]Place for Signatures / Stamps[/italic][/color]
+    ​
+    ​
+
+# title: Statement of Resignation
+# slug: Statement_Resignation
+doc-text-printer-identity-employment-statement-resignation =
+    ​[logo]
+    
+    
+    ​[head=1][color=#1b67a5]PERSONNEL ADMINISTRATION[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]STATEMENT[/bold][/color][/head] – [color=#0055aa][bolditalic]RESIGNATION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal declaration of voluntary resignation from active duties aboard the station[/italic][/color][/center]
+    
+    ​[head=2]Resignation Details[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Resigning Individual:[/bold] [signature]
+    ​[bold]Current Department / Position:[/bold] [form]
+    
+    ​[head=2]Reason for Resignation[/head]
+    ​[check] Personal choice
+    ​[check] Medical grounds
+    ​[check] Conflict of interest
+    ​[check] Security / disciplinary concerns
+    ​[check] Other: [form]
+    
+    ​[bold]Optional Statement (to be recorded in station archives):[/bold]
+    ​[form]
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Submission of this form constitutes a voluntary resignation from all duties, authority, and privileges associated with the listed position. The individual remains bound by corporate law and policy until officially transferred off-station or reassigned.
+    ​[/italic][/color]
+    
+    
+    
+    
+    ​[color=#aaaaaa][italic]Place for Command Signatures / Stamps (HoP or Captain required)[/italic][/color]
+    ​
+    ​
+
+# Medical
+
+# title: Body Repossession / Donor Allocation
+# slug: Form_Body_Repossession
+doc-text-printer-medical-form-body-repossession =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]BODY REPOSSESSION / DONOR ALLOCATION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Authorization to repurpose a recovered biological body as a donor chassis for transplantation, cloning, or integration with a healthy brain when original brain consent is unavailable or impossible.[/italic][/color][/center]
+    
+    ​[head=2]Case Reference[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Processing Individual:[/bold] [form]
+    
+    ​[head=2]Body Identification[/head]
+    ​[bold]Name on Record (if any):[/bold] [form]
+    ​[bold]Species / Biological Type:[/bold] [form]
+    ​[bold]Condition Summary:[/bold] [form]
+    
+    ​[head=2]Eligibility Checks (tick all that apply)[/head]
+    ​[check] Original brain absent or irreparably destroyed
+    ​[check] Body tissues intact and viable for transplant / hosting
+    ​[check] No active infectious / anomalous agent detected
+    ​[check] No forensic hold or active criminal investigation
+    ​[check] Ethical review completed / waiver documented
+    ​[check] Other conditions / notes: [form]
+    
+    ​[head=2]Intended Use (select primary purpose)[/head]
+    ​[check] Donor body for biological brain transplant
+    ​[check] Host chassis for synthetic / cyborg integration
+    ​[check] Research specimen
+    ​[check] Medical training / study
+    ​[check] Other: [form]
+    
+    ​[head=2]Processing & Safety Measures[/head]
+    ​[bold]Planned Procedure / Protocols:[/bold]
+    ​[form]
+    
+    ​[head=2]Authorization (required)[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Chief Medical Officer (CMO) – medical viability & ethics sign-off
+    ​[bullet] Captain – Command authorization for body repossession / allocation
+    
+    ​[bold]Recommended Additional Stamps (if applicable):[/bold]
+    ​[bullet] Head of Security – confirm no investigative hold
+    ​[bullet] Research Director / Ethics Board – confirm research clearance
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Repossession and allocation of biological bodies is a serious act governed by NanoTrasen Medical Directive §18 and Synthetic Oversight Protocols. This form documents combined medical, ethical, and command authorization when original brain consent is unavailable. Bodies repurposed under this authorization must be logged, tracked, and cross-referenced with all related records. Unauthorized reuse, concealment of holds, or falsification of clearances constitutes a Class-A corporate offense.
+    ​[/italic][/color]
+    
+    ​[italic]Place for Medical / Command / Security Stamps and Signatures[/italic]
+    ​
+    ​
+
+# title: Emergency Medical Waiver
+# slug: Form_Emergency_Medical_Waiver
+doc-text-printer-medical-form-emergency-medical-waiver =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]EMERGENCY MEDICAL WAIVER[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Authorization to perform treatment or surgery without prior consent due to immediate threat to patient life or station safety[/italic][/color][/center]
+    
+    ​[head=2]Patient Information[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Patient Name (if known):[/bold] [form]
+    ​[bold]Department / Role:[/bold] [form]
+    ​[bold]Condition at Time of Waiver:[/bold] [form]
+    
+    ​[head=2]Emergency Circumstances[/head]
+    ​[check] Patient unconscious / unable to provide consent
+    ​[check] Life-threatening condition requiring immediate intervention
+    ​[check] Highly contagious / anomalous condition posing risk to crew
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Situation:[/bold]
+    ​[form]
+    
+    ​[head=2]Authorized Procedure[/head]
+    ​[check] Emergency surgery
+    ​[check] Life-saving treatment (defib, transfusion, chemical intervention)
+    ​[check] Quarantine / isolation procedure
+    ​[check] Other: [form]
+    
+    ​[bold]Procedure Description / Intended Outcome:[/bold]
+    ​[form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Attending Physician / Surgeon
+    ​[bullet] Chief Medical Officer (if available)
+    ​[bullet] Command Endorsement (if condition poses station-wide risk)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This waiver authorizes treatment without prior consent only in emergencies. It does not absolve medical staff of responsibility for professional conduct. Abuse of this waiver constitutes a Class-A violation of NanoTrasen Medical Ethics and Corporate Law. All such cases are subject to post-incident review.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Medical / Command Stamps and Signatures[/italic]
+    ​
+    ​
+
+# title: Medical Consent Form
+# slug: Form_Medical_Consent
+doc-text-printer-medical-form-medical-consent =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]MEDICAL CONSENT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal authorization for medical treatment, surgery, or experimental procedure aboard station facilities[/italic][/color][/center]
+    
+    ​[head=2]Patient Information[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Patient Name:[/bold] [form]
+    ​[bold]Department / Role:[/bold] [form]
+    
+    ​[head=2]Treatment / Procedure[/head]
+    ​[check] Standard medical treatment (non-invasive)
+    ​[check] Surgery (routine / emergency)
+    ​[check] Prosthetic / augmentation procedure
+    ​[check] Experimental / research-based treatment
+    ​[check] Other: [form]
+    
+    ​[bold]Procedure Description:[/bold]
+    ​[form]
+    
+    ​[head=2]Consent[/head]
+    ​[check] I understand the risks involved and consent to the listed treatment.
+    ​[check] I decline the treatment.
+    ​[check] Consent provided by next-of-kin / guardian (if patient unable to sign).
+    
+    ​[bold]Patient / Guardian Signature:[/bold] [signature]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Patient / Guardian Signature
+    ​[bullet] Attending Physician / Surgeon
+    ​[bullet] Chief Medical Officer Approval (if required)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Consent may be withdrawn at any time prior to procedure unless condition is life-threatening and refusal endangers the patient or crew. Experimental procedures require explicit authorization by both the patient and Medical Command. Fraudulent consent forms are punishable under NanoTrasen Corporate Law.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Medical Signatures / Stamps[/italic]
+    ​
+    ​
+
+# title: Medical Prescription Form
+# slug: Form_Medical_Prescription
+doc-text-printer-medical-form-medical-prescription =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]MEDICAL PRESCRIPTION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Authorized medical order for the controlled dispensing of pharmaceuticals aboard station facilities[/italic][/color][/center]
+    
+    ​[head=2]Patient Information[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Patient Name:[/bold] [form]
+    ​[bold]Department / Role:[/bold] [form]
+    ​[bold]Medical Record ID (if applicable):[/bold] [form]
+    
+    ​[head=2]Prescription Details[/head]
+    ​[bold]Medication Name:[/bold] [form]
+    ​[bold]Dosage & Administration Method:[/bold] [form]
+    ​[bold]Frequency / Duration:[/bold] [form]
+    ​[bold]Quantity to Dispense:[/bold] [form]
+    
+    ​[head=2]Reason for Prescription[/head]
+    ​[check] Pain management
+    ​[check] Infection / illness treatment
+    ​[check] Chronic condition
+    ​[check] Psychiatric treatment
+    ​[check] Chemical stabilization (addiction / trauma)
+    ​[check] Other: [form]
+    
+    ​[bold]Additional Notes / Warnings:[/bold]
+    ​[form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    Prescribing Physician / Surgeon
+    Chief Medical Officer Approval (if required)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This form authorizes the listed medication to be issued only to the named patient. Unauthorized duplication, alteration, or use of prescription drugs constitutes a Class-B corporate offense. Medications must be logged in the station’s medical records and pharmacy register.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Medical Stamp / Signature[/italic]
+    ​
+    ​
+
+# title: Post-Transplant Identity Acknowledgment
+# slug: Form_Post-Transplant_Identity_Acknowledgement
+doc-text-printer-medical-form-post-transplant-identity-acknowledgement =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]POST-TRANSPLANT IDENTITY ACKNOWLEDGMENT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Issued to individuals revived or reconstructed within a new biological body under NanoTrasen medical recovery programs[/italic][/color][/center]
+    
+    ​[head=2]Patient Information[/head]
+    ​[bold]Date & Time of Revival:[/bold] [form]
+    ​[bold]Recovered Name (if remembered):[/bold] [form]
+    ​[bold]Previous Occupation / Department (if remembered):[/bold] [form]
+    ​[bold]Species / Classification (current body):[/bold] [form]
+    
+    ​[head=2]Medical Summary[/head]
+    ​[color=#aaaaaa][italic]The following summary is provided for your awareness and medical record:[/italic][/color]
+    ​[bullet] Your original body sustained irreversible damage and could not be repaired or revived.
+    ​[bullet] Your neural substrate or consciousness pattern was successfully transferred into a compatible donor body.
+    ​[bullet] This donor body was medically verified as unclaimed and viable under Corporate Directive §18.
+    ​[bullet] Your genetic, biometric, and neurological signatures now correspond to the new body.
+    ​[bullet] Your current biological and psychological adaptation will be monitored by Medical.
+    
+    ​[bold]Additional Notes from Medical Staff:[/bold]
+    ​[form]
+    
+    ​[head=2]Orientation & Expectations[/head]
+    ​[color=#aaaaaa][italic]Please review the following informational statements:[/italic][/color]
+    ​[bullet] Some residual memory gaps, dissociation, or identity confusion are normal during adaptation.
+    ​[bullet] Physical coordination and reflexes may differ due to new muscular or skeletal structure.
+    ​[bullet] You may request counseling or therapy support at any time through the Medical Department.
+    ​[bullet] You are expected to resume your duties once medically cleared by the Chief Medical Officer.
+    
+    ​[head=2]Patient Acknowledgment[/head]
+    ​[color=#aaaaaa][italic]Please complete the section below to update your identification and acknowledge the procedure:[/italic][/color]
+    
+    ​[bold]I hereby confirm that I have read and understood the summary above and acknowledge possession of a new biological body provided by NanoTrasen Medical Services.[/bold]
+    
+    ​[bold]Current Name / Identity (as chosen or remembered):[/bold] [form]
+    ​[bold]Preferred Name (if different):[/bold] [form]
+    ​[bold]Statement or Reflection (optional):[/bold] [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Patient / Subject
+    ​[bullet] Attending Physician or Chief Medical Officer
+    ​[bullet] Counselor / Therapist (if present during reawakening)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This document serves as both identity confirmation and psychological stabilization aid following a post-mortem neural recovery. The use of donor bodies is regulated under NanoTrasen Medical and Ethical Directive §18. All records remain confidential. Attempts to claim ownership of previous biological remains or assets will be reviewed by Corporate Legal Division.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Medical / Patient Signatures and Stamps[/italic]
+    ​
+    ​
+
+# title: Therapy Session Record
+# slug: Form_Therapy_Session_Record
+doc-text-printer-medical-form-therapy-session-record =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]  
+    ────────────────────────────────────────  
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]THERAPY SESSION RECORD[/bolditalic][/color]  
+    ────────────────────────────────────────  
+    ​[center][color=#aaaaaa][italic]Confidential record of a psychological support or counseling session conducted aboard NanoTrasen facilities[/italic][/color][/center]  
+    
+    ​[head=2]Session Information[/head]  
+    ​[bold]Date & Time:[/bold] [form]  
+    ​[bold]Therapist:[/bold] [signature]  
+    ​[bold]Location of Session:[/bold] [form]  
+    
+    ​[head=2]Client Information[/head]  
+    ​[bold]Client Name:[/bold] [form]  
+    ​[bold]Department / Role:[/bold] [form]  
+    ​[check] Voluntary session  
+    ​[check] Mandatory session (by order of Command or Medical)  
+    ​[check] Emergency / crisis intervention  
+    ​[check] Other: [form]  
+    
+    ​[head=2]Session Summary[/head]  
+    ​[bold]General Subject or Focus of Discussion:[/bold]  
+    ​[form]  
+    
+    ​[bold]Observations / Remarks (behavioral, emotional, or situational):[/bold]  
+    ​[form]  
+    
+    ​[bold]Follow-up or Recommendations:[/bold]  
+    ​[check] Continue regular therapy sessions  
+    ​[check] Referral to Chief Medical Officer  
+    ​[check] Command consultation recommended  
+    ​[check] Fit for duty  
+    ​[check] Unfit for duty – temporary leave advised  
+    ​[check] Other: [form]  
+    
+    ​[head=2]Authorization[/head]  
+    ​[bold]Required Stamps/Signatures:[/bold]  
+    ​[bullet] Therapist / Counselor  
+    ​[bullet] Chief Medical Officer (if clinical record required)  
+    ​[bullet] Captain or Acting Command Authority (for mandatory sessions only)  
+    
+    ────────────────────────────────────────  
+    ​[color=#aaaaaa][italic]  
+    NOTICE: Therapy records are confidential medical documents protected under NanoTrasen Mental Health Policy §22-B. Disclosure to unauthorized personnel is prohibited. Misuse of this information constitutes a Class-B corporate privacy violation.  
+    ​[/italic][/color]  
+    
+    
+    
+    
+    
+    ​[italic]Place for Medical / Command Stamps and Signatures[/italic]  
+    ​
+    ​
+
+# title: Quarantine Notice
+# slug: Notice_Quarantine
+doc-text-printer-medical-notice-quarantine =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]NOTICE[/bold][/color][/head] – [color=#0055aa][bolditalic]QUARANTINE[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Official restriction of access and movement due to biological, chemical, or anomalous hazard[/italic][/color][/center]
+    
+    ​[head=2]Quarantine Details[/head]
+    ​[bold]Date & Time Issued:[/bold] [form]
+    ​[bold]Authorized By:[/bold] [signature]
+    ​[bold]Affected Area / Individual(s):[/bold] [form]
+    
+    ​[head=2]Reason for Quarantine[/head]
+    ​[check] Confirmed infectious disease
+    ​[check] Suspected outbreak (pending tests)
+    ​[check] Hazardous chemical release
+    ​[check] Anomalous or xeno threat
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Hazard / Risk Level:[/bold]
+    ​[form]
+    
+    ​[head=2]Restrictions Enforced[/head]
+    ​[check] No entry or exit permitted without authorization
+    ​[check] Security presence required
+    ​[check] Medical staff only permitted inside
+    ​[check] Area must be sealed / depressurized
+    ​[check] Other: [form]
+    
+    ​[head=2]Duration[/head]
+    ​[bold]Quarantine in effect until:[/bold] [form]
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Violation of quarantine procedures is a Class-A offense. All crew are required to comply with the restrictions listed above. Only Command staff or Central Command may lift this order prior to the expiration of declared duration.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Medical / Command Stamps and Signatures[/italic]
+    ​
+    ​
+
+# title: Hazardous Experiment Permit
+# slug: Permission_Hazardous_Experiment
+doc-text-printer-medical-permission-hazardous-experiment =
+    ​[logo]
+    
+    
+    ​[head=1][color=#c96dbf]SCIENCE DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]PERMISSION[/bold][/color][/head] – [color=#0055aa][bolditalic]HAZARDOUS EXPERIMENT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Authorization to conduct experiments with anomalous, volatile, or otherwise dangerous materials, devices, or organisms[/italic][/color][/center]
+    
+    ​[head=2]Experiment Details[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Lead Researcher:[/bold] [form]
+    ​[bold]Supervising Scientist / RD:[/bold] [form]
+    ​[bold]Experiment Title / ID:[/bold] [form]
+    
+    ​[head=2]Hazard Category[/head]
+    ​[check] High-energy / explosive reaction
+    ​[check] Hazardous chemical / biological exposure
+    ​[check] Anomalous artifact / xenoarcheology
+    ​[check] Prototype weapon or device
+    ​[check] Other: [form]
+    
+    ​[bold]Description of Experiment:[/bold]
+    ​[form]
+    
+    ​[head=2]Safety Measures Required[/head]
+    ​[check] Secure test chamber / blast shield
+    ​[check] Atmospherics monitoring active
+    ​[check] Medical standby alerted
+    ​[check] Security standby alerted
+    ​[check] Emergency containment / scrubbers ready
+    ​[check] Other: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Research Director (or acting Head of Science)
+    ​[bullet] Captain or Acting Command Authority
+    ​[bullet] Chief Engineer / Chief Medical Officer (if risk crosses into engineering or medical domains)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Unauthorized or unsupervised hazardous experiments constitute a Class-A violation of Corporate Law and may result in termination or criminal referral. This permit must remain on record and be presented to Security or Command upon request.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Stamps / Signatures[/italic]
+    ​
+    ​
+
+# title: Morgue Report
+# slug: Report_Morgue
+doc-text-printer-medical-report-morgue =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]MEDICAL DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REPORT[/bold][/color][/head] – [color=#0055aa][bolditalic]MORGUE RECORD[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Official record documenting the confirmed death or cognitive loss of a crew member, including post-mortem assessment and reason for non-revival[/italic][/color][/center]
+    
+    ​[head=2]Deceased Information[/head]
+    ​[bold]Date & Time of Death / Pronouncement:[/bold] [form]
+    ​[bold]Full Name of Deceased / Subject:[/bold] [form]
+    ​[bold]Department / Position:[/bold] [form]
+    ​[bold]Species / Biological Type:[/bold] [form]
+    ​[bold]Body Recovered By:[/bold] [form]
+    
+    ​[head=2]Type of Death[/head]
+    ​[check] Biological death – no vital signs detected
+    ​[check] Cognitive death / SSD (Space Sleep Disorder – brain unresponsive, body viable)
+    ​[check] Confirmed brain destruction / irreversible neural loss
+    ​[check] Other (specify): [form]
+    
+    ​[head=2]Death Details[/head]
+    ​[bold]Location of Death (if known):[/bold] [form]
+    ​[bold]Condition of Body on Arrival:[/bold] [form]
+    ​[bold]Presumed Time Since Death / Brain Death:[/bold] [form]
+    ​[bold]Observed Injuries / Anomalies:[/bold] [form]
+    
+    ​[head=2]Cause of Death[/head]
+    ​[check] Blunt or crushing trauma
+    ​[check] Ballistic or piercing wound
+    ​[check] Burn / thermal damage
+    ​[check] Asphyxiation / decompression
+    ​[check] Toxin or chemical exposure
+    ​[check] Radiation or environmental hazard
+    ​[check] Biological / anomalous infection
+    ​[check] Cardiac or medical failure
+    ​[check] Cognitive failure (SSD)
+    ​[check] Unknown – under investigation
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Findings / Notes:[/bold]
+    ​[form]
+    
+    ​[head=2]Processing Assessment[/head]
+    ​[check] Valid DNR order present
+    ​[check] Body unrevivable – catastrophic damage or incompatibility
+    ​[check] No viable clone data / failed cloning attempt
+    ​[check] Brain absent, missing, or non-functional (SSD)
+    ​[check] Consciousness confirmed destroyed (positronic / organic)
+    ​[check] Body processed for reuse (healthy chassis / transplant candidate)
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Non-Revival or Processing Decision:[/bold]
+    ​[form]
+    
+    ​[head=2]Post-Mortem Handling[/head]
+    ​[check] Body stored in morgue
+    ​[check] Released to Security (for investigation)
+    ​[check] Released to crew memorial / next of kin
+    ​[check] Cremated
+    ​[check] Spaced / ejected per regulation
+    ​[check] Transferred to Science for study
+    ​[check] Body repurposed / reassigned to new brain
+    ​[check] Other: [form]
+    
+    ​[bold]Additional Remarks / Identification Notes:[/bold]
+    ​[form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Attending Physician / Coroner
+    ​[bullet] Chief Medical Officer
+    ​[bullet] Head of Security (if under investigation)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This record documents both biological and cognitive fatalities as defined under NanoTrasen Medical Directive §14-D and Synthetic Oversight §9-B.
+    “Space Sleep Disorder” constitutes irreversible cognitive death for medical and legal purposes. Bodies repurposed for brain transfer or research must be logged under this report and cross-referenced with cloning or processing records.
+    Falsifying or omitting death data constitutes a Class-A corporate offense.
+    ​[/italic][/color]
+    
+    ​[italic]Place for Medical / Security Stamps and Signatures[/italic]
+    ​
+    ​
+
+# title: Reintegration Briefing
+# slug: Statement_Reintegration_Briefing
+doc-text-printer-medical-statement-reintegration-briefing =
+    ​[logo]
+    
+    
+    ​[head=1][color=#5b97bc]WELCOME BACK TO SERVICE[/color][/head]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Issued by NanoTrasen Medical & Personnel Administration – “Every mind deserves a second chance.”[/italic][/color][/center]
+    
+    ​[head=2]Your Revival Was a Success[/head]
+    Congratulations, crew member! Following the unfortunate loss of your prior body, NanoTrasen’s cutting-edge [bold]Neural Recovery & Reinstantiation Program[/bold] has successfully restored your consciousness to operational status. You are alive, alert, and ready to return to duty — in a slightly improved, or at least different, condition.
+    
+    ​[head=2]About Your New Body[/head]
+    ​[bullet] Your current body was obtained from [bold]approved donor stock[/bold] under Medical Directive §18.
+    ​[bullet] While it may not be “yours” in the traditional sense, it now fully qualifies as [bold]your authorized biological vessel[/bold].
+    ​[bullet] Any differences in height, build, or complexion are purely cosmetic and should not affect your work performance.
+    ​[bullet] If you experience mild detachment, phantom memories, or existential unease, please report to the [bold]Therapy Office[/bold]. These effects typically resolve within one to three shifts.
+    
+    ​[head=2]Your Responsibilities[/head]
+    ​[bullet] Treat your new body as corporate property entrusted to your care.
+    ​[bullet] Follow all Medical and Security protocols regarding neural or genetic maintenance.
+    ​[bullet] Report any unfamiliar physical impulses, memory inconsistencies, or unexplained abilities to the Chief Medical Officer immediately.
+    ​[bullet] Remember: you are still you — but a safer, stronger, and more [italic]asset-friendly[/italic] version of yourself.
+    
+    ​[head=2]Adjustment & Aftercare[/head]
+    ​[bullet] Avoid strenuous activity or combat within the first 30 minutes of reactivation.
+    ​[bullet] Hydrate frequently; foreign tissue integration can cause dehydration.
+    ​[bullet] Expect minor neural echo phenomena (“voices,” “shadows,” “lingering smells”). These are harmless artifacts of consciousness upload latency.
+    ​[bullet] If symptoms persist, your therapist may prescribe mild sedatives or personality resynchronization therapy.
+    
+    ​[head=2]Identity & Records[/head]
+    Your personnel records have been updated to reflect your revival and reassignment. If your [bold]previous body remains unrecovered[/bold], your file now lists [bold]“Reinstantiated”[/bold] as your physical status. You may select a [bold]preferred name or pronouns[/bold] if your current ID tag does not match your previous record.
+    
+    ​[head=2]Final Note[/head]
+    NanoTrasen thanks you for your continued dedication and flexibility in the face of mortality. Your resilience reflects the best of our corporate values: [center][color=#5b97bc][bolditalic]“Efficiency, Continuity, Immortality.”[/bolditalic][/color][/center]
+    
+    ​[color=#aaaaaa][italic]Remember: death is temporary — employment is not.[/italic][/color]
+    ​
+    ​
+
+# Science
+
+# title: Anomalous Bonding Consent
+# slug: Form_Anomalous_Bonding_Consent
+doc-text-printer-science-form-anomalous-bonding-consent =
+    ​[logo]
+    
+    
+    ​[head=1][color=#c96dbf]SCIENCE DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]ANOMALOUS BONDING CONSENT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Written consent authorizing voluntary or continued hosting of an anomalous entity, artifact, or energy bond under NanoTrasen Research Oversight Protocols[/italic][/color][/center]
+    
+    ​[head=2]Subject Information[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Name & Role of Host Individual:[/bold] [signature]
+    ​[bold]Species / Biological Classification:[/bold] [form]
+    
+    ​[head=2]Anomaly Details[/head]
+    ​[bold]Anomaly Type / Designation:[/bold] [form]
+    ​[bold]Origin or Discovery Location:[/bold] [form]
+    ​[bold]Current Containment Status:[/bold] [form]
+    
+    ​[head=2]Consent Type[/head]
+    ​[check] Voluntary Pre-Bonding Consent – I agree to intentionally form a bond with the listed anomaly for research or testing purposes.
+    ​[check] Post-Bonding Consent – I am already bonded to the anomaly and consent to retaining the bond under supervision.
+    
+    ​[head=2]Acknowledgments[/head]
+    ​[check] I understand that anomaly bonding may cause unpredictable psychological or physiological effects.
+    ​[check] I understand that bonded individuals may pose a potential threat to station integrity.
+    ​[check] I agree to submit to regular medical and scientific examination.
+    ​[check] I agree to immediate reporting of changes in behavior, health, or anomalous manifestations.
+    ​[check] I may withdraw consent only if the anomaly can be safely removed.
+    ​[check] Other conditions or clarifications: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Subject (host individual)
+    ​[bullet] Research Director or Roboticist (overseeing anomaly study)
+    ​[bullet] Chief Medical Officer
+    ​[bullet] Captain or Acting Command Authority
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Anomalous bonding carries inherent and unpredictable risks. This consent form acknowledges voluntary assumption of those risks under NanoTrasen’s supervision. Unauthorized anomaly interaction or concealment of bonding constitutes a Class-A research violation under Corporate Safety Directive §47-C.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Subject / Medical / Science / Command Stamps and Signatures[/italic]
+    ​
+    ​
+
+# title: Cyborg Chassis Transfer Record
+# slug: Form_Cyborg_Chassis_Transfer
+doc-text-printer-science-form-cyborg-chassis-transfer =
+    ​[logo]
+    
+    
+    ​[head=1][color=#c96dbf]SCIENCE DEPARTMENT[/color][/head]  
+    ────────────────────────────────────────  
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]CYBORG CHASSIS TRANSFER[/bolditalic][/color]  
+    ────────────────────────────────────────  
+    ​[center][color=#aaaaaa][italic]Documentation of a cyborg’s positronic brain transfer between chassis, including reasoning, verification, and authorizations[/italic][/color][/center]  
+    
+    ​[head=2]Transfer Information[/head]  
+    ​[bold]Date & Time:[/bold] [form]  
+    ​[bold]Supervising Roboticist / Technician:[/bold] [form]  
+    ​[bold]AI Core / Oversight System (if applicable):[/bold] [form]  
+    
+    ​[head=2]Unit Identification[/head]  
+    ​[bold]Unit Designation / Name:[/bold] [form]  
+    ​[bold]Serial Number (Brain ID):[/bold] [form]  
+    ​[bold]Previous Chassis Model / Type:[/bold] [form]  
+    ​[bold]New Chassis Model / Type:[/bold] [form]  
+    ​[bold]New Assigned Name (if applicable):[/bold] [form]  
+    
+    ​[head=2]Reason for Transfer[/head]  
+    ​[check] Chassis damaged or destroyed  
+    ​[check] Task reassignment / specialization change  
+    ​[check] Voluntary preference (AI or unit request)  
+    ​[check] Testing or research operation  
+    ​[check] Other: [form]  
+    
+    ​[bold]Summary / Technical Notes:[/bold]  
+    ​[form]  
+    
+    ​[head=2]Authorization[/head]  
+    ​[bold]Required Stamps/Signatures:[/bold]  
+    ​[bullet] Roboticist or Research Director  
+    
+    ────────────────────────────────────────  
+    ​[color=#aaaaaa][italic]  
+    NOTICE: The positronic brain constitutes the legal personhood of a synthetic entity. Chassis destruction is considered material loss only; brain destruction constitutes irreversible termination under Synthetic Oversight Protocol §9-B. All transfers must be logged for traceability and liability purposes.  
+    ​[/italic][/color]  
+    
+    
+    
+    
+    
+    ​[italic]Place for Science / Command Stamps and Signatures[/itali]()
+    ​
+    ​
+
+# title: Cyborg Conversion Record
+# slug: Form_Cyborg_Conversion_Record
+doc-text-printer-science-form-cyborg-conversion-record =
+    ​[logo]
+    
+    
+    ​[head=1][color=#c96dbf]SCIENCE DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]CYBORG CONVERSION RECORD[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Documentation of the conversion of a human or synthetic consciousness into a cyborg chassis under NanoTrasen Synthetic Oversight Protocols[/italic][/color][/center]
+    
+    ​[head=2]Conversion Details[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Supervising Roboticist / Technician:[/bold] [form]
+    ​[bold]AI Core (if applicable):[/bold] [form]
+    
+    ​[head=2]Subject Information[/head]
+    ​[bold]Name of Individual:[/bold] [form]
+    ​[bold]Species / Role Prior to Conversion:[/bold] [form]
+    ​[bold]Physical Condition at Time of Conversion:[/bold] [form]
+    ​[check] Living volunteer
+    ​[check] Deceased / post-mortem conversion
+    ​[check] Critically injured – life could not be sustained
+    ​[check] Other: [form]
+    
+    ​[head=2]Chassis Information[/head]
+    ​[bold]Assigned Chassis Model / Type:[/bold] [form]
+    ​[bold]Unit Designation / Name (post-conversion):[/bold] [form]
+    
+    ​[head=2]Reason for Conversion[/head]
+    ​[check] Voluntary enhancement / occupational reassignment
+    ​[check] Emergency preservation of consciousness
+    ​[check] Research or experimental procedure
+    ​[check] Disciplinary or corrective conversion (requires Command approval)
+    ​[check] Other: [form]
+    
+    ​[bold]Summary / Procedure Notes:[/bold]
+    ​[form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Roboticist or Research Director
+    ​[bullet] Chief Medical Officer
+    ​[bullet] Captain or Acting Command Authority
+    ​[bullet] Internal Affairs Agent (if available)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Cyborg conversion represents a permanent and legally binding transformation of the individual’s state of existence. Consent, or post-mortem justification, must be clearly documented. Unauthorized conversions constitute a Class-A corporate offense under Synthetic Oversight and Human Preservation Directives §12–17.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Science / Medical / Command Stamps and Signatures[/italic]
+    ​
+    ​
+
+# title: Voluntary Conversion Consent
+# slug: Form_Cyborg_Voluntary_Conversion_Consent
+doc-text-printer-science-form-cyborg-voluntary-conversion-consent =
+    ​[logo]
+    
+    
+    ​[head=1][color=#c96dbf]SCIENCE DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]FORM[/bold][/color][/head] – [color=#0055aa][bolditalic]VOLUNTARY CYBORG CONVERSION CONSENT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal declaration of consent to permanent conversion into a positronic cyborg chassis under NanoTrasen Synthetic Oversight Protocols[/italic][/color][/center]
+    
+    ​[head=2]Subject Information[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Name of Individual:[/bold] [form]
+    ​[bold]Department / Position:[/bold] [form]
+    ​[bold]Species / Biological Classification:[/bold] [form]
+    
+    ​[head=2]Acknowledgment of Procedure[/head]
+    ​[check] I understand that the cyborg conversion process involves the removal and integration of my brain into a synthetic chassis.
+    ​[check] I acknowledge that following conversion, I will no longer possess biological form, and my consciousness will be subject to NanoTrasen’s Synthetic Oversight Protocols and Law Systems.
+    ​[check] I understand that this process is irreversible.
+    ​[check] I have had the opportunity to ask questions regarding the procedure and its consequences.
+    ​[check] I consent to the procedure freely, without coercion or duress.
+    ​[check] Other conditions / clarifications: [form]
+    
+    ​[head=2]Assigned Chassis Information[/head]
+    ​[bold]Chassis Model / Type:[/bold] [form]
+    ​[bold]Intended Unit Designation / Name:[/bold] [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Subject (personal consent)
+    ​[bullet] Roboticist or Research Director
+    ​[bullet] Chief Medical Officer
+    ​[bullet] Captain or Acting Command Authority
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This consent represents a permanent legal waiver of biological personhood and establishes the subject as a registered synthetic under NanoTrasen jurisdiction. The individual’s rights henceforth fall under Synthetic Sentience and Oversight Directives §9–12. Unauthorized coercion or alteration of this document is a Class-A corporate offense.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Subject / Medical / Science / Command Stamps and Signatures[/italic]
+    ​
+    ​
+
+# title: Hazardous Equipment Release Permit
+# slug: Permission_Hazardous_Equipment_Release
+doc-text-printer-science-permission-hazardous-equipment-release =
+    ​[logo]
+    
+    
+    ​[head=1][color=#c96dbf]SCIENCE DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]PERMISSION[/bold][/color][/head] – [color=#0055aa][bolditalic]HAZARDOUS EQUIPMENT RELEASE[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Authorization for the controlled issue of experimental or high-risk scientific equipment to crew outside the Science Department[/italic][/color][/center]
+    
+    ​[head=2]Permit Details[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Authorizing Scientist / Technician:[/bold] [signature]
+    ​[bold]Requesting Individual / Department:[/bold] [form]
+    
+    ​[head=2]Equipment Description[/head]
+    ​[bold]Item / Device Name:[/bold] [form]
+    ​[bold]Category:[/bold]
+    ​[check] Prototype or experimental device
+    ​[check] Hazardous tool or chemical emitter
+    ​[check] Research board or circuit (e.g., lathe or fabricator)
+    ​[check] Portable anomaly-related equipment
+    ​[check] Other: [form]
+    
+    ​[bold]Serial / Batch Number (if applicable):[/bold] [form]
+    ​[bold]Intended Purpose / Location of Use:[/bold] [form]
+    
+    ​[head=2]Safety Precautions and Conditions[/head]
+    ​[check] Operator briefed on risks and proper handling
+    ​[check] Use restricted to specific area: [form]
+    ​[check] Must be returned after use or shift end
+    ​[check] Prohibited from replication or modification
+    ​[check] Monitoring by Science / Command required
+    ​[check] Other: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Authorizing Scientist or Research Director
+    ​[bullet] Head of Receiving Department
+    ​[bullet] Captain or appropriate Acting Command Authority (for high-risk items)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This permit authorizes the temporary issue of research equipment deemed potentially hazardous or abusable. Unauthorized duplication, misuse, or modification constitutes a Class-A Research Violation and may result in disciplinary action or confiscation by Security.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Science / Command / Departmental Stamps and Signatures[/italic]
+    ​
+    ​
+
+# Security & Law
+
+# title: Labor Violation Complaint
+# slug: Complaint_Labor_Violation
+doc-text-printer-security-law-complaint-labor-violation =
+    ​[logo]
+    
+    
+    ​[head=1][color=#134975]INTERNAL AFFAIRS[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]COMPLAINT[/bold][/color][/head] – [color=#0055aa][bolditalic]LABOR VIOLATION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal grievance filed to Internal Affairs regarding employment, workplace conditions, or abuse of authority[/italic][/color][/center]
+    
+    ​[head=2]Filing Party[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Complainant Name:[/bold] [signature]
+    ​[bold]Department / Role:[/bold] [form]
+    
+    ​[head=2]Accused Party[/head]
+    ​[bold]Name of Supervisor / Individual:[/bold] [form]
+    ​[bold]Department / Position:[/bold] [form]
+    
+    ​[head=2]Nature of Violation[/head]
+    ​[check] Unlawful termination / reassignment
+    ​[check] Harassment / Hostile work environment
+    ​[check] Unsafe working conditions
+    ​[check] Wage / resource withholding
+    ​[check] Abuse of authority / favoritism
+    ​[check] Other: [form]
+    
+    ​[bold]Description of Incident (include dates, locations, actions):[/bold]
+    ​[form]
+    
+    ​[head=2]Witnesses / Evidence[/head]
+    ​[bold]Witness Names / Departments:[/bold] [form]
+    ​[bold]Supporting Evidence (logs, items, testimony):[/bold] [form]
+    
+    ​[head=2]IAA Processing[/head]
+    ​[bold]Received By (IAA):[/bold] [form]
+    ​[bold]Follow-up Action Taken:[/bold] [form]
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Filing a grievance is a protected action under NanoTrasen Corporate Regulations. Retaliation against complainants is strictly prohibited. False or malicious complaints constitute a corporate offense and may result in disciplinary review.
+    ​[/italic][/color]
+    
+    
+    
+    
+    ​[italic]Place for Internal Affairs Stamp / Signature[/italic]
+    ​
+    ​
+
+# title: Offense Complaint
+# slug: Complaint_Offense
+doc-text-printer-security-law-complaint-offense =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]COMPLAINT[/bold][/color][/head] – [color=#0055aa][bolditalic]OFFENSE REPORT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Formal complaint alleging misconduct, criminal activity, or violation of corporate regulations[/italic][/color][/center]
+    
+    ​[head=2]Filing Party[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Complainant Name:[/bold] [signature]
+    ​[bold]Department / Role:[/bold] [form]
+    
+    ​[head=2]Accused Party[/head]
+    ​[bold]Name of Accused Individual:[/bold] [form]
+    ​[bold]Department / Role:[/bold] [form]
+    ​[bold]Physical Description (if unknown or ID not available):[/bold] [form]
+    
+    ​[head=2]Nature of Offense[/head]
+    ​[check] Animal Cruelty
+    ​[check] Possession or Use of Minor Contraband
+    ​[check] Petty Theft
+    ​[check] Vandalism
+    ​[check] Trespass
+    ​[check] Disturbance
+    ​[check] Impersonation or Fraud
+    ​[check] Other: [form]
+    
+    ​[bold]Description of Incident:[/bold]
+    ​[form]
+    
+    ​[head=2]Witnesses / Evidence[/head]
+    ​[bold]Witness Names / Departments:[/bold] [form]
+    ​[bold]Supporting Evidence (items, logs, testimony):[/bold] [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Receiving Officer / Investigator:[/bold] [form]
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Filing a false or malicious complaint constitutes a corporate offense and may result in disciplinary action. Valid complaints will be investigated by Security and/or Internal Affairs, and outcomes recorded in station records.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Security Stamps / Signatures[/italic]
+    ​
+    ​
+
+# title: Do Not Resuscitate Order
+# slug: Order_DNR
+doc-text-printer-security-law-order-dnr =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]ORDER[/bold][/color][/head] – [color=#0055aa][bolditalic]DO NOT RESUSCITATE (DNR)[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Authorization to deny resuscitation, cloning, or revival of an individual due to capital crimes or corporate directive[/italic][/color][/center]
+    
+    ​[head=2]Subject Information[/head]
+    ​[bold]Name of Individual:[/bold] [form]
+    ​[bold]Department / Position:[/bold] [form]
+    ​[bold]Physical Description / ID Verification:[/bold] [form]
+    
+    ​[head=2]Reason for DNR[/head]
+    ​[check] Refusal of Mental Shielding
+    ​[check] Terrorism
+    ​[check] Unlawful Execution
+    ​[check] Prevention of Revival
+    ​[check] Mass Murder
+    ​[check] Enemy of Corporation
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Crimes / Evidence:[/bold]
+    ​[form]
+    
+    ​[head=2]Scope of Order[/head]
+    ​[check] No cloning permitted
+    ​[check] No defibrillation permitted
+    ​[check] No revival by medical or anomalous means
+    ​[check] Other restrictions: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Security
+    ​[bullet] Captain
+    ​[bullet] Chief Medical Officer (confirmation of medical feasibility)
+    ​[bullet] Internal Affairs Agent (if available)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: A DNR order is a capital-level directive. It denies all attempts to revive or restore the individual named above. This order is only lawful when applied to confirmed capital offenders or hostile agents. Unauthorized issuance or violation of this order constitutes a Class-A corporate offense. Medical staff are indemnified from liability when following a properly authorized DNR.
+    ​[/italic][/color]
+    
+    
+    
+    ​[italic]Place for Stamps / Final Signatures[/italic]
+    ​
+    ​
+
+# title: Execution Order
+# slug: Order_Execution
+doc-text-printer-security-law-order-execution =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]ORDER[/bold][/color][/head] – [color=#0055aa][bolditalic]EXECUTION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Official directive authorizing the capital execution of a sentient individual under NanoTrasen Corporate Law and Standard Operating Procedure[/italic][/color][/center]
+    
+    ​[head=2]Subject Information[/head]
+    ​[bold]Name of Condemned Individual:[/bold] [form]
+    ​[bold]Department / Position:[/bold] [form]
+    ​[bold]Physical Description / ID Verification:[/bold] [form]
+    
+    ​[head=2]Charges Leading to Execution[/head]
+    ​[check] Refusal of Mental Shielding
+    ​[check] Terrorism
+    ​[check] Unlawful Execution
+    ​[check] Prevention of Revival
+    ​[check] Mass Murder
+    ​[check] Enemy of Corporation
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Evidence / Justification:[/bold]
+    ​[form]
+    
+    ​[head=2]Execution Method[/head]
+    ​[check] Firing squad
+    ​[check] Lethal injection
+    ​[check] Spacing / airlock exposure
+    ​[check] Electric chair / energy discharge
+    ​[check] Other: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Security
+    ​[bullet] Captain
+    ​[bullet] Internal Affairs Agent (if available)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This order constitutes the highest level of disciplinary action permitted aboard NanoTrasen facilities. Execution is only lawful after evidence of a capital crime has been established and command authorization secured. Unauthorized executions constitute a Class-A corporate offense and may result in permanent dismissal, trial, or capital punishment for the responsible parties.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Stamps / Final Signatures[/italic]
+    ​
+    ​
+
+# title: Execution & DNR Order
+# slug: Order_Execution_and_DNR
+doc-text-printer-security-law-order-execution-and-dnr =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]ORDER[/bold][/color][/head] – [color=#0055aa][bolditalic]EXECUTION & DO NOT RESUSCITATE[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Final directive authorizing capital execution and permanent prohibition of resuscitation or cloning, pursuant to NanoTrasen Corporate Law[/italic][/color][/center]
+    
+    ​[head=2]Subject Information[/head]
+    ​[bold]Name of Condemned Individual:[/bold] [form]
+    ​[bold]Department / Position:[/bold] [form]
+    
+    ​[head=2]Offenses Leading to Execution[/head]
+    ​[check] Refusal of Mental Shielding
+    ​[check] Terrorism
+    ​[check] Unlawful Execution
+    ​[check] Prevention of Revival
+    ​[check] Mass Murder
+    ​[check] Enemy of Corporation
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Evidence / Reasoning:[/bold]
+    ​[form]
+    
+    ​[head=2]Execution Details[/head]
+    ​[check] Firing squad
+    ​[check] Lethal injection
+    ​[check] Spacing / airlock exposure
+    ​[check] Electric chair / energy discharge
+    ​[check] Other: [form]
+    
+    ​[bold]Execution Time / Location:[/bold] [form]
+    
+    ​[head=2]Post-Execution Directive[/head]
+    ​[check] Do Not Resuscitate – no defibrillation, cloning, or revival permitted
+    ​[check] Body to be secured / retained by Security
+    ​[check] Body to be cremated or spaced (specify): [form]
+    ​[check] Other: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Security
+    ​[bullet] Captain
+    ​[bullet] Internal Affairs Agent (if available)
+    ​[bullet] Chief Medical Officer (to confirm medical compliance)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This order represents the final disciplinary measure authorized under NanoTrasen Corporate Law. Execution and accompanying DNR status may only be enacted after confirmation of capital offenses and Command approval. Unauthorized issuance or violation of this order constitutes a Class-A corporate offense and is subject to tribunal review.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Command / Security / Medical Stamps and Signatures[/italic]
+    ​
+    ​
+
+# title: Parole Order
+# slug: Order_Parole
+doc-text-printer-security-law-order-parole =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]ORDER[/bold][/color][/head] – [color=#0055aa][bolditalic]PAROLE[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Official directive releasing an individual from confinement under specified conditions and supervision[/italic][/color][/center]
+    
+    ​[head=2]Subject Information[/head]
+    ​[bold]Name of Paroled Individual:[/bold] [form]
+    ​[bold]Department / Position (if employed):[/bold] [form]
+    ​[bold]Physical Description / ID Verification:[/bold] [form]
+    
+    ​[head=2]Conviction Details[/head]
+    ​[bold]Original Charges:[/bold] [form]
+    ​[bold]Sentence Served (time or penalty):[/bold] [form]
+    
+    ​[head=2]Conditions of Parole[/head]
+    ​[check] Subject must remain within assigned department / work area
+    ​[check] Subject must report regularly to Security for check-ins
+    ​[check] Subject may not carry weapons or restricted items
+    ​[check] Subject is assigned a Security escort
+    ​[check] Subject must wear monitoring device (if available)
+    ​[check] Other: [form]
+    
+    ​[bold]Parole Duration / Expiry:[/bold] [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Security
+    ​[bullet] Warden
+    ​[bullet] Captain (optional for high-profile cases)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Parole is a conditional release, not an acquittal. Any violation of parole conditions may result in immediate re-arrest and reinstatement of the original sentence, with additional penalties under Corporate Law.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Stamps / Final Signatures[/italic]
+    ​
+    ​
+
+# title: Contraband Permit
+# slug: Permission_Contraband
+doc-text-printer-security-law-permission-contraband =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/head][/color]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]PERMIT[/bold][/color][/head] – [color=#0055aa][bolditalic]CONTRABAND POSSESSION[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Issued under authority of the NanoTrasen Security Department – Authorizes conditional possession of restricted items[/italic][/color][/center]
+    
+    ​[head=2]Permit Details[/head]
+    ​[bold]Date & Time Issued:[/bold] [form]
+    ​[bold]Authorizing Official:[/bold] [signature]
+    ​[bold]Authorized Individual:[/bold] [form]
+    
+    ​[head=2]Authorized Item(s)[/head]
+    ​[bold]Item Name / Description:[/bold] [form]
+    ​[bold]Serial Number / Unique Marks (if any):[/bold] [form]
+    ​[bold]Storage / Location (where item must be kept):[/bold] [form]
+    ​[check] On person
+    ​[check] Lockable Locker
+    ​[check] Other: [form]
+    
+    ​[head=2]Reason for Authorization[/head]
+    ​[check] Research / Testing (Science Dept.)
+    ​[check] Religious / Cultural Exception (Chapel)
+    ​[check] Medical Application
+    ​[check] Security Training Exercise
+    ​[check] Command Directive
+    ​[check] Other: [form]
+    
+    ​[head=2]Conditions of Possession & Validity[/head]
+    ​[check] Item restricted to specified area: [form]
+    ​[check] Item must be secured when not in use
+    ​[check] Holder must present permit on request
+    ​[check] Permit valid until revoked / replaced (state conditions below)
+    ​[bold]Validity / Special Conditions:[/bold] [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Warden or above
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Unauthorized use, transfer, or modification of permitted items remains a violation of Space Law. This permit covers only the individual and conditions listed above; violations will be referred to Internal Affairs.
+    ​[/italic][/color]
+    
+    ​[color=#aaaaaa][italic]Place for Stamps / Additional Signatures[/italic][/color]
+    ​
+    ​
+
+# title: Equipment Authorization
+# slug: Permission_Equipment
+doc-text-printer-security-law-permission-equipment =
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/head][/color]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]PERMIT[/bold][/color][/head] – [color=#0055aa][bolditalic]USE OF EQUIPMENT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Issued under authority of the NanoTrasen Security Department – Conditional use of restricted or hazardous equipment[/italic][/color][/center]
+    
+    ​[head=2]Permit Details[/head]
+    ​[bold]Date & Time Issued:[/bold] [form]
+    ​[bold]Authorizing Official:[/bold] [signature]
+    ​[bold]Authorized Individual:[/bold] [form]
+    
+    ​[head=2]Equipment Details[/head]
+    ​[bold]Item / Type:[/bold] [form]
+    ​[check] Protective Gear (armor, hardsuit)
+    ​[check] Specialized Tool (R&D, engineering, medical)
+    ​[check] Hazardous Device (shields, explosives, prototypes)
+    ​[check] Other: [form]
+    ​[bold]Serial Number / Markings:[/bold] [form]
+    
+    ​[head=2]Reason for Authorization[/head]
+    ​[check] Assigned Duty Requirement
+    ​[check] Research / Testing
+    ​[check] Maintenance / Repair
+    ​[check] Command Directive
+    ​[check] Other: [form]
+    
+    ​[head=2]Conditions of Use[/head]
+    ​[check] Use only while on duty
+    ​[check] Keep equipment secured when not in use
+    ​[check] Return to issuing department after task
+    ​[check] Report any malfunctions or incidents
+    ​[check] Other: [form]
+    
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Security
+    ​[bullet] Head of Authorized Individual's Department (or equivalent)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Unauthorized use or transfer of issued equipment remains a violation of Space Law. This authorization applies only to the individual and conditions listed above.
+    ​[/italic][/color]
+    
+    
+    
+    
+    ​[color=#aaaaaa][italic]Place for Stamps / Additional Signatures[/italic][/color]
+    ​
+    ​
+
+# title: Weapon Authorization
+# slug: Permission_Firearm
+doc-text-printer-security-law-permission-firearm =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/head][/color]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]PERMIT[/bold][/color][/head] – [color=#0055aa][bolditalic]FIREARM[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]For routine issue of sidearms, longarms and standard energy weapons. Quick armory handover form.[/italic][/color][/center]
+    
+    ​[head=2]Permit Details[/head]
+    ​[bold]Date & Time Issued:[/bold] [form]
+    ​[bold]Authorizing Official:[/bold] [signature]
+    ​[bold]Authorized Individual:[/bold] [form]
+    
+    ​[head=2]Weapon Details[/head]
+    ​[bold]Weapon Name / Model:[/bold] [form]
+    
+    ​[head=2]Weapon Type[/head]
+    ​[check] Sidearm (pistol, revolver)
+    ​[check] Longarm (rifle, shotgun)
+    ​[check] Energy weapon (laser, taser)
+    ​[check] Heavy weapon (carbine, LMG, launcher)
+    ​[check] Other: [form]
+    
+    ​[head=2]Authorized Ammunition[/head]
+    ​[check] Hollow-Point (HP)
+    ​[check] Soft-Point (SP)
+    ​[check] Full Metal Jacket (FMJ)
+    ​[check] Non-Lethal (rubber, beanbag, disruptor, taser, etc.)
+    ​[check] N/A
+    ​[check] Other: [form]
+    
+    ​[head=2]Permitted Ammo Allotment[/head]
+    ​[check] Magazines: [form]
+    ​[check] Magazine Boxes: [form]
+    ​[check] Drums: [form]
+    ​[check] Speed-Loaders: [form]
+    ​[check] N/A
+    
+    ​[head=2]Conditions & Restrictions[/head]
+    ​[check] Permitted alert level: [form]
+    ​[check] Station security operations only
+    ​[check] Use restricted to specified areas: [form]
+    ​[check] Must be surrendered after shift / incident
+    ​[check] Other: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Warden or above
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Unauthorized possession or misuse of restricted weaponry is a violation of Corporate Law. All issued arms remain property of NanoTrasen and must be returned upon request. Weapon and ammo MAY be provided by the security department.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    
+    ​[color=#aaaaaa][italic]Place for Signatures / Stamps[/italic][/color]
+    ​
+    ​
+
+# title: Search Warrant
+# slug: Permission_Search_Warrant
+doc-text-printer-security-law-permission-search-warrant =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/head][/color]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]PERMIT[/bold][/color][/head] – [color=#0055aa][bolditalic]SEARCH WARRANT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Authorized by the NanoTrasen Security Department – Use only with Command or IA approval[/italic][/color][/center]
+    
+    ​[head=3]Warrant Details[/head]
+    ​[bold]Date & Time Issued:[/bold] [form]
+    ​[bold]Authorizing Official:[/bold] [signature]
+    
+    ​[bold]Subject Name:[/bold] [form]
+    ​[bold]Physical Description:[/bold] [form]
+    
+    ​[head=3]Search Authorization[/head]
+    ​[check] Personal belongings / backpack
+    ​[check] Assigned quarters / dormitory
+    ​[check] Workplace / departmental area
+    ​[check] Storage locker / containers
+    ​[check] Other: [form]
+    
+    ​[head=3]Reason for Warrant[/head]
+    ​[bold]Suspected violations / contraband:[/bold]
+    ​[form]
+    
+    ​[head=3]Limitations & Conditions[/head]
+    ​[check] Subject must be present during search
+    ​[check] Command staff oversight required
+    ​[check] IA observer present
+    ​[check] Other: [form]
+    
+    ​[head=3]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Head of Security OR Warden
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Unauthorized or falsified searches may result in disciplinary action and review by Internal Affairs. This warrant is valid only for the time and location specified.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    
+    ​[color=#aaaaaa][italic]Place for Signatures / Stamps[/italic][/color]
+    ​
+    ​
+
+# title: Special Armament Permit
+# slug: Permission_Special_Amarment
+doc-text-printer-security-law-permission-special-amarment =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/head][/color]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]PERMIT[/bold][/color][/head] – [color=#0055aa][bolditalic]SPECIAL ARMAMENT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Required for grenades/throwables, explosives, high-risk melee, chemical agents, prototypes and other non-standard devices.[/italic][/color][/center]
+    
+    ​[head=2]Permit Details[/head]
+    ​[bold]Date & Time Issued:[/bold] [form]
+    ​[bold]Authorizing Official:[/bold] [signature]
+    ​[bold]Authorized Individual:[/bold] [form]
+    
+    ​[head=2]Device Category (tick applicable)[/head]
+    ​[check] Grenade / Throwable Device (fragmentation, stun, smoke, incendiary)
+    ​[check] Explosive / Charge / Breaching Device
+    ​[check] Melee Weapon (bladed, electrified, ceremonial of concern)
+    ​[check] Chemical / Gas / Biological agent
+    ​[check] Prototype / Experimental Device
+    ​[check] Other: [form]
+    
+    ​[head=2]Device Details[/head]
+    ​[bold]Item Name / Model:[/bold] [form]
+    ​[bold]Quantity Issued:[/bold] [form]
+    ​[bold]Intended Use / Location:[/bold] [form]
+    
+    ​[head=2]Required Safety & Controls (tick applicable)[/head]
+    ​[check] Holder certified / trained for device handling
+    ​[check] Two-person custody for transfers (both must sign/stamp)
+    ​[check] Secure storage in blast/chemical locker when not in use
+    ​[check] Use restricted to designated zone: [form]
+    ​[check] Medical & Research sign-off required (chemical/biological)
+    ​[check] Other: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Warden or above
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Special armaments carry elevated risk. This permit must be present during transports or use. Unauthorized use/transfer will be reviewed by Internal Affairs.
+    ​[/italic][/color]
+    
+    
+    
+    
+    ​[color=#aaaaaa][italic]Place for Authorizing Command Stamp(s) & Witness Stamps (stamps preferred over signatures)[/italic][/color]
+    ​
+    ​
+
+# title: Arrest Report
+# slug: Report_Arrest
+doc-text-printer-security-law-report-arrest =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REPORT[/bold][/color][/head] – [color=#0055aa][bolditalic]ARREST RECORD[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Filed by Security personnel to document the detention, charges, and disposition of an arrested individual[/italic][/color][/center]
+    
+    ​[head=2]Arrest Details[/head]
+    ​[bold]Date & Time of Arrest:[/bold] [form]
+    ​[bold]Arresting Officer(s):[/bold] [form]
+    ​[bold]Location of Arrest:[/bold] [form]
+    
+    ​[head=2]Subject Information[/head]
+    ​[bold]Name of Detainee:[/bold] [form]
+    ​[bold]Department / Position (if crew):[/bold] [form]
+    ​[bold]Physical Description / ID Verification:[/bold] [form]
+    
+    ​[head=2]Charges[/head]
+    ​[check] Theft / Grand Theft
+    ​[check] Assault / Battery
+    ​[check] Murder / Attempted Murder
+    ​[check] Sabotage / Trespass
+    ​[check] Resisting Arrest / Obstruction
+    ​[check] Contraband Possession
+    ​[check] Other: [form]
+    
+    ​[bold]Applicable Space Law / Corporate Code Reference:[/bold] [form]
+    
+    ​[head=2]Summary of Incident[/head]
+    ​[bold]Circumstances of Arrest / Evidence Collected:[/bold]
+    ​[form]
+    
+    ​[bold]Witnesses (if any):[/bold] [form]
+    
+    ​[head=2]Processing & Disposition[/head]
+    ​[check] Detained – pending investigation
+    ​[check] Sentenced – brig time served: [form] minutes
+    ​[check] Released – insufficient evidence
+    ​[check] Released on parole
+    ​[check] Executed (attach Execution Order)
+    ​[check] Other: [form]
+    
+    ​[bold]Property Confiscated (if any):[/bold] [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Arresting Officer
+    ​[bullet] Warden
+    ​[bullet] Head of Security (for review or confirmation)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: All arrests must be recorded to maintain accountability and legal traceability. Falsifying or omitting arrest information constitutes a Class-A offense under NanoTrasen Corporate Law. Copies of this report must be stored in Security records and made available to Internal Affairs upon request.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Security Stamps / Signatures[/italic]
+    ​
+    ​
+
+# title: Case File
+# slug: Report_Case_file
+doc-text-printer-security-law-report-case-file =
+    ​[logo]
+    
+    
+    ​[head=1][color=#cb0000]SECURITY DEPARTMENT[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REPORT[/bold][/color][/head] – [color=#0055aa][bolditalic]DETECTIVE CASE FILE[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Filed by the Detective or Investigating Officer to document the findings, evidence, and outcome of a criminal investigation[/italic][/color][/center]
+    
+    ​[head=2]Case Information[/head]
+    ​[bold]Case Number / Title:[/bold] [form]
+    ​[bold]Date & Time Opened:[/bold] [form]
+    ​[bold]Assigned Investigator:[/bold] [form]
+    ​[bold]Related Incident / Arrest Report ID (if applicable):[/bold] [form]
+    
+    ​[head=2]Summary of Case[/head]
+    ​[form]
+    
+    ​[head=2]Persons Involved[/head]
+    ​[bold]Suspect(s):[/bold] [form]
+    ​[bold]Victim(s):[/bold] [form]
+    ​[bold]Witness(es):[/bold] [form]
+    
+    ​[head=2]Evidence Collected[/head]
+    ​[check] Forensic samples (blood, prints, fibers)
+    ​[check] Photographic / video evidence
+    ​[check] Weapon / item recovered
+    ​[check] Digital or log evidence
+    ​[check] Other: [form]
+    
+    ​[bold]Evidence Details / Storage Location:[/bold]
+    ​[form]
+    
+    ​[head=2]Analysis & Findings[/head]
+    ​[bold]Preliminary Findings:[/bold]
+    ​[form]
+    
+    ​[bold]Conclusions / Recommended Action:[/bold]
+    ​[check] Further investigation required
+    ​[check] Suspect identified and detained
+    ​[check] Case resolved – suspect cleared
+    ​[check] Case unresolved – insufficient evidence
+    ​[check] Other: [form]
+    
+    ​[head=2]Authorization[/head]
+    ​[bold]Required Stamps/Signatures:[/bold]
+    ​[bullet] Investigating Detective / Officer
+    ​[bullet] Head of Security
+    ​[bullet] Internal Affairs Agent (if involved in oversight)
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: All investigative reports are confidential and must be archived with Security records. Unauthorized dissemination of investigative materials or evidence constitutes a Class-B offense under Corporate Law.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for Security / IA Stamps and Signatures[/italic]
+    ​
+    ​
+
+# title: Department Oversight Report
+# slug: Report_Department_Oversight
+doc-text-printer-security-law-report-department-oversight =
+    ​[logo]
+    
+    
+    ​[head=1][color=#134975]INTERNAL AFFAIRS[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REPORT[/bold][/color][/head] – [color=#0055aa][bolditalic]DEPARTMENT OVERSIGHT[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Filed by an Internal Affairs Agent to evaluate departmental performance, policy compliance, and overall operational conduct during a shift[/italic][/color][/center]
+    
+    ​[head=2]Report Details[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Filed By (IAA):[/bold] [signature]
+    ​[bold]Shift Reference / Station ID:[/bold] [form]
+    
+    ​[head=2]Department Evaluated[/head]
+    ​[check] Command
+    ​[check] Security
+    ​[check] Engineering
+    ​[check] Science
+    ​[check] Medical
+    ​[check] Supply / Cargo
+    ​[check] Service
+    ​[check] Other: [form]
+    
+    ​[bold]Head of Department Interviewed (if applicable):[/bold] [form]
+    
+    ​[head=2]Summary of Department Conduct[/head]
+    ​[bold]Operational Efficiency:[/bold] [form]
+    ​[bold]Policy / Space Law Compliance:[/bold] [form]
+    ​[bold]Crew Morale & Discipline Observed:[/bold] [form]
+    ​[bold]Notable Incidents or Concerns:[/bold] [form]
+    
+    ​[head=2]Findings[/head]
+    ​[check] Department performed within acceptable standards
+    ​[check] Minor issues identified – corrective action advised
+    ​[check] Major misconduct / violation observed
+    ​[check] Further investigation required
+    ​[check] Other: [form]
+    
+    ​[bold]Summary of Findings / Notes:[/bold]
+    ​[form]
+    
+    ​[head=2]Recommendations[/head]
+    ​[check] Training / procedural refresher needed
+    ​[check] Personnel reassignment advised
+    ​[check] Command intervention recommended
+    ​[check] No further action required
+    ​[check] Other: [form]
+    
+    ​[bold]Comments to Central Command / Station Command:[/bold]
+    ​[form]
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: Department Oversight Reports form part of the station’s permanent performance record. They must be filed honestly and without bias. Falsifying or suppressing oversight data constitutes a Class-B corporate offense and may result in disciplinary review.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for IAA Stamp / Signature[/italic]
+    ​
+    ​
+
+# title: Internal Affairs Report
+# slug: Report_Internal_Affairs
+doc-text-printer-security-law-report-internal-affairs =
+    ​[logo]
+    
+    
+    ​[head=1][color=#134975]INTERNAL AFFAIRS[/color][/head]
+    ────────────────────────────────────────
+    ​[head=2][color=#003366][bold]REPORT[/bold][/color][/head] – [color=#0055aa][bolditalic]INVESTIGATION FINDINGS[/bolditalic][/color]
+    ────────────────────────────────────────
+    ​[center][color=#aaaaaa][italic]Filed by a certified Internal Affairs Agent documenting the results of an inquiry, audit, or complaint investigation[/italic][/color][/center]
+    
+    ​[head=2]Report Information[/head]
+    ​[bold]Date & Time:[/bold] [form]
+    ​[bold]Filed By (IAA):[/bold] [signature]
+    ​[bold]Reference Complaint / Case ID:[/bold] [form]
+    
+    ​[head=2]Investigation Summary[/head]
+    ​[bold]Subject(s) of Investigation:[/bold] [form]
+    ​[bold]Alleged Violations / Concerns:[/bold] [form]
+    
+    ​[bold]Evidence Collected:[/bold]
+    ​[form]
+    
+    ​[bold]Witness Testimony / Interviews:[/bold]
+    ​[form]
+    
+    ​[head=2]Findings[/head]
+    ​[check] Allegations substantiated – violation confirmed
+    ​[check] Allegations unsubstantiated – insufficient evidence
+    ​[check] Allegations false / malicious complaint
+    ​[check] Other outcome: [form]
+    
+    ​[bold]Summary of Findings:[/bold]
+    ​[form]
+    
+    ​[head=2]Recommendations[/head]
+    ​[check] No action required – case closed
+    ​[check] Disciplinary action recommended
+    ​[check] Reassignment of individual(s) recommended
+    ​[check] Training / corrective measures recommended
+    ​[check] Escalation to Central Command
+    ​[check] Other: [form]
+    
+    ​[bold]Notes for Command / Security:[/bold]
+    ​[form]
+    
+    ────────────────────────────────────────
+    ​[color=#aaaaaa][italic]
+    NOTICE: This document is part of the official Internal Affairs record. It must be archived with Station Command and forwarded to Central Command upon request. Interference with an IAA investigation or falsification of reports is a Class-B corporate offense under NanoTrasen Regulations.
+    ​[/italic][/color]
+    
+    
+    
+    
+    
+    ​[italic]Place for IAA Stamp / Signature[/italic]
+    ​
+    ​
 doc-text-printer-salvagelead-report =
     ⠀[logo]            [cclogo] 
-
+    
                               [head=3]NT-CC Consortium Services[/head]
-
+    
                    [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-    ⠀⠀                   [bold]SALVAGE LEAD REPORT[/bold]
-    ────────────────────────────────────────
+     ────────────────────────────────────────
+    ⠀⠀                             [bold]Salvage Lead Report[/bold]
+     ────────────────────────────────────────
+    
     Date and Time: [form]
-    Document Compiler: [signature]
-
+    
+    Compiler of the Document: [signature]
+    
     Expeditionary Threat: [form]
-
+    
     Observations: [form]
-
-    The following contraband was collected during the course of the Expedition:
-
+    
+    Contraband collected in span of Expedition, with understanding that all contraband must be turned over to Security at the time of station arrival:
      • [form]
      • [form]
      • [form]
-     • [form]
-     • [form]
-
-    It is understood that all contraband must be turned over to the Security Department upon arrival at the station.
-
+    
     Team status and overall readiness: [form]
-
-    Further notes: [form]
-
+    
+    Further Notes: [form]
+    
+    
      ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
