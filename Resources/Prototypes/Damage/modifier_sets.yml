@@ -138,10 +138,10 @@
     Shock: 0
     Structural: 0.5
   flatReductions:
-    Blunt: 5
-    Slash: 5
-    Piercing: 5
-    Heat: 5
+    Blunt: 10
+    Slash: 10
+    Piercing: 10
+    Heat: 10
     Structural: 10
 
 - type: damageModifierSet
