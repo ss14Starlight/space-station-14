@@ -85,6 +85,8 @@ public sealed class NukeSystem : EntitySystem
         SubscribeLocalEvent<NukeComponent, NukeDisarmDoAfterEvent>(OnDoAfter);
 
         SubscribeLocalEvent<NukeDiskComponent, BeingMicrowavedEvent>(OnMicrowaved);
+
+        SubscribeLocalEvent<NukeDiskComponent, ComponentInit>(OnDiskInit); // Starlight
     }
 
     private void OnInit(EntityUid uid, NukeComponent component, ComponentInit args)
@@ -680,6 +682,11 @@ public sealed class NukeSystem : EntitySystem
         else
             args.PushMarkup(Loc.GetString("examinable-unanchored"));
     }
+
+    // Starlight begin
+    private void OnDiskInit(EntityUid uid, NukeDiskComponent component, ComponentInit args) => component.OwningStation =
+        GetNetEntity(_station.GetOwningStation(Transform(uid).GridUid));
+    // Starlight end
 }
 
 public sealed class NukeExplodedEvent : EntityEventArgs

@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Admeme.DestinyDice;
+using Content.Shared._Starlight.Dice.DestinyDice;
 using Content.Shared.Dice;
 using Robust.Client.GameObjects;
 

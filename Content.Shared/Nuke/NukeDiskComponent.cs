@@ -20,4 +20,6 @@ public sealed partial class NukeDiskComponent : Component
     [DataField]
     public TimeSpan MicrowaveStd = TimeSpan.FromSeconds(27.35);
     // STD of 27.36s means theres an 90% chance the time is between +-45s, and a ~99% chance its between +-70s
+
+    [DataField] public NetEntity? OwningStation; // Starlight
 }

@@ -5,7 +5,7 @@
   description: A magically enhanced d10, capable of rolling many many numbers and granting effects based on the roll.
   components:
     - type: Dice
-      sides: 12
+      sides: 1
       multiplier: 1
       offset: 1
       currentValue: 0
@@ -15,132 +15,143 @@
       rollDelay: 0
       effectGroups:
         0:
-          - successMessage: "You got some free stuff!"
+          - successMessage: "Rolled effect."
             effects:
-              - !type:SpawnPrototypeEffect
-                protos:
-                  - Skub
-                  - FoodCheeseSlice
-                  - PlushieRainbowLizard
-                  - MobMothroach
-        1:
-          - successMessage: "You got a koni plush!"
-            effects:
-              - !type:SpawnPrototypeEffect
-                spawnOnPlayer: true
-                protos:
-                  - PlushieKoni
-        2:
-          - successMessage: "EVERYONE GETS A CAPTAIN ID CARD LOL"
-            effects:
-              - !type:SpawnPrototypeEffect
-                spawnOnPlayer: true
-                spawnOnMultiple: true
-                playerRange: 10
-                protos:
-                  - CaptainIDCard
-        3:
-          - successMessage: "FIVE. HUNDRED. MOTHROACHES."
-            effects:
-              - !type:SpawnPrototypeEffect
-                protos:
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-                  - MobMothroach
-        4:
-          - successMessage: "fuck you, dragon spawn."
-            effects:
-              - !type:StationAnnouncementEffect
-                message: terror-dragon
-                color: "#ff0000"
-              - !type:AddGameRuleEffect
-                proto: DragonSpawn
-        5:
-          - successMessage: "death be upon ye"
-            delay: 1
-            effects:
-              - !type:KillRollerEffect
-                delay: 2
+              - !type:ExplosionEffect
+                typeId: Default
+                targetPlayer: false
+#        0:
+#          - successMessage: "You got some free stuff!"
+#            effects:
+#              - !type:SpawnPrototypeEffect
+#                protos:
+#                  - Skub
+#                  - FoodCheeseSlice
+#                  - PlushieRainbowLizard
+#                  - MobMothroach
+#        1:
+#          - successMessage: "You got a koni plush!"
+#            effects:
+#              - !type:SpawnPrototypeEffect
+#                spawnOnPlayer: true
+#                protos:
+#                  - PlushieKoni
+#        2:
+#          - successMessage: "EVERYONE GETS A CAPTAIN ID CARD LOL"
+#            effects:
+#              - !type:SpawnPrototypeEffect
+#                spawnOnPlayer: true
+#                spawnOnMultiple: true
+#                playerRange: 10
+#                protos:
+#                  - CaptainIDCard
+#        3:
+#          - successMessage: "FIVE. HUNDRED. MOTHROACHES."
+#            effects:
+#              - !type:SpawnPrototypeEffect
+#                protos:
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#                  - MobMothroach
+#        4:
+#          - successMessage: "fuck you, dragon spawn."
+#            effects:
+#              - !type:StationAnnouncementEffect
+#                message: terror-dragon
+#                color: "#ff0000"
+#              - !type:AddGameRuleEffect
+#                proto: DragonSpawn
+#        5:
+#          - successMessage: "death be upon ye"
+#            delay: 1
+#            effects:
+#              - !type:KillRollerEffect
+#                delay: 2
+#        6:
+#          - successMessage: "you are become the chess."
+#            effects:
+#              - !type:SendToChessDimensionEffect
+#                delay: 1
     - type: Sprite
       sprite: _Starlight/Admeme/neomoth/destinydie.rsi
       layers:
