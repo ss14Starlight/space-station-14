@@ -89,10 +89,6 @@
     containers:
       key_slots:
       - EncryptionKeyEvent
-  - type: Sprite
-    sprite: _Starlight/Clothing/Ears/Headsets/soviet_headset.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Ears/Headsets/soviet_headset.rsi
 
 - type: entity
   parent: ClothingHeadsetCargo
