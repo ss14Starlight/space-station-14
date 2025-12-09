@@ -102,3 +102,14 @@
   components:
     - type: Implanter
       implant: MagillitisSerumImplant
+
+- type: entity
+  id: RadioImplanterEvent
+  parent: BaseImplantOnlyImplanterSyndi
+  name: event radio implanter
+  description: Event radio channel implanter. For admin use only.
+  suffix: Admeme
+  components:
+  - type: Implanter
+    implant: RadioImplant
+    dissolveOnUse: true

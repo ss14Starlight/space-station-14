@@ -65,3 +65,18 @@
     - type: Tag
       tags:
         - EncryptionCargo
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyevent
+  name: event encryption key
+  description: An encryption key used by admins for events. You shouldn't be seeing this.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Event
+    defaultChannel: Event
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: synd_label

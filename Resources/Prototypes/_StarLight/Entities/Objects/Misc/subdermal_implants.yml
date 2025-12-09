@@ -35,3 +35,15 @@
     - type: PolymorphOnTrigger
       polymorph: RampagingGorilla
       targetUser: true
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantEvent
+  name: radio implant
+  description: Event radio implant. For admin use only.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - Event
