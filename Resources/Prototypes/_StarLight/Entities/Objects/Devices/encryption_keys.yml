@@ -68,7 +68,7 @@
 
 - type: entity
   parent: EncryptionKey
-  id: EncryptionKeyevent
+  id: EncryptionKeyEvent
   name: event encryption key
   description: An encryption key used by admins for events. You shouldn't be seeing this.
   components:
