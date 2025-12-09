@@ -3,6 +3,10 @@
 # ItemIdFrom: ItemIdTo - Change item
 # ItemIdFrom: null - Removes item from map
 
+# 2025-10-12
+JetpackSecurityFilled: JetpackSecuritySmallFilled
+JetpackSecurity: JetpackSecuritySmall
+
 # 2025-10-03
 SyndiAgentPDA: SyndiCorpsmanPDA
 

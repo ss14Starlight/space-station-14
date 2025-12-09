@@ -41,3 +41,45 @@
         moles:
           - 1.025689525 # oxygen
           - 1.025689525 # nitrogen
+
+- type: entity
+  id: JetpackSmall
+  parent: BaseJetpack
+  name: low-capacity jetpack
+  description: A low-capacity jetpack, not intended for long range travel. It can hold 1.5 L of gas.
+  suffix: Empty
+  components:
+    - type: Clothing
+      slots:
+        - Back
+    - type: GasTank
+      outputPressure: 42.6
+      air:
+        volume: 1.5
+
+- type: entity
+  id: JetpackSecuritySmall
+  parent: [JetpackSmall, BaseSecurityContraband]
+  name: security jetpack
+  suffix: Empty
+  components:
+  - type: Item
+    sprite: Objects/Tanks/Jetpacks/security.rsi
+  - type: Sprite
+    sprite: Objects/Tanks/Jetpacks/security.rsi
+  - type: Clothing
+    sprite: Objects/Tanks/Jetpacks/security.rsi
+
+- type: entity
+  id: JetpackSecuritySmallFilled
+  parent: JetpackSecuritySmall
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      volume: 1.5
+      temperature: 293.15
+      moles:
+        Oxygen: 0.307706858
+        Nitrogen: 0.307706858
