@@ -79,6 +79,22 @@
       path: /Audio/_Starlight/Effects/Radio/soviet.ogg
 
 - type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetEvent
+  name: event headset
+  suffix: Admeme
+  components:
+  - type: Headset
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyEvent
+  - type: Sprite
+    sprite: _Starlight/Clothing/Ears/Headsets/soviet_headset.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Ears/Headsets/soviet_headset.rsi
+
+- type: entity
   parent: ClothingHeadsetCargo
   id: ClothingHeadsetSalvageLead
   name: salvage lead's headset
