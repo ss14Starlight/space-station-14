@@ -76,7 +76,12 @@ namespace Content.Server.Database
             if (prefs is null)
                 return null;
 
-            var maxSlot = prefs.Profiles.Max(p => p.Slot) + 1;
+            // 🌟Starlight🌟 start : hotfix
+            var maxSlot = prefs.Profiles.Count > 0 
+                ? prefs.Profiles.Max(p => p.Slot) + 1 
+                : 0;
+            // 🌟Starlight🌟 end
+
             var profiles = new Dictionary<int, ICharacterProfile>(maxSlot);
             foreach (var profile in prefs.Profiles)
             {

@@ -9,6 +9,43 @@
   access:
   - Service
   - Maintenance
+  special: # Starlight start - librarian starts with crew languages
+  - !type:AddComponentSpecial
+    components:
+    - type: AdditionalLanguageKnowledge # If we just put in LanguageKnowledge, it'd overwrite your ability to e.g. understand mothroaches as a moth
+      speaks:
+      - GalacticCommon
+      - Scratch
+      - SolCommon
+      - Bubblish
+      - Canilunzt
+      - Chittin
+      - Draconic
+      - Marish
+      - Moffic
+      - Nekomimetic
+      - Sylvan
+      - Terrum
+      - Thaveyan
+      - VoxPidgin
+      - Sign
+      understands:
+      - GalacticCommon
+      - Scratch
+      - SolCommon
+      - Bubblish
+      - Canilunzt
+      - Chittin
+      - Draconic
+      - Marish
+      - Moffic
+      - Nekomimetic
+      - Sylvan
+      - Terrum
+      - Thaveyan
+      - VoxPidgin
+      - Sign
+  # Starlight end
 
 - type: startingGear
   id: LibrarianGear

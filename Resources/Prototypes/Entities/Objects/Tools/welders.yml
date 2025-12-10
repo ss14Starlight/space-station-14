@@ -89,6 +89,7 @@
     useSound:
       collection: Welder
     qualities: Welding
+  - type: ToolTileCompatible # Starlight - allow using welders on tiles (e.g. to repair damaged hull plate)
   - type: Welder
   - type: PointLight
     enabled: false

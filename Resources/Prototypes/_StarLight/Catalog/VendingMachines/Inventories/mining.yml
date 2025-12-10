@@ -1,5 +1,17 @@
 #equipment
 - type: listing
+  id: VendorMiningBinoculars
+  productEntity: Binoculars
+  cost:
+    SalvageTicket: 75
+  categories:
+    - MiningEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+    - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorMiningGrapplingGun
   productEntity: WeaponGrapplingGun
   cost:
@@ -59,7 +71,7 @@
   id: VendorMiningClothingOuterHardsuitAdvancedMining
   productEntity: ClothingOuterHardsuitAdvancedMining
   cost:
-    SalvageTicket: 1400
+    SalvageTicket: 1200
   categories:
   - MiningEquipment
   conditions:
@@ -86,6 +98,16 @@
 #  - MiningEquipment
 #  conditions:
 #  - !type:BuyerAccessCondition
+    
+- type: listing
+  id: VendorMiningClothingOuterHardsuitSpaceHazard
+  productEntity: ClothingOuterHardsuitSpaceHazard
+  cost:
+    SalvageTicket: 50
+  categories:
+  - MiningEquipment
+  conditions:
+  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorMiningMiningDrill

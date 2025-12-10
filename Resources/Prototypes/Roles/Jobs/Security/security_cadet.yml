@@ -16,7 +16,8 @@
   supervisors: job-supervisors-security
   canBeAntag: false
   access:
-  - Security
+# - Security # Starlight change
+  - Cadet # Starlight change
   - Brig
   - Maintenance
   - Service

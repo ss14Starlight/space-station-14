@@ -196,7 +196,7 @@
       sprite: Clothing/Back/Backpacks/salvage.rsi
 
 - type: entity
-  parent: [ ClothingBackpack, BaseSalvageContraband ] #Starlight salvContra
+  parent: ClothingBackpack
   id: ClothingBackpackMerc
   name: mercenary bag
   description: A backpack that has been in many dangerous places, a reliable combat backpack.
@@ -272,14 +272,19 @@
     sprite: Clothing/Back/Backpacks/ertchaplain.rsi
 
 - type: entity
-  parent: ClothingBackpackERTSecurity
+  parent: ClothingBackpackNTNC #SL
   id: ClothingBackpackDeathSquad
-  name: death squad backpack
-  description: Holds the kit of CentComm's most feared agents.
+  name: ntsf backpack #starlight
+  description: Holds the kit of NanoTrasen's most feared agents.
   components:
-    - type: Storage
-      grid:
-      - 0,0,7,6
+  - type: ExplosionResistance #SL
+    damageCoefficient: 0.1 #SL
+  - type: Sprite #SL
+    sprite: _Starlight/Clothing/Back/Backpacks/ntnc_bag.rsi #SL
+  - type: Storage
+    maxItemSize: Huge #SL
+    grid: #SL
+    - 0,0,8,5 #SL
 
 #Syndicate
 - type: entity

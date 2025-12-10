@@ -488,6 +488,27 @@ public partial class NavMapControl : MapGridControl
         }
     }
 
+    // Carpmosia-start - AI Navmap
+    public void AiFrameUpdate(float seconds, EntityUid? newMapUid)
+    {
+        if (MapUid != newMapUid)
+        {
+            MapUid = newMapUid;
+            ForceNavMapUpdate();
+        }
+        else
+        {
+            // Update the timer
+            _updateTimer += seconds;
+            if (_updateTimer >= UpdateTime)
+            {
+                _updateTimer -= UpdateTime;
+                UpdateNavMap();
+            }
+        }
+    }
+    // Carpmosia-end - AI Navmap
+
     protected virtual void UpdateNavMap()
     {
         // Clear stale values

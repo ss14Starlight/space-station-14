@@ -24,6 +24,7 @@
       species: Avali
       hideLayersOnEquip:
       - Tail
+      - HeadTop
     - type: Hunger # on 2x more
       thresholds:
         Overfed: 250
@@ -151,6 +152,16 @@
     - type: Stasis
       enterStasisAction: ActionStasisEnter
       exitStasisAction: ActionStasisExit
+      updateInterval: 1s
+      healingPerUpdate:
+        types:
+          Heat: 2
+          Cold: 2
+        groups:
+          Brute: 6
+      bleedHealPerUpdate: 1.0
+      critHealingModifier: 2.0
+      stasisDamageReduction: 0.5
 
 # Chirp!
 
