@@ -19,6 +19,7 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Physics.Components;
 using System.Numerics;
 using System.Linq;
+using Content.Server._Starlight.Station;
 using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
@@ -47,6 +48,7 @@ public sealed class AlertArmorySystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<AlertArmoryStationComponent, StationPostInitEvent>(InitializeAlertArmoryStation);
+        SubscribeLocalEvent<AlertArmoryStationComponent, ComponentShutdown>(OnShutdown); // Starlight
         SubscribeLocalEvent<AlertArmoryShuttleComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLStartedEvent>(OnFTLStart);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLTagEvent>(SetShuttleTag);
@@ -62,6 +64,17 @@ public sealed class AlertArmorySystem : EntitySystem
     ///</summary>
     private void InitializeAlertArmoryStation(EntityUid uid, AlertArmoryStationComponent comp, StationPostInitEvent ev)
     {
+        //Starlight start
+        if (TryComp<StationDataComponent>(uid, out var station))
+            foreach (var grid in station.Grids)
+            {
+                if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                if (!becomesStation.UseArmories)
+                    return;
+                break; // can break, we already found the grid that created this station
+            }
+        //Starlight end
+        
         var map = _map.CreateMap(out var mapId);
         _meta.SetEntityName(map, $"AlertArmories {uid}");
 
@@ -105,6 +118,15 @@ public sealed class AlertArmorySystem : EntitySystem
     ///</summary>
     private void OnStartup(EntityUid uid, AlertArmoryShuttleComponent comp, ComponentStartup ev) => EnsureComp<PreventPilotComponent>(uid);
 
+    // Starlight Start
+    /// <summary>
+    /// remove armories if parent station is deleted
+    /// </summary>
+    private void OnShutdown(EntityUid uid, AlertArmoryStationComponent comp, ComponentShutdown ev)
+    {
+        foreach (var grid in comp.Grids.Values) QueueDel(grid);
+    }
+    // Starlight End
     private void OnFTLStart(Entity<AlertArmoryShuttleComponent> ent, ref FTLStartedEvent ev)
     {
         if (ev.FromMapUid != ent.Comp.ArmorySpaceUid) //if we are not coming from armory space. drop people. this allows including eg: ERT on a armory if you want.

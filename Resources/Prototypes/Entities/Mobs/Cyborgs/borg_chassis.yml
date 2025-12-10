@@ -410,7 +410,7 @@
       visible: false
       sprite: Mobs/Silicon/Chassis/synd_sec_derelict.rsi #Starlight ;-;
   - type: BorgChassis
-    maxModules: 3
+    maxModules: 4 # starlight
     moduleWhitelist: # Note - the Derelict Assault Borg does not have a traversal module. This is intentional as Assault Borgs have space traversal with their c20 and free space movement, and they can navigate to the station using the pinpointer.
       tags:
       - BorgModuleGeneric

@@ -111,3 +111,17 @@
       - state: black_white-equipped-HAND
   - type: Fiber
     fiberColor: fibers-grey
+
+- type: entity
+  parent: [ BaseSalvageContraband, ClothingHandsGlovesCombat ]
+  id: ClothingHandsSalvageMercGlovesCombat
+  name: scrapper combat gloves
+  description: High-quality insulated gloves that provide protection while salvaging.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Hands/Gloves/salvage.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Hands/Gloves/salvage.rsi
+    - type: Fiber
+      fiberMaterial: fibers-insulative
+      fiberColor: fibers-brown

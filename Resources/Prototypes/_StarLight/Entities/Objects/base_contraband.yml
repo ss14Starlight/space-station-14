@@ -81,3 +81,11 @@
   components:
   - type: Contraband
     allowedDepartments: [ Law ]
+
+- type: entity
+  id: BaseEngineeringSecurityContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+    - type: Contraband
+      allowedDepartments: [ Engineering, Security ]

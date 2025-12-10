@@ -20,6 +20,9 @@
     solution: drink
   - type: Item
     size: Normal
+  - type: Tag
+    tags:
+    - DrinkCarton #Starlight
 
 - type: entity
   abstract: true

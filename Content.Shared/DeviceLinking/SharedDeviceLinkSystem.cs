@@ -378,8 +378,8 @@ public abstract class SharedDeviceLinkSystem : EntitySystem
         {
             foreach (var (sourcePort, sinkPort) in ports)
             {
-                RaiseLocalEvent(sourceUid, new PortDisconnectedEvent(sourcePort));
-                RaiseLocalEvent(sinkUid, new PortDisconnectedEvent(sinkPort));
+                RaiseLocalEvent(sourceUid, new PortDisconnectedEvent(sourcePort, sourceUid, sinkUid));
+                RaiseLocalEvent(sinkUid, new PortDisconnectedEvent(sinkPort, sourceUid, sinkUid));
             }
         }
 
@@ -417,8 +417,8 @@ public abstract class SharedDeviceLinkSystem : EntitySystem
             else
                 _adminLogger.Add(LogType.DeviceLinking, LogImpact.Low, $"unlinked {ToPrettyString(sourceUid):source} {source} and {ToPrettyString(sinkUid):sink} {sink}");
 
-            RaiseLocalEvent(sourceUid, new PortDisconnectedEvent(source));
-            RaiseLocalEvent(sinkUid, new PortDisconnectedEvent(sink));
+            RaiseLocalEvent(sourceUid, new PortDisconnectedEvent(source, sourceUid, sinkUid));
+            RaiseLocalEvent(sinkUid, new PortDisconnectedEvent(sink, sourceUid, sinkUid));
 
             outputs.Remove(sinkUid);
             linkedPorts.Remove((source, sink));

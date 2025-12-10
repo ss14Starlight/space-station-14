@@ -42,6 +42,8 @@
         - ImprovisedWirecutter
         - ImprovisedWrench
         - ImprovisedMultitool
+        - SyndicateJawsOfLife
+        - PrototypeJawsOfLife
       components:
         - StationMap
         - SprayPainter
@@ -83,6 +85,16 @@
         whitelist:
           tags:
           - JawsOfLife
+      # 🌟Starlight-start🌟
+      syn_jaws:
+        whitelist:
+          tags:
+          - SyndicateJawsOfLife
+      proto_jaws:
+        whitelist:
+          tags:
+          - PrototypeJawsOfLife
+      # 🌟Starlight-end🌟
       screwdriver_nuke:
         whitelist:
           tags:
@@ -693,7 +705,7 @@
     sprite: Clothing/Belt/securitywebbing.rsi
 
 - type: entity
-  parent: [ ClothingBeltStorageBase, BaseSalvageContraband ] #Starlight salvContra
+  parent: ClothingBeltStorageBase
   id: ClothingBeltMercWebbing
   name: mercenary webbing
   description: Ideal for storing everything from ammo to weapons and combat essentials.

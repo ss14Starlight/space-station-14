@@ -388,7 +388,7 @@
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
 
 - type: entity
   id: GunSafe
