@@ -9,6 +9,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._Starlight.Station; // Starlight
+using System.Linq; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -52,6 +54,14 @@ public sealed partial class ShuttleSystem
 
     private void OnCargoSpawnPostInit(EntityUid uid, StationCargoShuttleComponent component, ref StationPostInitEvent args)
     {
+        if (TryComp<StationDataComponent>(uid, out var station))
+            foreach (var grid in station.Grids)
+            {
+                if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                if (!becomesStation.AllowCargoShuttle)
+                    return;
+                break; // can break, we already found the grid that created this station
+            }
         CargoSpawn(uid, component);
     }
 
@@ -117,7 +127,7 @@ public sealed partial class ShuttleSystem
     private bool TryGridSpawn(EntityUid targetGrid, EntityUid stationUid, MapId mapId, GridSpawnGroup group, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
-
+        
         if (group.Paths.Count == 0)
         {
             Log.Error($"Found no paths for GridSpawn");
@@ -168,22 +178,42 @@ public sealed partial class ShuttleSystem
         // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
         _mapSystem.CreateMap(out var mapId);
 
-        foreach (var group in component.Groups.Values)
+        foreach (var group in component.Groups) // SL edit
         {
-            var count = _random.Next(group.MinCount, group.MaxCount + 1);
+            var count = _random.Next(group.Value.MinCount, group.Value.MaxCount + 1); // SL edit
 
+            // Starlight start
+            BecomesStationMidRoundComponent? station = null;
+            if (TryComp<StationDataComponent>(uid, out var data))
+                foreach (var grid in data.Grids)
+                {
+                    if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                    station = becomesStation;
+                    break; // can break, we already found the grid that created this station
+                }
+            // Starlight end
+            
             for (var i = 0; i < count; i++)
             {
                 EntityUid spawned;
 
-                switch (group)
+                switch (group.Value) // SL edit
                 {
                     case DungeonSpawnGroup dungeon:
+                        // Starlight start | block all dungeon spawns
+                        if(station is not null)
+                            if (!station.AllowDungeonSpawn)
+                                continue;
+                        // Starlight end
                         if (!TryDungeonSpawn(targetGrid.Value, dungeon, out spawned))
                             continue;
 
                         break;
                     case GridSpawnGroup grid:
+                        // Starlight start
+                        if (station is not null)
+                            if (!station.AllowedGridSpawns.Contains(group.Key)) continue; // group name must be whitelisted
+                        // Starlight end
                         if (!TryGridSpawn(targetGrid.Value, uid, mapId, grid, out spawned))
                             continue;
 
@@ -192,24 +222,24 @@ public sealed partial class ShuttleSystem
                         throw new NotImplementedException();
                 }
 
-                if (_protoManager.Resolve(group.NameDataset, out var dataset))
+                if (_protoManager.Resolve(group.Value.NameDataset, out var dataset)) // SL edit
                 {
                     _metadata.SetEntityName(spawned, _salvage.GetFTLName(dataset, _random.Next()));
                 }
 
-                if (group.Hide)
+                if (group.Value.Hide) // SL edit
                 {
                     var iffComp = EnsureComp<IFFComponent>(spawned);
                     iffComp.Flags |= IFFFlags.HideLabel;
                     Dirty(spawned, iffComp);
                 }
 
-                if (group.StationGrid)
+                if (group.Value.StationGrid) // SL edit
                 {
                     _station.AddGridToStation(uid, spawned);
                 }
 
-                EntityManager.AddComponents(spawned, group.AddComponents);
+                EntityManager.AddComponents(spawned, group.Value.AddComponents); // SL edit
             }
         }
 

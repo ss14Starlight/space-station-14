@@ -224,7 +224,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             unrevivable = true;
         
         // Starlight-start: Talking health analyzer
-        if (healthComp.Talk && healthComp.NextTalk < _timing.CurTime && TryComp<DamageableComponent>(target, out var damageable))
+        if (healthComp.Talk && healthComp.NextTalk < _timing.CurTime && TryComp<DamageableComponent>(target, out var damageable) && scanMode)
         {
             healthComp.NextTalk = _timing.CurTime + healthComp.TalkInterval;
             

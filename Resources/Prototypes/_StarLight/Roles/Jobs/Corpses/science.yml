@@ -1,0 +1,32 @@
+- type: startingGear
+  id: ResearchDirectorCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitResearchDirector
+    ears: ClothingHeadsetScience
+    shoes: ClothingShoesLeather
+    head: ClothingHeadHatBeretRND
+    pocket1: ResearchDisk5000
+
+- type: startingGear
+  id: ResearchAssistantCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientist
+    ears: ClothingHeadsetScience
+    shoes: ClothingShoesColorPurple
+    pocket1: AnomalyScanner
+
+- type: startingGear
+  id: ScientistCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorResearcher
+    ears: ClothingHeadsetScience
+    shoes: ClothingShoesColorPurple
+    pocket1: AnomalyScanner
+
+- type: startingGear
+  id: RoboticistCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRoboticist
+    ears: ClothingHeadsetScience
+    shoes: ClothingShoesColorPurple
+    pocket1: Wristwatch

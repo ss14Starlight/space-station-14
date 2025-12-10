@@ -103,7 +103,7 @@
           - HolosignProjector
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
-    
+
 - type: entity
   id: BorgModuleUppies
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
@@ -202,6 +202,186 @@
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
 
+# Service
+- type: entity
+  id: BorgModuleBartending
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: bartending cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-bartending
+  - type: ItemBorgModule
+    hands:
+    - item: DrinkGlass
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkGlass
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: DrinkGlass
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkGlass
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: DrinkShaker
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkShaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: BorgDropper
+    - item: BarSpoon
+    - hand:
+        emptyLabel: borg-slot-bottles-empty
+        emptyRepresentative: DrinkWhiskeyBottleFull
+        whitelist:
+          tags:
+          - DrinkBottle
+          - DrinkCarton
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: bartending-module }
+
+- type: entity
+  id: BorgModuleBooks
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: bookkeeping cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-pen
+  - type: ItemBorgModule
+    hands:
+    - item: Pen
+    - hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: Paper
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+    - hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: BookBase
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+    - item: BooksBag
+    - item: HandLabeler
+    - item: RubberStampApproved
+    - item: RubberStampDenied
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: bookkeeping-module }
+
+- type: entity
+  id: BorgModuleBotany
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: botany cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-gardening
+  - type: ItemBorgModule
+    hands:
+    - item: HydroponicsToolMiniHoe
+    - item: HydroponicsToolSpade
+    - item: HydroponicsToolClippers
+    - item: DiseaseSwab
+      hand:
+        emptyLabel: borg-slot-swabs-empty
+        emptyRepresentative: DiseaseSwab
+        whitelist:
+          components:
+          - BotanySwab
+    - item: HydroponicsToolScythe
+    - item: HydroponicsToolHatchet
+    - item: PlantBag
+    - hand:
+        emptyLabel: borg-slot-seeds-empty
+        emptyRepresentative: WheatSeeds
+        whitelist:
+          components:
+          - Seed
+    - hand:
+        emptyLabel: borg-slot-produce-empty
+        emptyRepresentative: FoodApple
+        whitelist:
+          components:
+          - Produce
+    - item: Bucket
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
+
+- type: entity
+  id: BorgModuleCooking
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: cooking cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-cooking
+  - type: ItemBorgModule
+    hands:
+    - item: BorgDropper
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - hand:
+        emptyLabel: borg-slot-ingredient-empty
+        emptyRepresentative: ReagentContainerFlour
+        whitelist:
+          tags:
+          - Ingredient
+          - Slice
+          - Condiment
+          - Packet
+          - Meat
+          - DrinkCarton
+          components:
+          - Produce
+    - hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreakfastAmerican
+        whitelist:
+          tags:
+          - Dinnerware
+          - Skewer
+          components:
+          - Edible
+        blacklist:
+          tags:
+          - Crayon
+          components:
+          - Clothing
+          - Organ
+    - item: KitchenKnife
+    - item: RollingPin
+
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: cooking-module }
+    
+#Syndicate
 - type: entity
   id: BorgModuleSyndicateAdvancedTool
   parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule, BaseSyndicateContraband]

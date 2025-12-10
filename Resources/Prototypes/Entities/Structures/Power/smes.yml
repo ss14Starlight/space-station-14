@@ -9,8 +9,8 @@
     mode: SnapgridCenter
   components:
     - type: AmbientSound
-      volume: -7
-      range: 3
+      volume: -6 #SL edit -7 -> -6
+      range: 4 #SL edit 3 -> 4
       sound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
     - type: Sprite

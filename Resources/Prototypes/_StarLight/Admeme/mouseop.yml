@@ -1,0 +1,247 @@
+- type: inventoryTemplate
+  id: InvMouseops
+  slots:
+    - name: outerClothingpin
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      stripTime: 6
+      uiWindowPos: 1,1
+      strippingWindowPos: 1,2
+      displayName: Suit
+    - name: glovespin
+      slotTexture: gloves
+      slotFlags: GLOVES
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,2
+      displayName: Gloves
+    - name: earspin
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 3
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,8
+      displayName: Ears
+    - name: idmouse
+      slotTexture: id
+      fullTextureName: template_small
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      displayName: ID
+    - name: backpin
+      slotTexture: back
+      slotFlags: BACK
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,0
+      strippingWindowPos: 0,5
+      displayName: Back
+
+- type: body
+  id: SindSiliconMouseops
+  name: "handPing"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - hands
+      - legs
+      organs:
+        lungs: OrganAnimalLungs
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        heart: OrganAnimalHeart
+        kidneys: OrganAnimalKidneys
+        cavity: null
+    hands:
+      part: HandsAnimal
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+- type: entity
+  name: mouff operative
+  parent: [SimpleMobBase, StripableInventoryBase]
+  id: MobNyrMouseOps
+  suffix: DO NOT MAP, Admeme
+  description: THAT'S THE FUCKING MOUSE IT CAME FOR A FUCKING CHEESE
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: red mouse!
+    description: "You are mouff leader. Your goal is to steal cheese from heads!"
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 15
+        Heat: 12
+        Structural: 15
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: /Textures/_Starlight/Admeme/mouseop.rsi
+    state: base
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: EyeProtection
+  - type: InventorySlots
+  - type: InteractionOutline
+  - type: ComplexInteraction
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: {visible: true}
+          False: {visible: false}
+  - type: Puller
+    needsHands: false
+  - type: Hands
+    showInHands: false
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatRat
+      amount: 2
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Critical
+      100: Dead
+  - type: Stamina
+    critThreshold: 200
+  - type: Body
+    prototype: SindSiliconMouseops
+    requiredLegs: 2
+  - type: Inventory
+    templateId: InvMouseops
+  - type: IdExaminable
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+    - AnomalyHost
+  - type: Temperature
+    heatDamageThreshold: 423
+    coldDamageThreshold: 0
+  - type: MovementAlwaysTouching
+  - type: PressureImmunity
+  - type: ProtectedFromStepTriggers
+  - type: Stripping
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+  - type: Respirator 
+    minSaturation: 5.0
+  - type: NoSlip
+  - type: FlashImmunity
+  - type: Loadout
+    prototypes: [ GearNyrMouseOps ]
+  - type: NightVision 
+  - type: ThermalVision
+
+- type: startingGear
+  id: GearNyrMouseOps
+  equipment:
+    outerClothingpin: ClothingOuterHardsuitSyndieMouseOps
+    earspin: ClothingHeadsetAltSyndicate
+    idmouse: AgentIDCard
+    glovespin: ClothingHandsGlovesCombatmous
+    backpin: ClothingBackpackDuffelSyndicateAmmoMouse
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesCombatmous
+  suffix: DO NOT MAP, Admeme
+  name: combat mouff unremovable gloves
+  description: made by mouffs for mouffs!
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateAmmoMouse
+  suffix: DO NOT MAP, Admeme
+  name: mouff op bag!
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon-ammo
+  - type: Item
+    heldPrefix: ammo
+  - type: Clothing
+    equippedPrefix: ammo
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSyndieMouseOps
+  suffix: DO NOT MAP, Admeme
+  name: mouff redd hardsuit
+  description: made by mouffs for mouffs!
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.65
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.65
+        Radiation: 0.65
+        Caustic: 0.65
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 1.25
+    sprintModifier: 1.25

@@ -737,12 +737,14 @@
   flavor: salty
   color: "#0064C8"
   metabolisms:
-    Drink:
-      effects:
-        - !type:SatiateThirst
-          factor: 6
+#    Drink:
+#      effects:
+#       - !type:SatiateThirst    #Starlight - removed metabolizing as a drink, and added the effect to the medicine category to bring saline in line with other medicines
+#          factor: 6
     Medicine: #Starlight
       effects:
+        - !type:SatiateThirst  # Starlight - thirst effect changed from Drink to Medicine
+           factor: 6           #
         - !type:ModifyBloodLevel
           conditions:
           - !type:OrganType
