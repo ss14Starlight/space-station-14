@@ -1,3 +1,5 @@
+using System.Numerics;
+using Content.Shared.Atmos;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Explosion.EntitySystems;
 using JetBrains.Annotations;
@@ -30,6 +32,7 @@ public sealed partial class DestinyDiceComponent : Component
     [ViewVariables] public TimeSpan NextAllowedRollTime;
     [ViewVariables] public bool Active;
     [ViewVariables] public int LastValue;
+    [ViewVariables] public NetEntity? LastRoller;
 }
 
 [DataDefinition]
@@ -106,6 +109,18 @@ public interface IDestinyDiceEffect
     /// Whether to show effect messages or not in general.
     /// </summary>
     public bool ShowEffectMessages { get; set; }
+    
+    public bool TargetPlayer { get; set; }
+    
+    public bool TargetEntity { get; set; }
+    
+    public bool TargetMultiple { get; set; }
+    /// <summary>
+    /// Range to check for the target. -1 = all on map, Infinity = all on server.
+    /// </summary>
+    public float Range { get; set; }
+    
+    public EntProtoId TargetProto { get; set; }
 }
 
 [DataRecord] [Serializable, NetSerializable]
@@ -129,20 +144,17 @@ public sealed class SpawnPrototypeEffect : IDestinyDiceEffect
     /// </summary>
     public List<EntProtoId> Protos { get; set; } = [];
     
-    /// <summary>
-    /// Whether to have the spawn origin be the player or the die.
-    /// </summary>
-    public bool SpawnOnPlayer { get; set; }
-    
-    /// <summary>
-    /// Only valid if SpawnOnPlayer is true, try to spawn on multiple players instead of just the player who rolled.
-    /// </summary>
-    public bool SpawnOnMultiple { get; set; }
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+
+    public bool TargetMultiple { get; set; }
     
     /// <summary>
     /// Only valid if SpawnOnPlayer and SpawnOnMultiple is true, the range in which to check for players. -1 = all players on the map, Infinity = all players on any map.
     /// </summary>
-    public float PlayerRange { get; set; }
+    public float Range { get; set; }
+
+    public EntProtoId TargetProto { get; set; }
 }
 
 /// <summary>
@@ -163,7 +175,11 @@ public sealed class DeletePrototypeEffect : IDestinyDiceEffect
     public string? EffectOutOfTriggersMessage { get; set; }
     /// <inheritdoc />
     public bool ShowEffectMessages { get; set; }
-    
+
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+
     /// <summary>
     /// The prototype to target
     /// </summary>
@@ -195,10 +211,28 @@ public sealed class RandomTeleportationEffect : IDestinyDiceEffect
     /// <inheritdoc />
     public bool ShowEffectMessages { get; set; }
     
-    /// <summary>
-    /// If true, target the player who rolled. If false, the die is the target.
-    /// </summary>
     public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+    public float Range { get; set; }
+    public EntProtoId TargetProto { get; set; }
+
+    /// <summary>
+    /// range for teleport.
+    /// </summary>
+    public float TeleportationRange { get; set; } = 500;
+    /// <summary>
+    /// whether the target needs to stay on station, this is not the same as staying on the grid as multiple grids can belong to a station.
+    /// </summary>
+    public bool StayOnStation { get; set; }
+    /// <summary>
+    /// whether the target's destination is on the same grid or not
+    /// </summary>
+    public bool StayOnCurrentGrid { get; set; }
+    /// <summary>
+    /// allows target to end up in space, if false they will always end up on a grid.
+    /// </summary>
+    public bool AllowSpace { get; set; }
 }
 
 [DataRecord] [Serializable, NetSerializable]
@@ -216,6 +250,15 @@ public sealed class SwapTeleportationEffect : IDestinyDiceEffect
     public string? EffectOutOfTriggersMessage { get; set; }
     /// <inheritdoc />
     public bool ShowEffectMessages { get; set; }
+    
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+    public EntProtoId TargetProto { get; set; }
+    public bool SecondTargetPlayers { get; set; }
+    public bool SecondTargetEntity { get; set; }
+    public EntProtoId SecondTargetProto { get; set; }
+    public float Range { get; set; }
 }
 
 /// <summary>
@@ -237,6 +280,12 @@ public sealed class AddGameRuleEffect : IDestinyDiceEffect
     /// <inheritdoc />
     public bool ShowEffectMessages { get; set; }
     
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+    public float Range { get; set; }
+    public EntProtoId TargetProto { get; set; }
+
     /// <summary>
     /// List of entity prototype ids, must correspond to an entity with a GameRuleComponent. entities without this will be skipped.
     /// </summary>
@@ -261,13 +310,27 @@ public sealed class SpawnGasMixtureEffect : IDestinyDiceEffect
     public string? EffectOutOfTriggersMessage { get; set; }
     /// <inheritdoc />
     public bool ShowEffectMessages { get; set; }
+    
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+    public float Range { get; set; }
+    public EntProtoId TargetProto { get; set; }
+
+    public required Gas Gas { get; set; }
+
+    public float Moles { get; set; } = Atmospherics.MolesCellStandard * 1.5f;
+
+    public float Temperature { get; set; } = Atmospherics.T20C;
+
+    public float Volume { get; set; } = 0.4f;
 }
 
 /// <summary>
-/// Simply kills the entity that rolled the die. If it can be killed, it will kill them, if not then it will delete them.
+/// Simply kills the target entity. If it can be killed, it will kill them, if not then it will delete them.
 /// </summary>
 [DataRecord] [Serializable, NetSerializable]
-public sealed class KillRollerEffect : IDestinyDiceEffect
+public sealed class KillTargetEffect : IDestinyDiceEffect
 {
     /// <inheritdoc />
     public int MaxTriggers { get; set; }
@@ -282,6 +345,11 @@ public sealed class KillRollerEffect : IDestinyDiceEffect
     /// <inheritdoc />
     public bool ShowEffectMessages { get; set; }
     
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+    public float Range { get; set; }
+    public EntProtoId TargetProto { get; set; }
 }
 
 /// <summary>
@@ -303,6 +371,11 @@ public sealed class ArmStationNukeEffect : IDestinyDiceEffect
     /// <inheritdoc />
     public bool ShowEffectMessages { get; set; }
     
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+    public float Range { get; set; }
+    public EntProtoId TargetProto { get; set; }
 }
 
 /// <summary>
@@ -324,15 +397,25 @@ public sealed class CargoPurchaseEffect : IDestinyDiceEffect
     /// <inheritdoc />
     public bool ShowEffectMessages { get; set; }
     
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+    public float Range { get; set; }
+    public EntProtoId TargetProto { get; set; }
+
     /// <summary>
     /// the prototype to purchase
     /// </summary>
-    public string ProductPrototype { get; set; } = default!;
+    public string? Product { get; set; }
+    
+    public string? Account { get; set; }
     
     /// <summary>
     /// Whether to charge the station budget or not.
     /// </summary>
     public bool IsFree { get; set; }
+
+    public int Quantity { get; set; } = 1;
 }
 
 /// <summary>
@@ -359,6 +442,10 @@ public sealed class ChangeScaleEffect : IDestinyDiceEffect
     /// </summary>
     public bool TargetPlayer { get; set; }
 
+    public bool TargetEntity { get; set; }
+
+    public bool TargetMultiple { get; set; }
+
     /// <summary>
     /// Prototype to target
     /// </summary>
@@ -368,6 +455,8 @@ public sealed class ChangeScaleEffect : IDestinyDiceEffect
     /// Range to check for the target. -1 = all on map, Infinity = all on server.
     /// </summary>
     public float Range { get; set; }
+    
+    public Vector2 Scale { get; set; }
 }
 
 /// <summary>
@@ -393,6 +482,10 @@ public sealed class AddComponentEffect : IDestinyDiceEffect
     /// Simply target the one who rolled
     /// </summary>
     public bool TargetPlayer { get; set; }
+
+    public bool TargetEntity { get; set; }
+
+    public bool TargetMultiple { get; set; }
 
     /// <summary>
     /// Prototype to target
@@ -429,6 +522,10 @@ public sealed class ModifyComponentEffect : IDestinyDiceEffect
     /// </summary>
     public bool TargetPlayer { get; set; }
 
+    public bool TargetEntity { get; set; }
+
+    public bool TargetMultiple { get; set; }
+
     /// <summary>
     /// Prototype to target
     /// </summary>
@@ -464,6 +561,10 @@ public sealed class RemoveComponentEffect : IDestinyDiceEffect
     /// </summary>
     public bool TargetPlayer { get; set; }
 
+    public bool TargetEntity { get; set; }
+
+    public bool TargetMultiple { get; set; }
+
     /// <summary>
     /// Prototype to target
     /// </summary>
@@ -498,7 +599,14 @@ public sealed class ExplosionEffect : IDestinyDiceEffect
     /// Target the player, if not then explode on the die.
     /// </summary>
     public bool TargetPlayer { get; set; }
+
+    public bool TargetEntity { get; set; }
+
+    public bool TargetMultiple { get; set; }
     
+    public float Range { get; set; }
+    public EntProtoId TargetProto { get; set; }
+
     public string TypeId { get; set; } = SharedExplosionSystem.DefaultExplosionPrototypeId.ToString();
 
     public float TotalIntensity { get; set; } = 200;
@@ -529,6 +637,12 @@ public sealed class SendToChessDimensionEffect : IDestinyDiceEffect
     public string? EffectOutOfTriggersMessage { get; set; }
     /// <inheritdoc />
     public bool ShowEffectMessages { get; set; }
+    
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+    public float Range { get; set; }
+    public EntProtoId TargetProto { get; set; }
 }
 
 [DataRecord] [Serializable, NetSerializable]
@@ -547,10 +661,17 @@ public sealed class StationAnnouncementEffect : IDestinyDiceEffect
     /// <inheritdoc />
     public bool ShowEffectMessages { get; set; }
     
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+    public float Range { get; set; }
+    public EntProtoId TargetProto { get; set; }
+
     public required string Message { get; set; }
     public string Sender { get; set; } = "Central Command";
     public string Color { get; set; } = "#ffff00";
     public SoundSpecifier Sound { get; set; } = new SoundPathSpecifier("/Audio/Announcements/announce.ogg");
+    public bool Global { get; set; }
 }
 
 #endregion

@@ -32,7 +32,7 @@ public class SharedDestinyDiceSystem : EntitySystem
     [Dependency] protected readonly IPrototypeManager _proto = default!;
     [Dependency] protected readonly IGameTiming _timing = default!;
     [Dependency] protected readonly IComponentFactory _factory = default!;
-    [Dependency] protected readonly IRobustRandom _random = default!;
+    [Dependency] protected readonly IRobustRandom _sharedRandom = default!;
     [Dependency] protected readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] protected readonly SharedTransformSystem _transform = default!;
@@ -40,7 +40,6 @@ public class SharedDestinyDiceSystem : EntitySystem
     [Dependency] protected readonly SharedHandsSystem _hands = default!;
     [Dependency] protected readonly SharedPopupSystem _popup = default!;
     [Dependency] protected readonly SharedGameTicker _ticker = default!;
-    [Dependency] protected readonly SharedChatSystem _chat = default!;
     [Dependency] protected readonly SharedVerbSystem _verb = default!;
     [Dependency] protected readonly DamageableSystem _damage = default!;
     
@@ -58,8 +57,8 @@ public class SharedDestinyDiceSystem : EntitySystem
         Log.Log(LogLevel.Info, $"Got event from {(_net.IsClient ? "client" : _net.IsServer ? "server" : "unknown")}");
         var uid = GetEntity(ev.Uid);
         if (!TryComp<DestinyDiceComponent>(uid, out var comp)) return;
-        ExecuteEffect(ev.Effect, (uid, comp));
+        ExecuteEffect(ev.Effect, (uid, comp), GetEntity(ev.Roller), GetEntity(ev.Grid));
     }
     
-    protected virtual void ExecuteEffect(IDestinyDiceEffect effect, Entity<DestinyDiceComponent> entity){}
+    protected virtual void ExecuteEffect(IDestinyDiceEffect effect, Entity<DestinyDiceComponent> entity, EntityUid roller, EntityUid? grid){}
 }
