@@ -16,6 +16,7 @@ jobs:
         os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
+    #runs-on: happyrobot33
 
     steps:
     - name: Checkout Master
@@ -39,7 +40,9 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Install dependencies
-      run: dotnet restore
+      run: |
+        dotnet restore
+#        apt install -y libfreetype6 libfreetype-dev
 
     - name: Build Project
       run: dotnet build --configuration DebugOpt --no-restore /m
