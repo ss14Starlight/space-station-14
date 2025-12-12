@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Administration.Toolshed;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
@@ -12,6 +13,10 @@ using Content.Shared._Starlight.Dice;
 using Content.Shared.Atmos;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Dice;
@@ -45,7 +50,6 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
 {
     [Dependency] private readonly TabletopSystem _tabletop = default!;
     [Dependency] private readonly SharedGodmodeSystem _godmode = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly NukeSystem _nuke = default!;
@@ -57,8 +61,16 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     
+    /// <summary>
+    /// All pending effect groups. Cleared on round restart.
+    /// </summary>
     private readonly List<PendingDestinyDiceEffectGroup> _pendingEffectGroups = [];
+    
+    /// <summary>
+    /// All pending effects. Cleared on round restart.
+    /// </summary>
     private readonly List<PendingDestinyDiceEffect> _pendingEffects = [];
 
     private const int MaximumRandomTeleportAttempts = 60;
@@ -71,7 +83,6 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
         SubscribeLocalEvent<DestinyDiceComponent, ThrownEvent>(OnThrown);
         SubscribeLocalEvent<DestinyDiceComponent, LandEvent>(OnLand);
         SubscribeLocalEvent<DestinyDiceComponent, DiceRolledEvent>(OnRolled);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRestart);
     }
 
     private void OnUseInHand(Entity<DestinyDiceComponent> entity, ref UseInHandEvent args)
@@ -89,6 +100,11 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
     private void OnRolled(Entity<DestinyDiceComponent> entity, ref DiceRolledEvent args)
     {
         if (entity.Comp.RollerEntity is null) return;
+        if (EffectResults.ContainsKey(GetNetEntity(entity.Owner)))
+        {
+            _popup.PopupCoordinates(entity.Comp.BusyMessage, Transform(entity).Coordinates);
+            return;
+        }
         if (entity.Comp.Active)
         {
             ShowCooldownPopup(entity.Owner, entity.Comp);
@@ -100,8 +116,9 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
         entity.Comp.LastRoller = entity.Comp.RollerEntity;
     }
 
-    private void OnRestart(RoundRestartCleanupEvent ev)
+    protected override void OnRestart(RoundRestartCleanupEvent ev)
     {
+        base.OnRestart(ev);
         _pendingEffects.Clear();
         _pendingEffectGroups.Clear();
     }
@@ -109,23 +126,29 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
     private void RollEffectGroup(EntityUid uid, DestinyDiceComponent dd, int value)
     {
         Dictionary<DestinyDiceEffectGroup, float> targetGroups = [];
-        if (dd.EffectGroups.TryGetValue(value, out var groups))
-        {
-            foreach (var group in groups)
-            {
-                targetGroups.Add(group, group.Weight ?? 1);
-            }
-        }
+        foreach (var group in dd.EffectGroups)
+            foreach (var condition in group.RollConditions)
+                switch (condition)
+                {
+                    case SideCondition sideCondition:
+                        if(sideCondition.Value == value)
+                            targetGroups.Add(group, group.Weight ?? 1);
+                        break;
+                    case SideRangeCondition rangeCondition:
+                        if(value <= rangeCondition.Max && value >= rangeCondition.Min)
+                            targetGroups.Add(group, group.Weight ?? 1);
+                        break;
+                }
 
         if (targetGroups.Count == 0)
         {
             _popup.PopupCoordinates(dd.NoEffectMessage, Transform(uid).Coordinates);
-            return;    
+            return;
         }
 
         var rolledGroup = _random.Pick(targetGroups);
         if (dd.LastRoller is null) return; // really shouldn't ever happen but meh nice to be safe
-        _pendingEffectGroups.Add(new PendingDestinyDiceEffectGroup(uid, GetEntity(dd.LastRoller.Value), GetEntity(dd.RolledGrid), dd, rolledGroup));
+        _pendingEffectGroups.Add(new PendingDestinyDiceEffectGroup(uid, GetEntity(dd.LastRoller.Value), GetEntity(dd.RolledGrid), _timing.CurTime, dd, rolledGroup));
     }
 
     private void ShowCooldownPopup(EntityUid uid, DestinyDiceComponent dd) =>
@@ -155,11 +178,26 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
 
         foreach (var entry in _pendingEffectGroups.ToList())
         {
-            if (_timing.CurTime < entry.Component.NextTriggerTime + TimeSpan.FromSeconds(entry.Group.Delay))
+            if (_timing.CurTime < entry.TriggeredAt + TimeSpan.FromSeconds(entry.Group.Delay))
                 continue;
+            if (!TryComp<DestinyDiceComponent>(entry.Uid, out var comp)) continue;
+            foreach (var condition in entry.Group.TriggerConditions)
+            {
+                if (TargetedExecution((entry.Uid, comp), condition, entry.Roller, (targets) =>
+                    {
+                        var passed = condition.FlipCondition;
+                        if (targets.Any(target => CheckTriggerCondition(condition, target, (entry.Uid, comp), entry.Roller, entry.Grid)))
+                            passed = !condition.FlipCondition;
+
+                        return passed;
+                    })) continue;
+                if (entry.Group.FailureMessage != null)
+                    _popup.PopupCoordinates(entry.Group.FailureMessage, Transform(entry.Uid).Coordinates);
+                break;
+            }
             foreach (var effect in entry.Group.Effects)
             {
-                _pendingEffects.Add(new PendingDestinyDiceEffect(entry.Uid, entry.Roller, entry.Grid, entry.Component, effect, entry.Group.Delay));
+                _pendingEffects.Add(new PendingDestinyDiceEffect(entry.Uid, entry.Roller, entry.Grid, _timing.CurTime, entry.Component, effect, entry.Group, entry.Group.Delay));
             }
             if(entry.Group.SuccessMessage is not null) _popup.PopupCoordinates(entry.Group.SuccessMessage, Transform(entry.Uid).Coordinates);
             _pendingEffectGroups.Remove(entry);
@@ -167,32 +205,42 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
         
         foreach (var entry in _pendingEffects.ToList())
         {
-            if (_timing.CurTime < entry.Component.NextTriggerTime + TimeSpan.FromSeconds(entry.GroupDelay) + TimeSpan.FromSeconds(entry.Effect.Delay))
+            if (_timing.CurTime < entry.TriggeredAt + TimeSpan.FromSeconds(entry.GroupDelay) + TimeSpan.FromSeconds(entry.Effect.Delay))
                 continue;
             // this way effects can do stuff both client and server side :3
-            RaiseNetworkEvent(new DestinyDiceEffectExecutionEvent(GetNetEntity(entry.Uid), GetNetEntity(entry.Roller), GetNetEntity(entry.Grid), entry.Effect));
-            RaiseLocalEvent(new DestinyDiceEffectExecutionEvent(GetNetEntity(entry.Uid), GetNetEntity(entry.Roller), GetNetEntity(entry.Grid), entry.Effect));
+            if (entry.Effect.TargetClient)
+                RaiseNetworkEvent(new DestinyDiceEffectExecutionEvent(GetNetEntity(entry.Uid),
+                    GetNetEntity(entry.Roller), GetNetEntity(entry.Grid), entry.Effect, entry.Group));
+            else
+                RaiseLocalEvent(new DestinyDiceEffectExecutionEvent(GetNetEntity(entry.Uid), GetNetEntity(entry.Roller),
+                    GetNetEntity(entry.Grid), entry.Effect, entry.Group));
             _pendingEffects.Remove(entry);
+            if (!EffectResults.TryGetValue(GetNetEntity(entry.Uid), out var value)) continue;
+            if (!entry.Group.Effects.All(eff => value.ContainsKey(eff))) continue;
+            RaiseNetworkEvent(new DestinyDiceEffectGroupFinishEvent(GetNetEntity(entry.Uid), entry.Group));
+            RaiseLocalEvent(new DestinyDiceEffectGroupFinishEvent(GetNetEntity(entry.Uid), entry.Group));
         }
     }
     
-    protected override void ExecuteEffect(IDestinyDiceEffect effect, Entity<DestinyDiceComponent> entity, EntityUid roller, EntityUid? grid)
+    protected override bool ExecuteEffect(IDestinyDiceEffect effect, DestinyDiceEffectGroup group, EntityUid target, Entity<DestinyDiceComponent> entity, EntityUid roller, EntityUid? grid)
     {
         switch (effect)
         {
+            case EmptyEffect:
+                return true;
             case AddComponentEffect addComponentEffect:
-                break;
+                return true;
             case AddGameRuleEffect addGameRuleEffect:
                 {
-                    if (!_proto.TryIndex(addGameRuleEffect.Proto, out var proto)) break;
-                    if (!proto.Parents!.Contains("BaseGameRule")) break;
+                    if (!_proto.TryIndex(addGameRuleEffect.Proto, out var proto)) return false;
+                    if (!proto.Parents!.Contains("BaseGameRule")) return false;
                     _ticker.AddGameRule(proto.ID);
-                    break;
+                    return true;
                 }
             case ArmStationNukeEffect armStationNukeEffect:
                 {
                     var station = _station.GetOwningStation(grid);
-                    if (station is null) break;
+                    if (station is null) return false;
                     var data = Comp<StationDataComponent>(station.Value);
                     EntityUid? nukeEntity = null;
                     var nukeQuery = EntityQueryEnumerator<NukeComponent>();
@@ -203,7 +251,7 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
                         nukeEntity = uid;
                         break;
                     }
-                    if (nukeEntity is null) break;
+                    if (nukeEntity is null) return false;
                 
                     var diskQuery = EntityQueryEnumerator<NukeDiskComponent>();
                     while (diskQuery.MoveNext(out var uid, out var disk))
@@ -213,16 +261,16 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
                         _nuke.ArmBomb(nukeEntity.Value);
                         break;
                     }
+                    return true;
                 }
-                break;
             case CargoPurchaseEffect cargoPurchaseEffect:
                 {
-                    if (cargoPurchaseEffect.Product is null) break;
+                    if (cargoPurchaseEffect.Product is null) return false;
                     if (!_proto.TryIndex(new ProtoId<CargoProductPrototype>(cargoPurchaseEffect.Product),
-                            out var proto)) break;
+                            out var proto)) return false;
                     var station = _station.GetOwningStation(grid);
-                    if (station is null) break;
-                    if (!TryComp<StationBankAccountComponent>(station.Value, out var component)) break;
+                    if (station is null) return false;
+                    if (!TryComp<StationBankAccountComponent>(station.Value, out var component)) return false;
                     var account = cargoPurchaseEffect.Account ?? component.PrimaryAccount;
                     if (!cargoPurchaseEffect.IsFree)
                         _cargo.UpdateBankAccount((station.Value, component), -proto.Cost * cargoPurchaseEffect.Quantity, account);
@@ -230,157 +278,148 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
                         cargoPurchaseEffect.Quantity, MetaData(entity).EntityName, proto.Description,
                         MetaData(entity).EntityName, Comp<StationCargoOrderDatabaseComponent>(station.Value),
                         account, (station.Value, Comp<StationDataComponent>(station.Value)));
+                    return true;
                 }
-                break;
             case ChangeScaleEffect changeScaleEffect:
                 {
-                    TargetedExecution(entity, effect, roller, (entities) =>
-                    {
-                        foreach (var target in entities)
-                        {
-                            _scale.SetSpriteScale(target, changeScaleEffect.Scale);
-                        }
-                    });
-                    break;
+                    _scale.SetSpriteScale(target, changeScaleEffect.Scale);
+                    return true;
                 }
+            case ConvertToAntagonistEffect convertToAntagonistEffect:
+                return true;
             case DeletePrototypeEffect deletePrototypeEffect:
                 {
+                    if (effect.TargetPlayer) return false;
                     List<EntityUid> entities;
-                    if (!_proto.TryIndex(deletePrototypeEffect.TargetProto, out var proto)) return;
+                    if (!_proto.TryIndex(effect.TargetProto, out var proto)) return false;
                     if (effect.Range < 0)
-                        entities = GetAllPrototypes(proto);
+                        entities = GetAllPrototypes(effect, proto);
                     else if (float.IsPositiveInfinity(effect.Range))
-                        entities = GetPrototypesOnMap(proto, Transform(entity).MapID);
+                        entities = GetPrototypesOnMap(effect, proto, Transform(entity).MapID);
                     else
-                        entities = GetPrototypesNearby(proto, entity, effect.Range);
-                    if (entities.Count == 0) break;
-                    foreach (var target in entities) QueueDel(target);
+                        entities = GetPrototypesNearby(effect, proto, entity, effect.Range);
+                    if (entities.Count == 0) return false;
+                    foreach (var _ in entities) QueueDel(target);
+                    return true;
                 }
-                break;
             case ExplosionEffect explosionEffect:
                 {
-                    TargetedExecution(entity, effect, roller, (entities) =>
-                    {
-                        foreach (var target in entities)
-                        {
-                            var mapCoords = new MapCoordinates(_transform.GetMapCoordinates(target).Position,
-                                GetCorrectTransform(target, entity, roller).MapID);
-                            if (!_proto.HasIndex<ExplosionPrototype>(explosionEffect.TypeId)) continue;
-                            _explosion.QueueExplosion(mapCoords, explosionEffect.TypeId, explosionEffect.TotalIntensity,
-                                explosionEffect.Slope, explosionEffect.MaxIntensity, entity, explosionEffect.TileBreakScale,
-                                explosionEffect.MaxTileBreak, explosionEffect.CanCreateVacuum);
-                        }
-                    });
-                    break;
+                    var mapCoords = new MapCoordinates(_transform.GetMapCoordinates(target).Position,
+                        GetCorrectTransform(target, entity, roller).MapID);
+                    if (!_proto.HasIndex<ExplosionPrototype>(explosionEffect.TypeId)) return false;
+                    _explosion.QueueExplosion(mapCoords, explosionEffect.TypeId, explosionEffect.TotalIntensity,
+                        explosionEffect.Slope, explosionEffect.MaxIntensity, entity, explosionEffect.TileBreakScale,
+                        explosionEffect.MaxTileBreak, explosionEffect.CanCreateVacuum);
+                    return true;
+                }
+            case InjectReagentEffect injectReagentEffect:
+                {
+                    if (!_proto.HasIndex<ReagentPrototype>(injectReagentEffect.ReagentProto)) return false;
+                    if (!_solution.TryGetSolution(target, injectReagentEffect.SolutionName,
+                            out var solution)) return false;
+                    return _solution.TryAddReagent(solution.Value, injectReagentEffect.ReagentProto,
+                        injectReagentEffect.Quantity);
                 }
             case KillTargetEffect killTargetEffect:
-                TargetedExecution(entity, effect, roller, (entities) =>
                 {
-                    foreach (var target in entities.Where(target => target != entity.Owner)) KillEntity(target);
-                });
-                break;
+                    KillEntity(target);
+                    return true;
+                }
             case ModifyComponentEffect modifyComponentEffect:
-                break;
+                return true;
             case RandomTeleportationEffect randomTeleportationEffect:
-                TargetedExecution(entity, effect, roller, (entities) =>
                 {
-                    foreach (var target in entities)
+                    var valid = false;
+                    // lifted from SharedPortalSystem
+                    var xform = GetCorrectTransform(target, entity, roller);
+                    if (xform.MapUid is null) return false;
+                    var coords = xform.Coordinates;
+                    var newCoords =
+                        coords.Offset(_random.NextVector2(randomTeleportationEffect.TeleportationRange));
+                    for (var i = 0; i < MaximumRandomTeleportAttempts; i++)
                     {
-                        var valid = false;
-                        // lifted from SharedPortalSystem
-                        var xform = GetCorrectTransform(target, entity, roller);
-                        if (xform.MapUid is null) continue;
-                        var coords = xform.Coordinates;
-                        var newCoords = coords.Offset(_random.NextVector2(randomTeleportationEffect.TeleportationRange));
-                        for (var i = 0; i < MaximumRandomTeleportAttempts; i++)
+                        var randVector = _random.NextVector2(randomTeleportationEffect.TeleportationRange);
+                        newCoords = coords.Offset(randVector);
+
+                        var mapCoords = _transform.ToMapCoordinates(newCoords);
+
+                        if (_lookup.AnyEntitiesIntersecting(mapCoords, LookupFlags.Static))
+                            continue;
+
+                        var hasGrid = _mapManager.TryFindGridAt(xform.MapUid!.Value, mapCoords.Position,
+                            out var targetGridUid, out var targetGrid);
+
+                        if (!hasGrid && !randomTeleportationEffect.AllowSpace)
+                            continue;
+
+                        if (randomTeleportationEffect.StayOnCurrentGrid)
                         {
-                            var randVector = _random.NextVector2(randomTeleportationEffect.TeleportationRange);
-                            newCoords = coords.Offset(randVector);
-
-                            var mapCoords = _transform.ToMapCoordinates(newCoords);
-
-                            if (_lookup.AnyEntitiesIntersecting(mapCoords, LookupFlags.Static))
+                            if (!hasGrid)
                                 continue;
 
-                            var hasGrid = _mapManager.TryFindGridAt(xform.MapUid!.Value, mapCoords.Position,
-                                out var targetGridUid, out var targetGrid);
-
-                            if (!hasGrid && !randomTeleportationEffect.AllowSpace)
+                            if (targetGridUid != xform.GridUid)
                                 continue;
-                            
-                            if (randomTeleportationEffect.StayOnCurrentGrid)
-                            {
-                                if (!hasGrid)
-                                    continue;
-
-                                if (targetGridUid != xform.GridUid)
-                                    continue;
-                            }
-                            if (randomTeleportationEffect.StayOnStation)
-                            {
-                                if (TryComp<StationMemberComponent>(xform.GridUid, out var currentStationMember))
-                                {
-                                    if (!hasGrid || !TryComp<StationMemberComponent>(targetGridUid, out var targetStationMember))
-                                        continue;
-                                    if (targetStationMember.Station != currentStationMember.Station)
-                                        continue;
-                                }
-                            }
-                            valid = true;
-                            break;
                         }
 
-                        if (!valid) continue;
-                        _transform.SetCoordinates(target, newCoords);
+                        if (randomTeleportationEffect.StayOnStation)
+                        {
+                            if (TryComp<StationMemberComponent>(xform.GridUid, out var currentStationMember))
+                            {
+                                if (!hasGrid || !TryComp<StationMemberComponent>(targetGridUid,
+                                        out var targetStationMember))
+                                    continue;
+                                if (targetStationMember.Station != currentStationMember.Station)
+                                    continue;
+                            }
+                        }
+
+                        valid = true;
+                        break;
                     }
-                });
-                break;
+
+                    if (!valid) return false;
+                    _transform.SetCoordinates(target, newCoords);
+                    return true;
+                }
             case RemoveComponentEffect removeComponentEffect:
                 break;
             case SendToChessDimensionEffect sendToChessDimensionEffect:
-                TargetedExecution(entity, effect, roller, (entities) =>
                 {
-                    foreach (var target in entities.Where(target => target != entity.Owner)) ChessSmite(target);
-                });
-                break;
+                    ChessSmite(target);
+                    return true;
+                }
             case SpawnGasMixtureEffect spawnGasMixtureEffect:
                 {
-                    TargetedExecution(entity, effect, roller, (entities) =>
-                    {
-                        foreach (var target in entities)
-                        {
-                            var transform = GetCorrectTransform(target, entity, roller);
-                            var pos = _transform.GetGridOrMapTilePosition(target, transform);
-                            GasMixture? environment = null;
+                    var transform = GetCorrectTransform(target, entity, roller);
+                    var pos = _transform.GetGridOrMapTilePosition(target, transform);
+                    GasMixture? environment = null;
                 
-                            if (_atmos.IsTileSpace(transform.GridUid, transform.MapUid, pos)) continue;
-                            environment = _atmos.GetContainingMixture((target, transform), true, true);
-                            if (environment is null) continue;
+                    if (_atmos.IsTileSpace(transform.GridUid, transform.MapUid, pos)) return false;
+                    environment = _atmos.GetContainingMixture((target, transform), true, true);
+                    if (environment is null) return false;
 
-                            var merge = new GasMixture(spawnGasMixtureEffect.Volume) { Temperature = spawnGasMixtureEffect.Temperature };
-                            merge.SetMoles(spawnGasMixtureEffect.Gas, spawnGasMixtureEffect.Moles);
-                            _atmos.Merge(environment, merge);
-                        }
-                    });
-                    break;
+                    var merge = new GasMixture(spawnGasMixtureEffect.Volume) { Temperature = spawnGasMixtureEffect.Temperature };
+                    merge.SetMoles(spawnGasMixtureEffect.Gas, spawnGasMixtureEffect.Moles);
+                    _atmos.Merge(environment, merge);
+                    return true;
                 }
             case SpawnPrototypeEffect spawnPrototypeEffect:
                 {
-                    TargetedExecution(entity, effect, roller, (entities) =>
-                    {
-                        List<EntityCoordinates> coordinates = [];
+                    // List<EntityCoordinates> coordinates = [];
                         
-                        coordinates.AddRange(entities.Select(target =>
-                            GetCorrectTransform(target, entity, roller).Coordinates));
+                    // coordinates.AddRange(entities.Select(target =>
+                        // GetCorrectTransform(target, entity, roller).Coordinates));
 
-                        foreach (var proto in spawnPrototypeEffect.Protos)
-                        foreach (var coordinate in coordinates)
-                        {
-                            if (!_proto.Resolve(proto.Id, out var validPrototype)) continue;
-                            Spawn(validPrototype.ID, coordinate);
-                        }
-                    });
-                    break;
+                    var passed = false;
+                    foreach (var proto in spawnPrototypeEffect.Protos)
+                    // foreach (var coordinate in coordinates)
+                    {
+                        if (!_proto.Resolve(proto.Id, out var validPrototype)) continue;
+                        Spawn(validPrototype.ID, GetCorrectTransform(target, entity, roller).Coordinates);
+                        passed = true;
+                    }
+
+                    return passed;
                 }
             case StationAnnouncementEffect stationAnnouncementEffect:
                 {
@@ -393,56 +432,51 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
                         _chat.DispatchStationAnnouncement(entity, Loc.GetString(stationAnnouncementEffect.Message),
                             Loc.GetString(stationAnnouncementEffect.Sender), true, stationAnnouncementEffect.Sound,
                             color);
-                    break;
+                    return true;
                 }
             case SwapTeleportationEffect swapTeleportationEffect:
                 {
-                    TargetedExecution(entity, effect, roller, (entities) =>
+                    var coords = GetCorrectTransform(target, entity, roller);
+                    List<EntityUid>? destinationPool = null;
+                    switch (swapTeleportationEffect)
                     {
-                        foreach (var target in entities)
-                        {
-                            var coords = GetCorrectTransform(target, entity, roller);
-                            List<EntityUid>? destinationPool = null;
-                            switch (swapTeleportationEffect)
+                        case { SecondTargetPlayers: true } when effect.Range < 0:
+                            destinationPool = GetAllPlayers(effect);
+                            break;
+                        case { SecondTargetPlayers: true } when float.IsPositiveInfinity(effect.Range):
+                            destinationPool = GetPlayersOnMap(effect, Transform(entity).MapID);
+                            break;
+                        case { SecondTargetPlayers: true }:
+                            destinationPool = GetPlayersNearby(effect, entity, effect.Range);
+                            break;
+                        case { SecondTargetEntity: true }:
                             {
-                                case { SecondTargetPlayers: true } when effect.Range < 0:
-                                    destinationPool = GetAllPlayers();
-                                    break;
-                                case { SecondTargetPlayers: true } when float.IsPositiveInfinity(effect.Range):
-                                    destinationPool = GetPlayersOnMap(Transform(entity).MapID);
-                                    break;
-                                case { SecondTargetPlayers: true }:
-                                    destinationPool = GetPlayersNearby(entity, effect.Range);
-                                    break;
-                                case { SecondTargetEntity: true }:
-                                    {
-                                        if (!_proto.TryIndex(swapTeleportationEffect.SecondTargetProto, out var proto)) return;
-                                        if (effect.Range < 0)
-                                            destinationPool = GetAllPrototypes(proto);
-                                        else if (float.IsPositiveInfinity(effect.Range))
-                                            destinationPool = GetPrototypesOnMap(proto, Transform(entity).MapID);
-                                        else
-                                            destinationPool = GetPrototypesNearby(proto, entity, effect.Range);
-                                        break;
-                                    }
+                                if (!_proto.TryIndex(swapTeleportationEffect.SecondTargetProto, out var proto))
+                                    return false;
+                                if (effect.Range < 0)
+                                    destinationPool = GetAllPrototypes(effect, proto);
+                                else if (float.IsPositiveInfinity(effect.Range))
+                                    destinationPool = GetPrototypesOnMap(effect, proto, Transform(entity).MapID);
+                                else
+                                    destinationPool = GetPrototypesNearby(effect, proto, entity, effect.Range);
+                                break;
                             }
+                    }
 
-                            if (destinationPool is null) return;
+                    if (destinationPool is null) return false;
 
-                            EntityUid? destination = null;
-                            while (destination is null || destination == target)
-                                destination = _random.PickAndTake(destinationPool); // just in case it picks the original target
-                            var destinationCoords = Transform(destination.Value).Coordinates;
-                            
-                            _transform.SetCoordinates(target, destinationCoords);
-                            _transform.SetCoordinates(destination.Value, coords.Coordinates);
-                        }
-                    });
-                    break;
+                    EntityUid? destination = null;
+                    while (destination is null || destination == target)
+                        destination = _random.PickAndTake(destinationPool); // just in case it picks the original target
+                    var destinationCoords = Transform(destination.Value).Coordinates;
+
+                    _transform.SetCoordinates(target, destinationCoords);
+                    _transform.SetCoordinates(destination.Value, coords.Coordinates);
+                    return true;
                 }
         }
-        
-        if(effect.SuccessMessage != null) _popup.PopupCoordinates(effect.SuccessMessage, Transform(entity).Coordinates);
+
+        return false;
     }
     
     #region Smite Redefinitions
@@ -472,54 +506,6 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
     }
     
     #endregion
-
-    private List<EntityUid> GetPrototypesOnMap(EntityPrototype proto, MapId mapId, bool excludeGhosts = true)
-    {
-        var entities = EntityManager.GetEntities().Where(ent =>
-            MetaData(ent).EntityPrototype == proto && Transform(ent).MapID == mapId);
-
-        if (excludeGhosts) entities = entities.Where(ent => !HasComp<GhostComponent>(ent));
-        return entities.ToList();
-    }
-
-    private List<EntityUid> GetPrototypesNearby(EntityPrototype proto, EntityUid sourceEntity, float range, bool excludeGhosts = true)
-    {
-        var entities = _lookup.GetEntitiesInRange(sourceEntity, range)
-            .Where(ent => MetaData(ent).EntityPrototype == proto);
-        if (excludeGhosts) entities = entities.Where(ent => !HasComp<GhostComponent>(ent));
-        return entities.ToList();
-    }
-
-    private List<EntityUid> GetAllPrototypes(EntityPrototype proto, bool excludeGhosts = true)
-    {
-        var entities = EntityManager.GetEntities().Where(ent => MetaData(ent).EntityPrototype == proto);
-        if (excludeGhosts) entities = entities.Where(ent => !HasComp<GhostComponent>(ent));
-        return entities.ToList();
-    }
-    
-    private List<EntityUid> GetPlayersOnMap(MapId mapId, bool excludeGhosts = true)
-    {
-        var entities = new HashSet<Entity<ActorComponent>>();
-        _lookup.GetEntitiesOnMap(mapId, entities);
-
-        if (excludeGhosts) entities.RemoveWhere(ent => HasComp<GhostComponent>(ent));
-        return entities.Select(e => e.Owner).ToList();
-    }
-
-    private List<EntityUid> GetPlayersNearby(EntityUid sourceEntity, float range, bool excludeGhosts = true)
-    {
-        var entities = _lookup.GetEntitiesInRange(sourceEntity,
-            range).Where(HasComp<ActorComponent>);
-        if (excludeGhosts) entities = entities.Where(ent => !HasComp<GhostComponent>(ent));
-        return entities.ToList();
-    }
-
-    private List<EntityUid> GetAllPlayers(bool excludeGhosts = true)
-    {
-        var entities = EntityManager.GetEntities().Where(HasComp<ActorComponent>);
-        if (excludeGhosts) entities = entities.Where(ent => !HasComp<GhostComponent>(ent));
-        return entities.ToList();
-    }
     
     private void KillEntity(EntityUid entity)
     {
@@ -539,86 +525,28 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
         else DustSmite(entity);
     }
     
-    private sealed class PendingDestinyDiceEffectGroup(EntityUid uid, EntityUid roller, EntityUid? grid, DestinyDiceComponent comp, DestinyDiceEffectGroup group)
+    private sealed class PendingDestinyDiceEffectGroup(EntityUid uid, EntityUid roller, EntityUid? grid, TimeSpan triggeredAt, DestinyDiceComponent comp, DestinyDiceEffectGroup group)
+    
     {
         public readonly EntityUid Uid = uid;
         public readonly EntityUid Roller = roller;
         public readonly EntityUid? Grid = grid;
+        public readonly TimeSpan TriggeredAt = triggeredAt;
         public readonly DestinyDiceComponent Component = comp;
         public readonly DestinyDiceEffectGroup Group = group;
     }
     
-    private sealed class PendingDestinyDiceEffect(EntityUid uid, EntityUid roller, EntityUid? grid, DestinyDiceComponent comp, IDestinyDiceEffect effect, float groupDelay)
+    private sealed class PendingDestinyDiceEffect(EntityUid uid, EntityUid roller, EntityUid? grid, TimeSpan triggeredAt, DestinyDiceComponent comp, IDestinyDiceEffect effect, DestinyDiceEffectGroup group, float groupDelay)
     {
         public readonly EntityUid Uid = uid;
         public readonly EntityUid Roller = roller;
         public readonly EntityUid? Grid = grid;
+        public readonly TimeSpan TriggeredAt = triggeredAt;
         public readonly DestinyDiceComponent Component = comp;
         public readonly IDestinyDiceEffect Effect = effect;
+        public readonly DestinyDiceEffectGroup Group = group;
         public readonly float GroupDelay = groupDelay;
     }
 
-    private TransformComponent GetCorrectTransform(EntityUid target, Entity<DestinyDiceComponent> die, EntityUid roller)
-    {
-        if (target != die.Owner || !TryComp<HandsComponent>(roller, out var hands)) return Transform(target);
-        var containerEnumerator = _container.GetContainingContainers(target);
-        var baseContainers = containerEnumerator.ToList();
-        if(baseContainers.Count != 0) return Transform(baseContainers.Last().Owner);
-        return hands.Hands.Keys
-            .Select(hand => _hands.GetHeldItem((roller, hands), hand))
-            .Any(item => item == target) ? Transform(roller) : Transform(target);
-    }
     
-    private void TargetedExecution(Entity<DestinyDiceComponent> entity, IDestinyDiceEffect effect, EntityUid roller, Action<List<EntityUid>> callback)
-    {
-        switch (effect)
-        {
-            case { TargetEntity: false, TargetPlayer: false }:
-                callback([entity]);
-                return;
-            // case { TargetPlayer: true, TargetMultiple: false } when roller is null:
-            //     return;
-            case { TargetPlayer: true, TargetMultiple: false }:
-                callback([roller]);
-                return;
-            case { TargetPlayer: true, TargetMultiple: true }:
-                {
-                    if (effect.Range < 0)
-                    {
-                        var entities = GetAllPlayers();
-                        callback(entities);
-                    }
-                    else if (float.IsPositiveInfinity(effect.Range))
-                    {
-                        var entities = GetPlayersOnMap(Transform(entity).MapID);
-                        callback(entities);
-                    }
-                    else
-                    {
-                        var entities = GetPlayersNearby(entity, effect.Range);
-                        callback(entities);
-                    }
-
-                    return;
-                }
-        }
-
-        if (!effect.TargetEntity) return;
-        if (!_proto.TryIndex(effect.TargetProto, out var proto)) return;
-        if (effect.Range < 0)
-        {
-            var entities = GetAllPrototypes(proto);
-            callback(entities);
-        }
-        else if (float.IsPositiveInfinity(effect.Range))
-        {
-            var entities = GetPrototypesOnMap(proto, Transform(entity).MapID);
-            callback(entities);
-        }
-        else
-        {
-            var entities = GetPrototypesNearby(proto, entity, effect.Range);
-            callback(entities);
-        }
-    }
 }

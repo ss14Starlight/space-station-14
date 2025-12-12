@@ -1,0 +1,138 @@
+- type: entity
+  abstract: true
+  categories: [HideSpawnMenu]
+  parent: BaseDice
+  id: BaseDestinyDie
+  name: destiny die
+  description: A magically enhanced d10, capable of rolling many many numbers and granting effects based on the roll.
+  components:
+    - type: Dice
+      sides: 10
+      multiplier: 1
+      offset: 1
+      currentValue: 0
+    - type: DestinyDice
+      noEffectMessage: "Nothing happened..."
+      cooldownMessage: "The destiny die is recharging, nothing happens..."
+      rollDelay: 0
+    - type: Sprite
+      sprite: _Starlight/Admeme/neomoth/destinydie.rsi
+      layers:
+        - state: die
+          shader: unshaded
+        - state: side_numbers
+        - state: l0
+        - state: r0
+    - type: PointLight
+      radius: 0.8
+      energy: 1.8
+    - type: RgbLightController
+      layers: [ 0 ]
+
+- type: entity
+  parent: BaseDestinyDie
+  id: DebugDestinyDie
+  suffix: Debug
+  components:
+    - type: Dice
+      sides: 1
+    - type: DestinyDice
+      effectGroups:
+        - successMessage: "Food and water for everyone!"
+          effects:
+            - !type:SpawnPrototypeEffect
+              conditions:
+                - !type:ClothMuncherCondition
+                  flipCondition: true
+              targetPlayer: true
+              targetMultiple: true
+              range: -1
+              protos:
+                - DrinkWaterBottleFull
+                - FoodPizzaMargherita
+            - !type:SpawnPrototypeEffect
+              conditions:
+                - !type:ClothMuncherCondition
+              targetPlayer: true
+              targetMultiple: true
+              range: -1
+              protos:
+                - DrinkWaterBottleFull
+                - FoodPizzaCotton
+
+- type: entity
+  parent: BaseDestinyDie
+  id: DestinyDieD10
+  components:
+    - type: Dice
+      sides: 20
+    - type: DestinyDice
+      rollDelay: 2
+      effectGroups:
+          - weight: 1
+            effects:
+              - !type:SpawnPrototypeEffect
+                successMessage: "+1 Cappy ID!"
+                protos:
+                  - CaptainIDCard
+          - weight: 1
+            effects:
+              - !type:SpawnPrototypeEffect
+                successMessage: "+1 master encryption key!"
+                protos:
+                  - EncryptionKeyStationMaster
+          - weight: 3
+            effects:
+              - !type:AddGameRuleEffect
+                proto: MoproachMigration
+                successMessage: "FREE MOPROACHES!!"
+          - weight: 2
+            effects:
+              - !type:CargoPurchaseEffect
+                product: HydratedScurret
+                quantity: 5
+                isFree: true
+                successMessage: "Wawas have appeared at the ATS!"
+          - weight: 3
+            successMessage: "Food and water for everyone!"
+            effects:
+              - !type:SpawnPrototypeEffect
+                conditions:
+                  - !type:ClothMuncherCondition
+                    flipCondition: true
+                targetPlayer: true
+                targetMultiple: true
+                range: -1
+                protos:
+                  - DrinkWaterBottleFull
+                  - FoodPizza
+              - !type:SpawnPrototypeEffect
+                conditions:
+                  - !type:ClothMuncherCondition
+                targetPlayer: true
+                targetMultiple: true
+                range: -1
+                protos:
+                  - DrinkWaterBottleFull
+                  - FoodPizzaCotton
+                
+
+          - weight: 3
+            successMessage: "Wow, that sure is unlucky!"
+            effects:
+              - !type:EmptyEffect
+                delay: 0.4
+                successMessage: "Guess you get to die now."
+              - !type:EmptyEffect
+                delay: 0.8
+                successMessage: "Toodles!"
+              - !type:KillTargetEffect
+                targetPlayer: true
+          - weight: 2
+            successMessage: "Fuck you, dragon spawn."
+            effects:
+              - !type:AddGameRuleEffect
+                proto: DragonSpawn
+              - !type:StationAnnouncementEffect
+                message: terror-dragon
+                color: "#ff0000"
