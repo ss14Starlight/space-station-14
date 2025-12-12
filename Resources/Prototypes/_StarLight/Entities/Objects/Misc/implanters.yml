@@ -111,5 +111,5 @@
   suffix: Admeme
   components:
   - type: Implanter
-    implant: RadioImplant
+    implant: RadioImplantEvent
     dissolveOnUse: true
