@@ -3,6 +3,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Dice.DestinyDice; // Starlight
 
 namespace Content.Shared.Item;
 
@@ -12,7 +13,7 @@ namespace Content.Shared.Item;
 /// </summary>
 [RegisterComponent]
 [NetworkedComponent]
-[Access(typeof(SharedItemSystem)), AutoGenerateComponentState(true)]
+[Access(typeof(SharedItemSystem), typeof(SharedDestinyDiceSystem)), AutoGenerateComponentState(true)] // Starlight edit
 public sealed partial class ItemComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]

@@ -38,124 +38,180 @@
       sides: 1
     - type: DestinyDice
       effectGroups:
-        - weight: 3
+        - weight: 1
           rollConditions:
             - !type:SideCondition
               value: 0
-          successMessage: "Wow, that sure is unlucky!"
           effects:
-            - !type:EmptyEffect
-              delay: 0.4
-              successMessage: "Guess you get to die now."
-            - !type:EmptyEffect
-              delay: 0.8
-              successMessage: "Toodles!"
-            - !type:KillTargetEffect
-              delay: 1.2
-              targetPlayer: true
+            - !type:AnchorTargetEffect
+              conditions:
+                - !type:IsNotBeingContainedCondition
+                  requiredToExecute: true
+                - !type:IsNotBeingHeldCondition
+                  requiredToExecute: true
+              effectID: 0
+              failureMessage: "Nothing happened..?"
+              successMessage: "..."
+            - !type:SpawnFluidEffect
+              reagentProto: Blood
+              quantity: 120
+              dependsOn: [ 0 ]
+              successMessage: "SUMMONING NAR'SIE!!!"
+              delay: 1
+            - !type:SpawnFluidEffect
+              reagentProto: Blood
+              quantity: 200
+              dependsOn: [ 0 ]
+              successMessage: "RUUUNNNNN!!!!"
+              delay: 2
+            - !type:SpawnPrototypeEffect
+              delay: 2
+              successMessage: "Nah, just kidding. Have a plush :3"
+              dependsOn: [ 0 ]
+              protos:
+                - PlushieNar
+            - !type:UnanchorTargetEffect
+              dependsOn: [ 0 ]
 
 - type: entity
   parent: BaseDestinyDie
   id: DestinyDieD10
   components:
     - type: Dice
-      sides: 20
+      sides: 10
       offset: 0
+      currentValue: 10
     - type: DestinyDice
       rollDelay: 2
       effectGroups:
-          - weight: 1
-            rollConditions:
-              - !type:SideCondition
-                value: 20
-            effects:
-              - !type:SpawnPrototypeEffect
-                successMessage: "+1 Cappy ID!"
-                protos:
-                  - CaptainIDCard
-          - weight: 1
-            rollConditions:
-              - !type:SideCondition
-                value: 20
-            effects:
-              - !type:SpawnPrototypeEffect
-                successMessage: "+1 master encryption key!"
-                protos:
-                  - EncryptionKeyStationMaster
-          - weight: 3
-            rollConditions:
-              - !type:SideCondition
-                value: 20
-            effects:
-              - !type:AddGameRuleEffect
-                proto: MoproachMigration
-                successMessage: "FREE MOPROACHES!!"
-          - weight: 2
-            rollConditions:
-              - !type:SideCondition
-                value: 20
-            effects:
-              - !type:CargoPurchaseEffect
-                product: HydratedScurret
-                quantity: 5
-                isFree: true
-                successMessage: "Wawas have appeared at the ATS!"
-          - weight: 3
-            rollConditions:
-              - !type:SideCondition
-                value: 20
-            successMessage: "Food and water for everyone!"
-            effects:
-              - !type:SpawnPrototypeEffect
-                conditions:
-                  - !type:ClothMuncherCondition
-                    flipCondition: true
-                targetPlayer: true
-                targetMultiple: true
-                range: -1
-                protos:
-                  - DrinkWaterBottleFull
-                  - FoodPizza
-              - !type:SpawnPrototypeEffect
-                conditions:
-                  - !type:ClothMuncherCondition
-                targetPlayer: true
-                targetMultiple: true
-                range: -1
-                protos:
-                  - DrinkWaterBottleFull
-                  - FoodPizzaCotton
-          - weight: 0.4
-            rollConditions:
-              - !type:SideRangeCondition
-                min: 1
-                max: 20
-            effects:
-              - !type:EmptyEffect
-                successMessage: "Looks like you won nothing, congrats!!"
-          - weight: 3
-            rollConditions:
-              - !type:SideCondition
-                value: 1
-            successMessage: "Wow, that sure is unlucky!"
-            effects:
-              - !type:EmptyEffect
-                delay: 0.8
-                successMessage: "Guess you get to die now."
-              - !type:EmptyEffect
-                delay: 1.6
-                successMessage: "Toodles!"
-              - !type:KillTargetEffect
-                delay: 2.4
-                targetPlayer: true
-          - weight: 2
-            rollConditions:
-              - !type:SideCondition
-                value: 1
-            successMessage: "Fuck you, dragon spawn."
-            effects:
-              - !type:AddGameRuleEffect
-                proto: DragonSpawn
-              - !type:StationAnnouncementEffect
-                message: terror-dragon
-                color: "#ff0000"
+        - weight: 1
+          rollConditions:
+            - !type:SideCondition
+              value: 10
+          effects:
+            - !type:SpawnPrototypeEffect
+              successMessage: "+1 Cappy ID!"
+              protos:
+                - CaptainIDCard
+        - weight: 1
+          rollConditions:
+            - !type:SideCondition
+              value: 10
+          effects:
+            - !type:SpawnPrototypeEffect
+              successMessage: "+1 master encryption key!"
+              protos:
+                - EncryptionKeyStationMaster
+        - weight: 3
+          rollConditions:
+            - !type:SideCondition
+              value: 10
+          effects:
+            - !type:AddGameRuleEffect
+              proto: MoproachMigration
+              successMessage: "FREE MOPROACHES!!"
+        - weight: 2
+          rollConditions:
+            - !type:SideCondition
+              value: 10
+          effects:
+            - !type:CargoPurchaseEffect
+              product: HydratedScurret
+              quantity: 5
+              isFree: true
+              successMessage: "Wawas have appeared at the ATS!"
+        - weight: 3
+          rollConditions:
+            - !type:SideCondition
+              value: 10
+          successMessage: "Food and water for everyone!"
+          effects:
+            - !type:SpawnPrototypeEffect
+              conditions:
+                - !type:ClothMuncherCondition
+                  flipCondition: true
+              targetPlayer: true
+              targetMultiple: true
+              range: -1
+              protos:
+                - DrinkWaterBottleFull
+                - FoodPizza
+            - !type:SpawnPrototypeEffect
+              conditions:
+                - !type:ClothMuncherCondition
+              targetPlayer: true
+              targetMultiple: true
+              range: -1
+              protos:
+                - DrinkWaterBottleFull
+                - FoodPizzaCotton
+        - weight: 3
+          rollConditions:
+            - !type:SideCondition
+              value: 1
+          successMessage: "Wow, that sure is unlucky!"
+          effects:
+            - !type:EmptyEffect
+              delay: 0.8
+              successMessage: "Guess you get to die now."
+            - !type:EmptyEffect
+              delay: 0.8
+              successMessage: "Toodles!"
+            - !type:KillTargetEffect
+              delay: 0.8
+              targetPlayer: true
+        - weight: 1
+          rollConditions:
+            - !type:SideRangeCondition
+              min: 4
+              max: 6
+          effects:
+            - !type:AnchorTargetEffect
+              conditions:
+                - !type:IsNotBeingContainedCondition
+                  requiredToExecute: true
+                - !type:IsNotBeingHeldCondition
+                  requiredToExecute: true
+              effectID: 0
+              failureMessage: "Nothing happened..?"
+              successMessage: "..."
+            - !type:SpawnFluidEffect
+              reagentProto: Blood
+              quantity: 120
+              dependsOn: [ 0 ]
+              successMessage: "SUMMONING NAR'SIE!!!"
+              delay: 1
+            - !type:SpawnFluidEffect
+              reagentProto: Blood
+              quantity: 200
+              dependsOn: [ 0 ]
+              successMessage: "RUUUNNNNN!!!!"
+              delay: 2
+            - !type:SpawnPrototypeEffect
+              delay: 2
+              successMessage: "Nah, just kidding. Have a plush :3"
+              dependsOn: [ 0 ]
+              protos:
+                - PlushieNar
+            - !type:UnanchorTargetEffect
+              dependsOn: [ 0 ]
+                
+        - weight: 3
+          rollConditions:
+            - !type:SideCondition
+              value: 1
+          successMessage: "You seem to have summoned the wrath of the spider clan."
+          effects:
+            - !type:AddGamerule
+              proto: NinjaSpawn
+        - weight: 2
+          rollConditions:
+            - !type:SideCondition
+              value: 1
+          successMessage: "Fuck you, dragon spawn."
+          effects:
+            - !type:AddGameRuleEffect
+              proto: DragonSpawn
+            - !type:StationAnnouncementEffect
+              message: terror-dragon
+              color: "#ff0000"

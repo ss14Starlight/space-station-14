@@ -5,6 +5,8 @@ using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Fluids.EntitySystems;
+using Content.Server.Item;
 using Content.Server.Nuke;
 using Content.Server.Tabletop;
 using Content.Server.Tabletop.Components;
@@ -25,6 +27,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Item;
 using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -39,6 +42,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Tiles;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -63,6 +67,8 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly PuddleSystem _puddle = default!;
+    [Dependency] private readonly ItemSystem _item = default!;
     
     /// <summary>
     /// All pending effect groups. Cleared on round restart.
@@ -185,9 +191,12 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
                     _popup.PopupCoordinates(entry.Group.FailureMessage, Transform(entry.Uid).Coordinates);
                 break;
             }
+
+            var accumulator = _timing.CurTime;
             foreach (var effect in entry.Group.Effects)
             {
-                _pendingEffects.Add(new PendingDestinyDiceEffect(entry.Uid, entry.Roller, entry.Grid, _timing.CurTime, entry.Component, effect, entry.Group, entry.Group.Delay));
+                accumulator += TimeSpan.FromSeconds(effect.Delay);
+                _pendingEffects.Add(new PendingDestinyDiceEffect(entry.Uid, entry.Roller, entry.Grid, accumulator, entry.Component, effect, entry.Group, entry.Group.Delay));
             }
             if(entry.Group.SuccessMessage is not null) _popup.PopupCoordinates(entry.Group.SuccessMessage, Transform(entry.Uid).Coordinates);
             _pendingEffectGroups.Remove(entry);
@@ -195,7 +204,7 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
         
         foreach (var entry in _pendingEffects.ToList())
         {
-            if (_timing.CurTime < entry.TriggeredAt + TimeSpan.FromSeconds(entry.GroupDelay) + TimeSpan.FromSeconds(entry.Effect.Delay))
+            if (_timing.CurTime < entry.TriggerTime)
                 continue;
             // this way effects can do stuff both client and server side :3
             if (entry.Effect.TargetClient)
@@ -212,8 +221,8 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
         }
     }
     
-    // Yes, this sucks, unfortunately I am too stupid to figure out how to do this more efficiently than a switch statement
-    // At least, efficient in a way that it is less tedious than just adding to this.
+    // Yes, this sucks, unfortunately I am too stupid to figure out how to do this more efficiently than a switch statement.
+    // At least, efficient in a way that it is less tedious than just adding to this. Not to mention this lets me use functions from the EntitySystem inheritance.
     protected override bool ExecuteEffect(IDestinyDiceEffect effect, DestinyDiceEffectGroup group, EntityUid target, Entity<DestinyDiceComponent> entity, EntityUid roller, EntityUid? grid)
     {
         switch (effect)
@@ -229,6 +238,14 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
                     _ticker.AddGameRule(proto.ID);
                     return true;
                 }
+            case AllowPickupEffect allowPickupEffect:
+                {
+                    if (!TryComp<ItemComponent>(target, out var item)) return false;
+                    item.AllowDirectHandPickup = true;
+                    return true;
+                }
+            case AnchorTargetEffect anchorTargetEffect:
+                return _transform.AnchorEntity(target);
             case ArmStationNukeEffect armStationNukeEffect:
                 {
                     var station = _station.GetOwningStation(grid);
@@ -238,7 +255,7 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
                     var nukeQuery = EntityQueryEnumerator<NukeComponent>();
                     while (nukeQuery.MoveNext(out var uid, out var nuke))
                     {
-                        if(data.Grids.All(target => target != grid)) break;
+                        if(data.Grids.All(targetGrid => targetGrid != grid)) break;
                         if (!Transform(uid).Anchored) continue; // can't arm if unanchored
                         nukeEntity = uid;
                         break;
@@ -292,6 +309,12 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
                         entities = GetPrototypesNearby(effect, proto, entity, effect.Range);
                     if (entities.Count == 0) return false;
                     foreach (var _ in entities) QueueDel(target);
+                    return true;
+                }
+            case DisablePickupEffect disablePickupEffect:
+                {
+                    if (!TryComp<ItemComponent>(target, out var item)) return false;
+                    item.AllowDirectHandPickup = false;
                     return true;
                 }
             case ExplosionEffect explosionEffect:
@@ -380,6 +403,25 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
                     ChessSmite(target);
                     return true;
                 }
+            case SpawnFluidEffect spawnFluidEffect:
+                {
+                    if (grid is null) return false;
+                    if (!_proto.HasIndex<ReagentPrototype>(spawnFluidEffect.ReagentProto)) return false;
+                    if (!TryComp<MapGridComponent>(grid, out var gridComp)) return false;
+                    if (!_map.TryGetTileRef(grid.Value, gridComp, GetCorrectTransform(target, entity, roller).Coordinates, out var tile))
+                        return false;
+                    var solution = new Solution([
+                        new ReagentQuantity(spawnFluidEffect.ReagentProto, spawnFluidEffect.Quantity)
+                    ]);
+                    if (_puddle.TryGetPuddle(tile, out var existing))
+                    {
+                        _puddle.TryAddSolution(existing, solution, spawnFluidEffect.DoSplashSound, spawnFluidEffect.CheckForOverflow);
+                        return true;
+                    }
+                    _puddle.TrySpillAt(tile, solution, out var _, spawnFluidEffect.DoSplashSound,
+                        spawnFluidEffect.CheckForOverflow);
+                    return true;
+                }
             case SpawnGasMixtureEffect spawnGasMixtureEffect:
                 {
                     var transform = GetCorrectTransform(target, entity, roller);
@@ -466,6 +508,12 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
                     _transform.SetCoordinates(destination.Value, coords.Coordinates);
                     return true;
                 }
+            case UnanchorTargetEffect unanchorTargetEffect:
+                {
+                    if (!Transform(entity).Anchored) return false;
+                    _transform.Unanchor(target);
+                    return true;
+                }
         }
 
         return false;
@@ -528,36 +576,15 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
         public readonly DestinyDiceEffectGroup Group = group;
     }
     
-    private sealed class PendingDestinyDiceEffect(EntityUid uid, EntityUid roller, EntityUid? grid, TimeSpan triggeredAt, DestinyDiceComponent comp, IDestinyDiceEffect effect, DestinyDiceEffectGroup group, float groupDelay)
+    private sealed class PendingDestinyDiceEffect(EntityUid uid, EntityUid roller, EntityUid? grid, TimeSpan triggerTime, DestinyDiceComponent comp, IDestinyDiceEffect effect, DestinyDiceEffectGroup group, float groupDelay)
     {
         public readonly EntityUid Uid = uid;
         public readonly EntityUid Roller = roller;
         public readonly EntityUid? Grid = grid;
-        public readonly TimeSpan TriggeredAt = triggeredAt;
+        public readonly TimeSpan TriggerTime = triggerTime;
         public readonly DestinyDiceComponent Component = comp;
         public readonly IDestinyDiceEffect Effect = effect;
         public readonly DestinyDiceEffectGroup Group = group;
         public readonly float GroupDelay = groupDelay;
     }
-}
-
-[DataRecord, Serializable, NetSerializable]
-public sealed class TestEffect : IDestinyDiceEffect
-{
-    public bool TargetPlayer { get; set; }
-    public bool TargetEntity { get; set; }
-    public bool TargetMultiple { get; set; }
-    public bool AllowGhosts { get; set; }
-    public float Range { get; set; }
-    public EntProtoId TargetProto { get; set; }
-    public bool TargetClient { get; set; }
-    public List<IDestinyDiceTriggerCondition>? Conditions { get; set; }
-    public int? EffectID { get; set; }
-    public int MaxTriggers { get; set; }
-    public int TimesTriggered { get; set; }
-    public string? EffectOutOfTriggersMessage { get; set; }
-    public float Delay { get; set; }
-    public List<int>? DependsOn { get; set; }
-    public string? SuccessMessage { get; set; }
-    public string? FailureMessage { get; set; }
 }

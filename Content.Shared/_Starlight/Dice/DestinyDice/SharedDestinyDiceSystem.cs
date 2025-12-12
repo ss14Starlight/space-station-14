@@ -196,6 +196,21 @@ public abstract class SharedDestinyDiceSystem : EntitySystem
                     if(!TryComp<MobStateComponent>(target, out var comp)) return false;
                     return comp.CurrentState == isMobStateCondition.TargetState;
                 }
+            case IsNotBeingContainedCondition isNotBeingContainedCondition:
+                {
+                    var containers = _container.GetContainingContainers(target);
+                    return !containers.Any();
+                }
+            case IsNotBeingHeldCondition isNotBeingHeldCondition:
+                {
+                    var containers = _container.GetContainingContainers(target);
+                    foreach (var container in containers)
+                    {
+                        if (!TryComp<HandsComponent>(container.Owner, out var hands)) continue;
+                        if (hands.Hands.Any(hand => container.ID == hand.Key)) return false;
+                    }
+                    return true;
+                }
             default:
                 return false;
         }

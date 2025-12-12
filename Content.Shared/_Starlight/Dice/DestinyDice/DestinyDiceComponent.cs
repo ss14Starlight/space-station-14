@@ -188,7 +188,7 @@ public interface IDestinyDiceEffect : IDestinyDiceTargetable
     /// </summary>
     public string? EffectOutOfTriggersMessage { get; set; }
     /// <summary>
-    /// An arbitrary delay before initiating the effect. For suspense. :)
+    /// Adds a delay to the effect. Effects are executed in order.
     /// </summary>
     public float Delay { get; set; }
     /// <summary>
@@ -1078,12 +1078,17 @@ public sealed class ConvertToAntagonistEffect : IDestinyDiceEffect
     public string? FailureMessage { get; set; }
     /// <inheritdoc />
     public string? EffectOutOfTriggersMessage { get; set; }
+    /// <inheritdoc />
     public bool TargetPlayer { get; set; }
+    /// <inheritdoc />
     public bool TargetEntity { get; set; }
+    /// <inheritdoc />
     public bool TargetMultiple { get; set; }
     /// <inheritdoc />
     public bool AllowGhosts { get; set; }
+    /// <inheritdoc />
     public float Range { get; set; }
+    /// <inheritdoc />
     public EntProtoId TargetProto { get; set; }
 
     /// <summary>
@@ -1093,6 +1098,234 @@ public sealed class ConvertToAntagonistEffect : IDestinyDiceEffect
 }
 #endregion
 
+#region SpawnFluidEffect
+/// <summary>
+/// A better way to spawn fluids than <see cref="SpawnPrototypeEffect"/>. Will attempt to add to a puddle already underneath the target instead of spawning a new one if possible.
+/// </summary>
+[DataRecord, Serializable, NetSerializable]
+public sealed class SpawnFluidEffect : IDestinyDiceEffect
+{
+    /// <inheritdoc />
+    public bool TargetClient { get; set; }
+    /// <inheritdoc />
+    public List<IDestinyDiceTriggerCondition>? Conditions { get; set; }
+    /// <inheritdoc />
+    public int? EffectID { get; set; }
+    /// <inheritdoc />
+    public int MaxTriggers { get; set; }
+    /// <inheritdoc />
+    public int TimesTriggered { get; set; }
+    /// <inheritdoc />
+    public float Delay { get; set; }
+    /// <inheritdoc />
+    public List<int>? DependsOn { get; set; }
+    /// <inheritdoc />
+    public string? SuccessMessage { get; set; }
+    /// <inheritdoc />
+    public string? FailureMessage { get; set; }
+    /// <inheritdoc />
+    public string? EffectOutOfTriggersMessage { get; set; }
+    /// <inheritdoc />
+    public bool TargetPlayer { get; set; }
+    /// <inheritdoc />
+    public bool TargetEntity { get; set; }
+    /// <inheritdoc />
+    public bool TargetMultiple { get; set; }
+    /// <inheritdoc />
+    public bool AllowGhosts { get; set; }
+    /// <inheritdoc />
+    public float Range { get; set; }
+    /// <inheritdoc />
+    public EntProtoId TargetProto { get; set; }
+    
+    /// <summary>
+    /// The reagent to add to the spawned fluid
+    /// </summary>
+    public required string ReagentProto { get; set; }
+    
+    /// <summary>
+    /// How much of the reagent to add
+    /// </summary>
+    public required float Quantity { get; set; }
+    
+    /// <summary>
+    /// Whether to play the splash sound or not
+    /// </summary>
+    public bool DoSplashSound { get; set; }
+
+    /// <summary>
+    /// Whether to check for overflow or not, defaults to true.
+    /// </summary>
+    public bool CheckForOverflow { get; set; } = true;
+}
+#endregion
+
+#region AnchorTargetEffect
+/// <summary>
+/// Anchors the target.
+/// </summary>
+[DataRecord, Serializable, NetSerializable]
+public sealed class AnchorTargetEffect : IDestinyDiceEffect
+{
+    /// <inheritdoc />
+    public bool TargetClient { get; set; }
+    /// <inheritdoc />
+    public List<IDestinyDiceTriggerCondition>? Conditions { get; set; }
+    /// <inheritdoc />
+    public int? EffectID { get; set; }
+    /// <inheritdoc />
+    public int MaxTriggers { get; set; }
+    /// <inheritdoc />
+    public int TimesTriggered { get; set; }
+    /// <inheritdoc />
+    public float Delay { get; set; }
+    /// <inheritdoc />
+    public List<int>? DependsOn { get; set; }
+    /// <inheritdoc />
+    public string? SuccessMessage { get; set; }
+    /// <inheritdoc />
+    public string? FailureMessage { get; set; }
+    /// <inheritdoc />
+    public string? EffectOutOfTriggersMessage { get; set; }
+    /// <inheritdoc />
+    public bool TargetPlayer { get; set; }
+    /// <inheritdoc />
+    public bool TargetEntity { get; set; }
+    /// <inheritdoc />
+    public bool TargetMultiple { get; set; }
+    /// <inheritdoc />
+    public bool AllowGhosts { get; set; }
+    /// <inheritdoc />
+    public float Range { get; set; }
+    /// <inheritdoc />
+    public EntProtoId TargetProto { get; set; }
+}
+#endregion
+
+#region UnanchorTargetEffect
+/// <summary>
+/// Unanchors the target.
+/// </summary>
+[DataRecord, Serializable, NetSerializable]
+public sealed class UnanchorTargetEffect : IDestinyDiceEffect
+{
+    /// <inheritdoc />
+    public bool TargetClient { get; set; }
+    /// <inheritdoc />
+    public List<IDestinyDiceTriggerCondition>? Conditions { get; set; }
+    /// <inheritdoc />
+    public int? EffectID { get; set; }
+    /// <inheritdoc />
+    public int MaxTriggers { get; set; }
+    /// <inheritdoc />
+    public int TimesTriggered { get; set; }
+    /// <inheritdoc />
+    public float Delay { get; set; }
+    /// <inheritdoc />
+    public List<int>? DependsOn { get; set; }
+    /// <inheritdoc />
+    public string? SuccessMessage { get; set; }
+    /// <inheritdoc />
+    public string? FailureMessage { get; set; }
+    /// <inheritdoc />
+    public string? EffectOutOfTriggersMessage { get; set; }
+    /// <inheritdoc />
+    public bool TargetPlayer { get; set; }
+    /// <inheritdoc />
+    public bool TargetEntity { get; set; }
+    /// <inheritdoc />
+    public bool TargetMultiple { get; set; }
+    /// <inheritdoc />
+    public bool AllowGhosts { get; set; }
+    /// <inheritdoc />
+    public float Range { get; set; }
+    /// <inheritdoc />
+    public EntProtoId TargetProto { get; set; }
+}
+#endregion
+
+#region AllowPickupEffect
+/// <summary>
+/// Allows the target to be picked up. Will fail if the target lacks an <see cref="Item.ItemComponent"/>.
+/// </summary>
+[DataRecord, Serializable, NetSerializable]
+public sealed class AllowPickupEffect : IDestinyDiceEffect
+{
+    /// <inheritdoc />
+    public bool TargetClient { get; set; }
+    /// <inheritdoc />
+    public List<IDestinyDiceTriggerCondition>? Conditions { get; set; }
+    /// <inheritdoc />
+    public int? EffectID { get; set; }
+    /// <inheritdoc />
+    public int MaxTriggers { get; set; }
+    /// <inheritdoc />
+    public int TimesTriggered { get; set; }
+    /// <inheritdoc />
+    public float Delay { get; set; }
+    /// <inheritdoc />
+    public List<int>? DependsOn { get; set; }
+    /// <inheritdoc />
+    public string? SuccessMessage { get; set; }
+    /// <inheritdoc />
+    public string? FailureMessage { get; set; }
+    /// <inheritdoc />
+    public string? EffectOutOfTriggersMessage { get; set; }
+    /// <inheritdoc />
+    public bool TargetPlayer { get; set; }
+    /// <inheritdoc />
+    public bool TargetEntity { get; set; }
+    /// <inheritdoc />
+    public bool TargetMultiple { get; set; }
+    /// <inheritdoc />
+    public bool AllowGhosts { get; set; }
+    /// <inheritdoc />
+    public float Range { get; set; }
+    /// <inheritdoc />
+    public EntProtoId TargetProto { get; set; }
+}
+#endregion
+/// <summary>
+/// Prevents the target from being picked up. Will fail if the target lacks an <see cref="Item.ItemComponent"/>.
+/// </summary>
+#region DisablePickupEffect
+[DataRecord, Serializable, NetSerializable]
+public sealed class DisablePickupEffect : IDestinyDiceEffect
+{
+    /// <inheritdoc />
+    public bool TargetClient { get; set; }
+    /// <inheritdoc />
+    public List<IDestinyDiceTriggerCondition>? Conditions { get; set; }
+    /// <inheritdoc />
+    public int? EffectID { get; set; }
+    /// <inheritdoc />
+    public int MaxTriggers { get; set; }
+    /// <inheritdoc />
+    public int TimesTriggered { get; set; }
+    /// <inheritdoc />
+    public float Delay { get; set; }
+    /// <inheritdoc />
+    public List<int>? DependsOn { get; set; }
+    /// <inheritdoc />
+    public string? SuccessMessage { get; set; }
+    /// <inheritdoc />
+    public string? FailureMessage { get; set; }
+    /// <inheritdoc />
+    public string? EffectOutOfTriggersMessage { get; set; }
+    /// <inheritdoc />
+    public bool TargetPlayer { get; set; }
+    /// <inheritdoc />
+    public bool TargetEntity { get; set; }
+    /// <inheritdoc />
+    public bool TargetMultiple { get; set; }
+    /// <inheritdoc />
+    public bool AllowGhosts { get; set; }
+    /// <inheritdoc />
+    public float Range { get; set; }
+    /// <inheritdoc />
+    public EntProtoId TargetProto { get; set; }
+}
+#endregion
 
 #endregion
 
@@ -1341,6 +1574,58 @@ public sealed class IsMobStateCondition : IDestinyDiceTriggerCondition
     /// The state required to pass the check.
     /// </summary>
     public MobState TargetState { get; set; }
+}
+#endregion
+
+#region IsNotBeingContainedCondition
+/// <summary>
+/// The target must not be in a container.
+/// </summary>
+[DataRecord, Serializable, NetSerializable]
+public sealed class IsNotBeingContainedCondition : IDestinyDiceTriggerCondition
+{
+    /// <inheritdoc />
+    public bool TargetPlayer { get; set; }
+    /// <inheritdoc />
+    public bool TargetEntity { get; set; }
+    /// <inheritdoc />
+    public bool TargetMultiple { get; set; }
+    /// <inheritdoc />
+    public bool AllowGhosts { get; set; }
+    /// <inheritdoc />
+    public float Range { get; set; }
+    /// <inheritdoc />
+    public EntProtoId TargetProto { get; set; }
+    /// <inheritdoc />
+    public bool RequiredToExecute { get; set; }
+    /// <inheritdoc />
+    public bool FlipCondition { get; set; }
+}
+#endregion
+
+#region IsNotBeingHeldCondition
+/// <summary>
+/// The target must not be held in another entity's hand. Will also return false if it is lets say, contained in an entity, and an entity picks up that entity in their hand.
+/// </summary>
+[DataRecord, Serializable, NetSerializable]
+public sealed class IsNotBeingHeldCondition : IDestinyDiceTriggerCondition
+{
+    /// <inheritdoc />
+    public bool TargetPlayer { get; set; }
+    /// <inheritdoc />
+    public bool TargetEntity { get; set; }
+    /// <inheritdoc />
+    public bool TargetMultiple { get; set; }
+    /// <inheritdoc />
+    public bool AllowGhosts { get; set; }
+    /// <inheritdoc />
+    public float Range { get; set; }
+    /// <inheritdoc />
+    public EntProtoId TargetProto { get; set; }
+    /// <inheritdoc />
+    public bool RequiredToExecute { get; set; }
+    /// <inheritdoc />
+    public bool FlipCondition { get; set; }
 }
 #endregion
 
