@@ -38,27 +38,21 @@
       sides: 1
     - type: DestinyDice
       effectGroups:
-        - successMessage: "Food and water for everyone!"
+        - weight: 3
+          rollConditions:
+            - !type:SideCondition
+              value: 0
+          successMessage: "Wow, that sure is unlucky!"
           effects:
-            - !type:SpawnPrototypeEffect
-              conditions:
-                - !type:ClothMuncherCondition
-                  flipCondition: true
+            - !type:EmptyEffect
+              delay: 0.4
+              successMessage: "Guess you get to die now."
+            - !type:EmptyEffect
+              delay: 0.8
+              successMessage: "Toodles!"
+            - !type:KillTargetEffect
+              delay: 1.2
               targetPlayer: true
-              targetMultiple: true
-              range: -1
-              protos:
-                - DrinkWaterBottleFull
-                - FoodPizzaMargherita
-            - !type:SpawnPrototypeEffect
-              conditions:
-                - !type:ClothMuncherCondition
-              targetPlayer: true
-              targetMultiple: true
-              range: -1
-              protos:
-                - DrinkWaterBottleFull
-                - FoodPizzaCotton
 
 - type: entity
   parent: BaseDestinyDie
@@ -66,27 +60,40 @@
   components:
     - type: Dice
       sides: 20
+      offset: 0
     - type: DestinyDice
       rollDelay: 2
       effectGroups:
           - weight: 1
+            rollConditions:
+              - !type:SideCondition
+                value: 20
             effects:
               - !type:SpawnPrototypeEffect
                 successMessage: "+1 Cappy ID!"
                 protos:
                   - CaptainIDCard
           - weight: 1
+            rollConditions:
+              - !type:SideCondition
+                value: 20
             effects:
               - !type:SpawnPrototypeEffect
                 successMessage: "+1 master encryption key!"
                 protos:
                   - EncryptionKeyStationMaster
           - weight: 3
+            rollConditions:
+              - !type:SideCondition
+                value: 20
             effects:
               - !type:AddGameRuleEffect
                 proto: MoproachMigration
                 successMessage: "FREE MOPROACHES!!"
           - weight: 2
+            rollConditions:
+              - !type:SideCondition
+                value: 20
             effects:
               - !type:CargoPurchaseEffect
                 product: HydratedScurret
@@ -94,6 +101,9 @@
                 isFree: true
                 successMessage: "Wawas have appeared at the ATS!"
           - weight: 3
+            rollConditions:
+              - !type:SideCondition
+                value: 20
             successMessage: "Food and water for everyone!"
             effects:
               - !type:SpawnPrototypeEffect
@@ -115,20 +125,33 @@
                 protos:
                   - DrinkWaterBottleFull
                   - FoodPizzaCotton
-                
-
+          - weight: 0.4
+            rollConditions:
+              - !type:SideRangeCondition
+                min: 1
+                max: 20
+            effects:
+              - !type:EmptyEffect
+                successMessage: "Looks like you won nothing, congrats!!"
           - weight: 3
+            rollConditions:
+              - !type:SideCondition
+                value: 1
             successMessage: "Wow, that sure is unlucky!"
             effects:
               - !type:EmptyEffect
-                delay: 0.4
+                delay: 0.8
                 successMessage: "Guess you get to die now."
               - !type:EmptyEffect
-                delay: 0.8
+                delay: 1.6
                 successMessage: "Toodles!"
               - !type:KillTargetEffect
+                delay: 2.4
                 targetPlayer: true
           - weight: 2
+            rollConditions:
+              - !type:SideCondition
+                value: 1
             successMessage: "Fuck you, dragon spawn."
             effects:
               - !type:AddGameRuleEffect

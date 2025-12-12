@@ -50,6 +50,7 @@ public abstract class SharedDestinyDiceSystem : EntitySystem
     [Dependency] private readonly StomachSystem _stomach = default!;
     
     protected static readonly ProtoId<DamageTypePrototype> _bluntDamageType = "Blunt";
+    private static readonly string _clothTag = "ClothMade";
     
     /// <summary>
     /// Return status of effects with IDs. An effect is required to have an ID to track this properly.
@@ -139,6 +140,8 @@ public abstract class SharedDestinyDiceSystem : EntitySystem
         dict[ev.Effect] = new DestinyDiceEffectResult(result);
     }
 
+    // Yes, this sucks, unfortunately I am too stupid to figure out how to do this more efficiently than a switch statement
+    // At least, efficient in a way that it is less tedious than just adding to this.
     protected bool CheckTriggerCondition(IDestinyDiceTriggerCondition condition, EntityUid target, Entity<DestinyDiceComponent> entity, EntityUid roller,
         EntityUid? grid)
     {
@@ -156,7 +159,7 @@ public abstract class SharedDestinyDiceSystem : EntitySystem
                             if (!TryComp<StomachComponent>(organ, out var stomach)) continue;
                             if (!stomach.IsSpecialDigestibleExclusive) continue;
                             if (stomach.SpecialDigestible?.Tags is null) continue;
-                            if (!stomach.SpecialDigestible.Tags.Contains("ClothMade")) continue;
+                            if (!stomach.SpecialDigestible.Tags.Contains(_clothTag)) continue;
                             return true;
                         }
                     }

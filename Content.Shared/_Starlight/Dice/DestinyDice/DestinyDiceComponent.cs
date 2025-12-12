@@ -1106,6 +1106,7 @@ public sealed class ConvertToAntagonistEffect : IDestinyDiceEffect
 /// </summary>
 public interface IDestinyDiceRollCondition
 {
+    public bool Condition(int value);
 }
 #endregion
 
@@ -1113,9 +1114,12 @@ public interface IDestinyDiceRollCondition
 /// <summary>
 /// Must land on this specific side
 /// </summary>
+[DataRecord, Serializable, NetSerializable]
 public sealed class SideCondition : IDestinyDiceRollCondition
 {
     public required int Value { get; set; }
+
+    public bool Condition(int value) => value == Value;
 }
 #endregion
 
@@ -1123,10 +1127,13 @@ public sealed class SideCondition : IDestinyDiceRollCondition
 /// <summary>
 /// Must land within the specified values
 /// </summary>
+[DataRecord, Serializable, NetSerializable]
 public sealed class SideRangeCondition : IDestinyDiceRollCondition
 {
     public required int Min { get; set; }
     public required int Max { get; set; }
+    
+    public bool Condition(int value) => value >= Min && value <= Max;
 }
 #endregion
 

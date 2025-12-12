@@ -43,6 +43,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization;
 
 namespace Content.Server._Starlight.Dice.DestinyDice;
 
@@ -126,19 +127,8 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
     private void RollEffectGroup(EntityUid uid, DestinyDiceComponent dd, int value)
     {
         Dictionary<DestinyDiceEffectGroup, float> targetGroups = [];
-        foreach (var group in dd.EffectGroups)
-            foreach (var condition in group.RollConditions)
-                switch (condition)
-                {
-                    case SideCondition sideCondition:
-                        if(sideCondition.Value == value)
-                            targetGroups.Add(group, group.Weight ?? 1);
-                        break;
-                    case SideRangeCondition rangeCondition:
-                        if(value <= rangeCondition.Max && value >= rangeCondition.Min)
-                            targetGroups.Add(group, group.Weight ?? 1);
-                        break;
-                }
+        foreach (var group in dd.EffectGroups.Where(group => group.RollConditions.Any(condition => condition.Condition(value))))
+            targetGroups.Add(group, group.Weight ?? 1);
 
         if (targetGroups.Count == 0)
         {
@@ -222,6 +212,8 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
         }
     }
     
+    // Yes, this sucks, unfortunately I am too stupid to figure out how to do this more efficiently than a switch statement
+    // At least, efficient in a way that it is less tedious than just adding to this.
     protected override bool ExecuteEffect(IDestinyDiceEffect effect, DestinyDiceEffectGroup group, EntityUid target, Entity<DestinyDiceComponent> entity, EntityUid roller, EntityUid? grid)
     {
         switch (effect)
@@ -547,6 +539,25 @@ public sealed class DestinyDiceSystem : SharedDestinyDiceSystem
         public readonly DestinyDiceEffectGroup Group = group;
         public readonly float GroupDelay = groupDelay;
     }
+}
 
-    
+[DataRecord, Serializable, NetSerializable]
+public sealed class TestEffect : IDestinyDiceEffect
+{
+    public bool TargetPlayer { get; set; }
+    public bool TargetEntity { get; set; }
+    public bool TargetMultiple { get; set; }
+    public bool AllowGhosts { get; set; }
+    public float Range { get; set; }
+    public EntProtoId TargetProto { get; set; }
+    public bool TargetClient { get; set; }
+    public List<IDestinyDiceTriggerCondition>? Conditions { get; set; }
+    public int? EffectID { get; set; }
+    public int MaxTriggers { get; set; }
+    public int TimesTriggered { get; set; }
+    public string? EffectOutOfTriggersMessage { get; set; }
+    public float Delay { get; set; }
+    public List<int>? DependsOn { get; set; }
+    public string? SuccessMessage { get; set; }
+    public string? FailureMessage { get; set; }
 }
