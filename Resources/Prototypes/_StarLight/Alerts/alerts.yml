@@ -1,7 +1,7 @@
 - type: alert
   id: Doomed
   icons:
-  - sprite: /Textures/Interfaces/Alerts/human_crew_monitoring.rsi
+  - sprite: /Textures/Interface/Alerts/human_crew_monitoring.rsi
     state: dead
   name: alerts-doomed-name
   description: alerts-doomed-desc
