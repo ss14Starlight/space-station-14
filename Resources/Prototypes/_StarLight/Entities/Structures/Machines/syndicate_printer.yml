@@ -1,0 +1,82 @@
+- type: entity
+  id: SpesoPrinter
+  parent: BaseMachine
+  name: speso printer
+  description: A highly illegal Syndicate device that prints counterfeit NT credits. Starts slow but ramps up production over time, generating significant heat and power draw.
+  components:
+  - type: SpesoPrinter
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.40,-0.40,0.40,0.40"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/speso_printer.rsi
+    layers:
+    - state: base
+      map: ["base"]
+    - state: unlit
+      map: ["unlit"]
+      visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SpesoPrinterVisuals.Powered:
+        unlit:
+          True: { visible: true }
+          False: { visible: false }
+      enum.SpesoPrinterVisuals.Printing:
+        base:
+          True: { state: printing }
+          False: { state: base }
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerConsumer
+    voltage: High
+    drawRate: 5000
+  - type: Anchorable
+  - type: Pullable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 10000
+  - type: Tag
+    tags:
+    - Structure
