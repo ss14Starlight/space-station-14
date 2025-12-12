@@ -10,6 +10,7 @@
   cost: 8500
   recipeUnlocks:
   - PaddyUpgradeKit
+#  - MechEquipmentSecGrabber
   technologyPrerequisites:
   - Ripley2
   radioChannels:
@@ -36,8 +37,7 @@
   - GygaxPeripheralsElectronics
   - GygaxTargetingElectronics
   - WeaponMechCombatUltraRifle
-  technologyPrerequisites:
-  - Paddy
+  - WeaponMechChainSword
   radioChannels:
   - Security
 
@@ -92,6 +92,7 @@
   recipeUnlocks:
   - WeaponIonRifle
   - WeaponIonCarbine
+  - WeaponMechCombatIon
   radioChannels:
   - Security
   

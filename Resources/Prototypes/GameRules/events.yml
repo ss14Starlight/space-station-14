@@ -46,6 +46,7 @@
  #   - id: ZombieOutbreak starlight - no more midround zeds
     - id: LoneOpsSpawn
     - id: WizardSpawn
+    - id: AbductorsSpawn # Starlight
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -61,13 +62,11 @@
         - id: DerelictJanitorCyborgSpawn
         - id: DerelictMedicalCyborgSpawn
         - id: DerelictMiningCyborgSpawn
+        - id: DerelictBorgiSpawn # Starlight
     - !type:GroupSelector # Other Borgs
       weight: 15
       children:
         - id: DerelictSyndicateAssaultCyborgSpawn
-
-    - id: AbductorsSpawn # Starlight
-    - id: DerelictBorgiSpawn # Starlight
     
 - type: entity
   id: BaseStationEvent
@@ -683,6 +682,11 @@
     maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
     weight: 5
   - type: MobReplacementRule
+    # Starlight start
+    protos:
+      MobMimic: 45
+      MobMimicHostile: 55
+    # Starlight end
 
 - type: entity
   id: DoorLaggingVirus

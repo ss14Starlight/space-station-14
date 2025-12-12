@@ -131,20 +131,21 @@ namespace Content.IntegrationTests.Tests
             "dm01-entryway",
             "Exo",
             "dm01-entryway",
-            "Barratry",
-            "Cork",
-            "Kiloton",
-            "Lagan",
-            "Lobster",
-            "Manor",
+            "StarlightBarratry",
+            "StarlightCork",
+            "StarlightKiloton",
+            "StarlightLagan",
+            "StarlightLobster",
+            "StarlightManor",
             #region Starlight
             "Gateway",
-            "Leth",
-            "Origin",
-            "Orwell",
-            "Prism",
-            "Remix",
-            "Starboard",
+            "StarlightLeth",
+            "StarlightMing",
+            "StarlightOrigin",
+            "StarlightOrwell",
+            "StarlightPrism",
+            "StarlightRemix",
+            "StarlightStarboard",
             "StarlightAmber",
             "StarlightBagel",
             "StarlightBox",
@@ -165,7 +166,8 @@ namespace Content.IntegrationTests.Tests
             "StarlightReach",
             "StarlightSaltern",
             "StarlightSilica",
-            "StarlightCluster"
+            "StarlightCluster",
+            "StarlightStationBuilding"
             #endregion
         };
 

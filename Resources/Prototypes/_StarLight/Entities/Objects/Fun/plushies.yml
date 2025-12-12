@@ -1884,7 +1884,7 @@
 - type: entity
   parent: BaseResomiPlushie
   id: PlushieLiz
-  name: lizzy plushie
+  name: liz plushie
   description: It will not hesitate to call you stinky. smells horrible
   components:
     - type: Item

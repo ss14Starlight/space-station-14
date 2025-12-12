@@ -209,6 +209,28 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Mantles/oldmantle.rsi
 
+- type: entity
+  parent: [ClothingNeckBase, BaseCentcommContraband]
+  id: ClothingNeckCloakCEDMantle
+  name: Centeral Engineering Division mantle
+  description: Supermatters, Teslas and TEGs all tremble in fear from anyone wearing this mantle.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CED_mantle.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CED_mantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCentcommContraband]
+  id: ClothingNeckCloakCCponcho
+  name: Central Command poncho
+  description: a stylish poncho for a CC offical that prefers field-work to pushing papers.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CC_poncho.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CC_poncho.rsi
+
 # Fashion-O-Mat-Start, not obtainable any other way, unless mapped
 # All CC/Synd stuff in Fashion-O-Mat is replica
 
@@ -322,13 +344,25 @@
 - type: entity
   parent: [ ClothingNeckBase, BaseSalvageContraband ]
   id: ClothingNeckMantleDecoratedSalvager
-  name: ceremonial salvage mantle
-  description: A ceremonial mantle worn by salvagers that have distinguished themselves.
+  name: ceremonial salvager's mantle
+  description: A ceremonial mantle, worn by salvagers that have distinguished themselves.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
+
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseSalvageContraband ]
+  id: ClothingNeckMantleDecoratedVeteranSalvager
+  name: veteran salvager's mantle 
+  description: A ceremonial mantle with waist-capes, worn by veteran salvagers that have distinguished themselves even further.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
 
 ## Cool
 

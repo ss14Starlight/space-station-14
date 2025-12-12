@@ -10032,7 +10032,7 @@ entities:
     - type: RadiationGridResistance
     - type: NavMap
     - type: BecomesStation
-      id: Prism
+      id: StarlightPrism
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 3

@@ -80,7 +80,7 @@
   - type: StationAiWhitelist
   - type: WiresPanel
   - type: WiresPanelSecurity
-    wiresAccessible: false
+    wiresAccessible: True
   - type: WiresVisuals
   - type: Wires
     boardName: wires-board-name-locker

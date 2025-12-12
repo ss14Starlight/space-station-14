@@ -2,7 +2,7 @@
 
 - type: entity
   id: VendingMachine
-  parent: BaseMachinePowered
+  parent: [BaseMachinePowered, ConstructibleMachine] # Starlight-edit: Add ConstructableMachine
   name: vending machine
   description: Just add capitalism!
   abstract: true
@@ -55,6 +55,8 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior # Starlight-edit: Vending machine circuitboards
+        node: machineFrame # Starlight-edit: Vending machine circuitboards
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
@@ -146,6 +148,8 @@
         layer:
         - MachineLayer
         density: 190
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCondimentsCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: CondimentVendAds
   - type: SpeakOnUIClosed
@@ -165,6 +169,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineAmmoCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: CondimentVendAds
   - type: SpeakOnUIClosed
@@ -194,6 +200,8 @@
     normalState: normal-unshaded
     denyState: deny-unshaded
     loopDeny: false
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineBoozeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: BoozeOMatAds
   - type: SpeakOnUIClosed
@@ -229,6 +237,8 @@
     normalState: normal-unshaded
     denyState: deny-unshaded
     loopDeny: false
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineBoozeSyndicateCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: BruiseOMatAds
   - type: SpeakOnUIClosed
@@ -264,6 +274,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCartCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/cart.rsi
     layers:
@@ -294,6 +306,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChefvendCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ChefvendAds
   - type: SpeakOnUIClosed
@@ -330,6 +344,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCigsCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: CigaretteMachineAds
   - type: SpeakOnUIClosed
@@ -357,6 +373,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineClothingCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ClothesMateAds
   - type: SpeakOnUIClosed
@@ -388,6 +406,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWinterCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ClothesMateAds
   - type: SpeakOnUIClosed
@@ -426,6 +446,8 @@
     ejectDelay: 5
     soundVend: /Audio/Machines/machine_vend_hot_drink.ogg
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCoffeeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: HotDrinksMachineAds
   - type: SpeakOnUIClosed
@@ -465,6 +487,8 @@
     denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineColaCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: RobustSoftdrinksAds
   - type: SpeakOnUIClosed
@@ -489,6 +513,8 @@
   id: VendingMachineColaBlack
   suffix: Black
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineColaBlackCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/cola-black.rsi
     layers:
@@ -510,6 +536,8 @@
   name: Space Cola Vendor
   description: It vends cola, in space.
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineColaRedCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/cola-red.rsi
     layers:
@@ -533,6 +561,8 @@
   components:
   - type: VendingMachine
     pack: SpaceUpInventory
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSpaceUpCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/spaceup.rsi
     layers:
@@ -555,6 +585,8 @@
   components:
   - type: VendingMachine
     pack: SodaInventory
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSodaCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/soda.rsi
     layers:
@@ -578,6 +610,8 @@
   components:
   - type: VendingMachine
     pack: StarkistInventory
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineStarkistCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/starkist.rsi
     layers:
@@ -610,6 +644,8 @@
     denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineShamblersJuiceCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: RobustSoftdrinksAds
   - type: Sprite
@@ -644,6 +680,8 @@
     denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachinePwrGameCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: RobustSoftdrinksAds
   - type: SpeakOnUIClosed
@@ -680,6 +718,8 @@
     denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDrGibbCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: DrGibbAds
   - type: SpeakOnUIClosed
@@ -726,6 +766,8 @@
     denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSmiteCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: SmiteAds
   - type: SpeakOnUIClosed
@@ -748,6 +790,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDinnerwareCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: DinnerwareAds
   - type: SpeakOnUIClosed
@@ -814,6 +858,8 @@
     brokenState: broken
     normalState: normal-unshaded
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDiscountCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: DiscountDansAds
   - type: SpeakOnUIClosed
@@ -847,6 +893,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineEngivendCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/engivend.rsi
     layers:
@@ -910,6 +958,8 @@
     pack: NanoMedPlusInventory
     offState: off
     showPrices: false  # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     layers:
     - state: "off"
@@ -936,6 +986,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineNutriCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: NutriMaxAds
   - type: SpeakOnUIClosed
@@ -971,6 +1023,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSecCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: SecTechAds
   - type: SpeakOnUIClosed
@@ -986,7 +1040,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
   - type: PointLight
     radius: 1
     energy: 1.2
@@ -1011,6 +1065,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSeedsUnlockedCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: MegaSeedAds
   - type: SpeakOnUIClosed
@@ -1035,6 +1091,8 @@
   id: VendingMachineSeeds
   suffix: Hydroponics
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSeedsCircuitboard # Starlight-edit: Vending Machine boards
   - type: AccessReader
     access: [["Hydroponics"]]
 
@@ -1054,6 +1112,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSnackCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: GetmoreChocolateCorpAds
   - type: SpeakOnUIClosed
@@ -1088,6 +1148,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSustenanceCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/sustenance.rsi
     layers:
@@ -1108,6 +1170,8 @@
   id: VendingMachineSnackBlue
   suffix: Blue
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSnackBlueCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/snack-blue.rsi
     layers:
@@ -1128,6 +1192,8 @@
   id: VendingMachineSnackOrange
   suffix: Orange
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSnackOrangeCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/snack-orange.rsi
     layers:
@@ -1148,6 +1214,8 @@
   id: VendingMachineSnackGreen
   suffix: Green
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSnackGreenCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/snack-green.rsi
     layers:
@@ -1168,6 +1236,8 @@
   id: VendingMachineSnackTeal
   suffix: Teal
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSnackTealCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/snack-teal.rsi
     layers:
@@ -1199,6 +1269,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSovietSodaCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: BodaAds
   - type: SpeakOnUIClosed
@@ -1233,6 +1305,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     screenState: screen
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineTheaterCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: AutoDrobeAds
   - type: SpeakOnUIClosed
@@ -1268,6 +1342,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineVendomatCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: VendomatAds
   - type: SpeakOnUIClosed
@@ -1301,6 +1377,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineRoboticsCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: VendomatAds
   - type: SpeakOnUIClosed
@@ -1339,6 +1417,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineYouToolCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/youtool.rsi
     layers:
@@ -1368,6 +1448,8 @@
     ejectState: eject-unshaded
     ejectDelay: 1.8
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineGamesCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: GoodCleanFunAds
   - type: SpeakOnUIClosed
@@ -1401,6 +1483,8 @@
     brokenState: broken
     normalState: normal-unshaded
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChangCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ChangAds
   - type: SpeakOnUIClosed
@@ -1433,6 +1517,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSalvageCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/mining.rsi
     layers:
@@ -1467,6 +1553,8 @@
     brokenState: broken
     normalState: normal-unshaded
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDonutCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: DonutAds
   - type: SpeakOnUIClosed
@@ -1521,6 +1609,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineHydrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: HyDrobeAds
   - type: SpeakOnUIClosed
@@ -1553,6 +1643,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineLawDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: LawDrobeAds
   - type: SpeakOnUIClosed
@@ -1581,6 +1673,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSecDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: SecDrobeAds
   - type: SpeakOnUIClosed
@@ -1600,7 +1694,7 @@
     energy: 1.6
     color: "#d82929"
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
 
 - type: entity
   parent: VendingMachine
@@ -1614,6 +1708,8 @@
     showPrices: false # Starlight-edit: Vending Machines Prices
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingBarDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: BarDrobeAds
   - type: SpeakOnUIClosed
@@ -1642,6 +1738,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChapelCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/chapdrobe.rsi
     layers:
@@ -1670,6 +1768,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCargoDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: CargoDrobeAds
   - type: SpeakOnUIClosed
@@ -1702,6 +1802,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMediDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: MediDrobeAds
   - type: SpeakOnUIClosed
@@ -1730,6 +1832,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChemDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ChemDrobeAds
   - type: SpeakOnUIClosed
@@ -1758,6 +1862,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCuraDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: CuraDrobeAds
   - type: SpeakOnUIClosed
@@ -1786,6 +1892,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineAtmosDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: AtmosDrobeAds
   - type: SpeakOnUIClosed
@@ -1818,6 +1926,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineEngiDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: EngiDrobeAds
   - type: SpeakOnUIClosed
@@ -1850,6 +1960,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChefDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ChefDrobeAds
   - type: SpeakOnUIClosed
@@ -1878,6 +1990,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDetDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: DetDrobeAds
   - type: SpeakOnUIClosed
@@ -1906,6 +2020,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineJaniDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: JaniDrobeAds
   - type: SpeakOnUIClosed
@@ -1938,6 +2054,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSciDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: SciDrobeAds
   - type: SpeakOnUIClosed
@@ -1967,6 +2085,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSyndieDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: SyndieDrobeAds
   - type: SpeakOnUIClosed
@@ -1999,6 +2119,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineRoboDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: RoboDrobeAds
   - type: SpeakOnUIClosed
@@ -2027,6 +2149,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineGeneDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: GeneDrobeAds
   - type: SpeakOnUIClosed
@@ -2055,6 +2179,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineViroDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ViroDrobeAds
   - type: SpeakOnUIClosed
@@ -2084,6 +2210,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCentDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/centdrobe.rsi
     layers:
@@ -2119,6 +2247,8 @@
     soundVend: /Audio/Items/bikehorn.ogg
     initialStockQuality: 1.0 # Nobody knows how Honk does it, but their vending machines always seem well-stocked...
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineHappyHonkCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/happyhonk.rsi
     layers:
@@ -2154,6 +2284,8 @@
     showPrices: false # Starlight-start: Vending Machines Prices
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachinePrideCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: PrideDrobeAds
   - type: SpeakOnUIClosed
@@ -2186,6 +2318,8 @@
   - type: VendingMachine
     showPrices: false # Starlight-edit: Vending Machines Prices
     pack: TankDispenserEVAInventory
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineTankDispenserEVACircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/tankdispenser.rsi #TODO add visualiser for remaining tanks as layers
     state: dispenser
@@ -2200,6 +2334,8 @@
   - type: VendingMachine
     showPrices: false # Starlight-edit: Vending Machines Prices
     pack: TankDispenserEngineeringInventory
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineTankDispenserEngineeringCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/tankdispenser.rsi #TODO add visualiser for remaining tanks as layers
     layers:
@@ -2220,6 +2356,8 @@
     normalState: normal
     denyState: deny
     ejectDelay: 2
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChemicalsCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/chemvend.rsi
     layers:
@@ -2250,6 +2388,8 @@
     normalState: normal
     denyState: deny
     ejectDelay: 2
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChemicalsSyndicateCircuitboard # Starlight-edit: Vending Machine boards
   - type: AccessReader
     access: [["SyndicateAgent"]]
 
@@ -2267,6 +2407,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCivilianCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/wallmed.rsi
     layers:
@@ -2294,6 +2436,8 @@
     pack: NanoMedInventory
     offState: off
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     layers:
     - state: "off"

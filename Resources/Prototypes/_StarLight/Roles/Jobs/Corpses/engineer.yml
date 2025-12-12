@@ -1,0 +1,37 @@
+- type: startingGear
+  id: ChiefEngineerCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChiefEngineer
+    ears: ClothingHeadsetEngineering
+    shoes: ClothingShoesBootsMag
+    head: ClothingHeadHatHardhatOrange
+    belt: ClothingBeltUtilityFilled
+    pocket1: RCD
+
+- type: startingGear
+  id: StationEngineerCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEngineering
+    ears: ClothingHeadsetEngineering
+    shoes: ClothingShoesBootsWork
+    head: ClothingHeadHatHardhatOrange
+    belt: ClothingBeltUtilityFilled
+    pocket1: CableApcStack10
+
+- type: startingGear
+  id: AtmosphericTechnicianCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAtmos
+    ears: ClothingHeadsetEngineering
+    shoes: ClothingShoesBootsWork
+    head: ClothingHeadHatHardhatBlue
+    belt: ClothingBeltUtilityFilled
+    mask: ClothingMaskGasAtmos
+    pocket1: GasAnalyzer
+
+- type: startingGear
+  id: TechnicalAssistantCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEngineering
+    ears: ClothingHeadsetEngineering
+    shoes: ClothingShoesBootsWork

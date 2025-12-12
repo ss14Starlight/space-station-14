@@ -32,6 +32,7 @@ using Content.Server.ServerUpdates;
 using Content.Server.Starlight.TextToSpeech;
 using Content.Server.Voting.Managers;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.CCVar;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
@@ -131,6 +132,7 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<ITTSManager>().Initialize();
                 IoCManager.Resolve<HolidaySystem>().Initialize();
                 IoCManager.Resolve<IBugReportManager>().Initialize();
+                IoCManager.Resolve<PreWrittenDocumentManager>().Initialize();
                 //🌟Starlight🌟 end
             }
         }

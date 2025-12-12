@@ -290,7 +290,7 @@
     fiberColor: fibers-black
 
 - type: entity
-  parent: [ BaseEngineeringSecuritySalvageContraband, ClothingHandsGlovesCombat ] #Starlight salvContra
+  parent: [ BaseEngineeringSecurityContraband, ClothingHandsGlovesCombat ] #Starlight EngSec contra
   id: ClothingHandsMercGlovesCombat
   name: mercenary combat gloves
   description: High-quality combat gloves to protect hands from mechanical damage during combat.
@@ -342,9 +342,15 @@
     damageProtection:
       flatReductions:
         Heat: 0 # no protection
+  - type: Tag #SL start
+    tags:
+      - fingerlessinsuls
+  - type: Construction
+    graph: FingerlessInsuls
+    node: fingerless #SL end
 
 - type: entity
-  parent: [ ClothingHandsButcherable, BaseSalvageContraband ] #Starlight salvContra
+  parent: ClothingHandsButcherable
   id: ClothingHandsGlovesMercFingerless
   name: mercenary fingerless gloves
   description: Gloves that may not protect you from finger burns, but will make you cooler.

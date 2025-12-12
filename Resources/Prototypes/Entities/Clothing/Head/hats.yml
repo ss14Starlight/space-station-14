@@ -219,7 +219,7 @@
     - CorgiWearable
 
 - type: entity
-  parent: [ ClothingHeadBase , BaseSalvageContraband ] #Starlight salvContra
+  parent: ClothingHeadBase
   id: ClothingHeadHatBeretMerc
   name: mercenary beret
   description: An olive beret with a badge depicting a jackal on a rock.

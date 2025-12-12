@@ -3,3 +3,5 @@ alerts-cards-desc = You're [color=lightblue]facing a choice[/color]. Click the a
 
 alerts-doomed-name = Doomed
 alerts-doomed-desc = Your days are numbered. With the end of this timer, you will be eviscerated beyond recognition.
+
+alerts-error-failed-to-spawn-ghost-role = Failed to spawn the requested ghost role. Sorry! :(

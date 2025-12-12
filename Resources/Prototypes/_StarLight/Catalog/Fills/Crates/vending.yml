@@ -1,0 +1,9 @@
+- type: entity
+  id: CrateVendingMachineRestockSustenanceFilled
+  parent: CratePlastic
+  name: Sustenance Vendor restock crate
+  description: Contains a restock box for the Sustenance Vendor.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockSustenance

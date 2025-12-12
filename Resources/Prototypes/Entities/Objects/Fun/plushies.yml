@@ -19,9 +19,9 @@
   - type: EmitSoundOnTrigger
     sound: *BasePlushieSound
   - type: UseDelay
-    delay: 3.0
+    delay: 1.0 # Starlight change: 3s -> 1s
   - type: MeleeWeapon
-    attackRate: 0.333
+    attackRate: 1.0 # Starlight change: 3s -> 1s
     wideAnimationRotation: 180
     soundHit: *BasePlushieSound
     damage:
@@ -110,6 +110,9 @@
     - ForceableFollow
     - PlushieGhost
     - Payload
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-inanimate #Starlight
+    weight: 0.01 #Starlight
 
 - type: entity
   parent: PlushieGhost
@@ -131,6 +134,9 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: RevenantPlushie
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-inanimate #Starlight
+    weight: 0.01 #Starlight
 
 - type: entity
   parent: BasePlushie

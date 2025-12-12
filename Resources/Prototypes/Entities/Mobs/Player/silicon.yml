@@ -40,6 +40,7 @@
     - ActionSurvCameraLights
     - ActionAIViewLaws
     - ActionAIShunt # Starlight AI Shunt ability
+    - ActionAIWarp # Starlight
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -592,7 +593,8 @@
       borg_brain:
         - PositronicBrain
       borg_module:
-        - BorgModuleTool
+        - BorgModuleSyndicateAdvancedTool # Starlight
+        - BorgModuleConstruction
         - BorgModuleRCD
         - BorgModuleOperative
         - BorgModuleSyndicateWeapon
@@ -627,8 +629,9 @@
         - PositronicBrain
       borg_module:
         - BorgModuleTool
-        - BorgModuleChemical
+        - BorgModuleSyndicateAdvancedChemical # starlight
         - BorgModuleTopicals
+        - BorgModuleSyndicateRescue # starlight
         - BorgModuleSyndicateWeapon
   - type: ItemSlots
     slots:
@@ -855,6 +858,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModuleTool # starlight
       - BorgModuleOperative
       - BorgModuleC20r
       - BorgModuleEsword

@@ -141,9 +141,12 @@
     angleDecay: 16
     fireRate: 8
     burstFireRate: 8
+    shotsPerBurst: 5 # Starlight
     selectedMode: Burst
     availableModes:
     - Burst
+    - FullAuto # Starlight
+    - SemiAuto # Starlight
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: Sprite
@@ -153,6 +156,12 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
+  #region starlight: Ammo visuals for the C-20
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  #end region
   - type: Item
     size: Huge
   - type: ContainerContainer

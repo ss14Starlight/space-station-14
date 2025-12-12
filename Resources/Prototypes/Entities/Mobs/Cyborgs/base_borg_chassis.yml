@@ -255,6 +255,7 @@
   - type: Crawler
   - type: Blindable
   - type: EyeProtection
+  - type: Stripping
   #endregion
 
 - type: entity
@@ -342,7 +343,7 @@
 
 - type: entity
   id: BaseBorgChassisSyndicate
-  parent: BaseBorgChassis
+  parent: BaseBorgChassisNotIonStormable
   abstract: true
   components:
   - type: TextToSpeech
@@ -466,7 +467,7 @@
   - type: IntrinsicRadioTransmitter # can only use binary and xenoborg channel
     channels:
     - Xenoborg
-    - Binary
+    # - Binary # Starlight edit: We can't have nice things
   - type: ActiveRadio # but can hear the mothership channel
     channels:
     - Mothership

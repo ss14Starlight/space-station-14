@@ -204,8 +204,18 @@ public sealed partial class BorgSystem
             {
                 if (component.StoredItems.TryGetValue(handId, out var storedItem))
                 {
-                    item = storedItem;
-                    _container.Remove(storedItem, container, force: true);
+                    // Starlight edit start - This is required because of the Personnel uppies module, since we allow people to escape from it,
+                    // We need a way to check whether the person is still in the container.
+                    if (Exists(storedItem) && container.Contains(storedItem))
+                    {
+                        item = storedItem;
+                        _container.Remove(storedItem, container, force: true);
+                    }
+                    else
+                    {
+                        component.StoredItems.Remove(handId);
+                    }
+                    // Starlight edit end
                 }
             }
             else if (hand.Item is { } itemProto)

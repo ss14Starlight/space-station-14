@@ -176,3 +176,21 @@
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+
+- type: entity
+  name: Spectral Blade
+  parent: [ BaseSword, BaseMagicalContraband ]
+  id: ManaBlade
+  description: A sword formed from hardened mana.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/Mana_Blade.rsi
+    - type: MeleeWeapon
+      attackRate: 1
+      damage:
+        types:
+          Slash: 20
+          Structural: 10
+      soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    - type: Item

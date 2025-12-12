@@ -136,6 +136,24 @@
   - sprite: _Starlight/Mobs/Customization/Generic/chest.rsi
     state: chest_heavy3
 
+- type: marking
+  id: BodyHairChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
+      state: hair_chest
+
+- type: marking
+  id: BodyHairBack
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
+      state: hair_back
+
 # Arms
 - type: marking
   id: HandBraceletLeft
@@ -325,6 +343,24 @@
   - sprite: _Starlight/Mobs/Customization/Generic/arms.rsi
     state: r_hand_heavy2
 
+- type: marking
+  id: BodyHairLeftArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
+      state: hair_left_arm
+
+- type: marking
+  id: BodyHairRightArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
+      state: hair_right_arm
+
 # Legs
 - type: marking
   id: LegDollJointsTattooLeft
@@ -445,3 +481,21 @@
     state: r_foot_heavy1
   - sprite: _Starlight/Mobs/Customization/Generic/legs.rsi
     state: r_foot_heavy2
+
+- type: marking
+  id: BodyHairLeftLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
+      state: hair_left_leg
+
+- type: marking
+  id: BodyHairRightLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
+      state: hair_right_leg

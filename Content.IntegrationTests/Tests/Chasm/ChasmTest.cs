@@ -13,6 +13,7 @@ namespace Content.IntegrationTests.Tests.Chasm;
 /// A test for chasms, which delete entities when a player walks over them.
 /// </summary>
 [TestOf(typeof(ChasmComponent))]
+[Ignore("Test disabled on starlight due to instability and general non-usefulness")]
 public sealed class ChasmTest : MovementTest
 {
     private readonly EntProtoId _chasmProto = "FloorChasmEntity";

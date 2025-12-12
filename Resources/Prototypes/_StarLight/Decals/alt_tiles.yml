@@ -1,0 +1,286 @@
+﻿- type: decal
+  id: brokentiledark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: broken_tile_dark
+
+- type: decal
+  id: brokentilesteel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: broken_tile_steel
+
+- type: decal
+  id: brokentilewhite
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: broken_tile_white
+
+- type: decal
+  id: corner1dark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_1_dark
+
+- type: decal
+  id: corner1steel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_1_steel
+
+- type: decal
+  id: corner1white
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_1_white
+
+- type: decal
+  id: corner2dark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_2_dark
+
+- type: decal
+  id: corner2steel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_2_steel
+
+- type: decal
+  id: corner2white
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_2_white
+
+- type: decal
+  id: corner3dark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_3_dark
+
+- type: decal
+  id: corner3steel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_3_steel
+
+- type: decal
+  id: corner3white
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_3_white
+
+- type: decal
+  id: corner4dark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_4_dark
+
+- type: decal
+  id: corner4steel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_4_steel
+
+- type: decal
+  id: corner4white
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: corner_4_white
+
+- type: decal
+  id: diagonalsteel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel
+
+- type: decal
+  id: diagonalsteelcorner
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner
+
+- type: decal
+  id: halfedark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_e_dark
+
+- type: decal
+  id: halfesteel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_e_steel
+
+- type: decal
+  id: halfewhite
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_e_white
+
+- type: decal
+  id: halfndark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_n_dark
+
+- type: decal
+  id: halfnsteel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_n_steel
+
+- type: decal
+  id: halfnwhite
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_n_white
+
+- type: decal
+  id: halfsdark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_s_dark
+
+- type: decal
+  id: halfssteel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_s_steel
+
+- type: decal
+  id: halfswhite
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_s_white
+
+- type: decal
+  id: halfwdark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_w_dark
+
+- type: decal
+  id: halfwsteel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_w_steel
+
+- type: decal
+  id: halfwwhite
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: half_w_white
+
+- type: decal
+  id: quarternedark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_ne_dark
+
+- type: decal
+  id: quarternesteel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_ne_steel
+
+- type: decal
+  id: quarternewhite
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_ne_white
+
+- type: decal
+  id: quarternwdark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_nw_dark
+
+- type: decal
+  id: quarternwsteel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_nw_steel
+
+- type: decal
+  id: quarternwwhite
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_nw_white
+
+- type: decal
+  id: quartersedark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_se_dark
+
+- type: decal
+  id: quartersesteel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_se_steel
+
+- type: decal
+  id: quartersewhite
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_se_white
+
+- type: decal
+  id: quarterswdark
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_sw_dark
+
+- type: decal
+  id: quarterswsteel
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_sw_steel
+
+- type: decal
+  id: quarterswwhite
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: quarter_sw_white

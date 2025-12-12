@@ -328,6 +328,17 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/cap_turtleneck.rsi
 
 - type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitCaptainNoble
+  name: captain's noble jumpsuit
+  description: A more classical and elegant style of clothing, designed to emulate the fashion of old earth nobility.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/captainnoble.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/captainnoble.rsi
+
+- type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoPTurtleneck
   name: head of personal's turtleneck
@@ -461,3 +472,36 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase , BaseSalvageContraband ]
+  id: ClothingUniformJumpsuitSalvageMercWhite
+  name: white scrapper jumpsuit
+  description: Utilitarian clothing for salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagewhite.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagewhite.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase , BaseSalvageContraband ]
+  id: ClothingUniformJumpsuitSalvageMercGreen
+  name: green scrapper jumpsuit
+  description: Utilitarian clothing for salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagegreen.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagegreen.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase , BaseSalvageContraband ]
+  id: ClothingUniformJumpsuitSalvageMercBrown
+  name: brown scrapper jumpsuit
+  description: Utilitarian clothing for salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagebrown.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagebrown.rsi

@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.IdClothingBlocker;
+using Content.Shared._Starlight.Access;
 
 namespace Content.Client._Starlight.IdClothingBlocker;
 
