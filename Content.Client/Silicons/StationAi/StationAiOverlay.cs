@@ -69,16 +69,19 @@ public sealed class StationAiOverlay : Overlay
 
          // Starlight-start: moved to be after new playerEnt definition with edit
          var playerEnt = _player.LocalEntity;
+        // Starlight-end
+
+        if (_entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? stationAiOverlay)
+            && stationAiOverlay.AllowCrossGrid
+            && _entManager.TryGetComponent(playerEnt, out RelayInputMoverComponent? relay))
+            playerEnt = relay.RelayEntity;
+
+        // Starlight-start: needs to be here to work with off-map syndie baths and other remote eyess properly
         _entManager.TryGetComponent(playerEnt, out TransformComponent? playerXform);
         var gridUid = playerXform?.GridUid ?? EntityUid.Invalid;
         _entManager.TryGetComponent(gridUid, out MapGridComponent? grid);
         _entManager.TryGetComponent(gridUid, out BroadphaseComponent? broadphase);
         // Starlight-end
-
-        if (_entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? stationAiOverlay) 
-            && stationAiOverlay.AllowCrossGrid 
-            && _entManager.TryGetComponent(playerEnt, out RelayInputMoverComponent? relay))
-            playerEnt = relay.RelayEntity;
 
         var invMatrix = args.Viewport.GetWorldToLocalMatrix();
         _accumulator -= (float)_timing.FrameTime.TotalSeconds;
