@@ -28,32 +28,33 @@ public partial struct SeedChemQuantity
     /// <summary>
     /// Minimum amount of chemical that is added to produce, regardless of the potency
     /// </summary>
-    [DataField("Min")] public FixedPoint2 Min = FixedPoint2.Epsilon;
+    [DataField] public FixedPoint2 Min = FixedPoint2.Epsilon;
 
     /// <summary>
     /// Maximum amount of chemical that can be produced after taking plant potency into account.
     /// </summary>
-    [DataField("Max")] public FixedPoint2 Max;
+    [DataField] public FixedPoint2 Max;
 
     /// <summary>
     /// When chemicals are added to produce, the potency of the seed is divided with this value. Final chemical amount is the result plus the `Min` value.
     /// Example: PotencyDivisor of 20 with seed potency of 55 results in 2.75, 55/20 = 2.75. If minimum is 1 then final result will be 3.75 of that chemical, 55/20+1 = 3.75.
     /// </summary>
-    [DataField("PotencyDivisor")] public float PotencyDivisor;
+    [DataField] public float PotencyDivisor;
 
     /// <summary>
     /// Inherent chemical is one that is NOT result of mutation or crossbreeding. These chemicals are removed if species mutation is executed.
     /// </summary>
-    [DataField("Inherent")] public bool Inherent = true;
+    [DataField] public bool Inherent = true;
 }
 
+[Virtual, DataDefinition]
+// TODO Make Botany ECS and give it a proper API. I removed the limited access of this class because it's egregious how many systems needed access to it due to a lack of an actual API.
 /// <remarks>
 /// SeedData is no longer restricted because the number of friends is absolutely unreasonable.
 /// This entire data definition is unreasonable. I felt genuine fear looking at this, this is horrific. Send help.
 /// </remarks>
 // TODO: Hit Botany with hammers
 [Virtual, DataDefinition]
-[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(EntityEffectSystem), typeof(MutationSystem), typeof(HarvestSystem), typeof(PlantTraitsSystem), typeof(BotanySwabSystem), typeof(BasicGrowthSystem))]
 public partial class SeedData
 {
     #region Tracking
@@ -110,7 +111,6 @@ public partial class SeedData
     #endregion
 
     #region General traits
-
 
 
     #endregion

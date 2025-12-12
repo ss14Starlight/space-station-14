@@ -4,9 +4,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Swab;
-using Robust.Shared.Random;
-using Robust.Shared.Serialization.Manager;
-using System.Collections.Generic;
 
 namespace Content.Server.Botany.Systems;
 
