@@ -10,7 +10,7 @@
   mutationPrototypes:
     - meatwheat
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 6
       production: 3
@@ -38,7 +38,7 @@
   productPrototypes:
     - MeatwheatBushel
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 6
       production: 3
@@ -66,7 +66,7 @@
   productPrototypes:
     - OatBushel
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 6
       production: 3
@@ -96,7 +96,7 @@
   mutationPrototypes:
     - mimana
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 50
       maturation: 6
       production: 6
@@ -127,7 +127,7 @@
   productPrototypes:
     - FoodMimana
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 50
       maturation: 6
       production: 6
@@ -158,7 +158,7 @@
   productPrototypes:
     - FoodCarrot
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 10
       production: 3
@@ -193,7 +193,7 @@
   mutationPrototypes:
     - worldPea
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       growthStages: 3
       maturation: 7
@@ -233,7 +233,7 @@
     - lime
     - orange
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 6
       production: 6
@@ -259,7 +259,7 @@
   plantRsi: Objects/Specific/Hydroponics/lemoon.rsi
   packetPrototype: LemoonSeeds
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 90
       maturation: 8
       production: 6
@@ -292,7 +292,7 @@
     - orange
     - lemon
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 6
       production: 6
@@ -324,7 +324,7 @@
     - lemon
     - lime
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 6
       production: 6
@@ -352,7 +352,7 @@
   productPrototypes:
     - FoodExtradimensionalOrange
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 6
       production: 6
@@ -384,7 +384,7 @@
   productPrototypes:
     - FoodPineapple
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 6
       production: 6
@@ -417,7 +417,7 @@
   productPrototypes:
     - FoodPotato
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 30
       maturation: 10
       production: 3
@@ -448,7 +448,7 @@
   mutationPrototypes:
     - papercane
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 60
       maturation: 6
       production: 6
@@ -475,7 +475,7 @@
   productPrototypes:
     - LeavesTea
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 75
       maturation: 5
       production: 3
@@ -504,7 +504,7 @@
   productPrototypes:
     - Papercane
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 60
       maturation: 6
       production: 6
@@ -529,14 +529,15 @@
     - steelcap
   lightTolerance: 6
   growthComponents:
-    plantTraits:
-      ligneous: true
+    plant:
       lifespan: 80
       maturation: 15
       production: 3
       yield: 5
       potency: 1
       growthStages: 3
+    plantTraits:
+      ligneous: true
     basicGrowth:
       waterConsumption: 0.6
       nutrientConsumption: 0.5
@@ -554,14 +555,15 @@
     - SteelLog
   ligneous: true
   growthComponents:
-    plantTraits:
-      ligneous: true
+    plant:
       lifespan: 80
       maturation: 15
       production: 3
       yield: 3
       potency: 1
       growthStages: 3
+    plantTraits:
+      ligneous: true
     basicGrowth:
       waterConsumption: 0.6
       nutrientConsumption: 0.8
@@ -581,7 +583,7 @@
     - blueTomato
     - bloodTomato
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 8
       production: 6
@@ -618,7 +620,7 @@
   productPrototypes:
     - FoodBlueTomato
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 8
       production: 6
@@ -657,7 +659,7 @@
   mutationPrototypes:
     - killerTomato
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 60
       maturation: 8
       production: 6
@@ -692,7 +694,7 @@
   productPrototypes:
     - MobTomatoKiller
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 15
       production: 6
@@ -728,7 +730,7 @@
   mutationPrototypes:
     - eggy
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 6
       production: 6
@@ -759,7 +761,7 @@
   productPrototypes:
     - FoodCabbage
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 50
       maturation: 7
       production: 5
@@ -786,7 +788,7 @@
   productPrototypes:
     - FoodGarlic
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 8
       production: 5
@@ -820,7 +822,7 @@
     - goldenApple
     - evilApple # starlight
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 6
       production: 6
@@ -848,7 +850,7 @@
   productPrototypes:
     - FoodGoldenApple
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 6
       production: 6
@@ -882,7 +884,7 @@
   productPrototypes:
     - FoodCorn
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 8
       production: 6
@@ -916,7 +918,7 @@
     - onionred
     - bloonion
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 8
       production: 6
@@ -951,7 +953,7 @@
   productPrototypes:
     - FoodOnionRed
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 8
       production: 6
@@ -986,7 +988,7 @@
   productPrototypes:
     - FoodMushroom
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 35
       maturation: 10
       production: 7
@@ -1014,7 +1016,7 @@
   productPrototypes:
     - FoodEgg
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 75
       maturation: 6
       production: 12
@@ -1044,7 +1046,7 @@
   mutationPrototypes:
     - rainbowCannabis
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 75
       maturation: 8
       production: 12
@@ -1074,7 +1076,7 @@
     - LeavesCannabisRainbow
   idealLight: 9
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 75
       maturation: 8
       production: 12
@@ -1123,7 +1125,7 @@
   productPrototypes:
     - LeavesTobacco
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 75
       maturation: 5
       production: 5
@@ -1154,7 +1156,7 @@
   mutationPrototypes:
     - deathNettle
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 8
       production: 6
@@ -1183,7 +1185,7 @@
   productPrototypes:
     - DeathNettle
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 8
       production: 6
@@ -1218,7 +1220,7 @@
     - chilly
   idealLight: 9
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 6
       production: 6
@@ -1253,7 +1255,7 @@
     - FoodChillyPepper
   idealLight: 9
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 6
       production: 6
@@ -1289,7 +1291,7 @@
   mutationPrototypes:
     - lily
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 10
       production: 3
@@ -1318,7 +1320,7 @@
   productPrototypes:
     - FoodAloe
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 10
       production: 3
@@ -1349,7 +1351,7 @@
   mutationPrototypes:
     - spacemansTrumpet
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 10
       production: 3
@@ -1378,7 +1380,7 @@
   productPrototypes:
     - FoodLingzhi
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 10
       production: 3
@@ -1409,7 +1411,7 @@
   mutationPrototypes:
     - ambrosiaDeus
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 10
       production: 3
@@ -1446,7 +1448,7 @@
   productPrototypes:
     - FoodAmbrosiaDeus
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 10
       production: 3
@@ -1481,7 +1483,7 @@
   mutationPrototypes:
     - glasstle
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 10
       production: 3
@@ -1506,7 +1508,7 @@
   productPrototypes:
     - FoodGlasstle
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 10
       production: 3
@@ -1533,7 +1535,7 @@
   productPrototypes:
     - FoodFlyAmanita
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 12
       production: 3
@@ -1566,7 +1568,7 @@
     - fakeCapfruit
     - realCapfruit
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 65
       maturation: 25
       production: 25
@@ -1593,7 +1595,7 @@
   productPrototypes:
     - FoodFakeCapfruit
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 65
       maturation: 25
       production: 25
@@ -1620,7 +1622,7 @@
   productPrototypes:
     - FoodRealCapfruit
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 65
       maturation: 25
       production: 25
@@ -1647,7 +1649,7 @@
   productPrototypes:
     - RiceBushel
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 6
       production: 3
@@ -1679,7 +1681,7 @@
   mutationPrototypes:
     - koibean
   growthComponents:
-    plantTraits:
+    plant:
       growthStages: 4
       lifespan: 25
       maturation: 6
@@ -1704,7 +1706,7 @@
   productPrototypes:
     - FoodSpacemansTrumpet
   growthComponents:
-    plantTraits:
+    plant:
       growthStages: 4
       lifespan: 20
       maturation: 14
@@ -1733,7 +1735,7 @@
   productPrototypes:
     - FoodKoibean
   growthComponents:
-    plantTraits:
+    plant:
       growthStages: 4
       lifespan: 25
       maturation: 6
@@ -1762,7 +1764,7 @@
   productPrototypes:
     - FoodGrape
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 50
       maturation: 6
       production: 5
@@ -1791,7 +1793,7 @@
   mutationPrototypes:
     - holymelon
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 12
       production: 3
@@ -1821,7 +1823,7 @@
   productPrototypes:
     - FoodHolymelon
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 12
       production: 3
@@ -1851,7 +1853,7 @@
   productPrototypes:
     - FoodCocoaPod
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 50
       maturation: 6
       production: 6
@@ -1883,7 +1885,7 @@
   productPrototypes:
     - FoodBerries
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 50
       maturation: 6
       production: 6
@@ -1913,7 +1915,7 @@
     - FoodBungo
   idealLight: 8
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 50
       maturation: 8
       production: 6
@@ -1948,7 +1950,7 @@
   mutationPrototypes:
     - laughinPea
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       growthStages: 3
       maturation: 8
@@ -1979,7 +1981,7 @@
   productPrototypes:
     - FoodWorldPeas
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       growthStages: 3
       maturation: 20
@@ -2016,7 +2018,7 @@
   mutationPrototypes:
     - bluePumpkin
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 10
       production: 4
@@ -2045,7 +2047,7 @@
   productPrototypes:
     - FoodBluePumpkin
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 10
       production: 4
@@ -2080,7 +2082,7 @@
   mutationPrototypes:
     - pyrotton
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 8
       production: 3
@@ -2105,7 +2107,7 @@
   productPrototypes:
     - PyrottonBol
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 8
       production: 3
@@ -2134,7 +2136,7 @@
   productPrototypes:
     - FoodCherry
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 55
       maturation: 6
       production: 6
@@ -2162,7 +2164,7 @@
   productPrototypes:
     - FoodAnomalyBerry
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 12
       production: 3
@@ -2196,7 +2198,7 @@
   productPrototypes:
   - FoodBloonion
   growthComponents:
-    plantTraits:
+    plant:
       lifespan: 25
       maturation: 15
       production: 3
