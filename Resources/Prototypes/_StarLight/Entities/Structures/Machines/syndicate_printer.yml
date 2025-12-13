@@ -5,6 +5,8 @@
   description: A highly illegal Syndicate device that prints currency. Starts slow but ramps up production over time, generating significant heat and power draw. Requires adequate atmospheric pressure for cooling system ventilation!
   components:
   - type: SpesoPrinter
+  - type: Machine
+    board: SpesoPrinterMachineCircuitboard
   - type: Transform
     anchored: true
   - type: Physics
