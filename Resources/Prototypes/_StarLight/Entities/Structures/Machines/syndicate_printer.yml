@@ -1,6 +1,6 @@
 - type: entity
   id: SpesoPrinter
-  parent: [BaseMachine, BaseSyndicateContraband]
+  parent: [BaseMachine, ConstructibleMachine, BaseSyndicateContraband]
   name: speso printer
   description: A highly illegal Syndicate device that prints currency. Starts slow but ramps up production over time, generating significant heat and power draw. Requires adequate atmospheric pressure for cooling system ventilation!
   components:
