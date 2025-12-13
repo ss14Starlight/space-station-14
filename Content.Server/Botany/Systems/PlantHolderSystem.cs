@@ -57,7 +57,6 @@ public sealed partial class PlantHolderSystem : EntitySystem
 
     public override void Initialize()
     {
-        base.Initialize();
         SubscribeLocalEvent<PlantHolderComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<PlantHolderComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PlantHolderComponent, SolutionTransferredEvent>(OnSolutionTransferred);
