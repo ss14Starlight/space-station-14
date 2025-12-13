@@ -128,6 +128,7 @@ public sealed class SpesoPrinterSystem : EntitySystem
             }
         }
     }
+
     private float CalculatePrintInterval(SpesoPrinterComponent printer)
     {
         var interval = printer.BasePrintInterval * MathF.Pow(printer.IntervalDecreasePerLevel, printer.PrintLevel);
