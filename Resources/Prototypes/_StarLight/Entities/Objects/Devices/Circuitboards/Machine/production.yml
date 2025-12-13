@@ -1124,3 +1124,20 @@
       Steel: 5
       Manipulator: 2
       Cable: 4
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: SpesoPrinterMachineCircuitboard
+  name: speso printer machine board
+  description: A highly illegal machine printed circuit board for a Syndicate currency printer.
+  suffix: Syndicate
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: SpesoPrinter
+    stackRequirements:
+      Steel: 5
+      Glass: 2
+      Cable: 9
+      

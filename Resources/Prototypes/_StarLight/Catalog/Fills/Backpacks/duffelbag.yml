@@ -90,3 +90,16 @@
       - id: ClothingHandsGlovesCombat
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledSpesoPrinter
+  name: speso printer kit
+  description: "Contains all the components needed to build an illegal Syndicate currency printer. Just add a machine frame."
+  components:
+  - type: StorageFill
+    contents:
+      - id: SpesoPrinterMachineCircuitboard
+      - id: SheetSteel10
+      - id: SheetGlass10
+      - id: CableApcStack10

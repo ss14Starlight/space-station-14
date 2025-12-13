@@ -556,3 +556,17 @@
   categories:
   - UplinkDisruption
 
+- type: listing
+  id: UplinkSpesoPrinterKit
+  name: uplink-speso-printer-kit-name
+  description: uplink-speso-printer-kit-desc
+  icon: { sprite: _Starlight/Structures/Machines/speso_printer.rsi, state: base }
+  productEntity: ClothingBackpackDuffelSyndicateFilledSpesoPrinter
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkDisruption
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
