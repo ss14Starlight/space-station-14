@@ -49,7 +49,7 @@
     whitelist:
       tags:
         - CartridgeRifle
-    capacity: 45
+    capacity: 50
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
