@@ -106,6 +106,9 @@
   - MagazineRifleHP
   - MagazineRifleFMJ
   - MagazineRifleEmpty
+  - MagazineRifleHPExtended
+  - MagazineRifleFMJExtended
+  - MagazineRifleEmptyExtended
 # Shotgun
   - MagazineShotgun
   - MagazineShotgunEmpty
@@ -220,6 +223,9 @@
   - MagazineRifleIncendiary
   - MagazineRifleUranium
   - MagazineRifleAP
+  - MagazineRifleIncendiaryExtended
+  - MagazineRifleUraniumExtended
+  - MagazineRifleAPExtended
 # Shotgun
   - MagazineShotgunBeanbag
   - MagazineShotgunIncendiary
