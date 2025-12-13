@@ -1,5 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Power.Components;
+using Content.Server.Stack;
 using Content.Shared._Starlight.Economy.SpesoPrinter;
 using Content.Shared.Atmos;
 using Robust.Server.GameObjects;
@@ -14,6 +15,7 @@ public sealed class SpesoPrinterSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly StackSystem _stack = default!;
 
     public override void Initialize()
     {
@@ -86,8 +88,16 @@ public sealed class SpesoPrinterSystem : EntitySystem
             if (!printer.WasPowered)
             {
                 printer.WasPowered = true;
+                printer.NextHeatTime = _timing.CurTime + TimeSpan.FromSeconds(printer.HeatInterval);
                 UpdateVisuals(uid, printer, true);
                 Dirty(uid, printer);
+            }
+
+            // Generate heat continuously while powered
+            if (_timing.CurTime >= printer.NextHeatTime)
+            {
+                GenerateHeat(uid, printer);
+                printer.NextHeatTime = _timing.CurTime + TimeSpan.FromSeconds(printer.HeatInterval);
             }
 
             // If currently printing, check if animation is done
@@ -99,9 +109,8 @@ public sealed class SpesoPrinterSystem : EntitySystem
                     UpdateVisuals(uid, printer, true);
 
                     var spawnCoords = xform.Coordinates.Offset(xform.LocalRotation.RotateVec(printer.SpawnOffset));
-                    Spawn(printer.PrintedEntity, spawnCoords);
-
-                    GenerateHeat(uid, printer);
+                    var cashAmount = printer.BaseCreditsPerPrint + (printer.CreditsIncreasePerLevel * printer.PrintLevel);;
+                    _stack.Spawn(cashAmount, printer.CashStackType, spawnCoords);
 
                     if (printer.PrintLevel < printer.MaxPrintLevel)
                     {
@@ -151,7 +160,7 @@ public sealed class SpesoPrinterSystem : EntitySystem
         if (environment == null)
             return;
 
-        var heatAmount = printer.BaseHeatPerPrint * MathF.Pow(printer.HeatIncreasePerLevel, printer.PrintLevel);
+        var heatAmount = printer.BaseHeatPerTick * MathF.Pow(printer.HeatIncreasePerLevel, printer.PrintLevel);
 
         // Add heat energy to the surrounding atmosphere
         if (environment.TotalMoles > 0)

@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Stacks;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -15,14 +16,11 @@ namespace Content.Shared._Starlight.Economy.SpesoPrinter;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class SpesoPrinterComponent : Component
 {
-    /// <summary>
-    /// prototype to print
-    /// </summary>
     [DataField]
-    public EntProtoId PrintedEntity = "SpaceCash1000";
+    public ProtoId<StackPrototype> CashStackType = "Credit";
 
     /// <summary>
-    /// Current print level, ioncreases with each print, affecting speed, output, power and heat
+    /// Current print level, increases with each print, affecting speed, output, power and heat
     /// </summary>
     [DataField, AutoNetworkedField]
     public int PrintLevel = 0;
@@ -31,7 +29,7 @@ public sealed partial class SpesoPrinterComponent : Component
     /// Maximum print "level" machine can achieve
     /// </summary>
     [DataField]
-    public int MaxPrintLevel = 5;
+    public int MaxPrintLevel = 6;
 
     /// <summary>
     /// Base interval between prints in seconds
@@ -67,16 +65,28 @@ public sealed partial class SpesoPrinterComponent : Component
     public float PowerIncreasePerLevel = 1.5f;
 
     /// <summary>
-    /// Base heat generated per print
+    /// Base heat generated per tick
     /// </summary>
     [DataField]
-    public float BaseHeatPerPrint = 5000f;
+    public float BaseHeatPerTick = 2000f;
 
     /// <summary>
     /// Heat multiplier per level
     /// </summary>
     [DataField]
     public float HeatIncreasePerLevel = 1.3f;
+
+    /// <summary>
+    /// Interval between heat generation ticks in seconds
+    /// </summary>
+    [DataField]
+    public float HeatInterval = 5f;
+
+    /// <summary>
+    /// Next time to generate heat
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan NextHeatTime = TimeSpan.Zero;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextPrintTime = TimeSpan.Zero;
@@ -115,24 +125,13 @@ public sealed partial class SpesoPrinterComponent : Component
     [DataField]
     public float MinPressure = 35f;
 
-    /// <summary>
-    /// Warning beep when printer cant operate due to low pressure
-    /// </summary>
     [DataField]
     public SoundSpecifier WarningBeep = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg")
     {
         Params = AudioParams.Default.WithVolume(-4f)
     };
-
-    /// <summary>
-    /// Interval between warning beeps in seconds
-    /// </summary>
     [DataField]
     public float WarningBeepInterval = 2f;
-
-    /// <summary>
-    /// Next time to play warning beep
-    /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextWarningBeep = TimeSpan.Zero;
 
