@@ -375,7 +375,7 @@
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
 
-# Security
+# region Security
 
 - type: entity
   parent: BorgSecuritySubtypeBase
@@ -448,3 +448,53 @@
       spriteHasMindState: heavy_e
       spriteNoMindState: heavy_e_r
       spriteToggleLightState: heavy_l
+
+# region Cargo
+
+- type: entity
+  parent: BorgCargoSubtypeBase
+  id: BorgMiningSubtypeCargoStandard
+  name: Standard
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/cargo.rsi
+      spriteBodyState: standard
+      spriteHasMindState: standard_e
+      spriteNoMindState: standard_e_r
+      spriteToggleLightState: standard_l
+
+- type: entity
+  parent: BorgCargoSubtypeBase
+  id: BorgMiningSubtypeCargoNoble
+  name: Noble-SUP
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/cargo.rsi
+      spriteBodyState: noble
+      spriteHasMindState: noble_e
+      spriteNoMindState: noble_e_r
+      spriteToggleLightState: noble_l
+
+- type: entity
+  parent: BorgCargoSubtypeBase
+  id: BorgMiningSubtypeCargoCricket
+  name: Cricket
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/cargo.rsi
+      spriteBodyState: cricket
+      spriteHasMindState: cricket_e
+      spriteNoMindState: cricket_e_r
+      spriteToggleLightState: cricket_l
+
+- type: entity
+  parent: BorgCargoSubtypeBase
+  id: BorgMiningSubtypeCargoRealTech
+  name: Real cargo tech
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/cargo.rsi
+      spriteBodyState: real_tech
+      spriteHasMindState: real_tech_e
+      spriteNoMindState: real_tech_e_r
+      spriteToggleLightState: real_tech_l
