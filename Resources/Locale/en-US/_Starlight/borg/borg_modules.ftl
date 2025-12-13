@@ -9,3 +9,5 @@ borg-slot-swabs-empty = Swabs
 borg-slot-produce-empty = Produce
 borg-slot-ingredient-empty = Ingredients
 borg-slot-food-empty = Food and Dinnerware
+borg-slot-bounty-empty = Bounties and Slips
+borg-slot-mail-empty = Letters

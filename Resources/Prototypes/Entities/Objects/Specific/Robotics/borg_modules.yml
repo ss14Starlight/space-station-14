@@ -605,7 +605,7 @@
 
 - type: entity
   id: BorgModuleMining
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # Starlight
   name: mining cyborg module
   components:
   - type: Sprite
@@ -630,7 +630,7 @@
 
 - type: entity
   id: BorgModuleAdvancedMining
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # Starlight
   name: advanced mining cyborg module
   description: Advanced cargo module containing advanced mining equipment. Studies show it advances productivity of a cyborg by 150%.
   components:
@@ -656,7 +656,7 @@
 
 - type: entity
   id: BorgModuleTraversal
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # Starlight
   name: traversal cyborg module
   components:
   - type: Sprite

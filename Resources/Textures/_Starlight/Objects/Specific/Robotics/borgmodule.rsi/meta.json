@@ -11,6 +11,18 @@
             "name": "command"
         },
         {
+            "name": "hauling"
+        },
+        {
+            "name": "salvage"
+        },
+        {
+            "name": "icon-mats"
+        },
+        {
+            "name": "icon-mail"
+        },
+        {
             "name": "icon-paperwork"
         }
     ]
