@@ -43,7 +43,7 @@
     tags:
       - MagazineRifle
   - type: Item
-    size: Small
+    size: Normal
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
