@@ -41,7 +41,6 @@ research-technology-wave-particle-harnessing = Wave Particle Harnessing
 research-technology-advanced-riot-control = Advanced Riot Control
 research-technology-portable-microfusion-weaponry = Portable Microfusion Weaponry
 research-technology-experimental-battery-ammo = Experimental Battery Ammo
-research-technology-energy_barriers = Energy Barriers
 research-technology-kinetic-modifications = Kinetic Modifications
 research-technology-basic-shuttle-armament = Shuttle Basic Armament
 research-technology-advanced-shuttle-weapon = Advanced Shuttle Weapons

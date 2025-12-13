@@ -68,3 +68,6 @@ uplink-lube-grenade-desc = Special grenade for shenanigans, releasing large clou
 
 uplink-glue-grenade-name = Glue Grenade
 uplink-glue-grenade-desc = Special grenade for shenanigans, releasing large cloud of glue foam.
+
+uplink-energy-dome-name = Personal energy dome
+uplink-energy-dome-desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Comes with a small power cell.
