@@ -1,5 +1,4 @@
 using Content.Server.Botany.Components;
-using Content.Server.Botany.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.EntityEffects;
 using Content.Shared.Random;
@@ -8,7 +7,7 @@ using Robust.Shared.Random;
 using System.Linq;
 using Robust.Shared.Serialization.Manager;
 
-namespace Content.Server.Botany;
+namespace Content.Server.Botany.Systems;
 
 public sealed partial class MutationSystem : EntitySystem
 {
@@ -107,9 +106,7 @@ public sealed partial class MutationSystem : EntitySystem
         {
             var traits = BotanySystem.GetPlantTraits(result);
             if (traits != null)
-            {
                 traits.Seedless = true;
-            }
         }
 
         return result;
