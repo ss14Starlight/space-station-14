@@ -9,7 +9,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Economy.SpesoPrinter;
 
 /// <summary>
-/// A Component that makes machine print currency(actually any EntProto), 
+/// A Component that makes machine print currency, 
 /// additionaly ramping up in speed and output but also increasing
 /// power consumption and heat generation over time
 /// </summary>
