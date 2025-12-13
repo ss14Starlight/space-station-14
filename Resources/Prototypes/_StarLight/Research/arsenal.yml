@@ -69,7 +69,6 @@
   - MagazinePistolAP
   - MagazinePistol40AP
   - MagazineRifleAP
-  - MagazineRifleAPExtended
   - MagazineLightRifleAP
   - MagazineBoxMagnumAP
   - MagazineBoxPistolAP
@@ -98,6 +97,39 @@
   - Security
   
 # Tier 3
+- type: technology
+  id: ExtendedCapacityMags
+  name: research-technology-extended-capacity-magazines
+  icon:
+    sprite: _Starlight\Interface\Research\icons\extendedammocapacity.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 29000
+  recipeUnlocks:
+  - MagazineRifleIncendiaryExtended
+  - MagazineRifleUraniumExtended
+  - MagazineRifleAPExtended
+  - MagazineRifleSPExtended
+  - MagazineRifleHPExtended
+  - MagazineRifleFMJExtended
+  - MagazineRifleEmptyExtended
+  - MagazineRiflePracticeExtended
+  
+  - MagazinePistolIncendiaryExtended
+  - MagazinePistolUraniumExtended
+  - MagazinePistolAPExtended
+  - MagazinePistolSPExtended
+  - MagazinePistolHPExtended
+  - MagazinePistolFMJExtended
+  - MagazinePistolEmptyExtended
+  technologyPrerequisites:
+  - DraconicMunitions
+  - NonlethalAmmunition
+  - UraniumMunitions
+  - ArmorPenetrationMunitions
+  radioChannels:
+  - Security
 
 - type: technology
   id: ExplosiveMechAmmunition
