@@ -10,3 +10,6 @@ uplink-homerun-bat-desc = Send your enemies flying. Hey batta batta batta SWING 
 uplink-observer-bundle-name = Observer Bundle
 uplink-observer-bundle-desc = For keeping an eye on things. Comes with a Camera Bug, Secret Security Glasses, Camera Monitor Board, and supplies to build extra surveillance cameras wherever you need.
 
+uplink-speso-printer-kit-name = Speso Printer Kit
+uplink-speso-printer-kit-desc = Contains all the parts needed to build an illegal Syndicate currency printer. Production starts slow but ramps up over time. Just add a machine frame and connect to HV power.
+

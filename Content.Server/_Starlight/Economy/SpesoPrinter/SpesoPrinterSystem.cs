@@ -59,6 +59,30 @@ public sealed class SpesoPrinterSystem : EntitySystem
                 continue;
             }
 
+            // Check atmospheric pressure
+            var environment = _atmosphere.GetContainingMixture(uid, true, true);
+            var pressure = environment?.Pressure ?? 0f;
+            var hasAtmosphere = pressure >= printer.MinPressure;
+
+            if (!hasAtmosphere)
+            {
+                if (printer.Printing || printer.WasPowered)
+                {
+                    printer.Printing = false;
+                    printer.WasPowered = false;
+                    UpdateVisuals(uid, printer, false);
+                    Dirty(uid, printer);
+                }
+
+                // Play warning beep periodically
+                if (_timing.CurTime >= printer.NextWarningBeep)
+                {
+                    _audio.PlayPvs(printer.WarningBeep, uid);
+                    printer.NextWarningBeep = _timing.CurTime + TimeSpan.FromSeconds(printer.WarningBeepInterval);
+                }
+                continue;
+            }
+
             if (!printer.WasPowered)
             {
                 printer.WasPowered = true;
@@ -66,27 +90,38 @@ public sealed class SpesoPrinterSystem : EntitySystem
                 Dirty(uid, printer);
             }
 
-            if (_timing.CurTime < printer.NextPrintTime)
+            // If currently printing, check if animation is done
+            if (printer.Printing)
             {
-                if (printer.Printing)
+                if (_timing.CurTime >= printer.PrintingEndTime)
                 {
-                    printer.Printing = false;
-                    UpdateVisuals(uid, printer, true);
-                    Dirty(uid, printer);
+                    // Animation finished - spawn the money
+                    FinishPrint(uid, printer, xform);
                 }
                 continue;
             }
 
-            PrintMoney(uid, printer, xform);
+            // Check if it's time to start a new print
+            if (_timing.CurTime >= printer.NextPrintTime)
+            {
+                StartPrint(uid, printer);
+            }
         }
     }
 
-    private void PrintMoney(EntityUid uid, SpesoPrinterComponent printer, TransformComponent xform)
+    private void StartPrint(EntityUid uid, SpesoPrinterComponent printer)
     {
         printer.Printing = true;
+        printer.PrintingEndTime = _timing.CurTime + TimeSpan.FromSeconds(printer.PrintAnimationDuration);
         UpdateVisuals(uid, printer, true);
-
         _audio.PlayPvs(printer.PrintSound, uid);
+        Dirty(uid, printer);
+    }
+
+    private void FinishPrint(EntityUid uid, SpesoPrinterComponent printer, TransformComponent xform)
+    {
+        printer.Printing = false;
+        UpdateVisuals(uid, printer, true);
 
         var spawnCoords = xform.Coordinates.Offset(xform.LocalRotation.RotateVec(printer.SpawnOffset));
         Spawn(printer.PrintedEntity, spawnCoords);

@@ -1,8 +1,8 @@
 - type: entity
   id: SpesoPrinter
-  parent: BaseMachine
+  parent: [BaseMachine, BaseSyndicateContraband]
   name: speso printer
-  description: A highly illegal Syndicate device that prints counterfeit NT credits. Starts slow but ramps up production over time, generating significant heat and power draw.
+  description: A highly illegal Syndicate device that prints currency. Starts slow but ramps up production over time, generating significant heat and power draw. Requires adequate atmospheric pressure for cooling system ventilation!
   components:
   - type: SpesoPrinter
   - type: Transform
@@ -25,6 +25,9 @@
     layers:
     - state: base
       map: ["base"]
+    - state: printing
+      map: ["printing"]
+      visible: false
     - state: unlit
       map: ["unlit"]
       visible: false
@@ -36,9 +39,9 @@
           True: { visible: true }
           False: { visible: false }
       enum.SpesoPrinterVisuals.Printing:
-        base:
-          True: { state: printing }
-          False: { state: base }
+        printing:
+          True: { visible: true }
+          False: { visible: false }
   - type: NodeContainer
     examinable: true
     nodes:
@@ -47,7 +50,7 @@
         nodeGroupID: HVPower
   - type: PowerConsumer
     voltage: High
-    drawRate: 5000
+    drawRate: 25000
   - type: Anchorable
   - type: Pullable
   - type: Damageable

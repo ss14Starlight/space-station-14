@@ -19,7 +19,7 @@ public sealed partial class SpesoPrinterComponent : Component
     /// prototype to print
     /// </summary>
     [DataField]
-    public EntProtoId PrintedEntity = "NTCredit100";
+    public EntProtoId PrintedEntity = "SpaceCash1000";
 
     /// <summary>
     /// Current print level, ioncreases with each print, affecting speed, output, power and heat
@@ -37,7 +37,7 @@ public sealed partial class SpesoPrinterComponent : Component
     /// Base interval between prints in seconds
     /// </summary>
     [DataField]
-    public float BasePrintInterval = 900f; // 15min
+    public float BasePrintInterval = 120f; // 2min
 
     /// <summary>
     /// How much the interval decreases per level, lower = faster
@@ -49,16 +49,16 @@ public sealed partial class SpesoPrinterComponent : Component
     /// Minimum print interval in seconds
     /// </summary>
     [DataField]
-    public float MinPrintInterval = 300f; // 5min
+    public float MinPrintInterval = 25f; //
 
     [DataField]
-    public int BaseCreditsPerPrint = 100;
+    public int BaseCreditsPerPrint = 1000;
 
     [DataField]
-    public int CreditsIncreasePerLevel = 20;
+    public int CreditsIncreasePerLevel = 1000;
 
     [DataField]
-    public float BasePowerDraw = 5000f; // 5kW
+    public float BasePowerDraw = 25000f; // 25kW
 
     /// <summary>
     /// Power draw multiplier per level
@@ -81,6 +81,18 @@ public sealed partial class SpesoPrinterComponent : Component
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextPrintTime = TimeSpan.Zero;
 
+    /// <summary>
+    /// When the current print animation ends and cash should spawn
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan PrintingEndTime = TimeSpan.Zero;
+
+    /// <summary>
+    /// Duration of the printing animation in seconds
+    /// </summary>
+    [DataField]
+    public float PrintAnimationDuration = 1f;
+
     [DataField, AutoNetworkedField]
     public bool Enabled = true;
     [DataField, AutoNetworkedField]
@@ -94,8 +106,35 @@ public sealed partial class SpesoPrinterComponent : Component
     [DataField]
     public SoundSpecifier PrintSound = new SoundPathSpecifier("/Audio/Machines/printer.ogg")
     {
+        Params = AudioParams.Default.WithVolume(-8f)
+    };
+
+    /// <summary>
+    /// Minimum pressure required for the printer to operate(in kPa`s)
+    /// </summary>
+    [DataField]
+    public float MinPressure = 35f;
+
+    /// <summary>
+    /// Warning beep when printer cant operate due to low pressure
+    /// </summary>
+    [DataField]
+    public SoundSpecifier WarningBeep = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg")
+    {
         Params = AudioParams.Default.WithVolume(-4f)
     };
+
+    /// <summary>
+    /// Interval between warning beeps in seconds
+    /// </summary>
+    [DataField]
+    public float WarningBeepInterval = 2f;
+
+    /// <summary>
+    /// Next time to play warning beep
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan NextWarningBeep = TimeSpan.Zero;
 
     [Serializable, NetSerializable]
     public enum SpesoPrinterVisuals : byte
