@@ -1,8 +1,6 @@
 using Content.Server.DeviceLinking.Systems;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Actions;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Examine;
@@ -18,9 +16,8 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 
-namespace Content.Server.EnergyDome;
+namespace Content.Server._Starlight.EnergyDome;
 
-//TODO: This is all starlight code? move it
 public sealed partial class EnergyDomeSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -98,14 +95,11 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             AttemptToggle(generator, !generator.Comp.Enabled);
     }
 
-    private void OnExamine(Entity<EnergyDomeGeneratorComponent> generator, ref ExaminedEvent args)
-    {
-        args.PushMarkup(Loc.GetString(
+    private void OnExamine(Entity<EnergyDomeGeneratorComponent> generator, ref ExaminedEvent args) => args.PushMarkup(Loc.GetString(
             (generator.Comp.Enabled)
             ? "energy-dome-on-examine-is-on-message"
             : "energy-dome-on-examine-is-off-message"
             ));
-    }
 
     private void AddToggleDomeVerb(Entity<EnergyDomeGeneratorComponent> generator, ref GetVerbsEvent<ActivationVerb> args)
     {
@@ -139,10 +133,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     // System interactions
 
-    private void OnPowerCellSlotEmpty(Entity<EnergyDomeGeneratorComponent> generator, ref PowerCellSlotEmptyEvent args)
-    {
-        TurnOff(generator, true);
-    }
+    private void OnPowerCellSlotEmpty(Entity<EnergyDomeGeneratorComponent> generator, ref PowerCellSlotEmptyEvent args) => TurnOff(generator, true);
 
     private void OnPowerCellChanged(Entity<EnergyDomeGeneratorComponent> generator, ref PowerCellChangedEvent args)
     {
@@ -204,10 +195,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             TurnOff(generator, false);
     }
 
-    private void OnComponentRemove(Entity<EnergyDomeGeneratorComponent> generator, ref ComponentRemove args)
-    {
-        TurnOff(generator, false);
-    }
+    private void OnComponentRemove(Entity<EnergyDomeGeneratorComponent> generator, ref ComponentRemove args) => TurnOff(generator, false);
 
     // Functional
 
@@ -327,10 +315,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     // Util
 
-    private EntityUid GetProtectedEntity(EntityUid entity)
-    {
-        return (_container.TryGetOuterContainer(entity, Transform(entity), out var container))
+    private EntityUid GetProtectedEntity(EntityUid entity) => (_container.TryGetOuterContainer(entity, Transform(entity), out var container))
             ? container.Owner
             : entity;
-    }
 }

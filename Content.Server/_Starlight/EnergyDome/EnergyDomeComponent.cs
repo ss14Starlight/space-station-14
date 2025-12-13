@@ -1,4 +1,4 @@
-namespace Content.Server.EnergyDome;
+namespace Content.Server._Starlight.EnergyDome;
 
 /// <summary>
 /// marker component that allows linking the dome generator with the dome itself
