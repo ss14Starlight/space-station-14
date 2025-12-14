@@ -94,10 +94,13 @@
           - PatchPack # Starlight-edit
   - type: SolutionContainerManager
     solutions:
-      buffer: {}
+    # Starlight edit Start
+      buffer:
+        maxVol: 1000
+    # Starlight edit End
   - type: DumpableSolution
     solution: buffer
-    unlimited: true
+    unlimited: false # Starlight edit
   - type: GuideHelp
     guides:
     - Chemicals

@@ -59,15 +59,16 @@
         - MachineLayer
   # Starlight-start: Generatable Reagents
   - type: ReagentDispenser
-    generatableReagents:
-      Iron: 2 # ReagentId: x energy for 1 quantity
-      Carbon: 2
-      Copper: 2
-      Hydrogen: 2
-      Oxygen: 0 # You really can't pump oxygen or generate it on 2525?
-      Sugar: 2
-      Silicon: 5
-      Phosphorus: 5
+  # Kept as comments
+    # generatableReagents:
+      # Iron: 2 # ReagentId: x energy for 1 quantity
+      # Carbon: 2
+      # Copper: 2
+      # Hydrogen: 2
+      # Oxygen: 0 # You really can't pump oxygen or generate it on 2525?
+      # Sugar: 2
+      # Silicon: 5
+      # Phosphorus: 5
   - type: WiresVisuals
   - type: Appearance
   - type: GenericVisualizer
@@ -85,6 +86,16 @@
   components:
   - type: StorageFill
     contents:
+      # Starlight Start
+      - id: JugIron
+      - id: JugCarbon
+      - id: JugCopper
+      - id: JugHydrogen
+      - id: JugOxygen
+      - id: JugSugar
+      - id: JugSilicon
+      - id: JugPhosphorus
+      # Starlight End
       - id: JugChlorine
       - id: JugEthanol
       - id: JugFluorine
