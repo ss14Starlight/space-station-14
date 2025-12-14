@@ -75,6 +75,38 @@
     zeroVisible: false
   - type: Appearance
 
+
+################### Bluespace Pistol Mags; Parent ###################
+- type: entity
+  id: BaseMagazinePistolBluespace
+  name: extended pistol magazine (.35 auto)
+  parent: [ BaseItem, BaseSecurityContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistol
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
+    capacity: 60
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag_bluespace.rsi
+###############################
+
+
 - type: entity
   id: BaseMagazinePistolHighCapacity
   name: machine pistol magazine (.35 auto)
@@ -178,7 +210,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/SMGs/smg_mag_extended.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/SMGs/smg_mag_extended.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -189,6 +221,36 @@
     steps: 8
     zeroVisible: false
   - type: Appearance
+
+ ###################### BLUESPACE SMG MAGAZINE; Parent ###############################
+- type: entity
+  id: BaseMagazinePistolSubMachineGunBluespace
+  name: experimental bluespace SMG magazine (.35 auto)
+  parent: [ BaseItem, BaseSecurityContraband ]
+  description: Experimental bluespace magazine that manages to boast a 145 round capacity. Extremely expensive.
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolSubMachineGunSP
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
+    capacity: 145
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+    size: Normal
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/SMGs/smg_mag_bluespace.rsi
 ########################################################
 
 - type: entity
@@ -232,7 +294,29 @@
   - type: BallisticAmmoProvider
     proto: null
 
+######################### BLUESPACE PISTOL MAGAZINE ################################
+- type: entity
+  id: MagazinePistolEmptyBluespace
+  name: experimental bluespace pistol magazine (.35 auto any)
+  suffix: empty
+  parent: BaseMagazinePistolBluespace
+  description: Experimental bluespace magazine that manages to boast a 60 round capacity. Extremely expensive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
 #########################EXTENDED PISTOL MAGAZINE ################################
+
 - type: entity
   id: MagazinePistolEmptyExtended
   name: High capacity pistol magazine (.35 auto any)
@@ -1414,6 +1498,28 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#72E374"
+
+
+##################### Bluespace SMG Magazine ##############################
+- type: entity
+  id: MagazinePistolSubMachineGunEmptyBluespace
+  name: experimental bluespace SMG magazine (.35 auto any)
+  description: Experimental bluespace magazine that manages to boast a 145 round capacity. Extremely expensive.
+  suffix: empty
+  parent: BaseMagazinePistolSubMachineGunBluespace
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    inhandVisuals:
+      left: 
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 ##################### Extended SMG Magazines ##############################
 - type: entity
