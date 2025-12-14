@@ -751,9 +751,30 @@ namespace Content.Client.Lobby.UI
                     var trait = _prototypeManager.Index<TraitPrototype>(traitProto);
                     var selector = new TraitPreferenceSelector(trait);
 
+                    // Check if trait is blocked for current species (Starlight - breathing traits)
+                    var isBlocked = false;
+                    if (Profile?.Species != null && trait.Blacklist != null)
+                    {
+                        // Check if Shadekin is blacklisted and current species is Shadekin
+                        if (trait.Blacklist.Components != null && 
+                            trait.Blacklist.Components.Contains("Shadekin") && 
+                            Profile.Species == "Shadekin")
+                        {
+                            isBlocked = true;
+                        }
+                    }
+
                     selector.Preference = Profile?.TraitPreferences.Contains(trait.ID) == true;
                     if (selector.Preference)
                         selectionCount += trait.Cost;
+
+                    // Disable checkbox if trait is blocked
+                    if (isBlocked)
+                    {
+                        selector.Checkbox.Disabled = true;
+                        selector.Checkbox.Label.FontColorOverride = Color.Gray;
+                        selector.Preference = false; // Uncheck if blocked
+                    }
 
                     selector.PreferenceChanged += preference =>
                     {

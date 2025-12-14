@@ -8,6 +8,9 @@
   description: trait-nitrogen-breather-desc
   category: PhysiologyTraits
   cost: 1
+  blacklist:
+    components:
+      - Shadekin
   components:
   - type: TraitOrganReplacement
     slot: lungs
@@ -31,6 +34,9 @@
   description: trait-oxygen-breather-desc
   category: PhysiologyTraits
   cost: 1
+  blacklist:
+    components:
+      - Shadekin
   components:
   - type: TraitOrganReplacement
     slot: lungs
