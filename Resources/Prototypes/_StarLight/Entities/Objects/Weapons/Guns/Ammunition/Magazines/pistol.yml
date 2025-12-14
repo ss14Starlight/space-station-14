@@ -173,7 +173,7 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
-    size: Small
+    size: Normal
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
