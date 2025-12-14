@@ -60,7 +60,7 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
         var stationPos = _transform.GetWorldPosition(largestGrid.Value);
 
         // Load red faction shuttle on the station's map
-        var redOpts = DeserializationOptions.Default with { InitializeMaps = true };
+        var blueOpts = DeserializationOptions.Default with { InitializeMaps = true };
         if (!_mapLoader.TryLoadGrid(mapId, comp.ShuttlePathBlue, out var blueGrid, blueOpts))
         {
             Log.Error($"Failed to load blue wizard shuttle from {comp.ShuttlePathBlue}!");
@@ -68,6 +68,7 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
             return;
         }
 
+        var redOpts = DeserializationOptions.Default with { InitializeMaps = true };
         if (!_mapLoader.TryLoadGrid(mapId, comp.ShuttlePathRed, out var redGrid, redOpts))
         {
             Log.Error($"Failed to load red wizard shuttle from {comp.ShuttlePathRed}!");
