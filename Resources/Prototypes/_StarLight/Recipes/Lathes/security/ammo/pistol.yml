@@ -48,67 +48,6 @@
   materials:
     Steel: 100
 
-################## EXTENDED MAGAZINES (.35) #############################
-
-- type: latheRecipe
-  parent: BaseEmptyAmmoRecipe
-  id: MagazinePistolEmptyExtended
-  result: MagazinePistolEmptyExtended
-  materials:
-    Steel: 50
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolSPExtended
-  result: MagazinePistolSPExtended
-  materials:
-    Steel: 290
-    
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolHPExtended
-  result: MagazinePistolHPExtended
-  materials:
-    Steel: 290
-    
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolFMJExtended
-  result: MagazinePistolFMJExtended
-  materials:
-    Steel: 290
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolPracticeExtended
-  result: MagazinePistolPracticeExtended
-  materials:
-    Steel: 170
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolIncendiaryExtended
-  result: MagazinePistolIncendiaryExtended
-  materials:
-    Steel: 50
-    Plastic: 240
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolUraniumExtended
-  result: MagazinePistolUraniumExtended
-  materials:
-    Steel: 50
-    Plastic: 130
-    Uranium: 240
-    
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolAPExtended
-  result: MagazinePistolAPExtended
-  materials:
-    Steel: 450
-    Uranium: 450
 
 ############ MAGAZINES (.35) ############
 
