@@ -236,9 +236,9 @@
 - type: entity
   id: MagazinePistolEmptyExtended
   name: High capacity pistol magazine (.35 auto any)
-  description: 19-round high capacity single-stack magazine for pistols.
   suffix: empty
   parent: MagazinePistolSPExtended
+  description: 19-round high capacity single-stack magazine for pistols.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -283,8 +283,8 @@
 - type: entity
   id: MagazinePistolHPExtended
   name: High capacity pistol magazine (.35 auto HP)
-  description: 19-round high capacity single-stack magazine for pistols.
   parent: BaseMagazinePistolExtended
+  description: 19-round high capacity single-stack magazine for pistols.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolHP
@@ -308,8 +308,8 @@
 - type: entity
   id: MagazinePistolFMJExtended
   name: High capacity pistol magazine (.35 auto FMJ)
-  description: 19-round high capacity single-stack magazine for pistols.
   parent: BaseMagazinePistolExtended
+  description: 19-round high capacity single-stack magazine for pistols.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolFMJ
@@ -333,8 +333,8 @@
 - type: entity
   id: MagazinePistolAPExtended
   name: High capacity pistol magazine (.35 auto AP)
-  description: 19-round high capacity single-stack magazine for pistols.
   parent: BaseMagazinePistolExtended
+  description: 19-round high capacity single-stack magazine for pistols.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolAP
@@ -358,8 +358,8 @@
 - type: entity
   id: MagazinePistolIncendiaryExtended
   name: High capacity pistol magazine (.35 auto incendiary)
-  description: 19-round high capacity single-stack magazine for pistols.
   parent: MagazinePistolSPExtended
+  description: 19-round high capacity single-stack magazine for pistols.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolIncendiary
@@ -433,8 +433,8 @@
 - type: entity
   id: MagazinePistolRubberExtended
   name: High capacity pistol magazine (.35 auto rubber)
-  description: 19-round high capacity single-stack magazine for pistols.
   parent: BaseMagazinePistolExtended
+  description: 19-round high capacity single-stack magazine for pistols.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolRubber
