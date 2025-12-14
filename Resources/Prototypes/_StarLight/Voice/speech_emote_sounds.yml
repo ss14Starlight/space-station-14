@@ -181,7 +181,7 @@
     Honk:
       collection: BikeHorn
     Whistle:
-      path: /Audio/Voice/Resomi/resomi_whistle.ogg
+      path: /Audio/_Starlight/Voice/Resomi/resomi_whistle.ogg
     Chirp:
       collection: ResomiChirp
 
@@ -231,7 +231,7 @@
     Honk:
       collection: BikeHorn
     Whistle:
-      path: /Audio/Voice/Resomi/resomi_whistle.ogg
+      path: /Audio/_Starlight/Voice/Resomi/resomi_whistle.ogg
     Chirp:
       collection: ResomiChirp
 
