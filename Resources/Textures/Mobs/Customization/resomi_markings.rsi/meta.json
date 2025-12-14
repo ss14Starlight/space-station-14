@@ -270,6 +270,58 @@
     {
       "name": "resomi_holowing_l",
       "directions": 4
+    },
+    {
+      "name": "resomi_damaged_prosthetic_high_tech",
+      "directions": 4
+    },
+    {
+      "name": "resomi_damaged_prosthetic_unbranded",
+      "directions": 4
+    },
+    {
+      "name": "resomi_damaged_prosthetic_wood",
+      "directions": 4
+    },
+    {
+      "name": "resomi_damaged",
+      "directions": 4
+    },
+    {
+      "name": "resomi_noplume_feathers",
+      "directions": 4
+    },
+    {
+      "name": "resomi_prosthetic_high_tech",
+      "directions": 4
+    },
+    {
+      "name": "resomi_prosthetic_unbranded",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stubby_feathers",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stubby_prosthetic_high_tech",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stubby_prosthetic_unbranded",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stubby_prosthetic_wood",
+      "directions": 4
+    },
+    {
+      "name": "resomi_stubby",
+      "directions": 4
+    },
+    {
+      "name": "resomi_damaged_feathers",
+      "directions": 4
     }
   ]
 }

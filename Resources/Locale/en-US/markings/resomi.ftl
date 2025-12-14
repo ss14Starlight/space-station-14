@@ -1,7 +1,7 @@
-marking-ResomiTail = Base Tail
-marking-ResomiTail-tail = Base Tail
+marking-ResomiTail = Full Bare Tail
+marking-ResomiTail-tail = Bare Tail
 
-marking-ResomiTailFeathers = Tail Feathers
+marking-ResomiTailFeathers = Full Tail Feathers
 marking-ResomiTailFeathers-tail_feathers = Tail Feathers
 
 marking-ResomiLArmFeathers = Feathers Left Arm
@@ -21,6 +21,9 @@ marking-ResomiFluff-fluff = Body Fluff
 
 marking-ResomiStripeHead = Stripe Head
 marking-ResomiStripeHead-fluff_head = Head
+
+marking-ResomiFluffHead = Face Fluff
+marking-ResomiFluffHead-resomi_fluff_color = Fluff
 
 marking-ResomiFluffHeadUp = Ornate Head
 marking-ResomiFluffHeadUp-fluff_head_up = Head
@@ -112,7 +115,7 @@ marking-ResomiCoatLLeg-resomi_coat_l_leg = Left Leg
 marking-ResomiCoatRLeg = Coat Right Leg
 marking-ResomiCoatRLeg-resomi_coat_r_leg = Right Leg
 
-marking-ResomiFluffLFoot = Fluff Left Foot
+marking-ResomiFluffLFoot = Inner Left Leg
 marking-ResomiFluffLFoot-resomi_fluff_l_foot = Left Foot
 
 marking-ResomiFluffLLeg = Fluff Left Leg
@@ -121,7 +124,7 @@ marking-ResomiFluffLLeg-resomi_fluff_l_leg = Left Leg
 marking-ResomiFluffRLeg = Fluff Right Leg
 marking-ResomiFluffRLeg-resomi_fluff_r_leg = Right Leg
 
-marking-ResomiFluffRFoot = Fluff Right Foot
+marking-ResomiFluffRFoot = Inner Right Leg
 marking-ResomiFluffRFoot-resomi_fluff_r_foot = Right Foot
 
 marking-ResomiLineLLeg = Line Left Leg
@@ -145,42 +148,42 @@ marking-ResomiStripeRLeg-resomi_stripe_r_leg = Right Leg
 marking-ResomiTailCombined = Combined Tail
 marking-ResomiTailCombined-resomi_tail_combined = Tail
 
-marking-ResomiTailOne = Stripe Tail
+marking-ResomiTailOne = Marking Stripe Tail
 marking-ResomiTailOne-resomi_tail_1 = Tail
 
-marking-ResomiTailTwo = Rugged Tail
+marking-ResomiTailTwo = Marking Rugged Tail
 marking-ResomiTailTwo-resomi_tail_2 = Tail
 
-marking-ResomiTailThree = Pointed Tail
+marking-ResomiTailThree = Marking Pointed Tail
 marking-ResomiTailThree-resomi_tail_3 = Tail
 
-marking-ResomiTailFour = Tipped Tail
+marking-ResomiTailFour = Marking Tipped Tail
 marking-ResomiTailFour-resomi_tail_4 = Tail
 
-marking-ResomiTailFive = Swirl Tail
+marking-ResomiTailFive = Full Swirl Tail Feathers
 marking-ResomiTailFive-resomi_tail_5 = Tail
 
-marking-ResomiEarringOne = Bottom Right Earring
+marking-ResomiEarringOne = Earring Bottom Right
 marking-ResomiEarringOne-resomi_earring_1_1 = Top
 marking-ResomiEarringOne-resomi_earring_1_2 = Bottom
 
-marking-ResomiEarringTwo = Bottom Left Earring
+marking-ResomiEarringTwo = Earring Bottom Left
 marking-ResomiEarringTwo-resomi_earring_2_1 = Top
 marking-ResomiEarringTwo-resomi_earring_2_2 = Bottom
 
-marking-ResomiEarringThree = Top Right Earring
+marking-ResomiEarringThree = Earring Top Right
 marking-ResomiEarringThree-resomi_earring_3_1 = Top
 marking-ResomiEarringThree-resomi_earring_3_2 = Bottom
 
-marking-ResomiEarringFour = Top Left Earring
+marking-ResomiEarringFour = Earring Top Left
 marking-ResomiEarringFour-resomi_earring_4_1 = Top
 marking-ResomiEarringFour-resomi_earring_4_2 = Bottom
 
-marking-ResomiEarringCombined = Combined Earrings
+marking-ResomiEarringCombined = Earrings Combined
 marking-ResomiEarringCombined-resomi_earring_combined_1 = Top
 marking-ResomiEarringCombined-resomi_earring_combined_2 = Bottom
 
-marking-ResomiEarringStuds = Stud Earrings
+marking-ResomiEarringStuds = Earrings Stud
 marking-ResomiEarringStuds-resomi_earring_studs = Earring
 
 marking-ResomiTailbandOne = Tail Band One
@@ -192,3 +195,52 @@ marking-ResomiTailbandTwo = Tail Band Two
 marking-ResomiTailbandTwo-resomi_tailband_2_1 = Top
 marking-ResomiTailbandTwo-resomi_tailband_2_2 = Middle
 marking-ResomiTailbandTwo-resomi_tailband_2_3 = Bottom
+
+marking-ResomiDamaged = Damaged Tail
+marking-ResomiDamaged-resomi_damaged = Tail
+
+marking-ResomiDamagedFeathers = Damaged Tail Feathers 
+marking-ResomiDamagedFeathers-resomi_damaged_feathers = Tail
+
+marking-ResomiNoPlumeFeathers = Full No-Plume Tail Feathers
+marking-ResomiNoPlumeFeathers-resomi_noplume_feathers = Tail
+
+marking-ResomiProstheticHighTech = Full Prosthetic Tail (High-Tech)
+marking-ResomiProstheticHighTech-resomi_prosthetic_high_tech = Tail
+
+marking-ResomiProstheticUnbranded = Full Prosthetic Tail (Unbranded)
+marking-ResomiProstheticUnbranded-resomi_prosthetic_unbranded = Tail
+
+marking-ResomiDamagedProstheticHighTech = Damaged Tail Prosthetic (High-Tech)
+marking-ResomiDamagedProstheticHighTech-resomi_damaged_prosthetic_high_tech = Tail
+
+marking-ResomiDamagedProstheticUnbranded = Damaged Tail Prosthetic (Unbranded)
+marking-ResomiDamagedProstheticUnbranded-resomi_damaged_prosthetic_unbranded = Tail
+
+marking-ResomiDamagedProstheticWood = Damaged Tail Prosthetic (Wood)
+marking-ResomiDamagedProstheticWood-resomi_damaged_prosthetic_wood = Tail
+
+marking-ResomiStubby = Stubby Tail
+marking-ResomiStubby-resomi_stubby = Tail
+
+marking-ResomiStubbyFeathers = Stubby Tail Feathers
+marking-ResomiStubbyFeathers-resomi_stubby_feathers = Tail
+
+marking-ResomiStubbyProstheticHighTech = Stubby Tail Prosthetic (High-Tech)
+marking-ResomiStubbyProstheticHighTech-resomi_stubby_prosthetic_high_tech = Tail
+
+marking-ResomiStubbyProstheticUnbranded = Stubby Tail Prosthetic (Unbranded)
+marking-ResomiStubbyProstheticUnbranded-resomi_stubby_prosthetic_unbranded = Tail
+
+marking-ResomiStubbyProstheticWood = Stubby Tail Prosthetic (Wood)
+marking-ResomiStubbyProstheticWood-resomi_stubby_prosthetic_wood = Tail
+
+marking-ResomiBasicTail = Full Simple Tail
+marking-ResomiBasicTail-tail = Tail
+marking-ResomiBasicTail-tail_feathers = Tail Feather Color
+
+marking-ResomiHolowingL = Holowing Left Arm
+marking-ResomiHolowingL-resomi_holowing_l = Holowing
+
+marking-ResomiHolowingR = Holowing Right Arm
+marking-ResomiHolowingR-resomi_holowing_r = Holowing

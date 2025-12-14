@@ -3,13 +3,23 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Resomi]
-  forcedColoring: true
   sprites:
   - sprite: Mobs/Customization/resomi_parts.rsi
     state: tail
 
 - type: marking
   id: ResomiTailFeathers
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_parts.rsi
+    state: tail_feathers
+
+# This marking has no difference between the others above, It's just combined to hopefully reduce the confusion of having to use the bare tail and tail feathers for just a simple tail'
+
+- type: marking
+  id: ResomiBasicTail
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Resomi]
@@ -218,7 +228,7 @@
 - type: marking
   id: ResomiTailbandOne
   bodyPart: Tail
-  markingCategory: Overlay
+  markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:
   - sprite: Mobs/Customization/resomi_markings.rsi
@@ -231,7 +241,7 @@
 - type: marking
   id: ResomiTailbandTwo
   bodyPart: Tail
-  markingCategory: Overlay
+  markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:
   - sprite: Mobs/Customization/resomi_markings.rsi
@@ -241,7 +251,7 @@
   - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_tailbands_2_3
 
-# Tails
+# Tail Marking Patterns
 
 - type: marking
   id: ResomiTailOne
@@ -287,8 +297,6 @@
   sprites:
   - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_tail_5
-
-# Resomi Markings ported from ss13 Teshari
 
 # Resomi Coat Markings
 
@@ -614,3 +622,138 @@
   sprites:
   - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_holowing_l
+
+# Prosthetic/Damaged tails ported from @Greenjoe12345 PR https://github.com/PolarisSS13/Polaris/pull/6880
+
+- type: marking
+  id: ResomiDamagedProstheticHighTech
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_damaged_prosthetic_high_tech
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_damaged
+
+
+- type: marking
+  id: ResomiDamagedProstheticUnbranded
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_damaged_prosthetic_unbranded
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_damaged
+
+- type: marking
+  id: ResomiDamagedProstheticWood
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_damaged_prosthetic_wood
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_damaged
+
+- type: marking
+  id: ResomiDamaged
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_damaged
+
+- type: marking
+  id: ResomiDamagedFeathers
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_damaged_feathers
+  
+
+- type: marking
+  id: ResomiNoPlumeFeathers
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_noplume_feathers
+
+- type: marking
+  id: ResomiProstheticHighTech
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_prosthetic_high_tech
+
+- type: marking
+  id: ResomiProstheticUnbranded
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_prosthetic_unbranded
+
+- type: marking
+  id: ResomiStubby
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stubby
+
+- type: marking
+  id: ResomiStubbyFeathers
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stubby_feathers
+  
+
+- type: marking
+  id: ResomiStubbyProstheticHighTech
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stubby_prosthetic_high_tech
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stubby
+
+- type: marking
+  id: ResomiStubbyProstheticWood
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stubby_prosthetic_wood
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stubby
+
+- type: marking
+  id: ResomiStubbyProstheticUnbranded
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stubby_prosthetic_unbranded
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_stubby
+
