@@ -62,13 +62,13 @@ public sealed partial class EnergyDomeGeneratorComponent : Component
     public SoundSpecifier TurnOnSound = new SoundPathSpecifier("/Audio/Machines/anomaly_sync_connect.ogg");
 
     [DataField]
-    public SoundSpecifier EnergyOutSound = new SoundPathSpecifier("/Audio/_Starlight/Machines/energyshield_down.ogg");
+    public SoundSpecifier EnergyOutSound = new SoundPathSpecifier("/Audio/Machines/energyshield_down.ogg");
 
     [DataField]
     public SoundSpecifier TurnOffSound = new SoundPathSpecifier("/Audio/Machines/button.ogg");
 
     [DataField]
-    public SoundSpecifier ParrySound = new SoundPathSpecifier("/Audio/_Starlight/Machines/energyshield_parry.ogg")
+    public SoundSpecifier ParrySound = new SoundPathSpecifier("/Audio/Machines/energyshield_parry.ogg")
     {
         Params = AudioParams.Default.WithVariation(0.05f)
     };
