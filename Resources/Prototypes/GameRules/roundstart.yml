@@ -359,6 +359,91 @@
     cost: 150
 
 - type: entity
+  abstract: true
+  parent: BaseGameRule
+  id: BaseWizardBattleRule
+  components:
+  - type: AntagObjectives
+    objectives:
+    - WizardBattleWinObjective
+  - type: RuleGrids
+  - type: WizardBattleRule
+  - type: AntagSelection
+  - type: AntagLoadProfileRule
+    speciesOverride: Human
+
+- type: entity
+  parent: BaseWizardBattleRule
+  id: WizardBattle
+  components:
+  - type: GameRule
+    minPlayers: 0
+  - type: AntagSelection
+    agentName: wizard-battle-round-end-name
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ Archmage]
+      max: 1
+      playerRatio: 1
+      PickPlayer: false
+      spawnerPrototype: SpawnPointGhostWizardRed
+      roleLoadout:
+       - RoleSurvivalExtended
+      briefing:
+        text: archmage-role-greeting
+        color: Purple
+      startingGear: ArchmageGearRed
+      components:
+      - type: UniversalLanguageSpeaker
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: WizardBattleArchmage
+        faction: Red
+      mindRoles:
+      - MindRoleArchmage
+    - prefRoles: [ Archmage ]
+      max: 1
+      playerRatio: 1
+      PickPlayer: false
+      spawnerPrototype: SpawnPointGhostWizardBlue
+      roleLoadout:
+       - RoleSurvivalExtended
+      briefing:
+        text: archmage-role-greeting
+        color: Purple
+      startingGear: ArchmageGearBlue
+      components:
+      - type: UniversalLanguageSpeaker
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: WizardBattleArchmage
+        faction: Blue
+      mindRoles:
+      - MindRoleArchmage
+    - prefRoles: [ Apprentice ]
+      max: 4
+      playerRatio: 1
+      spawnerPrototype: SpawnPointWizard
+      roleLoadout:
+       - RoleSurvivalExtended
+      briefing:
+        text: apprentice-role-greeting
+        color: Blue
+      startingGear: ApprenticeGear
+      components:
+      - type: UniversalLanguageSpeaker
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: WizardBattleApprentice
+      mindRoles:
+      - MindRoleApprentice
+  - type: DynamicRuleCost
+    cost: 100
+
+- type: entity
   id: Zombie
   parent: BaseGameRule
   components:

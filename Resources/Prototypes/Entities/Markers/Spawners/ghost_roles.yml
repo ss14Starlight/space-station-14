@@ -385,3 +385,48 @@
     - state: green
     - sprite: Clothing/Head/Hats/wizardhat.rsi
       state: icon
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostWizardRed
+  name: ghost role spawn point
+  suffix: wizard red
+  components:
+  - type: GhostRole
+    name: ghost-role-information-wizard-name
+    description: ghost-role-information-wizard-desc
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600 # 6h
+  - type: SpawnPoint
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostWizardBlue
+  name: ghost role spawn point
+  suffix: wizard blue
+  components:
+  - type: GhostRole
+    name: ghost-role-information-wizard-name
+    description: ghost-role-information-wizard-desc
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600 # 6h
+  - type: SpawnPoint
+
