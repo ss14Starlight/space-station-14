@@ -1,6 +1,6 @@
 - type: typingIndicator
   id: resomi
-  spritePath: Textures/_Starlight/Effects/speech.rsi
+  spritePath: _Starlight/Effects/speech.rsi
   typingState: resomi0
   idleState: resomi0
   offset: -0.3, 0
