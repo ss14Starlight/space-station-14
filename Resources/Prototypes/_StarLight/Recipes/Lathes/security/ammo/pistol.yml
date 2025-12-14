@@ -48,7 +48,6 @@
   materials:
     Steel: 100
 
-
 ############ MAGAZINES (.35) ############
 
 - type: latheRecipe
