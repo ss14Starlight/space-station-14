@@ -62,6 +62,67 @@
       balance:
         WizCoin: 10 # prices are balanced around this 10 point maximum and how strong the spells are
 
+
+
+# For Wizard Battle Archmage
+- type: entity
+  id: ArchmageGrimoire
+  name: archmage grimoire
+  suffix: Archmage
+  parent: [ BaseItem, StorePresetSpellbook, BaseMagicalContraband ]
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper_blood
+      - state: cover_strong
+        color: "#8B0000" # Dark red
+      - state: decor_wingette_flat
+        color: "#4d0303"
+      - state: icon_pentagramm
+        color: "#f7e19f"
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+    - type: Store
+      refundAllowed: true
+      ownerOnly: true
+      balance:
+        WizCoin: 7 # Archmage starts with less wizcoins than wizard
+
+# For Wizard Battle Apprentice
+- type: entity
+  id: ApprenticeGrimoire
+  name: apprentice grimoire
+  suffix: Apprentice
+  parent: [ BaseItem, StorePresetSpellbook, BaseMagicalContraband ]
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover
+        color: "#4169E1" # Royal blue
+      - state: decor_wingette_flat
+        color: "#00008B"
+      - state: icon_pentagramm
+        color: "#f7e19f"
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+    - type: Store
+      refundAllowed: true
+      ownerOnly: true
+      balance:
+        WizCoin: 3 # Apprentice starts with fewer wizcoins
+
+
 - type: entity
   id: SpawnSpellbook
   name: spawn spellbook

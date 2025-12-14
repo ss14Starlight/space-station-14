@@ -266,3 +266,29 @@
     sprite: Clothing/Neck/Scarfs/PrideScarfs/lesbian-long.rsi
   - type: Clothing
     sprite: Clothing/Neck/Scarfs/PrideScarfs/lesbian-long.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfWizardRed
+  name: red wizard scarf
+  description: A mystical red scarf imbued with arcane energies. Wearing it and speaking the right words might grant you magical powers.
+  components:
+  - type: Sprite
+    sprite: Clothing/Neck/Scarfs/red.rsi
+  - type: Clothing
+    sprite: Clothing/Neck/Scarfs/red.rsi
+  - type: WizardBattleScarf
+    faction: Red
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfWizardBlue
+  name: blue wizard scarf
+  description: A mystical blue scarf imbued with arcane energies. Wearing it and speaking the right words might grant you magical powers.
+  components:
+  - type: Sprite
+    sprite: Clothing/Neck/Scarfs/blue.rsi
+  - type: Clothing
+    sprite: Clothing/Neck/Scarfs/blue.rsi
+  - type: WizardBattleScarf
+    faction: Blue

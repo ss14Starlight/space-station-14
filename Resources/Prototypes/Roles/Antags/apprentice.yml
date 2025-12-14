@@ -1,0 +1,11 @@
+- type: antag
+  id: Apprentice
+  name: roles-antag-apprentice-name
+  antagonist: true
+  setPreference: true # player selectable as well
+  objective: roles-antag-apprentice-objective
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 43200 # 12h
+  guides: [ Wizard ]
+  previewStartingGear: ApprenticeGear

@@ -292,6 +292,30 @@
     subtype: role-subtype-wizard
   - type: WizardRole
 
+# ArchMage and Apprentice
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleArchMage
+  name: ArchMage Role
+  components:
+  - type: MindRole
+    antagPrototype: ArchMage
+    exclusiveAntag: true
+    subtype: role-subtype-archmage
+  - type: ArchMageRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleApprentice
+  name: Apprentice Role
+  components:
+  - type: MindRole
+    antagPrototype: Apprentice
+    exclusiveAntag: true
+    subtype: role-subtype-apprentice
+  - type: ApprenticeRole
+
 # Zombie Squad
 - type: entity
   parent: BaseMindRoleAntag

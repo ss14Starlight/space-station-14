@@ -38,3 +38,46 @@
     mask: ClothingMaskBreath
     neck: ClothingNeckLGBTPin
     gloves: ClothingHandsGlovesColorBlack
+
+# Archmage outfit startingGear definitions. Is it worth having separate red/blue gear for archmages? New file as well?
+
+- type: startingGear
+  id: ArchmageGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorDarkBlue
+    head: ClothingHeadHatWizard
+    back: ClothingBackpack
+    outerClothing: ClothingOuterWizard
+    shoes: ClothingShoesWizard
+    id: WizardPDA
+    ears: ClothingHeadsetAltWizard
+    belt: ClothingBeltWand
+    pocket1: WizardTeleportScroll
+    pocket2: ArchmageGrimoire
+    neck: ClothingNeckScarfWizardRed # Should be overridden based on faction
+
+- type: startingGear
+  id: ArchmageGearRed
+  parent: ArchmageGear
+  equipment:
+    neck: ClothingNeckScarfWizardRed
+
+- type: startingGear
+  id: ArchmageGearBlue
+  parent: ArchmageGear
+  equipment:
+    neck: ClothingNeckScarfWizardBlue
+
+- type: startingGear
+  id: ApprenticeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorLightBlue
+    head: ClothingHeadHatWizard # Use existing wizard hat
+    back: ClothingBackpack
+    outerClothing: ClothingOuterWizard # Use existing wizard robe
+    shoes: ClothingShoesWizard
+    id: WizardPDA
+    ears: ClothingHeadsetAltWizard
+    belt: ClothingBeltWand # Use existing wand belt
+    pocket1: WizardTeleportScroll
+    neck: ClothingNeckScarfWizardRed # Will be overridden based on faction
