@@ -318,7 +318,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
-    autoRechargePause: true
     autoRechargePauseTime: 44
 
 - type: entity
@@ -345,7 +344,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePause: true
     autoRechargePauseTime: 60
   - type: BatteryAmmoProvider
     proto: EmpPulse
@@ -384,7 +382,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePause: true
     autoRechargePauseTime: 60
   - type: BatteryAmmoProvider
     proto: EmpPulse
@@ -815,7 +812,6 @@
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 40 #every 5 seconds another becomes toe.
-      autoRechargePause: false
     - type: MagazineVisuals
       magState: mag
       steps: 5
@@ -887,7 +883,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 80
-    autoRechargePause: true
     autoRechargePauseTime: 10
 
 - type: entity
@@ -931,5 +926,4 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 50
-    autoRechargePause: true
     autoRechargePauseTime: 10

@@ -75,7 +75,10 @@
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 150
-    bloodReagent: CopperBlood
+    bloodReagents:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 1
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid

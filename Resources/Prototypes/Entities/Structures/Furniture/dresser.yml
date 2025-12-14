@@ -164,16 +164,12 @@
     #starlight
     - id: ClothingHandsCatPawsBrown
       prob: 0.005
-      orGroup: dressermainloot
     - id: ClothingHandsCatPawsBlack
       prob: 0.005
-      orGroup: dressermainloot
     - id: ClothingHandsCatPawsBlackWhite
       prob: 0.005
-      orGroup: dressermainloot
     - id: ClothingHandsCatPawsWhite
       prob: 0.005
-      orGroup: dressermainloot
     #starlight
     - id: ClothingUniformJumpskirtJanimaid
       weight: 0.005

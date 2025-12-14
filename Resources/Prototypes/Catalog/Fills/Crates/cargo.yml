@@ -152,7 +152,6 @@
       prob: 0.01
     - id: ClothingHeadHatWhiteCatEars #Starlight
       prob: 0.05
-      orGroup: Clothes
     - id: ClothingHeadHatDogEars
     - id: ClothingOuterArmorReflective
     - id: ClothingUniformJumpskirtSyndieFormalDress
@@ -167,11 +166,13 @@
     - id: ClothingUnderSocksCoder
     - id: ClothingUniformJumpskirtOfLife
       prob: 0.01
-      orGroup: Clothes
     - id: ClothingOuterHardsuitLuxmax #starlight
       prob: 0.001
-      orGroup: Clothes #/starlight
-    #swag
+
+- type: entityTable
+  id: LotterySwagEntityTable
+  table: !type:GroupSelector
+    children:
     - id: ClothingNeckBling
     - id: ClothingShoesBling
     - id: IngotGold1
@@ -256,11 +257,9 @@
       weight: 0.8
     - id: GrenadeFoamDart
       prob: 0.001
-      orGroup: NotUseful
-    #Starlight
+    #Starlight Start
     - id: BottleShip
       prob: 0.01
-      orGroup: NotUseful
     - id: EmeraldLizitar
       prob: 0.01
-      orGroup: Weapons
+    #Starlight end

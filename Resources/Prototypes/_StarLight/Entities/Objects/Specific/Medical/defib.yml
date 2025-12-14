@@ -23,7 +23,7 @@
     size: Normal
   - type: ToggleCellDraw
   - type: PowerCellDraw
-    useRate: 50
+    useCharge: 50
   - type: Defibrillator
     zapHeal:
       types:

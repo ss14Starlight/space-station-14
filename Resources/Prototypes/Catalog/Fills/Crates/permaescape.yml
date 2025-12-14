@@ -286,7 +286,7 @@
           - id: ClothingHeadsetMining
           - id: ClothingHeadsetMining
           - id: ClothingHeadsetMining
-          - id: ClothingHeadsetGrey
+          - id: ClothingHeadsetAssistant #Starlight assistant change. Kill me
           - id: ClothingHeadsetScience
           - id: ClothingHeadsetService
           - id: ClothingHeadsetEngineering

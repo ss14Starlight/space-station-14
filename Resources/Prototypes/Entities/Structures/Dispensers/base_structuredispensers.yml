@@ -92,7 +92,7 @@
   - type: ExtensionCableReceiver
   - type: PowerCellDraw
     drawRate: 0
-    useRate: 5
+    useCharge: 5
   - type: ActivatableUIRequiresPowerCell
   - type: ContainerContainer
     containers:

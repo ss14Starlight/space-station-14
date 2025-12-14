@@ -906,7 +906,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 20
-    autoRechargePause: true
     autoRechargePauseTime: 10
 
 
