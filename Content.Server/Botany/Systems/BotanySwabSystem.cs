@@ -77,7 +77,7 @@ public sealed partial class BotanySwabSystem : EntitySystem
             if (old == null)
                 return;
 
-            // Cross-pollenate the plants.
+            // Cross-pollinate the plants.
             plant.Seed = _mutation.Cross(swab.SeedData, old);
 
             // Transfer old plant pollen to swab.

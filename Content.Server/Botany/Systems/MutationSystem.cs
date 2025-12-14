@@ -80,14 +80,16 @@ public sealed partial class MutationSystem : EntitySystem
 
     public SeedData Cross(SeedData a, SeedData b)
     {
-        SeedData result = b.Clone();
+        if (b.Immutable)
+        {
+            return b;
+        }
+
+        var result = b.Clone();
 
         CrossChemicals(ref result.Chemicals, a.Chemicals);
 
-        var sourceTraits = BotanySystem.GetPlantTraitsComponent(a);
-        var resultTraits = BotanySystem.GetPlantTraitsComponent(result);
-
-        if (sourceTraits != null && resultTraits != null)
+        if (BotanySystem.TryGetPlantTraits(a, out var sourceTraits) && BotanySystem.TryGetPlantTraits(result, out var resultTraits))
         {
             CrossBool(ref resultTraits.Seedless, sourceTraits.Seedless);
             CrossBool(ref resultTraits.Ligneous, sourceTraits.Ligneous);
@@ -104,8 +106,7 @@ public sealed partial class MutationSystem : EntitySystem
         // effective hybrid crossings.
         if (a.Name != result.Name && Random(0.7f))
         {
-            var traits = BotanySystem.GetPlantTraitsComponent(result);
-            if (traits != null)
+            if (BotanySystem.TryGetPlantTraits(result, out var traits))
                 traits.Seedless = true;
         }
 
