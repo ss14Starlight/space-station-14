@@ -211,14 +211,6 @@
   - MagazinePistolIncendiary
   - MagazinePistolUranium
   - MagazinePistolAP
-  
-  - MagazinePistolIncendiaryExtended
-  - MagazinePistolUraniumExtended
-  - MagazinePistolAPExtended
-  - MagazinePistolSPExtended
-  - MagazinePistolHPExtended
-  - MagazinePistolFMJExtended
-  - MagazinePistolEmptyExtended
   - MagazinePistol40AP
 # SMG
   - MagazinePistolSubMachineGunIncendiary
@@ -228,14 +220,6 @@
   - MagazineRifleIncendiary
   - MagazineRifleUranium
   - MagazineRifleAP
-  - MagazineRifleIncendiaryExtended
-  - MagazineRifleUraniumExtended
-  - MagazineRifleAPExtended
-  - MagazineRifleSPExtended
-  - MagazineRifleHPExtended
-  - MagazineRifleFMJExtended
-  - MagazineRifleEmptyExtended
-  - MagazineRiflePracticeExtended
 # Shotgun
   - MagazineShotgunBeanbag
   - MagazineShotgunIncendiary

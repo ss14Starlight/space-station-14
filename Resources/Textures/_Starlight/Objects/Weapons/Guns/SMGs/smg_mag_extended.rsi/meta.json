@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "New extended variants by wayiscute based on sprites by -> ,https://github.com/shiptest-ss13/Shiptest/pull/1602/commits/3e6cfea9d468508a7f64ad5543c3b22479cb465f, https://github.com/shiptest-ss13/Shiptest/blob/master/icons/obj/ammo.dmi updated darkrell, inhands by TiniestShark (github)",
+    "copyright": "New extended variants by waycute based on sprites by -> ,https://github.com/tgstation/tgstation/pull/1684/commits/19e51caef09e78ca1122d26455b539ff5968d334, https://github.com/tgstation/tgstation/blob/master/icons/obj/weapons/guns/ammo.dmi, inhands by TiniestShark (GitHub), stripes by SeamLesss (GitHub)",
     "states": [
         {
             "name": "base"
@@ -20,13 +20,13 @@
             "name": "red"
         },
         {
+            "name": "red-icon"
+        },
+        {
             "name": "rubber"
         },
         {
             "name": "uranium"
-        },
-        {
-            "name": "ap"
         },
         {
             "name": "sp"
@@ -35,10 +35,31 @@
             "name": "fmj"
         },
         {
+            "name": "ap"
+        },
+        {
             "name": "incendiary"
         },
         {
             "name": "mag-1"
+        },
+        {
+            "name": "mag-2"
+        },
+        {
+            "name": "mag-3"
+        },
+        {
+            "name": "mag-4"
+        },
+        {
+            "name": "mag-5"
+        },
+        {
+            "name": "mag-6"
+        },
+        {
+            "name": "mag-7"
         },
         {
             "name": "inhand-left-mag",

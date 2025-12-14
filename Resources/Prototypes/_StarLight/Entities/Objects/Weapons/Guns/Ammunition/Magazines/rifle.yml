@@ -35,7 +35,7 @@
   #Extended Empty
 - type: entity
   id: BaseMagazineRifleExtended
-  name: "extended magazine (.20 rifle)"
+  name: "High capacity magazine (.20 rifle)"
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -49,7 +49,7 @@
     whitelist:
       tags:
         - CartridgeRifle
-    capacity: 50
+    capacity: 40
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -283,7 +283,8 @@
 # Extended Magazines
 - type: entity
   id: MagazineRifleSPExtended
-  name: "extended magazine (.20 rifle SP)"
+  name: "High capacity magazine (.20 rifle SP)"
+  description: 45-round high capacity magazine for rifles. Intended to hold general purpose kinetic ammunition.
   parent: BaseMagazineRifleExtended
   components:
   - type: BallisticAmmoProvider
@@ -307,7 +308,8 @@
 
 - type: entity
   id: MagazineRifleHPExtended
-  name: "extended magazine (.20 rifle HP)"
+  name: "High capacity magazine (.20 rifle HP)"
+  description: 45-round high capacity magazine for rifles. Intended to hold ammunition suited against soft targets.
   parent: BaseMagazineRifleExtended
   components:
   - type: BallisticAmmoProvider
@@ -331,7 +333,8 @@
 
 - type: entity
   id: MagazineRifleFMJExtended
-  name: "extended magazine (.20 rifle FMJ)"
+  name: "High capacity magazine (.20 rifle FMJ)"
+  description: 45-round high capacity magazine for rifles. Intended to hold ammunition suited against armored targets.
   parent: BaseMagazineRifleExtended
   components:
   - type: BallisticAmmoProvider
@@ -355,7 +358,8 @@
 
 - type: entity
   id: MagazineRifleAPExtended
-  name: "extended magazine (.20 rifle AP)"
+  name: "High capacity magazine (.20 rifle AP)"
+  description: 45-round high capacity magazine for rifles. Intended to hold ammunition suited against armored targets
   parent: BaseMagazineRifleExtended
   components:
   - type: BallisticAmmoProvider
@@ -379,7 +383,8 @@
 
 - type: entity
   id: MagazineRifleEmptyExtended
-  name: "extended magazine (.20 rifle any)"
+  name: "High capacity magazine (.20 rifle any)"
+  description: 45-round high capacity magazine for rifles.
   suffix: empty
   parent: BaseMagazineRifleExtended
   components:
@@ -400,7 +405,8 @@
 
 - type: entity
   id: MagazineRifleIncendiaryExtended
-  name: "extended magazine (.20 rifle incendiary)"
+  name: "High capacity magazine (.20 rifle incendiary)"
+  description: 45-round high capacity magazine for rifles. Intended to hold ammunition that ignites targets on contact, or otherwise deal burn damage.
   parent: BaseMagazineRifleExtended
   components:
   - type: BallisticAmmoProvider
@@ -424,7 +430,8 @@
         
 - type: entity
   id: MagazineRiflePracticeExtended
-  name: "extended magazine (.20 rifle practice)"
+  name: "High capacity magazine (.20 rifle practice)"
+  description: 45-round high capacity magazine for rifles. Intended to hold non-lethal blank ammunition meant for training purposes.
   parent: BaseMagazineRifleExtended
   components:
   - type: BallisticAmmoProvider
@@ -448,7 +455,8 @@
 
 - type: entity
   id: MagazineRifleUraniumExtended
-  name: "extended magazine (.20 rifle uranium)"
+  name: "High capacity magazine (.20 rifle uranium)"
+  description: 45-round high capacity magazine for rifles. Intended to hold special uranium-core ammunition.
   parent: BaseMagazineRifleExtended
   components:
   - type: BallisticAmmoProvider
@@ -472,7 +480,8 @@
 
 - type: entity
   id: MagazineRifleRubberExtended
-  name: "extended magazine (.20 rifle rubber)"
+  name: "High capacity magazine (.20 rifle rubber)"
+  description: 45-round high capacity magazine for rifles. Intended to hold non-lethal rubber bullets.
   parent: BaseMagazineRifleExtended
   components:
   - type: BallisticAmmoProvider
