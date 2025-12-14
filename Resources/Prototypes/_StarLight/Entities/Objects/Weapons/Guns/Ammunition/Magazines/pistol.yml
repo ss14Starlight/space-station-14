@@ -71,7 +71,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: MagazineVisuals
     magState: mag
-    steps: 6
+    steps: 13
     zeroVisible: false
   - type: Appearance
 
@@ -383,9 +383,8 @@
 - type: entity
   id: MagazinePistolPracticeExtended
   name: High capacity pistol magazine (.35 auto practice)
-  description: 19-round high capacity single-stack magazine for pistols.
   parent: BaseMagazinePistolExtended
-  description: 10-round single-stack magazine for pistols. Intended to hold non-harmful chalk ammunition.
+  description: 19-round high capacity single-stack magazine for pistols. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
