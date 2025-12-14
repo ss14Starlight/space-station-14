@@ -5,7 +5,7 @@
   speciesRestriction: [Resomi]
   forcedColoring: true
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: _Starlight/Mobs/Customization/Resomi/resomi_parts.rsi
     state: tail
 
 - type: marking
@@ -14,7 +14,7 @@
   markingCategory: Tail
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: _Starlight/Mobs/Customization/Resomi/resomi_parts.rsi
     state: tail_feathers
 
 - type: marking
@@ -23,7 +23,7 @@
   markingCategory: Arms
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: _Starlight/Mobs/Customization/Resomi/resomi_parts.rsi
     state: l_hand_feathers
 
 - type: marking
@@ -32,7 +32,7 @@
   markingCategory: Legs
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: _Starlight/Mobs/Customization/Resomi/resomi_parts.rsi
     state: l_foot_feathers
 
 - type: marking
@@ -41,7 +41,7 @@
   markingCategory: Arms
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: _Starlight/Mobs/Customization/Resomi/resomi_parts.rsi
     state: r_hand_feathers
 
 - type: marking
@@ -50,7 +50,7 @@
   markingCategory: Legs
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: _Starlight/Mobs/Customization/Resomi/resomi_parts.rsi
     state: r_foot_feathers
 
 - type: marking
@@ -59,7 +59,7 @@
   markingCategory: Chest
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: _Starlight/Mobs/Customization/Resomi/resomi_parts.rsi
     state: fluff
 
 - type: marking
@@ -68,7 +68,7 @@
   markingCategory: Head
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: _Starlight/Mobs/Customization/Resomi/resomi_parts.rsi
     state: fluff_head
 
 - type: marking
@@ -77,6 +77,6 @@
   markingCategory: Head
   speciesRestriction: [Resomi]
   sprites:
-  - sprite: Mobs/Customization/resomi_parts.rsi
+  - sprite: _Starlight/Mobs/Customization/Resomi/resomi_parts.rsi
     state: fluff_head_up
 
