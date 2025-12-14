@@ -277,7 +277,6 @@ public sealed class WizardBattleSystem : EntitySystem
     private void UpdateArchmageWizcoins(EntityUid archmage, WizardBattleArchmageComponent component)
     {
         // For now, just give base 5 + 2 per recruit TODO MAKE IT UPDATE PROPERLY AND NOT OVERWRITE
-        var wizcoins = 8 + component.Recruits.Count * 2;
         // TODO: Actually set wizcoins in their store
 
         // Grant ritual words based on recruit count
