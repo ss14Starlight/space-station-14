@@ -1,6 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.Devil;
+using Content.Shared.Dataset;
 
 namespace Content.Shared._Starlight.Devil;
 
@@ -8,11 +9,14 @@ namespace Content.Shared._Starlight.Devil;
 [AutoGenerateComponentState]
 public sealed partial class DevilComponent : Component
 {
-    public readonly List<ProtoId<EntityPrototype>> BaseActions = new()
+    [DataField]
+    public List<ProtoId<EntityPrototype>> BaseActions = new()
     {
         "ActionSummonDemonicContract"
     };
 
+    
+    [DataField]
     public List<ProtoId<DamnationPrototype>> AvailableDamnations = new()
     {
         "Soul",
@@ -22,6 +26,15 @@ public sealed partial class DevilComponent : Component
         "Credits"
     };
 
-    [AutoNetworkedField]
+    // todo make actual devil names
+    public List<ProtoId<LocalizedDatasetPrototype>> NameSegments = new()
+    {
+        "NamesDragon",
+        "NamesDragonTitle"
+    };
+
+    public LocId NameFormat = "name-format-dragon";
+
+    [AutoNetworkedField, ViewVariables]
     public string TrueName = "Hellish McEvil";
 }

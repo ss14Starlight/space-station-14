@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Devil;
 using Content.Server.Actions;
 using Content.Shared.Hands.EntitySystems;
+using Content.Server.RandomMetadata;
 using Robust.Server.Audio;
 
 namespace Content.Server._Starlight.Devil;
@@ -10,6 +11,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly RandomMetadataSystem _randomMetadata = default!;
 
     public override void Initialize()
     {
@@ -26,6 +28,8 @@ public sealed partial class DevilSystem : SharedDevilSystem
     private void OnStartup(EntityUid uid, DevilComponent devilComp, ref ComponentStartup args)
     {
         foreach (var action in devilComp.BaseActions) _actions.AddAction(uid, action);
+
+        devilComp.TrueName = _randomMetadata.GetRandomFromSegments(devilComp.NameSegments, devilComp.NameFormat);
     }
 
     #region abilities
