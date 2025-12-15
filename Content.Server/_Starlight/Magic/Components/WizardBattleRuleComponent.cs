@@ -3,6 +3,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Maths;
 using System.Numerics;
+using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.Magic.Components;
 
@@ -32,4 +33,19 @@ public sealed partial class WizardBattleRuleComponent : Component
     /// </summary>
     [DataField]
     public Vector2 BlueOffset = new(1000, 0);
+
+    /// <summary>
+    /// Temporary storage for loaded shuttle entities.
+    /// </summary>
+    [DataField]
+    public EntityUid? RedShuttle;
+
+    [DataField]
+    public EntityUid? BlueShuttle;
+
+    /// <summary>
+    /// Temporary map ID for loading shuttles.
+    /// </summary>
+    [DataField]
+    public MapId? TempMapId;
 }

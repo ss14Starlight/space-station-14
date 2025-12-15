@@ -22,74 +22,91 @@ namespace Content.Server._Starlight.Magic.Systems;
 public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComponent>
 {
     [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
 
     protected override void Added(EntityUid uid, WizardBattleRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args)
     {
-        // Find the station's map
-        var stationQuery = EntityQueryEnumerator<StationDataComponent>();
-        if (!stationQuery.MoveNext(out var stationUid, out var stationData))
-        {
-            Log.Error("No station found for Wizard Battle!");
-            ForceEndSelf(uid, rule);
-            return;
-        }
+        // Create a temporary map to load the shuttles
+        var tempMap = _map.CreateMap(out var tempMapId);
 
-        // Get the map ID from the station's first grid
-        if (stationData.Grids.Count == 0)
-        {
-            Log.Error("Station has no grids!");
-            ForceEndSelf(uid, rule);
-            return;
-        }
-
-        var stationGrid = stationData.Grids.First();
-        var mapId = Transform(stationGrid).MapID;
-
-        // Get the position of the largest station grid to place shuttles near it
-        var largestGrid = _station.GetLargestGrid((stationUid, stationData));
-        if (largestGrid == null)
-        {
-            Log.Error("Station has no largest grid!");
-            ForceEndSelf(uid, rule);
-            return;
-        }
-
-        var stationPos = _transform.GetWorldPosition(largestGrid.Value);
-
-        // Load red faction shuttle on the station's map
-        var blueOpts = DeserializationOptions.Default with { InitializeMaps = true };
-        if (!_mapLoader.TryLoadGrid(mapId, comp.ShuttlePathBlue, out var blueGrid, blueOpts))
-        {
-            Log.Error($"Failed to load blue wizard shuttle from {comp.ShuttlePathBlue}!");
-            ForceEndSelf(uid, rule);
-            return;
-        }
-
+        // Load red faction shuttle on the temporary map
         var redOpts = DeserializationOptions.Default with { InitializeMaps = true };
-        if (!_mapLoader.TryLoadGrid(mapId, comp.ShuttlePathRed, out var redGrid, redOpts))
+        if (!_mapLoader.TryLoadGrid(tempMapId, comp.ShuttlePathRed, out var redGrid, redOpts))
         {
             Log.Error($"Failed to load red wizard shuttle from {comp.ShuttlePathRed}!");
             ForceEndSelf(uid, rule);
             return;
         }
 
-        // Position the red shuttle near the station
-        var redPos = stationPos + comp.RedOffset;
-        _transform.SetWorldPosition(redGrid.Value, redPos);
+        // Load blue faction shuttle on the temporary map
+        var blueOpts = DeserializationOptions.Default with { InitializeMaps = true };
+        if (!_mapLoader.TryLoadGrid(tempMapId, comp.ShuttlePathBlue, out var blueGrid, blueOpts))
+        {
+            Log.Error($"Failed to load blue wizard shuttle from {comp.ShuttlePathBlue}!");
+            ForceEndSelf(uid, rule);
+            return;
+        }
 
+        // Store the loaded grids in the component
+        comp.RedShuttle = redGrid.Value.Owner;
+        comp.BlueShuttle = blueGrid.Value.Owner;
+        comp.TempMapId = tempMapId;
 
-        // Position the blue shuttle near the station
-        var bluePos = stationPos + comp.BlueOffset;
-        _transform.SetWorldPosition(blueGrid.Value, bluePos);
+        base.Added(uid, comp, rule, args);
+    }
+
+    protected override void Started(EntityUid uid, WizardBattleRuleComponent comp, GameRuleComponent rule, GameRuleStartedEvent args)
+    {
+        // Find the station
+        var stationQuery = EntityQueryEnumerator<StationDataComponent>();
+        if (!stationQuery.MoveNext(out var stationUid, out var stationData))
+        {
+            Log.Error("No station found for Wizard Battle!");
+            return;
+        }
+
+        // Get the map ID from the station's largest grid
+        var largestGrid = _station.GetLargestGrid((stationUid, stationData));
+        if (largestGrid == null)
+        {
+            Log.Error("Station has no largest grid!");
+            return;
+        }
+
+        var mapId = Transform(largestGrid.Value).MapID;
+        var stationPos = _transform.GetWorldPosition(largestGrid.Value);
+
+        // Move the shuttles to the station's map
+        if (comp.RedShuttle.HasValue)
+        {
+            _transform.SetParent(comp.RedShuttle.Value, _mapManager.GetMapEntityId(mapId));
+            var redPos = stationPos + comp.RedOffset;
+            _transform.SetWorldPosition(comp.RedShuttle.Value, redPos);
+        }
+
+        if (comp.BlueShuttle.HasValue)
+        {
+            _transform.SetParent(comp.BlueShuttle.Value, _mapManager.GetMapEntityId(mapId));
+            var bluePos = stationPos + comp.BlueOffset;
+            _transform.SetWorldPosition(comp.BlueShuttle.Value, bluePos);
+        }
+
+        // Delete the temporary map
+        if (comp.TempMapId.HasValue)
+        {
+            _map.DeleteMap(comp.TempMapId.Value);
+        }
 
         // Notify RuleGridsComponent about the loaded grids
-        var grids = new List<EntityUid> { redGrid.Value.Owner, blueGrid.Value.Owner };
+        var grids = new List<EntityUid>();
+        if (comp.RedShuttle.HasValue) grids.Add(comp.RedShuttle.Value);
+        if (comp.BlueShuttle.HasValue) grids.Add(comp.BlueShuttle.Value);
         var ev = new RuleLoadedGridsEvent(mapId, grids);
         RaiseLocalEvent(uid, ref ev);
 
-        base.Added(uid, comp, rule, args);
+        base.Started(uid, comp, rule, args);
     }
 }
