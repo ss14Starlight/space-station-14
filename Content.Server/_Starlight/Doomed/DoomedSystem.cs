@@ -1,7 +1,7 @@
 using Content.Shared.StatusEffectNew;
 using Content.Shared._Starlight.Doomed;
 using Robust.Shared.Timing;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.Doomed;
 
