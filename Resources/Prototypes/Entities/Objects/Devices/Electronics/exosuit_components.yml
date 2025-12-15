@@ -99,7 +99,6 @@
     - type: Tag
       tags:
       - MechAirTank
-      - GasTank
     - type: GuideHelp
       guides:
       - Robotics

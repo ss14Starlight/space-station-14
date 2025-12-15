@@ -4,6 +4,15 @@
   name: job-name-ertleader
   description: job-description-ertleader
   playTimeTracker: JobERTLeader
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20h
+  - !type:DepartmentTimeRequirement
+    department: CentralCommand
+    time: 36000 # 10h
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 36000 # 10h
   setPreference: false
   startingGear: ERTLeaderGearEVA
   icon: "JobIconCentComm"
@@ -81,7 +90,7 @@
     pocket1: MagazineRifleAP
     pocket2: MagazineRifleIncendiary
   inhand:
-  - WeaponRiflePeacemaker # Starlight-edit: Changed from WeaponRifleLecter
+  - WeaponRiflePeacemaker # Starlight-edit: Changed from WeaponRifleLecterXL8
   storage:
     back:
     - WeaponDisabler
@@ -108,6 +117,12 @@
   name: job-name-ertchaplain
   description: job-description-ertchaplain
   playTimeTracker: JobERTChaplain
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobChaplain
+    time: 18000 # 5h
   setPreference: false
   startingGear: ERTChaplainGear
   icon: "JobIconCentComm"
@@ -202,6 +217,12 @@
   name: job-name-ertengineer
   description: job-description-ertengineer
   playTimeTracker: JobERTEngineer
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobStationEngineer
+    time: 18000 # 5h
   setPreference: false
   startingGear: ERTEngineerGearEVA
   icon: "JobIconCentComm"
@@ -285,6 +306,12 @@
   name: job-name-ertsecurity
   description: job-description-ertsecurity
   playTimeTracker: JobERTSecurity
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 18000 # 5h
   setPreference: false
   startingGear: ERTEngineerGearEVA
   icon: "JobIconCentComm"
@@ -386,6 +413,15 @@
   name: job-name-ertmedic
   description: job-description-ertmedic
   playTimeTracker: JobERTMedical
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobMedicalDoctor
+    time: 18000 # 5h
+  - !type:RoleTimeRequirement
+    role: JobChemist
+    time: 18000 # 5h
   setPreference: false
   startingGear: ERTMedicalGearEVA
   icon: "JobIconCentComm"
@@ -461,6 +497,12 @@
   name: job-name-ertjanitor
   description: job-description-ertjanitor
   playTimeTracker: JobERTJanitor
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobJanitor
+    time: 18000 # 5h
   setPreference: false
   startingGear: ERTJanitorGearEVA
   icon: "JobIconCentComm"

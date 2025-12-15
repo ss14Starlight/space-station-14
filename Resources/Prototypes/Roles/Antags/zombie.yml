@@ -7,7 +7,7 @@
   guides: [ Zombies ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 10800 # 3h #STARLIGHT
+    time: 3h # Starlight
 
 - type: antag
   id: Zombie

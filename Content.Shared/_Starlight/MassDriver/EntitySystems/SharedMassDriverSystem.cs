@@ -63,7 +63,7 @@ public abstract class SharedMassDriverSystem : EntitySystem
             Dirty(uid, massDriver);
 
             entities.Clear();
-            _lookup.GetEntitiesIntersecting(uid, entities, LookupFlags.Dynamic | LookupFlags.Approximate);
+            _lookup.GetEntitiesIntersecting(uid, entities, LookupFlags.Dynamic);
 
             int entitiesCount = entities.Count;
 

@@ -36,7 +36,10 @@
       Burn:
         sprite: Mobs/Effects/Resomi/burn_damage.rsi
   - type: Bloodstream # Starlight
-    bloodReagent: ResomiBlood
+    bloodReagents:
+      reagents:
+      - ReagentId: ResomiBlood
+        Quantity: 1
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Resomi_minor_burning

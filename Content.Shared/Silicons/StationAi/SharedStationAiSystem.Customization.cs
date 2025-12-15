@@ -2,9 +2,12 @@ using Content.Shared.Holopad;
 using Content.Shared.Mobs;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.Intellicard;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+
+#region Starlight
+using Content.Shared.Intellicard;
+#endregion Starlight
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -13,7 +16,7 @@ public abstract partial class SharedStationAiSystem
     private ProtoId<StationAiCustomizationGroupPrototype> _stationAiCoreCustomGroupProtoId = "StationAiCoreIconography";
     private ProtoId<StationAiCustomizationGroupPrototype> _stationAiHologramCustomGroupProtoId = "StationAiHolograms";
 
-    private readonly SpriteSpecifier.Rsi _stationAiRebooting = new(new ResPath("_Starlight/Mobs/Silicon/station_ai.rsi"), "ai_fuzz");
+    private readonly SpriteSpecifier.Rsi _stationAiRebooting = new(new ResPath("_Starlight/Mobs/Silicon/station_ai.rsi"), "ai_fuzz"); // Starlight - use our sprite
 
     private void InitializeCustomization()
     {
