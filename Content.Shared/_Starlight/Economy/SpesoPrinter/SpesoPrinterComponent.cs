@@ -148,6 +148,4 @@ public sealed partial class SpesoPrinterComponent : Component
         Base,
         Unlit
     }
-
 }
-

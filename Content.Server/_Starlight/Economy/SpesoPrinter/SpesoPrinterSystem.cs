@@ -110,7 +110,7 @@ public sealed class SpesoPrinterSystem : EntitySystem
 
                     var spawnCoords = xform.Coordinates.Offset(xform.LocalRotation.RotateVec(printer.SpawnOffset));
                     var cashAmount = printer.BaseCreditsPerPrint + (printer.CreditsIncreasePerLevel * printer.PrintLevel);;
-                    _stack.Spawn(cashAmount, printer.CashStackType, spawnCoords);
+                    _stack.SpawnAtPosition(cashAmount, printer.CashStackType, spawnCoords);
 
                     if (printer.PrintLevel < printer.MaxPrintLevel)
                     {
