@@ -4,18 +4,19 @@
   description: job-description-hop
   playTimeTracker: JobHeadOfPersonnel
   requirements:
+    # Starlight - we've changed basically this whole block to be service instead of captain-lite
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 72000 # 20 hours
+      time: 20h
     - !type:RoleTimeRequirement
       role: JobBotanist
-      time: 10800 # 3 hours
+      time: 3h
     - !type:RoleTimeRequirement
       role: JobChef
-      time: 10800 # 3 hours
+      time: 3h
     - !type:RoleTimeRequirement
       role: JobJanitor
-      time: 10800 # 3 hours
+      time: 3h
 
   weight: 20
   startingGear: HoPGear

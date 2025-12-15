@@ -1,9 +1,12 @@
-using Content.Shared.Intellicard;
 using Content.Shared.Silicons.StationAi;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
+
+#region Starlight
+using Content.Shared.Intellicard;
+#endregion Starlight
 
 namespace Content.Client.Silicons.StationAi;
 
@@ -28,7 +31,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         SubscribeLocalEvent<StationAiOverlayComponent, ComponentInit>(OnAiOverlayInit);
         SubscribeLocalEvent<StationAiOverlayComponent, ComponentRemove>(OnAiOverlayRemove);
         SubscribeLocalEvent<StationAiCoreComponent, AppearanceChangeEvent>(OnAppearanceChange);
-        SubscribeLocalEvent<IntellicardComponent, AppearanceChangeEvent>(OnIntellicardAppearanceChange);
+        SubscribeLocalEvent<IntellicardComponent, AppearanceChangeEvent>(OnIntellicardAppearanceChange); // Starlight
     }
 
     private void OnAiOverlayInit(Entity<StationAiOverlayComponent> ent, ref ComponentInit args)

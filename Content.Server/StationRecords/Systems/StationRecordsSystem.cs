@@ -269,29 +269,6 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     }
 
     /// <summary>
-    ///     Try to get a record from this station's record entries,
-    ///     from the provided station record key. Will always return
-    ///     null if the key does not match the station.
-    /// </summary>
-    /// <param name="key">Station and key to try and index from the record set.</param>
-    /// <param name="entry">The resulting entry.</param>
-    /// <param name="records">Station record component.</param>
-    /// <typeparam name="T">Type to get from the record set.</typeparam>
-    /// <returns>True if the record was obtained, false otherwise.</returns>
-    public bool TryGetRecord<T>(StationRecordKey key, [NotNullWhen(true)] out T? entry, StationRecordsComponent? records = null)
-    {
-        entry = default;
-
-        if (!Resolve(key.OriginStation, ref records))
-        {
-            Sawmill.Debug($"Unable to resolve {nameof(StationRecordsComponent)} for {ToPrettyString(key.OriginStation)} while retrieving record {key.Id}.");
-            return false;
-        }
-
-        return records.Records.TryGetRecordEntry(key.Id, out entry);
-    }
-
-    /// <summary>
     /// Gets a random record from the station's record entries.
     /// </summary>
     /// <param name="ent">The EntityId of the station from which you want to get the record.</param>

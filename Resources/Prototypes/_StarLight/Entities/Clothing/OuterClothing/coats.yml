@@ -131,11 +131,13 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/greytider_trenchcoat.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/greytider_trenchcoat.rsi
-  - type: StorageFill
-    contents:
-    - id: Cigarette
-      amount: 3
-    - id: CheapLighter
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Cigarette
+          amount: 3
+        - id: CheapLighter
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]

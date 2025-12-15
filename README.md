@@ -27,7 +27,7 @@ a game about survival on a space station where there are constant confrontations
 Space-Station 14 has [docs site](https://docs.spacestation14.io/) documentation on SS14s content, engine, game design and more. We also have lots of resources for new contributors to the project.
 
 ## Project Activity
-![Alt](https://repobeats.axiom.co/api/embed/6d9d589842ff6980c7972b18cf09d8b5b0365de5.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/675a7780b2c40805e5266935fe9329cd0177aba3.svg "Repobeats analytics image")
 
 ---
 

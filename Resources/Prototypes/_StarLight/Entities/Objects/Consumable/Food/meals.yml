@@ -9,7 +9,7 @@
         - meaty
         - orange
         - profits
-    - type: Food
+    - type: Edible
       trash:
       - FoodPlate
     - type: Sprite
@@ -43,7 +43,7 @@
         - lostfriendship
         - carpet
         - cat
-    - type: Food
+    - type: Edible
     - type: Sprite
       sprite: _Starlight/Objects/Consumable/Food/friedNoid.rsi
       layers:
@@ -74,7 +74,7 @@
     - type: FlavorProfile
       flavors:
         - thaslop
-    - type: Food
+    - type: Edible
       trash:
         - FoodPacketMRETrash
     - type: Sprite

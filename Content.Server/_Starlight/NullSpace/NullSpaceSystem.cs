@@ -1,7 +1,7 @@
 using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Content.Server.Atmos.Components;
-using Content.Server.Temperature.Components;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;

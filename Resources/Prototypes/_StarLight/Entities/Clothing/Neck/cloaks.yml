@@ -51,7 +51,7 @@
   - type: PowerCellDraw
     enabled: false
     drawRate: 2
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 12.0
 

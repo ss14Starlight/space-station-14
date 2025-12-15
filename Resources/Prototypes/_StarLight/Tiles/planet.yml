@@ -36,7 +36,7 @@
     sprintSpeedModifier: 0.25
   - type: TileEntityEffect
     effects:
-    - !type:EmpReactionEffect
+    - !type:Emp
       rangePerUnit: 0.2
       maxRange: 6
       energyConsumption: 12500
