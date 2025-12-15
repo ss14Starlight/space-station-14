@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Devil.Damnations;
+using Content.Shared._Starlight.Devil.DamnationActions;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Devil;

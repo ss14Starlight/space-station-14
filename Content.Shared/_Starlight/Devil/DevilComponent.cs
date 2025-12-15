@@ -18,7 +18,8 @@ public sealed partial class DevilComponent : Component
         "Soul",
         "Pacifism",
         "Blindness",
-        "SpaceImmunity"
+        "SpaceImmunity",
+        "Credits"
     };
 
     [AutoNetworkedField]

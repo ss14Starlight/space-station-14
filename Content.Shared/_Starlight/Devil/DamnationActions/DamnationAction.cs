@@ -1,13 +1,15 @@
-using Content.Shared.Mobs;
 
-namespace Content.Shared._Starlight.Devil.Damnations;
+namespace Content.Shared._Starlight.Devil.DamnationActions;
 
 [ImplicitDataDefinitionForInheritors]
 public abstract partial class DamnationAction
 {
-    public abstract bool Action(Entity<DamnedComponent> victim);
+    public virtual bool Action(Entity<DamnedComponent> victim) => true;
     public virtual bool ReverseAction(Entity<DamnedComponent> victim) => true;
 
     public bool IocResolved = false;
-    public abstract void ResolveIoC();
+    public virtual void ResolveIoC()
+    {
+        return;
+    }
 }
