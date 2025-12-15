@@ -386,7 +386,7 @@
       max: 1
       playerRatio: 1
       PickPlayer: false
-      spawnerPrototype: SpawnPointGhostWizardRed
+      spawnerPrototype: SpawnPointGhostArchmageRed
       roleLoadout:
        - RoleSurvivalExtended
       briefing:
@@ -406,7 +406,7 @@
       max: 1
       playerRatio: 1
       PickPlayer: false
-      spawnerPrototype: SpawnPointGhostWizardBlue
+      spawnerPrototype: SpawnPointGhostArchmageBlue
       roleLoadout:
        - RoleSurvivalExtended
       briefing:
@@ -425,7 +425,7 @@
     - prefRoles: [ Apprentice ]
       max: 4
       playerRatio: 1
-      spawnerPrototype: SpawnPointWizard
+      spawnerPrototype: SpawnPointGhostApprentice
       roleLoadout:
        - RoleSurvivalExtended
       briefing:

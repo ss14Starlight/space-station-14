@@ -21,3 +21,81 @@
     - state: green
     - sprite: Mobs/Silicon/Chassis/derelict.rsi
       state: derelict_icon
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostArchmageRed
+  name: ghost role spawn point
+  suffix: archmage red
+  components:
+  - type: GhostRole
+    name: "Archmage (Red)"
+    description: "Lead the red faction of wizards to victory in the Wizard Battle!"
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600 # 6h
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostArchmageBlue
+  name: ghost role spawn point
+  suffix: archmage blue
+  components:
+  - type: GhostRole
+    name: "Archmage (Blue)"
+    description: "Lead the blue faction of wizards to victory in the Wizard Battle!"
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600 # 6h
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostApprentice
+  name: ghost role spawn point
+  suffix: apprentice
+  components:
+  - type: GhostRole
+    name: "Apprentice"
+    description: "Assist your archmage in the Wizard Battle!"
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 3600 # 1h
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon

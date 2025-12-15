@@ -9,10 +9,15 @@ using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 using Robust.Shared.Maths;
 using System.Linq;
 using System.Numerics;
+using Content.Server.Antag;
+using Content.Server.Antag.Components;
+using Robust.Shared.Random;
+using Content.Server.Spawners.Components;
 
 namespace Content.Server._Starlight.Magic.Systems;
 
@@ -26,9 +31,17 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<AntagSelectLocationEvent>(OnAntagSelectLocation);
+    }
 
     protected override void Added(EntityUid uid, WizardBattleRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args)
     {
+
         // Create a temporary map to load the shuttles
         var tempMap = _map.CreateMap(out var tempMapId);
 
@@ -108,5 +121,63 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
         RaiseLocalEvent(uid, ref ev);
 
         base.Started(uid, comp, rule, args);
+    }
+
+    private void OnAntagSelectLocation(ref AntagSelectLocationEvent args)
+    {
+        if (!TryComp<WizardBattleRuleComponent>(args.GameRule, out var comp))
+            return;
+
+        EntityUid? shuttle = null;
+        string spawnProto = "";
+
+        // Determine which shuttle and spawn point to use based on the spawner prototype
+        if (args.Def.SpawnerPrototype == "SpawnPointGhostArchmageRed")
+        {
+            shuttle = comp.RedShuttle;
+            spawnProto = "SpawnPointGhostWizardRed";
+        }
+        else if (args.Def.SpawnerPrototype == "SpawnPointGhostArchmageBlue")
+        {
+            shuttle = comp.BlueShuttle;
+            spawnProto = "SpawnPointGhostWizardBlue";
+        }
+        else if (args.Def.SpawnerPrototype == "SpawnPointGhostApprentice")
+        {
+            // For apprentices, randomly choose a shuttle
+            var shuttles = new List<EntityUid>();
+            if (comp.RedShuttle.HasValue) shuttles.Add(comp.RedShuttle.Value);
+            if (comp.BlueShuttle.HasValue) shuttles.Add(comp.BlueShuttle.Value);
+            if (shuttles.Count > 0)
+                shuttle = _random.Pick(shuttles);
+            spawnProto = "SpawnPointWizard";
+        }
+
+        if (!shuttle.HasValue || string.IsNullOrEmpty(spawnProto))
+            return;
+
+        // Find the spawn point entity on the shuttle
+        var spawnQuery = EntityQueryEnumerator<SpawnPointComponent>();
+        while (spawnQuery.MoveNext(out var spawnUid, out _))
+        {
+            if (Transform(spawnUid).ParentUid != shuttle.Value)
+                continue;
+
+            // For simplicity, assume the first SpawnPoint on the shuttle
+            var coords = new EntityCoordinates(shuttle.Value, Transform(spawnUid).LocalPosition);
+            args.Coordinates.Add(_transform.ToMapCoordinates(coords));
+            return;
+        }
+
+        // If no spawn point found, pick a random position on the shuttle
+        if (TryComp<MapGridComponent>(shuttle.Value, out var grid))
+        {
+            var bounds = grid.LocalAABB;
+            var randomPos = new Vector2(
+                _random.NextFloat(bounds.Left, bounds.Right),
+                _random.NextFloat(bounds.Bottom, bounds.Top));
+            var coords = new EntityCoordinates(shuttle.Value, randomPos);
+            args.Coordinates.Add(_transform.ToMapCoordinates(coords));
+        }
     }
 }
