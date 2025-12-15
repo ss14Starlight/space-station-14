@@ -13,12 +13,11 @@ archmage-role-greeting =
     You are an Archmage!
     Battle against the other archmage for magical supremacy.
     Recruit apprentices by giving them scarves and having them say the words.
-    Complete the ritual with materials and words to win.
+    Find the words to complete the ritual to win.
 
 apprentice-role-greeting =
     You are an Apprentice!
     Help your archmage by recruiting more people and assisting in the ritual.
-    You have been granted a random spell to aid in the battle.
 
 wizard-battle-round-end-name = wizard battle
 

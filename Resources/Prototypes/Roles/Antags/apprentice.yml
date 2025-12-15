@@ -1,5 +1,5 @@
 - type: antag
-  id: Apprentice
+  id: ApprenticeRole
   name: roles-antag-apprentice-name
   antagonist: true
   setPreference: true # player selectable as well

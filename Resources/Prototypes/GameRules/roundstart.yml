@@ -382,7 +382,7 @@
     agentName: wizard-battle-round-end-name
     selectionTime: PrePlayerSpawn
     definitions:
-    - prefRoles: [ Archmage]
+    - prefRoles: [Archmage]
       max: 1
       playerRatio: 1
       PickPlayer: false

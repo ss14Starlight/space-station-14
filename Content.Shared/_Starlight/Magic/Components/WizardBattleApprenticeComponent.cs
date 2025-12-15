@@ -16,14 +16,14 @@ public sealed partial class WizardBattleApprenticeComponent : Component
     public string Faction = "Red";
 
     /// <summary>
-    /// The spell this apprentice has.
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public string Spell = "Fireball"; // Placeholder
-
-    /// <summary>
     /// The archmage this apprentice serves.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? Archmage;
+
+    /// <summary>
+    /// The spell assigned to this apprentice.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public string Spell = "";
 }
