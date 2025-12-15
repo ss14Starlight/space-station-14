@@ -27,7 +27,9 @@ public sealed partial class DoomedSystem : EntitySystem
 
     private void Die(Entity<DoomedComponent> ent)
     {
-        Spawn(ent.Comp.DamageEffect, Transform(ent.Owner).Coordinates);
+        if(HasComp<TransformComponent>(ent.Owner))
+            Spawn(ent.Comp.DamageEffect, Transform(ent.Owner).Coordinates);
+
         _damageable.TryChangeDamage(ent.Owner, ent.Comp.Damage);
     }
 }
