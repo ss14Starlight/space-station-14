@@ -449,10 +449,12 @@
   suffix: Filled
   parent: BoxFolderClipboard
   components:
-  - type: StorageFill
-    contents:
-      - id: Paper
-        amount: 24
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Paper
+          amount: 20
 
 # Communications
 

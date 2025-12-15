@@ -1,0 +1,165 @@
+- type: entity
+  parent: BaseChangelingObjective
+  id: ChangelingAbsorbObjective
+  components:
+    - type: Objective
+      icon:
+        sprite: Mobs/Demons/abomination.rsi
+        state: dead
+    - type: NumberObjective
+      min: 2
+      max: 4
+      title: objective-condition-absorb-title
+      description: objective-condition-absorb-description
+    - type: AbsorbCondition
+
+- type: entity
+  parent: BaseChangelingObjective
+  id: ChangelingStealDNAObjective
+  components:
+    - type: Objective
+      icon:
+        sprite: Mobs/Species/Human/organs.rsi
+        state: brain
+    - type: NumberObjective
+      min: 6
+      max: 9
+      title: objective-condition-stealdna-title
+      description: objective-condition-stealdna-description
+    - type: StealDNACondition
+
+- type: entity
+  parent: BaseChangelingObjective
+  id: EscapeIdentityObjective
+  description: I need to escape on the evacuation shuttle. Undercover.
+  components:
+    - type: Objective
+      icon:
+        sprite: Objects/Magic/magicactions.rsi
+        state: blink
+    - type: ImpersonateCondition
+    - type: TargetObjective
+      title: objective-condition-escape-identity-title
+    - type: PickRandomPerson
+
+- type: entity
+  abstract: true
+  parent: [BaseChangelingObjective, BaseStealObjective]
+  id: BaseChangelingStealObjective
+  components:
+    - type: StealCondition
+      verifyMapExistence: true
+    - type: Objective
+      difficulty: 1.5
+    - type: ObjectiveLimit
+      limit: 2
+
+- type: entity
+  parent: BaseChangelingStealObjective
+  id: CMOHyposprayChangelingStealObjective
+  components:
+    - type: NotJobRequirement
+      jobs: [ ChiefMedicalOfficer ]
+    - type: StealCondition
+      owner: job-name-cmo
+      stealGroup: Hypospray
+
+- type: entity
+  parent: BaseChangelingStealObjective
+  id: RDHardsuitChangelingStealObjective
+  components:
+    - type: NotJobRequirement
+      jobs: [ ResearchDirector ]
+    - type: StealCondition
+      owner: job-name-rd
+      stealGroup: ClothingOuterHardsuitRd
+    - type: Objective
+      difficulty: 1
+
+- type: entity
+  parent: BaseChangelingStealObjective
+  id: EnergyMagnumChangelingStealObjective
+  components:
+    - type: Objective
+      difficulty: 2
+    - type: NotJobRequirement
+      jobs: [ Detective ]
+    - type: StealCondition
+      stealGroup: WeaponEnergyMagnum
+      owner: job-name-detective
+
+- type: entity
+  parent: BaseChangelingStealObjective
+  id: EnergyShotgunChangelingStealObjective
+  components:
+    - type: Objective
+      difficulty: 2
+    - type: NotJobRequirement
+      jobs: [ Warden ]
+    - type: StealCondition
+      stealGroup: WeaponEnergyShotgun
+      owner: job-name-warden
+
+- type: entity
+  parent: BaseChangelingStealObjective
+  id: Proto5xChangelingStealObjective
+  components:
+    - type: Objective
+      difficulty: 2
+    - type: NotJobRequirement
+      jobs: [ HeadOfSecurity ]
+    - type: StealCondition
+      stealGroup: Proto5x
+      owner: job-name-hos
+
+- type: entity
+  parent: BaseChangelingStealObjective
+  id: MagbootsChangelingStealObjective
+  components:
+    - type: NotJobRequirement
+      jobs: [ ChiefEngineer ]
+    - type: StealCondition
+      stealGroup: ClothingShoesBootsMagAdv
+      owner: job-name-ce
+
+- type: entity
+  parent: BaseChangelingStealObjective
+  id: ClipboardChangelingStealObjective
+  components:
+    - type: NotJobRequirement
+      jobs: [ Quartermaster ]
+    - type: StealCondition
+      stealGroup: BoxFolderQmClipboard
+      owner: job-name-qm
+
+- type: entity
+  abstract: true
+  parent: BaseChangelingStealObjective
+  id: BaseCaptainChangelingObjective
+  components:
+    - type: Objective
+      difficulty: 2.5
+    - type: NotJobRequirement
+      jobs: [ Captain ]
+
+- type: entity
+  parent: BaseCaptainChangelingObjective
+  id: CaptainIDChangelingStealObjective
+  components:
+    - type: StealCondition
+      stealGroup: CaptainIDCard
+
+- type: entity
+  parent: BaseCaptainChangelingObjective
+  id: CaptainJetpackChangelingStealObjective
+  components:
+    - type: StealCondition
+      stealGroup: JetpackCaptainFilled
+
+- type: entity
+  parent: BaseCaptainChangelingObjective
+  id: CaptainGunChangelingStealObjective
+  components:
+    - type: StealCondition
+      stealGroup: WeaponAntiqueLaser
+      owner: job-name-captain

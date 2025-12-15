@@ -21,7 +21,7 @@ public sealed partial class BecomesStationMidRoundComponent : Component
     [DataField] public bool UseArrivals; // whether to add to arrivals rotation or not.
     [DataField] public bool AllowDungeonSpawn; // allow a new dungeon to spawn or not | Prevents spawning dungeon regardless of gridspawn
     [DataField] public bool AllowCargoShuttle; // allows the cargo shuttle "ferry" to spawn or not.
-    [DataField] public string[] AllowedGridSpawns; // whitelisted gridspawn keys. Only affects GridSpawn groups, not DungeonSpawns.
+    [DataField] public string[] AllowedGridSpawns = default!; // whitelisted gridspawn keys. Only affects GridSpawn groups, not DungeonSpawns.
     [DataField] public string? EmergencyShuttleOverridePath = null;
     [DataField] public Dictionary<ProtoId<JobPrototype>, int>? AvailableJobs = null; // null = no jobs
 }

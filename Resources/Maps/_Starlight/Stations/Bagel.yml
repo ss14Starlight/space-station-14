@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.1.0
   forkId: ""
   forkVersion: ""
-  time: 11/10/2025 01:39:20
-  entityCount: 25896
+  time: 12/12/2025 09:57:58
+  entityCount: 25915
 maps:
 - 1
 grids:
@@ -14690,6 +14690,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 39.5,-44.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 641
@@ -14756,10 +14759,13 @@ entities:
   - uid: 646
     components:
     - type: MetaData
-      name: Science APC
+      name: North Science APC
     - type: Transform
       pos: -52.5,5.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 647
@@ -14898,10 +14904,13 @@ entities:
   - uid: 661
     components:
     - type: MetaData
-      name: Xenoarch APC
+      name: Xenoarch East APC
     - type: Transform
       pos: -44.5,15.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 662
@@ -14975,6 +14984,9 @@ entities:
     - type: Transform
       pos: 43.5,-7.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 670
@@ -15151,6 +15163,39 @@ entities:
       rot: 3.141592653589793 rad
       pos: 56.5,19.5
       parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1828
+    components:
+    - type: MetaData
+      name: Science Storage APC
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -58.5,-2.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 2675
+    components:
+    - type: MetaData
+      name: Medical South APC
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 46.5,-27.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 6928
+    components:
+    - type: MetaData
+      name: Xenoarch West APC
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -57.5,14.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 25576
@@ -21280,11 +21325,6 @@ entities:
     - type: Transform
       pos: -52.5,1.5
       parent: 2
-  - uid: 1828
-    components:
-    - type: Transform
-      pos: -52.5,0.5
-      parent: 2
   - uid: 1829
     components:
     - type: Transform
@@ -21593,7 +21633,7 @@ entities:
   - uid: 1890
     components:
     - type: Transform
-      pos: -54.5,10.5
+      pos: -57.5,14.5
       parent: 2
   - uid: 1891
     components:
@@ -25515,11 +25555,6 @@ entities:
     - type: Transform
       pos: 44.5,-31.5
       parent: 2
-  - uid: 2675
-    components:
-    - type: Transform
-      pos: 43.5,-31.5
-      parent: 2
   - uid: 2676
     components:
     - type: Transform
@@ -25613,22 +25648,22 @@ entities:
   - uid: 2694
     components:
     - type: Transform
-      pos: 47.5,-26.5
+      pos: 48.5,-27.5
       parent: 2
   - uid: 2695
     components:
     - type: Transform
-      pos: 47.5,-27.5
+      pos: 48.5,-28.5
       parent: 2
   - uid: 2696
     components:
     - type: Transform
-      pos: 47.5,-28.5
+      pos: -58.5,-2.5
       parent: 2
   - uid: 2697
     components:
     - type: Transform
-      pos: 47.5,-29.5
+      pos: -57.5,-2.5
       parent: 2
   - uid: 2698
     components:
@@ -29253,12 +29288,12 @@ entities:
   - uid: 3422
     components:
     - type: Transform
-      pos: -58.5,14.5
+      pos: -59.5,16.5
       parent: 2
   - uid: 3423
     components:
     - type: Transform
-      pos: -58.5,15.5
+      pos: -59.5,15.5
       parent: 2
   - uid: 3424
     components:
@@ -31478,7 +31513,7 @@ entities:
   - uid: 3867
     components:
     - type: Transform
-      pos: -58.5,16.5
+      pos: -59.5,14.5
       parent: 2
   - uid: 3868
     components:
@@ -34965,6 +35000,21 @@ entities:
     - type: Transform
       pos: -15.5,-4.5
       parent: 25565
+  - uid: 25899
+    components:
+    - type: Transform
+      pos: 46.5,-27.5
+      parent: 2
+  - uid: 25900
+    components:
+    - type: Transform
+      pos: 45.5,-27.5
+      parent: 2
+  - uid: 25915
+    components:
+    - type: Transform
+      pos: -58.5,16.5
+      parent: 2
 - proto: CableApcStack
   entities:
   - uid: 4519
@@ -47165,11 +47215,6 @@ entities:
     - type: Transform
       pos: -3.5,-55.5
       parent: 2
-  - uid: 6928
-    components:
-    - type: Transform
-      pos: -53.5,4.5
-      parent: 2
   - uid: 6929
     components:
     - type: Transform
@@ -52590,6 +52635,11 @@ entities:
     - type: Transform
       pos: -22.5,35.5
       parent: 2
+  - uid: 21779
+    components:
+    - type: Transform
+      pos: 45.5,-27.5
+      parent: 2
   - uid: 25659
     components:
     - type: Transform
@@ -52710,6 +52760,81 @@ entities:
     - type: Transform
       pos: 9.5,-1.5
       parent: 25565
+  - uid: 25898
+    components:
+    - type: Transform
+      pos: 46.5,-27.5
+      parent: 2
+  - uid: 25901
+    components:
+    - type: Transform
+      pos: -58.5,-2.5
+      parent: 2
+  - uid: 25902
+    components:
+    - type: Transform
+      pos: -57.5,-2.5
+      parent: 2
+  - uid: 25903
+    components:
+    - type: Transform
+      pos: -53.5,2.5
+      parent: 2
+  - uid: 25904
+    components:
+    - type: Transform
+      pos: -53.5,3.5
+      parent: 2
+  - uid: 25905
+    components:
+    - type: Transform
+      pos: -53.5,1.5
+      parent: 2
+  - uid: 25906
+    components:
+    - type: Transform
+      pos: -53.5,0.5
+      parent: 2
+  - uid: 25907
+    components:
+    - type: Transform
+      pos: -53.5,-0.5
+      parent: 2
+  - uid: 25908
+    components:
+    - type: Transform
+      pos: -56.5,-2.5
+      parent: 2
+  - uid: 25909
+    components:
+    - type: Transform
+      pos: -55.5,-2.5
+      parent: 2
+  - uid: 25910
+    components:
+    - type: Transform
+      pos: -54.5,-2.5
+      parent: 2
+  - uid: 25911
+    components:
+    - type: Transform
+      pos: -53.5,-2.5
+      parent: 2
+  - uid: 25912
+    components:
+    - type: Transform
+      pos: -53.5,-1.5
+      parent: 2
+  - uid: 25913
+    components:
+    - type: Transform
+      pos: -54.5,3.5
+      parent: 2
+  - uid: 25914
+    components:
+    - type: Transform
+      pos: -57.5,14.5
+      parent: 2
 - proto: CableMVStack
   entities:
   - uid: 8013
@@ -144260,7 +144385,7 @@ entities:
     - type: Transform
       pos: 24.5,18.5
       parent: 2
-  - uid: 21779
+  - uid: 25897
     components:
     - type: Transform
       pos: -105.5,19.5

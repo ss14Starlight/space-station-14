@@ -1,28 +1,35 @@
-using Content.Client._Starlight.Crayon.Overlays; // Starlight-edit
-using Content.Client.Decals;
 using Content.Client.Items;
 using Content.Client.Message;
 using Content.Client.Stylesheets;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Crayon;
-using Content.Shared.Decals; // Starlight-edit
-using Content.Shared.GameTicking; // Starlight-edit
-using Content.Shared.Hands; // Starlight-edit
-using Content.Shared.Hands.EntitySystems; // Starlight-edit
-using Content.Shared.Interaction; // Starlight-edit
-using Robust.Client.GameObjects; // Starlight-edit
-using Robust.Client.Graphics; // Starlight-edit
-using Robust.Client.Player; // Starlight-edit
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.GameStates;
-using Robust.Shared.Player; // Starlight-edit
-using Robust.Shared.Prototypes; // Starlight-edit
 using Robust.Shared.Timing;
+
+#region Starlight
+using Content.Client._Starlight.Crayon.Overlays;
+using Content.Client.Decals;
+using Content.Shared.Decals;
+using Content.Shared.GameTicking;
+using Content.Shared.Hands;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
+using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
+using Robust.Client.Player;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+#endregion Starlight
 
 namespace Content.Client.Crayon;
 
 public sealed class CrayonSystem : SharedCrayonSystem
 {
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
+
     // Starlight-start
     [Dependency] private readonly IOverlayManager _overlay = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
@@ -34,12 +41,11 @@ public sealed class CrayonSystem : SharedCrayonSystem
     [Dependency] private readonly IPlayerManager _player = default!;
     // Starlight-end
     
-    // Didn't do in shared because I don't think most of the server stuff can be predicted.
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<CrayonComponent, ComponentHandleState>(OnCrayonHandleState);
-        Subs.ItemStatus<CrayonComponent>(ent => new StatusControl(ent));
+
+        Subs.ItemStatus<CrayonComponent>(ent => new StatusControl(ent, _charges, _entityManager));
 
         // Starlight-start
         SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnLocalPlayerDetached);
@@ -50,55 +56,38 @@ public sealed class CrayonSystem : SharedCrayonSystem
         // Starlight-end
     }
 
-    private void OnCrayonHandleState(EntityUid uid, CrayonComponent component, ref ComponentHandleState args)
-    {
-        if (args.Current is not CrayonComponentState state) return;
-
-        UpdateOverlay(uid, component, state.State, state.Rotation, state.Color, state.PreviewEnabled, state.PreviewVisible, state.OpaqueGhost); // Starlight-edit
-
-        component.Color = state.Color;
-        component.SelectedState = state.State;
-        component.Charges = state.Charges;
-        component.Capacity = state.Capacity;
-        component.Rotation = state.Rotation; // Starlight-edit
-
-        component.UIUpdateNeeded = true;
-    }
-
     private sealed class StatusControl : Control
     {
-        private readonly CrayonComponent _parent;
+        private readonly Entity<CrayonComponent> _crayon;
+        private readonly SharedChargesSystem _charges;
         private readonly RichTextLabel _label;
+        private readonly int _capacity;
 
-        public StatusControl(CrayonComponent parent)
+        public StatusControl(Entity<CrayonComponent> crayon, SharedChargesSystem charges, EntityManager entityManage)
         {
-            _parent = parent;
-            _label = new RichTextLabel { StyleClasses = { StyleNano.StyleClassItemStatus } };
+            _crayon = crayon;
+            _charges = charges;
+            _capacity = entityManage.GetComponent<LimitedChargesComponent>(_crayon.Owner).MaxCharges;
+            _label = new RichTextLabel { StyleClasses = { StyleClass.ItemStatus } };
             AddChild(_label);
-
-            parent.UIUpdateNeeded = true;
         }
 
         protected override void FrameUpdate(FrameEventArgs args)
         {
             base.FrameUpdate(args);
 
-            if (!_parent.UIUpdateNeeded)
-            {
-                return;
-            }
+            // TODO: This call needs fixingUpdateOverlay(_crayon.Owner, _crayon.Comp, _crayon.Comp.SelectedState, _crayon.Comp.Rotation, _crayon.Comp.Color, _crayon.Comp.PreviewEnabled, _crayon.Comp.PreviewVisible, _crayon.Comp.OpaqueGhost); // Starlight-edit
 
-            _parent.UIUpdateNeeded = false;
             _label.SetMarkup(Robust.Shared.Localization.Loc.GetString("crayon-drawing-label",
-                ("color",_parent.Color),
+                ("color",_crayon.Comp.Color),
                 // Starlight-start
-                ("rotation",_parent.Rotation),
-                ("previewEnabled",_parent.PreviewEnabled),
-                ("previewVisible",_parent.PreviewVisible),
+                ("rotation",_crayon.Comp.Rotation),
+                ("previewEnabled",_crayon.Comp.PreviewEnabled),
+                ("previewVisible",_crayon.Comp.PreviewVisible),
                 // Starlight-end
-                ("state",_parent.SelectedState),
-                ("charges", _parent.Charges),
-                ("capacity",_parent.Capacity)));
+                ("state",_crayon.Comp.SelectedState),
+                ("charges", _charges.GetCurrentCharges(_crayon.Owner)),
+                ("capacity", _capacity)));
         }
     }
 

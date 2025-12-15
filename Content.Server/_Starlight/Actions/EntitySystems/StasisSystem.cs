@@ -8,6 +8,7 @@ using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Player;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.Actions.EntitySystems;
 

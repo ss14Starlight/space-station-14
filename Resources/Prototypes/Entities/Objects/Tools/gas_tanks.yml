@@ -9,9 +9,6 @@
   - type: Item
     size: Normal
     sprite: Objects/Tanks/generic.rsi
-  - type: Tag
-    tags:
-    - GasTank
   - type: Clothing
     quickEquip: false
     sprite: Objects/Tanks/generic.rsi
@@ -50,6 +47,11 @@
       Steel: 185
   - type: StaticPrice
     price: 30
+    #Starlight start
+  - type: Tag
+    tags:
+    - GasTank
+    #Starlight end
 
 - type: entity
   abstract: true
@@ -98,6 +100,7 @@
   - type: Item
     size: Small
     sprite: Objects/Tanks/emergency.rsi
+    storedRotation: -45
   - type: GasTank
     air:
       volume: 0.66

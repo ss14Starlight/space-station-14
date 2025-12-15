@@ -42,13 +42,13 @@ public sealed partial class TicketEntry : BoxContainer
     {
         if (isPinned)
         {
-            PlayerEntryPinButton?.RemoveStyleClass(StyleNano.StyleClassPinButtonUnpinned);
-            PlayerEntryPinButton?.AddStyleClass(StyleNano.StyleClassPinButtonPinned);
+            PlayerEntryPinButton?.RemoveStyleClass(StyleStarlight.StyleClassPinButtonUnpinned);
+            PlayerEntryPinButton?.AddStyleClass(StyleStarlight.StyleClassPinButtonPinned);
         }
         else
         {
-            PlayerEntryPinButton?.RemoveStyleClass(StyleNano.StyleClassPinButtonPinned);
-            PlayerEntryPinButton?.AddStyleClass(StyleNano.StyleClassPinButtonUnpinned);
+            PlayerEntryPinButton?.RemoveStyleClass(StyleStarlight.StyleClassPinButtonPinned);
+            PlayerEntryPinButton?.AddStyleClass(StyleStarlight.StyleClassPinButtonUnpinned);
         }
     }
 }
