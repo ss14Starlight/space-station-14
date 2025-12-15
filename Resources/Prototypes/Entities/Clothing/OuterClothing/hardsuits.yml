@@ -261,7 +261,7 @@
   #- type: PowerCellDraw
     #enabled: false
     #drawRate: 8
-    #useRate: 0
+    #useCharge: 0
   #- type: UseDelay
     #delay: 10.0
 
@@ -595,7 +595,7 @@
   - type: PowerCellDraw
     enabled: false
     drawRate: 6
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 10.0
 

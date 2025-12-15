@@ -31,7 +31,7 @@
     wideAnimationRotation: 180
     soundHit:
       collection: ResomiChirp
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Resomi/resomi_scream.ogg
@@ -60,7 +60,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_Starlight/Voice/Avali/avali_cry.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Effects/avali_scream.ogg
@@ -92,7 +92,7 @@
     wideAnimationRotation: 180
     soundHit:
       collection: Growl
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Effects/yip.ogg
@@ -118,7 +118,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Voice/Moth/moth_chitter.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Moth/moth_scream.ogg
@@ -144,7 +144,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
@@ -170,7 +170,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_Starlight/Voice/Shadekin/wurble.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       collection: FelionoidScreams
@@ -196,7 +196,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Effects/Cargo/buzz_two.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Machines/warning_buzzer.ogg
@@ -233,7 +233,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_Starlight/Voice/Felionoid/cat_growl1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Voice/Felionoid/cat_scream2.ogg

@@ -9,7 +9,7 @@ using Content.Shared._Starlight.Dice.DestinyDice; // Starlight
 
 namespace Content.Shared.Body.Components
 {
-    [RegisterComponent, NetworkedComponent, Access(typeof(StomachSystem), typeof(FoodSystem), typeof(SharedDestinyDiceSystem))] // Starlight edit
+    [RegisterComponent, NetworkedComponent, Access(typeof(StomachSystem), typeof(SharedDestinyDiceSystem))] // Starlight edit
     public sealed partial class StomachComponent : Component
     {
         /// <summary>

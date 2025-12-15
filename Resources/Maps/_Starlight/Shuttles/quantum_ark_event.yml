@@ -21230,18 +21230,6 @@ entities:
     components:
     - type: Transform
       parent: 1551
-    - type: Storage
-      storedItems:
-        2102:
-          position: 0,0
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 2102
     - type: Physics
       canCollide: False
     - type: UseDelay
