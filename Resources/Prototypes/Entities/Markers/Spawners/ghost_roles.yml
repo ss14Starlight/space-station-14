@@ -430,3 +430,32 @@
       time: 21600 # 6h
   - type: SpawnPoint
 
+# Add WizardBattle spawners
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointArchMage
+  components:
+  - type: GhostRole
+    name: roles-antag-archmage-name
+    description: roles-antag-archmage-description
+    rules: ghost-role-information-rules-default-team-antagonist
+    mindRoles:
+    - MindRoleArchMage
+  - type: Transform
+    gridUid: ShuttleGridArchMage
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointApprentice
+  components:
+  - type: GhostRole
+    name: roles-antag-apprentice-name
+    description: roles-antag-apprentice-description
+    rules: ghost-role-information-rules-default-team-antagonist
+    mindRoles:
+    - MindRoleApprentice
+  - type: Transform
+    gridUid: ShuttleGridApprentice
+

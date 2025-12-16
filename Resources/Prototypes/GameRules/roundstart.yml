@@ -363,12 +363,9 @@
   parent: BaseGameRule
   id: BaseWizardBattleRule
   components:
-  - type: AntagObjectives
-    objectives:
-    - WizardBattleWinObjective
-  - type: RuleGrids
   - type: WizardBattleRule
   - type: AntagSelection
+  - type: RuleGrids
   - type: AntagLoadProfileRule
     speciesOverride: Human
 
@@ -379,69 +376,20 @@
   - type: GameRule
     minPlayers: 0
   - type: AntagSelection
-    agentName: wizard-battle-round-end-name
     selectionTime: PrePlayerSpawn
     definitions:
-    - prefRoles: [Archmage]
-      max: 1
-      playerRatio: 1
-      PickPlayer: false
-      spawnerPrototype: SpawnPointGhostArchmageRed
-      roleLoadout:
-       - RoleSurvivalExtended
-      briefing:
-        text: archmage-role-greeting
-        color: Purple
-      startingGear: ArchmageGearRed
-      components:
-      - type: UniversalLanguageSpeaker
-      - type: NpcFactionMember
-        factions:
-        - Wizard
-      - type: WizardBattleArchmage
-        faction: Red
+    - prefRoles: [ ArchMage ]
+      fallbackRoles: [ ApprenticeRole ]
+      spawnerPrototype: SpawnPointArchMage
+      startingGear: ArchmageGear
       mindRoles:
-      - MindRoleArchmage
-    - prefRoles: [ Archmage ]
-      max: 1
-      playerRatio: 1
-      PickPlayer: false
-      spawnerPrototype: SpawnPointGhostArchmageBlue
-      roleLoadout:
-       - RoleSurvivalExtended
-      briefing:
-        text: archmage-role-greeting
-        color: Purple
-      startingGear: ArchmageGearBlue
-      components:
-      - type: UniversalLanguageSpeaker
-      - type: NpcFactionMember
-        factions:
-        - Wizard
-      - type: WizardBattleArchmage
-        faction: Blue
-      mindRoles:
-      - MindRoleArchmage
-    - prefRoles: [ Apprentice ]
-      max: 4
-      playerRatio: 1
-      spawnerPrototype: SpawnPointGhostApprentice
-      roleLoadout:
-       - RoleSurvivalExtended
-      briefing:
-        text: apprentice-role-greeting
-        color: Blue
+      - MindRoleArchMage
+    - prefRoles: [ ApprenticeRole ]
+      fallbackRoles: [ ArchMage ]
+      spawnerPrototype: SpawnPointApprentice
       startingGear: ApprenticeGear
-      components:
-      - type: UniversalLanguageSpeaker
-      - type: NpcFactionMember
-        factions:
-        - Wizard
-      - type: WizardBattleApprentice
       mindRoles:
       - MindRoleApprentice
-  - type: DynamicRuleCost
-    cost: 100
 
 - type: entity
   id: Zombie

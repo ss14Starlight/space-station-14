@@ -120,6 +120,82 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
         var ev = new RuleLoadedGridsEvent(mapId, grids);
         RaiseLocalEvent(uid, ref ev);
 
+        // Add spawners to the red shuttle
+        if (comp.RedShuttle.HasValue)
+        {
+            var redGridUid = Transform(comp.RedShuttle.Value).GridUid;
+
+            if (redGridUid == null)
+            {
+                Log.Error("RedShuttle GridUid is null. Cannot spawn entities.");
+                return;
+            }
+
+            var redSpawner = EntityManager.SpawnEntity("SpawnPointGhostArchmageRed", new EntityCoordinates(comp.RedShuttle.Value, Vector2.Zero));
+            _transform.SetParent(redSpawner, comp.RedShuttle.Value);
+            Log.Debug($"Red spawner parent set to: {Transform(redSpawner).ParentUid}, GridUid: {Transform(redSpawner).GridUid}");
+
+            if (Transform(redSpawner).GridUid == redGridUid)
+            {
+                _transform.AttachToGridOrMap(redSpawner);
+                Log.Debug($"Red spawner anchored to grid: {Transform(redSpawner).GridUid}");
+            }
+            else
+            {
+                Log.Error($"Red spawner grid mismatch: Spawner GridUid={Transform(redSpawner).GridUid}, Shuttle GridUid={redGridUid}");
+            }
+
+            var apprenticeSpawner = EntityManager.SpawnEntity("SpawnPointGhostApprentice", new EntityCoordinates(comp.RedShuttle.Value, new Vector2(1, 0)));
+            _transform.SetParent(apprenticeSpawner, comp.RedShuttle.Value);
+            Log.Debug($"Apprentice spawner parent set to: {Transform(apprenticeSpawner).ParentUid}, GridUid: {Transform(apprenticeSpawner).GridUid}");
+
+            if (Transform(apprenticeSpawner).GridUid == redGridUid)
+            {
+                _transform.AttachToGridOrMap(apprenticeSpawner);
+                Log.Debug($"Apprentice spawner anchored to grid: {Transform(apprenticeSpawner).GridUid}");
+            }
+            else
+            {
+                Log.Error($"Apprentice spawner grid mismatch: Spawner GridUid={Transform(apprenticeSpawner).GridUid}, Shuttle GridUid={redGridUid}");
+            }
+        }
+        else
+        {
+            Log.Error("RedShuttle is null. Cannot spawn entities.");
+        }
+
+        // Add spawners to the blue shuttle
+        if (comp.BlueShuttle.HasValue)
+        {
+            var blueSpawner = EntityManager.SpawnEntity("SpawnPointGhostArchmageBlue", new EntityCoordinates(comp.BlueShuttle.Value, Vector2.Zero));
+            _transform.SetParent(blueSpawner, comp.BlueShuttle.Value);
+            Log.Debug($"Blue spawner parent set to: {Transform(blueSpawner).ParentUid}");
+
+            if (Transform(blueSpawner).GridUid == Transform(comp.BlueShuttle.Value).GridUid)
+            {
+                _transform.AttachToGridOrMap(blueSpawner);
+                Log.Debug($"Blue spawner anchored to grid: {Transform(blueSpawner).GridUid}");
+            }
+            else
+            {
+                Log.Error($"Blue spawner grid mismatch: Spawner GridUid={Transform(blueSpawner).GridUid}, Shuttle GridUid={Transform(comp.BlueShuttle.Value).GridUid}");
+            }
+
+            var apprenticeSpawnerBlue = EntityManager.SpawnEntity("SpawnPointGhostApprentice", new EntityCoordinates(comp.BlueShuttle.Value, new Vector2(1, 0)));
+            _transform.SetParent(apprenticeSpawnerBlue, comp.BlueShuttle.Value);
+            Log.Debug($"Apprentice spawner (blue) parent set to: {Transform(apprenticeSpawnerBlue).ParentUid}");
+
+            if (Transform(apprenticeSpawnerBlue).GridUid == Transform(comp.BlueShuttle.Value).GridUid)
+            {
+                _transform.AttachToGridOrMap(apprenticeSpawnerBlue);
+                Log.Debug($"Apprentice spawner (blue) anchored to grid: {Transform(apprenticeSpawnerBlue).GridUid}");
+            }
+            else
+            {
+                Log.Error($"Apprentice spawner (blue) grid mismatch: Spawner GridUid={Transform(apprenticeSpawnerBlue).GridUid}, Shuttle GridUid={Transform(comp.BlueShuttle.Value).GridUid}");
+            }
+        }
+
         base.Started(uid, comp, rule, args);
     }
 
@@ -129,20 +205,17 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
             return;
 
         EntityUid? shuttle = null;
-        string spawnProto = "";
 
-        // Determine which shuttle and spawn point to use based on the spawner prototype
-        if (args.Def.SpawnerPrototype == "SpawnPointGhostArchmageRed")
+        // Determine shuttle based on the antag definition
+        if (args.Def.StartingGear == "ArchmageGearRed")
         {
             shuttle = comp.RedShuttle;
-            spawnProto = "SpawnPointGhostWizardRed";
         }
-        else if (args.Def.SpawnerPrototype == "SpawnPointGhostArchmageBlue")
+        else if (args.Def.StartingGear == "ArchmageGearBlue")
         {
             shuttle = comp.BlueShuttle;
-            spawnProto = "SpawnPointGhostWizardBlue";
         }
-        else if (args.Def.SpawnerPrototype == "SpawnPointGhostApprentice")
+        else if (args.Def.MindRoles != null && args.Def.MindRoles.Contains("MindRoleApprentice"))
         {
             // For apprentices, randomly choose a shuttle
             var shuttles = new List<EntityUid>();
@@ -150,10 +223,9 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
             if (comp.BlueShuttle.HasValue) shuttles.Add(comp.BlueShuttle.Value);
             if (shuttles.Count > 0)
                 shuttle = _random.Pick(shuttles);
-            spawnProto = "SpawnPointWizard";
         }
 
-        if (!shuttle.HasValue || string.IsNullOrEmpty(spawnProto))
+        if (!shuttle.HasValue)
             return;
 
         // Find the spawn point entity on the shuttle
@@ -163,7 +235,7 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
             if (Transform(spawnUid).ParentUid != shuttle.Value)
                 continue;
 
-            // For simplicity, assume the first SpawnPoint on the shuttle
+            // Use the first SpawnPoint on the shuttle
             var coords = new EntityCoordinates(shuttle.Value, Transform(spawnUid).LocalPosition);
             args.Coordinates.Add(_transform.ToMapCoordinates(coords));
             return;

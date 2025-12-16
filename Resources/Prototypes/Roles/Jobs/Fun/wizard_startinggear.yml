@@ -43,18 +43,20 @@
 
 - type: startingGear
   id: ArchmageGear
+  parent: WizardBlueGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorDarkBlue
     head: ClothingHeadHatWizard
-    back: ClothingBackpack
     outerClothing: ClothingOuterWizard
     shoes: ClothingShoesWizard
     id: WizardPDA
     ears: ClothingHeadsetAltWizard
     belt: ClothingBeltWand
-    pocket1: WizardTeleportScroll
-    pocket2: ArchmageGrimoire
-    neck: ClothingNeckScarfWizardRed # Should be overridden based on faction
+  storage:
+    back:
+    - WizardTeleportScroll
+    - WizardsGrimoire
+  inhand:
+  - WeaponStaffHealing
 
 - type: startingGear
   id: ArchmageGearRed

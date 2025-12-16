@@ -5021,19 +5021,5 @@ entities:
     - type: Transform
       pos: 1.5449836,-2.289194
       parent: 2
-- proto: SpawnPointGhostWizardRed #I think this is how to add the spawn
-  entities:
-  - uid: 797
-    components:
-    - type: Transform
-      pos: 0.5,-10.5
-      parent: 2
-- proto: SpawnPointGhostWizard
-  entities:
-  - uid: 798
-    components:
-    - type: Transform
-      pos: -1.5,-10.5
-      parent: 2
 ...
 
