@@ -212,28 +212,34 @@ marking-ResomiProstheticUnbranded = Full Prosthetic Tail (Unbranded)
 marking-ResomiProstheticUnbranded-resomi_prosthetic_unbranded = Tail
 
 marking-ResomiDamagedProstheticHighTech = Damaged Tail Prosthetic (High-Tech)
-marking-ResomiDamagedProstheticHighTech-resomi_damaged_prosthetic_high_tech = Tail
+marking-ResomiDamagedProstheticHighTech-resomi_damaged_prosthetic_high_tech = Prosthetic
+marking-ResomiDamagedProstheticHighTech-resomi_damaged = Tail
 
 marking-ResomiDamagedProstheticUnbranded = Damaged Tail Prosthetic (Unbranded)
-marking-ResomiDamagedProstheticUnbranded-resomi_damaged_prosthetic_unbranded = Tail
+marking-ResomiDamagedProstheticUnbranded-resomi_damaged_prosthetic_unbranded = Prosthetic
+marking-ResomiDamagedProstheticUnbranded-resomi_damaged = Tail
 
 marking-ResomiDamagedProstheticWood = Damaged Tail Prosthetic (Wood)
-marking-ResomiDamagedProstheticWood-resomi_damaged_prosthetic_wood = Tail
+marking-ResomiDamagedProstheticWood-resomi_damaged_prosthetic_wood = Prosthetic
+marking-ResomiDamagedProstheticWood-resomi_damaged = Tail
 
 marking-ResomiStubby = Stubby Tail
 marking-ResomiStubby-resomi_stubby = Tail
 
 marking-ResomiStubbyFeathers = Stubby Tail Feathers
-marking-ResomiStubbyFeathers-resomi_stubby_feathers = Tail
+marking-ResomiStubbyFeathers-resomi_stubby_feathers = Feather
 
 marking-ResomiStubbyProstheticHighTech = Stubby Tail Prosthetic (High-Tech)
-marking-ResomiStubbyProstheticHighTech-resomi_stubby_prosthetic_high_tech = Tail
+marking-ResomiStubbyProstheticHighTech-resomi_stubby_prosthetic_high_tech = Prosthetic
+marking-ResomiStubbyProstheticHighTech-resomi_stubby = Tail
 
 marking-ResomiStubbyProstheticUnbranded = Stubby Tail Prosthetic (Unbranded)
-marking-ResomiStubbyProstheticUnbranded-resomi_stubby_prosthetic_unbranded = Tail
+marking-ResomiStubbyProstheticUnbranded-resomi_stubby_prosthetic_unbranded = Prosthetic
+marking-ResomiStubbyProstheticUnbranded-resomi_stubby = Tail
 
 marking-ResomiStubbyProstheticWood = Stubby Tail Prosthetic (Wood)
-marking-ResomiStubbyProstheticWood-resomi_stubby_prosthetic_wood = Tail
+marking-ResomiStubbyProstheticWood-resomi_stubby_prosthetic_wood = Prosthetic
+marking-ResomiStubbyProstheticWood-resomi_stubby = Tail
 
 marking-ResomiBasicTail = Full Simple Tail
 marking-ResomiBasicTail-tail = Tail
