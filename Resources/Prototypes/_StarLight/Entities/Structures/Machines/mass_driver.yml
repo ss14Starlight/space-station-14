@@ -24,7 +24,19 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.3,-0.16,0.3,0.16"
-        density: 200
+        density: 100
+        layer:
+        - ConveyorMask
+        hard: false
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 100
+        mask:
+        - Impassable
+        layer:
+        - BulletImpassable
   - type: Sprite
     sprite: _Starlight/Structures/Machines/mass_driver.rsi
     noRot: true

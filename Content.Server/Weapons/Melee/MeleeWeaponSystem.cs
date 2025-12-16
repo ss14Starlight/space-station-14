@@ -2,8 +2,7 @@ using System.Linq; // Starlight-edit™
 using System.Numerics; // Starlight-edit™
 using Content.Server.Chat.Systems;
 using Content.Server.Movement.Systems;
-using Content.Shared.Damage.Events;
-using Content.Shared.Damage.Systems;
+using Content.Shared.Chat;
 using Content.Shared.Effects;
 using Content.Shared.Physics; // Starlight-edit™
 using Content.Shared.Speech.Components;
@@ -21,7 +20,6 @@ namespace Content.Server.Weapons.Melee;
 public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
 {
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
     [Dependency] private readonly LagCompensationSystem _lag = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly SharedMapSystem _map = default!; // Starlight-edit™
@@ -30,21 +28,8 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<MeleeSpeechComponent, MeleeHitEvent>(OnSpeechHit);
-        SubscribeLocalEvent<MeleeWeaponComponent, DamageExamineEvent>(OnMeleeExamineDamage);
-    }
-
-    private void OnMeleeExamineDamage(EntityUid uid, MeleeWeaponComponent component, ref DamageExamineEvent args)
-    {
-        if (component.Hidden)
-            return;
-
-        var damageSpec = GetDamage(uid, args.User, component);
-
-        if (damageSpec.Empty)
-            return;
-
-        _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), Loc.GetString("damage-melee"));
     }
 
     protected override bool ArcRaySuccessful(EntityUid targetUid,

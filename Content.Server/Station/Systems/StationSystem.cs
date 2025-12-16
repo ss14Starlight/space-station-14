@@ -40,6 +40,7 @@ public sealed partial class StationSystem : SharedStationSystem
     [Dependency] private readonly PvsOverrideSystem _pvsOverride = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!; // Starlight
     [Dependency] private readonly IPrototypeManager _prototype = default!; // Starlight
+    [Dependency] private readonly IComponentFactory _factory = default!; // Starlight
 
     private ISawmill _sawmill = default!;
 
@@ -378,13 +379,19 @@ public sealed partial class StationSystem : SharedStationSystem
         {
             if (!_prototype.TryIndex(protoId, out var proto)) continue;
             foreach (var comp in proto.Components.Values.Where(comp => !HasComp(ent, comp.Component.GetType())))
-                AddComp(ent, comp.Component);
+            {
+                var newcomp = _factory.GetComponent(comp);
+                AddComp(ent, newcomp);
+            }
         }
         // now any of the extra overrides
         if (registry is not null)
         {
             foreach (var comp in registry.Values.Where(comp => !HasComp(ent, comp.Component.GetType())))
-                AddComp(ent, comp.Component);
+            {
+                var newcomp = _factory.GetComponent(comp);
+                AddComp(ent, newcomp);
+            }
         }
         EntityManager.InitializeAndStartEntity(ent, coords!.Value.MapId);
         return ent;

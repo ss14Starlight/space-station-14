@@ -1,6 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Temperature.Components;
+using Content.Shared.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
@@ -17,9 +17,11 @@ using Content.Shared.Starlight.EntityEffects.EntitySystems;
 using Content.Shared.Starlight.EntityEffects;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Temperature;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Starlight.EntityEffects.EntitySystems;
 
