@@ -27,5 +27,5 @@
   name: chat-radio-event
   keycode: "a"
   frequency: 927 # fifteen competing standards
-  color: "00FFE0" # thanks mikey!
+  color: "#00FFE0" # thanks mikey!
   longRange: true
