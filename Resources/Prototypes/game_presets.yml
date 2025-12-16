@@ -43,6 +43,7 @@
     - Revolutionary
     - Zombie
     - Wizard
+    - Xenoborgs
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
     - SLChangeling #Starlight
@@ -66,6 +67,7 @@
     - Revolutionary
     - Zombie
     - Wizard
+    - Xenoborgs
     - BasicStationEventScheduler
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler
@@ -202,7 +204,7 @@
   name: rev-title
   description: rev-description
   minPlayers: 30
-  showInVote: false # 🌟Starlight🌟
+  showInVote: false
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Revolutionary
@@ -223,6 +225,22 @@
   - Wizard
   # - DummyNonAntagChance 🌟Starlight🌟
   - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Xenoborgs
+  alias:
+    - xenoborgs
+  name: xenoborgs-title
+  description: xenoborgs-description
+  showInVote: false
+  rules:
+  - Xenoborgs
+  - DummyNonAntagChance
+  - SubGamemodesRuleNoWizardNoXenoborg # no two motherships
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler

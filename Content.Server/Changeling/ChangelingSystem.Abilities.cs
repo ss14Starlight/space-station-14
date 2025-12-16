@@ -27,6 +27,7 @@ using Content.Shared.RetractableItemAction;
 using Content.Shared.Changeling.Systems;
 using Content.Shared.Changeling.Components;
 using Content.Server.Changeling.Systems;
+using Content.Shared.Humanoid; // Starlight edit
 
 namespace Content.Server.Changeling;
 
@@ -140,12 +141,19 @@ public sealed partial class ChangelingSystem : EntitySystem
             bonusEvolutionPoints += 10;
             comp.MaxBiomass += targetComp.MaxBiomass / 2;
         }
-        else
+        else if (HasComp<HumanoidAppearanceComponent>(target))  // Starlight edit
         {
             popup = Loc.GetString("changeling-absorb-end-self");
             bonusChemicals += 10;
             bonusEvolutionPoints += 2;
         }
+        // Starlight edit start
+        else
+        {
+            popup = Loc.GetString("changeling-absorb-end-self");
+            bonusChemicals += 5;
+        }
+        // Starlight edit end
         TryStealDNA(uid, target, comp, true);
         comp.TotalAbsorbedEntities++;
 
@@ -221,7 +229,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
 
         // heal of everything
-        _damage.SetAllDamage(uid, damageable, 0);
+        _damage.SetAllDamage(uid, 0);
         _mobState.ChangeMobState(uid, MobState.Alive);
         _blood.TryModifyBloodLevel(uid, 1000);
         _blood.TryModifyBleedAmount(uid, -1000);
@@ -261,7 +269,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var pos = _transform.GetMapCoordinates(uid);
         var power = comp.ShriekPower;
-        _emp.EmpPulse(pos, power, 5000f, power * 2);
+        _emp.EmpPulse(pos, power, 5000f, power * TimeSpan.FromSeconds(2));
     }
     private void OnShriekResonant(EntityUid uid, ChangelingComponent comp, ref ShriekResonantEvent args)
     {
@@ -385,9 +393,14 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         if (TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.Container.ContainedEntities.Count > 0)
         {
-            var cuff = cuffs.LastAddedCuffs;
+            if (_cuffs.TryGetLastCuff(uid, out var cuff))
+            {
+                if (cuff.HasValue)
+                {
+                    _cuffs.Uncuff(uid, uid, cuff.Value);
+                }
+            }
 
-            _cuffs.Uncuff(uid, cuffs.LastAddedCuffs, cuff);
             QueueDel(cuff);
         }
 

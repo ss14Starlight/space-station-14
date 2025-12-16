@@ -243,3 +243,4 @@
   components:
   - type: StealCondition
     stealGroup: HoPBoardSteal
+

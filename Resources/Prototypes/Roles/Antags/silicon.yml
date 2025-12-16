@@ -4,3 +4,9 @@
   antagonist: true
   setPreference: false
   objective: roles-antag-subverted-silicon-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 86400 # 24h STARLIGHT
+  - !type:RoleTimeRequirement
+    role: JobBorg
+    time: 21600 # 6h STARLIGHT

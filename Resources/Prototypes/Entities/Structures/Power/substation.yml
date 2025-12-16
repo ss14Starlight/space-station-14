@@ -60,7 +60,7 @@
   # Ambient sound
   - type: AmbientOnPowered
   - type: AmbientSound
-    volume: -5
+    volume: -4 #SL edit -5 -> -4
     sound:
       path: /Audio/Ambience/Objects/buzzing.ogg
 

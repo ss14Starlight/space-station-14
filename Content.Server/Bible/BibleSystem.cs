@@ -9,6 +9,7 @@ using Content.Shared.Bible;
 using Content.Shared.Clumsy; //Starlight
 using Content.Shared.Cluwne; //Starlight
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.Hands.Components; //Starlight
 using Content.Shared.IdentityManagement;
@@ -23,7 +24,6 @@ using Content.Shared.Tag;
 using Content.Shared.Timing;
 using Content.Shared.Vampire.Components;
 using Content.Shared.Verbs;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
@@ -213,9 +213,7 @@ namespace Content.Server.Bible
             }
             //#endregion
 
-            var damage = _damageableSystem.TryChangeDamage(args.Target.Value, component.Damage, true, origin: uid);
-
-            if (damage == null || damage.Empty)
+            if (_damageableSystem.TryChangeDamage(args.Target.Value, component.Damage, true, origin: uid))
             {
                 var othersMessage = Loc.GetString(component.LocPrefix + "-heal-success-none-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
                 _popupSystem.PopupEntity(othersMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.Medium);

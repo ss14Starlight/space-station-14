@@ -24,6 +24,7 @@
       species: Avali
       hideLayersOnEquip:
       - Tail
+      - HeadTop
     - type: Hunger # on 2x more
       thresholds:
         Overfed: 250
@@ -126,7 +127,10 @@
           sprite: Mobs/Effects/brute_damage.rsi
           color: "#6C3BAA"
     - type: Bloodstream
-      bloodReagent: AvaliBlood
+      bloodReagents:
+        reagents:
+        - ReagentId: AvaliBlood
+          Quantity: 1
     - type: MeleeWeapon
       soundHit:
         path: /Audio/Weapons/pierce.ogg
@@ -151,6 +155,16 @@
     - type: Stasis
       enterStasisAction: ActionStasisEnter
       exitStasisAction: ActionStasisExit
+      updateInterval: 1s
+      healingPerUpdate:
+        types:
+          Heat: 2
+          Cold: 2
+        groups:
+          Brute: 6
+      bleedHealPerUpdate: 1.0
+      critHealingModifier: 2.0
+      stasisDamageReduction: 0.5
 
 # Chirp!
 

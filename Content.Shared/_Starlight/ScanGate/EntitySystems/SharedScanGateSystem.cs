@@ -22,7 +22,7 @@ public sealed partial class SharedScanGateSystem : EntitySystem
     [Dependency] private readonly SharedPowerReceiverSystem _powerReceiverSystem = default!;
     [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
     [Dependency] private readonly SharedDeviceLinkSystem _deviceLink = default!;
-    [Dependency] private readonly SharedPowerCellSystem _powerCellSystem = default!;
+    [Dependency] private readonly PowerCellSystem _powerCellSystem = default!;
     [Dependency] private readonly ItemToggleSystem _itemToggleSystem = default!;
 
     public override void Initialize()

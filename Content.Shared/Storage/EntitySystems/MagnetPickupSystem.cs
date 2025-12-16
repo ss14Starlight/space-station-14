@@ -50,10 +50,11 @@ public sealed class MagnetPickupSystem : EntitySystem
                 continue;
 
             comp.NextScan += ScanDelay;
+            Dirty(uid, comp);
 
             if (!_inventory.TryGetContainingSlot((uid, xform, meta), out var slotDef))
             {
-                if (comp.SlotFlags != SlotFlags.NONE)
+                if (comp.RequiresEquipping)
                     continue;
             }
             else

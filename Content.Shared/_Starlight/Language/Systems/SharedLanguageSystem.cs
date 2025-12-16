@@ -42,6 +42,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
         
         SubscribeLocalEvent<LanguageKnowledgeComponent, CloningEvent>(OnClone);
         SubscribeLocalEvent<LanguageKnowledgeComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<AdditionalLanguageKnowledgeComponent, MapInitEvent>(OnMapInitAdditional);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
     }
 
@@ -68,6 +69,22 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     {
         var ev2 = new LanguageKnowledgeInitEvent(ent);
         RaiseLocalEvent(ent, ref ev2 , broadcast: true);
+    }
+
+    /// <summary>
+    /// Add additional languages, generally as part of a role
+    /// </summary>
+    private void OnMapInitAdditional(Entity<AdditionalLanguageKnowledgeComponent> ent, ref MapInitEvent ev)
+    {
+        if (TryComp<LanguageKnowledgeComponent>(ent, out var langComp))
+        {
+            langComp.SpokenLanguages = langComp.SpokenLanguages.Union(ent.Comp.SpokenLanguages).Distinct().ToList();
+            langComp.UnderstoodLanguages = langComp.UnderstoodLanguages.Union(ent.Comp.UnderstoodLanguages).Distinct().ToList();
+            if (TryComp<LanguageSpeakerComponent>(ent, out var speaker))
+            {
+                UpdateEntityLanguages((ent, speaker));
+            }
+        }
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)

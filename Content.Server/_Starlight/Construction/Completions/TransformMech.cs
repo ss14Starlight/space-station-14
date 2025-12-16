@@ -2,6 +2,7 @@ using Content.Server.Mech.Systems;
 using Content.Server.Power.Components;
 using Content.Shared.Construction;
 using Content.Shared.Mech.Components;
+using Content.Shared.Power.Components;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
@@ -64,7 +65,7 @@ public sealed partial class TransformMech : IGraphAction
             if (batteryContainer.ContainedEntities.Count == 1)
             {
                 var cell = batteryContainer.ContainedEntities[0];
-                if (!entityManager.TryGetComponent<BatteryComponent>(cell, out var batteryComponent))
+                if (!entityManager.TryGetComponent<PredictedBatteryComponent>(cell, out var batteryComponent))
                 {
                     Logger.Warning($"Mech construct entity {uid} had an invalid entity in container \"{BatteryContainer}\"! Aborting build mech action.");
                     return;

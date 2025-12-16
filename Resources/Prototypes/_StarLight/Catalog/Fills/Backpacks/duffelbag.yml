@@ -3,16 +3,18 @@
   id: ClothingBackpackDuffelAbductorFilled
   suffix: Filled
   components:
-  - type: StorageFill
-    contents:
-      - id: HemostatAbductor
-      - id: SawAbductor
-      - id: DrillAbductor
-      - id: CauteryAbductor
-      - id: RetractorAbductor
-      - id: ScalpelAbductor
-      - id: BoneGelAbductor
-      - id: BoneSetterAbductor
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: HemostatAbductor
+        - id: SawAbductor
+        - id: DrillAbductor
+        - id: CauteryAbductor
+        - id: RetractorAbductor
+        - id: ScalpelAbductor
+        - id: BoneGelAbductor
+        - id: BoneSetterAbductor
       
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -20,13 +22,15 @@
   name: Minotaur bundle
   description: "Lean and mean: Contains smooth, powerful, highly illegal Shotgun, a 5 12g buckshot drums."
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponShotgunMinotaur
-      - id: MagazineShotgun
-      - id: MagazineShotgun
-      - id: MagazineShotgun
-      - id: MagazineShotgun
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponShotgunMinotaur
+        - id: MagazineShotgun
+        - id: MagazineShotgun
+        - id: MagazineShotgun
+        - id: MagazineShotgun
       
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -34,11 +38,13 @@
   name: Desert Eagle bundle
   description: "Contains high damage Desert Eagle, a 3 magnum magazines."
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponPistolDeagle
-      - id: MagazineMagnum
-      - id: MagazineMagnum
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolDeagle
+        - id: MagazineMagnum
+        - id: MagazineMagnum
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -46,12 +52,14 @@
   name: Mantis Blade bundle
   description: "Contains a pair of cybernetic arms, watch out. You got a psycho on the loose."
   components:
-  - type: StorageFill
-    contents:
-    - id: RightArmCyberMantisBlade
-    - id: LeftArmCyberMantisBlade
-    - id: RightHandCyber
-    - id: LeftHandCyber
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RightArmCyberMantisBlade
+        - id: LeftArmCyberMantisBlade
+        - id: RightHandCyber
+        - id: LeftHandCyber
     
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -59,11 +67,13 @@
   name: pitbull bundle
   description: "Contains the Pitbull Rifle and two additional magazines."
   components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRiflePitbull
-    - id: MagazineMagnumRifleSP
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRiflePitbull
+        - id: MagazineMagnumRifleSP
+          amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -71,11 +81,13 @@
   name: type u3 uzi bundle
   description: "Contains a sleek, dangerous uzi, and 2 additional magazines."
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponSubMachineGunUzi
-      - id: MagazinePistolSubMachineGunUzi
-      - id: MagazinePistolSubMachineGunUzi
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunUzi
+        - id: MagazinePistolSubMachineGunUzi
+        - id: MagazinePistolSubMachineGunUzi
       
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -83,10 +95,12 @@
   name: infiltration hardsuit bundle
   description: "Contains the latest in Syndicate chameleon technology, the infiltration hardsuit."
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterHardsuitInfiltration
-      - id: ClothingMaskGasSyndicate
-      - id: ClothingHandsGlovesCombat
-      - id: DoubleEmergencyOxygenTankFilled
-      - id: DoubleEmergencyNitrogenTankFilled
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitInfiltration
+        - id: ClothingMaskGasSyndicate
+        - id: ClothingHandsGlovesCombat
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled

@@ -85675,15 +85675,11 @@ entities:
     - type: Transform
       pos: -13.30652,-49.514458
       parent: 2
-    - type: Battery
-      startingCharge: 1080
   - uid: 15670
     components:
     - type: Transform
       pos: -5.8782177,-12.490494
       parent: 2
-    - type: Battery
-      startingCharge: 1080
 - proto: PowerCellHyperPrinted
   entities:
   - uid: 15652
@@ -85691,8 +85687,6 @@ entities:
     - type: Transform
       pos: 6.3897047,-51.287365
       parent: 2
-    - type: Battery
-      startingCharge: 1800
 - proto: PowerCellRecharger
   entities:
   - uid: 22

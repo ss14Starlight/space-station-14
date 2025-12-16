@@ -126,7 +126,6 @@
     - SecuritySidearm
     - SurvivalSecurity
     - Trinkets
-    - SecurityStar
     - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
@@ -135,6 +134,7 @@
     - GroupTankHarness
     - SalvageSpecialistBackpack
     - SalvageLeadJumpsuit
+    - SalvageLeadNeck
     - SalvageSpecialistOuterClothing
     - SalvageSpecialistShoes
     - SalvageLeadPDA

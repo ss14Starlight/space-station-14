@@ -15,6 +15,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Server.Administration.Systems;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
