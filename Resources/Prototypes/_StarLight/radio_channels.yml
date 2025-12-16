@@ -27,5 +27,5 @@
   name: chat-radio-event
   keycode: "a"
   frequency: 927 # fifteen competing standards
-  color: "#ed7300" # reuses soviet colour for now
+  color: "00FFE0" # thanks mikey!
   longRange: true
