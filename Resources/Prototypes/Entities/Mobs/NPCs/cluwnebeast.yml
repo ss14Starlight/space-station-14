@@ -103,6 +103,7 @@
     unremovable: true #Starlight
     isCluwne: false
     emoteId: CluwneBeast
+    outfitId: CluwneBeastGear
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown

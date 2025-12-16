@@ -69,7 +69,10 @@
   - type: Sprite
     scale: 1.08, 1.08
   - type: Bloodstream
-    bloodReagent: CopperBlood
+    bloodReagents:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 1
   - type: Vocal
     sounds:
       Male: MaleCyclorite

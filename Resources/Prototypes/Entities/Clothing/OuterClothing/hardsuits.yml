@@ -261,7 +261,7 @@
   #- type: PowerCellDraw
     #enabled: false
     #drawRate: 8
-    #useRate: 0
+    #useCharge: 0
   #- type: UseDelay
     #delay: 10.0
 
@@ -595,7 +595,7 @@
   - type: PowerCellDraw
     enabled: false
     drawRate: 6
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 10.0
 
@@ -731,10 +731,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.70 #SL EDIT
-        Slash: 0.70 #SL EDIT
+        Blunt: 0.6 #SL EDIT
+        Slash: 0.6 #SL EDIT
         Piercing: 0.60 #SL EDIT
-        Heat: 0.2
+        Heat: 0.1 #SL EDIT
         Radiation: 0.01
         Caustic: 0.5
     staminaModifier: 0.2
@@ -1066,7 +1066,7 @@
 
 #ERT Security Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ] #sl Change
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ] #sl Change
   id: ClothingOuterHardsuitERTSecurity
   name: ERT security's hardsuit
   description: A protective hardsuit worn by the security officers of an emergency response team.
@@ -1075,6 +1075,23 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5 #Starlight edit
+  - type: StaminaResistance 
+    damageCoefficient: 0.75
+  - type: Armor #Starlight edit - all resists are new, ert sec was formerly a copy of elite suit, it should not be.
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.3
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTSecurity
   - type: Tag

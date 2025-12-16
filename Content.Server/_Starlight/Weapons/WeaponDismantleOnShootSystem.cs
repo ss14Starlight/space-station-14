@@ -17,6 +17,7 @@ using Content.Shared.Wieldable;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.Weapon.Systems;
 public sealed partial class WeaponDismantleOnShootSystem : SharedWeaponDismantleOnShootSystem
@@ -43,9 +44,12 @@ public sealed partial class WeaponDismantleOnShootSystem : SharedWeaponDismantle
         if (DismantleCheck(ent, ref args) == false)
             return;
 
+        if (!args.Shooter.HasValue)
+            return;
+
         //apply the damage to the shooter
         //get the shooters damageable component
-        Damageable.TryChangeDamage(args.Shooter, ent.Comp.SelfDamage, origin:args.Shooter);
+        Damageable.TryChangeDamage(args.Shooter.Value, ent.Comp.SelfDamage, origin:args.Shooter.Value);
 
         //we need the user past this point
         if (!args.Shooter.HasValue)
