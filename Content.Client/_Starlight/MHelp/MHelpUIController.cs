@@ -202,15 +202,15 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
 
     private void UnreadMHelpReceived()
     {
-        GameMHelpButton?.StyleClasses.Add(Controls.MenuButton.StyleClassRedTopButton);
-        LobbyMHelpButton?.StyleClasses.Add(StyleNano.StyleClassButtonColorRed);
+        GameMHelpButton?.StyleClasses.Add(StyleClass.Negative);
+        LobbyMHelpButton?.StyleClasses.Add(StyleClass.Negative);
         _hasUnreadMHelp = true;
     }
 
     private void UnreadMHelpRead()
     {
-        GameMHelpButton?.StyleClasses.Remove(Controls.MenuButton.StyleClassRedTopButton);
-        LobbyMHelpButton?.StyleClasses.Remove(StyleNano.StyleClassButtonColorRed);
+        GameMHelpButton?.StyleClasses.Remove(StyleClass.Negative);
+        LobbyMHelpButton?.StyleClasses.Remove(StyleClass.Negative);
         _hasUnreadMHelp = false;
     }
 

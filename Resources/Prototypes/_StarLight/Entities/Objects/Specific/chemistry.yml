@@ -70,10 +70,12 @@
     shape:
     - 0,0,1,1
     storedRotation: 90
-  - type: StorageFill
-    contents:
-    - id: BaseChemistryEmptyVial
-      amount: 6
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: BaseChemistryEmptyVial
+          amount: 6
   - type: ItemCounter
     count:
       tags: [Vial]

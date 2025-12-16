@@ -4,6 +4,7 @@ loadout-trait-exclusion = This item conflicts with one of your selected traits.
 
 # Miscellaneous
 loadout-group-trinkets = Trinkets
+loadout-group-jobtrinkets = Job trinkets
 loadout-group-glasses = Glasses
 loadout-group-backpack = Backpack
 loadout-group-instruments = Instruments
@@ -45,6 +46,7 @@ loadout-group-assistant-neck = Assistant neck
 loadout-group-bartender-head = Bartender head
 loadout-group-bartender-jumpsuit = Bartender jumpsuit
 loadout-group-bartender-outerclothing = Bartender outer clothing
+loadout-group-bartender-shaker = Bartender shaker
 
 loadout-group-chef-head = Chef head
 loadout-group-chef-mask = Chef mask

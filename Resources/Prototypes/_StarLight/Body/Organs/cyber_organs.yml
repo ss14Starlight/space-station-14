@@ -7,7 +7,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
-  - type: Gibbable
   - type: Extractable
     juiceSolution:
       reagents:

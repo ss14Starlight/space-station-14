@@ -79,13 +79,15 @@
   - type: ThiefUndeterminedBackpack
     spawnedStoragePrototype: ClothingBackpackSatchelSmugglerUnanchored
 
+# Starlight start
 - type: entity
   parent: BaseThiefStealObjective
   id: MiningShuttleCircuitboardStealObjective
   components:
   - type: NotJobRequirement
-    job: CargoTechnician
+    jobs: [ CargoTechnician ]
   - type: StealCondition
     stealGroup: MiningShuttleConsoleCircuitboard
   - type: Objective
     difficulty: 0.7
+#Starlight end

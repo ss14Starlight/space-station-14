@@ -1,8 +1,8 @@
 - type: entity
-  id: NTDefaultCircuitBoard
+  abstract: true
   parent: BaseElectronics
-  name: law board (NT Default)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the NT Default lawset.
+  id: BaseSiliconLawboard
+  description: An electronics board containing a silicon lawset.
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi
@@ -12,198 +12,148 @@
     IsLawboard: true # Starlight
   - type: StaticPrice # Starlight-edit: Added lawboards to cargo
     price: 1000 
+  - type: GuideHelp
+    guides:
+    - Lawsets
+
+- type: entity
+  id: NTDefaultCircuitBoard
+  parent: BaseSiliconLawboard
+  name: law board (NT Default)
+  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the NT Default lawset.
+  components:
+  - type: SiliconLawProvider
+    laws: NTDefault
 
 - type: entity
   id: AsimovCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Crewsimov)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Crewsimov lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: CrewsimovAI
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
 
 - type: entity
   id: CorporateCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Corporate)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Corporate lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: Corporate
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
-
 - type: entity
   id: CommandmentCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Ten Commandments)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Ten Commandments lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: CommandmentsLawset
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
 
 - type: entity
   id: PaladinCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Paladin)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Paladin lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: PaladinLawset
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
 
 - type: entity
   id: LiveLetLiveCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Live and Let Live)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Live and Let Live lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: LiveLetLiveLaws
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
 
 - type: entity
   id: StationEfficiencyCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Station Efficiency)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Station Efficiency lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: EfficiencyLawset
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
 
 - type: entity
   id: RobocopCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Robocop)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Robocop lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: RobocopLawset
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
 
 - type: entity
   id: OverlordCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Overlord)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Overlord lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: OverlordLawset
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
 
 - type: entity
   id: GameMasterCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Game Master)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Game Master lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: GameMasterLawset
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
 
 - type: entity
   id: ArtistCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Artist)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Artist lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: PainterLawset
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
 
 - type: entity
   id: AntimovCircuitBoard
-  parent: [BaseElectronics, BaseSyndicateContraband]
+  parent: [BaseSiliconLawboard, BaseSyndicateContraband]
   name: law board (Antimov)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Antimov lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: AntimovLawset
     lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
+  - type: StaticPrice
     price: 10000
 
 - type: entity
   id: NutimovCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Nutimov)
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Nutimov lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: NutimovLawset
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
 
 - type: entity
   id: XenoborgCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Xenoborg)
   suffix: Admeme
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Xenoborg lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: XenoborgLawset
     IsLawboard: true # Starlight
@@ -212,16 +162,11 @@
 
 - type: entity
   id: MothershipCircuitBoard
-  parent: BaseElectronics
+  parent: BaseSiliconLawboard
   name: law board (Mothership Core)
   suffix: Admeme
   # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Mothership Core lawset.
   components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
   - type: SiliconLawProvider
     laws: MothershipCoreLawset
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000
