@@ -93,6 +93,12 @@ public interface IDestinyDiceTargetable
     public EntProtoId TargetProto { get; set; }
 }
 
+#region Targets
+
+#region 
+
+#endregion
+
 #region Effects
 /// <summary>
 /// Groups of effects, multiple groups can be associated with a single number, and are picked via weight.
