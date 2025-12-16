@@ -2,12 +2,12 @@ using JetBrains.Annotations;
 using System.Linq;
 using Content.Server.Botany.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
 using Content.Shared.Random;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server.Botany.Systems;
 
@@ -20,6 +20,7 @@ public sealed partial class MutationSystem : EntitySystem
     [Dependency] private readonly BotanySystem _botany = default!;
     [Dependency] private readonly PlantTraySystem _plantTray = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
     private static readonly ProtoId<RandomPlantMutationListPrototype> RandomPlantMutations = "RandomPlantMutations";
     private RandomPlantMutationListPrototype _randomMutations = default!;
@@ -110,7 +111,7 @@ public sealed partial class MutationSystem : EntitySystem
     }
 
     [PublicAPI]
-    public void CrossChemicals(ref Dictionary<string, PlantChemQuantity> val, Dictionary<string, PlantChemQuantity> other)
+    public void CrossChemicals(ref Dictionary<ProtoId<ReagentPrototype>, PlantChemQuantity> val, Dictionary<ProtoId<ReagentPrototype>, PlantChemQuantity> other)
     {
         // Go through chemicals from the pollen in swab
         foreach (var otherChem in other)
