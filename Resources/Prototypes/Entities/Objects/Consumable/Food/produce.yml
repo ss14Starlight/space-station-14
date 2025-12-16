@@ -177,6 +177,8 @@
       reagents:
       - ReagentId: LaughinSyrup
         Quantity: 5
+      - ReagentId: Hummus # Starlight
+        Quantity: 5 # Starlight
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/laughin_pea.rsi
   - type: Item
@@ -2439,6 +2441,11 @@
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 2
+  - type: Extractable # Starlight
+    juiceSolution: # Starlight
+      reagents: # Starlight
+      - ReagentId: Hummus # Starlight
+        Quantity: 6 # Starlight
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/pea.rsi
   - type: Item
@@ -2473,6 +2480,11 @@
           Quantity: 3
         - ReagentId: Pax
           Quantity: 2
+  - type: Extractable # Starlight
+    juiceSolution: # Starlight
+      reagents: # Starlight
+      - ReagentId: Hummus # Starlight
+        Quantity: 10 # Starlight
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/world_pea.rsi
   - type: Item

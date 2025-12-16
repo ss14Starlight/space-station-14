@@ -28,7 +28,7 @@
   - type: StealCondition
     verifyMapExistence: false
   - type: Objective
-    difficulty: 2.75
+    difficulty: 1.5 #Starlight edit, this was way too high and it made stuff like hypo, crew monitor, license and diploma cost 2.75 which is odd
   - type: ObjectiveLimit
     limit: 2 # there is usually only 1 of each steal objective, have 2 max for drama
 
@@ -41,7 +41,7 @@
   description: One of our undercover agents will debrief you when you arrive. Don't show up in cuffs.
   components:
   - type: Objective
-    difficulty: 1.3
+    difficulty: 1 #Starlight edit
     icon:
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
@@ -68,8 +68,8 @@
       - EscapeShuttleCondition
       - StealCondition
   - type: DieCondition
-  - type: ObjectiveLimit
-    limit: 1
+  - type: ObjectiveLimit #Starlight edit
+    limit: 3
 
 #- type: entity
 #  parent: [BaseTraitorObjective, BaseLivingObjective]
@@ -92,7 +92,7 @@
   description: Do it however you like, just make sure they don't get off the station.
   components:
   - type: Objective
-    difficulty: 1.75
+    difficulty: 1.5 #Starlight edit
     unique: false
   - type: TargetObjective
     title: objective-condition-maroon-person-title
@@ -113,7 +113,7 @@
   components:
   - type: Objective
     # technically its still possible for KillRandomPersonObjective to roll a head but this is guaranteed, so higher difficulty
-    difficulty: 3.0
+    difficulty: 2.5 #Starlight edit
     # killing 1 head is enough
     unique: true
   - type: TargetObjective
@@ -165,7 +165,7 @@
   description: Identify yourself at your own risk. We just need them to succeed.
   components:
   - type: Objective
-    difficulty: 2.5
+    difficulty: 1 #Starlight edit, i have NO idea why the difficulty was so high, its a big fat nothingburger
   - type: TargetObjective
     title: objective-condition-other-traitor-progress-title
   - type: PickRandomPerson
@@ -187,6 +187,10 @@
         components:
         - HelpProgressCondition
         - KeepAliveCondition
+  - type: ObjectiveBlacklistRequirement # Starlight - only one, its not that cool, noone wants all their objectives to be "help X"
+    blacklist:
+      components:
+        - HelpProgressCondition
 
 # steal
 
@@ -236,7 +240,7 @@
     stealGroup: ClothingOuterHardsuitRd
   - type: Objective
     # This item must be worn or stored in a slowing duffelbag, very hard to hide.
-    difficulty: 3
+    difficulty: 2.5 #Starlight edit
 
 - type: entity
   parent: BaseRDStealObjective
@@ -317,7 +321,7 @@
   components:
   - type: Objective
     # sorry ce but your jordans are not as high security as the caps gear
-    difficulty: 3.5
+    difficulty: 2.5 #Starlight edit, jetpacks in the room most of the time and theres copies of the id that are pretty easy to get
   - type: NotJobRequirement
     jobs: [ Captain ]
 
@@ -339,6 +343,8 @@
   parent: BaseCaptainObjective
   id: CaptainGunStealObjective
   components:
+  - type: Objective
+    difficulty: 3 #Starlight edit, usually on cap the microsecond its code blue, so this ones ACTUALLY risky
   - type: StealCondition
     stealGroup: WeaponAntiqueLaser
     owner: job-name-captain

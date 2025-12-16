@@ -25,6 +25,76 @@
   - ScarfPrideLongBacon
 
 - type: loadoutGroup
+  id: Pens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: ClownPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - CrayonOrange
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: MimePens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - CrayonMime
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: LuxuryPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - FancyPenNoReq
+  - Pen
+
+- type: loadoutGroup
+  id: HoPPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenHop
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: CapPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenCap
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: NTRPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenNTR
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: CCPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenCentcom
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
   id: AssistantGlasses
   name: loadout-group-assistant-glasses
   minLimit: 0

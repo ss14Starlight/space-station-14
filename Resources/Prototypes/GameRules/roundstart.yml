@@ -147,6 +147,10 @@
   components:
   - type: GameRule
     minPlayers: 20
+    # Starlight Start
+    denyGameRules:
+    - AbductorsSpawn
+    # Starlight End
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/nukieplanet.yml
   - type: AntagSelection
@@ -319,6 +323,7 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ HeadRev ]
+      min: 2 #Starlight edit, made it 2 since one person dying shouldnt end a major gamemode, praying it breaks nothing
       max: 3
       playerRatio: 15
       startingGear: HeadRevGear

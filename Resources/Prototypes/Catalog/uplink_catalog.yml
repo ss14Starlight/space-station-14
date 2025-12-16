@@ -168,11 +168,11 @@
     Telecrystal: 8
   categories:
   - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
+#  conditions: #Starlight edit, i want chaos, also its balanced around its base price, it breaks under kinetic fire pretty easily and it costs a third of traitor tc
+#  - !type:StoreWhitelistCondition
+#    whitelist:
+#      tags:
+#      - NukeOpsUplink
 
 - type: listing
   id: UplinkSniperBundle
@@ -1817,14 +1817,14 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndieelite.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   cost:
-    Telecrystal: 12
+    Telecrystal: 10 #Starlight edit
   categories:
   - UplinkWearables
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
+#  conditions: #Starlight edit, why cant traitors grab this?... they get elite web vest as is
+#  - !type:StoreWhitelistCondition
+#    whitelist:
+#      tags:
+#      - NukeOpsUplink
 
 - type: listing
   id: UplinkClothingOuterHardsuitJuggernaut

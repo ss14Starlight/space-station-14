@@ -34,5 +34,7 @@
           weight: 2
         - id: EmagCommie
           weight: 1
+        - id: ClothingOuterArmorSovietFlak
+          weight: 3
         rolls: !type:ConstantNumberSelector
           value: 1

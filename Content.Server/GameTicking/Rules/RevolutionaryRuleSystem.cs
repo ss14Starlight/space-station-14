@@ -1,4 +1,5 @@
 using Content.Server.Administration.Logs;
+using Content.Server.AlertLevel;
 using Content.Server.Antag;
 using Content.Server.Audio;
 using Content.Server.Chat.Systems;
@@ -79,6 +80,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly ChatSystem _chatSystem = default!; // Starlight
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Starlight
     [Dependency] private readonly SpecialLobbyContentSystem _specialLobbyContent = default!; // Starlight
+    [Dependency] private readonly AlertLevelSystem _alert = default!; // Starlight
 
     //Used in OnPostFlash, no reference to the rule component is available
     public readonly ProtoId<NpcFactionPrototype> RevolutionaryNpcFaction = "Revolutionary";
@@ -651,6 +653,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     private void DeleteUplinksTurnItemsToAsh()
     {
         // Find and delete all USSP uplinks
+        EntityUid uid = default; // This sucks. Has to be a better way.
         var uplinkQuery = EntityManager.EntityQuery<MetaDataComponent>(true);
         var uplinksToDelete = new List<EntityUid>();
         
@@ -687,7 +690,21 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             {
                 // Spawn ash at the rift's location
                 EntityManager.SpawnEntity("Ash", coordinates);
-                
+
+                if (uid == default)
+                {
+                    var xform = Transform(entity);
+                    var station = _stationSystem.GetStationInMap(xform.MapID);
+                    if (station != null)
+                    {
+                        uid = station.Value;
+                        _chatSystem.DispatchGlobalAnnouncement(
+                            Loc.GetString("centcomm-revs-alldead"),
+                            Loc.GetString("cmd-announce-sender"));
+                        _alert.SetLevel(station.Value, "green", true, true, true);
+                    }
+                }
+
                 // Delete the rift
                 EntityManager.QueueDeleteEntity(entity);
             }
