@@ -13,7 +13,7 @@ public sealed partial class DoomedComponent : Component
     /// How long till they die?
     /// </summary>
     [DataField]
-    public TimeSpan TimeToDeath = TimeSpan.FromSeconds(15);
+    public TimeSpan TimeToDeath = TimeSpan.FromSeconds(300);
 
     /// <summary>
     /// Damage to deal upon the timer running out
@@ -23,7 +23,7 @@ public sealed partial class DoomedComponent : Component
     {
         DamageDict = new()
         {
-            { "Blunt", 1000 }
+            { "Genetic", 1000 }
         }
     };
 
