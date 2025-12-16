@@ -1,4 +1,5 @@
 using Content.Server.Botany.Components;
+using Content.Server.Botany.Systems;
 using Content.Server.Popups;
 using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
@@ -13,14 +14,14 @@ namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
 public sealed partial class PlantDestroySeedsEntityEffectSystem : EntityEffectSystem<PlantTrayComponent, PlantDestroySeeds>
 {
     [Dependency] private PopupSystem _popup = default!;
-    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+    [Dependency] private readonly PlantTraySystem _plantTray = default!;
 
     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantDestroySeeds> args)
     {
-        if (entity.Comp.PlantEntity == null || Deleted(entity.Comp.PlantEntity))
+        if (!_plantTray.HasPlant(entity.AsNullable()))
             return;
 
-        var plantUid = entity.Comp.PlantEntity.Value;
+        var plantUid = entity.Comp.PlantEntity!.Value;
         if (!TryComp<PlantHolderComponent>(plantUid, out var plantHolder) || plantHolder.Dead)
             return;
 
