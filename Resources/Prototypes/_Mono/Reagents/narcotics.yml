@@ -50,7 +50,7 @@
           reagent: Phenylpiperidine
           max: 20
       - !type:Drunk
-        boozePower: 75
+        boozePower: 35
         # OD effects
       - !type:Vomit
         probability: 0.05

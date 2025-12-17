@@ -10,7 +10,7 @@
   - type: Item
     size: Tiny
   - type: StaticPrice
-    price: 1250 # Tweak later once we figure out a good balance
+    price: 900 # Reduced from the 1250 it is in monolith
   - type: Edible
   - type: FlavorProfile
     flavors:
@@ -20,10 +20,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 4 
         reagents:
         - ReagentId: Phenylpiperidine
-          Quantity: 5
+          Quantity: 4 # Contains 4u but costs 5u to make - No more infinite dylo with 5u of phenyl
   - type: DamageOnLand
     damage:
       types:
