@@ -539,6 +539,8 @@
         color: "#613D1D"
       - state: base-stripes-inhand-right
         color: "#520079"
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
 
 - type: entity
   id: BaseBorgModuleSupply
@@ -564,6 +566,8 @@
         color: "#613D1D"
       - state: base-stripes-inhand-right
         color: "#cbb036"
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
 
 - type: entity
   id: BorgModuleBountyPaperPlaceholder
@@ -586,7 +590,6 @@
   name: hauling cyborg module
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-mats
@@ -627,7 +630,6 @@
   name: mail cyborg module
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-mail
