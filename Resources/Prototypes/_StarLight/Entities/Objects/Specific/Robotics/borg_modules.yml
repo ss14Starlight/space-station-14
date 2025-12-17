@@ -519,6 +519,9 @@
   parent: BaseBorgModule
   abstract: true
   components:
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-salvage
   - type: Tag
     tags:
     - BorgModuleMining
@@ -546,6 +549,9 @@
   parent: BaseBorgModule
   abstract: true
   components:
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-cargo
   - type: Tag
     tags:
     - BorgModuleSupply
@@ -637,6 +643,12 @@
     - item: BorgMailBag
     - hand:
         emptyRepresentative: BorgModuleMailPlaceholder
+        emptyLabel: borg-slot-mail-empty
+        whitelist:
+          components:
+          - Delivery
+    - hand: # Second one is so it can pick up packages
+        emptyRepresentative: BorgModuleMailPlaceholder 
         emptyLabel: borg-slot-mail-empty
         whitelist:
           components:
