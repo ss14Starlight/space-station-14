@@ -46,7 +46,7 @@
   - type: LimitedCharges
     maxCharges: 5
   - type: AutoRecharge
-    rechargeDuration: 30
+    rechargeDuration: 120 # starlight change: was 30 and is changed to nerf the staff
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/staves.rsi
     layers:
