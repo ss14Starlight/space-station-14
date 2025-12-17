@@ -20,6 +20,7 @@ using Content.Server.Chat.Managers;
 using Robust.Shared.Player;
 using Content.Shared.Chat;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 
 namespace Content.Server._Starlight;

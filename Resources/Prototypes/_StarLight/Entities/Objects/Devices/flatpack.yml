@@ -78,3 +78,16 @@
     - state: reflector
   - type: Flatpack
     entity: Reflector
+
+- type: entity
+  parent: BaseFlatpack
+  id: ShuttleGunKineticFlatpack
+  name: PTK-800 "Matter Dematerializer" Flatpack
+  description: A flatpack used for constructing a PTK-800 "Matter Dematerializer".
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/flatpack.rsi
+      layers:
+        - state: matterdematerializer
+    - type: Flatpack
+      entity: ShuttleGunKinetic

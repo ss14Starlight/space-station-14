@@ -5,13 +5,12 @@ using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Body.Systems;
 using Content.Server.Mech.Components;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Server.PowerCell;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.Components;
@@ -23,6 +22,9 @@ using Content.Shared.Movement.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Power;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Tools;
 using Content.Shared.PowerCell;
 using Content.Shared.Tag;
@@ -56,7 +58,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private readonly PredictedBatterySystem _battery = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
@@ -279,7 +281,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (TryComp<WiresPanelComponent>(uid, out var panel) && !panel.Open)
             return;
 
-        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery))
+        if (component.BatterySlot.ContainedEntity == null && TryComp<PredictedBatteryComponent>(args.Used, out var battery))
         {
             InsertBattery(uid, args.Used, component, battery);
             UpdateCanMove(uid, component); // Starlight-edit: fix movement block
@@ -318,9 +320,9 @@ public sealed partial class MechSystem : SharedMechSystem
     private void OnInsertEquipment(EntityUid uid, MechComponent component, EntInsertedIntoContainerMessage args)
     {
         UpdateUserInterface(uid, component); // Starlight-edit: Correct equipment update
-        if (!(args.Container != component.BatterySlot || !TryComp<BatteryComponent>(args.Entity, out var battery)))
+        if (!(args.Container != component.BatterySlot || !TryComp<PredictedBatteryComponent>(args.Entity, out var battery)))
         {
-            component.Energy = battery.CurrentCharge;
+            component.Energy = battery.LastCharge;
             component.MaxEnergy = battery.MaxCharge;
 
             Dirty(uid, component);
@@ -527,7 +529,7 @@ public sealed partial class MechSystem : SharedMechSystem
             component.PilotSlot.ContainedEntity != null)
         {
             var damage = args.DamageDelta * component.MechToPilotDamageMultiplier;
-            _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damage);
+            _damageable.ChangeDamage(component.PilotSlot.ContainedEntity.Value, damage);
         }
     }
 
@@ -600,14 +602,16 @@ public sealed partial class MechSystem : SharedMechSystem
         if (battery == null)
             return false;
 
-        if (!TryComp<BatteryComponent>(battery, out var batteryComp))
+        if (!TryComp<PredictedBatteryComponent>(battery, out var batteryComp))
             return false;
 
-        _battery.SetCharge(battery!.Value, batteryComp.CurrentCharge + delta.Float(), batteryComp);
-        if (batteryComp.CurrentCharge != component.Energy) //if there's a discrepency, we have to resync them
+        _battery.SetCharge(battery.Value, _battery.GetCharge(battery.Value) + delta.Float());
+        // TODO: Power cells are predicted now, so no need to duplicate the charge level
+        var charge = _battery.GetCharge(battery.Value);
+        if (charge != component.Energy) //if there's a discrepency, we have to resync them
         {
-            Log.Debug($"Battery charge was not equal to mech charge. Battery {batteryComp.CurrentCharge}. Mech {component.Energy}");
-            component.Energy = batteryComp.CurrentCharge;
+            Log.Debug($"Battery charge was not equal to mech charge. Battery {charge}. Mech {component.Energy}");
+            component.Energy = charge;
             Dirty(uid, component);
         }
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
@@ -624,7 +628,7 @@ public sealed partial class MechSystem : SharedMechSystem
         _container.Insert(toInsert, component.GasTankSlot);
         Dirty(uid, component);
     }
-    public void InsertBattery(EntityUid uid, EntityUid toInsert, MechComponent? component = null, BatteryComponent? battery = null)
+    public void InsertBattery(EntityUid uid, EntityUid toInsert, MechComponent? component = null, PredictedBatteryComponent? battery = null)
     {
         if (!Resolve(uid, ref component, false))
             return;
@@ -636,7 +640,7 @@ public sealed partial class MechSystem : SharedMechSystem
         mechBattery.Mech = uid; // Starlight-edit: Correct Charge/UI Update
 
         _container.Insert(toInsert, component.BatterySlot);
-        component.Energy = battery.CurrentCharge;
+        component.Energy = _battery.GetCharge(toInsert);
         component.MaxEnergy = battery.MaxCharge;
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block

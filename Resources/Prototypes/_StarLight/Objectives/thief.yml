@@ -3,7 +3,7 @@
   id: SalvageShuttleCircuitboardStealObjective
   components:
   - type: NotJobRequirement
-    job: CargoTechnician
+    jobs: [ CargoTechnician ]
   - type: StealCondition
     stealGroup: SalvageShuttleConsoleCircuitboard
   - type: Objective
@@ -14,8 +14,19 @@
   id: Proto5xStealObjective
   components:
   - type: NotJobRequirement
-    job: HeadOfSecurity
+    jobs: [ HeadOfSecurity ]
   - type: StealCondition
     stealGroup: Proto5x
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: BaseThiefStealObjective
+  id: EnergyShotgunStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Warden ]
+  - type: StealCondition
+    stealGroup: WeaponEnergyShotgun
   - type: Objective
     difficulty: 1

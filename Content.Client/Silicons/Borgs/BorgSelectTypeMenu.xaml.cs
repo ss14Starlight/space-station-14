@@ -78,7 +78,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
                     //_selectedBorgType = borgType; Starlight: Already added at UpdateInformation
                     UpdateInformation(borgType);
                 };
-                button.Disabled = !_requirementsManager.CheckRoleRequirements(borgType.Requirements, _playerManager.LocalSession, null, out _); // Starlight-edit
+                button.Disabled = !_requirementsManager.CheckRequirementsForNonRole(borgType.Requirements, _playerManager.LocalSession, null, out _); // Starlight-edit
                 SelectionsContainer.AddChild(button);
             }
         else
@@ -95,7 +95,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
                     //_selectedBorgType = borgType; Starlight: Already added at UpdateInformation
                     UpdateInformation(borgType);
                 };
-                button.Disabled = !_requirementsManager.CheckRoleRequirements(borgType.Requirements, _playerManager.LocalSession, null, out _); // Starlight-edit
+                button.Disabled = !_requirementsManager.CheckRequirementsForNonRole(borgType.Requirements, _playerManager.LocalSession, null, out _); // Starlight-edit
                 SelectionsContainer.AddChild(button);
             }
 

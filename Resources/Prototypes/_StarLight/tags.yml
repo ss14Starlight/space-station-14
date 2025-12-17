@@ -1,6 +1,12 @@
 # ALPHABETIZE
 
 - type: Tag
+  id: Abductor
+
+- type: Tag
+  id: AbductorScientist
+
+- type: Tag
   id: Arachnid
 
 - type: Tag
@@ -20,6 +26,9 @@
 
 - type: Tag
   id: BladeSteel
+
+- type: Tag
+  id: BloodSplatter
 
 - type: Tag
   id: Bola
@@ -55,8 +64,29 @@
   id: CheapInsulatedFabric
 
 - type: Tag
+  id: ClarkeCentralControlModule
+
+- type: Tag
+  id: ClarkePeripheralsControlModule
+
+- type: Tag
+  id: ClarkeHead
+
+- type: Tag
+  id: ClarkeLArm
+
+- type: Tag
+  id: ClarkeRArm
+
+- type: Tag
+  id: ClarkeTreads
+
+- type: Tag
   id: ClownKudzu
-  
+
+- type: Tag
+  id: CluwneBeastWearable
+
 - type: Tag
   id: Condiment
 
@@ -76,6 +106,33 @@
   id: DockGamma
 
 - type: Tag
+  id: DurandArmor
+
+- type: Tag
+  id: DurandCentralControlModule
+
+- type: Tag
+  id: DurandPeripheralsControlModule
+
+- type: Tag
+  id: DurandTargetingControlModule
+
+- type: Tag
+  id: DurandHead
+
+- type: Tag
+  id: DurandLArm
+
+- type: Tag
+  id: DurandLLeg
+
+- type: Tag
+  id: DurandRArm
+
+- type: Tag
+  id: DurandRLeg
+
+- type: Tag
   id: DrinkCarton
 
 - type: Tag
@@ -89,6 +146,36 @@
   
 - type: Tag
   id: fingerlessinsuls
+
+- type: Tag
+  id: Ghost
+
+- type: Tag
+  id: GygaxArmor
+
+- type: Tag
+  id: GygaxCentralControlModule
+
+- type: Tag
+  id: GygaxPeripheralsControlModule
+
+- type: Tag
+  id: GygaxTargetingControlModule
+
+- type: Tag
+  id: GygaxHead
+
+- type: Tag
+  id: GygaxLArm
+
+- type: Tag
+  id: GygaxLLeg
+
+- type: Tag
+  id: GygaxRArm
+
+- type: Tag
+  id: GygaxRLeg
 
 - type: Tag
   id: HiltPlasteel
@@ -119,6 +206,9 @@
 
 - type: Tag
   id: InsulatedThread
+
+- type: Tag
+  id: Lighters
 
 - type: Tag
   id: LightRifleHeavy
@@ -238,6 +328,9 @@
   id: TiderAnvilParts
 
 - type: Tag
+  id: Vial
+
+- type: Tag
   id: SecuredLocker
 
 - type: Tag
@@ -311,3 +404,9 @@
   
 - type: Tag
   id: PrototypeJawsOfLife
+
+- type: Tag
+  id: GasTank
+
+- type: Tag
+  id: MagazineLightRiflePan

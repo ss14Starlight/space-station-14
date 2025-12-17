@@ -3,8 +3,8 @@
   name: cartridge (.35 auto rubber)
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: RubberBulletTrace
+  - type: CartridgeAmmo
+    proto: RubberBulletTrace
   - type: Sprite
     layers:
       - state: base
@@ -18,8 +18,8 @@
   name: cartridge (.40 SP)
   parent: BaseCartridgePistol
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTrace40SP
+  - type: CartridgeAmmo
+    proto: BulletPistolTrace40SP
   - type: Sprite
     layers:
       - state: base
@@ -37,8 +37,8 @@
   name: cartridge (.40 HP)
   parent: CartridgePistol40SP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTrace40HP
+  - type: CartridgeAmmo
+    proto: BulletPistolTrace40HP
   - type: Sprite
     layers:
       - state: base
@@ -52,8 +52,8 @@
   name: cartridge (.40 FMJ)
   parent: CartridgePistol40SP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTrace40FMJ
+  - type: CartridgeAmmo
+    proto: BulletPistolTrace40FMJ
   - type: Sprite
     layers:
       - state: base
@@ -67,8 +67,8 @@
   name: cartridge (.40 AP)
   parent: CartridgePistol40SP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTrace40AP
+  - type: CartridgeAmmo
+    proto: BulletPistolTrace40AP
   - type: Sprite
     layers:
       - state: base
@@ -83,8 +83,8 @@
   description: A handmade pistol bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective. 
   parent: [BaseCartridgePistol, BaseMinorContraband]
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTraceImprovised
+  - type: CartridgeAmmo
+    proto: BulletPistolTraceImprovised
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Casings/improvised_casing.rsi
     layers:

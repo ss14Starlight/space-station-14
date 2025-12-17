@@ -31,7 +31,7 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         HumanoidCharacterProfile? profile = null;
         if (args.Session != null)
         {
-            var roles = args.Def.PrefRoles;
+            var roles = args.AntagRoles;
             var prefs = _prefs.GetPreferences(args.Session.UserId);
             profile = prefs.SelectProfileForAntag(roles);
         }

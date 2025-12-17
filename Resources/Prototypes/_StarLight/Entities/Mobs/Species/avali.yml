@@ -127,7 +127,10 @@
           sprite: Mobs/Effects/brute_damage.rsi
           color: "#6C3BAA"
     - type: Bloodstream
-      bloodReagent: AvaliBlood
+      bloodReagents:
+        reagents:
+        - ReagentId: AvaliBlood
+          Quantity: 1
     - type: MeleeWeapon
       soundHit:
         path: /Audio/Weapons/pierce.ogg

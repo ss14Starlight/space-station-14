@@ -1,8 +1,8 @@
 using System.Numerics;
 using System.Linq; // Carpmosia-edit - AI Navmap
 using Content.Client.Pinpointer.UI; // Carpmosia-edit - AI Navmap
-using Content.Client.Graphics;
 using Content.Shared.Movement.Components;
+using Content.Client.Graphics;
 using Content.Shared.Silicons.StationAi;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -69,16 +69,18 @@ public sealed class StationAiOverlay : Overlay
 
          // Starlight-start: moved to be after new playerEnt definition with edit
          var playerEnt = _player.LocalEntity;
+
+        // Check for cross-grid viewing (e.g., Abductor remote eye) BEFORE getting gridUid
+        if (_entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? stationAiOverlay) 
+            && stationAiOverlay.AllowCrossGrid 
+            && _entManager.TryGetComponent(playerEnt, out RelayInputMoverComponent? relay))
+            playerEnt = relay.RelayEntity;
+    
         _entManager.TryGetComponent(playerEnt, out TransformComponent? playerXform);
         var gridUid = playerXform?.GridUid ?? EntityUid.Invalid;
         _entManager.TryGetComponent(gridUid, out MapGridComponent? grid);
         _entManager.TryGetComponent(gridUid, out BroadphaseComponent? broadphase);
         // Starlight-end
-
-        if (_entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? stationAiOverlay) 
-            && stationAiOverlay.AllowCrossGrid 
-            && _entManager.TryGetComponent(playerEnt, out RelayInputMoverComponent? relay))
-            playerEnt = relay.RelayEntity;
 
         var invMatrix = args.Viewport.GetWorldToLocalMatrix();
         _accumulator -= (float)_timing.FrameTime.TotalSeconds;

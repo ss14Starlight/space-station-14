@@ -15,6 +15,6 @@ public sealed partial class SubjectWhitelistCondition : BaseCondition
         base.Handle(@subject, @object);
         return Ent.System<EntityWhitelistSystem>() is var whitelistSystem
                 && !whitelistSystem.IsWhitelistFail(Whitelist, @subject)
-                && !whitelistSystem.IsBlacklistPass(Blacklist, @subject);
+                && !whitelistSystem.IsWhitelistPass(Blacklist, @subject);
     }
 }

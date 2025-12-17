@@ -32,7 +32,6 @@
   - type: Tag
     tags:
       - HideContextMenu
-      - IgnoreMelee
 
 - type: entity
   id: EnergyDomeSmallPink

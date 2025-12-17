@@ -9,7 +9,7 @@
       - torso
       organs:
         brain: OrganVoxBrain # starlight
-        eyes: OrganHumanEyes
+        eyes: OrganVoxEyes
         tongue: OrganHumanTongue
         eye_implant: null
     torso:
@@ -24,7 +24,7 @@
         lungs: OrganVoxLungs
         stomach: OrganVoxStomach
         liver: OrganVoxLiver
-        kidneys: OrganHumanKidneys
+        kidneys: OrganVoxKidneys
         cavity: null
     right arm:
       part: RightArmVox
