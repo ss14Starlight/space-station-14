@@ -2,6 +2,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.Devil;
 using Content.Shared.Dataset;
+using Content.Shared.Damage;
 
 namespace Content.Shared._Starlight.Devil;
 
@@ -37,4 +38,40 @@ public sealed partial class DevilComponent : Component
 
     [AutoNetworkedField, ViewVariables]
     public string TrueName = "Hellish McEvil";
+
+    /// <summary>
+    /// Is the devil currently being banished?
+    /// </summary>
+    [AutoNetworkedField, ViewVariables]
+    public bool BeingBanished = true;
+
+    /// <summary>
+    /// How long is the damage cooldown per person?
+    /// </summary>
+    [DataField]
+    public TimeSpan BanishCooldown = TimeSpan.FromSeconds(3); // 3s cooldown per person
+
+    /// <summary>
+    /// List of the last times people banished the devil
+    /// </summary>
+    [AutoNetworkedField, ViewVariables]
+    public Dictionary<EntityUid, TimeSpan> LastBanishedList = new();
+
+    /// <summary>
+    /// How much damage to take per banish
+    /// </summary>
+    [DataField]
+    public DamageSpecifier BanishDamage = new()
+    {
+        DamageDict = new()
+        {
+            { "Holy", 10 },
+        }
+    };
+
+    /// <summary>
+    /// How much stamina damage to take per banish
+    /// </summary>
+    [DataField]
+    public float BanishDamageStamina = 33.0f;
 }

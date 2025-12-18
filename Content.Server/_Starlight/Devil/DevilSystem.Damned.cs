@@ -6,9 +6,8 @@ namespace Content.Server._Starlight.Devil;
 
 public sealed partial class DevilSystem : SharedDevilSystem
 {
-    [Dependency] private IPrototypeManager _prototype = default!;
-    [Dependency] private EntityManager _entityManager = default!;
-    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     private void SubscribeDamned()
     {
         SubscribeLocalEvent<DamnedComponent, DamnationInitFailEvent>(OnDamnationInitFail);
@@ -23,7 +22,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
     {
         // here we shove all the components in, and then await their potential fails later via the event
         if (!CanDamn(entity, proto)) return false;
-        if (!_prototype.TryIndex(proto, out var damnationPrototype)) return false;
+        if (!_proto.TryIndex(proto, out var damnationPrototype)) return false;
 
         _entityManager.AddComponents(entity.Owner, damnationPrototype.Components);
         _entityManager.RemoveComponents(entity.Owner, damnationPrototype.RemovedComponents);
@@ -69,7 +68,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
     private bool RemoveDamnation(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> damnation)
     {
         if (!entity.Comp.Damnations.Contains(damnation)) return false;
-        if (!_prototype.TryIndex(damnation, out var damnationPrototype)) return false;
+        if (!_proto.TryIndex(damnation, out var damnationPrototype)) return false;
 
         if (damnationPrototype.ReverseOnRemove)
         {

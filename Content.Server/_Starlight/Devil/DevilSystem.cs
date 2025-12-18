@@ -3,26 +3,36 @@ using Content.Server.Actions;
 using Content.Shared.Hands.EntitySystems;
 using Content.Server.RandomMetadata;
 using Robust.Server.Audio;
+using Robust.Shared.Prototypes;
+using Content.Shared.Speech.Components;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.Devil;
 
 public sealed partial class DevilSystem : SharedDevilSystem
 {
+    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly RandomMetadataSystem _randomMetadata = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+
+    private ProtoId<DamageContainerPrototype> BiologicalMetaphysicalDamageContainer = "BiologicalMetaphysical";
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DevilComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<DevilComponent, ComponentStartup>(OnStartup, before: [typeof(DamageableSystem)]);
 
         SubscribeLocalEvent<DevilComponent, SummonDemonicContractEvent>(OnSummonDemonicContract);
 
         SubscribeContract();
         SubscribeDamned();
+        SubscribeBanish();
     }
 
     private void OnStartup(EntityUid uid, DevilComponent devilComp, ref ComponentStartup args)
@@ -30,6 +40,14 @@ public sealed partial class DevilSystem : SharedDevilSystem
         foreach (var action in devilComp.BaseActions) _actions.AddAction(uid, action);
 
         devilComp.TrueName = _randomMetadata.GetRandomFromSegments(devilComp.NameSegments, devilComp.NameFormat);
+
+        EnsureComp<ActiveListenerComponent>(uid); // for banish listen events
+
+        // so it can take holy damage
+        EnsureComp<DamageableComponent>(uid, out var damageable);
+        _damageable.SetDamageContainerId(uid, BiologicalMetaphysicalDamageContainer);
+        damageable.Damage.DamageDict.Add("Holy", 0); // lmfao this sucks, but can't re init without removing and adding damageable comp,
+                                                     // which is arguably worse
     }
 
     #region abilities
@@ -40,8 +58,5 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         args.Handled = true;
     }
-    #endregion
-
-    #region utility
     #endregion
 }
