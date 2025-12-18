@@ -147,6 +147,10 @@
   components:
   - type: GameRule
     minPlayers: 20
+    # Starlight Start
+    denyGameRules:
+    - AbductorsSpawn
+    # Starlight End
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/nukieplanet.yml
   - type: AntagSelection

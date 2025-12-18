@@ -83,3 +83,27 @@
   solids:
     FoodDoughCottonFlat: 1
     FoodPacketMRETrash: 2
+
+- type: microwaveMealRecipe
+  id: RecipeCharcuterie
+  name: charcuterie recipe
+  result: FoodCharcuterie
+  time: 5
+  group: Savoury
+  solids:
+    FoodCheeseSlice: 2
+    FoodMeatCutletCooked: 2
+    FoodBreadPlainSlice: 2
+    FoodPlateSmall: 1
+
+- type: microwaveMealRecipe
+  id: RecipeKhlahKalash
+  name: khlav kalash recipe
+  result: FoodMealKhlavKalash
+  time: 5
+  group: Savoury
+  reagents:
+    Enzyme: 1
+  solids:
+    FoodMeatRotten: 2
+    FoodKebabSkewer: 1

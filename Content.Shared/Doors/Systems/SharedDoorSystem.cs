@@ -577,6 +577,13 @@ public abstract partial class SharedDoorSystem : EntitySystem
             if (!otherPhysics.Comp.CanCollide)
                 continue;
 
+            // Starlight start
+            // In order to make firelocks behave consistently between glass and non-glass airlocks, we
+            // need to match upstream's exclusion of glass airlock collision from the following block.
+            if (otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.AirlockLayer)
+                continue;
+            // Starlight end
+
             //TODO: Make only shutters ignore these objects upon colliding instead of all airlocks
             // Excludes Glasslayer for windows, GlassAirlockLayer for windoors, TableLayer for tables
             if (otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.GlassLayer || otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.GlassAirlockLayer || otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.TableLayer)

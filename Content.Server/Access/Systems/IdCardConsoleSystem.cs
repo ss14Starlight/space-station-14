@@ -22,7 +22,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Chat; // Starlight-edit
 
 namespace Content.Server.Access.Systems;
 
@@ -102,14 +101,14 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
         List<ProtoId<AccessGroupPrototype>> availableGroups = new();
         bool isHighPrivilege = false;
-        
+
         if (possibleAccess.Count > 0)
         {
             var allPossibleAccess = _prototype.EnumeratePrototypes<AccessLevelPrototype>()
                 .Where(a => a.CanAddToIdCard)
                 .Select(a => a.ID)
                 .ToHashSet();
-            
+
             isHighPrivilege = possibleAccess.Count >= allPossibleAccess.Count * 0.8f;
 
             foreach (var groupId in component.AccessGroups.ToList())
@@ -117,16 +116,16 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 if (!_prototype.TryIndex<AccessGroupPrototype>(groupId, out var groupPrototype))
                     continue;
 
-                var groupTags = groupPrototype.Tags.Where(tag => 
-                    _prototype.TryIndex<AccessLevelPrototype>(tag, out var accessProto) && 
+                var groupTags = groupPrototype.Tags.Where(tag =>
+                    _prototype.TryIndex<AccessLevelPrototype>(tag, out var accessProto) &&
                     accessProto.CanAddToIdCard).ToList();
-                
+
                 if (groupTags.Count == 0)
                     continue;
-                
+
                 var matchingTags = groupTags.Count(tag => possibleAccess.Contains(tag));
                 var threshold = Math.Max(1, Math.Min(3, groupTags.Count / 2));
-                
+
                 if (matchingTags >= threshold)
                 {
                     availableGroups.Add(groupId);
@@ -145,14 +144,14 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 var selectedGroup = preferredGroups
                     .Select(name => (ProtoId<AccessGroupPrototype>)name)
                     .FirstOrDefault(group => availableGroups.Contains(group));
-                
+
                 currentGroup = availableGroups.Contains(selectedGroup) ? selectedGroup : availableGroups.First();
             }
             else
             {
                 currentGroup = component.AccessGroups.FirstOrDefault();
             }
-            
+
             component.CurrentAccessGroup = currentGroup;
         }
 
@@ -176,7 +175,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 string.Empty,
                 // Starlight-edit: Start
                 currentGroup.HasValue ? currentGroup.Value : component.AccessGroups.FirstOrDefault(),
-                availableGroups); 
+                availableGroups);
                 // Starlight-edit: End
         }
         else

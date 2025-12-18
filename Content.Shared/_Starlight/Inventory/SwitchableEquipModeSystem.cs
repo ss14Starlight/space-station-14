@@ -2,11 +2,11 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Interaction.Components;
 
 namespace Content.Shared._Starlight.Inventory;
 
@@ -35,6 +35,8 @@ public sealed class SwitchableEquipModeSystem : EntitySystem
     private void OnInventoryUseSlot(EntityUid uid, SwitchableEquipModeComponent switchModeComp, ref InventoryUseSlotEvent args)
     {
         if (!TryComp<StorageComponent>(uid, out var storageComp)) return;
+
+        Resolve(uid, ref switchModeComp!, false);
 
         switch (switchModeComp.Mode)
         {
@@ -81,6 +83,7 @@ public sealed class SwitchableEquipModeSystem : EntitySystem
             Priority = 0,
             Act = () =>
             {
+                if(HasComp<UnremoveableComponent>(uid)) return;
                 _inventory.TryUnequip(user, slot.Name, false, true);
                 _hands.TryPickup(user, uid);
             }

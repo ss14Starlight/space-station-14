@@ -122,6 +122,6 @@ public sealed class DragonRiftSystem : EntitySystem
         if (!TryComp<DragonComponent>(comp.Dragon, out var dragon) || dragon.Weakened)
             return;
 
-        _dragon.RiftDestroyed(comp.Dragon.Value, dragon);
+        _dragon.RiftDestroyed(comp.Dragon.Value, uid, dragon); // Starlight edit
     }
 }

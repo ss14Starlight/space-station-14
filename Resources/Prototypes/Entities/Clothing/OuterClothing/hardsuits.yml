@@ -142,9 +142,9 @@
     modifiers:
       coefficients:
       # region starlight: lowered values
-        Blunt: 0.8 
-        Slash: 0.8 
-        Piercing: 0.75 
+        Blunt: 0.7 
+        Slash: 0.7 
+        Piercing: 0.8
         # end region starlight
         Heat: 0.7
         Radiation: 0.3
@@ -181,11 +181,11 @@
     modifiers:
       coefficients:
         Blunt: 0.7
-        Slash: 0.7
+        Slash: 0.65 #SL change: thick goliath plates! resistant to slashing
         Piercing: 0.5
         Heat: 0.7 #Goliath hide gets grilled instead of you
         Radiation: 0.3
-        Caustic: 0.8
+        Caustic: 0.7 # Starlight change: Goliath hide gets slagged instead of you
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -201,7 +201,7 @@
     - Hardsuit
     - WhitelistChameleon
 
-#Maxim Hardsuit
+# Hardsuit
 - type: entity
   parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ] #Starlight salvContra
   id: ClothingOuterHardsuitMaxim
@@ -228,7 +228,7 @@
         Radiation: 0.3 
         Caustic: 0.8 
   - type: ClothingSpeedModifier
-    walkModifier: 0.85 
+    walkModifier: 0.85
     sprintModifier: 0.85 
   - type: ExplosionResistance
     damageCoefficient: 0.4 
