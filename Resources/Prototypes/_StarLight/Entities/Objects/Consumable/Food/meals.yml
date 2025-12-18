@@ -9,7 +9,7 @@
         - meaty
         - orange
         - profits
-    - type: Food
+    - type: Edible
       trash:
       - FoodPlate
     - type: Sprite
@@ -43,7 +43,7 @@
         - lostfriendship
         - carpet
         - cat
-    - type: Food
+    - type: Edible
     - type: Sprite
       sprite: _Starlight/Objects/Consumable/Food/friedNoid.rsi
       layers:
@@ -74,7 +74,7 @@
     - type: FlavorProfile
       flavors:
         - thaslop
-    - type: Food
+    - type: Edible
       trash:
         - FoodPacketMRETrash
     - type: Sprite
@@ -91,3 +91,64 @@
     - type: Tag
       tags:
         - Meat
+
+- type: entity
+  name: charcuterie board
+  parent: FoodMealBase
+  id: FoodCharcuterie
+  description: A heaping of bite-sized meats, cheeses, and breads.
+  components:
+    - type: FlavorProfile
+      flavors:
+        - meaty
+        - cheesy
+        - bread
+    - type: Edible
+      transferAmount: 3
+      trash:
+      - FoodPlateSmall
+    - type: Sprite
+      sprite: _Starlight/Objects/Consumable/Food/plate.rsi
+      layers:
+        - state: charcuterie
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 38.25
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 29.25
+            - ReagentId: Protein
+              Quantity: 6
+    - type: Tag
+      tags:
+        - Meat
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealKhlavKalash
+  name: khlav kalash
+  description: No pizza, only khlav kalash.
+  components:
+  - type: Item
+    storedOffset: 0,-2
+  - type: Edible
+    trash:
+    - FoodKebabSkewer
+  - type: FlavorProfile
+    flavors:
+      - chewy
+      - cheap
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/khlavkalash.rsi
+    layers:
+      - state: khlavkalash
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: TableSalt
+          Quantity: 2

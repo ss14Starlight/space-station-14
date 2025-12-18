@@ -157,6 +157,8 @@
   - ScienceExplosives # sec gets everything for modular grenade making that sci does
   id: StarlightSecurityExplosives
   recipes:
+  - CableDetStack1
+  - EmptyDetonator
   - ExplosivePayload
   - GrenadeBlast
   - GrenadeEMP

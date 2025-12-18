@@ -258,11 +258,18 @@ binds:
   type: State
   key: E
   mod1: Shift
-  # Starlight Start - Suit storage equip
+- function: SmartEquipPocket1
+  type: State
+  key: G # Starlight
+  mod1: Shift
+- function: SmartEquipPocket2
+  type: State
+  key: H # Starlight
+  mod1: Shift
 - function: SmartEquipSuitStorage
   type: State
-  key: F
-  # Starlight End
+  key: F # Starlight
+  mod1: Shift
 - function: OpenBackpack
   type: State
   key: V
@@ -276,6 +283,14 @@ binds:
 - function: InspectEntity
   type: State
   key: v
+  mod1: Alt
+- function: InspectServerComponent
+  type: State
+  key: b
+  mod1: Alt
+- function: InspectClientComponent
+  type: State
+  key: c
   mod1: Alt
 - function: MouseMiddle
   type: State

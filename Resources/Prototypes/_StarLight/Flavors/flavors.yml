@@ -22,3 +22,8 @@
   id: struggle
   flavorType: Complex
   description: flavor-complex-struggle
+
+- type: flavor
+  id: halal
+  flavorType: Base
+  description: flavor-base-halal

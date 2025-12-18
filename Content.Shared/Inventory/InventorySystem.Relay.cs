@@ -6,10 +6,9 @@ using Content.Shared.Chemistry.Hypospray.Events;
 using Content.Shared.Climbing.Events;
 using Content.Shared.Contraband;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Events;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Electrocution;
-using Content.Shared.Emoting;
 using Content.Shared.Explosion;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Stunnable;
@@ -30,8 +29,8 @@ using Content.Shared.Standing;
 using Content.Shared.Strip.Components;
 using Content.Shared.Temperature;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Hitscan.Events; // Starlight
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared._Starlight.Weapon;
 using Content.Shared.Wieldable;
 using Content.Shared.Zombies;
 using Content.Shared._Starlight.ScanGate; // Starlight

@@ -12,9 +12,16 @@
       state: tiny
   - type: Item
     size: Small    
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 250 #while in theory this could give five uses, in practice it gives 2-3 uses (between charge-up time, cooldown and idle-time). Any lower and the margins are too narrow to get more than 1 use out of the defib.
     startingCharge: 250
   - type: Tag
     tags:
       - PowerCellTiny
+  - type: GenericVisualizer #TODO: make these real states
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerCellVisualLayers.Unshaded:
+          Full: {visible: false}
+          Neither: {visible: false}
+          Empty: {visible: false}

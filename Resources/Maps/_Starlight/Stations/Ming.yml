@@ -61912,7 +61912,7 @@ entities:
     - type: Transform
       pos: 9.118754,59.137047
       parent: 2
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       spent: True
     - type: EmitSoundOnCollide
       nextSound: -472.7995272
@@ -61928,7 +61928,7 @@ entities:
     - type: Transform
       pos: 8.946361,58.96517
       parent: 2
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       spent: True
     - type: EmitSoundOnCollide
       nextSound: -472.7995272
@@ -61944,7 +61944,7 @@ entities:
     - type: Transform
       pos: 9.106281,59.043297
       parent: 2
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       spent: True
     - type: EmitSoundOnCollide
       nextSound: -472.7995272
@@ -61960,7 +61960,7 @@ entities:
     - type: Transform
       pos: 11.209524,57.168297
       parent: 2
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       spent: True
     - type: EmitSoundOnCollide
       nextSound: -472.7995272
@@ -61976,7 +61976,7 @@ entities:
     - type: Transform
       pos: 8.787649,56.480797
       parent: 2
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       spent: True
     - type: EmitSoundOnCollide
       nextSound: -472.7995272
@@ -61992,7 +61992,7 @@ entities:
     - type: Transform
       pos: 12.037649,59.77767
       parent: 2
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       spent: True
     - type: EmitSoundOnCollide
       nextSound: -472.7995272

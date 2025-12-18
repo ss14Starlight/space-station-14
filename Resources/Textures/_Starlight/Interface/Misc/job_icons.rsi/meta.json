@@ -75,6 +75,18 @@
         },
         {
             "name": "SalvageSpecialist"
-        }
+        },
+		{
+			"name": "Xenoborg"
+		},
+		{
+			"name": "Mothership"
+		},
+		{
+			"name": "Skub"
+		},
+		{
+			"name": "CultistChaplain"
+		}
     ]
 }

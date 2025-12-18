@@ -68,7 +68,7 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
                 continue;
 
             if (!LocalizedNames.TryGetValue(netEntity, out var name))
-                name = Loc.GetString("navmap-unknown-target"); // Starlight-end
+                name = Loc.GetString("navmap-unknown-entity");
 
             var message = name + "\n" + Loc.GetString("navmap-location",
                 ("x", MathF.Round(_transformSystem.ToMapCoordinates(blip.Coordinates).X)), //FarHorizons

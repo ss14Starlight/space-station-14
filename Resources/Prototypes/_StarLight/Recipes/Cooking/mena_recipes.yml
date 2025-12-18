@@ -1,0 +1,170 @@
+# Middle Eastern Foods - Recipes
+
+# FoodDoughPita is created by rolling a FoodDoughRope a second time
+# see Resources/Prototypes/Recipes/Construction/Graphs/food/doughrope.yml
+
+# Pita
+- type: microwaveMealRecipe
+  id: RecipePita
+  name: pita recipe
+  result: FoodBreadPita
+  time: 5
+  group: Breads
+  deviceType: Oven
+  solids:
+    FoodDoughPita: 1
+
+# Falafel
+
+- type: microwaveMealRecipe
+  id: RecipeFalafel
+  name: falafel recipe
+  result: FoodFalafel
+  time: 5
+  group: Savory
+  deviceType: Oven
+  reagents:
+    Hummus: 10
+    TableSalt: 1
+    OilOlive: 1
+  solids:
+    FoodOnionSlice: 1
+
+# Hummus (Dip)
+
+- type: microwaveMealRecipe
+  id: RecipeHummusDip
+  name: hummus dip recipe
+  result: FoodHummusDip
+  time: 5
+  group: Savory
+  deviceType: Oven
+  reagents:
+    Hummus: 10
+    TableSalt: 1
+    OilOlive: 1
+  solids:
+    FoodBowlBig: 1
+    FoodBreadPita: 1
+
+# Chicken Shawarma
+
+- type: microwaveMealRecipe
+  id: RecipeShawarma
+  name: chicken shawarma recipe
+  result: FoodShawarma
+  time: 5
+  group: Savory
+  deviceType: Oven
+  reagents:
+    Hummus: 10
+  solids:
+    FoodMeatChickenCutletCooked: 1
+    FoodBreadPita: 1
+    FoodOnionSlice: 1
+    FoodTomato: 1
+
+# Falafel Sandwich
+
+- type: microwaveMealRecipe
+  id: RecipeFalafelSandwichLemony
+  name: falafel sandwich recipe (lemon juice)
+  result: FoodFalafelSandwich
+  time: 5
+  group: Savory
+  deviceType: Oven
+  reagents:
+    JuiceLemon: 1
+  solids:
+    FoodFalafel: 1
+    FoodBreadPita: 1
+    FoodOnionSlice: 1
+    FoodTomato: 1
+
+- type: microwaveMealRecipe
+  id: RecipeFalafelSandwichCheesy
+  name: falafel sandwich recipe (cheese)
+  result: FoodFalafelSandwich
+  time: 5
+  group: Savory
+  deviceType: Oven
+  solids:
+    FoodCheeseSlice: 1
+    FoodFalafel: 1
+    FoodBreadPita: 1
+    FoodOnionSlice: 1
+    FoodTomato: 1
+
+# Souvlaki
+
+- type: microwaveMealRecipe
+  id: RecipeSouvlaki
+  name: souvlaki gyros recipe
+  result: FoodSouvlaki
+  time: 5
+  group: Savory
+  deviceType: Oven
+  solids:
+    FoodMeatCutletCooked: 1
+    FoodBreadPita: 1
+    FoodOnionSlice: 1
+    FoodGarlic: 1
+    FoodTomato: 1
+
+# Doner Kebab
+- type: microwaveMealRecipe
+  id: RecipeDonerKebab
+  name: doner kebab recipe
+  result: FoodDonerKebab
+  time: 5
+  group: Savory
+  deviceType: Oven
+  reagents:
+    Hummus: 10
+  solids:
+    FoodMeatCutletCooked: 1
+    FoodBreadPita: 1
+    FoodCabbage: 1
+    FoodTomato: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonerKebabRotten
+  name: doner kebab recipe (rotten)
+  result: FoodDonerKebab
+  time: 5
+  group: Savory
+  deviceType: Oven
+  reagents:
+    Hummus: 10
+  solids:
+    FoodMeatRotten: 1
+    FoodBreadPita: 1
+    FoodCabbage: 1
+    FoodTomato: 1
+
+# Turkish Delight
+- type: microwaveMealRecipe
+  id: RecipeTurkishDelight
+  name: turkish delight recipe
+  result: FoodTurkishDelight
+  time: 5
+  group: Dessert
+  # deviceType: Stove # unbelievably annoying to time correctly
+  reagents:
+    Sugar: 10
+    Water: 10
+    Cornmeal: 5
+  solids:
+    FoodSnackPistachios: 1
+
+- type: microwaveMealRecipe
+  id: RecipeTurkishDelightNutFree
+  name: nut-free turkish delight recipe
+  result: FoodTurkishDelight
+  time: 5
+  group: Dessert
+  # deviceType: Stove # unbelievably annoying to time correctly
+  reagents:
+    Sugar: 15
+    Water: 15
+    Cornmeal: 10

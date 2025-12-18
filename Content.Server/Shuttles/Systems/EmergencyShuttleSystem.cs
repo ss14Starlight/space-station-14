@@ -9,7 +9,6 @@ using Content.Server.Communications;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
-using Content.Server.GameTicking;
 using Content.Server.Pinpointer;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
@@ -72,7 +71,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
-    
+
     public TimeSpan? DockTime;
 
     private bool _emergencyShuttleEnabled;
@@ -105,7 +104,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnded);
         InitializeEmergencyConsole();
     }
-    
+
     private void OnRoundEnded(RoundEndTextAppendEvent ev)
     {
         DockTime = null;
@@ -283,7 +282,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         {
             // Get the remaining restart time from the round end system
             var remainingTime = _roundEnd.ShuttleTimeLeft ?? TimeSpan.FromSeconds(ConfigManager.GetCVar(CCVars.RoundRestartTime));
-            
+
             var payload = new NetworkPayload
             {
                 [ShuttleTimerMasks.ShuttleMap] = shuttle,
@@ -484,7 +483,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
                 break; // can break, we already found the grid that created this station
             }
         //Starlight end
-        
+
         AddEmergencyShuttle((ent, ent));
     }
 

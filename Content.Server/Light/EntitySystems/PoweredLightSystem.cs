@@ -1,12 +1,14 @@
+using Content.Server.Ghost;
+using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
+
+#region Starlight
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Emp;
-using Content.Server.Ghost;
-using Content.Shared.Light.Components;
-using Content.Shared.Light.EntitySystems;
+#endregion Starlight
 
 namespace Content.Server.Light.EntitySystems;
 
@@ -21,8 +23,6 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
         SubscribeLocalEvent<PoweredLightComponent, MapInitEvent>(OnMapInit);
 
         SubscribeLocalEvent<PoweredLightComponent, GhostBooEvent>(OnGhostBoo);
-
-        SubscribeLocalEvent<PoweredLightComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged); //Starlight
     }
 
@@ -60,12 +60,6 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
         }
         // need this to update visualizers
         UpdateLight(uid, light);
-    }
-
-    private void OnEmpPulse(EntityUid uid, PoweredLightComponent component, ref EmpPulseEvent args)
-    {
-        if (TryDestroyBulb(uid, component))
-            args.Affected = true;
     }
     
     #region Starlight
