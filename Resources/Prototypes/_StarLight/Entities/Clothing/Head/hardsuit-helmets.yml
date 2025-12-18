@@ -106,6 +106,10 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.6
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
