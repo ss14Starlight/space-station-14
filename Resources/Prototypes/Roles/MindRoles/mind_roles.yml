@@ -297,12 +297,13 @@
 - type: entity
   parent: BaseMindRoleAntag
   id: MindRoleArchMage
-  name: ArchMage Role
+  name: Archmage Role
   components:
   - type: MindRole
-    antagPrototype: ArchMage
+    antagPrototype: Archmage
     exclusiveAntag: true
     subtype: role-subtype-archmage
+    roleType: TeamAntagonist
   - type: ArchMageRole
 
 - type: entity
@@ -311,9 +312,10 @@
   name: Apprentice Role
   components:
   - type: MindRole
-    antagPrototype: Apprentice
+    antagPrototype: ApprenticeRole
     exclusiveAntag: true
     subtype: role-subtype-apprentice
+    roleType: TeamAntagonist
   - type: ApprenticeRole
 
 # Zombie Squad
@@ -362,3 +364,13 @@
   - type: MindRole
     antagPrototype: Vampire
   - type: VampireRole
+
+# Wizards
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleArchmageRed
+  name: Archmage Red Role
+  components:
+  - type: MindRole
+    roleType: TeamAntagonist
+    antagPrototype: ArchmageRed

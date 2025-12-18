@@ -1,0 +1,20 @@
+- type: antag
+  id: ArchmageRed
+  name: roles-antag-archmage-red-name
+  antagonist: true
+  objective: roles-antag-archmage-red-objective
+  greet: archmage-role-greeting
+
+- type: antag
+  id: ArchmageBlue
+  name: roles-antag-archmage-blue-name
+  antagonist: true
+  objective: roles-antag-archmage-blue-objective
+  greet: archmage-role-greeting
+
+- type: antag
+  id: Apprentice
+  name: roles-antag-apprentice-name
+  antagonist: true
+  objective: roles-antag-apprentice-objective
+  greet: apprentice-role-greeting

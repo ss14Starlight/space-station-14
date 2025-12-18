@@ -1,7 +1,7 @@
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
-using Content.Shared._Starlight.Magic.Components;
+using Content.Shared.WizardBattle;
 using Content.Shared.Chat;
 using Content.Shared.Mind;
 using Content.Shared.Actions;

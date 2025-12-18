@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: NamesWizardBattlePrefix
+  values:
+    prefix: names-wizard-battle-prefix-dataset-
+    count: 10
+
+- type: localizedDataset
+  id: NamesWizardBattleSuffix
+  values:
+    prefix: names-wizard-battle-suffix-dataset-
+    count: 10

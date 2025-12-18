@@ -194,6 +194,22 @@
   - BasicRoundstartVariation
 
 - type: gamePreset
+  id: WizardBattle
+  alias:
+    - wizardbattle
+  name: wizard-battle-title
+  description: wizard-battle-description
+  minPlayers: 0
+  showInVote: false
+  rules:
+  - WizardBattle
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
   id: Revolutionary
   alias:
     - rev
@@ -347,20 +363,4 @@
     - MouseMigration
     - BasicRoundstartVariation
     - BasicRoundstartVariation
-    - BasicRoundstartVariation
-
-- type: gamePreset
-  id: WizardBattle
-  alias:
-    - wizardbattle
-    - wizbattle
-  name: wizard-battle-title
-  description: wizard-battle-description
-  showInVote: false # For now, admin-only
-  minPlayers: 1
-  rules:
-    - WizardBattle
-    - BasicStationEventScheduler
-    - MeteorSwarmScheduler
-    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation

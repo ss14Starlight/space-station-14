@@ -43,3 +43,9 @@ roles-antag-dragon-name = Space Dragon
 roles-antag-dragon-objective = Create a carp army to take over this quadrant.
 
 roles-antag-changeling-description = Use your shapeshifting abilities to complete your objectives.
+
+roles-antag-archmage-red-name = Archmage (Red)
+roles-antag-archmage-red-objective = Lead the red faction to victory in the Wizard Battle!
+
+roles-antag-archmage-blue-name = Archmage (Blue)
+roles-antag-archmage-blue-objective = Lead the blue faction to victory in the Wizard Battle!

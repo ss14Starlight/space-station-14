@@ -6,4 +6,4 @@ namespace Content.Shared.Roles.Components;
 /// Added to mind role entities to tag that they are an apprentice.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class ApprenticeRoleComponent : Component;
+public sealed partial class ApprenticeRoleComponent : BaseMindRoleComponent;

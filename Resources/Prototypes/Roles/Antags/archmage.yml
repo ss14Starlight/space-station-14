@@ -1,9 +1,9 @@
 - type: antag
-  id: ArchMage  
+  id: Archmage  
   name: roles-antag-archmage-name
   antagonist: true
   setPreference: true # Allow players to select this role
-  objective: roles-antag-archmage-objective
+  objective: roles-antag-archmage-red-objective
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 86400 # 24h

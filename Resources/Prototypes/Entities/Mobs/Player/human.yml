@@ -115,3 +115,42 @@
   - type: NpcFactionMember
     factions:
     - Wizard
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Archmage (Red)
+  parent: MobHuman
+  id: MobHumanArchmageRed
+  components:
+  - type: RandomHumanoidAppearance
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: MindRole
+    antagPrototype: ArchmageRed
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Archmage (Blue)
+  parent: MobHuman
+  id: MobHumanArchmageBlue
+  components:
+  - type: RandomHumanoidAppearance
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: MindRole
+    antagPrototype: ArchmageBlue
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Apprentice
+  parent: MobHuman
+  id: MobHumanApprentice
+  components:
+  - type: RandomHumanoidAppearance
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: MindRole
+    antagPrototype: ApprenticeRole

@@ -378,18 +378,46 @@
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
-    - prefRoles: [ ArchMage ]
+    - prefRoles: [ Archmage ]
       fallbackRoles: [ ApprenticeRole ]
-      spawnerPrototype: SpawnPointArchMage
+      spawnerPrototype: SpawnPointGhostArchmageRed
       startingGear: ArchmageGear
+      roleLoadout:
+      - RoleSurvivalNukie
+      components:
+      - type: RandomMetadata
+        nameSegments:
+        - NamesWizardFirst
+        - NamesWizardLast
+        nameFormat: name-format-wizard
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: WizardBattleArchmage
       mindRoles:
       - MindRoleArchMage
     - prefRoles: [ ApprenticeRole ]
-      fallbackRoles: [ ArchMage ]
-      spawnerPrototype: SpawnPointApprentice
+      fallbackRoles: [ Archmage ]
+      spawnerPrototype: SpawnPointGhostApprentice
+      max: 4
+      playerRatio: 16
       startingGear: ApprenticeGear
+      roleLoadout:
+      - RoleSurvivalNukie
+      components:
+      - type: RandomMetadata
+        nameSegments:
+        - NamesWizardFirst
+        - NamesWizardLast
+        nameFormat: name-format-apprentice
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: WizardBattleApprentice
       mindRoles:
       - MindRoleApprentice
+  - type: DynamicRuleCost
+    cost: 200
 
 - type: entity
   id: Zombie

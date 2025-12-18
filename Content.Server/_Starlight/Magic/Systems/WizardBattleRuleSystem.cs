@@ -1,7 +1,9 @@
 using Content.Server._Starlight.Magic.Components;
+using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Maps;
+using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
 using Content.Shared.Station;
@@ -18,6 +20,9 @@ using Content.Server.Antag;
 using Content.Server.Antag.Components;
 using Robust.Shared.Random;
 using Content.Server.Spawners.Components;
+using Content.Shared.Roles.Components;
+using Content.Shared.Mind;
+using Robust.Server.Player;
 
 namespace Content.Server._Starlight.Magic.Systems;
 
@@ -32,16 +37,20 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+
+    private EntityUid _gameRule;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<AntagSelectLocationEvent>(OnAntagSelectLocation);
+        Log.Warning("WizardBattleRuleSystem Initialize called");
     }
 
     protected override void Added(EntityUid uid, WizardBattleRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args)
     {
-
         // Create a temporary map to load the shuttles
         var tempMap = _map.CreateMap(out var tempMapId);
 
@@ -73,6 +82,7 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
 
     protected override void Started(EntityUid uid, WizardBattleRuleComponent comp, GameRuleComponent rule, GameRuleStartedEvent args)
     {
+        _gameRule = uid;
         // Find the station
         var stationQuery = EntityQueryEnumerator<StationDataComponent>();
         if (!stationQuery.MoveNext(out var stationUid, out var stationData))
@@ -199,57 +209,7 @@ public sealed class WizardBattleRuleSystem : GameRuleSystem<WizardBattleRuleComp
         base.Started(uid, comp, rule, args);
     }
 
-    private void OnAntagSelectLocation(ref AntagSelectLocationEvent args)
-    {
-        if (!TryComp<WizardBattleRuleComponent>(args.GameRule, out var comp))
-            return;
 
-        EntityUid? shuttle = null;
 
-        // Determine shuttle based on the antag definition
-        if (args.Def.StartingGear == "ArchmageGearRed")
-        {
-            shuttle = comp.RedShuttle;
-        }
-        else if (args.Def.StartingGear == "ArchmageGearBlue")
-        {
-            shuttle = comp.BlueShuttle;
-        }
-        else if (args.Def.MindRoles != null && args.Def.MindRoles.Contains("MindRoleApprentice"))
-        {
-            // For apprentices, randomly choose a shuttle
-            var shuttles = new List<EntityUid>();
-            if (comp.RedShuttle.HasValue) shuttles.Add(comp.RedShuttle.Value);
-            if (comp.BlueShuttle.HasValue) shuttles.Add(comp.BlueShuttle.Value);
-            if (shuttles.Count > 0)
-                shuttle = _random.Pick(shuttles);
-        }
 
-        if (!shuttle.HasValue)
-            return;
-
-        // Find the spawn point entity on the shuttle
-        var spawnQuery = EntityQueryEnumerator<SpawnPointComponent>();
-        while (spawnQuery.MoveNext(out var spawnUid, out _))
-        {
-            if (Transform(spawnUid).ParentUid != shuttle.Value)
-                continue;
-
-            // Use the first SpawnPoint on the shuttle
-            var coords = new EntityCoordinates(shuttle.Value, Transform(spawnUid).LocalPosition);
-            args.Coordinates.Add(_transform.ToMapCoordinates(coords));
-            return;
-        }
-
-        // If no spawn point found, pick a random position on the shuttle
-        if (TryComp<MapGridComponent>(shuttle.Value, out var grid))
-        {
-            var bounds = grid.LocalAABB;
-            var randomPos = new Vector2(
-                _random.NextFloat(bounds.Left, bounds.Right),
-                _random.NextFloat(bounds.Bottom, bounds.Top));
-            var coords = new EntityCoordinates(shuttle.Value, randomPos);
-            args.Coordinates.Add(_transform.ToMapCoordinates(coords));
-        }
-    }
 }

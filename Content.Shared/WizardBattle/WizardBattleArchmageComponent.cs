@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Starlight.Magic.Components;
+namespace Content.Shared.WizardBattle;
 
 /// <summary>
 /// Component for Wizard Battle Archmage.
@@ -12,30 +12,30 @@ public sealed partial class WizardBattleArchmageComponent : Component
     /// <summary>
     /// The faction this archmage belongs to (e.g., "Red", "Blue").
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public string Faction = "Red";
 
     /// <summary>
     /// List of recruited apprentices.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    [DataField]
     public HashSet<EntityUid> Recruits = new();
 
     /// <summary>
     /// Number of recruits needed for next ritual word.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public int NextWordThreshold = 4;
 
     /// <summary>
     /// Current ritual words collected.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    [DataField]
     public List<string> RitualWords = new();
 
     /// <summary>
     /// The recruitment word for this archmage.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    [DataField]
     public string RecruitmentWord = "";
 }

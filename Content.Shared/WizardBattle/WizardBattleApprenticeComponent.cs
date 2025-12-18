@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Starlight.Magic.Components;
+namespace Content.Shared.WizardBattle;
 
 /// <summary>
 /// Component for Wizard Battle Apprentice.
@@ -12,18 +12,18 @@ public sealed partial class WizardBattleApprenticeComponent : Component
     /// <summary>
     /// The faction this apprentice belongs to.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public string Faction = "Red";
 
     /// <summary>
     /// The archmage this apprentice serves.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public EntityUid? Archmage;
 
     /// <summary>
     /// The spell assigned to this apprentice.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public string Spell = "";
 }

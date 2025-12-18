@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Starlight.Magic.Components;
+namespace Content.Shared.WizardBattle;
 
 /// <summary>
 /// Component for wizard battle scarves used in recruitment.
@@ -11,6 +11,6 @@ public sealed partial class WizardBattleScarfComponent : Component
     /// <summary>
     /// The faction this scarf belongs to.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public string Faction = "Red";
 }

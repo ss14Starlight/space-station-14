@@ -33,7 +33,7 @@
     name: "Archmage (Red)"
     description: "Lead the red faction of wizards to victory in the Wizard Battle!"
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleArchmageRed
     raffle:
       settings: default
     requirements:
@@ -42,7 +42,8 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 21600 # 6h
-  - type: SpawnPoint
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanArchmageRed
   - type: Sprite
     layers:
     - state: green
@@ -60,7 +61,7 @@
     name: "Archmage (Blue)"
     description: "Lead the blue faction of wizards to victory in the Wizard Battle!"
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleArchmageBlue
     raffle:
       settings: default
     requirements:
@@ -69,7 +70,8 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 21600 # 6h
-  - type: SpawnPoint
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanArchmageBlue
   - type: Sprite
     layers:
     - state: green
@@ -87,13 +89,14 @@
     name: "Apprentice"
     description: "Assist your archmage in the Wizard Battle!"
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleApprentice
     raffle:
       settings: default
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 3600 # 1h
-  - type: SpawnPoint
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanApprentice
   - type: Sprite
     layers:
     - state: green
