@@ -3,7 +3,8 @@
   name: roles-antag-archmage-name
   antagonist: true
   setPreference: true # Allow players to select this role
-  objective: roles-antag-archmage-red-objective
+  objective: roles-antag-archmage-objective
+  greet: archmage-role-greeting
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 86400 # 24h
@@ -12,3 +13,8 @@
       time: 21600 # 6h
   guides: [ Wizard ]
   previewStartingGear: ArchmageGear
+  components:
+  - type: AntagObjectives
+    objectives:
+    - ArchMageSurviveObjective
+    - WizardBattleWinObjective

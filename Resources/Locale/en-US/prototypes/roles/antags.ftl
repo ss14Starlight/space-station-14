@@ -49,3 +49,9 @@ roles-antag-archmage-red-objective = Lead the red faction to victory in the Wiza
 
 roles-antag-archmage-blue-name = Archmage (Blue)
 roles-antag-archmage-blue-objective = Lead the blue faction to victory in the Wizard Battle!
+
+roles-antag-archmage-name = Archmage
+roles-antag-archmage-objective = Recruit apprentices and complete the ritual to defeat the other archmage.
+
+roles-antag-apprentice-name = Apprentice
+roles-antag-apprentice-objective = Help your archmage win the battle.

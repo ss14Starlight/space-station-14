@@ -3,12 +3,6 @@
 wizard-battle-title = Wizard Battle
 wizard-battle-description = Two archmages are battling for magical supremacy! Recruits apprentices and complete the ritual to win.
 
-roles-antag-archmage-name = Archmage
-roles-antag-archmage-objective = Recruit apprentices and complete the ritual to defeat the other archmage.
-
-roles-antag-apprentice-name = Apprentice
-roles-antag-apprentice-objective = Help your archmage win the battle.
-
 archmage-role-greeting =
     You are an Archmage!
     Battle against the other archmage for magical supremacy.
@@ -30,3 +24,6 @@ ent-WizardBattleWinObjective = Win the Wizard Battle
 wizard-battle-recruited = You have been recruited to the { $faction } faction! You now wield magical powers.
 
 wizard-battle-switched = You have switched allegiance to the { $newFaction } faction from the { $oldFaction } faction!
+
+wizard-battle-archmage-briefing = You are the Archmage. Recruit apprentices, gather your incantation, and perform the ritual to win the Wizard Battle.
+wizard-battle-apprentice-briefing = You are the Apprentice. Help your Archmage recruit more apprentices, learn the incantation, and assist in the ritual to win the Wizard Battle.

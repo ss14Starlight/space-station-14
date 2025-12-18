@@ -297,7 +297,7 @@
 - type: entity
   parent: BaseMindRoleAntag
   id: MindRoleArchMage
-  name: Archmage Role
+  name: Archmage
   components:
   - type: MindRole
     antagPrototype: Archmage
@@ -309,7 +309,7 @@
 - type: entity
   parent: BaseMindRoleAntag
   id: MindRoleApprentice
-  name: Apprentice Role
+  name: Apprentice
   components:
   - type: MindRole
     antagPrototype: ApprenticeRole

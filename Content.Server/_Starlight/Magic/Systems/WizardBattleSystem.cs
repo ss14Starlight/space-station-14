@@ -1,4 +1,5 @@
 using Content.Server.Chat.Systems;
+using Content.Server.Chat;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Shared.WizardBattle;
@@ -19,6 +20,10 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics;
 using System.Linq;
 using Content.Server.Chat.Managers;
+using Content.Shared.Roles;
+using Content.Server.Roles;
+using Content.Shared.Roles.Components;
+using Robust.Shared.Localization;
 
 namespace Content.Server._Starlight.Magic.Systems;
 
@@ -49,6 +54,8 @@ public sealed class WizardBattleSystem : EntitySystem
         SubscribeLocalEvent<EntitySpokeEvent>(OnEntitySpoke);
         SubscribeLocalEvent<WizardBattleArchmageComponent, ComponentRemove>(OnArchmageRemoved);
         SubscribeLocalEvent<WizardBattleApprenticeComponent, ComponentRemove>(OnApprenticeRemoved);
+        SubscribeLocalEvent<ArchMageRoleComponent, GetBriefingEvent>(OnGetArchmageBriefing);
+        SubscribeLocalEvent<ApprenticeRoleComponent, GetBriefingEvent>(OnGetApprenticeBriefing);
         SubscribeLocalEvent<RoundStartAttemptEvent>(OnRoundStart);
     }
 
@@ -312,5 +319,15 @@ public sealed class WizardBattleSystem : EntitySystem
             archmageComp.Recruits.Remove(uid);
             UpdateArchmageWizcoins(component.Archmage.Value, archmageComp);
         }
+    }
+
+    private void OnGetArchmageBriefing(EntityUid uid, ArchMageRoleComponent component, ref GetBriefingEvent args)
+    {
+        args.Append(Loc.GetString("wizard-battle-archmage-briefing"));
+    }
+
+    private void OnGetApprenticeBriefing(EntityUid uid, ApprenticeRoleComponent component, ref GetBriefingEvent args)
+    {
+        args.Append(Loc.GetString("wizard-battle-apprentice-briefing"));
     }
 }
