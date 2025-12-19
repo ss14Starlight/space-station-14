@@ -1,5 +1,3 @@
-using System.Linq; // Starlight-edit™
-using System.Numerics; // Starlight-edit™
 using Content.Server.Chat.Systems;
 using Content.Server.Movement.Systems;
 using Content.Shared.Chat;
@@ -11,7 +9,8 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
-using Content.Shared.Chat; // Starlight
+using System.Linq;
+using System.Numerics;
 using Robust.Shared.Physics; // Starlight-edit™
 using Robust.Shared.Physics.Systems; // Starlight-edit™
 

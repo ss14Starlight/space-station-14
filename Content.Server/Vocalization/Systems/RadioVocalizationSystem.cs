@@ -6,7 +6,6 @@ using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Chat; // Starlight
 
 namespace Content.Server.Vocalization.Systems;
 

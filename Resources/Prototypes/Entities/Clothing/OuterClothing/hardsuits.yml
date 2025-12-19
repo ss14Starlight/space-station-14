@@ -666,7 +666,10 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
+    # Starlight-start
     staminaModifier: 0.3
+    ignoreKnockdown: true
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -737,7 +740,10 @@
         Heat: 0.1 #SL EDIT
         Radiation: 0.01
         Caustic: 0.5
+    # Starlight-start
     staminaModifier: 0.2
+    ignoreKnockdown: true
+    # Starlight-end
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
@@ -781,7 +787,10 @@
         Heat: 0.5
         Radiation: 0.25
         Caustic: 0.4
+    # Starlight-start
     staminaModifier: 0.1
+    ignoreKnockdown: true
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
@@ -827,7 +836,10 @@
         Heat: 0.2
         Radiation: 0.2
         Caustic: 0.2
+    # Starlight-start
     staminaModifier: 0.1
+    ignoreKnockdown: true
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.65
     sprintModifier: 0.65
@@ -1005,18 +1017,19 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
-  - type: ExplosionResistance #sl Change
-    damageCoefficient: 0.2 #sl Change
-  - type: Armor #sl Change
-    modifiers: #sl Change
-      coefficients: #sl Change
-        Blunt: 0.4 #sl Change
-        Slash: 0.4 #sl Change
-        Piercing: 0.3 #sl Change
-        Heat: 0.2 #sl Change
-        Radiation: 0.01 #sl Change
-        Caustic: 0.4 #sl Change
-    staminaModifier: 0.1
+  # Starlight-start
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.
+        Heat: 0.2
+        Radiation: 0.01
+        Caustic: 0.4
+    # Starlight-end
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
 
@@ -1147,7 +1160,10 @@
         Heat: 0.1
         Radiation: 0.1
         Caustic: 0.1
+    # Starlight-start
     staminaModifier: 0.0
+    ignoreKnockdown: true
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1188,7 +1204,10 @@
         Shock: 0.1
         Radiation: 0.1
         Caustic: 0.1
+    # Starlight-start
     staminaModifier: 0.2
+    ignoreKnockdown: true
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0

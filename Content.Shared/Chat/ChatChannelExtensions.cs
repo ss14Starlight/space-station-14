@@ -20,6 +20,6 @@ public static class ChatChannelExtensions
     }
 
     // Starlight
-    public static bool IsExcemptFromLanguages(this ChatChannel channel) =>
+    public static bool IsExemptFromLanguages(this ChatChannel channel) =>
     channel is ChatChannel.LOOC or ChatChannel.Emotes or ChatChannel.Notifications or ChatChannel.Visual;
 }

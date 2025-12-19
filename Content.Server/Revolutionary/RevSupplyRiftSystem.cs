@@ -496,7 +496,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             
         }
 
-        if (activeRiftCount >= _config.GetCVar(StarlightCCVars.AutogammaRiftCount)) //#region Starlight Autogamma
+        if (activeRiftCount >= _config.GetCVar(StarlightCCVars.AutogammaRiftCount) && _config.GetCVar(StarlightCCVars.AutogammaRiftEnabled)) //#region Starlight Autogamma
         {
             var xform = Transform(rift);
             var station = _station.GetStationInMap(xform.MapID);

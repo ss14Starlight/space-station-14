@@ -387,6 +387,11 @@
       - crabby
   - type: Sprite
     state: crab
+  - type: Extractable # Starlight
+    juiceSolution: # Starlight
+      reagents: # Starlight
+      - ReagentId: JuiceCrab # Starlight
+        Quantity: 30 # Starlight
   - type: SolutionContainerManager
     solutions:
       food:

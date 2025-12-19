@@ -7,10 +7,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using static Content.Server.NPC.HTN.PrimitiveTasks.Operators.SpeakOperator.SpeakOperatorSpeech;
 
-#region Starlight
-using Content.Shared.Chat;
-#endregion Starlight
-
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators;
 
 public sealed partial class SpeakOperator : HTNOperator

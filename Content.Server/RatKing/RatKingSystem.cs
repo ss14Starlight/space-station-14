@@ -15,10 +15,6 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.RatKing;
 using Robust.Shared.Map;
 
-#region Starlight
-using Content.Shared.Chat;
-#endregion Starlight
-
 namespace Content.Server.RatKing
 {
     /// <inheritdoc/>

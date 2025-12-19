@@ -35,31 +35,21 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using static Content.Server.Chat.Systems.ChatSystem;
-// Starlight Start
-using Content.Shared.Follower;
-using Content.Shared.Follower.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Medical.SuitSensor;
-using Content.Shared.Medical.SuitSensors;
-using Content.Shared.Humanoid;
-using Content.Shared.Warps;
-using Robust.Shared.Map;
-// Starlight End
 
 #region Starlight
 using Content.Server.Medical.SuitSensors;
-using System.Collections.Generic;
-using Content.Shared._Starlight.Silicons.Borgs;
-using Content.Shared.Follower;
 using Content.Shared.Follower.Components;
-using Content.Shared.Mobs.Components;
+using Content.Shared.Follower;
+using Content.Shared.Humanoid;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Medical.SuitSensors;
-using Content.Shared.Humanoid;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Warps;
-using Robust.Shared.Map;
-using Robust.Shared.Log;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Robust.Shared.Localization;
+using Robust.Shared.Log;
+using Robust.Shared.Map;
+using System.Collections.Generic;
 #endregion Starlight
 
 namespace Content.Server.Silicons.StationAi;
@@ -150,7 +140,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         // Check if any followed targets are outside camera view
         _followTargetsToRemove.Clear();
-        
+
         foreach (var (target, follower) in _activeFollowTargets)
         {
             if (!Exists(target) || !Exists(follower))
