@@ -21,11 +21,10 @@ public sealed partial class PlantMutateChemicalsEntityEffectSystem : EntityEffec
 
     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantMutateChemicals> args)
     {
-        if (!_plantTray.HasPlant(entity.AsNullable()))
+        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant))
             return;
 
-        var plantUid = entity.Comp.PlantEntity!.Value;
-        var chemicals = EnsureComp<PlantChemicalsComponent>(plantUid).Chemicals;
+        var chemicals = EnsureComp<PlantChemicalsComponent>(plant.Value).Chemicals;
         var randomChems = _proto.Index(args.Effect.RandomPickBotanyReagent).Fills;
 
         // Add a random amount of a random chemical to this set of chemicals.
@@ -45,6 +44,7 @@ public sealed partial class PlantMutateChemicalsEntityEffectSystem : EntityEffec
             seedChemQuantity.Max = seedChemQuantity.Min + amount;
             seedChemQuantity.Inherent = false;
         }
+
         var potencyDivisor = 100f / seedChemQuantity.Max;
         seedChemQuantity.PotencyDivisor = (float)potencyDivisor;
         chemicals[chemicalId] = seedChemQuantity;
