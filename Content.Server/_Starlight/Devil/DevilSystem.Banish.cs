@@ -1,5 +1,6 @@
 using Content.Server.Damage.Systems;
 using Content.Shared._Starlight.Devil;
+using Content.Server._Starlight.Bible;
 using Content.Shared.Dataset;
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
@@ -18,6 +19,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
     private void SubscribeBanish()
     {
         SubscribeLocalEvent<DevilComponent, ListenEvent>(OnListen);
+        SubscribeLocalEvent<DevilComponent, BibleThwackEvent>(OnBibleThwack);
 
         FillBanishPhrases();
     }
@@ -47,11 +49,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
     {
         // here we check if we are going to banish with this message
         if(!devilComp.BeingBanished) return;
-        
-        // we don't care about other devils and the damned
         if(HasComp<DevilComponent>(args.Source) || HasComp<DamnedComponent>(args.Source)) return;
-
-        // are we actually trying to stop them?
         if(!args.Message.Contains(devilComp.TrueName, StringComparison.InvariantCultureIgnoreCase)) return;
         if(!MessageContainsBanish(args.Message)) return;
 
@@ -64,5 +62,27 @@ public sealed partial class DevilSystem : SharedDevilSystem
         _stamina.TakeStaminaDamage(uid, devilComp.BanishDamageStamina);
 
         devilComp.LastBanishedList[args.Source] = _time.CurTime;
+    }
+
+    private void OnBibleThwack(EntityUid uid, DevilComponent devilComp, ref BibleThwackEvent args)
+    {
+        if (devilComp.BeingBanished) return;
+        devilComp.BeingBanished = true;
+        devilComp.LastBanishModeActivate = _time.CurTime;
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<DevilComponent>();
+        while (query.MoveNext(out var uid, out var devilComp))
+        {
+            // handle turning off banishment
+            if (devilComp.BeingBanished && (devilComp.LastBanishModeActivate + devilComp.BanishModeLength) < _time.CurTime)
+            {
+                devilComp.BeingBanished = false;
+            }
+        }
     }
 }

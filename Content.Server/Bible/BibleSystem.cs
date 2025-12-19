@@ -8,7 +8,7 @@ using Content.Shared.Actions;
 using Content.Shared.Bible;
 using Content.Shared.Clumsy; //Starlight
 using Content.Shared.Cluwne; //Starlight
-using Content.Shared.Damage;
+using Content.Server._Starlight.Bible; // Starlight
 using Content.Shared.Damage.Systems;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.Hands.Components; //Starlight
@@ -143,6 +143,16 @@ namespace Content.Server.Bible
 
                 return;
             }
+
+            // starlight start
+            // for anyone thinking of rewriting this system...
+            // if it were up to me, instead of having other component specific code (unholy component, uncluwnification)
+            // in here, this would raise an event that is actually handled in the respective system, so everything stays modular
+            // however, rewriting random systems is beyond the scope of the pr this code was added in, so only devil is using this event
+            var thwackEv = new BibleThwackEvent(args.User);
+            RaiseLocalEvent(args.Target.Value, ref thwackEv);
+            if(thwackEv.Handled) return;
+            // starlight end
 
             //Damage unholy creatures
             if (HasComp<UnholyComponent>(args.Target))

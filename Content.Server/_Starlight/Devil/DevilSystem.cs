@@ -43,11 +43,12 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         EnsureComp<ActiveListenerComponent>(uid); // for banish listen events
 
-        // so it can take holy damage
-        EnsureComp<DamageableComponent>(uid, out var damageable);
+        // so it can take holy damage, this sucks but damageable system REALLY doesn't like the container changing on non init
+        RemComp<DamageableComponent>(uid);
+        SetPaused(uid, true);
+        AddComp<DamageableComponent>(uid);
         _damageable.SetDamageContainerId(uid, BiologicalMetaphysicalDamageContainer);
-        damageable.Damage.DamageDict.Add("Holy", 0); // lmfao this sucks, but can't re init without removing and adding damageable comp,
-                                                     // which is arguably worse
+        SetPaused(uid, false);
     }
 
     #region abilities

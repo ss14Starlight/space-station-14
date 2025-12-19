@@ -43,7 +43,19 @@ public sealed partial class DevilComponent : Component
     /// Is the devil currently being banished?
     /// </summary>
     [AutoNetworkedField, ViewVariables]
-    public bool BeingBanished = true;
+    public bool BeingBanished = false;
+
+    /// <summary>
+    /// Time of the last banish shift starting
+    /// </summary>
+    [AutoNetworkedField, ViewVariables]
+    public TimeSpan LastBanishModeActivate = TimeSpan.Zero;
+
+    /// <summary>
+    /// How long should devil be stuck being banished?
+    /// </summary>
+    [DataField]
+    public TimeSpan BanishModeLength = TimeSpan.FromMinutes(2);
 
     /// <summary>
     /// How long is the damage cooldown per person?
