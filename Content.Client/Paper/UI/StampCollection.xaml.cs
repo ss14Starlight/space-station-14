@@ -95,3 +95,4 @@ public sealed partial class StampCollection : Container
         return Vector2.Min(box.BottomRight, Vector2.Max(box.TopLeft, point));
     }
 }
+

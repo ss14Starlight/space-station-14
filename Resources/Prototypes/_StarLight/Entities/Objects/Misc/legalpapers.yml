@@ -1,9 +1,9 @@
 - type: entity
-  name: rd's diploma
+  name: rd's doctorate
   categories: [ DoNotMap ]
   parent: [ BasePaper, BaseGrandTheftContraband ]
   id: RDDiploma
-  description: 'The Research Directors Diploma. You cant believe they went to that school!'
+  description: "The RD's PhD. You can't believe they went to that school!"
   components:
   - type: Tag
     tags:
@@ -19,13 +19,13 @@
     stealGroup: RDDiplomaSteal
   - type: Item
     size: Small
-    
+
 - type: entity
   name: cmo's medical license
   categories: [ DoNotMap ]
   parent: [ BasePaper, BaseGrandTheftContraband ]
   id: CMOLicense
-  description: 'The Chief Medical Officers Medical License. You cant believe its not expired.'
+  description: "The CMO's medical license. You can't believe it's not expired."
   components:
   - type: Tag
     tags:

@@ -19,10 +19,12 @@
       sprite: _Starlight/Objects/Misc/nt-clipboard.rsi
     - type: Clothing
       sprite: _Starlight/Objects/Misc/nt-clipboard.rsi
-    - type: StorageFill
-      contents:
-        - id: Paper
-          amount: 20
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: Paper
+            amount: 20
 
 - type: entity
   id: BoxFolderCyborgClipboard
@@ -50,10 +52,12 @@
       whitelist:
         tags:
         - Document
-    - type: StorageFill
-      contents:
-        - id: Paper
-          amount: 6
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: Paper
+            amount: 6
 
 - type: entity
   id: BoxFolderHoPClipboard
@@ -96,10 +100,12 @@
       grid:
       - 0,0,4,3
       quickInsert: true
-    - type: StorageFill
-      contents:
-        - id: Paper
-          amount: 10
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: Paper
+            amount: 10
     - type: IdCardConsole
       accessGroups:
       - General
@@ -186,7 +192,9 @@
   name: salvage lead clipboard
   description: Looks like its been taped back together. Covered in space dust.
   components:
-  - type: StorageFill
-    contents:
-    - id: PrintedDocumentSalvageLeadReport
-      amount: 7
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PrintedDocumentSalvageLeadReport
+          amount: 7

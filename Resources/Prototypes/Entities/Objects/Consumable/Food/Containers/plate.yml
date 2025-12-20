@@ -58,7 +58,7 @@
     - Dinnerware #Starlight
   - type: PhysicalComposition
     materialComposition:
-      Glass: 60
+      Glass: 50
   - type: SpaceGarbage
 
 - type: entity
@@ -118,7 +118,7 @@
         acts: [ "Destruction" ]
   - type: PhysicalComposition
     materialComposition:
-      Glass: 30
+      Glass: 25
   - type: Tag
     tags:
     - Dinnerware #Starlight
@@ -203,7 +203,7 @@
     - Dinnerware #Starlight
   - type: PhysicalComposition
     materialComposition:
-      Steel: 60
+      Steel: 50
   - type: SpaceGarbage
 
 # Muffin Tin
@@ -228,5 +228,5 @@
     - Dinnerware #Starlight
   - type: PhysicalComposition
     materialComposition:
-      Steel: 30
+      Steel: 25
   - type: SpaceGarbage

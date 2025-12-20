@@ -1054,10 +1054,7 @@
     name: ghost-role-information-punpun-name
     description: ghost-role-information-punpun-description
     rules: ghost-role-information-nonantagonist-rules
-    requirements:
-    - !type:RoleTimeRequirement
-      role: JobBartender
-      time: 7200 # 2h STARLIGHT
+    job: Bartender # Starlight - TODO - we need a PunPun job with the 2hr bartender requirement
   - type: GhostTakeoverAvailable
   - type: Butcherable
     butcheringType: Spike

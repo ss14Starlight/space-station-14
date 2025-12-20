@@ -12,7 +12,7 @@
       Cloth: 100
   - type: StaticPrice
     price: 10
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     delay: 2
   - type: SolutionContainerManager

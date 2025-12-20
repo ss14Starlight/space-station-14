@@ -212,7 +212,10 @@ public sealed partial class ShuttleSystem
                     case GridSpawnGroup grid:
                         // Starlight start
                         if (station is not null)
+                        {
+                            if (station.AllowedGridSpawns is null) continue; // safety catch
                             if (!station.AllowedGridSpawns.Contains(group.Key)) continue; // group name must be whitelisted
+                        }
                         // Starlight end
                         if (!TryGridSpawn(targetGrid.Value, uid, mapId, grid, out spawned))
                             continue;

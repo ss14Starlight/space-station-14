@@ -7,7 +7,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
-  - type: Gibbable
   - type: Extractable
     juiceSolution:
       reagents:
@@ -91,7 +90,7 @@
     metabolizerTypes: [BudgetCyber]
     groups:
     - id: Alcohol
-      rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
+      rateModifier: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
 
 - type: entity
   id: BudgetCyberStomach
