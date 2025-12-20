@@ -5,10 +5,12 @@
   name: emergency restart crate
   description: A secure crate with the essential circuitboards to rebuild a station. For truly dire situations.
   components:
-  - type: StorageFill
-    contents:
-    - id: ProtolatheMachineCircuitboard
-    - id: IDComputerCircuitboard
-    - id: CommsComputerCircuitboard
-    - id: AutolatheMachineCircuitboard
-    - id: CircuitImprinterMachineCircuitboard
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ProtolatheMachineCircuitboard
+        - id: IDComputerCircuitboard
+        - id: CommsComputerCircuitboard
+        - id: AutolatheMachineCircuitboard
+        - id: CircuitImprinterMachineCircuitboard

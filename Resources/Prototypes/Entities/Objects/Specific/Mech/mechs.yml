@@ -180,8 +180,7 @@
         acts: ["Destruction"]
   - type: PowerCellDraw
     enabled: false
-    drawRate: 1
-    delay: 3
+    drawRate: 0.333333333 #Starlight, delay was 3 seconds per draw
   - type: ActiveInputMover
 # 🌟Starlight-start🌟
   - type: Prying

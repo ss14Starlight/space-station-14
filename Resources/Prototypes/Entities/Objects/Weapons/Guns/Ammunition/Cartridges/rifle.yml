@@ -6,10 +6,9 @@
   components:
   - type: Tag
     tags:
-      - Cartridge
       - CartridgeRifle
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTrace
+  - type: CartridgeAmmo
+    proto: BulletRifleTrace
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -24,8 +23,8 @@
   parent: BaseCartridgeRifle
   description: A modern intermediate cartridge for combat rifles. Standard kinetic ammunition is common and useful in most situations.
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceSP
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceSP
   - type: Sprite
     layers:
       - state: base
@@ -38,9 +37,10 @@
   id: CartridgeRifleHP
   name: cartridge (.20 rifle HP)
   parent: BaseCartridgeRifle
+  description: A modern intermediate cartridge for combat rifles. Standard kinetic ammunition is common and useful in most situations.
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceHP
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceHP
   - type: Sprite
     layers:
       - state: base
@@ -54,8 +54,8 @@
   name: cartridge (.20 rifle FMJ)
   parent: BaseCartridgeRifle
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceFMJ
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceFMJ
   - type: Sprite
     layers:
       - state: base
@@ -69,8 +69,8 @@
   name: cartridge (.20 rifle AP)
   parent: BaseCartridgeRifle
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceAP
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceAP
   - type: Sprite
     layers:
       - state: base
@@ -85,8 +85,8 @@
   parent: BaseCartridgeRifle
   description: A modern intermediate cartridge for combat rifles. Chalk ammunition is generally non-harmful, used for practice.
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTracePractice
+  - type: CartridgeAmmo
+    proto: BulletRifleTracePractice
   - type: Sprite
     layers:
       - state: base
@@ -101,8 +101,8 @@
   parent: BaseCartridgeRifle
   description: A modern intermediate cartridge for combat rifles. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceIncendiary
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceIncendiary
   - type: Sprite
     layers:
       - state: base
@@ -117,8 +117,8 @@
   parent: BaseCartridgeRifle
   description: A modern intermediate cartridge for combat rifles. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletRifleTraceUranium
+  - type: CartridgeAmmo
+    proto: BulletRifleTraceUranium
   - type: Sprite
     layers:
       - state: base

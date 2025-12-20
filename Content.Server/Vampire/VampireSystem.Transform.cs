@@ -1,6 +1,5 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
-using Content.Server.Temperature.Components;
 using Content.Shared.Actions;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Rotting;
@@ -9,6 +8,7 @@ using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Chemistry;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
 using Content.Shared.Weapons.Melee;

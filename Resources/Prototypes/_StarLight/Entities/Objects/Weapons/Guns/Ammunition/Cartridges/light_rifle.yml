@@ -3,8 +3,8 @@
   name: cartridge (.30 rifle rubber)
   parent: BaseCartridgeLightRifleSP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: RubberBulletTrace
+  - type: CartridgeAmmo
+    proto: RubberBulletTrace
   - type: Sprite
     layers:
       - state: base
@@ -19,8 +19,8 @@
   description: A handmade rifle bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective. 
   parent: [BaseCartridgeLightRifleSP, BaseMinorContraband]
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletLightRifleTraceImprovised
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTraceImprovised
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Casings/improvised_casing.rsi
     layers:

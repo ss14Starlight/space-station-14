@@ -33,11 +33,13 @@
   id: ClothingBackpackSyndicateGMNDamageControl
   parent: ClothingBackpackSyndicate
   components:
-  - type: StorageFill
-    contents:
-    - id: SheetSteel
-    - id: SheetPlasteel
-    - id: SheetRPGlass
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SheetSteel
+        - id: SheetPlasteel
+        - id: SheetRPGlass
 
 - type: startingGear
   id: GMNNavigatorGear
@@ -88,6 +90,8 @@
   id: ClothingBackpackSyndicateGMNGunner
   parent: ClothingBackpackSyndicate
   components:
-  - type: StorageFill
-    contents:
-    - id: SheetSteel10
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SheetSteel10

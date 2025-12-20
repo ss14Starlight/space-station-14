@@ -1,9 +1,12 @@
 using Content.Server.Body.Components;
-using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Mobs.Systems; // Starlight edit
+using Content.Shared.Temperature.Components;
 using Robust.Shared.Timing;
+
+#region Starlight
+using Content.Shared.Mobs.Systems;
+#endregion Starlight
 
 namespace Content.Server.Body.Systems;
 

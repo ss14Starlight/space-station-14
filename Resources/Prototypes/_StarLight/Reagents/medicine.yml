@@ -42,32 +42,23 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Avali
-          shouldHave: true
-        damage:
-          types:
-            Asphyxiation: -3.5
-            Bloodloss: -3
-      - !type:HealthChange
-        conditions:
-        - !type:OrganType
-          type: Resomi
-          shouldHave: true
+        - !type:MetabolizerTypeCondition
+          type: [ Avali, Resomi ]
         damage:
           types:
             Asphyxiation: -3.5
             Bloodloss: -3
       - !type:AdjustReagent
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: HeartbreakerToxin
           min: 1
         reagent: HeartbreakerToxin
         amount: -3
       - !type:HealthChange
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: HeartbreakerToxin
             min: 25
         damage:
           types:
@@ -75,12 +66,9 @@
             Cold: 3
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Avali
-          shouldHave: false
-        - !type:OrganType
-          type: Resomi
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Avali, Resomi ]
+          inverted: true
         damage:
           types:
             Poison: 1.5 #Ammonia is toxic injected directly into bloodstream
@@ -88,15 +76,8 @@
             Bloodloss: 0.5
       - !type:ModifyBloodLevel
         conditions:
-        - !type:OrganType
-          type: Avali
-          shouldHave: true
-        amount: 3
-      - !type:ModifyBloodLevel
-        conditions:
-        - !type:OrganType
-          type: Resomi
-          shouldHave: true
+        - !type:MetabolizerTypeCondition
+          type: [ Avali, Resomi ]
         amount: 3
 
 - type: reagent
@@ -133,7 +114,7 @@
       effects:
         - !type:HealthChange
           conditions:
-          - !type:Temperature
+          - !type:TemperatureCondition
             max: 213.0
           - !type:MobStateCondition
             mobstate: Dead
@@ -159,15 +140,17 @@
             Heat: 0.4
       - !type:HealthChange
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: BarozinePlus
             min: 50
         damage:
           types:
             Poison: 1
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.1
         conditions:
-          - !type:ReagentThreshold
+          - !type:ReagentCondition
+            reagent: BarozinePlus
             min: 30
       - !type:GenericStatusEffect
         key: PressureImmunity
