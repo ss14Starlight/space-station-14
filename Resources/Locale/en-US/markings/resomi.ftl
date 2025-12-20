@@ -250,3 +250,6 @@ marking-ResomiHolowingL-resomi_holowing_l = Holowing
 
 marking-ResomiHolowingR = Holowing Right Arm
 marking-ResomiHolowingR-resomi_holowing_r = Holowing
+
+marking-ResomiSwoopHead = Swoop Head
+marking-ResomiSwoopHead-resomi_swoop_head = Head

@@ -92,7 +92,14 @@
   - sprite: Mobs/Customization/resomi_parts.rsi
     state: fluff_head_up
 
-# Starlight
+- type: marking
+  id: ResomiSwoopHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Resomi]
+  sprites:
+  - sprite: Mobs/Customization/resomi_markings.rsi
+    state: resomi_swoop_head
 
 # Ears
 

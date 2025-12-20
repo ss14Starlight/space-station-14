@@ -322,6 +322,10 @@
     {
       "name": "resomi_damaged_feathers",
       "directions": 4
+    },
+    {
+      "name": "resomi_swoop_head",
+      "directions": 4
     }
   ]
 }
