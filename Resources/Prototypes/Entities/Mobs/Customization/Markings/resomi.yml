@@ -101,7 +101,6 @@
   - sprite: Mobs/Customization/resomi_markings.rsi
     state: resomi_swoop_head
 
-
 # Ears
 
 - type: marking

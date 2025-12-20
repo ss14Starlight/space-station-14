@@ -34,6 +34,8 @@ using Content.Shared.Actions.Components;
 using Content.Server.Administration.Systems;
 using Content.Shared.Maps;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Vampire;
 
@@ -41,7 +43,6 @@ public sealed partial class VampireSystem : EntitySystem
 {
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly IAdminLogManager _admin = default!;
-    [Dependency] private readonly FoodSystem _food = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
     [Dependency] private readonly BloodstreamSystem _blood = default!;
     [Dependency] private readonly RottingSystem _rotting = default!;
@@ -323,7 +324,7 @@ public sealed partial class VampireSystem : EntitySystem
     private void DoSpaceDamage(EntityUid uid, VampireComponent comp, DamageableComponent damage)
     {
         var damageSpec = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Heat"), 2.5);
-        _damageableSystem.TryChangeDamage(uid, damageSpec, true, false, damage, uid);
+        _damageableSystem.TryChangeDamage(uid, damageSpec, true, false, uid);
         _popup.PopupEntity(Loc.GetString("vampire-startlight-burning"), uid, uid, PopupType.LargeCaution);
     }
     private bool IsInSpace(EntityUid vampireUid)

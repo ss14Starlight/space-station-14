@@ -11,7 +11,7 @@
   - type: RoleRequirement
     roles:
     - VampireRole
-      
+
 - type: entity
   abstract: true
   parent: [BaseVampireObjective, BaseStealObjective]
@@ -23,7 +23,7 @@
     difficulty: 1.5
   - type: ObjectiveLimit
     limit: 2
-    
+
 # Steal
 
 - type: entity
@@ -31,7 +31,7 @@
   id: CMOHyposprayVampireStealObjective
   components:
   - type: NotJobRequirement
-    job: ChiefMedicalOfficer
+    jobs: [ ChiefMedicalOfficer ]
   - type: StealCondition
     owner: job-name-cmo
     stealGroup: Hypospray
@@ -41,7 +41,7 @@
   id: RDHardsuitVampireStealObjective
   components:
   - type: NotJobRequirement
-    job: ResearchDirector
+    jobs: [ ResearchDirector ]
   - type: StealCondition
     owner: job-name-rd
     stealGroup: ClothingOuterHardsuitRd
@@ -50,14 +50,38 @@
 
 - type: entity
   parent: BaseVampireStealObjective
+  id: EnergyMagnumVampireStealObjective
+  components:
+  - type: Objective
+    difficulty: 2
+  - type: NotJobRequirement
+    jobs: [ Detective ]
+  - type: StealCondition
+    stealGroup: WeaponEnergyMagnum
+    owner: job-name-detective
+
+- type: entity
+  parent: BaseVampireStealObjective
   id: EnergyShotgunVampireStealObjective
   components:
   - type: Objective
     difficulty: 2
   - type: NotJobRequirement
-    job: HeadOfSecurity
+    jobs: [ Warden ]
   - type: StealCondition
     stealGroup: WeaponEnergyShotgun
+    owner: job-name-warden
+
+- type: entity
+  parent: BaseVampireStealObjective
+  id: Proto5xVampireStealObjective
+  components:
+  - type: Objective
+    difficulty: 2
+  - type: NotJobRequirement
+    jobs: [ HeadOfSecurity ]
+  - type: StealCondition
+    stealGroup: Proto5x
     owner: job-name-hos
 
 - type: entity
@@ -65,7 +89,7 @@
   id: MagbootsVampireStealObjective
   components:
   - type: NotJobRequirement
-    job: ChiefEngineer
+    jobs: [ ChiefEngineer ]
   - type: StealCondition
     stealGroup: ClothingShoesBootsMagAdv
     owner: job-name-ce
@@ -75,7 +99,7 @@
   id: ClipboardVampireStealObjective
   components:
   - type: NotJobRequirement
-    job: Quartermaster
+    jobs: [ Quartermaster ]
   - type: StealCondition
     stealGroup: BoxFolderQmClipboard
     owner: job-name-qm
@@ -88,7 +112,7 @@
   - type: Objective
     difficulty: 2.5
   - type: NotJobRequirement
-    job: Captain
+    jobs: [ Captain ]
 
 - type: entity
   parent: BaseCaptainVampireObjective
@@ -124,7 +148,7 @@
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: survive_icon
-      
+
 - type: entity
   parent: [BaseVampireObjective, BaseLivingObjective]
   id: VampireEscapeObjective
@@ -137,9 +161,9 @@
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
   - type: EscapeShuttleCondition
-  
+
 # Kill
-  
+
 - type: entity
   parent: [BaseVampireObjective, BaseKillObjective]
   id: VampireKillRandomPersonObjective

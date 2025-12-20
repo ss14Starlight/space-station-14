@@ -21,7 +21,7 @@
       - left leg
       organs:
         heart: OrganArachnidHeart
-        lungs: OrganAnimalLungs
+        lungs: OrganArachnidLungs
         stomach: OrganArachnidStomach
         liver: OrganArachnidLiver
         kidneys: OrganArachnidKidneys

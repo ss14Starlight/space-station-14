@@ -43,6 +43,7 @@
     - Revolutionary
     - Zombie
     - Wizard
+    - Xenoborgs
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
     - SLChangeling #Starlight
@@ -66,6 +67,7 @@
     - Revolutionary
     - Zombie
     - Wizard
+    - Xenoborgs
     - BasicStationEventScheduler
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler
@@ -183,7 +185,7 @@
   name: nukeops-title
   description: nukeops-description
   minPlayers: 40
-  showInVote: false # 🌟Starlight🌟
+  showInVote: true # 🌟Starlight🌟
   rules:
   - Nukeops
   # - DummyNonAntagChance 🌟Starlight🌟
@@ -202,7 +204,7 @@
   name: rev-title
   description: rev-description
   minPlayers: 30
-  showInVote: false # 🌟Starlight🌟
+  showInVote: true # 🌟Starlight🌟
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Revolutionary
@@ -229,6 +231,22 @@
   - BasicRoundstartVariation
 
 - type: gamePreset
+  id: Xenoborgs
+  alias:
+    - xenoborgs
+  name: xenoborgs-title
+  description: xenoborgs-description
+  showInVote: false
+  rules:
+  - Xenoborgs
+  - DummyNonAntagChance
+  - SubGamemodesRuleNoWizardNoXenoborg # no two motherships
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
   id: Zombie
   alias:
   - zombie
@@ -239,7 +257,7 @@
   name: zombie-title
   description: zombie-description
   minPlayers: 50 # 🌟Starlight🌟
-  showInVote: false # 🌟Starlight🌟
+  showInVote: true # 🌟Starlight🌟
   rules:
   - Zombie
   - BasicStationEventScheduler
@@ -256,7 +274,7 @@
   name: zombieteors-title
   description: zombieteors-description
   minPlayers: 50 # 🌟Starlight🌟
-  showInVote: false # 🌟Starlight🌟
+  showInVote: true # 🌟Starlight🌟
   rules:
   - Zombie
   - BasicStationEventScheduler

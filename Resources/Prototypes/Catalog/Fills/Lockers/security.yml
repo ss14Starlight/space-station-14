@@ -26,11 +26,12 @@
   id: FillLockerWarden
   table: !type:AllSelector
     children:
-    - id: WeaponEnergyShotgun #Starlight
     - id: ClothingEyesHudSecurity #Starlight
     - id: ClothingHeadsetSecurityWarden #Starlight
+    - id: WeaponEnergyShotgun #Starlight
     - id: FlashlightSeclite
     - id: WeaponDisabler
+    - id: WeaponTaser
     - id: ClothingBeltSecurityFilled
     - id: Flash
     - id: ClothingEyesGlassesSecurity
@@ -77,6 +78,7 @@
     - id: FlashlightSeclite
       prob: 0.8
     - id: WeaponDisabler
+    - id: WeaponTaser
     - id: ClothingUniformJumpsuitSecGrey
       prob: 0.3
     - id: ClothingHeadHelmetBasic
@@ -116,6 +118,7 @@
     - id: ClothingBeltCorpsmanFilled #Starlight
     - id: ClothingHandsGlovesBlackNitrile #Starlight
     - id: ClothingEyesGlassesSecurity #Starlight
+    - id: WeaponTaser
     - id: WeaponDisabler
     - id: TrackingImplanter
       amount: 2
@@ -163,6 +166,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingEyesGlassesNoir
+    - id: WeaponEnergyMagnum #Starlight
     - id: ClothingHeadHatFedoraBrown #Starlight
     - id: ClothingHeadHatDetGadget
     - id: ClothingNeckTieDet

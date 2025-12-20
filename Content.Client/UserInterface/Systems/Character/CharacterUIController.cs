@@ -156,7 +156,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
 
             var objectiveLabel = new RichTextLabel
             {
-                StyleClasses = { StyleNano.StyleClassTooltipActionTitle }
+                StyleClasses = { StyleClass.TooltipTitle }
             };
             objectiveLabel.SetMessage(objectiveText);
 

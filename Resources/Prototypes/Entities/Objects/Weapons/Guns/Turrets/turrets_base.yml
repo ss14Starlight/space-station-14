@@ -76,6 +76,7 @@
   - type: NoRotateOnMove
   - type: Input
     context: "human"
+  - type: Appearance #Starlight, tests fix
 
 - type: entity
   parent: BaseWeaponTurret
@@ -120,7 +121,7 @@
     fireRate: 1.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletEnergyTurretLaser
     fireCost: 100
   - type: Battery

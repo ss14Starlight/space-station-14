@@ -3,6 +3,12 @@
   name: job-name-ntncblueshield
   description: job-description-ntncblueshield
   playTimeTracker: JobConsortiumBlueShield
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 18000 # 5h
   setPreference: false
   startingGear: NTNCHardsuitGear
   icon: JobIconNTNCBlueShield

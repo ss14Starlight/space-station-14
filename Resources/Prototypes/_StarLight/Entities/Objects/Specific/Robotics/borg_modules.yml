@@ -352,7 +352,6 @@
         emptyRepresentative: ReagentContainerFlour
         whitelist:
           tags:
-          - Ingredient
           - Slice
           - Condiment
           - Packet

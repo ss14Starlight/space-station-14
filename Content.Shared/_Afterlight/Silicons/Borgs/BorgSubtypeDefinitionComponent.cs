@@ -16,7 +16,6 @@ namespace Content.Shared._Afterlight.Silicons.Borgs;
 [EntityCategory("BorgSubtype")]
 public sealed partial class BorgSubtypeDefinitionComponent : Component
 {
-    [ValidatePrototypeId<SoundCollectionPrototype>]
     private static readonly ProtoId<SoundCollectionPrototype> _defaultFootsteps = new("FootstepBorg");
 
     /// <summary>

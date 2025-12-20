@@ -1,4 +1,4 @@
-# Be careful with these as they get removed on shutdown too!
+﻿# Be careful with these as they get removed on shutdown too!
 - type: entity
   id: AiHeld
   description: Components added / removed from an entity that gets inserted into an AI core.
@@ -84,6 +84,9 @@
   #region Starlight
   - type: StationAIShuntable
   #endregion Starlight
+  - type: DamagedSiliconAccent
+    startPowerCorruptionAtCharIdx: 4
+    maxPowerCorruptionAtCharIdx: 20
 
 - type: entity
   id: AiHeldIntellicard
@@ -160,9 +163,10 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.StationAiVisualLayers.Base:
+      enum.StationAiVisualLayers.Icon:
         unshaded:
           Empty: { state: empty }
+          Occupied: { state: full }
           Rebooting: { state: dead }
           Dead: { state: dead }
   - type: Intellicard
@@ -181,7 +185,7 @@
 # Empty AI core
 - type: entity
   id: PlayerStationAiEmpty
-  name: AI Core
+  name: AI core
   description: The latest in Artificial Intelligences.
   parent:
   - BaseStructure
@@ -189,7 +193,7 @@
   suffix: Empty
   components:
   - type: Anchorable
-    flags: 
+    flags:
     - Anchorable
   - type: Rotatable
   - type: WarpPoint
@@ -244,7 +248,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: DamageVisuals
-    thresholds: [25, 50, 75, 100, 125, 150, 175]
+    thresholds: [25, 50, 75, 100, 200, 300, 400]
     damageDivisor: 4
     trackAllDamage: true
     damageOverlay:
@@ -342,7 +346,7 @@
 - type: entity
   parent: BaseStructure
   id: PlayerStationAiAssembly
-  name: AI Core Assembly
+  name: AI core assembly
   description: An unfinished computer core for housing an artifical intelligence.
   components:
   - type: Anchorable
@@ -351,7 +355,7 @@
   - type: Rotatable
   - type: Sprite
     snapCardinals: true
-    sprite: _Starlight/Mobs/Silicon/station_ai.rsi
+    sprite: _Starlight/Mobs/Silicon/station_ai.rsi # Starlight - use our sprites
     layers:
     - state: frame_0
       map: [ "enum.ConstructionVisuals.Layer" ]
@@ -580,6 +584,7 @@
       rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
+      job: Borg
     - type: GhostTakeoverAvailable
 
 - type: entity
@@ -615,6 +620,7 @@
       rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
+      job: Borg
     - type: GhostTakeoverAvailable
 
 - type: entity
@@ -703,6 +709,7 @@
     raffle:
       settings: default
     reregister: false
+    job: Borg
   - type: GhostTakeoverAvailable
 
 - type: entity
@@ -737,6 +744,7 @@
       raffle:
         settings: default
       reregister: false
+      job: Borg
     - type: GhostTakeoverAvailable
 
 - type: entity
@@ -773,6 +781,7 @@
     raffle:
       settings: default
     reregister: false
+    job: Borg
   - type: GhostTakeoverAvailable
 
 - type: entity
@@ -810,6 +819,7 @@
     raffle:
       settings: default
     reregister: false
+    job: Borg
   - type: GhostTakeoverAvailable
 
 - type: entity
@@ -846,6 +856,7 @@
     raffle:
       settings: default
     reregister: false
+    job: Borg
   - type: GhostTakeoverAvailable
 
 - type: entity
@@ -882,4 +893,5 @@
     raffle:
       settings: default
     reregister: false
+    job: Borg
   - type: GhostTakeoverAvailable
