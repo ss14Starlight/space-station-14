@@ -4,9 +4,9 @@
   source: "https://xeno-canto.org"
   
 - files: [resomi_scream.ogg]
-  copyright: "Taken from Citadel Station 13 RP at commit dbe0920 (renamed from 'teshariscream.ogg')"
-  license: "CC-BY-SA-3.0"
-  source: https://github.com/Citadel-Station-13/Citadel-Station-13-RP/blob/master/sound/effects/mob_effects/teshariscream.ogg
+  copyright: '"'
+  license: ""
+  source: N/A
 
 - files: [resomi_chirp1.ogg, resomi_chirp2.ogg, resomi_chirp3.ogg, resomi_chirp4.ogg, resomi_chirp5.ogg]
   copyright: "Bird Chirps by whiskeyecho, Taken from https://freesound.org/"
