@@ -5,7 +5,6 @@ using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
 using Content.Shared.Random;
-using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -13,16 +12,15 @@ namespace Content.Server.Botany.Systems;
 
 public sealed partial class MutationSystem : EntitySystem
 {
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
     [Dependency] private readonly ISerializationManager _serializationManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+
     [Dependency] private readonly BotanySystem _botany = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PlantTraySystem _plantTray = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
-    private static readonly ProtoId<RandomPlantMutationListPrototype> RandomPlantMutations = "RandomPlantMutations";
     private RandomPlantMutationListPrototype _randomMutations = default!;
 
     public override void Initialize()
