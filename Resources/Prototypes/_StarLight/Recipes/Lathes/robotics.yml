@@ -2,7 +2,7 @@
   id: BorgModuleMartyr
   result: BorgModuleMartyr
   categories:
-  - Robotics
+  - Modules
   completetime: 10
   materials: #2x the cost of a explosive payload + 0.5 steel and 0.5 gold
     Steel: 350
@@ -16,18 +16,28 @@
   id: BorgModuleSyndicateWeapon
   result: BorgModuleSyndicateWeapon
   categories:
-    - Robotics
+    - Modules
   materials: #10 steel, 2 plastic, 0.5 plasma for the blade, 0.5 steel for the module.
     Steel: 1050
     Plastic: 200
     Plasma: 50
 
 - type: latheRecipe
+  id: BorgModuleC20r
+  result: BorgModuleC20r
+  categories:
+    - Modules
+  materials: #basically just 1.5x as expensive compared to the generic weapon module cause c20 is good
+    Steel: 1575
+    Plastic: 300
+    Plasma: 75
+
+- type: latheRecipe
   id: BorgModuleL6C
   result: BorgModuleL6C
   categories:
-    - Robotics
-  materials: #basically just 2x as expensive compared to the generic weapon module due to... well.. it is a l6c... do I need to explain?
+    - Modules
+  materials: #basically just 2x as expensive compared to the generic weapon module cause L6 is REALLY good
     Steel: 2050
     Plastic: 500
     Plasma: 500

@@ -26,3 +26,56 @@
     prototype: CompuerShuttleSalvage
   - type: StealTarget
     stealGroup: SalvageShuttleConsoleCircuitboard
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: MassDriverComputerCircuitboard
+  name: mass driver computer board
+  description: A computer printed circuit board for an mass driver computer.
+  components:
+    - type: Sprite
+      state: net_wired
+    - type: ComputerBoard
+      prototype: MassDriverComputer
+    - type: StaticPrice
+      price: 200
+
+- type: entity
+  parent: [BaseComputerCircuitboard, BaseCommandContraband]
+  id: UniversalIdConsoleCircuitboard
+  name: Universal ID console board
+  description: A circuit board for a Universal ID console.
+  components:
+    - type: Sprite
+      state: cpu_command
+    - type: ComputerBoard
+      prototype: UniversalIdConsole
+    - type: StaticPrice
+      price: 750
+    - type: Tag
+      tags:
+      - HighRiskItem
+    
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: MiningShuttleConsoleCircuitboard
+  name: mining shuttle console board
+  description: A computer printed circuit board for a mining shuttle console.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerShuttleMining
+    - type: StealTarget
+      stealGroup: MiningShuttleConsoleCircuitboard
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SecurityShuttleConsoleCircuitboard
+  name: security shuttle console board
+  description: A computer printed circuit board for a security shuttle console.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerShuttleSecurity

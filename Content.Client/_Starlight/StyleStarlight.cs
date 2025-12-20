@@ -50,8 +50,6 @@ public sealed class StyleStarlight : StyleBase
     public const string StyleClassSliderBlue = "Blue";
     public const string StyleClassSliderWhite = "White";
 
-    public const string StyleClassLabelHeadingBigger = "LabelHeadingBigger";
-    public const string StyleClassLabelKeyText = "LabelKeyText";
     public const string StyleClassLabelSecondaryColor = "LabelSecondaryColor";
     public const string StyleClassLabelBig = "LabelBig";
     public const string StyleClassLabelSmall = "LabelSmall";
@@ -619,19 +617,19 @@ public sealed class StyleStarlight : StyleBase
                 .Prop(ContainerButton.StylePropertyStyleBox, BaseButton),
 
             Element<ContainerButton>().Class(ContainerButton.StyleClassButton)
-                .Class(ButtonOpenRight)
+                .Class(StyleClass.ButtonOpenRight)
                 .Prop(ContainerButton.StylePropertyStyleBox, BaseButtonOpenRight),
 
             Element<ContainerButton>().Class(ContainerButton.StyleClassButton)
-                .Class(ButtonOpenLeft)
+                .Class(StyleClass.ButtonOpenLeft)
                 .Prop(ContainerButton.StylePropertyStyleBox, BaseButtonOpenLeft),
 
             Element<ContainerButton>().Class(ContainerButton.StyleClassButton)
-                .Class(ButtonOpenBoth)
+                .Class(StyleClass.ButtonOpenBoth)
                 .Prop(ContainerButton.StylePropertyStyleBox, BaseButtonOpenBoth),
 
             Element<ContainerButton>().Class(ContainerButton.StyleClassButton)
-                .Class(ButtonSquare)
+                .Class(StyleClass.ButtonSquare)
                 .Prop(ContainerButton.StylePropertyStyleBox, BaseButtonSquare),
 
             new StyleRule(new SelectorElement(typeof(Label), new[] { ContainerButton.StyleClassButton }, null, null), new[]
@@ -657,19 +655,19 @@ public sealed class StyleStarlight : StyleBase
                 .Prop(Control.StylePropertyModulateSelf, ButtonColorDisabled),
 
             // Colors for the caution buttons.
-            Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(ButtonCaution)
+            Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(StyleClass.Negative)
                 .Pseudo(ContainerButton.StylePseudoClassNormal)
                 .Prop(Control.StylePropertyModulateSelf, ButtonColorCautionDefault),
 
-            Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(ButtonCaution)
+            Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(StyleClass.Negative)
                 .Pseudo(ContainerButton.StylePseudoClassHover)
                 .Prop(Control.StylePropertyModulateSelf, ButtonColorCautionHovered),
 
-            Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(ButtonCaution)
+            Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(StyleClass.Negative)
                 .Pseudo(ContainerButton.StylePseudoClassPressed)
                 .Prop(Control.StylePropertyModulateSelf, ButtonColorCautionPressed),
 
-            Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(ButtonCaution)
+            Element<ContainerButton>().Class(ContainerButton.StyleClassButton).Class(StyleClass.Negative)
                 .Pseudo(ContainerButton.StylePseudoClassDisabled)
                 .Prop(Control.StylePropertyModulateSelf, ButtonColorCautionDisabled),
 
@@ -974,7 +972,7 @@ public sealed class StyleStarlight : StyleBase
                 new StyleProperty("font", notoSansItalic12),
             }),
 
-            new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {StyleClassLabelKeyText}, null, null), new[]
+            new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {StyleClass.LabelKeyText}, null, null), new[]
             {
                 new StyleProperty(Label.StylePropertyFont, notoSansBold12),
                 new StyleProperty( Control.StylePropertyModulateSelf, NanoGold)
@@ -1017,11 +1015,11 @@ public sealed class StyleStarlight : StyleBase
             }),
 
             // small number for the entity counter in the entity menu
-            new StyleRule(new SelectorElement(typeof(Label), new[] {ContextMenuElement.StyleClassEntityMenuIconLabel}, null, null), new[]
-            {
-                new StyleProperty("font", notoSans10),
-                new StyleProperty(Label.StylePropertyAlignMode, Label.AlignMode.Right),
-            }),
+            // new StyleRule(new SelectorElement(typeof(Label), new[] {ContextMenuElement.StyleClassEntityMenuIconLabel}, null, null), new[]
+            // {
+            //     new StyleProperty("font", notoSans10),
+            //     new StyleProperty(Label.StylePropertyAlignMode, Label.AlignMode.Right),
+            // }),
 
             // hotbar slot
             new StyleRule(new SelectorElement(typeof(RichTextLabel), new[] {StyleClassHotbarSlotNumber}, null, null), new[]
@@ -1100,14 +1098,14 @@ public sealed class StyleStarlight : StyleBase
                 }),
 
             // Big Label
-            new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassLabelHeading}, null, null), new[]
+            new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClass.LabelHeading}, null, null), new[]
             {
                 new StyleProperty(Label.StylePropertyFont, notoSansBold16),
                 new StyleProperty(Label.StylePropertyFontColor, NanoGold),
             }),
 
             // Bigger Label
-            new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassLabelHeadingBigger}, null, null),
+            new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClass.LabelHeadingBigger}, null, null),
                 new[]
                 {
                     new StyleProperty(Label.StylePropertyFont, notoSansBold20),
@@ -1115,14 +1113,14 @@ public sealed class StyleStarlight : StyleBase
                 }),
 
             // Small Label
-            new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassLabelSubText}, null, null), new[]
+            new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClass.LabelSubText}, null, null), new[]
             {
                 new StyleProperty(Label.StylePropertyFont, notoSans10),
                 new StyleProperty(Label.StylePropertyFontColor, Color.DarkGray),
             }),
 
             // Label Key
-            new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClassLabelKeyText}, null, null), new[]
+            new StyleRule(new SelectorElement(typeof(Label), new[] {StyleClass.LabelKeyText}, null, null), new[]
             {
                 new StyleProperty(Label.StylePropertyFont, notoSansBold12),
                 new StyleProperty(Label.StylePropertyFontColor, NanoGold)
@@ -1165,21 +1163,21 @@ public sealed class StyleStarlight : StyleBase
             // which is NOT the case for the default BaseButton styles (OpenLeft/OpenRight adds extra padding on one of the sides
             // which makes the TopButton icons appear off-center, which we don't want).
             new StyleRule(
-                new SelectorElement(typeof(MenuButton), new[] {ButtonSquare}, null, null),
+                new SelectorElement(typeof(MenuButton), new[] {StyleClass.ButtonSquare}, null, null),
                 new[]
                 {
                     new StyleProperty(ContainerButton.StylePropertyStyleBox, topButtonSquare),
                 }),
 
             new StyleRule(
-                new SelectorElement(typeof(MenuButton), new[] {ButtonOpenLeft}, null, null),
+                new SelectorElement(typeof(MenuButton), new[] {StyleClass.ButtonOpenLeft}, null, null),
                 new[]
                 {
                     new StyleProperty(ContainerButton.StylePropertyStyleBox, topButtonOpenLeft),
                 }),
 
             new StyleRule(
-                new SelectorElement(typeof(MenuButton), new[] {ButtonOpenRight}, null, null),
+                new SelectorElement(typeof(MenuButton), new[] {StyleClass.ButtonOpenRight}, null, null),
                 new[]
                 {
                     new StyleProperty(ContainerButton.StylePropertyStyleBox, topButtonOpenRight),
@@ -1193,7 +1191,7 @@ public sealed class StyleStarlight : StyleBase
                 }),
 
             new StyleRule(
-                new SelectorElement(typeof(MenuButton), new[] {MenuButton.StyleClassRedTopButton}, null, new[] {ContainerButton.StylePseudoClassNormal}),
+                new SelectorElement(typeof(MenuButton), new[] { StyleClass.Negative }, null, new[] {ContainerButton.StylePseudoClassNormal}),
                 new[]
                 {
                     new StyleProperty(Control.StylePropertyModulateSelf, ButtonColorDefaultRed),
@@ -1221,7 +1219,7 @@ public sealed class StyleStarlight : StyleBase
                 }),
 
             new StyleRule(
-                new SelectorElement(typeof(MenuButton), new[] {MenuButton.StyleClassRedTopButton}, null, new[] {ContainerButton.StylePseudoClassHover}),
+                new SelectorElement(typeof(MenuButton), new[] { StyleClass.Negative }, null, new[] {ContainerButton.StylePseudoClassHover}),
                 new[]
                 {
                     new StyleProperty(Control.StylePropertyModulateSelf, ButtonColorHoveredRed),
@@ -1367,7 +1365,7 @@ public sealed class StyleStarlight : StyleBase
             Element<PanelContainer>().Class(OptionButton.StyleClassOptionsBackground)
                 .Prop(PanelContainer.StylePropertyPanel, new StyleBoxFlat(Color.FromHex("#141412"))),
 
-            new StyleRule(new SelectorElement(typeof(PanelContainer), new []{ ClassHighDivider}, null, null), new []
+            new StyleRule(new SelectorElement(typeof(PanelContainer), new []{ StyleClass.HighDivider}, null, null), new []
             {
                 new StyleProperty(PanelContainer.StylePropertyPanel, new StyleBoxFlat { BackgroundColor = NanoGold, ContentMarginBottomOverride = 2, ContentMarginLeftOverride = 2}),
             }),
@@ -1385,7 +1383,7 @@ public sealed class StyleStarlight : StyleBase
             // ---
 
             // Different Background shapes ---
-            Element<PanelContainer>().Class(ClassAngleRect)
+            Element<PanelContainer>().Class(StyleClass.BackgroundPanel)
                 .Prop(PanelContainer.StylePropertyPanel, BaseAngleRect)
                 .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#121208")),
 
@@ -1405,7 +1403,7 @@ public sealed class StyleStarlight : StyleBase
             // ---
 
             // Dividers
-            Element<PanelContainer>().Class(ClassLowDivider)
+            Element<PanelContainer>().Class(StyleClass.LowDivider)
                 .Prop(PanelContainer.StylePropertyPanel, new StyleBoxFlat
                 {
                     BackgroundColor = Color.FromHex("#444"),

@@ -1,5 +1,5 @@
 - type: gameMap
-  id: Cork
+  id: StarlightCork
   mapName: 'Cork Outpost'
   mapPath: /Maps/_Starlight/Stations/Cork.yml
   maxRandomOffset: 0
@@ -7,7 +7,7 @@
   minPlayers: 0
   maxPlayers: 15
   stations:
-    Cork:
+    StarlightCork:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
@@ -25,6 +25,7 @@
             SalvageSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
             MailTech: [ 1, 1 ]
+            SalvageLead: [ 1, 1 ]
             # engineering
             ChiefEngineer: [ 1, 1 ]
             StationEngineer: [ 2, 2 ]
@@ -63,3 +64,6 @@
             Assistant: [ -1, -1 ]
             # silicon
             Borg: [ 1, 1 ]
+            #Representives
+            BlueShield: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]

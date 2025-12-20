@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server.Administration.Logs;
 using Content.Server.Decals;
 using Content.Server.Popups;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Crayon;
 using Content.Shared.Database;
 using Content.Shared.Decals;
@@ -16,7 +17,6 @@ using Content.Shared.Nutrition.EntitySystems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Crayon;
@@ -28,15 +28,19 @@ public sealed class CrayonSystem : SharedCrayonSystem
     [Dependency] private readonly DecalSystem _decals = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!; // Starlight
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<CrayonComponent, ComponentInit>(OnCrayonInit);
+
+        SubscribeLocalEvent<CrayonComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CrayonComponent, CrayonSelectMessage>(OnCrayonBoundUI);
         SubscribeLocalEvent<CrayonComponent, CrayonColorMessage>(OnCrayonBoundUIColor);
+        SubscribeLocalEvent<CrayonComponent, UseInHandEvent>(OnCrayonUse);
+        SubscribeLocalEvent<CrayonComponent, AfterInteractEvent>(OnCrayonAfterInteract, after: [typeof(IngestionSystem)]);
         SubscribeLocalEvent<CrayonComponent, CrayonRotationMessage>(OnCrayonBoundUIRotation);
         SubscribeLocalEvent<CrayonComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
         SubscribeLocalEvent<CrayonComponent, BoundUIClosedEvent>(OnBoundUIClosed);
@@ -45,23 +49,24 @@ public sealed class CrayonSystem : SharedCrayonSystem
         SubscribeLocalEvent<CrayonComponent, GotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<CrayonComponent, GotUnequippedEvent>(OnGotUnequipped);
         SubscribeLocalEvent<CrayonComponent, CrayonPreviewToggleMessage>(OnCrayonBoundUIPreviewToggle);
-        SubscribeLocalEvent<CrayonComponent, UseInHandEvent>(OnCrayonUse, before: new[] { typeof(FoodSystem) });
-        SubscribeLocalEvent<CrayonComponent, AfterInteractEvent>(OnCrayonAfterInteract, after: new[] { typeof(FoodSystem) });
         SubscribeLocalEvent<CrayonComponent, DroppedEvent>(OnCrayonDropped);
-        SubscribeLocalEvent<CrayonComponent, ComponentGetState>(OnCrayonGetState);
     }
 
-    private static void OnCrayonGetState(EntityUid uid, CrayonComponent component, ref ComponentGetState args)
+    private void OnMapInit(Entity<CrayonComponent> ent, ref MapInitEvent args)
     {
-        args.State = new CrayonComponentState(component.Color, component.SelectedState, component.Charges, component.Capacity, component.Rotation, component.PreviewEnabled, component.PreviewVisible, component.OpaqueGhost); // Starlight-edit
+        // Get the first one from the catalog and set it as default
+        var decal = _prototypeManager.EnumeratePrototypes<DecalPrototype>().FirstOrDefault(x => x.Tags.Contains("crayon"));
+        ent.Comp.SelectedState = decal?.ID ?? string.Empty;
+        Dirty(ent);
     }
 
+    // Runs after IngestionSystem so it doesn't bulldoze force-feeding
     private void OnCrayonAfterInteract(EntityUid uid, CrayonComponent component, AfterInteractEvent args)
     {
         if (args.Handled || !args.CanReach)
             return;
 
-        if (component.Charges <= 0)
+        if (_charges.IsEmpty(uid))
         {
             if (component.DeleteEmpty)
                 UseUpCrayon(uid, args.User);
@@ -86,17 +91,15 @@ public sealed class CrayonSystem : SharedCrayonSystem
         if (component.UseSound != null)
             _audio.PlayPvs(component.UseSound, uid, AudioParams.Default.WithVariation(0.125f));
 
-        // Decrease "Ammo"
-        component.Charges--;
-        Dirty(uid, component);
+        _charges.TryUseCharge(uid);
 
         _adminLogger.Add(LogType.CrayonDraw, LogImpact.Low, $"{ToPrettyString(args.User):user} drew a {component.Color:color} {component.SelectedState}");
         args.Handled = true;
 
-        if (component.DeleteEmpty && component.Charges <= 0)
+        if (component.DeleteEmpty && _charges.IsEmpty(uid))
             UseUpCrayon(uid, args.User);
         else
-            _uiSystem.ServerSendUiMessage(uid, SharedCrayonComponent.CrayonUiKey.Key, new CrayonUsedMessage(component.SelectedState));
+            _uiSystem.ServerSendUiMessage(uid, CrayonUiKey.Key, new CrayonUsedMessage(component.SelectedState));
     }
 
     private void OnCrayonUse(EntityUid uid, CrayonComponent component, UseInHandEvent args)
@@ -105,14 +108,13 @@ public sealed class CrayonSystem : SharedCrayonSystem
         if (args.Handled)
             return;
 
-        if (!_uiSystem.HasUi(uid, SharedCrayonComponent.CrayonUiKey.Key))
-        {
+        if (!_uiSystem.HasUi(uid, CrayonUiKey.Key))
             return;
-        }
 
-        _uiSystem.TryToggleUi(uid, SharedCrayonComponent.CrayonUiKey.Key, args.User);
+        _uiSystem.TryToggleUi(uid, CrayonUiKey.Key, args.User);
 
-        SetUIState(uid, component);
+        // _uiSystem.SetUiState(uid, CrayonUiKey.Key, new CrayonBoundUserInterfaceState(component.SelectedState, component.SelectableColor, component.Color));
+        SetUIState(uid, component); // Starlight - change from above to this, since we use a different function to handle the previews
         args.Handled = true;
     }
 
@@ -123,19 +125,17 @@ public sealed class CrayonSystem : SharedCrayonSystem
             return;
 
         component.SelectedState = args.State;
-
         Dirty(uid, component);
     }
 
     private void OnCrayonBoundUIColor(EntityUid uid, CrayonComponent component, CrayonColorMessage args)
     {
-        // you still need to ensure that the given color is a valid color
+        // Ensure that the given color can be changed or already matches
         if (!component.SelectableColor || args.Color == component.Color)
             return;
 
         component.Color = args.Color;
         Dirty(uid, component);
-
     }
 
     // Starlight-start
@@ -195,7 +195,7 @@ public sealed class CrayonSystem : SharedCrayonSystem
 
     private void SetUIState(EntityUid uid, CrayonComponent component)
     {
-        _uiSystem.SetUiState(uid, SharedCrayonComponent.CrayonUiKey.Key, new CrayonBoundUserInterfaceState(component.SelectedState, component.SelectableColor, component.Color, component.Rotation, component.PreviewEnabled, component.PreviewVisible, component.OpaqueGhost));
+        _uiSystem.SetUiState(uid, CrayonUiKey.Key, new CrayonBoundUserInterfaceState(component.SelectedState, component.SelectableColor, component.Color, component.Rotation, component.PreviewEnabled, component.PreviewVisible, component.OpaqueGhost));
     }
 
     private void SetPreviewVisible(EntityUid uid, CrayonComponent component, bool visible)
@@ -206,20 +206,10 @@ public sealed class CrayonSystem : SharedCrayonSystem
     }
     // Starlight-end
 
-    private void OnCrayonInit(EntityUid uid, CrayonComponent component, ComponentInit args)
-    {
-        component.Charges = component.Capacity;
-
-        // Get the first one from the catalog and set it as default
-        var decal = _prototypeManager.EnumeratePrototypes<DecalPrototype>().FirstOrDefault(x => x.Tags.Contains("crayon"));
-        component.SelectedState = decal?.ID ?? string.Empty;
-        Dirty(uid, component);
-    }
-
     private void OnCrayonDropped(EntityUid uid, CrayonComponent component, DroppedEvent args)
     {
         // TODO: Use the existing event.
-        _uiSystem.CloseUi(uid, SharedCrayonComponent.CrayonUiKey.Key, args.User);
+        _uiSystem.CloseUi(uid, CrayonUiKey.Key, args.User);
     }
 
     private void UseUpCrayon(EntityUid uid, EntityUid user)

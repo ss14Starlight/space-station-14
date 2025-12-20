@@ -1,0 +1,139 @@
+- type: decal
+  id: dangeranomaly
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: danger_anomaly
+
+- type: decal
+  id: dangerclown
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: danger_clown
+
+- type: decal
+  id: dangerfire
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: danger_fire
+
+- type: decal
+  id: dangergas
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: danger_gas
+
+- type: decal
+  id: dangerrads
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: danger_rads
+
+- type: decal
+  id: dangershock
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: danger_shock
+
+- type: decal
+  id: flammablegas
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: flammable_gas
+
+- type: decal
+  id: highpressure
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: high_pressure
+
+- type: decal
+  id: hightemp
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: high_temp
+
+- type: decal
+  id: hullbreach
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: hull_breach
+
+- type: decal
+  id: lowoxy
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: low_oxy
+
+- type: decal
+  id: lowpressure
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: low_pressure
+
+- type: decal
+  id: lowtemp
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: low_temp
+
+- type: decal
+  id: poisongas
+  tags: ["station", "markings"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/hazards.rsi
+    state: poison_gas

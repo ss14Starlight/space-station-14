@@ -4,7 +4,6 @@ using Content.Server.Access.Systems;
 using Content.Server.Body.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Humanoid;
-using Content.Server.IdentityManagement;
 using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
@@ -17,6 +16,7 @@ using Content.Shared.Clothing;
 using Content.Shared.DetailExaminable;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.IdentityManagement;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
@@ -175,6 +175,21 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         SetupCybernetics(entity.Value, profile?.Cybernetics ?? []); // Starlight
 
+        // Starlight begin - we try to do a unified load of loadout and startinggear in one shot to
+        // make it more consistent and equip things in a more effective order.
+        if (loadout != null)
+        {
+            var startingGear = prototype?.StartingGear != null ? [_prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear)] : Array.Empty<IEquipmentLoadout>();
+            StarlightEquipRoleLoadout(entity.Value, loadout, startingGear, roleProto!);
+        }
+        else if (prototype?.StartingGear != null)
+        {
+            var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
+            EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+        }
+        // Starlight end
+
+        /* Starlight - add comment
         if (loadout != null)
         {
             EquipRoleLoadout(entity.Value, loadout, roleProto!);
@@ -185,6 +200,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
             EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         }
+        */ // Starlight - add end of comment
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);

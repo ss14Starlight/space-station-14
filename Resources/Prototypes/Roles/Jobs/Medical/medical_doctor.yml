@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 9000 #2.5 hrs
+      time: 2.5h
   startingGear: DoctorGear
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-cmo
@@ -15,6 +15,10 @@
   - Maintenance
   extendedAccess:
   - Chemistry
+  # Starlight Start
+  - Paramedic
+  - Surgery
+  # Starlight End
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: DoctorDay

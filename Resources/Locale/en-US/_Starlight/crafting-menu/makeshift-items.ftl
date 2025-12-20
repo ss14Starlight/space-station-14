@@ -1,4 +1,4 @@
-﻿crafting-menu-name-FDB = forged double-barrel shotgun
+crafting-menu-name-FDB = forged double-barrel shotgun
 crafting-menu-text-FDB = The cousin of the improvised shotgun, this one is made from better quality parts and an additional barrel! Takes time and welding supplies to make, however.
 
 crafting-menu-name-MP = makeshift pistol
@@ -189,3 +189,28 @@ crafting-menu-name-CYELO = yellow crayon
 crafting-menu-name-IRS = improvised .30/.45 speed loader
 crafting-menu-text-IRS = Little more than a spring-loaded tube that can hold bullets.
 
+crafting-menu-name-RIPRL = left ripperdoc arm
+crafting-menu-text-RIPRL = A poorly made replica of a coveted "Reaper" arm, cobbled together from scrap found lying around in maintenance.
+
+crafting-menu-name-RIPRR = right ripperdoc arm
+crafting-menu-text-RIPRR = A poorly made replica of a coveted "Reaper" arm, cobbled together from scrap found lying around in maintenance.
+
+crafting-menu-name-BNGE = bottle of bone gel
+
+crafting-menu-name-ASSFP = assorted forge parts
+crafting-menu-text-ASSFP = A small pile of components for making a forge for an anvil, contains an igniter and valves.
+
+crafting-menu-name-SINF = insulated fabric
+crafting-menu-text-SINF = A bolt of smooth insulated fabric, not much use in it's current form.
+
+crafting-menu-name-FLINS = fingerless insulated gloves
+crafting-menu-text-FLINS = Insulated gloves resistant to shocks, or at least they used to.
+
+crafting-menu-name-TINS = insulated gloves
+crafting-menu-text-TINS = These gloves will protect the wearer from electric shocks.
+
+construction-graph-tag-cheapinsulfabric = cheap insulated fabric
+
+construction-graph-tag-plasteelfilament = plasteel filament
+
+construction-graph-tag-insulthread = insulated thread

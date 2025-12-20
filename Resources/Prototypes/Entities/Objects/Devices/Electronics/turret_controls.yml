@@ -22,7 +22,7 @@
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelElectronicsBase
   id: WeaponEnergyTurretAIControlPanelElectronics
-  suffix: AI, Silicon
+  suffix: AI
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi

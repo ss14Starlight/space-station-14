@@ -71,13 +71,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 100
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 50
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -113,6 +113,9 @@
     stateDoorClosed: generic_door
   - type: StaticPrice
     price: 75
+  # Starlight-start: Blinding from containers
+  - type: ChildBlockVision
+  # Starlight-end
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity
@@ -167,13 +170,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 100
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 50
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]

@@ -1,4 +1,4 @@
-﻿using Content.Server.Kitchen.Components;
+using Content.Server.Kitchen.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat;
 using Content.Shared.Clumsy;
@@ -15,6 +15,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
@@ -29,6 +30,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.Kitchen.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Execution;
 
@@ -369,21 +372,19 @@ public sealed class ExecutionSystem : EntitySystem
         var ammoUid = ev.Ammo[0].Entity;
         switch (ev.Ammo[0].Shootable)
         {
-            //🌟Starlight🌟 start
-            case HitScanCartridgeAmmoComponent cartridge:
-                var hitscanProto = _prototypeManager.Index(cartridge.Hitscan);
-                if (hitscanProto.Damage is not null)
-                    damage = hitscanProto.Damage * hitscanProto.Count;
-
-                cartridge.Spent = true;
-                _appearanceSystem.SetData(ammoUid!.Value, AmmoVisuals.Spent, true);
-                Dirty(ammoUid.Value, cartridge);
-
-                break;
-            //🌟Starlight🌟 end
             case CartridgeAmmoComponent cartridge:
                 // Get the damage value
                 var prototype = _prototypeManager.Index<EntityPrototype>(cartridge.Prototype);
+
+                // Starlight start - support hitscans in cartridges
+                if (prototype.TryGetComponent<HitscanAmmoComponent>(out var hitscan, _componentFactory))
+                {
+                    if (prototype.TryGetComponent<HitscanBasicDamageComponent>(out var hitscanDamage, _componentFactory))
+                    {
+                        damage = hitscanDamage.Damage;
+                    }
+                }
+                // Starlight end
                 prototype.TryGetComponent<ProjectileComponent>(out var projectileA, _componentFactory); // sloth forgive me
                 if (projectileA != null)
                 {
@@ -411,8 +412,11 @@ public sealed class ExecutionSystem : EntitySystem
                 Del(ammoUid);
                 break;
 
-            case HitscanPrototype hitscan:
-                damage = hitscan.Damage!;
+            case HitscanAmmoComponent:
+                if (TryComp<HitscanBasicDamageComponent>(ammoUid, out var basicDamage))
+                {
+                    damage = basicDamage.Damage;
+                }
                 break;
 
             default:

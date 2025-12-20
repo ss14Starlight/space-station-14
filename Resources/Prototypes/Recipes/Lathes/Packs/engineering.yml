@@ -3,6 +3,7 @@
 - type: latheRecipePack
   id: ToolsStatic
   recipes:
+  - VoiceSensor
   - Wirecutter
   - Screwdriver
   - Welder
@@ -46,6 +47,10 @@
   - CellRechargerCircuitboard
   - WeaponCapacitorRechargerCircuitboard
   - FreezerElectronics
+  # Starlight-start
+  - MassDriverCircuitboard
+  - MassDriverComputerCircuitboard
+  # Starlight-end
 
 - type: latheRecipePack
   id: EngineeringBoardsStatic
@@ -89,3 +94,4 @@
   - TelecomServerCircuitboard
   - SMESAdvancedMachineCircuitboard
   - HolopadMachineCircuitboard
+  - WeaponTurretPointDefenseMachineCircuitboard #Starlight

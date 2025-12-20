@@ -17,6 +17,7 @@
     - PreventAccessLogging
     - AllowBiomeLoading
     - Ghost
+    - NotGhostnadoWarpable
   - type: Input
     context: "aghost"
   - type: Ghost
@@ -58,6 +59,10 @@
         type: CargoOrderConsoleBoundUserInterface
       enum.CrewMonitoringUIKey.Key:
         type: CrewMonitoringBoundUserInterface
+      # Cosmatic Drift Record System-start
+      enum.CharacterRecordConsoleKey.Key:
+        type: CharacterRecordConsoleBoundUserInterface
+      # Cosmatic Drift Record System-end
       enum.GeneralStationRecordConsoleKey.Key:
       # who the fuck named this bruh
         type: GeneralStationRecordConsoleBoundUserInterface
@@ -73,6 +78,10 @@
         toggleAction: ActionAGhostShowCargo
       enum.CrewMonitoringUIKey.Key:
         toggleAction: ActionAGhostShowCrewMonitoring
+      # Cosmatic Drift Record System-start
+      enum.CharacterRecordConsoleKey.Key:
+        toggleAction: ActionAGhostShowCharacterRecords
+      # Cosmatic Drift Record System-end
       enum.GeneralStationRecordConsoleKey.Key:
         toggleAction: ActionAGhostShowStationRecords
   - type: SolarControlConsole # look ma i AM the computer!
@@ -88,6 +97,11 @@
   - type: CrewMonitoringConsole
   - type: GeneralStationRecordConsole
     canDeleteEntries: true
+    # Cosmatic Drift Record System-start
+  - type: CharacterRecordConsole
+    consoleType: Admin
+  - type: CriminalRecordsConsole
+  # Cosmatic Drift Record System-end
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

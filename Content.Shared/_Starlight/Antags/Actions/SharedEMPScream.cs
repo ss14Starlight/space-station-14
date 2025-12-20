@@ -12,10 +12,10 @@ public sealed partial class EMPScreamEvent : InstantActionEvent
     public float Power = 2.5f;
 
     /// <summary>
-    /// Determines, how many times should we increase the duration depending on the power. Example: Power * DurationMultiply; 2.5 * 2 = 5 seconds.
+    /// Determines, how many times should we increase the duration depending on the power. Example: Power * DurationMultiply; 2.5 * 2 seconds = 5 seconds.
     /// </summary>
     [DataField]
-    public float DurationMultiply = 2f;
+    public TimeSpan DurationMultiply = TimeSpan.FromSeconds(2);
 
     /// <summary>
     /// Determines, how much energy we should consume when use emp scream

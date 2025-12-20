@@ -4,7 +4,7 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "Darkrell",
+  "copyright": "Darkrell, centcomm by conf",
   "license": "CC-BY-SA-3.0",
   "states": [
     {
@@ -32,6 +32,52 @@
     },
     {
       "name": "enemy",
+      "directions": 1,
+      "delays": [
+        [
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08
+        ]
+      ]
+    },
+    {
+      "name": "syndicate",
+      "directions": 1,
+      "delays": [
+        [
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08,
+          0.08
+        ]
+      ]
+    },
+    {
+      "name": "centcomm",
       "directions": 1,
       "delays": [
         [

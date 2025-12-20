@@ -25,13 +25,8 @@
     rules: abductors-ghost-role-rules
     raffle:
       settings: default
-    requirements:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 10800 # 3 hrs
-    - !type:RoleTimeRequirement
-      role: JobSurgeon
-      time: 10800 # 3 hrs
+    mindRoles:
+    - MindRoleLoneAbductor
   - type: AbductorScientist
   - type: ActionGrant
     actions:
@@ -54,13 +49,8 @@
     rules: abductors-ghost-role-rules
     raffle:
       settings: default
-    requirements:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 10800 # 3 hrs
-    - !type:RoleTimeRequirement
-      role: JobSurgeon
-      time: 10800 # 3 hrs
+    mindRoles:
+    - MindRoleLoneAbductor
   - type: AbductorAgent
   - type: ActionGrant
     actions:
@@ -115,13 +105,8 @@
     name: abductora-ghost-role-name
     description: abductora-ghost-role-desc
     rules: abductors-ghost-role-rules
-    requirements:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 10800 # 3 hrs
-    - !type:RoleTimeRequirement
-      role: JobSurgeon
-      time: 10800 # 3 hrs
+    mindRoles:
+    - MindRoleLoneAbductor
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -151,13 +136,8 @@
     name: abductors-ghost-role-name
     description: abductors-ghost-role-desc
     rules: abductors-ghost-role-rules
-    requirements:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 10800 # 3 hrs
-    - !type:RoleTimeRequirement
-      role: JobSurgeon
-      time: 10800 # 3 hrs
+    mindRoles:
+    - MindRoleLoneAbductor
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

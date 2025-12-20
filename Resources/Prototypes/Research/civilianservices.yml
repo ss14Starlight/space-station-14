@@ -89,6 +89,7 @@
   - FatExtractorMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
+  - SlopDispenserMachineCircuitboard #SL
   radioChannels:
   - Service
 
@@ -107,11 +108,42 @@
   - FauxTileAstroGrass
   - FauxTileMowedAstroGrass
   - FauxTileJungleAstroGrass
+  - FauxTileDarkAstroGrass
+  - FauxTileLightAstroGrass
   - FauxTileAstroIce
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
+  - FauxTileDesertAstroSand
   radioChannels:
   - Service
+
+# Starlight - moved from civilian to medical
+#- type: technology
+#  id: BiochemicalStasis
+#  name: research-technology-biochemical-stasis
+#  icon:
+#    sprite: Structures/Machines/stasis_bed.rsi
+#    state: icon
+#  discipline: CivilianServices
+#  tier: 2
+#  cost: 7500
+#  recipeUnlocks:
+#  - StasisBedMachineCircuitboard
+#  - CryoPodMachineCircuitboard
+#  - CryostasisBeaker
+#  - SyringeCryostasis
+#
+#- type: technology # Merge with other T2 medical research if possible!
+#  id: MechanizedTreatment
+#  name: research-technology-mechanized-treatment
+#  icon:
+#    sprite: Mobs/Silicon/chassis.rsi
+#    state: medical
+#  discipline: CivilianServices
+#  tier: 2
+#  cost: 5000
+#  recipeUnlocks:
+#  - BorgModuleAdvancedChemical
 
 - type: technology
   id: AdvancedCleaning

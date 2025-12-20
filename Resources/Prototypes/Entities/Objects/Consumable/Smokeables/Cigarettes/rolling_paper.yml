@@ -14,10 +14,11 @@
       - Smokable #SL
       - Cigarette #SL
       - Lighters #SL
-  - type: StorageFill
-    contents:
-    - id: PaperRolling
-      amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: PaperRolling
+        amount: 4
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/paper.rsi
     state: cigpapers
@@ -30,21 +31,18 @@
   id: PackPaperRollingFilters
   description: A pack of filters and thin pieces of paper used to make fine smokeables.
   components:
-  - type: Storage
-    whitelist:
-      tags:
-      - RollingPaper
-      - CigFilter
-  - type: StorageFill
-    contents:
-      - id: PaperRolling
-        amount: 2
-      - id: CigaretteFilter
-        amount: 2
   # Starlight-start: Vending Machines Prices
   - type: ItemPrice
     priceCategory: miscellaneous
   # Starlight-end
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PaperRolling
+          amount: 2
+        - id: CigaretteFilter
+          amount: 2
 
 - type: entity
   id: PaperRolling

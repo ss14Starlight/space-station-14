@@ -126,3 +126,18 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/nullspacegoogles.rsi
   - type: ShowNullSpace
+
+- type: entity
+  parent: [ ClothingEyesBase, BaseSalvageContraband ]
+  id: ClothingEyesGlassesSalvageMercenary
+  name: scrapper glasses
+  description: Glasses made for salvaging. They provide protection from welding and flashes.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/salvage.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/salvage.rsi
+    - type: FlashImmunity
+    - type: EyeProtection
+    - type: IdentityBlocker
+      coverage: EYES

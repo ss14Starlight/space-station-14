@@ -24,7 +24,11 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: bottle-1-
-  - type: Drink
+  - type: Edible
+    edible: Drink
+    solution: drink
+    destroyOnEmpty: false
+    utensil: None
   - type: SolutionContainerManager
     solutions:
       drink: # This solution name and target volume is hard-coded in ChemMasterComponent
@@ -95,6 +99,10 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: DnaSubstanceTrace
+  # SL-edit: start
+  - type: ItemPrice
+    priceCategory: miscellaneous
+  #SL-edit: end
 
 - type: entity
   parent: BaseChemistryEmptyBottle
@@ -147,6 +155,10 @@
   - type: Tag
     tags:
     - Bottle
+  #SL-edit: start
+  - type: ItemPrice
+    priceCategory: medical
+  #SL-edit: end
 
 # Medicine bottles
 

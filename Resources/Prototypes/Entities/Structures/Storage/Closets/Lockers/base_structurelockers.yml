@@ -80,7 +80,7 @@
   - type: StationAiWhitelist
   - type: WiresPanel
   - type: WiresPanelSecurity
-    wiresAccessible: false
+    wiresAccessible: True
   - type: WiresVisuals
   - type: Wires
     boardName: wires-board-name-locker
@@ -109,10 +109,26 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 300
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
 # Starlight-start: Base Locker
   - type: Tag
     tags: 

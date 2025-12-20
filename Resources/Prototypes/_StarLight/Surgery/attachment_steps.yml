@@ -22,7 +22,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
   - type: SurgeryStepEmoteEffect
 
@@ -36,7 +36,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
@@ -48,6 +48,8 @@
     duration: 4
     tools:
     - type: BoneGel
+    reagentId: BoneGel
+    reagentQuantity: 5
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel

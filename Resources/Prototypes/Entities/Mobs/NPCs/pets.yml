@@ -903,6 +903,14 @@
     - FootstepSound
   - type: StealTarget
     stealGroup: AnimalShiva
+  # Starlight start: Shiva contains 5 telecrystals
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 3
+    - id: Telecrystal5
+      amount: 1
+  # Starlight end
 
 - type: entity
   name: Willow
@@ -1046,10 +1054,7 @@
     name: ghost-role-information-punpun-name
     description: ghost-role-information-punpun-description
     rules: ghost-role-information-nonantagonist-rules
-    requirements:
-    - !type:RoleTimeRequirement
-      role: JobBartender
-      time: 7200 # 2h STARLIGHT
+    job: Bartender # Starlight - TODO - we need a PunPun job with the 2hr bartender requirement
   - type: GhostTakeoverAvailable
   - type: Butcherable
     butcheringType: Spike

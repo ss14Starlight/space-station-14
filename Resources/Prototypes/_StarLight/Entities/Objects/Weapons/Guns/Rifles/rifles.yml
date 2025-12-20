@@ -367,3 +367,64 @@
         whitelist:
           tags:
 
+- type: entity
+  name: M18-Militant
+  parent: [BaseWeaponRifle, BaseSalvageContraband]
+  id: WeaponRifleM18
+  description: Aged yet dependable, this old-world assault rifle is chambered in .20 rifle ammunition. Renowned for its reliability and ease of maintenance even in the harshest environments, it remains a staple among your station’s merce- salvage forces.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: mag-0
+          map: ["enum.GunVisualLayers.Mag"]
+    - type: Clothing
+      sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16.rsi
+    - type: Wieldable
+      unwieldOnUse: false
+    - type: GunWieldBonus
+      minAngle: -13
+      maxAngle: -10
+    - type: Gun
+      minAngle: 21
+      maxAngle: 32
+      fireRate: 2.7
+      burstFireRate: 18
+      soundGunshot:
+        path: /Audio/_Starlight/Weapons/Guns/Gunshots/m16.ogg
+      selectedMode: Burst
+      availableModes:
+      - Burst
+      - SemiAuto
+      shotsPerBurst: 2
+      burstCooldown: 0.45
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazineRifleSP
+          insertSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - MagazineRifle
+          whitelistFailPopup: gun-magazine-whitelist-fail
+        gun_chamber:
+          name: Chamber
+          startingItem: CartridgeRifleSP
+          priority: 1
+          whitelist:
+            tags:
+              - CartridgeRifle
+    - type: MagazineVisuals
+      magState: mag
+      steps: 1
+      zeroVisible: true
+    - type: Appearance
+    - type: CursorOffsetRequiresWield
+    - type: EyeCursorOffset
+      maxOffset: 0.5
+      pvsIncrease: 1.4

@@ -1,0 +1,68 @@
+- type: entity
+  id: BaseSiliconLanguages
+  abstract: true
+  components:
+    - type: LanguageSpeaker
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Machine
+      understands:
+      - GalacticCommon
+      - SolCommon
+      - Machine
+      - Canilunzt
+      - Sign
+      - Bubblish
+      - Chittin
+      - Draconic
+      - Marish
+      - Moffic
+      - Nekomimetic
+      - Sylvan
+      - Terrum
+      - VoxPidgin
+      - Scratch
+      - Thaveyan
+
+- type: entity
+  id: BaseBorgiLanguages
+  abstract: true
+  components:
+    - type: LanguageSpeaker
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Machine
+      - Dog
+      understands:
+      - GalacticCommon
+      - SolCommon
+      - Machine
+      - Canilunzt
+      - Sign
+      - Bubblish
+      - Chittin
+      - Draconic
+      - Marish
+      - Moffic
+      - Nekomimetic
+      - Sylvan
+      - Terrum
+      - VoxPidgin
+      - Scratch
+      - Thaveyan
+      - Dog
+
+- type: entity
+  id: BaseSiliconBrainLanguages
+  abstract: true
+  components:
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    understands:
+    - GalacticCommon
+    - Machine

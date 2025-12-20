@@ -1,0 +1,64 @@
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: VendingMachineRestockSustenance
+  name: prisoner sustenance restock box
+  description: A box full of what is legally food. Load it into a Sustenance Vendor for a refill.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - SustenanceInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_condiment
+
+- type: entity
+  parent: [ BaseSyndicateContraband, BaseVendingMachineRestock ]
+  id: VendingMachineRestockSyndicate
+  name: Syndicate vending restock box
+  description: A box of illicit supplies that coincidentally looks a lot like a donksoft restock...
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - ChemVendInventorySyndicate
+    - SyndieDrobeInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_donksoft
+
+- type: entity
+  parent: [ BaseCentcommContraband, BaseVendingMachineRestock ]
+  id: VendingMachineRestockCentComm
+  name: CentComm vending restock box
+  description: Fine wares for fine tastes.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - CentDrobeInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_clothes
+
+- type: entity
+  parent: [ BaseMagicalContraband, BaseVendingMachineRestock ]
+  id: VendingMachineRestockMagical
+  name: MagiVend restock box
+  description: Restock to recast.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - MagiVendInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_costume

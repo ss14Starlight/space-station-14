@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Client.GameObjects;
@@ -111,12 +112,14 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
                 return;
             }
 
-            if (damageVisComp.DamageGroup == null)
-            {
-                Log.Error($"Disabled overlay without defined damage group on {entity}.");
-                damageVisComp.Valid = false;
-                return;
-            }
+            //#Starlight turns out this check does literally nothing and it works even when it is removed
+            // by removing this check it allows us to use the "all groups" option even when overlay = false
+            // if (damageVisComp.DamageGroup == null)
+            // {
+            //     Log.Error($"Disabled overlay without defined damage group on {entity}.");
+            //     damageVisComp.Valid = false;
+            //     return;
+            // }
         }
 
         if (damageVisComp.DamageOverlayGroups != null && damageVisComp.DamageGroup != null)

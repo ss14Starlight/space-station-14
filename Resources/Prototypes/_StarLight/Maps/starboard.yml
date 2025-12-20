@@ -1,10 +1,10 @@
 - type: gameMap
-  id: Starboard
+  id: StarlightStarboard
   mapName: 'Starboard'
   mapPath: /Maps/_Starlight/Stations/Starboard.yml
   minPlayers: 90
   stations:
-    Starboard:
+    StarlightStarboard:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
@@ -57,6 +57,7 @@
             CargoTechnician: [ 6, 7 ]
             MiningSpecialist: [ 1, 2]
             MailTech: [ 2, 3 ]
+            SalvageLead: [ 1, 1 ]
             #civillian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

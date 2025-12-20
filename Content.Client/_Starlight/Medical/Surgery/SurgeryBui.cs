@@ -201,7 +201,7 @@ public sealed class SurgeryBui : BoundUserInterface
         var stepName = new FormattedMessage();
         stepName.AddText(_entities.GetComponent<MetaDataComponent>(step).EntityName);
 
-        var stepButton = new SurgeryStepButton { Step = step };
+        var stepButton = new SurgeryStepButton { Step = step, TooltipTextSupplier = () => stepName.ToString() };
         stepButton.Button.OnPressed += _ => SendMessage(new SurgeryStepChosenBuiMsg()
         {
             Step = stepId,
@@ -313,9 +313,9 @@ public sealed class SurgeryBui : BoundUserInterface
         if (_window == null ||
             !_entities.HasComponent<SurgeryComponent>(_surgery?.Ent) ||
             !_entities.TryGetComponent(_part, out BodyPartComponent? part))
-        {
             return;
-        }
+
+        UpdateDisabledPanel();
 
         var next = _system.GetNextStep(Owner, _part.Value, _surgery.Value.Ent);
         var i = 0;
@@ -326,38 +326,34 @@ public sealed class SurgeryBui : BoundUserInterface
 
             var status = StepStatus.Incomplete;
             if (next == null)
-            {
                 status = StepStatus.Complete;
-            }
+
             else if (next.Value.Surgery.Owner != _surgery.Value.Ent)
-            {
                 status = StepStatus.Incomplete;
-            }
+
             else if (next.Value.Step == i)
-            {
                 status = StepStatus.Next;
-            }
+
             else if (i < next.Value.Step)
-            {
                 status = StepStatus.Complete;
-            }
 
             stepButton.Button.Disabled = status != StepStatus.Next;
 
             var stepName = new FormattedMessage();
             stepName.AddText(_entities.GetComponent<MetaDataComponent>(stepButton.Step).EntityName);
 
+            var stepDescription = _entities.GetComponent<MetaDataComponent>(stepButton.Step).EntityDescription;
+            Func<string> stepTooltip = !string.IsNullOrEmpty(stepDescription) ? (() => stepDescription) : (() => stepName.ToString() ?? "Empty");
+
             if (status == StepStatus.Complete)
-            {
                 stepButton.Button.Modulate = Color.Green;
-            }
             else if (status == StepStatus.Next)
             {
                 stepButton.Button.Modulate = Color.White;
                 if (_player.LocalEntity is { } player &&
                     !_system.CanPerformStep(player, Owner, part.PartType, stepButton.Step, false, out var popup, out var reason, out _))
                 {
-                    stepButton.ToolTip = popup;
+                    stepButton.TooltipTextSupplier = popup != null ? (() => popup) : stepTooltip;
                     stepButton.Button.Disabled = true;
 
                     switch (reason)
@@ -377,8 +373,13 @@ public sealed class SurgeryBui : BoundUserInterface
                         case StepInvalidReason.TooHigh:
                             stepName.AddMarkupOrThrow(" [color=red](Item Too High)[/color]");
                             break;
+                        case StepInvalidReason.NotEnoughReagent:
+                            stepName.AddMarkupOrThrow(" [color=red](Missing Reagent)[/color]");
+                            break;
                     }
                 }
+                else
+                    stepButton.TooltipTextSupplier = stepTooltip;
             }
 
             var texture = _entities.GetComponentOrNull<SpriteComponent>(stepButton.Step)?.Icon?.Default;
@@ -387,16 +388,17 @@ public sealed class SurgeryBui : BoundUserInterface
         }
     }
 
-    private void UpdateDisabledPanel()
+    private void UpdateDisabledPanel(bool disable = false)
     {
         if (_window == null)
             return;
 
-        _window.DisabledPanel.Visible = false;
-        _window.DisabledPanel.MouseFilter = MouseFilterMode.Ignore;
-        return;
-
-        if (!_system.IsLyingDown(Owner))
+        if (disable || _system.IsLyingDown(Owner))
+        {
+            _window.DisabledPanel.Visible = false;
+            _window.DisabledPanel.MouseFilter = MouseFilterMode.Ignore;
+        }
+        else
         {
             _window.DisabledPanel.Visible = true;
             if (_window.DisabledLabel.GetMessage() is null)

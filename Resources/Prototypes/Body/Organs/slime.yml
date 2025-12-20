@@ -16,7 +16,7 @@
         - id: Food
         - id: Drink
         - id: Alcohol
-          rateModifier: 0.25
+          rateModifier: 2.5
     - type: SolutionContainerManager
       solutions:
         stomach:
@@ -26,7 +26,7 @@
           - ReagentId: Slime
             Quantity: 10
 
-      
+
 - type: entity
   id: OrganSlimeLungs
   parent: [BaseHumanOrgan, BaseOrganLungs]

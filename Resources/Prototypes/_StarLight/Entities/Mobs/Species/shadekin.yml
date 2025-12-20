@@ -25,7 +25,7 @@
       prototype: Shadekin
       requiredLegs: 2
     - type: Speech
-      allowedEmotes: ["Mar", "Wurble", "Hisses", "Growl", "Purr"]
+      allowedEmotes: ["Marr", "Wurble", "Hisses", "Growl", "Purr"]
     - type: Vocal
       sounds:
         Male: MaleShadekin
@@ -52,7 +52,7 @@
         - reagents: [Water, SpaceCleaner]
           methods: [Touch]
           effects:
-            - !type:WashCreamPieReaction
+            - !type:WashCreamPie
             - !type:Emote
               emote: Hisses
               showInChat: false

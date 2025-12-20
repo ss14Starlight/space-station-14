@@ -26,11 +26,12 @@
   id: FillLockerWarden
   table: !type:AllSelector
     children:
-    - id: WeaponEnergyShotgun #Starlight
     - id: ClothingEyesHudSecurity #Starlight
     - id: ClothingHeadsetSecurityWarden #Starlight
+    - id: WeaponEnergyShotgun #Starlight
     - id: FlashlightSeclite
     - id: WeaponDisabler
+    - id: WeaponTaser
     - id: ClothingBeltSecurityFilled
     - id: Flash
     - id: ClothingEyesGlassesSecurity
@@ -55,6 +56,7 @@
     children:
     - id: ClothingOuterHardsuitWarden
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
     - id: ClothingMaskBreath
 
 - type: entity
@@ -76,6 +78,7 @@
     - id: FlashlightSeclite
       prob: 0.8
     - id: WeaponDisabler
+    - id: WeaponTaser
     - id: ClothingUniformJumpsuitSecGrey
       prob: 0.3
     - id: ClothingHeadHelmetBasic
@@ -115,9 +118,10 @@
     - id: ClothingBeltCorpsmanFilled #Starlight
     - id: ClothingHandsGlovesBlackNitrile #Starlight
     - id: ClothingEyesGlassesSecurity #Starlight
+    - id: WeaponTaser
     - id: WeaponDisabler
     - id: TrackingImplanter
-      amount: 1
+      amount: 2
     - id: ClothingOuterHardsuitBrigmedic
     - id: BoxSterileMask
     - id: ClothingHeadHatBeretBrigmedic
@@ -162,6 +166,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingEyesGlassesNoir
+    - id: WeaponEnergyMagnum #Starlight
     - id: ClothingHeadHatFedoraBrown #Starlight
     - id: ClothingHeadHatDetGadget
     - id: ClothingNeckTieDet
@@ -268,12 +273,6 @@
       amount: 3
     - id: MagazineRifleSP
       amount: 3
-    - id: WeaponLightMachineGunM492
-      amount: 1
-    - id: LightRifleHeavyMagazineSP
-      amount: 1
-    - id: LightRifleHeavyMagazineHP
-      amount: 1
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]

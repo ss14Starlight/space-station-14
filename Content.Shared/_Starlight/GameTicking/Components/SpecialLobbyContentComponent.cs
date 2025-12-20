@@ -1,4 +1,6 @@
+using Content.Shared.GameTicking.Prototypes;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.GameTicking.Components;
 
@@ -20,5 +22,5 @@ public sealed partial class SpecialLobbyContentComponent : Component
     /// If null, no special background will be set.
     /// </summary>
     [DataField("background")]
-    public string? Background;
+    public ProtoId<LobbyBackgroundPrototype>? Background; //starlight type
 }

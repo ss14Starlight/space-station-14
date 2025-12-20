@@ -13,7 +13,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'B'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_delta.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_delta.yml
         - type: StationCargoShuttle
           path: /Maps/Shuttles/cargo_fland.yml
         - type: StationJobs
@@ -59,6 +59,7 @@
             CargoTechnician: [ 4, 4 ]
             MailTech: [ 1, 2 ]
             MiningSpecialist: [ 3, 3 ]
+            SalvageLead: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

@@ -10,6 +10,8 @@
   - RoboticistShoes
   - Survival
   - Trinkets
+  - Scarves
+  - Pens
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -19,6 +21,8 @@
   - MagistrateShoes
   - Survival
   - Trinkets
+  - Scarves
+  - LuxuryPens
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -36,16 +40,21 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
+  - Scarves
+  - Pens
   - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
   id: JobNanoTrasenRepresentative
   groups:
+  - NanoTrasenRepresentativeHead
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeEyewear
   - CommonBackpack
   - NanotrasenRepresentativeShoes
   - Trinkets
+  - Scarves
+  - NTRPens
   - Survival
   - GroupSpeciesBreathTool
 
@@ -57,12 +66,15 @@
   - CommonBackpack
   - LawyerShoes
   - Trinkets
+  - Scarves
+  - LuxuryPens
   - Survival
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobBlueShield
   groups:
+  - BlueShieldHead
   - BlueShieldJumpsuit
   - BlueShieldBackpack
   - BlueShieldOuterclothing
@@ -70,6 +82,8 @@
   - BlueShieldNeck
   - BlueShieldEyewear
   - Trinkets
+  - Scarves
+  - Pens
   - SurvivalSecurity
   - GroupSpeciesBreathToolSecurity
 
@@ -78,11 +92,15 @@
   groups:
   - GroupTankHarness
   - SalvageSpecialistBackpack
+  - MiningSpecialistJumpsuit
   - SalvageSpecialistOuterClothing
   - SalvageSpecialistShoes
+  - MiningSpecialistPDA
   - Glasses
   - Survival
   - Trinkets
+  - Scarves
+  - Pens
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -97,6 +115,8 @@
   - Glasses
   - Survival
   - Trinkets
+  - Scarves
+  - Pens
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -114,5 +134,19 @@
     - SecuritySidearm
     - SurvivalSecurity
     - Trinkets
-    - SecurityStar
     - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobSalvageLead
+  groups:
+    - GroupTankHarness
+    - SalvageSpecialistBackpack
+    - SalvageLeadJumpsuit
+    - SalvageLeadNeck
+    - SalvageSpecialistOuterClothing
+    - SalvageSpecialistShoes
+    - SalvageLeadPDA
+    - Glasses
+    - Survival
+    - Trinkets
+    - GroupSpeciesBreathTool

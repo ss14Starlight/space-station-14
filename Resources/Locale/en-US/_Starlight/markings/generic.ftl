@@ -28,6 +28,9 @@ marking-ChestHeavyTattoos-chest_heavy2 = Heavy Chest Tattoos (Middle)
 marking-ChestHeavyTattoos-chest_heavy3 = Heavy Chest Tattoos (Lower)
 marking-ChestHeavyTattoos = Heavy Chest Tattoos
 
+marking-BodyHairChest = Body Hair (Chest)
+marking-BodyHairBack = Body Hair (Back)
+
 # Arms
 marking-HandBraceletLeft-l_hand_bracelet = Bracelet (Left)
 marking-HandBraceletLeft = Bracelet (Left)
@@ -71,6 +74,9 @@ marking-HandHeavyTattoosRight-r_hand_heavy1 = Heavy Hand Tattoos (Outer)
 marking-HandHeavyTattoosRight-r_hand_heavy2 = Heavy Hand Tattoos (Inner)
 marking-HandHeavyTattoosRight = Heavy Hand Tattoos (Right)
 
+marking-BodyHairLeftArm = Body Hair (Left)
+marking-BodyHairRightArm = Body Hair (Right)
+
 # Legs
 marking-LegDollJointsTattooLeft-l_leg_doll = Doll Joints Leg Tattoo (Left)
 marking-LegDollJointsTattooLeft = Doll Joints Leg Tattoo (Left)
@@ -99,3 +105,7 @@ marking-FootHeavyTattoosLeft = Heavy Foot Tattoos (Left)
 marking-FootHeavyTattoosRight-r_foot_heavy1 = Heavy Foot Tattoos (Inner)
 marking-FootHeavyTattoosRight-r_foot_heavy2 = Heavy Foot Tattoos (Outer)
 marking-FootHeavyTattoosRight = Heavy Foot Tattoos (Right)
+
+marking-BodyHairLeftLeg = Body Hair (Left)
+marking-BodyHairRightLeg = Body Hair (Right)
+

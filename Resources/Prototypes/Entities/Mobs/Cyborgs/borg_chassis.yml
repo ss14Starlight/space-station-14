@@ -6,7 +6,7 @@
   - type: Sprite
     layers:
     - state: borg
-      map: [ "enum.BorgVisualLayers.Body", "movement" ]
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
     - state: borg_e_r
       map: [ "enum.BorgVisualLayers.Light" ]
       shader: unshaded
@@ -32,6 +32,17 @@
     inherentRadioChannels:
     - Common
     - Binary
+    # Starlight-start
+    availableTypes:
+    - engineering
+    - generic
+    - janitor
+    - medical
+    - mining
+    - purrfus
+    - service
+ #   - security Currently admeme only
+  # Starlight-end
 
 - type: entity
   id: BorgChassisGeneric
@@ -47,7 +58,6 @@
   parent: BorgChassisSelectable
   name: salvage cyborg
   components:
-  - type: TextToSpeech
   - type: BorgSwitchableType
     selectedBorgType: mining
 
@@ -56,7 +66,6 @@
   parent: BorgChassisSelectable
   name: engineer cyborg
   components:
-  - type: TextToSpeech
   - type: BorgSwitchableType
     selectedBorgType: engineering
 
@@ -65,7 +74,6 @@
   parent: BorgChassisSelectable
   name: janitor cyborg
   components:
-  - type: TextToSpeech
   - type: BorgSwitchableType
     selectedBorgType: janitor
 
@@ -74,7 +82,6 @@
   parent: BorgChassisSelectable
   name: medical cyborg
   components:
-  - type: TextToSpeech
   - type: BorgSwitchableType
     selectedBorgType: medical
 
@@ -83,7 +90,6 @@
   parent: BorgChassisSelectable
   name: service cyborg
   components:
-  - type: TextToSpeech
   - type: BorgSwitchableType
     selectedBorgType: service
 
@@ -141,7 +147,7 @@
         map: [ "light" ]
         visible: false
     - type: BorgChassis
-      maxModules: 4 # starlight
+      maxModules: 5 # starlight
       moduleWhitelist:
         tags:
         - BorgModuleGeneric
@@ -182,7 +188,7 @@
         map: [ "light" ]
         visible: false
     - type: BorgChassis
-      maxModules: 4 # starlight
+      maxModules: 5 # starlight
       moduleWhitelist:
         tags:
         - BorgModuleGeneric
@@ -404,7 +410,7 @@
       visible: false
       sprite: Mobs/Silicon/Chassis/synd_sec_derelict.rsi #Starlight ;-;
   - type: BorgChassis
-    maxModules: 3
+    maxModules: 4 # starlight
     moduleWhitelist: # Note - the Derelict Assault Borg does not have a traversal module. This is intentional as Assault Borgs have space traversal with their c20 and free space movement, and they can navigate to the station using the pinpointer.
       tags:
       - BorgModuleGeneric

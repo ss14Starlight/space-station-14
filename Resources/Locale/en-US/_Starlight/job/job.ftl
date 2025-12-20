@@ -7,7 +7,11 @@ job-name-miningspec = Mining Specialist
 job-name-surgeon = Surgeon
 job-name-mailtech = Mail Technician
 job-name-centcomm = CentComm Official
+job-name-centcommoperator = CentComm Operator
+job-name-nanotrasen-special-forces = NTSF Operative
+job-name-decimus = Decimus Operative
 
+job-name-salvagelead = Salvage Lead
 job-name-abductor = Abductor
 job-title-borgi = Borgi
 

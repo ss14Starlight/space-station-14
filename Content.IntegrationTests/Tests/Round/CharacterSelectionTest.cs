@@ -399,7 +399,8 @@ public sealed class CharacterSelectionTest
             }
             var humanoidAppearanceSystem = pair.Server.System<HumanoidAppearanceSystem>();
             var spawnedProfile = humanoidAppearanceSystem.GetBaseProfile(pair.Player!.AttachedEntity.Value);
-            Assert.That(spawnedProfile.MemberwiseEquals(expectedCharacterProfile), Is.True);
+            spawnedProfile.AssertEquals(expectedCharacterProfile); //Starlight FUCK IT WE ASSERT.
+            //Assert.That(spawnedProfile.MemberwiseEquals(expectedCharacterProfile), Is.True);
         }
 
         await pair.Server.WaitPost(() => ticker.RestartRound());

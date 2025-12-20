@@ -81,9 +81,9 @@ public enum LogType
     ChemicalReaction = 17,
 
     /// <summary>
-    /// Reagent effects related interactions.
+    /// EntityEffect related interactions.
     /// </summary>
-    ReagentEffect = 18,
+    EntityEffect = 18,
 
     /// <summary>
     /// Canister valve was opened or closed.
@@ -481,5 +481,6 @@ public enum LogType
 
     #region Starlight log flags
     Railroading = 1000,
+    BugReport = 1001,
     #endregion
 }

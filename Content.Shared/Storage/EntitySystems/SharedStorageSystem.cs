@@ -67,6 +67,7 @@ public abstract class SharedStorageSystem : EntitySystem
     [Dependency] protected readonly SharedItemSystem ItemSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private   readonly SharedHandsSystem _sharedHandsSystem = default!;
+    [Dependency] private   readonly SharedMaterialStorageSystem MaterialStorage = default!; // Starlight-edit
     [Dependency] private   readonly SharedStackSystem _stack = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
@@ -486,6 +487,22 @@ public abstract class SharedStorageSystem : EntitySystem
 
             args.Verbs.Add(verb);
         }
+
+        // Starlight-begin: transfer all to material storage
+        // if the target is a material storage, add a verb to transfer storage.
+        if (TryComp(args.Target, out MaterialStorageComponent? materialTargetStorage)
+            && (!TryComp(args.Target, out LockComponent? materialTargetLock) || !materialTargetLock.Locked))
+        {
+            UtilityVerb verb = new()
+            {
+                Text = Loc.GetString("storage-component-transfer-verb"),
+                IconEntity = GetNetEntity(args.Using),
+                Act = () => TransferMaterialEntities(uid, args.Target, args.User, component, null, materialTargetStorage, materialTargetLock)
+            };
+
+            args.Verbs.Add(verb);
+        }
+        // Starlight-end: transfer all to material storage
     }
 
     /// <summary>
@@ -587,7 +604,7 @@ public abstract class SharedStorageSystem : EntitySystem
                 }
 
                 _entList.Add(entity);
-                delay += itemSize.Weight * AreaInsertDelayPerItem;
+                delay += itemSize.Weight;
 
                 if (_entList.Count >= StorageComponent.AreaPickupLimit)
                     break;
@@ -596,7 +613,7 @@ public abstract class SharedStorageSystem : EntitySystem
             //If there's only one then let's be generous
             if (_entList.Count >= 1)
             {
-                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, delay, new AreaPickupDoAfterEvent(GetNetEntityList(_entList)), uid, target: uid)
+                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, delay * AreaInsertDelayPerItem, new AreaPickupDoAfterEvent(GetNetEntityList(_entList)), uid, target: uid)
                 {
                     BreakOnDamage = true,
                     BreakOnMove = true,
@@ -1025,6 +1042,39 @@ public abstract class SharedStorageSystem : EntitySystem
             Audio.PlayPredicted(sourceComp.StorageInsertSound, target, user, _audioParams);
     }
 
+    // Starlight-begin: transfer to material storage
+    /// <summary>
+    ///     Move entities from one storage to a material storage.
+    /// </summary>
+    public void TransferMaterialEntities(EntityUid source, EntityUid target, EntityUid? user = null,
+        StorageComponent? sourceComp = null, LockComponent? sourceLock = null,
+        MaterialStorageComponent? targetComp = null, LockComponent? targetLock = null)
+    {
+        if (!Resolve(source, ref sourceComp) || !Resolve(target, ref targetComp))
+            return;
+
+        var entities = sourceComp.Container.ContainedEntities;
+        if (entities.Count == 0)
+            return;
+
+        if (Resolve(source, ref sourceLock, false) && sourceLock.Locked
+            || Resolve(target, ref targetLock, false) && targetLock.Locked)
+            return;
+
+        // Check needed because TryInsertMaterialEntity requires a non-null user.
+        if (user is null)
+            return;
+
+        foreach (var entity in entities.ToArray())
+        {
+            MaterialStorage.TryInsertMaterialEntity((EntityUid)user, entity, target, targetComp);
+        }
+        if (user != null
+            && !_tag.HasTag(user.Value, sourceComp.SilentStorageUserTag))
+            Audio.PlayPredicted(sourceComp.StorageInsertSound, target, user, _audioParams);
+    }
+    // Starlight-end: transfer to material storage
+
     /// <summary>
     ///     Verifies if an entity can be stored and if it fits
     /// </summary>
@@ -1058,7 +1108,7 @@ public abstract class SharedStorageSystem : EntitySystem
         }
 
         if (_whitelistSystem.IsWhitelistFail(storageComp.Whitelist, insertEnt) ||
-            _whitelistSystem.IsBlacklistPass(storageComp.Blacklist, insertEnt))
+            _whitelistSystem.IsWhitelistPass(storageComp.Blacklist, insertEnt))
         {
             reason = "comp-storage-invalid-container";
             return false;
@@ -1219,7 +1269,7 @@ public abstract class SharedStorageSystem : EntitySystem
             if (!_stackQuery.TryGetComponent(ent, out var containedStack))
                 continue;
 
-            if (!_stack.TryAdd(insertEnt, ent, insertStack, containedStack))
+            if (!_stack.TryMergeStacks((insertEnt, insertStack), (ent, containedStack), out var _))
                 continue;
 
             stackedEntity = ent;
@@ -1773,7 +1823,7 @@ public abstract class SharedStorageSystem : EntitySystem
         return GetCumulativeItemAreas(uid) < uid.Comp.Grid.GetArea() || HasSpaceInStacks(uid);
     }
 
-    private bool HasSpaceInStacks(Entity<StorageComponent?> uid, string? stackType = null)
+    private bool HasSpaceInStacks(Entity<StorageComponent?> uid, ProtoId<StackPrototype>? stackType = null)
     {
         if (!Resolve(uid, ref uid.Comp))
             return false;
@@ -1783,7 +1833,7 @@ public abstract class SharedStorageSystem : EntitySystem
             if (!_stackQuery.TryGetComponent(contained, out var stack))
                 continue;
 
-            if (stackType != null && !stack.StackTypeId.Equals(stackType))
+            if (stackType != null && stack.StackTypeId != stackType)
                 continue;
 
             if (_stack.GetAvailableSpace(stack) == 0)

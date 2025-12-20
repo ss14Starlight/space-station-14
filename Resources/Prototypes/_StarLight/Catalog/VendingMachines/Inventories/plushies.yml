@@ -343,7 +343,7 @@
 
 - type: listing
   id: VendorCatEars
-  productEntity: ClothingHeadHatCatEars
+  productEntity: ClothingHeadHatWhiteCatEars
   cost:
     NTCredit: 1666
   categories:
@@ -435,17 +435,6 @@
 - type: listing
   id: VendorPlushieKiller
   productEntity: PlushieKiller
-  cost:
-    NTCredit: 20
-  categories:
-  - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: VendorPlushieTrystan
-  productEntity: PlushieTrystan
   cost:
     NTCredit: 20
   categories:

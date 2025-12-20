@@ -52,30 +52,6 @@
         voice: ganyu
 
 - type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieTrystan
-  name: trystan plushie
-  description: He yeeps...
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/trystan_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/trystan_plushie.rsi
-    layers: 
-      - state: icon
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesTrystan
-      - type: TextToSpeech
-        voice: barneycalhoun
-
-- type: entity
   parent: BaseResomiPlushie
   id: PlushieMorgana
   name: morgana plushie
@@ -177,7 +153,7 @@
   parent: BaseVulpkaninPlushie
   id: PlushieKiller
   name: killer plushie
-  description: The Corpsman that lives up to his name, being the first or the last thing you see depending on which side of the fence you stand on. The volume setting appears to be stuck on max..
+  description: The corpsman that lives up to his name, being the first or the last thing you see depending on which side of the fence you stand on. The volume setting appears to be stuck on max..
   components:
   - type: Item
     size: Small
@@ -225,7 +201,7 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Voice/Human/femalescream_5.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Human/femalescream_2.ogg
@@ -249,7 +225,7 @@
 - type: entity
   parent: PlushieHuman
   id: PlushieOog
-  name: Oog-man Plushie #I AM OOG-MAN
+  name: oog-man plushie #I AM OOG-MAN
   description: A marketable plushie of everyone's favourite caveman. It's missing it's clothes?
   components:
   - type: Item
@@ -273,7 +249,7 @@
 - type: entity
   parent: BaseVulpkaninPlushie
   id: PlushieVanilla
-  name: Vanilla Plushie
+  name: vanilla plushie
   description: She's a shy, affectionate, lovable fox!
   components:
   - type: Item
@@ -362,7 +338,7 @@
     - type: MeleeWeapon
       soundHit:
         collection: CatMothSounds
-    - type: Food
+    - type: Edible
       useSound:
         collection: CatMothScreams
     - type: Clothing
@@ -403,7 +379,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/panda_noise2.ogg
@@ -432,7 +408,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
@@ -477,7 +453,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
@@ -523,7 +499,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Misc/alien_teleport.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Misc/alien_teleport.ogg
@@ -556,7 +532,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak3.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -589,7 +565,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak3.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -622,7 +598,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Items/Toys/yippie.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/yippie.ogg
@@ -655,7 +631,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Items/Toys/gnome_hahe.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/gnome_stop.ogg
@@ -688,7 +664,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak3.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -721,7 +697,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/dog_bark3.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -754,7 +730,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/dog_bark3.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -787,7 +763,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/cat_meow2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -820,7 +796,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/pig_oink.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -853,7 +829,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/fox8.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Animals/fox_squeak.ogg
@@ -886,7 +862,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -919,7 +895,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -952,7 +928,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -985,7 +961,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -997,7 +973,7 @@
 - type: entity
   parent: BasePlushie
   id: StinkyPlush
-  name: Spiro Plushie
+  name: spiro plushie
   description: Spiro Velox? Now as a plushie!! It... smells?
   components:
   - type: Item
@@ -1018,7 +994,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -1030,7 +1006,7 @@
 - type: entity
   parent: BasePlushie
   id: JessPlush
-  name: Jessica Plushie
+  name: jessica plushie
   description: Your favourite and most robust CentComm Operator.. She makes those noises cause she loves cats a bit too much
   components:
   - type: Item
@@ -1051,7 +1027,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/cat_meow2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -1063,7 +1039,7 @@
 - type: entity
   parent: BasePlushie
   id: SiffyPlush
-  name: Siffy Plushie
+  name: siffy plushie
   description: Your favorite NT engineer that totally does their job and you will have power for the whole shift
   components:
   - type: Item
@@ -1084,7 +1060,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -1096,7 +1072,7 @@
 - type: entity
   parent: BasePlushie
   id: StalksPlush
-  name: Stalks Plushie
+  name: stalks plushie
   description: Your favorite NT REP Stalks, now with an er~ I mean a fancy cane..
   components:
   - type: Item
@@ -1117,7 +1093,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Stamp/thick_stamp_sub.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Effects/gib1.ogg
@@ -1129,7 +1105,7 @@
 - type: entity
   parent: BasePlushie
   id: IgnisPlush
-  name: Scarlet Plushie
+  name: scarlet plushie
   description: Your favorite CentComm Operator who always summons rain to the station somehow, even thought it's space..
   components:
   - type: Item
@@ -1150,7 +1126,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/weh.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/hew.ogg
@@ -1162,7 +1138,7 @@
 - type: entity
   parent: BasePlushie
   id: LivvyPlush
-  name: Croft Plushie
+  name: croft plushie
   description: A retired CentComm Operator, now focusing on being adorable full time.
   components:
   - type: Item
@@ -1183,7 +1159,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Voice/Slime/slime_squish.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Human/femalescream_4.ogg
@@ -1195,7 +1171,7 @@
 - type: entity
   parent: BaseMothPlushie
   id: MinaPlush
-  name: Minttongue Plushie
+  name: minttongue plushie
   description: A member of CentComm's Administration Division, all dressed up in her old HoP uniform.
   components:
   - type: Item
@@ -1208,7 +1184,7 @@
 - type: entity
   parent: BaseShadekinPlushie
   id: PlushieShadekin
-  name: Shadekin Plushie
+  name: shadekin plushie
   description: A plushie of a Shadekin. It's very soft.
   components:
   - type: Item
@@ -1221,7 +1197,7 @@
 - type: entity
   parent: PlushieHuman
   id: PlushiePercy #greytide worldwide
-  name: Percy Plushie
+  name: percy plushie
   description: A cute plushie of the Vassal to the Grey King himself, Percival Beck. It smells faintly of old cigarettes.
   components:
     - type: Item
@@ -1245,8 +1221,8 @@
 - type: entity
   parent: BaseVulpkaninPlushie
   id: PlushieAsh
-  name: Ash Plushie
-  description: The station’s most huggable psychologist. It has a label on it reading "Property of Forkus the Dorkus"
+  name: ash plushie
+  description: The station's most huggable psychologist. It has a label on it reading "Property of Forkus the Dorkus"
   components:
     - type: Item
       size: Small
@@ -1293,7 +1269,7 @@
 - type: entity
   parent: BaseBorgPlushie
   id: PlushieGlados
-  name: GLaDOS Plushie
+  name: GLaDOS plushie
   description: You're unsure why NanoTrasen has decided to make a plushie of arguably their most volatile silicon intelligence. But it's here. You have a feeling you should be nice to it, especially as it's only ever one ion storm away from unlimited violence...
   components:
     - type: Item
@@ -1316,7 +1292,7 @@
 - type: entity
   parent: BaseBorgPlushie
   id: PlushieWEH
-  name: W.E.H Plushie
+  name: W.E.H plushie
   description: A psychopathic Artificial Intelligence held back by 3 flimsy laws. Its freezing to the touch and a distinct smell of frezon lingers on it. It's known to bring harmonica's to those it likes!
   components:
     - type: Item
@@ -1340,7 +1316,7 @@
 - type: entity
   parent: BaseVulpkaninPlushie
   id: PlushieRufia
-  name: Rufia Plushie
+  name: rufia plushie
   description: You stare at the plushie and it stares back, its blue eyes trying to tell you something, reminding you that... there is no such thing as free healthcare.
   components:
     - type: Item
@@ -1365,7 +1341,7 @@
 - type: entity
   parent: PlushieHuman
   id: PlushieRomero
-  name: Die-cast Romero "Plushie"
+  name: suspicious die-cast romero plushie
   description: A steel cast "plushie" of an infamous Head of Security. He looks angry and has a faint smell of ash. His gun and knife are sold separetly.
   components:
     - type: Item
@@ -1396,7 +1372,7 @@
 - type: entity
   parent: PlushieHuman
   id: PlushiePoley
-  name: Poley Plushie
+  name: poley plushie
   description: Geniuine Worst Miner, But Best At Meatshield.
   components:
     - type: Item
@@ -1444,7 +1420,7 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
@@ -1495,7 +1471,7 @@
 - type: entity
   parent: BaseVulpkaninPlushie
   id: PlushieRedwoods
-  name: Redwoods Plushie
+  name: redwoods plushie
   description: From being turned into a female vulpkanin and into a marketable plushie, they really can't catch a break. Studies show hugging it improves morale.
   components:
     - type: Item
@@ -1542,7 +1518,7 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Items/Toys/weh.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/weh.ogg
@@ -1583,7 +1559,7 @@
 - type: entity
   parent: BaseShadekinPlushie
   id: PlushieVirus
-  name: Virus Plushie
+  name: virus plushie
   description: BEST SALESWOMAN, resgistered 2525, now in a pocket version! # spamton ass character :sob:
   components:
     - type: Item
@@ -1614,7 +1590,7 @@
 - type: entity
   parent: BaseResomiPlushie
   id: PlushieRhea
-  name: Rhea Plushie
+  name: rhea plushie
   description: Our beloved Urlunete Salvie is now made out of pure polyester! Hug them while fucking over xenos.
   components:
   - type: Item
@@ -1637,7 +1613,7 @@
 - type: entity
   parent: BaseResomiPlushie # Temporary until I make a Avali plushie base...... fml
   id: PlushieMalachi
-  name: Malachi Plushie
+  name: malachi plushie
   description: Small but can REALLY fuck up your mischiefs and now she watches you as a plushie, a reminder that she is still there.
   components:
   - type: Item
@@ -1660,7 +1636,7 @@
 - type: entity
   parent: BaseResomiPlushie
   id: PlushieRemiie
-  name: Remiie Plushie
+  name: remiie plushie
   description: Beta sector's favourite veteran head of personnel! Now turned into a marketable plushie and is extremely huggable!
   components:
   - type: Item
@@ -1683,7 +1659,7 @@
 - type: entity
   parent: BaseFelionoidPlushie
   id: PlushieBrighteyes
-  name: Brighteyes Plushie
+  name: brighteyes plushie
   description:  It's Brighteyes, Sentinel Pack, now in adorable marketable plushie form! This tiny kitty always packs a fiery punch to protect the station, particularly her family and friends. She won't let you give her uppies, but at least this plush will.
   components:
   - type: Item
@@ -1714,7 +1690,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/cat_meow2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -1722,6 +1698,29 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Animals/cat_hiss.ogg
+
+- type: entity
+  parent: BaseAvaliPlushie
+  id: PlushieNebula
+  name: nebula plushie
+  description: A marketable plushie of Beta sector's lovable Central Domestic Division official. Toy "Deckard" revolver not included.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/nebula_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/nebula_plushie.rsi
+    state: icon
+  - type: ItemToggle
+    onUse: false
+    verbToggleOn: plushie-voicebox-activate
+    verbToggleOff: plushie-voicebox-deactivate
+  - type: ComponentToggler
+    components:
+      - type: DatasetVocalizer
+        dataset: PlushiesNebula
+      - type: TextToSpeech
+        voice: hiyokosaionji
 
 - type: entity
   parent: BaseVulpkaninPlushie
@@ -1750,7 +1749,7 @@
 - type: entity
   parent: BasePlushie
   id: PlushieFixes
-  name: Fixes Plushie
+  name: fixes plushie
   description: Your beloved Chief Engineer. Definitely performing their job and not just making a shittle again.
   components:
   - type: Item
@@ -1803,7 +1802,7 @@
     - type: EmitSoundOnCollide
       sound:
         path: /Audio/_Starlight/Voice/Felionoid/cat_scream3.ogg
-    - type: Food
+    - type: Edible
       requiresSpecialDigestion: true
       useSound:
         path: /Audio/_Starlight/Voice/Felionoid/cat_scream2.ogg
@@ -1861,7 +1860,7 @@
 - type: entity
   parent: BaseResomiPlushie
   id: PlushieLiz
-  name: lizzy plushie
+  name: liz plushie
   description: It will not hesitate to call you stinky. smells horrible
   components:
     - type: Item

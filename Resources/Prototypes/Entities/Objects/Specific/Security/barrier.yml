@@ -37,7 +37,7 @@
   - type: DeployableBarrier
     fixture: barrier
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
   - type: Lock
     locked: false
     lockOnClick: true # toggle lock just by clicking on barrier

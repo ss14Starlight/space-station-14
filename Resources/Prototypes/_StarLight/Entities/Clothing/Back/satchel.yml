@@ -10,9 +10,17 @@
 - type: entity
   parent: [ClothingBackpackSatchel, BaseCommandContraband]
   id: ClothingBackpackSatchelBlueShield
-  name: Blueshield Officer Satchel
-  description: Useful for holding everything a speedy Blueshield Officer needs!
+  name: blueshield officer satchel
+  description: Useful for holding everything a speedy blueshield officer needs!
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Satchels/blueshield.rsi
 
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCentcommContraband]
+  id: ClothingBackpackSatchelCentcomm
+  name: Central Command Operator Satchel
+  description: A rather stylish satchel plated with real gold, issued to Central Command Operators.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/Centcomm.rsi

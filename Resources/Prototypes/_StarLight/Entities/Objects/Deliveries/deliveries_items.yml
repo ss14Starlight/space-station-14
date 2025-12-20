@@ -69,6 +69,7 @@
         - BibleStealObjective
         - ClothingNeckGoldmedalStealObjective
         - ClothingNeckClownmedalStealObjective
+        - Proto5xStealObjective
         # thief structure objectives
         - NuclearBombStealObjective
         - FaxMachineCaptainStealObjective
@@ -105,7 +106,10 @@
         - CaptainGunStealObjective
         - CaptainJetpackStealObjective
         - HandTeleporterStealObjective
+        - EnergyMagnumStealObjective
         - EnergyShotgunStealObjective
+        - Proto5xStealObjective
+
 
 #USSP
 - type: entity
@@ -155,3 +159,4 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
+

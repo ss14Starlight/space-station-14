@@ -4,7 +4,7 @@
   components:
   - type: StationEvent
     earliestStart: 15
-    weight: 7.5
+    weight: 3
     minimumPlayers: 10
     duration: null
   - type: RuleGrids
@@ -94,14 +94,59 @@
     - type: LoadMapRule
       gridPath: /Maps/_Starlight/Shuttles/VoxATS.yml
 
-  #Pig's ERT Shuttle
+#  #Pig's ERT Shuttle # DEPRECIATED
+#- type: entity
+#  parent: BaseGameRule
+#  id: ERTShuttleSpawn
+#  components:
+#    - type: RuleGrids
+#    - type: LoadMapRule
+#      gridPath: /Maps/_Starlight/Shuttles/CC-NT/ERTShuttle.yml
+
+  # Quini's ERT Security/Medical shuttle
 - type: entity
   parent: BaseGameRule
-  id: ERTShuttleSpawn
+  id: ERTSecurityShuttleSpawn
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/CC-NT/ERTShuttle.yml
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/SecMed_GRID.yml
+
+  # Quini's ERT Medical shuttle
+- type: entity
+  parent: BaseGameRule
+  id: ERTMedicalShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Medical_GRID.yml
+
+  # Quini's ERT Engineering shuttle
+- type: entity
+  parent: BaseGameRule
+  id: ERTEngineeringShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/EngiAtmos_GRID.yml
+
+  # Quini's ERT Chaplain shuttle
+- type: entity
+  parent: BaseGameRule
+  id: ERTChaplainShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Chaplain_GRID.yml
+
+  # neomoth's ERT Janitor shuttle
+- type: entity
+  parent: BaseGameRule
+  id: ERTJanitorShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Janitor_GRID.yml
 
       #Pig's DS Shuttle
 - type: entity
@@ -184,15 +229,6 @@
     - type: LoadMapRule
       gridPath: /Maps/_Starlight/Shuttles/CC-NT/CBURN_Q.yml
 
-# Mining Shuttle
-- type: entity
-  parent: BaseGameRule
-  id: MiningShuttleSpawn_GR-4P3
-  components:
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/Mining/GR-4P3.yml
-
 # Security Shuttle
 - type: entity
   parent: BaseGameRule
@@ -219,12 +255,9 @@
     - id: LoneOpsSpawn
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
-    - id: DerelictBorgiSpawn
     - id: WizardSpawn
-
-    # Starlight gamerules
+    # Starlight gamerules:
     - id: AbductorsSpawn
-    - id: DerelictBorgiSpawn
 
 - type: entity
   parent: BaseGameRule

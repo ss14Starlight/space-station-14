@@ -35,7 +35,7 @@
     add:
     - type: BleedersClamped
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
   - type: SurgeryClampBleedEffect
 
@@ -62,7 +62,7 @@
     tools:
     - type: BoneSetter
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: setter
 
 - type: entity
@@ -74,7 +74,7 @@
     tools:
     - type: BoneSetter
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: setter
 
 - type: entity
@@ -85,6 +85,8 @@
   - type: SurgeryStep
     tools:
     - type: BoneGel
+    reagentId: BoneGel
+    reagentQuantity: 5
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel
@@ -129,7 +131,7 @@
     tools:
     - type: Retractor
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
 
 - type: entity
@@ -155,6 +157,6 @@
     tools:
     - type: Retractor
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
   - type: SurgeryStepEmoteEffect

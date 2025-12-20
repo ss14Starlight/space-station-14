@@ -1,0 +1,97 @@
+- type: entity
+  parent: BaseWallmountMetallic
+  id: WallmountMassScannerBroken
+  name: mass scanner
+  description: A computer for detecting nearby bodies, displaying them by position and mass.
+  suffix: Wall broken
+  components:
+    - type: Sprite
+      sprite: Structures/Machines/station_map.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: station_map_broken
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseWallmountMachine
+  id: WallmountMassScanner
+  name: mass scanner
+  description: A computer for detecting nearby bodies, displaying them by position and mass.
+  suffix: Wall
+  components:
+    - type: WallMount
+      arc: 360
+    - type: Appearance
+    - type: RadarConsole
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/wall_mount_mass_scanner.rsi
+      layers:
+      - state: mass_scanner0
+      - state: unshaded
+        shader: unshaded
+    - type: Icon
+      sprite: _Starlight/Structures/Machines/wall_mount_mass_scanner.rsi
+      state: mass_scanner0
+    - type: ContainerFill
+      containers:
+        board: [ WallmountMassScannerCircuitboard ]
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+    - type: ApcPowerReceiver
+      powerLoad: 200
+    - type: Construction
+      graph: StationMap
+      node: mass_scanner
+    - type: ActivatableUIRequiresPower
+    - type: ActivatableUI
+      key: enum.RadarConsoleUiKey.Key
+    - type: Destructible
+      thresholds:
+      - trigger: # Excess damage, don't spawn entities
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            WallmountMassScannerBroken:
+              min: 1
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: UserInterface
+      interfaces:
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+    - type: EmitSoundOnUIOpen
+      sound:
+        collection: Keyboard
+        params:
+          volume: -1
+          variation: 0.10
+          pitch: 1.10  # low pitch keyboard sounds feel kinda weird
+      blacklist:
+        tags:
+        - NoConsoleSound

@@ -8,12 +8,18 @@
   requirements:
   - !type:RoleTimeRequirement
     role: JobBorg
-    time: 18000  # 5 hrs
+    time: 5h
   canBeAntag: false
   icon: JobIconStationAi
   supervisors: job-supervisors-rd
   jobEntity: StationAiBrain
   jobPreviewEntity: PlayerStationAiPreview
+  # Cosmatic Drift Record System-start: AIs spawn as non-humanoids, so skip loading character records for them.
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: SkipLoadingCharacterRecords
+  # Cosmatic Drift Record System-end
   applyTraits: false
 
 - type: job
@@ -23,9 +29,15 @@
   playTimeTracker: JobBorg
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 36000 # 10 hrs
+      time: 10h
   canBeAntag: false
   icon: JobIconBorg
   supervisors: job-supervisors-rd
   jobEntity: PlayerBorgBattery
+  # Cosmatic Drift Record System-start: Cyborg shells do not use humanoid profiles, so avoid seeding records.
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: SkipLoadingCharacterRecords
+  # Cosmatic Drift Record System-end
   applyTraits: false

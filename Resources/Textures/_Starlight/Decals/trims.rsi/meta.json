@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from Monkestation, Space Station 13. https://github.com/Monkestation/Monkestation2.0/blob/HEAD/icons/turf/decals.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "thinplating_corner_east"
+    },
+    {
+      "name": "thinplating_corner_north"
+    },
+    {
+      "name": "thinplating_corner_south"
+    },
+    {
+      "name": "thinplating_corner_west"
+    },
+    {
+      "name": "thinplating_east"
+    },
+    {
+      "name": "thinplating_north"
+    },
+    {
+      "name": "thinplating_south"
+    },
+    {
+      "name": "thinplating_west"
+    },
+    {
+      "name": "thinplating_end_east"
+    },
+    {
+      "name": "thinplating_end_north"
+    },
+    {
+      "name": "thinplating_end_south"
+    },
+    {
+      "name": "thinplating_end_west"
+    },
+    {
+      "name": "thinplating_ne"
+    },
+    {
+      "name": "thinplating_nw"
+    },
+    {
+      "name": "thinplating_se"
+    },
+    {
+      "name": "thinplating_sw"
+    },
+    {
+      "name": "trim_rounded_east"
+    },
+    {
+      "name": "trim_rounded_north"
+    },
+    {
+      "name": "trim_rounded_south"
+    },
+    {
+      "name": "trim_rounded_west"
+    },
+    {
+      "name": "trimline_arrow_ccw_east"
+    },
+    {
+      "name": "trimline_arrow_ccw_ne"
+    },
+    {
+      "name": "trimline_arrow_ccw_north"
+    },
+    {
+      "name": "trimline_arrow_ccw_nw"
+    },
+    {
+      "name": "trimline_arrow_ccw_se"
+    },
+    {
+      "name": "trimline_arrow_ccw_south"
+    },
+    {
+      "name": "trimline_arrow_ccw_sw"
+    },
+    {
+      "name": "trimline_arrow_ccw_west"
+    },
+    {
+      "name": "trimline_arrow_cw_east"
+    },
+    {
+      "name": "trimline_arrow_cw_ne"
+    },
+    {
+      "name": "trimline_arrow_cw_north"
+    },
+    {
+      "name": "trimline_arrow_cw_nw"
+    },
+    {
+      "name": "trimline_arrow_cw_se"
+    },
+    {
+      "name": "trimline_arrow_cw_south"
+    },
+    {
+      "name": "trimline_arrow_cw_sw"
+    },
+    {
+      "name": "trimline_arrow_cw_west"
+    },
+    {
+      "name": "trimline_box"
+    },
+    {
+      "name": "trimline_corner_ne"
+    },
+    {
+      "name": "trimline_corner_nw"
+    },
+    {
+      "name": "trimline_corner_se"
+    },
+    {
+      "name": "trimline_corner_sw"
+    },
+    {
+      "name": "trimline_east"
+    },
+    {
+      "name": "trimline_end_east"
+    },
+    {
+      "name": "trimline_end_north"
+    },
+    {
+      "name": "trimline_end_south"
+    },
+    {
+      "name": "trimline_end_west"
+    },
+    {
+      "name": "trimline_ne"
+    },
+    {
+      "name": "trimline_north"
+    },
+    {
+      "name": "trimline_nw"
+    },
+    {
+      "name": "trimline_se"
+    },
+    {
+      "name": "trimline_south"
+    },
+    {
+      "name": "trimline_sw"
+    },
+    {
+      "name": "trimline_west"
+    }
+  ]
+}

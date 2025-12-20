@@ -1,19 +1,19 @@
-using Content.Shared.Emag.Components;
-using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Advertise.Components;
 using Content.Shared.Advertise.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
+using Content.Shared.Emp;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
-using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -28,7 +28,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] private   readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] protected readonly SharedPointLightSystem Light = default!;
-    [Dependency] protected readonly INetManager _net = default!; // 🌟Starlight🌟
     [Dependency] private   readonly SharedPowerReceiverSystem _receiver = default!;
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] private   readonly SharedSpeakOnUIClosedSystem _speakOn = default!;
@@ -42,6 +41,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         SubscribeLocalEvent<VendingMachineComponent, ComponentGetState>(OnVendingGetState);
         SubscribeLocalEvent<VendingMachineComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
+        SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnRestockDoAfter);
 
         SubscribeLocalEvent<VendingMachineRestockComponent, AfterInteractEvent>(OnAfterInteract);
@@ -127,6 +127,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             EjectEnd = component.EjectEnd,
             DenyEnd = component.DenyEnd,
             DispenseOnHitEnd = component.DispenseOnHitEnd,
+            Broken = component.Broken,
         };
     }
     // 🌟Starlight🌟 
@@ -201,7 +202,17 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
     protected virtual void OnMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
     {
-        RestockInventoryFromPrototype(uid, component, component.InitialStockQuality);
+        RestockInventoryFromPrototype(uid, component, component.InitialStockQuality, true); // Starlight-edit: added last parameter
+    }
+
+    private void OnEmpPulse(Entity<VendingMachineComponent> ent, ref EmpPulseEvent args)
+    {
+        if (!ent.Comp.Broken && _receiver.IsPowered(ent.Owner))
+        {
+            args.Affected = true;
+            args.Disabled = true;
+            ent.Comp.NextEmpEject = Timing.CurTime;
+        }
     }
 
     protected virtual void EjectItem(EntityUid uid, VendingMachineComponent? vendComponent = null, bool forceEject = false) { }
@@ -367,7 +378,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     }
 
     public void RestockInventoryFromPrototype(EntityUid uid,
-        VendingMachineComponent? component = null, float restockQuality = 1f)
+        VendingMachineComponent? component = null, float restockQuality = 1f,
+	bool initialRestock = false) // Starlight-edit: added last parameter
     {
         if (!Resolve(uid, ref component))
         {
@@ -376,6 +388,9 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         if (!PrototypeManager.TryIndex(component.PackPrototypeId, out VendingMachineInventoryPrototype? packPrototype))
             return;
+
+        if (initialRestock && HasComp<EmptyVendingMachineComponent>(component.Owner)) // Starlight
+            return; // Starlight
 
         AddInventoryFromPrototype(uid, packPrototype.StartingInventory, InventoryType.Regular, component, restockQuality);
         AddInventoryFromPrototype(uid, packPrototype.EmaggedInventory, InventoryType.Emagged, component, restockQuality);

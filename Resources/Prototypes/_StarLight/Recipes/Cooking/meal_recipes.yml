@@ -59,3 +59,51 @@
   group: Cake
   solids: 
     FoodMothBatter: 1
+
+- type: microwaveMealRecipe
+  id: RecipeNutribrickPizza
+  name: nutribrick pizza recipe
+  result: FoodPizzaNutribrick
+  time: 30
+  group: Pizza
+  reagents:
+    BbqSauce: 10
+  solids:
+    FoodDoughFlat: 1
+    FoodSnackNutribrickOpen: 2
+
+- type: microwaveMealRecipe
+  id: RecipeWrapperPizza
+  name: wrapper pizza recipe
+  result: FoodPizzaWrapper
+  time: 30
+  group: Pizza
+  reagents:
+    Astrotame: 10
+  solids:
+    FoodDoughCottonFlat: 1
+    FoodPacketMRETrash: 2
+
+- type: microwaveMealRecipe
+  id: RecipeCharcuterie
+  name: charcuterie recipe
+  result: FoodCharcuterie
+  time: 5
+  group: Savoury
+  solids:
+    FoodCheeseSlice: 2
+    FoodMeatCutletCooked: 2
+    FoodBreadPlainSlice: 2
+    FoodPlateSmall: 1
+
+- type: microwaveMealRecipe
+  id: RecipeKhlahKalash
+  name: khlav kalash recipe
+  result: FoodMealKhlavKalash
+  time: 5
+  group: Savoury
+  reagents:
+    Enzyme: 1
+  solids:
+    FoodMeatRotten: 2
+    FoodKebabSkewer: 1

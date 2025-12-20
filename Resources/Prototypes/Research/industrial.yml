@@ -127,6 +127,7 @@
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
+  - WallmountMassScannerElectronics # Starlight
   radioChannels:
   - Engineering
 

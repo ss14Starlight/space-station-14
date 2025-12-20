@@ -56,7 +56,7 @@ public sealed partial class HubSystem : EntitySystem
     {
         _serverInfo = _serverInfo with
         {
-            СurrentStateStartedAt = DateTime.UtcNow,
+            CurrentStateStartedAt = DateTime.UtcNow,
             Status = ServerStatus.Round,
             Players = _playerManager.PlayerCount,
             MaxPlayers = _maxPlayers,
@@ -67,7 +67,7 @@ public sealed partial class HubSystem : EntitySystem
     {
         _serverInfo = _serverInfo with
         {
-            СurrentStateStartedAt = DateTime.UtcNow,
+            CurrentStateStartedAt = DateTime.UtcNow,
             Status = ServerStatus.RoundEnding,
             Players = _playerManager.PlayerCount,
             MaxPlayers = _maxPlayers,
@@ -78,7 +78,7 @@ public sealed partial class HubSystem : EntitySystem
     {
         _serverInfo = _serverInfo with
         {
-            СurrentStateStartedAt = DateTime.UtcNow,
+            CurrentStateStartedAt = DateTime.UtcNow,
             Status = ServerStatus.Lobby,
             Players = _playerManager.PlayerCount,
             MaxPlayers = _maxPlayers,

@@ -16,6 +16,8 @@ criminal-records-status-detained = Detained
 criminal-records-status-suspected = Suspect
 criminal-records-status-discharged = Discharged
 criminal-records-status-paroled = Paroled
+criminal-records-status-hostile = Hostile
+criminal-records-status-eliminated = Eliminated
 
 criminal-records-console-wanted-reason = Wanted Reason
 criminal-records-console-suspected-reason = Suspected Reason
@@ -30,6 +32,12 @@ criminal-records-no-history = This crewmember's record is spotless.
 criminal-records-add-history = Add
 criminal-records-delete-history = Delete
 
+## Status history
+
+criminal-records-console-status-history = { $status }
+criminal-records-console-status-history-reason = { $status }: { $reason }
+criminal-records-console-unspecified-reason = <unspecified reason>
+
 criminal-records-permission-denied = Permission denied
 
 ## Security channel notifications
@@ -42,6 +50,10 @@ criminal-records-console-detained = {$name} ({$job}) has been detained by {$offi
 criminal-records-console-released = {$name} ({$job}) has been released by {$officer}.
 criminal-records-console-paroled = {$name} ({$job}) has been released on parole by {$officer}.
 criminal-records-console-not-parole = {$officer} cleared the parole status of {$name} ({$job}).
+criminal-records-console-hostile = {$name} ({$job}) was marked as hostile by {$officer} for: {$reason}.
+criminal-records-console-not-hostile = {$name} ({$job}) no longer marked as hostile by {$officer}.
+criminal-records-console-eliminated = {$name} ({$job}) was marked as eliminated by {$officer}.
+criminal-records-console-not-eliminated = {$name} ({$job}) no longer marked as eliminated by {$officer}.
 criminal-records-console-unknown-officer = <unknown>
 
 ## Filters
@@ -53,6 +65,3 @@ criminal-records-dna-filter = DNA
 criminal-records-job-filter = Job
 criminal-records-species-filter = Species
 
-## Arrest auto history lines
-criminal-records-console-auto-history = ARRESTED: {$reason}
-criminal-records-console-unspecified-reason = <unspecified reason>

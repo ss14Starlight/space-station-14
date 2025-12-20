@@ -33,10 +33,10 @@ namespace Content.Client.PDA
         private string _stationName = Loc.GetString("comp-pda-ui-unknown");
         private string _alertLevel = Loc.GetString("comp-pda-ui-unknown");
         private string _instructions = Loc.GetString("comp-pda-ui-unknown");
-        
+
         private TimeSpan? _evacShuttleTime;
         private EvacShuttleStatus _evacShuttleStatus;
-        
+
 
         private int _currentView;
 
@@ -123,7 +123,7 @@ namespace Content.Client.PDA
                 var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
                 _clipboard.SetText($"{stationTime.Date} {stationTime.Time:hh\\:mm}");
             };
-            
+
             StartTimeButton.OnPressed += _ =>
             {
                 var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
@@ -135,7 +135,7 @@ namespace Content.Client.PDA
                 _clipboard.SetText(_instructions);
             };
 
-            
+
 
 
             HideAllViews();
@@ -145,7 +145,7 @@ namespace Content.Client.PDA
         public void UpdateState(PdaUpdateState state)
         {
             FlashLightToggleButton.IsActive = state.FlashlightEnabled;
-            
+
             _evacShuttleTime = state.PdaOwnerInfo.EvacShuttleTime;
             _evacShuttleStatus = state.PdaOwnerInfo.EvacShuttleStatus;
 
@@ -178,18 +178,18 @@ namespace Content.Client.PDA
             _stationName = state.StationName ?? Loc.GetString("comp-pda-ui-unknown");
             StationNameLabel.SetMarkup(Loc.GetString("comp-pda-ui-station",
                 ("station", _stationName)));
-            
+
 
             var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
-			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
+            var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
             var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-            
+
             StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",
                 ("time", startTime.ToString("hh\\:mm"))));
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationDate)));
-                
+
             var remaining = TimeSpan.Zero;
 
             if (state.PdaOwnerInfo.EvacShuttleTime != null)
@@ -364,7 +364,7 @@ namespace Content.Client.PDA
                 view.Visible = false;
             }
         }
-        
+
         private string EvacShuttleTitle(EvacShuttleStatus status)
         {
             switch (status)
@@ -385,15 +385,15 @@ namespace Content.Client.PDA
             base.Draw(handle);
 
             var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
-			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
+            var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
             var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",
                 ("time", startTime.ToString("hh\\:mm"))));
-                
+
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationDate)));
-                
+
             var remaining = TimeSpan.Zero;
 
             if (_evacShuttleTime != null)

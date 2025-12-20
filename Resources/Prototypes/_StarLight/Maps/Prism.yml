@@ -1,11 +1,11 @@
 - type: gameMap
-  id: Prism
+  id: StarlightPrism
   mapName: 'Prism Station'
   mapPath: /Maps/_Starlight/Stations/Prism.yml
   minPlayers: 25
-  maxPlayers: 70
+  maxPlayers: 80
   stations:
-    Prism:
+    StarlightPrism:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
@@ -62,6 +62,7 @@
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 4, 4 ]
             MailTech: [ 2, 2 ]
+            SalvageLead: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

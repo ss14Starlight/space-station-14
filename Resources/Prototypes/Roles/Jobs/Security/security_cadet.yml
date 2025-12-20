@@ -5,10 +5,10 @@
   playTimeTracker: JobSecurityCadet
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 57600 # 16 hrs #STARLIGHT
+      time: 16h # Starlight
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 72000 # 20 hrs
+      time: 20h # Starlight
       inverted: true # stop playing intern if you're good at security!
   weight: -1
   startingGear: SecurityCadetGear
@@ -16,12 +16,14 @@
   supervisors: job-supervisors-security
   canBeAntag: false
   access:
-  - Security
+# - Security # Starlight change
+  - Cadet # Starlight change
   - Brig
   - Maintenance
-  - Service
   - External
   - Cryogenics
+  - GenpopEnter
+  - GenpopLeave
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

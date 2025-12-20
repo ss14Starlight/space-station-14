@@ -159,6 +159,8 @@
     - id: RCD
     - id: RCDAmmo
     - id: AirGrenade
+    - id: trayScanner # Starlight: Add t-ray scanner to atmos lockers
+    - id: ClothingHandsGlovesColorYellow # Starlight: Add insulated gloves to atmos lockers
 
 - type: entityTable
   id: FillAtmosphericsHardsuit
@@ -166,6 +168,7 @@
     children:
     - id: ClothingOuterHardsuitAtmos
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
     - id: ClothingMaskBreath
 
 - type: entity
@@ -209,6 +212,7 @@
     children:
     - id: ClothingOuterHardsuitEngineering
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
     - id: ClothingShoesBootsMag
     - id: ClothingMaskBreath
 

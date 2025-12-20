@@ -11,7 +11,6 @@
   files:
   - /Audio/_Starlight/Voice/Felionoid/cat_hiss1.ogg
   - /Audio/_Starlight/Voice/Felionoid/cat_hiss2.ogg
-  - /Audio/_Starlight/Voice/Felionoid/cat_hiss3.ogg
 
 - type: soundCollection
   id: FelionoidMews

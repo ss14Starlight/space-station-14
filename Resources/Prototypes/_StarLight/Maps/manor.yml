@@ -1,10 +1,11 @@
 - type: gameMap
-  id: Manor
+  id: StarlightManor
   mapName: 'Manor Station'
   mapPath: /Maps/_Starlight/Stations/Manor.yml
   minPlayers: 50
+  maxPlayers: 180
   stations:
-    Manor:
+    StarlightManor:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
@@ -58,6 +59,7 @@
             SalvageSpecialist: [ 3, 4 ]
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 5, 7 ]
+            SalvageLead: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
