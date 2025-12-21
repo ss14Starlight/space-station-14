@@ -6,6 +6,6 @@ namespace Content.Shared._Starlight.UXN;
 public sealed partial class UxnAttachedComponent : Component
 {
     [DataField]
-    public ResPath UxntalSourceFile = new("/_Starlight/Uxntal/opctest.tal");
+    public ResPath UxntalSourceFile = new("/_Starlight/Uxn/Tal/opctest.tal");
     public UXNProcessor? Uxn = null;
 }
