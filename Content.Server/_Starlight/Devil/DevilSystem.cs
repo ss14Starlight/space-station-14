@@ -8,6 +8,7 @@ using Content.Shared.Speech.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Vampire.Components;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -19,8 +20,6 @@ public sealed partial class DevilSystem : SharedDevilSystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly RandomMetadataSystem _randomMetadata = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
-
-    private ProtoId<DamageContainerPrototype> BiologicalMetaphysicalDamageContainer = "BiologicalMetaphysical";
 
     public override void Initialize()
     {
@@ -42,13 +41,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
         devilComp.TrueName = _randomMetadata.GetRandomFromSegments(devilComp.NameSegments, devilComp.NameFormat);
 
         EnsureComp<ActiveListenerComponent>(uid); // for banish listen events
-
-        // so it can take holy damage, this sucks but damageable system REALLY doesn't like the container changing on non init
-        RemComp<DamageableComponent>(uid);
-        SetPaused(uid, true);
-        AddComp<DamageableComponent>(uid);
-        _damageable.SetDamageContainerId(uid, BiologicalMetaphysicalDamageContainer);
-        SetPaused(uid, false);
+        EnsureComp<UnholyComponent>(uid);
     }
 
     #region abilities

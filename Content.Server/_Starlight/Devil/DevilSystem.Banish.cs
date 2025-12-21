@@ -5,6 +5,8 @@ using Content.Shared.Dataset;
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Server.Popups;
+using Content.Shared.Popups;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -67,8 +69,12 @@ public sealed partial class DevilSystem : SharedDevilSystem
     private void OnBibleThwack(EntityUid uid, DevilComponent devilComp, ref BibleThwackEvent args)
     {
         if (devilComp.BeingBanished) return;
+
         devilComp.BeingBanished = true;
         devilComp.LastBanishModeActivate = _time.CurTime;
+        args.Handled = true;
+
+        _popup.PopupEntity(Loc.GetString("devil-banish-initiate", ("devil", Name(uid))), uid, PopupType.MediumCaution);
     }
 
     public override void Update(float frameTime)

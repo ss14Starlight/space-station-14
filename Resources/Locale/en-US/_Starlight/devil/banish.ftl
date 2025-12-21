@@ -1,0 +1,1 @@
+devil-banish-initiate = {CAPITALIZE(THE($devil))} roars, {POSS-ADJ($devil)} banishment from this realm has begun!

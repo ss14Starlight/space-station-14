@@ -77,7 +77,7 @@ public sealed partial class DevilComponent : Component
     {
         DamageDict = new()
         {
-            { "Holy", 10 },
+            { "Heat", 7 },
         }
     };
 
@@ -85,5 +85,5 @@ public sealed partial class DevilComponent : Component
     /// How much stamina damage to take per banish
     /// </summary>
     [DataField]
-    public float BanishDamageStamina = 33.0f;
+    public float BanishDamageStamina = 40.0f;
 }
