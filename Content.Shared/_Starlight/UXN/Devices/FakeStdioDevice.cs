@@ -54,7 +54,7 @@ public sealed class FakeStdioDevice : UXNDevice
             var args = Args.Split(" ");
             foreach (var arg in args)
             {
-                foreach (var letter in UxnSystem.Codepage437.GetBytes(arg))
+                foreach (var letter in Encoding.ASCII.GetBytes(arg))
                 {
                     events.Add(new ArgvCharEvent(letter, 0x02));
                 }
@@ -77,8 +77,8 @@ public sealed class FakeStdioDevice : UXNDevice
         if (_fakedInput.Length <= 0)
             return;
         var letter = _fakedInput[0];
-        var letterByte = UxnSystem.Codepage437.GetBytes([letter])[0];
-        _fakedInput = _fakedInput.Substring(1);
+        var letterByte = Encoding.ASCII.GetBytes(letter.ToString())[0];
+        _fakedInput = _fakedInput[1..];
         _sawmill?.Info($"FakedStdio: push char '{letter}'");
         CharCount++;
         proc.PushEvent(new StdioCharEvent(letterByte, this));

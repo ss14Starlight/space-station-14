@@ -1,3 +1,4 @@
+using System.Text;
 using Content.Shared._Starlight;
 using Content.Shared._Starlight.UXN;
 using Content.Shared._Starlight.UXN.Devices;
@@ -41,6 +42,7 @@ public sealed class TestUxnCompiler
     [TestCase("/_Starlight/Uxn/Rom/hello.rom")]
     [TestCase("/_Starlight/Uxn/Rom/opctest.rom", null, null, 0x80)]
     [TestCase("/_Starlight/Uxn/Rom/console.rom", "foobar", "baz qux", 0x80)]
+    [TestCase("/_Starlight/Uxn/Rom/system_test.rom", null, null, 0x80)]
     #nullable enable
     public async Task RunRomAsTest(string file, string? stdin = null, string? argv = null, byte? expected = 0x01)
     {
@@ -74,7 +76,7 @@ public sealed class TestUxnCompiler
             uxnRunner.RunUnlimited(sawmill);
 
             sawmill.Info($"Ran {uxnRunner.InstructionCounter} instructions");
-            sawmill.Info($"Program output:\n{new string(UxnSystem.Codepage437.GetChars([.. stdio.FakedOutput])).Trim()}");
+            sawmill.Info($"Program output:\n{new string(Encoding.ASCII.GetChars([.. stdio.FakedOutput])).Trim()}");
 
             //Make sure program succeded.
             Assert.That(uxnRunner.SystemDevice.Status, Is.EqualTo(expected));

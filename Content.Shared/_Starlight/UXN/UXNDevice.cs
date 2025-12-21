@@ -176,8 +176,8 @@ public sealed class UXNProcessor
     public UxnDevices Devices { get; private set; } = new();
 
     public int InstructionCounter { get; private set; } = 0;
-    public List<(ushort, string)> InstrLog { get; private set; } = new();
-    public List<UxnFrame> FrameLog { get; private set; } = new();
+    //public List<(ushort, string)> InstrLog { get; private set; } = new();
+    //public List<UxnFrame> FrameLog { get; private set; } = new();
 
     private Queue<UxnEvent> _events = new();
 
@@ -191,8 +191,8 @@ public sealed class UXNProcessor
 
         var instr = SystemMem[PC];
 
-        InstrLog.Add((PC, DISASM_TABLE[instr]));
-        FrameLog.Add(UxnFrame.FromProcessor(this));
+        //InstrLog.Add((PC, DISASM_TABLE[instr]));
+        //FrameLog.Add(UxnFrame.FromProcessor(this));
         PC++;
 
         InstructionCounter++;
@@ -208,7 +208,7 @@ public sealed class UXNProcessor
         var masked = imme ? instr : instr & 0x1F;
         switch (masked)
         {
-            case 0x00: return true; // NOP
+            case 0x00: return true; // BRK
             #region immediates
             case 0x20: // JCI
                 {
@@ -791,21 +791,17 @@ public sealed class UXNProcessor
             {
                 if (SystemDevice.Status != 0)
                 {
-                    sawmill?.Info($"Uxn exiting. status {SystemDevice.Status:x}. leftover events {_events.Count}");
                     Running = false;
                     _events.Clear();
                     return true;
                 }
                 if (_events.Count > 0)
                 {
-                    sawmill?.Info("UXN popping event");
                     _events.Dequeue().PerformEvent(this);
                 }
                 else
                 {
-                    sawmill?.Info("UXN has no events to pop exiting");
                     Running = false;
-                    return false;
                 }
             }
         }

@@ -1,9 +1,11 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Content.Shared._Starlight.UXN;
 using Content.Shared._Starlight.UXN.Devices;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Primitive;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight;
@@ -15,9 +17,7 @@ public sealed partial class UxnSystem : EntitySystem
     private readonly ResPath _compilerRom = new("/_Starlight/Uxn/Rom/drifloon.rom");
 
     private readonly UXNProcessor _compiler = new();
-
-    public static Encoding Codepage437 = Encoding.GetEncoding("us-ascii");
-
+    
     public override void Initialize()
     {
         //var encodings = Encoding.GetEncodings();
@@ -71,7 +71,7 @@ public sealed partial class UxnSystem : EntitySystem
         var stdErr = stdio.FakedError;
         if (_compiler.SystemDevice.Status < 0x80)
         {
-            error = new string(Codepage437.GetChars([.. stdErr]));
+            error = new string(Encoding.ASCII.GetChars([.. stdErr]));
             Log.Error($"Failed to compile uxntal. drifloon error output:\n {error}");
             rom = null;
             return false;
