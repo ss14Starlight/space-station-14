@@ -44,7 +44,7 @@
         angle: 0.0
         damage:
           types:
-            Blunt: 10
+            Blunt: 7 # starlight change: was 10 and is changed to nerf the staff
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -58,7 +58,7 @@
         thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 100
+          damage: 50 # starlight change: was 100 and is changed to nerf the staff
           behaviors:
           - !type:DoActsBehavior
             acts: ["Destruction"]
