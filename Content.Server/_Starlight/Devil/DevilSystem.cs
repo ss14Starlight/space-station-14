@@ -9,6 +9,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Vampire.Components;
+using System.Linq;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -51,6 +52,30 @@ public sealed partial class DevilSystem : SharedDevilSystem
         _hands.TryPickupAnyHand(uid, paper);
 
         args.Handled = true;
+    }
+    #endregion
+
+    #region utility
+
+    /// <summary>
+    /// Get the number of souls the devil has damned, with optional damnation(s) that have to be met
+    /// </summary>
+    public int GetSoulsDamned(EntityUid devil, List<ProtoId<DamnationPrototype>>? requiredDamnations)
+    {
+        int damned = 0;
+        var query = AllEntityQuery<DamnedComponent>();
+        while (query.MoveNext(out var uid, out var damnedComp))
+        {
+            if(damnedComp.DamnedBy != devil) continue; // not us
+
+            if(requiredDamnations == null) damned++;
+            else
+            {
+                if(!damnedComp.Damnations.Except(requiredDamnations).Any()) damned++;
+            }
+        }
+
+        return damned;
     }
     #endregion
 }

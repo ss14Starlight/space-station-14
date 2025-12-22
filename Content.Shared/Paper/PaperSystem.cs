@@ -161,8 +161,9 @@ public sealed class PaperSystem : EntitySystem
                     return;
                 }
 
-                var ev = new PaperWriteAttemptEvent(entity.Owner);
+                var ev = new PaperWriteAttemptEvent(entity.Owner, args.User); // starlight
                 RaiseLocalEvent(args.User, ref ev);
+                RaiseLocalEvent(entity.Owner, ref ev); // starlight
                 if (ev.Cancelled)
                 {
                     if (ev.FailReason is not null)
@@ -222,8 +223,9 @@ public sealed class PaperSystem : EntitySystem
 
     private void OnInputTextMessage(Entity<PaperComponent> entity, ref PaperInputTextMessage args)
     {
-        var ev = new PaperWriteAttemptEvent(entity.Owner);
+        var ev = new PaperWriteAttemptEvent(entity.Owner, args.Actor); // starlight
         RaiseLocalEvent(args.Actor, ref ev);
+        RaiseLocalEvent(entity.Owner, ref ev); // starlight
         if (ev.Cancelled)
             return;
 
@@ -568,9 +570,11 @@ public sealed class PaperSystem : EntitySystem
 [ByRefEvent]
 public record struct PaperWriteEvent(EntityUid User, EntityUid Paper);
 
+// starlight start - add editor field to event
 /// <summary>
 /// Cancellable event for attempting to write on a piece of paper.
 /// </summary>
 /// <param name="paper">The paper that the writing will take place on.</param>
 [ByRefEvent]
-public record struct PaperWriteAttemptEvent(EntityUid Paper, string? FailReason = null, bool Cancelled = false);
+public record struct PaperWriteAttemptEvent(EntityUid Paper, EntityUid Editor, string? FailReason = null, bool Cancelled = false);
+// starlight end

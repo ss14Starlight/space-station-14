@@ -17,6 +17,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
 
         SubscribeLocalEvent<InfernalContractComponent, ExaminedEvent>(OnExamineEvent);
         SubscribeLocalEvent<InfernalContractComponent, PaperSignedEvent>(OnSignedEvent);
+        SubscribeLocalEvent<InfernalContractComponent, PaperWriteAttemptEvent>(OnPaperWriteAttempt);
     }
 
     #region contract
@@ -96,6 +97,15 @@ public abstract partial class SharedDevilSystem : EntitySystem
         var contractData = GetContractContent(uid);
         if (contractData != null)
             args.PushMarkup(Loc.GetString("infernal-contract-examine-cost", ("value", contractData.Value.Cost)));
+    }
+
+    private void OnPaperWriteAttempt(EntityUid uid, InfernalContractComponent contractComp, ref PaperWriteAttemptEvent args)
+    {
+        if(args.Editor != contractComp.Author)
+        {
+            args.Cancelled = true;
+            args.FailReason = Loc.GetString("infernal-contract-edit-fail");
+        }
     }
 
     protected virtual void OnSignedEvent(EntityUid uid, InfernalContractComponent contractComp, ref PaperSignedEvent args)
