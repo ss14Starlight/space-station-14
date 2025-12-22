@@ -3,6 +3,8 @@ using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.Devil;
 using Content.Shared.Dataset;
 using Content.Shared.Damage;
+using System.Management;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Devil;
 
@@ -27,6 +29,18 @@ public sealed partial class DevilComponent : Component
         "Credits"
     };
 
+    /// <summary>
+    /// Damnation that increments the evil-ness of the devil
+    /// </summary>
+    [DataField]
+    public ProtoId<DamnationPrototype> SoulDamnation = "Soul";
+
+    /// <summary>
+    /// list of people who have been evil'd
+    /// </summary>
+    [AutoNetworkedField, ViewVariables]
+    public List<EntityUid> DamnedSouls = new();
+
     // todo make actual devil names
     public List<ProtoId<LocalizedDatasetPrototype>> NameSegments = new()
     {
@@ -38,6 +52,9 @@ public sealed partial class DevilComponent : Component
 
     [AutoNetworkedField, ViewVariables]
     public string TrueName = "Hellish McEvil";
+
+    [DataField, AutoNetworkedField]
+    public DevilChangeCriteria RedEyesAppearance = new(1);
 
     /// <summary>
     /// Is the devil currently being banished?
@@ -86,16 +103,7 @@ public sealed partial class DevilComponent : Component
     /// </summary>
     [DataField]
     public float BanishDamageStamina = 40.0f;
-
-    /// <summary>
-    /// Damnation that increments the evil-ness of the devil
-    /// </summary>
-    [DataField]
-    public ProtoId<DamnationPrototype> SoulDamnation = "Soul";
-
-    /// <summary>
-    /// list of people who have been evil'd
-    /// </summary>
-    [AutoNetworkedField, ViewVariables]
-    public List<EntityUid> DamnedSouls = new();
 }
+
+[Serializable, NetSerializable]
+public record struct DevilChangeCriteria(int AtSouls, bool Completed = false);

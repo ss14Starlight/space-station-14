@@ -6,3 +6,6 @@ public sealed partial class SummonDemonicContractEvent : InstantActionEvent { };
 
 [ByRefEvent]
 public record struct DamnationInitFailEvent();
+
+[ByRefEvent]
+public record struct DevilSoulsDamnedCountChangedEvent();

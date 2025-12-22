@@ -54,7 +54,12 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         // we add here instead of component startup so that we can know the devil's uid
         if (TryComp<DevilComponent>(devil, out var devilComponent) && contract.Damnations.Contains(devilComponent.SoulDamnation))
+        {
             devilComponent.DamnedSouls.Add(ent);
+
+            var ev = new DevilSoulsDamnedCountChangedEvent();
+            RaiseLocalEvent(devil, ref ev);
+        }
 
         // check to see that all of the damnations will work, before we try to add any
         foreach (var damnation in contract.Damnations)

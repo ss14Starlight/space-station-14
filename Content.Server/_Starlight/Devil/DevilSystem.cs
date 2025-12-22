@@ -5,11 +5,10 @@ using Content.Server.RandomMetadata;
 using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Content.Shared.Speech.Components;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Vampire.Components;
-using System.Linq;
+using Content.Server.Humanoid;
+using Content.Shared.Humanoid.Markings;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -21,6 +20,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly RandomMetadataSystem _randomMetadata = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
 
     public override void Initialize()
     {
@@ -29,6 +29,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
         SubscribeLocalEvent<DevilComponent, ComponentStartup>(OnStartup, before: [typeof(DamageableSystem)]);
 
         SubscribeLocalEvent<DevilComponent, SummonDemonicContractEvent>(OnSummonDemonicContract);
+        SubscribeLocalEvent<DevilComponent, DevilSoulsDamnedCountChangedEvent>(OnDevilSoulsDamnedCountChanged);
 
         SubscribeContract();
         SubscribeDamned();
@@ -52,6 +53,18 @@ public sealed partial class DevilSystem : SharedDevilSystem
         _hands.TryPickupAnyHand(uid, paper);
 
         args.Handled = true;
+    }
+    #endregion
+
+    #region appearance
+    private void OnDevilSoulsDamnedCountChanged(EntityUid uid, DevilComponent devilComp, ref DevilSoulsDamnedCountChangedEvent args)
+    {
+        if(devilComp.DamnedSouls.Count >= devilComp.RedEyesAppearance.AtSouls && !devilComp.RedEyesAppearance.Completed)
+        {
+            _humanoidAppearance.SetEyeColor(uid, Color.Red);
+            _humanoidAppearance.SetMarkingGlowing(uid, MarkingCategories.Eyes, 0, true);
+            devilComp.RedEyesAppearance.Completed = true;
+        }
     }
     #endregion
 }
