@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server._Starlight.Devil;
 using Content.Server.Objectives.Components;
 using Content.Shared._Starlight.Devil;
 using Content.Shared.Objectives.Components;
@@ -9,7 +8,6 @@ namespace Content.Server._Starlight.Objectives.Systems;
 public sealed class DamnConditionSystem : EntitySystem
 {
     [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly DevilSystem _devil = default!;
 
     public override void Initialize()
     {
@@ -26,13 +24,21 @@ public sealed class DamnConditionSystem : EntitySystem
 
     public void OnGetProgress(Entity<DamnConditionComponent> condition, ref ObjectiveGetProgressEvent args)
     {
-        if(args.Mind.OwnedEntity == null)
+        int countedDamnations = 0;
+        var damnedQuery = AllEntityQuery<DamnedComponent>();
+        while (damnedQuery.MoveNext(out var uid, out var damnedComp))
         {
-            args.Progress = 0;
-            return;
+            if (damnedComp.DamnedBy == args.Mind.OwnedEntity)
+            {
+                // if we need specific damnations, make sure they are there, if not just increment the counter
+                if (condition.Comp.RequireSpecificDamnations &&
+                    !damnedComp.Damnations.Except(condition.Comp.RequiredDamnations).Any())
+                    countedDamnations++;
+                else
+                    countedDamnations++;
+            }
         }
 
-        int countedDamnations = _devil.GetSoulsDamned((EntityUid)args.Mind.OwnedEntity, condition.Comp.RequiredDamnations);
         args.Progress = Math.Clamp(countedDamnations / (float)condition.Comp.Amount, 0, 1);
     }
 }

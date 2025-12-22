@@ -11,6 +11,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
     private void SubscribeDamned()
     {
         SubscribeLocalEvent<DamnedComponent, DamnationInitFailEvent>(OnDamnationInitFail);
+        SubscribeLocalEvent<DamnedComponent, ComponentShutdown>(OnDamnationShutdown);
     }
 
     private bool CanDamn(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> proto)
@@ -50,6 +51,10 @@ public sealed partial class DevilSystem : SharedDevilSystem
         if (damnedComp == null) return false;
 
         damnedComp.DamnedBy = devil;
+
+        // we add here instead of component startup so that we can know the devil's uid
+        if (TryComp<DevilComponent>(devil, out var devilComponent) && contract.Damnations.Contains(devilComponent.SoulDamnation))
+            devilComponent.DamnedSouls.Add(ent);
 
         // check to see that all of the damnations will work, before we try to add any
         foreach (var damnation in contract.Damnations)
@@ -94,5 +99,12 @@ public sealed partial class DevilSystem : SharedDevilSystem
         var damnations = new List<ProtoId<DamnationPrototype>>(ent.Comp.Damnations);
         foreach (var damnation in damnations)
             RemoveDamnation(ent, damnation);
+        RemComp<DamnedComponent>(ent.Owner);
+    }
+
+    private void OnDamnationShutdown(Entity<DamnedComponent> ent, ref ComponentShutdown args)
+    {
+        if(TryComp<DevilComponent>(ent.Comp.DamnedBy, out var devilComp))
+            devilComp.DamnedSouls.Remove(ent.Owner);
     }
 }

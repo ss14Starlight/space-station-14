@@ -86,4 +86,16 @@ public sealed partial class DevilComponent : Component
     /// </summary>
     [DataField]
     public float BanishDamageStamina = 40.0f;
+
+    /// <summary>
+    /// Damnation that increments the evil-ness of the devil
+    /// </summary>
+    [DataField]
+    public ProtoId<DamnationPrototype> SoulDamnation = "Soul";
+
+    /// <summary>
+    /// list of people who have been evil'd
+    /// </summary>
+    [AutoNetworkedField, ViewVariables]
+    public List<EntityUid> DamnedSouls = new();
 }
