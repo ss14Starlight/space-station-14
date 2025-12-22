@@ -1,0 +1,144 @@
+- type: species
+  id: Xeno
+  name: Xeno
+  roundStart: true
+  prototype: MobXenoRace
+  sprites: MobXenoRaceSprites
+  markingLimits: MobXenoRaceMarkingLimits
+  dollPrototype: MobXenoRaceDummy
+  skinColoration: Hues
+  maleFirstNames: names_xeno
+  femaleFirstNames: names_xeno
+  naming: First
+  minHeight: 0.95
+  defaultHeight: 1
+  maxHeight: 1.05
+  standardSize: 170
+  standardWeight: 70
+  standardDensity: 110
+  customName: true
+  requirement: RaceReq
+
+- type: speciesBaseSprites
+  id: MobXenoRaceSprites
+  sprites:
+    Head: MobXenoRaceHead
+    Chest: MobXenoRaceTorso
+    Tail: MobHumanoidAnyMarking
+    LArm: MobXenoRaceLArm
+    RArm: MobXenoRaceRArm
+    LHand: MobXenoRaceLHand
+    RHand: MobXenoRaceRHand
+    LLeg: MobXenoRaceLLeg
+    RLeg: MobXenoRaceRLeg
+    LFoot: MobXenoRaceLFoot
+    RFoot: MobXenoRaceRFoot
+
+- type: markingPoints
+  id: MobXenoRaceMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ XenoTailLong ]
+    Overlay:
+      points: 3
+      required: false
+    Chest:
+      points: 1
+      required: true
+    Legs:
+      points: 0
+      required: false
+    Arms:
+      points: 0
+      required: false
+    Head:
+      points: 1
+      required: true
+      defaultMarkings: [ XenoHeadLong ]
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceHead
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceHeadMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceTorsoMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceTorsoFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceHeadFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceTorso
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceLLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceLArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceLHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceLFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceRLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceRArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceRHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobXenoRaceRFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Xeno/parts.rsi
+    state: r_foot

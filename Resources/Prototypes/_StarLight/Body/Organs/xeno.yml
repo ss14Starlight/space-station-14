@@ -1,0 +1,189 @@
+- type: entity
+  id: BaseXenoOrgan
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Xeno/organs.rsi
+  - type: Organ
+  - type: Gibbable
+  - type: Edible
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: FluorosulfuricAcid
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - acid
+      - onion
+  - type: Tag
+    tags:
+      - Meat
+
+
+- type: entity
+  id: OrganXenoBrain
+  parent: [BaseXenoOrgan, BaseOrganBrain]
+  name: brain
+  description: The pulsating core of an unfathomable intellect. A labyrinth of alien instincts and terrifying cunning.
+  components:
+  - type: Sprite
+    state: brain
+
+- type: entity
+  id: OrganXenoEars
+  parent: [BaseXenoOrgan, BaseOrganEars]
+  name: ears
+  description: Hyper-attuned receptors, detecting the whispers of prey and the echoes of unseen terror.
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
+  id: OrganXenoAppendix
+  parent: [BaseXenoOrgan, BaseOrganAppendix]
+  name: appendix
+  description: A vestigial remnant, its purpose obscured by alien evolution—dormant, yet not without potential.
+  components:
+  - type: Sprite
+    layers:
+    - state: appendix
+    - state: appendix-inflamed
+      visible: false
+
+- type: entity
+  id: OrganXenoTongue
+  parent: [BaseXenoOrgan, BaseOrganTongue]
+  name: tongue
+  description: Sinuous and prehensile, ideal for grasping, tasting, and striking with eerie precision.
+  components:
+  - type: Sprite
+    state: tongue
+
+- type: entity
+  id: OrganXenoLungs
+  parent: [BaseXenoOrgan, BaseOrganLungs]
+  name: lungs
+  description: Adaptive respiratory chambers, extracting vital gases with eerie efficiency, fueling an alien metabolism beyond human comprehension.
+  components:
+  - type: Sprite
+    layers:
+      - state: lung-l
+      - state: lung-r
+  - type: Item
+    size: Small
+    heldPrefix: lungs
+  - type: Lung
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
+    metabolizerTypes: [ Xeno ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      Lung:
+        maxVol: 100.0
+        canReact: false
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+- type: entity
+  id: OrganXenoHeart
+  parent: [BaseXenoOrgan, BaseOrganHeart]
+  name: xeno heart
+  description: A relentless, churning core, fueled by toxic ichor, driving unstoppable vitality and savage power.
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Xeno ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
+- type: entity
+  id: OrganXenoStomach
+  parent: [BaseXenoOrgan, BaseOrganStomach]
+  name: stomach
+  description: An insatiable cavity, capable of breaking down anything, fueling the alien form with ruthless hunger.
+  components:
+  - type: Sprite
+    state: stomach
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 250
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: FluorosulfuricAcid
+          Quantity: 5
+  - type: Stomach
+    digestionDelay: 1
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [ Xeno ]
+    groups:
+    - id: Food
+    - id: Drink
+    updateInterval: 1.5
+
+- type: entity
+  id: OrganXenoLiver
+  parent: [BaseXenoOrgan, BaseOrganLiver]
+  name: liver
+  description: An unyielding purifier, breaking down toxins and fortifying the body against foreign threats.
+  components:
+  - type: Sprite
+    state: liver
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [ Xeno ]
+    groups:
+    - id: Alcohol
+      rateModifier: 1
+
+- type: entity
+  id: OrganXenoKidneys
+  parent: [BaseXenoOrgan, BaseOrganKidneys]
+  name: kidneys
+  description: Dual filtration organs, methodically purging waste with brutal efficiency, maintaining raw survival.
+  components:
+  - type: Sprite
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [ Xeno ]
+    removeEmpty: true
+
+- type: entity
+  id: OrganXenoEyes
+  parent: [BaseXenoOrgan, BaseOrganEyes]
+  name: eyes
+  description: Unblinking and all-seeing, piercing through darkness, capturing every movement with chilling precision.
+  components:
+  - type: Sprite
+    state: eyes

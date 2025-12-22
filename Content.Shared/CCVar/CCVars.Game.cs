@@ -84,11 +84,11 @@ public sealed partial class CCVars
     public static readonly CVarDef<string>
         PersistenceMap = CVarDef.Create("game.persistencemap", "Empty", CVar.ARCHIVE);
 
-        /// <summary>
-        ///     Prototype to use for map pool.
-        /// </summary>
-        public static readonly CVarDef<string>
-            GameMapPool = CVarDef.Create("game.map_pool", "DefaultStarlightMapPool", CVar.SERVERONLY);
+    /// <summary>
+    ///     Prototype to use for map pool.
+    /// </summary>
+    public static readonly CVarDef<string>
+        GameMapPool = CVarDef.Create("game.map_pool", "DefaultStarlightMapPool", CVar.SERVERONLY);
 
     /// <summary>
     ///     The depth of the queue used to calculate which map is next in rotation.
@@ -126,6 +126,13 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool>
         GameRoleWhitelist = CVarDef.Create("game.role_whitelist", true, CVar.SERVER | CVar.REPLICATED);
+    
+    /// <summary>
+    ///     Starlight
+    ///     If races should be restricted based on whether or not they are whitelisted.
+    /// </summary>
+    public static readonly CVarDef<bool>
+        GameRaceWhitelist = CVarDef.Create("game.race_whitelist", true, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Whether or not disconnecting inside of a cryopod should remove the character or just store them until they reconnect.

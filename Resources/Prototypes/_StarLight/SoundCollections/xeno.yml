@@ -1,0 +1,12 @@
+- type: soundCollection
+  id: MaleXenoScreams # todo: add female
+  files:
+  - /Audio/_Starlight/Voice/Xeno/xeno_scream_1.ogg
+  - /Audio/_Starlight/Voice/Xeno/xeno_scream_2.ogg
+  - /Audio/_Starlight/Voice/Xeno/xeno_scream_3.ogg
+  - /Audio/_Starlight/Voice/Xeno/xeno_scream_4.ogg
+
+- type: soundCollection
+  id: MaleXenoLaugh # todo: add female
+  files:
+  - /Audio/_Starlight/Voice/Xeno/xeno_laugh.ogg

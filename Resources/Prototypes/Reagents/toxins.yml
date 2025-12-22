@@ -197,7 +197,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   contrabandSeverity: Minor
   flavor: acid
-  color: "#5050ff"
+  color: "#0ad135" # Starlight
   boilingPoint: 165
   meltingPoint: -87
   reactiveEffects:
@@ -205,11 +205,19 @@
       methods: [ Touch ]
       effects:
       - !type:HealthChange
+        conditions: # Starlight
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
         ignoreResistances: false
         damage:
           types:
             Caustic: 0.3
       - !type:Emote
+        conditions: # Starlight
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
         emote: Scream
         probability: 0.2
   metabolisms:
@@ -217,17 +225,38 @@
       metabolismRate: 3.00 # High damage, high metabolism rate. You need a lot of units to crit. Simulates acid burning through you fast.
       effects:
       - !type:HealthChange
+        conditions: # Starlight
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
         damage:
           types:
             Caustic: 8
       - !type:PopupMessage
+        conditions: # Starlight
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
         type: Local
         visualType: Large
         messages: [ "generic-reagent-effect-burning-insides" ]
         probability: 0.33
       - !type:Emote
+        conditions: # Starlight
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+          inverted: true
         emote: Scream
         probability: 0.25
+      - !type:PopupMessage # Starlight
+        conditions: 
+        - !type:MetabolizerTypeCondition
+          type: [ Xeno ]
+        type: Local
+        visualType: Medium
+        messages:
+        - xeno-acid-person
+        probability: 0.3
 
 - type: reagent
   id: SulfuricAcid

@@ -19,6 +19,7 @@
     - Human
     - Moth
     - Reptilian
+    - Xeno # Starlight
     - Vulpkanin # Starlight
     - Felionoid #🌟Starlight🌟
     - Resomi #🌟Starlight🌟
@@ -38,6 +39,13 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Shadekin
+
+- type: loadoutEffectGroup #🌟Starlight🌟
+  id: EffectSpeciesXeno
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Xeno
 
 # Basic
 - type: loadout
@@ -265,6 +273,13 @@
     - BoxSurvivalNonBreatherSyndicate
 
 # Pre-equipped species gear
+- type: loadout #🌟Starlight🌟
+  id: LoadoutSpeciesXenoDexPlus
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesXeno
+  equipment:
+    pocket1: PillCanisterDexalinPlus
 
 # Full tank for vox as part of any Survival loadout
 - type: loadout

@@ -1,0 +1,41 @@
+- type: entity
+  parent: BaseAction
+  id: ActionAcidSpit
+  name: "[color=green]Spit acid![/color]"
+  description: Spew out acid and melt the enemies!
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 7
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    sound:
+      path: /Audio/Weapons/Xeno/alien_spitacid.ogg     # TODO: actual sprite and iconOn
+    icon:
+      sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+      state: xeno_toxic
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: XenoAcidSpit
+      requiresOpenMouth: true
+      canUseWhenZombie: false
+
+- type: entity
+  id: XenoAcidSpit
+  name: acid
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 3
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
+    layers:
+      - state: xeno_toxic
+  - type: SpawnOnCollide
+    prototype: PuddleFluorosulfuricAcid

@@ -41,6 +41,7 @@ using Content.Shared.Starlight.CCVar;
 using Content.Shared.Starlight.TextToSpeech;
 using Content.Client._Starlight.TTS;
 #endregion Starlight
+using Content.Shared._NullLink; // Starlight-edit
 
 namespace Content.Client.Lobby.UI
 {
@@ -53,6 +54,7 @@ namespace Content.Client.Lobby.UI
         private readonly IFileDialogManager _dialogManager;
         private readonly IPlayerManager _playerManager;
         private readonly IPrototypeManager _prototypeManager;
+        private readonly ISharedNullLinkPlayerRolesReqManager _playerRolesReqManager; // Starlight-edit
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
 
@@ -137,7 +139,9 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings)
+            MarkingManager markings,
+            ISharedNullLinkPlayerRolesReqManager playerRolesReqManager // Starlight
+            )
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -149,6 +153,7 @@ namespace Content.Client.Lobby.UI
             _markingManager = markings;
             _preferencesManager = preferencesManager;
             _requirements = requirements;
+            _playerRolesReqManager = playerRolesReqManager; // Starlight
             _sprite = _entManager.System<SpriteSystem>();
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
@@ -801,6 +806,22 @@ namespace Content.Client.Lobby.UI
             }
         }
 
+        private bool IsRaceAllowed(SpeciesPrototype race) // Starlight
+        {
+            ProtoId<RoleRequirementPrototype>? protoId = race.Requirement;
+            if (protoId == null) return true;
+            var session = _playerManager.LocalSession;
+            if (session == null)
+                return false;
+
+            if (_prototypeManager.TryIndex(protoId, out var roleReq))
+            {
+                if (_playerRolesReqManager.IsAnyRole(session, roleReq.Roles))
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Refreshes the species selector.
         /// </summary>
@@ -808,7 +829,7 @@ namespace Content.Client.Lobby.UI
         {
             SpeciesButton.Clear();
             _species.Clear();
-
+            var gameruleRaceWhitelist = _cfgManager.GetCVar(CCVars.GameRaceWhitelist);
             _species.AddRange(_prototypeManager.EnumeratePrototypes<SpeciesPrototype>().Where(o => o.RoundStart));
             _species.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
             var speciesIds = _species.Select(o => o.ID).ToList();
@@ -817,7 +838,8 @@ namespace Content.Client.Lobby.UI
             {
                 var name = Loc.GetString(_species[i].Name);
                 SpeciesButton.AddItem(name, i);
-
+                bool allowed = !gameruleRaceWhitelist || IsRaceAllowed(_species[i]); // Starlight start
+                SpeciesButton.SetItemDisabled(SpeciesButton.GetIdx(i), !allowed);  // Starlight end
                 if (Profile?.Species.Equals(_species[i].ID) == true)
                 {
                     SpeciesButton.SelectId(i);

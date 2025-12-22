@@ -1,0 +1,1 @@
+xeno-acid-person = You feel the acid fizzing inside you.

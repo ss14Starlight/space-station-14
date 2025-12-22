@@ -133,6 +133,7 @@
   - EmergencyNitrogen
   - EmergencyOxygen
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesXenoDexPlus # 🌟Starlight🌟
   - EmergencyNonBreather # 🌟Starlight🌟
 
 # nitrogen or oxygen tank, depending on what your species needs
@@ -713,6 +714,7 @@
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesXenoDexPlus # 🌟Starlight🌟
   - EmergencyNonBreatherClown # 🌟Starlight🌟
 
 - type: loadoutGroup
@@ -780,6 +782,7 @@
   - EmergencyOxygenMime
   - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesXenoDexPlus # 🌟Starlight🌟
   - EmergencyNonBreatherMime # 🌟Starlight🌟
 
 - type: loadoutGroup
@@ -1174,6 +1177,7 @@
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesXenoDexPlus # 🌟Starlight🌟
   - EmergencyNonBreatherExtended # 🌟Starlight🌟
 
 # Science
@@ -1614,6 +1618,7 @@
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesXenoDexPlus # 🌟Starlight🌟
   - EmergencyNonbreatherSecurity # 🌟Starlight🌟
 
 # Medical
@@ -1859,6 +1864,7 @@
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesXenoDexPlus # 🌟Starlight🌟
   - EmergencyNonBreatherMedical # 🌟Starlight🌟
 
 # Wildcards
@@ -1932,6 +1938,7 @@
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
   - LoadoutSpeciesVoxNitrogen
+  - LoadoutSpeciesXenoDexPlus # 🌟Starlight🌟
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
 
 - type: loadoutGroup

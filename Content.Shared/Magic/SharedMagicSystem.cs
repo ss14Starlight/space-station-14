@@ -24,6 +24,7 @@ using Content.Shared.Magic.Events;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Ninja.Systems;
+using Content.Shared.Nutrition.EntitySystems; // Starlight
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Speech.Muting;
@@ -33,6 +34,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Zombies; // Starlight
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -81,8 +83,9 @@ public abstract class SharedMagicSystem : EntitySystem
     #region Starlight
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
-
     private static readonly EntProtoId TowerOfBabel = "TowerOfBabel";
+    [Dependency] private readonly IngestionSystem _ingestion = default!; 
+    
     #endregion
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
@@ -293,6 +296,26 @@ public abstract class SharedMagicSystem : EntitySystem
             return;
 
         ev.Handled = true;
+
+        // Starlight start
+        if (ev.RequiresOpenMouth)
+        {
+            if (!_ingestion.HasMouthAvailable(ev.Performer, ev.Performer))
+            {
+                _popup.PopupClient(Loc.GetString("spell-mouth-closed"), ev.Performer, ev.Performer);
+                return;
+            }
+        }
+
+        if (!ev.CanUseWhenZombie)
+        {
+            if (HasComp<ZombieComponent>(ev.Performer))
+            {
+                _popup.PopupClient(Loc.GetString("spell-zombie"), ev.Performer, ev.Performer);
+                return;
+            }
+        }
+        // Starlight end
 
         var xform = Transform(ev.Performer);
         var fromCoords = xform.Coordinates;

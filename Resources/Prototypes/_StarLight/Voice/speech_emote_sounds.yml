@@ -423,3 +423,13 @@
   params:
     variation: 0.05
     pitch: 1.25
+
+- type: emoteSounds
+  id: UnisexXeno # // TODO: - type: emoteSounds for different sexes (vulp)
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: MaleXenoScreams
+    Laugh:
+      collection: MaleXenoLaugh

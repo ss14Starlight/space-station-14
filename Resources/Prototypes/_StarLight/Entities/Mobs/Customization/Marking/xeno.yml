@@ -1,0 +1,153 @@
+
+- type: marking
+  id: XenoTailLong
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/tails.rsi
+    state: long
+
+- type: marking
+  id: XenoTailDeacon
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/tails.rsi
+    state: deacon
+
+- type: marking
+  id: XenoTailStubby
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/tails.rsi
+    state: short_stubby
+
+- type: marking
+  id: XenoTailSpitter
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/tails.rsi
+    state: spitter
+
+- type: marking
+  id: XenoHeadLong
+  bodyPart: Head
+  markingCategory: Overlay
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+    state: long
+
+- type: marking
+  id: XenoHeadDeacon
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/heads.rsi
+    state: deacon
+
+- type: marking
+  id: XenoHeadStubby
+  bodyPart: Head
+  markingCategory: Overlay
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+    state: short_stubby
+
+- type: marking
+  id: XenoHeadRidged
+  bodyPart: Head
+  markingCategory: Overlay
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+    state: skull_ridged
+
+- type: marking
+  id: XenoHeadSpitter
+  bodyPart: Head
+  markingCategory: Overlay
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+    state: spitter
+
+- type: marking
+  id: XenoHeadLurker
+  bodyPart: Head
+  markingCategory: Overlay
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+    state: lurker
+
+- type: marking
+  id: XenoHeadRunner
+  bodyPart: Head
+  markingCategory: Overlay
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+    state: runner
+
+- type: marking
+  id: XenoHeadTeeth
+  bodyPart: Head
+  markingCategory: Overlay
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/overlay.rsi
+    state: teeth
+
+- type: marking
+  id: XenoHeadSaggy
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/heads.rsi
+    state: saggy
+
+- type: marking
+  id: XenoHeadSkull
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/heads.rsi
+    state: skull
+
+- type: marking
+  id: XenoHeadListener
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/heads.rsi
+    state: listener
+
+- type: marking
+  id: XenoChestSlant
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/torsos.rsi
+    state: torso_slant
+
+- type: marking
+  id: XenoChestSpitter
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Xeno]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Xeno/torsos.rsi
+    state: torso_spitter

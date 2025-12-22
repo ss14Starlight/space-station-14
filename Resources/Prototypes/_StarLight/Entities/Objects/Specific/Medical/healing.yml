@@ -1,0 +1,33 @@
+# Pills
+- type: entity
+  name: pill
+  suffix: Dexalin Plus 10u
+  parent: Pill
+  id: PillDexalinPlus
+  components:
+  - type: Pill
+    pillType: 15
+  - type: Sprite
+    state: pill16
+  - type: Label
+    currentLabel: dexalin plus 10u
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: DexalinPlus
+          Quantity: 10
+
+- type: entity
+  name: pill canister
+  parent: PillCanister
+  id: PillCanisterDexalinPlus
+  suffix: Dexalin Plus 10u, 8
+  components:
+  - type: Label
+    currentLabel: dexalin plus 10u
+  - type: StorageFill
+    contents:
+    - id: PillDexalinPlus
+      amount: 8

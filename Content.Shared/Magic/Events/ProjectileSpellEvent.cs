@@ -10,4 +10,10 @@ public sealed partial class ProjectileSpellEvent : WorldTargetActionEvent
     /// </summary>
     [DataField(required: true)]
     public EntProtoId Prototype;
+
+    [DataField]
+    public bool RequiresOpenMouth = false; // Starlight
+
+    [DataField]
+    public bool CanUseWhenZombie = true; // Starlight
 }

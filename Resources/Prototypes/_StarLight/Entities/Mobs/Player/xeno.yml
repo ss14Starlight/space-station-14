@@ -1,0 +1,5 @@
+- type: entity # Player
+  save: false
+  parent: BaseMobXenoRace
+  id: MobXenoRace
+  name: Xeno
