@@ -419,6 +419,22 @@
     state: Zombie
   jobName: job-name-zombie
 
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconXenoborg
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Xenoborg
+  jobName: chat-radio-xenoborg
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconXenoborgMothership
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Mothership
+  jobName: chat-radio-mothership
+
 # Admin
 
 - type: jobIcon
@@ -467,6 +483,24 @@
   icon:
     sprite: *icon-rsi
     state: SeniorResearcher
+  allowSelection: false
+
+# Admeme
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSkub
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Skub
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCultistChaplain
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CultistChaplain
   allowSelection: false
 
 # Other

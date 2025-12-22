@@ -2,7 +2,6 @@ using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Robust.Shared.Console;
-using Content.Shared.Chat; // Starlight
 
 namespace Content.Server.Administration.Commands;
 

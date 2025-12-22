@@ -23,6 +23,8 @@
       map: ["light"]
       visible: false
   - type: BorgChassis
+    jobIconOverride: JobIconXenoborg # Starlight
+    jobTitleOverride: chat-radio-xenoborg # Starlight
     maxModules: 7
     hasMindState: borg_e
     noMindState: borg_e_r

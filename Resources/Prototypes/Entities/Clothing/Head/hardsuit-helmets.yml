@@ -390,7 +390,7 @@
 
 #Maxim Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ] # starlight, added lights
   id: ClothingHeadHelmetHardsuitMaxim
   categories: [ HideSpawnMenu ]
   name: salvager maxim helmet
@@ -400,6 +400,8 @@
     sprite: Clothing/Head/Hardsuits/maxim.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/maxim.rsi
+  - type: PointLight # starlight
+    color: "#ffade8"
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -419,9 +421,9 @@
   description: Armored hardsuit helmet for security needs.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/security.rsi
+    sprite: _Starlight/Clothing/Head/Hardsuits/security.rsi #Starlight
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/security.rsi
+    sprite: _Starlight/Clothing/Head/Hardsuits/security.rsi #Starlight
   - type: PointLight
     color: "#ffeead"
   - type: PressureProtection
@@ -473,9 +475,9 @@
   description: A modified riot helmet. Oddly comfortable.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/security-warden.rsi
+    sprite: _Starlight/Clothing/Head/Hardsuits/security-warden.rsi #Starlight
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/security-warden.rsi
+    sprite: _Starlight/Clothing/Head/Hardsuits/security-warden.rsi #Starlight
   - type: PointLight
     color: "#ffeead"
   - type: PressureProtection
@@ -636,9 +638,9 @@
   description: Security hardsuit helmet with the latest top secret NT-HUD software. Belongs to the HoS.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/security-red.rsi
+    sprite: _Starlight/Clothing/Head/Hardsuits/security-red.rsi #Starlight
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/security-red.rsi
+    sprite: _Starlight/Clothing/Head/Hardsuits/security-red.rsi #Starlight
   - type: PointLight
     color: "#ffeead"
   - type: PressureProtection

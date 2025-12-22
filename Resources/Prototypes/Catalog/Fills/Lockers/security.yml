@@ -28,6 +28,7 @@
     children:
     - id: ClothingEyesHudSecurity #Starlight
     - id: ClothingHeadsetSecurityWarden #Starlight
+    - id: WeaponEnergyShotgun #Starlight
     - id: FlashlightSeclite
     - id: WeaponDisabler
     - id: WeaponTaser

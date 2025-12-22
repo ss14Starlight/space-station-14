@@ -8,7 +8,6 @@ using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.Doors.Systems;
 using Content.Shared.DoAfter;
-using Content.Shared.Doors.Systems;
 using Content.Shared.Electrocution;
 using Content.Shared.Intellicard;
 using Content.Shared.Interaction;
