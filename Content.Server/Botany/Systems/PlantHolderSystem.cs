@@ -33,30 +33,98 @@ namespace Content.Server.Botany.Systems;
 /// </summary>
 public sealed class PlantHolderSystem : EntitySystem
 {
-    [Dependency] private BotanySystem _botany = default!;
-    [Dependency] private IPrototypeManager _prototype = default!;
-    [Dependency] private MutationSystem _mutation = default!;
-    [Dependency] private AppearanceSystem _appearance = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private PopupSystem _popup = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private RandomHelperSystem _randomHelper = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
-    [Dependency] private readonly ISerializationManager _copier = default!;
+    [Dependency] private readonly PlantSystem _plant = default!;
 
-    public const float HydroponicsSpeedMultiplier = 1f;
-    public const float HydroponicsConsumptionMultiplier = 2f;
-    public readonly FixedPoint2 PlantMetabolismRate = FixedPoint2.New(1);
-    public const float WeedHighLevelThreshold = 10f;
+    /// <summary>
+    /// Adjusts the health of the plant.
+    /// </summary>
+    [PublicAPI]
+    public void AdjustsHealth(Entity<PlantHolderComponent?> ent, float amount)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return;
 
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+        if (!TryComp<PlantComponent>(ent.Owner, out var plant))
+            return;
 
-    private static readonly ProtoId<TagPrototype> HoeTag = "Hoe";
-    private static readonly ProtoId<TagPrototype> PlantSampleTakerTag = "PlantSampleTaker";
+        ent.Comp.Health += MathHelper.Clamp(amount, 0, plant.Endurance);
+        CheckHealth(ent);
+        _plant.UpdateSprite(ent.Owner);
+    }
+
+    /// <summary>
+    /// Adjusts the mutation level of the plant.
+    /// </summary>
+    [PublicAPI]
+    public void AdjustsMutationLevel(Entity<PlantHolderComponent?> ent, float amount)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return;
+
+        ent.Comp.MutationLevel += amount * ent.Comp.MutationMod;
+        CheckHealth(ent);
+    }
+
+    /// <summary>
+    /// Adjusts the mutation mod of the plant.
+    /// </summary>
+    [PublicAPI]
+    public void AdjustsMutationMod(Entity<PlantHolderComponent?> ent, float amount)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return;
+
+        ent.Comp.MutationMod += amount;
+    }
+
+    /// <summary>
+    /// Adjusts the pests of the plant.
+    /// </summary>
+    [PublicAPI]
+    public void AdjustsPests(Entity<PlantHolderComponent?> ent, float amount)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return;
+
+        ent.Comp.PestLevel += amount;
+    }
+
+    /// <summary>
+    /// Adjusts the age of the plant.
+    /// </summary>
+    [PublicAPI]
+    public void AdjustsAge(Entity<PlantHolderComponent?> ent, int amount)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return;
+
+        ent.Comp.Age += amount;
+        _plant.UpdateSprite(ent.Owner);
+    }
+
+    /// <summary>
+    /// Adjusts the toxins of the plant.
+    /// </summary>
+    [PublicAPI]
+    public void AdjustsToxins(Entity<PlantHolderComponent?> ent, float amount)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return;
+
+        ent.Comp.Toxins += amount;
+    }
+
+    /// <summary>
+    /// Checks if the plant is dead.
+    /// </summary>
+    [PublicAPI]
+    public bool IsDead(Entity<PlantHolderComponent?> ent)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp))
+            return false;
+
+        return ent.Comp.Dead;
+    }
 
     /// <summary>
     /// Checks if the plant is dead.

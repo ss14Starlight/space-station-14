@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 using System.Linq;
 using Content.Server.Botany.Components;
@@ -18,6 +19,7 @@ public sealed partial class MutationSystem : EntitySystem
     [Dependency] private readonly BotanySystem _botany = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly PlantSystem _plant = default!;
     [Dependency] private readonly PlantTraySystem _plantTray = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
@@ -32,9 +34,9 @@ public sealed partial class MutationSystem : EntitySystem
     /// For each random mutation, see if it occurs on this plant this check.
     /// </summary>
     [PublicAPI]
-    public void CheckRandomMutations(Entity<PlantTrayComponent?> trayEnt, Entity<PlantComponent?> plantEnt, float severity)
+    public void CheckRandomMutations(Entity<PlantComponent?> plantEnt, float severity)
     {
-        if (!Resolve(trayEnt, ref trayEnt.Comp, false) || !Resolve(plantEnt, ref plantEnt.Comp, false))
+        if (!Resolve(plantEnt, ref plantEnt.Comp, false))
             return;
 
         foreach (var mutation in _randomMutations.mutations)
@@ -42,7 +44,7 @@ public sealed partial class MutationSystem : EntitySystem
             if (Random(Math.Min(mutation.BaseOdds * severity, 1.0f)))
             {
                 if (mutation.AppliesToPlant)
-                    _entityEffects.TryApplyEffect(trayEnt, mutation.Effect);
+                    _entityEffects.TryApplyEffect(plantEnt, mutation.Effect);
 
                 // Stat adjustments do not persist by being an attached effect, they just change the stat.
                 if (mutation.Persists && !plantEnt.Comp.Mutations.Any(m => m.Name == mutation.Name))
@@ -55,12 +57,12 @@ public sealed partial class MutationSystem : EntitySystem
     /// Checks all defined mutations against a seed to see which of them are applied.
     /// </summary>
     [PublicAPI]
-    public void MutatePlant(Entity<PlantTrayComponent?> trayEnt, Entity<PlantComponent?> plantEnt, float severity)
+    public void MutatePlant(Entity<PlantComponent?> plantEnt, float severity)
     {
-        if (!Resolve(trayEnt, ref trayEnt.Comp, false) || !Resolve(plantEnt, ref plantEnt.Comp, false))
+        if (!Resolve(plantEnt, ref plantEnt.Comp, false))
             return;
 
-        CheckRandomMutations(trayEnt, plantEnt, severity);
+        CheckRandomMutations(plantEnt, severity);
     }
 
     /// <summary>
@@ -70,7 +72,7 @@ public sealed partial class MutationSystem : EntitySystem
     [PublicAPI]
     public void SpeciesChange(Entity<PlantDataComponent?> oldPlant, EntProtoId newPlantEnt, Entity<PlantTrayComponent?> trayEnt)
     {
-        if (!Resolve(oldPlant, ref oldPlant.Comp, false) || !Resolve(trayEnt, ref trayEnt.Comp, false))
+        if (!Resolve(oldPlant, ref oldPlant.Comp, false))
             return;
 
         if (oldPlant.Comp.MutationPrototypes.Count == 0)
@@ -83,6 +85,7 @@ public sealed partial class MutationSystem : EntitySystem
         QueueDel(oldPlant.Owner);
         _plantTray.PlantingPlant(trayEnt, newPlantUid);
         _botany.ApplyPlantSnapshotData(newPlantUid, snapshot);
+        _plant.ForceUpdateByExternalCause(newPlantUid);
     }
 
     [PublicAPI]
