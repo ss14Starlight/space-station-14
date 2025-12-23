@@ -182,6 +182,7 @@
       - id: WristwatchGold
       - id: MysteryLighterBox
       - id: GoldenPersonalAI
+      - id: ClothingHeadBowlHelmet #Starlight
 
 - type: entity
   name: Maint Loot Spawner

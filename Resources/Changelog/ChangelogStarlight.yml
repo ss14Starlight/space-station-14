@@ -24387,5 +24387,92 @@ Entries:
   id: 255600
   time: '2025-12-20T03:14:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2556
+- author: Penguinwizzard
+  changes:
+  - message: We realized that when putting in the order for the new energy magnums,
+      our supplier took the opportunity to upcharge us for autochargers for the energy
+      shotguns. We've reminded them of our contracting process, so your energy shotguns
+      will no longer self-recharge.
+    type: Tweak
+  id: 257100
+  time: '2025-12-21T22:41:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2571
+- author: Penguinwizzard
+  changes:
+  - message: Fixed miscommunication; non-command engineers can now once again open
+      firelocks when needed.
+    type: Fix
+  id: 256700
+  time: '2025-12-21T22:41:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2567
+- author: Penguinwizzard
+  changes:
+  - message: The paperwork has finally gone through, and the Warden and Detective
+      are now permitted to use their issued weapons as non-contraband. Thank you for
+      refraining for using them while we were waiting on that to get filed, it must
+      have been stressful.
+    type: Fix
+  id: 256300
+  time: '2025-12-21T22:41:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2563
+- author: Penguinwizzard
+  changes:
+  - message: Changed the NT Rep's cane from Firewire back to USB-C so it can use the
+      station chargers again.
+    type: Fix
+  id: 256400
+  time: '2025-12-21T22:41:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2564
+- author: Penguinwizzard
+  changes:
+  - message: The "Assistant" job now only shows up once in the ID card computer's
+      job list, rather than twice.
+    type: Fix
+  id: 256200
+  time: '2025-12-21T22:41:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2562
+- author: Conflee, Abby, DocMoth, Way
+  changes:
+  - message: Resprited the Security, Warden, and Head of Security Hardsuits. Wizden
+      ones are each in a slightly different art style, not matching each other. New
+      ones all match.
+    type: Tweak
+  - message: Made NTSF and REDACTED immune to tasers.
+    type: Tweak
+  id: 256500
+  time: '2025-12-21T23:12:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2565
+- author: SevenShades
+  changes:
+  - message: Wizard's void robes
+    type: Add
+  - message: Wizard hardsuit
+    type: Remove
+  id: 257500
+  time: '2025-12-21T23:21:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2575
+- author: Fasuh
+  changes:
+  - message: Fix Avali and Cyclorites processing alcohol for long
+    type: Tweak
+  id: 255900
+  time: '2025-12-21T23:21:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2559
+- author: Sparlight
+  changes:
+  - message: Smart Corgis and Borgis can now wear welding masks and blindfolds.
+    type: Add
+  id: 257400
+  time: '2025-12-21T23:31:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2574
+- author: Conflee
+  changes:
+  - message: Added the Fishbowl Helmet. It functions as an EVA helmet, with 5% heat
+      and radiation resistance. Appears as rare maints locker loot. Just bringing
+      in a retro scifi trope for fun.
+    type: Add
+  id: 257300
+  time: '2025-12-22T00:07:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2573
 Order: -1
 

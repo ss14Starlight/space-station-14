@@ -276,9 +276,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/security.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security.rsi #Starlight
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/security.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security.rsi #Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -351,9 +351,9 @@
   description: A specialized, heavy riot suit geared to combat low pressure environments.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/security-warden.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security-warden.rsi #Starlight
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/security-warden.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security-warden.rsi #Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -548,9 +548,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/security-red.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security-red.rsi #Starlight
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/security-red.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security-red.rsi #Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
