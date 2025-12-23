@@ -21,7 +21,7 @@
       - MindRoleDevil
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg" # todo awesome sound
-    components:
+      components:
       - type: ActiveListener
       - type: Unholy
       - type: UserInterface
