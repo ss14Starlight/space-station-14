@@ -27,7 +27,6 @@ public sealed partial class PlantMutateSpeciesChangeEntityEffectSystem : EntityE
             return;
 
         var newPlantEnt = _random.Pick(oldPlantData.MutationPrototypes);
-        _plant.TryGetTray(entity.AsNullable(), out var trayEnt);
-        _mutation.SpeciesChange(entity.Owner, newPlantEnt, trayEnt);
+        _mutation.SpeciesChange(entity.Owner, newPlantEnt);
     }
 }
