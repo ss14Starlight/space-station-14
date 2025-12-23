@@ -1,8 +1,0 @@
-﻿- type: jobIcon
-  parent: JobIconNanotrasen
-  id: JobIconCaptainUber
-  icon:
-    sprite: &icon-rsi /Textures/Interface/Misc/job_icons.rsi
-    state: Nanotrasen
-  jobName: job-name-centcomoff
-

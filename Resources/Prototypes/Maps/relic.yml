@@ -31,7 +31,6 @@
         - type: StationJobs
           availableJobs:
             #command (6)
-            CaptainUber: [ 1, 1 ]
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             HeadOfSecurity: [ 1, 1 ]
