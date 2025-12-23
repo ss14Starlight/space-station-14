@@ -9,6 +9,8 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Vampire.Components;
 using Content.Server.Humanoid;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared._Starlight.Sprite;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -64,6 +66,16 @@ public sealed partial class DevilSystem : SharedDevilSystem
             _humanoidAppearance.SetEyeColor(uid, Color.Red);
             _humanoidAppearance.SetMarkingGlowing(uid, MarkingCategories.Eyes, 0, true);
             devilComp.RedEyesAppearance.Completed = true;
+        }
+
+        if(devilComp.DamnedSouls.Count >= devilComp.EvilHaloAppearance.AtSouls && !devilComp.EvilHaloAppearance.Completed)
+        {
+            AppliedSpriteLayerComponent appliedSpriteLayer = new()
+            {
+                Sprite = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Devil/evilhalo.rsi"), "halo"),
+                Layer = "devil_halo"
+            };
+            EntityManager.AddComponent(uid, appliedSpriteLayer, true);
         }
     }
     #endregion
