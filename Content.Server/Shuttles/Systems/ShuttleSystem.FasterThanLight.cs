@@ -77,6 +77,8 @@ public sealed partial class ShuttleSystem
     private EntityQuery<FTLSmashImmuneComponent> _immuneQuery;
     private EntityQuery<StatusEffectsComponent> _statusQuery;
 
+    private float ArrivalsFTLCooldown;
+
     private void InitializeFTL()
     {
         SubscribeLocalEvent<StationPostInitEvent>(OnStationPostInit);
@@ -90,6 +92,7 @@ public sealed partial class ShuttleSystem
         _cfg.OnValueChanged(CCVars.FTLTravelTime, time => DefaultTravelTime = time, true);
         _cfg.OnValueChanged(CCVars.FTLArrivalTime, time => DefaultArrivalTime = time, true);
         _cfg.OnValueChanged(CCVars.FTLCooldown, time => FTLCooldown = time, true);
+        _cfg.OnValueChanged(CCVars.ArrivalsCooldown, time => ArrivalsFTLCooldown = time, true);
         _cfg.OnValueChanged(CCVars.FTLMassLimit, time => FTLMassLimit = time, true);
         _cfg.OnValueChanged(CCVars.HyperspaceKnockdownTime, time => _hyperspaceKnockdownTime = TimeSpan.FromSeconds(time), true);
     }
@@ -574,6 +577,13 @@ public sealed partial class ShuttleSystem
 
     private void UpdateFTLCooldown(Entity<FTLComponent, ShuttleComponent> entity)
     {
+        // Check if this shuttle is an arrivals shuttle and use the correct cooldown
+        float cooldown = FTLCooldown;
+        if (TryComp<ArrivalsShuttleComponent>(entity.Owner, out _))
+        {
+            cooldown = ArrivalsFTLCooldown;
+        }
+        entity.Comp1.StateTime = StartEndTime.FromCurTime(_gameTiming, cooldown);
         RemCompDeferred<FTLComponent>(entity);
         _console.RefreshShuttleConsoles(entity);
     }
