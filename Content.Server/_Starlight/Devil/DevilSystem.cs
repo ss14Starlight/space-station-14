@@ -63,6 +63,9 @@ public sealed partial class DevilSystem : SharedDevilSystem
     private void OnOpenDamnationsMenu(EntityUid uid, DevilComponent devilComp, ref OpenDamnationsMenuEvent args)
     {
         if (!TryComp<UserInterfaceComponent>(uid, out var userInterfaceComp) || !TryComp<ActorComponent>(uid, out var actorComp)) return;
+
+        var uiState = new DevilDamnationsBuiState(devilComp.AvailableDamnations);
+        _userInterface.SetUiState((uid, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
         _userInterface.TryToggleUi((uid, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
     }
     #endregion

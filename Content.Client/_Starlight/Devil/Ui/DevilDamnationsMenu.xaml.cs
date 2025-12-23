@@ -16,12 +16,10 @@ public sealed partial class DevilDamnationsMenu : FancyWindow
         IoCManager.InjectDependencies(this);
     }
 
-    public void Update(EntityUid uid, DevilDamnationsBuiState state)
+    public void Update(DevilDamnationsBuiState state)
     {
-        if (!_entityManager.TryGetComponent<DevilComponent>(state.Devil, out var devilComponent)) return;
-
         DamnationsDisplayContainer.Children.Clear();
-        foreach (var damnation in devilComponent.AvailableDamnations)
+        foreach (var damnation in state.Damnations)
         {
             var element = new DevilDamnationDisplay(damnation);
             DamnationsDisplayContainer.AddChild(element);

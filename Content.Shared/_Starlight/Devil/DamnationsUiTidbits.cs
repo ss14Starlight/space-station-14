@@ -1,3 +1,4 @@
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Devil;
@@ -11,10 +12,10 @@ public enum DamnationsMenuUiKey : byte
 [Serializable, NetSerializable]
 public sealed partial class DevilDamnationsBuiState : BoundUserInterfaceState
 {
-    public EntityUid Devil;
+    public List<ProtoId<DamnationPrototype>> Damnations;
 
-    public DevilDamnationsBuiState(EntityUid devil)
+    public DevilDamnationsBuiState(List<ProtoId<DamnationPrototype>> damnations)
     {
-        Devil = devil;
+        Damnations = damnations;
     }
 }
