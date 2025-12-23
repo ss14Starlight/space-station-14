@@ -1,0 +1,72 @@
+- type: job
+  id: CaptainUber
+  name: job-name-captain-uber
+  description: job-description-captain-uber
+  playTimeTracker: JobCaptainUber
+  requirement:
+    !type:RoleTimeRequirement
+    role: JobCaptain
+    time: 40h
+  weight: 20
+  startingGear: CaptainUberGear
+  icon: "JobIconCaptainUber"
+  joinNotifyCrew: true
+  supervisors: job-supervisors-centcom
+  canBeAntag: true
+  accessGroups:
+  - AllAccess
+  access:
+  - CaptainUber
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: CaptainUberGear
+  equipment:
+    shoes: ClothingShoesBootsMagBlinding
+    eyes: ClothingEyesEyepatchHudBeer
+    mask: ClothingMaskGasCaptain
+    gloves: ClothingHandsGlovesCaptain
+    id: CaptainUberPDA
+    ears: ClothingHeadsetAltCommand
+    belt: ChemBag
+      - Beaker
+    suitstorage: JetpackUltraCaptainUberFilled
+    pocket1: PowerCellAntiqueProto
+    pocket2: GasAnalyzer
+  storage:
+    back:
+    - HandheldHealthAnalyzerUnpowered
+    - PowerDrill
+    - JawsOfLife
+    - WelderExperimental
+    - Multitool
+    - HolofanProjector
+    - GasAnalyzer
+    - HandHeldMassScanner
+    - trayScanner
+    - NodeScanner
+    - AdvancedMineralScannerUnpowered
+    - ForensicScanner
+    - SprayPainterBorg
+    - AppraisalTool
+    - ClothingEyesHudMultiversal
+    - DrinkFlask
+    - Flash
+    - PowerCellAntiqueProto
+    - UniversalIDCard
+    # - StationCharter
+
+- type: chameleonOutfit
+  id: CaptainUberChameleonOutfit
+  job: CaptainUber
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatCapcap
+    eyes: ClothingEyesGlassesCommand
+    mask: ClothingMaskGasCaptain
+    neck: ClothingNeckCloakCap

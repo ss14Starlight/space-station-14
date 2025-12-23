@@ -1,0 +1,104 @@
+# For mantles
+- type: loadoutEffectGroup
+  id: MasterCapUber
+  Parent: MasterCap
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptainUber
+      time: 1h
+
+# Jumpsuit
+- type: loadout
+  id: CaptainUberJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCaptain
+
+- type: loadout
+  id: CaptainUberJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCaptain
+
+- type: loadout
+  id: CaptainUberFormalSuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCapFormal
+
+- type: loadout
+  id: CaptainUberFormalSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCapFormalDress
+
+# Head
+- type: loadout
+  id: CaptainUberHead
+  equipment:
+    head: ClothingHeadHatCaptain
+
+- type: loadout
+  id: CaptainUberCap
+  equipment:
+    head: ClothingHeadHatCapcap
+
+# Neck
+- type: loadout
+  id: CaptainUberCloak
+  equipment:
+    neck: ClothingNeckCloakCap
+
+- type: loadout
+  id: CaptainUberCloakFormal
+  equipment:
+    neck: ClothingNeckCloakCapFormal
+
+- type: loadout
+  id: CaptainUberMantle
+  equipment:
+    neck: ClothingNeckMantleCap
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterCapUber
+
+- type: startingGear
+  id: CaptainUberMantle
+  equipment:
+    neck: ClothingNeckMantleCap
+
+# Back
+- type: loadout
+  id: CaptainUberBackpack
+  equipment:
+    back: ClothingBackpackCaptain
+
+- type: loadout
+  id: CaptainUberSatchel
+  equipment:
+    back: ClothingBackpackSatchelCaptain
+
+- type: loadout
+  id: CaptainUberDuffel
+  equipment:
+    back: ClothingBackpackDuffelCaptain
+
+- type: loadout
+  id: CaptainUberSatchelHolding
+  equipment:
+    back: ClothingBackpackSatchelAdmin
+
+# Outer clothing
+- type: loadout
+  id: CaptainUberOuterClothing
+  equipment:
+    outerClothing: ClothingOuterArmorCaptainCarapace
+
+- type: loadout
+  id: CaptainUberWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterCap
+
+- type: loadout
+  id: CaptainUberHardsuit
+  equipment:
+    outerClothing: ClothingOuterHardsuitCapUber
+

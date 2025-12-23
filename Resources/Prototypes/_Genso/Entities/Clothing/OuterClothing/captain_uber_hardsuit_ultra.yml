@@ -1,0 +1,36 @@
+﻿#Captain's Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitCap, BaseCommandContraband]
+  id: ClothingOuterHardsuitCapUber
+  name: uber captain's armored spacesuit
+  description: A formal armored spacesuit, made for the station's uber captain.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/capspace.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/capspace.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.6
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1.3
+    sprintModifier: 1.3
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitCap
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon

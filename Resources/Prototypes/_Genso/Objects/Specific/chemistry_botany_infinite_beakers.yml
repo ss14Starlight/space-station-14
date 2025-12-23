@@ -1,0 +1,83 @@
+﻿- type: entity
+  parent: Beaker
+  id: BottomlessRobustHarvest
+  name: bottomless robust harvest beaker
+  suffix: DEBUG
+  description: An Infinitely Regenerating Beaker of Robust Harvest.
+  components:
+      - type: SolutionContainerManager
+        solutions:
+            beaker:
+                maxVol: 1000
+                reagents:
+                    - ReagentId: RobustHarvest
+                      Quantity: 1000
+      - type: SolutionRegeneration
+        solution: beaker
+        generated:
+            reagents:
+                - ReagentId: RobustHarvest
+                  Quantity: 200
+
+- type: entity
+  parent: Beaker
+  id: BottomlessDiethylamine
+  name: bottomless diethylamine beaker
+  suffix: DEBUG
+  description: An Infinitely Regenerating Beaker of Robust Harvest.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 1000
+        reagents:
+        - ReagentId: Diethylamine
+          Quantity: 1000
+  - type: SolutionRegeneration
+    solution: beaker
+    generated:
+      reagents:
+      - ReagentId: Diethylamine
+        Quantity: 200
+
+- type: entity
+  parent: Beaker
+  id: BottomlessUnstableMutagen
+  name: bottomless unstable mutagen beaker
+  suffix: DEBUG
+  description: An Infinitely Regenerating Beaker of Unstable Mutagen.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 1000
+        reagents:
+        - ReagentId: UnstableMutagen
+          Quantity: 1000
+  - type: SolutionRegeneration
+    solution: beaker
+    generated:
+      reagents:
+      - ReagentId: UnstableMutagen
+        Quantity: 200
+
+- type: entity
+  parent: Beaker
+  id: BottomlessSedin
+  name: bottomless sedin beaker
+  suffix: DEBUG
+  description: An Infinitely Regenerating Beaker of Sedin.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 1000
+        reagents:
+        - ReagentId: Sedin
+          Quantity: 1000
+  - type: SolutionRegeneration
+    solution: beaker
+    generated:
+      reagents:
+      - ReagentId: Sedin
+        Quantity: 200

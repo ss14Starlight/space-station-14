@@ -1,0 +1,9 @@
+﻿- type: entity
+  name: genso horn
+  parent: BaseItem
+  id: GensoHorn
+  description: It goes gonk gonk!
+  components:
+      - type: Sprite
+        sprite: Objects/Fun/bikehorn.rsi
+        state: icon

@@ -1,0 +1,16 @@
+﻿# Filled captain
+- type: entity
+  id: JetpackUltraCaptainUberFilled
+  parent: JetpackCaptain
+  name: uber captain's jetpack
+  suffix: Filled
+  components:
+    - type: GasTank
+      outputPressure: 42.6
+      air:
+        # 13 minutes of thrust
+        volume: 3000
+        temperature: 293.15
+        moles:
+          Oxygen: 615 # oxygen
+          Nitrogen: 615 # nitrogen

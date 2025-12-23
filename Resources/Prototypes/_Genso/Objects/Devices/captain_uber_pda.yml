@@ -1,0 +1,30 @@
+﻿- type: entity
+  parent: BasePDA
+  id: CaptainUberPDA
+  name: uber captain PDA
+  description: Surprisingly no different from your PDA.
+  components:
+  - type: Pda
+    id: CaptainUberIDCard
+    penSlot:
+      startingItem: PenCap
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: true
+    radius: 3.7
+    falloff: 3
+    softness: 5
+    autoRot: true
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-captain
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
+  - type: Icon
+    state: pda-captain
