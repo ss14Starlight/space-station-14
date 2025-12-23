@@ -1,0 +1,74 @@
+# TEG Hot Air Alarm
+- type: entity
+  id: AirAlarmTEGBurn
+  parent: AirAlarm
+  description: A TEG air alarm. Please don't scrub the plasma!
+  suffix: TEG Hot, auto mode disabled
+  components:
+  - type: AtmosAlarmable
+    syncWith:
+    - AirAlarmTEGBurn
+    - AirSensorTEGBurn
+    - GasVentTEGBurn
+    - GasScrubberTEGBurn
+  - type: AirAlarm
+    autoMode: false
+
+# TEG Hot Sensor Base
+- type: entity
+  abstract: true
+  parent: AirSensorBase
+  id: AirSensorTEGBurnBase
+  suffix: TEG Atmosphere
+  components:
+  - type: AtmosMonitor
+    temperatureThresholdId: TEGTemperature
+  - type: Label
+    currentLabel: teg-hot-loop
+
+# TEG Hot Sensor
+- type: entity
+  parent: [AirSensorTEGBurnBase, AirSensor]
+  id: AirSensorTEGBurn
+  name: air sensor TEG
+  description: Listens to the whispers of the plasma!
+  suffix: TEG Hot
+
+# TEG Hot Pump Vent
+- type: entity
+  parent: [AirSensorTEGBurnBase, GasVentPump]
+  id: GasVentPumpTEGBurn
+  name: air vent TEG
+  description: Has a valve and pump attached to it. For the TEG.
+  suffix: TEG Hot
+
+# TEG Hot Scrubber
+- type: entity
+  parent: [AirSensorTEGBurnBase, GasVentScrubber]
+  id: GasVentScrubberTEGBurn
+  name: air scrubber TEG
+  description: Keeps the waste out and the plasma in!
+  suffix: TEG Hot
+  components:
+  - type: GasVentScrubber
+    wideNet: true # Air alarm with auto mode overrides filters with hardcoded defaults so default to widenet
+    filterGases:
+    - CarbonDioxide
+    - Tritium
+    - Frezon
+
+- type: entity
+  parent: [AirSensorTEGBurnBase, GasVentScrubber]
+  id: GasVentScrubberTEGo2Dump
+  name: air scrubber TEG O2
+  description: Keeps the waste out and the plasma in!
+  suffix: TEG Hot O2
+  components:
+  - type: GasVentScrubber
+    wideNet: true # Air alarm with auto mode overrides filters with hardcoded defaults so default to widenet
+    filterGases:
+    - Oxygen
+    - Nitrogen
+    - Ammonia
+    - NitrousOxide
+

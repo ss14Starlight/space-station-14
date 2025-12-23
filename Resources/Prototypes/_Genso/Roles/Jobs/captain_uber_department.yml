@@ -1,0 +1,9 @@
+﻿- type: department
+  id: HighCommand
+  name: department-High-Command
+  description: department-Command-description
+  color: "#334E6D"
+  roles:
+  - CaptainUber
+  primary: false
+  weight: 100

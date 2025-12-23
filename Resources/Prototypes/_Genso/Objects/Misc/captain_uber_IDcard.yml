@@ -1,0 +1,29 @@
+﻿- type: entity
+  parent: CentcomIDCard
+  id: CaptainUberIDCard
+  name: Uber Captain ID card
+  suffix: Admin
+  description: An ID card that gives you access beyond your wildest dreams.
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: stripe_top
+      color: &color-centcomm-top "#134975"
+    - state: stripe_bottom
+      color: &color-centcomm-bottom "#0d304d"
+    - sprite: &icon-rsi /Textures/Interface/Misc/job_icons.rsi
+      offset: &icon-offset -0.09375, 0.0625 #3 pixels left, 2 pixels up
+      state: Nanotrasen
+  - type: Item
+    heldPrefix: gold
+  - type: PresetIdCard
+    job: Captain
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - WhitelistChameleon
+    - WhitelistChameleonIdCard
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: CaptainIDCard

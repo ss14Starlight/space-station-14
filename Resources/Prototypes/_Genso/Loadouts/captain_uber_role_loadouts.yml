@@ -1,0 +1,13 @@
+﻿# Command
+- type: roleLoadout
+  id: JobCaptainUber
+  groups:
+  - CaptainUberHead
+  - CaptainUberNeck
+  - CaptainUberJumpsuit
+  - CaptainUberBackpack
+  - CaptainUberOuterClothing
+  - Survival
+  - Trinkets
+  - CaptainJobTrinkets
+  - GroupSpeciesBreathTool

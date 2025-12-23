@@ -18,6 +18,7 @@
         - type: StationJobs
           availableJobs: # 15 jobs total w/o latejoins, 19 jobs total w/ latejoins
             #command (2)
+            CaptainUber: [ 1, 1 ]
             Captain: [ 1, 1 ]
             HeadOfSecurity: [ 1, 1 ]
             #service (4)

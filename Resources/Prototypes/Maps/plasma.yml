@@ -20,6 +20,7 @@
         - type: StationJobs
           availableJobs: # 66 jobs total w/o latejoins & interns, 91 jobs total w/ latejoins & interns
             #command (7)
+            CaptainUber: [ 1, 1 ]
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             ChiefEngineer: [ 1, 1 ]

@@ -1,0 +1,43 @@
+﻿- type: entity
+  parent: GasUnaryBase
+  id: GasOutletPump2
+  name: autostart outlet 2
+  description: A pump that moves gas by pressure.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Sprite
+      drawdepth: FloorObjects
+      sprite: Structures/Piping/Atmospherics/outletinjector.rsi
+      layers:
+        - state: pipeUnaryConnectors
+          sprite: Structures/Piping/Atmospherics/pipe.rsi
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: injector
+          map: [ "enum.SubfloorLayers.FirstLayer" ]
+        - state: injector-unshaded
+          shader: unshaded
+          map: [ "enum.LightLayers.Unshaded" ]
+          color: "#990000"
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        # toggle color of the unshaded light:
+        enum.OutletInjectorVisuals.Enabled:
+          enum.LightLayers.Unshaded:
+            True: { color: "#5eff5e" }
+            False: { color: "#990000" }
+    - type: PipeColorVisuals
+    - type: GasOutletInjector
+    - type: Construction
+      graph: GasUnary
+      node: outletinjector
+    - type: SubFloorHide
+      visibleLayers:
+        - enum.SubfloorLayers.FirstLayer
+        - enum.LightLayers.Unshaded
+    - type: AtmosMonitoringConsoleDevice
+      navMapBlip: GasVentOpening
+    - type: GuideHelp
+      guides:
+        - AirInjector

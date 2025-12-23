@@ -1,0 +1,13 @@
+# Command
+
+- type: entity
+  id: SpawnPointCaptainUber
+  parent: SpawnPointJobBase
+  name: uber captain
+  components:
+  - type: SpawnPoint
+    job_id: CaptainUber
+  - type: Sprite
+    layers:
+      - state: green
+      - state: captainuber
