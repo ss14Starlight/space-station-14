@@ -10,13 +10,17 @@ public sealed partial class DevilDamnationsMenu : FancyWindow
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
-    public DevilDamnationsMenu(EntityUid devil)
+    public DevilDamnationsMenu()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+    }
 
-        if (!_entityManager.TryGetComponent<DevilComponent>(devil, out var devilComponent)) return;
+    public void Update(EntityUid uid, DevilDamnationsBuiState state)
+    {
+        if (!_entityManager.TryGetComponent<DevilComponent>(state.Devil, out var devilComponent)) return;
 
+        DamnationsDisplayContainer.Children.Clear();
         foreach (var damnation in devilComponent.AvailableDamnations)
         {
             var element = new DevilDamnationDisplay(damnation);

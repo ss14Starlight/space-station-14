@@ -11,6 +11,9 @@ using Content.Server.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared._Starlight.Sprite;
 using Robust.Shared.Utility;
+using Robust.Shared.Serialization.Manager;
+using Robust.Server.GameObjects;
+using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -23,6 +26,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
     [Dependency] private readonly RandomMetadataSystem _randomMetadata = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
 
     public override void Initialize()
     {
@@ -31,6 +35,8 @@ public sealed partial class DevilSystem : SharedDevilSystem
         SubscribeLocalEvent<DevilComponent, ComponentStartup>(OnStartup, before: [typeof(DamageableSystem)]);
 
         SubscribeLocalEvent<DevilComponent, SummonDemonicContractEvent>(OnSummonDemonicContract);
+        SubscribeLocalEvent<DevilComponent, OpenDamnationsMenuEvent>(OnOpenDamnationsMenu);
+
         SubscribeLocalEvent<DevilComponent, DevilSoulsDamnedCountChangedEvent>(OnDevilSoulsDamnedCountChanged);
 
         SubscribeContract();
@@ -43,9 +49,6 @@ public sealed partial class DevilSystem : SharedDevilSystem
         foreach (var action in devilComp.BaseActions) _actions.AddAction(uid, action);
 
         devilComp.TrueName = _randomMetadata.GetRandomFromSegments(devilComp.NameSegments, devilComp.NameFormat);
-
-        EnsureComp<ActiveListenerComponent>(uid); // for banish listen events
-        EnsureComp<UnholyComponent>(uid);
     }
 
     #region abilities
@@ -55,6 +58,12 @@ public sealed partial class DevilSystem : SharedDevilSystem
         _hands.TryPickupAnyHand(uid, paper);
 
         args.Handled = true;
+    }
+
+    private void OnOpenDamnationsMenu(EntityUid uid, DevilComponent devilComp, ref OpenDamnationsMenuEvent args)
+    {
+        if (!TryComp<UserInterfaceComponent>(uid, out var userInterfaceComp) || !TryComp<ActorComponent>(uid, out var actorComp)) return;
+        _userInterface.TryToggleUi((uid, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
     }
     #endregion
 

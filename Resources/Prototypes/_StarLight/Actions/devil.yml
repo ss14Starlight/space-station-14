@@ -11,3 +11,16 @@
       state: pen
   - type: InstantAction
     event: !type:SummonDemonicContractEvent
+
+- type: entity
+  id: ActionDamnationsMenu
+  name: View Available Damnations
+  description: View the various ways you can oblige the crew.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: Changeling/changeling_abilities.rsi
+      state: evolution_menu # todo make new
+  - type: InstantAction
+    event: !type:OpenDamnationsMenuEvent {}
