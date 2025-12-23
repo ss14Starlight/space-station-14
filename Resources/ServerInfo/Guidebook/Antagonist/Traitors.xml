@@ -92,10 +92,20 @@
   <Box>
     <GuideEntityEmbed Entity="ClothingOuterHardsuitRd" Caption=""/>
     <GuideEntityEmbed Entity="HandTeleporter" Caption=""/>
+  <!-- Starlight Start - Energy Shotgun and SMG as objectives -->
   </Box>
-  - Stealing the [color=#cb0000]Head of Security[/color]'s [bold]energy shotgun[/bold].
+  - Stealing the [color=#cb0000]Head of Security[/color]'s [bold]Proto-5x[/bold].
   <Box>
-    <GuideEntityEmbed Entity="WeaponEnergyShotgun" Caption=""/>
+    <GuideEntityEmbed Entity="WeaponEnergyMagnum" Caption=""/>
+  </Box>
+  - Stealing the [color=#cb0000]Warden[/color]'s [bold]energy shotgun[/bold].
+  <Box>
+    <GuideEntityEmbed Entity="WeaponEnergyMagnum" Caption=""/>
+  <!-- Starlight End - Energy Shotgun and SMG as objectives -->
+  </Box>
+  - Stealing the [color=#cb0000]Detective[/color]'s [bold]energy magnum[/bold]. <!-- Starlight - moved magnum to detective -->
+  <Box>
+    <GuideEntityEmbed Entity="WeaponEnergyMagnum" Caption=""/>
   </Box>
   - Stealing the [color=#f39f27]Chief Engineer[/color]'s [bold]advanced magboots[/bold].
   <Box>

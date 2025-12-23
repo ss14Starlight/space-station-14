@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Created by UbaserB (GitHub) for SS14, based on ore processor sprite from tgstation",
+  "copyright": "Created by UbaserB (GitHub) for SS14, based on ore processor sprite from tgstation, magnet edit by Vonte",
   "size": {
     "x": 32,
     "y": 32
@@ -43,8 +43,23 @@
 	{
       "name": "panel"
     },
-	{
-	  "name": "unlit"
-	}
+    {
+      "name": "unlit"
+    },
+    {
+      "name": "magnet_on",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
   ]
 }

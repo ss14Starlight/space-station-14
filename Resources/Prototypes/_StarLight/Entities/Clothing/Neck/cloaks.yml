@@ -51,7 +51,7 @@
   - type: PowerCellDraw
     enabled: false
     drawRate: 2
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 12.0
 
@@ -529,3 +529,23 @@
     # tags:
     # - ClothMade
     # - WhitelistChameleon
+- type: entity
+  parent: [ClothingNeckMantleRD, BaseCentcommContraband]
+  id: ClothingNeckCloakCRDMantle
+  name: Central Researching Division Mantle
+  description: Rumors say that anomalies stabilize on their own and artifacts start behaving the moment this mantle shows up in the lab.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CRD_mantle.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CRD_mantle.rsi
+- type: entity
+  parent: [ClothingNeckMantleCMO, BaseCentcommContraband]
+  id: ClothingNeckCloakCMDMantle
+  name: Central Medical Division Mantle
+  description: No ailment or wound can hide from the gaze of the one draped in this mantle.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_mantle.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_mantle.rsi

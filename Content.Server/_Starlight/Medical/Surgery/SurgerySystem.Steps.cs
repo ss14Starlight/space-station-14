@@ -15,6 +15,7 @@ using Microsoft.CodeAnalysis;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Components;
 
 
 namespace Content.Server.Starlight.Medical.Surgery;
@@ -159,7 +160,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
 
-        if (!HasComp<PainNumbnessComponent>(args.Body) && !HasComp<SleepingComponent>(args.Body))
+        if (!HasComp<PainNumbnessStatusEffectComponent>(args.Body) && !HasComp<SleepingComponent>(args.Body))
             _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
         else
             _sleeping.TryWaking(args.Body); // If the patient sleeping without n2o or reagents, wake them up.

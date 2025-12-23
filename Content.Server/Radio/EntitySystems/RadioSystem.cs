@@ -254,10 +254,10 @@ public sealed class RadioSystem : EntitySystem
             }
         }
 
-        if (HasComp<BorgChassisComponent>(messageSource) || HasComp<BorgBrainComponent>(messageSource))
+        if (TryComp<BorgChassisComponent>(messageSource, out var chassis) || HasComp<BorgBrainComponent>(messageSource)) // Starlight edit
         {
-            iconId = "JobIconBorg";
-            jobName = Loc.GetString("job-name-borg");
+            iconId = chassis?.JobIconOverride ?? "JobIconBorg"; // Starlight edit
+            jobName = Loc.GetString(chassis?.LocalizedJobTitle ?? "job-name-borg"); // Starlight edit
         }
 
         if (HasComp<StationAiHeldComponent>(messageSource) || (TryComp<StationAIShuntComponent>(messageSource, out var aiShunt) && aiShunt.Return.HasValue))
