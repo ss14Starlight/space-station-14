@@ -15,7 +15,7 @@
 - type: entity
   id: ActionDamnationsMenu
   name: View Available Damnations
-  description: View the various ways you can oblige the crew.
+  description: Refer to your book of the damned, see what ways you can oblige the crew.
   components:
   - type: Action
     itemIconStyle: NoItem

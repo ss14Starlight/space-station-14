@@ -14,8 +14,5 @@ public sealed partial class DevilDamnationsBuiState : BoundUserInterfaceState
 {
     public List<ProtoId<DamnationPrototype>> Damnations;
 
-    public DevilDamnationsBuiState(List<ProtoId<DamnationPrototype>> damnations)
-    {
-        Damnations = damnations;
-    }
+    public DevilDamnationsBuiState(List<ProtoId<DamnationPrototype>> damnations) => Damnations = damnations;
 }
