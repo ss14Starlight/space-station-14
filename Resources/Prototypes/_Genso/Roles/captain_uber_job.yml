@@ -34,7 +34,6 @@
     id: CaptainUberPDA
     ears: ClothingHeadsetAltCommand
     belt: ChemBag
-      - Beaker
     suitstorage: JetpackUltraCaptainUberFilled
     pocket1: PowerCellAntiqueProto
     pocket2: GasAnalyzer
