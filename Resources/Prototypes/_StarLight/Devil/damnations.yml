@@ -45,6 +45,23 @@
   - !type:DamnationActionDeductCredits
     amount: 5000
 
+- type: damnation
+  id: Purpose
+  name: lose my purpose
+  description: The signator received a fate worse than death.
+  cost: -6
+  components:
+  - type: Cluwne
+
+- type: damnation
+  id: Humanity
+  name: lose my humanity
+  description: The signator will regress into a more primitive form.
+  cost: -5
+  actions:
+  - !type:DamnationActionPolymorph
+    polymorph: IrreversibleMonkey
+
 # REWARDS
 
 - type: damnation

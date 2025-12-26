@@ -29,7 +29,9 @@ public sealed partial class DevilComponent : Component
         "SpaceImmunity",
         "Credits",
         "AllSeeing",
-        "Magic"
+        "Magic",
+        "Purpose",
+        "Humanity"
     };
 
     /// <summary>
