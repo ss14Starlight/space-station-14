@@ -11,7 +11,6 @@ public sealed partial class DamnationActionPolymorph : DamnationAction
     public ProtoId<PolymorphPrototype> Polymorph = "IrreversibleMonkey";
 
     private PolymorphSystem _polymorph = default!;
-    private IEntityManager _entityManager = default!;
 
     public override bool Action(Entity<DamnedComponent> victim)
     {
@@ -22,8 +21,6 @@ public sealed partial class DamnationActionPolymorph : DamnationAction
     public override void ResolveIoC()
     {
         base.ResolveIoC();
-
-        _entityManager = IoCManager.Resolve<IEntityManager>();
         _polymorph = _entityManager.System<PolymorphSystem>();
     }
 }

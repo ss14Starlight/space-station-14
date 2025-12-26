@@ -31,7 +31,8 @@ public sealed partial class DevilComponent : Component
         "AllSeeing",
         "Magic",
         "Purpose",
-        "Humanity"
+        "Humanity",
+        "Health"
     };
 
     /// <summary>

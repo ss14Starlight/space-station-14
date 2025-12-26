@@ -96,8 +96,19 @@
 - type: damnation
   id: Magic
   name: gain arcane powers
-  description: the signator learns some magical transport spells.
+  description: The signator learns some magical transport spells.
   cost: 7
   components:
     - type: Jaunt
   reverseOnRemove: true
+
+- type: damnation
+  id: Health
+  name: gain self rejuvenation
+  description: The signator gains the ability to rejuvenate themselves.
+  cost: 10
+  reverseOnRemove: true
+  actions:
+  - !type:DamnationActionAddAction
+    actions:
+    - ActionInstantRejuvenate
