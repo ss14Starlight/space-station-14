@@ -5,6 +5,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using Content.Client._Starlight.UI;
 
 namespace Content.Client._Starlight.Devil.Ui;
 
@@ -13,8 +14,8 @@ public sealed partial class DevilDamnationDisplay : Control
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    private Color BenefitColor = Color.DarkGreen;
-    private Color DisadvantageColour = Color.DarkRed;
+    private Color BenefitColor = Color.FromHex("#3d000a");
+    private Color DisadvantageColour = Color.FromHex("#032b01");
     
     public DevilDamnationDisplay(ProtoId<DamnationPrototype> damnation)
     {
@@ -22,12 +23,12 @@ public sealed partial class DevilDamnationDisplay : Control
         IoCManager.InjectDependencies(this);
 
         var proto = _prototypeManager.Index(damnation);
-        var damnationTitle = proto.Name;
+        var damnationTitle = Loc.GetString("devil-damnations-ui-damnation-name", ("name", proto.Name));
         var damnationCost = Loc.GetString("devil-damnations-ui-cost", ("cost", proto.Cost));
         var damnationDescription = proto.Description;
         var damnationBackgroundColor = proto.Cost >= 0 ? DisadvantageColour : BenefitColor;
 
-        DamnationTitle.SetMarkup(damnationTitle);
+        DamnationTitle.Title = damnationTitle;
         DamnationCost.SetMarkup(damnationCost);
         DamnationDescription.SetMarkup(damnationDescription);
         DamnationPanel.PanelOverride = new StyleBoxFlat { BackgroundColor = damnationBackgroundColor };
