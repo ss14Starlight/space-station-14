@@ -2,7 +2,7 @@
 
 - type: damnation
   id: Soul
-  name: give up my soul
+  name: my soul
   description: The signator forfeits their soul to you. Upon death, their soul will be sent to the depths of hell, rendering their corpse unrevivable.
   cost: -10
   components:
@@ -49,7 +49,7 @@
 
 - type: damnation
   id: SpaceImmunity
-  name: be unafraid of space
+  name: gain immunity to space
   description: The signator becomes immune to space, no longer bound by their fear.
   cost: 10
   removedComponents:
