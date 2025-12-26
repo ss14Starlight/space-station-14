@@ -14,4 +14,7 @@ public sealed partial class AppliedSpriteLayerComponent : Component
 
     [DataField]
     public string Layer = "applied_sprite_layer";
+
+    [DataField]
+    public bool Glowing = false;
 }

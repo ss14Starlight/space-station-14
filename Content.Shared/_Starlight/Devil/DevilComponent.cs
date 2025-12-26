@@ -62,7 +62,13 @@ public sealed partial class DevilComponent : Component
     public DevilChangeCriteria RedEyesAppearance = new(1);
 
     [DataField, AutoNetworkedField]
-    public DevilChangeCriteria EvilHaloAppearance = new(5);
+    public DevilChangeCriteria RedAuraAppearance = new (3);
+
+    [DataField, AutoNetworkedField]
+    public DevilChangeCriteria OminousHum = new (4);
+
+    [DataField, AutoNetworkedField]
+    public DevilChangeCriteria EvilHaloAppearance = new(6);
 
     /// <summary>
     /// Is the devil currently being banished?

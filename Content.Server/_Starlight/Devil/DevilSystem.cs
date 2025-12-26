@@ -14,6 +14,9 @@ using Robust.Shared.Utility;
 using Robust.Shared.Serialization.Manager;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
+using Content.Shared.Audio;
+using Content.Server.Audio;
+using Robust.Shared.Audio;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -27,6 +30,8 @@ public sealed partial class DevilSystem : SharedDevilSystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
+    [Dependency] private readonly PointLightSystem _pointLight = default!;
 
     public override void Initialize()
     {
@@ -71,16 +76,19 @@ public sealed partial class DevilSystem : SharedDevilSystem
     #endregion
 
     #region appearance
+    private bool FitsChangeCriteria(DevilComponent devil, DevilChangeCriteria criteria) => devil.DamnedSouls.Count >= criteria.AtSouls && !criteria.Completed;
+
     private void OnDevilSoulsDamnedCountChanged(EntityUid uid, DevilComponent devilComp, ref DevilSoulsDamnedCountChangedEvent args)
     {
-        if(devilComp.DamnedSouls.Count >= devilComp.RedEyesAppearance.AtSouls && !devilComp.RedEyesAppearance.Completed)
+        // if chain looks evil but this is the most sensible way I could find to do this
+        if(FitsChangeCriteria(devilComp, devilComp.RedEyesAppearance))
         {
             _humanoidAppearance.SetEyeColor(uid, Color.Red);
             _humanoidAppearance.SetMarkingGlowing(uid, MarkingCategories.Eyes, 0, true);
             devilComp.RedEyesAppearance.Completed = true;
         }
 
-        if(devilComp.DamnedSouls.Count >= devilComp.EvilHaloAppearance.AtSouls && !devilComp.EvilHaloAppearance.Completed)
+        if(FitsChangeCriteria(devilComp, devilComp.EvilHaloAppearance))
         {
             AppliedSpriteLayerComponent appliedSpriteLayer = new()
             {
@@ -88,6 +96,22 @@ public sealed partial class DevilSystem : SharedDevilSystem
                 Layer = "devil_halo"
             };
             EntityManager.AddComponent(uid, appliedSpriteLayer, true);
+        }
+
+        if(FitsChangeCriteria(devilComp, devilComp.OminousHum))
+        {
+            AddComp<AmbientSoundComponent>(uid);
+            _ambientSound.SetSound(uid, new SoundPathSpecifier(new ResPath("/Audio/Weapons/ebladehum.ogg")));
+            _ambientSound.SetVolume(uid, -8);
+            _ambientSound.SetRange(uid, 3);
+        }
+
+        if(FitsChangeCriteria(devilComp, devilComp.RedAuraAppearance))
+        {
+            AddComp<PointLightComponent>(uid);
+            _pointLight.SetColor(uid, Color.Red);
+            _pointLight.SetRadius(uid, 2);
+            _pointLight.SetEnergy(uid, 3);
         }
     }
     #endregion
