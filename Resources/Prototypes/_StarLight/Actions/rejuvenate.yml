@@ -1,12 +1,13 @@
 - type: entity
   id: ActionInstantRejuvenate
   name: Rejuvenate Self
-  description: Restore your body to its original condition.
+  description: Restore your body to its original condition. Single use.
   components:
   - type: Action
     checkCanInteract: false
-    checkConsciousness: false # can use while crit
-    useDelay: 600 # 10 mins
+    checkConsciousness: false # can use while crit/dead
     icon: { sprite: Objects/Specific/Medical/medical.rsi, state: gauze }
   - type: InstantAction
     event: !type:RejuvenateInstantActionEvent
+  - type: LimitedCharges
+    maxCharges: 1

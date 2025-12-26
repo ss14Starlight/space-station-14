@@ -23,7 +23,7 @@ public sealed partial class DoomedComponent : Component
     {
         DamageDict = new()
         {
-            { "Genetic", 1000 }
+            { "Blunt", 10000 }
         }
     };
 
