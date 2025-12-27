@@ -68,6 +68,10 @@ public sealed partial class ReflectComponent : Component
     public SoundSpecifier? SoundOnReflect = new SoundPathSpecifier("/Audio/Weapons/Guns/Hits/laser_sear_wall.ogg");
 }
 
+/// <summary>
+/// Used for both the projectiles being reflected and the entities reflecting. If there is ever overlap between the
+/// reflection types, the projectile will be reflected.
+/// </summary>
 [Flags, Serializable, NetSerializable]
 public enum ReflectType : byte
 {

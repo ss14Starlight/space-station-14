@@ -19,17 +19,17 @@ public partial class WeaponLockSystem : EntitySystem
     
     private void OnShootAttempt(EntityUid uid, LockComponent component, ref AttemptShootEvent args)
     {
-        if (component.Locked)
-        {
-            args.Cancelled = true;
-            _popup.PopupEntity(Loc.GetString("lock-comp-weapon-locked"), uid, args.User, PopupType.MediumCaution);
-        }
+        if (!_lock.IsLocked((uid, component)))
+            return;
+
+        args.Cancelled = true;
+        _popup.PopupPredicted(Loc.GetString("lock-comp-weapon-locked"), uid, args.User, PopupType.MediumCaution);
     }
     
     private void OnUnequipHand(EntityUid uid, LockComponent component, GotUnequippedHandEvent args)
     {
         if (component.AutoUnlock)
-            _lock.Lock(uid, null, component);
+            _lock.Lock(uid, args.User, component);
     }
     
     private void OnEquipHand(EntityUid uid, LockComponent component, GotEquippedHandEvent args)

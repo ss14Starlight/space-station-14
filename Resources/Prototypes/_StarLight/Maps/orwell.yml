@@ -13,7 +13,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'GO'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_delta.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_delta.yml
         - type: StationJobs
           availableJobs:
             #service

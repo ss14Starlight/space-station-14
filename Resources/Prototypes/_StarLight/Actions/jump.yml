@@ -46,8 +46,9 @@
     rechargeDuration: 30
   - type: WorldTargetAction
     event: !type:JumpActionEvent
-      distance: 4.5
-      speed: 4.5 # Equal to movement speed.
+      distance: 2.25   # about 3 tiles after momentum / friction factors in
+      toPointer: false # moths only get control over direction, not distance
+      speed: 4.5       # equal to movement speed
       sound:
         path: /Audio/_Starlight/Effects/Jump/moth.ogg
 

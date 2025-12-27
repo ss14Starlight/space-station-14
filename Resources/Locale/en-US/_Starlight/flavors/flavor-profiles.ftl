@@ -9,3 +9,5 @@ flavor-complex-tha-slop = like processed shit
 flavor-base-wrong = wrong
 
 flavor-complex-struggle = like raw struggle
+
+flavor-base-halal = halal

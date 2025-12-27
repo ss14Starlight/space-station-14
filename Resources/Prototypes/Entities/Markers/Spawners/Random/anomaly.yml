@@ -22,7 +22,7 @@
     - AnomalyFlora
     - AnomalyShadow
     - AnomalyTech
-    #- AnomalySanta
+    - AnomalySanta
     - AnomalyBanana
     rareChance: 0.3
     rarePrototypes:
@@ -73,5 +73,5 @@
     - AnomalyTrapGravity
     - AnomalyTrapTech
     - AnomalyTrapRock
-    #- AnomalyTrapSanta
+    - AnomalyTrapSanta
     chance: 1

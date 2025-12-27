@@ -8,36 +8,30 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
-    [ViewVariables]
-    public ProtoId<LobbyBackgroundPrototype>? LobbyBackground { get; set; } //starlight, art credit system
-
-    [ViewVariables]
-    private List<ProtoId<LobbyBackgroundPrototype>>? _lobbyBackgrounds; //starlight, art credit system
-
     // STARLIGHT: Support for conditional lobby backgrounds
     private ProtoId<LobbyBackgroundPrototype>? _forcedLobbyBackground; //starlight, art credit system
+    public ProtoId<LobbyBackgroundPrototype>? LobbyBackground { get; private set; }
+
+    [ViewVariables]
+    private List<ProtoId<LobbyBackgroundPrototype>>? _lobbyBackgrounds;
 
     private static readonly string[] WhitelistedBackgroundExtensions = new string[] {"png", "jpg", "jpeg", "webp"};
 
     private void InitializeLobbyBackground()
     {
-        //starlight start, art credit system
         var allprotos = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>().ToList();
+        _lobbyBackgrounds ??= new List<ProtoId<LobbyBackgroundPrototype>>();
+
         //create protoids from them
         foreach (var proto in allprotos)
         {
             var ext = proto.Background.Extension;
-            if (WhitelistedBackgroundExtensions.Contains(ext))
-            {
-                //filter out ones with exclude from menu
-                if (proto.ExcludeFromMenu)
-                    continue;
-                //create a protoid and add it to the list
-                _lobbyBackgrounds ??= new List<ProtoId<LobbyBackgroundPrototype>>();
-                _lobbyBackgrounds.Add(new ProtoId<LobbyBackgroundPrototype>(proto.ID));
-            }
+            if (!WhitelistedBackgroundExtensions.Contains(ext))
+                continue;
+
+            //create a protoid and add it to the list
+            _lobbyBackgrounds.Add(new ProtoId<LobbyBackgroundPrototype>(proto.ID));
         }
-        //starlight end, art credit system
 
         RandomizeLobbyBackground();
     }
@@ -51,16 +45,10 @@ public sealed partial class GameTicker
             return;
         }
 
-        //starlight start, art credit system
-        if (_lobbyBackgrounds!.Any())
-        {
-            LobbyBackground = _robustRandom.Pick(_lobbyBackgrounds!);
-        }
+        if (_lobbyBackgrounds != null && _lobbyBackgrounds.Count != 0)
+            LobbyBackground = _robustRandom.Pick(_lobbyBackgrounds);
         else
-        {
             LobbyBackground = null;
-        }
-        //starlight end, art credit system
     }
 
     /// <summary>

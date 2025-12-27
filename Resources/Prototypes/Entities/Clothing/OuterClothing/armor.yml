@@ -176,7 +176,10 @@
         Slash: 0.6
         Piercing: 0.3
         Heat: 0.9
+    # Starlight-start
     staminaModifier: 0.55
+    ignoreKnockdown: true
+    # Starlight-end
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: StaticPrice
@@ -205,7 +208,10 @@
         Heat: 0.3
         Radiation: 0.5
         Caustic: 0.5
+    # Starlight-start
     staminaModifier: 0.35
+    ignoreKnockdown: true
+    # Starlight-end
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: FireProtection
@@ -263,7 +269,10 @@
         Piercing: 0.35
         Heat: 0.3
         Caustic: 0.5
+    # Starlight-start
     staminaModifier: 0.1
+    ignoreKnockdown: true
+    # Starlight-end
   - type: ExplosionResistance
     damageCoefficient: 0.35
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
@@ -312,11 +321,10 @@
         startValue: 0.1
         endValue: 2.0
         isLooped: true
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 600
     startingCharge: 600
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 2
   - type: Item
     size: Normal

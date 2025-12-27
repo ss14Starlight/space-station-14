@@ -70,12 +70,7 @@
       Phosphorus: 5
   - type: WiresVisuals
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.PowerCellSlotVisuals.Enabled:
-        enum.PowerDeviceVisualLayers.Powered:
-          True: {visible: true}
-          False: {visible: false}
+  - type: PredictedBatteryVisuals
   # Starlight-end
 
 - type: entity
@@ -83,20 +78,31 @@
   suffix: Filled
   parent: ChemDispenserEmpty
   components:
-  - type: StorageFill
-    contents:
-      - id: JugChlorine
-      - id: JugEthanol
-      - id: JugFluorine
-      - id: JugIodine
-      - id: JugAluminium
-      - id: JugLithium
-      - id: JugMercury
-      - id: JugNitrogen
-      - id: JugPotassium
-      - id: JugRadium
-      - id: JugSodium
-      - id: JugSulfur
+  - type: ReagentDispenser
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+#        - id: JugAluminium
+#        - id: JugCarbon
+        - id: JugChlorine
+#        - id: JugCopper
+        - id: JugEthanol
+        - id: JugFluorine
+#        - id: JugSugar
+#        - id: JugHydrogen
+        - id: JugIodine
+        - id: JugIron
+        - id: JugLithium
+        - id: JugMercury
+        - id: JugNitrogen
+#        - id: JugOxygen
+#        - id: JugPhosphorus
+        - id: JugPotassium
+        - id: JugRadium
+#        - id: JugSilicon
+        - id: JugSodium
+        - id: JugSulfur
   # Starlight-start: Filled powercell slot
   - type: PowerCellSlot
     cellSlotId: cell_slot

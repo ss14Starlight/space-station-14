@@ -48895,7 +48895,6 @@ entities:
     - type: Transform
       pos: -20.5,-25.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconAtmospherics
   entities:
   - uid: 7716
@@ -48924,7 +48923,6 @@ entities:
     - type: Transform
       pos: -48.5,-45.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconBrigMed
   entities:
   - uid: 7720
@@ -48939,7 +48937,6 @@ entities:
     - type: Transform
       pos: -42.5,-54.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconCargoBay
   entities:
   - uid: 7722
@@ -48947,7 +48944,6 @@ entities:
     - type: Transform
       pos: 24.5,-97.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconCargoReception
   entities:
   - uid: 7723
@@ -48976,7 +48972,6 @@ entities:
     - type: Transform
       pos: 19.5,-72.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconCMORoom
   entities:
   - uid: 7727
@@ -48984,7 +48979,6 @@ entities:
     - type: Transform
       pos: 11.5,-16.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconCryosleep
   entities:
   - uid: 7728
@@ -49071,7 +49065,6 @@ entities:
     - type: Transform
       pos: 14.5,-59.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconHOSRoom
   entities:
   - uid: 7740
@@ -49086,7 +49079,6 @@ entities:
     - type: Transform
       pos: -8.5,-51.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconKitchen
   entities:
   - uid: 7742
@@ -49115,7 +49107,6 @@ entities:
     - type: Transform
       pos: 14.5,-29.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconMorgue
   entities:
   - uid: 7746
@@ -49130,7 +49121,6 @@ entities:
     - type: Transform
       pos: 46.5,-17.5
       parent: 2
-    - type: BombingTarget
     - type: NavMapBeacon
       defaultText: Genpop
 - proto: DefaultStationBeaconPowerBank
@@ -49147,7 +49137,6 @@ entities:
     - type: Transform
       pos: 9.5,-88.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconRDRoom
   entities:
   - uid: 7750
@@ -49176,7 +49165,6 @@ entities:
     - type: Transform
       pos: -6.5,-21.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconSecurity
   entities:
   - uid: 7754
@@ -49205,7 +49193,6 @@ entities:
     - type: Transform
       pos: -23.5,-71.5
       parent: 2
-    - type: BombingTarget
 - proto: DefaultStationBeaconSolarsE
   entities:
   - uid: 7758
@@ -108568,8 +108555,6 @@ entities:
     - type: Transform
       pos: 9.691935,-47.56793
       parent: 2
-    - type: Battery
-      startingCharge: 0
 - proto: SubstationBasic
   entities:
   - uid: 16166
