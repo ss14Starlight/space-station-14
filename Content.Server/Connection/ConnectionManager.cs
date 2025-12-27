@@ -292,7 +292,7 @@ namespace Content.Server.Connection
                 if (showReason && !validAccountAge && !bypassAllowed)
                 {
                     return (ConnectionDenyReason.Panic,
-                        Loc.GetString("panic-bunker-account-denied-reason",
+                        Loc.GetString("starlight-panic-bunker-account-denied-reason", // Starlight
                             ("reason", Loc.GetString("panic-bunker-account-reason-account", ("minutes", minMinutesAge)))), null);
                 }
 
@@ -309,13 +309,13 @@ namespace Content.Server.Connection
                 if (showReason && !haveMinOverallTime && !bypassAllowed)
                 {
                     return (ConnectionDenyReason.Panic,
-                        Loc.GetString("panic-bunker-account-denied-reason",
+                        Loc.GetString("starlight-panic-bunker-account-denied-reason", // Starlight
                             ("reason", Loc.GetString("panic-bunker-account-reason-overall", ("minutes", minOverallMinutes)))), null);
                 }
 
                 if (!validAccountAge || !haveMinOverallTime && !bypassAllowed)
                 {
-                    return (ConnectionDenyReason.Panic, Loc.GetString("panic-bunker-account-denied"), null);
+                    return (ConnectionDenyReason.Panic, Loc.GetString("starlight-panic-bunker-account-denied"), null); // Starlight
                 }
             }
 
