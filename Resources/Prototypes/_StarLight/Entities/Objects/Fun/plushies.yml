@@ -1918,7 +1918,7 @@
     sound:
       path: /Audio/_Starlight/Effects/yip.ogg
   - type: EmitSoundOnThrow
-    sound:
+    sound: null
       path: /Audio/_Starlight/Misc/silent.ogg # I'm not a huge fan of making a silent dummy .OGG for this, but I don't know how to mute this sound from the parent! If there's a better way to do this @ me -Seaborne
   - type: EmitSoundOnActivate
     sound:
