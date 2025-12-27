@@ -1926,7 +1926,7 @@
       - type: DatasetVocalizer
         dataset: PlushiesFox
       - type: TextToSpeech
-        voice: diona
+        voice: himeko
     sound:
       path: /Audio/_Starlight/Effects/yip.ogg
   - type: EmitSoundOnLand
