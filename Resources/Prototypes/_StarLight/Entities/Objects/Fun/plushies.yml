@@ -1937,7 +1937,7 @@
       path: /Audio/_Starlight/Effects/yip.ogg
   - type: EmitSoundOnCollide
     sound:
-      path: /Audio/_Starlight/Effects/whine_1.ogg
+      path: /Audio/_Starlight/Effects/whine/whine_1.ogg
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Effects/yip.ogg
