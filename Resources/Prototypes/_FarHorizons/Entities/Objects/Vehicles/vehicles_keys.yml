@@ -1,0 +1,34 @@
+- type: entity
+  parent: BaseItem
+  id: VehicleKeyBase
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Vehicles/atv.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeySecway
+  name: secway keys
+  description: The keys to the future.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - SecwayKeys
+  - type: Sprite
+    sprite: Objects/Vehicles/secway.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyATV
+  name: ATV keys
+  description: Think this looks like just one key? ATV keys means "actually two vehicle keys."
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ATVKeys

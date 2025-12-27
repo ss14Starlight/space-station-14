@@ -1,0 +1,55 @@
+- type: entity
+  name: Secway Spawner
+  id: SpawnVehicleSecway
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/secway.rsi
+        state: keys
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleSecwayBatterywithKeys
+
+- type: entity
+  name: ATV Spawner
+  id: SpawnVehicleATV
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/atv.rsi
+        state: keys
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleATVFueledwithKeys
+
+- type: entity
+  name: Wheelchair Spawner
+  id: SpawnVehicleWheelchair
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/wheelchair.rsi
+        state: wheelchair
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleWheelchair
+
+- type: entity
+  name: Wheelchair [Folded] Spawner
+  id: SpawnVehicleWheelchairFolded
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/wheelchair.rsi
+        state: wheelchair_folded
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleWheelchairFolded

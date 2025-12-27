@@ -15,6 +15,7 @@ using Content.Shared.Fluids.EntitySystems;
 using Content.Shared.Fluids.Components;
 using Robust.Server.Containers;
 using Robust.Shared.Map;
+using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Server.Fluids.EntitySystems;
 
@@ -161,16 +162,20 @@ public sealed partial class SpraySystem : SharedSpraySystem
 
             _vapor.Start(vapor, vaporXform, impulseDirection * diffLength, entity.Comp.SprayVelocity, target, time, user);
 
-            var thingGettingPushed = entity.Owner;
-            if (_container.TryGetOuterContainer(entity, sprayerXform, out var container))
-                thingGettingPushed = container.Owner;
-
-            if (TryComp<PhysicsComponent>(thingGettingPushed, out var body))
+            // FarHorizons Start
+            var userTarget = user;
+            if(TryComp<RiderComponent>(userTarget, out var riderComp))
+                if(riderComp.Riding != null)
+                {
+                    userTarget = riderComp.Riding.Value;
+                }
+            // FarHorizons End
+            if (TryComp<PhysicsComponent>(userTarget, out var body)) //FarHorizons
             {
-                if (_gravity.IsWeightless(thingGettingPushed))
+                if (_gravity.IsWeightless(user))
                 {
                     // push back the player
-                    _physics.ApplyLinearImpulse(thingGettingPushed, -impulseDirection * entity.Comp.PushbackAmount, body: body);
+                    _physics.ApplyLinearImpulse(user, -impulseDirection * entity.Comp.PushbackAmount, body: body);
                 }
                 else
                 {

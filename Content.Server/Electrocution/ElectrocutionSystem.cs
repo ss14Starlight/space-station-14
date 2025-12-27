@@ -4,6 +4,8 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Power.NodeGroups;
 using Content.Server.Weapons.Melee;
+using Content.Shared._FarHorizons.VehicleBuckle.Components;
+using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
@@ -214,16 +216,22 @@ public sealed partial class ElectrocutionSystem : SharedElectrocutionSystem
 
         if (!_random.Prob(electrified.Probability))
             return false;
-
+        
         EnsureComp<ActivatedElectrifiedComponent>(uid);
         _appearance.SetData(uid, ElectrifiedVisuals.ShowSparks, true);
-
+        
+        //FarHorizons Start
+        var target = targetUid;
+        if(TryComp<VehicleComponent>(target, out var vehicleComp) && HasComp<VehicleBuckleComponent>(target))
+            if(vehicleComp.Rider != null)
+                target = vehicleComp.Rider.Value;
+        //FarHorizons End
         siemens *= electrified.SiemensCoefficient;
-        if (!DoCommonElectrocutionAttempt(targetUid, uid, ref siemens) || siemens <= 0)
+        if (!DoCommonElectrocutionAttempt(target, uid, ref siemens) || siemens <= 0) //FarHorizons-edit
             return false; // If electrocution would fail, do nothing.
 
         var targets = new List<(EntityUid entity, int depth)>();
-        GetChainedElectrocutionTargets(targetUid, targets);
+        GetChainedElectrocutionTargets(target, targets); //FarHorizons-edit
         if (!electrified.RequirePower || electrified.UsesApcPower)
         {
             var lastRet = true;

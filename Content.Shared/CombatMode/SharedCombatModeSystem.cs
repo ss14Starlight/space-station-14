@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Actions;
 using Content.Shared.Mind;
 using Content.Shared.MouseRotator;
@@ -89,11 +90,35 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
         SetMechRotation(uid, value); // Starlight
         if (value)
         {
+            if (TryComp<MechPilotComponent>(uid, out var mechPilot) && !HasComp<NoRotateOnMoveComponent>(mechPilot.Mech))
+            {
+                EnsureComp<NoRotateOnMoveComponent>(mechPilot.Mech);
+            }
+            //FarHorizons Start
+            if (TryComp<RiderComponent>(uid, out var riderComp) && !HasComp<NoRotateOnMoveComponent>(riderComp.Riding))
+            {
+                if(riderComp.Riding != null)
+                    EnsureComp<NoRotateOnMoveComponent>(riderComp.Riding.Value);
+            }
+            //FarHorizons End
+
             EnsureComp<MouseRotatorComponent>(uid);
             EnsureComp<NoRotateOnMoveComponent>(uid);
         }
         else
         {
+            if (TryComp<MechPilotComponent>(uid, out var mechPilot) && HasComp<NoRotateOnMoveComponent>(mechPilot.Mech))
+            {
+                RemComp<NoRotateOnMoveComponent>(mechPilot.Mech);
+            }
+            //FarHorizons Start
+            if (TryComp<RiderComponent>(uid, out var riderComp) && HasComp<NoRotateOnMoveComponent>(riderComp.Riding))
+            {
+                if(riderComp.Riding != null)
+                    RemComp<NoRotateOnMoveComponent>(riderComp.Riding.Value);
+            }
+            //FarHorizons End
+
             RemComp<MouseRotatorComponent>(uid);
             RemComp<NoRotateOnMoveComponent>(uid);
         }

@@ -276,4 +276,16 @@ namespace Content.Shared.Containers.ItemSlots
     /// </summary>
     [ByRefEvent]
     public record struct ItemSlotEjectAttemptEvent(EntityUid SlotEntity, EntityUid Item, EntityUid? User, ItemSlot Slot, bool Cancelled = false);
+
+    /// <summary>
+    /// Event raised on the slot entity and the item is being inserted.
+    /// </summary>
+    [ByRefEvent]
+    public record struct ItemSlotInsertEvent(EntityUid SlotEntity, EntityUid Item, EntityUid? User, ItemSlot Slot, bool Cancelled = false);
+
+    /// <summary>
+    /// Event raised on the slot entity and the item is being ejected.
+    /// </summary>
+    [ByRefEvent]
+    public record struct ItemSlotEjectEvent(EntityUid SlotEntity, EntityUid Item, EntityUid? User, ItemSlot Slot, bool Cancelled = false);
 }

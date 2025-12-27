@@ -186,6 +186,18 @@ namespace Content.Shared.Movement.Systems
             move.BaseAcceleration = acceleration;
             Dirty(uid, move);
         }
+        //FarHorizon Start
+        public void ChangeFrictionAndAcceleration(EntityUid uid, float friction, float frictionNoInput, float acceleration, MovementSpeedModifierComponent? move = null)
+        {
+            if (!Resolve(uid, ref move, false))
+                return;
+
+            move.Friction = friction;
+            move.FrictionNoInput = frictionNoInput;
+            move.Acceleration = acceleration;
+            Dirty(uid, move);
+        }
+        //FarHorizon End
     }
 
     /// <summary>

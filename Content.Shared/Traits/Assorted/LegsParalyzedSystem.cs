@@ -1,11 +1,11 @@
-﻿using Content.Shared.Buckle.Components;
+﻿using Content.Shared.Body.Systems;
+using Content.Shared.Buckle.Components;
+using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
-#region Starlight
-using Content.Shared.Body.Systems;
-#endregion
 
 namespace Content.Shared.Traits.Assorted;
 
@@ -21,14 +21,16 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
         SubscribeLocalEvent<LegsParalyzedComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<LegsParalyzedComponent, BuckledEvent>(OnBuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, UnbuckledEvent>(OnUnbuckled);
-        SubscribeLocalEvent<LegsParalyzedComponent, ThrowPushbackAttemptEvent>(OnThrowPushbackAttempt);
-        SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);
+        /*SubscribeLocalEvent<LegsParalyzedComponent, ThrowPushbackAttemptEvent>(OnThrowPushbackAttempt);
+        SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);*/
     }
 
     private void OnStartup(EntityUid uid, LegsParalyzedComponent component, ComponentStartup args)
     {
         // TODO: In future probably must be surgery related wound
-        _movementSpeedModifierSystem.ChangeBaseSpeed(uid, 0, 0, 20);
+        /*_movementSpeedModifierSystem.ChangeBaseSpeed(uid, 0, 0, 20);*/
+        EnsureComp<WormComponent>(uid);
+        EnsureComp<KnockedDownComponent>(uid);
     }
 
     private void OnShutdown(EntityUid uid, LegsParalyzedComponent component, ComponentShutdown args)
@@ -39,21 +41,25 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
 
     private void OnBuckled(EntityUid uid, LegsParalyzedComponent component, ref BuckledEvent args)
     {
-        _standingSystem.Stand(uid);
+        //_standingSystem.Stand(uid);
+        RemComp<WormComponent>(uid);
+        RemComp<KnockedDownComponent>(uid);
     }
 
     private void OnUnbuckled(EntityUid uid, LegsParalyzedComponent component, ref UnbuckledEvent args)
     {
-        _standingSystem.Down(uid);
+        /*_standingSystem.Down(uid);*/
+        EnsureComp<WormComponent>(uid);
+        EnsureComp<KnockedDownComponent>(uid);
     }
 
-    private void OnUpdateCanMoveEvent(EntityUid uid, LegsParalyzedComponent component, UpdateCanMoveEvent args)
+    /*private void OnUpdateCanMoveEvent(EntityUid uid, LegsParalyzedComponent component, UpdateCanMoveEvent args)
     {
-        args.Cancel();
+         args.Cancel();
     }
 
     private void OnThrowPushbackAttempt(EntityUid uid, LegsParalyzedComponent component, ThrowPushbackAttemptEvent args)
     {
         args.Cancel();
-    }
+    }*/
 }

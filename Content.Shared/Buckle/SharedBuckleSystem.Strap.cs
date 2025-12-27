@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Construction;
 using Content.Shared.Destructible;
@@ -107,4 +108,14 @@ public abstract partial class SharedBuckleSystem
         if (!enabled)
             StrapRemoveAll((strapUid, strapComp));
     }
+    //FarHorizons Start
+    public void UpdateBuckleOffset(EntityUid strapUid, Vector2 newBuckleOffset, StrapComponent? strapComp = null)
+    {
+        if (!Resolve(strapUid, ref strapComp, false))
+            return;
+
+        strapComp.BuckleOffset = newBuckleOffset;
+        Dirty(strapUid, strapComp);
+    }
+    //FarHorizons End
 }

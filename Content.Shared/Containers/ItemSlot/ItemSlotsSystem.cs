@@ -13,7 +13,8 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
-using Robust.Shared.Map; // Starlight
+using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Containers.ItemSlots
@@ -34,6 +35,7 @@ namespace Content.Shared.Containers.ItemSlots
         [Dependency] private SharedHandsSystem _handsSystem = default!;
         [Dependency] private SharedAudioSystem _audioSystem = default!;
         [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+        [Dependency] private INetManager _net = default!; //FarHorizons
 
         public override void Initialize()
         {
@@ -290,9 +292,17 @@ namespace Content.Shared.Containers.ItemSlots
             ItemSlot slot,
             EntityUid item,
             EntityUid? user,
-            bool excludeUserAudio = false, // Starlight-edit - extend argument list
-            bool suppressSound = false) // Starlight - add suppressSound parameter
+            bool excludeUserAudio = false)
         {
+            //FarHorizons Start
+            var ev = new ItemSlotInsertEvent(uid, item, user, slot);
+            RaiseLocalEvent(uid, ref ev);
+            if(_net.IsClient) return;
+            if (ev.Cancelled)
+            {
+                return;
+            }
+            //FarHorizons End
             bool? inserted = slot.ContainerSlot != null ? _containers.Insert(item, slot.ContainerSlot) : null;
             // ContainerSlot automatically raises a directed EntInsertedIntoContainerMessage
 
@@ -415,6 +425,14 @@ namespace Content.Shared.Containers.ItemSlots
             if (!_handsSystem.TryDrop(user, hands.ActiveHandId!))
                 return false;
 
+            //FarHorizons Start
+            var ev = new ItemSlotInsertEvent(uid, held.Value, user, slot);
+            RaiseLocalEvent(uid, ref ev);
+            if (ev.Cancelled)
+            {
+                return false;
+            }
+            //FarHorizons End
             Insert(uid, slot, held.Value, user, excludeUserAudio: excludeUserAudio);
             return true;
         }
@@ -557,6 +575,15 @@ namespace Content.Shared.Containers.ItemSlots
         private void Eject(EntityUid uid, ItemSlot slot, EntityUid item, EntityUid? user, bool excludeUserAudio = false, // Starlight-edit - extend argument list
                 EntityCoordinates? destination = null, bool suppressSound = false) // Starlight - add destination and suppressSound parameters
         {
+            //FarHorizons Start
+            var ev = new ItemSlotEjectEvent(uid, item, user, slot);
+            RaiseLocalEvent(uid, ref ev);
+            if(_net.IsClient) return;
+            if (ev.Cancelled)
+            {
+                return;
+            }
+            //FarHorizons End
             bool? ejected = slot.ContainerSlot != null ? _containers.Remove(item, slot.ContainerSlot, destination: destination) : null; // Starlight-edit - pass through destination
             // ContainerSlot automatically raises a directed EntRemovedFromContainerMessage
 
@@ -639,7 +666,17 @@ namespace Content.Shared.Containers.ItemSlots
                 return false;
 
             if (user != null)
+            {
+                //FarHorizons Start
+                var ev = new ItemSlotEjectEvent(uid, item.Value, user.Value, slot);
+                RaiseLocalEvent(uid, ref ev);
+                if (ev.Cancelled)
+                {
+                    return false;
+                }
+                //FarHorizons End
                 _handsSystem.PickupOrDrop(user.Value, item.Value);
+            }
 
             return true;
         }

@@ -1,4 +1,5 @@
 using Content.Client.Rotation;
+using Content.Shared._FarHorizons.Vehicles.Components;//FarHorizon
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Systems;
@@ -59,6 +60,7 @@ internal sealed partial class BuckleSystem : SharedBuckleSystem
 
             if (!_spriteQuery.TryComp(buckledEntity, out SpriteComponent? buckledSprite))
                 continue;
+            if(HasComp<RiderComponent>(buckledEntity)) continue; //FarHorizon
 
             if (isLowered) // starlight
             {
