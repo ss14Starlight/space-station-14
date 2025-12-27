@@ -171,3 +171,9 @@
   values:
     prefix: plushie-liz-
     count: 6
+
+- type: localizedDataset
+  id: PlushiesFox
+  values:
+    prefix: plushie-fox-
+    count: 6
