@@ -65,7 +65,7 @@
 - type: damnation
   id: Organ
   name: give up an organ
-  description: The signator loses a random organ. This could be anything from their brain, to their kidneys.
+  description: The signator loses a random organ. This could be anything from their lungs to a kidney.
   cost: -6
   actions:
   - !type:DamnationActionRemoveOrgan

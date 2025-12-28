@@ -6,6 +6,8 @@ using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
+using Content.Server.Popups;
+using Content.Shared.Popups;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
 
@@ -14,16 +16,20 @@ public sealed partial class DamnationActionRemoveOrgan : DamnationAction
     private BodySystem _body = default!;
     private IRobustRandom _random = default!;
     private ContainerSystem _container = default!;
+    private PopupSystem _popup = default!;
 
     public override bool Action(Entity<DamnedComponent> victim)
     {
         var completed = false;
         var organs = _body.GetBodyOrgans(victim).ToList();
-        while (!completed)
+        while (!completed && organs.Count > 1)
         {
             var organ = _random.Pick(organs);
 
-             _container.TryGetContainingContainer((organ.Id, null, null), out var container);
+            // while we want the removal to be chaotic, we don't want to RR them
+            if(_entityManager.HasComponent<OrganBrainComponent>(organ.Id)) continue;
+
+            _container.TryGetContainingContainer((organ.Id, null, null), out var container);
             if(_body.RemoveOrgan(organ.Id))
             {
                 completed = true;
@@ -35,10 +41,18 @@ public sealed partial class DamnationActionRemoveOrgan : DamnationAction
                     var ev = new SurgeryOrganExtracted(victim, part.Owner, organ.Id);
                     _entityManager.EventBus.RaiseLocalEvent(organ.Id, ref ev);
                 }
+
+                var victimName = _entityManager.GetComponent<MetaDataComponent>(victim).EntityName;
+                var organName = _entityManager.GetComponent<MetaDataComponent>(organ.Id).EntityName;
+
+                _popup.PopupEntity(Loc.GetString("damnation-action-remove-organ-popup", ("name", victimName), ("organ", organName)), victim, PopupType.MediumCaution);
+
+                // success!
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     public override void ResolveIoC()
@@ -48,5 +62,6 @@ public sealed partial class DamnationActionRemoveOrgan : DamnationAction
         _body = _entityManager.System<BodySystem>();
         _random = IoCManager.Resolve<IRobustRandom>();
         _container = _entityManager.System<ContainerSystem>();
+        _popup = _entityManager.System<PopupSystem>();
     }
 }
