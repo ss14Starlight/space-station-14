@@ -4,6 +4,15 @@
   name: infernal contract
   description: The more you look at it, the more you feel like it is gazing back at you...
   components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/infernal_contract.rsi
+      layers:
+      - state: paper_words
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: true
+      - state: paper_stamp-generic
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
     - type: InfernalContract
     - type: ParsablePaper
       requiredPatterns:

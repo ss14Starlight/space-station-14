@@ -8,6 +8,8 @@ using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Content.Server.Popups;
 using Content.Shared.Popups;
+using Content.Server.Hands.Systems;
+using Content.Shared.Throwing;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
 
@@ -17,6 +19,8 @@ public sealed partial class DamnationActionRemoveOrgan : DamnationAction
     private IRobustRandom _random = default!;
     private ContainerSystem _container = default!;
     private PopupSystem _popup = default!;
+    private HandsSystem _hands = default!;
+    private ThrowingSystem _throwing = default!;
 
     public override bool Action(Entity<DamnedComponent> victim)
     {
@@ -45,6 +49,7 @@ public sealed partial class DamnationActionRemoveOrgan : DamnationAction
                 var victimName = _entityManager.GetComponent<MetaDataComponent>(victim).EntityName;
                 var organName = _entityManager.GetComponent<MetaDataComponent>(organ.Id).EntityName;
 
+                _hands.TryPickupAnyHand(victim, organ.Id);
                 _popup.PopupEntity(Loc.GetString("damnation-action-remove-organ-popup", ("name", victimName), ("organ", organName)), victim, PopupType.MediumCaution);
 
                 // success!
@@ -63,5 +68,7 @@ public sealed partial class DamnationActionRemoveOrgan : DamnationAction
         _random = IoCManager.Resolve<IRobustRandom>();
         _container = _entityManager.System<ContainerSystem>();
         _popup = _entityManager.System<PopupSystem>();
+        _hands = _entityManager.System<HandsSystem>();
+        _throwing = _entityManager.System<ThrowingSystem>();
     }
 }
