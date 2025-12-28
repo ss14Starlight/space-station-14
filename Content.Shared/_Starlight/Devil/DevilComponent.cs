@@ -33,7 +33,8 @@ public sealed partial class DevilComponent : Component
         "Purpose",
         "Humanity",
         "Health",
-        "Time"
+        "Time",
+        "Organ"
     };
 
     /// <summary>

@@ -62,6 +62,14 @@
   - !type:DamnationActionPolymorph
     polymorph: IrreversibleMonkey
 
+- type: damnation
+  id: Organ
+  name: give up an organ
+  description: The signator loses a random organ. This could be anything from their brain, to their kidneys.
+  cost: -6
+  actions:
+  - !type:DamnationActionRemoveOrgan
+
 # REWARDS
 
 - type: damnation
@@ -105,7 +113,7 @@
 - type: damnation
   id: Health
   name: gain self rejuvenation
-  description: The signator gains the ability to rejuvenate themselves.
+  description: The signator gains the ability to totally restore their health, once.
   cost: 10
   reverseOnRemove: true
   actions:
