@@ -5,16 +5,16 @@
                       MinSize="200 100"
                       SetSize="450 515">
     <BoxContainer Orientation="Vertical"
-                  HorizontalExpand="True"
                   VerticalExpand="True">
         <PanelContainer VerticalExpand="True" Margin="10 10 10 10">
             <ScrollContainer HScrollEnabled="False"
-                             HorizontalExpand="True"
                              VerticalExpand="True">
                 <BoxContainer Name="DamnationsDisplayContainer"
                               Orientation="Vertical"
                               VerticalExpand="True"
                               Margin="10 10 10 0">
+                    <RichTextLabel Text="{Loc 'devil-damnations-ui-menu-text'}"
+                                   Name="DamnationsDisplayText"/>
                 </BoxContainer>
             </ScrollContainer>
         </PanelContainer>
