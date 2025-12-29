@@ -1197,6 +1197,15 @@
 ## energy
 
 - type: entity
+  id: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanAmmo
+  - type: HitscanBasicRaycast
+  - type: HitscanReflect
+  - type: HitscanBasicEffects
+
+- type: entity
   id: EnergyTrace
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
@@ -1243,7 +1252,7 @@
 - type: entity
   id: DestroyBeam
   name: destroying beam
-  parent: LaserTrace
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -1264,7 +1273,7 @@
 - type: entity 
   id: DeleteBeam
   name: erasing beam
-  parent: LaserTrace
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -1286,7 +1295,7 @@
 - type: entity
   id: DisablerBoltPractice
   name: disabler bolt practice
-  parent: EnergyTrace
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicRaycast
@@ -1296,6 +1305,8 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
         state: omnilaser
+  - type: HitscanBasicEffects
+    hitColor: blue
 
 - type: entity
   id: DisablerBolt
@@ -1318,7 +1329,7 @@
 - type: entity
   id: TaserBolt
   name: taser bolt
-  parent: EnergyTrace
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -1454,7 +1465,7 @@
 - type: entity
   id: PointDefenseBeam
   name: Point Defense beam
-  parent: LaserTrace
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicRaycast

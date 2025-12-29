@@ -2999,6 +2999,7 @@
   - type: MessyDrinker
   - type: Puller
     needsHands: false
+  - type: Blindable # Starlight - why is this not base?
 
 - type: entity
   parent: MobCorgiBase
