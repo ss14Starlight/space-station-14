@@ -28,3 +28,7 @@
 "Changes: C#":
 - changed-files:
   - any-glob-to-any-file: '**/*.cs'
+
+"Changes: Prototypes":
+- changed-files:
+  - any-glob-to-any-file: 'Resources/Prototypes/**/*.yml'

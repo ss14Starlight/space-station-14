@@ -22,7 +22,7 @@
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
 
 # Warden
 - type: entity
@@ -39,7 +39,7 @@
     access: [["Armory"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
-  
+
 # Brigmedic
 - type: entity
   id: LockerBrigmedicLarge
@@ -135,3 +135,27 @@
     stateDoorClosed: miner_door
   - type: AccessReader
     access: [["Mining"]]
+
+# Janitor locker
+- type: entity
+  id: LockerJanitor
+  name: janitorial locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: janitor
+      stateDoorOpen: janitor_open
+      stateDoorClosed: janitor_door
+    - type: AccessReader
+      access: [["Janitor"]]
+
+# ERT version
+- type: entity
+  id: LockerJanitorCC
+  parent: LockerJanitor
+  components:
+    - type: AccessReader
+      access: [["CentralCommand"]]

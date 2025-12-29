@@ -1,7 +1,10 @@
 using Content.Shared.DoAfter;
+using Content.Shared.Interaction;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Strip;
 using Content.Shared.Verbs;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -25,6 +28,7 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
         
         SubscribeLocalEvent<PrivateStorageComponent, PrivateStorageDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<PrivateStorageComponent, GetVerbsEvent<ActivationVerb>>(AddPrivateStorageVerb);
+        SubscribeLocalEvent<PrivateStorageComponent, ActivateInWorldEvent>(OnActivate, after: [typeof(SharedStrippableSystem)]);
     }
 
     private void OnDoAfter(EntityUid uid, PrivateStorageComponent component, DoAfterEvent args)
@@ -86,6 +90,42 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
                 new("/Textures/Interface/VerbIcons/open.svg.192dpi.png"));
         }
         args.Verbs.Add(verb);
+    }
+    
+    /// <summary>
+    /// Code used to open storage with action button over the verb
+    /// Required to be separated from Storage System due to doAfter needed for others to open it
+    /// </summary>
+    private void OnActivate(EntityUid uid, PrivateStorageComponent storageComp, ActivateInWorldEvent args)
+    {
+        if (args.Handled || !args.Complex || !CanInteract(args.User, (uid, storageComp)))
+            return;
+
+        // Toggle
+        if (_ui.IsUiOpen(uid, StorageComponent.StorageUiKey.Key, args.User))
+        {
+            _ui.CloseUi(uid, StorageComponent.StorageUiKey.Key, args.User);
+        }
+        else
+        {
+            StartPrivateStorageAccess(uid, args.User, storageComp);
+        }
+
+        args.Handled = true;
+    }
+    
+    private bool CanInteract(EntityUid user, Entity<PrivateStorageComponent> storage, bool canInteract = true, bool silent = true)
+    {
+        if (HasComp<BypassInteractionChecksComponent>(user))
+            return true;
+
+        if (!canInteract)
+            return false;
+
+        var ev = new StorageInteractAttemptEvent(silent);
+        RaiseLocalEvent(storage, ref ev);
+
+        return !ev.Cancelled;
     }
 
     /// <summary>

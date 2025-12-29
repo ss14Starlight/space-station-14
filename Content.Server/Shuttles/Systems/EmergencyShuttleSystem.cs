@@ -9,7 +9,6 @@ using Content.Server.Communications;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
-using Content.Server.GameTicking;
 using Content.Server.Pinpointer;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
@@ -27,6 +26,7 @@ using Content.Shared.Screen.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.Systems;
+using Content.Shared.Station.Components; // Starlight
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
@@ -38,6 +38,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Server._Starlight.Station; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -70,7 +71,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
-    
+
     public TimeSpan? DockTime;
 
     private bool _emergencyShuttleEnabled;
@@ -103,7 +104,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnded);
         InitializeEmergencyConsole();
     }
-    
+
     private void OnRoundEnded(RoundEndTextAppendEvent ev)
     {
         DockTime = null;
@@ -123,6 +124,19 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
     private void OnCentcommShutdown(EntityUid uid, StationCentcommComponent component, ComponentShutdown args)
     {
+        // Starlight Start
+        foreach(var station in EntityManager.GetAllComponents(typeof(StationCentcommComponent)))
+        {
+            if (station.Component is not StationCentcommComponent centcommComponent) continue;
+            if (station.Uid == uid) continue;
+            // dont delete centcom entirely if another component points to the same one, instead just delete evac
+            // this might be useless, might not be useless, i have no fucking idea
+            // better to be safe instead of assuming that all stations will point to same cc
+            if (centcommComponent.Entity != component.Entity) continue;
+            QueueDel(Comp<StationEmergencyShuttleComponent>(station.Uid).EmergencyShuttle);
+            return;
+        }
+        // Starlight End
         ClearCentcomm(component);
     }
 
@@ -268,7 +282,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         {
             // Get the remaining restart time from the round end system
             var remainingTime = _roundEnd.ShuttleTimeLeft ?? TimeSpan.FromSeconds(ConfigManager.GetCVar(CCVars.RoundRestartTime));
-            
+
             var payload = new NetworkPayload
             {
                 [ShuttleTimerMasks.ShuttleMap] = shuttle,
@@ -459,6 +473,17 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
 
     private void OnStationStartup(Entity<StationEmergencyShuttleComponent> ent, ref StationPostInitEvent args)
     {
+        //Starlight start
+        if (TryComp<StationDataComponent>(ent, out var station))
+            foreach (var grid in station.Grids)
+            {
+                if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                if (!becomesStation.UseEmergencyShuttle)
+                    return;
+                break; // can break, we already found the grid that created this station
+            }
+        //Starlight end
+
         AddEmergencyShuttle((ent, ent));
     }
 

@@ -6,7 +6,7 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Cyclorite/organs.rsi
   - type: Organ
-  - type: Food
+  - type: Edible
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionContainerManager
@@ -175,7 +175,6 @@
     metabolizerTypes: [ Slime ]
     groups:
     - id: Alcohol
-      rateModifier: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
 
 - type: entity
   id: OrganCycloriteKidneys

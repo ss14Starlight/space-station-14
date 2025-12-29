@@ -43,6 +43,12 @@ public sealed partial class BatteryWeaponFireMode
     /// </summary>
     [DataField]
     public float FireCost = 100;
+
+    /// <summary>
+    /// Wether or not this fire mode can be used by pacifists
+    /// </summary>
+    [DataField]
+    public bool PacifismAllowedMode = false;
     
     /// <summary>
     /// Conditions that must be satisfied to activate this firing mode

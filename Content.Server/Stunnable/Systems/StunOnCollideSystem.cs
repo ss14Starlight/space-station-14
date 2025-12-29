@@ -22,11 +22,12 @@ internal sealed class StunOnCollideSystem : EntitySystem
 
     private void TryDoCollideStun(Entity<StunOnCollideComponent> ent, EntityUid target)
     {
-        _stunSystem.TryKnockdown(target, ent.Comp.KnockdownAmount, ent.Comp.Refresh, ent.Comp.AutoStand, ent.Comp.Drop, true);
+        _stunSystem.TryKnockdown(target, ent.Comp.KnockdownAmount, ent.Comp.Refresh, ent.Comp.AutoStand, ent.Comp.Drop, ent.Comp.Forced); //starlight, control forced via comp
 
         if (ent.Comp.Refresh)
         {
             _stunSystem.TryUpdateStunDuration(target, ent.Comp.StunAmount);
+
             _movementMod.TryUpdateMovementSpeedModDuration(
                 target,
                 MovementModStatusSystem.TaserSlowdown,

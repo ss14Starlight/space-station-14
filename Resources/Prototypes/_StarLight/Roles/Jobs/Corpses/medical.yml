@@ -1,0 +1,55 @@
+- type: startingGear
+  id: CMOCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCMO
+    ears: ClothingHeadsetMedical
+    shoes: ClothingShoesColorWhite
+    head: ClothingHeadHatBeretCmo
+    belt: ClothingBeltMedicalFilled
+    pocket1: PillCanisterTricordrazine
+
+- type: startingGear
+  id: PsychologistCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPsychologist
+    ears: ClothingHeadsetMedical
+    shoes: ClothingShoesColorWhite
+
+- type: startingGear
+  id: DoctorCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+    ears: ClothingHeadsetMedical
+    shoes: ClothingShoesColorWhite
+    belt: ClothingBeltMedicalFilled
+    pocket1: Gauze
+
+- type: startingGear
+  id: MedicalInternCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+    ears: ClothingHeadsetMedical
+    shoes: ClothingShoesColorWhite
+
+- type: startingGear
+  id: ChemistCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChemistry
+    ears: ClothingHeadsetMedical
+    shoes: ClothingShoesColorWhite
+    belt: ChemBag
+    pocket1: SyringeInaprovaline
+
+- type: startingGear
+  id: VirologistCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitVirology
+    ears: ClothingHeadsetMedical
+    shoes: ClothingShoesColorWhite
+
+- type: startingGear
+  id: GeneticsCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGenetics
+    ears: ClothingHeadsetMedical
+    shoes: ClothingShoesColorWhite

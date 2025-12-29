@@ -11,3 +11,13 @@
     - BaseStationBorgiChassis
     - StationBorgiChassis
     - MobCorgiSmart
+
+- type: entity
+  parent: RehydratableAnimalCube
+  id: ScurretCube
+  name: scurret cube
+  description: Just add rain!
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobEmotionalSupportScurret

@@ -1,5 +1,6 @@
 using System.Reflection.Metadata;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Materials;
 using Content.Shared.Mobs.Systems;
 

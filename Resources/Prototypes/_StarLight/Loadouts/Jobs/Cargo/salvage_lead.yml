@@ -22,6 +22,20 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSalvageLead
 
+# Neck
+- type: loadout
+  id: SalvageLeaderMantle
+  equipment:
+    neck: ClothingNeckMantleDecoratedSalvager
+
+- type: loadout
+  id: SalvageVeteranMantle
+  equipment: 
+    neck: ClothingNeckMantleDecoratedVeteranSalvager
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageLead
+
 # PDA
 - type: loadout
   id: SalvageLeadPDA

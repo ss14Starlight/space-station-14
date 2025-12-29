@@ -10,6 +10,7 @@ using Content.Shared.EntityTable.EntitySelectors;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Network;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.PinataSystem;
 

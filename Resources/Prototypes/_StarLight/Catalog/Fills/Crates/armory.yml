@@ -1,45 +1,51 @@
 - type: entity
   id: CrateArmoryLr30
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
-  name: lr30's crate
-  description: Contains two automatic energy gun "lr-30", with two additional magazines. Requires Armory access to open.
+  name: lr30 crate
+  description: Contains two automatic LR-30 energy weapons, with two additional magazines. Requires Armory access to open.
   components:
   - type: Contraband
     allowedDepartments: [ Security ]
-  - type: StorageFill
-    contents:
-      - id: WeaponLr30
-        amount: 2
-      - id: MagazineBatteryLr30
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponLr30
+          amount: 2
+        - id: MagazineBatteryLr30
+          amount: 2
 
 - type: entity
   id: CrateArmoryLr30Magazines
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
-  name: lr30 magazine's crate
-  description: Contains six magazines for "lr-30". Requires Armory access to open.
+  name: lr30 magazines crate
+  description: Contains six magazines for the LR-30 energy weapon. Requires Armory access to open.
   components:
   - type: Contraband
     allowedDepartments: [ Security ]
-  - type: StorageFill
-    contents:
-      - id: MagazineBatteryLr30
-        amount: 6
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MagazineBatteryLr30
+          amount: 6
         
 - type: entity
   id: CrateArmoryCombatShotgun
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
-  name: combat shotgun's crate
+  name: combat shotguns crate
   description: Contains two automatic combat shotguns, with two additional ammo boxes. Requires Armory access to open.
   components:
   - type: Contraband
     allowedDepartments: [ Security ]
-  - type: StorageFill
-    contents:
-      - id: WeaponShotgunCombat
-        amount: 2
-      - id: BoxLethalshot
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponShotgunCombat
+          amount: 2
+        - id: BoxLethalshot
+          amount: 2
 
 - type: entity
   id: CrateArmoryAdvancedRestraints
@@ -47,11 +53,13 @@
   name: advanced restraints crate
   description: For the most annoying prisoners.
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingOuterStraightjacket
-    - id: ClothingOuterStraightjacket
-    - id: ClothingMaskBreath
-    - id: ClothingMaskBreath
-    - id: NitrousOxideTank
-    - id: NitrousOxideTank
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterStraightjacket
+        - id: ClothingOuterStraightjacket
+        - id: ClothingMaskBreath
+        - id: ClothingMaskBreath
+        - id: NitrousOxideTank
+        - id: NitrousOxideTank

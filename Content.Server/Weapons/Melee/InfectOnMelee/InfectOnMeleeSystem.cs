@@ -10,6 +10,7 @@ using Content.Shared.Mindshield.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Zombies;
 using Content.Shared.Weapons.Melee;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.Weapons.Melee.InfectOnMelee;
 

@@ -8,8 +8,8 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        brain: OrganVoxBrain # starlight
+        eyes: OrganVoxEyes
         tongue: OrganHumanTongue
         eye_implant: null
     torso:
@@ -24,7 +24,7 @@
         lungs: OrganVoxLungs
         stomach: OrganVoxStomach
         liver: OrganVoxLiver
-        kidneys: OrganHumanKidneys
+        kidneys: OrganVoxKidneys
         cavity: null
     right arm:
       part: RightArmVox

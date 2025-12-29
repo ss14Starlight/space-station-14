@@ -1,6 +1,6 @@
 - type: entity
   id: DefibrillatorBrigmedical
-  parent: [ BaseDefibrillator, PowerCellSlotTinyItem ]
+  parent: [ BaseDefibrillator, PowerCellSlotMediumItem ]
   name: brigmedic defibrillator
   description: Hand-held device that can save lives, and act as a weapon in a pinch.
   components:
@@ -23,7 +23,7 @@
     size: Normal
   - type: ToggleCellDraw
   - type: PowerCellDraw
-    useRate: 50
+    useCharge: 50
   - type: Defibrillator
     zapHeal:
       types:
@@ -45,3 +45,40 @@
       types:
         Blunt: 4
         Shock: 7
+
+# I'd love to have made this inherit from the syndie defib but that one's powered.
+- type: entity
+  id: DefibrillatorSyndicateOneHandedUnpowered
+  parent: [ BaseDefibrillator, BaseSyndicateContraband ]
+  suffix: Syndicate, One-Handed, Always Powered
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/defibsyndi.rsi
+    layers:
+      - state: icon
+      - state: screen
+        map: [ "enum.ToggleableVisuals.Layer" ]
+        visible: false
+        shader: unshaded
+      - state: ready
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: unshaded
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Items/Defib/defib_zap.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Items/Defib/defib_zap.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedDamage:
+      types:
+        Blunt: 8
+        Shock: 16
+

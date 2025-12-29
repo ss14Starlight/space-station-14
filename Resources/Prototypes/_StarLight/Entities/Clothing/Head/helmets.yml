@@ -282,3 +282,17 @@
         Blunt: 0.95
   - type: ExplosionResistance
     damageCoefficient: 0.95
+
+- type: entity
+  parent: [ ClothingHeadHelmetArmoredBase, BaseSalvageContraband ]
+  id: ClothingHeadHelmetSalvageMerc
+  name: scrapper helmet
+  description: A durable, lightweight helmet favored by salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+    - type: HideLayerClothing
+      layers:
+        Hair: HEAD
