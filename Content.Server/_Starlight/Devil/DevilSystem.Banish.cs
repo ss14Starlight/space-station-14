@@ -5,8 +5,10 @@ using Content.Shared.Dataset;
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Server.Popups;
 using Content.Shared.Popups;
+using Robust.Shared.Random;
+using Content.Server.Jittering;
+using Content.Server.Chat.Systems;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -14,6 +16,9 @@ public sealed partial class DevilSystem : SharedDevilSystem
 {
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly JitteringSystem _jittering = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
 
     private ProtoId<LocalizedDatasetPrototype> BanishPhraseDataset = "DevilBanishPhrases";
     private List<string> BanishPhrases = new();
@@ -88,6 +93,18 @@ public sealed partial class DevilSystem : SharedDevilSystem
             if (devilComp.BeingBanished && (devilComp.LastBanishModeActivate + devilComp.BanishModeLength) < _time.CurTime)
             {
                 devilComp.BeingBanished = false;
+            }
+
+            if (devilComp.BeingBanished)
+            {
+                _jittering.DoJitter(uid, TimeSpan.FromSeconds(3), true, amplitude: 5, frequency: 12);
+
+                bool random = _random.Prob(0.33f);
+                if (random)
+                {
+                    string emote = _random.Prob(0.5f) ? "screams" : "spasms";
+                    _chat.TryEmoteWithChat(uid, emote, forceEmote: true);
+                }
             }
         }
     }

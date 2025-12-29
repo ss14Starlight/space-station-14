@@ -13,6 +13,10 @@
       - state: paper_stamp-generic
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
+    - type: PaperVisuals
+      backgroundImagePath: "/Textures/_Starlight/Interface/Paper/paper_background_dark.svg.96dpi.png"
+      backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+      contentMargin: 16.0, 16.0, 16.0, 16.0
     - type: InfernalContract
     - type: ParsablePaper
       requiredPatterns:

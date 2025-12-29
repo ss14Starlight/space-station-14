@@ -1,19 +1,22 @@
 infernal-contract-base =
    ⠀[center][sigil][/center]
 
-   ⠀[color=red][head=2]CONTRACT FOR WORLDLY GAIN[/head][/color]
+   ⠀[color=#fbd8ae][head=2]CONTRACT FOR WORLDLY GAIN[/head]
     ────────────────────────────────────────
    ⠀I, [signature], in sound mind, hereby declare that I willingly engage in demonic exchange with {$truename}, an agent of hell.
 
    ⠀I offer the following:
     • My soul
     • [form]
+    • [form]
+    • [form]
     To the eternal fires of hell, in exchange for:
+    • [form]
     • [form]
 
     I understand that there is no way to retrieve these sacrifices. If I offer my soul, [bold]I understand that upon my demise my soul will fall into the fires of hell. My body will not be able to be resurrected, cloned, or brought back to life in any way.[/bold]
 
-    Signed: [signature]
+    Signed: [signature][/color]
 
 infernal-contract-examined-Valid = The contract is ready for signing.
 infernal-contract-examined-InvalidFormat = The contract is invalid, as it is mising vital smallprint.

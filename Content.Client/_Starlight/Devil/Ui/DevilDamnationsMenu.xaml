@@ -3,7 +3,7 @@
                       xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                       Title="{Loc 'devil-damnations-ui-menu-title'}"
                       MinSize="200 100"
-                      SetSize="450 515">
+                      SetSize="500 600">
     <BoxContainer Orientation="Vertical"
                   VerticalExpand="True">
         <PanelContainer VerticalExpand="True" Margin="10 10 10 10">
