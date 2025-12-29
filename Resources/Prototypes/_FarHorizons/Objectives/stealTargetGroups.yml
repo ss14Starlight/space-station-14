@@ -6,3 +6,10 @@
   sprite:
     sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod
+
+- type: stealTargetGroup
+  id: VehicleSecwaySteal
+  name: steal-target-groups-secway
+  sprite:
+    sprite: Objects/Vehicles/secway.rsi
+    state: icon

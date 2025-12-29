@@ -33,7 +33,6 @@ using Content.Shared.Popups;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Timing;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Content.Shared.Light.Components;
 using Content.Shared.Inventory.VirtualItem;
@@ -146,9 +145,10 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
                 args.Cancelled = true;
                 _popup.PopupEntity($"Someone is trying to steal the keys from the ignition.", ent.Comp.Rider.Value, PopupType.LargeCaution);
                 var ev = new EjectKeysDoAfter();
-                var doAfter = new DoAfterArgs(EntityManager, args.User.Value, ent.Comp.timeToStealKeys, ev, ent.Owner)
+                var doAfter = new DoAfterArgs(EntityManager, args.User.Value, ent.Comp.timeToStealKeys, ev, ent.Owner, ent.Owner)
                 {
                     BreakOnMove = true,
+                    BreakOnDamage = true,
                     CancelDuplicate = false
 
                 };
@@ -259,8 +259,11 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
             for (var i = 0; i < vehicleComp.HandsNeeded; i++)
             {
-                if (_virtualItem.TrySpawnVirtualItemInHand(ent.Owner, vehicleComp.Rider.Value, out var virtItem))
+                if (_virtualItem.TrySpawnVirtualItem(ent.Owner, vehicleComp.Rider.Value, out var virtItem))
+                {
                     EnsureComp<UnremoveableComponent>(virtItem.Value);
+                    _handsSystem.TryForcePickupAnyHand(vehicleComp.Rider.Value, virtItem.Value);
+                }
             }
         }
     }
@@ -275,9 +278,10 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             args.Cancelled = true;
             _popup.PopupEntity($"Someone starts to remove you from the driver seat.", vehicleComp.Rider.Value, PopupType.LargeCaution);
             var ev = new VehicleUnbuckleDoAfter();
-            var doAfter = new DoAfterArgs(EntityManager, args.User.Value, ent.Comp.duration, ev, ent.Owner)
+            var doAfter = new DoAfterArgs(EntityManager, args.User.Value, ent.Comp.duration, ev, ent.Owner, ent.Owner)
             {
-                BreakOnMove = true
+                BreakOnMove = true,
+                BreakOnDamage = true
             };
             _doAfter.TryStartDoAfter(doAfter);
         }

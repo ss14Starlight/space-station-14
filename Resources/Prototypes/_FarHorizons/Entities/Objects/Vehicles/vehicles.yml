@@ -208,6 +208,8 @@
       params:
         pitch: 1.15
         variation: 0.05
+  - type: StealTarget
+    stealGroup: VehicleSecwaySteal
 
 - type: entity
   id: VehicleSecwayBattery

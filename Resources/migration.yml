@@ -189,14 +189,9 @@ VehicleKeyATV: null
 VehicleKeySkeleton: null
 VehicleKeySyndicateSegway: null
 VehicleKeySkeletonMotorcycle: null
-VehicleSecway: null
-VehicleATV: null
-VehicleSyndicateSegway: null
 VehicleSkeletonMotorcycle: null
 VehicleUnicycle: null
 VehicleUnicycleFolded: null
-ActionVehicleHorn: null
-CrateFunATV: null
 CrateFunSyndicateSegway: null
 MobTaxiBot: null
 # MobSupplyBot: null
