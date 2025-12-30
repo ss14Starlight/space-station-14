@@ -77,3 +77,43 @@
   components:
   - type: Tag
   background: PettyCriminal
+
+- type: trait
+  id: ChangelingSurvivor
+  name: trait-background-changeling-survivor-name
+  description: trait-background-changeling-survivor-description
+  category: BackgroundTraits
+  cost: 1
+  components:
+  - type: Tag
+  background: ChangelingSurvivor
+
+- type: trait
+  id: NuclearSurvivor
+  name: trait-background-nuclear-survivor-name
+  description: trait-background-nuclear-survivor-description
+  category: BackgroundTraits
+  cost: 1
+  components:
+  - type: Tag
+  background: NuclearSurvivor
+  
+- type: trait
+  id: SyndicateRefugee
+  name: trait-background-syndicate-refugee-name
+  description: trait-background-syndicate-refugee-description
+  category: BackgroundTraits
+  cost: 1
+  components:
+  - type: Tag
+  background: SyndicateRefugee
+
+- type: trait
+  id: ParadoxClone
+  name: trait-background-paradox-clone-name
+  description: trait-background-paradox-clone-description
+  category: BackgroundTraits
+  cost: 1
+  components:
+  - type: Tag
+  background: ParadoxClone

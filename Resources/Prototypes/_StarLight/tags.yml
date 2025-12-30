@@ -374,6 +374,18 @@
 
 - type: Tag
   id: PettyCriminalTraitBackground
+
+- type: Tag
+  id: ChangelingSurvivorTraitBackground
+
+- type: Tag
+  id: NuclearSurvivorTraitBackground
+
+- type: Tag
+  id: SyndicateRefugeeTraitBackground
+
+- type: Tag
+  id: ParadoxCloneTraitBackground
   
 - type: Tag
   id: ThermiteIgnitor

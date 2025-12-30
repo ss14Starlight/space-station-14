@@ -23,3 +23,15 @@ trait-background-abducted-description = You were once the unfortunate recipient 
 
 trait-background-petty-criminal-name = Petty Criminal
 trait-background-petty-criminal-description = While reformed, more or less, you used to get involved in the types of crowds and businesses you really shouldn't have. Because of these connections, you are aware of what items on the station are likely to be worth a lot, and that they are probably targeted by the Syndicate and other Thieves. You know what all the Steal Objective Targets are. 
+
+trait-background-changeling-survivor-name = Changeling Survivor
+trait-background-changeling-survivor-description = They took your friends skin, face, voice. Puppeted on cracking limbs and writhing flesh, with eyes just a little too distant. They're out there, and worst of all, they could be any one of us.
+
+trait-background-nuclear-survivor-name = Nuclear Survivor
+trait-background-nuclear-survivor-description = The brain-cleaning must have gone wrong somehow. You remember what you shouldn't - blood red operatives storming you down, station blackout, the inevitable countdown. They all call you crazy, but you know that wasn't a dream. Careful - If NT finds out you remember - they'll make sure you forget for good.
+
+trait-background-syndicate-refugee-name = Syndicate Refugee
+trait-background-syndicate-refugee-description = You know what it's like out there in frontier space. Betrayal, rampant terrorism, proxy wars, ancient grudges and radical organizations. NanoTrasen might not be the best, but they are better than the alternative. At least here they have dental.
+
+trait-background-paradox-clone-name = Paradox Clone
+trait-background-paradox-clone-description = You did what you had to do make the timeline right. After being warped into this time stream, you murdered your counterpart, and took their place. Everythings just the slightest bit different here - and there's a gnawing feeling that you don't belong.
