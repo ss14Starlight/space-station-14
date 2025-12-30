@@ -87,3 +87,13 @@
     - type: Sprite
       sprite: _Starlight/Structures/Wallmounts/signs.rsi
       state: mining
+
+- type: entity
+  parent: BaseSign
+  id: SignDrone
+  name: drone sign
+  description: A sign indicating the drone area.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/signs.rsi
+      state: drone
