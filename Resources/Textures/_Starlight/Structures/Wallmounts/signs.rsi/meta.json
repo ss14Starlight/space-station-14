@@ -1,39 +1,52 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from /tg/station and Burgerstation. Brigmed, Disposals and Youtoolpia by Conflee",
+    "copyright": "State based Copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "brigmed"
+            "name": "brigmed",
+            "copyright": "Made by Conflee"
         },
         {
-            "name": "disposals_proper"
+            "name": "disposals_proper",
+            "copyright": "Made by Conflee"
         },
         {
-            "name": "nosmoking"
+            "name": "nosmoking",
+            "copyright": "Taken from /tg/station and Burgerstation"
         },
         {
-            "name": "secureareasmall"
+            "name": "secureareasmall",
+            "copyright": "Taken from /tg/station and Burgerstation"
         },
         {
-            "name": "wall_biohazard"
+            "name": "wall_biohazard",
+            "copyright": "Taken from /tg/station and Burgerstation"
         },
         {
-            "name": "wall_extremeheat"
+            "name": "wall_extremeheat",
+            "copyright": "Taken from /tg/station and Burgerstation"
         },
         {
-            "name": "yessmoking"
+            "name": "yessmoking",
+            "copyright": "Taken from /tg/station and Burgerstation"
         },
         {
             "name": "direction_mining",
+            "copyright": "Taken from /tg/station and Burgerstation",
             "directions": 4
         },
         {
-            "name": "mining"
+            "name": "mining",
+            "copyright": "Taken from /tg/station and Burgerstation"
+        },
+        {
+            "name": "drones",
+            "copyright": "Taken from Imp Station at PR https://github.com/impstation/imp-station-14/pull/1694. Made by FlippenPage(github)"
         }
     ]
 }
