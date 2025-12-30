@@ -131,11 +131,13 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/greytider_trenchcoat.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/greytider_trenchcoat.rsi
-  - type: StorageFill
-    contents:
-    - id: Cigarette
-      amount: 3
-    - id: CheapLighter
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Cigarette
+          amount: 3
+        - id: CheapLighter
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
@@ -271,3 +273,26 @@
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerScience]
   id: ClothingOuterWindbreakerScienceOpened
   name: science windbreaker
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCentcommContraband]
+  id: ClothingOuterCoatWardenCentcomm
+  name: Central Command Armored Winter Coat
+  description: A extremely durable, stylish winter coat made for central command Operators to survive even in the coldest of winter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/Centcomm_coatWarden.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/Centcomm_coatWarden.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Item

@@ -7,6 +7,8 @@
 #  - type: Tag
 #    tags:
 #      - BSOBeltEquip
+  - type: Item
+    heldPrefix: scanner
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/handheld_bso_crewmonitor.rsi
     state: scanner
@@ -15,8 +17,12 @@
   - type: UserInterface
     interfaces:
       enum.CrewMonitoringUIKey.Key:
-        type: BSOCrewMonitoringBoundUserInterface
+        type: CrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter
+    shownDepartments:
+    - Command
+    alwaysShowTrackingImplants: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

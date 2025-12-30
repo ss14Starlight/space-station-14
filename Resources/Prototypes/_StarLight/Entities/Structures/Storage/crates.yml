@@ -46,3 +46,34 @@
     sprite: _Starlight/Structures/Storage/Crates/salvagecontra_secure.rsi
   - type: AccessReader
     access: [["Security"], ["Salvage"]]
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateCentralCommandSecure
+  name: central command crate
+  components:
+    - type: Icon
+      sprite: _Starlight/Structures/Storage/Crates/centralcommand.rsi
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/Crates/centralcommand.rsi
+    - type: AccessReader
+      access: [["CentralCommand"]]
+
+- type: entity
+  parent: CrateCentralCommandSecure
+  id: CrateCentralCommandSecureStrong
+  name: central command crate
+  suffix: Secure, Strong
+  description: A large container for items. Made with plastitanium to drastically improve durability.
+  components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 9000
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak

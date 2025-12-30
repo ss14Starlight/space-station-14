@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using YamlDotNet.RepresentationModel;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
@@ -12,20 +13,18 @@ using Content.Server.Station.Components;
 using Content.Shared.Shuttles.Components; //Starlight-edit
 using Content.Shared.CCVar;
 using Content.Shared.Roles;
+using Content.Shared.Station.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Prototypes;
-using Content.Shared.Station.Components;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
-using Robust.Shared.Utility;
-using YamlDotNet.RepresentationModel;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
-
+using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests
 {
     [TestFixture]
@@ -39,6 +38,7 @@ namespace Content.IntegrationTests.Tests
             "CentComm",
             "StarlightCentCommG24", //starlight
             "StarlightCentCommSC17", //starlight
+            "StarlightCentCommGNT9", //starlight
             "Dart"
         };
 
@@ -47,6 +47,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/centcomm.yml",
             //"/Maps/_Starlight/Centcomms/CC_Outpost_G24",
             //"/Maps/_Starlight/Centcomms/CC_Outpost_SC17",
+            //"/Maps/_Starlight/Centcomms/CC_Outpost_GNT9",
             AdminTestArenaSystem.ArenaMapPath
         };
 
@@ -86,6 +87,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_Starlight/nukieplanet.yml", //starlight nukie spawn map
             "/Maps/_Starlight/Centcomms/CC_Outpost_G24.yml", //starlight centcomm map
             "/Maps/_Starlight/Centcomms/CC_Outpost_SC17.yml", //starlight centcomm map
+            "/Maps/_Starlight/Centcomms/CC_Outpost_GNT9.yml", //starlight centcomm map
             "/Maps/_Starlight/Dungeon/syndie.yml",
             "/Maps/_Starlight/Shuttles/Radiotower.yml",
             "/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml",
@@ -124,32 +126,34 @@ namespace Content.IntegrationTests.Tests
             "Saltern",
             "Reach",
             "Oasis",
-            "Amber",
             "Plasma",
             "Elkridge",
             "Relic",
             "dm01-entryway",
             "Exo",
+            "Snowball",
             "dm01-entryway",
-            "Barratry",
-            "Cork",
-            "Kiloton",
-            "Lagan",
-            "Lobster",
-            "Manor",
             #region Starlight
+            "StarlightBarratry",
+            "StarlightCork",
+            "StarlightKiloton",
+            "StarlightLagan",
+            "StarlightLobster",
+            "StarlightManor",
             "Gateway",
-            "Leth",
-            "Origin",
-            "Orwell",
-            "Prism",
-            "Remix",
-            "Starboard",
+            "StarlightLeth",
+            "StarlightMing",
+            "StarlightOrigin",
+            "StarlightOrwell",
+            "StarlightPrism",
+            "StarlightRemix",
+            "StarlightStarboard",
             "StarlightAmber",
             "StarlightBagel",
             "StarlightBox",
             "StarlightCentCommG24",
             "StarlightCentCommSC17",
+            "StarlightCentCommGNT9",
             "StarlightCog",
             "StarlightCore",
             "StarlightCrescent",
@@ -165,7 +169,8 @@ namespace Content.IntegrationTests.Tests
             "StarlightReach",
             "StarlightSaltern",
             "StarlightSilica",
-            "StarlightCluster"
+            "StarlightCluster",
+            "StarlightStationBuilding"
             #endregion
         };
 

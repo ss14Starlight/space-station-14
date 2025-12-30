@@ -2210,7 +2210,7 @@ entities:
     - type: RadiationGridResistance
     - type: ImplicitRoof
     - type: BecomesStation
-      id: Remix
+      id: StarlightRemix
 - proto: AbductorOperatingTable
   entities:
   - uid: 3
@@ -92767,7 +92767,7 @@ entities:
       fireRate: 2
       availableModes: Burst
       selectedMode: Burst
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       fireCost: 33
       proto: FoodPieBananaCream
 - proto: WeaponPistolCHIMPUpgraded

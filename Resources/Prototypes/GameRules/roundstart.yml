@@ -24,9 +24,11 @@
       prob: 0.5
     - id: SLChangeling #Starlight lings
       prob: 0.4
-    - id: Vampire
-      prob: 0.25
+#    - id: Vampire # Starlight - disabled until reworked
+#      prob: 0.25
     - id: SubWizard
+      prob: 0.05
+    - id: Xenoborgs
       prob: 0.05
 
 - type: entity
@@ -39,8 +41,30 @@
       prob: 0.5
     - id: SLChangeling # StarlightLings
       prob: 0.4
-    - id: Vampire
-      prob: 0.25
+#    - id: Vampire # Starlight - disabled until reworked
+#      prob: 0.25
+    - id: Xenoborgs
+      prob: 0.05
+
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesRuleNoXenoborg
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
+      prob: 0.5
+    - id: SubWizard
+      prob: 0.05
+
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesRuleNoWizardNoXenoborg
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
+      prob: 0.5
 
 - type: entity
   parent: BaseGameRule
@@ -123,6 +147,10 @@
   components:
   - type: GameRule
     minPlayers: 20
+    # Starlight Start
+    denyGameRules:
+    - AbductorsSpawn
+    # Starlight End
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/nukieplanet.yml
   - type: AntagSelection
@@ -260,7 +288,21 @@
       - type: ChangelingTransform
       - type: ActionGrant
         actions:
-        - ActionRetractableItemArmBlade # Temporary addition, will inevitably be a purchasable in the bio-store
+        - ActionChangelingStore
+      # TODO: Make it so the changeling gamerule changeling can inherit from the changeling store preset somehow
+      - type: Store
+        name: store-preset-name-changeling
+        categories:
+        - ChangelingAbilities
+        currencyWhitelist:
+        - ChangelingDNA
+        balance:
+          ChangelingDNA: 50
+      - type: UserInterface
+        interfaces:
+          enum.StoreUiKey.Key:
+            type: StoreBoundUserInterface
+            requireInputValidation: false
       mindRoles:
       - MindRoleChangeling
   - type: AntagObjectives
@@ -276,11 +318,12 @@
   - type: RevolutionaryRule
   - type: SpecialLobbyContent
     music: "/Audio/_Starlight/Music/Lobby/Liberation.ogg"
-    background: "/Textures/_Starlight/LobbyScreens/rev-clown.webp"
+    background: RevClown
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ HeadRev ]
+      min: 2 #Starlight edit, made it 2 since one person dying shouldnt end a major gamemode, praying it breaks nothing
       max: 3
       playerRatio: 15
       startingGear: HeadRevGear
@@ -512,6 +555,7 @@
     - id: BasicTrashVariationPass
     - id: SolidWallRustingVariationPass
     - id: ReinforcedWallRustingVariationPass
+    - id: CutWireVariationPass
     - id: BasicPuddleMessVariationPass
       prob: 0.99
       orGroup: puddleMess
@@ -524,7 +568,7 @@
     - id: SolarPanelEmptyVariationPass
     - id: BasicDecalDirtVariationPass
     - id: BasicDecalGraffitiVariationPass
-    - id: BasicDecalBrunsVariationPass
+    - id: BasicDecalBurnsVariationPass
       prob: 0.50
       orGroup: monospaceDecals
     - id: BasicDecalDirtMonospaceVariationPass

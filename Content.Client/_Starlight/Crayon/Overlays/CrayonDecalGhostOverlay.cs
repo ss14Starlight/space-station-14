@@ -36,9 +36,7 @@ public sealed class CrayonDecalGhostOverlay : DecalPlacementOverlay
         var player = _playerManager.LocalEntity;
         if (player is null)
             return false;
-        return _interaction.InRangeUnobstructed(mousePos,
-            player.Value,
-            collisionMask: Shared.Physics.CollisionGroup.None);
+        return _interaction.InRangeUnobstructed(player.Value, mousePos);
     }
 
     protected override void LoadDecal()

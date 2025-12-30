@@ -75,7 +75,10 @@
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 150
-    bloodReagent: CopperBlood
+    bloodReagents:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 1
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
@@ -363,13 +366,13 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: alive
       sprite: _Starlight/Mobs/Animals/Spiders/terror_white.rsi
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletAcidHitscan
     fireCost: 50
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 10
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 150
     startingCharge: 150
   - type: Gun

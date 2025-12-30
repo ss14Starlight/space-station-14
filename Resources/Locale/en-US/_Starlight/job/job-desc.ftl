@@ -8,3 +8,5 @@ job-description-mailtech = Deliver letters and packages to the crew of the stati
 job-description-surgeon = Heal people, cripple enemies, and replace limbs and organs!
 job-description-ntncblueshield = Your primary job is to protect your charged Nanotrasen-Central Command Consortium officials, this overrules anything else.
 job-description-salvagelead = Lead your salvage team and keep them safe. Remember, you are the Quartermaster's eyes and ears off station.
+job-description-nanotrasen-special-forces = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
+job-description-decimus = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.

@@ -1,0 +1,28 @@
+- type: entity
+  name: emergency crew monitor
+  parent: [ BaseHandheldComputer, BaseMedicalContraband ]
+  id: EmergencyHandheldCrewMonitor
+  description: A hand-held crew monitor displaying the status of suit sensors of injured crew.
+  components:
+  - type: Item
+    heldPrefix: scanner
+  - type: Sprite
+    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    state: scanner
+  - type: ActivatableUI
+    key: enum.CrewMonitoringUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+  - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter
+    onlyShowWoundedOrDead: true
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: StaticPrice
+    price: 200

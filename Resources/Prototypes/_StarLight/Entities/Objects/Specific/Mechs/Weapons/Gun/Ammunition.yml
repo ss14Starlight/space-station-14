@@ -2,7 +2,7 @@
   id: MechCartridge
   abstract: true
   components:
-    - type: HitScanCartridgeAmmo
+    - type: CartridgeAmmo
       deleteOnSpawn: true
 
 - type: entity

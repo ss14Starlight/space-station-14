@@ -290,12 +290,20 @@ namespace Content.Server.Voting.Managers
                     {
                         _presetCooldown[key]--;
                         if (_presetCooldown[key] <= 0)
+                        {
                             _presetCooldown.Remove(key);
+                            _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset {key} removed from cooldown.");
+                        }
                     }
                 }
 
                 //add the key we picked to the cooldown list
-                _presetCooldown.Add(pickedPreset.ID, pickedPreset.VoteCooldown);
+                //if its secret, never add it
+                if (!(secretPreset != null && pickedPreset.ID == secretPreset.ID))
+                {
+                    _presetCooldown.Add(pickedPreset.ID, pickedPreset.VoteCooldown);
+                    _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset {pickedPreset.ID} added to cooldown for {pickedPreset.VoteCooldown} votes.");
+                }
                 //starlight end
                 ticker.SetGamePreset(pickedPreset.ID);
             };
@@ -503,7 +511,7 @@ namespace Content.Server.Voting.Managers
                     (Loc.GetString("ui-vote-votekick-abstain"), "abstain")
                 },
                 Duration = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimer)),
-                InitiatorTimeout = TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.VotekickTimeout)),
+                InitiatorTimeout = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimeout)),
                 VoterEligibility = voterEligibility,
                 DisplayVotes = false,
                 TargetEntity = targetNetEntity
@@ -518,7 +526,7 @@ namespace Content.Server.Voting.Managers
             var webhookState = _voteWebhooks.CreateWebhookIfConfigured(options, _cfg.GetCVar(CCVars.DiscordVotekickWebhook), Loc.GetString("votekick-webhook-name"), options.Title + "\n" + Loc.GetString("votekick-webhook-description", ("initiator", initiatorName), ("target", targetSession)));
 
             // Time out the vote now that we know it will happen
-            TimeoutStandardVote(StandardVoteType.Votekick);
+            TimeoutStandardVote(StandardVoteType.Votekick, TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimeout)));
 
             vote.OnFinished += (_, eventArgs) =>
             {
@@ -625,9 +633,9 @@ namespace Content.Server.Voting.Managers
             }
         }
 
-        private void TimeoutStandardVote(StandardVoteType type)
+        private void TimeoutStandardVote(StandardVoteType type, TimeSpan? timeoutOverride = null)
         {
-            var timeout = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteSameTypeTimeout));
+            var timeout = timeoutOverride ?? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteSameTypeTimeout));
             _standardVoteTimeout[type] = _timing.RealTime + timeout;
             DirtyCanCallVoteAll();
         }
@@ -659,8 +667,16 @@ namespace Content.Server.Voting.Managers
 
                 //STARLIGHT
                 //check if its on the cooldown list
-                if (_presetCooldown.ContainsKey(preset.ID))
-                    continue;
+                //if the cooldown number is 0 or lower, we dont cooldown this selection anyway
+                if (preset.VoteCooldown > 0)
+                {
+                    if (_presetCooldown.ContainsKey(preset.ID))
+                    {
+                        //admin log it
+                        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset {preset.ID} skipped for vote selection due to being on cooldown ({_presetCooldown[preset.ID]} votes remaining).");
+                        continue;
+                    }
+                }
                 //STARLIGHT END
 
                 if (chancesPrototype.Chances.TryGetValue(preset.ID, out var chance))

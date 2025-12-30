@@ -110,6 +110,7 @@
       - PosterContrabandWantedPunPun
       - PosterContrabandWantedStirStir
       - PosterContrabandWantedTraitor
+      - PosterContrabandSELF
       #endregion Starlight
     chance: 1
 
@@ -180,6 +181,7 @@
       - PosterLegitEyeChart
       - PosterLegitTyrone
       - PosterLegitHelio
+      - PosterLegitBotanyFear
       #region Starlight
       - PosterLegitSkillIssue
       - PosterLegitShoeless
@@ -191,5 +193,9 @@
       - PosterLegitRipleyCertified
       - PosterLegitKillersClinic
       - PosterlegitLawPoster
+      - PosterLegitSaline
+      - PosterLegitKeepItClean
+      - PosterLegitClock
+      - PosterLegitBonk
       #endregion Starlight
     chance: 1

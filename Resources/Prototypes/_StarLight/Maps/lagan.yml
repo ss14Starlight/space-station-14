@@ -1,10 +1,10 @@
 - type: gameMap
-  id: Lagan
+  id: StarlightLagan
   mapName: 'Lagan'
   mapPath: /Maps/_Starlight/Stations/Lagan.yml
   minPlayers: 50
   stations:
-    Lagan:
+    StarlightLagan:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

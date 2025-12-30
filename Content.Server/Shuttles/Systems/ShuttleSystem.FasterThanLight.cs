@@ -26,6 +26,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
+using Content.Server._Starlight.Station; // Starlight
+using Content.Shared.Station.Components; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -100,6 +102,17 @@ public sealed partial class ShuttleSystem
 
     private void OnStationPostInit(ref StationPostInitEvent ev)
     {
+        //Starlight start
+        if (TryComp<StationDataComponent>(ev.Station, out var station))
+            foreach (var grid in station.Grids)
+            {
+                if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                if (!becomesStation.UseArmories)
+                    return;
+                break; // can break, we already found the grid that created this station
+            }
+        //Starlight end
+        
         // Add all grid maps as ftl destinations that anyone can FTL to.
         foreach (var gridUid in ev.Station.Comp.Grids)
         {

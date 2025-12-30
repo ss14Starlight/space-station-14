@@ -16,8 +16,8 @@ jobs:
           echo "PR from: $SOURCE_BRANCH -> $TARGET_BRANCH"
           
           # Allow starlight-dev to starlight PRs in both directions
-          if [[ ("$SOURCE_BRANCH" == "starlight-dev" && "$TARGET_BRANCH" == "starlight") || 
-                ("$SOURCE_BRANCH" == "starlight" && "$TARGET_BRANCH" == "starlight-dev") ]]; then
+          if [[ ("$SOURCE_BRANCH" == "starlight-dev" && "$TARGET_BRANCH" == "Starlight") || 
+                ("$SOURCE_BRANCH" == "Starlight" && "$TARGET_BRANCH" == "starlight-dev") ]]; then
             echo "Allowed: PR between starlight-dev and starlight branches"
             exit 0
           fi

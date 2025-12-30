@@ -9,6 +9,11 @@
   description: flavor-complex-dragan-special
 
 - type: flavor
+  id: thaslop
+  flavorType: complex
+  description: flavor-complex-tha-slop
+
+- type: flavor
   id: wrong
   flavorType: Base
   description: flavor-base-wrong
@@ -17,3 +22,18 @@
   id: struggle
   flavorType: Complex
   description: flavor-complex-struggle
+
+- type: flavor
+  id: halal
+  flavorType: Base
+  description: flavor-base-halal
+
+- type: flavor
+  id: greasy
+  flavorType: Base
+  description: flavor-base-greasy
+
+- type: flavor
+  id: festive
+  flavorType: Base
+  description: flavor-base-festive

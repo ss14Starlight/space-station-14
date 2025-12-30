@@ -48,60 +48,65 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Get Pull Request Number
+      - name: Get Pull Request Number via GH
         id: get_pr
-        run: |
-          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-          echo "Commit message: $COMMIT_MESSAGE"
-          PR_NUMBER=$(echo "$COMMIT_MESSAGE" | grep -oP '(?<=Merge pull request #)\d+' || true)
-          if [ -z "$PR_NUMBER" ]; then
-            echo "No PR number found in commit message. Skipping changelog update."
-            echo "::set-output name=PR_NUMBER::"
-            exit 0
-          fi
-          echo "PR Number: $PR_NUMBER"
-          echo "::set-output name=PR_NUMBER::$PR_NUMBER"
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: context.sha
+            });
+            if (pr.data.length === 0) {
+              console.log("No PR found for this branch. Skipping changelog update.");
+              return "";
+            }
+            console.log(`PR Number: ${pr.data[0].number}`);
+            return pr.data[0].number;
         
       #re checkout
       - name: Re-checkout repository
+        if: steps.get_pr.outputs.result != ''
         uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
           
       - name: Set up Python
-        if: steps.get_pr.outputs.PR_NUMBER != ''
+        if: steps.get_pr.outputs.result != ''
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
 
       - name: Install Dependencies
-        if: steps.get_pr.outputs.PR_NUMBER != ''
+        if: steps.get_pr.outputs.result != ''
         run: |
           pip install pyyaml PyGithub
     
       - name: Parse PR and Update Changelog
-        if: steps.get_pr.outputs.PR_NUMBER != ''
+        if: steps.get_pr.outputs.result != ''
         env:
           CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogStarlight.yml'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ steps.get_pr.outputs.PR_NUMBER }}
+          PR_NUMBER: ${{ steps.get_pr.outputs.result }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           python ./Tools/_Starlight/update_changelog.py
           echo "Script exited with code $?"
 
       - name: Display changelog after update
-        if: steps.get_pr.outputs.PR_NUMBER != ''
+        if: steps.get_pr.outputs.result != ''
         run: |
           cat "Resources/Changelog/ChangelogStarlight.yml"
 
       - name: Git status before commit
-        if: steps.get_pr.outputs.PR_NUMBER != ''
+        if: steps.get_pr.outputs.result != ''
         run: |
           git status
 
       - name: Commit and push changes
-        if: steps.get_pr.outputs.PR_NUMBER != ''
+        if: steps.get_pr.outputs.result != ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -110,7 +115,7 @@ jobs:
             echo "No changes to commit."
           else
             git pull
-            git commit -m "Update changelog for PR #${{ steps.get_pr.outputs.PR_NUMBER }} [skip ci]"
+            git commit -m "Update changelog for PR #${{ steps.get_pr.outputs.result }} [skip ci]"
             git push
           fi
           

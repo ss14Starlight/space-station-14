@@ -1,15 +1,15 @@
 - type: vendingMachineInventory
   id: SalvageEquipmentInventory
-  startingInventory:
-    Crowbar: 2
-    Pickaxe: 4
-    OreBag: 4
-    Flare: 4
-    FlashlightLantern: 2
-    HandheldGPSBasic: 2
-    RadioHandheld: 2
-    RadioHandheldExpedition: 4 #starlight
-    WeaponGrapplingGun: 4
-    WeaponProtoKineticAccelerator: 4
+  startingInventory: # Starlight - begin inv increase for our large pops
+    Crowbar: 4
+    Pickaxe: 8
+    OreBag: 10
+    Flare: 8
+    FlashlightLantern: 6
+    HandheldGPSBasic: 6
+    RadioHandheld: 4
+    RadioHandheldExpedition: 6 #starlight
+    WeaponGrapplingGun: 8
+    WeaponProtoKineticAccelerator: 10 # starlight end
   contrabandInventory:
     PlushieCarp: 1

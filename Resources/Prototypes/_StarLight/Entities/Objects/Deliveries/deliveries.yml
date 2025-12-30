@@ -72,16 +72,16 @@
   parent: BasePackageDeliveryReward
   id: PackageDeliveryRewardPlush
   components:
-  - type: ContainerFill
+  - type: EntityTableContainerFill
     containers:
       delivery:
-      - PlushieCarp
+        id: PlushieCarp
 
 - type: entity
   parent: LetterDeliveryEvil
   id: PackageDeliveryRewardSyndicateLetter
   components:
-  - type: ContainerFill
+  - type: EntityTableContainerFill
     containers:
       delivery:
-      - RRMailSyndicateSpamLetter
+        id: RRMailSyndicateSpamLetter

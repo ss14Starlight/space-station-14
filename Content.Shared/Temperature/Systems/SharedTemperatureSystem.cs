@@ -1,7 +1,10 @@
 using System.Linq;
+using Content.Shared.Atmos;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Temperature.Components;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Temperature.Systems;
@@ -9,7 +12,7 @@ namespace Content.Shared.Temperature.Systems;
 /// <summary>
 /// This handles predicting temperature based speedup.
 /// </summary>
-public sealed class SharedTemperatureSystem : EntitySystem
+public abstract class SharedTemperatureSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
@@ -25,8 +28,45 @@ public sealed class SharedTemperatureSystem : EntitySystem
 
         SubscribeLocalEvent<TemperatureSpeedComponent, OnTemperatureChangeEvent>(OnTemperatureChanged);
         SubscribeLocalEvent<TemperatureSpeedComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
+        SubscribeLocalEvent<TemperatureComponent, InteractionSuccessEvent>(OnInteractionSuccess); // Starlight
     }
 
+    // Starlight begin
+
+    private void OnInteractionSuccess(Entity<TemperatureComponent> ent, ref InteractionSuccessEvent args)
+    {
+        // Const
+        var joulesTransferPerDegree = 800.0f;
+
+        if (!TryComp<TemperatureComponent>(args.User, out var userTempComp))
+            return;
+
+        // This is not realistic whatsoever. A "realistic" hug (not really but a lot closer) would be more like ~250 J total for a dT of 50.
+
+        Entity<TemperatureComponent> hotEntity;
+        Entity<TemperatureComponent> coldEntity;
+
+        var deltaT = ent.Comp.CurrentTemperature - userTempComp.CurrentTemperature;
+        
+        if (deltaT > 0)
+        {
+            hotEntity = ent;
+            coldEntity = (args.User, userTempComp);
+        }
+        else
+        {
+            hotEntity = (args.User, userTempComp);
+            coldEntity = ent;
+        }
+
+        var joulesTransferred = joulesTransferPerDegree * Math.Abs(deltaT);
+
+        ChangeHeat(hotEntity, -joulesTransferred, false, hotEntity.Comp);
+        ChangeHeat(coldEntity, joulesTransferred, false, coldEntity.Comp);
+    }
+
+    // Starlight end
+    
     private void OnTemperatureChanged(Entity<TemperatureSpeedComponent> ent, ref OnTemperatureChangeEvent args)
     {
         foreach (var (threshold, modifier) in ent.Comp.Thresholds)
@@ -76,5 +116,20 @@ public sealed class SharedTemperatureSystem : EntitySystem
             _movementSpeedModifier.RefreshMovementSpeedModifiers(uid, movement);
             Dirty(uid, temp);
         }
+    }
+
+    public virtual void ChangeHeat(EntityUid uid, float heatAmount, bool ignoreHeatResistance = false, TemperatureComponent? temperature = null)
+    {
+
+    }
+
+    public float GetHeatCapacity(EntityUid uid, TemperatureComponent? comp = null, PhysicsComponent? physics = null)
+    {
+        if (!Resolve(uid, ref comp) || !Resolve(uid, ref physics, false) || physics.FixturesMass <= 0)
+        {
+            return Atmospherics.MinimumHeatCapacity;
+        }
+
+        return comp.SpecificHeat * physics.FixturesMass;
     }
 }

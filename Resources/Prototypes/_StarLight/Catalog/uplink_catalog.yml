@@ -18,26 +18,6 @@
 # Weapons
 
 - type: listing
-  id: uplinkWeaponMiniEnergyCrossbow
-  name: uplink-mini-energy-crossbow-name
-  description: uplink-mini-energy-crossbow-desc
-  productEntity: WeaponMiniEnergyCrossbow
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 10
-  cost:
-    Telecrystal: 12
-  categories:
-    - UplinkWeaponry
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-    - !type:StoreWhitelistCondition
-      blacklist:
-        tags:
-          - NukeOpsUplink
-
-- type: listing
   id: UplinkUziBundle
   name: uplink-uzi-bundle-name
   description: uplink-uzi-bundle-desc
@@ -329,6 +309,7 @@
   categories:
   - UplinkWearables
 
+# Allies
 - type: listing
   id: UplinkSyndicateBorgi
   name: uplink-syndicate-borgi-name
@@ -350,7 +331,7 @@
   icon: { sprite:  Objects/Fun/Balloons/corgi.rsi, state: icon }
   productEntity: SyndiBorgiKit1
   cost:
-    Telecrystal: 30
+    Telecrystal: 40
   categories:
     - UplinkAllies
   conditions:
@@ -378,6 +359,54 @@
     whitelist:
       tags:
       - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgMedical
+  name: uplink-reinforcement-radio-medical-cyborg-name
+  description: uplink-reinforcement-radio-medical-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgMedical
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault } # TODO BETTER ICON
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgSabotur
+  name: uplink-reinforcement-radio-saboteur-cyborg-name
+  description: uplink-reinforcement-radio-saboteur-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgSaboteur
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault } # TODO BETTER ICON
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgStealth
+  name: uplink-reinforcement-radio-stealth-cyborg-name
+  description: uplink-reinforcement-radio-stealth-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgStealth
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault } # TODO BETTER ICON
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
 
 #Dunnow about upstream. but we L O V E our stealth traitors.
 - type: listing
@@ -493,3 +522,17 @@
       blacklist:
         tags:
           - NukeOpsUplink
+
+- type: listing
+  id: UplinkObserverBundle
+  name: uplink-observer-bundle-name
+  description: uplink-observer-bundle-desc
+  productEntity: ClothingBackpackSyndicateObserverBundle
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkDisruption
+

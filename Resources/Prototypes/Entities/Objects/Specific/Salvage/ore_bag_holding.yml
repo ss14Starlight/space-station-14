@@ -12,6 +12,7 @@
     components: 
     - type: MagnetPickup
       range: 2
+      requiresEquipping: false  # Starlight Edit - make it work even without being equipped
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Mining/ore_bag_holding.rsi
     state: icon

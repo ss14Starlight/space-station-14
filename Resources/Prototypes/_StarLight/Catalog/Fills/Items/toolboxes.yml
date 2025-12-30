@@ -4,12 +4,14 @@
   suffix: Cleaner
   parent: ToolboxArtistic
   components:
-  - type: StorageFill
-    contents:
-    - id: SoapletSyndie
-    - id: CleanerGrenade
-      amount: 2
-    - id: SprayBottleSpaceCleaner
-      amount: 2
-    - id: ClothingHeadHatPurplesoft
-    - id: ClothingHandsGlovesJanitor
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SoapletSyndie
+        - id: CleanerGrenade
+          amount: 2
+        - id: SprayBottleSpaceCleaner
+          amount: 2
+        - id: ClothingHeadHatPurplesoft
+        - id: ClothingHandsGlovesJanitor

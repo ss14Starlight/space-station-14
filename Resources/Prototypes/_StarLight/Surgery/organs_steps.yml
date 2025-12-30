@@ -20,7 +20,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
@@ -63,7 +63,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
@@ -107,7 +107,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
@@ -149,7 +149,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
@@ -192,7 +192,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
@@ -235,7 +235,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
@@ -278,7 +278,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
@@ -339,7 +339,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
@@ -428,7 +428,7 @@
     tools:
     - type: Retractor
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
   - type: SurgeryStepEmoteEffect
 
@@ -474,7 +474,7 @@
     tools:
     - type: Retractor
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
   - type: SurgeryStepEmoteEffect
 
@@ -488,7 +488,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
   - type: SurgeryStepEmoteEffect
 
@@ -520,7 +520,7 @@
     tools:
     - type: Retractor
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
   - type: SurgeryStepEmoteEffect
 
@@ -557,7 +557,7 @@
     organ:
     - type: OrganBrain
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
   - type: SurgeryStepEmoteEffect
 
@@ -602,7 +602,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 # kidneys
@@ -647,7 +647,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 # stomach
@@ -690,7 +690,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 # lungs
@@ -733,7 +733,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 # heart
@@ -776,7 +776,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 # eyes
@@ -821,7 +821,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 # eye implants
@@ -885,7 +885,7 @@
     - type: Hemostat
   - type: SurgeryStepEmoteEffect
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 # brain
@@ -956,7 +956,7 @@
     tools:
     - type: Hemostat
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
@@ -969,7 +969,7 @@
     tools:
     - type: Retractor
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
 
 - type: entity
@@ -995,7 +995,7 @@
     tools:
     - type: BoneSetter
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: setter
 
 - type: entity
@@ -1021,7 +1021,7 @@
     tools:
     - type: Retractor
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
 
 - type: entity

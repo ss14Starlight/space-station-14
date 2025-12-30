@@ -6,7 +6,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
@@ -25,7 +24,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -38,10 +36,10 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunBeanbagTrace
+    proto: PelletShotgunBeanbagTrace
 
 - type: entity
   id: ShellShotgunSlug
@@ -58,10 +56,10 @@
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunSlugTrace
+    proto: PelletShotgunSlugTrace
 
 - type: entity
   id: ShellShotgunFlare
@@ -70,7 +68,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -104,10 +101,10 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunSpreadTrace
+    proto: PelletShotgunSpreadTrace
 
 - type: entity
   id: ShellShotgunIncendiary
@@ -125,10 +122,10 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: ShellShotgunIncendiaryTrace
+    proto: PelletShotgunIncendiarySpreadTrace
 
 - type: entity
   id: ShellShotgunPractice
@@ -145,10 +142,10 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunPracticeSpreadTrace
+    proto: PelletShotgunPracticeSpreadTrace
 
 - type: entity
   id: ShellTranquilizer
@@ -157,7 +154,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -190,7 +186,6 @@
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -206,10 +201,10 @@
   - type: Construction
     graph: ImprovisedShotgunShellGraph
     node: shell
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunImprovisedSpreadTrace
+    proto: PelletShotgunImprovisedSpreadTrace
 
 - type: entity
   id: ShellShotgunUranium
@@ -227,10 +222,10 @@
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunUraniumSpreadTrace
+    proto: PelletShotgunUraniumSpreadTrace
 
 - type: entity #🌟Starlight🌟 
   id: ShellShotgunBreaching
@@ -247,7 +242,7 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunBreachTrace
+    proto: PelletShotgunBreachSpreadTrace

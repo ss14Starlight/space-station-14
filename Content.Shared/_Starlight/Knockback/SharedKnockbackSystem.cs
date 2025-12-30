@@ -51,15 +51,6 @@ public abstract partial class SharedKnockbackSystem : EntitySystem
         //make sure the ammo is shootable
         foreach (var ammo in args.Ammo)
         {
-            if (TryComp<HitScanCartridgeAmmoComponent>(ammo.Uid, out var hitscanCartridge))
-            {
-                //check if its spent
-                if (hitscanCartridge.Spent)
-                {
-                    return;
-                }
-            }
-
             if (TryComp<CartridgeAmmoComponent>(ammo.Uid, out var cartridge))
             {
                 //check if its spent

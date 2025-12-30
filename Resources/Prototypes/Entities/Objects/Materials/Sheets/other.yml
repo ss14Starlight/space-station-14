@@ -108,9 +108,10 @@
         - ReagentId: Plasma
           Quantity: 10
         canReact: false
-  - type: Tag
+  - type: Tag # Redundant
     tags:
     - Sheet
+    - TiderAnvilParts #SL
     - ConstructionMaterial
 
 - type: entity
@@ -144,6 +145,7 @@
     tags:
     - Plastic
     - Sheet
+    - TiderAnvilParts #SL
     - ConstructionMaterial
   - type: Material
   - type: PhysicalComposition

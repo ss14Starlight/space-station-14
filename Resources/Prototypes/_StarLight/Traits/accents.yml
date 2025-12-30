@@ -20,6 +20,15 @@
   components:
     - type: NerdAccent
 
+- type: trait
+  id: ChavAccent
+  name: trait-chav-accent-name
+  description: trait-chav-accent-desc
+  category: SpeechTraits
+  cost: 1
+  components:
+    - type: ChavAccent
+
 # 2 Cost Accents
 
 - type: trait

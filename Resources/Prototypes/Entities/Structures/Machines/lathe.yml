@@ -107,7 +107,7 @@
   - type: Machine
     board: AutolatheMachineCircuitboard
   - type: MaterialStorage
-    whitelist:
+    whitelist: &StandardMaterialWhitelist
       tags:
         - Sheet
         - RawMaterial
@@ -124,6 +124,7 @@
     - AtmosStatic
     - CablesStatic
     - PaperworkStatic
+    - TowelsStatic
     - CargoStatic
     - MaterialsStatic
     - BasicChemistryStatic
@@ -132,11 +133,15 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
-  - type: EmagLatheRecipes # Starlight start
+    dynamicPacks: # Starlight start
+    - StarlightAutolatheLootable
+  - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSecurityAmmoEmagStatic # Starlight end
+    #- SecurityAmmoStatic # SL disable in favor of prior three lines
+    - SyndicateAmmoStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -183,11 +188,7 @@
   - type: Machine
     board: ProtolatheMachineCircuitboard
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: Lathe
     idleState: icon
@@ -210,6 +211,7 @@
     - Janitor
     - Instruments
     - Equipment
+    - StarlightProtolatheLootable # Starlight start
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -217,12 +219,14 @@
     - StarlightCyberOrgansDynamic
     - StarlightImplantDynamic
     - StarlightBudgetCyberOrgansDynamic
-
     - StarlightSecurityAmmoDynamic
     - StarlightSecurityExplosives
     - StarlightSecurityEquipment
     - StarlightSecurityWeapons
     - StarlightDefenseStatic
+    emagStaticPacks:
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic # Starlight end
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -264,6 +268,7 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
+    - StarlightVendorBoards # Starlight
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
@@ -275,17 +280,15 @@
     - ShuttleBoards
     - StarlightMechBoards
     - StarlightLawboards
+    - StarlightCircuitImprinterLootable
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
     emagStaticPacks: # Starlight
     - StarlightDangerousLawboards # Starlight
+    - StarlightSyndicateVendorBoards # Starlight
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: RequireProjectileTarget
 
@@ -348,11 +351,7 @@
     - StarlightMechWeapon
     - StarlightSyndicateModules
   - type: MaterialStorage
-    whitelist:
-      tags:
-      - Sheet
-      - RawMaterial
-      - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
   - type: GuideHelp
     guides:
@@ -393,6 +392,8 @@
     runningState: building
     staticPacks:
     - FriendlyCubesStatic
+    dynamicPacks:
+    - StarlightBiofabricatorLootable
   - type: EmagLatheRecipes
     emagStaticPacks:
     - HostileCubesStatic
@@ -439,18 +440,15 @@
     - SecurityDisablers
     - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
-#    - StarlightSecurityMechsSystems
+    - StarlightSecurityTechFabLootable
   #region Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
   #endregion Starlight secfab emagging
+    - SyndicateAmmoStatic
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
 
 - type: entity
@@ -479,12 +477,12 @@
       runningState: icon
       staticPacks:
       - StarlightSecurityAmmoStatic
+      #- SecurityAmmoStatic # SL - disable in favor of previous line
+    - type: EmagLatheRecipes
+      emagStaticPacks:
+      - SyndicateAmmoStatic
     - type: MaterialStorage
-      whitelist:
-        tags:
-          - Sheet
-          - RawMaterial
-          - Ingot
+      whitelist: *StandardMaterialWhitelist
     - type: OreSiloClient
 
 - type: entity
@@ -524,6 +522,7 @@
     - StarlightImplantDynamic
     - Chemistry
     - StarlightBudgetCyberOrgansDynamic
+    - StarlightMedicalTechFabLootable
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -551,6 +550,7 @@
     idleState: icon
     runningState: building
     staticPacks:
+    - TowelsStatic
     - ClothingCivilian
     - ClothingCargo
     - ClothingCommand
@@ -564,16 +564,14 @@
     - Scarves
     - Carpets
     - Bedsheets
+    dynamicPacks:
+    - StarlightUniformPrinterLootable
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ClothingCentComm
     - ClothingSyndie
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
 
 - type: entity
@@ -618,6 +616,10 @@
     staticPacks:
     - BioGenIngredientsStatic
     - BioGenMaterialsStatic
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - BioGenEmagStatic
+    - HostileCubesStatic
 
 - type: entity
   parent: BaseLathe
@@ -637,6 +639,11 @@
           map: ["enum.MaterialStorageVisualLayers.Inserting"]
         - state: panel
           map: ["enum.WiresVisualLayers.MaintenancePanel"]
+        # Starlight Edit Start - Add magnet layer
+        - state: magnet_on
+          map: ["enum.ToggleableVisuals.Layer"]
+          visible: false
+        # Starlight Edit End
     - type: Machine
       board: OreProcessorMachineCircuitboard
     - type: MaterialStorage
@@ -651,6 +658,34 @@
       staticPacks:
       - OreSmelting
       - RGlassSmelting
+    # starlight edit start - add magnet pickup to ore processors
+    - type: ItemToggle
+      onUse: false
+      onActivate: false
+      verbToggleOn: "Activate Magnet"
+      verbToggleOff: "Deactivate Magnet"
+      soundActivate:
+        collection: sparks
+        params:
+          variation: 0.250
+      soundDeactivate:
+        collection: sparks
+        params:
+          variation: 0.250
+    - type: AltUseToggle
+    - type: ComponentToggler
+      components: 
+      - type: MagnetPickup
+        range: 3
+        requiresEquipping: false
+        slotFlags: 0
+    - type: GenericVisualizer
+      visuals:
+        enum.ToggleableVisuals.Enabled:
+          enum.ToggleableVisuals.Layer:
+            True: { visible: true }
+            False: { visible: false }
+    # starlight edit end
 
 - type: entity
   parent: OreProcessor
@@ -738,11 +773,5 @@
     dynamicPacks:
     - FauxTiles
   - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - Metal
-        - Wooden
-        - RawMaterial
-        - Plastic
+    whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

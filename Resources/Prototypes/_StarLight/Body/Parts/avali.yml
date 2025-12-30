@@ -86,7 +86,6 @@
   - type: Sprite
     state: "l_leg"
   - type: MovementBodyPart
-    sprintSpeed : 4.77
     maxDensity: 100
 
 - type: entity
@@ -97,7 +96,6 @@
   - type: Sprite
     state: "r_leg"
   - type: MovementBodyPart
-    sprintSpeed : 4.77
     maxDensity: 100
 
 - type: entity

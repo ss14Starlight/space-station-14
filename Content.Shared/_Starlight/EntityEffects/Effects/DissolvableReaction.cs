@@ -6,12 +6,42 @@ using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Content.Shared.Starlight.EntityEffects.Components;
 using Content.Shared.Starlight.EntityEffects.EntitySystems;
-using Content.Shared.Starlight.EntityEffects.Components;
 
 namespace Content.Shared.Starlight.EntityEffects.Effects;
 
-[UsedImplicitly]
-public sealed partial class DissolvableReaction : EntityEffect
+/// <summary>
+/// Makes this entity sentient. Allows ghost to take it over if it's not already occupied.
+/// Optionally also allows this entity to speak.
+/// </summary>
+/// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+public sealed partial class DissolvableReactionEntityEffectSystem : EntityEffectSystem<DissolvableComponent, DissolvableReaction>
+{
+    [Dependency] private readonly SharedDissolvableSystem _dissolvable = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly EntityManager _entMan = default!;
+
+    protected override void Effect(Entity<DissolvableComponent> entity, ref EntityEffectEvent<DissolvableReaction> args)
+    {
+        if (_tag.HasTag(entity, "UnDissolvable")) // Yeah, this is hardcode but.... Idk
+            return;
+
+        entity.Comp.Damage = args.Effect.Damage;
+
+        // Sets the multiplier for FireStacks to MultiplierOnExisting is 0 or greater and target already has FireStacks
+        var multiplier = entity.Comp.DissolveStacks != 0f && args.Effect.MultiplierOnExisting >= 0 ? args.Effect.MultiplierOnExisting : args.Effect.Multiplier;
+
+        _dissolvable.AdjustDissolveStacks(entity, args.Scale * multiplier, entity);
+
+        var coordinates = _entMan.GetComponent<TransformComponent>(entity).Coordinates;
+        if (_entityLookup.GetEntitiesInRange<ThermiteComponent>(coordinates, 1f).Count == 0)
+            PredictedSpawnAtPosition(args.Effect.DissolveEffectPrototype, coordinates);
+    }
+}
+
+/// <inheritdoc cref="EntityEffect"/>
+public sealed partial class DissolvableReaction : EntityEffectBase<DissolvableReaction>
 {
     [DataField]
     public float Multiplier = 0.05f;
@@ -23,42 +53,14 @@ public sealed partial class DissolvableReaction : EntityEffect
     [ViewVariables(VVAccess.ReadWrite)]
     public DamageSpecifier Damage = new();
 
-    public override bool ShouldLog => true;
+    [DataField]
+    public EntProtoId? DissolveEffectPrototype = "ThermiteEntity";
 
-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("reagent-effect-guidebook-dissolvable-reaction", ("chance", Probability));
-
-    public override LogImpact LogImpact => LogImpact.Medium;
-
-    public override void Effect(EntityEffectBaseArgs args)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
-        if (args.EntityManager.System<TagSystem>().HasTag(args.TargetEntity, "UnDissolvable")) // Yeah, this is hardcode but.... Idk
-            return;
-        var dissolvable = args.EntityManager.EnsureComponent<DissolvableComponent>(args.TargetEntity);
-        dissolvable.Damage = Damage;
-
-        // Sets the multiplier for FireStacks to MultiplierOnExisting is 0 or greater and target already has FireStacks
-        var multiplier = dissolvable.DissolveStacks != 0f && MultiplierOnExisting >= 0 ? MultiplierOnExisting : Multiplier;
-        var quantity = 1f;
-        if (args is EntityEffectReagentArgs reagentArgs)
-        {
-            quantity = reagentArgs.Quantity.Float();
-            reagentArgs.EntityManager.System<SharedDissolvableSystem>().AdjustDissolveStacks(args.TargetEntity, quantity * multiplier, dissolvable);
-            
-            var coordinates = reagentArgs.EntityManager.System<SharedTransformSystem>().GetMapCoordinates(args.TargetEntity);
-            if (reagentArgs.EntityManager.System<EntityLookupSystem>().GetEntitiesInRange<ThermiteComponent>(coordinates, 1f).Count == 0)
-                reagentArgs.EntityManager.Spawn("ThermiteEntity", coordinates);
-            
-            if (reagentArgs.Reagent != null)
-                reagentArgs.Source?.RemoveReagent(reagentArgs.Reagent.ID, reagentArgs.Quantity);
-        }
-        else
-        {
-            args.EntityManager.System<SharedDissolvableSystem>().AdjustDissolveStacks(args.TargetEntity, multiplier, dissolvable);
-            
-            var coordinates = args.EntityManager.System<SharedTransformSystem>().GetMapCoordinates(args.TargetEntity);
-            if (args.EntityManager.System<EntityLookupSystem>().GetEntitiesInRange<ThermiteComponent>(coordinates, 1f).Count == 0)
-                args.EntityManager.Spawn("ThermiteEntity", coordinates);
-        }
+        return Loc.GetString("reagent-effect-guidebook-dissolvable-reaction",
+                ("chance", Probability));
     }
+
+    public override LogImpact? Impact => LogImpact.Medium;
 }
