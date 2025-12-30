@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Placeholder sprites by Starlight Chimes",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "battery0"
+    },
+    {
+      "name": "battery1"
+    },
+    {
+      "name": "battery2"
+    },
+    {
+      "name": "battery3"
+    },
+    {
+      "name": "battery4"
+    },
+    {
+      "name": "battery5"
+    },
+    {
+      "name": "battery6"
+    },
+    {
+      "name": "battery7"
+    },
+    {
+      "name": "battery8"
+    },
+    {
+      "name": "battery9"
+    },
+    {
+      "name": "battery10"
+    },
+    {
+      "name": "battery_none"
+    }
+  ]
+}

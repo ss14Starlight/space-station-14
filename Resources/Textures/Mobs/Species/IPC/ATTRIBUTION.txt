@@ -1,0 +1,16 @@
+# IPC Body Parts Textures (parts.rsi)
+# 
+# License: CC-BY-SA-3.0
+# Copyright: Original drawn by @robustyanka on Discord, modified by @pspritechologist
+# Ported to Starlight-Chimes by SCARLET
+# 
+# Source: Far-Horizons-SS14
+# Repository: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14
+# Original Path: Resources/Textures/_FarHorizons/Mobs/Species/IPC/parts.rsi
+#
+# IPC Organ Textures (organs.rsi)
+#
+# License: CC-BY-SA-3.0
+# Copyright: Taken from Yogstation
+#
+# Original Path: Resources/Textures/_FarHorizons/Mobs/Species/IPC/organs.rsi

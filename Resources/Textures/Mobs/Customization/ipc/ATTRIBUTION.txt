@@ -1,0 +1,21 @@
+# IPC Customization Textures Attribution
+# 
+# Ported from Far-Horizons-SS14
+# Repository: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14
+# Branch: Far-Horizons
+# 
+# License: Generally CC-BY-SA-3.0 (check individual meta.json files for specific copyright)
+# 
+# Individual RSI directories contain meta.json files with specific copyright information.
+# Texture copyright and attribution details are embedded in each meta.json file.
+# 
+# Original Paths:
+#   - Resources/Textures/_FarHorizons/Mobs/Customization/ipc/antenna.rsi/
+#   - Resources/Textures/_FarHorizons/Mobs/Customization/ipc/screens.rsi/
+#   - Resources/Textures/_FarHorizons/Mobs/Customization/ipc/bishop.rsi/
+#   - Resources/Textures/_FarHorizons/Mobs/Customization/ipc/hesphiastos.rsi/
+#   - Resources/Textures/_FarHorizons/Mobs/Customization/ipc/morpheus.rsi/
+#   - Resources/Textures/_FarHorizons/Mobs/Customization/ipc/shellguard.rsi/
+#   - Resources/Textures/_FarHorizons/Mobs/Customization/ipc/wardtakahashi.rsi/
+#   - Resources/Textures/_FarHorizons/Mobs/Customization/ipc/xion.rsi/
+#   - Resources/Textures/_FarHorizons/Mobs/Customization/ipc/zenghu.rsi/

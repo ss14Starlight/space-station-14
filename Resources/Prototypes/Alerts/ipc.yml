@@ -1,0 +1,56 @@
+# IPC Battery Alert Prototypes
+# SOURCE: Far-Horizons-SS14
+# https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
+# _STARLIGHT: No modifications
+
+- type: alertCategory
+  id: IPCBattery
+
+- type: alert
+  id: IPCBattery
+  category: IPCBattery
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery0
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery1
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery2
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery3
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery4
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery5
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery6
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery7
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery8
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery9
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery10
+  name: alerts-ipc-battery-name
+  description: alerts-ipc-battery-desc
+  minSeverity: 0
+  maxSeverity: 10
+
+- type: alert
+  id: IPCBatteryCrit
+  category: IPCBattery
+  icon:
+    sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery0
+  name: alerts-ipc-battery-crit-name
+  description: alerts-ipc-battery-crit-desc
+
+- type: alert
+  id: IPCBatteryNone
+  category: IPCBattery
+  icon:
+    sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    state: battery_none
+  name: alerts-ipc-battery-none-name
+  description: alerts-ipc-battery-none-desc

@@ -1,0 +1,5 @@
+- type: entity
+  save: false
+  name: IPC
+  parent: BaseMobIPC
+  id: MobIPC

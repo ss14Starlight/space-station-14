@@ -10,6 +10,7 @@
   - Dwarf
   - Felionoid
   - Human
+  - IPC
   - SlimePerson
   - Moth
   - Reptilian
@@ -38,6 +39,11 @@
   id: Human
   name: species-name-human
   text: "/ServerInfo/Guidebook/Mobs/Human.xml"
+
+- type: guideEntry
+  id: IPC
+  name: species-name-ipc
+  text: "/ServerInfo/Guidebook/Mobs/IPC.xml"
 
 - type: guideEntry
   id: Moth

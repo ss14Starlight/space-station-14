@@ -1,0 +1,129 @@
+# IPC (Integrated Positronic Chassis) Mob Entity
+# SPRITES: Far-Horizons-SS14 (used with permission - sprites only)
+# https://github.com/Far-Horizons-SS14/Far-Horizons-SS14
+# CODE: Original implementation by Starlight Chimes
+
+- type: entity
+  parent: BaseMobSpecies
+  id: BaseMobIPC
+  name: IPC
+  abstract: true
+  components:
+  - type: HumanoidAppearance
+    species: IPC
+  - type: Hunger
+    baseDecayRate: 0  # IPCs don't eat
+  - type: Thirst
+    baseThirstThreshold: 0  # IPCs don't drink
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Icon
+    sprite: Mobs/Species/IPC/parts.rsi
+    state: full
+  - type: Body
+    prototype: IPC
+  - type: IPCBattery
+    drainAllowedTargets:
+    - SMESBasic
+    - SubstationBasic
+    - APCBasic
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: PowerCellDraw
+    drawRate: 50
+  - type: Battery
+    maxCharge: 15000
+    startingCharge: 15000
+  - type: WiresPanel
+  - type: ActivatableUI
+    key: enum.IPCUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.IPCUiKey.Key:
+        type: IPCBoundUserInterface
+  # - type: PowerCellSlot
+  #   cellSlotId: cell_slot
+  #   fitsInCharger: true
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: SheetSteel1
+      amount: 5
+    - id: CableApcStack1
+      amount: 5
+  - type: Barotrauma  # Completely immune to pressure
+    damage:
+      types:
+        Blunt: 0
+        Heat: 0
+  # IPCs don't breathe - no Respirator component needed!
+  - type: Bloodstream  # No blood/reagent processing
+    bloodMaxVolume: 0
+    bloodRefreshAmount: 0
+    bloodReagent: null
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: IPC
+  - type: Temperature
+    heatDamageThreshold: 330  # More vulnerable to heat
+    coldDamageThreshold: 0  # Immune to cold
+    currentTemperature: 310.15
+    specificHeat: 46
+    coldDamage:
+      types:
+        Cold: 0
+    heatDamage:
+      types:
+        Heat: 2.0  # Increased heat damage
+  - type: ThermalRegulator
+    metabolismHeat: 1000  # Can overheat from activity
+    radiatedHeat: 120
+    implicitHeatRegulation: 120
+    sweatHeatRegulation: 0  # Can't sweat
+    shiveringHeatRegulation: 0  # Can't shiver
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 25
+  - type: Stamina  # No stamina/fatigue
+    critThreshold: 1000
+  - type: MobPrice
+    price: 1500
+  # IPC Self-Repair: Welder for brute damage
+  # - type: Repairable
+  #   doAfterDelay: 5
+  #   allowSelfRepair: true
+  #   selfRepairPenalty: 1.5
+  #   fuelCost: 5
+  #   qualityNeeded: Welding
+  #   damage:
+  #     groups:
+  #       Brute: -30  # Heals 30 brute damage per use
+  # IPC Self-Repair: Cable for burn, Plastic for caustic
+  # - type: IPCHealable
+  #   burnHealAmount: 30
+  #   causticHealAmount: 30
+  #   healDelay: 3
+  #   selfHealPenalty: 1.5
+  # IPC APC Recharging
+  # - type: IPCApcRechargeable
+  #   chargeRate: 500
+  #   drainDelay: 2
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - RobotTalk
+    understands:
+    - GalacticCommon
+    - RobotTalk
+  # Starlight-end
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobIPCDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: IPC

@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Ported from Far-Horizons-SS14",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "blank",
+      "directions": 4
+    },
+    {
+      "name": "static",
+      "directions": 4
+    },
+    {
+      "name": "blue",
+      "directions": 4
+    },
+    {
+      "name": "breakout",
+      "directions": 4
+    },
+    {
+      "name": "eight",
+      "directions": 4
+    },
+    {
+      "name": "goggles",
+      "directions": 4
+    },
+    {
+      "name": "exclaim",
+      "directions": 4
+    },
+    {
+      "name": "heart",
+      "directions": 4
+    },
+    {
+      "name": "monoeye",
+      "directions": 4
+    },
+    {
+      "name": "nature",
+      "directions": 4
+    },
+    {
+      "name": "orange",
+      "directions": 4
+    },
+    {
+      "name": "pink",
+      "directions": 4
+    },
+    {
+      "name": "question",
+      "directions": 4
+    },
+    {
+      "name": "shower",
+      "directions": 4
+    },
+    {
+      "name": "yellow",
+      "directions": 4
+    },
+    {
+      "name": "scroll",
+      "directions": 4
+    },
+    {
+      "name": "console",
+      "directions": 4
+    },
+    {
+      "name": "rgb",
+      "directions": 4
+    },
+    {
+      "name": "glider",
+      "directions": 4
+    },
+    {
+      "name": "rainbowhoriz",
+      "directions": 4
+    },
+    {
+      "name": "rainbowdiag",
+      "directions": 4
+    },
+    {
+      "name": "bsod",
+      "directions": 4
+    },
+    {
+      "name": "redtext",
+      "directions": 4
+    },
+    {
+      "name": "smile",
+      "directions": 4
+    },
+    {
+      "name": "frown",
+      "directions": 4
+    },
+    {
+      "name": "ring",
+      "directions": 4
+    }
+  ]
+}

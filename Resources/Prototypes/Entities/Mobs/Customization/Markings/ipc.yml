@@ -1,0 +1,1063 @@
+# IPC Markings - Chassis Parts, Antennas, and Screens
+# SOURCE: Far-Horizons-SS14
+# https://github.com/Far-Horizons-SS14/Far-Horizons-SS14
+# _STARLIGHT: Updated bishop RSI path to bishop_main.rsi, added ipc_antenna_ prefix to antenna states
+
+# Default Parts
+- type: marking
+  id: MarkingIPCHeadDefault
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Species/IPC/parts.rsi
+    state: head_m
+
+- type: marking
+  id: MarkingIPCChestDefault
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Species/IPC/parts.rsi
+    state: torso_m
+
+- type: marking
+  id: MarkingIPCLArmDefault
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Species/IPC/parts.rsi
+    state: l_arm
+
+- type: marking
+  id: MarkingIPCRArmDefault
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Species/IPC/parts.rsi
+    state: r_arm
+
+- type: marking
+  id: MarkingIPCLLegDefault
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Species/IPC/parts.rsi
+    state: l_leg
+
+- type: marking
+  id: MarkingIPCRLegDefault
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Species/IPC/parts.rsi
+    state: r_leg
+
+# Antennas
+- type: marking
+  id: MarkingIPCAntennaTV
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/antenna.rsi
+    state: ipc_antenna_tv
+
+- type: marking
+  id: MarkingIPCAntennaTesla
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/antenna.rsi
+    state: ipc_antenna_tesla
+
+- type: marking
+  id: MarkingIPCAntennaLight
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/antenna.rsi
+    state: ipc_antenna_light
+
+- type: marking
+  id: MarkingIPCAntennaLightAlt
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/antenna.rsi
+    state: ipc_antenna_lightb
+
+- type: marking
+  id: MarkingIPCAntennaCyberhead
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/antenna.rsi
+    state: ipc_antenna_cyberhead
+
+- type: marking
+  id: MarkingIPCAntennaSidelights
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/antenna.rsi
+    state: ipc_antenna_sidelights
+
+- type: marking
+  id: MarkingIPCAntennaAntlers
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/antenna.rsi
+    state: ipc_antenna_antlers
+
+- type: marking
+  id: MarkingIPCAntennaDroneeyes
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/antenna.rsi
+    state: ipc_antenna_droneeyes
+
+- type: marking
+  id: MarkingIPCAntennaCrowned
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/antenna.rsi
+    state: ipc_antenna_crowned
+
+- type: marking
+  id: MarkingIPCAntennaTowers
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/antenna.rsi
+    state: ipc_antenna_towers
+
+# Screens
+- type: marking
+  id: MarkingIPCScreenBlank
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: blank
+
+- type: marking
+  id: MarkingIPCScreenStatic
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: static
+
+- type: marking
+  id: MarkingIPCScreenBlue
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: blue
+
+- type: marking
+  id: MarkingIPCScreenBreakout
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: breakout
+
+- type: marking
+  id: MarkingIPCScreenEight
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: eight
+
+- type: marking
+  id: MarkingIPCScreenGoggles
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: goggles
+
+- type: marking
+  id: MarkingIPCScreenExclaim
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: exclaim
+
+- type: marking
+  id: MarkingIPCScreenHeart
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: heart
+
+- type: marking
+  id: MarkingIPCScreenMonoeye
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: monoeye
+
+- type: marking
+  id: MarkingIPCScreenNature
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: nature
+
+- type: marking
+  id: MarkingIPCScreenOrange
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: orange
+
+- type: marking
+  id: MarkingIPCScreenPink
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: pink
+
+- type: marking
+  id: MarkingIPCScreenQuestion
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: question
+
+- type: marking
+  id: MarkingIPCScreenShower
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: shower
+
+- type: marking
+  id: MarkingIPCScreenYellow
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: yellow
+
+- type: marking
+  id: MarkingIPCScreenScroll
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: scroll
+
+- type: marking
+  id: MarkingIPCScreenConsole
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: console
+
+- type: marking
+  id: MarkingIPCScreenRGB
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: rgb
+
+- type: marking
+  id: MarkingIPCScreenGlider
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: glider
+
+- type: marking
+  id: MarkingIPCScreenRainbowHoriz
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: rainbowhoriz
+
+- type: marking
+  id: MarkingIPCScreenRainbowDiag
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: rainbowdiag
+
+- type: marking
+  id: MarkingIPCScreenBSOD
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: bsod
+
+- type: marking
+  id: MarkingIPCScreenRedText
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: redtext
+
+- type: marking
+  id: MarkingIPCScreenSmiley
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: smile
+
+- type: marking
+  id: MarkingIPCScreenFrowny
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: frown
+
+- type: marking
+  id: MarkingIPCScreenRing
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/screens.rsi
+    state: ring
+
+# Bishop Chassis
+- type: marking
+  id: MarkingBishopHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: head
+
+- type: marking
+  id: MarkingBishopChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: torso-primary
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: torso-secondary
+
+- type: marking
+  id: MarkingBishopLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: l_arm-primary
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: l_arm-secondary
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: l_arm-tertiary
+
+- type: marking
+  id: MarkingBishopRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: r_arm-primary
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: r_arm-secondary
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: r_arm-tertiary
+
+- type: marking
+  id: MarkingBishopLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: l_hand
+
+- type: marking
+  id: MarkingBishopRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: r_hand
+
+- type: marking
+  id: MarkingBishopLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: l_leg-primary
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: l_leg-secondary
+
+- type: marking
+  id: MarkingBishopRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: r_leg-primary
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: r_leg-secondary
+
+- type: marking
+  id: MarkingBishopLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: l_foot
+
+- type: marking
+  id: MarkingBishopRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/bishop_main.rsi
+    state: r_foot
+
+# Hesphiastos Chassis
+- type: marking
+  id: MarkingHesphiastosHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
+    state: head
+
+- type: marking
+  id: MarkingHesphiastosChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
+    state: chest
+
+- type: marking
+  id: MarkingHesphiastosLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
+    state: l_arm
+
+- type: marking
+  id: MarkingHesphiastosRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
+    state: r_arm
+
+- type: marking
+  id: MarkingHesphiastosLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
+    state: l_hand
+
+- type: marking
+  id: MarkingHesphiastosRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
+    state: r_hand
+
+- type: marking
+  id: MarkingHesphiastosLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
+    state: l_leg
+
+- type: marking
+  id: MarkingHesphiastosRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
+    state: r_leg
+
+- type: marking
+  id: MarkingHesphiastosLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
+    state: l_foot
+
+- type: marking
+  id: MarkingHesphiastosRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
+    state: r_foot
+
+# Morpheus Chassis
+- type: marking
+  id: MarkingMorpheusHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: head
+
+- type: marking
+  id: MarkingMorpheusHeadAlt
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: head_alt
+
+- type: marking
+  id: MarkingMorpheusChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: chest
+
+- type: marking
+  id: MarkingMorpheusLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: l_arm
+
+- type: marking
+  id: MarkingMorpheusRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: r_arm
+
+- type: marking
+  id: MarkingMorpheusLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: l_hand
+
+- type: marking
+  id: MarkingMorpheusRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: r_hand
+
+- type: marking
+  id: MarkingMorpheusLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: l_leg
+
+- type: marking
+  id: MarkingMorpheusRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: r_leg
+
+- type: marking
+  id: MarkingMorpheusLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: l_foot
+
+- type: marking
+  id: MarkingMorpheusRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/morpheus.rsi
+    state: r_foot
+
+# Shellguard Chassis
+- type: marking
+  id: MarkingShellguardHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/shellguard.rsi
+    state: head
+
+- type: marking
+  id: MarkingShellguardChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/shellguard.rsi
+    state: chest
+
+- type: marking
+  id: MarkingShellguardLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/shellguard.rsi
+    state: l_arm
+
+- type: marking
+  id: MarkingShellguardRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/shellguard.rsi
+    state: r_arm
+
+- type: marking
+  id: MarkingShellguardLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/shellguard.rsi
+    state: l_hand
+
+- type: marking
+  id: MarkingShellguardRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/shellguard.rsi
+    state: r_hand
+
+- type: marking
+  id: MarkingShellguardLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/shellguard.rsi
+    state: l_leg
+
+- type: marking
+  id: MarkingShellguardRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/shellguard.rsi
+    state: r_leg
+
+- type: marking
+  id: MarkingShellguardLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/shellguard.rsi
+    state: l_foot
+
+- type: marking
+  id: MarkingShellguardRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/shellguard.rsi
+    state: r_foot
+
+# Xion Chassis
+- type: marking
+  id: MarkingXionHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: head
+
+- type: marking
+  id: MarkingXionHeadAlt
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: head_alt
+
+- type: marking
+  id: MarkingXionChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: chest
+
+- type: marking
+  id: MarkingXionLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: l_arm
+
+- type: marking
+  id: MarkingXionRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: r_arm
+
+- type: marking
+  id: MarkingXionLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: l_hand
+
+- type: marking
+  id: MarkingXionRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: r_hand
+
+- type: marking
+  id: MarkingXionLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: l_leg
+
+- type: marking
+  id: MarkingXionRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: r_leg
+
+- type: marking
+  id: MarkingXionLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: l_foot
+
+- type: marking
+  id: MarkingXionRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/xion.rsi
+    state: r_foot
+
+# Ward-Takahashi Chassis
+- type: marking
+  id: MarkingTakahashiHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: head
+
+- type: marking
+  id: MarkingTakahashiHeadAlt
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: head_alt
+
+- type: marking
+  id: MarkingTakahashiChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: chest
+
+- type: marking
+  id: MarkingTakahashiLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: l_arm
+
+- type: marking
+  id: MarkingTakahashiRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: r_arm
+
+- type: marking
+  id: MarkingTakahashiLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: l_hand
+
+- type: marking
+  id: MarkingTakahashiRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: r_hand
+
+- type: marking
+  id: MarkingTakahashiLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: l_leg
+
+- type: marking
+  id: MarkingTakahashiRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: r_leg
+
+- type: marking
+  id: MarkingTakahashiLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: l_foot
+
+- type: marking
+  id: MarkingTakahashiRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+    state: r_foot
+
+# Zenghu Chassis
+- type: marking
+  id: MarkingZenghuHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
+    state: head
+
+- type: marking
+  id: MarkingZenghuChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
+    state: chest
+
+- type: marking
+  id: MarkingZenghuLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
+    state: l_arm
+
+- type: marking
+  id: MarkingZenghuRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
+    state: r_arm
+
+- type: marking
+  id: MarkingZenghuLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
+    state: l_hand
+
+- type: marking
+  id: MarkingZenghuRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
+    state: r_hand
+
+- type: marking
+  id: MarkingZenghuLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
+    state: l_leg
+
+- type: marking
+  id: MarkingZenghuRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
+    state: r_leg
+
+- type: marking
+  id: MarkingZenghuLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
+    state: l_foot
+
+- type: marking
+  id: MarkingZenghuRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
+    state: r_foot

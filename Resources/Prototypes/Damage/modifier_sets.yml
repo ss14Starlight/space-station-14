@@ -10,6 +10,25 @@
     Blunt: 5
     Heat: 5
 
+# IPC damage modifiers - vulnerable to EMPs, energy weapons, and fire
+# Resistant to ballistic and melee damage
+- type: damageModifierSet
+  id: IPC
+  coefficients:
+    Blunt: 0.7      # Resistant to melee
+    Slash: 0.6      # Resistant to melee
+    Piercing: 0.7   # Resistant to ballistic
+    Heat: 1.5       # Vulnerable to fire
+    Shock: 2.0      # Highly vulnerable to EMPs and energy weapons
+    Cold: 0.2       # Very resistant to cold
+    Caustic: 0.9    # Slightly resistant to acid
+    Poison: 0       # Immune to toxins
+    Radiation: 0.5  # Resistant to radiation
+  flatReductions:
+    Blunt: 4
+    Slash: 4
+    Piercing: 4
+
 - type: damageModifierSet
   id: StructuralMetallicStrong
   coefficients:
