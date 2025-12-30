@@ -1903,8 +1903,6 @@
         dataset: PlushiesFox
       - type: TextToSpeech
         voice: himeko
-    sound:
-      path: /Audio/_Starlight/Effects/yip.ogg
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Voice/Vulpkanin/vulp_scream4.ogg
