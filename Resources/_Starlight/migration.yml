@@ -3,6 +3,9 @@
 # ItemIdFrom: ItemIdTo - Change item
 # ItemIdFrom: null - Removes item from map
 
+#2025-12-31
+GunSafeHeavyWeapons: null
+
 # 2025-10-03
 SyndiAgentPDA: SyndiCorpsmanPDA
 
