@@ -24474,5 +24474,227 @@ Entries:
   id: 257300
   time: '2025-12-22T00:07:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2573
+- author: neomoth
+  changes:
+  - message: Additional grids can now be vvwritten into CommunicationsConsoleComponent
+      to allow them to receive non-global announcements.
+    type: Add
+  - message: Central Command now receives announcements from communication consoles
+      on the station.
+    type: Tweak
+  id: 262900
+  time: '2025-12-29T22:34:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2629
+- author: CawsForConcern
+  changes:
+  - message: BSO now has access to through NTR airlocks
+    type: Add
+  - message: NTR's locker is now locked behind NTR access (was previously Command
+      access)
+    type: Fix
+  id: 262800
+  time: '2025-12-29T22:37:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2628
+- author: neomoth
+  changes:
+  - message: Added StationGridMemoryComponent/System
+    type: Add
+  - message: Weapons locked to the station's alert level that also have a StationGridMemoryComponent
+      should now respect the alert level of the last valid station it was on, allowing
+      them to work off-station.
+    type: Tweak
+  - message: The Dominator and the Miniature Energy Gun were given a StationGridMemoryComponent
+      to allow them to work off-station.
+    type: Tweak
+  id: 262300
+  time: '2025-12-29T22:50:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2623
+- author: ork
+  changes:
+  - message: Hugging now transfers some heat
+    type: Add
+  id: 262400
+  time: '2025-12-29T22:59:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2624
+- author: CrazyPhantom
+  changes:
+  - message: After confusion on pipe orders was cleaned up Stations will now be delivered
+      working pipes.
+    type: Fix
+  id: 261000
+  time: '2025-12-29T23:03:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2610
+- author: CrazyPhantom
+  changes:
+  - message: Access denied sound when right clicking most things with a lock (Aghosts
+      rejoice)
+    type: Fix
+  - message: X-01 Multiphase not being access broken
+    type: Fix
+  - message: Chameleon items being unlocked when taking them off.
+    type: Fix
+  - message: Much more similar lock bugs
+    type: Fix
+  id: 260900
+  time: '2025-12-29T23:03:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2609
+- author: neomoth
+  changes:
+  - message: Added the ability for newly created station AI's to rename themselves
+      via the customization menu.
+    type: Add
+  - message: AI takeover verb now attempts to setmind to an existing PB instead of
+      always making a new one.
+    type: Tweak
+  id: 261200
+  time: '2025-12-29T23:08:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2612
+- author: CrazyPhantom
+  changes:
+  - message: 'ADMIN: Central Command Division loadouts. Trialmins rejoice'
+    type: Add
+  - message: 'ADMIN: Filled vibroblade sheath entitys.'
+    type: Add
+  id: 260600
+  time: '2025-12-29T23:08:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2606
+- author: Conflee
+  changes:
+  - message: Added Flaming Barrels. For mapping use. A literal dumpster fire.
+    type: Add
+  id: 263400
+  time: '2025-12-29T23:14:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2634
+- author: Penguinwizzard
+  changes:
+  - message: Supermatter flatpacks are now purchased in engineering-locked crates.
+    type: Tweak
+  id: 262000
+  time: '2025-12-29T23:14:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2620
+- author: Rhetorica
+  changes:
+  - message: Festive Feast, a turkey dinner for everyone! (not moffs)
+    type: Add
+  - message: Festive Dinner (with/without gravy)
+    type: Add
+  - message: Roast Turkey, Mashed Potatoes (in two sizes), Mashed Potatoes with Gravy
+      (in two sizes), Stuffing (including moff-friendly cotton variant)
+    type: Add
+  - message: One-Minute Blinding Stew (traitors HATE this one simple recipe!)
+    type: Add
+  - message: Gravy, CranberrySauce, BlindingStew reagents
+    type: Add
+  - message: Gravy Boat
+    type: Add
+  id: 258200
+  time: '2025-12-29T23:28:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2582
+- author: Way
+  changes:
+  - message: New parallax background for mappers.
+    type: Add
+  id: 258500
+  time: '2025-12-29T23:28:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2585
+- author: DocMoth
+  changes:
+  - message: Added Red Regalia suit and accessories to fashion vend.
+    type: Add
+  id: 260700
+  time: '2025-12-29T23:29:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2607
+- author: CawsForConcern
+  changes:
+  - message: (Starboard) Default charge circuit on Starboard's PA SMES increased to
+      50kW to prevent a weird situation where the main SMES bank charges first before
+      the PA SMES charges
+    type: Tweak
+  id: 258100
+  time: '2025-12-29T23:28:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2581
+- author: Sparlight
+  changes:
+  - message: Fixed smart corgis and borgis being blinded from oculine.
+    type: Fix
+  id: 260500
+  time: '2025-12-29T23:28:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2605
+- author: neomoth
+  changes:
+  - message: Fixed the preview ghost for crayons. Artists, rejoice.
+    type: Fix
+  id: 260400
+  time: '2025-12-29T23:29:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2604
+- author: Fasuh, Vonte(Sprites)
+  changes:
+  - message: Add the ability to hold 10L of gas in vox lungs
+    type: Add
+  - message: Add new synthetic lungs with the ability to hold 2.5L of gas
+    type: Add
+  id: 258600
+  time: '2025-12-29T23:51:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2586
+- author: Sparlight
+  changes:
+  - message: Fixed the chemical dispenser from having the wrong roundstart loadout.
+    type: Fix
+  id: 257900
+  time: '2025-12-29T23:51:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2579
+- author: Clone0401
+  changes:
+  - message: The Error item is now at a loss for words
+    type: Tweak
+  - message: The Error item will shock you when eaten
+    type: Tweak
+  id: 259500
+  time: '2025-12-29T23:51:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2595
+- author: ork
+  changes:
+  - message: DAGD cannot be paired with escape alive anymore
+    type: Fix
+  id: 258300
+  time: '2025-12-29T23:51:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2583
+- author: lyxcaster
+  changes:
+  - message: Added pens to the PTech vending machine
+    type: Add
+  id: 260100
+  time: '2025-12-29T23:51:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2601
+- author: Joeri
+  changes:
+  - message: Security crisis button, 5 added to SecTech
+    type: Add
+  id: 260300
+  time: '2025-12-29T23:52:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2603
+- author: Conflee
+  changes:
+  - message: Added 6 new posters
+    type: Add
+  - message: Added 9 new crayon/graffiti decals
+    type: Add
+  - message: Added Starlight graffiti to the graffiti spawners, so they will now appear
+      in messy areas round start
+    type: Tweak
+  - message: Fixed Speaker rotations being backwards
+    type: Fix
+  id: 258800
+  time: '2025-12-29T23:52:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2588
+- author: Penguinwizzard
+  changes:
+  - message: We've managed to find some savings in our custodial budgets! In other
+      news, if the toilets on your station don't work, ask the janitor to check the
+      cistern.
+    type: Tweak
+  id: 258900
+  time: '2025-12-30T00:59:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2589
 Order: -1
 

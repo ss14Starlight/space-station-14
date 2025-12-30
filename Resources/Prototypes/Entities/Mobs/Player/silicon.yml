@@ -478,6 +478,16 @@
     chance: 0.6 # lets just try it at 3/4th the chance of a borg and see how bad it gets
     #endregion
 
+#SL start
+- type: entity
+  parent: StationAiBrain
+  id: StationAiBrainConstructed
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+    - type: StationAiCustomization
+      renameAvailable: true
+#SL end
+
 # Hologram projection that the AI's eye tracks.
 - type: entity
   parent:

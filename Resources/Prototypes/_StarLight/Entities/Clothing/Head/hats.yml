@@ -338,3 +338,14 @@
       tags:
         - PetWearable
         - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: RedRegaliaHat
+  name: Red Regalia Hat
+  description: A fancy red hat like a mafiaoso would wear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/red_regalia.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/red_regalia.rsi

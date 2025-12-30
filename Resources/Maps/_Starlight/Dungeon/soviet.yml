@@ -8385,7 +8385,7 @@ entities:
     - type: Transform
       pos: 19.5,43.5
       parent: 1
-- proto: ToiletDirtyWater
+- proto: ToiletDirtyWaterFilled
   entities:
   - uid: 648
     components:

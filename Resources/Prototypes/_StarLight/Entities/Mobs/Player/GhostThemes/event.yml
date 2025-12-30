@@ -8,3 +8,14 @@
       state: ghost-king
     color: "#ffffff"
   requirement: GoldEventWinnerReq
+
+- type: ghostTheme
+  id: CarpGames
+  name: The Carpman
+  description: The Carpman, master of all carp games.
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-carpman
+    color: "#ffffff"
+  requirement: CarpGamesReq

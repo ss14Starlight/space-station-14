@@ -11,3 +11,7 @@ flavor-base-wrong = wrong
 flavor-complex-struggle = like raw struggle
 
 flavor-base-halal = halal
+
+flavor-base-greasy = greasy
+
+flavor-base-festive = festive

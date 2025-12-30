@@ -1,4 +1,16 @@
 - type: entity
+  id: CrateSupermatterFlatpack
+  parent: CrateEngineeringSecure
+  name: Supermatter Crate
+  description: Supermatter, your solution for things regular matter can't handle.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SupermatterFlatpack
+
+- type: entity
   id: CrateEngineeringReflector
   parent: CrateEngineeringSecure
   name: Reflector Crate

@@ -2,7 +2,7 @@
   parent: BaseItem
   id: Error
   name: error
-  description: Hmmmm. Something went wrong.
+  description: Hmmmm. I may be at a Loss for words, but I think Something went wrong.
   components:
   - type: Sprite
     sprite: error.rsi
@@ -15,6 +15,8 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
+        - ReagentId: Tazinide #starlight
+          Quantity: 15 #starlight | eating an error will shock you for 30 seconds
   - type: Slippery
     slipData:
       knockdownTime: 3
@@ -41,3 +43,15 @@
         density: 30
         mask:
         - ItemMask
+  #starlight start | I'm at a loss for words :3
+  - type: Item
+    size: Small
+    shape:
+      - 0,0,0,1
+      - 4,0,4,1
+      - 6,1,6,1
+      - 0,3,0,4
+      - 2,3,2,4
+      - 4,3,4,4
+      - 5,4,6,4
+  #starlight end

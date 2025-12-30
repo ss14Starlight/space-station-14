@@ -12,7 +12,6 @@
   - Trinkets
   - Scarves
   - Pens
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobMagistrate
@@ -23,12 +22,10 @@
   - Trinkets
   - Scarves
   - LuxuryPens
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobSurgeon
   groups:
-  - GroupTankHarness
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
@@ -42,7 +39,6 @@
   - Trinkets
   - Scarves
   - Pens
-  - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
   id: JobNanoTrasenRepresentative
@@ -56,7 +52,6 @@
   - Scarves
   - NTRPens
   - Survival
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobIAA
@@ -69,7 +64,6 @@
   - Scarves
   - LuxuryPens
   - Survival
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobBlueShield
@@ -85,12 +79,10 @@
   - Scarves
   - Pens
   - SurvivalSecurity
-  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: JobMiningSpecialist
   groups:
-  - GroupTankHarness
   - SalvageSpecialistBackpack
   - MiningSpecialistJumpsuit
   - SalvageSpecialistOuterClothing
@@ -101,12 +93,10 @@
   - Trinkets
   - Scarves
   - Pens
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobMailTech
   groups:
-  - GroupTankHarness
   - CargoTechnicianHead
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
@@ -117,7 +107,6 @@
   - Trinkets
   - Scarves
   - Pens
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobBrigmedic
@@ -134,12 +123,10 @@
     - SecuritySidearm
     - SurvivalSecurity
     - Trinkets
-    - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: JobSalvageLead
   groups:
-    - GroupTankHarness
     - SalvageSpecialistBackpack
     - SalvageLeadJumpsuit
     - SalvageLeadNeck
@@ -149,4 +136,3 @@
     - Glasses
     - Survival
     - Trinkets
-    - GroupSpeciesBreathTool

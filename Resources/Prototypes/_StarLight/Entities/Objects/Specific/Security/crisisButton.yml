@@ -1,0 +1,22 @@
+- type: entity
+  name: crisis button
+  parent: BaseItem
+  id: CrisisButton
+  description: Used to broadcast an distress call to security comms.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Security/crisisButton.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: UseDelay
+    delay: 120.0
+  - type: EmitSoundOnUse
+    sound:
+        collection: TriggerActivate
+  - type: TriggerOnUse
+  - type: RattleOnTrigger
+    radioChannel: Security
+    targetUser: true
+    messages:
+      Alive: rattle-on-trigger-distress-message

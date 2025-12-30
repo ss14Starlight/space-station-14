@@ -8,3 +8,14 @@
       sprite: _Starlight/Clothing/Shoes/Boots/salvage.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Shoes/Boots/salvage.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: SlickShoes
+  name: Slick Shoes
+  description: Slick shoes like a Mafiaoso would wear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Boots/slick_shoes.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Boots/slick_shoes.rsi

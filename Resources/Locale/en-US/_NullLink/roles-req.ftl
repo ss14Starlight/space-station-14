@@ -11,3 +11,4 @@ roles-req-gold-event-winner = gold event winner
 roles-req-staff-roles = staff
 roles-req-manager-roles = --Server Leadership--
 roles-req-patron-roles = patron
+roles-req-carpgames-roles = Carp Games Winner

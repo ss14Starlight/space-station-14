@@ -3,6 +3,7 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
+using Content.Shared.Body.Organ; // Starlight edit - Breathable organs
 using Content.Shared.Cargo;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
@@ -48,11 +49,51 @@ namespace Content.Server.Atmos.EntitySystems
         public override void UpdateUserInterface(Entity<GasTankComponent> ent)
         {
             var (owner, component) = ent;
-            _ui.SetUiState(owner, SharedGasTankUiKey.Key,
-                new GasTankBoundUserInterfaceState
-                {
-                    TankPressure = component.Air?.Pressure ?? 0,
-                });
+            // Starlight edit start - Breathable organs
+            var state = new GasTankBoundUserInterfaceState
+            {
+                TankPressure = component.Air?.Pressure ?? 0,
+            };
+            _ui.SetUiState(owner, SharedGasTankUiKey.Key, state);
+            _ui.SetUiState(owner, SharedGasTankUiKey.OrganKey, state);
+        }
+
+        /// <summary>
+        /// logic to empty the Gas Tank Organ
+        /// </summary>
+        protected override void OnGasTankEmptyOrgan(Entity<GasTankComponent> ent, ref GasTankEmptyOrganMessage args)
+        {
+            // Skip if the organ is already empty, to avoid spam
+            if (ent.Comp.Air == null || ent.Comp.Air.TotalMoles <= 0)
+                return;
+            
+            // Get the gas
+            var environment = _atmosphereSystem.GetContainingMixture(ent.Owner, false, true);
+            if (environment != null)
+            {
+                // Send the gas to the environment
+                _atmosphereSystem.Merge(environment, ent.Comp.Air);
+            }
+            
+            // Clear the gas tank
+            ent.Comp.Air.Clear();
+            CheckStatus(ent);
+            
+            // Clear moles in the component
+            ent.Comp.TotalMoles = 0;
+            DirtyField(ent.Owner, ent.Comp, nameof(GasTankComponent.TotalMoles));
+            
+            // Play sound on release
+            EntityUid soundSource = ent.Owner;
+            if (TryComp<OrganComponent>(ent.Owner, out var organ) && organ.Body != null)
+            {
+                soundSource = organ.Body.Value;
+            }
+            _audioSys.PlayPvs(ent.Comp.RuptureSound, soundSource);
+            
+            Dirty(ent);
+            UpdateUserInterface(ent);
+            // Starlight edit end
         }
 
         private void OnParentChange(EntityUid uid, GasTankComponent component, ref EntParentChangedMessage args)
@@ -100,7 +141,8 @@ namespace Content.Server.Atmos.EntitySystems
 
                 CheckStatus(gasTank);
 
-                if ((comp.IsConnected || comp.IsValveOpen) && _ui.IsUiOpen(uid, SharedGasTankUiKey.Key))
+                if ((comp.IsConnected || comp.IsValveOpen) && 
+                    (_ui.IsUiOpen(uid, SharedGasTankUiKey.Key) || _ui.IsUiOpen(uid, SharedGasTankUiKey.OrganKey)))
                 {
                     UpdateUserInterface(gasTank);
                 }

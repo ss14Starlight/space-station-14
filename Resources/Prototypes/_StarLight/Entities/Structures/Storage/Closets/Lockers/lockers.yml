@@ -68,7 +68,7 @@
     stateDoorOpen: bssecure_open
     stateDoorClosed: bssecure_door
   - type: AccessReader
-    access: [ [ "BlueShield" ] ]
+    access: [["BlueShield"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 

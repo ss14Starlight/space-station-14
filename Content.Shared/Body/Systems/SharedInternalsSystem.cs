@@ -22,6 +22,7 @@ public abstract class SharedInternalsSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!; // Starlight edit
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedGasTankSystem _gasTank = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -258,12 +259,14 @@ public abstract class SharedInternalsSystem : EntitySystem
     public Entity<GasTankComponent>? FindBestGasTank(
         Entity<HandsComponent?, InventoryComponent?, ContainerManagerComponent?> user)
     {
+        // Starlight edit start - Add a check for whether the user can breathe from organs
         // TODO use _respirator.CanMetabolizeGas() to prioritize metabolizable gasses
         // Lookup order:
-        // 1. Back
-        // 2. Exo-slot
-        // 3. In-hand
-        // 4. Pocket/belt
+        // 1. Organs
+        // 2. Back
+        // 3. Exo-slot
+        // 4. In-hand
+        // 5. Pocket/belt
         // Jetpacks will only be used as a fallback if no other tank is found
 
         // Store the first jetpack seen
@@ -272,6 +275,24 @@ public abstract class SharedInternalsSystem : EntitySystem
         if (!Resolve(user, ref user.Comp2, ref user.Comp3))
             return null;
 
+        if (TryComp<BodyComponent>(user.Owner, out var body) &&
+            TryComp<InternalsComponent>(user.Owner, out var internals) &&
+            internals.BreathTools.Count > 0)
+        {
+            var organTanks = _body.GetBodyOrganEntityComps<GasTankComponent>((user.Owner, body));
+            foreach (var organTank in organTanks)
+            {
+                if (organTank.Comp1.IsConnected && organTank.Comp1.User == user.Owner)
+                {
+                    return (organTank.Owner, organTank.Comp1);
+                }
+                else if (_gasTank.CanConnectToInternals((organTank.Owner, organTank.Comp1)))
+                {
+                    return (organTank.Owner, organTank.Comp1);
+                }
+            }
+        }
+        // Starlight edit end
         if (_inventory.TryGetSlotEntity(user, "back", out var backEntity, user.Comp2, user.Comp3) &&
             TryComp<GasTankComponent>(backEntity, out var backGasTank) &&
             _gasTank.CanConnectToInternals((backEntity.Value, backGasTank)))

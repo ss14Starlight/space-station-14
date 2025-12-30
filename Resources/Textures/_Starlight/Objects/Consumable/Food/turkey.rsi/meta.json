@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Rhetorica for Starlight; original roast turkey asset by Conflee. Plate inhand by Orsoniks.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "turkeycooked"
+        },
+		{
+            "name": "turkeyfeast"
+        },
+		{
+            "name": "turkeyfeast1"
+        },
+		{
+            "name": "turkeyfeast2"
+        },
+		{
+            "name": "turkeyfeasted"
+        },
+		{
+            "name": "turkeyslice"
+        },
+		{
+		  "name": "plate-inhand-right",
+		  "directions": 4
+		},
+		{
+		  "name": "plate-inhand-left",
+		  "directions": 4
+		},
+		{
+		  "name": "plate-inhand-both",
+		  "directions": 4
+		}
+    ]
+}
