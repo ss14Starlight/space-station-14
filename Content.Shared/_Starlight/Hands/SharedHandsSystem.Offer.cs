@@ -5,6 +5,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
 using Content.Shared.Popups;
+using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -17,6 +18,7 @@ public abstract partial class SharedHandsSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
     private ProtoId<AlertPrototype> OfferAlert = "Offer";
+    private ProtoId<TagPrototype> DenyTag = "NonOfferable";
 
     private void InitializeOffer()
     {
@@ -55,6 +57,12 @@ public abstract partial class SharedHandsSystem : EntitySystem
             if (!TryPickupAnyHand(uid, handsComp.OfferItem.Value))
             {
                 _popupSystem.PopupEntity(Loc.GetString("hands-full"), uid, uid);
+                return;
+            }
+
+            if (_tagSystem.HasTag(handsComp.OfferItem.Value, DenyTag))
+            {
+                _popupSystem.PopupEntity(Loc.GetString("offer-too-big"), uid, uid);
                 return;
             }
 

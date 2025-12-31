@@ -13,3 +13,5 @@ offer = Offer {THE($item)}
 
 alerts-offer-name = Offer
 alerts-offer-desc = you are being offered an item
+
+offer-too-big = The item is too big to offer!
