@@ -21,7 +21,7 @@
   - type: CanEscapeInventory
   - type: RestrictNestingItem
   - type: Item
-    size: Huge
+    size: Ginormous
     allowDirectHandPickup: false
   # Starlight-end
   - type: Sprite
