@@ -16,7 +16,8 @@ public sealed partial class DevilComponent : Component
     public List<ProtoId<EntityPrototype>> BaseActions = new()
     {
         "ActionSummonDemonicContract",
-        "ActionDamnationsMenu"
+        "ActionDamnationsMenu",
+        "ActionDevilRejuvenate"
     };
 
     
