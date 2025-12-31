@@ -1,0 +1,40 @@
+- type: entity
+  id: PowerTransmissionLaser
+  parent: BaseMachinePowered
+  name: PTL
+  description: todo
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Power/ptl.rsi
+    noRot: true
+    layers:
+      - state: trapdoor
+        map: ["trapdoorLayer"]
+      - state: ptl_off
+        map: ["mainLayer"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PtlVisuals.Active:
+        mainLayer:
+          True: { state: ptl_on }
+          False: { state: ptl_off }
+        trapdoorLayer:
+          True: { visible: false }
+          False: { visible: true }
+  - type: Battery
+    maxCharge: 24000000
+  - type: ExaminableBattery
+  - type: ActivatableUI
+    key: enum.PtlUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.PtlUiKey.Key:
+        type: PtlBoundUserInterface
+  - type: Ptl
+    targetPowerMw: 1
+    maxPowerMw: 5
+    cycleTimeSeconds: 2
+    spesosPerMwPerCycle: 50
