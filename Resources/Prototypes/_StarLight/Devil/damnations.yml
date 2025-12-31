@@ -105,7 +105,7 @@
   id: Magic
   name: gain arcane powers
   description: The signator learns some magical transport spells.
-  cost: 7
+  cost: 10
   components:
     - type: Jaunt
   reverseOnRemove: true
@@ -120,3 +120,12 @@
   - !type:DamnationActionAddAction
     actions:
     - ActionInstantRejuvenate
+
+- type: damnation
+  id: Power
+  name: gain power over others
+  description: The signator gains a piece of armor and a blade, so that they can rend their will upon the world.
+  cost: 9
+  actions:
+  - !type:DamnationActionSpawnLoot
+    table: PowerDamnationRandomEquipment

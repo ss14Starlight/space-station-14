@@ -1,0 +1,45 @@
+# Power damnation armor loot table
+# rarish non-job-linked armour, preferably the kind that you don't normally see on station
+- type: entityTable
+  id: PowerDamnationRandomArmorTable
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterVestWeb
+    - id: ClothingOuterVestWebElite
+    - id: ClothingOuterVestWebMerc
+    - id: ClothingOuterArmorRaid
+      weight: 0.7
+    - id: ClothingOuterArmorCult
+      weight: 0.7
+    - id: ClothingOuterArmorHeavy
+      weight: 0.5
+    - id: ClothingOuterArmorBone
+      weight: 0.7
+    - id: ClothingOuterArmorPodWars
+    - id: CardArmour # lol
+      weight: 0.01
+
+# weapon loot table
+# same here, the kind of thing you don't normally see on station
+- type: entityTable
+  id: PowerDamnationRandomStabbyTable
+  table: !type:GroupSelector
+    children:
+    - id: Cutlass
+    - id: Katana
+    - id: Claymore
+    - id: PrototypeVibroblade
+    - id: CaneBlade
+    - id: EldritchBlade
+    - id: UnholyHalberd
+    - id: KukriKnife
+
+
+- type: entityTable
+  id: PowerDamnationRandomEquipment
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: PowerDamnationRandomArmorTable
+    - !type:NestedSelector
+      tableId: PowerDamnationRandomStabbyTable
