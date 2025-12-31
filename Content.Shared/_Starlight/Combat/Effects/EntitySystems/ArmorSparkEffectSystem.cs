@@ -29,6 +29,7 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<ArmorSparkEffectComponent, InventoryRelayedEvent<DamageModifyEvent>>(OnArmorDamageModify);
         SubscribeLocalEvent<CyborgSparkEffectComponent, DamageModifyEvent>(OnCyborgDamageModify);
+        SubscribeLocalEvent<CyborgSparkEffectComponent, DamageChangedEvent>(OnCyborgDamageChanged); // _STARLIGHT: For melee hits
     }
 
     private void OnArmorDamageModify(EntityUid uid, ArmorSparkEffectComponent component, InventoryRelayedEvent<DamageModifyEvent> args)
@@ -142,6 +143,21 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         var effectCoords = cyborgTransform.Coordinates.Offset(offset);
         
         SparkEffectAt(effectCoords, component.SparkEffectPrototype, component.RicochetSoundCollection);
+    }
+
+    // _STARLIGHT: Handle melee/general damage events for cyborgs
+    private void OnCyborgDamageChanged(EntityUid uid, CyborgSparkEffectComponent component, DamageChangedEvent args)
+    {
+        // Only process on server
+        if (!_net.IsServer)
+            return;
+
+        // Only spawn sparks if damage was actually dealt
+        if (args.DamageDelta == null || args.DamageDelta.GetTotal() <= 0)
+            return;
+
+        // Spawn spark effect for any damage (melee, bullets, etc.)
+        SpawnCyborgSparkEffect(uid, component);
     }
 
     private void SparkEffectAt(EntityCoordinates coordinates, string effectPrototype, string soundCollection)

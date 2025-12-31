@@ -98,6 +98,15 @@
     netsync: false
   - type: ItemTogglePointLight
   - type: Appearance
+  - type: Healing # _STARLIGHT: Silicon repair - welders heal Blunt damage on silicons (IPCs, borgs)
+    damageContainers:
+    - Silicon
+    damage:
+      types:
+        Blunt: -8
+    delay: 2.5
+    healingEndSound:
+      collection: Welder
   - type: RequiresEyeProtection
   - type: PhysicalComposition
     materialComposition:

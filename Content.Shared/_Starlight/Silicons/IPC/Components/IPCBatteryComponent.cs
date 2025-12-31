@@ -50,7 +50,7 @@ public sealed partial class IPCBatteryComponent : Component
     public List<EntProtoId> DrainAllowedTargets = [];
     
     [DataField]
-    public ProtoId<EmotePrototype> NoPowerDeathEmote = default;
+    public ProtoId<EmotePrototype>? NoPowerDeathEmote = null;
     
     [ViewVariables(VVAccess.ReadWrite)]
     public ContainerSlot BatteryContainerSlot = default!;
@@ -76,6 +76,17 @@ public sealed partial class IPCBatteryComponent : Component
     public int WarningsIssued = 0;
 
     public Entity<AudioComponent>? Playing;
+    
+    [DataField]
+    public TimeSpan AlarmCooldown = TimeSpan.FromSeconds(10);
+    
+    public TimeSpan NextAlarmTime;
+    
+    /// <summary>
+    /// Last time the IPC was knocked down due to overheating
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan? LastOverheatKnockdown;
 }
 
 [Serializable, NetSerializable]

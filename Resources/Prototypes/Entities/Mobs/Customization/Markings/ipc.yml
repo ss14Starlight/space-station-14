@@ -157,7 +157,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: blank
+    state: ipc_screen_blank
 
 - type: marking
   id: MarkingIPCScreenStatic
@@ -166,7 +166,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: static
+    state: ipc_screen_static
 
 - type: marking
   id: MarkingIPCScreenBlue
@@ -175,7 +175,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: blue
+    state: ipc_screen_blue
 
 - type: marking
   id: MarkingIPCScreenBreakout
@@ -184,7 +184,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: breakout
+    state: ipc_screen_breakout
 
 - type: marking
   id: MarkingIPCScreenEight
@@ -193,7 +193,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: eight
+    state: ipc_screen_eight
 
 - type: marking
   id: MarkingIPCScreenGoggles
@@ -202,7 +202,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: goggles
+    state: ipc_screen_goggles
 
 - type: marking
   id: MarkingIPCScreenExclaim
@@ -211,7 +211,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: exclaim
+    state: ipc_screen_exclaim
 
 - type: marking
   id: MarkingIPCScreenHeart
@@ -220,7 +220,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: heart
+    state: ipc_screen_heart
 
 - type: marking
   id: MarkingIPCScreenMonoeye
@@ -229,7 +229,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: monoeye
+    state: ipc_screen_monoeye
 
 - type: marking
   id: MarkingIPCScreenNature
@@ -238,7 +238,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: nature
+    state: ipc_screen_nature
 
 - type: marking
   id: MarkingIPCScreenOrange
@@ -247,7 +247,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: orange
+    state: ipc_screen_orange
 
 - type: marking
   id: MarkingIPCScreenPink
@@ -256,7 +256,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: pink
+    state: ipc_screen_pink
 
 - type: marking
   id: MarkingIPCScreenQuestion
@@ -265,7 +265,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: question
+    state: ipc_screen_question
 
 - type: marking
   id: MarkingIPCScreenShower
@@ -274,7 +274,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: shower
+    state: ipc_screen_shower
 
 - type: marking
   id: MarkingIPCScreenYellow
@@ -283,7 +283,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: yellow
+    state: ipc_screen_yellow
 
 - type: marking
   id: MarkingIPCScreenScroll
@@ -292,7 +292,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: scroll
+    state: ipc_screen_scroll
 
 - type: marking
   id: MarkingIPCScreenConsole
@@ -301,7 +301,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: console
+    state: ipc_screen_console
 
 - type: marking
   id: MarkingIPCScreenRGB
@@ -310,7 +310,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: rgb
+    state: ipc_screen_rgb
 
 - type: marking
   id: MarkingIPCScreenGlider
@@ -319,7 +319,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: glider
+    state: ipc_screen_glider
 
 - type: marking
   id: MarkingIPCScreenRainbowHoriz
@@ -328,7 +328,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: rainbowhoriz
+    state: ipc_screen_rainbowhoriz
 
 - type: marking
   id: MarkingIPCScreenRainbowDiag
@@ -337,7 +337,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: rainbowdiag
+    state: ipc_screen_rainbowdiag
 
 - type: marking
   id: MarkingIPCScreenBSOD
@@ -346,7 +346,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: bsod
+    state: ipc_screen_bsod
 
 - type: marking
   id: MarkingIPCScreenRedText
@@ -355,7 +355,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: redtext
+    state: ipc_screen_redtext
 
 - type: marking
   id: MarkingIPCScreenSmiley
@@ -364,7 +364,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: smile
+    state: ipc_screen_smile
 
 - type: marking
   id: MarkingIPCScreenFrowny
@@ -373,7 +373,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: frown
+    state: ipc_screen_frown
 
 - type: marking
   id: MarkingIPCScreenRing
@@ -382,7 +382,7 @@
   speciesRestriction: [IPC]
   sprites:
   - sprite: Mobs/Customization/ipc/screens.rsi
-    state: ring
+    state: ipc_screen_ring
 
 # Bishop Chassis
 - type: marking

@@ -11,106 +11,95 @@
   components:
   - type: HumanoidAppearance
     species: IPC
-  - type: Hunger
-    baseDecayRate: 0  # IPCs don't eat
-  - type: Thirst
-    baseThirstThreshold: 0  # IPCs don't drink
-  - type: TypingIndicator
-    proto: robot
-  - type: Speech
-    speechVerb: Robotic
-    speechSounds: Borg
-  - type: Icon
-    sprite: Mobs/Species/IPC/parts.rsi
-    state: full
   - type: Body
     prototype: IPC
-  - type: IPCBattery
-    drainAllowedTargets:
-    - SMESBasic
-    - SubstationBasic
-    - APCBasic
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: PowerCellDraw
-    drawRate: 50
-  - type: Battery
-    maxCharge: 15000
-    startingCharge: 15000
+    drawRate: 0.5
+    enabled: true
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
   - type: WiresPanel
-  - type: ActivatableUI
-    key: enum.IPCUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.IPCUiKey.Key:
-        type: IPCBoundUserInterface
-  # - type: PowerCellSlot
-  #   cellSlotId: cell_slot
-  #   fitsInCharger: true
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: SheetSteel1
-      amount: 5
-    - id: CableApcStack1
-      amount: 5
-  - type: Barotrauma  # Completely immune to pressure
-    damage:
-      types:
-        Blunt: 0
-        Heat: 0
-  # IPCs don't breathe - no Respirator component needed!
-  - type: Bloodstream  # No blood/reagent processing
-    bloodMaxVolume: 0
-    bloodRefreshAmount: 0
-    bloodReagent: null
+  - type: ActivatableUIRequiresPanel
+  - type: LockedWiresPanel
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+    unlockTime: 10 # 10 second do-after for panel unlocking
+    lockTime: 10 # 10 second do-after for panel locking
+  - type: UseDelay
+    delay: 10 # 10 second cooldown between lock/unlock actions
+  - type: BorgChassis # _STARLIGHT: Enables borg UI for health and power display
+  - type: CyborgSparkEffect # _STARLIGHT: Spark effects when hit by hitscan bullets (like borgs)
+  - type: MeleeSound # _STARLIGHT: Metal clang sound when hit in melee (like borgs)
+    soundTypes:
+      Blunt:
+        collection: MetalSlam
+      Slash:
+        collection: MetalSlam
+      Piercing:
+        collection: MetalSlam
+  - type: Tag
+    tags:
+    - SiliconEmotes
+  - type: Emoting
+  - type: Vocal
+    sounds:
+      Male: UnisexSilicon
+      Female: UnisexSilicon
+      Unsexed: UnisexSilicon
+    wilhelmProbability: 0
   - type: Damageable
     damageContainer: Silicon
-    damageModifierSet: IPC
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+  - type: IPCBattery
+    numWarnings: 3
+    warningSound:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: IPCRevive
+    rebootButton: true
+    rebootTime: 3
+  - type: Hunger
+    baseDecayRate: 0
+  - type: Thirst
+    baseThirstThreshold: 0
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechSounds: Borg
+    speechVerb: Robotic
+  - type: AtmosExposed # Allows IPCs to be affected by atmospheric temperature
   - type: Temperature
-    heatDamageThreshold: 330  # More vulnerable to heat
-    coldDamageThreshold: 0  # Immune to cold
+    heatDamageThreshold: 330 # Slightly higher than humans (325)
+    coldDamageThreshold: 260 # Same as humans - freezing point
     currentTemperature: 310.15
     specificHeat: 46
     coldDamage:
       types:
-        Cold: 0
+        Cold: 0.5 # Slow cold damage when exposed to extreme cold
     heatDamage:
       types:
-        Heat: 2.0  # Increased heat damage
-  - type: ThermalRegulator
-    metabolismHeat: 1000  # Can overheat from activity
-    radiatedHeat: 120
-    implicitHeatRegulation: 120
-    sweatHeatRegulation: 0  # Can't sweat
-    shiveringHeatRegulation: 0  # Can't shiver
-    normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
-  - type: Stamina  # No stamina/fatigue
-    critThreshold: 1000
-  - type: MobPrice
-    price: 1500
-  # IPC Self-Repair: Welder for brute damage
-  # - type: Repairable
-  #   doAfterDelay: 5
-  #   allowSelfRepair: true
-  #   selfRepairPenalty: 1.5
-  #   fuelCost: 5
-  #   qualityNeeded: Welding
-  #   damage:
-  #     groups:
-  #       Brute: -30  # Heals 30 brute damage per use
-  # IPC Self-Repair: Cable for burn, Plastic for caustic
-  # - type: IPCHealable
-  #   burnHealAmount: 30
-  #   causticHealAmount: 30
-  #   healDelay: 3
-  #   selfHealPenalty: 1.5
-  # IPC APC Recharging
-  # - type: IPCApcRechargeable
-  #   chargeRate: 500
-  #   drainDelay: 2
-  # Starlight-start: Languages
+        Heat: 3 # Moderate heat damage, shutdown happens before death
+  - type: TemperatureSpeed # Become very slow when cold
+    thresholds:
+      280: 0.7  # 20% slower at 280K
+      270: 0.4  # 60% slower at 270K 
+      260: 0.2  # 80% slower at freezing point
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
@@ -118,7 +107,6 @@
     understands:
     - GalacticCommon
     - RobotTalk
-  # Starlight-end
 
 - type: entity
   parent: BaseSpeciesDummy

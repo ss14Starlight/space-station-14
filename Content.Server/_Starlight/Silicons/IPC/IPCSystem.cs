@@ -12,4 +12,10 @@ namespace Content.Server._Starlight.Silicons.IPC;
 public sealed partial class IPCSystem : SharedIPCSystem 
 {
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        InitializeTemperature();
+    }
 }

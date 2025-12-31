@@ -20,6 +20,8 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Ninja.Components;
+using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Content.Shared.Ninja.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
@@ -27,6 +29,7 @@ using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 
@@ -48,6 +51,8 @@ public sealed partial class IPCSystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly PredictedBatterySystem _predictedBattery = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly StandingStateSystem _standing = default!;
 
     protected override void SetupBattery()
     {
@@ -85,11 +90,25 @@ public sealed partial class IPCSystem
     {
         if(ent.Comp.WarningText != null)
             _popup.PopupEntity(Loc.GetString(ent.Comp.WarningText), ent, PopupType.LargeCaution);
+            
+        // Only play alarm if cooldown has elapsed
+        if(ent.Comp.WarningSound != null && _timing.CurTime >= ent.Comp.NextAlarmTime)
+        {
+            _audio.PlayEntity(ent.Comp.WarningSound, ent.Owner, ent.Owner);
+            ent.Comp.NextAlarmTime = _timing.CurTime + ent.Comp.AlarmCooldown;
+        }
     }
 
     private void OnBatteryStateChange(Entity<IPCBatteryComponent> ent, ref MobStateChangedEvent args)
     {
         _powerCell.SetDrawEnabled(ent.Owner, !_state.IsDead(ent));
+        
+        // Play critical alarm when entering critical state
+        if (args.NewMobState == MobState.Critical)
+        {
+            _audio.PlayEntity(new SoundPathSpecifier("/Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg"), ent.Owner, ent.Owner);
+        }
+        
         UpdateUI(ent);
     }
 
@@ -151,6 +170,11 @@ public sealed partial class IPCSystem
         ent.Comp.TimerActive = true;
         ent.Comp.WarningsIssued = 0;
         ent.Comp.Timer = ent.Comp.DieWithoutPowerAfter;
+        
+        // Knock down IPC immediately when power runs out (unconscious, not critical)
+        if (_state.IsAlive(ent))
+            _stun.TryKnockdown(ent.Owner, TimeSpan.MaxValue, autoStand: false);
+            
         RaiseLocalEvent(ent, new IPCBatteryDeathTimerStart());
     }
 
@@ -160,7 +184,12 @@ public sealed partial class IPCSystem
         
         ent.Comp.TimerActive = false;
         ent.Comp.WarningsIssued = 0;
-        RaiseLocalEvent(ent, new IPCBatteryDeathTimerEnd(ent.Comp.Timer != 0f));
+        
+        // If the timer was interrupted (power restored), remove knockdown
+        var interrupted = ent.Comp.Timer != 0f;
+        if (interrupted)
+                _standing.Stand(ent.Owner);
+        RaiseLocalEvent(ent, new IPCBatteryDeathTimerEnd(interrupted));
         ent.Comp.Timer = 0f;
     }
 

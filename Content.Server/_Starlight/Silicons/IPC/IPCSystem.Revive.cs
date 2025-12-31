@@ -4,6 +4,7 @@
 // _STARLIGHT: Namespace changes, added additional helpers
 
 using Content.Server.EUI;
+using Content.Server.Electrocution;
 using Content.Server.Ghost;
 using Content.Shared._Starlight.Silicons.IPC.Components;
 using Content.Shared.Damage;
@@ -24,6 +25,7 @@ namespace Content.Server._Starlight.Silicons.IPC;
 public sealed partial class IPCSystem
 {
     [Dependency] private readonly EuiManager _euiManager = default!;
+    [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
     
     protected override void SetupRevive()
     {
@@ -50,8 +52,13 @@ public sealed partial class IPCSystem
             !TryComp<DefibrillatorComponent>(args.Defib, out var defib))
             return;
 
-        if (ent.Comp.DefibDamage != null)
-            _damageable.TryChangeDamage(ent.Owner, ent.Comp.DefibDamage);
+        // Deal 150 shock damage to the IPC
+        var damage = new DamageSpecifier();
+        damage.DamageDict.Add("Shock", 150);
+        _damageable.TryChangeDamage(ent.Owner, damage);
+        
+        // Electrocute the user (person using the defibrillator)
+        _electrocution.TryDoElectrocution(args.EntityUsingDefib, null, 150, TimeSpan.FromSeconds(5), true);
         
         if (ent.Comp.DefibBatteryDrain)
             DrainBattery(ent.Owner);
@@ -179,9 +186,14 @@ public sealed partial class IPCSystem
         }
     }
 
-    public bool IsDamaged(Entity<IPCReviveComponent> ent, DamageableComponent? damageable) =>
-        Resolve(ent, ref damageable) && damageable.TotalDamage >= ent.Comp.DamagedThreshold.Min &&
+    public bool IsDamaged(Entity<IPCReviveComponent> ent, DamageableComponent? damageable)
+    {
+        if (ent.Comp.DamagedThreshold == null)
+            return false;
+            
+        return Resolve(ent, ref damageable) && damageable.TotalDamage >= ent.Comp.DamagedThreshold.Min &&
             (ent.Comp.DamagedThreshold.Max == null || damageable.TotalDamage <= ent.Comp.DamagedThreshold.Max);
+    }
     
     private bool CheckBatteryHasCharge(EntityUid ent)
     {

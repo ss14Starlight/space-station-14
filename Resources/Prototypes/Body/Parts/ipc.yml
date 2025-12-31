@@ -106,7 +106,7 @@
 - type: entity
   id: LeftLegIPC
   name: "left ipc leg"
-  parent: PartIPC
+  parent: [PartIPC, BaseLeftLeg]
   components:
   - type: Sprite
     state: "l_leg"
@@ -119,7 +119,7 @@
 - type: entity
   id: RightLegIPC
   name: "right ipc leg"
-  parent: PartIPC
+  parent: [PartIPC, BaseRightLeg]
   components:
   - type: Sprite
     state: "r_leg"
@@ -132,7 +132,7 @@
 - type: entity
   id: LeftFootIPC
   name: "left ipc foot"
-  parent: PartIPC
+  parent: [PartIPC, BaseLeftFoot]
   components:
   - type: Sprite
     state: "l_foot"
@@ -145,7 +145,7 @@
 - type: entity
   id: RightFootIPC
   name: "right ipc foot"
-  parent: PartIPC
+  parent: [PartIPC, BaseRightFoot]
   components:
   - type: Sprite
     state: "r_foot"

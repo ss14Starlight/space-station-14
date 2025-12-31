@@ -12,6 +12,7 @@
   markingLimits: MobIPCMarkingLimits
   dollPrototype: MobIPCDummy
   skinColoration: TintedHues
+  defaultSkinTone: "#C0C0C0"
   customName: false
 
 - type: speciesBaseSprites
@@ -20,7 +21,7 @@
     Head: MobIPCHead
     HeadTop: MobHumanoidAnyMarking
     Chest: MobIPCTorso
-    Eyes: MobHumanoidEyes
+    Eyes: MobIPCEyes
     LArm: MobIPCLArm
     RArm: MobIPCRArm
     LHand: MobIPCLHand
@@ -29,6 +30,12 @@
     RLeg: MobIPCRLeg
     LFoot: MobIPCLFoot
     RFoot: MobIPCRFoot
+
+- type: humanoidBaseSprite
+  id: MobIPCEyes
+  baseSprite:
+    sprite: Mobs/Customization/eyes.rsi
+    state: no_eyes
 
 - type: markingPoints
   id: MobIPCMarkingLimits

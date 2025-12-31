@@ -16,6 +16,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -88,7 +89,8 @@ public sealed class HealingSystem : EntitySystem
 
         var total = healed.GetTotal();
 
-        // Re-verify that we can heal the damage.
+        // _STARLIGHT: Only consume the item if it's stackable or has solution drain
+        // Tools like welders should not be consumed
         var dontRepeat = false;
         if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
         {
@@ -122,10 +124,8 @@ public sealed class HealingSystem : EntitySystem
             }
         }
         // Starlight end
-        else
-        {
-            PredictedQueueDel(args.Used.Value);
-        }
+        // _STARLIGHT: Removed else block that was deleting non-stackable items
+        // Tools like welders should remain in the player's inventory after use
 
         if (target.Owner != args.User)
         {
@@ -209,6 +209,13 @@ public sealed class HealingSystem : EntitySystem
     {
         if (!Resolve(target, ref target.Comp, false))
             return false;
+
+        // _STARLIGHT: Check if item requires being activated (e.g., welder must be lit)
+        if (TryComp<ItemToggleComponent>(healing, out var toggle) && !toggle.Activated)
+        {
+            _popupSystem.PopupClient(Loc.GetString("medical-item-not-activated", ("item", healing.Owner)), healing, user);
+            return false;
+        }
 
         if (healing.Comp.DamageContainers is not null &&
             target.Comp.DamageContainerID is not null &&

@@ -41,9 +41,6 @@
     layers:
     - state: small
   - type: Organ
-  - type: PowerCell
-    maxCharge: 20000
-    startingCharge: 20000
 
 - type: entity
   id: OrganIPCPump

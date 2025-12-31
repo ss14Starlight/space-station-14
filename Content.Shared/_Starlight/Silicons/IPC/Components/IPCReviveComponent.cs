@@ -64,7 +64,7 @@ public sealed partial class IPCReviveComponent : Component
 
     [DataField]
     [AutoNetworkedField]
-    public DamageThreshold DamagedThreshold = default!;
+    public DamageThreshold? DamagedThreshold = null;
 
     public Entity<AudioComponent>? DamageSoundEnt = null;
 
