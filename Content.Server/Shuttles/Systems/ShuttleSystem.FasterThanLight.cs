@@ -28,6 +28,7 @@ using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
 using Content.Server._Starlight.Station; // Starlight
 using Content.Shared.Station.Components; // Starlight
+using Content.Shared.Starlight.CCVar; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -91,7 +92,7 @@ public sealed partial class ShuttleSystem
         _cfg.OnValueChanged(CCVars.FTLTravelTime, time => DefaultTravelTime = time, true);
         _cfg.OnValueChanged(CCVars.FTLArrivalTime, time => DefaultArrivalTime = time, true);
         _cfg.OnValueChanged(CCVars.FTLCooldown, time => FTLCooldown = time, true);
-        _cfg.OnValueChanged(CCVars.ArrivalsFTLCooldown, time => ArrivalsFTLCooldown = time, true); // Starlight
+        _cfg.OnValueChanged(StarlightCCVars.ArrivalsFTLCooldown, time => ArrivalsFTLCooldown = time, true); // Starlight
         _cfg.OnValueChanged(CCVars.FTLMassLimit, time => FTLMassLimit = time, true);
         _cfg.OnValueChanged(CCVars.HyperspaceKnockdownTime, time => _hyperspaceKnockdownTime = TimeSpan.FromSeconds(time), true);
     }
@@ -566,9 +567,12 @@ public sealed partial class ShuttleSystem
 
         comp.State = FTLState.Cooldown;
         // 🌟Starlight begin
-        comp.StateTime = StartEndTime.FromCurTime(_gameTiming, HasComp<ArrivalsShuttleComponent>(uid)
-            ? ArrivalsFTLCooldown
-            : FTLCooldown);
+        float cooldown = entity.Comp2.FTLCooldownOverrideEnable
+            ? entity.Comp2.FTLCooldownOverrideTimer
+            : (HasComp<ArrivalsShuttleComponent>(uid) 
+                ? ArrivalsFTLCooldown 
+                : FTLCooldown);
+        comp.StateTime = StartEndTime.FromCurTime(_gameTiming, cooldown);
         // 🌟Starlight end
         _console.RefreshShuttleConsoles(uid);
         _mapSystem.SetPaused(mapId, false);
