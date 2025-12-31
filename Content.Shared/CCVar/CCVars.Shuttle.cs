@@ -99,7 +99,7 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<float> FTLCooldown =
         CVarDef.Create("shuttle.cooldown", 10f, CVar.SERVERONLY);
-    
+
     /// <summary>
     ///     The maximum <see cref="PhysicsComponent.Mass"/> a grid can have before it becomes unable to FTL.
     ///     Any value equal to or less than zero will disable this check.
