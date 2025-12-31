@@ -24937,5 +24937,20 @@ Entries:
   id: 265100
   time: '2025-12-31T05:39:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2651
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed Flavour Text to properly wrap in the character window.
+    type: Fix
+  id: 264200
+  time: '2025-12-31T13:23:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2642
+- author: Shades
+  changes:
+  - message: Fix bluespace crystals able to teleport walls, doors and windows, now
+      its only effect mobs.
+    type: Fix
+  id: 265600
+  time: '2025-12-31T16:06:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2656
 Order: -1
 
