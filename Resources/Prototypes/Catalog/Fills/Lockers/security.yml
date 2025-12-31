@@ -266,13 +266,13 @@
   table: !type:AllSelector
     children:
     - id: WeaponRifleLecter
-      amount: 1
+      amount: 2
     - id: WeaponRifleLeikha
-      amount: 1
+      amount: 2
     - id: MagazineRifleHP
-      amount: 3
+      amount: 6
     - id: MagazineRifleSP
-      amount: 3
+      amount: 6
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
@@ -289,11 +289,11 @@
   table: !type:AllSelector
     children:
     - id: WeaponSubMachineGunDrozd
-      amount: 1
+      amount: 3
     - id: WeaponSubMachineGunSP91RC
       amount: 2
     - id: MagazinePistolSubMachineGunSP
-      amount: 4
+      amount: 8
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
@@ -314,7 +314,7 @@
     - id: WeaponShotgunEnforcer
       amount: 2
     - id: WeaponShotgunRiot
-      amount: 1
+      amount: 2
     - id: BoxLethalshot
       amount: 4
 
@@ -335,11 +335,11 @@
     - id: SpeedLoaderMagnumBasic
       amount: 2
     - id: WeaponShotgunKammerer
-      amount: 2
+      amount: 3
     - id: WeaponShotgunRiot
-      amount: 1
+      amount: 2
     - id: BoxLethalshot
-      amount: 4
+      amount: 5
 
 - type: entity
   id: GunSafeSubMachineGunWt550
@@ -376,4 +376,4 @@
   table: !type:AllSelector
     children:
     - id: WeaponLaserCarbine
-      amount: 4
+      amount: 5
