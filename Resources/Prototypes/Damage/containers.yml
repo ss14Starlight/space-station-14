@@ -26,11 +26,10 @@
 
 - type: damageContainer
   id: Silicon
-  supportedGroups:
-    - Brute
   supportedTypes:
     - Heat
     - Shock
+    - Caustic
 
 - type: damageContainer
   id: Shield

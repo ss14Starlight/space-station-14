@@ -49,6 +49,7 @@
   - type: Tag
     tags:
     - SiliconEmotes
+    - DoorBumpOpener
   - type: Emoting
   - type: Vocal
     sounds:
@@ -71,6 +72,16 @@
     numWarnings: 3
     warningSound:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: BatteryDrainer # _STARLIGHT: Allow IPCs to drain power from APCs/machines
+    disableHandInteraction: true # Prevent accidental drain on left-click
+  - type: HumanoidEMP # _STARLIGHT: EMP effects on IPCs
+    stunTime: 3
+    damage:
+      types:
+        Shock: 15
+        Heat: 10
+    knockdownTime: 2
+    dropHeldItems: true
   - type: IPCRevive
     rebootButton: true
     rebootTime: 3

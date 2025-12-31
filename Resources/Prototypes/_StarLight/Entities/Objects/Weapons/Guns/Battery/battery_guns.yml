@@ -343,7 +343,7 @@
     autoRechargeRate: 40 #100sec+60Sec Pause
     autoRechargePauseTime: 60
   - type: BatteryAmmoProvider
-    proto: EmpPulse
+    proto: RedLaserBeam
     fireCost: 250
   - type: MagazineVisuals
     magState: mag
@@ -380,7 +380,7 @@
     autoRechargeRate: 40 #100sec+60Sec Pause
     autoRechargePauseTime: 60
   - type: BatteryAmmoProvider
-    proto: EmpPulse
+    proto: RedLaserBeam
     fireCost: 250
   - type: MagazineVisuals
     magState: mag

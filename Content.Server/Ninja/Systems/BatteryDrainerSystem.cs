@@ -1,3 +1,8 @@
+// IMPROVEMENTS PORTED FROM: Far-Horizons-SS14 PR #135
+// https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
+// - Added DisableHandInteraction flag check to prevent accidental draining
+// - Added WiresPanelComponent check requiring panel to be open before draining
+
 using Content.Server.Ninja.Events;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -8,6 +13,7 @@ using Content.Shared.Ninja.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Wires;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Ninja.Systems;
@@ -39,8 +45,20 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
     {
         var (uid, comp) = ent;
         var target = args.Target;
+        
+        // SOURCE: Far-Horizons-SS14 PR #135 - Respect DisableHandInteraction flag
+        if (comp.DisableHandInteraction)
+            return;
+            
         if (args.Handled || comp.BatteryUid is not { } battery || !HasComp<PowerNetworkBatteryComponent>(target))
             return;
+
+        // SOURCE: Far-Horizons-SS14 PR #135 - Require panel to be open before draining
+        if (TryComp<WiresPanelComponent>(target, out var panel) && !panel.Open)
+        {
+            _popup.PopupEntity(Loc.GetString("battery-drainer-panel-locked"), uid, uid, PopupType.Medium);
+            return;
+        }
 
         // handles even if battery is full so you can actually see the poup
         args.Handled = true;

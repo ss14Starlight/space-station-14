@@ -71,6 +71,7 @@
   armorCoefficientPrice: 2.5
   armorFlatPrice: 20
 
+# Ion damage - specifically for silicons (IPCs, borgs)
 - type: damageType
   id: Slash
   name: damage-type-slash

@@ -25,8 +25,11 @@ namespace Content.Server._Starlight.Silicons.IPC;
 public sealed partial class IPCSystem
 {
     [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
+    [Dependency] private readonly ElectrocutionSystem _electrocution = default!; // _STARLIGHT: For dangerous defib interaction
     
+    /// <summary>
+    /// Sets up event subscriptions for IPC revival/reboot mechanics.
+    /// </summary>
     protected override void SetupRevive()
     {
         base.SetupRevive();
@@ -38,6 +41,10 @@ public sealed partial class IPCSystem
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddReviveVerbs);
     }
 
+    /// <summary>
+    /// Handles completion of the IPC reboot do-after.
+    /// Called when someone successfully completes the reboot process.
+    /// </summary>
     private void OnReviveDoAfter(Entity<IPCReviveComponent> ent, ref IPCRebootDoAfterEvent args)
     {
         if (args.Cancelled)
@@ -46,25 +53,30 @@ public sealed partial class IPCSystem
         FinishReboot(ent);   
     }
 
+    /// <summary>
+    /// _STARLIGHT: Makes defibrillators dangerous to use on IPCs.
+    /// Deals 150 shock damage to the IPC and electrocutes the user.
+    /// This prevents defibs from being used on IPCs (use reboot instead).
+    /// </summary>
     private void OnBeforeZap(Entity<IPCReviveComponent> ent, ref TargetBeforeDefibrillatorZapsEvent args)
     {
         if (args.Cancelled ||
             !TryComp<DefibrillatorComponent>(args.Defib, out var defib))
             return;
 
-        // Deal 150 shock damage to the IPC
+        // Deal 150 shock damage to the IPC (damages them instead of helping)
         var damage = new DamageSpecifier();
         damage.DamageDict.Add("Shock", 150);
         _damageable.TryChangeDamage(ent.Owner, damage);
         
-        // Electrocute the user (person using the defibrillator)
+        // Electrocute the user (150 damage, 5 second stun)
         _electrocution.TryDoElectrocution(args.EntityUsingDefib, null, 150, TimeSpan.FromSeconds(5), true);
         
         if (ent.Comp.DefibBatteryDrain)
             DrainBattery(ent.Owner);
 
         _audio.PlayPvs(defib.ZapSound, args.Defib);
-        args.Cancel();
+        args.Cancel(); // Cancel the normal defib effect
     }
 
     private void AddReviveVerbs(GetVerbsEvent<Verb> ev)

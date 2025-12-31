@@ -1,3 +1,8 @@
+// IMPROVEMENTS PORTED FROM: Far-Horizons-SS14 PR #135
+// https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
+// - DisableHandInteraction flag to prevent accidental left-click draining
+// - Panel check requirement (see BatteryDrainerSystem)
+
 using Content.Shared.Ninja.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -37,4 +42,12 @@ public sealed partial class BatteryDrainerComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier SparkSound = new SoundCollectionSpecifier("sparks");
+
+    /// <summary>
+    /// Disable left click interactions.
+    /// Prevents accidental power drain when clicking on machines/APCs.
+    /// SOURCE: Far-Horizons-SS14 PR #135
+    /// </summary>
+    [DataField]
+    public bool DisableHandInteraction = false;
 }

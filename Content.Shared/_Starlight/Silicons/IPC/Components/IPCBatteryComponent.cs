@@ -82,8 +82,10 @@ public sealed partial class IPCBatteryComponent : Component
     
     public TimeSpan NextAlarmTime;
     
+    // _STARLIGHT: Overheat shutdown tracking
     /// <summary>
-    /// Last time the IPC was knocked down due to overheating
+    /// Last time the IPC was knocked down due to overheating.
+    /// Used to prevent spam knockdowns during sustained high temperature.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan? LastOverheatKnockdown;

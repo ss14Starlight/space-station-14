@@ -35,6 +35,10 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Silicons.IPC;
 
+/// <summary>
+/// Handles IPC battery power management and death mechanics.
+/// IPCs require power to function and will enter a death timer when power runs out.
+/// </summary>
 public sealed partial class IPCSystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
@@ -51,9 +55,12 @@ public sealed partial class IPCSystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly PredictedBatterySystem _predictedBattery = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!; // _STARLIGHT: For power loss knockdown
+    [Dependency] private readonly StandingStateSystem _standing = default!; // _STARLIGHT: For power restore stand-up
 
+    /// <summary>
+    /// Sets up event subscriptions for battery-related mechanics.
+    /// </summary>
     protected override void SetupBattery()
     {
         base.SetupBattery();
@@ -77,6 +84,9 @@ public sealed partial class IPCSystem
         UpdateBatteryAlert(ent);
     }
     
+    /// <summary>
+    /// Called when the death timer ends. Kills the IPC if not interrupted.
+    /// </summary>
     private void OnBatteryTimerEnd(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerEnd args)
     {
         if (!args.Interrupted)
@@ -86,12 +96,15 @@ public sealed partial class IPCSystem
         UpdateBatteryAlert(ent);
     }
     
+    /// <summary>
+    /// Updates during death timer - shows warnings and plays alarm sounds.
+    /// </summary>
     private void OnBatteryTimerUpdate(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerUpdate args)
     {
         if(ent.Comp.WarningText != null)
             _popup.PopupEntity(Loc.GetString(ent.Comp.WarningText), ent, PopupType.LargeCaution);
             
-        // Only play alarm if cooldown has elapsed
+        // Only play alarm if cooldown has elapsed (prevents spam)
         if(ent.Comp.WarningSound != null && _timing.CurTime >= ent.Comp.NextAlarmTime)
         {
             _audio.PlayEntity(ent.Comp.WarningSound, ent.Owner, ent.Owner);
@@ -99,11 +112,15 @@ public sealed partial class IPCSystem
         }
     }
 
+    /// <summary>
+    /// Handles IPC mob state changes (alive, critical, dead).
+    /// Disables power draw when dead and plays critical alarm.
+    /// </summary>
     private void OnBatteryStateChange(Entity<IPCBatteryComponent> ent, ref MobStateChangedEvent args)
     {
         _powerCell.SetDrawEnabled(ent.Owner, !_state.IsDead(ent));
         
-        // Play critical alarm when entering critical state
+        // _STARLIGHT: Play critical alarm when entering critical state
         if (args.NewMobState == MobState.Critical)
         {
             _audio.PlayEntity(new SoundPathSpecifier("/Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg"), ent.Owner, ent.Owner);
@@ -144,6 +161,10 @@ public sealed partial class IPCSystem
         }
     }
 
+    /// <summary>
+    /// Called when the power cell slot becomes empty.
+    /// Starts the death timer immediately.
+    /// </summary>
     private void OnPowerCellSlotEmpty(Entity<IPCBatteryComponent> ent, ref PowerCellSlotEmptyEvent args)
     {
         StartDeathTimer(ent);
@@ -151,6 +172,10 @@ public sealed partial class IPCSystem
         UpdateUI(ent);
     }
     
+    /// <summary>
+    /// Called when the power cell is changed (removed or inserted).
+    /// Manages death timer based on whether there's charge available.
+    /// </summary>
     private void OnPowerCellChanged(Entity<IPCBatteryComponent> ent, ref PowerCellChangedEvent args)
     {
         if(!_powerCell.HasDrawCharge((ent.Owner, CompOrNull<PowerCellDrawComponent>(ent), ent.Comp.PowerCellSlot)))
@@ -163,6 +188,11 @@ public sealed partial class IPCSystem
         UpdateUI(ent);
     }
 
+    /// <summary>
+    /// _STARLIGHT: Starts the IPC death timer when power runs out.
+    /// Immediately knocks down the IPC (makes them unconscious, not critical).
+    /// After the timer expires, the IPC dies.
+    /// </summary>
     public void StartDeathTimer(Entity<IPCBatteryComponent> ent){
         if (ent.Comp.TimerActive)
             return;
@@ -171,13 +201,17 @@ public sealed partial class IPCSystem
         ent.Comp.WarningsIssued = 0;
         ent.Comp.Timer = ent.Comp.DieWithoutPowerAfter;
         
-        // Knock down IPC immediately when power runs out (unconscious, not critical)
+        // _STARLIGHT: Knock down IPC immediately when power runs out (unconscious, not critical)
         if (_state.IsAlive(ent))
             _stun.TryKnockdown(ent.Owner, TimeSpan.MaxValue, autoStand: false);
             
         RaiseLocalEvent(ent, new IPCBatteryDeathTimerStart());
     }
 
+    /// <summary>
+    /// _STARLIGHT: Stops the IPC death timer when power is restored.
+    /// Makes the IPC stand up if they were knocked down.
+    /// </summary>
     public void StopDeathTimer(Entity<IPCBatteryComponent> ent){
         if (!ent.Comp.TimerActive)
             return;
@@ -185,7 +219,7 @@ public sealed partial class IPCSystem
         ent.Comp.TimerActive = false;
         ent.Comp.WarningsIssued = 0;
         
-        // If the timer was interrupted (power restored), remove knockdown
+        // _STARLIGHT: If the timer was interrupted (power restored), stand the IPC up
         var interrupted = ent.Comp.Timer != 0f;
         if (interrupted)
                 _standing.Stand(ent.Owner);
