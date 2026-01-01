@@ -515,7 +515,74 @@
   # Starlight-start: Body emotes (wing flap!)
   - type: BodyEmotes
     soundsId: MothroachBodyEmotes
-  # Starlight-end
+# Starlight-start
+- type: LanguageKnowledge
+  speaks:
+  - Mothroach
+  understands:
+  - Moffic
+  - Mothroach
+- type: VentCrawler
+- type: HTN
+  constantlyReplan: false
+  rootTask:
+    task: MouseCompound
+- type: MobState
+- type: Deathgasp
+- type: MobStateActions
+  actions:
+    Critical:
+      - ActionCritSuccumb
+      - ActionCritFakeDeath
+      - ActionCritLastWords
+- type: BodyEmotes
+  soundsId: MothroachBodyEmotes
+- type: MeleeWeapon
+  soundHit:
+    path: /Audio/Effects/bite.ogg
+  angle: 0
+  animation: WeaponArcBite
+  damage:
+    types:
+      Piercing: 1
+- type: InteractionPopup
+  successChance: 0.8
+  interactDelay: 1.2
+  interactSuccessString: petting-success-soft-floofy
+  interactFailureString: petting-failure-generic
+  interactSuccessSpawn: EffectHearts
+  interactSuccessSound:
+    path: /Audio/Voice/Moth/moth_squeak.ogg
+- type: Food
+  requireDead: true
+  transferAmount: 4
+- type: FlavorProfile
+  flavors:
+  - horrible
+  - terrible
+  - chewy
+- type: Hunger
+  baseDecayRate: 0.3
+- type: Extractable
+  grindableSolutionName: food
+- type: SolutionContainerManager
+  solutions:
+    food:
+      maxVol: 120
+      reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Protein
+           Quantity: 6
+        - ReagentId: InsectBlood
+          Quantity: 90
+        - ReagentId: Slime
+          Quantity: 8
+- type: Barotrauma   
+  damage:
+    types:
+      Blunt: 0.08
+# Starlight-end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
