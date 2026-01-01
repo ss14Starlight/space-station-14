@@ -10,24 +10,19 @@
     Blunt: 5
     Heat: 5
 
-# IPC damage modifiers - vulnerable to EMPs, energy weapons, and fire
-# Resistant to ballistic and melee damage
+# IPC damage modifiers - Balanced for mechanical beings
+# IPCs are robots with metal chassis but electronic internals
+# Max resistance: 10% (0.9x coefficient minimum)
 - type: damageModifierSet
-  id: IPC
+  id: Silicon
   coefficients:
-    Blunt: 0.7      # Resistant to melee
-    Slash: 0.6      # Resistant to melee
-    Piercing: 0.7   # Resistant to ballistic
-    Heat: 1.5       # Vulnerable to fire
-    Shock: 2.0      # Highly vulnerable to EMPs and energy weapons
-    Cold: 0.2       # Very resistant to cold
-    Caustic: 0.9    # Slightly resistant to acid
-    Poison: 0       # Immune to toxins
-    Radiation: 0.5  # Resistant to radiation
-  flatReductions:
-    Blunt: 4
-    Slash: 4
-    Piercing: 4
+    Blunt: 0.9      # 10% resistance - metal chassis provides some protection
+    Slash: 0.9      # 10% resistance - metal plating resists cuts
+    Piercing: 1.0   # No resistance - circuits/wiring vulnerable to punctures
+    Heat: 1.1       # 10% weakness - electronics sensitive to heat but less than full vulnerability
+    Cold: 0.95      # 5% resistance - cold affects performance but doesn't damage as much
+    Shock: 1.5      # 50% weakness - electrical damage is dangerous to circuits
+    Caustic: 1.1    # 10% weakness - acid corrodes metal and circuits
 
 - type: damageModifierSet
   id: StructuralMetallicStrong

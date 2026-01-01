@@ -490,14 +490,7 @@
     state: r_foot
 
 # Hesphiastos Chassis
-- type: marking
-  id: MarkingHesphiastosHead
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [IPC]
-  sprites:
-  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
-    state: head
+# Note: Hesphiastos chassis has no head state½
 
 - type: marking
   id: MarkingHesphiastosChest
@@ -505,8 +498,8 @@
   markingCategory: Chest
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
-    state: chest
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi/hesphiastos_main.rsi
+    state: torso-1
 
 - type: marking
   id: MarkingHesphiastosLArm
@@ -514,8 +507,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
-    state: l_arm
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi/hesphiastos_main.rsi
+    state: l_arm-1
 
 - type: marking
   id: MarkingHesphiastosRArm
@@ -523,8 +516,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
-    state: r_arm
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi/hesphiastos_main.rsi
+    state: r_arm-1
 
 - type: marking
   id: MarkingHesphiastosLHand
@@ -532,8 +525,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
-    state: l_hand
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi/hesphiastos_main.rsi
+    state: l_hand-1
 
 - type: marking
   id: MarkingHesphiastosRHand
@@ -541,8 +534,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
-    state: r_hand
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi/hesphiastos_main.rsi
+    state: r_hand-1
 
 - type: marking
   id: MarkingHesphiastosLLeg
@@ -550,8 +543,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
-    state: l_leg
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi/hesphiastos_main.rsi
+    state: l_leg-1
 
 - type: marking
   id: MarkingHesphiastosRLeg
@@ -559,8 +552,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
-    state: r_leg
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi/hesphiastos_main.rsi
+    state: r_leg-1
 
 - type: marking
   id: MarkingHesphiastosLFoot
@@ -568,8 +561,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
-    state: l_foot
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi/hesphiastos_main.rsi
+    state: l_foot-1
 
 - type: marking
   id: MarkingHesphiastosRFoot
@@ -577,8 +570,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/hesphiastos.rsi
-    state: r_foot
+  - sprite: Mobs/Customization/ipc/hesphiastos.rsi/hesphiastos_main.rsi
+    state: r_foot-1
 
 # Morpheus Chassis
 - type: marking
@@ -587,7 +580,7 @@
   markingCategory: Head
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
     state: head
 
 - type: marking
@@ -596,8 +589,8 @@
   markingCategory: Head
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
-    state: head_alt
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_alt1
+    state: head
 
 - type: marking
   id: MarkingMorpheusChest
@@ -605,8 +598,8 @@
   markingCategory: Chest
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
-    state: chest
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
+    state: torso
 
 - type: marking
   id: MarkingMorpheusLArm
@@ -614,7 +607,7 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
     state: l_arm
 
 - type: marking
@@ -623,7 +616,7 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
     state: r_arm
 
 - type: marking
@@ -632,7 +625,7 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
     state: l_hand
 
 - type: marking
@@ -641,7 +634,7 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
     state: r_hand
 
 - type: marking
@@ -650,7 +643,7 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
     state: l_leg
 
 - type: marking
@@ -659,7 +652,7 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
     state: r_leg
 
 - type: marking
@@ -668,7 +661,7 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
     state: l_foot
 
 - type: marking
@@ -677,18 +670,11 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
     state: r_foot
 
 # Shellguard Chassis
-- type: marking
-  id: MarkingShellguardHead
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [IPC]
-  sprites:
-  - sprite: Mobs/Customization/ipc/shellguard.rsi
-    state: head
+# Note: Shellguard chassis has no head state
 
 - type: marking
   id: MarkingShellguardChest
@@ -696,8 +682,8 @@
   markingCategory: Chest
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/shellguard.rsi
-    state: chest
+  - sprite: Mobs/Customization/ipc/shellguard.rsi/shellguard_main.rsi
+    state: torso-1
 
 - type: marking
   id: MarkingShellguardLArm
@@ -705,8 +691,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/shellguard.rsi
-    state: l_arm
+  - sprite: Mobs/Customization/ipc/shellguard.rsi/shellguard_main.rsi
+    state: l_arm-1
 
 - type: marking
   id: MarkingShellguardRArm
@@ -714,8 +700,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/shellguard.rsi
-    state: r_arm
+  - sprite: Mobs/Customization/ipc/shellguard.rsi/shellguard_main.rsi
+    state: r_arm-1
 
 - type: marking
   id: MarkingShellguardLHand
@@ -723,8 +709,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/shellguard.rsi
-    state: l_hand
+  - sprite: Mobs/Customization/ipc/shellguard.rsi/shellguard_main.rsi
+    state: l_hand-1
 
 - type: marking
   id: MarkingShellguardRHand
@@ -732,8 +718,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/shellguard.rsi
-    state: r_hand
+  - sprite: Mobs/Customization/ipc/shellguard.rsi/shellguard_main.rsi
+    state: r_hand-1
 
 - type: marking
   id: MarkingShellguardLLeg
@@ -741,8 +727,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/shellguard.rsi
-    state: l_leg
+  - sprite: Mobs/Customization/ipc/shellguard.rsi/shellguard_main.rsi
+    state: l_leg-1
 
 - type: marking
   id: MarkingShellguardRLeg
@@ -750,8 +736,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/shellguard.rsi
-    state: r_leg
+  - sprite: Mobs/Customization/ipc/shellguard.rsi/shellguard_main.rsi
+    state: r_leg-1
 
 - type: marking
   id: MarkingShellguardLFoot
@@ -759,8 +745,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/shellguard.rsi
-    state: l_foot
+  - sprite: Mobs/Customization/ipc/shellguard.rsi/shellguard_main.rsi
+    state: l_foot-1
 
 - type: marking
   id: MarkingShellguardRFoot
@@ -768,27 +754,11 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/shellguard.rsi
-    state: r_foot
+  - sprite: Mobs/Customization/ipc/shellguard.rsi/shellguard_main.rsi
+    state: r_foot-1
 
 # Xion Chassis
-- type: marking
-  id: MarkingXionHead
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [IPC]
-  sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: head
-
-- type: marking
-  id: MarkingXionHeadAlt
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [IPC]
-  sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: head_alt
+# Note: Xion chassis has no head state
 
 - type: marking
   id: MarkingXionChest
@@ -796,8 +766,8 @@
   markingCategory: Chest
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: chest
+  - sprite: Mobs/Customization/ipc/xion.rsi/xion_main.rsi
+    state: torso-1
 
 - type: marking
   id: MarkingXionLArm
@@ -805,8 +775,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: l_arm
+  - sprite: Mobs/Customization/ipc/xion.rsi/xion_main.rsi
+    state: l_arm-1
 
 - type: marking
   id: MarkingXionRArm
@@ -814,8 +784,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: r_arm
+  - sprite: Mobs/Customization/ipc/xion.rsi/xion_main.rsi
+    state: r_arm-1
 
 - type: marking
   id: MarkingXionLHand
@@ -823,8 +793,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: l_hand
+  - sprite: Mobs/Customization/ipc/xion.rsi/xion_main.rsi
+    state: l_hand-1
 
 - type: marking
   id: MarkingXionRHand
@@ -832,8 +802,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: r_hand
+  - sprite: Mobs/Customization/ipc/xion.rsi/xion_main.rsi
+    state: r_hand-1
 
 - type: marking
   id: MarkingXionLLeg
@@ -841,8 +811,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: l_leg
+  - sprite: Mobs/Customization/ipc/xion.rsi/xion_main.rsi
+    state: l_leg-1
 
 - type: marking
   id: MarkingXionRLeg
@@ -850,8 +820,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: r_leg
+  - sprite: Mobs/Customization/ipc/xion.rsi/xion_main.rsi
+    state: r_leg-1
 
 - type: marking
   id: MarkingXionLFoot
@@ -859,8 +829,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: l_foot
+  - sprite: Mobs/Customization/ipc/xion.rsi/xion_main.rsi
+    state: l_foot-1
 
 - type: marking
   id: MarkingXionRFoot
@@ -868,8 +838,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/xion.rsi
-    state: r_foot
+  - sprite: Mobs/Customization/ipc/xion.rsi/xion_main.rsi
+    state: r_foot-1
 
 # Ward-Takahashi Chassis
 - type: marking
@@ -878,7 +848,7 @@
   markingCategory: Head
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_main.rsi
     state: head
 
 - type: marking
@@ -887,8 +857,8 @@
   markingCategory: Head
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
-    state: head_alt
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_alt1.rsi
+    state: head
 
 - type: marking
   id: MarkingTakahashiChest
@@ -896,8 +866,8 @@
   markingCategory: Chest
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
-    state: chest
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_main.rsi
+    state: torso
 
 - type: marking
   id: MarkingTakahashiLArm
@@ -905,7 +875,7 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_main.rsi
     state: l_arm
 
 - type: marking
@@ -914,7 +884,7 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_main.rsi
     state: r_arm
 
 - type: marking
@@ -923,7 +893,7 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_main.rsi
     state: l_hand
 
 - type: marking
@@ -932,7 +902,7 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_main.rsi
     state: r_hand
 
 - type: marking
@@ -941,7 +911,7 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_main.rsi
     state: l_leg
 
 - type: marking
@@ -950,7 +920,7 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_main.rsi
     state: r_leg
 
 - type: marking
@@ -959,7 +929,7 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_main.rsi
     state: l_foot
 
 - type: marking
@@ -968,7 +938,7 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi
+  - sprite: Mobs/Customization/ipc/wardtakahashi.rsi/wardtakahashi_main.rsi
     state: r_foot
 
 # Zenghu Chassis
@@ -978,8 +948,8 @@
   markingCategory: Head
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
-    state: head
+  - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
+    state: head-1
 
 - type: marking
   id: MarkingZenghuChest
@@ -987,8 +957,8 @@
   markingCategory: Chest
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
-    state: chest
+  - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
+    state: torso-1
 
 - type: marking
   id: MarkingZenghuLArm
@@ -996,8 +966,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
-    state: l_arm
+  - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
+    state: l_arm-1
 
 - type: marking
   id: MarkingZenghuRArm
@@ -1005,8 +975,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
-    state: r_arm
+  - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
+    state: r_arm-1
 
 - type: marking
   id: MarkingZenghuLHand
@@ -1014,8 +984,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
-    state: l_hand
+  - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
+    state: l_hand-1
 
 - type: marking
   id: MarkingZenghuRHand
@@ -1023,8 +993,8 @@
   markingCategory: Arms
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
-    state: r_hand
+  - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
+    state: r_hand-1
 
 - type: marking
   id: MarkingZenghuLLeg
@@ -1032,8 +1002,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
-    state: l_leg
+  - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
+    state: l_leg-1
 
 - type: marking
   id: MarkingZenghuRLeg
@@ -1041,8 +1011,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
-    state: r_leg
+  - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
+    state: r_leg-1
 
 - type: marking
   id: MarkingZenghuLFoot
@@ -1050,8 +1020,8 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
-    state: l_foot
+  - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
+    state: l_foot-1
 
 - type: marking
   id: MarkingZenghuRFoot
@@ -1059,5 +1029,5 @@
   markingCategory: Legs
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/zenghu/zenghu_main.rsi
-    state: r_foot
+  - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
+    state: r_foot-1

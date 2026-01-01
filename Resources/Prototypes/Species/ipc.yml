@@ -9,7 +9,7 @@
   roundStart: true
   prototype: MobIPC
   sprites: MobIPCSprites
-  markingLimits: MobIPCMarkingLimits
+  markingLimits: MobHumanMarkingLimits
   dollPrototype: MobIPCDummy
   skinColoration: TintedHues
   defaultSkinTone: "#C0C0C0"
@@ -36,28 +36,6 @@
   baseSprite:
     sprite: Mobs/Customization/eyes.rsi
     state: no_eyes
-
-- type: markingPoints
-  id: MobIPCMarkingLimits
-  points:
-    HeadTop:
-      points: 1
-      required: false
-    Head:
-      points: 1
-      required: false
-    Eyes:
-      points: 1
-      required: false
-    Chest:
-      points: 1
-      required: false
-    Legs:
-      points: 2
-      required: false
-    Arms:
-      points: 2
-      required: false
 
 - type: humanoidBaseSprite
   id: MobIPCHead

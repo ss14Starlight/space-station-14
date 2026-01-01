@@ -5,7 +5,7 @@
 
 - type: entity
   id: OrganIPCPositronicBrain
-  parent: BaseItem
+  parent: PositronicBrain # Use same brain as borgs
   name: "positronic brain"
   description: "A complex artificial brain capable of sentience."
   components:
@@ -13,11 +13,6 @@
     sprite: Mobs/Species/IPC/organs.rsi
     state: microcell
   - type: Organ
-  - type: Input
-    context: "ghost"
-  - type: InputMover
-  - type: GhostOnMove
-  - type: Brain
 
 - type: entity
   id: OrganIPCEyes

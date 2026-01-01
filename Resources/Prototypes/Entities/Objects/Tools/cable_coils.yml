@@ -45,14 +45,16 @@
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
   # 🌟Starlight-end🌟
-  - type: Healing # _STARLIGHT: Silicon repair - cable coil heals Shock/Heat damage on silicons (IPCs, borgs)
+  - type: Healing # _STARLIGHT: Silicon repair - cable coil heals electrical/thermal damage on silicons (IPCs, borgs)
     damageContainers:
     - Silicon
     damage:
       types:
         Shock: -15
         Heat: -5
-    delay: 1.5
+        Cold: -5
+        Caustic: -10
+    delay: 1.0
 
 - type: entity
   id: CableHVStack

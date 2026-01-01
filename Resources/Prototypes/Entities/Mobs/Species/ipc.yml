@@ -4,11 +4,14 @@
 # CODE: Original implementation by Starlight Chimes
 
 - type: entity
-  parent: BaseMobSpecies
+  parent:
+  - BaseMobSpecies
+  - MobFlammable
   id: BaseMobIPC
   name: IPC
   abstract: true
   components:
+  - type: IPC # _STARLIGHT: Marker component for IPC mechanics (sleep prevention, etc.)
   - type: HumanoidAppearance
     species: IPC
   - type: Body
@@ -59,6 +62,7 @@
     wilhelmProbability: 0
   - type: Damageable
     damageContainer: Silicon
+    damageModifierSet: Silicon # Balanced resistances: immune to bio damage, 3.5x shock vulnerability
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -72,8 +76,16 @@
     numWarnings: 3
     warningSound:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
-  - type: BatteryDrainer # _STARLIGHT: Allow IPCs to drain power from APCs/machines
-    disableHandInteraction: true # Prevent accidental drain on left-click
+    drainAllowedTargets:
+    - APCBasic
+    - APCHighCapacity
+    - APCSuperCapacity
+    - APCHyperCapacity
+    - Substation
+    - SubstationWallBasic
+    - SMES
+  - type: BatteryDrainer # _STARLIGHT: Allow IPCs to drain power from APCs/machines/substations
+    disableHandInteraction: true # Use alt+click verbs instead of direct hand interaction
   - type: HumanoidEMP # _STARLIGHT: EMP effects on IPCs
     stunTime: 3
     damage:
@@ -85,6 +97,9 @@
   - type: IPCRevive
     rebootButton: true
     rebootTime: 3
+  - type: ZombieImmune # _STARLIGHT: IPCs can't be infected by zombies (no biology)
+  - type: Absorbable # _STARLIGHT: Remove inherited Absorbable - IPCs can't be absorbed by changelings
+    remove: true
   - type: Hunger
     baseDecayRate: 0
   - type: Thirst
@@ -94,23 +109,29 @@
   - type: Speech
     speechSounds: Borg
     speechVerb: Robotic
+  - type: Deathgasp # _STARLIGHT: Custom death message for IPCs
+    prototype: IPCDeathgasp
   - type: AtmosExposed # Allows IPCs to be affected by atmospheric temperature
   - type: Temperature
-    heatDamageThreshold: 330 # Slightly higher than humans (325)
-    coldDamageThreshold: 260 # Same as humans - freezing point
-    currentTemperature: 310.15
-    specificHeat: 46
+    heatDamageThreshold: 350 # Better heat tolerance than humans (325K) but can't survive fires (373K+)
+    coldDamageThreshold: 50  # Extreme cold tolerance - can survive space cold (2.7K) for extended periods
+    currentTemperature: 150 # Spawn very cold - far below station temperature
+    specificHeat: 280 # High thermal mass - takes 7-8 seconds in space before fully freezing
     coldDamage:
       types:
-        Cold: 0.5 # Slow cold damage when exposed to extreme cold
+        Cold: 0.3 # Reduced cold damage
     heatDamage:
       types:
-        Heat: 3 # Moderate heat damage, shutdown happens before death
-  - type: TemperatureSpeed # Become very slow when cold
+        Heat: 2.5 # Takes more heat damage than baseline due to sensitive electronics
+  - type: TemperatureSpeed # Cold slows down movement (like other species)
     thresholds:
-      280: 0.7  # 20% slower at 280K
-      270: 0.4  # 60% slower at 270K 
-      260: 0.2  # 80% slower at freezing point
+      293: 0.9
+      280: 0.8
+      260: 0.7
+  - type: KillOnOverheat # _STARLIGHT: Knockout IPC when circuits overheat
+    overheatThreshold: 403.2 # Knockout at 130°C (30% above normal 37°C)
+  - type: EyeProtection # _STARLIGHT: IPCs immune to welding flashes - protective optical filters
+    protectionTime: 120 # 2 minutes protection (welders apply 10s blind = full immunity)
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon

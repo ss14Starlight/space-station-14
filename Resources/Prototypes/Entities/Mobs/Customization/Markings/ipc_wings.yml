@@ -1,0 +1,14 @@
+# IPC Wings Markings
+# _STARLIGHT: Wing customization slot for IPCs
+
+# Robotic Wings
+- type: marking
+  id: MarkingIPCRoboticWings
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+  - sprite: Mobs/Customization/ipc/wings.rsi
+    state: robotic_base
+  - sprite: Mobs/Customization/ipc/wings.rsi
+    state: robotic_light

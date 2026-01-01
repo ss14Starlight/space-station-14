@@ -26,10 +26,13 @@
 
 - type: damageContainer
   id: Silicon
+  supportedGroups:
+    - Brute # Blunt, Slash, Piercing damage
   supportedTypes:
     - Heat
     - Shock
     - Caustic
+    - Cold
 
 - type: damageContainer
   id: Shield

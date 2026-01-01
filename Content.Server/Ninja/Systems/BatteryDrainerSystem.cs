@@ -6,7 +6,9 @@
 using Content.Server.Ninja.Events;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.CombatMode;
 using Content.Shared.DoAfter;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Ninja.Components;
 using Content.Shared.Ninja.Systems;
@@ -26,7 +28,10 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly PredictedBatterySystem _predictedBattery = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()
@@ -49,21 +54,24 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
         // SOURCE: Far-Horizons-SS14 PR #135 - Respect DisableHandInteraction flag
         if (comp.DisableHandInteraction)
             return;
+        
+        // Check battery and target validity
+        if (comp.BatteryUid == null || !HasComp<PowerNetworkBatteryComponent>(target))
+            return;
             
-        if (args.Handled || comp.BatteryUid is not { } battery || !HasComp<PowerNetworkBatteryComponent>(target))
+        if (args.Handled || comp.BatteryUid is not { } battery)
             return;
 
-        // SOURCE: Far-Horizons-SS14 PR #135 - Require panel to be open before draining
-        if (TryComp<WiresPanelComponent>(target, out var panel) && !panel.Open)
+        // Check if battery is full before starting do after
+        if (_battery.IsFull(battery))
         {
-            _popup.PopupEntity(Loc.GetString("battery-drainer-panel-locked"), uid, uid, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("battery-drainer-full"), uid, uid, PopupType.Medium);
             return;
         }
 
-        // handles even if battery is full so you can actually see the poup
         args.Handled = true;
 
-        if (_battery.IsFull(battery))
+        if (false) // Removed duplicate full check
         {
             _popup.PopupEntity(Loc.GetString("battery-drainer-full"), uid, uid, PopupType.Medium);
             return;

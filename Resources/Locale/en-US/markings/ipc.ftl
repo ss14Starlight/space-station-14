@@ -4,6 +4,14 @@
 
 species-name-ipc = IPC
 
+# Default Parts
+marking-MarkingIPCHeadDefault = Default Head
+marking-MarkingIPCChestDefault = Default Chest
+marking-MarkingIPCLArmDefault = Default Left Arm
+marking-MarkingIPCRArmDefault = Default Right Arm
+marking-MarkingIPCLLegDefault = Default Left Leg
+marking-MarkingIPCRLegDefault = Default Right Leg
+
 # Antennas
 marking-RobotAntennaTv = TV Antenna
 marking-RobotAntennaTesla = Tesla Antenna
@@ -15,6 +23,18 @@ marking-RobotAntennaAntlers = Antler Antenna
 marking-RobotAntennaDroneeyes = Drone Eyes Antenna
 marking-RobotAntennaCrowned = Crowned Antenna
 marking-RobotAntennaTowers = Tower Antenna
+
+# IPC Antennas (New naming)
+marking-MarkingIPCAntennaTV = TV Antenna
+marking-MarkingIPCAntennaTesla = Tesla Antenna
+marking-MarkingIPCAntennaLight = Light Antenna
+marking-MarkingIPCAntennaLightAlt = Light Antenna (Alt)
+marking-MarkingIPCAntennaCyberhead = Cyberhead Antenna
+marking-MarkingIPCAntennaSidelights = Sidelights Antenna
+marking-MarkingIPCAntennaAntlers = Antler Antenna
+marking-MarkingIPCAntennaDroneeyes = Drone Eyes Antenna
+marking-MarkingIPCAntennaCrowned = Crowned Antenna
+marking-MarkingIPCAntennaTowers = Tower Antenna
 
 # Screens
 marking-ScreenStatic = Static Screen
@@ -43,6 +63,34 @@ marking-ScreenSmile = Smiley Screen
 marking-ScreenFrown = Frowny Screen
 marking-ScreenRing = Ring Screen
 marking-ScreenBlank = Blank Screen
+
+# IPC Screens (New naming)
+marking-MarkingIPCScreenStatic = Static Screen
+marking-MarkingIPCScreenBlue = Blue Screen
+marking-MarkingIPCScreenBreakout = Breakout Screen
+marking-MarkingIPCScreenEight = Eight Screen
+marking-MarkingIPCScreenGoggles = Goggles Screen
+marking-MarkingIPCScreenExclaim = Exclamation Screen
+marking-MarkingIPCScreenHeart = Heart Screen
+marking-MarkingIPCScreenMonoeye = Monoeye Screen
+marking-MarkingIPCScreenNature = Nature Screen
+marking-MarkingIPCScreenOrange = Orange Screen
+marking-MarkingIPCScreenPink = Pink Screen
+marking-MarkingIPCScreenQuestion = Question Screen
+marking-MarkingIPCScreenShower = Shower Screen
+marking-MarkingIPCScreenYellow = Yellow Screen
+marking-MarkingIPCScreenScroll = Scroll Screen
+marking-MarkingIPCScreenConsole = Console Screen
+marking-MarkingIPCScreenRGB = RGB Screen
+marking-MarkingIPCScreenGlider = Glider Screen
+marking-MarkingIPCScreenRainbowHoriz = Rainbow Horizontal Screen
+marking-MarkingIPCScreenRainbowDiag = Rainbow Diagonal Screen
+marking-MarkingIPCScreenBSOD = BSOD Screen
+marking-MarkingIPCScreenRedText = Red Text Screen
+marking-MarkingIPCScreenSmile = Smiley Screen
+marking-MarkingIPCScreenFrown = Frowny Screen
+marking-MarkingIPCScreenRing = Ring Screen
+marking-MarkingIPCScreenBlank = Blank Screen
 
 # Bishop Chassis
 marking-MarkingBishopHead = 'Bishop' Head
@@ -131,3 +179,6 @@ marking-MarkingZenghuLLeg = 'Zenghu' Left Leg
 marking-MarkingZenghuRLeg = 'Zenghu' Right Leg
 marking-MarkingZenghuLFoot = 'Zenghu' Left Foot
 marking-MarkingZenghuRFoot = 'Zenghu' Right Foot
+
+# Wings
+marking-MarkingIPCRoboticWings = Robotic Wings

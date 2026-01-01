@@ -40,8 +40,8 @@
 - type: alert
   id: IPCBatteryCrit
   category: IPCBattery
-  icon:
-    sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
     state: battery0
   name: alerts-ipc-battery-crit-name
   description: alerts-ipc-battery-crit-desc
@@ -49,8 +49,8 @@
 - type: alert
   id: IPCBatteryNone
   category: IPCBattery
-  icon:
-    sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
     state: battery_none
   name: alerts-ipc-battery-none-name
   description: alerts-ipc-battery-none-desc

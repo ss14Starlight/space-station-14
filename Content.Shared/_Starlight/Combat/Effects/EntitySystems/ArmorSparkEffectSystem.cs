@@ -156,6 +156,16 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         if (args.DamageDelta == null || args.DamageDelta.GetTotal() <= 0)
             return;
 
+        // Don't spawn sparks for environmental damage (Cold/Heat)
+        if (args.DamageDelta.DamageDict.ContainsKey("Cold") || args.DamageDelta.DamageDict.ContainsKey("Heat"))
+        {
+            // If ONLY Cold or Heat damage was dealt, skip sparks
+            var nonThermalDamage = args.DamageDelta.GetTotal() - 
+                (args.DamageDelta.DamageDict.GetValueOrDefault("Cold") + args.DamageDelta.DamageDict.GetValueOrDefault("Heat"));
+            if (nonThermalDamage <= 0)
+                return;
+        }
+
         // Spawn spark effect for any damage (melee, bullets, etc.)
         SpawnCyborgSparkEffect(uid, component);
     }

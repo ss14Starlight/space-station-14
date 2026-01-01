@@ -13,3 +13,6 @@ ipc-revive-cant-revive = Unable to reboot!
 ipc-revive-reboot-started = Rebooting...
 ipc-revive-button-label = Reboot
 ipc-revive-button-submenu = IPC
+## IPC Temperature Shutdown
+ipc-overheat-popup = {$name}'s circuits shut down from overheating!
+ipc-undercold-popup = {$name}'s circuits shut down from extreme cold!

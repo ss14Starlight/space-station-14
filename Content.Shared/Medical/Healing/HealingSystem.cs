@@ -84,7 +84,26 @@ public sealed class HealingSystem : EntitySystem
         if (healing.ModifyBloodLevel != 0 && bloodstream != null)
             _bloodstreamSystem.TryModifyBloodLevel((target.Owner, bloodstream), healing.ModifyBloodLevel);
 
-        if (!_damageable.TryChangeDamage(target.Owner, healing.Damage * _damageable.UniversalTopicalsHealModifier, out var healed, true, origin: args.Args.User) && healing.BloodlossModifier != 0)
+        // _STARLIGHT: Scale healing for Silicon damage containers based on total damage
+        var healingMultiplier = 1.0f;
+        if (healing.DamageContainers?.Contains("Silicon") == true && target.Comp.TotalDamage > 0)
+        {
+            var totalDamage = target.Comp.TotalDamage;
+            // Base healing at 10x for <250 damage
+            // Increases by 5x every 50 damage after 250
+            if (totalDamage >= 250)
+            {
+                var damageOver250 = totalDamage - 250;
+                var additionalMultiplier = (int)(damageOver250 / 50) * 5;
+                healingMultiplier = 10.0f + additionalMultiplier;
+            }
+            else
+            {
+                healingMultiplier = 10.0f;
+            }
+        }
+
+        if (!_damageable.TryChangeDamage(target.Owner, healing.Damage * healingMultiplier * _damageable.UniversalTopicalsHealModifier, out var healed, true, origin: args.Args.User) && healing.BloodlossModifier != 0)
             return;
 
         var total = healed.GetTotal();
