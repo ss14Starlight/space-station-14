@@ -38,6 +38,10 @@ public sealed class PtlBoundUserInterfaceState : BoundUserInterfaceState
     public float BatteryCurrentJoules { get; }
     public float BatteryMaxJoules { get; }
 
+    public float ReservedBatteryCurrentJoules { get; }
+    public float ReservedBatteryMaxJoules { get; }
+    public float GridSaturation { get; }
+
     public float TargetPowerMw { get; }
     public float MinPowerMw { get; }
     public float MaxPowerMw { get; }
@@ -48,6 +52,9 @@ public sealed class PtlBoundUserInterfaceState : BoundUserInterfaceState
         bool enabled,
         float batteryCurrentJoules,
         float batteryMaxJoules,
+        float reservedBatteryCurrentJoules,
+        float reservedBatteryMaxJoules,
+        float gridSaturation,
         float targetPowerMw,
         float minPowerMw,
         float maxPowerMw,
@@ -56,6 +63,9 @@ public sealed class PtlBoundUserInterfaceState : BoundUserInterfaceState
         Enabled = enabled;
         BatteryCurrentJoules = batteryCurrentJoules;
         BatteryMaxJoules = batteryMaxJoules;
+        ReservedBatteryCurrentJoules = reservedBatteryCurrentJoules;
+        ReservedBatteryMaxJoules = reservedBatteryMaxJoules;
+        GridSaturation = gridSaturation;
         TargetPowerMw = targetPowerMw;
         MinPowerMw = minPowerMw;
         MaxPowerMw = maxPowerMw;

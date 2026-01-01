@@ -1,11 +1,21 @@
 - type: entity
   id: PowerTransmissionLaser
-  parent: BaseMachinePowered
+  parent: BaseMachine
   name: PTL
   description: todo
   placement:
     mode: SnapgridCenter
   components:
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableTerminalPortNode
+        nodeGroupID: HVPower
+  - type: PowerConsumer
+    voltage: High
+    node: input
+    drawRate: 0
   - type: Sprite
     sprite: _Starlight/Structures/Power/ptl.rsi
     noRot: true

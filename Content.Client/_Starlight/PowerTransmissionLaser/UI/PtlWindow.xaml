@@ -1,28 +1,86 @@
 <DefaultWindow xmlns="https://spacestation14.io"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-               MinSize="320 190" Title="{Loc ptl-ui-title}">
+               Resizable="False"
+               MinSize="450 420" Title="{Loc ptl-ui-title}">
 
     <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="8">
 
-        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="8">
-            <Button Name="EnabledButton" Access="Public" Text="{Loc ptl-ui-start}" />
-            <Control HorizontalExpand="True" />
-            <Label Name="TotalSpesosLabel" Access="Public" Text="{Loc ptl-ui-total-spesos}" />
-        </BoxContainer>
+        <!-- STATUS -->
+        <PanelContainer StyleClasses="Inset" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="6">
+                <Label Text="Status" StyleClasses="LabelKeyText" />
+                <PanelContainer StyleClasses="LowDivider" />
 
-        <BoxContainer Orientation="Vertical" SeparationOverride="4">
-            <Label Name="BatteryLabel" Access="Public" Text="{Loc ptl-ui-battery}" />
-        </BoxContainer>
+                <BoxContainer Orientation="Horizontal" SeparationOverride="8" HorizontalExpand="True">
+                    <!-- Battery panel -->
+                    <PanelContainer StyleClasses="Inset" SetWidth="120" VerticalExpand="True">
+                        <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="4" VerticalAlignment="Center">
+                            <TextureRect Name="BatteryIcon" TexturePath="/Textures/Interface/Alerts/battery.rsi/battery-none.png"
+                                         Stretch="KeepAspectCentered"
+                                         HorizontalAlignment="Center"
+                                         SetSize="64 64" />
+                            <Label Name="BatteryLabel" Access="Public" Text="{Loc ptl-ui-battery}" HorizontalAlignment="Center" />
+                        </BoxContainer>
+                    </PanelContainer>
 
-        <BoxContainer Orientation="Vertical" SeparationOverride="4">
-            <Label Name="PowerLabel" Access="Public" Text="{Loc ptl-ui-power}" />
-            <BoxContainer Orientation="Horizontal" SeparationOverride="6" HorizontalExpand="True">
-                <LineEdit Name="PowerLineEdit" Access="Public" MinSize="90 0" />
-                <Label Text="MW" />
-                <Control HorizontalExpand="True" />
-                <Button Name="ApplyPowerButton" Access="Public" Text="{Loc ptl-ui-apply}" />
+                    <!-- Right status fields -->
+                    <PanelContainer StyleClasses="Inset" HorizontalExpand="True" VerticalExpand="True">
+                        <GridContainer Columns="2" Margin="6">
+                            <Label Text="Reserved power:" StyleClasses="StatusFieldTitle" />
+                            <Label Name="ReservedPowerLabel" Access="Public" Text="0%" HorizontalAlignment="Right" HorizontalExpand="True" />
+                            <Label Text="Grid Saturation:" StyleClasses="StatusFieldTitle" />
+                            <Label Name="GridSaturationLabel" Access="Public" Text="0%" HorizontalAlignment="Right" HorizontalExpand="True" />
+                        </GridContainer>
+                    </PanelContainer>
+                </BoxContainer>
             </BoxContainer>
-        </BoxContainer>
+        </PanelContainer>
+
+        <!-- INPUT CONTROLS -->
+        <PanelContainer StyleClasses="Inset" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="6">
+                <Label Text="Input Controls:" StyleClasses="LabelKeyText" />
+                <PanelContainer StyleClasses="LowDivider" />
+
+                <BoxContainer Orientation="Horizontal" SeparationOverride="6" HorizontalExpand="True" VerticalAlignment="Center">
+                    <Label Name="PowerLabel" Access="Public" Text="{Loc ptl-ui-power}" StyleClasses="StatusFieldTitle" />
+                    <Control HorizontalExpand="True" />
+                    <LineEdit Name="PowerLineEdit" Access="Public" MinSize="120 0" HorizontalAlignment="Right" />
+                    <Label Text="MW" />
+                    <Button Name="ApplyPowerButton" Access="Public" Text="{Loc ptl-ui-apply}" Visible="False" />
+                </BoxContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- OUTPUT CONTROLS -->
+        <PanelContainer StyleClasses="Inset" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="6">
+                <Label Text="Output Controls:" StyleClasses="LabelKeyText" />
+                <PanelContainer StyleClasses="LowDivider" />
+
+                <BoxContainer Orientation="Horizontal" SeparationOverride="6" HorizontalExpand="True" VerticalAlignment="Center">
+                    <Label Text="Laser Circuit:" StyleClasses="StatusFieldTitle" />
+                    <Label Name="LaserCircuitStatusLabel" Access="Public" Text="Online/Idle" />
+                    <Control HorizontalExpand="True" />
+                    <Button Name="EnabledButton" Access="Public" Text="{Loc ptl-ui-disabled}" StyleClasses="ButtonColorRed" SetHeight="28" SetWidth="140">
+                        <TextureRect HorizontalAlignment="Left"
+                                     VerticalAlignment="Center"
+                                     SetSize="18 18"
+                                     Stretch="KeepAspectCentered"
+                                     TexturePath="/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png" />
+                    </Button>
+                </BoxContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- SPESOS -->
+        <PanelContainer StyleClasses="Inset" HorizontalExpand="True">
+            <BoxContainer Orientation="Horizontal" Margin="6" SeparationOverride="6" HorizontalExpand="True">
+                <Label Text="Spesos:" StyleClasses="StatusFieldTitle" />
+                <Control HorizontalExpand="True" />
+                <Label Name="TotalSpesosLabel" Access="Public" Text="{Loc ptl-ui-total-spesos}" HorizontalAlignment="Right" />
+            </BoxContainer>
+        </PanelContainer>
 
     </BoxContainer>
 </DefaultWindow>

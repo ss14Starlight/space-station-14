@@ -3,7 +3,6 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared._Starlight.PowerTransmissionLaser;
 using Content.Shared.Power.Components;
-using Content.Shared.Power;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 
@@ -11,7 +10,6 @@ namespace Content.Server._Starlight.PowerTransmissionLaser;
 
 public sealed class PtlSystem : EntitySystem
 {
-    [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
@@ -24,7 +22,7 @@ public sealed class PtlSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<PtlComponent, MapInitEvent>(OnInit);
-        SubscribeLocalEvent<PtlComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<PtlComponent, PowerConsumerReceivedChanged>(OnPowerConsumerReceivedChanged);
 
         SubscribeLocalEvent<PtlComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpened);
 
@@ -38,7 +36,7 @@ public sealed class PtlSystem : EntitySystem
         UpdateAppearance(uid, comp);
     }
 
-    private void OnPowerChanged(EntityUid uid, PtlComponent comp, ref PowerChangedEvent args)
+    private void OnPowerConsumerReceivedChanged(EntityUid uid, PtlComponent comp, ref PowerConsumerReceivedChanged args)
     {
         UpdateAppearance(uid, comp);
         DirtyUi(uid, comp);
@@ -88,7 +86,7 @@ public sealed class PtlSystem : EntitySystem
             if (!comp.Enabled)
                 continue;
 
-            if (!TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
+            if (!TryComp<PowerConsumerComponent>(uid, out var consumer))
                 continue;
 
             comp.Accumulator += frameTime;
@@ -98,7 +96,7 @@ public sealed class PtlSystem : EntitySystem
             while (comp.Accumulator >= comp.CycleTimeSeconds)
             {
                 comp.Accumulator -= comp.CycleTimeSeconds;
-                RunCycle(uid, comp, receiver);
+                RunCycle(uid, comp, consumer);
 
                 if (!comp.Enabled)
                     break;
@@ -106,7 +104,7 @@ public sealed class PtlSystem : EntitySystem
         }
     }
 
-    private void RunCycle(EntityUid uid, PtlComponent comp, ApcPowerReceiverComponent receiver)
+    private void RunCycle(EntityUid uid, PtlComponent comp, PowerConsumerComponent consumer)
     {
         if (comp.TargetPowerMw <= 0f)
             return;
@@ -114,7 +112,7 @@ public sealed class PtlSystem : EntitySystem
         var targetWatts = comp.TargetPowerMw * WattsPerMegawatt;
         var targetEnergyJ = targetWatts * comp.CycleTimeSeconds;
 
-        var powered = _powerReceiver.IsPowered(uid, receiver);
+        var powered = consumer.ReceivedPower > 0.001f;
         float actualEnergyUsedJ;
 
         if (powered)
@@ -170,11 +168,11 @@ public sealed class PtlSystem : EntitySystem
 
     private void UpdatePowerLoad(EntityUid uid, PtlComponent comp)
     {
-        if (!TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
+        if (!TryComp<PowerConsumerComponent>(uid, out var consumer))
             return;
 
         var loadWatts = comp.Enabled ? comp.TargetPowerMw * WattsPerMegawatt : 0f;
-        _powerReceiver.SetLoad((uid, receiver), loadWatts);
+        consumer.DrawRate = loadWatts;
     }
 
     private void UpdateAppearance(EntityUid uid, PtlComponent comp) => _appearance.SetData(uid, PtlVisuals.Active, comp.Enabled);
@@ -192,10 +190,22 @@ public sealed class PtlSystem : EntitySystem
             batteryMax = battery.MaxCharge;
         }
 
+        var gridSaturation = 0f;
+
+        if (TryComp<PowerConsumerComponent>(uid, out var consumer))
+        {
+            var load = consumer.DrawRate;
+            if (load > 0f)
+                gridSaturation = Math.Clamp(consumer.ReceivedPower / load, 0f, 1f);
+        }
+
         _ui.SetUiState(uid, PtlUiKey.Key, new PtlBoundUserInterfaceState(
             comp.Enabled,
             batteryCurrent,
             batteryMax,
+            0f,
+            0f,
+            gridSaturation,
             comp.TargetPowerMw,
             comp.MinPowerMw,
             comp.MaxPowerMw,

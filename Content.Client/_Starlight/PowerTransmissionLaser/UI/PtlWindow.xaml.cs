@@ -8,6 +8,9 @@ namespace Content.Client._Starlight.PowerTransmissionLaser.UI;
 [GenerateTypedNameReferences]
 public sealed partial class PtlWindow : DefaultWindow
 {
+    private const string StyleClassButtonColorRed = "ButtonColorRed";
+    private const string StyleClassButtonColorGreen = "ButtonColorGreen";
+
     public bool Enabled;
 
     private bool _updatingFromServer;
@@ -28,14 +31,27 @@ public sealed partial class PtlWindow : DefaultWindow
 
         SetPowerBounds(0f, 5f);
         SetTargetPowerMw(1f);
-        SetBattery(0, 0);
+        SetBattery(0, 0, 0, 0);
+        SetReservedPower(0, 0, 0, 0);
+        SetGridSaturation(0f);
         SetTotalSpesos(0);
+    }
+
+    private static void SetToggleVisual(Button button, bool enabled)
+    {
+        button.StyleClasses.Remove(StyleClassButtonColorRed);
+        button.StyleClasses.Remove(StyleClassButtonColorGreen);
+        button.StyleClasses.Add(enabled ? StyleClassButtonColorGreen : StyleClassButtonColorRed);
+        button.Text = enabled ? Loc.GetString("ptl-ui-enabled") : Loc.GetString("ptl-ui-disabled");
     }
 
     public void SetEnabled(bool enabled)
     {
         Enabled = enabled;
-        EnabledButton.Text = enabled ? Loc.GetString("ptl-ui-stop") : Loc.GetString("ptl-ui-start");
+        SetToggleVisual(EnabledButton, enabled);
+
+        if (LaserCircuitStatusLabel != null)
+            LaserCircuitStatusLabel.Text = enabled ? "Online" : "Idle";
     }
 
     public void SetPowerBounds(float minMw, float maxMw)
@@ -85,8 +101,49 @@ public sealed partial class PtlWindow : DefaultWindow
         PowerApplied?.Invoke(mw);
     }
 
-    public void SetBattery(float currentJ, float maxJ)
-        => BatteryLabel.Text = Loc.GetString("ptl-ui-battery", ("current", currentJ), ("max", maxJ));
+    public void SetBattery(float currentJ, float maxJ, float reservedCurrentJ, float reservedMaxJ)
+    {
+        var combinedCurrent = currentJ + reservedCurrentJ;
+        var combinedMax = maxJ + reservedMaxJ;
+
+        BatteryLabel.Text = Loc.GetString("ptl-ui-battery", ("current", combinedCurrent), ("max", combinedMax));
+
+        if (combinedMax <= 0f)
+        {
+            BatteryIcon.TexturePath = "/Textures/Interface/Alerts/battery.rsi/battery-none.png";
+            return;
+        }
+
+        if (combinedCurrent <= 0.0001f)
+        {
+            BatteryIcon.TexturePath = "/Textures/Interface/Alerts/battery.rsi/battery-none.png";
+            return;
+        }
+
+        var fraction = Math.Clamp(combinedCurrent / combinedMax, 0f, 1f);
+
+        var level = (int) MathF.Round(fraction * 10f);
+        level = Math.Clamp(level, 0, 10);
+        BatteryIcon.TexturePath = $"/Textures/Interface/Alerts/battery.rsi/battery{level}.png";
+    }
+
+    public void SetReservedPower(float currentJ, float maxJ, float reservedCurrentJ, float reservedMaxJ)
+    {
+        var combinedCurrent = currentJ + reservedCurrentJ;
+        var combinedMax = maxJ + reservedMaxJ;
+
+        var percent = 0;
+        if (combinedMax > 0f)
+            percent = (int) MathF.Round(Math.Clamp(combinedCurrent / combinedMax, 0f, 1f) * 100f);
+
+        ReservedPowerLabel.Text = $"{percent}%";
+    }
+
+    public void SetGridSaturation(float saturation)
+    {
+        var percent = (int) MathF.Round(Math.Clamp(saturation, 0f, 1f) * 100f);
+        GridSaturationLabel.Text = $"{percent}%";
+    }
 
     public void SetTotalSpesos(int total)
         => TotalSpesosLabel.Text = Loc.GetString("ptl-ui-total-spesos", ("total", total));

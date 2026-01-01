@@ -1,6 +1,8 @@
 ptl-ui-title = PTL
 ptl-ui-start = Start
 ptl-ui-stop = Stop
+ptl-ui-enabled = Enabled
+ptl-ui-disabled = Disabled
 ptl-ui-apply = Apply
 ptl-ui-battery = Reserve energy: { $current } / { $max } J
 ptl-ui-power = Power draw: { $mw } MW

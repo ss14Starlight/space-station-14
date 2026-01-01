@@ -37,7 +37,17 @@ public sealed class PtlBoundUserInterface : BoundUserInterface
             return;
 
         _window.SetEnabled(cast.Enabled);
-        _window.SetBattery(cast.BatteryCurrentJoules, cast.BatteryMaxJoules);
+        _window.SetBattery(
+            cast.BatteryCurrentJoules,
+            cast.BatteryMaxJoules,
+            cast.ReservedBatteryCurrentJoules,
+            cast.ReservedBatteryMaxJoules);
+        _window.SetReservedPower(
+            cast.BatteryCurrentJoules,
+            cast.BatteryMaxJoules,
+            cast.ReservedBatteryCurrentJoules,
+            cast.ReservedBatteryMaxJoules);
+        _window.SetGridSaturation(cast.GridSaturation);
         _window.SetPowerBounds(cast.MinPowerMw, cast.MaxPowerMw);
         _window.SetTargetPowerMw(cast.TargetPowerMw);
         _window.SetTotalSpesos(cast.TotalSpesosEarned);
