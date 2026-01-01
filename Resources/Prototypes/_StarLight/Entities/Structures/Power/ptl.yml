@@ -6,16 +6,6 @@
   placement:
     mode: SnapgridCenter
   components:
-  - type: NodeContainer
-    examinable: true
-    nodes:
-      input:
-        !type:CableTerminalPortNode
-        nodeGroupID: HVPower
-  - type: PowerConsumer
-    voltage: High
-    node: input
-    drawRate: 0
   - type: Sprite
     sprite: _Starlight/Structures/Power/ptl.rsi
     noRot: true
@@ -34,9 +24,6 @@
         trapdoorLayer:
           True: { visible: false }
           False: { visible: true }
-  - type: Battery
-    maxCharge: 24000000
-  - type: ExaminableBattery
   - type: ActivatableUI
     key: enum.PtlUiKey.Key
   - type: UserInterface
@@ -48,3 +35,24 @@
     maxPowerMw: 5
     cycleTimeSeconds: 2
     spesosPerMwPerCycle: 50
+  - type: Battery
+    startingCharge: 0
+    maxCharge: 24000000
+  - type: ExaminableBattery
+  - type: PowerNetworkBattery
+    canDischarge: false
+    maxSupply: 0
+    maxChargeRate: 5000
+  - type: BatteryCharger
+    voltage: Medium
+    node: input
+  - type: PowerConsumer
+    voltage: Medium
+    node: input
+    drawRate: 0
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower

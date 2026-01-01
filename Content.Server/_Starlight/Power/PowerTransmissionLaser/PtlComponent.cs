@@ -1,6 +1,4 @@
-using Robust.Shared.GameStates;
-
-namespace Content.Server._Starlight.PowerTransmissionLaser;
+namespace Content.Server._Starlight.Power.PowerTransmissionLaser;
 
 [RegisterComponent]
 public sealed partial class PtlComponent : Component

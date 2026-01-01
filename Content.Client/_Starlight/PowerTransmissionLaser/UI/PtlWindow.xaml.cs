@@ -12,7 +12,6 @@ public sealed partial class PtlWindow : DefaultWindow
     private const string StyleClassButtonColorGreen = "ButtonColorGreen";
 
     public bool Enabled;
-
     private bool _updatingFromServer;
     private float _minPowerMw;
     private float _maxPowerMw;

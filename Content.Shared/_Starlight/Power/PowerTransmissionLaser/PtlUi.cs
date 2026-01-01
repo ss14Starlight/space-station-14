@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.PowerTransmissionLaser;
+namespace Content.Shared._Starlight.Power.PowerTransmissionLaser;
 
 [Serializable, NetSerializable]
 public enum PtlUiKey

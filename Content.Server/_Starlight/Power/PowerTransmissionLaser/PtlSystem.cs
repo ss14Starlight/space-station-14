@@ -1,12 +1,13 @@
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Popups;
-using Content.Shared._Starlight.PowerTransmissionLaser;
+using Content.Shared._Starlight.Power.PowerTransmissionLaser;
 using Content.Shared.Power.Components;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
+using Content.Shared.Power;
 
-namespace Content.Server._Starlight.PowerTransmissionLaser;
+namespace Content.Server._Starlight.Power.PowerTransmissionLaser;
 
 public sealed class PtlSystem : EntitySystem
 {
@@ -23,11 +24,20 @@ public sealed class PtlSystem : EntitySystem
 
         SubscribeLocalEvent<PtlComponent, MapInitEvent>(OnInit);
         SubscribeLocalEvent<PtlComponent, PowerConsumerReceivedChanged>(OnPowerConsumerReceivedChanged);
+        SubscribeLocalEvent<BatteryComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
 
         SubscribeLocalEvent<PtlComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpened);
 
         SubscribeLocalEvent<PtlComponent, PtlSetEnabledMessage>(OnSetEnabled);
         SubscribeLocalEvent<PtlComponent, PtlSetPowerMessage>(OnSetPower);
+    }
+
+    private void OnBatteryChargeChanged(EntityUid uid, BatteryComponent comp, ref ChargeChangedEvent args)
+    {
+        if (!TryComp<PtlComponent>(uid, out var ptl))
+            return;
+
+        DirtyUi(uid, ptl);
     }
 
     private void OnInit(EntityUid uid, PtlComponent comp, MapInitEvent args)

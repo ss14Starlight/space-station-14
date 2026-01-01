@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.PowerTransmissionLaser;
+using Content.Shared._Starlight.Power.PowerTransmissionLaser;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
