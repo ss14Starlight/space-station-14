@@ -499,22 +499,6 @@
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
-  # Starlight-start: Languages
-  - type: LanguageKnowledge
-    speaks:
-    - Mothroach
-    understands:
-    - Moffic
-    - Mothroach
-  # Starlight-end
-  - type: VentCrawler
-  - type: HTN
-    constantlyReplan: false
-    rootTask:
-      task: MouseCompound
-  # Starlight-start: Body emotes (wing flap!)
-  - type: BodyEmotes
-    soundsId: MothroachBodyEmotes
 # Starlight-start
 - type: LanguageKnowledge
   speaks:
