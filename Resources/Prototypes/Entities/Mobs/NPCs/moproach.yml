@@ -23,7 +23,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      60: Critical
+      60: Critical # starlight-edit
       95: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.6
