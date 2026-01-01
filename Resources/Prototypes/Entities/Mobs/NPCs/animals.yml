@@ -499,74 +499,74 @@
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
-# Starlight-start
-- type: LanguageKnowledge
-  speaks:
-  - Mothroach
-  understands:
-  - Moffic
-  - Mothroach
-- type: VentCrawler
-- type: HTN
-  constantlyReplan: false
-  rootTask:
-    task: MouseCompound
-- type: MobState
-- type: Deathgasp
-- type: MobStateActions
-  actions:
-    Critical:
-      - ActionCritSuccumb
-      - ActionCritFakeDeath
-      - ActionCritLastWords
-- type: BodyEmotes
-  soundsId: MothroachBodyEmotes
-- type: MeleeWeapon
-  soundHit:
-    path: /Audio/Effects/bite.ogg
-  angle: 0
-  animation: WeaponArcBite
-  damage:
-    types:
-      Piercing: 1
-- type: InteractionPopup
-  successChance: 0.8
-  interactDelay: 1.2
-  interactSuccessString: petting-success-soft-floofy
-  interactFailureString: petting-failure-generic
-  interactSuccessSpawn: EffectHearts
-  interactSuccessSound:
-    path: /Audio/Voice/Moth/moth_squeak.ogg
-- type: Food
-  requireDead: true
-  transferAmount: 4
-- type: FlavorProfile
-  flavors:
-  - horrible
-  - terrible
-  - chewy
-- type: Hunger
-  baseDecayRate: 0.3
-- type: Extractable
-  grindableSolutionName: food
-- type: SolutionContainerManager
-  solutions:
-    food:
-      maxVol: 120
-      reagents:
-        - ReagentId: Nutriment
-          Quantity: 12
-        - ReagentId: Protein
-           Quantity: 6
-        - ReagentId: InsectBlood
-          Quantity: 90
-        - ReagentId: Slime
-          Quantity: 8
-- type: Barotrauma   
-  damage:
-    types:
-      Blunt: 0.08
-# Starlight-end
+  # Starlight-start
+  - type: LanguageKnowledge
+    speaks:
+    - Mothroach
+    understands:
+    - Moffic
+    - Mothroach
+  - type: VentCrawler
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: MouseCompound
+  - type: MobState
+  - type: Deathgasp
+  - type: MobStateActions
+    actions:
+      Critical:
+        - ActionCritSuccumb
+        - ActionCritFakeDeath
+        - ActionCritLastWords
+  - type: BodyEmotes
+    soundsId: MothroachBodyEmotes
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 1
+  - type: InteractionPopup
+    successChance: 0.8
+    interactDelay: 1.2
+    interactSuccessString: petting-success-soft-floofy
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Voice/Moth/moth_squeak.ogg
+  - type: Food
+    requireDead: true
+    transferAmount: 4
+  - type: FlavorProfile
+    flavors:
+    - horrible
+    - terrible
+    - chewy
+  - type: Hunger
+    baseDecayRate: 0.3
+  - type: Extractable
+    grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 120
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 12
+          - ReagentId: Protein
+             Quantity: 6
+          - ReagentId: InsectBlood
+            Quantity: 90
+          - ReagentId: Slime
+            Quantity: 8
+  - type: Barotrauma   
+    damage:
+      types:
+        Blunt: 0.08
+  # Starlight-end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -582,8 +582,8 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.3
-        density: 180
+          radius: 0.3 # starlight-edit
+        density: 180 # starlight-edit
         mask:
         - SmallMobMask
         layer:
@@ -610,7 +610,7 @@
       movement:
         state: mothroach
   - type: Item
-    size: Small
+    size: Small # starlight-edit
   - type: Clothing
     quickEquip: false
     sprite: Mobs/Animals/mothroach/mothroach.rsi
@@ -626,22 +626,14 @@
         Base: mothroach_dead
       Dead:
         Base: mothroach_dead
-  - type: MobState
-  - type: Deathgasp
-  - type: MobStateActions
-    actions:
-      Critical:
-        - ActionCritSuccumb
-        - ActionCritFakeDeath
-        - ActionCritLastWords
   - type: MobThresholds
     thresholds:
       0: Alive
-      55: Critical
-      90: Dead
+      55: Critical # starlight-edit
+      90: Dead # starlight-edit
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2.4
-    baseSprintSpeed : 4.2
+    baseWalkSpeed : 2.4 # starlight-edit
+    baseSprintSpeed : 4.2 # starlight-edit
     weightlessAcceleration: 1.5
     weightlessFriction: 1
     baseWeightlessModifier: 1
@@ -661,56 +653,11 @@
     damageRecovery:
       types:
         Asphyxiation: -0.5
-  - type: Barotrauma
-    damage:
-      types:
-        Blunt: 0.08
   - type: CombatMode
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    angle: 0
-    animation: WeaponArcBite
-    damage:
-      types:
-        Piercing: 1
-  - type: InteractionPopup
-    successChance: 0.8
-    interactDelay: 1.2
-    interactSuccessString: petting-success-soft-floofy
-    interactFailureString: petting-failure-generic
-    interactSuccessSpawn: EffectHearts
-    interactSuccessSound:
-        path: /Audio/Voice/Moth/moth_squeak.ogg
-  - type: Food
-    requireDead: true
-    transferAmount: 4
-  - type: FlavorProfile
-    flavors:
-    - horrible
-    - terrible
-    - chewy
-  - type: Hunger
-    baseDecayRate: 0.3
-  - type: Extractable
-    grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 120
-        reagents:
-          - ReagentId: Nutriment
-            Quantity: 12
-          - ReagentId: Protein
-            Quantity: 6
-          - ReagentId: InsectBlood
-            Quantity: 90
-          - ReagentId: Slime
-            Quantity: 8
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
-      amount: 3
+      amount: 3 # starlight-edit
   - type: ZombieAccentOverride
     accent: zombieMoth
   - type: Vocal
@@ -719,7 +666,7 @@
       Female: UnisexMoth
       Unsexed: UnisexMoth
     wilhelmProbability: 0.001
-  - type: BadFood
+  - type: BadFood # starlight-edit
   - type: Tag
     tags:
     - Trash
@@ -739,7 +686,7 @@
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
-        damageType: Blunt
+        damageType: Blunt # starlight-edit
         damage: 90
       behaviors:
       - !type:GibBehavior
