@@ -142,14 +142,8 @@ public sealed partial class IngestionSystem
         // Starlight-start
         var uid = ent.Owner;
 
-        if (_mobState.IsAlive(uid))
-        {
-            if (TryComp(uid, out FoodComponent? food) && food.RequireDead)
-                return;
-
-            if (TryComp(uid, out EdibleComponent? edible) && edible.RequireDead)
-                return;
-        }
+        if (_mobState.IsAlive(uid) && TryComp(uid, out EdibleComponent? edible) && edible.RequireDead)
+            return;
         // Starlight-end
 
         args.UniversalDigestion();
