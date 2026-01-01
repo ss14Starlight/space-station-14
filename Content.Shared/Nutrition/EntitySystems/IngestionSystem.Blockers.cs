@@ -139,6 +139,7 @@ public sealed partial class IngestionSystem
     /// </remarks>
     private void OnDrainableIsDigestible(Entity<DrainableSolutionComponent> ent, ref IsDigestibleEvent args)
     {
+        // Starlight-start
         var uid = ent.Owner;
 
         if (_mobState.IsAlive(uid))
@@ -149,6 +150,7 @@ public sealed partial class IngestionSystem
             if (TryComp(uid, out EdibleComponent? edible) && edible.RequireDead)
                 return;
         }
+        // Starlight-end
 
         args.UniversalDigestion();
     }

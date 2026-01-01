@@ -546,7 +546,7 @@
     insertingState: inserting_mothroach
   - type: MothAccent
   - type: Sprite
-    drawdepth: SmallMobs
+    drawdepth: SmallMobs # starlight-edit
     sprite: Mobs/Animals/mothroach/mothroach.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
@@ -598,7 +598,7 @@
     damageContainer: Biological
     damageModifierSet: Moth
   - type: Bloodstream
-    bloodMaxVolume: 120
+    bloodMaxVolume: 120 # starlight-edit
     bloodReagents:
       reagents:
       - ReagentId: InsectBlood
@@ -674,9 +674,9 @@
     - Trash
     - CannotSuicide
     - VimPilot
-    - Meat
+    - Meat # starlight-edit
   - type: CanEscapeInventory
-    baseResistTime: 4
+    baseResistTime: 4 # starlight-edit
   - type: NpcFactionMember
     factions:
     - Mouse
