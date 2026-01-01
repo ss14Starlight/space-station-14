@@ -46,10 +46,32 @@
   name: nt representive jacket
 
 - type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabSeniorChemist
+  name: senior chemist lab coat
+  description: A suit that protects against minor chemical spills. Has orange sleeves, an orange waist trim, and two pink stripes on the shoulders.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/labcoat_senior_chemist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/labcoat_senior_chemist.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorChemist]
+  id: ClothingOuterCoatLabSeniorChemistOpened
+  name: senior chemist lab coat
+
+- type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterCoatCorpsman
   name: corpsman's armored jacket
-  description: Tacticool never looked so good..However, impractical armor placement makes it just as effective as the normal coat.
+  description: Tacticool never looked so good. However, impractical armor placement makes it just as effective as the normal coat.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Coats/corpsman.rsi
@@ -65,6 +87,62 @@
         Piercing: 0.65
         Heat: 0.85
         Caustic: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  id: ClothingOuterCoatLabBrigmedic
+  name: brigmedic's reminisced overcoat
+  description: A labcoat from reminisced, peaceful days. It's been reinforced several times over.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/brigmedic_overcoat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/brigmedic_overcoat.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.65
+        Piercing: 0.75
+        Heat: 0.85
+        Caustic: 0.75
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.65
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabBrigmedic]
+  id: ClothingOuterCoatLabBrigmedicOpened
+  name: brigmedic's reminisced overcoat
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  id: ClothingOuterCoatLabCorpsman
+  name: corpsman's nostalgic overcoat
+  description: A dark labcoat that's been reinforced several times over. Peaceful days died.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/corpsman_overcoat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/corpsman_overcoat.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.65
+        Piercing: 0.75
+        Heat: 0.85
+        Caustic: 0.75
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.65
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCorpsman]
+  id: ClothingOuterCoatLabCorpsmanOpened
+  name: corpsman's nostalgic overcoat
 
 - type: entity
   parent: ClothingOuterStorageBase

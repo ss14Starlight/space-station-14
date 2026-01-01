@@ -153,6 +153,7 @@
   loadouts:
   - RoboticistCap
   - SkullBandana
+  - RoboticistBlackCapFlipped
 
 - type: loadoutGroup
   id: RoboticistGloves
@@ -237,12 +238,16 @@
 - type: loadoutGroup
   id: BlueShieldOuterclothing
   name: Loadout-group-blueshield-outerclothing
+  minLimit: 0
+  defaultSelected: 1
   loadouts:
   - BlueShieldVest
   - BlueShieldCoat
 
 - type: loadoutGroup
   id: BlueShieldNeck
+  minLimit: 0
+  defaultSelected: 1
   name: Loadout-group-blueshield-neck
   loadouts:
   - BlueShieldFormalCloak
@@ -255,6 +260,7 @@
   loadouts:
   - BlueShieldGlasses
   - BlueShieldHud
+  - BlueShieldEyePatchHud
 
 - type: loadoutGroup
   id: SecurityNonLethalWeapon
@@ -409,3 +415,95 @@
   loadouts:
     - SalvagePDA
     - VeteranSalvagePDA
+
+# Chemist
+- type: loadoutGroup
+  id: ChemistHead
+  name: loadout-group-chemist-head
+  minLimit: 0
+  loadouts:
+    - ChemistryBeret
+    - ChemistNurseHat
+    - ChemistTruckersHat
+    - ChemistFisherCap
+
+- type: loadoutGroup
+  id: ChemistBag
+  name: loadout-group-chemist-bag
+  loadouts:
+    - ChemBag
+    - SeniorChemBag
+
+- type: loadoutGroup
+  id: ChemistShoes
+  name: loadout-group-chemist-shoes
+  loadouts:
+  - WhiteShoes
+  - ChemistWinterBoots
+  - MedicalWinterBoots
+  - Heels
+  - LaceupShoes
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: ChemistPDA
+  name: loadout-group-chemist-id
+  loadouts:
+    - ChemistPDA
+    - SeniorChemistPDA
+
+- type: loadoutGroup
+  id: ChemistEyewear
+  name: loadout-group-chemist-eyewear
+  loadouts:
+    - ChemicalGoggles
+    - ChemicalHud
+    - ChemicalEyePatchHud
+    - ChemicalJensens
+
+- type: loadoutGroup
+  id: ChemistBeaker
+  name: loadout-group-chemist-beaker
+  loadouts:
+    - LightBeaker
+    - SilverBeakerChemist
+
+- type: loadoutGroup
+  id: ChemistLabeler
+  name: loadout-group-chemist-labeler
+  loadouts:
+    - ChemistHandLabeler
+    - GoldenHandLabeler
+    
+# Brigmedic
+- type: loadoutGroup
+  id: BrigmedicMask
+  name: loadout-group-brigmedic-mask
+  minLimit: 0
+  loadouts:
+    - BrigmedicBreathMaskMedicalSecurity
+    - BrigmedicMaskGasSecurity
+
+- type: loadoutGroup
+  id: BrigmedicTie
+  name: loadout-group-brigmedic-tie
+  minLimit: 0
+  loadouts:
+    - BrigmedicRedNeckTie
+    - BrigmedicDetNeckTie
+
+- type: loadoutGroup
+  id: BrigmedicPDA
+  name: loadout-group-brigmedic-id
+  loadouts:
+    - BrigmedicPDA
+    - CorpsmanPDA
+    - VeteranBrigmedicPDA
+    - VeteranCorpsmanPDA
+
+- type: loadoutGroup
+  id: BrigmedicBeaker
+  name: loadout-group-brigmedic-beaker
+  loadouts:
+    - DarkBeaker
+    - SilverBeakerBrigmedic

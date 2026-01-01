@@ -144664,14 +144664,14 @@ entities:
     - type: Transform
       pos: -56.586422,-21.669033
       parent: 2
-- proto: ToiletDirtyWater
+- proto: ToiletDirtyWaterFilled
   entities:
   - uid: 21818
     components:
     - type: Transform
       pos: 19.5,14.5
       parent: 2
-- proto: ToiletEmpty
+- proto: ToiletFilled
   entities:
   - uid: 21819
     components:

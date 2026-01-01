@@ -196,8 +196,11 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
+    - NullSpaceDrainer # Starlight
+    - ScienceBlueSpaceStatic # Starlight
     - ChemistryStatic
     dynamicPacks:
+    - ScienceBlueSpace # Starlight
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -269,6 +272,7 @@
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
     - StarlightVendorBoards # Starlight
+    - StarlightNullspaceStatic # Starlight
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
@@ -424,9 +428,11 @@
     runningState: icon
     staticPacks:
     - SecurityEquipmentStatic # Starlight start
+    - NullSpaceDrainer
     - SecurityPracticeStatic
     - StarlightSecurityAmmoStatic
     - StarlightSecurityAmmoEmagStatic
+    - StarlightNullspaceStatic
     - SecurityWeaponsStatic # Starlight end
     dynamicPacks:
     - SalvageSecurityBoards

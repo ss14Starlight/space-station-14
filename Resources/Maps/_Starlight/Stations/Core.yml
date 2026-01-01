@@ -130575,7 +130575,7 @@ entities:
     - type: Transform
       pos: -5.5,-41.5
       parent: 2
-- proto: ToiletEmpty
+- proto: ToiletFilled
   entities:
   - uid: 19151
     components:

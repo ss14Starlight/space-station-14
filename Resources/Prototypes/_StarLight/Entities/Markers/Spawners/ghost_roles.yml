@@ -17,3 +17,24 @@
     - state: green
     - sprite: Mobs/Silicon/Chassis/derelict.rsi
       state: derelict_icon
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostBrighteye
+  name: ghost role spawn point
+  suffix: brighteye
+  components:
+  - type: GhostRole
+    name: roles-antag-brighteye-name
+    description: roles-antag-brighteye-description
+    mindRoles:
+    - MindRoleBrighteye
+    raffle:
+      settings: default
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+      state: full

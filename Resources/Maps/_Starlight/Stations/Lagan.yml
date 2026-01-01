@@ -157126,7 +157126,7 @@ entities:
       parent: 2
     - type: DeltaPressure
       gridUid: 2
-- proto: ToiletDirtyWater
+- proto: ToiletDirtyWaterFilled
   entities:
   - uid: 24637
     components:
@@ -157176,7 +157176,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 55.5,61.5
       parent: 2
-- proto: ToiletEmpty
+- proto: ToiletFilled
   entities:
   - uid: 24645
     components:

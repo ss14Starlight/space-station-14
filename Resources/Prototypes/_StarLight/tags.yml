@@ -385,6 +385,9 @@
   id: ScanGateMachineBoard
 
 - type: Tag
+  id: TheDark
+  
+- type: Tag
   id: PersonnelStorage
 
 - type: Tag
@@ -392,6 +395,9 @@
 
 - type: Tag
   id: WallmountMassScannerElectronics
+
+- type: Tag
+  id: Bow
  
 - type: Tag
   id: SyndicateJawsOfLife
@@ -404,3 +410,7 @@
 
 - type: Tag
   id: MagazineLightRiflePan
+
+- type: Tag
+  id: FestiveDinner
+  

@@ -26,3 +26,15 @@
   - JermovCircuitBoard
   radioChannels:
   - Binary
+
+- type: technology
+  id: BluespaceManipulation
+  name: research-technology-bluespace-manipulation
+  icon:
+    sprite: _Starlight/Objects/Materials/materials.rsi
+    state: synthetic_bluespace_crystal_3
+  discipline: Experimental
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - ArtificialBluespaceCrystal

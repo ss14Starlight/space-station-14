@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Atmos;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Temperature.Components;
@@ -27,8 +28,45 @@ public abstract class SharedTemperatureSystem : EntitySystem
 
         SubscribeLocalEvent<TemperatureSpeedComponent, OnTemperatureChangeEvent>(OnTemperatureChanged);
         SubscribeLocalEvent<TemperatureSpeedComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
+        SubscribeLocalEvent<TemperatureComponent, InteractionSuccessEvent>(OnInteractionSuccess); // Starlight
     }
 
+    // Starlight begin
+
+    private void OnInteractionSuccess(Entity<TemperatureComponent> ent, ref InteractionSuccessEvent args)
+    {
+        // Const
+        var joulesTransferPerDegree = 800.0f;
+
+        if (!TryComp<TemperatureComponent>(args.User, out var userTempComp))
+            return;
+
+        // This is not realistic whatsoever. A "realistic" hug (not really but a lot closer) would be more like ~250 J total for a dT of 50.
+
+        Entity<TemperatureComponent> hotEntity;
+        Entity<TemperatureComponent> coldEntity;
+
+        var deltaT = ent.Comp.CurrentTemperature - userTempComp.CurrentTemperature;
+        
+        if (deltaT > 0)
+        {
+            hotEntity = ent;
+            coldEntity = (args.User, userTempComp);
+        }
+        else
+        {
+            hotEntity = (args.User, userTempComp);
+            coldEntity = ent;
+        }
+
+        var joulesTransferred = joulesTransferPerDegree * Math.Abs(deltaT);
+
+        ChangeHeat(hotEntity, -joulesTransferred, false, hotEntity.Comp);
+        ChangeHeat(coldEntity, joulesTransferred, false, coldEntity.Comp);
+    }
+
+    // Starlight end
+    
     private void OnTemperatureChanged(Entity<TemperatureSpeedComponent> ent, ref OnTemperatureChangeEvent args)
     {
         foreach (var (threshold, modifier) in ent.Comp.Thresholds)

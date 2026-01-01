@@ -1,6 +1,6 @@
 - type: entity
   id: PelletShotgunSlug
-  name: pellet (.50 slug)
+  name: 12 gauge slug # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
@@ -15,7 +15,7 @@
 
 - type: entity
   id: PelletShotgunBeanbag
-  name: beanbag (.50)
+  name: 12 gauge beanbag slug # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
@@ -33,7 +33,7 @@
 
 - type: entity
   id: PelletShotgun
-  name: pellet (.50)
+  name: 12 gage buckshot # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
@@ -56,7 +56,7 @@
 
 - type: entity
   id: PelletShotgunIncendiary
-  name: pellet (.50 incendiary)
+  name: 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletIncendiary
   components:
@@ -80,7 +80,7 @@
 
 - type: entity
   id: PelletShotgunPractice
-  name: pellet (.50 practice)
+  name: 12 gauge blank # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletPractice
   components:
@@ -128,7 +128,7 @@
 
 - type: entity
   id: PelletShotgunTranquilizer
-  name: pellet (.50 tranquilizer)
+  name: 12 gauge traunquilizer slug # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletPractice
   components:
@@ -146,7 +146,7 @@
 
 - type: entity
   id: PelletShotgunFlare
-  name: pellet (.50 flare)
+  name: 12 gauge flare # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   components:
   - type: Physics
@@ -193,7 +193,7 @@
 
 - type: entity
   id: PelletShotgunUranium
-  name: pellet (.50 uranium)
+  name: 12 gauge uranium buckshot # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletUranium
   components:
