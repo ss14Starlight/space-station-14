@@ -52,7 +52,7 @@
       absorbed:
         maxVol: 50
       food:
-        maxVol: 140
+        maxVol: 140 # starlight-edit
         reagents:
           # starlight-start
           - ReagentId: Nutriment
