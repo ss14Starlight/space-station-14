@@ -26,9 +26,9 @@
       60: Critical # starlight-edit
       95: Dead # starlight-edit
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.6
+    baseWalkSpeed: 2.6 # starlight-edit
     baseSprintSpeed: 5 # extra speed for that moppin'!
-  - type: NoSlip
+  - type: NoSlip # starlight-edit
   - type: HTN
     rootTask:
       task: MoproachCompound
