@@ -24,7 +24,7 @@
     thresholds:
       0: Alive
       60: Critical # starlight-edit
-      95: Dead
+      95: Dead # starlight-edit
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.6
     baseSprintSpeed: 5 # extra speed for that moppin'!
