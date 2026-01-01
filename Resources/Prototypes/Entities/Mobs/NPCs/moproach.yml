@@ -54,6 +54,7 @@
       food:
         maxVol: 140
         reagents:
+          # starlight-start
           - ReagentId: Nutriment
             Quantity: 12
           - ReagentId: Protein
@@ -62,6 +63,7 @@
             Quantity: 90
           - ReagentId: Slime
             Quantity: 8
+          # starlight-end
 
 
 - type: entity
