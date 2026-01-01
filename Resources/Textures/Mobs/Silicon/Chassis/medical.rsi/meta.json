@@ -5,11 +5,59 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "taken from Paradise Station at https://github.com/ParadiseSS13/Paradise/commit/34f3823923b7692533b7a99c6f2a8bc91c834870",
+    "copyright": "Cricket, Borg, Needles, and Noble by Conflee. Edits by Conflee, originals taken from Paradise Station at https://github.com/ParadiseSS13/Paradise/commit/34f3823923b7692533b7a99c6f2a8bc91c834870",
     "states": [
         {
             "name": "borg",
-            "directions": 4
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "borg_moving",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.2,
+                    0.1
+                ]
+            ]
         },
         {
             "name": "borg_e",
@@ -24,67 +72,19 @@
             "directions": 4
         },
         {
-            "name": "surgeon",
-            "directions": 4,
-            "delays": [
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ]
-            ]
-        },
-        {
-            "name": "surgeon_moving",
-            "directions": 4,
-            "delays": [
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ],
-                [
-                    0.1,
-                    0.2,
-                    0.1
-                ]
-            ]
-        },
-        {
-            "name": "surgeon_e",
+            "name": "generic",
             "directions": 4
         },
         {
-            "name": "surgeon_e_r",
+            "name": "generic_e",
             "directions": 4
         },
         {
-            "name": "surgeon_l",
+            "name": "generic_e_r",
+            "directions": 4
+        },
+        {
+            "name": "generic_l",
             "directions": 4
         },
         {

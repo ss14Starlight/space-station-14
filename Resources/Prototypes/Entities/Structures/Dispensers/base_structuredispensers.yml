@@ -86,9 +86,13 @@
   id: ReagentDispenserBasePowerCell
   parent: ReagentDispenserBaseUnpowered
   components:
+  - type: ApcPowerReceiver
+    needsPower: true
+    powerLoad: 5 # Draw power for charging cell
+  - type: ExtensionCableReceiver
   - type: PowerCellDraw
     drawRate: 0
-    useRate: 5
+    useCharge: 5
   - type: ActivatableUIRequiresPowerCell
   - type: ContainerContainer
     containers:
@@ -99,6 +103,9 @@
       cell_slot: !type:ContainerSlot { }
   - type: PowerCellSlot
     cellSlotId: cell_slot
+  - type: Charger
+    slotId: cell_slot
+    passiveDraw: 5
   - type: ItemSlots
     slots:
       cell_slot:

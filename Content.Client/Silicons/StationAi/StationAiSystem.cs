@@ -1,9 +1,12 @@
-using Content.Shared.Intellicard;
 using Content.Shared.Silicons.StationAi;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
+
+#region Starlight
+using Content.Shared.Intellicard;
+#endregion Starlight
 
 namespace Content.Client.Silicons.StationAi;
 
@@ -13,6 +16,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly StationAiVisionSystem _vision = default!; // Starlight
 
     private StationAiOverlay? _overlay;
 
@@ -21,13 +25,14 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         base.Initialize();
         InitializeAirlock();
         InitializePowerToggle();
+        InitializeWarp(); // Starlight
 
         SubscribeLocalEvent<StationAiOverlayComponent, LocalPlayerAttachedEvent>(OnAiAttached);
         SubscribeLocalEvent<StationAiOverlayComponent, LocalPlayerDetachedEvent>(OnAiDetached);
         SubscribeLocalEvent<StationAiOverlayComponent, ComponentInit>(OnAiOverlayInit);
         SubscribeLocalEvent<StationAiOverlayComponent, ComponentRemove>(OnAiOverlayRemove);
         SubscribeLocalEvent<StationAiCoreComponent, AppearanceChangeEvent>(OnAppearanceChange);
-        SubscribeLocalEvent<IntellicardComponent, AppearanceChangeEvent>(OnIntellicardAppearanceChange);
+        SubscribeLocalEvent<IntellicardComponent, AppearanceChangeEvent>(OnIntellicardAppearanceChange); // Starlight
     }
 
     private void OnAiOverlayInit(Entity<StationAiOverlayComponent> ent, ref ComponentInit args)
@@ -103,6 +108,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     public override void Shutdown()
     {
         base.Shutdown();
+        ShutdownWarp(); // Starlight
         _overlayMgr.RemoveOverlay<StationAiOverlay>();
     }
 }

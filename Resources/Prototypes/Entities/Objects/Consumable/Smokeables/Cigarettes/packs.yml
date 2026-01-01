@@ -50,10 +50,19 @@
   - type: Storage
     grid:
     - 0,0,4,1
-  - type: StorageFill
-    contents:
-    - id: Cigarette
-      amount: 10
+    # 🌟Starlight - Start🌟
+    whitelist:
+      components:
+        - Smokable
+        - Matchstick
+        - Welder # for lighters
+        - Crayon # they're ciggie shaped
+    # 🌟Starlight - End🌟
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: Cigarette
+        amount: 10
   - type: ItemCounter
     count:
       tags: [Cigarette]
@@ -119,6 +128,14 @@
   - type: Storage
     grid:
     - 0,0,4,1
+    # 🌟Starlight - Start🌟
+    whitelist:
+      components:
+        - Smokable
+        - Matchstick
+        - Welder # for lighters
+        - Crayon # they're ciggie shaped
+    # 🌟Starlight - End🌟
   - type: ItemCounter
     count:
       tags: [Cigarette]
@@ -202,10 +219,11 @@
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/syndicate.rsi
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/syndicate.rsi
-  - type: StorageFill
-    contents:
-    - id: CigaretteSyndicate
-      amount: 10
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: CigaretteSyndicate
+        amount: 10
 
 - type: entity
   id: CigPackMixed
@@ -235,6 +253,8 @@
   id: RandomSoakedSmokeTable
   table: !type:GroupSelector
     children:
+    - id: CigaretteLead
+      weight: 1
     - id: CigaretteLicoxide
       weight: 1
     - id: CigaretteFrezon
@@ -287,22 +307,25 @@
       weight: 7
 
 ### begin SL
+
 - type: entity
   id: CigPackRollie
   parent: PackPaperRolling
   name: Rollie Packet
   description: An old rolling paper packet full of things to make rollies with.
   components:
-  - type: StorageFill
-    contents:
-    - id: CigaretteFilter
-      amount: 2
-    - id: PaperRolling
-      amount: 2
-    - id: GroundTobacco5
-      amount: 2
-    - id: CigaretteSyndicate
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CigaretteFilter
+          amount: 2
+        - id: PaperRolling
+          amount: 2
+        - id: GroundTobacco5
+          amount: 2
+        - id: CigaretteSyndicate
+          amount: 2
 
 - type: entity
   id: CigPackMedRollie
@@ -310,12 +333,28 @@
   name: medicinal blunt packet
   description: An old rolling paper packet full of things to make blunts with. Its purely medicinal man..
   components:
-  - type: StorageFill
-    contents:
-    - id: LeavesTobaccoDried5
-      amount: 2
-    - id: GroundCannabis10
-      amount: 1
-    - id: Blunt
-      amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: LeavesTobaccoDried5
+          amount: 2
+        - id: GroundCannabis10
+          amount: 1
+        - id: Blunt
+          amount: 2
+
+- type: entity
+  id: CigPackBub
+  parent: PackPaperRolling
+  name: greyman's specials pack
+  description: An old rolling paper packet full of Greyman's special cigarettes. You feel more surgically inclined while smoking them.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CigaretteBub
+          amount: 10
+
 ### end SL

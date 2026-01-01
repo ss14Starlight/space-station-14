@@ -10,3 +10,45 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "Taken from TG station."
   source: "https://github.com/tgstation/tgstation/commit/45123dd06cb6dc7c56e8004c528230682ea559b2"
+# STARLIGHT
+- files:
+    - critdestrnano.ogg
+    - critdestrsyndi.ogg
+    - critnano.ogg
+    - imag_enhnano.ogg
+    - imag_enhsyndi.ogg
+    - internaldmgalarm.ogg
+    - lowpower.ogg
+    - lowpowernano.ogg
+    - lowpowersyndi.ogg
+    - mechambience.ogg
+    - mechdrill.ogg
+    - nominalnano.ogg
+    - nominalsyndi.ogg
+    - powerup.ogg
+    - weapdestrnano.ogg
+    - weapdestrsyndi.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise Station."
+  source: "https://github.com/ParadiseSS13/Paradise/commit/d2eff85c174c2da46ee6c05d11ba7c1427a8b6c5"
+- files:
+    - longnanoactivation.ogg
+    - longsyndiactivation.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise Station."
+  source: "https://github.com/ParadiseSS13/Paradise/commit/4fc35a68b1902902420f8b4f2c633a58108cf043"
+- files:
+    - critdestr.ogg
+    - imag_enh.ogg
+    - mechmove01.ogg
+    - mechmove04.ogg
+    - mechturn.ogg
+    - nominal.ogg
+    - weapdestr.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise Station."
+  source: "https://github.com/ParadiseSS13/Paradise/commit/3517810d119fcb5eeb9d477c87cda3eb3cd2048c"
+- files: ["skyfall_power_up.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Paradise Station."
+  source: "https://github.com/ParadiseSS13/Paradise/blob/master/sound/mecha/skyfall_power_up.ogg"

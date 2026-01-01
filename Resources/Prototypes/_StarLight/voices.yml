@@ -1,11 +1,4 @@
 - type: voice
-  id: invoker
-  voice: 282
-  name: tts-voice-name-invoker
-  sex: Male
-  silicon: false
-
-- type: voice
   id: scout
   voice: 67
   name: tts-voice-name-scout
@@ -1023,3 +1016,17 @@
   sex: Male
   silicon: false
   voice: 510002
+
+- type: voice
+  id: rinary
+  name: tts-voice-name-rinary
+  sex: Male
+  silicon: false
+  voice: 510003
+
+- type: voice
+  id: felinoid 
+  name: tts-voice-name-felinoid
+  sex: Unsexed
+  silicon: false
+  voice: 510004

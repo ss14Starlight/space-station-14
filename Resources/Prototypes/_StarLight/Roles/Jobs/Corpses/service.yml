@@ -1,0 +1,91 @@
+- type: startingGear
+  id: HoPCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoP
+    ears: ClothingHeadsetService
+    shoes: ClothingShoesLeather
+    head: ClothingHeadHatHopcap
+    pocket1: LuxuryPen
+
+- type: startingGear
+  id: ClownCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitClown
+    ears: ClothingHeadsetService
+    shoes: ClothingShoesClown
+    mask: ClothingMaskClown
+    pocket1: BikeHorn
+
+- type: startingGear
+  id: MimeCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMime
+    ears: ClothingHeadsetService
+    shoes: ClothingShoesColorBlack
+    mask: ClothingMaskMime
+
+- type: startingGear
+  id: JanitorCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitJanitor
+    ears: ClothingHeadsetService
+    shoes: ClothingShoesGaloshes
+    head: ClothingHeadHatPurplesoft
+    gloves: ClothingHandsGlovesJanitor
+    belt: ClothingBeltJanitor
+
+- type: startingGear
+  id: ServiceWorkerCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBartender
+    ears: ClothingHeadsetService
+    shoes: ClothingShoesColorBlack
+    outerClothing: ClothingOuterApron
+
+- type: startingGear
+  id: MusicianCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMusician
+    shoes: ClothingShoesColorBlack
+    ears: ClothingHeadsetService
+
+- type: startingGear
+  id: BotanistCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHydroponics
+    ears: ClothingHeadsetService
+    shoes: ClothingShoesColorBlack
+    outerClothing: ClothingOuterApronBotanist
+
+- type: startingGear
+  id: ChefCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChef
+    ears: ClothingHeadsetService
+    shoes: ClothingShoesChef
+    head: ClothingHeadHatChef
+    outerClothing: ClothingOuterApronChef
+
+- type: startingGear
+  id: ChaplainCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChaplain
+    shoes: ClothingShoesColorBlack
+    ears: ClothingHeadsetService
+
+- type: startingGear
+  id: AssistantCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAncient
+    shoes: ClothingShoesColorBlack
+    ears: ClothingHeadsetAssistant
+
+- type: startingGear
+  id: TiderCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAncient
+    shoes: ClothingShoesColorBlack
+    ears: ClothingHeadsetAssistant
+    mask: ClothingMaskGas
+    gloves: ClothingHandsGlovesFingerlessInsulated
+    pocket1: Multitool

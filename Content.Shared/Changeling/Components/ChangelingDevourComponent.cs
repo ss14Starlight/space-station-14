@@ -85,7 +85,7 @@ public sealed partial class ChangelingDevourComponent : Component
     /// Damage cap that a target is allowed to be caused due to IdentityConsumption
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DevourConsumeDamageCap = 350f;
+    public float DevourConsumeDamageCap = 180f; // Starlight edit
 
     /// <summary>
     /// The Currently active devour sound in the world

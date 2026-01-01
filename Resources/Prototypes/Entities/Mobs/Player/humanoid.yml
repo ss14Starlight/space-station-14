@@ -59,12 +59,6 @@
 #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
       - MindRoleGhostCorporateAligned # Starlight
       job: DeathSquad
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 36000 # 10h
     - type: Loadout
       prototypes: [ DeathSquadGear ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -104,15 +98,6 @@
       raffle:
         settings: short
       job: ERTLeader
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:DepartmentTimeRequirement
-        department: CentralCommand
-        time: 36000 # 10h
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 36000 # 10h
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
       roleLoadout: [ RoleSurvivalExtended ]
@@ -189,12 +174,6 @@
       raffle:
         settings: short
       job: ERTChaplain
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobChaplain
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -255,12 +234,6 @@
       raffle:
         settings: short
       job: ERTJanitor
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobJanitor
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -320,12 +293,6 @@
       raffle:
         settings: short
       job: ERTEngineer
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobStationEngineer
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -385,12 +352,6 @@
       raffle:
         settings: short
       job: ERTSecurity
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobSecurityOfficer
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -466,15 +427,6 @@
       raffle:
         settings: short
       job: ERTMedical
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobMedicalDoctor
-        time: 18000 # 5h
-      - !type:RoleTimeRequirement
-        role: JobChemist
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -531,15 +483,6 @@
       raffle:
         settings: short
       job: CBURN
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobMedicalDoctor
-        time: 18000 # 5h
-      - !type:RoleTimeRequirement
-        role: JobSecurityOfficer
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -568,9 +511,7 @@
       rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: default
-      requirements:
-      - !type:RolesRequirement
-        proto: StaffAndMentorOnlyRolesReq
+      job: CentralCommandOfficial
     - type: Loadout
       prototypes: [ CentcomGear ]
       roleLoadout: [ RoleSurvivalStandard ]

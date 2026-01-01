@@ -11,9 +11,14 @@ using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+
+#region Starlight
+using Content.Shared.GameTicking.Prototypes;
+using Robust.Client.UserInterface.CustomControls;
+#endregion Starlight
 
 namespace Content.Client.Lobby
 {
@@ -29,6 +34,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
         [Dependency] private readonly IClientPreferencesManager _preferences = default!; //Starlight
+        [Dependency] private readonly IPrototypeManager _protoMan = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -218,6 +224,7 @@ namespace Content.Client.Lobby
             else
             {
                 Lobby!.StartTime.Text = string.Empty;
+                Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
                 Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
                 // If there is a tooltip showing, make sure to update the text in it as well!
                 if (Lobby!.ReadyButton.SuppliedTooltip is Tooltip tooltip)
@@ -225,8 +232,7 @@ namespace Content.Client.Lobby
                     tooltip.Text = GetReadyButtonTooltipText();
                 }
                 Lobby!.ReadyButton.ToggleMode = true;
-                Lobby!.ReadyButton.Disabled = !_readyPossibleWithCharacters;
-                Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
+                Lobby!.ReadyButton.Disabled = !_readyPossibleWithCharacters; // Starlight - false -> !_readyPossibleWithCharacters
                 Lobby!.ObserveButton.Disabled = true;
             }
 
@@ -287,15 +293,22 @@ namespace Content.Client.Lobby
 
         private void UpdateLobbyBackground()
         {
-            if (_gameTicker.LobbyBackground != null)
+            if (_protoMan.TryIndex(_gameTicker.LobbyBackground, out var proto))
             {
-                Lobby!.Background.Texture = _resourceCache.GetResource<TextureResource>(_gameTicker.LobbyBackground );
+                Lobby!.Background.Texture = _resourceCache.GetResource<TextureResource>(proto.Background);
+
+                var markup = Loc.GetString("lobby-state-background-text",
+                    ("backgroundTitle", Loc.GetString(proto.Title)),
+                    ("backgroundArtist", Loc.GetString(proto.Artist)));
+
+                Lobby!.LobbyBackground.SetMarkup(markup);
             }
             else
             {
                 Lobby!.Background.Texture = null;
-            }
 
+                Lobby!.LobbyBackground.SetMarkup(Loc.GetString("lobby-state-background-no-background-text"));
+            }
         }
 
         private void SetReady(bool newReady)

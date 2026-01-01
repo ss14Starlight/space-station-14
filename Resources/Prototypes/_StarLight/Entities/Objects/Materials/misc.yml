@@ -4,34 +4,33 @@
   name: abyssium core
   description: Bright crystal, oozing with energy.
   components:
-  - type: XenoArtifact
-    priceMultiplier: 1.5
-    nodeCount:
-      min: 24
-      max: 25
-  - type: Sprite
-    sprite: _Starlight/Objects/Materials/materials.rsi
-    state: abyss_core
-    scale: 0.5, 0.5
-  - type: Item
-    sprite: _Starlight/Objects/Materials/materials.rsi
-    size: Normal
-  - type: PointLight
-    radius: 3.2
-    energy: 1.4
-    castShadows: false
-    color: "#41EEF1"
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.2
-        density: 20
-        mask:
-          - ItemMask
-        restitution: 0.3
-        friction: 0.2
+    - type: XenoArtifact
+      priceMultiplier: 1.5
+      nodeCount:
+        min: 24
+        max: 25
+    - type: Sprite
+      sprite: _Starlight/Objects/Materials/abyss.rsi
+      state: abyss_core
+      scale: 0.5, 0.5
+    - type: Item
+      sprite: _Starlight/Objects/Materials/abyss.rsi
+      size: Normal
+    - type: PointLight
+      radius: 3.2
+      energy: 1.4
+      castShadows: false
+      color: "#41EEF1"
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.2
+          density: 20
+          mask:
+            - ItemMask
+          restitution: 0.3
+          friction: 0.2
 
 - type: entity
   parent: MaterialBase
@@ -39,43 +38,175 @@
   name: crushed phosphorus
   suffix: Full
   components:
-  - type: Material
-  - type: Stack
-    stackType: CrushedPhosphorus
-    baseLayer: base
-    layerStates:
-    - phosphorus
-    - phosphorus_2
-    - phosphorus_3
-  - type: Sprite
-    sprite: _Starlight/Objects/Materials/phosphorus.rsi
-    state: phosphorus_3
-    layers:
-    - state: phosphorus_3
-      map: ["base"]
-  - type: Appearance
-  - type: Item
-    heldPrefix: phosphorus
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        CrushedPhosphorus: 100
+    - type: Stack
+      stackType: CrushedPhosphorus
+      baseLayer: base
+      layerStates:
+        - phosphorus
+        - phosphorus_2
+        - phosphorus_3
+    - type: Sprite
+      sprite: _Starlight/Objects/Materials/phosphorus.rsi
+      state: phosphorus_3
+      layers:
+        - state: phosphorus_3
+          map: ["base"]
+    - type: Appearance
+    - type: Tag
+      tags:
+        - TiderAnvilParts
+    - type: Item
+      heldPrefix: phosphorus
 
 - type: entity
   parent: CrushedPhosphorus
   id: CrushedPhosphorus10
   suffix: 10
   components:
-  - type: Sprite
-    state: phosphorus
-  - type: Stack
-    count: 10
+    - type: Sprite
+      state: phosphorus
+    - type: Stack
+      count: 10
 
 - type: entity
   parent: CrushedPhosphorus
   id: CrushedPhosphorus1
   suffix: Single
   components:
-  - type: Sprite
-    state: phosphorus
-  - type: Stack
-    count: 1
-  - type: Construction
-    graph: CrushedPhosphorus
-    node: crushed
+    - type: Sprite
+      state: phosphorus
+    - type: Stack
+      count: 1
+    - type: Construction
+      graph: CrushedPhosphorus
+      node: crushed
+
+# Bluespace Crystals
+- type: entity
+  parent: [IngotBase, BaseScienceContraband]
+  id: BluespaceCrystal
+  name: bluespace crystal
+  description: A glowing bluespace crystal, not much is known about how they work. It looks very delicate.
+  suffix: Full
+  components:
+    - type: BluespaceCrystal
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        BluespaceCrystal: 100
+    - type: Stack
+      count: 10
+      stackType: BluespaceCrystal
+      baseLayer: base
+      layerStates:
+        - refined_bluespace_crystal
+        - refined_bluespace_crystal_2
+        - refined_bluespace_crystal_3
+    - type: Sprite
+      sprite: _Starlight/Objects/Materials/materials.rsi
+      state: refined_bluespace_crystal_3
+      layers:
+        - state: refined_bluespace_crystal_3
+          map: ["base"]
+    - type: Item
+      heldPrefix: bluespace
+    - type: Appearance
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.2
+          density: 20
+          mask:
+            - ItemMask
+          restitution: 0.3
+          friction: 0.2
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: null
+    - type: DamageOnLand
+      damage:
+        types:
+          Blunt: 5
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTrigger
+            damage: 5
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+                params:
+                  volume: -8
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+
+- type: entity
+  parent: BluespaceCrystal
+  id: BluespaceCrystal1
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: BluespaceCrystal
+  id: BluespaceCrystal3
+  suffix: 3
+  components:
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: BluespaceCrystal
+  id: BluespaceCrystal5
+  suffix: 5
+  components:
+    - type: Stack
+      count: 5
+
+- type: entity
+  parent: BluespaceCrystal
+  id: ArtificialBluespaceCrystal
+  name: artificial bluespace crystal
+  description: An artificially made bluespace crystal, it looks delicate.
+  suffix: Full
+  components:
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        BluespaceCrystal: 100
+    - type: Stack
+      count: 10
+      stackType: BluespaceCrystal
+      baseLayer: base
+      layerStates:
+        - synthetic_bluespace_crystal
+        - synthetic_bluespace_crystal_2
+        - synthetic_bluespace_crystal_3
+    - type: Sprite
+      sprite: _Starlight/Objects/Materials/materials.rsi
+      state: synthetic_bluespace_crystal_3
+      layers:
+        - state: synthetic_bluespace_crystal_3
+          map: ["base"]
+
+- type: entity
+  parent: ArtificialBluespaceCrystal
+  id: ArtificialBluespaceCrystal1
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: ArtificialBluespaceCrystal
+  id: ArtificialBluespaceCrystal5
+  suffix: 5
+  components:
+    - type: Stack
+      count: 5

@@ -1,0 +1,123 @@
+- type: entity
+  parent: BaseItem
+  id: BasePinata
+  abstract: true
+  name: Base Pinata
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: PinataCandyTable
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: StaticPrice
+    price: 10
+  - type: Edible
+    requiresSpecialDigestion: true
+    delay: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Pinatas/clown.rsi
+    state: pinata
+  - type: Damageable
+    damageContainer: Inorganic
+
+- type: entity
+  parent: BasePinata
+  id: ClownPinata
+  name: Clown Pinata
+  description: Looks kinda funny. Do the real ones also explode into candy when you beat them?
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: PinataCandyTable
+    # gibTable: !type:NestedSelector
+      # tableId: PinataLoot
+      # rolls: !type:RangeNumberSelector
+        # range: 5, 10
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ClownPinataDamaged:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Pinatas/clown.rsi
+    state: pinata
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: ClownPinata
+  id: ClownPinataDamaged
+  name: Clown Pinata
+  suffix: Damaged
+  description: Looks kinda sad. Show no mercy.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: PinataCandyTable
+    gibTable: !type:NestedSelector
+      tableId: PinataCandyTable
+      rolls: !type:RangeNumberSelector
+        range: 5, 7
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ClownPinataDestroyed:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Pinatas/clown.rsi
+    state: damaged
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: BaseItem
+  id: ClownPinataDestroyed
+  name: Clown Pinata Remains
+  description: Like stealing candy from a clown.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Pinatas/clown.rsi
+    state: destroyed
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Trash

@@ -5,3 +5,540 @@
   materials:
      Steel: 100
      Glass: 900
+
+- type: latheRecipe
+  id: VendingMachineCondimentsCircuitboard
+  result: VendingMachineCondimentsCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineAmmoCircuitboard
+  result: VendingMachineAmmoCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineBoozeCircuitboard
+  result: VendingMachineBoozeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineBoozeSyndicateCircuitboard
+  result: VendingMachineBoozeSyndicateCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineCartCircuitboard
+  result: VendingMachineCartCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineChefvendCircuitboard
+  result: VendingMachineChefvendCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineCigsCircuitboard
+  result: VendingMachineCigsCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineClothingCircuitboard
+  result: VendingMachineClothingCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineWinterCircuitboard
+  result: VendingMachineWinterCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineCoffeeCircuitboard
+  result: VendingMachineCoffeeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineColaBlackCircuitboard
+  result: VendingMachineColaBlackCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineColaRedCircuitboard
+  result: VendingMachineColaRedCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSpaceUpCircuitboard
+  result: VendingMachineSpaceUpCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineStarkistCircuitboard
+  result: VendingMachineStarkistCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineShamblersJuiceCircuitboard
+  result: VendingMachineShamblersJuiceCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachinePwrGameCircuitboard
+  result: VendingMachinePwrGameCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineDrGibbCircuitboard
+  result: VendingMachineDrGibbCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSmiteCircuitboard
+  result: VendingMachineSmiteCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineDinnerwareCircuitboard
+  result: VendingMachineDinnerwareCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineDiscountCircuitboard
+  result: VendingMachineDiscountCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineEngivendCircuitboard
+  result: VendingMachineEngivendCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineMedicalCircuitboard
+  result: VendingMachineMedicalCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineNutriCircuitboard
+  result: VendingMachineNutriCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSecCircuitboard
+  result: VendingMachineSecCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSeedsUnlockedCircuitboard
+  result: VendingMachineSeedsUnlockedCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSeedsCircuitboard
+  result: VendingMachineSeedsCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSnackCircuitboard
+  result: VendingMachineSnackCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSustenanceCircuitboard
+  result: VendingMachineSustenanceCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSnackBlueCircuitboard
+  result: VendingMachineSnackBlueCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSnackOrangeCircuitboard
+  result: VendingMachineSnackOrangeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSnackGreenCircuitboard
+  result: VendingMachineSnackGreenCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSnackTealCircuitboard
+  result: VendingMachineSnackTealCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSovietSodaCircuitboard
+  result: VendingMachineSovietSodaCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineTheaterCircuitboard
+  result: VendingMachineTheaterCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineVendomatCircuitboard
+  result: VendingMachineVendomatCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineRoboticsCircuitboard
+  result: VendingMachineRoboticsCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineYouToolCircuitboard
+  result: VendingMachineYouToolCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineGamesCircuitboard
+  result: VendingMachineGamesCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineChangCircuitboard
+  result: VendingMachineChangCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSalvageCircuitboard
+  result: VendingMachineSalvageCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineDonutCircuitboard
+  result: VendingMachineDonutCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineHydrobeCircuitboard
+  result: VendingMachineHydrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineLawDrobeCircuitboard
+  result: VendingMachineLawDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSecDrobeCircuitboard
+  result: VendingMachineSecDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSyndieDrobeCircuitboard
+  result: VendingMachineSyndieDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingBarDrobeCircuitboard
+  result: VendingBarDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineChapelCircuitboard
+  result: VendingMachineChapelCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineCargoDrobeCircuitboard
+  result: VendingMachineCargoDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineMediDrobeCircuitboard
+  result: VendingMachineMediDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineChemDrobeCircuitboard
+  result: VendingMachineChemDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineCuraDrobeCircuitboard
+  result: VendingMachineCuraDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineAtmosDrobeCircuitboard
+  result: VendingMachineAtmosDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineEngiDrobeCircuitboard
+  result: VendingMachineEngiDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineChefDrobeCircuitboard
+  result: VendingMachineChefDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineDetDrobeCircuitboard
+  result: VendingMachineDetDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineJaniDrobeCircuitboard
+  result: VendingMachineJaniDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineSciDrobeCircuitboard
+  result: VendingMachineSciDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineRoboDrobeCircuitboard
+  result: VendingMachineRoboDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineGeneDrobeCircuitboard
+  result: VendingMachineGeneDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineViroDrobeCircuitboard
+  result: VendingMachineViroDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineCentDrobeCircuitboard
+  result: VendingMachineCentDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineHappyHonkCircuitboard
+  result: VendingMachineHappyHonkCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachinePrideCircuitboard
+  result: VendingMachinePrideCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineTankDispenserEVACircuitboard
+  result: VendingMachineTankDispenserEVACircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineTankDispenserEngineeringCircuitboard
+  result: VendingMachineTankDispenserEngineeringCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineChemicalsCircuitboard
+  result: VendingMachineChemicalsCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineChemicalsSyndicateCircuitboard
+  result: VendingMachineChemicalsSyndicateCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+

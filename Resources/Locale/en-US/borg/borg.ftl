@@ -10,6 +10,9 @@ borg-module-too-many = There's not enough room for another module...
 borg-module-duplicate = This module is already installed in this cyborg.
 borg-module-whitelist-deny = This module doesn't fit in this type of cyborg...
 
+borg-module-action-name = Activate {$moduleName}
+borg-module-action-description = Select the {$moduleName}, enabling you to use the tools it provides.
+
 borg-construction-guide-string = The cyborg limbs and torso must be attached to the endoskeleton.
 
 borg-ui-menu-title = Cyborg Interface
@@ -45,9 +48,11 @@ borg-type-engineering-name = Engineering
 borg-type-engineering-desc = Assist the engineering team in station construction, repairing damage, or fixing electrical and atmospheric issues.
 borg-type-engineering-transponder = engineering cyborg
 
-borg-type-mining-name = Salvage
-borg-type-mining-desc = Join salvage and help them mine for materials, scavenge wrecks, and fight off hostile wildlife.
-borg-type-mining-transponder = salvage cyborg
+## Starlight begin
+borg-type-mining-name = Mining
+borg-type-mining-desc = Join salvage or mining and help them mine for materials, scavenge wrecks, and fight off hostile wildlife.
+borg-type-mining-transponder = mining cyborg
+## Starlight end
 
 borg-type-janitor-name = Janitor
 borg-type-janitor-desc = Keep the station nice and tidy, clean up spills, collect and properly dispose of trash left around by lazy crewmembers.

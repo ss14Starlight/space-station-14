@@ -1,6 +1,16 @@
 # salv lead shares most loadoutgroups with salvage specialist
 # see Resources/Prototypes/_StarLight/Loadouts/role_loadouts.yml
 
+# Veteran Time
+- type: loadoutEffectGroup
+  id: VeteranSalvageLead
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageLead
+      time: 216000 # 60 hrs
+
 # Jumpsuit
 - type: loadout
   id: SalvageLeadJumpsuit
@@ -11,3 +21,31 @@
   id: SalvageLeadJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtSalvageLead
+
+# Neck
+- type: loadout
+  id: SalvageLeaderMantle
+  equipment:
+    neck: ClothingNeckMantleDecoratedSalvager
+
+- type: loadout
+  id: SalvageVeteranMantle
+  equipment: 
+    neck: ClothingNeckMantleDecoratedVeteranSalvager
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageLead
+
+# PDA
+- type: loadout
+  id: SalvageLeadPDA
+  equipment:
+    id: SalvageLeadPDA
+
+- type: loadout
+  id: VeteranSalvageLeadPDA
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: VeteranSalvageLead
+  equipment:
+    id: VeteranSalvageLeadPDA

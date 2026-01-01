@@ -89,6 +89,14 @@
       count: 15
       minGroupSize: 1
       maxGroupSize: 2
+    #Starlight-edit: start
+    - !type:OreDunGen
+      replacement: IronRock
+      entity: IronRockBluespace
+      count: 5
+      minGroupSize: 1
+      maxGroupSize: 2
+    #Starlight-edit: end
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockGibtonite

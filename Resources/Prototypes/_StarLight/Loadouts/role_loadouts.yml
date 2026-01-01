@@ -11,7 +11,7 @@
   - Survival
   - Trinkets
   - Scarves
-  - GroupSpeciesBreathTool
+  - Pens
 
 - type: roleLoadout
   id: JobMagistrate
@@ -21,12 +21,11 @@
   - Survival
   - Trinkets
   - Scarves
-  - GroupSpeciesBreathTool
+  - LuxuryPens
 
 - type: roleLoadout
   id: JobSurgeon
   groups:
-  - GroupTankHarness
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
@@ -39,7 +38,7 @@
   - SurvivalMedical
   - Trinkets
   - Scarves
-  - GroupSpeciesBreathToolMedical
+  - Pens
 
 - type: roleLoadout
   id: JobNanoTrasenRepresentative
@@ -51,8 +50,8 @@
   - NanotrasenRepresentativeShoes
   - Trinkets
   - Scarves
+  - NTRPens
   - Survival
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobIAA
@@ -63,8 +62,8 @@
   - LawyerShoes
   - Trinkets
   - Scarves
+  - LuxuryPens
   - Survival
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobBlueShield
@@ -78,27 +77,26 @@
   - BlueShieldEyewear
   - Trinkets
   - Scarves
+  - Pens
   - SurvivalSecurity
-  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: JobMiningSpecialist
   groups:
-  - GroupTankHarness
   - SalvageSpecialistBackpack
   - MiningSpecialistJumpsuit
   - SalvageSpecialistOuterClothing
   - SalvageSpecialistShoes
+  - MiningSpecialistPDA
   - Glasses
   - Survival
   - Trinkets
   - Scarves
-  - GroupSpeciesBreathTool
+  - Pens
 
 - type: roleLoadout
   id: JobMailTech
   groups:
-  - GroupTankHarness
   - CargoTechnicianHead
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
@@ -108,35 +106,37 @@
   - Survival
   - Trinkets
   - Scarves
-  - GroupSpeciesBreathTool
+  - Pens
 
 - type: roleLoadout
   id: JobBrigmedic
   groups:
     - BrigmedicHead
+    - BrigmedicMask
     - BrigmedicJumpsuit
+    - BrigmedicTie
     - BrigmedicBackpack
     - BrigmedicOuterClothing
     - BrigmedicBelt
     - BrigmedicGloves
     - BrigmedicEyewear
+    - BrigmedicPDA
+    - BrigmedicBeaker
     - SecurityShoes
     - SecurityNonLethalWeapon
     - SecuritySidearm
     - SurvivalSecurity
     - Trinkets
-    - SecurityStar
-    - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: JobSalvageLead
   groups:
-    - GroupTankHarness
     - SalvageSpecialistBackpack
     - SalvageLeadJumpsuit
+    - SalvageLeadNeck
     - SalvageSpecialistOuterClothing
     - SalvageSpecialistShoes
+    - SalvageLeadPDA
     - Glasses
     - Survival
     - Trinkets
-    - GroupSpeciesBreathTool

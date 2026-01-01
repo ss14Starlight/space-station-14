@@ -1,6 +1,6 @@
 - type: entity
   id: BaseMagazineShotgun
-  name: ammo drum (.50 shells)
+  name: 12 gauge ammo drum # Starlight change: .50 -> 12 gauge
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -44,7 +44,7 @@
 
 - type: entity
   id: MagazineShotgunEmpty
-  name: ammo drum (.50 shells any)
+  name: 12 gauge ammo drum # Starlight change: .50 -> 12 gauge
   suffix: empty
   parent: BaseMagazineShotgun
   components:
@@ -53,7 +53,7 @@
 
 - type: entity
   id: MagazineShotgun
-  name: ammo drum (.50 pellet)
+  name: 12 gauge buckshot drum # Starlight change: .50 -> 12 gauge
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
@@ -77,7 +77,7 @@
 
 - type: entity
   id: MagazineShotgunBeanbag
-  name: ammo drum (.50 beanbags)
+  name: 12 gauge beanbag drum # Starlight change: .50 -> 12 gauge
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
@@ -101,7 +101,7 @@
 
 - type: entity
   id: MagazineShotgunSlug
-  name: ammo drum (.50 slug)
+  name: 12 gauge slug drum # Starlight change: .50 -> 12 gauge
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
@@ -125,7 +125,7 @@
 
 - type: entity
   id: MagazineShotgunIncendiary
-  name: ammo drum (.50 incendiary)
+  name: 12 gauge incendiary drum # Starlight change: .50 -> 12 gauge
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
@@ -149,7 +149,7 @@
 
 - type: entity
   id: MagazineShotgunBreach
-  name: ammo drum (.50 breaching)
+  name: 12 gauge breaching drum # Starlight change: .50 -> 12 gauge
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider

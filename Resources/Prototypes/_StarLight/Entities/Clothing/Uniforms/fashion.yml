@@ -272,3 +272,25 @@
     sprite: _Starlight/Clothing/Uniforms/vintage.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/vintage.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: CargoOverallsUniformSuit
+  name: cargo overalls
+  description: A durable set of overalls that smell like cardboard.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/cargo_overalls.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/cargo_overalls.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: RedRegaliaSuit
+  name: Red Regalia Suit
+  description: A fancy red suit like a mafiaoso would wear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/red_regalia.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/red_regalia.rsi

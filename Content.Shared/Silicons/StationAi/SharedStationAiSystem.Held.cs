@@ -3,6 +3,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Shared.Localization; // Starlight
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
@@ -27,6 +28,7 @@ public abstract partial class SharedStationAiSystem
         SubscribeLocalEvent<StationAiHeldComponent, InteractionAttemptEvent>(OnHeldInteraction);
         SubscribeLocalEvent<StationAiHeldComponent, AttemptRelayActionComponentChangeEvent>(OnHeldRelay);
         SubscribeLocalEvent<StationAiHeldComponent, JumpToCoreEvent>(OnCoreJump);
+        SubscribeLocalEvent<StationAiHeldComponent, StationAiOpenWarpActionEvent>(OnOpenWarpAction); // Starlight
 
         SubscribeLocalEvent<TryGetIdentityShortInfoEvent>(OnTryGetIdentityShortInfo);
     }
@@ -117,6 +119,12 @@ public abstract partial class SharedStationAiSystem
 
         args.Target = core.Comp?.RemoteEntity;
     }
+    // Starlight-start
+    protected virtual void OnOpenWarpAction(Entity<StationAiHeldComponent> ent, ref StationAiOpenWarpActionEvent args)
+    {
+        args.Handled = true;
+    }
+    // Starlight-end
 
     private void OnRadialMessage(StationAiRadialMessage ev)
     {
@@ -178,6 +186,10 @@ public abstract partial class SharedStationAiSystem
             return;
         }
 
+        // Starlight Start
+        if (_vision.IsOutsideCameraView(args.Target))
+            return;
+        // Starlight End
         var user = args.User;
 
         var target = args.Target;
@@ -205,6 +217,11 @@ public abstract partial class SharedStationAiSystem
     private void ShowDeviceNotRespondingPopup(EntityUid toEntity)
     {
         _popup.PopupClient(Loc.GetString("ai-device-not-responding"), toEntity, PopupType.MediumCaution);
+    }
+
+    private void ShowDeviceNoAccessPopup(EntityUid toEntity)
+    {
+        _popup.PopupClient(Loc.GetString("ai-device-no-access"), toEntity, PopupType.MediumCaution);
     }
 }
 

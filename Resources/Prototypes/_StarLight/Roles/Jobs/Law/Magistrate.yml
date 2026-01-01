@@ -20,24 +20,13 @@
   setPreference: true
   access:
   - Magistrate
-  - Bar
-  - Kitchen
-  - Hydroponics
-  - Janitor
-  - Theatre
-  - Chapel
   - Lawyer
   - Brig
   - Security
-  - Medical
-  - Research
-  - Engineering
-  - Cargo
-  - Salvage
   - Command
   - Maintenance
-  extendedAccess:
-  - Hydroponics
+  - GenpopEnter
+  - GenpopLeave
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

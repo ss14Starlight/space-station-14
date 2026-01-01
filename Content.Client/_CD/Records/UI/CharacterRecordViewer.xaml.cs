@@ -479,6 +479,9 @@ public sealed partial class CharacterRecordViewer : FancyWindow
         UpdateSecurityHistory(criminalRecord);
     }
 
+    /// <summary>
+    /// Repopulates the shift log and refresh state tracking for the cached record.
+    /// </summary>
     private void UpdateSecurityHistory(CriminalRecord? criminalRecord)
     {
         _currentCriminalRecord = criminalRecord;
@@ -487,13 +490,21 @@ public sealed partial class CharacterRecordViewer : FancyWindow
         CurrentShiftHistoryList.Clear();
         CurrentShiftHistoryList.Visible = criminalRecord != null;
         CurrentShiftHistoryList.ClearSelected();
+
         if (criminalRecord != null)
         {
             foreach (var entry in criminalRecord.History)
             {
                 CurrentShiftHistoryList.AddItem(FormatHistoryEntry(entry));
             }
-        }        _lastShiftHistoryCount = criminalRecord?.History.Count;
+
+            _lastShiftHistoryCount = criminalRecord.History.Count;
+        }
+        else
+        {
+            _lastShiftHistoryCount = null;
+        }
+
         UpdateHistoryButtons();
     }
 
@@ -503,7 +514,6 @@ public sealed partial class CharacterRecordViewer : FancyWindow
         CurrentShiftAddButton.Disabled = !canModify;
         CurrentShiftDeleteButton.Disabled = !canModify || _selectedHistoryIndex is null;
     }
-
     public void SetSecurityHistoryEditable(bool canEdit)
     {
         _securityHistoryEditable = canEdit;
@@ -527,8 +537,8 @@ public sealed partial class CharacterRecordViewer : FancyWindow
 
         _historyEntryDialog.OnConfirmed += responses =>
         {
-            var line = responses[field];
-            if (line.Length < 1)
+            var line = responses[field].Trim();
+            if (line.Length == 0)
                 return;
             if (SecurityWantedStatusMaxLength is { } max && line.Length > max)
                 return;
@@ -542,6 +552,7 @@ public sealed partial class CharacterRecordViewer : FancyWindow
         _historyEntryDialog.OnClose += () => _historyEntryDialog = null;
     }
 
+    /// <summary>Formats a history entry using the same timestamp style as the legacy UI.</summary>
     private static string FormatHistoryEntry(CrimeHistory entry)
     {
         var totalHours = (int)Math.Floor(entry.AddTime.TotalHours);
@@ -566,11 +577,13 @@ public sealed partial class CharacterRecordViewer : FancyWindow
         var entry = new QuickDialogEntry(field, QuickDialogEntryType.LongText, prompt, placeholder);
         var entries = new List<QuickDialogEntry>() { entry };
         _wantedReasonDialog = new DialogWindow(title, entries);
-
         _wantedReasonDialog.OnConfirmed += responses =>
         {
-            var reason = responses[field];
-            if (reason.Length < 1 || reason.Length > SecurityWantedStatusMaxLength)
+            var reason = responses[field].Trim();
+            if (reason.Length == 0)
+                return;
+
+            if (SecurityWantedStatusMaxLength is { } max && reason.Length > max)
                 return;
 
             OnSetSecurityStatus?.Invoke(status, reason);
@@ -591,4 +604,3 @@ public sealed partial class CharacterRecordViewer : FancyWindow
         }
     }
 }
-

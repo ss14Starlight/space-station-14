@@ -1,7 +1,8 @@
 - type: entity
   id: OrganAvaliStomach
   parent: OrganAnimalStomach
-  categories: [ HideSpawnMenu ]
+  suffix: Avali
+  description: "The stomach of an avali, on closer inspection, actually consists of two stomachs."
   components:
   - type: Stomach
     specialDigestible:
@@ -24,7 +25,8 @@
 - type: entity
   id: OrganAvaliHeart
   parent: OrganHumanHeart
-  categories: [ HideSpawnMenu ]
+  suffix: Avali
+  description: "The heart of an avali."
   components:
   - type: Metabolizer
     maxReagents: 2
@@ -37,24 +39,25 @@
 - type: entity
   id: OrganAvaliLiver
   parent: OrganHumanLiver
+  suffix: Avali
   categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
-    updateInterval: 1.5
     maxReagents: 1
     metabolizerTypes: [Avali]
     groups:
     - id: Alcohol
-      rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
 
 - type: entity
   id: OrganAvaliKidneys
   parent: OrganHumanKidneys
+  suffix: Avali
   categories: [ HideSpawnMenu ]
 #Placeholder until sprited
 
 - type: entity
   id: OrganAvaliLungs
   parent: OrganHumanLungs
+  suffix: Avali
   categories: [ HideSpawnMenu ]
 #Placeholder until sprited

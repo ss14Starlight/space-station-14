@@ -23,3 +23,15 @@ ghost-role-information-corporate-aligned-rules = You are [color={role-type-corpo
                                              You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
                                              You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
                                              You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
+
+
+ghost-role-information-nanotrasen-special-forces-name = NTSF Operative
+ghost-role-information-nanotrasen-special-forces-description = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
+ghost-role-information-decimus-name = Decimus Operative
+ghost-role-information-decimus-description = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
+
+ghost-role-information-syndicate-cyborg-stealth-name = Syndicate Stealth Cyborg
+
+ghost-role-information-xenomoproach-name = Xenomoproach
+ghost-role-information-xenomoproach-description = You are a small Xenoborg wearing the skin of a moproach as a disguise.
+ghost-role-information-xenomoproach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other xenoborgs. Your goal is not to attack organic beings, rather you are tasked with being cute and distracting the organics while gathering intel.

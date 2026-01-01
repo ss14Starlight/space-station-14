@@ -74,7 +74,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: GenericVisualizer
-    visuals: 
+    visuals:
       enum.PowerDeviceVisuals.Powered:
         enum.ScanGateVisualLayers.Status:
           True: { visible: true }

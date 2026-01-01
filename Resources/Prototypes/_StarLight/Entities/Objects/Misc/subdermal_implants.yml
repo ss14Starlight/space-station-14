@@ -35,3 +35,41 @@
     - type: PolymorphOnTrigger
       polymorph: RampagingGorilla
       targetUser: true
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BluespaceImplant
+  name: bluespace implant
+  description: An advanced subdermal implant that, when activated, teleports the user far away.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateBluespaceImplant
+  - type: TriggerOnMobstateChange
+    mobState:
+      - Dead
+  - type: TriggerOnActivateImplant
+  - type: DeleteOnTrigger
+    targetUser: true
+  - type: SpawnOnTrigger
+    proto: BluespaceImplantEffect
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RedspaceImplant
+  name: redspace implant
+  description: An advanced subdermal implant that, when activated, teleports the user far away.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateRedspaceImplant
+  - type: TriggerOnMobstateChange
+    mobState:
+      - Dead
+  - type: TriggerOnActivateImplant
+  - type: DeleteOnTrigger
+    targetUser: true
+  - type: SpawnOnTrigger
+    proto: RedspaceImplantEffect

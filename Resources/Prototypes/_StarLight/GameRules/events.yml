@@ -94,14 +94,59 @@
     - type: LoadMapRule
       gridPath: /Maps/_Starlight/Shuttles/VoxATS.yml
 
-  #Pig's ERT Shuttle
+#  #Pig's ERT Shuttle # DEPRECIATED
+#- type: entity
+#  parent: BaseGameRule
+#  id: ERTShuttleSpawn
+#  components:
+#    - type: RuleGrids
+#    - type: LoadMapRule
+#      gridPath: /Maps/_Starlight/Shuttles/CC-NT/ERTShuttle.yml
+
+  # Quini's ERT Security/Medical shuttle
 - type: entity
   parent: BaseGameRule
-  id: ERTShuttleSpawn
+  id: ERTSecurityShuttleSpawn
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/CC-NT/ERTShuttle.yml
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/SecMed_GRID.yml
+
+  # Quini's ERT Medical shuttle
+- type: entity
+  parent: BaseGameRule
+  id: ERTMedicalShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Medical_GRID.yml
+
+  # Quini's ERT Engineering shuttle
+- type: entity
+  parent: BaseGameRule
+  id: ERTEngineeringShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/EngiAtmos_GRID.yml
+
+  # Quini's ERT Chaplain shuttle
+- type: entity
+  parent: BaseGameRule
+  id: ERTChaplainShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Chaplain_GRID.yml
+
+  # neomoth's ERT Janitor shuttle
+- type: entity
+  parent: BaseGameRule
+  id: ERTJanitorShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Janitor_GRID.yml
 
       #Pig's DS Shuttle
 - type: entity
@@ -210,12 +255,10 @@
     - id: LoneOpsSpawn
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
-    - id: DerelictBorgiSpawn
     - id: WizardSpawn
-
-    # Starlight gamerules
+    - id: Xenoborgs
+    # Starlight gamerules:
     - id: AbductorsSpawn
-    - id: DerelictBorgiSpawn
 
 - type: entity
   parent: BaseGameRule
@@ -246,3 +289,65 @@
     - type: RuleGrids
     - type: LoadMapRule
       gridPath: /Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml
+
+# Brighteye
+- type: entity
+  parent: BaseGameRule
+  id: Brighteye
+  components:
+  - type: StationEvent
+    weight: 1
+    earliestStart: 30
+    reoccurrenceDelay: 60
+    minimumPlayers: 30
+  - type: RuleGrids
+  - type: GameRule
+    minPlayers: 10
+  - type: BrighteyeRule
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/TheDark/Hideout.yml
+    mapTag: TheDark
+  - type: AntagLoadProfileRule
+    speciesHardOverride: Shadekin
+    applyCharacterProfile: true
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ Brighteye ]
+      playerRatio: 1
+      spawnerPrototype: SpawnPointGhostBrighteye
+      startingGear: BrighteyeGear
+      briefing:
+        text: brighteye-role-greeting
+        color: "#F200FF"
+        sound: "/Audio/_Starlight/Ambiance/Antag/brighteye.ogg"
+      components:
+      - type: Brighteye
+        energy: 200 # THIS IS HARDCODED BULLSHIT... i wish i could set this auto to MaxEnergy.
+      - type: NpcFactionMember
+        factions:
+        - SimpleHostile
+      - type: CombatMode
+        disarmFailChance: 0.5
+        canDisarm: true
+      mindRoles:
+      - MindRoleBrighteye
+  - type: AntagObjectives
+    objectives:
+    - BirghteyeSurviveObjective
+    - BirghteyePortalObjective
+  - type: SubGamemodes
+    rules:
+    - id: RailroadingBrighteye
+  - type: DynamicRuleCost
+    cost: 150
+
+# This is used for admin/tools to spawn the dark without any antag.
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkMap
+  components:
+  - type: StationEvent
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/TheDark/Hideout.yml
+    mapTag: TheDark

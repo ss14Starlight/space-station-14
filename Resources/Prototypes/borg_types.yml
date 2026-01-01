@@ -61,6 +61,13 @@
   petSuccessString: petting-success-engineer-cyborg
   petFailureString: petting-failure-engineer-cyborg
 
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 3600 # 1 hour in Engineering
+  # Starlight-end
+
 
 # Salvage borg
 - type: borgType
@@ -94,6 +101,13 @@
   # Pet
   petSuccessString: petting-success-salvage-cyborg
   petFailureString: petting-failure-salvage-cyborg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Cargo
+    time: 5400 # 1 hour 30 minutes in Cargo
+  # Starlight-end
 
 
 # Janitor borg
@@ -175,6 +189,13 @@
   footstepCollection:
     collection: FootstepHoverBorg
 
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 3600 # 1 hour in medical
+  # Starlight-end
+
 
 # Service borg
 - type: borgType
@@ -193,10 +214,14 @@
   defaultModules:
   - BorgModuleTool
   - BorgModuleMusique
-  - BorgModuleService
+  # Starlight start 
+  - BorgModuleBartending
+  - BorgModuleCooking
+  - BorgModuleBotany
+  - BorgModuleBooks
+  # Starlight end
   - BorgModuleClowning
-  - BorgModuleGardening
-  - BorgModuleHarvesting
+  
   radioChannels:
   - Science
   - Service

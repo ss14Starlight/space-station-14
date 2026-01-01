@@ -89,6 +89,7 @@
     useSound:
       collection: Welder
     qualities: Welding
+  - type: ToolTileCompatible # Starlight - allow using welders on tiles (e.g. to repair damaged hull plate)
   - type: Welder
   - type: PointLight
     enabled: false
@@ -106,6 +107,9 @@
   - type: IgnitionSource
     temperature: 700
   # 🌟Starlight-start🌟
+  - type: Tag
+    tags:
+    - ThermiteIgnitor
   - type: SurgeryTool
     successRate: 0.75
     startSound:

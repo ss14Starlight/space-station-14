@@ -2,3 +2,8 @@
   id: Thaven
   name: Thaven
   text: "/ServerInfo/_StarLight/Guidebook/Mobs/Thaven.xml"
+
+- type: guideEntry
+  id: Shadekin
+  name: species-name-shadekin
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Shadekin.xml"

@@ -89,7 +89,7 @@
     categories: []
     currencyWhitelist:
     - NTCredit
-    
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineHugDispenser
@@ -119,7 +119,7 @@
     - SLFashionSuit
     - SLFashionHead
     - SLFashionOther
-        
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineMedical
@@ -135,7 +135,7 @@
     - SLChemistry
     - SLMedical
     - SLSurgery
-            
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineEngi
@@ -149,7 +149,7 @@
     name: vendor-engineering-dispenser
     categories:
     - SLEnginery
-    
+
 - type: entity
   parent: SLVendingMachine
   id: VendingMachineClown
@@ -164,14 +164,14 @@
     - SLClown
   - type: Sprite
     sprite: _Starlight/Structures/Machines/VendingMachines/hohohonkers.rsi
-        
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSecurity
   name: security dispenser
   components:
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
   - type: Sprite
     sprite: _Starlight/Structures/Machines/VendingMachines/security.rsi
   - type: Store
@@ -179,7 +179,7 @@
     categories:
     - SLSecurity
     - SLBrigmedic
-    
+
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSalvage
@@ -241,3 +241,515 @@
     - type: WirelessNetworkConnection
       range: 200
     - type: AbductorDispencer
+
+- type: entity
+  parent: VendingMachineCondiments
+  id: VendingMachineCondimentsEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineAmmo
+  id: VendingMachineAmmoEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineBooze
+  id: VendingMachineBoozeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineBoozeSyndicate
+  id: VendingMachineBoozeSyndicateEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineCart
+  id: VendingMachineCartEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineChefvend
+  id: VendingMachineChefvendEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineCigs
+  id: VendingMachineCigsEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineClothing
+  id: VendingMachineClothingEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineWinter
+  id: VendingMachineWinterEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineCoffee
+  id: VendingMachineCoffeeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineCola
+  id: VendingMachineColaEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineColaBlack
+  id: VendingMachineColaBlackEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineColaRed
+  id: VendingMachineColaRedEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSpaceUp
+  id: VendingMachineSpaceUpEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSoda
+  id: VendingMachineSodaEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineStarkist
+  id: VendingMachineStarkistEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineShamblersJuice
+  id: VendingMachineShamblersJuiceEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachinePwrGame
+  id: VendingMachinePwrGameEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineDrGibb
+  id: VendingMachineDrGibbEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSmite
+  id: VendingMachineSmiteEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineDinnerware
+  id: VendingMachineDinnerwareEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMagivend
+  id: VendingMachineMagivendEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineDiscount
+  id: VendingMachineDiscountEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineEngivend
+  id: VendingMachineEngivendEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedicalBaseEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedical
+  id: VendingMachineMedicalEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineNutri
+  id: VendingMachineNutriEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSec
+  id: VendingMachineSecEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSeedsUnlocked
+  id: VendingMachineSeedsUnlockedEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSeeds
+  id: VendingMachineSeedsEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSnack
+  id: VendingMachineSnackEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSustenance
+  id: VendingMachineSustenanceEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSnackBlue
+  id: VendingMachineSnackBlueEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSnackOrange
+  id: VendingMachineSnackOrangeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSnackGreen
+  id: VendingMachineSnackGreenEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSnackTeal
+  id: VendingMachineSnackTealEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSovietSoda
+  id: VendingMachineSovietSodaEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineTheater
+  id: VendingMachineTheaterEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineVendomat
+  id: VendingMachineVendomatEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineRobotics
+  id: VendingMachineRoboticsEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineYouTool
+  id: VendingMachineYouToolEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineGames
+  id: VendingMachineGamesEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineChang
+  id: VendingMachineChangEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSalvage
+  id: VendingMachineSalvageEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineDonut
+  id: VendingMachineDonutEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineHydrobe
+  id: VendingMachineHydrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineLawDrobe
+  id: VendingMachineLawDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSecDrobe
+  id: VendingMachineSecDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingBarDrobe
+  id: VendingBarDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineChapel
+  id: VendingMachineChapelEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineCargoDrobe
+  id: VendingMachineCargoDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMediDrobe
+  id: VendingMachineMediDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineChemDrobe
+  id: VendingMachineChemDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineCuraDrobe
+  id: VendingMachineCuraDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineAtmosDrobe
+  id: VendingMachineAtmosDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineEngiDrobe
+  id: VendingMachineEngiDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineChefDrobe
+  id: VendingMachineChefDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineDetDrobe
+  id: VendingMachineDetDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineJaniDrobe
+  id: VendingMachineJaniDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSciDrobe
+  id: VendingMachineSciDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSyndieDrobe
+  id: VendingMachineSyndieDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineRoboDrobe
+  id: VendingMachineRoboDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineGeneDrobe
+  id: VendingMachineGeneDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineViroDrobe
+  id: VendingMachineViroDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineCentDrobe
+  id: VendingMachineCentDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineHappyHonk
+  id: VendingMachineHappyHonkEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachinePride
+  id: VendingMachinePrideEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineTankDispenserEVA
+  id: VendingMachineTankDispenserEVAEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineTankDispenserEngineering
+  id: VendingMachineTankDispenserEngineeringEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineChemicals
+  id: VendingMachineChemicalsEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineChemicalsSyndicate
+  id: VendingMachineChemicalsSyndicateEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineWallMedicalCivilian
+  id: VendingMachineWallMedicalCivilianEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineWallMedical
+  id: VendingMachineWallMedicalEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+

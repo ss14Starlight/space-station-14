@@ -1,6 +1,16 @@
 # mining shares most loadoutgroups with salvage specialist
 # see Resources/Prototypes/_StarLight/Loadouts/role_loadouts.yml
 
+# Veteran Time
+- type: loadoutEffectGroup
+  id: VeteranMiningSpecialist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMiningSpecialist
+      time: 216000 # 60 hrs
+
 # Jumpsuit
 - type: loadout
   id: MiningSpecialistJumpsuit
@@ -11,3 +21,17 @@
   id: MiningSpecialistJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtMiningSpecialist
+
+# PDA
+- type: loadout
+  id: MiningPDA
+  equipment:
+    id: MiningPDA
+
+- type: loadout
+  id: VeteranMiningPDA
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: VeteranMiningSpecialist
+  equipment:
+    id: VeteranMiningPDA

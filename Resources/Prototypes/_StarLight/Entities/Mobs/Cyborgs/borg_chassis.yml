@@ -1,4 +1,47 @@
 - type: entity
+  id: BorgChassisSyndicateStealth
+  parent: BaseBorgChassisSyndicate
+  name: syndicate stealth cyborg
+  components:
+  - type: TextToSpeech
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Chassis/synd_stealth.rsi
+    layers:
+    - state: borg
+    - state: borg_e
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSyndicate
+      - BorgModuleSyndicateStealth
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: InteractionPopup
+    interactSuccessString: petting-success-syndicate-cyborg
+    interactFailureString: petting-failure-syndicate-cyborg
+  - type: VentCrawler
+  - type: Thieving
+    stealthy: true
+  - type: Pacified # THE STEALTH BORG DOES NOT FUCKING GET GUNS
+
+- type: entity
+  id: BorgChassisSecurity
+  parent: BorgChassisSelectable
+  name: security cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: security
+    
+- type: entity
   id: BorgChassisPurrfus
   parent: BorgChassisSelectable
   name: purrfus cyborg

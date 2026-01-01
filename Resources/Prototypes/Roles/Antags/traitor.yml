@@ -7,7 +7,7 @@
   guides: [ Traitors ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 10800 # 3h STARLIGHT
+    time: 3h # Starlight
 
 - type: antag
   id: TraitorSleeper
@@ -18,7 +18,7 @@
   guides: [ Traitors ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 10800 # 3h STARLIGHT
+    time: 3h # Starlight
 
 # Syndicate Operative Outfit - Monkey
 - type: startingGear

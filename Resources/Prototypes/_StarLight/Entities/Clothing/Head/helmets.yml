@@ -265,3 +265,34 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetRisk
+  name: station daredevil's helmet
+  description: A strong helmet with a cool red line in the middle.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/riskhelmet.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/riskhelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+
+- type: entity
+  parent: [ ClothingHeadHelmetArmoredBase, BaseSalvageContraband ]
+  id: ClothingHeadHelmetSalvageMerc
+  name: scrapper helmet
+  description: A durable, lightweight helmet favored by salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+    - type: HideLayerClothing
+      layers:
+        Hair: HEAD

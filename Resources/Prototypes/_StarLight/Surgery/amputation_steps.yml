@@ -45,7 +45,7 @@
       tools:
         - type: Hemostat
     - type: Sprite
-      sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+      sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
       state: hemostat
 
 - type: entity

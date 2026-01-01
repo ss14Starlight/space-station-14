@@ -7,11 +7,11 @@ doc-text-printer-report-morgue =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                              [bold]MORGUE REPORT[/bold]
+    ⠀                              [bold]MORGUE DNR REPORT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     Name: [form]
 
     Job/Occupation: [form]
@@ -19,10 +19,9 @@ doc-text-printer-report-morgue =
     Approximate time of death/DNR approval: [form]
 
     Reason for DNR status: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-   
 
 
 doc-text-printer-report-station =
@@ -34,9 +33,9 @@ doc-text-printer-report-station =
     ────────────────────────────────────────
    ⠀⠀                            [bold]SITUATION REPORT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     Purpose: [form]
 
     Threat Level Code: [form]
@@ -48,12 +47,11 @@ doc-text-printer-report-station =
     Crew casualties: [form]
 
     Current situation: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
- 
 doc-text-printer-report-on-elimination-of-violations =
    ⠀[logo]            [cclogo] 
 
@@ -61,21 +59,18 @@ doc-text-printer-report-on-elimination-of-violations =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀            [bold]ELIMINATION OF VIOLATIONS REPORT[/bold]
+   ⠀⠀            [bold]ISSUE RESOLUTION REPORT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    Report on work violations identified by: [form]
-    
-    In the position of: [form]
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    Presented violations: [form]
-    
-    Cause of violations: [form]
-    
-    Measures taken to eliminate violations: [form]
-    
+    Issue(s) identified by: [form]
+    Employee position: [form]
+
+    Presented issue(s): [form]
+
+    Measures taken to resolve issue(s): [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -87,11 +82,11 @@ doc-text-printer-report-department =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                           [bold]DEPARTMENT REPORT[/bold]
+   ⠀⠀                           [bold]DEPARTMENTAL REVIEW[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     Number of employees in the department: [form]
 
     Number of trainees: [form]
@@ -104,7 +99,7 @@ doc-text-printer-report-department =
     Degree of target readiness: [form]
 
     General condition of the department: [form]
-    
+
     ─────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -116,17 +111,15 @@ doc-text-printer-report-employee-performance =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ─────────────────────────────────────────
-   ⠀⠀                 [bold]EMPLOYEE PERFORMANCE REPORT[/bold]
+   ⠀⠀                 [bold]WORK REPORT[/bold]
     ─────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
+    Date and Time: [form]
+    Document Compiler: [signature]
    
-    In the course of my duties, I, [signature] have performed the required amount of work.
-    
-    I request that the result of the work be accepted by the Head of the following Department: [form]
+    I, [signature], have completed the following work: [form]
 
-    Work performed: [form]
-    
+    I hereby request that the result be accepted by the Head of the [form] Department.
+
     ─────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -138,31 +131,42 @@ doc-text-printer-report-on-the-chapters-meeting =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ─────────────────────────────────────────
-   ⠀⠀                     [bold]CHAPTERS MEETING REPORT[/bold]
+   ⠀⠀                     [bold]VOTE RECORD[/bold]
     ─────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    Reason for calling the Chapters' Meeting: [form]
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    The wording of the question put to the Chapters: [form]
+    The question put to the committee: [form]
 
+    Additional context: [form]
 
     Number of votes [italic]in favor[/italic]: [form]
     Those voting [italic]in favor[/italic]:
+    • [signature]
+    • [signature]
+    • [signature]
+    • [signature]
     • [signature]
     • [signature]
     Number of votes [italic]against[/italic]: [form]
     Those voting [italic]against[/italic]:
     • [signature]
     • [signature]
-    Number of [italic]abstentions[/italic] from voting: [form]
-    Those voting [italic]abstain[italic]:
     • [signature]
-    • [signature]    
-    Resolution of the Meeting of Heads: [form]
-    
-    ─────────────────────────────────────────
+    • [signature]
+    • [signature]
+    • [signature]
+    Number of [italic]abstentions[/italic] from voting: [form]
+    Those voting to [italic]abstain[italic]:
+    • [signature]
+    • [signature]
+    • [signature]
+    • [signature]
+    • [signature]
+    • [signature]
+    Resolution of the meeting: [form]
+
+    ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
@@ -173,15 +177,15 @@ doc-text-printer-internal-affairs-agents-report =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ─────────────────────────────────────────
-   ⠀⠀               [bold]INTERNAL AFFAIRS AGENT REPORT[/bold]
+   ⠀⠀               [bold]AUDIT REPORT[/bold]
     ─────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], in my position, during the course of an internal audit requested by [form], in the position of [form] for the reason of [form], found the following irregularities: [form]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], during the course of an internal audit requested by [form] for the reason of [form], found the following irregularities: [form]
+
     I also wish to report the following: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -193,19 +197,19 @@ doc-text-printer-condition-report =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                               [bold]CONDITION REPORT[/bold]
+   ⠀⠀                           [bold]MAINTENANCE REPORT[/bold]
     ─────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    The (name of the system or object)[form] was inspected, the results of the inspection were analyzed, and the causes of unstable operation of the object were analyzed.
-    
-    Cause of object failure: [form]
-    
-    Identified damage to the facility: [form]
-    
-    Facility repairs performed: [form]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    Irregularities were identified in the station's [form].
+
+    The problems were caused by: [form]
+
+    Damage to the station: [form]
+
+    Repairs performed: [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -217,17 +221,21 @@ doc-text-printer-object-investigation-report =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                    [bold]OBJECT INVESTIGATION REPORT[/bold]
+   ⠀⠀          [bold]UNKNOWN OBJECT INVESTIGATION REPORT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    A device with unexplored properties was submitted for expert examination by (who or what department handed over the object)[form]. In the course of research, the properties of the object and its species affiliation were established.
-    
-    External description of the object: [form]
-    
-    Identified properties of the object: [form]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    A device or artifact of unfamiliar function or provenance has been collected and analyzed.
+
+    Retrieved by: [form]
+
+    Examined by: [signature]
+
+    External description: [form]
+
+    Identified properties: [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -241,22 +249,22 @@ doc-text-printer-experiment-report =
     ────────────────────────────────────────
    ⠀⠀                              [bold]EXPERIMENT REPORT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     External description of the object of the experiment: [form]
-    
+
     Experimenter(s): [signature]
-    
+
     Experiment № [form]
     Description of experiment: [form]
-    
+
     Expected result: [form]
-    
+
     Equipment used: [form]
-    
+
     Actual result: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -270,11 +278,16 @@ doc-text-printer-disposal-report =
     ─────────────────────────────────────────
    ⠀⠀                                [bold]DISPOSAL REPORT[/bold]
     ─────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    The Supplies Department disposed of the objects at [form]. During the disposal process, there were valuable items/materials that were moved to departments for appropriate usage/care.
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    The objects at [form] have been disposed of. During the disposal process, the following valuable items and/or materials were sent to the departments indicated below.
+
     List of items/materials found:
+
+    • [form] - Given to [form] Department
+    • [form] - Given to [form] Department
+    • [form] - Given to [form] Department
     • [form] - Given to [form] Department
     • [form] - Given to [form] Department
     ─────────────────────────────────────────
@@ -287,22 +300,28 @@ doc-text-printer-arrest-report =
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
+    ────────────────────────────────────────
    ⠀⠀                            [bold]SECURITY ARREST REPORT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    Arrested person: [form]
+    Arrestee: [form]
 
-    Arrest reason: [form]
+    Arrest reason or complaining witnesses: [form]
 
-    Time of arrest (estimated): [form]
+    Estimated time of arrest: [form]
 
-    Duration of detention: [form]
+    Arresting officer: [form]
 
-    Additional punishments: [form]
-    
+    The arrestee was: [check] detained; [check] paroled; [check] released
+
+    Charges filed, if any: [form]
+
+    Duration of detention, if applicable: [form]
+
+    Additional remarks: [form]
+
     ─────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -316,20 +335,15 @@ doc-text-printer-statement-appointment-interim-chapter =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀          [bold]STATEMENT APPOINTMENT INTERIM CHAPTER[/bold]
+   ⠀⠀          [bold]INTERIM COMMAND APPOINTMENT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-     
-    I, [signature], request approval of my appointment to the position of (Acting [form]).
-    Upon assuming the position, I agree to follow Standard Operating Procedures and, 
-    until the arrival of the [form] from Central Command, 
-    shall ensure the order and management of the division, 
-    and the safety of particularly valuable items and equipment entrusted to me.
-    
-    Upon arrival of the [form] from Central Command, 
-    I shall surrender the increased access, especially valuable items and equipment.
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], request approval of my appointment to the position of Acting [form]. Upon assuming the position, I agree to follow Standard Operating Procedures and, until the arrival of a replacement from Central Command, shall ensure the order and management of my Department, and the safety of the equipment and tools of my office, including those tools and pieces of equipment that are irreplaceable or essential to the Department's work, or whose misuse might have serious consequences for station safety or security.
+
+    Upon arrival of the [form] from Central Command, I shall surrender the privileges and equipment afforded to me in the course of these duties, including access rights.
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -341,20 +355,22 @@ doc-text-printer-employment-statement =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                           [bold]EMPLOYMENT STATEMENT[/bold]
+   ⠀⠀                           [bold]EMPLOYMENT CONTRACT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], formally request to be appointed as an employee of the following department and position.
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], formally request to be appointed as an employee of the following department, in the position indicated below, for the remainder of the shift, or until resignation.
+
     Name of department: [form]
 
     Name of position: [form]
 
-    I agree to follow the department's Standard Operating Procedures. [check]
-    I agree to surrender my current department work gear and equipment upon transfer. [check]
-    
+   ⠀[check] I assert that I am qualified to hold the position which I am seeking, and acknowledge that my contract will be terminated if this is found not to be the case.
+
+   ⠀[check] I will surrender any current department work gear and equipment upon transfer.
+
+   ⠀[check] I agree to follow all applicable Standard Operating Procedures, and accept that my contract may be terminated if I fail to uphold them.
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -366,16 +382,17 @@ doc-text-printer-resignation-statement =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                          [bold]RESIGNATION STATEMENT[/bold]
+   ⠀⠀                          [bold]NOTICE OF RESIGNATION[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], wish to resign from the [form] department for the reason of [form].
-    
-    I undertake to pay the penalty established by the terms of termination of fixed-term/permanent contract at the Central Command station. [check]
-    I agree to surrender my department work gear and equipment upon resignation. [check]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], hereby resign my position because of [form].
+
+   ⠀[check] I accept to pay the penalty established by the terms of termination of my contract at the end of the shift.
+
+   ⠀[check] I will surrender my departmental work gear and equipment.
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -387,17 +404,21 @@ doc-text-printer-access-request-statement =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                       [bold]ACCESS REQUEST STATEMENT[/bold]
+   ⠀⠀                       [bold]ACCESS REQUEST[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], request the following accesses: 
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], request the following access be added to my ID card:
+    • [form]
+    • [form]
+    • [form]
+    • [form]
     • [form]
     • [form]
 
     Reason for gaining elevated access: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -409,16 +430,18 @@ doc-text-printer-equipment-request-statement =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                    [bold]EQUIPMENT REQUEST STATEMENT[/bold]
+   ⠀⠀                    [bold]EQUIPMENT REQUEST[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     I, [signature], request the following equipment be issued to me:
+
     • [form]
     • [form]
-    Reason for obtaining the equipment: [form]
-    
+
+    Reason: [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -434,19 +457,17 @@ doc-text-printer-invocation =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                                    [bold]INVOCATION[/bold]
+   ⠀⠀                         [bold]NOTICE OF SUMMONS[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-       
-    I, [signature], request to deliver the following person my invocation;
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    Name of the invoked person: [form]
+   ⠀[form] is hereby asked by [signature] to appear at [form], without delay.
 
-    Content of the invocation: [form]
-    
-    Reasons for writing it: [form]
-    
+    Reason: [form]
+
+   ⠀[italic]This is an official notice. Penalties may apply for failure to appear.[/italic]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -461,15 +482,15 @@ doc-text-printer-evacuation-shuttle-request =
     ────────────────────────────────────────
    ⠀⠀                    [bold]EVACUATION SHUTTLE REQUEST[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    Dear Central Command,
-    
-    I, [signature], write to request that you authorise evacuation protocols and send an evacuation shuttle and thereby also authorise the early end of our work shift.
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    To Central Command,
+
+    I, [signature], write to request that you dispatch an evacuation shuttle to the station, without delay, and authorize evacuation of the station via said shuttle.
 
     Reason for evacuation request: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -482,21 +503,21 @@ doc-text-printer-shuttle-registration-request =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                  [bold]SHUTTLE REGISTRATION REQUEST[/bold]
+   ⠀⠀                  [bold]SHUTTLE REGISTRATION FORM[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I,  request that the following shuttle be registered in the NanoTrasen system for identification.
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I hereby request that the following shuttle be registered in the NanoTrasen system for identification.
+
     Shuttle size: [form]
-    
+
     Shuttle class: [form]
-    
+
     Construction responsible: [form]
-    
-    Requested title: [form]
-    
+
+    Requested name: [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -511,13 +532,13 @@ doc-text-printer-request-call-centcomm-members =
     ────────────────────────────────────────
    ⠀⠀              [bold]REQUEST TO CALL CENTCOMM MEMBERS[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     I, [signature], request to be considered for a call with CentComm administrative officers.
-    
+
     Reason for the call: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -532,13 +553,13 @@ doc-text-printer-request-establish-threat-level =
     ────────────────────────────────────────
    ⠀⠀             [bold]REQUEST TO ESTABLISH THREAT LEVEL[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], hereby formally request to consider establishing the follow threat level:
-    
-    Reason for establishing the code: [form]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], request that follow threat level be established: [form]
+
+    Reason for request: [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -551,19 +572,19 @@ doc-text-printer-request-change-salary =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                         [bold]REQUEST CHANGE SALARY[/bold]
+   ⠀⠀                         [bold]SALARY CHANGE REQUEST[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], hereby request consideration for a salary increase/decrease of (amount or number of percent)[form]
-    
-    Employee recieving salary change: [form]
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    Employees job title: [form]
-    
-    Reason for salary increase/decrease: [form]
-    
+    I, [signature], hereby a salary increase/decrease of [form] (amount or percentage).
+
+    Employee receiving salary change: [form]
+
+    Employee's job title: [form]
+
+    Reason for salary change: [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -576,25 +597,23 @@ doc-text-printer-request-for-non-listed-employment =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀             [bold]REQUEST FOR NON-LISTED EMPLOYMENT[/bold]
+   ⠀⠀             [bold]NON-LISTED EMPLOYMENT CONTRACT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], request consideration for acceptance into the current shift workforce of the following person in a non-listed position.
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    Name of applicant: [form]
+    Name of applicant: [signature]
 
-    Full job title: [form]
-    
-    Responsible for the employee's head or coworker: [form]
-    
-    Position work performed (SOP): [form]
-    
+    New job title: [form]
+
+    New supervisor: [form]
+
+    Applicable duties under SOP: [form]
+
     Access provided to the employee: [form]
-    
+
     Reason for employment: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -609,19 +628,19 @@ doc-text-printer-request-for-promotion =
     ────────────────────────────────────────
    ⠀⠀                         [bold]REQUEST FOR PROMOTION[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     I, [signature], assert that the following employee has obtained the necessary qualifications and experience to be promoted.
 
     Employee to be promoted: [form]
-    
+
     Requested position: [form]
-    
-    Persons responsible for the employee's chapter or officer: [form]
-    
+
+    Supervisor(s): [form]
+
     Reason for promotion: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -633,16 +652,20 @@ doc-text-printer-request-documents =
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                         [bold]REQUEST FOR DOCUMENTS[/bold]
     ──────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
+   ⠀⠀                  [bold]REQUEST FOR RELEASE OF DOCUMENTS[/bold]
+    ──────────────────────────────────────────
+    Date and Time: [form]
+    Document Compiler: [signature]
  
-    I, [signature], in the capacity of my position, request a copy/original of the following document(s) for verification of compliance with the Corporate Act:
-    ⠀• [form]
-     • [form]
-    
+    I, [signature], request a copy of the following document(s), in order to verify compliance with Standard Operating Procedures and/or Corporate Law.
+
+    Documents sought:
+
+   ⠀ • [form]
+   ⠀ • [form]
+   ⠀ • [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -655,18 +678,26 @@ doc-text-printer-request-euthanasia =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                        [bold]REQUEST FOR EUTHANASIA[/bold]
+   ⠀⠀                        [bold]PETITION FOR EUTHANASIA[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], formally request the assistance of the medical department in performing euthanasia as a medical treatment for the reason of: (specify reason for request)[form]. 
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    I am familiar with the implications of this decision, and the rationality and humanity of this decision has been established by the medical staff. [check]
-    I have no claims against the medical department in their adherence to euthanasia protocols. [check]
+    I, [signature], hereby request to be euthanized.
 
-    At the end of the procedure, I ask to dispose of the body by (method of disposal)[form] if possible.
-    
+    My desire for this is as follows: [form]. 
+
+   ⠀[check] I am aware that this decision is irreversible and will affect compensation given to my next of kin.
+
+   ⠀[check] I am of sound mind, as determined by a member of the Medical Department.
+
+   ⠀    Inspecting Doctor: [signature]
+   ⠀    Date and Time: [form]
+
+   ⠀[check] I have no claims against the Medical Department in their adherence to euthanasia protocols.
+
+    At the end of the procedure, I ask that my body be [form], if possible.
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -679,17 +710,17 @@ doc-text-printer-request-construction-work =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                     [bold]CONSTRUCTION WORK REQUEST[/bold]
+   ⠀⠀                     [bold]CONSTRUCTION REQUEST[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     I, [signature] formally request construction work at: [form]
 
     Reason for request: [form]
 
     List of construction work: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -704,9 +735,9 @@ doc-text-printer-request-modernization =
     ────────────────────────────────────────
    ⠀⠀                         [bold]MODERNIZATION REQUEST[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     I, [signature], request to upgrade the instrumentation in the following department: [form]
 
     Reason for request: [form]
@@ -728,10 +759,10 @@ doc-text-printer-request-ert =
     ────────────────────────────────────────
    ⠀⠀           [bold]EMERGENCY RESPONSE TEAM REQUEST[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    I, [signature], request an ERT team to be sent to the station to assist with an ongoing problem that we can't face without outside help.
+    I, [signature], request an ERT team to be sent to the station to assist with an ongoing problem that exceeds the station's current resources to resolve.
 
     Threat(s) to the station:
     ⠀• [form]
@@ -741,9 +772,9 @@ doc-text-printer-request-ert =
     (Security / Engineering / Janitorial / Medical / ...)
 
     Fatalities (approximate number): [form]
+    Other casualties (approximate number): [form]
 
-   ⠀ [italic]Warning, abuse of this form may lead to immediate termination[/italic]
-   ⠀ [italic]of the contract of the person(s) involved in this request.[/italic]
+   ⠀ [italic]Abuse of this form may lead to immediate dismissal of the person(s) involved in this request.[/italic]
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -758,17 +789,17 @@ doc-text-printer-product-order =
     ────────────────────────────────────────
    ⠀⠀                                 [bold]PRODUCT ORDER[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     Request to produce products by the following department: [form]
 
     List of products required:
     • [form]
     • [form]
-    
+
     Reason for order: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -784,21 +815,23 @@ doc-text-printer-complaint-violation-labor-rules =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-    ⠀⠀[bold]COMPLAINT FOR VIOLATION OF LABOUR REGULATIONS[/bold]
+    ⠀⠀[bold]DEPARTMENTAL COMPLAINT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], believe that the violations were committed by the following:
-    
-    Department committing violations: [form]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], believe that major misconduct, constituting either breach of SOP or Corporate Law, has occurred, or is ongoing, as described below.
+
+    Department(s) involved: [form]
+
     Violations committed:
-    • [form]
-    • [form]
-    
-    I thereby formally request an internal review of these violations.
-    
+
+   ⠀• [form]
+   ⠀• [form]
+   ⠀• [form]
+
+    I request an internal review of the department(s) in question.
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -811,21 +844,24 @@ doc-text-printer-offense-complaint =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                             [bold]OFFENSE COMPLAINT[/bold]
+   ⠀⠀                             [bold]CRIMINAL COMPLAINT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], believe that the following person has breached corporate law.
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], believe that the following person has violated Corporate Law.
 
     Name of violator: [form]
 
-    Corporate law(s) breached:
-    • [form]
-    • [form]
+    Description of misconduct: [form]
 
-    What happened from my point of view: [form]
-    
+    Criminal charges:
+
+   ⠀• [form]
+   ⠀• [form]
+   ⠀• [form]
+   ⠀• [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -841,23 +877,23 @@ doc-text-printer-permission-equipment =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                           [bold]EQUIPMENT PERMISSION[/bold]
+   ⠀⠀                           [bold]EQUIPMENT PERMIT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
+    Date and Time: [form]
+    Document Compiler: [signature]
 
     I, [signature], authorize the use of departmental work equipment of the following department: [form]
 
-    Equipment subject to authorisation: [form]
-    
-    Authorised person: [form]
+    Equipment to be subject to authorization: [form]
 
-    Position of authorised person: [form]
+    Authorized person: [form]
 
-    Reason for equipment permission: [form]
+    Position of authorized person: [form]
+
+    Reason for seeking permit: [form]
 
     Terms of use: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -870,19 +906,30 @@ doc-text-printer-search-permission =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                             [bold]SEARCH PERMISSION[/bold]
+   ⠀⠀                             [bold]SEARCH WARRANT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], authorize the search of the following person due to the suspiscion(s) they are carrying contraband.
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], authorize the search of the following person and/or location
+
+    The affidavit below, sworn and subscribed before me, [signature], has established probable cause for this search warrant, which the Security Department is ordered to execute as follows:
 
     Name of searched person: [form]
 
     Position of searched person: [form]
 
     Reason for search: [form]
-    
+
+    Scope of property to be confiscated:
+
+   ⠀[check] Contraband
+   ⠀[check] Items believed to have been involved in a crime
+   ⠀[check] Misappropriated equipment
+   ⠀[check] Other, specify: [form]
+
+    Disposition of property: All property seized pursuant to this search warrant shall be remanded into the custody of the Warden's office, pending further orders by Command.
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -895,24 +942,23 @@ doc-text-printer-permission-to-carry-weapons =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                             [bold]WEAPON PERMISSION[/bold]
+   ⠀⠀                             [bold]WEAPON PERMIT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], authorize the carrying of the weapon by the named person, as long as it is used for its intended purpose.
-    In the event of a violation, the authorization will be revoked and the weapon will be confiscated by Security.
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    Named of authorised person: [form]
+    I, [signature], authorize the carrying of the following weapon by the named person, as long as it is used for its intended purpose. In the event of a violation, the authorization will be revoked and the weapon will be confiscated by Security.
 
-    Position of authorised person: [form]
-    
+    Named of authorized person: [form]
+
+    Position of authorized person: [form]
+
     The weapon and, if applicable, the type of ammunition for it: [form]
-    
+
     The method of obtaining the weapon and, if applicable, the ammunition for it: [form]
-    
+
     Reason for authorization: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -925,19 +971,19 @@ doc-text-printer-permission-dispose-body =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                      [bold]BODY DISPOSAL PERMISSION[/bold]
+   ⠀⠀                 [bold]BODY DISPOSAL AUTHORIZATION[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], authorize the disposal of the body of the following person: [form]
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    In the position of: [form]
-    
+    I, [signature], authorize the disposal of the body of the following person or animal: [form]
+
+    Former position (if applicable): [form]
+
     Reason for disposal: [form]
 
     Method of disposal: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -952,15 +998,15 @@ doc-text-printer-construction-permit =
     ────────────────────────────────────────
    ⠀⠀                           [bold]CONSTRUCTION PERMIT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     I, [signature], authorize the redevelopment of the following part of the station: [form]
-    
+
     Reason for redevelopment: [form]
 
     Agreed scope of redevelopment: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -974,18 +1020,29 @@ doc-text-printer-surgery-consent-permit =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                           [bold]SURGERY CONSENT WAIVER[/bold]
+   ⠀⠀                           [bold]SURGERY CONSENT FORM[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    In sound mind I, [signature], authorise (name of Surgeon/CMO)[signature] to perform surgery upon me.
-    
-    Reason for Surgery: [form]
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    Surgical modification(s) provided:
+    In sound mind I, [signature], authorize the following surgery or surgeries to be performed upon me.
+
+    Authorized surgeon: [signature]
+
+    Reason for surgery: [form]
+
+    Surgical modification(s) to be performed:
+
     • [form]
-    
+    • [form]
+    • [form]
+
+   ⠀[check] I fully understand the risks associated with the operation(s) to which I have given my consent.
+
+   ⠀[check] I authorize the Medical Department to dispose of any tissues or organs removed from my body as they see fit, including possibly donating such tissues or organs to other patients.
+
+   ⠀ [italic]This form is not legal unless it has been signed by the patient and stamped by the station's Chief Medical Officer or one of the Chief Medical Officer's superiors. It is not required for life-saving surgeries. For punitive and non-elective surgeries, such as those ordered by Security, please file a Medical Intervention Order.[/italic]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -1003,15 +1060,17 @@ doc-text-printer-dismissal-order =
     ────────────────────────────────────────
    ⠀⠀                               [bold]DISMISSAL ORDER[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], order a dismissal of employement to the following person: [form]
-    
-    In the position of: [form]
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], order that the following employee be removed from their current position.
+
+    Employee name: [form]
+
+   ⠀Employee position: [form]
 
     Reason for dismissal: [form]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -1026,11 +1085,19 @@ doc-text-printer-access-revocation-order =
     ────────────────────────────────────────
    ⠀⠀                       [bold]ACCESS REVOCATION ORDER[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], am ordering the revocation of the following access from employee [form] in the position of [form].
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], hereby order that certain access rights be removed from the ID card of an employee, as specified below.
+
+    Employee: [form]
+
+   ⠀Position: [form]
+
+    Access rights to be removed: [form]
+
+    Further remarks: [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -1043,13 +1110,25 @@ doc-text-printer-incentive-order =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                               [bold]INCENTIVE ORDER[/bold]
+   ⠀⠀                       [bold]RECOGNITION OF MERIT[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], award the following person a medal/citation/memorial/award for the following services: [form]
-    
+    Date and Time: [form]
+
+    Dear [form],
+
+    In the course of your duties to the station, you have proven yourself to be an exemplar to the crew through your record of distinguished conduct. It is therefore my pleasure to grant you the following special commendation.
+
+    Services Performed: [form]
+
+    Medal or Citation: [form]
+
+    May your devotion to the station continue to light the way for your fellow crewmembers.
+
+    Sincerely,
+
+   ⠀[signature]
+
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -1062,17 +1141,23 @@ doc-text-printer-prisoner-parole-order =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                         [bold]PRISONER PAROLE ORDER[/bold]
+   ⠀⠀                         [bold]ORDER OF MANDATORY PAROLE[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], authorize the release of following detainee: [form]
-    
-    Upon issuance of parole, the detainee will be issued a civilian occupation with mandatory work until the end of the shift.
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    Issued occupation: [form]
-    
+    Parolee: [form]
+
+    Parole ordered by: [form]
+
+    Upon granting of parole, the Parolee shall enter into a position in the Service Department.
+
+    Failure to perform the duties of this position may result in re-imprisonment.
+
+    Position: [form]
+
+    Additional terms of parole: [form]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -1085,21 +1170,21 @@ doc-text-printer-order-recognizing-reasonableness-creature =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀[bold]ORDER RECOGNIZING THE REASONABLENESS OF THE CREATURE[/bold]
+   ⠀[bold]DECLARATION OF SENTIENCE[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], in the course of testing the creature, detected signs of higher brain activity and reasonableness involving its ability to think, learn, understanding of morality, and presence of common sense.
-    
-    Thus based on the principles of equality of rights of all reasonable beings established by the OPRA, recognize this creature as reasonable.
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    I, [signature], in the course of testing the entity described below, have detected signs of intelligence and rationality. It has exhibited an ability to think and learn, and a capacity to comprehend morality.
+
+    Based on the principles of equality of rights of all reasonable beings established by the OPRA, I hereby move to declare it as sentient.
+
     Appearance of the being: [form]
-    
+
     The established full name of the creature: [form]
-    
-    The creature is accepted as an assistant of the station until the end of the shift.
-    
+
+    The creature is henceforth to be accepted as an Assistant.
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -1112,17 +1197,23 @@ doc-text-printer-medical-intervention-order =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                    [bold]MEDICAL INTERVENTION ORDER[/bold]
+   ⠀⠀                [bold]MEDICAL INTERVENTION ORDER[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
-    I, [signature], in my professional opinion, order a medical intervention effective immediately.
-    
-    Person to receive intervention: [form]
+    Date and Time: [form]
+    Document Compiler: [signature]
 
-    Grounds for the intervention: [form]
-    
+    Pursuant to Corporate Law, the Qualified Medical Officer named herein orders that the following medical intervention be carried out promptly and without delay.
+
+    Patient: [form]
+
+    Procedure(s) to be performed: [form]
+
+    Circumstances: [form]
+
+   ⠀I hereby affirm that, in my professional opinion as a licensed medical practioner, the ordered intervention is medically or legally necessary.
+
+    Qualified Medical Officer: [signature]
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -1135,11 +1226,11 @@ doc-text-printer-execution-dnr-order =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀             [bold]EXECUTION AND DO NOT REVIVE ORDER[/bold]
+   ⠀⠀             [bold]EXECUTION AND DO-NOT-REVIVE ORDER[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     Name of Prisoner:  [form]
     Former position of Prisoner: [form]
 
@@ -1154,9 +1245,9 @@ doc-text-printer-execution-dnr-order =
    ⠀ [italic]This order can only be issued by the (Acting) Captain of the[/italic]
    ⠀ [italic]station. If a Magistrate is present, they can overrule the Captain[/italic]
    ⠀ [italic]on the decision, and their stamp is required.[/italic]
-   ⠀ [italic]The prisoner is to remain restrained in a secure jail cell.[/italic]
-   ⠀ [italic]The execution method is to be chosen by the prisoner, to a[/italic]
-   ⠀ [italic]lawful extent, and must be as humane as possible.[/italic]
+   ⠀ [italic]The prisoner is to remain securely restrained until the execution.[/italic]
+   ⠀ [italic]The execution method may be chosen by the prisoner, to the[/italic]
+   ⠀ [italic]extent permissible under law, and must be as humane as possible.[/italic]
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
@@ -1169,16 +1260,50 @@ doc-text-printer-centcomm-communication =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀⠀                         [bold]CentComm Communication[/bold]
+   ⠀⠀                    [bold]CENTCOMM COMMUNICATION[/bold]
     ────────────────────────────────────────
-    Time and Date: [form]
-    Document Compiler Name and Occupation: [signature]
-    
+    Date and Time: [form]
+    Document Compiler: [signature]
+
     Greetings CentComm,
 
-
+   ⠀[form]
 
     Sincerely,
-            - [signature]
+       - [signature]
     ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+
+doc-text-printer-salvagelead-report =
+    ⠀[logo]            [cclogo] 
+
+                              [head=3]NT-CC Consortium Services[/head]
+
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+    ⠀⠀                   [bold]SALVAGE LEAD REPORT[/bold]
+    ────────────────────────────────────────
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    Expeditionary Threat: [form]
+
+    Observations: [form]
+
+    The following contraband was collected during the course of the Expedition:
+
+     • [form]
+     • [form]
+     • [form]
+     • [form]
+     • [form]
+
+    It is understood that all contraband must be turned over to the Security Department upon arrival at the station.
+
+    Team status and overall readiness: [form]
+
+    Further notes: [form]
+
+     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]

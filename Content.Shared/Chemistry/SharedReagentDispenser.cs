@@ -96,6 +96,20 @@ namespace Content.Shared.Chemistry
 
     }
 
+    // Starlight Start
+    // Required for UI to not flash while cell is charging/discharging
+    [Serializable, NetSerializable]
+    public sealed class ReagentDispenserEnergyUpdateMessage : BoundUserInterfaceMessage
+    {
+        public readonly float EnergyAmount;
+
+        public ReagentDispenserEnergyUpdateMessage(float energyAmount)
+        {
+            EnergyAmount = energyAmount;
+        }
+    }
+    // Starlight End
+
     public enum ReagentDispenserDispenseAmount
     {
         U1 = 1,
@@ -133,12 +147,15 @@ namespace Content.Shared.Chemistry
 
         public readonly ReagentDispenserDispenseAmount SelectedDispenseAmount;
 
-        public ReagentDispenserBoundUserInterfaceState(ContainerInfo? outputContainer, NetEntity? outputContainerEntity, List<ReagentInventoryItem> inventory, ReagentDispenserDispenseAmount selectedDispenseAmount)
+        public readonly float EnergyAmount; // Starlight-edit: Energy bar
+
+        public ReagentDispenserBoundUserInterfaceState(ContainerInfo? outputContainer, NetEntity? outputContainerEntity, List<ReagentInventoryItem> inventory, ReagentDispenserDispenseAmount selectedDispenseAmount, float energyAmount) // Starlight-edit: Energy bar
         {
             OutputContainer = outputContainer;
             OutputContainerEntity = outputContainerEntity;
             Inventory = inventory;
             SelectedDispenseAmount = selectedDispenseAmount;
+            EnergyAmount = energyAmount; // Starlight-edit: Energy bar
         }
     }
     

@@ -9,8 +9,8 @@
     mode: SnapgridCenter
   components:
     - type: AmbientSound
-      volume: -7
-      range: 3
+      volume: -6 #SL edit -7 -> -6
+      range: 4 #SL edit 3 -> 4
       sound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
     - type: Sprite
@@ -64,8 +64,8 @@
       supplyRampTolerance: 5000
       supplyRampRate: 1000
     - type: PointLight
-      radius: 1.5
-      energy: 1.6
+      radius: 1.2
+      energy: 3.0
       color: "#c9c042"
       castShadows: false
     - type: WiresPanel

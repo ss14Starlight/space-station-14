@@ -15,6 +15,7 @@
     ClothingHandsGlovesNitrile: 2
     ClothingHeadsetMedical: 4
     ClothingOuterWinterMed: 2
+    ClothingOuterWindbreakerMedical: 2 #Starlight
     ClothingOuterHospitalGown: 5
     UniformScrubsColorGreen: 4
     UniformScrubsColorBlue: 4
@@ -25,6 +26,8 @@
     ClothingShoesBootsWinterMed: 2
   contrabandInventory:
     ClothingUniformJumpskirtOfLife: 1
+    ClothingUniformJumpsuitOfLife: 1 # Starlight
+    ClothingHeadNurseHatOfLife: 1 # Starlight
     ToyFigurineMedicalDoctor: 1
     ToyFigurineParamedic: 1
     ToyFigurineChiefMedicalOfficer: 1
