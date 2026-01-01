@@ -1,6 +1,8 @@
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Execution;
+//STARLIGHT MODIFIED FILE
+//TODO: Use upstream and modify it accordingly instead
 
 /// <summary>
 /// Added to entities that can be used to execute another target.

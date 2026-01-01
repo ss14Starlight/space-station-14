@@ -139,3 +139,7 @@ evolutionmenu-utility-fakemindshield-desc =
     Modifies a small portion of greymatter to be able to mimic MindShield signals, allowing you to trick specific devices.
     May need a few toggle attempts to get the right frequency.
     Cost 0 chemicals.
+
+#Starlight
+changeling-arm-blade-name = Retractable Arm Blade
+changeling-arm-blade-desc = Transform your arm into a terrifying flesh blade. Can be toggled.

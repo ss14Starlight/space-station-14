@@ -1,5 +1,17 @@
 #equipment
 - type: listing
+  id: VendorSalvageBinoculars
+  productEntity: Binoculars
+  cost:
+    SalvageTicket: 75
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+    - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageGrapplingGun
   productEntity: WeaponGrapplingGun
   cost:
@@ -37,7 +49,7 @@
   id: VendorSalvageClothingOuterHardsuitMaxim
   productEntity: ClothingOuterHardsuitMaxim
   cost:
-    SalvageTicket: 1500
+    SalvageTicket: 1200
   categories:
   - SalvageEquipment
   conditions:
@@ -184,15 +196,25 @@
   conditions:
   - !type:BuyerAccessCondition
 
+#- type: listing
+  #id: VendorSalvageWeaponPistolDeagle
+  #productEntity: WeaponPistolDeagle
+  #cost:
+    #SalvageTicket: 300
+  #categories:
+  #- SalvageWeapons
+  #conditions:
+  #- !type:BuyerAccessCondition
+
 - type: listing
-  id: VendorSalvageWeaponPistolDeagle
-  productEntity: WeaponPistolDeagle
+  id: VendorSalvageWeaponPistolMK58
+  productEntity: WeaponPistolMk58
   cost:
-    SalvageTicket: 300
+    SalvageTicket: 250
   categories:
   - SalvageWeapons
   conditions:
-  - !type:BuyerAccessCondition
+  - !type:BuyerAccessCondition 
 
 - type: listing
   id: VendorSalvageWeaponShotgunCycler
@@ -235,11 +257,21 @@
   conditions:
   - !type:BuyerAccessCondition
 
+#- type: listing
+  #id: VendorSalvageMagazineMagnum
+  #productEntity: MagazineMagnum
+  #cost:
+    #SalvageTicket: 150
+  #categories:
+  #- SalvageConsumeables
+  #conditions:
+  #- !type:BuyerAccessCondition
+
 - type: listing
-  id: VendorSalvageMagazineMagnum
-  productEntity: MagazineMagnum
+  id: VendorSalvageMagazineMK58
+  productEntity: MagazinePistolSP
   cost:
-    SalvageTicket: 150
+    SalvageTicket: 75
   categories:
   - SalvageConsumeables
   conditions:
@@ -297,8 +329,38 @@
 
 #Merc Stuff
 - type: listing
-  id: VendorSalvageClothingBackpackMerc
-  productEntity: ClothingBackpackMerc
+  id: VendorSalvageClothingHeadHatBeretSalvageMercPurple
+  productEntity: ClothingHeadHatBeretSalvageMercPurple
+  cost:
+    SalvageTicket: 25
+  categories:
+  - SalvageMercenaryEquipment
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingHeadHatBeretSalvageMercGreen
+  productEntity: ClothingHeadHatBeretSalvageMercGreen
+  cost:
+    SalvageTicket: 25
+  categories:
+    - SalvageMercenaryEquipment
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingHeadHatBeretSalvageMercBrown
+  productEntity: ClothingHeadHatBeretSalvageMercBrown
+  cost:
+    SalvageTicket: 25
+  categories:
+    - SalvageMercenaryEquipment
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingShoesBootsSalvageMerc
+  productEntity: ClothingShoesBootsSalvageMerc
   cost:
     SalvageTicket: 150
   categories:
@@ -307,38 +369,8 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageClothingMaskBandMerc
-  productEntity: ClothingMaskBandMerc
-  cost:
-    SalvageTicket: 25
-  categories:
-  - SalvageMercenaryEquipment
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageClothingHeadBandMerc
-  productEntity: ClothingHeadBandMerc
-  cost:
-    SalvageTicket: 25
-  categories:
-  - SalvageMercenaryEquipment
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageClothingHeadHatBeretMerc
-  productEntity: ClothingHeadHatBeretMerc
-  cost:
-    SalvageTicket: 25
-  categories:
-  - SalvageMercenaryEquipment
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageClothingShoesBootsMerc
-  productEntity: ClothingShoesBootsMerc
+  id: VendorSalvageClothingHandsSalvageMercGlovesCombat
+  productEntity: ClothingHandsSalvageMercGlovesCombat
   cost:
     SalvageTicket: 150
   categories:
@@ -347,40 +379,10 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageClothingHandsMercGlovesCombat
-  productEntity: ClothingHandsMercGlovesCombat
+  id: VendorSalvageClothingEyesGlassesSalvageMercenary
+  productEntity: ClothingEyesGlassesSalvageMercenary
   cost:
-    SalvageTicket: 150
-  categories:
-  - SalvageMercenaryEquipment
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageClothingHandsGlovesMercFingerless
-  productEntity: ClothingHandsGlovesMercFingerless
-  cost:
-    SalvageTicket: 25
-  categories:
-  - SalvageMercenaryEquipment
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageClothingMaskGasMerc
-  productEntity: ClothingMaskGasMerc
-  cost:
-    SalvageTicket: 150
-  categories:
-  - SalvageMercenaryEquipment
-  conditions:
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageClothingEyesGlassesMercenary
-  productEntity: ClothingEyesGlassesMercenary
-  cost:
-    SalvageTicket: 25
+    SalvageTicket: 90
   categories:
   - SalvageMercenaryEquipment
   conditions:
@@ -397,18 +399,18 @@
 #  - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageClothingHeadHelmetMerc
-  productEntity: ClothingHeadHelmetMerc
+  id: VendorSalvageClothingHeadHelmetSalvageMerc
+  productEntity: ClothingHeadHelmetSalvageMerc
   cost:
     SalvageTicket: 150
   categories:
   - SalvageMercenaryEquipment
   conditions:
   - !type:BuyerAccessCondition
-
+    
 - type: listing
-  id: VendorSalvageClothingUniformJumpsuitMercenary
-  productEntity: ClothingUniformJumpsuitMercenary
+  id: VendorSalvageClothingUniformJumpsuitSalvageMercWhite
+  productEntity: ClothingUniformJumpsuitSalvageMercWhite
   cost:
     SalvageTicket: 25
   categories:
@@ -417,8 +419,28 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageClothingOuterVestWebMerc
-  productEntity: ClothingOuterVestWebMerc
+  id: VendorSalvageClothingUniformJumpsuitSalvageMercGreen
+  productEntity: ClothingUniformJumpsuitSalvageMercGreen
+  cost:
+    SalvageTicket: 25
+  categories:
+    - SalvageMercenaryEquipment
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingUniformJumpsuitSalvageMercBrown
+  productEntity: ClothingUniformJumpsuitSalvageMercBrown
+  cost:
+    SalvageTicket: 25
+  categories:
+    - SalvageMercenaryEquipment
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingOuterVestWebSalvageMerc
+  productEntity: ClothingOuterVestWebSalvageMerc
   cost:
     SalvageTicket: 200
   categories:
@@ -427,8 +449,8 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageClothingBeltMercWebbing
-  productEntity: ClothingBeltMercWebbing
+  id: VendorSalvageClothingBeltSalvageMercWebbing
+  productEntity: ClothingBeltSalvageMercWebbing
   cost:
     SalvageTicket: 150
   categories:

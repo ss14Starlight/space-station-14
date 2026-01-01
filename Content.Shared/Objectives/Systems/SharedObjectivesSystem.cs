@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._Starlight.Railroading;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Prototypes;

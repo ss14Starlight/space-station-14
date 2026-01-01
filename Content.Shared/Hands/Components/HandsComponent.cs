@@ -190,9 +190,11 @@ public sealed class HandsComponentState : ComponentState
 /// <seealso cref="HandLocationExt"/>
 public enum HandLocation : byte
 {
-    Left,
-    Middle,
+    //Starlight start
     Right,
+    Middle,
+    Left,
+    //Starlight end
     Functional
 }
 
@@ -203,8 +205,10 @@ public enum HandLocation : byte
 /// <seealso cref="HandLocation"/>
 public enum HandUILocation : byte
 {
-    Left,
+    //Starlight start
     Right,
+    Left,
+    //Starlight end
     Functional
 }
 

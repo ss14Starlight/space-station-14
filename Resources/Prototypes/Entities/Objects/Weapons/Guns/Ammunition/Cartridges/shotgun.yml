@@ -1,12 +1,11 @@
 - type: entity
   id: BaseShellShotgun
-  name: shell (.50)
+  name: 12 gauge shotgun shell # Starlight change: .50 -> 12 gauge
   parent: BaseCartridge
   abstract: true
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
@@ -20,12 +19,11 @@
 
 - type: entity
   id: ShellShotgunBeanbag
-  name: shell (.50 beanbag)
+  name: 12 gauge beanbag slug # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -38,14 +36,14 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunBeanbagTrace
+    proto: PelletShotgunBeanbagTrace
 
 - type: entity
   id: ShellShotgunSlug
-  name: shell (.50 slug)
+  name: 12 gauge slug # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband]
   components:
   - type: Sprite
@@ -58,19 +56,18 @@
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunSlugTrace
+    proto: PelletShotgunSlugTrace
 
 - type: entity
   id: ShellShotgunFlare
-  name: shell (.50 flare)
+  name: 12 gauge flare # Starlight change: .50 -> 12 gauge
   parent: BaseShellShotgun
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -91,7 +88,7 @@
 
 - type: entity
   id: ShellShotgun
-  name: shell (.50 pellet)
+  name: 12 gauge buckshot # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
@@ -104,14 +101,14 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunSpreadTrace
+    proto: PelletShotgunSpreadTrace
 
 - type: entity
   id: ShellShotgunIncendiary
-  name: shell (.50 incendiary)
+  name: 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
@@ -125,14 +122,14 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: ShellShotgunIncendiaryTrace
+    proto: PelletShotgunIncendiarySpreadTrace
 
 - type: entity
   id: ShellShotgunPractice
-  name: shell (.50 practice)
+  name: 12 gauge blank # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
@@ -145,19 +142,18 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunPracticeSpreadTrace
+    proto: PelletShotgunPracticeSpreadTrace
 
 - type: entity
   id: ShellTranquilizer
-  name: shell (.50 tranquilizer)
+  name: 12 gauge tranquilizer slug # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -184,13 +180,12 @@
 
 - type: entity
   id: ShellShotgunImprovised
-  name: improvised shotgun shell
+  name: improvised 12 gauge shell # Starlight change: .50 -> 12 gauge
   description: A homemade shotgun shell that shoots painful glass shrapnel. The spread is so wide that it couldn't hit the broad side of a barn.
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Tag
     tags:
-    - Cartridge
     - ShellShotgun
     - ShellShotgunLight
   - type: Sprite
@@ -206,14 +201,14 @@
   - type: Construction
     graph: ImprovisedShotgunShellGraph
     node: shell
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunImprovisedSpreadTrace
+    proto: PelletShotgunImprovisedSpreadTrace
 
 - type: entity
   id: ShellShotgunUranium
-  name: uranium shotgun shell
+  name: 12 gauge uranium buckshot shell # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
@@ -227,14 +222,14 @@
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunUraniumSpreadTrace
+    proto: PelletShotgunUraniumSpreadTrace
 
-- type: entity #🌟Starlight🌟 
+- type: entity #🌟Starlight🌟
   id: ShellShotgunBreaching
-  name: shell (.50 breaching)
+  name: 12 gauge breaching shell # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSyndicateContraband ]
   components:
   - type: Sprite
@@ -247,7 +242,7 @@
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
-  - type: HitScanCartridgeAmmo
+  - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
-    hitscan: PelletShotgunBreachTrace
+    proto: PelletShotgunBreachSpreadTrace

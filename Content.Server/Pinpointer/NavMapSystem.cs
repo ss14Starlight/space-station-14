@@ -49,7 +49,8 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         _navQuery = GetEntityQuery<NavMapComponent>();
 
         // Initialization events
-        SubscribeLocalEvent<StationGridAddedEvent>(OnStationInit);
+        // SubscribeLocalEvent<StationGridAddedEvent>(OnStationInit); // Starlight edit
+        SubscribeLocalEvent<GridInitializeEvent>(OnGridInit); // Starlight
 
         // Grid change events
         SubscribeLocalEvent<GridSplitEvent>(OnNavMapSplit);
@@ -63,11 +64,12 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         SubscribeLocalEvent<ConfigurableNavMapBeaconComponent, NavMapBeaconConfigureBuiMessage>(OnConfigureMessage);
         SubscribeLocalEvent<ConfigurableNavMapBeaconComponent, MapInitEvent>(OnConfigurableMapInit);
     }
-
-    private void OnStationInit(StationGridAddedEvent ev)
+    // Starlight edit Start
+    private void OnGridInit(GridInitializeEvent ev)
     {
-        var comp = EnsureComp<NavMapComponent>(ev.GridId);
-        RefreshGrid(ev.GridId, comp, Comp<MapGridComponent>(ev.GridId));
+        var comp = EnsureComp<NavMapComponent>(ev.EntityUid);
+        RefreshGrid(ev.EntityUid, comp, Comp<MapGridComponent>(ev.EntityUid));
+    // Starlight edit End
     }
 
     #region: Grid change event handling

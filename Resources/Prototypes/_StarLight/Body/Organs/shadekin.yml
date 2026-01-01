@@ -1,7 +1,7 @@
 - type: entity
   id: OrganShadekinBrain
   parent: OrganHumanBrain
-  description: "The source of incredible, unending intelligence. Mar."
+  description: "The source of incredible, unending intelligence. Marr."
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
@@ -18,7 +18,7 @@
     layers:
       - state: eyes
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: NightVision
   - type: OrganVisualization
     layer: Eyes
@@ -97,6 +97,7 @@
   name: shadekin core
   description: A core of a shadekin, a mysterious and powerful organ that seems to be the source of their energy.
   components:
+  - type: OrganShadekinCore
   - type: Organ
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprites by Conflee",
+  "copyright": "Sprites by Conflee, icon_on state by @kilath",
   "size": {
     "x": 32,
     "y": 32
@@ -9,6 +9,19 @@
   "states": [
     {
       "name": "icon"
+    },
+    {
+      "name": "icon-on",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     },
     {
       "name": "equipped-BELT",

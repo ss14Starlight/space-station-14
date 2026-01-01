@@ -1,0 +1,185 @@
+﻿# Skilled (Beaker) Time
+- type: loadoutEffectGroup
+  id: SkilledChemist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChemist
+      time: 54000 # 15 hrs
+
+# Senior Time
+- type: loadoutEffectGroup
+  id: SeniorChemist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChemist
+      time: 216000 # 60 hrs
+
+# Star Time
+- type: loadoutEffectGroup
+  id: StarOfChemistry
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChemist
+      time: 360000 # 100 hrs
+
+# Head
+- type: loadout
+  id: ChemistryBeret
+  equipment:
+    head: ClothingHeadHatBeretChemist
+
+- type: loadout
+  id: ChemistNurseHat
+  equipment:
+    head: ClothingHeadNurseHatChemist
+
+- type: loadout
+  id: ChemistTruckersHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChemist
+  equipment:
+    head: ClothingHeadHatTruckerChemist
+
+- type: loadout
+  id: ChemistFisherCap
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChemist
+  equipment:
+    head: ClothingHeadHatFishCapChemist
+
+# Senior Jumpsuit
+- type: loadout
+  id: SeniorChemistJumpsuit
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorChemist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorChemist
+
+- type: loadout
+  id: SeniorChemistJumpskirt
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorChemist
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorChemist
+
+# Chem bag
+- type: loadout
+  id: ChemBag
+  equipment:
+    bag: ChemBag
+
+- type: loadout
+  id: SeniorChemBag
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorChemist
+  equipment:
+    bag: SeniorChemBag
+
+# Senior Outer clothing
+- type: loadout
+  id: SeniorChemistLabCoat
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorChemist
+  equipment:
+    outerClothing: ClothingOuterCoatLabSeniorChemist
+
+# Hand labeler
+- type: loadout
+  id: ChemistHandLabeler
+  equipment:
+    pocket1: HandLabeler
+
+- type: loadout
+  id: GoldenHandLabeler
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: StarOfChemistry
+  equipment:
+    pocket1: GoldenHandLabeler
+
+# Winter coat
+- type: loadout
+  id: SeniorChemistWintercoat
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorChemist
+  equipment:
+    outerClothing: ClothingOuterWinterChemSenior
+
+# Shoes
+- type: loadout
+  id: ChemistWinterBoots
+  equipment:
+    shoes: ClothingShoesBootsWinterChem
+
+# PDA
+- type: loadout
+  id: ChemistPDA
+  equipment:
+    id: ChemistryPDA
+
+- type: loadout
+  id: SeniorChemistPDA
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorChemist
+  equipment:
+    id: SeniorChemistPDA
+
+#Eyewear
+- type: loadout
+  id: ChemicalGoggles
+  equipment:
+    eyes: ClothingEyesGlassesChemical
+
+- type: loadout
+  id: ChemicalHud
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledChemist
+  equipment:
+    eyes: ClothingEyesHudChemical
+
+- type: loadout
+  id: ChemicalEyePatchHud
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledChemist
+  equipment:
+    eyes: ClothingEyesEyepatchHudChemical
+
+- type: loadout
+  id: ChemicalJensens
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledChemist
+  equipment:
+    eyes: ClothingEyesGlassesJensenChemical
+
+# Beaker
+- type: loadout
+  id: LightBeaker
+  storage:
+    back:
+    - LightBeaker
+    
+- type: loadout
+  id: SilverBeakerChemist
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledChemist
+  storage:
+    back:
+    - SilverBeaker

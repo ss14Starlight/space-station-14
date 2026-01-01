@@ -3,24 +3,26 @@
   suffix: Filled
   parent: LockerRepresentative
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingEyesHudSkills
-      - id: ClothingEyesSunGlassesHudSkill
-      - id: ClothingHeadHatCapNtrep
-      - id: ClothingUniformJumpsuitNtrepFormal
-      - id: ClothingUniformJumpskirtNtrep
-      - id: ClothingUniformJumpsuitNtrep
-      - id: ClothingOuterCoatNtrep
-      - id: ClothingShoesBootsLaceup
-      - id: ClothingHeadsetAltCommand
-      - id: WeaponDisabler
-      - id: LuxuryPen
-      - id: BoxFolderClipboardFilled
-      - id: PrinterDocFlatpack
-      - id: FaxMachineFlatpack
-      - id: PlushieEmmie
-      - id: ClothingOuterHardsuitNtrep
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingEyesHudSkills
+        - id: ClothingEyesSunGlassesHudSkill
+        - id: ClothingHeadHatCapNtrep
+        - id: ClothingUniformJumpsuitNtrepFormal
+        - id: ClothingUniformJumpskirtNtrep
+        - id: ClothingUniformJumpsuitNtrep
+        - id: ClothingOuterCoatNtrep
+        - id: ClothingShoesBootsLaceup
+        - id: ClothingHeadsetAltCommand
+        - id: WeaponDisabler
+        - id: LuxuryPen
+        - id: BoxFolderClipboardFilled
+        - id: PrinterDocFlatpack
+        - id: FaxMachineFlatpack
+        - id: PlushieEmmie
+        - id: ClothingOuterHardsuitNtrep
   
 - type: entity
   id: LockerRepresentativeFilledBluespaced
@@ -37,27 +39,32 @@
   suffix: Filled
   parent: LockerBlueshield
   components:
-  - type: StorageFill
-    contents:
-      - id: FlashlightSeclite
-      - id: ClothingHandsGlovesCombat
-      - id: ClothingShoesBootsCombat
-      - id: TrackingImplanter
-        amount: 1
-      - id: MedkitAdvancedFilled
-      - id: ClothingEyesGlassesBlueShield
-      - id: ClothingEyesHudBlueShield
-      - id: ClothingHeadHatBeretBlueShield
-      - id: ClothingUniformJumpsuitBlueShield
-      - id: ClothingUniformJumpskirtBlueShield
-      - id: HandheldGPSBasic
-      - id: ClothingNeckCloakBsoElite
-      - id: ClothingNeckCloakBsoElite
-      - id: RadioHandheldSecurity
-      - id: ClothingUniformJumpsuitBlueShieldCaptain
-      - id: ClothingOuterCoatBlueShield
-      - id: ClothingNeckCloakBsoCape
-      - id: RubberStampBSO
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FlashlightSeclite
+        - id: ClothingHandsGlovesCombat
+        - id: ClothingShoesBootsCombat
+        - id: TrackingImplanter
+          amount: 3
+        - id: MedkitAdvancedFilled
+        - id: WeaponPistolSP8T
+        - id: MagazinePistol40SP
+          amount: 2
+        - id: ClothingEyesGlassesBlueShield
+        - id: ClothingEyesHudBlueShield
+        - id: ClothingHeadHatBeretBlueShield
+        - id: ClothingUniformJumpsuitBlueShield
+        - id: ClothingUniformJumpskirtBlueShield
+        - id: HandheldGPSBasic
+        - id: ClothingNeckCloakBsoElite
+        - id: ClothingNeckCloakBsoElite
+        - id: RadioHandheldSecurity
+        - id: ClothingUniformJumpsuitBlueShieldCaptain
+        - id: ClothingOuterCoatBlueShield
+        - id: ClothingNeckCloakBsoCape
+        - id: RubberStampBSO
 
 - type: entity
   id: LockerBSOFilledBluespaced

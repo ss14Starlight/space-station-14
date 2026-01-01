@@ -1,13 +1,12 @@
 using Robust.Client.Graphics;
 using Robust.Shared.Player;
-using Robust.Shared.Physics.Events;
 using Content.Shared._Starlight.NullSpace;
 using Robust.Shared.Prototypes;
 using Content.Client._Starlight.Overlay;
 
 namespace Content.Client._Starlight;
 
-public sealed partial class EtherealSystem : EntitySystem
+public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 {
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
@@ -23,7 +22,6 @@ public sealed partial class EtherealSystem : EntitySystem
         SubscribeLocalEvent<NullSpaceComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<NullSpaceComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<NullSpaceComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
-        SubscribeLocalEvent<NullSpaceComponent, PreventCollideEvent>(PreventCollision);
 
         _overlay = new(_prototypeManager.Index<ShaderPrototype>("NullSpaceShader"));
     }
@@ -52,10 +50,5 @@ public sealed partial class EtherealSystem : EntitySystem
     private void OnPlayerDetached(EntityUid uid, NullSpaceComponent component, LocalPlayerDetachedEvent args)
     {
         _overlayMan.RemoveOverlay(_overlay);
-    }
-
-    private void PreventCollision(EntityUid uid, NullSpaceComponent component, ref PreventCollideEvent args)
-    {
-        args.Cancelled = true;
     }
 }

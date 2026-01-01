@@ -11,3 +11,29 @@
   completetime: 2
   materials:
     RawAbyssium: 100
+
+- type: latheRecipe
+  id: BluespaceCrystalAdvancedSmelting
+  printTicket: true
+  ticketProtoId: SalvageTicket100
+  applyMaterialDiscount: false
+  result: BluespaceCrystal1
+  completetime: 5
+  materials:
+    RawBluespaceCrystal: 100
+
+- type: latheRecipe
+  id: BluespaceCrystalScience
+  applyMaterialDiscount: false
+  result: BluespaceCrystal1
+  completetime: 5
+  materials:
+    RawBluespaceCrystal: 100
+
+- type: latheRecipe
+  id: ArtificialBluespaceCrystal
+  result: ArtificialBluespaceCrystal1
+  completetime: 5
+  materials:
+    Plasma: 1500
+    Diamond: 1500

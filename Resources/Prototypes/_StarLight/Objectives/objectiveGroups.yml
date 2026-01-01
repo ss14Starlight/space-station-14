@@ -15,3 +15,5 @@
     StalkingObjective: 1
     DisgraceObjective: 1
     MaintsBarObjective: 1
+    ReputationObjective: 0.5
+    FalseOutbreakObjective: 0.75

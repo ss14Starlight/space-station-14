@@ -74,6 +74,15 @@ public sealed class ContainerFillSystem : EntitySystem
                 var spawn = Spawn(proto, coords);
                 if (!_containerSystem.Insert(spawn, container, containerXform: xform))
                 {
+                    //starlight start
+                    //if we cant insert, check if the container allows ignoring insert failures
+                    if (ent.Comp.IgnoreIfCannotFit)
+                    {
+                        _transform.AttachToGridOrMap(ent);
+                        continue;
+                    }
+                    //starlight end
+
                     var alreadyContained = container.ContainedEntities.Count > 0 ? string.Join("\n", container.ContainedEntities.Select(e => $"\t - {ToPrettyString(e)}")) : "< empty >";
                     Log.Error($"Entity {ToPrettyString(ent)} with a {nameof(EntityTableContainerFillComponent)} failed to insert an entity: {ToPrettyString(spawn)}.\nCurrent contents:\n{alreadyContained}");
                     _transform.AttachToGridOrMap(spawn);

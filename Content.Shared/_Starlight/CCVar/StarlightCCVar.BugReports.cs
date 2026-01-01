@@ -20,7 +20,7 @@ public sealed partial class StarlightCCVars
     /// Maximum number of bug reports a user can submit per round.
     /// </summary>
     public static readonly CVarDef<int> MaximumBugReportsPerRound =
-        CVarDef.Create("bug_reports.maximum_bug_reports_per_round", 5, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("bug_reports.maximum_bug_reports_per_round", 3, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// Minimum time between bug reports.

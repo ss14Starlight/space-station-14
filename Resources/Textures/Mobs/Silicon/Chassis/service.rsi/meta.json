@@ -24,6 +24,10 @@
             "directions": 4
         },
         {
+            "name": "generic",
+            "directions": 4
+        },
+        {
             "name": "waitress",
             "directions": 4
         },

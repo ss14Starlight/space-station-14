@@ -1,0 +1,29 @@
+- type: entity
+  name: gorlex hypospray
+  parent: [BaseItem, BaseSyndicateContraband]
+  description: An adaptation of the Gorlex Hypospray for cyborgs.
+  id: SyndiBorgHypo
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/syndihypo.rsi
+    layers:
+      - state: hypo
+        map: ["enum.SolutionContainerLayers.Base"]
+      - state: hypo_fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: Objects/Specific/Medical/syndihypo.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 20
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+    exactVolume: true
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 0.5

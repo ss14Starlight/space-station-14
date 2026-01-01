@@ -1,11 +1,11 @@
 - type: gameMap
-  id: Kiloton
+  id: StarlightKiloton
   mapName: 'Kiloton Station'
   mapPath: /Maps/_Starlight/Stations/Kiloton.yml
   minPlayers: 50
   maxPlayers: 200
   stations:
-    Kiloton:
+    StarlightKiloton:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

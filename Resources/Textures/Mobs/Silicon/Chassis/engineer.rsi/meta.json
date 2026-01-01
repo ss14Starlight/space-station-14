@@ -40,19 +40,19 @@
             "directions": 4
         },
         {
-            "name": "landmate",
+            "name": "generic",
             "directions": 4
         },
         {
-            "name": "landmate_e",
+            "name": "generic_e",
             "directions": 4
         },
         {
-            "name": "landmate_e_r",
+            "name": "generic_e_r",
             "directions": 4
         },
         {
-            "name": "landmate_l",
+            "name": "generic_l",
             "directions": 4
         },
         {

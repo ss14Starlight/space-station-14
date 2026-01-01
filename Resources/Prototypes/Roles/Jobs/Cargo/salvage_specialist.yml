@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 9000 # 2.5 hrs
+      time: 2.5h
   icon: "JobIconSalvageSpec" # Starlight - New distinct icon
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-qm
@@ -25,7 +25,7 @@
 - type: startingGear
   id: SalvageSpecialistGear
   equipment:
-    id: SalvagePDA
+   # id: SalvagePDA #Starlight
     ears: ClothingHeadsetCargo
   #storage:
     #back:

@@ -55,7 +55,7 @@
           volume: -3
       disableSelection: true
       color: DarkRed
-      emergencyLightColor: Orange
+      emergencyLightColor: '#ffba9c' #Starlight
       forceEnableEmergencyLights: true
       shuttleTime: 1200
     epsilon:
@@ -67,7 +67,7 @@
           volume: -2
       disableSelection: true
       color: DarkViolet
-      emergencyLightColor: DarkViolet
+      emergencyLightColor: '#938aff' #Starlight
       forceEnableEmergencyLights: true
       shuttleTime: 1200
     omega: # begin starlight

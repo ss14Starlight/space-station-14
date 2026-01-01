@@ -19,6 +19,7 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Physics.Components;
 using System.Numerics;
 using System.Linq;
+using Content.Server._Starlight.Station;
 using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
@@ -47,11 +48,11 @@ public sealed class AlertArmorySystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<AlertArmoryStationComponent, StationPostInitEvent>(InitializeAlertArmoryStation);
+        SubscribeLocalEvent<AlertArmoryStationComponent, ComponentShutdown>(OnShutdown); // Starlight
         SubscribeLocalEvent<AlertArmoryShuttleComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLStartedEvent>(OnFTLStart);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLTagEvent>(SetShuttleTag);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLCompletedEvent>(AnnounceShuttleDocking);
-        SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
 
         _pendingQuery = GetEntityQuery<PendingClockInComponent>();
         _blacklistQuery = GetEntityQuery<ArrivalsBlacklistComponent>();
@@ -63,6 +64,17 @@ public sealed class AlertArmorySystem : EntitySystem
     ///</summary>
     private void InitializeAlertArmoryStation(EntityUid uid, AlertArmoryStationComponent comp, StationPostInitEvent ev)
     {
+        //Starlight start
+        if (TryComp<StationDataComponent>(uid, out var station))
+            foreach (var grid in station.Grids)
+            {
+                if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                if (!becomesStation.UseArmories)
+                    return;
+                break; // can break, we already found the grid that created this station
+            }
+        //Starlight end
+        
         var map = _map.CreateMap(out var mapId);
         _meta.SetEntityName(map, $"AlertArmories {uid}");
 
@@ -92,6 +104,8 @@ public sealed class AlertArmorySystem : EntitySystem
             armoryComp.Station = uid;
             armoryComp.Announcement = armory.Announcement;
             armoryComp.AnnouncementColor = armory.AnnouncementColor;
+            armoryComp.RecallAnnouncement = armory.RecallAnnouncement;
+            armoryComp.RecallAnnouncementColor = armory.RecallAnnouncementColor;
             armoryComp.CoordsCache = eCoords;
             armoryComp.ArmorySpaceUid = map;
 
@@ -104,12 +118,35 @@ public sealed class AlertArmorySystem : EntitySystem
     ///</summary>
     private void OnStartup(EntityUid uid, AlertArmoryShuttleComponent comp, ComponentStartup ev) => EnsureComp<PreventPilotComponent>(uid);
 
+    // Starlight Start
+    /// <summary>
+    /// remove armories if parent station is deleted
+    /// </summary>
+    private void OnShutdown(EntityUid uid, AlertArmoryStationComponent comp, ComponentShutdown ev)
+    {
+        foreach (var grid in comp.Grids.Values) QueueDel(grid);
+    }
+    // Starlight End
     private void OnFTLStart(Entity<AlertArmoryShuttleComponent> ent, ref FTLStartedEvent ev)
     {
         if (ev.FromMapUid != ent.Comp.ArmorySpaceUid) //if we are not coming from armory space. drop people. this allows including eg: ERT on a armory if you want.
         {
             DumpChildren(ent.Owner, ref ev);
+
+            // Announce recall at the start of FTL back to armory space
+            var xform = Transform(ent.Owner);
+            var location = FormattedMessage.RemoveMarkupPermissive(_nav.GetNearestBeaconString((ent.Owner, xform)));
+
+            if (ent.Comp.RecallAnnouncement != null)
+            {
+                _chat.DispatchGlobalAnnouncement(
+                    Loc.GetString(ent.Comp.RecallAnnouncement, ("location", location)),
+                    colorOverride: ent.Comp.RecallAnnouncementColor ?? Color.PaleVioletRed);
+            }
         }
+
+        // Mark as in transit
+        ent.Comp.InTransit = true;
     }
 
     ///<summary>
@@ -129,52 +166,71 @@ public sealed class AlertArmorySystem : EntitySystem
     ///</summary>
     private void AnnounceShuttleDocking(EntityUid uid, AlertArmoryShuttleComponent comp, ref FTLCompletedEvent ev)
     {
-        if (ev.MapUid == comp.ArmorySpaceUid)
-            return; // if we came from armory space announce our arrival.
+        comp.InTransit = false;
 
         var xform = Transform(uid);
         var location = FormattedMessage.RemoveMarkupPermissive(_nav.GetNearestBeaconString((uid, xform)));
 
-        if (comp.Announcement != null)
+        // Announce arrival at station
+        if (ev.MapUid != comp.ArmorySpaceUid && comp.Announcement != null)
+        {
             _chat.DispatchGlobalAnnouncement(
                 Loc.GetString(comp.Announcement, ("location", location)),
                 colorOverride: comp.AnnouncementColor ?? Color.PaleVioletRed);
+        }
+
+        comp.InTransit = false;
     }
 
     ///<summary>
-    /// Handles alert level changing to try ftl dock gamma alert.
+    /// Sends an armory shuttle to the station by its armory key.
     ///</summary>
-    private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
+    public bool SendArmory(EntityUid stationUid, string armoryKey)
     {
-        if (!TryComp<AlertArmoryStationComponent>(ev.Station, out var comp))
-            return;
+        if (!TryComp<AlertArmoryStationComponent>(stationUid, out var comp))
+            return false;
 
-        var set = comp.Grids.Keys.ToHashSet();
-        if (set.Contains(ev.OldAlertLevel))
-        {
-            var oldShuttle = comp.Grids[ev.OldAlertLevel];
-            _shuttles.FTLToCoordinates(
-                oldShuttle,
-                Comp<ShuttleComponent>(oldShuttle),
-                Comp<AlertArmoryShuttleComponent>(oldShuttle).CoordsCache,
-                0
-            );
-        }
+        if (!comp.Grids.TryGetValue(armoryKey, out var shuttle))
+            return false;
 
-        if (!set.Contains(ev.AlertLevel))
-            return;
-
-        var shuttle = comp.Grids[ev.AlertLevel];
-        var targetGrid = _station.GetLargestGrid((ev.Station, Comp<StationDataComponent>(ev.Station)));
-
+        var targetGrid = _station.GetLargestGrid((stationUid, Comp<StationDataComponent>(stationUid)));
         if (targetGrid == null)
-            return;
+            return false;
 
         _shuttles.FTLToDock(
             shuttle,
             Comp<ShuttleComponent>(shuttle),
             targetGrid.Value,
             priorityTag: Comp<AlertArmoryShuttleComponent>(shuttle).DockTag);
+
+        return true;
+    }
+
+    ///<summary>
+    /// Recalls an armory shuttle back to armory space by its armory key.
+    ///</summary>
+    public bool RecallArmory(EntityUid stationUid, string armoryKey)
+    {
+        if (!TryComp<AlertArmoryStationComponent>(stationUid, out var comp))
+            return false;
+
+        if (!comp.Grids.TryGetValue(armoryKey, out var shuttle))
+            return false;
+
+        var shuttleComp = Comp<AlertArmoryShuttleComponent>(shuttle);
+        var xform = Transform(shuttle);
+
+        // Check if already in armory space
+        if (xform.MapUid == shuttleComp.ArmorySpaceUid)
+            return false;
+
+        _shuttles.FTLToCoordinates(
+            shuttle,
+            Comp<ShuttleComponent>(shuttle),
+            shuttleComp.CoordsCache,
+            0);
+
+        return true;
     }
 
     private void DumpChildren(EntityUid uid, ref FTLStartedEvent args)

@@ -37,6 +37,7 @@
     accent: zombieMoth
   - type: Speech
     speechVerb: Moth
+    speechSounds: UnisexMoth # Starlight: Add talk sounds
     allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: TypingIndicator
     proto: moth
@@ -46,7 +47,10 @@
     - id: FoodMeat
       amount: 5
   - type: Bloodstream
-    bloodReagent: InsectBlood
+    bloodReagents:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 1
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -69,7 +73,7 @@
   - type: Flammable
     damage:
       types:
-        Heat: 2.5 # moths burn more easily
+        Heat: 4.5 # #Starlight: bring back the glory days of moths fearing fire
   - type: Temperature # Moths hate the heat and thrive in the cold.
     heatDamageThreshold: 320
     coldDamageThreshold: 230

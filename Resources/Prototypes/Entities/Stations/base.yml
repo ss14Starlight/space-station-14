@@ -63,11 +63,11 @@
 #          paths:
 #            - /Maps/Shuttles/mining.yml
 #          nameGrid: false # Starlight - honors entityName in mining.yml
-        cargo_salvage_reclaimer: !type:GridSpawnGroup
+        cargo_salvage_shuttle: !type:GridSpawnGroup
           paths:
-            - /Maps/_Starlight/Shuttles/Salvage/reclaimer.yml
-          nameGrid: false # Starlight - honors entityName in mining.yml
-        cargo_mining_breaker: !type:GridSpawnGroup
+            - /Maps/_Starlight/Shuttles/Salvage/pioneer.yml
+          nameGrid: false # Starlight - honors entityName
+        cargo_mining_shuttle: !type:GridSpawnGroup
           paths:
             - /Maps/_Starlight/Shuttles/Mining/breaker.yml
           nameGrid: false # 🌟Starlight end🌟
@@ -76,7 +76,7 @@
           hide: true
           nameGrid: true
           minCount: 2
-          maxCount: 2
+          maxCount: 3 #SL 2 -> 3
           stationGrid: false
           paths:
           - /Maps/Ruins/abandoned_outpost.yml
@@ -94,6 +94,7 @@
           - /Maps/Ruins/whiteship_bluespacejumper.yml
           - /Maps/Ruins/wrecklaimer.yml
           - /Maps/Ruins/displaced_telescience.yml
+          - /Maps/_Starlight/Ruins/Salv_Sus.yml #Starlight
         wrecks: !type:DungeonSpawnGroup
           minimumDistance: 150
           maximumDistance: 300

@@ -1,1 +1,5 @@
 ## Static recipes
+- type: latheRecipePack
+  id: StarlightNullspaceStatic
+  recipes:
+  - NullspaceAnchorMachineCircuitboard

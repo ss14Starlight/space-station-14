@@ -7,11 +7,11 @@
       role: JobReporter
       time: 216000 #60 hrs
 
-# Jumpskirt
+# Journalist
 - type: loadout
-  id: ReporterJumpskirt
+  id: JournalistJumpsuit
   equipment:
-    jumpsuit: ClothingUniformJumpskirtReporter
+    jumpsuit: ClothingUniformJumpsuitJournalist
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorReporter

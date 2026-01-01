@@ -40,6 +40,7 @@ entities:
       bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
+    - type: SecurityShuttle
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle

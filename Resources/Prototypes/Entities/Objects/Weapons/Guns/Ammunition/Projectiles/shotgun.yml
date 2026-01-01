@@ -1,6 +1,6 @@
 - type: entity
   id: PelletShotgunSlug
-  name: pellet (.50 slug)
+  name: 12 gauge slug # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
@@ -15,13 +15,15 @@
 
 - type: entity
   id: PelletShotgunBeanbag
-  name: beanbag (.50)
+  name: 12 gauge beanbag slug # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
+    layers:
+    - state: bullet #just reapplying to here so it can be shaded
+
   - type: Projectile
     damage:
       types:
@@ -31,13 +33,10 @@
 
 - type: entity
   id: PelletShotgun
-  name: pellet (.50)
+  name: 12 gage buckshot # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
   - type: Projectile
     damage:
       types:
@@ -57,18 +56,15 @@
 
 - type: entity
   id: PelletShotgunIncendiary
-  name: pellet (.50 incendiary)
+  name: 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletIncendiary
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot-flare
   - type: Projectile
     damage:
       types:
-        Blunt: 3
-        Heat: 7
+        Piercing: 7
+        Heat: 3
   - type: IgnitionSource
     ignited: true
 
@@ -84,13 +80,10 @@
 
 - type: entity
   id: PelletShotgunPractice
-  name: pellet (.50 practice)
+  name: 12 gauge blank # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletPractice
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
   - type: Projectile
     damage:
       types:
@@ -114,7 +107,9 @@
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: shard
+    layers:
+    - state: shard
+      shader: unshaded
   - type: Projectile
     damage:
       types:
@@ -133,13 +128,10 @@
 
 - type: entity
   id: PelletShotgunTranquilizer
-  name: pellet (.50 tranquilizer)
+  name: 12 gauge traunquilizer slug # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletPractice
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: buckshot
   - type: Projectile
     damage:
       types:
@@ -148,19 +140,13 @@
     solutions:
       ammo:
         maxVol: 15
-  - type: RefillableSolution
-    solution: ammo
-  - type: DrainableSolution
-    solution: ammo
   - type: SolutionInjectOnProjectileHit
     transferAmount: 15
-    solution: ammo
-  - type: InjectableSolution
     solution: ammo
 
 - type: entity
   id: PelletShotgunFlare
-  name: pellet (.50 flare)
+  name: 12 gauge flare # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   components:
   - type: Physics
@@ -207,13 +193,10 @@
 
 - type: entity
   id: PelletShotgunUranium
-  name: pellet (.50 uranium)
+  name: 12 gauge uranium buckshot # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
-  parent: BaseBullet
+  parent: BaseBulletUranium
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    state: depleted-uranium
   - type: Projectile
     damage:
       types:
@@ -269,7 +252,6 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
     - state: shard
-      shader: unshaded
   - type: EmbeddableProjectile
     deleteOnRemove: true
   - type: Projectile

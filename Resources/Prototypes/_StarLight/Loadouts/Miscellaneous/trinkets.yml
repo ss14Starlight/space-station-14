@@ -155,18 +155,6 @@
   groupBy: "smokeables"
 
 - type: loadout
-  id: FancyPen
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:RoleTimeRequirement
-        role: JobLibrarian
-        time: 3600 # 1 hour of reading books (a fate worse than death)
-  storage:
-    back:
-      - LuxuryPen
-
-- type: loadout
   id: HonkImplant
   effects:
     - !type:JobRequirementLoadoutEffect

@@ -1,3 +1,33 @@
+# Playtime requirement for NanoTrasen Bible, Codex NanoTrasimus
+- type: loadoutEffectGroup
+  id: NanoTrasenBibleRequirement
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCaptain
+      time: 7200 #2 hrs
+
+# Playtime requirement for Druid Bible, Druidic Tablet
+- type: loadoutEffectGroup
+  id: DruidBibleRequirement
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBotanist
+      time: 18000 #5 hrs
+
+# Playtime requirement for Clown Bible, Mirth of the Honkmother
+- type: loadoutEffectGroup
+  id: ClownBibleRequirement
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 18000 #5 hrs
+
 # Head
 - type: loadout
   id: ChaplainHead
@@ -87,12 +117,18 @@
 
 - type: loadout
   id: BibleDruid
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DruidBibleRequirement
   storage:
     back:
     - BibleDruid
 
 - type: loadout
   id: BibleNanoTrasen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NanoTrasenBibleRequirement
   storage:
     back:
     - BibleNanoTrasen
@@ -108,3 +144,129 @@
   storage:
     back:
     - BibleTanakh
+
+- type: loadout
+  id: BibleNarsie
+  storage:
+    back:
+    - BibleNarsie
+
+- type: loadout
+  id: BibleHonk
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ClownBibleRequirement
+  storage:
+    back:
+    - BibleHonk
+
+- type: loadout
+  id: BibleRatvar
+  storage:
+    back:
+    - BibleRatvar
+
+ # start of starlight additions
+- type: loadout
+  id: BibleAlHikma
+  storage:
+    back:
+    - BibleAlHikma
+
+- type: loadout
+  id: BibleBookOfAges
+  storage:
+    back:
+    - BibleBookOfAges
+    
+- type: loadout
+  id: BibleBookOfAncestors
+  storage:
+    back:
+    - BibleBookOfAncestors
+
+- type: loadout
+  id: BibleTomeOfDread
+  storage:
+    back:
+    - BibleTomeOfDread
+
+- type: loadout
+  id: BibleBookOfGrudges
+  storage:
+    back:
+    - BibleBookOfGrudges
+    
+- type: loadout
+  id: BibleBookOfMormon
+  storage:
+    back:
+    - BibleBookOfMormon
+
+- type: loadout
+  id: BibleEdda
+  storage:
+    back:
+    - BibleEdda
+
+- type: loadout
+  id: BibleKoans
+  storage:
+    back:
+    - BibleKoans
+    
+- type: loadout
+  id: BibleLiberChaotica
+  storage:
+    back:
+    - BibleLiberChaotica
+
+- type: loadout
+  id: BibleMalleus
+  storage:
+    back:
+    - BibleMalleus
+
+- type: loadout
+  id: BibleOrthodox
+  storage:
+    back:
+    - BibleOrthodox
+    
+- type: loadout
+  id: BiblePrincipiaDiscordia
+  storage:
+    back:
+    - BiblePrincipiaDiscordia
+
+- type: loadout
+  id: BibleHadith
+  storage:
+    back:
+    - BibleHadith
+
+- type: loadout
+  id: BibleTaoTeChing
+  storage:
+    back:
+    - BibleTaoTeChing
+    
+- type: loadout
+  id: BibleTorah
+  storage:
+    back:
+    - BibleTorah
+
+- type: loadout
+  id: BibleTripitaka
+  storage:
+    back:
+    - BibleTripitaka
+
+- type: loadout
+  id: BibleRigVeda
+  storage:
+    back:
+    - BibleRigVeda
+
+# end of starlight additions

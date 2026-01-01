@@ -1,0 +1,324 @@
+# Middle Eastern Foods
+
+# Raw Pita
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughPita
+  name: pita dough
+  description: A twice-flattened piece of wheat dough.
+  components:
+  - type: Item
+    size: Normal
+  - type: FlavorProfile
+    flavors:
+      - dough
+      - chalky
+      - halal
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/pita.rsi
+    layers:
+    - state: pitadough
+  - type: Construction # made by rolling a dough rope a second time
+    graph: DoughRope
+    node: flattened
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 3
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+
+# Pita
+- type: entity
+  parent: FoodBreadBase
+  id: FoodBreadPita
+  name: pita
+  description: A flatbread with internal pocket. Best when eaten stuffed.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - halal
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/pita.rsi
+    layers:
+    - state: pita
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+
+# Falafel
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodFalafel
+  name: falafel
+  description: A hearty pea-based mince. The vegan meatloaf of the Middle East.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - chalky
+      - savory
+      - halal
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/falafel.rsi
+    layers:
+    - state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Hummus
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 2
+
+# Hummus
+- type: entity
+  parent: FoodBowlBase
+  id: FoodHummusDip
+  name: hummus dip
+  description: A hearty pea-based paste, served with strips of pita. The ultimate dip of the Middle East.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - chalky
+      - creamy
+      - halal
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/bowl.rsi
+    layers:
+      - state: bowl
+      - state: hummus
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Hummus
+          Quantity: 10
+        - ReagentId: TableSalt
+          Quantity: 1
+        - ReagentId: OilOlive
+          Quantity: 1
+        - ReagentId: Nutriment
+          Quantity: 2
+
+# (Chicken) Shawarma
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodShawarma
+  name: chicken shawarma
+  description: A pita loaded with hummus, tomato, onions, and a cutlet of chicken. Fresh!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - chicken
+      - onion
+      - tomato
+      - chalky
+      - creamy
+      - halal
+  - type: Edible
+    transferAmount: 4
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/pita.rsi
+    layers:
+    - state: shawarma
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Hummus
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Allicin
+          Quantity: 1
+
+# Falafel Sandwich
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodFalafelSandwich
+  name: falafel sandwich
+  description: A pita loaded with onions, tomato, falafel, and a zesty sauce. Surprisingly diet-friendly.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - onion
+      - tomato
+      - creamy
+      - savory
+      - spicy
+      - halal
+  - type: Edible
+    transferAmount: 4
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/pita.rsi
+    layers:
+    - state: falafel
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 21.75
+        - ReagentId: Hummus
+          Quantity: 5
+        - ReagentId: Allicin
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 2
+
+# Souvlaki
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodSouvlaki
+  name: souvlaki gyros sandwich
+  description: A pita loaded with tzatziki, tomato, and a cutlet of meat. Sodium beyond belief!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - creamy
+      - tomato
+      - onion
+      - garlic
+      - meaty
+      - salty
+  - type: Edible
+    transferAmount: 4
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/pita.rsi
+    layers:
+    - state: souvlaki
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 23
+        - ReagentId: Allicin
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Protein
+          Quantity: 2
+
+# Doner Kebab
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodDonerKebab
+  name: doner kebab
+  description: A pita loaded with hummus, cabbage, tomato, and a cutlet of mystery meat. Pairs best with cheap beer.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - chalky
+      - bread
+      - tomato
+      - cabbage
+      - cheap
+  - type: Edible
+    transferAmount: 4
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/pita.rsi
+    layers:
+    - state: doner
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 41
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 21
+        - ReagentId: Vitamin
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Hummus
+          Quantity: 10
+
+# Turkish Delight
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodTurkishDelight
+  name: uncut turkish delight
+  description: A massive, wobbling gelatin dessert. May contains nuts.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nutty
+      - jelly
+      - halal
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/turkishdelight.rsi
+    layers:
+    - state: uncut
+  - type: Edible
+    transferAmount: 3
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 48
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 35
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: SliceableFood
+    count: 8
+    slice: FoodTurkishDelightCube
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodTurkishDelightCube
+  name: turkish delight
+  description: A tiny, wobbling gelatin dessert. May contains nuts.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nutty
+      - jelly
+      - halal
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/turkishdelight.rsi
+    layers:
+    - state: cube
+  - type: Edible
+    transferAmount: 3
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 4.375
+        - ReagentId: Nutriment
+          Quantity: 0.625
+  - type: Item
+    size: Tiny

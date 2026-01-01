@@ -192,3 +192,4 @@ tts-voice-name-galadriel = [LOTR] Galadriel
 
 tts-voice-name-cawsforconcern = [SL] CawsForConcern
 tts-voice-name-oliveoffender = [SL] OliveOffender
+tts-voice-name-rinary = [SL] Rinary

@@ -3,7 +3,7 @@
   name: booze dispenser
   suffix: Empty
   description: A booze dispenser with a single slot for a container to be filled.
-  parent: ReagentDispenserBase
+  parent: ReagentDispenserBasePowerCell # Starlight edit: power cell booze dispenser
   components:
   - type: Rotatable
   - type: Sprite
@@ -25,23 +25,34 @@
     - Drinks
   - type: StealTarget
     stealGroup: BoozeDispenser
+  # Starlight start: Power Cell Booze dispenser
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  # Starlight end
 
 - type: entity
   id: BoozeDispenser
   suffix: Filled
   parent: BoozeDispenserEmpty
   components:
-  - type: StorageFill
-    contents:
-    - id: DrinkAleBottleFullGrowler
-    - id: DrinkBeerGrowler
-    - id: DrinkCoffeeLiqueurBottleFull
-    - id: DrinkCognacBottleFull
-    - id: DrinkGinBottleFull
-    - id: DrinkMeadJug
-    - id: DrinkRumBottleFull
-    - id: DrinkTequilaBottleFull
-    - id: DrinkVermouthBottleFull
-    - id: DrinkVodkaBottleFull
-    - id: DrinkWhiskeyBottleFull
-    - id: DrinkWineBottleFull
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkAleBottleFullGrowler
+        - id: DrinkBeerGrowler
+        - id: DrinkCoffeeLiqueurBottleFull
+        - id: DrinkCognacBottleFull
+        - id: DrinkGinBottleFull
+        - id: DrinkMeadJug
+        - id: DrinkRumBottleFull
+        - id: DrinkTequilaBottleFull
+        - id: DrinkVermouthBottleFull
+        - id: DrinkVodkaBottleFull
+        - id: DrinkWhiskeyBottleFull
+        - id: DrinkWineBottleFull

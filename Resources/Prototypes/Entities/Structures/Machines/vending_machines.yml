@@ -2,7 +2,7 @@
 
 - type: entity
   id: VendingMachine
-  parent: BaseMachinePowered
+  parent: [BaseMachinePowered, ConstructibleMachine] # Starlight-edit: Add ConstructableMachine
   name: vending machine
   description: Just add capitalism!
   abstract: true
@@ -55,6 +55,8 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior # Starlight-edit: Vending machine circuitboards
+        node: machineFrame # Starlight-edit: Vending machine circuitboards
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
@@ -146,6 +148,8 @@
         layer:
         - MachineLayer
         density: 190
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCondimentsCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: CondimentVendAds
   - type: SpeakOnUIClosed
@@ -165,6 +169,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineAmmoCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: CondimentVendAds
   - type: SpeakOnUIClosed
@@ -194,6 +200,8 @@
     normalState: normal-unshaded
     denyState: deny-unshaded
     loopDeny: false
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineBoozeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: BoozeOMatAds
   - type: SpeakOnUIClosed
@@ -229,6 +237,8 @@
     normalState: normal-unshaded
     denyState: deny-unshaded
     loopDeny: false
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineBoozeSyndicateCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: BruiseOMatAds
   - type: SpeakOnUIClosed
@@ -264,6 +274,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCartCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/cart.rsi
     layers:
@@ -276,7 +288,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1
-    energy: 1.3
+    energy: 2.0
     color: "#ffb0b0"
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
@@ -294,6 +306,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChefvendCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ChefvendAds
   - type: SpeakOnUIClosed
@@ -312,7 +326,7 @@
     access: [["Service"]]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#4b93ad"
 
 - type: entity
@@ -330,6 +344,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCigsCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: CigaretteMachineAds
   - type: SpeakOnUIClosed
@@ -357,6 +373,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineClothingCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ClothesMateAds
   - type: SpeakOnUIClosed
@@ -373,7 +391,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.8
-    energy: 1.6
+    energy: 3.0
     color: "#3db83b"
 
 - type: entity
@@ -388,6 +406,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWinterCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ClothesMateAds
   - type: SpeakOnUIClosed
@@ -404,7 +424,7 @@
       map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: PointLight
     radius: 1.8
-    energy: 1.6
+    energy: 3.0
     color: "#3db83b"
 
 - type: entity
@@ -426,6 +446,8 @@
     ejectDelay: 5
     soundVend: /Audio/Machines/machine_vend_hot_drink.ogg
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCoffeeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: HotDrinksMachineAds
   - type: SpeakOnUIClosed
@@ -445,7 +467,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.3
+    energy: 2.0
     color: "#ad7c4b"
 
 - type: entity
@@ -465,6 +487,8 @@
     denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineColaCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: RobustSoftdrinksAds
   - type: SpeakOnUIClosed
@@ -481,7 +505,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#3c5eb5"
 
 - type: entity
@@ -489,6 +513,8 @@
   id: VendingMachineColaBlack
   suffix: Black
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineColaBlackCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/cola-black.rsi
     layers:
@@ -501,7 +527,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#423438"
 
 - type: entity
@@ -510,6 +536,8 @@
   name: Space Cola Vendor
   description: It vends cola, in space.
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineColaRedCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/cola-red.rsi
     layers:
@@ -522,7 +550,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#A50824"
 
 - type: entity
@@ -533,6 +561,8 @@
   components:
   - type: VendingMachine
     pack: SpaceUpInventory
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSpaceUpCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/spaceup.rsi
     layers:
@@ -545,7 +575,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#44964A"
 
 - type: entity
@@ -555,6 +585,8 @@
   components:
   - type: VendingMachine
     pack: SodaInventory
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSodaCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/soda.rsi
     layers:
@@ -567,7 +599,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#CBC6BE"
 
 - type: entity
@@ -578,6 +610,8 @@
   components:
   - type: VendingMachine
     pack: StarkistInventory
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineStarkistCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/starkist.rsi
     layers:
@@ -590,7 +624,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#D3A44D"
 
 - type: entity
@@ -610,6 +644,8 @@
     denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineShamblersJuiceCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: RobustSoftdrinksAds
   - type: Sprite
@@ -624,7 +660,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#66538F"
 
 - type: entity
@@ -644,6 +680,8 @@
     denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachinePwrGameCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: RobustSoftdrinksAds
   - type: SpeakOnUIClosed
@@ -660,7 +698,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#6927C5"
 
 - type: entity
@@ -680,6 +718,8 @@
     denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDrGibbCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: DrGibbAds
   - type: SpeakOnUIClosed
@@ -696,7 +736,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#D82929"
 
 - type: entity
@@ -726,13 +766,15 @@
     denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSmiteCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: SmiteAds
   - type: SpeakOnUIClosed
     pack: SmiteGoodbyes
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#00E645"
 
 - type: entity
@@ -748,6 +790,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDinnerwareCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: DinnerwareAds
   - type: SpeakOnUIClosed
@@ -766,7 +810,7 @@
     access: [["Kitchen"]]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#4b93ad"
 
 - type: entity
@@ -797,7 +841,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#9a18d6"
 
 - type: entity
@@ -814,6 +858,8 @@
     brokenState: broken
     normalState: normal-unshaded
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDiscountCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: DiscountDansAds
   - type: SpeakOnUIClosed
@@ -830,7 +876,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#6148c7"
 
 - type: entity
@@ -847,6 +893,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineEngivendCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/engivend.rsi
     layers:
@@ -861,7 +909,7 @@
     access: [["Engineering"]]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#b89e2a"
 
 - type: entity
@@ -895,7 +943,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#9dc5c9"
   - type: GuideHelp
     guides:
@@ -910,6 +958,8 @@
     pack: NanoMedPlusInventory
     offState: off
     showPrices: false  # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     layers:
     - state: "off"
@@ -936,6 +986,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineNutriCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: NutriMaxAds
   - type: SpeakOnUIClosed
@@ -954,7 +1006,7 @@
     access: [["Hydroponics"]]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#326e3f"
 
 - type: entity
@@ -971,6 +1023,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSecCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: SecTechAds
   - type: SpeakOnUIClosed
@@ -986,10 +1040,10 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
   - type: PointLight
     radius: 1
-    energy: 1.2
+    energy: 2.0
     color: "#78645c"
   - type: GuideHelp
     guides:
@@ -1011,6 +1065,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSeedsUnlockedCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: MegaSeedAds
   - type: SpeakOnUIClosed
@@ -1027,7 +1083,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#326e3f"
 
 - type: entity
@@ -1035,6 +1091,8 @@
   id: VendingMachineSeeds
   suffix: Hydroponics
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSeedsCircuitboard # Starlight-edit: Vending Machine boards
   - type: AccessReader
     access: [["Hydroponics"]]
 
@@ -1054,6 +1112,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSnackCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: GetmoreChocolateCorpAds
   - type: SpeakOnUIClosed
@@ -1070,7 +1130,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#c73434"
 
 - type: entity
@@ -1088,6 +1148,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSustenanceCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/sustenance.rsi
     layers:
@@ -1100,7 +1162,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#737785"
 
 - type: entity
@@ -1108,6 +1170,8 @@
   id: VendingMachineSnackBlue
   suffix: Blue
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSnackBlueCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/snack-blue.rsi
     layers:
@@ -1120,7 +1184,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#3c5eb5"
 
 - type: entity
@@ -1128,6 +1192,8 @@
   id: VendingMachineSnackOrange
   suffix: Orange
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSnackOrangeCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/snack-orange.rsi
     layers:
@@ -1140,7 +1206,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#CE3401"
 
 - type: entity
@@ -1148,6 +1214,8 @@
   id: VendingMachineSnackGreen
   suffix: Green
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSnackGreenCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/snack-green.rsi
     layers:
@@ -1160,7 +1228,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#5F6A1C"
 
 - type: entity
@@ -1168,6 +1236,8 @@
   id: VendingMachineSnackTeal
   suffix: Teal
   components:
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSnackTealCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/snack-teal.rsi
     layers:
@@ -1180,14 +1250,15 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#207E79"
 
 - type: entity
   parent: VendingMachine
   id: VendingMachineSovietSoda
-  name: BODA
+  name: ВОДА
   description: An old vending machine containing sweet water.
+  suffix: VODA
   components:
   - type: VendingMachine
     pack: BodaInventory
@@ -1199,6 +1270,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSovietSodaCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: BodaAds
   - type: SpeakOnUIClosed
@@ -1215,7 +1288,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#389690"
   - type: RussianAccent
 
@@ -1233,6 +1306,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     screenState: screen
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineTheaterCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: AutoDrobeAds
   - type: SpeakOnUIClosed
@@ -1252,7 +1327,7 @@
       shader: unshaded
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#c73434"
 
 - type: entity
@@ -1268,6 +1343,8 @@
     normalState: normal-unshaded
     ejectState: eject-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineVendomatCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: VendomatAds
   - type: SpeakOnUIClosed
@@ -1284,7 +1361,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#9dc5c9"
 
 - type: entity
@@ -1301,6 +1378,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineRoboticsCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: VendomatAds
   - type: SpeakOnUIClosed
@@ -1319,7 +1398,7 @@
     access: [["Robotics"]] # Starlight
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#B0ADA9"
   - type: GuideHelp
     guides:
@@ -1339,6 +1418,8 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineYouToolCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/youtool.rsi
     layers:
@@ -1351,7 +1432,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#d4ab33"
 
 - type: entity
@@ -1368,6 +1449,8 @@
     ejectState: eject-unshaded
     ejectDelay: 1.8
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineGamesCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: GoodCleanFunAds
   - type: SpeakOnUIClosed
@@ -1384,7 +1467,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#326e3f"
 
 - type: entity
@@ -1401,6 +1484,8 @@
     brokenState: broken
     normalState: normal-unshaded
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChangCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ChangAds
   - type: SpeakOnUIClosed
@@ -1417,7 +1502,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#ffe599"
 
 - type: entity
@@ -1433,6 +1518,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSalvageCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/mining.rsi
     layers:
@@ -1445,7 +1532,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#b89f25"
   - type: AccessReader
     access: [["Salvage"],["Mining"]]
@@ -1467,6 +1554,8 @@
     brokenState: broken
     normalState: normal-unshaded
     initialStockQuality: 0.33
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDonutCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: DonutAds
   - type: SpeakOnUIClosed
@@ -1483,7 +1572,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#d4ab33"
 
 
@@ -1521,6 +1610,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineHydrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: HyDrobeAds
   - type: SpeakOnUIClosed
@@ -1537,7 +1628,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#326e3f"
   - type: AccessReader
     access: [["Hydroponics"]]
@@ -1553,6 +1644,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineLawDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: LawDrobeAds
   - type: SpeakOnUIClosed
@@ -1581,6 +1674,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSecDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: SecDrobeAds
   - type: SpeakOnUIClosed
@@ -1597,10 +1692,10 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#d82929"
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
 
 - type: entity
   parent: VendingMachine
@@ -1614,6 +1709,8 @@
     showPrices: false # Starlight-edit: Vending Machines Prices
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingBarDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: BarDrobeAds
   - type: SpeakOnUIClosed
@@ -1642,6 +1739,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChapelCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/chapdrobe.rsi
     layers:
@@ -1656,7 +1755,7 @@
     access: [["Chapel"]]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#CCCCCC" #The holy C
 
 - type: entity
@@ -1670,6 +1769,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCargoDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: CargoDrobeAds
   - type: SpeakOnUIClosed
@@ -1686,7 +1787,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#b89e2a"
   - type: AccessReader
     access: [["Cargo"]]
@@ -1702,6 +1803,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMediDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: MediDrobeAds
   - type: SpeakOnUIClosed
@@ -1730,6 +1833,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChemDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ChemDrobeAds
   - type: SpeakOnUIClosed
@@ -1758,6 +1863,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCuraDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: CuraDrobeAds
   - type: SpeakOnUIClosed
@@ -1786,6 +1893,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineAtmosDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: AtmosDrobeAds
   - type: SpeakOnUIClosed
@@ -1802,7 +1911,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#b89e2a"
   - type: AccessReader
     access: [["Engineering"]]
@@ -1818,6 +1927,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineEngiDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: EngiDrobeAds
   - type: SpeakOnUIClosed
@@ -1834,7 +1945,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#b89e2a"
   - type: AccessReader
     access: [["Engineering"]]
@@ -1850,6 +1961,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChefDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ChefDrobeAds
   - type: SpeakOnUIClosed
@@ -1878,6 +1991,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDetDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: DetDrobeAds
   - type: SpeakOnUIClosed
@@ -1906,6 +2021,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineJaniDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: JaniDrobeAds
   - type: SpeakOnUIClosed
@@ -1922,7 +2039,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#6927C5"
   - type: AccessReader
     access: [["Janitor"]]
@@ -1938,6 +2055,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSciDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: SciDrobeAds
   - type: SpeakOnUIClosed
@@ -1967,6 +2086,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSyndieDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: SyndieDrobeAds
   - type: SpeakOnUIClosed
@@ -1983,7 +2104,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#d82929"
   - type: AccessReader
     access: [["NuclearOperative"], ["SyndicateAgent"]]
@@ -1999,6 +2120,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineRoboDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: RoboDrobeAds
   - type: SpeakOnUIClosed
@@ -2027,6 +2150,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineGeneDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: GeneDrobeAds
   - type: SpeakOnUIClosed
@@ -2055,6 +2180,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineViroDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: ViroDrobeAds
   - type: SpeakOnUIClosed
@@ -2084,6 +2211,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCentDrobeCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/centdrobe.rsi
     layers:
@@ -2096,7 +2225,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#48CF48"
   - type: AccessReader
     access: [["CentralCommand"]]
@@ -2119,6 +2248,8 @@
     soundVend: /Audio/Items/bikehorn.ogg
     initialStockQuality: 1.0 # Nobody knows how Honk does it, but their vending machines always seem well-stocked...
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineHappyHonkCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/happyhonk.rsi
     layers:
@@ -2131,7 +2262,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#3c5eb5"
   - type: DatasetVocalizer
     dataset: HappyHonkAds
@@ -2154,6 +2285,8 @@
     showPrices: false # Starlight-start: Vending Machines Prices
     brokenState: broken
     normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachinePrideCircuitboard # Starlight-edit: Vending Machine boards
   - type: DatasetVocalizer
     dataset: PrideDrobeAds
   - type: SpeakOnUIClosed
@@ -2161,7 +2294,7 @@
   - type: Speech
   - type: PointLight
     radius: 1.5
-    energy: 1.3 # reduced energy since the color is pure white
+    energy: 2.0 # reduced energy since the color is pure white
     color: "#FFFFFF"
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/pride.rsi
@@ -2186,6 +2319,8 @@
   - type: VendingMachine
     showPrices: false # Starlight-edit: Vending Machines Prices
     pack: TankDispenserEVAInventory
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineTankDispenserEVACircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/tankdispenser.rsi #TODO add visualiser for remaining tanks as layers
     state: dispenser
@@ -2200,6 +2335,8 @@
   - type: VendingMachine
     showPrices: false # Starlight-edit: Vending Machines Prices
     pack: TankDispenserEngineeringInventory
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineTankDispenserEngineeringCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/tankdispenser.rsi #TODO add visualiser for remaining tanks as layers
     layers:
@@ -2220,6 +2357,8 @@
     normalState: normal
     denyState: deny
     ejectDelay: 2
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChemicalsCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/chemvend.rsi
     layers:
@@ -2250,6 +2389,8 @@
     normalState: normal
     denyState: deny
     ejectDelay: 2
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineChemicalsSyndicateCircuitboard # Starlight-edit: Vending Machine boards
   - type: AccessReader
     access: [["SyndicateAgent"]]
 
@@ -2267,6 +2408,8 @@
     brokenState: broken
     normalState: normal-unshaded
     denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCivilianCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/wallmed.rsi
     layers:
@@ -2279,7 +2422,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: PointLight
     radius: 1.3
-    energy: 1.6
+    energy: 3.0
     color: "#43ccb5"
   - type: GuideHelp
     guides:
@@ -2294,6 +2437,8 @@
     pack: NanoMedInventory
     offState: off
     showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
     layers:
     - state: "off"

@@ -3,6 +3,15 @@
   name: job-name-cburn
   description: job-description-cburn
   playTimeTracker: JobCBURN
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobMedicalDoctor
+    time: 18000 # 5h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 18000 # 5h
   setPreference: false
   startingGear: CBURNGear
   icon: "JobIconCentComm"

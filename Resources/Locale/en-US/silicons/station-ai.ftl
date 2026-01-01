@@ -25,6 +25,7 @@ electrify-door-off = Disable overcharge
 toggle-light = Toggle light
 
 ai-device-not-responding = Device is not responding
+ai-device-no-access = You have no access to this device
 
 ai-consciousness-download-warning = Your consciousness is being downloaded.
 
@@ -34,6 +35,10 @@ station-ai-customization-categories = Categories
 station-ai-customization-options = Options (choice of one)
 station-ai-customization-core = AI core displays
 station-ai-customization-hologram = Holographic avatars
+# SL start
+station-ai-customization-menu-label-rename = New name:
+station-ai-customization-name = Rename
+# SL end
 
 # Customizations
 station-ai-icon-ai = Ghost in the machine

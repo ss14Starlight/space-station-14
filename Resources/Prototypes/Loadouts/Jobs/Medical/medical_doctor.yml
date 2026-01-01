@@ -6,17 +6,17 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobChemist
-      time: 21600 #6 hrs
+      time: 6h
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:RoleTimeRequirement
       role: JobMedicalDoctor
-      time: 21600 #6 hrs
+      time: 6h
   - !type:JobRequirementLoadoutEffect
     requirement:
       !type:DepartmentTimeRequirement
       department: Medical
-      time: 216000 # 60 hrs
+      time: 60h
 
 # Other Timers
 
@@ -27,7 +27,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMedicalDoctor
-      time: 108000 #30 hrs
+      time: 30h
 
 # Head
 
@@ -77,6 +77,11 @@
   id: MedicalDoctorJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+
+- type: loadout
+  id: MedicalDoctorJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMedicalDoctor
 
 - type: loadout
   id: SeniorPhysicianJumpsuit
@@ -130,6 +135,11 @@
   id: MedicalDoctorWintercoat
   equipment:
     outerClothing: ClothingOuterWinterMed
+
+- type: loadout
+  id: WindbreakerMedical
+  equipment:
+    outerClothing: ClothingOuterWindbreakerMedical
 
 - type: loadout
   id: SeniorPhysicianLabCoat

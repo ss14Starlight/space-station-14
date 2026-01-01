@@ -141,26 +141,27 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
         }
 
         // Starlight-start: Movement sprite state
-
-        if (prototype.SpriteBodyMovementState is { } movementState)
+        if (!(TryComp<BorgSwitchableSubtypeComponent>(entity, out var subtype) && subtype.BorgSubtype != null))
         {
-            var spriteMovement = EnsureComp<SpriteMovementComponent>(entity);
-            spriteMovement.NoMovementLayers.Clear();
-            spriteMovement.NoMovementLayers["movement"] = new PrototypeLayerData
+        // Starlight-end: Movement sprite state
+            if (prototype.SpriteBodyMovementState is { } movementState)
             {
-                State = prototype.SpriteBodyState,
-            };
-            spriteMovement.MovementLayers.Clear();
-            spriteMovement.MovementLayers["movement"] = new PrototypeLayerData
+                var spriteMovement = EnsureComp<SpriteMovementComponent>(entity);
+                spriteMovement.NoMovementLayers.Clear();
+                spriteMovement.NoMovementLayers["movement"] = new PrototypeLayerData
+                {
+                    State = prototype.SpriteBodyState,
+                };
+                spriteMovement.MovementLayers.Clear();
+                spriteMovement.MovementLayers["movement"] = new PrototypeLayerData
+                {
+                    State = movementState,
+                };
+            }
+            else
             {
-                State = movementState,
-            };
-        }
-        else
-        {
-            RemComp<SpriteMovementComponent>(entity);
-        }
-
-        // Starlight-end
+                RemComp<SpriteMovementComponent>(entity);
+            }
+        } // Starlight - close of movement sprite state block
     }
 }

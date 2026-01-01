@@ -17,6 +17,7 @@
     - PreventAccessLogging
     - AllowBiomeLoading
     - Ghost
+    - NotGhostnadoWarpable
   - type: Input
     context: "aghost"
   - type: Ghost
