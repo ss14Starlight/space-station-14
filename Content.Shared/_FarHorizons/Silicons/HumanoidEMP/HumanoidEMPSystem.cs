@@ -12,7 +12,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 
-namespace Content.Shared._Starlight.Silicons.HumanoidEMP;
+namespace Content.Shared._FarHorizons.Silicons.HumanoidEMP;
 
 /// <summary>
 /// System that applies EMP effects to humanoid silicons.

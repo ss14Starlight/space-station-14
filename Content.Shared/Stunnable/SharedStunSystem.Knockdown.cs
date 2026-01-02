@@ -44,7 +44,7 @@ public abstract partial class SharedStunSystem
     [Dependency] private readonly StandingStateSystem _standingState = default!;
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
 
-    private static readonly ProtoId<ItemSizePrototype> MaxItemSize = "Small";
+    private static readonly ProtoId<ItemSizePrototype> _maxItemSize = "Small";
 
     public static readonly ProtoId<AlertPrototype> KnockdownAlert = "Knockdown";
 
@@ -610,7 +610,7 @@ public abstract partial class SharedStunSystem
         if (args.Weapon == args.User)
             return;
 
-        if (TryComp<ItemComponent>(args.Weapon, out var item) && _item.GetSizePrototype(item.Size) <= _item.GetSizePrototype(MaxItemSize))
+        if (TryComp<ItemComponent>(args.Weapon, out var item) && _item.GetSizePrototype(item.Size) <= _item.GetSizePrototype(_maxItemSize))
             return;
 
         args.Cancelled = true;
@@ -653,15 +653,11 @@ public abstract partial class SharedStunSystem
         _movementSpeedModifier.RefreshFrictionModifiers(ent);
     }
 
-    private void OnRefreshKnockedSpeed(Entity<KnockedDownComponent> entity, ref RefreshMovementSpeedModifiersEvent args)
-    {
+    private void OnRefreshKnockedSpeed(Entity<KnockedDownComponent> entity, ref RefreshMovementSpeedModifiersEvent args) =>
         args.ModifySpeed(entity.Comp.SpeedModifier);
-    }
 
-    private void OnKnockedTileFriction(Entity<KnockedDownComponent> entity, ref TileFrictionEvent args)
-    {
+    private void OnKnockedTileFriction(Entity<KnockedDownComponent> entity, ref TileFrictionEvent args) =>
         args.Modifier *= entity.Comp.FrictionModifier;
-    }
 
     private void OnRefreshFriction(Entity<KnockedDownComponent> entity, ref RefreshFrictionModifiersEvent args)
     {

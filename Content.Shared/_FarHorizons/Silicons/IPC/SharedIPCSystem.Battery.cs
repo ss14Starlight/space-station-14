@@ -99,5 +99,3 @@ public abstract partial class SharedIPCSystem
 
     // Note: BatteryHasCharge moved to server-side as it's only used there
 }
-
-

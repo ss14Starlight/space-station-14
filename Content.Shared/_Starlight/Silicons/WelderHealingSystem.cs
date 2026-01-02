@@ -8,6 +8,7 @@ using Content.Shared.Interaction;
 using Content.Shared.DoAfter;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Robust.Shared.Audio;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
@@ -110,7 +111,7 @@ public sealed class WelderHealingSystem : EntitySystem
         _damageable.TryChangeDamage(target, damage, origin: args.User);
 
         // Play sound and show popup
-        _audio.PlayPvs("/Audio/Items/welder.ogg", target);
+        _audio.PlayPvs(new SoundPathSpecifier("/Audio/Items/welder.ogg"), target);
         _popup.PopupEntity("Chassis repaired!", target, args.User);
 
         // Check if there's still damage to repair

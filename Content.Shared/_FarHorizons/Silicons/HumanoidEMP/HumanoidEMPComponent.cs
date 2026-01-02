@@ -8,7 +8,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.Silicons.HumanoidEMP;
+namespace Content.Shared._FarHorizons.Silicons.HumanoidEMP;
 
 /// <summary>
 /// Component that defines how a humanoid silicon reacts to EMP pulses.

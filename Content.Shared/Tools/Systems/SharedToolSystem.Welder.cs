@@ -24,13 +24,9 @@ public abstract partial class SharedToolSystem
         SubscribeLocalEvent<WelderComponent, AfterInteractEvent>(OnWelderAfterInteract);
 
         SubscribeLocalEvent<WelderComponent, ToolUseAttemptEvent>((uid, comp, ev) =>
-        {
-            CanCancelWelderUse((uid, comp), ev.User, ev.Fuel, ev);
-        });
+            CanCancelWelderUse((uid, comp), ev.User, ev.Fuel, ev));
         SubscribeLocalEvent<WelderComponent, DoAfterAttemptEvent<ToolDoAfterEvent>>((uid, comp, ev) =>
-        {
-            CanCancelWelderUse((uid, comp), ev.Event.User, ev.Event.Fuel, ev);
-        });
+            CanCancelWelderUse((uid, comp), ev.Event.User, ev.Event.Fuel, ev));
         SubscribeLocalEvent<WelderComponent, ToolDoAfterEvent>(OnWelderDoAfter);
 
         SubscribeLocalEvent<WelderComponent, ItemToggledEvent>(OnToggle);

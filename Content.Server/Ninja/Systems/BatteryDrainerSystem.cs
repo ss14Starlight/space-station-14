@@ -71,12 +71,6 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
 
         args.Handled = true;
 
-        if (false) // Removed duplicate full check
-        {
-            _popup.PopupEntity(Loc.GetString("battery-drainer-full"), uid, uid, PopupType.Medium);
-            return;
-        }
-
         var doAfterArgs = new DoAfterArgs(EntityManager, uid, comp.DrainTime, new DrainDoAfterEvent(), target: target, eventTarget: uid)
         {
             MovementThreshold = 0.5f,
@@ -88,10 +82,8 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
         _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
-    private void OnBatteryChanged(Entity<BatteryDrainerComponent> ent, ref NinjaBatteryChangedEvent args)
-    {
+    private void OnBatteryChanged(Entity<BatteryDrainerComponent> ent, ref NinjaBatteryChangedEvent args) =>
         SetBattery((ent, ent.Comp), args.Battery);
-    }
 
     /// <inheritdoc/>
     protected override void OnDoAfterAttempt(Entity<BatteryDrainerComponent> ent, ref DoAfterAttemptEvent<DrainDoAfterEvent> args)

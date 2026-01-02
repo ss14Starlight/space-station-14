@@ -100,10 +100,8 @@ public sealed partial class IPCSystem
     private void OnBatteryGibbed(Entity<IPCBatteryComponent> ent, ref BeingGibbedEvent args) =>
         _containerSystem.EmptyContainer(ent.Comp.BatteryContainerSlot);
         
-    private void OnBatteryTimerStart(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerStart args)
-    {
+    private void OnBatteryTimerStart(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerStart args) =>
         UpdateBatteryAlert(ent);
-    }
     
     /// <summary>
     /// Called when the death timer ends. Kills the IPC if not interrupted.

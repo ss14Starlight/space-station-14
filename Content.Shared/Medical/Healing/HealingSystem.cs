@@ -72,7 +72,7 @@ public sealed class HealingSystem : EntitySystem
         {
             var isBleeding = bloodstream.BleedAmount > 0;
             _bloodstreamSystem.TryModifyBleedAmount((target.Owner, bloodstream), healing.BloodlossModifier);
-            if (isBleeding != bloodstream.BleedAmount > 0)
+            if (isBleeding != (bloodstream.BleedAmount > 0))
             {
                 var popup = (args.User == target.Owner)
                     ? Loc.GetString("medical-item-stop-bleeding-self")
@@ -335,7 +335,7 @@ public sealed class HealingSystem : EntitySystem
         var percentDamage = (float)(ent.Comp1.TotalDamage / amount);
         //basically make it scale from 1 to the multiplier.
 
-        var output = percentDamage * (mod - 1) + 1;
+        var output = (percentDamage * (mod - 1)) + 1;
         return Math.Max(output, 1);
     }
 }
