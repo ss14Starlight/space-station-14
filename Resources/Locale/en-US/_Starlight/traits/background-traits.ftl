@@ -1,7 +1,7 @@
 trait-category-background = Background
 
-trait-background-civilian-name = Civilian
-trait-background-civilian-description = You gain no additional information. 
+trait-background-tsf-citizen-name = TSF Citizen
+trait-background-tsf-citizen-description = You grew up in the core of the Trans Solar Federation. From Alrescha to Sabik, maybe even hailing from the human birthrock of Earth, you come from one of the 160 Worlds that make up the TSF. Life in the core is prosperous, simple, free of conflict. But something drove you here, into the arms of NanoTrasen in the far Corporate Frontiers. What was it? Bordeom? Betrayal? A desire for something more?
 
 trait-background-former-soldier-name = Former Soldier
 trait-background-former-soldier-description = As a former member of a Mercenary Company, the NanoTrasen Defense Fleet, or a Sector Militia, you have passing familiarity with all firearms. While you may not know who uses them or that their typical users are even real, such as Nuclear Operatives with the China Lake, you do know that the gun itself exists. You may pick and choose how far this knowledge goes, and choose to simply know nothing about certain guns. 
@@ -27,11 +27,14 @@ trait-background-petty-criminal-description = While reformed, more or less, you 
 trait-background-changeling-survivor-name = Changeling Survivor
 trait-background-changeling-survivor-description = They took your friends skin, face, voice. Puppeted on cracking limbs and writhing flesh, with eyes just a little too distant. They're out there, and worst of all, they could be any one of us.
 
-trait-background-nuclear-survivor-name = Nuclear Survivor
-trait-background-nuclear-survivor-description = The brain-cleaning must have gone wrong somehow. You remember what you shouldn't - blood red operatives storming you down, station blackout, the inevitable countdown. They all call you crazy, but you know that wasn't a dream. Careful - If NT finds out you remember - they'll make sure you forget for good.
+trait-background-ussp-refugee-name = USSP Refugee
+trait-background-ussp-refugee-description = The mind-numbing work behind grey corridors and dim lights. Sweat-shop factories on planetary scales. Mandatory memorization, mass indoctrination, you got away from it all somehow. Whether it was climbing over barbed wire fences to freedom, being rescued by a NanoTrasen assault force, or otherwise - you got out. But even today, you can still hear the chanting, and the music, and the illusory sound of jackboots that startle you awake at night. You lived within the Union of Soviet Socialists Planets for a time. Whether or not you remain loyal to them or are glad to be gone is up to you.
 
 trait-background-syndicate-refugee-name = Syndicate Refugee
-trait-background-syndicate-refugee-description = You know what it's like out there in frontier space. Betrayal, rampant terrorism, proxy wars, ancient grudges and radical organizations. NanoTrasen might not be the best, but they are better than the alternative. At least here they have dental.
+trait-background-syndicate-refugee-description = You know what it's like out there in frontier space. Betrayal, rampant terrorism, proxy wars, ancient grudges and radical organizations. NanoTrasen might not be the best, but they are better than the alternatives. At least here they have clone insurance.
 
 trait-background-paradox-clone-name = Paradox Clone
 trait-background-paradox-clone-description = You did what you had to do make the timeline right. After being warped into this time stream, you murdered your counterpart, and took their place. Everythings just the slightest bit different here - and there's a gnawing feeling that you don't belong.
+
+trait-background-honkmother-cultist-name = Honkmother Cultist
+trait-background-honkmother-cultist-description = You were raised in the clown ways, know of the complex rites, the moonlit rituals, and the true nature of 'The Funny'. You know of the Rites of Silence for Mimes, the vague details of Honkspace, and the knowledge that the Laughing God is the mightiest of them all. It may have been a long time since you donned the mask - but it's still there, at the edge of the bed frame, laughing. Laughing at you.

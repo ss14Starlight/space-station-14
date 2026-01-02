@@ -1,12 +1,12 @@
 - type: trait
-  id: Civilian
-  name: trait-background-civilian-name
-  description: trait-background-civilian-description
+  id: TSFCitizen
+  name: trait-background-tsf-citizen-name
+  description: trait-background-tsf-citizen-description
   category: BackgroundTraits
   cost: 1
   components:
   - type: Tag
-  background: Civilian
+  background: TSFCitizen
 
 - type: trait
   id: FormerSoldier
@@ -89,9 +89,9 @@
   background: ChangelingSurvivor
 
 - type: trait
-  id: NuclearSurvivor
-  name: trait-background-nuclear-survivor-name
-  description: trait-background-nuclear-survivor-description
+  id: USSPRefugee
+  name: trait-background-ussp-refugee-name
+  description: trait-background-ussp-refugee-description
   category: BackgroundTraits
   cost: 1
   components:
@@ -117,3 +117,13 @@
   components:
   - type: Tag
   background: ParadoxClone
+
+- type: trait
+  id: HonkmotherCultist
+  name: trait-background-honkmother-cultist-name
+  description: trait-background-honkmother-cultist-description
+  category: BackgroundTraits
+  cost: 1
+  components:
+  - type: Tag
+  background: HonkmotherCultist

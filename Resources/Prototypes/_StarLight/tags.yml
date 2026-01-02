@@ -352,7 +352,7 @@
   id: MagazineBoxLightRifle
   
 - type: Tag
-  id: CivilianTraitBackground
+  id: TSFCitizenTraitBackground
 
 - type: Tag
   id: FormerSoldierTraitBackground
@@ -379,13 +379,16 @@
   id: ChangelingSurvivorTraitBackground
 
 - type: Tag
-  id: NuclearSurvivorTraitBackground
+  id: USSPRefugeeTraitBackground
 
 - type: Tag
   id: SyndicateRefugeeTraitBackground
 
 - type: Tag
   id: ParadoxCloneTraitBackground
+
+- type: Tag
+  id: HonkmotherCultistTraitBackground
   
 - type: Tag
   id: ThermiteIgnitor
