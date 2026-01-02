@@ -1,8 +1,6 @@
-# IPC Species and Marking Localization
+# IPC Marking Localization
 # Ported from Far-Horizons-SS14
 # https://github.com/Far-Horizons-SS14/Far-Horizons-SS14
-
-species-name-ipc = IPC
 
 # Default Parts
 marking-MarkingIPCHeadDefault = Default Head

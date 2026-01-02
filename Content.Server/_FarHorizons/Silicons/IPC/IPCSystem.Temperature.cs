@@ -5,6 +5,9 @@
 // - Alarm sounds play on overheat shutdown
 
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Temperature;
 using Robust.Shared.Audio;
 
@@ -12,8 +15,8 @@ namespace Content.Server._FarHorizons.Silicons.IPC;
 
 public sealed partial class IPCSystem
 {
-    // IPCs shut down at 335K (~62°C) to prevent heat death
-    private const float OverheatThreshold = 335f;
+    // IPCs shut down at 360K (~87°C) to prevent heat death (below 373K damage threshold)
+    private const float OverheatThreshold = 360f;
     // Emergency shutdown lasts 8 seconds
     private const float OverheatKnockdownDuration = 8f;
 
@@ -30,17 +33,17 @@ public sealed partial class IPCSystem
         // If temperature exceeds overheat threshold, initiate emergency shutdown
         if (args.CurrentTemperature >= OverheatThreshold)
         {
-            // Check if we should apply knockdown (don't spam it)
-            var currentTime = _timing.CurTime;
-            if (component.LastOverheatKnockdown == null || 
-                currentTime - component.LastOverheatKnockdown > TimeSpan.FromSeconds(OverheatKnockdownDuration + 1))
+            // Only trigger shutdown if not already critical/unconscious
+            if (TryComp<MobStateComponent>(uid, out var mobState) && 
+                mobState.CurrentState != MobState.Critical && 
+                mobState.CurrentState != MobState.Dead)
             {
                 // Play overheat alarm sound
                 _audio.PlayEntity(new SoundPathSpecifier("/Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg"), uid, uid);
                 
-                // Apply knockdown (emergency shutdown)
-                _stun.TryKnockdown(uid, TimeSpan.FromSeconds(OverheatKnockdownDuration), autoStand: true);
-                component.LastOverheatKnockdown = currentTime;
+                // Apply emergency shutdown (makes IPC unconscious/critical)
+                _state.ChangeMobState(uid, MobState.Critical, mobState);
+                component.LastOverheatKnockdown = _timing.CurTime;
             }
         }
     }

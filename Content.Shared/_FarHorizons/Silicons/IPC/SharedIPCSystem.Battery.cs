@@ -5,6 +5,7 @@
 
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Interaction;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Wires;
@@ -27,6 +28,7 @@ public abstract partial class SharedIPCSystem
         SubscribeLocalEvent<IPCBatteryComponent, ItemSlotInsertAttemptEvent>(OnItemSlotInsertAttempt);
         SubscribeLocalEvent<IPCBatteryComponent, ItemSlotEjectAttemptEvent>(OnItemSlotEjectAttempt);
         SubscribeLocalEvent<IPCBatteryComponent, GetVerbsEvent<AlternativeVerb>>(AddBatteryAltVerbs);
+        SubscribeLocalEvent<IPCBatteryComponent, BeforeInteractHandEvent>(OnBeforeInteractHand);
     }
 
     protected abstract void UpdateBattery(float frameTime);
@@ -53,6 +55,21 @@ public abstract partial class SharedIPCSystem
     }
 
     protected virtual void StartDrain(Entity<IPCBatteryComponent> user, EntityUid target){}
+
+    private void OnBeforeInteractHand(Entity<IPCBatteryComponent> ent, ref BeforeInteractHandEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        var target = args.Target;
+        if (!TryComp(target, out MetaDataComponent? metadata) || 
+            metadata.EntityPrototype == null || 
+            !ent.Comp.DrainAllowedTargets.Contains(metadata.EntityPrototype.ID))
+            return;
+
+        args.Handled = true;
+        StartDrain(ent, target);
+    }
 
     private void OnItemSlotEjectAttempt(Entity<IPCBatteryComponent> ent, ref ItemSlotEjectAttemptEvent args)
     {

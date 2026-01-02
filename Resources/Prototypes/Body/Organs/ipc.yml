@@ -5,14 +5,40 @@
 
 - type: entity
   id: OrganIPCPositronicBrain
-  parent: PositronicBrain # Use same brain as borgs
+  parent: PositronicBrain
   name: "positronic brain"
   description: "A complex artificial brain capable of sentience."
   components:
   - type: Sprite
-    sprite: Mobs/Species/IPC/organs.rsi
-    state: microcell
+    sprite: Objects/Specific/Robotics/mmi.rsi
+    layers:
+    - state: posibrain
+      map: ["base"]
   - type: Organ
+  - type: Input
+    context: ghost
+  - type: Brain # Use Brain component like human brains, not BorgBrain
+  - type: InputMover
+  - type: Examiner
+  - type: BlockMovement
+  - type: Tag
+    tags:
+    - MindTransferTarget # Required for TransferMindOnGib to work
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+  - type: DoAfter
+  - type: Actions
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechSounds: Pai
+  - type: Alerts
 
 - type: entity
   id: OrganIPCEyes

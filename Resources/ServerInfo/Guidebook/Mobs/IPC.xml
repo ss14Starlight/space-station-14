@@ -1,0 +1,94 @@
+<!-- _STARLIGHT: IPC Species Guidebook Entry -->
+<!-- Comprehensive guide to IPC mechanics, strengths, weaknesses, and roleplay -->
+<Document>
+  # IPC (Integrated Positronic Chassis)
+
+  <Box>
+    <GuideEntityEmbed Entity="MobIPCDummy" Caption=""/>
+  </Box>
+
+  IPCs are fully synthetic humanoids, equipped with a positronic brain that grants them sentience. Unlike organic crew members, IPCs operate on entirely mechanical systems and require unique maintenance procedures.
+
+  ## Unique Characteristics
+
+  IPCs are [color=#1e90ff]completely immune to biological hazards[/color], including:
+  - Toxins and poisons
+  - Radiation exposure
+  - Suffocation and pressure damage
+  - Bleeding and diseases
+  - Food and drink requirements
+
+  However, they have significant vulnerabilities:
+  - [color=#ffa500]Take 250% damage from Shock sources[/color]
+  - [color=#ff6347]Highly vulnerable to EMPs[/color]
+  - [color=#ffa500]Cannot heal naturally over time[/color]
+  - Require constant power to function
+
+  ## Temperature Regulation
+
+  IPCs have specialized thermal characteristics:
+  - [color=#87ceeb]Much slower temperature changes[/color] than organic species (takes longer to heat up or cool down)
+  - [color=#ffa500]Heat damage begins at 400K (127°C)[/color]
+  - [color=#1e90ff]Cold damage begins at 173K (-100°C)[/color]
+  - Can operate in more extreme temperature ranges before taking damage
+
+  ## Repair and Maintenance
+
+  ### Physical Damage Repair
+  <Box>
+    <GuideEntityEmbed Entity="Welder" Caption="Welder"/>
+    <GuideEntityEmbed Entity="CableApcStack" Caption="Cable Coil"/>
+  </Box>
+
+  IPCs use unique healing methods:
+  - [color=#ffff00]Welders[/color] (must be lit) repair [color=#ff6347]Brute damage[/color]
+  - [color=#1e90ff]Cable coils[/color] repair [color=#ffa500]Burn damage[/color]
+  - Repairs occur over time and will [color=#90ee90]automatically repeat[/color] until fully healed or supplies run out
+  - Each repair cycle uses [color=#ffa500]5 fuel (welder)[/color] or [color=#1e90ff]5 cable (coil)[/color]
+
+  [color=#ff6347]Traditional medical supplies like bruise packs and ointment do nothing for IPCs![/color]
+
+  ## Power Management
+
+  <Box>
+    <GuideEntityEmbed Entity="APCBasic" Caption="APC"/>
+  </Box>
+
+  IPCs are equipped with an internal power cell that drains over time:
+  - Can recharge from [color=#ffff00]APCs (Area Power Controllers)[/color] by interacting with them
+  - Receive [color=#ffa500]power warnings[/color] when battery runs low
+  - [color=#ff6347]Will shut down completely if power is fully depleted[/color]
+  - Power cell can be removed and replaced by medical staff
+
+  [color=#1e90ff]Tip:[/color] Keep an eye on your power levels and plan recharging stops during long operations!
+
+  ## Combat Considerations
+
+  IPCs have distinct tactical strengths and weaknesses:
+
+  [color=#90ee90]Advantages:[/color]
+  - Immune to biological warfare (toxins, gas, disease)
+  - No blood loss or bleeding wounds
+  - Can function in extreme temperatures longer than organics
+  - Radiation immunity makes them ideal for nuclear operations
+  - Don't need to eat, drink, or breathe
+
+  [color=#ffa500]Disadvantages:[/color]
+  - Tasers and stun batons deal massive damage
+  - EMP grenades can disable systems or cause instant death
+  - Cannot heal without specific tools
+  - Power dependency creates vulnerability during extended operations
+  - Slower healing compared to medical treatment for organics
+
+  ## Roleplay Notes
+
+  IPCs are synthetic beings with positronic brains, giving them unique perspectives:
+  - Often speak in more mechanical or analytical terms
+  - May use binary emotional expressions (0s and 1s)
+  - Question organic behaviors and biological needs
+  - Consider efficiency and logic in decision-making
+  - Have no biological impulses but can develop personality quirks
+
+  Remember: IPCs are sentient crew members deserving of the same rights and respect as organic species!
+
+</Document>

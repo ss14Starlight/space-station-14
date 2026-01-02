@@ -22,6 +22,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
+using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared.Medical.Healing;
@@ -84,29 +85,13 @@ public sealed class HealingSystem : EntitySystem
         if (healing.ModifyBloodLevel != 0 && bloodstream != null)
             _bloodstreamSystem.TryModifyBloodLevel((target.Owner, bloodstream), healing.ModifyBloodLevel);
 
-        // _STARLIGHT: Scale healing for Silicon damage containers based on total damage
-        var healingMultiplier = 1.0f;
-        if (healing.DamageContainers?.Contains("Silicon") == true && target.Comp.TotalDamage > 0)
-        {
-            var totalDamage = target.Comp.TotalDamage;
-            // Base healing at 10x for <250 damage
-            // Increases by 5x every 50 damage after 250
-            if (totalDamage >= 250)
-            {
-                var damageOver250 = totalDamage - 250;
-                var additionalMultiplier = (int)(damageOver250 / 50) * 5;
-                healingMultiplier = 10.0f + additionalMultiplier;
-            }
-            else
-            {
-                healingMultiplier = 10.0f;
-            }
-        }
-
-        if (!_damageable.TryChangeDamage(target.Owner, healing.Damage * healingMultiplier * _damageable.UniversalTopicalsHealModifier, out var healed, true, origin: args.Args.User) && healing.BloodlossModifier != 0)
+        var damageChanged = _damageable.TryChangeDamage(target.Owner, healing.Damage, out var healed, true, origin: args.Args.User);
+        
+        // If no damage was changed and there's no bloodloss healing, we're done
+        if (!damageChanged && healing.BloodlossModifier == 0)
             return;
 
-        var total = healed.GetTotal();
+        var total = healed?.GetTotal() ?? FixedPoint2.Zero;
 
         // _STARLIGHT: Only consume the item if it's stackable or has solution drain
         // Tools like welders should not be consumed
@@ -122,13 +107,30 @@ public sealed class HealingSystem : EntitySystem
         else if (healing.SolutionDrain && TryComp<SolutionContainerManagerComponent>(args.Used, out var solutionManager))
         {
             Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(args.Used.Value, "injector", ref solutionEntity, out var solution))
+            Solution? solution = null;
+            
+            // Try to find any solution that contains the required reagents
+            // First try "injector" (for menders), then "Welder" (for welders), then any solution
+            foreach (var solutionName in new[] { "injector", "Welder" })
+            {
+                if (_solutionContainerSystem.ResolveSolution(args.Used.Value, solutionName, ref solutionEntity, out solution))
+                    break;
+            }
+            
+            // If we still haven't found a solution, try to get any available solution
+            if (solution == null && solutionManager.Containers.Count > 0)
+            {
+                var firstSolutionName = solutionManager.Containers.First();
+                _solutionContainerSystem.ResolveSolution(args.Used.Value, firstSolutionName, ref solutionEntity, out solution);
+            }
+            
+            if (solution != null)
             {
                 var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
-                foreach(var reagent in solution.Contents)
+                foreach(var reagent in solution!.Contents)
                 {
                     var drainReagent = healing.ReagentsToDrain.FirstOrDefault(drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
-                    if (solutionEntity != null && drainReagent != null)
+                    if (solutionEntity != null && !drainReagent.Equals(default(ReagentQuantity)))
                         reagentsToRemove.Add((reagent, drainReagent.Quantity));
                 }
 
@@ -138,7 +140,7 @@ public sealed class HealingSystem : EntitySystem
                         _solutionContainerSystem.RemoveReagent(solutionEntity.Value, reagent.Reagent, amount);
                 }
 
-                if (!solution.Contents.Any(sol => healing.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
+                if (!solution!.Contents.Any(sol => healing.ReagentsToDrain.Any(req => req.Reagent.Prototype == sol.Reagent.Prototype && sol.Quantity >= req.Quantity)))
                     dontRepeat = true;
             }
         }
@@ -217,7 +219,7 @@ public sealed class HealingSystem : EntitySystem
 
     private void OnHealingAfterInteract(Entity<HealingComponent> healing, ref AfterInteractEvent args)
     {
-        if (args.Handled || !args.CanReach || args.Target == null)
+        if (!args.CanReach || args.Target == null)
             return;
 
         if (TryHeal(healing, args.Target.Value, args.User))
@@ -253,9 +255,26 @@ public sealed class HealingSystem : EntitySystem
         if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(healing.Owner, out var solutionManager))
         {
             Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(healing.Owner, "injector", ref solutionEntity, out var solution))
+            Solution? solution = null;
+            
+            // Try to find any solution that contains the required reagents
+            // First try "injector" (for menders), then "Welder" (for welders), then any solution
+            foreach (var solutionName in new[] { "injector", "Welder" })
             {
-                if (!solution.Contents.Any(sol => healing.Comp.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
+                if (_solutionContainerSystem.ResolveSolution(healing.Owner, solutionName, ref solutionEntity, out solution))
+                    break;
+            }
+            
+            // If we still haven't found a solution, try to get any available solution
+            if (solution == null && solutionManager.Containers.Count > 0)
+            {
+                var firstSolutionName = solutionManager.Containers.First();
+                _solutionContainerSystem.ResolveSolution(healing.Owner, firstSolutionName, ref solutionEntity, out solution);
+            }
+            
+            if (solution != null)
+            {
+                if (!solution!.Contents.Any(sol => healing.Comp.ReagentsToDrain.Any(req => req.Reagent.Prototype == sol.Reagent.Prototype && sol.Quantity >= req.Quantity)))
                 {
                     _popupSystem.PopupClient(Loc.GetString("medical-item-solution-missing", ("item", healing.Owner)), healing.Owner, user);
                     return false;

@@ -1,7 +1,10 @@
 // IPC System - Battery (Server)
 // SOURCE: Far-Horizons-SS14
 // https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
-// _STARLIGHT: Namespace changes for compatibility
+// _STARLIGHT MODIFICATIONS:
+// - Namespace changes for compatibility
+// - Added power draw re-enable in UpdateBatteryAlert() to fix battery not draining bug
+// - Added TerminatingOrDeleted() check in StartDeathTimer() to prevent TimeSpan overflow when gibbed
 
 using Content.Server.AlertLevel;
 using Content.Server.Ninja.Systems;
@@ -210,9 +213,14 @@ public sealed partial class IPCSystem
     /// _STARLIGHT: Starts the IPC death timer when power runs out.
     /// Immediately knocks down the IPC (makes them unconscious, not critical).
     /// After the timer expires, the IPC dies.
+    /// EDIT: Added TerminatingOrDeleted check to prevent overflow when gibbed.
     /// </summary>
     public void StartDeathTimer(Entity<IPCBatteryComponent> ent){
         if (ent.Comp.TimerActive)
+            return;
+        
+        // _STARLIGHT: Don't start death timer if entity is being deleted/gibbed (prevents TimeSpan overflow)
+        if (TerminatingOrDeleted(ent))
             return;
         
         ent.Comp.TimerActive = true;
@@ -270,6 +278,12 @@ public sealed partial class IPCSystem
 
     private void UpdateBatteryAlert(Entity<IPCBatteryComponent> ent)
     {
+        // _STARLIGHT: Ensure power draw is enabled when alive (fixes battery not draining)
+        if (_state.IsAlive(ent))
+        {
+            _powerCell.SetDrawEnabled(ent.Owner, true);
+        }
+        
         if (_state.IsAlive(ent) && ent.Comp.TimerActive && !_powerCell.HasDrawCharge((ent.Owner, CompOrNull<PowerCellDrawComponent>(ent), ent.Comp.PowerCellSlot))){
             _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
             _alerts.ShowAlert(ent.Owner, ent.Comp.ChargeCritical);
