@@ -60,7 +60,7 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#FF0000"
-      Heat:
+      Burn:
         sprite: Mobs/Effects/burn_damage.rsi
         color: "#FFA500"
   - type: CyborgSparkEffect # _STARLIGHT: Spark effects when hit by hitscan bullets (like borgs)
