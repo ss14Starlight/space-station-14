@@ -46,8 +46,7 @@
   - type: UseDelay
     delay: 10 # 10 second cooldown between lock/unlock actions
   # _STARLIGHT: Removed BorgChassis component - IPCs use IPCBattery system instead to avoid duplicate battery indicators
-  # _STARLIGHT: DamageVisuals removed - IPCs use Silicon damage container which has different damage types than organic mobs
-  - type: DamageVisuals
+  # _STARLIGHT: DamageVisuals removed - IPCs use Silicon damage container which has different damage types than organic mobs (Brute/Heat/Shock/Caustic/Cold vs Brute/Burn/Toxin/Airloss)
   - type: CyborgSparkEffect # _STARLIGHT: Spark effects when hit by hitscan bullets (like borgs)
   - type: MeleeSound # _STARLIGHT: Metal clang sound when hit in melee (like borgs)
     soundTypes:
