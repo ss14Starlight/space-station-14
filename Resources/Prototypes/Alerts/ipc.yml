@@ -51,6 +51,6 @@
   category: IPCBattery
   icons:
     - sprite: /Textures/Interface/Alerts/battery.rsi
-      state: battery_none
+      state: battery-none
   name: alerts-ipc-battery-none-name
   description: alerts-ipc-battery-none-desc

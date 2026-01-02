@@ -589,7 +589,7 @@
   markingCategory: Head
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_alt1
+  - sprite: Mobs/Customization/ipc/morpheus.rsi/morpheus_main.rsi
     state: head
 
 - type: marking
@@ -1031,3 +1031,4 @@
   sprites:
   - sprite: Mobs/Customization/ipc/zenghu.rsi/zenghu_main.rsi
     state: r_foot-1
+

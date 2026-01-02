@@ -2,7 +2,12 @@
 # SPRITES: Far-Horizons-SS14 (used with permission - sprites only)
 # https://github.com/Far-Horizons-SS14/Far-Horizons-SS14
 # CODE: Original implementation by Starlight Chimes
-# EDITED: Added WelderHealing component, adjusted Temperature thresholds/damage, reduced Shock damage from 3.5x to 2x
+# EDITED: 
+#   - Added WelderHealing component for welding repairs
+#   - Adjusted Temperature thresholds/damage (specificHeat=600, heatDamageThreshold=400K, heatDamage=1.0)
+#   - Reduced Shock damage from 3.5x to 2x in Silicon modifier set
+#   - Removed BorgChassis to use IPCBattery system instead (avoids duplicate battery indicators)
+#   - Removed DamageVisuals (Silicon container has different damage types than Biological)
 
 - type: entity
   parent:
@@ -41,6 +46,8 @@
   - type: UseDelay
     delay: 10 # 10 second cooldown between lock/unlock actions
   # _STARLIGHT: Removed BorgChassis component - IPCs use IPCBattery system instead to avoid duplicate battery indicators
+  # _STARLIGHT: DamageVisuals removed - IPCs use Silicon damage container which has different damage types than organic mobs
+  - type: DamageVisuals
   - type: CyborgSparkEffect # _STARLIGHT: Spark effects when hit by hitscan bullets (like borgs)
   - type: MeleeSound # _STARLIGHT: Metal clang sound when hit in melee (like borgs)
     soundTypes:
@@ -83,9 +90,6 @@
     - APCHighCapacity
     - APCSuperCapacity
     - APCHyperCapacity
-    - Substation
-    - SubstationWallBasic
-    - SMES
   - type: BatteryDrainer # _STARLIGHT: Allow IPCs to drain power from APCs/machines/substations
     disableHandInteraction: false # _STARLIGHT: Allow left-click with empty hand to drain power
   - type: HumanoidEMP # _STARLIGHT: EMP effects on IPCs
@@ -101,12 +105,9 @@
     rebootTime: 3
   - type: WelderHealing # _STARLIGHT: Allow welders to repair IPC damage
   - type: ZombieImmune # _STARLIGHT: IPCs can't be infected by zombies (no biology)
-  - type: Absorbable # _STARLIGHT: Remove inherited Absorbable - IPCs can't be absorbed by changelings
-    remove: true
   - type: Hunger
     baseDecayRate: 0
   - type: Thirst
-    baseThirstThreshold: 0
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -137,10 +138,8 @@
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
-    - RobotTalk
     understands:
     - GalacticCommon
-    - RobotTalk
 
 - type: entity
   parent: BaseSpeciesDummy

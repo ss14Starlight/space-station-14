@@ -75,7 +75,6 @@
   - type: Organ
   - type: Metabolizer
     removeEmpty: true
-    metabolizerTypes: [ Silicon ]
     groups:
     - id: Medicine
     - id: Poison
