@@ -28,6 +28,7 @@
   id: Silicon
   supportedGroups:
     - Brute # Blunt, Slash, Piercing damage
+    - Burn # Heat, Shock, Cold, Caustic damage
   supportedTypes:
     - Heat
     - Shock
