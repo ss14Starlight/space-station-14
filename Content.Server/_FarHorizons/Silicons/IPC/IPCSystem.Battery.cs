@@ -214,6 +214,7 @@ public sealed partial class IPCSystem
     /// Immediately knocks down the IPC (makes them unconscious, not critical).
     /// After the timer expires, the IPC dies.
     /// EDIT: Added TerminatingOrDeleted check to prevent overflow when gibbed.
+    /// EDIT: Added knockdown check to prevent TimeSpan overflow from repeated EMPs.
     /// </summary>
     public void StartDeathTimer(Entity<IPCBatteryComponent> ent){
         if (ent.Comp.TimerActive)
@@ -228,8 +229,9 @@ public sealed partial class IPCSystem
         ent.Comp.Timer = ent.Comp.DieWithoutPowerAfter;
         
         // _STARLIGHT: Knock down IPC immediately when power runs out (unconscious, not critical)
-        if (_state.IsAlive(ent))
-            _stun.TryKnockdown(ent.Owner, TimeSpan.MaxValue, autoStand: false);
+        // Only knockdown if not already knocked down (prevents TimeSpan overflow from repeated EMPs)
+        if (_state.IsAlive(ent) && !TryComp<KnockedDownComponent>(ent, out _))
+            _stun.TryKnockdown(ent.Owner, TimeSpan.MaxValue, refresh: false, autoStand: false);
             
         RaiseLocalEvent(ent, new IPCBatteryDeathTimerStart());
     }

@@ -1,7 +1,7 @@
 # IPC Battery Alert Prototypes
 # SOURCE: Far-Horizons-SS14
 # https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
-# _STARLIGHT: No modifications
+# _STARLIGHT: Modified to use existing battery.rsi instead of missing ipcbattery.rsi
 
 - type: alertCategory
   id: IPCBattery
@@ -10,27 +10,27 @@
   id: IPCBattery
   category: IPCBattery
   icons:
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery0
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery1
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery2
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery3
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery4
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery5
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery6
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery7
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery8
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery9
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery10
   name: alerts-ipc-battery-name
   description: alerts-ipc-battery-desc
@@ -41,7 +41,7 @@
   id: IPCBatteryCrit
   category: IPCBattery
   icons:
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery0
   name: alerts-ipc-battery-crit-name
   description: alerts-ipc-battery-crit-desc
@@ -50,7 +50,7 @@
   id: IPCBatteryNone
   category: IPCBattery
   icons:
-    - sprite: /Textures/_Starlight/Interface/Alerts/ipcbattery.rsi
+    - sprite: /Textures/Interface/Alerts/battery.rsi
       state: battery_none
   name: alerts-ipc-battery-none-name
   description: alerts-ipc-battery-none-desc

@@ -3,9 +3,6 @@
 
 ## IPC Examine
 ipc-examine-text = [color=cyan]This is an IPC (Integrated Positronic Chassis), a synthetic being with a robotic body.[/color]
-    They can be [color=yellow]repaired with a lit welder[/color] to heal brute damage.
-    They are [color=lightblue]immune to biological hazards[/color] like toxins, diseases, and radiation.
-    They need to [color=orange]recharge their power cell[/color] periodically by using APCs or other power sources.
 
 ## IPC Healing
 ipc-heal-burn-none = {THE($target)} has no burn damage to repair.
