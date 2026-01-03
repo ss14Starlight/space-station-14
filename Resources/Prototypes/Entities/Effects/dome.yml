@@ -33,6 +33,35 @@
     tags:
       - HideContextMenu
 
+# Starlight - Smaller green dome for modsuit
+- type: entity
+  id: EnergyDomeModsuitGreen
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 0
+        mask:
+        - None
+        layer:
+        - BulletImpassable
+        - Opaque
+  - type: Sprite
+    sprite: Effects/EnergyDome/energydome_small.rsi
+    layers:
+    - state: small
+      color: "#adff9e"
+  - type: PointLight
+    enabled: true
+    radius: 3
+    power: 1.5
+    color: "#adff9e"
+
 - type: entity
   id: EnergyDomeSmallPink
   categories: [ HideSpawnMenu ]

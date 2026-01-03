@@ -1,0 +1,43 @@
+# Mercenary Modsuit Catalog Entries
+
+# Uplink entry for the Gallóglach Mercenary Modsuit
+- type: listing
+  id: UplinkMercenaryModsuit
+  name: uplink-mercenary-modsuit-name
+  description: uplink-mercenary-modsuit-desc
+  icon:
+    sprite: _Starlight/Clothing/Back/Modsuits/MODSUITMercenary.rsi
+    state: control-sealed
+  productEntity: ClothingBackpackMercenaryModsuitControlSealed
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkBundles
+  - UplinkArmor
+
+# Individual components (if players want to buy pieces separately)
+- type: listing
+  id: UplinkMercenaryModsuitGloves
+  name: uplink-mercenary-modsuit-gloves-name
+  description: uplink-mercenary-modsuit-gloves-desc
+  icon:
+    sprite: _Starlight/Clothing/Hands/Modsuits/MODSUITMercenary.rsi
+    state: gauntlets
+  productEntity: ClothingHandsGlovesMercenaryModsuit
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkArmor
+
+- type: listing
+  id: UplinkMercenaryModsuitBoots
+  name: uplink-mercenary-modsuit-boots-name
+  description: uplink-mercenary-modsuit-boots-desc
+  icon:
+    sprite: _Starlight/Clothing/Shoes/Modsuits/MODSUITMercenary.rsi
+    state: boots
+  productEntity: ClothingShoesBootsMercenaryModsuit
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkArmor

@@ -64,26 +64,49 @@
         Piercing: 0.9
         Heat: 0.9
 
-#Mercenary Hardsuit
+#Mercenary Hardsuit (Gallóglach Modsuit Helmet)
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitMercenary
-  name: mercenary hardsuit helmet
+  name: Gallóglach mercenary hardsuit helmet
+  suffix: modsuit
+  description: A reinforced combat helmet with integrated HUD and communications systems. Features advanced threat detection and ballistic protection.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hardsuits/mercenary.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Head/Hardsuits/mercenary.rsi
+    - type: Tag
+      tags:
+      - MercenaryModsuit
+      - CorgiWearable
+      - WhitelistChameleon
     - type: PressureProtection
       highPressureMultiplier: 0.45
       lowPressureMultiplier: 10000
     - type: Armor
       modifiers:
         coefficients:
-          Blunt: 0.9
-          Slash: 0.9
-          Piercing: 0.9
-          Heat: 0.9
+          Blunt: 0.85
+          Slash: 0.85
+          Piercing: 0.85
+          Heat: 0.85
+    - type: PointLight
+      enabled: false
+      radius: 5
+      energy: 2
+      color: "#adff9e"
+    - type: HandheldLight
+      addPrefix: false
+    - type: ToggleableLightVisuals
+      spriteLayer: light
+      inhandVisuals:
+        left:
+        - state: inhand-left-light
+          shader: unshaded
+        right:
+        - state: inhand-right-light
+          shader: unshaded
 
 #Space Hazard Suit
 - type: entity

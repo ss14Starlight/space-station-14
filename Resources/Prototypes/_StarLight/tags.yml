@@ -241,6 +241,9 @@
   id: MedCyberEyes
 
 - type: Tag
+  id: MercenaryModsuit
+
+- type: Tag
   id: MicroManipulatorStockPart
 
 - type: Tag

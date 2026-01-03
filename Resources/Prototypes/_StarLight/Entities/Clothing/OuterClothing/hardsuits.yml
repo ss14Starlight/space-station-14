@@ -101,17 +101,23 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetBattlesuitClown
 
-#Mercenary Hardsuit
+#Mercenary Hardsuit (Gallóglach Modsuit)
 - type: entity
   parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ]
   id: ClothingOuterHardsuitMercenary
-  name: mercenary hardsuit
-  description: It's a hardsuit. It could stop a bullet. It's sealed with top of the line duct tape.
+  name: Gallóglach mercenary hardsuit
+  suffix: modsuit
+  description: A heavy-duty combat hardsuit with integrated defensive systems. Features advanced ballistic protection and reactive armor plating. Part of the Gallóglach modsuit system.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/mercenary.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/mercenary.rsi
+    - type: Tag
+      tags:
+      - MercenaryModsuit
+      - Hardsuit
+      - WhitelistChameleon
     - type: PressureProtection
       highPressureMultiplier: 0.525
       lowPressureMultiplier: 10000
@@ -123,15 +129,17 @@
     - type: Armor
       modifiers:
         coefficients:
-          Blunt: 0.75
-          Slash: 0.75
+          Blunt: 0.70
+          Slash: 0.70
           Piercing: 0.75
           Caustic: 0.75
           Heat: 0.75
           Radiation: 0.75
-      staminaModifier: 0.9
+      staminaModifier: 0.85
+    - type: StaminaResistance
+      damageCoefficient: 0.80
     - type: ExplosionResistance
-      damageCoefficient: 0.75
+      damageCoefficient: 0.70
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitMercenary
 
