@@ -1,0 +1,4 @@
+- type: latheRecipe
+  parent: BaseStockPartRecipe
+  id: MicroLaserStockPart
+  result: MicroLaserStockPart

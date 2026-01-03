@@ -3,3 +3,10 @@
   id: StarlightNullspaceStatic
   recipes:
   - NullspaceAnchorMachineCircuitboard
+  
+- type: stack
+  parent: BaseSmallStack
+  id: MicroLaser
+  name: stack-micro-laser
+  icon: { sprite: /Textures/Objects/Misc/stock_parts.rsi, state: micro_laser }
+  spawn: MicroLaserStockPart

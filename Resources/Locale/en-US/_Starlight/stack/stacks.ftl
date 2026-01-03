@@ -12,3 +12,4 @@ stack-bluespacecrystal = {$amount ->
     [1] bluespace
     *[other] bluespaces
 }
+stack-micro-laser = Micro Laser
