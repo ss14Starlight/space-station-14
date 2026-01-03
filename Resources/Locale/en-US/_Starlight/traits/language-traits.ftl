@@ -41,3 +41,6 @@ trait-language-voxpidgin-desc = You know the language of the Vox, a language mos
 
 trait-language-moffic-name = Moffic
 trait-language-moffic-desc = The language of the moth-people, Moffic is basically completely unintelligible to all but yourself and it's native speakers.
+
+trait-language-crittish-name = Crittish
+trait-language-crittish-desc = You can speak Crittish, the language of the Rodentia, which is made up of a series of chirps and squeaks.

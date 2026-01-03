@@ -8,4 +8,4 @@
   id: rodentia
   spritePath: /Textures/_Starlight/Effects/speech.rsi
   typingState: rodentia0
-  offset: 0, 0.2 # 0625
+  idleState: rodentia0

@@ -2,67 +2,33 @@
   id: Crittish
   icon: LanguageIconCrittish
   speech:
-    color: "#c7df2edd" # MIKEY - needs new color
-    fontId: Copperplate # MIKEY - needs custom font
+    color: "#B09286" # MIKEY - needs new color
+    fontId: Crittish # MIKEY - needs custom font
+    obfuscationFont: true
   obfuscation:
     !type:SyllableObfuscation
-    minSyllables: 2
-    maxSyllables: 4
+    minSyllables: 1
+    maxSyllables: 2
     replacement:
-      - år
-      - i
-      - går
-      - sek
-      - mo
-      - ff
-      - ok
-      - gj
-      - ø
-      - gå
-      - la
-      - le
-      - lit
-      - ygg
-      - van
-      - dår
-      - næ
-      - møt
-      - idd
-      - hvo
-      - ja
-      - på
-      - han
-      - så
-      - ån
-      - det
-      - att
-      - nå
-      - gö
-      - bra
-      - int
-      - tyc
-      - om
-      - när
-      - två
-      - må
-      - dag
-      - sjä
-      - vii
-      - vuo
-      - eil
-      - tun
-      - käyt
-      - teh
-      - vä
-      - hei
-      - huo
-      - suo
-      - ää
-      - ten
-      - ja
-      - heu
-      - stu
-      - uhr
-      - kön
-      - we
-      - hön
+      - skrit
+      - chit
+      - skreek
+      - pip
+      - peep
+      - nib
+      - snik
+      - chee
+      - titch
+      - skik
+      - kik
+      - tik
+      - skik
+      - snik
+      - chit
+      - skit
+      - skik
+      - pip
+      - peep
+      - chii
+      - chuu
+      - skree

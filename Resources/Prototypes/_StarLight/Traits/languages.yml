@@ -174,3 +174,16 @@
     - Moffic
   languagesUnderstood:
     - Moffic
+
+- type: trait
+  id: Crittish
+  name: trait-language-crittish-name
+  description: trait-language-crittish-desc
+  category: LanguageTraits
+  cost: 2
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Crittish
+  languagesUnderstood:
+    - Crittish
