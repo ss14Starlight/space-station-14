@@ -18,6 +18,15 @@
       role: JobPassenger
       time: 20h # fun mantle for the most experienced assistants
 
+- type: loadoutEffectGroup
+  id: Assistant100
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 100h # for the Ancient PDA
+
 # Mask
 - type: loadout
   id: AssistantFace

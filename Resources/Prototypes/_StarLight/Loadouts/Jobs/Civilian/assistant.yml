@@ -488,7 +488,7 @@
   id: AncientPDA
   effects:
     - !type:GroupLoadoutEffect
-      proto: MasterGrey
+      proto: Assistant100
   equipment:
     id: AncientPDA
 

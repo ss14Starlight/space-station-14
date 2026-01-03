@@ -164,7 +164,10 @@
   parent: BasePDA
   id: AncientPDA
   name: ancient PDA
+  description: And when the tider saw the breadth of their domain, they wept, for there were no more departments to conquer.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: AssistantIDCard
     penSlot:
@@ -179,8 +182,9 @@
        !type:String
        pda-ancient
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#575757"
   - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-ancient
 
 - type: entity
