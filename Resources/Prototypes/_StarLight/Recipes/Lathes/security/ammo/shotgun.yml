@@ -138,3 +138,38 @@
   materials:
     Steel: 80
     Plastic: 80
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BoxLethalshotToz
+  result: BoxLethalshotToz
+  materials:
+    Steel: 120
+
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: MagazineShotgunTozEmpty
+  result: MagazineShotgunTozEmpty
+  materials:
+    Steel: 10
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineShotgunToz
+  result: MagazineShotgunToz
+  materials:
+    Steel: 60
+
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: MagazineShotgunTozExtendedEmpty
+  result: MagazineShotgunTozExtendedEmpty
+  materials:
+    Steel: 20
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineShotgunTozExtended
+  result: MagazineShotgunTozExtended
+  materials:
+    Steel: 120

@@ -24961,5 +24961,125 @@ Entries:
   id: 265800
   time: '2025-12-31T17:12:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2658
+- author: CrazyPhantom
+  changes:
+  - message: Antag Loadouts
+    type: Add
+  - message: Xenoborg Name Loadout
+    type: Add
+  id: 266900
+  time: '2026-01-02T17:28:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2669
+- author: wonderfulnewworld
+  changes:
+  - message: Formal Cargo cap, Senior Courier Backpack/Duffel Bag/Satchel, Formal
+      Cargo Winter Coat, and Formal Cargo Winter Boots (60 Hours Cargo)
+    type: Add
+  - message: Science (except Roboticists) now spawn with a science waist bag. It's
+      2x1 bigger than a normal waist bag, but you can't get them from the SciDrobe
+    type: Add
+  - message: Sinks are now constructable (7 Steel + 2 Plasteel)
+    type: Add
+  - message: Toilets now cost 1 Plasteel in addition to the 5 steel they already cost
+    type: Tweak
+  - message: Added Dogtag trinket! (5 hours SecOfficer)
+    type: Add
+  id: 267300
+  time: '2026-01-02T17:28:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2673
+- author: Sparlight
+  changes:
+  - message: Mindshields and round-flow components transfer by default when polymorphing.
+    type: Tweak
+  id: 259000
+  time: '2026-01-02T17:34:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2590
+- author: R3v3l4t1on
+  changes:
+  - message: Disposal junctions are now named mergers.
+    type: Tweak
+  - message: Disposal junctions will now send items entering via their designated
+      entrances straight through. For the y-junction, they will move to the right.
+    type: Tweak
+  - message: Disposal routers will ignore items entering via either the filtered or
+      unfiltered exits, routing them to the entrance instead.
+    type: Tweak
+  id: 262500
+  time: '2026-01-02T17:50:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2625
+- author: Rhetorica
+  changes:
+  - message: Grumbakul, the language of the dwarves
+    type: Add
+  - message: Darktongue, the language of nasty things
+    type: Add
+  - message: Classical, the language of ancient scholars
+    type: Add
+  - message: Aielic, the language of... who knows? (Maybe elves?)
+    type: Add
+  - message: Traits for learning the above
+    type: Add
+  - message: Ability for familiars, Nar'Sie, Librarian, and terror spiders to speak
+      Darktongue
+    type: Add
+  - message: Ability for Remilia to understand Mouse
+    type: Add
+  - message: Ability for Cerberus to understand Fox
+    type: Add
+  - message: Improved ChavAccent so it doesn't interfere with essential communications
+    type: Tweak
+  id: 258400
+  time: '2026-01-02T18:13:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2584
+- author: Peter Poley and Rhetorica
+  changes:
+  - message: .42 pellet ammo (small-bore shotgun ammo)
+    type: Add
+  - message: .42 pellet ammo to emagged lathes
+    type: Add
+  - message: ZOZ-106 shotgun (fires .42 pellet)
+    type: Add
+  - message: ZOZ-106 shotgun to rev uplink, maints lockers, weapon lottery
+    type: Add
+  id: 259300
+  time: '2026-01-02T18:13:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2593
+- author: Rinary
+  changes:
+  - message: Removed hugs transferring temperature feature
+    type: Remove
+  id: 267400
+  time: '2026-01-02T21:14:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2674
+- author: Shades
+  changes:
+  - message: Bright-eye Loadout
+    type: Add
+  id: 267600
+  time: '2026-01-02T17:28:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2676
+- author: R3v3l4t1on
+  changes:
+  - message: Swapped the multitool and welder around in the xenoborg tool module so
+      they're consistent with the normal tool module
+    type: Tweak
+  - message: Xenoborg is now 15 hours of borg playtime. Mothership is 5 hours of AI
+      playtime
+    type: Tweak
+  - message: The mothership can now communicate with their xenoborgs.
+    type: Fix
+  id: 264700
+  time: '2026-01-03T01:53:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2647
+- author: CrazyPhantom
+  changes:
+  - message: Cyborgs can now select Posibrain or Brain in loadout. Brain goes off
+      your characters specie.
+    type: Add
+  - message: Above for Xenoborgs too
+    type: Add
+  id: 232500
+  time: '2026-01-03T02:20:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2325
 Order: -1
 

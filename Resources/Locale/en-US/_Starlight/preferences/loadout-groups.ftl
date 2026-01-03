@@ -57,6 +57,9 @@ loadout-group-mining-id = Mining Specialist ID
 loadout-group-salvage-id = Salvage Specialist ID
 loadout-group-salvage-lead-mantle = Salvage Lead mantle 
 
+# Silicons
+loadout-group-borg-brain-type = Cyborg Brain Type
+
 # Medical
 loadout-group-chemist-head = Chemist head
 loadout-group-chemist-eyewear = Chemist eyewear
@@ -67,6 +70,10 @@ loadout-group-chemist-labeler = Chemist labeler
 loadout-group-chemist-shoes = Chemist shoes
 
 # Other
-
 loadout-group-scarves = Scarf
 loadout-group-pens = Pen
+
+# Brighteye
+loadout-group-brighteye-jumpsuit = Brighteye jumpsuit
+Loadout-group-brighteye-neck = Brighteye neck
+loadout-group-brighteye-gloves = Brighteye gloves
