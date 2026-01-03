@@ -8,7 +8,7 @@
   markingCategory: Chest
   speciesRestriction: [IPC]
   sprites:
-  - sprite: Mobs/Customization/ipc/wings.rsi
+  - sprite: _FarHorizons/Mobs/Customization/ipc/wings.rsi
     state: robotic_base
-  - sprite: Mobs/Customization/ipc/wings.rsi
+  - sprite: _FarHorizons/Mobs/Customization/ipc/wings.rsi
     state: robotic_light

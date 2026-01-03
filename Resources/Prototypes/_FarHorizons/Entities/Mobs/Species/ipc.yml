@@ -150,11 +150,13 @@
       260: 0.7
   - type: EyeProtection # _STARLIGHT: IPCs immune to welding flashes - protective optical filters
     protectionTime: 120 # 2 minutes protection (welders apply 10s blind = full immunity)
-  - type: LanguageKnowledge
+  - type: LanguageKnowledge # _STARLIGHT: Added Machine language for IPC communication
     speaks:
     - GalacticCommon
+    - Machine
     understands:
     - GalacticCommon
+    - Machine
 
 - type: entity
   parent: BaseSpeciesDummy

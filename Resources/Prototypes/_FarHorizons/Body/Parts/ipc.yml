@@ -11,9 +11,9 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Mobs/Species/IPC/parts.rsi
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
   - type: Icon
-    sprite: Mobs/Species/IPC/parts.rsi
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
   - type: Damageable
     damageContainer: Silicon
   - type: BodyPart

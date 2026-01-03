@@ -47,7 +47,7 @@
   description: "Advanced optical sensors for synthetic vision."
   components:
   - type: Sprite
-    sprite: Mobs/Species/IPC/organs.rsi
+    sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
     state: eyes
   - type: Organ
 
@@ -70,7 +70,7 @@
   description: "A pump that circulates coolant through the synthetic body."
   components:
   - type: Sprite
-    sprite: Mobs/Species/IPC/organs.rsi
+    sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
     state: heart-on
   - type: Organ
   - type: Metabolizer

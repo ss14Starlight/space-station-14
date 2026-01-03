@@ -43,7 +43,7 @@
 - type: guideEntry
   id: IPC
   name: species-name-ipc
-  text: "/ServerInfo/Guidebook/Mobs/IPC.xml"
+  text: "/ServerInfo/Guidebook/_FarHorizons/Mobs/IPC.xml"
 
 - type: guideEntry
   id: Moth
