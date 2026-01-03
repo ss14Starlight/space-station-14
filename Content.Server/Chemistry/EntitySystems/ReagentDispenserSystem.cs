@@ -189,7 +189,7 @@ namespace Content.Server.Chemistry.EntitySystems
             if (!_powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery))
                 return;
 
-            var energy = _battery.GetChargeLevel(battery.Value); // Use GetChargeLevel 
+            var energy = _battery.GetChargeLevel(battery.Value.AsNullable()); // Use GetChargeLevel 
             var message = new ReagentDispenserEnergyUpdateMessage(energy);
             _userInterfaceSystem.ServerSendUiMessage(reagentDispenser.Owner, ReagentDispenserUiKey.Key, message);
         }
@@ -436,7 +436,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
             var inventory = GetInventory(reagentDispenser);
 
-            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? _battery.GetChargeLevel(battery.Value) : 0f; // Starlight-edit: Energy bar, use GetChargeLevel
+            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? _battery.GetChargeLevel(battery.Value.AsNullable()) : 0f; // Starlight-edit: Energy bar, use GetChargeLevel
 
             // Starlight-start: Master-Dispenser linking
             var transferToChemMaster = false;
