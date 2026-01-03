@@ -179,5 +179,5 @@
   id: LanguageIconCrittish
   icon:
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
-    state: buzz # MIKEY - replace with custom icon
+    state: rodentia
   allowSelection: false
