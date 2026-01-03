@@ -184,7 +184,10 @@ public sealed class PtlSystem : EntitySystem
             var stationUid = _station.GetOwningStation(uid);
             if (stationUid != null && TryComp<StationBankAccountComponent>(stationUid, out var bank))
             {
-                _cargo.UpdateBankAccount((stationUid.Value, bank), whole, bank.PrimaryAccount);
+                if (HasEngineeringOrderConsole(stationUid.Value))
+                    _cargo.UpdateBankAccount((stationUid.Value, bank), whole, "Engineering");
+                else
+                    _cargo.UpdateBankAccount((stationUid.Value, bank), whole, bank.PrimaryAccount);
             }
 
             comp.SpesoCarry -= whole;
@@ -258,5 +261,21 @@ public sealed class PtlSystem : EntitySystem
             comp.MinPowerMw,
             comp.MaxPowerMw,
             comp.TotalSpesosEarned));
+    }
+
+    private bool HasEngineeringOrderConsole(EntityUid stationUid)
+    {
+        var query = EntityQueryEnumerator<CargoOrderConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var console))
+        {
+            if (console.Account != "Engineering")
+                continue;
+
+            var consoleStation = _station.GetOwningStation(consoleUid);
+            if (consoleStation == stationUid)
+                return true;
+        }
+
+        return false;
     }
 }
