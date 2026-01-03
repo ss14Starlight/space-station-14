@@ -1,7 +1,7 @@
 
 using Content.Shared.Popups;
 
-namespace Content.Shared.DeltaV.Abilities;
+namespace Content.Shared._DeltaV.Abilities;
 public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;

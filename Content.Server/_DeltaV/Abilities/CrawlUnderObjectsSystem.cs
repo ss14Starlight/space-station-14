@@ -1,7 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Climbing.Events;
-using Content.Shared.DeltaV.Abilities;
+using Content.Shared._DeltaV.Abilities;
 using Content.Shared.Maps;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
@@ -9,7 +9,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 
-namespace Content.Server.DeltaV.Abilities;
+namespace Content.Server._DeltaV.Abilities;
 
 public sealed partial class CrawlUnderObjectsSystem : SharedCrawlUnderObjectsSystem
 {
