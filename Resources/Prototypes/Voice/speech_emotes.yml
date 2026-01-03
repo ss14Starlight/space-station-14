@@ -423,12 +423,6 @@
   chatMessages: ["chat-emote-msg-deathgasp-monkey"]
 
 - type: emote
-  id: IPCDeathgasp
-  name: chat-emote-name-deathgasp
-  icon: Interface/Emotes/deathgasp.png
-  chatMessages: ["chat-emote-msg-deathgasp-ipc"]
-
-- type: emote
   id: ScurretDeathgasp
   name: chat-emote-name-deathgasp
   icon: Interface/Emotes/deathgasp.png

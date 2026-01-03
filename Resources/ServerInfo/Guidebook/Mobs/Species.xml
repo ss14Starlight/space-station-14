@@ -17,7 +17,7 @@
   <GuideEntityEmbed Entity="MobVox" Caption="Vox"/>
   <GuideEntityEmbed Entity="MobThaven" Caption="Thaven"/>
   <GuideEntityEmbed Entity="MobResomi" Caption="Resomi"/>
-  <GuideEntityEmbed Entity="MobIPCDummy" Caption="IPC"/> <!-- _STARLIGHT: Added IPC to species visual list -->
+  <GuideEntityEmbed Entity="MobIPCDummy" Caption="IPC"/> <!-- _FARHORIZONS: Added IPC to species visual list -->
   </Box>
   <Box>
   <GuideEntityEmbed Entity="MobDwarf" Caption="Dwarf"/>

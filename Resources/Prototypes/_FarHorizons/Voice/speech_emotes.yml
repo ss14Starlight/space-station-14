@@ -1,0 +1,9 @@
+# _FARHORIZONS: IPC-specific speech emotes
+- type: emote
+  id: IPCDeathgasp
+  name: chat-emote-name-deathgasp
+  icon: Interface/Emotes/deathgasp.png
+  whitelist:
+    components:
+    - MobState
+  chatMessages: ["chat-emote-msg-deathgasp-ipc"]
