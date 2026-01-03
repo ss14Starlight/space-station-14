@@ -106,6 +106,7 @@
   - leftripperarm #SL
   - CigPackBub #SL
   - PillCanisterPsicodine #SL
+  - ClothingDogTags # SL
 
 - type: loadoutGroup
   id: Glasses
@@ -910,6 +911,7 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianHead
+  - CargoTechnicianHeadFormal # Starlight
   - CargoTechnicianBeret # 🌟Starlight🌟
   - CargoTechnicianBeretFormal # 🌟Starlight🌟
 
@@ -931,6 +933,9 @@
   - CargoTechnicianBackpack
   - CargoTechnicianSatchel
   - CargoTechnicianDuffel
+  - SeniorCourierBackpack # Starlight
+  - SeniorCourierSatchel # Starlight
+  - SeniorCourierDuffel # Starlight
   - LeatherSatchel # starlight
 
 - type: loadoutGroup
@@ -939,6 +944,7 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianWintercoat
+  - SeniorCourierWintercoat # Starlight
   - WindbreakerCargo #Starlight
 
 - type: loadoutGroup
@@ -948,6 +954,7 @@
   - BlackShoes
   - YellowShoes # 🌟Starlight🌟
   - CargoWinterBoots
+  - SeniorCourierWinterBoots # Starlight
   - LeatherShoes # 🌟Starlight🌟
   - WorkBoots # 🌟Starlight🌟
   - Heels # 🌟Starlight🌟

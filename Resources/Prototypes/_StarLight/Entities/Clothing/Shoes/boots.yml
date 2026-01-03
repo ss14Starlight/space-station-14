@@ -29,3 +29,13 @@
     sprite: _Starlight/Clothing/Shoes/Boots/winterbootschem.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Shoes/Boots/winterbootschem.rsi
+
+- type: entity
+  parent: ClothingShoesBaseWinterBoots
+  id: ClothingShoesBootsWinterSeniorCourier
+  name: formal cargo winter boots
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Boots/winterbootscargosenior.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Boots/winterbootscargosenior.rsi
