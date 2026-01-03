@@ -12,6 +12,7 @@
   - Igniter
   - ModularReceiver
   - MicroManipulatorStockPart
+  - MicroLaserStockPart # Starlight
   - ConveyorBeltAssembly
 
 - type: latheRecipePack

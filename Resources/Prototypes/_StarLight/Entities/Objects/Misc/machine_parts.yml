@@ -1,0 +1,15 @@
+#Starlight
+- type: entity
+  id: MicroLaserStockPart
+  name: modular machine part
+  parent: BaseStockPart
+  description: A basic machine part used in the construction of a variety of devices.
+  suffix: Rating 1
+  components:
+    - type: Sprite
+      state: micro_laser
+    - type: Stack
+      stackType: MicroLaser
+    - type: Tag
+      tags:
+      - MicroLaserStockPart

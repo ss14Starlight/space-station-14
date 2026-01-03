@@ -2,3 +2,8 @@
   parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
   id: MassDriverCircuitboard
   result: MassDriverCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: PowerTransmissionLaserMachineCircuitboard
+  result: PowerTransmissionLaserMachineCircuitboard

@@ -23,3 +23,9 @@
   parent: BaseStockPartRecipe
   id: MicroManipulatorStockPart
   result: MicroManipulatorStockPart
+
+#Starlight
+- type: latheRecipe
+  parent: BaseStockPartRecipe
+  id: MicroLaserStockPart
+  result: MicroLaserStockPart

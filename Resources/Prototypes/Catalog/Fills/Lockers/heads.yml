@@ -233,6 +233,7 @@
     - id: ClothingHeadsetAltEngineering
     - id: DoorRemoteEngineering
     - id: BoxCECircuitboards
+    - id: PowerTransmissionLaserMachineCircuitboard # Starlight
     - id: RCD
     - id: RCDAmmo
     - id: RubberStampCE

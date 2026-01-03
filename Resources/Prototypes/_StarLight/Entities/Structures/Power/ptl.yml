@@ -1,11 +1,22 @@
 - type: entity
   id: PowerTransmissionLaser
-  parent: BaseMachine
+  parent: [BaseMachine, ConstructibleMachine]
   name: PTL
   description: todo
   placement:
     mode: SnapgridCenter
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-1.5,1.5,1.5"
+        density: 50
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
   - type: Sprite
     sprite: _Starlight/Structures/Power/ptl.rsi
     noRot: true
@@ -30,11 +41,11 @@
     interfaces:
       enum.PtlUiKey.Key:
         type: PtlBoundUserInterface
+  - type: Machine
+    board: PowerTransmissionLaserMachineCircuitboard
   - type: Ptl
-    targetPowerMw: 1
-    maxPowerMw: 5
     cycleTimeSeconds: 2
-    spesosPerMwPerCycle: 50
+    spesosPerMwPerCycle: 60
   - type: Battery
     startingCharge: 0
     maxCharge: 24000000
@@ -42,17 +53,22 @@
   - type: PowerNetworkBattery
     canDischarge: false
     maxSupply: 0
-    maxChargeRate: 5000
+    maxChargeRate: 1000000 # 1 MW charge rate
   - type: BatteryCharger
-    voltage: Medium
+    voltage: High
     node: input
   - type: PowerConsumer
-    voltage: Medium
+    voltage: High
     node: input
     drawRate: 0
+  - type: PowerMonitoringDevice
+    group: Substation
+    sourceNode: input
+    sprite: _Starlight/Structures/Power/ptl.rsi
+    state: monitoring_unit
   - type: NodeContainer
     examinable: true
     nodes:
       input:
         !type:CableDeviceNode
-        nodeGroupID: MVPower
+        nodeGroupID: HVPower

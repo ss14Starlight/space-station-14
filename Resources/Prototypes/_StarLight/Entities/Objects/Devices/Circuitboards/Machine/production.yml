@@ -10,7 +10,27 @@
         Steel: 3
         Manipulator: 1
         Glass: 1
-        
+
+- type: entity
+  id: PowerTransmissionLaserMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: PTL machine board
+  description: A machine printed circuit board for a power transmission laser
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: PowerTransmissionLaser
+      stackRequirements:
+        Steel: 15
+        Glass: 15
+        MicroLaser: 3
+        CableHV: 15
+      componentRequirements:
+        PowerCell:
+          amount: 8
+          defaultPrototype: PowerCellMedium
+
 - type: entity
   id: OvenMachineCircuitboard
   parent: BaseMachineCircuitboard
@@ -26,8 +46,8 @@
         Cable: 10
     - type: Tag
       tags:
-      - OvenMachineBoard
-      
+        - OvenMachineBoard
+
 - type: entity
   id: StoveMachineCircuitboard
   parent: BaseMachineCircuitboard
@@ -42,7 +62,7 @@
         Cable: 5
     - type: Tag
       tags:
-      - StoveMachineBoard
+        - StoveMachineBoard
 
 - type: entity
   id: ScanGateMachineCircuitboard
@@ -60,7 +80,7 @@
         Cable: 10
     - type: Tag
       tags:
-      - ScanGateMachineBoard
+        - ScanGateMachineBoard
 
 - type: entity
   id: SlopDispenserMachineCircuitboard
@@ -75,28 +95,28 @@
       stackRequirements:
         Manipulator: 4
         Glass: 1
-        
+
 - type: entity
   parent: BaseMachineCircuitboard
   id: AssortedForgeParts
   name: assorted forge parts
   description: A small pile of components for making a forge for an anvil, contains an igniter and valves.
   components:
-  - type: MachineBoard
-    prototype: TiderLathe
-    stackRequirements:
-      Plasteel: 13
-      Steel: 5
-    tagRequirements:
-      GasTank:
-        amount: 2
-        defaultPrototype: OxygenTank
-  - type: Sprite
-    sprite: _Starlight/Objects/Devices/assorted_forge_parts.rsi
-    state: icon
-  - type: Construction
-    graph: AssortedForgeParts
-    node: finish
+    - type: MachineBoard
+      prototype: TiderLathe
+      stackRequirements:
+        Plasteel: 13
+        Steel: 5
+      tagRequirements:
+        GasTank:
+          amount: 2
+          defaultPrototype: OxygenTank
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/assorted_forge_parts.rsi
+      state: icon
+    - type: Construction
+      graph: AssortedForgeParts
+      node: finish
 
 - type: entity
   id: VendingMachineCondimentsCircuitboard
@@ -1129,15 +1149,15 @@
         CableHV: 10
         BluespaceCrystal: 1
         Glass: 2
-          
+
 - type: entity
   parent: BaseMachineCircuitboard
   id: MassDriverCircuitboard
   name: mass driver board
   components:
-  - type: MachineBoard
-    prototype: MassDriver
-    stackRequirements:
-      Steel: 5
-      Manipulator: 2
-      Cable: 4
+    - type: MachineBoard
+      prototype: MassDriver
+      stackRequirements:
+        Steel: 5
+        Manipulator: 2
+        Cable: 4

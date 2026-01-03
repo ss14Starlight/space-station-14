@@ -11,3 +11,11 @@
   name: stack-micro-manipulator
   icon: { sprite: /Textures/Objects/Misc/stock_parts.rsi, state: micro_mani }
   spawn: MicroManipulatorStockPart
+  
+#Starlight
+- type: stack
+  parent: BaseSmallStack
+  id: MicroLaser
+  name: stack-micro-laser
+  icon: { sprite: /Textures/Objects/Misc/stock_parts.rsi, state: micro_laser }
+  spawn: MicroLaserStockPart

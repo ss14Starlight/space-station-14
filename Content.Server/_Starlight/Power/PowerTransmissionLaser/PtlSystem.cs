@@ -1,11 +1,16 @@
+using Content.Server.Cargo.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Popups;
+using Content.Server.Station.Systems;
 using Content.Shared._Starlight.Power.PowerTransmissionLaser;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Power.Components;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Content.Shared.Power;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.Power.PowerTransmissionLaser;
 
@@ -15,6 +20,9 @@ public sealed class PtlSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     private const float WattsPerMegawatt = 1_000_000f;
 
@@ -56,15 +64,18 @@ public sealed class PtlSystem : EntitySystem
 
     private void OnSetEnabled(EntityUid uid, PtlComponent comp, PtlSetEnabledMessage args)
     {
+        var oldEnabled = comp.Enabled;
+
         if (args.Enabled && comp.TargetPowerMw <= 0f)
         {
             _popup.PopupEntity(Loc.GetString("ptl-ui-error-power-zero"), uid, args.Actor);
-            comp.Enabled = false;
+            SetEnabled(uid, comp, false);
+        }else{
+            SetEnabled(uid, comp, args.Enabled);
         }
-        else
-        {
-            comp.Enabled = args.Enabled;
-        }
+
+        if (oldEnabled && comp.Enabled)
+            return;
 
         UpdatePowerLoad(uid, comp);
         UpdateAppearance(uid, comp);
@@ -78,7 +89,7 @@ public sealed class PtlSystem : EntitySystem
 
         if (comp.Enabled && comp.TargetPowerMw <= 0f)
         {
-            comp.Enabled = false;
+            SetEnabled(uid, comp, false);
             _popup.PopupEntity(Loc.GetString("ptl-ui-error-power-zero"), uid, args.Actor);
         }
 
@@ -119,11 +130,11 @@ public sealed class PtlSystem : EntitySystem
         if (comp.TargetPowerMw <= 0f)
             return;
 
-        var targetWatts = comp.TargetPowerMw * WattsPerMegawatt;
+        var targetWatts = (double) comp.TargetPowerMw * WattsPerMegawatt;
         var targetEnergyJ = targetWatts * comp.CycleTimeSeconds;
 
         var powered = consumer.ReceivedPower > 0.001f;
-        float actualEnergyUsedJ;
+        double actualEnergyUsedJ;
 
         if (powered)
         {
@@ -131,10 +142,9 @@ public sealed class PtlSystem : EntitySystem
         }
         else
         {
-            // Fallback to internal battery.
             if (!TryComp<BatteryComponent>(uid, out var battery))
             {
-                comp.Enabled = false;
+                SetEnabled(uid, comp, false);
                 UpdatePowerLoad(uid, comp);
                 UpdateAppearance(uid, comp);
                 DirtyUi(uid, comp);
@@ -143,33 +153,40 @@ public sealed class PtlSystem : EntitySystem
 
             if (_battery.GetCharge((uid, battery)) <= 0f)
             {
-                comp.Enabled = false;
+                SetEnabled(uid, comp, false);
                 UpdatePowerLoad(uid, comp);
                 UpdateAppearance(uid, comp);
                 DirtyUi(uid, comp);
                 return;
             }
 
-            var delta = _battery.UseCharge((uid, battery), targetEnergyJ);
-            actualEnergyUsedJ = -delta;
+            var delta = _battery.UseCharge((uid, battery), (float) targetEnergyJ);
+            actualEnergyUsedJ = -(double) delta;
 
             if (_battery.GetCharge((uid, battery)) <= 0.001f)
             {
                 _battery.SetCharge((uid, battery), 0f);
-                comp.Enabled = false;
+                SetEnabled(uid, comp, false);
                 UpdatePowerLoad(uid, comp);
                 UpdateAppearance(uid, comp);
             }
         }
 
-        var spesosPerJoule = comp.SpesosPerMwPerCycle / (WattsPerMegawatt * comp.CycleTimeSeconds);
-        var earned = (double) actualEnergyUsedJ * spesosPerJoule;
+        var fraction = targetEnergyJ <= 0.0 ? 0.0 : actualEnergyUsedJ / targetEnergyJ;
+        var earned = (double) comp.TargetPowerMw * comp.SpesosPerMwPerCycle * fraction;
 
         comp.SpesoCarry += earned;
-        var whole = (int) Math.Floor(comp.SpesoCarry);
+        var whole = (int) Math.Floor(comp.SpesoCarry + 1e-9);
         if (whole > 0)
         {
             comp.TotalSpesosEarned += whole;
+
+            var stationUid = _station.GetOwningStation(uid);
+            if (stationUid != null && TryComp<StationBankAccountComponent>(stationUid, out var bank))
+            {
+                _cargo.UpdateBankAccount((stationUid.Value, bank), whole, bank.PrimaryAccount);
+            }
+
             comp.SpesoCarry -= whole;
         }
 
@@ -186,6 +203,27 @@ public sealed class PtlSystem : EntitySystem
     }
 
     private void UpdateAppearance(EntityUid uid, PtlComponent comp) => _appearance.SetData(uid, PtlVisuals.Active, comp.Enabled);
+
+    private void SetEnabled(EntityUid uid, PtlComponent comp, bool enabled)
+    {
+        if (comp.Enabled == enabled)
+            return;
+
+        comp.Enabled = enabled;
+
+        if (enabled)
+        {
+            _audio.PlayPvs(comp.StartSound, uid, AudioParams.Default.WithVolume(-3f).WithMaxDistance(7f));
+            comp.PlayingStream = _audio.Stop(comp.PlayingStream);
+            comp.PlayingStream = _audio.PlayPvs(comp.LoopingSound, uid,
+                AudioParams.Default.WithLoop(true).WithVolume(2f).WithMaxDistance(10f))?.Entity;
+        }
+        else
+        {
+            _audio.PlayPvs(comp.StartSound, uid, AudioParams.Default.WithVolume(-3f).WithMaxDistance(7f));
+            comp.PlayingStream = _audio.Stop(comp.PlayingStream);
+        }
+    }
 
     private void DirtyUi(EntityUid uid, PtlComponent comp)
     {
