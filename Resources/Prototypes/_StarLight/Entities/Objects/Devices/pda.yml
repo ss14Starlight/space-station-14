@@ -162,6 +162,29 @@
 
 - type: entity
   parent: BasePDA
+  id: AncientPDA
+  name: ancient PDA
+  components:
+  - type: Pda
+    id: AssistantIDCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ancient
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
+  - type: Icon
+    state: pda-ancient
+
+- type: entity
+  parent: BasePDA
   id: NanoTrasenRepresentativePDA
   name: NanoTrasen representative PDA
   components:

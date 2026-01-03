@@ -11,6 +11,7 @@ loadout-group-roboticist-shoes = Roboticist shoes
 loadout-group-assistant-glasses = Assistant glasses
 loadout-group-assistant-head = Assistant head
 loadout-group-assistant-backpack = Assistant backpack
+loadout-group-assistant-pda = Assistant pda
 
 # Command
 

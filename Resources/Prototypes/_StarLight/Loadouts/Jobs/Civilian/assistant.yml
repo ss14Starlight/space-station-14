@@ -485,6 +485,14 @@
     outerClothing: ClothingOuterCoatSpaceAsshole
 
 - type: loadout
+  id: AncientPDA
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: MasterGrey
+  equipment:
+    id: AncientPDA
+
+- type: loadout
   id: RedLeatherJacker
   effects:
     - !type:GroupLoadoutEffect

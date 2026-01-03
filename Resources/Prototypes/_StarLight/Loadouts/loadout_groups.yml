@@ -132,6 +132,13 @@
   - LeatherSatchel
 
 - type: loadoutGroup
+  id: AssistantPDA
+  name: loadout-group-assistant-pda
+  loadouts:
+ # - AssistantPDA
+  - AncientPDA
+
+- type: loadoutGroup
   id: RoboticistJumpsuit
   name: loadout-group-roboticist-jumpsuit
   loadouts:
