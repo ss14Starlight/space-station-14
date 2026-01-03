@@ -25,7 +25,7 @@ public sealed class BodySystem : SharedBodySystem
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly LimbSystem _limbSystem = default!;//🌟Starlight🌟
+    [Dependency] private readonly LimbSystem _limbSystem = default!;
 
     public override void Initialize()
     {
@@ -77,7 +77,7 @@ public sealed class BodySystem : SharedBodySystem
         }
         
         if (TryComp<HumanoidAppearanceComponent>(bodyEnt, out var humanoid))
-            _limbSystem.AddLimbVisual((bodyEnt, humanoid), partEnt); //🌟Starlight🌟
+            _limbSystem.AddLimbVisual((bodyEnt, humanoid), partEnt);
     }
 
     protected override void RemovePart(

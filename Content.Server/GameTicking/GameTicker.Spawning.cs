@@ -433,11 +433,8 @@ namespace Content.Server.GameTicking
             DebugTools.AssertNotNull(mobMaybe);
             mob = mobMaybe!.Value;
 
-            //starlight start
-            //handle character voices
             newMind.Comp.Voice = character.Voice;
             newMind.Comp.SiliconVoice = character.SiliconVoice;
-            //starlight end
 
             _mind.TransferTo(newMind, mob);
 

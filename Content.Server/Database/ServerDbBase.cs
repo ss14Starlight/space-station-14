@@ -333,7 +333,7 @@ namespace Content.Server.Database
             var humanoid = new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.Voice,
-                profile.SiliconVoice, // 🌟Starlight🌟
+                profile.SiliconVoice,
                 physicalDesc, // Starlight
                 personalityDesc, // Starlight
                 personalNotes, // Starlight
@@ -396,7 +396,7 @@ namespace Content.Server.Database
 
             profile.CharacterName = humanoid.Name;
             profile.Voice = humanoid.Voice;
-            profile.SiliconVoice = humanoid.SiliconVoice; // 🌟Starlight🌟
+            profile.SiliconVoice = humanoid.SiliconVoice;
             profile.FlavorText = string.Empty; //Starlight
             profile.CharacterInfo ??= new StarLightModel.CharacterInfo();//Starlight
             profile.CharacterInfo.PhysicalDesc = humanoid.PhysicalDescription;//Starlight
