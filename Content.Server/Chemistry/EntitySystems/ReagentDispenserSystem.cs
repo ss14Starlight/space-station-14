@@ -26,6 +26,10 @@ using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Starlight.Chemistry;
+using Content.Server.Chemistry.Components;
+using Content.Server.Pinpointer;
+using Content.Shared.IdentityManagement;
 // Starlight end
 
 namespace Content.Server.Chemistry.EntitySystems
@@ -51,6 +55,9 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly SharedContainerSystem _container = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
         [Dependency] private readonly PredictedBatterySystem _battery = default!;
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly MetaDataSystem _metaData = default!;
+        [Dependency] private readonly NavMapSystem _navMap = default!;
         private readonly Dictionary<EntityUid, float> _uiUpdateAccumulators = new();
         private const float UiUpdateInterval = 0.5f;
         // Starlight-end
@@ -76,10 +83,13 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ReagentDispenserComponent, PowerCellChangedEvent>(OnPowerCellChanged);
             SubscribeLocalEvent<ReagentDispenserComponent, DestructionEventArgs>(OnDestruction);
             SubscribeLocalEvent<ReagentDispenserComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
+            // ChemMaster linking
+            SubscribeLocalEvent<ReagentDispenserComponent, MasterDispenserTransferMessage>(OnToggleChemMasterMode);
+            SubscribeLocalEvent<ReagentDispenserComponent, MasterDispenserLinkMessage>(OnLinkChemMaster);
             // Starlight End
         }
 
-        // Starlight Start: Reagent Dispensers use cells
+        // Starlight Start: Reagent Dispensers use cells and can be linked to a nearby ChemMaster
         #region Starlight
         private void OnComponentRemove(EntityUid uid, ReagentDispenserComponent component, ComponentRemove args)
         {
@@ -179,7 +189,7 @@ namespace Content.Server.Chemistry.EntitySystems
             if (!_powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery))
                 return;
 
-            var energy = battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge;
+            var energy = _battery.GetChargeLevel(battery.Value); // Use GetChargeLevel 
             var message = new ReagentDispenserEnergyUpdateMessage(energy);
             _userInterfaceSystem.ServerSendUiMessage(reagentDispenser.Owner, ReagentDispenserUiKey.Key, message);
         }
@@ -211,6 +221,206 @@ namespace Content.Server.Chemistry.EntitySystems
             if (TryComp<ActivatableUIComponent>(ent.Owner, out var activatable) && activatable.Key != null)
                 _userInterfaceSystem.CloseUi(ent.Owner, activatable.Key);
         }
+
+        private void OnToggleChemMasterMode(Entity<ReagentDispenserComponent> ent, ref MasterDispenserTransferMessage args)
+        {
+            if (!TryComp<MasterDispenserLinkComponent>(ent.Owner, out var linkComp))
+                return;
+
+            // Can't toggle on if no ChemMaster is linked
+            if (!linkComp.TransferToChemMaster && linkComp.LinkedChemMaster == null)
+                return;
+
+            linkComp.TransferToChemMaster = !linkComp.TransferToChemMaster;
+            Dirty(ent.Owner, linkComp);
+            UpdateUiState(ent);
+        }
+
+        private void OnLinkChemMaster(Entity<ReagentDispenserComponent> ent, ref MasterDispenserLinkMessage args)
+        {
+            if (!TryComp<MasterDispenserLinkComponent>(ent.Owner, out var linkComp))
+                return;
+
+            var chemMaster = GetEntity(args.ChemMaster);
+
+            // Ensure ChemMaster exists / has the component
+            if (!TryComp<ChemMasterComponent>(chemMaster, out _))
+                return;
+
+            // Only link to one ChemMaster at a time
+            if (linkComp.LinkedChemMaster == chemMaster)
+            {
+                linkComp.LinkedChemMaster = null;
+                linkComp.TransferToChemMaster = false; // Revert to container mode when unlinking
+            }
+            else
+            {
+                // Check range
+                if (!_transform.InRange(ent.Owner, chemMaster, linkComp.Range))
+                    return;
+
+                linkComp.LinkedChemMaster = chemMaster;
+            }
+
+            Dirty(ent.Owner, linkComp);
+            UpdateUiState(ent);
+        }
+
+        private List<(NetEntity, string, string)> GetNearbyChemMasters(EntityUid dispenser, MasterDispenserLinkComponent linkComp)
+        {
+            var result = new List<(NetEntity NetEntity, string Text, string Beacon, float Distance)>();
+            var dispenserXform = Transform(dispenser);
+            var query = EntityQueryEnumerator<ChemMasterComponent, MetaDataComponent, TransformComponent>();
+
+            while (query.MoveNext(out var uid, out _, out var meta, out var xform))
+            {
+                var isLinked = linkComp.LinkedChemMaster == uid;
+
+                // Don't show already-linked ChemMasters that aren't ours (there can only be one link)
+                // But we do show unlinked ones and our own linked one
+                if (!isLinked)
+                {
+                    // Check if this ChemMaster can be linked
+                    if (!CanLinkToChemMaster(dispenser, dispenserXform, uid, xform, linkComp.Range))
+                        continue;
+                }
+
+                var netEnt = GetNetEntity(uid);
+                var name = Identity.Name(uid, EntityManager);
+                var beacon = _navMap.GetNearestBeaconString(uid, onlyName: true);
+                var inRange = _transform.InRange(dispenser, uid, linkComp.Range) &&
+                              _transform.GetGrid(dispenser) == _transform.GetGrid(uid);
+
+                var txt = Loc.GetString("reagent-dispenser-chemmaster-itemlist-entry",
+                    ("name", name),
+                    ("beacon", beacon),
+                    ("linked", isLinked),
+                    ("inRange", inRange));
+
+                // Calculate distance for sorting
+                var distance = (_transform.GetWorldPosition(xform) - _transform.GetWorldPosition(dispenserXform)).Length();
+
+                result.Add((netEnt, txt, beacon, distance));
+            }
+
+            // Sort by distance from the dispenser (closest first)
+            result.Sort((a, b) => a.Distance.CompareTo(b.Distance));
+
+            // Return without the distance field
+            return result.Select(x => (x.NetEntity, x.Text, x.Beacon)).ToList();
+        }
+
+        /// <summary>
+        /// Checks if a ChemMaster can be linked to by a reagent dispenser.
+        /// Must be on the same grid and within range.
+        /// </summary>
+        private bool CanLinkToChemMaster(EntityUid dispenser, TransformComponent dispenserXform, EntityUid chemMaster, TransformComponent chemMasterXform, float range)
+        {
+            // Must be on the same grid
+            if (_transform.GetGrid(dispenser) != _transform.GetGrid(chemMaster))
+                return false;
+
+            // Must be within range
+            if (!_transform.InRange((dispenser, dispenserXform), (chemMaster, chemMasterXform), range))
+                return false;
+
+            return true;
+        }
+
+        private bool TryDispenseToChemMaster(Entity<ReagentDispenserComponent> reagentDispenser, MasterDispenserLinkComponent linkComp, ReagentDispenseData data)
+        {
+            if (linkComp.LinkedChemMaster is not { } chemMaster)
+                return false;
+
+            // Ensure ChemMaster exists / has the component
+            if (!TryComp<ChemMasterComponent>(chemMaster, out _))
+            {
+                linkComp.LinkedChemMaster = null;
+                Dirty(reagentDispenser.Owner, linkComp);
+                return false;
+            }
+
+            if (!_transform.InRange(reagentDispenser.Owner, chemMaster, linkComp.Range))
+            {
+                if (TryComp<UserInterfaceComponent>(reagentDispenser.Owner, out var ui)
+                    && ui.Actors is { } actors
+                    && actors.TryGetValue(ReagentDispenserUiKey.Key, out var entities))
+                    foreach (var entity in entities)
+                        _popup.PopupCursor(Loc.GetString("reagent-dispenser-chemmaster-out-of-range"), entity);
+                return false;
+            }
+
+            // Get the ChemMaster's buffer solution
+            if (!_solutionContainerSystem.TryGetSolution(chemMaster, SharedChemMaster.BufferSolutionName, out var bufferSoln, out var bufferSolution))
+                return false;
+
+            var amountToDispense = FixedPoint2.New((int)reagentDispenser.Comp.DispenseAmount);
+
+        
+            // Handle generatable reagents
+            if (data.ReagentID is { } reagentID && reagentDispenser.Comp.GeneratableReagents.TryGetValue(reagentID, out var powerDrain))
+            {
+                // Check power
+                if (!_powercell.HasCharge(reagentDispenser.Owner, powerDrain * (float)reagentDispenser.Comp.DispenseAmount))
+                {
+                    if (reagentDispenser.Comp.NoEnergyPopup is { } popup
+                        && TryComp<UserInterfaceComponent>(reagentDispenser.Owner, out var ui2)
+                        && ui2.Actors is { } actors2
+                        && actors2.TryGetValue(ReagentDispenserUiKey.Key, out var entities2))
+                        foreach (var entity in entities2)
+                            _popup.PopupCursor(Loc.GetString(popup), entity);
+                    return false;
+                }
+
+                // Add reagent to buffer (same as ChemMaster's TransferReagents does)
+                bufferSolution.AddReagent(reagentID, amountToDispense);
+
+                // Notify ChemMaster UI to refresh
+                var ev = new SolutionContainerChangedEvent(bufferSolution, SharedChemMaster.BufferSolutionName);
+                RaiseLocalEvent(chemMaster, ref ev);
+
+                // Use power
+                _powercell.TryUseCharge(reagentDispenser.Owner, powerDrain * (float)reagentDispenser.Comp.DispenseAmount);
+                return true;
+            }
+
+            // Handle container-based reagents (limited supply from jugs)
+            if (data.StorageLocation is { } storageLocation && TryComp<StorageComponent>(reagentDispenser.Owner, out var storage))
+            {
+                var storedContainer = storage.StoredItems.FirstOrDefault(kvp => kvp.Value == storageLocation).Key;
+                if (storedContainer != EntityUid.Invalid)
+                {
+                    if (_solutionContainerSystem.TryGetDrainableSolution(storedContainer, out var containerSoln, out var containerSolution))
+                    {
+                        _openable.SetOpen(storedContainer, true);
+
+                        // Transfer from container to buffer 
+                        var transferAmount = FixedPoint2.Min(amountToDispense, containerSolution.Volume);
+                        if (transferAmount <= FixedPoint2.Zero)
+                            return false;
+
+                        // Single reagent in dispenser jugs - get the first one
+                        var reagent = containerSolution.Contents.FirstOrDefault();
+                        if (reagent.Quantity <= FixedPoint2.Zero)
+                            return false;
+
+                        transferAmount = FixedPoint2.Min(transferAmount, reagent.Quantity);
+
+                        // Remove from container, add to buffer 
+                        _solutionContainerSystem.RemoveReagent(containerSoln.Value, reagent.Reagent, transferAmount);
+                        bufferSolution.AddReagent(reagent.Reagent, transferAmount);
+
+                        // Notify ChemMaster UI to refresh
+                        var ev = new SolutionContainerChangedEvent(bufferSolution, SharedChemMaster.BufferSolutionName);
+                        RaiseLocalEvent(chemMaster, ref ev);
+
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
         #endregion
         // Starlight End
 
@@ -226,9 +436,25 @@ namespace Content.Server.Chemistry.EntitySystems
 
             var inventory = GetInventory(reagentDispenser);
 
-            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge : 0f; // Starlight-edit: Energy bar
+            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? _battery.GetChargeLevel(battery.Value) : 0f; // Starlight-edit: Energy bar, use GetChargeLevel
 
-            var state = new ReagentDispenserBoundUserInterfaceState(outputContainerInfo, GetNetEntity(outputContainer), inventory, reagentDispenser.Comp.DispenseAmount, energy); // Starlight-edit: Energy bar
+            // Starlight-start: Master-Dispenser linking
+            var transferToChemMaster = false;
+            string? linkedChemMasterName = null;
+            var nearbyChemMasters = new List<(NetEntity, string, string)>();
+
+            if (TryComp<MasterDispenserLinkComponent>(reagentDispenser.Owner, out var linkComp))
+            {
+                transferToChemMaster = linkComp.TransferToChemMaster;
+                if (linkComp.LinkedChemMaster is { } linked && TryComp<MetaDataComponent>(linked, out var meta))
+                {
+                    linkedChemMasterName = meta.EntityName;
+                }
+                nearbyChemMasters = GetNearbyChemMasters(reagentDispenser.Owner, linkComp);
+            }
+            // Starlight-end
+
+            var state = new ReagentDispenserBoundUserInterfaceState(outputContainerInfo, GetNetEntity(outputContainer), inventory, reagentDispenser.Comp.DispenseAmount, energy, transferToChemMaster, linkedChemMasterName, nearbyChemMasters); // Starlight-edit: Energy bar, ChemMaster linking
             _userInterfaceSystem.SetUiState(reagentDispenser.Owner, ReagentDispenserUiKey.Key, state);
         }
 
@@ -306,6 +532,18 @@ namespace Content.Server.Chemistry.EntitySystems
             {
                 return;
             }
+
+            // Starlight-start: Master-Dispenser linking - check if should dispense to ChemMaster
+            if (TryComp<MasterDispenserLinkComponent>(reagentDispenser.Owner, out var linkComp)
+                && linkComp.TransferToChemMaster
+                && linkComp.LinkedChemMaster != null)
+            {
+                TryDispenseToChemMaster(reagentDispenser, linkComp, message.Data);
+                UpdateUiState(reagentDispenser);
+                ClickSound(reagentDispenser);
+                return;
+            }
+            // Starlight-end
 
             // Starlight Start
             var outputContainer = _itemSlotsSystem.GetItemOrNull(reagentDispenser, SharedReagentDispenser.OutputSlotName);

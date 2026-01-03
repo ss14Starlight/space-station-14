@@ -4,35 +4,53 @@
                       xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
                       xmlns:ui="clr-namespace:Content.Client.Chemistry.UI"
                       Title="{Loc 'reagent-dispenser-bound-user-interface-title'}"
-                      MinSize="600 300"
-                      SetSize="800 500">
-    <BoxContainer Orientation="Horizontal">
-        <BoxContainer Orientation="Vertical" MinWidth="170">
-            <Label Text="{Loc 'reagent-dispenser-window-amount-to-dispense-label'}" HorizontalAlignment="Center" />
-            <ui:ButtonGrid
-                Name="AmountGrid"
-                Access="Public"
-                Columns="3"
-                HorizontalAlignment="Center"
-                Margin="5"
-                ButtonList="1,5,10,15,20,25,30,50,100"
-                RadioGroup="True">
-            </ui:ButtonGrid>
-            <!-- Starlight-start -->
-            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                <ProgressBar Name="EnergyDisplayBar"
-                                HorizontalExpand="True"
-                                SetHeight="25"
-                                MaxValue="1"
-                                Value="0"
-                                Margin="10">
-                    <Label Name="EnergyDisplay"
-                            Margin="5 0 0 0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"></Label>
-                </ProgressBar>
-            </BoxContainer>
-            <!-- Starlight-end -->
+                      MinSize="600 330"
+                      SetSize="800 530">
+    <BoxContainer Orientation="Vertical">
+        <!-- Starlight-start: Top bar with Dispense to container/chemmaster button, Linked Devices button, and is linked label -->
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5">
+            <Button Name="ChemMasterToggleButton"
+                    Access="Public"
+                    Text="{Loc 'reagent-dispenser-chemmaster-toggle-off'}" />
+            <Label Name="LinkedChemMasterLabel"
+                   Access="Public"
+                   Text=""
+                   VerticalAlignment="Center"
+                   Margin="10 0 0 0"
+                   StyleClasses="LabelSubText" />
+            <Control HorizontalExpand="True" />
+            <Button Name="ChemMasterSelectButton"
+                    Access="Public"
+                    Text="{Loc 'reagent-dispenser-chemmaster-select-button'}" />
+        </BoxContainer>
+        <!-- Starlight-end -->
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True">
+            <BoxContainer Orientation="Vertical" MinWidth="170">
+                <Label Text="{Loc 'reagent-dispenser-window-amount-to-dispense-label'}" HorizontalAlignment="Center" />
+                <ui:ButtonGrid
+                    Name="AmountGrid"
+                    Access="Public"
+                    Columns="3"
+                    HorizontalAlignment="Center"
+                    Margin="5"
+                    ButtonList="1,5,10,15,20,25,30,50,100"
+                    RadioGroup="True">
+                </ui:ButtonGrid>
+                <!-- Starlight-start -->
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <ProgressBar Name="EnergyDisplayBar"
+                                    HorizontalExpand="True"
+                                    SetHeight="25"
+                                    MaxValue="1"
+                                    Value="0"
+                                    Margin="10">
+                        <Label Name="EnergyDisplay"
+                                Margin="5 0 0 0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"></Label>
+                    </ProgressBar>
+                </BoxContainer>
+                <!-- Starlight-end -->
             <Control VerticalExpand="True" />
             <Label Name="ContainerInfoName"
                    Access="Public"
@@ -89,5 +107,6 @@
                 </PanelContainer>
             </ScrollContainer>
         </SplitContainer>
+        </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>

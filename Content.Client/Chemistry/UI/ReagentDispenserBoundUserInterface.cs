@@ -42,6 +42,11 @@ namespace Content.Client.Chemistry.UI
 
             _window.OnDispenseReagentButtonPressed += (data) => SendMessage(new ReagentDispenserDispenseReagentMessage(data)); // Starlight-edit
             _window.OnEjectJugButtonPressed += (location) => SendMessage(new ReagentDispenserEjectContainerMessage(location));
+
+            // Starlight-start: Master-Dispenser linking
+            _window.OnChemMasterTogglePressed += () => SendMessage(new MasterDispenserTransferMessage());
+            _window.OnChemMasterSelected += (chemMaster) => SendMessage(new MasterDispenserLinkMessage(chemMaster));
+            // Starlight-end
         }
 
         /// <summary>

@@ -64,6 +64,7 @@
         components:
         - FitsInDispenser
       priority: 9
+  - type: MasterDispenserLink # Starlight
   - type: ItemSlots
   - type: ContainerContainer
     containers:

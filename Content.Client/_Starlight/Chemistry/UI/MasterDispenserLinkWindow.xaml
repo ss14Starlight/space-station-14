@@ -1,0 +1,20 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                     Title="{Loc 'reagent-dispenser-chemmaster-select-title'}"
+                     MinSize="300 250"
+                     SetSize="340 320">
+    <BoxContainer Orientation="Vertical" Margin="8" VerticalExpand="True" HorizontalExpand="True">
+        <Label Text="{Loc 'reagent-dispenser-chemmaster-nearby-label'}" HorizontalAlignment="Center" StyleClasses="LabelKeyText" />
+        <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="0 6 0 6">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+            </PanelContainer.PanelOverride>
+            <ItemList Name="ChemMasterList"
+                      Access="Public"
+                      SelectMode="Button"
+                      VerticalExpand="True"
+                      HorizontalExpand="True" />
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>

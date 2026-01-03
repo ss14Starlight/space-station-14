@@ -149,13 +149,36 @@ namespace Content.Shared.Chemistry
 
         public readonly float EnergyAmount; // Starlight-edit: Energy bar
 
-        public ReagentDispenserBoundUserInterfaceState(ContainerInfo? outputContainer, NetEntity? outputContainerEntity, List<ReagentInventoryItem> inventory, ReagentDispenserDispenseAmount selectedDispenseAmount, float energyAmount) // Starlight-edit: Energy bar
+        // Starlight-start: ChemMaster linking
+        /// <summary>
+        /// Whether the dispenser is in "transfer to ChemMaster" mode.
+        /// </summary>
+        public readonly bool TransferToChemMaster;
+
+        /// <summary>
+        /// The name of the linked ChemMaster, if any.
+        /// </summary>
+        public readonly string? LinkedChemMasterName;
+
+        /// <summary>
+        /// List of nearby ChemMasters that can be linked to.
+        /// Tuple: (NetEntity, formatted display text, beacon name for sorting)
+        /// </summary>
+        public readonly List<(NetEntity Entity, string Text, string Beacon)> NearbyChemMasters;
+        // Starlight-end
+
+        public ReagentDispenserBoundUserInterfaceState(ContainerInfo? outputContainer, NetEntity? outputContainerEntity, List<ReagentInventoryItem> inventory, ReagentDispenserDispenseAmount selectedDispenseAmount, float energyAmount, bool transferToChemMaster = false, string? linkedChemMasterName = null, List<(NetEntity, string, string)>? nearbyChemMasters = null) // Starlight-edit: Energy bar, ChemMaster linking
         {
             OutputContainer = outputContainer;
             OutputContainerEntity = outputContainerEntity;
             Inventory = inventory;
             SelectedDispenseAmount = selectedDispenseAmount;
             EnergyAmount = energyAmount; // Starlight-edit: Energy bar
+            // Starlight-start: ChemMaster linking
+            TransferToChemMaster = transferToChemMaster;
+            LinkedChemMasterName = linkedChemMasterName;
+            NearbyChemMasters = nearbyChemMasters ?? new List<(NetEntity, string, string)>();
+            // Starlight-end
         }
     }
     
@@ -173,4 +196,28 @@ namespace Content.Shared.Chemistry
     {
         Key
     }
+
+    // Starlight-start: ChemMaster linking
+    /// <summary>
+    /// Message to toggle the "transfer to ChemMaster" mode.
+    /// </summary>
+    [Serializable, NetSerializable]
+    public sealed class MasterDispenserTransferMessage : BoundUserInterfaceMessage
+    {
+    }
+
+    /// <summary>
+    /// Message to link/unlink a specific ChemMaster.
+    /// </summary>
+    [Serializable, NetSerializable]
+    public sealed class MasterDispenserLinkMessage : BoundUserInterfaceMessage
+    {
+        public readonly NetEntity ChemMaster;
+
+        public MasterDispenserLinkMessage(NetEntity chemMaster)
+        {
+            ChemMaster = chemMaster;
+        }
+    }
+    // Starlight-end
 }

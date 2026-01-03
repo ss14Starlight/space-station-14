@@ -1,5 +1,6 @@
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
+using Content.Client._Starlight.Chemistry.UI; // Starlight
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Storage;
@@ -22,6 +23,14 @@ namespace Content.Client.Chemistry.UI
         public event Action<ReagentDispenseData>? OnDispenseReagentButtonPressed; // Starlight-edit
         public event Action<ItemStorageLocation>? OnEjectJugButtonPressed;
 
+        // Starlight-start: Master-Dispenser linking
+        public event Action? OnChemMasterTogglePressed;
+        public event Action<NetEntity>? OnChemMasterSelected;
+
+        private List<(NetEntity Entity, string Text, string Beacon)> _nearbyChemMasters = new();
+        private MasterDispenserLinkWindow? _chemMasterWindow;
+        // Starlight-end
+
         /// <summary>
         /// Create and initialize the dispenser UI client-side. Creates the basic layout,
         /// actual data isn't filled in until the server sends data about the dispenser.
@@ -30,7 +39,28 @@ namespace Content.Client.Chemistry.UI
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
+
+            // Starlight-start: ChemMaster linking
+            ChemMasterToggleButton.OnPressed += _ => OnChemMasterTogglePressed?.Invoke();
+            ChemMasterSelectButton.OnPressed += _ =>
+            {
+                OpenChemMasterWindow();
+            };
+            // Starlight-end
         }
+
+        // Starlight-start: ChemMaster linking - lazy window creation to avoid NameScope collision
+        private void OpenChemMasterWindow()
+        {
+            if (_chemMasterWindow == null || _chemMasterWindow.Disposed)
+            {
+                _chemMasterWindow = new MasterDispenserLinkWindow();
+                _chemMasterWindow.OnChemMasterSelected += net => OnChemMasterSelected?.Invoke(net);
+                _chemMasterWindow.UpdateList(_nearbyChemMasters);
+            }
+            _chemMasterWindow.OpenCentered();
+        }
+        // Starlight-end
 
         /// <summary>
         /// Update the button grid of reagents which can be dispensed.
@@ -73,10 +103,36 @@ namespace Content.Client.Chemistry.UI
 
             // Starlight-start
             UpdateEnergyDisplay(castState.EnergyAmount);
+
+            // ChemMaster linking UI updates
+            UpdateChemMasterUI(castState);
             // Starlight-end
 
             AmountGrid.Selected = ((int)castState.SelectedDispenseAmount).ToString();
         }
+
+        // Starlight-start: ChemMaster linking
+        private void UpdateChemMasterUI(ReagentDispenserBoundUserInterfaceState state)
+        {
+            var hasLinkedChemMaster = state.LinkedChemMasterName != null;
+
+            // Update toggle button state and text - disable if no ChemMaster linked
+            ChemMasterToggleButton.Disabled = !hasLinkedChemMaster;
+            ChemMasterToggleButton.Text = state.TransferToChemMaster
+                ? Loc.GetString("reagent-dispenser-chemmaster-toggle-on")
+                : Loc.GetString("reagent-dispenser-chemmaster-toggle-off");
+
+            // Update is linked label
+            LinkedChemMasterLabel.Text = hasLinkedChemMaster
+                ? Loc.GetString("reagent-dispenser-chemmaster-linked", ("name", state.LinkedChemMasterName!))
+                : Loc.GetString("reagent-dispenser-chemmaster-not-linked");
+
+            // Update nearby ChemMasters list
+            _nearbyChemMasters = state.NearbyChemMasters;
+
+            _chemMasterWindow?.UpdateList(_nearbyChemMasters);
+        }
+        // Starlight-end
 
         // Starlight Start
         // Update only the energy display bar and text without refreshing the entire UI.
