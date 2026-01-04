@@ -15,6 +15,7 @@ using Content.Server.Anomaly;
 using Content.Shared._Starlight.Railroading;
 using Content.Server._Starlight.Railroading;
 using Content.Shared.Light.Components;
+using Content.Shared.Throwing;
 
 namespace Content.Server._Starlight.Shadekin;
 
@@ -137,9 +138,12 @@ public sealed class DarkPortalSystem : EntitySystem
         if (HasComp<BrighteyeComponent>(args.Subject))
             return;
 
-        // TODO: Check if we have the Nullspace Suit?
+        // TODO: Check if we have the Nullspace Suit? (also works for pull and thrown)
 
         if (TryComp<PullableComponent>(args.Subject, out var pullablea) && pullablea.BeingPulled && HasComp<BrighteyeComponent>(pullablea.Puller))
+            return;
+
+        if (TryComp<ThrownItemComponent>(args.Subject, out var thrown) && HasComp<BrighteyeComponent>(thrown.Thrower))
             return;
 
         args.Cancel();

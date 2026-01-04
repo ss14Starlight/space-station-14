@@ -164,10 +164,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     /// <param name="humanoid"></param>
     public void SetBrighteyes(EntityUid uid, HumanoidAppearanceComponent humanoid)
     {
-        var hsv = Color.ToHsv(humanoid.EyeColor);
-        hsv.Z = 1.0f;
-        humanoid.EyeColor = Color.FromHsv(hsv);
-
+        humanoid.EyeColor = EyeColor.MakeBrighteyeValid(humanoid.EyeColor);
         humanoid.EyeGlowing = true;
         Dirty(uid, humanoid);
     }

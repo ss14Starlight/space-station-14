@@ -8,6 +8,15 @@
     sprite: _Starlight/Clothing/Back/Satchels/roboticist.rsi
 
 - type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelCargoSenior
+  name: senior courier satchel
+  description: A robust satchel for those who compartmentalize their bags exactly the same every shift.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/cargosenior.rsi
+
+- type: entity
   parent: [ClothingBackpackSatchel, BaseCommandContraband]
   id: ClothingBackpackSatchelBlueShield
   name: blueshield officer satchel

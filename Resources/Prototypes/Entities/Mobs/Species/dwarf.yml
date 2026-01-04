@@ -9,10 +9,10 @@
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
-    - SolCommon
+    - Grumbakul
     understands:
     - GalacticCommon
-    - SolCommon
+    - Grumbakul
   - type: MobThresholds
     thresholds:
       0: Alive
