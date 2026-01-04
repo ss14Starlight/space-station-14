@@ -5,7 +5,12 @@
     <GuideEntityEmbed Entity="MobDwarf" Caption=""/>
   </Box>
 
-  Dwarves are similar to humans in most respect, but tolerate alcohol better and are healed by it.
-  Dwarves are tougher than humans, they have 10% more health.
+  Dwarves are the closest species to humans, most directly differentiated by their much shorter stature. 
+  Their affinity to alcohol allows them to metabolise it in a variety of helpful ways, allowing them to heal and fortify their body. 
+  This has manifested itself as well with them being sturdier than humans as well.
+    
+  ## Dwarven metabolism
+  Dwarves have a special metabolism, that prefers alcoholic drinks over food.
+  Additionally they also get special effects from some of the alcoholic drinks.
 
 </Document>
