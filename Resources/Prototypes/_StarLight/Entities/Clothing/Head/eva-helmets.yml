@@ -96,3 +96,26 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+
+#HoP's EVA Helmet
+- type: entity
+  parent: [ClothingHeadEVAHelmetBase, ClothingHeadSuitWithLightBase]
+  id: ClothingHeadHelmetEVAHeadOfPersonnel
+  name: head of personnel's pristine EVA helmet
+  description: Many heads of personnel have fought hard for the right to this helmet. And now that you have this, you've got a long road ahead of you.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/eva_hop.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/eva_hop.rsi
+    #Copies ClothingHeadHardsuitBase behavior
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 0.5
+    unequipDelay: 0.5
+  - type: PointLight
+    color: "#adeeff"
+  - type: Tag
+    tags:
+    - HelmetEVA
+    - WhitelistChameleon

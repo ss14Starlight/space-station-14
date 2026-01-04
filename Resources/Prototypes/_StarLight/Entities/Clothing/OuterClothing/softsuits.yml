@@ -67,3 +67,25 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+
+# HoP's EVA
+- type: entity
+  parent: [ClothingOuterEVASuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitEVAHeadOfPersonel
+  name: head of personnel's EVA suit
+  description: An expensive non-standard EVA printed by the Head of Personnel themself. Many HoPs had to rally to get this in the uniform printer. Wear it with pride.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Suits/eva_hop.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Suits/eva_hop.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.0
+    coolingCoefficient: 0.0
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - SuitEVA
+    - WhitelistChameleon

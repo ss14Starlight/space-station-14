@@ -1,0 +1,46 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Coded by SCARLET and sprited by thepipetoadcouncil on discord",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "equipped-OUTERCLOTHING",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-vox",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-dog",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-reptilian",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-cyclorite",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-avali",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-resomi",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-arachnid",
+            "directions": 4
+        }
+    ]
+}

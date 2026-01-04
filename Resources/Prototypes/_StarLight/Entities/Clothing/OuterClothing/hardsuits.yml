@@ -74,9 +74,9 @@
   description: It took a long time for NanoTrasen to finally give Magistrates their own hardsuits. Don't lose it.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntrepspace.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/magispace.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntrepspace.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/magispace.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
@@ -589,6 +589,43 @@
     - Hardsuit
 
 # Generic Hardsuits
+#Generic Basic Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitGeneric
+  name: basic hardsuit
+  description: A basic hardsuit with minimal armor.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.7
+    lowPressureMultiplier: 1000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.9
+        Radiation: 0.8
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitGeneric
+
+
 #Generic Fire Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitBase]
@@ -698,7 +735,7 @@
     sprintModifier: 1.0
   - type: HeldSpeedModifier
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitPathologyGeneric
+    clothingPrototype: ClothingHeadHelmetHardsuitMedicalGeneric
   - type: Tag
     tags:
     - CorgiWearable
@@ -729,7 +766,7 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
-        Heat: 0.7 # Starlight Edit
+        Heat: 0.7
         Caustic: 0.7
     staminaModifier: 0.7
   - type: ClothingSpeedModifier
@@ -744,6 +781,239 @@
     - Hardsuit
     - WhitelistChameleon
 
+
+# Advanced Hardsuits
+#Advanced Hardsuit
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitAdvanced
+  name: advanced hardsuit
+  description: An advanced hardsuit, forged only from the best robotics has to offer.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+  - type: Clothing
+  - type: Item
+    size: Huge
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.7
+    lowPressureMultiplier: 1000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.8
+        Radiation: 0.75
+        Caustic: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAdvanced
+
+#Advanced Fire Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitFireAdvanced
+  name: advanced fire hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: FireProtection
+    reduction: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.8
+        Radiation: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitFireAdvanced
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+
+#Advanced Radiation Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitRadiationAdvanced
+  name: advanced radiation hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.04
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Shock: 0.8
+        Caustic: 0.5
+        Radiation: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRadiationAdvanced
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+
+#Advanced Medical Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitMedicalAdvanced
+  name: advanced pathology hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/medical.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/medical.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.1
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.0
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMedicalAdvanced
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+
+#Advanced Armored Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
+  id: ClothingOuterHardsuitArmoredAdvanced
+  name: advanced armored hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.7
+        Caustic: 0.7
+    staminaModifier: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitArmoredAdvanced
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+
+#Advanced Salvage Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSalvageMiningContraband]
+  id: ClothingOuterHardsuitSalvageAdvanced
+  name: advanced salvage hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has reinforced plating for wildlife encounters.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/salvage.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/salvage.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7 
+        Slash: 0.7 
+        Piercing: 0.8
+        Heat: 0.7
+        Radiation: 0.3
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSalvageAdvanced
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
 
 # Golden
 
