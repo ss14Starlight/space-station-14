@@ -549,3 +549,14 @@
     sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_mantle.rsi
   - type: Clothing
     sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_mantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakDark
+  name: Dark-Cloak
+  description: A dashing black cloak suitable for mysterious occasions.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/black.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Cloaks/black.rsi

@@ -1,42 +1,32 @@
-# Mercenary Modsuit Control - A compact back-mounted container that holds a full modular combat suit
+# SVS Vanguard Pressure Suit Storage - A storage backpack for the armor set
 - type: entity
+  id: ClothingBackpackVanguardPressureSuitStorage
   parent: [ ClothingBackpackDuffel, BaseSalvageContraband ]
-  id: ClothingBackpackMercenaryModsuitControl
-  name: Gallóglach modsuit control
-  suffix: mercenary
-  description: A compact back-mounted control unit containing a full set of Gallóglach mercenary modular combat suit components. Designed for rapid deployment in hostile environments.
+  name: SVS vanguard pressure suit storage
+  suffix: vanguard
+  description: A rugged storage container designed to hold a full set of SVS Vanguard pressure suit components.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Modsuits/MODSUITMercenary.rsi
+    state: control
   - type: Clothing
     sprite: _Starlight/Clothing/Back/Modsuits/MODSUITMercenary.rsi
   - type: Storage
-    maxItemSize: Huge
     grid:
     - 0,0,7,3
-    whitelist:
-      tags:
-      - MercenaryModsuit
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:NestedSelector
-        tableId: FillMercenaryModsuitControl
-  - type: UseDelay
-    delay: 2
+    maxItemSize: Huge
 
-- type: entityTable
-  id: FillMercenaryModsuitControl
-  table: !type:AllSelector
-    children:
-    - id: ClothingOuterModsuitMercenary
-    - id: ClothingHeadHelmetModsuitMercenary
-    - id: ClothingHandsGlovesMercenaryModsuit
-    - id: ClothingShoesBootsMercenaryModsuit
-
-# Sealed variant - contains all pieces in a compact form
+# Complete set - spawns with all pieces inside
 - type: entity
-  parent: ClothingBackpackMercenaryModsuitControl
-  id: ClothingBackpackMercenaryModsuitControlSealed
-  name: sealed Gallóglach modsuit control
-  suffix: sealed, mercenary
-  description: A sealed control unit for the Gallóglach mercenary modsuit system. Deploy to access all components.
+  id: ClothingBackpackVanguardPressureSuitStorageComplete
+  parent: ClothingBackpackVanguardPressureSuitStorage
+  name: SVS vanguard pressure suit storage
+  suffix: complete, vanguard
+  description: A storage container with a complete sealed set of SVS Vanguard pressure suit armor.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterVanguardPressureSuitSealed
+    - id: ClothingHeadHelmetVanguardPressureSuitSealed
+    - id: ClothingHandsGlovesVanguardPressureSuitSealed
+    - id: ClothingShoesBootsVanguardPressureSuitSealed

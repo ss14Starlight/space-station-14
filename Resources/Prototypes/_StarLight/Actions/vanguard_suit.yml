@@ -1,0 +1,29 @@
+# Actions for SVS Vanguard Pressure Suit
+
+# Energy Dome Toggle Action
+- type: entity
+  id: ActionToggleVanguardDome
+  name: Toggle Energy Dome
+  description: Toggle the personal energy dome shield on or off.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _Starlight/Clothing/OuterClothing/Modsuits/MODSUITMercenary.rsi
+      state: chestplate-sealed
+    useDelay: 1
+    event: !type:ToggleActionEvent
+
+# Handcannon Deployment Action
+- type: entity
+  id: ActionDeployVanguardHandcannon
+  name: Deploy Handcannon
+  description: Deploy the integrated C.H.I.M.P. handcannon from your gloves. Takes 5 seconds.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
+      state: base
+    useDelay: 60
+    event: !type:DeployHandcannonActionEvent

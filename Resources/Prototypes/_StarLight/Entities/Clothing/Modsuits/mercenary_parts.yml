@@ -1,145 +1,146 @@
-# Mercenary Modsuit Outer Clothing
+# SVS Vanguard MKI Prototype - Chestplate
 - type: entity
   parent: ClothingOuterBase
-  id: ClothingOuterModsuitMercenary
-  name: Gallóglach mercenary modsuit
-  suffix: modsuit
-  description: A heavy-duty combat modsuit with integrated defensive systems.
+  id: ClothingOuterVanguardPressureSuit
+  name: SVS 'vanguard' MKI prototype chestplate
+  suffix: prototype
+  description: An experimental military-grade combat suit prototype featuring integrated energy dome technology. The first of its kind, combining advanced defensive systems with cutting-edge shield projection.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Modsuits/MODSUITMercenary.rsi
-    state: chestplate
+    state: chestplate-sealed
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Modsuits/MODSUITMercenary.rsi
+    equipDelay: 5
+    unequipDelay: 5
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
   - type: Tag
     tags:
-    - MercenaryModsuit
+    - ClothMade
     - WhitelistChameleon
-  # TODO: Add stats/abilities later
-  # - type: Armor
-  #   modifiers:
-  #     coefficients:
-  #       Blunt: 0.75
-  #       Slash: 0.75
-  #       Piercing: 0.75
-  #       Heat: 0.80
-  #       Caustic: 0.85
-  # - type: ClothingSpeedModifier
-  #   walkModifier: 0.95
-  #   sprintModifier: 0.95
-  # - type: StaminaResistance
-  #   damageCoefficient: 0.85
-  # - type: ExplosionResistance
-  #   damageCoefficient: 0.80
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.60
+        Piercing: 0.60
+        Heat: 0.75
+        Caustic: 0.45
+        Radiation: 0.75
+      flatReductions:
+        Stamina: 3
+  - type: FireProtection
+    reduction: 0.50
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: HideLayerClothing
+    layers:
+      Chest: OUTERCLOTHING
+      RArm: OUTERCLOTHING
+      LArm: OUTERCLOTHING
+      RLeg: OUTERCLOTHING
+      LLeg: OUTERCLOTHING
+  - type: EnergyDomeGenerator
+    domePrototype: VanguardEnergyDome
+    canInteractUse: false
+    toggleAction: ActionToggleVanguardDome
+    damageEnergyDraw: 5
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+    slotFlags: BELT
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
 
-# Mercenary Modsuit Helmet
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingHeadHelmetModsuitMercenary
-  name: Gallóglach mercenary modsuit helmet
-  suffix: modsuit
-  description: A reinforced combat helmet with integrated HUD and communications systems.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Modsuits/MODSUITMercenary.rsi
-    state: helmet
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Modsuits/MODSUITMercenary.rsi
-  - type: Tag
-    tags:
-    - MercenaryModsuit
-    - WhitelistChameleon
-  # TODO: Add stats/abilities later
-  # - type: Armor
-  #   modifiers:
-  #     coefficients:
-  #       Blunt: 0.85
-  #       Slash: 0.85
-  #       Piercing: 0.85
-  #       Heat: 0.85
-  # - type: PointLight
-  #   enabled: false
-  #   radius: 5
-  #   energy: 2.0
-  #   color: "#adff9e"
-  # - type: HandheldLight
-  #   addPrefix: false
-  # - type: ToggleableLightVisuals
-  #   spriteLayer: light
-
-# Mercenary Modsuit Gloves
+# SVS Vanguard MKI Prototype - Gloves
 - type: entity
   parent: ClothingHandsGlovesCombat
-  id: ClothingHandsGlovesMercenaryModsuit
-  name: Gallóglach modsuit combat gloves
-  suffix: mercenary
-  description: Reinforced combat gloves with integrated kinetic dampeners, strike enhancers, and a compact energy shield projector. Part of the Gallóglach mercenary modsuit system.
+  id: ClothingHandsGlovesVanguardPressureSuit
+  name: SVS 'vanguard' MKI prototype gloves
+  suffix: prototype
+  description: Prototype tactical gauntlets featuring an experimental concealed handcannon deployment system. A marvel of miniaturized weaponry engineering, though still in field testing.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Hands/Modsuits/MODSUITMercenary.rsi
-    state: gauntlets
+    state: gauntlets-sealed
   - type: Clothing
     sprite: _Starlight/Clothing/Hands/Modsuits/MODSUITMercenary.rsi
+    equipDelay: 5
+    unequipDelay: 5
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+  - type: Item
+    inhandVisuals:
+      left: []
+      right: []
   - type: Tag
     tags:
-    - MercenaryModsuit
     - ClothMade
     - WhitelistChameleon
-  # TODO: Add stats/abilities later
-  # - type: Armor
-  #   modifiers:
-  #     coefficients:
-  #       Blunt: 0.85
-  #       Slash: 0.90
-  #       Piercing: 0.90
-  #       Heat: 0.90
-  # - type: MeleeWeapon
-  #   attackRate: 1.2
-  #   damage:
-  #     types:
-  #       Blunt: 12
-  # - type: BonusMeleeDamage
-  #   bonusDamage:
-  #     types:
-  #       Blunt: 3
-  #       Structural: 5
-  # - type: Reflect
-  #   enabled: true
-  #   reflectProb: 0.50
-  #   reflects: Energy
-  #   reflectingInHands: false
-  # - type: StaminaResistance
-  #   damageCoefficient: 0.85
-  # - type: Insulated
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.90
+        Piercing: 0.90
+        Heat: 0.90
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: HideLayerClothing
+    layers:
+      RHand: GLOVES
+      LHand: GLOVES
+  - type: HandcannonDeployment
+    handcannonPrototype: WeaponPistolCHIMP
+    deployDelay: 5
+    deployAction: ActionDeployVanguardHandcannon
 
-# Mercenary Modsuit Boots
+# SVS Vanguard MKI Prototype - Boots
 - type: entity
   parent: ClothingShoesBootsCombat
-  id: ClothingShoesBootsMercenaryModsuit
-  name: Gallóglach modsuit combat boots
-  suffix: mercenary
-  description: Heavy-duty combat boots with integrated armor plating and mag-lock systems. Part of the Gallóglach mercenary modsuit system.
+  id: ClothingShoesBootsVanguardPressureSuit
+  name: SVS 'vanguard' MKI prototype boots
+  suffix: prototype
+  description: Prototype reinforced combat boots with integrated mag-lock stabilizers. Part of the experimental MKI combat system, designed for extreme environmental operations.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Shoes/Modsuits/MODSUITMercenary.rsi
-    state: boots
+    state: boots-sealed
   - type: Clothing
     sprite: _Starlight/Clothing/Shoes/Modsuits/MODSUITMercenary.rsi
+    equipDelay: 3
+    unequipDelay: 3
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
   - type: Tag
     tags:
-    - MercenaryModsuit
     - ClothMade
     - WhitelistChameleon
-  # TODO: Add stats/abilities later
-  # - type: Armor
-  #   modifiers:
-  #     coefficients:
-  #       Blunt: 0.80
-  #       Slash: 0.80
-  #       Piercing: 0.85
-  # - type: StaminaResistance
-  #   damageCoefficient: 0.85
-  # - type: ClothingSpeedModifier
-  #   walkModifier: 1.0
-  #   sprintModifier: 1.0
-  # - type: NoSlip
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.85
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: HideLayerClothing
+    layers:
+      RFoot: FEET
+      LFoot: FEET
