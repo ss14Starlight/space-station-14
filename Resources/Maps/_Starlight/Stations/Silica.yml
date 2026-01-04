@@ -151844,6 +151844,8 @@ entities:
           showEnts: False
           occludes: True
           ents: []
+- proto: ToiletDirtyWaterFilled
+  entities:
   - uid: 22679
     components:
     - type: Transform

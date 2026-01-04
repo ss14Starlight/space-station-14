@@ -112600,7 +112600,7 @@ entities:
     - type: Transform
       pos: -39.5,-33.5
       parent: 2
-- proto: ToiletDirtyWater
+- proto: ToiletDirtyWaterFilled
   entities:
   - uid: 17396
     components:

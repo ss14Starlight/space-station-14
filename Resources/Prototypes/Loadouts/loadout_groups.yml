@@ -106,6 +106,7 @@
   - leftripperarm #SL
   - CigPackBub #SL
   - PillCanisterPsicodine #SL
+  - ClothingDogTags # SL
 
 - type: loadoutGroup
   id: Glasses
@@ -116,13 +117,15 @@
   - GlassesJamjar
   - GlassesJensen
 
-- type: loadoutGroup
-  id: GroupTankHarness
-  name: loadout-group-tank-harness
-  minLimit: 1
-  hidden: true
-  loadouts:
-  - LoadoutTankHarness
+# Starlight edit start - Removed - vox no longer spawn with tank harness
+# - type: loadoutGroup
+#   id: GroupTankHarness
+#   name: loadout-group-tank-harness
+#   minLimit: 1
+#   hidden: true
+#   loadouts:
+#   - LoadoutTankHarness
+# Starlight edit end
 
 - type: loadoutGroup
   id: Survival
@@ -132,7 +135,7 @@
   loadouts:
   - EmergencyNitrogen
   - EmergencyOxygen
-  - LoadoutSpeciesVoxNitrogen
+#  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreather # 🌟Starlight🌟
 
 # nitrogen or oxygen tank, depending on what your species needs
@@ -145,12 +148,14 @@
   - LoadoutSpeciesEVAOxygen
 
 # vox get a nitrogen tank, other species get nothing
-- type: loadoutGroup
-  id: GroupEVATankVox
-  name: loadout-group-vox-tank
-  hidden: true
-  loadouts:
-  - LoadoutSpeciesVoxNitrogen
+# Starlight edit start - Removed - vox no longer spawn with nitrogen tanks automatically
+# - type: loadoutGroup
+#   id: GroupEVATankVox
+#   name: loadout-group-vox-tank
+#   hidden: true
+#   loadouts:
+#   - LoadoutSpeciesVoxNitrogen
+# Starlight edit end
 
 - type: loadoutGroup
   id: GroupPocketTankDouble
@@ -202,6 +207,8 @@
 - type: loadoutGroup
   id: CaptainOuterClothing
   name: loadout-group-captain-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - CaptainOuterClothing
   - CaptainWintercoat
@@ -712,7 +719,7 @@
   loadouts:
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
-  - LoadoutSpeciesVoxNitrogen
+#  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreatherClown # 🌟Starlight🌟
 
 - type: loadoutGroup
@@ -779,7 +786,7 @@
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
   - EmergencySpeciesMothMime
-  - LoadoutSpeciesVoxNitrogen
+#  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreatherMime # 🌟Starlight🌟
 
 - type: loadoutGroup
@@ -905,6 +912,7 @@
   loadouts:
   - CargoTechnicianHead
   - CargoTechnicianBeret # 🌟Starlight🌟
+  - CargoTechnicianHeadFormal # Starlight
   - CargoTechnicianBeretFormal # 🌟Starlight🌟
 
 - type: loadoutGroup
@@ -925,6 +933,9 @@
   - CargoTechnicianBackpack
   - CargoTechnicianSatchel
   - CargoTechnicianDuffel
+  - SeniorCourierBackpack # Starlight
+  - SeniorCourierSatchel # Starlight
+  - SeniorCourierDuffel # Starlight
   - LeatherSatchel # starlight
 
 - type: loadoutGroup
@@ -933,6 +944,7 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianWintercoat
+  - SeniorCourierWintercoat # Starlight
   - WindbreakerCargo #Starlight
 
 - type: loadoutGroup
@@ -942,6 +954,7 @@
   - BlackShoes
   - YellowShoes # 🌟Starlight🌟
   - CargoWinterBoots
+  - SeniorCourierWinterBoots # Starlight
   - LeatherShoes # 🌟Starlight🌟
   - WorkBoots # 🌟Starlight🌟
   - Heels # 🌟Starlight🌟
@@ -1173,7 +1186,7 @@
   loadouts:
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
-  - LoadoutSpeciesVoxNitrogen
+#  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreatherExtended # 🌟Starlight🌟
 
 # Science
@@ -1362,6 +1375,8 @@
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing
   name: loadout-group-head-of-security-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
@@ -1392,6 +1407,8 @@
 - type: loadoutGroup
   id: WardenOuterClothing
   name: loadout-group-warden-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - WardenCoat
   - WardenArmoredWinterCoat
@@ -1418,17 +1435,24 @@
   minLimit: 0
   loadouts:
   - BrigmedicBeret
-  - SecurityHelmet
+  - BrigmedicNurseHat # Starlight
   - CorpsmanBeret #Starlight
+  - CorpsmanNurseHat # Starlight
+  - BrigmedicNurseHatOfLife # Starlight
+  - SecurityHelmet
 
 - type: loadoutGroup
   id: BrigmedicJumpsuit
   name: loadout-group-brigmedic-jumpsuit
   loadouts:
   - JumpsuitBrigmedic
-  - JumpsuitCorpsman
-  - JumpskirtBrigmedic
+  - JumpskirtBrigmedic # Starlight line swap v
+  - JumpsuitCorpsman # Starlight line swap ^
   - JumpskirtCorpsman #Starlight
+  - CorpsmanResponse # Starlight
+  - CorpsmanTrauma # Starlight
+  - BrigmedicJumpsuitOfLife # Starlight
+  - BrigmedicJumpskirtOfLife # Starlight
 
 - type: loadoutGroup
   id: BrigmedicBackpack
@@ -1442,10 +1466,14 @@
 - type: loadoutGroup
   id: BrigmedicOuterClothing
   name: loadout-group-brigmedic-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - BrigmedicCoat
-  - SecurityOfficerWintercoat
+  - BrigmedicLabCoat # Starlight
   - CorpsmanCoat #Starlight
+  - CorpsmanLabCoat # Starlight
+  - SecurityOfficerWintercoat
 
 - type: loadoutGroup
   id: BrigmedicEyewear
@@ -1453,6 +1481,7 @@
   loadouts:
   - BrigmedicGlasses
   - BrigmedicHud
+  - BrigmedicEyePatchHud # Starlight
 
 - type: loadoutGroup
   id: BrigmedicBelt
@@ -1469,6 +1498,7 @@
   loadouts:
   - Nitrile
   - BlackNitrile
+  - LatexGloves
 #Starlight End
 
 - type: loadoutGroup
@@ -1517,6 +1547,8 @@
 - type: loadoutGroup
   id: SecurityOuterClothing
   name: loadout-group-security-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - ArmorVest
   - ArmorVestSlim
@@ -1577,6 +1609,8 @@
 - type: loadoutGroup
   id: DetectiveOuterClothing
   name: loadout-group-detective-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - DetectiveArmorVest
   - DetectiveCoat
@@ -1613,7 +1647,7 @@
   loadouts:
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
-  - LoadoutSpeciesVoxNitrogen
+#  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonbreatherSecurity # 🌟Starlight🌟
 
 # Medical
@@ -1775,6 +1809,8 @@
   loadouts:
   - ChemistJumpsuit
   - ChemistJumpskirt
+  - SeniorChemistJumpsuit # Starlight
+  - SeniorChemistJumpskirt # Starlight
 
 - type: loadoutGroup
   id: ChemistOuterClothing
@@ -1784,6 +1820,8 @@
   - RegularLabCoat
   - ChemistLabCoat
   - ChemistWintercoat
+  - SeniorChemistLabCoat # Starlight
+  - SeniorChemistWintercoat # Starlight
 
 - type: loadoutGroup
   id: ChemistBackpack
@@ -1792,6 +1830,9 @@
   - ChemistBackpack
   - ChemistSatchel
   - ChemistDuffel
+  - SeniorChemistBackpack # Starlight
+  - SeniorChemistSatchel # Starlight
+  - SeniorChemistDuffel # Starlight
   - LeatherSatchel # starlight
 
 - type: loadoutGroup
@@ -1858,7 +1899,7 @@
   loadouts:
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
-  - LoadoutSpeciesVoxNitrogen
+#  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreatherMedical # 🌟Starlight🌟
 
 # Wildcards
@@ -1931,32 +1972,34 @@
   loadouts:
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
-  - LoadoutSpeciesVoxNitrogen
+#  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
 
-- type: loadoutGroup
-  id: GroupSpeciesBreathTool
-  name: loadout-group-breath-tool
-  minLimit: 1
-  maxLimit: 1
-  hidden: true
-  loadouts:
-  - LoadoutSpeciesBreathTool
+# Starlight edit start - Removed - vox no longer spawn with gas masks automatically
+# - type: loadoutGroup
+#   id: GroupSpeciesBreathTool
+#   name: loadout-group-breath-tool
+#   minLimit: 1
+#   maxLimit: 1
+#   hidden: true
+#   loadouts:
+#   - LoadoutSpeciesBreathTool
 
-- type: loadoutGroup
-  id: GroupSpeciesBreathToolMedical
-  name: loadout-group-breath-tool
-  minLimit: 1
-  maxLimit: 1
-  hidden: true
-  loadouts:
-  - LoadoutSpeciesBreathToolMedical
+# - type: loadoutGroup
+#   id: GroupSpeciesBreathToolMedical
+#   name: loadout-group-breath-tool
+#   minLimit: 1
+#   maxLimit: 1
+#   hidden: true
+#   loadouts:
+#   - LoadoutSpeciesBreathToolMedical
 
-- type: loadoutGroup
-  id: GroupSpeciesBreathToolSecurity
-  name: loadout-group-breath-tool
-  minLimit: 1
-  maxLimit: 1
-  hidden: true
-  loadouts:
-  - LoadoutSpeciesBreathToolSecurity
+# - type: loadoutGroup
+#   id: GroupSpeciesBreathToolSecurity
+#   name: loadout-group-breath-tool
+#   minLimit: 1
+#   maxLimit: 1
+#   hidden: true
+#   loadouts:
+#   - LoadoutSpeciesBreathToolSecurity
+# Starlight edit end

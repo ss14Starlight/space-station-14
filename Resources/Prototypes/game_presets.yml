@@ -239,7 +239,7 @@
   showInVote: false
   rules:
   - Xenoborgs
-  - DummyNonAntagChance
+  # - DummyNonAntagChance 🌟Starlight🌟
   - SubGamemodesRuleNoWizardNoXenoborg # no two motherships
   - BasicStationEventScheduler
   - MeteorSwarmScheduler

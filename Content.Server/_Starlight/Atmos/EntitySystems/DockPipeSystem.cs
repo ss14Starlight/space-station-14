@@ -55,7 +55,6 @@ namespace Content.Server.Atmos.EntitySystems
             var dockA = ev.DockA.Owner;
             var dockB = ev.DockB.Owner;
 
-
             var dockAConnecting = GetDockConnectingPipe(dockA).Where(ShouldDockPipeType).ToList();
             var dockBConnecting = GetDockConnectingPipe(dockB).Where(ShouldDockPipeType).ToList();
 
@@ -135,7 +134,6 @@ namespace Content.Server.Atmos.EntitySystems
                     var hasDir = node.CurrentPipeDirection.HasDirection(dockDir.ToPipeDirection());
                     if (!hasDir)
                         continue;
-
 
                     if (!TryComp<TransformComponent>(node.Owner, out var pipeXform))
                         continue;

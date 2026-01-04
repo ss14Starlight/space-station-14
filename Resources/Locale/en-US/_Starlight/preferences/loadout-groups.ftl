@@ -36,6 +36,10 @@ loadout-group-brigmedic-gloves = Brigmedic gloves
 loadout-group-security-non-lethal-weapon = Security Non-Lethal Weapon
 loadout-group-security-sidearm = Security Sidearm
 loadout-group-detective-shoes = Detective shoes
+loadout-group-brigmedic-id = Brigmedic ID
+loadout-group-brigmedic-beaker = Brigmedic beaker
+loadout-group-brigmedic-mask = Brigmedic mask
+loadout-group-brigmedic-tie = Brigmedic tie
 
 # Law
 loadout-group-magistrate-shoes = Magistrate shoes
@@ -53,7 +57,23 @@ loadout-group-mining-id = Mining Specialist ID
 loadout-group-salvage-id = Salvage Specialist ID
 loadout-group-salvage-lead-mantle = Salvage Lead mantle 
 
-# Other
+# Silicons
+loadout-group-borg-brain-type = Cyborg Brain Type
 
+# Medical
+loadout-group-chemist-head = Chemist head
+loadout-group-chemist-eyewear = Chemist eyewear
+loadout-group-chemist-id = Chemist ID
+loadout-group-chemist-beaker = Chemist beaker
+loadout-group-chemist-bag = Chemist bag
+loadout-group-chemist-labeler = Chemist labeler
+loadout-group-chemist-shoes = Chemist shoes
+
+# Other
 loadout-group-scarves = Scarf
 loadout-group-pens = Pen
+
+# Brighteye
+loadout-group-brighteye-jumpsuit = Brighteye jumpsuit
+Loadout-group-brighteye-neck = Brighteye neck
+loadout-group-brighteye-gloves = Brighteye gloves

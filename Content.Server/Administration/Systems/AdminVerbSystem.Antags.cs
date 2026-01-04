@@ -14,6 +14,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Roles.Components;
+using Content.Server._Starlight.GameTicking.Rules.Components;
+using Content.Shared._Starlight.Shadekin;
 
 namespace Content.Server.Administration.Systems;
 
@@ -35,6 +37,7 @@ public sealed partial class AdminVerbSystem
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
     private static readonly EntProtoId DefaultDevilRule = "Devil"; // starlight
+    private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -255,6 +258,24 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-devil")
         };
         args.Verbs.Add(devil);
+        
+        if (HasComp<ShadekinComponent>(args.Target))
+        {
+            Verb brighteye = new()
+            {
+                Text = Loc.GetString("admin-verb-text-make-brighteye"),
+                Category = VerbCategory.Antag,
+                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/shadekin.rsi"), "rest"),
+                Act = () =>
+                {
+                    _gameTicker.StartGameRule("TheDarkMap"); // The Dark should always be spawned for any brighteye.
+                    _antag.ForceMakeAntag<BrighteyeRuleComponent>(targetPlayer, DefaultBrighteyeRule);
+                },
+                Impact = LogImpact.High,
+                Message = Loc.GetString("admin-verb-make-brighteye"),
+            };
+            args.Verbs.Add(brighteye);
+        }
         // starlight end
     }
 }

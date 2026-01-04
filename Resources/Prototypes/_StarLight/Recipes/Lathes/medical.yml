@@ -341,6 +341,18 @@
     Glass: 150
 
 - type: latheRecipe
+  id: CyberRebreather
+  result: CyberRebreather
+  categories:
+  - Implants
+  completetime: 2
+  materials:
+    Plastic: 200
+    Steel: 150
+    Glass: 100
+    Plasma: 100
+
+- type: latheRecipe
   id: PatchPack
   result: PatchPack
   completetime: 2

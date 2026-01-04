@@ -3,44 +3,44 @@
   parent: BaseAnomaly
   suffix: Banana
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: _Starlight/Structures/Specific/Anomalies/banana.rsi
-    layers:
-    - state: anom
-      map: ["enum.AnomalyVisualLayers.Base"]
-    - state: pulse
-      map: ["enum.AnomalyVisualLayers.Animated"]
-      visible: false
-  - type: PointLight
-    radius: 8.0
-    energy: 8.5
-    color: "#ded949"
-  - type: Anomaly
-    animationTime: 6
-    offset: 0, 0
-    corePrototype: AnomalyCoreBanana
-    coreInertPrototype: AnomalyCoreBananaInert
-    minPulseLength: 60
-    maxPulseLength: 120
-  - type: EntitySpawnAnomaly
-    entries:
-    - settings:
-        spawnOnPulse: true
-        minAmount: 6
-        maxAmount: 15
-        maxRange: 4
-      spawns:
-      - TrashBananaPeel
-      - FloorBananiumEntity
-    - settings:
-        spawnOnSuperCritical: true
-        minAmount: 5
-        maxAmount: 12
-        maxRange: 6
-      spawns:
-      - MobMonkey
-  - type: RadiationSource
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _Starlight/Structures/Specific/Anomalies/banana.rsi
+      layers:
+        - state: anom
+          map: ["enum.AnomalyVisualLayers.Base"]
+        - state: pulse
+          map: ["enum.AnomalyVisualLayers.Animated"]
+          visible: false
+    - type: PointLight
+      radius: 8.0
+      energy: 8.5
+      color: "#ded949"
+    - type: Anomaly
+      animationTime: 6
+      offset: 0, 0
+      corePrototype: AnomalyCoreBanana
+      coreInertPrototype: AnomalyCoreBananaInert
+      minPulseLength: 60
+      maxPulseLength: 120
+    - type: EntitySpawnAnomaly
+      entries:
+        - settings:
+            spawnOnPulse: true
+            minAmount: 6
+            maxAmount: 15
+            maxRange: 4
+          spawns:
+            - TrashBananaPeel
+            - FloorBananiumEntity
+        - settings:
+            spawnOnSuperCritical: true
+            minAmount: 5
+            maxAmount: 12
+            maxRange: 6
+          spawns:
+            - MobMonkey
+    - type: RadiationSource
 
 - type: entity
   id: AnomalyClown
@@ -53,14 +53,14 @@
       coreInertPrototype: AnomalyCoreClownInert
       minPulseLength: 180
       maxPulseLength: 300
-      supercriticalSoundAtAnimationStart: /Audio/_Starlight/Effects/clown_anomaly_explosion.ogg 
+      supercriticalSoundAtAnimationStart: /Audio/_Starlight/Effects/clown_anomaly_explosion.ogg
     - type: Sprite
       sprite: _Starlight/Structures/Specific/Anomalies/clown.rsi
       layers:
         - state: anomclown
-          map: [ "enum.AnomalyVisualLayers.Base" ]
+          map: ["enum.AnomalyVisualLayers.Base"]
         - state: anomclown-pulse
-          map: [ "enum.AnomalyVisualLayers.Animated" ]
+          map: ["enum.AnomalyVisualLayers.Animated"]
           visible: false
     - type: PointLight
       radius: 2.0
@@ -69,7 +69,7 @@
       castShadows: false
     - type: RgbLightController
       cycleRate: 0.25
-      layers: [ ]
+      layers: []
     - type: TileSpawnAnomaly
       entries:
         - settings:
@@ -87,15 +87,15 @@
           floor: FloorCarpetClown
     - type: EntitySpawnAnomaly
       entries:
-# no sprite currently for blocker
-#        - settings:
-#            spawnOnPulse: true
-#            minAmount: 1
-#            maxAmount: 4
-#            minRange: 1.5
-#            maxRange: 2.5
-#          spawns:
-#            - ClownBlocker
+        # no sprite currently for blocker
+        #        - settings:
+        #            spawnOnPulse: true
+        #            minAmount: 1
+        #            maxAmount: 4
+        #            minRange: 1.5
+        #            maxRange: 2.5
+        #          spawns:
+        #            - ClownBlocker
         - settings:
             spawnOnPulse: true
             maxAmount: 3
@@ -106,14 +106,14 @@
             - MobClownGolem
             - MobClownClamp
             - MobClownLover
-#        - settings:
-#            spawnOnSuperCritical: true
-#            minAmount: 10
-#            maxAmount: 15
-#            minRange: 5
-#            maxRange: 15
-#          spawns:
-#            - ClownBlocker
+        #        - settings:
+        #            spawnOnSuperCritical: true
+        #            minAmount: 10
+        #            maxAmount: 15
+        #            minRange: 5
+        #            maxRange: 15
+        #          spawns:
+        #            - ClownBlocker
         - settings:
             spawnOnSuperCritical: true
             minAmount: 5
@@ -141,3 +141,130 @@
             - MobClownClamp
             - MobClownLover
             - ClownKudzu
+
+- type: entity
+  id: PortalShadekin
+  suffix: Dark
+  description: The portal to the dark...
+  parent: AnomalyShadow
+  components:
+    - type: Portal
+      arrivalSound: /Audio/Items/hiss.ogg
+      departureSound: /Audio/Items/hiss.ogg
+      canTeleportToOtherMaps: true
+      randomTeleport: false
+    - type: DarkPortal
+    - type: Anomaly
+      corePrototype: null
+      coreInertPrototype: BluespaceCrystal3
+      minPointsPerSecond: 0
+      maxPointsPerSecond: 0
+      animationTime: 5
+      minPulseLength: 60
+      maxPulseLength: 120
+      decayhreshold: 0
+      deleteEntity: false
+    - type: SecretDataAnomaly
+      randomStartSecretMin: 2
+      randomStartSecretMax: 5
+    - type: Sprite
+      sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
+      layers:
+        - state: portal
+          map: ["enum.AnomalyVisualLayers.Base"]
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 0.35
+          density: 50
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+        portalFixture:
+          shape: !type:PhysShapeAabb
+            bounds: "-0.25,-0.48,0.25,0.48"
+          mask:
+            - FullTileMask
+          layer:
+            - WallLayer
+          hard: false
+    - type: PointLight
+      radius: 3
+      energy: 1
+      color: "#793a80dd"
+    - type: DarkLight
+    - type: AmbientSound
+      range: 5
+      volume: -5
+      sound:
+        path: /Audio/Ambience/Objects/gravity_gen_hum.ogg
+    - type: Tag
+      tags:
+        - TheDark
+    - type: GuideHelp
+      guides:
+        - AnomalousResearch
+        - Brighteye
+        - Shadekin
+    - type: EntitySpawnAnomaly
+      entries:
+        - settings:
+            spawnOnPulse: true
+            minAmount: 3
+            maxAmount: 7
+            maxRange: 5
+          spawns:
+            - DarkRandom
+            - ShadekinShadow
+        - settings:
+            spawnOnSuperCritical: true
+            minAmount: 100
+            maxAmount: 200
+            maxRange: 10
+          spawns:
+            - DarkRandom
+        - settings:
+            spawnOnShutdown: true
+            maxAmount: 1
+            maxRange: 1
+          spawns:
+            - AdminInstantEffectFlash
+
+- type: entity
+  id: PortalShadekinHub
+  parent: BasePortal
+  name: dark hub
+  description: This portal is used by shadekins to go nearly anywhere in the universe!
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: DarkHub
+    - type: Sprite
+      noRot: true
+      sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
+      layers:
+        - state: hub_portal
+    - type: PointLight
+      color: "#793a80dd"
+      radius: 3
+      energy: 1
+    - type: AmbientSound
+      range: 5
+      volume: -5
+      sound:
+        path: /Audio/Ambience/Objects/gravity_gen_hum.ogg
+    - type: Portal
+      arrivalSound: /Audio/Items/hiss.ogg
+      departureSound: /Audio/Items/hiss.ogg
+      canTeleportToOtherMaps: true
+      randomTeleport: false
+    - type: DarkLight
+    - type: GuideHelp
+      guides:
+        - Shadekin
+        - Brighteye
+    - type: Tag
+      tags:
+        - TheDark

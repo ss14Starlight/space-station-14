@@ -1,0 +1,43 @@
+- type: entity
+  parent: BaseAmmoProvider
+  id: AmmoProviderShotgunShellToz
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Boxes/toz.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - ShellShotgunToz
+    capacity: 8
+
+- type: entity
+  name: 20 gauge pellet ammunition box
+  description: Open and ready to be used.
+  parent: AmmoProviderShotgunShellToz
+  suffix: opened
+  id: BoxLethalshotTozOpen
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunToz
+
+- type: entity
+  name: 20 gauge pellet ammunition box
+  description: The nearly-illegible text on the packaging says you should use a knife, but it's so cheap you can just rip it open.
+  parent: BaseItem
+  suffix: sealed
+  id: BoxLethalshotToz
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Boxes/toz.rsi
+    layers:
+    - state: base
+  - type: SpawnItemsOnUse
+    items:
+    - id: BoxLethalshotTozOpen
+    sound:
+      path: /Audio/_Starlight/Effects/rip.ogg
