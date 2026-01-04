@@ -53,7 +53,7 @@
 
 - type: stealTargetGroup
   id: PlutoniumCore
-  name: plutonium core
+  name: nuke-core
   sprite:
     sprite: _Starlight/Objects/Misc/plutonium_core.rsi
     state: icon
