@@ -1,0 +1,13 @@
+- type: entity
+  id: ActionFriendship
+  name: Summon Friend
+  description: Summon for a friend.... If used again, instantly evaporates your friend at will.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Clothing/OuterClothing/Hardsuits/lingspacesuit.rsi
+      state: icon
+    useDelay: 15
+  - type: InstantAction
+    event: !type:SummonFriendInstantEvent
