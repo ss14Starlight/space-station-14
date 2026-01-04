@@ -45,7 +45,7 @@
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
   # 🌟Starlight-end🌟
-  - type: Healing # _STARLIGHT: Silicon repair - cable coil heals electrical/thermal damage on silicons (IPCs, borgs)
+  - type: Healing #Far Horizons: Silicon repair - cable coil heals electrical/thermal damage on silicons (IPCs, borgs)
     damageContainers:
     - Silicon
     damage:
