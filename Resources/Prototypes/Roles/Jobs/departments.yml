@@ -120,6 +120,7 @@
   - Brigmedic
   - Detective
   - Warden
+  - DrillInstructor # Starlight-edit
 
 - type: department
   id: Science

@@ -1301,3 +1301,24 @@
     interfaces:
       enum.AgentIDCardUiKey.Key:
         type: AgentIDCardBoundUserInterface
+
+# Starlight-edit: Start
+# adding this to the starlight file causes errors
+- type: entity
+  parent: IDCardStandard
+  id: DrillInstructorIDCard
+  name: Drill Instructor ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: *color-security-top
+    - state: stripe_bottom
+      color: *color-security-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: DrillInstructor
+  - type: PresetIdCard
+    job: DrillInstructor
+# Starlight-edit: End

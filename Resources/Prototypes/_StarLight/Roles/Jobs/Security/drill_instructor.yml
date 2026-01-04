@@ -1,0 +1,43 @@
+- type: job
+  id: DrillInstructor
+  name: job-name-drillInstructor
+  description: job-description-drillInstructor
+  playTimeTracker: JobDrillInstructor
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 72000 # 20 hrs
+
+  startingGear: DrillInstructorGear
+  icon: "JobIconDrillInstructor"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - External
+  - Cryogenics
+  - GenpopEnter
+  - GenpopLeave
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: DrillInstructorGear
+  equipment:
+    ears: ClothingHeadsetSecurity
+  storage:
+    back:
+    - Flash
+
+- type: chameleonOutfit
+  id: DrillInstructorChameleonOutfit
+  job: DrillInstructor
+  hasMindShield: true
+  equipment:
+    head: ClothingHeadHatBeretSecurity
+    mask: ClothingMaskGasSecurity
+    neck: Dinkystar
+    gloves: ClothingHandsGlovesColorBlack

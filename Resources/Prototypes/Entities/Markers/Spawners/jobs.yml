@@ -485,6 +485,19 @@
       - state: green
       - state: security_officer
 
+# starlight
+- type: entity
+  id: SpawnPointDrillInstructor
+  parent: SpawnPointJobBase
+  name: DrillInstructor
+  components:
+  - type: SpawnPoint 
+    job_id: DrillInstructor
+  - type: Sprite
+    layers:
+      - state: green
+      - state: drill_instructor
+
 - type: entity
   id: SpawnPointDetective
   parent: SpawnPointJobBase
