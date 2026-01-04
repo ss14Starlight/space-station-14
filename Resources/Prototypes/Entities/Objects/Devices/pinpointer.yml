@@ -92,8 +92,13 @@
   - type: Icon
     state: pinpointer-syndicate
   - type: Pinpointer
-    component: NukeDisk
-    targetName: nuclear authentication disk
+    # Starlight edit Start: Multiple Pinpointer Targets
+    targets:
+    - component: NukeDisk
+      name: nuclear authentication disk
+    - tag: PlutoniumCore
+      name: plutonium core
+    # Starlight edit End
 
 - type: entity
   name: universal pinpointer

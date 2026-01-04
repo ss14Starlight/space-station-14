@@ -5,6 +5,7 @@ using System.Numerics;
 using Robust.Shared.Utility;
 using Content.Server.Shuttles.Events;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Tag; // Starlight
 
 namespace Content.Server.Pinpointer;
 
@@ -12,6 +13,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 {
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!; // Starlight
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -22,7 +24,17 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 
         SubscribeLocalEvent<PinpointerComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<FTLCompletedEvent>(OnLocateTarget);
+        SubscribeLocalEvent<PinpointerComponent, ComponentStartup>(OnComponentStartup); // Starlight
     }
+    // Starlight Start
+    private void OnComponentStartup(EntityUid uid, PinpointerComponent component, ComponentStartup args)
+    {
+        if (component.Targets != null && component.Targets.Count > 0 && component.CurrentTargetIndex < 0)
+        {
+            component.CurrentTargetIndex = 0;
+        }
+    }
+    // Starlight End
 
     public override bool TogglePinpointer(EntityUid uid, PinpointerComponent? pinpointer = null)
     {
@@ -48,10 +60,20 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         if (args.Handled || !args.Complex)
             return;
 
-        TogglePinpointer(uid, component);
+        // Starlight edit Start
+        // Only cycle if has multiple targets and not emagged
+        if (component.IsActive && component.Targets != null && component.Targets.Count > 1 && !component.CanRetarget)
+        {
+            CycleTarget(uid, component);
+        }
+        else
+        {
+            TogglePinpointer(uid, component);
 
-        if (!component.CanRetarget)
-            LocateTarget(uid, component);
+            if (!component.CanRetarget)
+                LocateTarget(uid, component);
+        }
+        // Starlight edit End
 
         args.Handled = true;
     }
@@ -72,21 +94,47 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
             LocateTarget(uid, pinpointer);
         }
     }
+    // Starlight Start: Multi Target Pinpointers
+    public override void CycleTarget(EntityUid uid, PinpointerComponent? component = null)
+    {
+        base.CycleTarget(uid, component);
+        
+        if (!Resolve(uid, ref component))
+            return;
+
+        LocateTarget(uid, component);
+    }
+    // Starlight End
 
     private void LocateTarget(EntityUid uid, PinpointerComponent component)
     {
-        // try to find target from whitelist
-        if (component.IsActive && component.Component != null)
+        // Starlight edit Start: Mutli target Pinpointers
+        // try to find target from component or tag
+        if (component.IsActive)
         {
-            if (!EntityManager.ComponentFactory.TryGetRegistration(component.Component, out var reg))
+            var componentOrTag = GetCurrentTargetComponent(component);
+            if (componentOrTag != null)
             {
-                Log.Error($"Unable to find component registration for {component.Component} for pinpointer!");
-                DebugTools.Assert(false);
-                return;
+                EntityUid? target;
+                
+                // Check if we're tracking by tag or component
+                if (IsCurrentTargetTag(component))
+                {
+                    target = FindTargetFromTag(uid, componentOrTag);
+                }
+                else
+                {
+                    if (!EntityManager.ComponentFactory.TryGetRegistration(componentOrTag, out var reg))
+                    {
+                        Log.Error($"Unable to find component registration for {componentOrTag} for pinpointer!");
+                        return;
+                    }
+                    target = FindTargetFromComponent(uid, reg.Type);
+                }
+                
+                SetTarget(uid, target, component);
             }
-
-            var target = FindTargetFromComponent(uid, reg.Type);
-            SetTarget(uid, target, component);
+            // Starlight edit End
         }
     }
 
@@ -131,6 +179,39 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         // return uid with a smallest distance
         return l.Count > 0 ? l.First().Value : null;
     }
+
+    // Starlight Start: Multi Target Pinpointers
+    /// <summary>
+    /// Try to find the closest entity with the specified tag on a current map.
+    /// Will return null if can't find anything.
+    /// </summary>
+    private EntityUid? FindTargetFromTag(EntityUid uid, string tag, TransformComponent? transform = null)
+    {
+        _xformQuery.Resolve(uid, ref transform, false);
+
+        if (transform == null)
+            return null;
+
+        var mapId = transform.MapID;
+        var l = new SortedList<float, EntityUid>();
+        var worldPos = _transform.GetWorldPosition(transform);
+
+        var query = EntityQueryEnumerator<TagComponent>();
+        while (query.MoveNext(out var otherUid, out var tagComp))
+        {
+            if (!_tagSystem.HasTag(tagComp, tag))
+                continue;
+
+            if (!_xformQuery.TryGetComponent(otherUid, out var compXform) || compXform.MapID != mapId)
+                continue;
+
+            var dist = (_transform.GetWorldPosition(compXform) - worldPos).LengthSquared();
+            l.TryAdd(dist, otherUid);
+        }
+
+        return l.Count > 0 ? l.First().Value : null;
+    }
+    // Starlight End
 
     /// <summary>
     ///     Update direction from pinpointer to selected target (if it was set)

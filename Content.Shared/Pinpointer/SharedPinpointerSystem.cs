@@ -4,6 +4,9 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+// Starlight Start
+using Content.Shared.Verbs;
+// Starlight End
 
 namespace Content.Shared.Pinpointer;
 
@@ -18,6 +21,7 @@ public abstract class SharedPinpointerSystem : EntitySystem
         SubscribeLocalEvent<PinpointerComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<PinpointerComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<PinpointerComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<PinpointerComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs); // Starlight
     }
 
     /// <summary>
@@ -57,6 +61,26 @@ public abstract class SharedPinpointerSystem : EntitySystem
             UpdateDirectionToTarget(uid, pinpointer);
     }
 
+    // Starlight Start
+    /// <summary>
+    ///     Set pinpointer target component and name for tracking
+    /// </summary>
+    public virtual void SetTarget(EntityUid uid, EntityUid? target, string? componentName, string? targetName, PinpointerComponent? pinpointer = null)
+    {
+        if (!Resolve(uid, ref pinpointer))
+            return;
+
+        pinpointer.Target = target;
+        pinpointer.Component = componentName;
+        pinpointer.TargetName = targetName;
+        
+        if (pinpointer.IsActive)
+            UpdateDirectionToTarget(uid, pinpointer);
+        
+        Dirty(uid, pinpointer);
+    }
+    // Starlight End
+
     /// <summary>
     ///     Update direction from pinpointer to selected target (if it was set)
     /// </summary>
@@ -67,10 +91,14 @@ public abstract class SharedPinpointerSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, PinpointerComponent component, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || component.TargetName == null)
+        if (!args.IsInDetailsRange) // Starlight Edit
             return;
 
-        args.PushMarkup(Loc.GetString("examine-pinpointer-linked", ("target", component.TargetName)));
+        // Starlight edit Start
+        var targetName = GetCurrentTargetName(component);
+        if (targetName != null)
+            args.PushMarkup(Loc.GetString("examine-pinpointer-linked", ("target", targetName)));
+        // Starlight edit End
     }
 
     /// <summary>
@@ -121,7 +149,6 @@ public abstract class SharedPinpointerSystem : EntitySystem
         Dirty(uid, pinpointer);
     }
 
-
     /// <summary>
     ///     Toggle Pinpointer screen. If it has target it will start tracking it.
     /// </summary>
@@ -149,5 +176,88 @@ public abstract class SharedPinpointerSystem : EntitySystem
 
         args.Handled = true;
         component.CanRetarget = true;
+        // Starlight Start
+        component.UpdateTargetName = true; // Allow updating target name when retargeting
+        component.Targets = null; // Disable multi-target system when emagged
+        component.CurrentTargetIndex = -1;
+        // Starlight End
+        _adminLogger.Add(LogType.Emag, LogImpact.Medium, $"{ToPrettyString(args.UserUid):player} emagged {ToPrettyString(uid):entity} to allow retargeting");
+    }
+
+    // Starlight Start: Mutli Target Pinpointers
+    private void OnGetVerbs(EntityUid uid, PinpointerComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        // Only show verbs if we have multiple targets
+        if (component.Targets == null || component.Targets.Count <= 1)
+            return;
+
+        // Toggle pinpointer on/off
+        var toggleVerb = new AlternativeVerb
+        {
+            Text = component.IsActive ? Loc.GetString("pinpointer-verb-deactivate") : Loc.GetString("pinpointer-verb-activate"),
+            Act = () => TogglePinpointer(uid, component),
+            Priority = 2
+        };
+        args.Verbs.Add(toggleVerb);
+
+        // Cycle target
+        var cycleVerb = new AlternativeVerb
+        {
+            Text = Loc.GetString("pinpointer-verb-cycle-target"),
+            Act = () => CycleTarget(uid, component),
+            Priority = 1
+        };
+        args.Verbs.Add(cycleVerb);
+    }
+
+    public virtual void CycleTarget(EntityUid uid, PinpointerComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        if (component.Targets == null || component.Targets.Count == 0)
+            return;
+
+        // Increment and wrap around
+        component.CurrentTargetIndex = (component.CurrentTargetIndex + 1) % component.Targets.Count;
+        
+        var target = component.Targets[component.CurrentTargetIndex];
+        var componentOrTag = target.Tag ?? target.Component;
+        SetTarget(uid, null, componentOrTag, target.Name, component);
+        
+        // Update the pinpointer to find and track the new target
+        Dirty(uid, component);
+    }
+
+    public string? GetCurrentTargetComponent(PinpointerComponent component)
+    {
+        if (component.Targets != null && component.Targets.Count > 0 && component.CurrentTargetIndex >= 0)
+        {
+            var target = component.Targets[component.CurrentTargetIndex];
+            return target.Tag ?? target.Component;
+        }
+        return component.Component;
+    }
+
+    public bool IsCurrentTargetTag(PinpointerComponent component)
+    {
+        if (component.Targets != null && component.Targets.Count > 0 && component.CurrentTargetIndex >= 0)
+        {
+            return component.Targets[component.CurrentTargetIndex].Tag != null;
+        }
+        return false;
+    }
+
+    public string? GetCurrentTargetName(PinpointerComponent component)
+    {
+        if (component.Targets != null && component.Targets.Count > 0 && component.CurrentTargetIndex >= 0)
+        {
+            return component.Targets[component.CurrentTargetIndex].Name;
+        }
+        return component.TargetName;
+    // Starlight End
     }
 }

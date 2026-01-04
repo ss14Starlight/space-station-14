@@ -15,6 +15,20 @@ public sealed partial class PinpointerComponent : Component
     [DataField("component"), ViewVariables(VVAccess.ReadWrite)]
     public string? Component;
 
+    // Starlight Start
+    /// <summary>
+    ///     List of targets that this pinpointer can track. If empty or null, uses Component field for backward compatibility.
+    /// </summary>
+    [DataField("targets"), ViewVariables(VVAccess.ReadWrite)]
+    public List<PinpointerTarget>? Targets;
+
+    /// <summary>
+    ///     Index of the currently selected target in the Targets list. -1 means using Component field.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int CurrentTargetIndex = -1;
+    // Starlight End
+
     [DataField("mediumDistance"), ViewVariables(VVAccess.ReadWrite)]
     public float MediumDistance = 16f;
 
@@ -63,6 +77,34 @@ public sealed partial class PinpointerComponent : Component
     [ViewVariables]
     public bool HasTarget => DistanceToTarget != Distance.Unknown;
 }
+
+// Starlight Start
+/// <summary>
+/// Represents a target configuration for a multi-target pinpointer.
+/// </summary>
+[DataDefinition]
+[Serializable, NetSerializable]
+public sealed partial class PinpointerTarget
+{
+    /// <summary>
+    ///     Component type to track (e.g., "NukeDisk").
+    /// </summary>
+    [DataField("component")]
+    public string? Component;
+
+    /// <summary>
+    ///     Tag to track (e.g., "PlutoniumCore"). Takes priority over Component if both are set.
+    /// </summary>
+    [DataField("tag")]
+    public string? Tag;
+
+    /// <summary>
+    ///     Display name for this target.
+    /// </summary>
+    [DataField("name", required: true)]
+    public string Name = string.Empty;
+}
+// Starlight End
 
 [Serializable, NetSerializable]
 public enum Distance : byte
