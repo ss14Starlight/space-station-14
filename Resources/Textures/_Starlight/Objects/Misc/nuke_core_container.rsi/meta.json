@@ -1,20 +1,23 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/c34d56a45b0461f5e0fad3cc75e81580c3357119/icons/obj/antags/syndicate_tools.dmi",
+  "copyright": "State based Copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "open"
+      "name": "open",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/c34d56a45b0461f5e0fad3cc75e81580c3357119/icons/obj/antags/syndicate_tools.dmi"
     },
     {
-      "name": "closed"
+      "name": "closed",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/c34d56a45b0461f5e0fad3cc75e81580c3357119/icons/obj/antags/syndicate_tools.dmi"
     },
     {
       "name": "core_open",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/c34d56a45b0461f5e0fad3cc75e81580c3357119/icons/obj/antags/syndicate_tools.dmi",
       "delays": [
         [
           2.3,
@@ -26,6 +29,7 @@
     },
     {
       "name": "core_closed",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/c34d56a45b0461f5e0fad3cc75e81580c3357119/icons/obj/antags/syndicate_tools.dmi",
       "delays": [
         [
           2.3,
@@ -37,10 +41,12 @@
     },
     {
       "name": "inhand-left",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/c34d56a45b0461f5e0fad3cc75e81580c3357119/icons/obj/antags/syndicate_tools.dmi",
       "directions": 4
     },
     {
       "name": "inhand-right",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/c34d56a45b0461f5e0fad3cc75e81580c3357119/icons/obj/antags/syndicate_tools.dmi",
       "directions": 4
     }
   ]
