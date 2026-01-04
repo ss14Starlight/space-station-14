@@ -86,6 +86,7 @@ guide-entry-sl-engineering-sop-chief-engineer = Chief Engineer
 guide-entry-sl-engineering-sop-station-engineer = Station Engineer
 guide-entry-sl-engineering-sop-atmos-tech = Atmospheric Technician
 guide-entry-sl-engineering-sop-technical-assistant = Technical Assistant
+guide-entry-ptl = Power Transmission Laser (PTL)
 
 guide-entry-sl-medical-sop-intro = Medical
 guide-entry-sl-medical-sop-genproc-intro = General Procedures

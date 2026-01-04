@@ -1,0 +1,33 @@
+<Document>
+  # Power Transmission Laser (PTL)
+
+  <Box>
+    <GuideEntityEmbed Entity="PowerTransmissionLaser" Caption="PTL" />
+  </Box>
+
+  The Power Transmission Laser (PTL) is an engineering machine that converts excess station power into station funds by beaming the energy away.
+  It is designed to be connected to the stations [color=orange]HV power[/color] network.
+
+  The PTL can be built from a machine frame using a PTL machine board (Machine circuit locate in Chief Engineer locker) and the required machine parts.
+    
+  If the stations power network cannot keep up, the PTL will not run efficiently (and may stop until enough power is available).
+
+  ## Setup
+
+  - 1. Place the PTL in a suitable location and connect it to the stations [color=orange]HV wire[/color].
+  - 2. Ensure the station has enough generation and storage to support the extra load ([color=red]Keep in mind that PTL will consumes 1 MW for charging internal reserve battery in any case[/color]).
+  - 3. Use the PTLs UI to enable it.
+
+  ## Interface
+
+  The PTL UI provides several useful indicators:
+
+  - Reserved power, which shows how much of the reserved battery is currently filled.
+  - Grid saturation, that indicates how "stressed" the connected power network is.
+
+  ## Where the money goes
+
+  Earnings are deposited into the stations bank account.
+
+  If an Engineering cargo ordering console account is available on the station, it is preferred, otherwise the Cargo account is used.
+</Document>

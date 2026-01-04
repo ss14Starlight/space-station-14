@@ -1,8 +1,8 @@
 - type: entity
   id: PowerTransmissionLaser
   parent: [BaseMachine, ConstructibleMachine]
-  name: PTL
-  description: todo
+  name: Power Transmission Laser
+  description: A Power Transmission Laser that converts excess station power into station funds by beaming the energy away.
   placement:
     mode: SnapgridCenter
   components:
@@ -46,9 +46,12 @@
   - type: Ptl
     cycleTimeSeconds: 2
     spesosPerMwPerCycle: 60
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
   - type: Battery
     startingCharge: 0
-    maxCharge: 24000000
+    maxCharge: 60000000 # 60 MW
   - type: ExaminableBattery
   - type: PowerNetworkBattery
     canDischarge: false
