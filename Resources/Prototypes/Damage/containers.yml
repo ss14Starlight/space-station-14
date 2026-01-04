@@ -33,7 +33,7 @@
     - Heat
     - Shock
     - Caustic #Starlight
-    - Cold
+    - Cold #Starlight
 
 - type: damageContainer
   id: Shield
