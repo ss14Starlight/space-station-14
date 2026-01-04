@@ -1,2 +1,2 @@
-tool-quality-fine-screwing-name = Fine Screwing
-tool-quality-fine-screwing-tool-name = Thin-Tipped Screwdriver
+tool-quality-fine-screwing = Fine Screwing
+tool-quality-fine-screwing-name = Thin-Tipped Screwdriver

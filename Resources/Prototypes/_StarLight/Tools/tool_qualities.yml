@@ -2,6 +2,6 @@
 - type: tool
   id: FineScrewing
   name: tool-quality-fine-screwing
-  toolName: tool-quality-fine-screwing-tool-name
+  toolName: tool-quality-fine-screwing-name
   spawn: ThinTippedScrewdriver
   icon: { sprite: Objects/Tools/screwdriver.rsi, state: screwdriver-map }
