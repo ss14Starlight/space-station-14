@@ -12,7 +12,7 @@
         container: PlutoniumCore
       steps:
       - tag: PlutoniumCore
-        name: "a plutonium core"
+        name: "nuke-core"
         icon:
           sprite: _Starlight/Objects/Misc/plutonium_core.rsi
           state: icon
