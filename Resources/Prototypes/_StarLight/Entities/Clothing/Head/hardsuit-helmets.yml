@@ -40,6 +40,23 @@
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
 
+#Magi Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitMagistrate
+  categories: [ HideSpawnMenu ]
+  name: magistrate's hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/ntrep.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/ntrep.rsi
+  - type: PointLight
+    color: "#adeeff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+
 #Clown Battlesuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -512,6 +529,32 @@
     tags:
       - CorgiWearable
 
+# Generic Hardsuits
+#Generic Fire Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitAtmos
+  id: ClothingHeadHelmetHardsuitFireGeneric
+  name: fire hardsuit helmet
+  description: A special hardsuit helmet designed for working in low-pressure, high thermal environments.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/atmospherics.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: PointLight
+    color: "#adffe6"
+
+
+
+
+
+# Golden
 - type: entity
   parent: ClothingHeadHelmetHardsuitAtmos
   id: ClothingHeadHelmetHardsuitAtmosGolden
@@ -529,7 +572,7 @@
       shader: unshaded
       map: [ "light" ]
   - type: PointLight
-    color: "#feffad"
+    color: "#adffe6"
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitEngineering
