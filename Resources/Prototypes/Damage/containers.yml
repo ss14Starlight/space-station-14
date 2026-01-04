@@ -32,7 +32,7 @@
   supportedTypes:
     - Heat
     - Shock
-    - Caustic
+    - Caustic #Starlight
     - Cold
 
 - type: damageContainer
