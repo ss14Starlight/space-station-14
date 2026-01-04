@@ -318,7 +318,17 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - sprite: *id-rsi
+      state: centcom
+    - sprite: *id-rsi
+      state: stripe_top
+      color: *color-centcomm-top
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: *color-centcomm-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Nanotrasen
   - type: Item
     heldPrefix: blue
   - type: PresetIdCard

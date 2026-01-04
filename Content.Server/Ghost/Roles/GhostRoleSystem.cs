@@ -557,7 +557,7 @@ public sealed class GhostRoleSystem : EntitySystem
         List<ProtoId<JobPrototype>>? jobIds,
         List<ProtoId<AntagPrototype>>? antagIds)
     {
-        var ev = new IsRoleAllowedEvent(player, jobIds, antagIds);
+        var ev = new IsRoleAllowedEvent(player, jobIds, antagIds, cancelled: false, isSpawning: false); // Starlight-edit: add last two parameters
         RaiseLocalEvent(ref ev);
 
         return !ev.Cancelled;

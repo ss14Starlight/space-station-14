@@ -1205,7 +1205,7 @@
     key: enum.FundingAllocationConsoleUiKey.Key
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
-    access: [["HeadOfPersonnel"]] #Starlight Change needs to make QM
+    access: [["HeadOfPersonnel"], ["Quartermaster"]] #Starlight edit: added Quatermaster
   - type: UserInterface
     interfaces:
       enum.FundingAllocationConsoleUiKey.Key:

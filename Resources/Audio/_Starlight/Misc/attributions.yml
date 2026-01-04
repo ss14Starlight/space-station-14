@@ -17,3 +17,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Modified by Bukkataro from xenoborg_buzz-two.ogg"
   source: "https://github.com/space-wizards/space-station-14/pull/36867"
+
+- files: ["icarus_alarm.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Skyrat"
+  source: "https://github.com/Skyrat-SS13/Skyrat-tg"

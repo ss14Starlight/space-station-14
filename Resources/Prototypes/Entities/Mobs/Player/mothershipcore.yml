@@ -173,6 +173,8 @@
     disableExplosionRecursion: true
     canBeStripped: false
   - type: BorgChassis
+    jobIconOverride: JobIconXenoborgMothership # Starlight
+    jobTitleOverride: chat-radio-mothership # Starlight
     canOpenSelfUi: true
     maxModules: 2
     hasMindState: core-e

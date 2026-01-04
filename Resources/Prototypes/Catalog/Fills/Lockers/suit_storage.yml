@@ -344,5 +344,5 @@
     - id: NitrogenTankFilled # Starlight - vox gang
     - id: ClothingMaskBreath
     # TODO: Gone until reworked to have no space protection
-    #- id: ClothingOuterHardsuitWizard
+    - id: ClothingOuterHardsuitWizard # Starlight: Readd wizard suit
     #- id: JetpackVoidFilled

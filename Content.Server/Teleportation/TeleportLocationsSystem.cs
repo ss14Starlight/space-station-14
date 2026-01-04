@@ -6,7 +6,6 @@ using Content.Shared.Teleportation.Systems;
 using Content.Shared.UserInterface;
 using Content.Shared.Warps;
 using Content.Shared.Whitelist;
-using Content.Shared.Chat; // Starlight
 
 namespace Content.Server.Teleportation;
 

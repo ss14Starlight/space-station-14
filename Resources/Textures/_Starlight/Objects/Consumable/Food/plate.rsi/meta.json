@@ -1,17 +1,26 @@
 {
     "version": 1,
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from https://github.com/ss220-space/Paradise/commit/b2681ba958473e3fdd878a69cc5e14c91d3ed725, adapted by Lomovar",
+	"copyright": "See below.",
+	"license": "CC-BY-SA-3.0",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "plate"
+            "name": "plate",
+			"copyright": "Taken from tgstation https://github.com/tgstation/tgstation/commit/40d75cc340c63582fb66ce15bf75a36115f6bdaa and modified by Swept.",
+			"license": "CC-BY-SA-3.0"
         },
         {
-            "name": "baked_vulpkanin"
+            "name": "charcuterie",
+			"copyright": "Charcuterie sprite hacked together by Rhetorica for Starlight.",
+			"license": "CC-BY-SA-3.0"
+        },
+		{
+            "name": "baked_vulpkanin",
+			"copyright": "Baked vulp taken from https://github.com/ss220-space/Paradise/commit/b2681ba958473e3fdd878a69cc5e14c91d3ed725, adapted by Lomovar.",
+			"license": "CC-BY-SA-3.0"
         }
     ]
 }
