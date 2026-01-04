@@ -6,7 +6,9 @@
   - type: Action
     checkCanInteract: false
     checkConsciousness: false # can use while crit/dead
-    icon: { sprite: Objects/Specific/Medical/medical.rsi, state: gauze }
+    icon:
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: gauze
   - type: InstantAction
     event: !type:RejuvenateInstantActionEvent
   - type: LimitedCharges

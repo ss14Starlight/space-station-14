@@ -1,5 +1,5 @@
 - type: entity
-  parent: Paper
+  parent: [Paper, BaseMajorContraband]
   id: InfernalContract
   name: infernal contract
   description: The more you look at it, the more you feel like it is gazing back at you...
