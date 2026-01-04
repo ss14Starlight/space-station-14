@@ -27,6 +27,7 @@
     CMOLicenseStealObjective: 1 #Starlight Unique Targets
     EnergyShotgunStealObjective: 0.5 #Starlight re-targeted
     Proto5xStealObjective: 0.5 #Starlight Unique Targets
+    PlutoniumCoreStealObjective: 0.2 # Starlight
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill

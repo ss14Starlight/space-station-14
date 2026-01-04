@@ -4,6 +4,7 @@ steal-target-groups-cmolicense = medical license
 steal-target-groups-mining-shuttle-console-circuitboard = mining shuttle console board
 steal-target-groups-salvage-shuttle-console-circuitboard = salvage shuttle console board
 steal-target-groups-hopboard = bureaucratic digiboard
+objective-condition-steal-nuclear-bomb = nuclear bomb
 
 # Thief single items
 steal-target-groups-proto5x = Head Of Security's Proto-5x

@@ -50,3 +50,10 @@
   sprite:
     sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
     state: icon
+
+- type: stealTargetGroup
+  id: PlutoniumCore
+  name: plutonium core
+  sprite:
+    sprite: _Starlight/Objects/Misc/plutonium_core.rsi
+    state: icon
