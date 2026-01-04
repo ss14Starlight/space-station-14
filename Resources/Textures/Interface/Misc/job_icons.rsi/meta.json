@@ -237,6 +237,9 @@
         },
         {
             "name": "Zookeeper"
+        },
+        {
+            "name": "DrillInstructor"
         }
     ]
 }

@@ -204,6 +204,9 @@
     },
     {
       "name": "zookeeper"
+    },
+    {
+      "name": "drill_instructor"
     }
   ]
 }
