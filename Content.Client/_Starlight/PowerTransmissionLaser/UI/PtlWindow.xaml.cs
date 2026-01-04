@@ -109,13 +109,13 @@ public sealed partial class PtlWindow : DefaultWindow
 
         if (combinedMax <= 0f)
         {
-            BatteryIcon.TexturePath = "/Textures/Interface/Alerts/battery.rsi/battery-none.png";
+            BatteryIcon.TexturePath = "/Textures/Interface/Alerts/battery.rsi/battery-none";
             return;
         }
 
         if (combinedCurrent <= 0.0001f)
         {
-            BatteryIcon.TexturePath = "/Textures/Interface/Alerts/battery.rsi/battery-none.png";
+            BatteryIcon.TexturePath = "/Textures/Interface/Alerts/battery.rsi/battery-none";
             return;
         }
 
@@ -123,7 +123,7 @@ public sealed partial class PtlWindow : DefaultWindow
 
         var level = (int) MathF.Round(fraction * 10f);
         level = Math.Clamp(level, 0, 10);
-        BatteryIcon.TexturePath = $"/Textures/Interface/Alerts/battery.rsi/battery{level}.png";
+        BatteryIcon.TexturePath = $"/Textures/Interface/Alerts/battery.rsi/battery{level}";
     }
 
     public void SetReservedPower(float currentJ, float maxJ, float reservedCurrentJ, float reservedMaxJ)

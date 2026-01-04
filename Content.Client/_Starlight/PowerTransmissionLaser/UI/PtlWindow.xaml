@@ -15,7 +15,7 @@
                     <!-- Battery panel -->
                     <PanelContainer StyleClasses="Inset" SetWidth="120" VerticalExpand="True">
                         <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="4" VerticalAlignment="Center">
-                            <TextureRect Name="BatteryIcon" TexturePath="/Textures/Interface/Alerts/battery.rsi/battery-none.png"
+                            <TextureRect Name="BatteryIcon" TexturePath="/Textures/Interface/Alerts/battery.rsi/battery-none"
                                          Stretch="KeepAspectCentered"
                                          HorizontalAlignment="Center"
                                          SetSize="64 64" />
