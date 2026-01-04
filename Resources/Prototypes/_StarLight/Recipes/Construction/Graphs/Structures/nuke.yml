@@ -6,23 +6,30 @@
     entity: NuclearBombDisarmed
     edges:
     - to: core_exposed
+      completed:
+      - !type:SpawnPrototypeAtContainer
+        prototype: PlutoniumCore
+        container: PlutoniumCore
       steps:
       - tag: PlutoniumCore
         name: "a plutonium core"
         icon:
-          sprite: Objects/Misc/plutonium_core.rsi
+          sprite: _Starlight/Objects/Misc/plutonium_core.rsi
           state: icon
         doAfter: 1
+      - tool: Prying
+        doAfter: 2
 
   - node: core_exposed
     edges:
     - to: disarmed
       completed:
-      - !type:GivePrototype
-        prototype: PlutoniumCore
+      - !type:EmptyContainer
+        container: PlutoniumCore
+        pickup: true
       steps:
       - tool: Prying
-        doAfter: 2
+        doAfter: 1
     - to: panel_removed
       steps:
       - material: Plasteel

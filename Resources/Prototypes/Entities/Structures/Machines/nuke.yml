@@ -127,6 +127,15 @@
   - type: ContainerContainer
     containers:
       Nuke: !type:ContainerSlot
+  # Starlight Start
+      PlutoniumCore: !type:Container
+  - type: ContainerFill
+    containers:
+      PlutoniumCore:
+      - PlutoniumCore
+  - type: RadiationBlockingContainer # Blocks radiation from the plutonium core inside
+    resistance: 100
+  # Starlight End
   # Starlight edit Start
   # - type: StealTarget
   #   stealGroup: NuclearBomb
