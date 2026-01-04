@@ -10,7 +10,7 @@
     Blunt: 5
     Heat: 5
 
-# _STARLIGHT: IPC damage modifiers - Balanced for mechanical beings
+# _STARLIGHT-Start: IPC damage modifiers - Balanced for mechanical beings
 # IPCs are robots with metal chassis but electronic internals
 # Max resistance: 10% (0.9x coefficient minimum)
 # Shock damage reduced from 3.5x to 2.0x to prevent instant round-removal
