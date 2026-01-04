@@ -163,7 +163,7 @@
 - type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
   id: ClothingUniformJumpsuitCorpsmanResponse
-  name: corpsman's response jacket
+  name: corpsman's response wear
   description: If only I'd been faster.
   components:
   - type: Sprite

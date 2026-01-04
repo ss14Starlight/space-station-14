@@ -39,6 +39,10 @@
   id: JobBorg
   nameDataset: NamesBorg
   canCustomizeName: true
+  # Starlight Start: Selectable Silicon Brain
+  groups:
+  - SiliconBrainType
+  # Starlight End
 
 - type: roleLoadout
   id: JobStationAi

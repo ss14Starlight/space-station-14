@@ -416,6 +416,16 @@
     - SalvagePDA
     - VeteranSalvagePDA
 
+# Silicon Brain Type
+- type: loadoutGroup
+  id: SiliconBrainType
+  name: loadout-group-borg-brain-type
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutSiliconPositronicBrain
+  - LoadoutSiliconSpeciesBrain
+
 # Chemist
 - type: loadoutGroup
   id: ChemistHead
@@ -479,7 +489,7 @@
 - type: loadoutGroup
   id: BrigmedicMask
   name: loadout-group-brigmedic-mask
-  minLimit: 0
+  minLimit: 1
   loadouts:
     - BrigmedicBreathMaskMedicalSecurity
     - BrigmedicMaskGasSecurity
@@ -497,8 +507,8 @@
   name: loadout-group-brigmedic-id
   loadouts:
     - BrigmedicPDA
-    - CorpsmanPDA
     - VeteranBrigmedicPDA
+    - CorpsmanPDA
     - VeteranCorpsmanPDA
 
 - type: loadoutGroup
