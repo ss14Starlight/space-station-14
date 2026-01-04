@@ -40,7 +40,7 @@
   name: species-name-human
   text: "/ServerInfo/Guidebook/Mobs/Human.xml"
 
-- type: guideEntry
+- type: guideEntry #Far Horizons
   id: IPC
   name: species-name-ipc
   text: "/ServerInfo/Guidebook/_FarHorizons/Mobs/IPC.xml"
