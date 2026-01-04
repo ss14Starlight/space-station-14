@@ -1,0 +1,104 @@
+- type: entity
+  parent: BaseItem
+  id: PlutoniumCore
+  name: plutonium core
+  description: Extremely radioactive, even looking at this with the naked eye is dangerous.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/plutonium_core.rsi
+    state: icon
+  - type: StealTarget
+    stealGroup: PlutoniumCore
+  - type: RadiationSource
+    intensity: 4
+    slope: 1
+  - type: StaticPrice
+    price: 49000
+  - type: Tag
+    tags:
+    - PlutoniumCore
+
+- type: entity
+  parent: [BaseItem, BaseItemCabinet]
+  id: NukeCoreContainer
+  name: nuke core container
+  description: Solid container for radioactive objects.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/nuke_core_container.rsi
+    layers:
+    - state: closed
+      map: [ "enum.OpenableVisuals.Layer" ]
+    - state: core_closed
+      map: [ "enum.ItemCabinetVisuals.Layer" ]
+      visible: false
+      shader: unshaded
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+  - type: RadiationBlockingContainer
+    resistance: 4
+  - type: ItemSlots
+    slots:
+      ItemCabinet:
+        whitelist:
+          tags:
+          - PlutoniumCore
+        whitelistFailPopup: nuke-core-container-whitelist-fail-popup
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: { state: open }
+          False: { state: closed }
+        enum.ItemCabinetVisuals.Layer:
+          True: { state: core_open }
+          False: { state: core_closed }
+      enum.ItemCabinetVisuals.ContainsItem:
+        enum.ItemCabinetVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+
+- type: entity
+  parent: PrintedDocument
+  id: NukeCoreExtractionGuide
+  name: nuclear core extraction guide
+  components:
+    - type: Paper
+      content: |
+        [color=#ff0000][head=2]SYNDICATE OPERATIONS MANUAL[/head][/color]
+        [head=3][color=#a4885c]NUCLEAR CORE EXTRACTION[/color][/head]
+
+        [color=#ff0000]═══════════════════════════════════════[/color]
+
+        Congratulations, agent. You've been assigned one of
+        our most [italic]delicate[/italic] operations. Don't worry - the
+        plutonium core is [italic]mostly[/italic] safe to handle! We've
+        only lost three operatives during training. You'll
+        be fine. [italic]Probably.[/italic]
+
+        [color=#ff0000]═══════════════════════════════════════[/color]
+
+        [bold]YOUR TOOLBOX CONTAINS:[/bold]
+        ✓ Crowbar
+        ✓ Welding tool
+        ✓ Wrench
+        ✓ Thin-tipped screwdriver
+        ✓ Radiation-shielded core container
+        X Radiation suit (budget cuts)
+        ✓ This manual (you're reading it!)
+
+        [color=#ff0000]═══════════════════════════════════════[/color]
+
+        [bold]EXTRACTION PROCEDURE:[/bold]
+        1. Enter vault, approach the nuke
+        2. [bold]SCREWDRIVER:[/bold] Use the [italic]specialized[/italic] screwdriver, Normal ones are too big.
+        3. [bold]WELDER:[/bold] Cut first layer of welds
+        4. [bold]CROWBAR:[/bold] Pry open outer panel
+        5. [bold]WELDER:[/bold] Cut secondary welds
+        6. [bold]WRENCH:[/bold] Unbolt core mounting assembly
+        7. [bold]WELDER:[/bold] Final weld cuts
+        8. [bold]CROWBAR:[/bold] Pry core free and extract it
+        9. [bold]IMMEDIATELY[/bold] Quick! Put the core in the shielded container!
+        10. [bold]RUN[/bold]. Security is definitely coming!

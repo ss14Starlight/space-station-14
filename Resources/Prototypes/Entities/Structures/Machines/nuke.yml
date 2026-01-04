@@ -1,6 +1,7 @@
 - type: entity
+  abstract: true # Starlight
   parent: [BaseStructure, StructureWheeled, BaseMajorContraband]
-  id: NuclearBomb
+  id: BaseNuclearBomb # Starlight Edit
   name: nuclear fission explosive
   description: You probably shouldn't stick around to see if this is armed.
   components:
@@ -61,6 +62,25 @@
         - MachineMask
         layer:
         - HalfWallLayer
+# Starlight Start
+  - type: InteractionOutline
+  - type: CargoSellBlacklist
+  - type: ArrivalsBlacklist
+  - type: WarpPoint
+    follow: true
+    location: nuclear bomb
+  - type: StealTarget
+    stealGroup: NuclearBomb
+  - type: Construction
+    graph: NuclearBomb
+    deconstructionTarget: disarmed
+
+- type: entity
+  parent: BaseNuclearBomb
+  id: NuclearBomb
+  description: You probably shouldn't stick around to see if this is armed.
+  components:
+# Starlight End
   - type: PointLight
     enabled: false
     radius: 4
@@ -90,7 +110,7 @@
         - NukeDisk
     alertLevelOnActivate: delta
     alertLevelOnDeactivate: green
-  - type: InteractionOutline
+  # - type: InteractionOutline # Starlight Edit
   - type: ActivatableUI
     key: enum.NukeUiKey.Key
   - type: UserInterface
@@ -99,25 +119,31 @@
         type: NukeBoundUserInterface
   - type: StaticPrice
     price: 50000 # YOU STOLE A NUCLEAR FISSION EXPLOSIVE?!
-  - type: CargoSellBlacklist
-  - type: ArrivalsBlacklist
+  # Starlight edit Start
+  # - type: CargoSellBlacklist
+  # - type: ArrivalsBlacklist
+  # Starlight edit End
   - type: ItemSlots
   - type: ContainerContainer
     containers:
       Nuke: !type:ContainerSlot
-  - type: StealTarget
-    stealGroup: NuclearBomb
-  - type: Tag
-    tags:
-    - GhostOnlyWarp
-    - UnDissolvable # Starlight-edit
-  - type: WarpPoint
-    follow: true
-    location: nuclear bomb
-    blacklist:
-      tags:
-      - GhostOnlyWarp
-  - type: FTLSmashImmune
+  # Starlight edit Start
+  # - type: StealTarget
+  #   stealGroup: NuclearBomb
+  # - type: Tag
+  #   tags:
+  #   - GhostOnlyWarp
+  #   - UnDissolvable # Starlight-edit
+  # - type: WarpPoint
+  #   follow: true
+  #   location: nuclear bomb
+  #   blacklist:
+  #     tags:
+  #     - GhostOnlyWarp
+  # - type: FTLSmashImmune
+  - type: Construction
+    node: nuke
+  # Starlight edit End
 
 - type: entity
   parent: NuclearBomb
