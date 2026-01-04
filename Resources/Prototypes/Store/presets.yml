@@ -17,6 +17,7 @@
     - UplinkJob
     - UplinkCybernetics
     - UplinkPointless
+    - UplinkObjectives # Starlight
     currencyWhitelist:
     - Telecrystal
     balance:

@@ -68,3 +68,7 @@ uplink-lube-grenade-desc = Special grenade for shenanigans, releasing large clou
 
 uplink-glue-grenade-name = Glue Grenade
 uplink-glue-grenade-desc = Special grenade for shenanigans, releasing large cloud of glue foam.
+
+# Objectives
+uplink-core-extraction-toolbox-name = Core Extraction Toolbox
+uplink-core-extraction-toolbox-desc = A toolbox containing everything you need to remove a nuclear bomb's plutonium core. Instructions included!
