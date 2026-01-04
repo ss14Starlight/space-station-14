@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 namespace Content.Server._Starlight.Power.PowerTransmissionLaser;
 
 [RegisterComponent]
-public sealed partial class PtlComponent : Component
+public sealed partial class PowerTransmissionLaserComponent : Component
 {
     [DataField]
     public bool Enabled;

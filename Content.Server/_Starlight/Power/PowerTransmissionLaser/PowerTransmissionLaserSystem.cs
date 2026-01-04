@@ -5,16 +5,18 @@ using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Shared._Starlight.Power.PowerTransmissionLaser;
 using Content.Shared.Cargo.Components;
+using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Power.Components;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Content.Shared.Power;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Power.PowerTransmissionLaser;
 
-public sealed class PtlSystem : EntitySystem
+public sealed class PowerTransmissionLaserSystem : EntitySystem
 {
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -25,44 +27,45 @@ public sealed class PtlSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
 
     private const float WattsPerMegawatt = 1_000_000f;
+    private static readonly ProtoId<CargoAccountPrototype> _engineeringAccount = "Engineering";
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PtlComponent, MapInitEvent>(OnInit);
-        SubscribeLocalEvent<PtlComponent, PowerConsumerReceivedChanged>(OnPowerConsumerReceivedChanged);
+        SubscribeLocalEvent<PowerTransmissionLaserComponent, MapInitEvent>(OnInit);
+        SubscribeLocalEvent<PowerTransmissionLaserComponent, PowerConsumerReceivedChanged>(OnPowerConsumerReceivedChanged);
         SubscribeLocalEvent<BatteryComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
 
-        SubscribeLocalEvent<PtlComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpened);
+        SubscribeLocalEvent<PowerTransmissionLaserComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpened);
 
-        SubscribeLocalEvent<PtlComponent, PtlSetEnabledMessage>(OnSetEnabled);
-        SubscribeLocalEvent<PtlComponent, PtlSetPowerMessage>(OnSetPower);
+        SubscribeLocalEvent<PowerTransmissionLaserComponent, PowerTransmissionLaserSetEnabledMessage>(OnSetEnabled);
+        SubscribeLocalEvent<PowerTransmissionLaserComponent, PowerTransmissionLaserSetPowerMessage>(OnSetPower);
     }
 
     private void OnBatteryChargeChanged(EntityUid uid, BatteryComponent comp, ref ChargeChangedEvent args)
     {
-        if (!TryComp<PtlComponent>(uid, out var ptl))
+        if (!TryComp<PowerTransmissionLaserComponent>(uid, out var powerTransmissionLaser))
             return;
 
-        DirtyUi(uid, ptl);
+        DirtyUi(uid, powerTransmissionLaser);
     }
 
-    private void OnInit(EntityUid uid, PtlComponent comp, MapInitEvent args)
+    private void OnInit(EntityUid uid, PowerTransmissionLaserComponent comp, MapInitEvent args)
     {
         UpdatePowerLoad(uid, comp);
         UpdateAppearance(uid, comp);
     }
 
-    private void OnPowerConsumerReceivedChanged(EntityUid uid, PtlComponent comp, ref PowerConsumerReceivedChanged args)
+    private void OnPowerConsumerReceivedChanged(EntityUid uid, PowerTransmissionLaserComponent comp, ref PowerConsumerReceivedChanged args)
     {
         UpdateAppearance(uid, comp);
         DirtyUi(uid, comp);
     }
 
-    private void OnBeforeUiOpened(EntityUid uid, PtlComponent comp, BeforeActivatableUIOpenEvent args) => DirtyUi(uid, comp);
+    private void OnBeforeUiOpened(EntityUid uid, PowerTransmissionLaserComponent comp, BeforeActivatableUIOpenEvent args) => DirtyUi(uid, comp);
 
-    private void OnSetEnabled(EntityUid uid, PtlComponent comp, PtlSetEnabledMessage args)
+    private void OnSetEnabled(EntityUid uid, PowerTransmissionLaserComponent comp, PowerTransmissionLaserSetEnabledMessage args)
     {
         var oldEnabled = comp.Enabled;
 
@@ -82,7 +85,7 @@ public sealed class PtlSystem : EntitySystem
         DirtyUi(uid, comp);
     }
 
-    private void OnSetPower(EntityUid uid, PtlComponent comp, PtlSetPowerMessage args)
+    private void OnSetPower(EntityUid uid, PowerTransmissionLaserComponent comp, PowerTransmissionLaserSetPowerMessage args)
     {
         var clamped = Math.Clamp(args.TargetPowerMw, comp.MinPowerMw, comp.MaxPowerMw);
         comp.TargetPowerMw = clamped;
@@ -101,31 +104,30 @@ public sealed class PtlSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<PtlComponent>();
+        var query = EntityQueryEnumerator<PowerTransmissionLaserComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (!comp.Enabled)
+            if (!comp.Enabled || !TryComp<PowerConsumerComponent>(uid, out var consumer))
                 continue;
 
-            if (!TryComp<PowerConsumerComponent>(uid, out var consumer))
+            if (comp.CycleTimeSeconds <= 0f)
+            {
+                SetEnabled(uid, comp, false);
+                UpdatePowerLoad(uid, comp);
+                UpdateAppearance(uid, comp);
+                DirtyUi(uid, comp);
                 continue;
+            }
 
-            comp.Accumulator += frameTime;
+            comp.Accumulator = MathF.Min(comp.Accumulator + frameTime, comp.CycleTimeSeconds);
             if (comp.Accumulator < comp.CycleTimeSeconds)
                 continue;
-
-            while (comp.Accumulator >= comp.CycleTimeSeconds)
-            {
-                comp.Accumulator -= comp.CycleTimeSeconds;
-                RunCycle(uid, comp, consumer);
-
-                if (!comp.Enabled)
-                    break;
-            }
+            comp.Accumulator -= comp.CycleTimeSeconds;
+            RunCycle(uid, comp, consumer);
         }
     }
 
-    private void RunCycle(EntityUid uid, PtlComponent comp, PowerConsumerComponent consumer)
+    private void RunCycle(EntityUid uid, PowerTransmissionLaserComponent comp, PowerConsumerComponent consumer)
     {
         if (comp.TargetPowerMw <= 0f)
             return;
@@ -184,8 +186,8 @@ public sealed class PtlSystem : EntitySystem
             var stationUid = _station.GetOwningStation(uid);
             if (stationUid != null && TryComp<StationBankAccountComponent>(stationUid, out var bank))
             {
-                if (HasEngineeringOrderConsole(stationUid.Value))
-                    _cargo.UpdateBankAccount((stationUid.Value, bank), whole, "Engineering");
+                if (TryGetEngineeringOrderConsoleAccount(stationUid.Value, out var engineeringAccount))
+                    _cargo.UpdateBankAccount((stationUid.Value, bank), whole, engineeringAccount);
                 else
                     _cargo.UpdateBankAccount((stationUid.Value, bank), whole, bank.PrimaryAccount);
             }
@@ -196,7 +198,7 @@ public sealed class PtlSystem : EntitySystem
         DirtyUi(uid, comp);
     }
 
-    private void UpdatePowerLoad(EntityUid uid, PtlComponent comp)
+    private void UpdatePowerLoad(EntityUid uid, PowerTransmissionLaserComponent comp)
     {
         if (!TryComp<PowerConsumerComponent>(uid, out var consumer))
             return;
@@ -205,9 +207,9 @@ public sealed class PtlSystem : EntitySystem
         consumer.DrawRate = loadWatts;
     }
 
-    private void UpdateAppearance(EntityUid uid, PtlComponent comp) => _appearance.SetData(uid, PtlVisuals.Active, comp.Enabled);
+    private void UpdateAppearance(EntityUid uid, PowerTransmissionLaserComponent comp) => _appearance.SetData(uid, PowerTransmissionLaserVisuals.Active, comp.Enabled);
 
-    private void SetEnabled(EntityUid uid, PtlComponent comp, bool enabled)
+    private void SetEnabled(EntityUid uid, PowerTransmissionLaserComponent comp, bool enabled)
     {
         if (comp.Enabled == enabled)
             return;
@@ -228,9 +230,9 @@ public sealed class PtlSystem : EntitySystem
         }
     }
 
-    private void DirtyUi(EntityUid uid, PtlComponent comp)
+    private void DirtyUi(EntityUid uid, PowerTransmissionLaserComponent comp)
     {
-        if (!_ui.HasUi(uid, PtlUiKey.Key))
+        if (!_ui.HasUi(uid, PowerTransmissionLaserUiKey.Key))
             return;
 
         var batteryCurrent = 0f;
@@ -250,7 +252,7 @@ public sealed class PtlSystem : EntitySystem
                 gridSaturation = Math.Clamp(consumer.ReceivedPower / load, 0f, 1f);
         }
 
-        _ui.SetUiState(uid, PtlUiKey.Key, new PtlBoundUserInterfaceState(
+        _ui.SetUiState(uid, PowerTransmissionLaserUiKey.Key, new PowerTransmissionLaserBoundUserInterfaceState(
             comp.Enabled,
             batteryCurrent,
             batteryMax,
@@ -263,19 +265,23 @@ public sealed class PtlSystem : EntitySystem
             comp.TotalSpesosEarned));
     }
 
-    private bool HasEngineeringOrderConsole(EntityUid stationUid)
+    private bool TryGetEngineeringOrderConsoleAccount(EntityUid stationUid, out string account)
     {
         var query = EntityQueryEnumerator<CargoOrderConsoleComponent>();
         while (query.MoveNext(out var consoleUid, out var console))
         {
-            if (console.Account != "Engineering")
+            if (console.Account != _engineeringAccount)
                 continue;
 
             var consoleStation = _station.GetOwningStation(consoleUid);
-            if (consoleStation == stationUid)
-                return true;
+            if (consoleStation != stationUid)
+                continue;
+
+            account = console.Account.Id;
+            return true;
         }
 
+        account = string.Empty;
         return false;
     }
 }

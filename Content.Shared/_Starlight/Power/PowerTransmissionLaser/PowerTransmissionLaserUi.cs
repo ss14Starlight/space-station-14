@@ -3,35 +3,35 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Power.PowerTransmissionLaser;
 
 [Serializable, NetSerializable]
-public enum PtlUiKey
+public enum PowerTransmissionLaserUiKey
 {
     Key
 }
 
 [Serializable, NetSerializable]
-public enum PtlVisuals : byte
+public enum PowerTransmissionLaserVisuals : byte
 {
     Active
 }
 
 [Serializable, NetSerializable]
-public sealed class PtlSetPowerMessage : BoundUserInterfaceMessage
+public sealed class PowerTransmissionLaserSetPowerMessage : BoundUserInterfaceMessage
 {
     public float TargetPowerMw { get; }
 
-    public PtlSetPowerMessage(float targetPowerMw) => TargetPowerMw = targetPowerMw;
+    public PowerTransmissionLaserSetPowerMessage(float targetPowerMw) => TargetPowerMw = targetPowerMw;
 }
 
 [Serializable, NetSerializable]
-public sealed class PtlSetEnabledMessage : BoundUserInterfaceMessage
+public sealed class PowerTransmissionLaserSetEnabledMessage : BoundUserInterfaceMessage
 {
     public bool Enabled { get; }
 
-    public PtlSetEnabledMessage(bool enabled) => Enabled = enabled;
+    public PowerTransmissionLaserSetEnabledMessage(bool enabled) => Enabled = enabled;
 }
 
 [Serializable, NetSerializable]
-public sealed class PtlBoundUserInterfaceState : BoundUserInterfaceState
+public sealed class PowerTransmissionLaserBoundUserInterfaceState : BoundUserInterfaceState
 {
     public bool Enabled { get; }
 
@@ -48,7 +48,7 @@ public sealed class PtlBoundUserInterfaceState : BoundUserInterfaceState
 
     public int TotalSpesosEarned { get; }
 
-    public PtlBoundUserInterfaceState(
+    public PowerTransmissionLaserBoundUserInterfaceState(
         bool enabled,
         float batteryCurrentJoules,
         float batteryMaxJoules,

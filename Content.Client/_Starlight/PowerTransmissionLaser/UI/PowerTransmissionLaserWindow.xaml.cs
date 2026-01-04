@@ -9,7 +9,7 @@ using Robust.Shared.IoC;
 namespace Content.Client._Starlight.PowerTransmissionLaser.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class PtlWindow : DefaultWindow
+public sealed partial class PowerTransmissionLaserWindow : DefaultWindow
 {
     private readonly RSI _batteryRsi;
     public bool Enabled;
@@ -20,7 +20,7 @@ public sealed partial class PtlWindow : DefaultWindow
 
     public event Action<float>? PowerApplied;
 
-    public PtlWindow()
+    public PowerTransmissionLaserWindow()
     {
         RobustXamlLoader.Load(this);
 

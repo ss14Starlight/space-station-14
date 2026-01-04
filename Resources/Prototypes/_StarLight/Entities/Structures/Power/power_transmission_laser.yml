@@ -28,7 +28,7 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.PtlVisuals.Active:
+      enum.PowerTransmissionLaserVisuals.Active:
         mainLayer:
           True: { state: ptl_on }
           False: { state: ptl_off }
@@ -36,14 +36,14 @@
           True: { visible: false }
           False: { visible: true }
   - type: ActivatableUI
-    key: enum.PtlUiKey.Key
+    key: enum.PowerTransmissionLaserUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.PtlUiKey.Key:
-        type: PtlBoundUserInterface
+      enum.PowerTransmissionLaserUiKey.Key:
+        type: PowerTransmissionLaserBoundUserInterface
   - type: Machine
     board: PowerTransmissionLaserMachineCircuitboard
-  - type: Ptl
+  - type: PowerTransmissionLaser
     cycleTimeSeconds: 2
     spesosPerMwPerCycle: 60
   - type: ApcPowerReceiver
