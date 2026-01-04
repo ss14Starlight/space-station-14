@@ -157,3 +157,11 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: SyndicateJanitor
   jobName: job-name-Syndicate-Janitor
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconDrillInstructor
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: DrillInstructor
+  jobName: job-name-drillInstructor

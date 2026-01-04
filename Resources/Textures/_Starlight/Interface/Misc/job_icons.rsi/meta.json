@@ -87,6 +87,9 @@
 		},
 		{
 			"name": "CultistChaplain"
+		},
+        {
+			"name": "DrillInstructor"
 		}
     ]
 }

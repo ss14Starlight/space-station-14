@@ -10,3 +10,4 @@ job-description-ntncblueshield = Your primary job is to protect your charged Nan
 job-description-salvagelead = Lead your salvage team and keep them safe. Remember, you are the Quartermaster's eyes and ears off station.
 job-description-nanotrasen-special-forces = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
 job-description-decimus = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
+job-description-drillInstructor = Train new security cadets in the ways of law enforcement, combat, and station safety. Keep them in line because you will probably recieve blame for every case of cadetloose.
