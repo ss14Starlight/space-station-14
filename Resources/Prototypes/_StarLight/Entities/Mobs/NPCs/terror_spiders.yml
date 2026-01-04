@@ -5,6 +5,13 @@
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - Chittin
+    - Darktongue
+    understands:
+    - Chittin
+    - Darktongue
   - type: ThermalVision
   - type: Sprite
     drawdepth: Mobs

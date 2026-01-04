@@ -28,4 +28,22 @@ public sealed partial class CollectiveMindPrototype : IPrototype
     
     [DataField("requiredTags")]
     public List<ProtoId<TagPrototype>> RequiredTags { get; set; } = new();
+
+    /// <summary>
+    /// Will show the name of the one who spoke (like admin)
+    /// </summary>
+    [DataField]
+    public bool ShowNames = false;
+
+    /// <summary>
+    /// When true, you can hear the collectivemind but unable to speak unless valid WhitelistComponents & WhitelistTags.
+    /// </summary>
+    [DataField]
+    public bool CanSpeak = false;
+
+    [DataField]
+    public List<string> CanSpeakComponents { get; set; } = new();
+    
+    [DataField]
+    public List<ProtoId<TagPrototype>> CanSpeakTags { get; set; } = new();
 }

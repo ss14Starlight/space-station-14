@@ -83,7 +83,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-#        - id: JugAluminium
+        - id: JugAluminium
 #        - id: JugCarbon
         - id: JugChlorine
 #        - id: JugCopper
@@ -92,7 +92,7 @@
 #        - id: JugSugar
 #        - id: JugHydrogen
         - id: JugIodine
-        - id: JugIron
+#        - id: JugIron
         - id: JugLithium
         - id: JugMercury
         - id: JugNitrogen

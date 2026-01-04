@@ -60,6 +60,9 @@ public sealed partial class NullLinkEventBusManager : IEventBusObserver, INullLi
             RolesChangedEvent rolesChangedEvent
                 => _players.UpdateRoles(rolesChangedEvent),
 
+            PlayerServerPlayTimesSyncEvent playTimesSync
+                => _players.SyncPlayTime(playTimesSync),
+
             BaseEvent baseEvent
                 => Enqueue(baseEvent),
         };

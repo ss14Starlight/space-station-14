@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 
 #region Starlight
 using Content.Shared.Intellicard;
+using Content.Shared.NameIdentifier;
 #endregion Starlight
 
 namespace Content.Shared.Silicons.StationAi;
@@ -21,6 +22,7 @@ public abstract partial class SharedStationAiSystem
     private void InitializeCustomization()
     {
         SubscribeLocalEvent<StationAiCoreComponent, StationAiCustomizationMessage>(OnStationAiCustomization);
+        SubscribeLocalEvent<StationAiCoreComponent, StationAiRenameMessage>(OnStationAiRename); // Starlight
 
         SubscribeLocalEvent<StationAiCustomizationComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<StationAiCustomizationComponent, PlayerDetachedEvent>(OnPlayerDetached);
@@ -53,6 +55,23 @@ public abstract partial class SharedStationAiSystem
         if (groupPrototype.Category == StationAiCustomizationType.CoreIconography && TryComp<StationAiHolderComponent>(entity, out var stationAiHolder))
             UpdateAppearance((entity, stationAiHolder));
     }
+    
+    // Starlight begin
+    private void OnStationAiRename(EntityUid uid, StationAiCoreComponent comp, StationAiRenameMessage args)
+    {
+        if (!TryGetHeld((uid, comp), out var core)) return;
+        if (comp.RemoteEntity is null) return;
+        var identifier = "";
+        if (TryComp<NameIdentifierComponent>(core, out var identifierComp))
+        {
+            identifier = identifierComp.FullIdentifier;
+        }
+        _metadata.SetEntityName(core.Value, args.NewName);
+        _metadata.SetEntityName(uid, $"{args.NewName} {identifier}");
+        _metadata.SetEntityName(comp.RemoteEntity.Value, $"{args.NewName} {identifier}");
+        Comp<StationAiCustomizationComponent>(core.Value).RenameAvailable = false;
+    }
+    // Starlight end
 
     private void OnPlayerAttached(Entity<StationAiCustomizationComponent> ent, ref PlayerAttachedEvent args)
     {

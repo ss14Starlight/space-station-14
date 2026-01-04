@@ -643,6 +643,7 @@
         type: StrippableBoundUserInterface
   - type: InventorySlots
   - type: Inventory
+    forceDisplacements: true # SL
     speciesId: hamster
     templateId: hamster
     displacements:

@@ -23,6 +23,121 @@
     - Silicon
 
 - type: entity
+  parent: BaseMedicalPDA
+  id: SeniorChemistPDA
+  name: senior chemist PDA
+  description: Smells faintly of bratwurst.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: ChemistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorchemist
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#B34200"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-seniorchemist
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: VeteranBrigmedicPDA
+  name: veteran brigmedic PDA
+  description: This pulse has never stopped under my watch.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BrigmedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-veteranbrigmedic
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#d7d7d0"
+    accentVColor: "#d7d7d0"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veteranbrigmedic
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: CorpsmanPDA
+  name: corpsman PDA
+  description: How's it going to end?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BrigmedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-corpsman
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#d7d7d0"
+    accentVColor: "#d7d7d0"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-corpsman
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: VeteranCorpsmanPDA
+  name: veteran corpsman PDA
+  description: I've seen the end. I couldn't change a thing...
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BrigmedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-veterancorpsman
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#d7d7d0"
+    accentVColor: "#d7d7d0"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veterancorpsman
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+
+- type: entity
   parent: BasePDA
   id: MagistratePDA
   name: magistrate PDA

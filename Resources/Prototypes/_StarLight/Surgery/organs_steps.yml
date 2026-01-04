@@ -1114,3 +1114,74 @@
   - type: SurgeryItemSizeCondition
   - type: SurgeryStepOrganInsert
     slot: cavity
+
+# Shadekin Core
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepLocateCore
+  name: Locate Core
+  components:
+  - type: SurgeryStep
+    duration: 3
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+    state: core
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertShadekinCore
+  name: Insert Core
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: OrganShadekinCore
+  - type: SurgeryStepOrganInsert
+    slot: core
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+    state: core
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractShadekinCore
+  name: Extract Core
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Retractor
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: OrganShadekinCore
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: retractor
+  - type: SurgeryStepEmoteEffect
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepClampShadekinCoreVessels
+  name: Clamp Core Vessels
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepConnectShadekinCoreVessels
+  name: Connect Core Vessels
+  components:
+  - type: SurgeryStep
+    duration: 10
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: hemostat

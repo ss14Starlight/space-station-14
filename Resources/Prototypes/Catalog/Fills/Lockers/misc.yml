@@ -157,6 +157,10 @@
     - id: BalloonSyn
     - id: WeaponSniperMosin
       weight: 2
+    - id: WeaponShotgunToz106 # Starlight
+      weight: 1.5 # Starlight
+    - id: WeaponShotgunToz106Extended # Starlight
+      weight: 0.5 # Starlight
     - id: ClothingHandsKnuckleDustersSyndicate
 
 - type: entityTable

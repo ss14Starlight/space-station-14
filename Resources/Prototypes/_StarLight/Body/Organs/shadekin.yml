@@ -97,6 +97,7 @@
   name: shadekin core
   description: A core of a shadekin, a mysterious and powerful organ that seems to be the source of their energy.
   components:
+  - type: OrganShadekinCore
   - type: Organ
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi

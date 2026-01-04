@@ -395,6 +395,8 @@
     interfaces:
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+      enum.StrippingUiKey.Key:              # Starlight
+        type: StrippableBoundUserInterface  # Starlight Readded stipping UI to medibots, wirepanels overwrote them
 
 - type: entity
   parent:

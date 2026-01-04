@@ -260,3 +260,27 @@
         configPath: "/Prototypes/Parallaxes/parallax_config.toml"
 
   layersLQUseHQ: false
+
+- type: parallax
+  id: Dark
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Tiles/dark.rsi/dark.png"
+      slowness: 0
+      scale: "1, 1"
+      shader: ""
+      
+- type: parallax
+  id: LandArid
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/arid.png"
+      scale: "0.9, 0.9"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/arid_haze.png"
+      slowness: 0.9
+      scale: "4, 4"
+      scrolling: "0.1, 0.4"

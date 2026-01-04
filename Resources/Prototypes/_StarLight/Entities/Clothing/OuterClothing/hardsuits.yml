@@ -169,6 +169,7 @@
   - type: Tag
     tags:
     - Hardsuit
+    - CorgiWearable
     - WhitelistChameleon
     - HardsuitSpatio #can now be used to make goliath hardsuit
 
@@ -558,8 +559,8 @@
 - type: entity
   parent: ClothingOuterHardsuitAtmos
   id: ClothingOuterHardsuitAtmosGolden
-  name: atmos hardsuit
-  description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
+  name: golden atmos hardsuit
+  description: A golden hardsuit that protects against hazardous, low pressure environments. Has thermal shielding.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/atmospherics_golden.rsi
@@ -567,6 +568,19 @@
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/atmospherics_golden.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitAtmosGolden
+
+- type: entity
+  parent: ClothingOuterHardsuitEngineering
+  id: ClothingOuterHardsuitEngineeringGolden
+  name: golden engineering hardsuit
+  description: A golden hardsuit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/engineering_golden.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/engineering_golden.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitEngineeringGolden
 
 # NanoTrasen Special Forces
 
