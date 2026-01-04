@@ -140,3 +140,25 @@
     - Glasses
     - Survival
     - Trinkets
+
+# Antagonist Loadouts
+- type: roleLoadout
+  id: AntagXenoborg
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+  groups:
+  - SiliconBrainType
+
+- type: roleLoadout
+  id: AntagMothership
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: AntagBrighteye
+  groups:
+  - BrighteyeJumpsuit
+  - BrighteyeNeck
+  - BrighteyeShoes
+  - BrighteyeGloves
+  - Scarves

@@ -229,6 +229,9 @@
   id: MagazineRifleM52
 
 - type: Tag
+  id: MagazineShotgunToz
+
+- type: Tag
   id: MagazineSMGImprovised
 
 - type: Tag
@@ -281,6 +284,9 @@
 
 - type: Tag
   id: ShellShotgunImprovised
+
+- type: Tag
+  id: ShellShotgunToz
 
 - type: Tag
   id: ShipWreck

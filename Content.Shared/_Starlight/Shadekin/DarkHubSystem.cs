@@ -32,7 +32,7 @@ public sealed class DarkHubSystem : EntitySystem
     {
         if (TryComp<BrighteyeComponent>(args.Subject, out var brighteye) && brighteye.Rejuvenating)
         {
-            _popup.PopupEntity(Loc.GetString("hubportal-rejuvenate"), args.Subject, args.Subject, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("hubportal-rejuvenate"), args.Subject, args.Subject, PopupType.LargeCaution);
             args.Cancel();
             return;
         }

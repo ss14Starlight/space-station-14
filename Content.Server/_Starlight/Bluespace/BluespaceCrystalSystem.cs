@@ -1,5 +1,6 @@
 using Content.Server._Starlight.Bluespace;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Stacks;
 using Content.Shared.Throwing;
 using Robust.Shared.Map;
@@ -51,7 +52,7 @@ public sealed class BluespaceCrystalSystem : EntitySystem
 
         Spawn(BluespaceCrystalEffect, EffectLocation);
         
-        if (component.Teleport && target is not null)
+        if (component.Teleport && target is not null && HasComp<MobStateComponent>(target)) // TODO: Do something else? This is there so we dont TELEPORT WALLS/DOORS...
         {
             var newCoords = EffectLocation; // This is a comment... (newCoords is fetch later.)
             for (var i = 0; i < MaxRandomTeleportAttempts; i++)

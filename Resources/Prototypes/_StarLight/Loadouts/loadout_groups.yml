@@ -416,6 +416,16 @@
     - SalvagePDA
     - VeteranSalvagePDA
 
+# Silicon Brain Type
+- type: loadoutGroup
+  id: SiliconBrainType
+  name: loadout-group-borg-brain-type
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutSiliconPositronicBrain
+  - LoadoutSiliconSpeciesBrain
+
 # Chemist
 - type: loadoutGroup
   id: ChemistHead
@@ -507,3 +517,35 @@
   loadouts:
     - DarkBeaker
     - SilverBeakerBrigmedic
+
+# Brighteye
+- type: loadoutGroup
+  id: BrighteyeJumpsuit
+  name: loadout-group-brighteye-jumpsuit
+  loadouts:
+    - BrighteyeTatteredClothes
+    - BrighteyeGladiator
+
+- type: loadoutGroup
+  id: BrighteyeNeck
+  name: Loadout-group-brighteye-neck
+  loadouts:
+    - BrighteyeTatteredHood
+    - BrighteyeMantle
+    - BrighteyeOldMantle
+    - BrighteyeGoliathCloak
+    - BrighteyeCloakVoid
+
+- type: loadoutGroup
+  id: BrighteyeShoes
+  name: loadout-group-civilian-shoes
+  loadouts:
+    - BrighteyeClothWrapShoe
+    - BlackShoes
+
+- type: loadoutGroup
+  id: BrighteyeGloves
+  minLimit: 0
+  name: loadout-group-brighteye-gloves
+  loadouts:
+    - BrighteyeClothWrapGlove

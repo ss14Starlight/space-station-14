@@ -251,6 +251,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/shadekin.rsi"), "rest"),
                 Act = () =>
                 {
+                    _gameTicker.StartGameRule("TheDarkMap"); // The Dark should always be spawned for any brighteye.
                     _antag.ForceMakeAntag<BrighteyeRuleComponent>(targetPlayer, DefaultBrighteyeRule);
                 },
                 Impact = LogImpact.High,

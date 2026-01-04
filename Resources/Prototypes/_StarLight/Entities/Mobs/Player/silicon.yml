@@ -32,3 +32,17 @@
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
+
+- type: entity
+  id: PlayerBorgChassis
+  parent: BorgChassisSelectable
+  suffix: Battery
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
