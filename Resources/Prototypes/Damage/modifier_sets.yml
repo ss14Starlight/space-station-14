@@ -24,6 +24,7 @@
     Cold: 0.95      # 5% resistance - cold affects performance but doesn't damage as much
     Shock: 2.0      # 100% extra damage (2x total) - electrical damage is dangerous to circuits but not instant death
     Caustic: 1.1    # 10% weakness - acid corrodes metal and circuits
+#Starlight-End
 
 - type: damageModifierSet
   id: StructuralMetallicStrong
