@@ -511,6 +511,17 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi
 
 - type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSeniorParamedic
+  name: senior paramedic jumpsuit
+  description: These epaulettes mark a paramedic that has walked through fire and void to save those in need
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_paramedic.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_paramedic.rsi
+    
+- type: entity
   parent: [ ClothingUniformBase , BaseSalvageContraband ]
   id: ClothingUniformJumpsuitSalvageMercWhite
   name: white scrapper jumpsuit

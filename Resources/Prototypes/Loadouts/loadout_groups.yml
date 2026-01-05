@@ -1855,6 +1855,15 @@
   loadouts:
   - ParamedicJumpsuit
   - ParamedicJumpskirt
+  - SeniorParamedicJumpsuit #Starlight
+  - SeniorParamedicJumpskirt #Starlight
+
+- type: loadoutGroup #Starlight start
+  id: ParamedicPDA
+  name: loadout-group-paramedic-id
+  loadouts:
+  - ParamedicPDA
+  - SeniorParamedicPDA #Starlight end
 
 - type: loadoutGroup
   id: ParamedicOuterClothing
@@ -1872,6 +1881,7 @@
   - WhiteShoes
   - MedicalWinterBoots
   - Heels # 🌟Starlight🌟
+  - HighHeelBoots # Starlight
 
 - type: loadoutGroup
   id: ParamedicJobTrinkets
