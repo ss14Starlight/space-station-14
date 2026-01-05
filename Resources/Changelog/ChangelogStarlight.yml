@@ -25443,5 +25443,20 @@ Entries:
   id: 221300
   time: '2026-01-05T16:15:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2213
+- author: SevenShades
+  changes:
+  - message: Light Xenoborg walls and windows
+    type: Add
+  - message: Xenoborg glass airlocks
+    type: Add
+  - message: Xenoborg RCD, capable of printing Xenoborg airlocks, light windows and
+      walls, and Xenoborg tiles, and the module for it
+    type: Add
+  - message: Replaced the engineering module in engi Xenoborgs with a Xenoborg engineering
+      module
+    type: Tweak
+  id: 269200
+  time: '2026-01-05T16:50:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2692
 Order: -1
 
