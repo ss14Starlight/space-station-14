@@ -15,16 +15,12 @@ using Content.Shared.Prototypes;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles.Jobs;
-using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using System.Linq;
-using System.Text;
-using Robust.Server.Player;
-using System.Diagnostics.CodeAnalysis;
-using Content.Server.GameTicking.Rules;
+using System.Diagnostics.CodeAnalysis; //Starlight document theft
+using Content.Server.GameTicking.Rules; //Starlight document theft
 using Robust.Shared.Utility;
 
 namespace Content.Server.Objectives;
@@ -37,9 +33,9 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly SharedJobSystem _job = default!;
-    [Dependency] private readonly TraitorRuleSystem _traitorRule = default!;
-    [Dependency] private readonly SharedJobSystem _job = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly TraitorRuleSystem _traitorRule = default!; //Starlight document theft
+    [Dependency] private readonly SharedJobSystem _job = default!; //Starlight document theft
 
     private IEnumerable<string>? _objectives;
 

@@ -1,7 +1,6 @@
 using Content.Server._Starlight.Objectives.Systems;
-using Content.Server.Objectives.Systems;
 
-namespace Content.Server.Objectives.Components;
+namespace Content.Server._Starlight.Objectives.Components;
 
 /// <summary>
 ///     Objective that makes you intercept a document from another trator. Will only be assigned if there is someone with a

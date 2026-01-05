@@ -6,6 +6,7 @@ using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using InterceptDocumentObjectiveComponent = Content.Server._Starlight.Objectives.Components.InterceptDocumentObjectiveComponent;
 
 namespace Content.Server._Starlight.Objectives.Systems;
 

@@ -6,13 +6,13 @@ namespace Content.Server.Objectives.Components;
 /// <summary>
 /// Requires that you steal a certain item (or several)
 /// </summary>
-[RegisterComponent]
+[RegisterComponent] //Starlight needed to make this accessible for the document theft system to work
 public sealed partial class StealConditionComponent : Component
 {
     /// <summary>
     /// A group of items to be stolen
     /// </summary>
-    [DataField]
+    [DataField(required: true)]
     public ProtoId<StealTargetGroupPrototype> StealGroup;
 
     /// <summary>

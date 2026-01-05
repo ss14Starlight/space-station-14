@@ -15,6 +15,7 @@ using Content.Shared.Stacks;
 using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
 using Content.Shared.Objectives;
+using Robust.Shared.Player;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -27,9 +28,8 @@ public sealed class StealConditionSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!; //Starlight document theft
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // REMOVE ONE OF THESE!!!!!!!
     private EntityQuery<ContainerManagerComponent> _containerQuery;
 
     private HashSet<Entity<TransformComponent>> _nearestEnts = new();
@@ -83,7 +83,7 @@ public sealed class StealConditionSystem : EntitySystem
     {
         if (condition.Comp.ObjectiveText == null || condition.Comp.ObjectiveNoOwnerText == null
             || condition.Comp.DescriptionText == null || condition.Comp.DescriptionMultiplyText == null)
-            return;
+            return; //Starlight invalid conditions shall be unformatted.
 
         var group = _proto.Index(condition.Comp.StealGroup);
         string localizedName = Loc.GetString(group.Name);
@@ -217,7 +217,7 @@ public sealed class StealConditionSystem : EntitySystem
 
     public void UpdateStealCondition(Entity<StealConditionComponent> entity, string stealGroup)
     {
-        if (!_prototypeManager.TryIndex<StealTargetGroupPrototype>(stealGroup, out var stealGroupPrototype))
+        if (!_proto.TryIndex<StealTargetGroupPrototype>(stealGroup, out var stealGroupPrototype))
         {
             Log.Error($"Unknown steal prototype: {stealGroupPrototype}");
             return;
@@ -226,14 +226,14 @@ public sealed class StealConditionSystem : EntitySystem
         entity.Comp.StealGroup = stealGroup;
     }
 
+    #region Starlight document theft update notification
     public void UpdateStealConditionNotify(Entity<StealConditionComponent> entity, string stealGroup, EntityUid mind)
     {
         UpdateStealCondition(entity, stealGroup);
 
-        if (!TryComp<MindComponent>(mind, out var mindComp))
+        if (!TryComp<ActorComponent>(entity, out var actor))
             return;
-
-        var session = mindComp.Session;
+        var session = actor.PlayerSession;
         if (session == null)
             return;
 
@@ -241,4 +241,5 @@ public sealed class StealConditionSystem : EntitySystem
         var wrappedMessage = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
         _chatManager.ChatMessageToOne(ChatChannel.Server, msg, wrappedMessage, default, false, session.Channel, colorOverride: Color.Red);
     }
+    #endregion
 }

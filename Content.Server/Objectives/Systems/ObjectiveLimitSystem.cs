@@ -31,7 +31,7 @@ public sealed class ObjectiveLimitSystem : EntitySystem
         {
             foreach (var mindId in rule.TraitorMinds)
             {
-                if (mindId == args.MindId || !_objectiveSystem.GetObjectives(mindId, proto, out var _))
+                if (mindId == args.MindId || !_objectiveSystem.GetObjectives(mindId, proto, out var _)) //Starlight use ObjectivesSystem
                     continue;
 
                 remaining--;
