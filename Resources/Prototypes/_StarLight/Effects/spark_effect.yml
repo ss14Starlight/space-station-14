@@ -5,7 +5,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
-    lifetime: 0.4
+    lifetime: 0.1
   - type: Sprite
     drawdepth: Effects
     sprite: _Starlight/Effects/armor_sparks.rsi
