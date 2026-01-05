@@ -87,8 +87,11 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components.Mobs
                 Assert.That(clientAlertsUI.AlertContainer.ChildCount, Is.GreaterThanOrEqualTo(3));
                 var alertControls = clientAlertsUI.AlertContainer.Children.Select(c => (AlertControl) c);
                 var alertIDs = alertControls.Select(ac => ac.Alert.ID).ToArray();
-                var expectedIDs = new[] { "HumanHealth", "Debug1", "Debug2" };
+                var expectedIDs = new[] { "Debug1", "Debug2" };
                 Assert.That(alertIDs, Is.SupersetOf(expectedIDs));
+                // _STARLIGHT: Accept any health alert type (species-agnostic test)
+                // Different species have different health alerts (HumanHealth, BorgHealth, IPCBattery)
+                Assert.That(alertIDs.Any(id => id == "HumanHealth" || id == "BorgHealth" || id == "IPCBattery"), Is.True);
             });
 
             await server.WaitAssertion(() =>
@@ -104,8 +107,10 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components.Mobs
                 Assert.That(clientAlertsUI.AlertContainer.ChildCount, Is.GreaterThanOrEqualTo(2));
                 var alertControls = clientAlertsUI.AlertContainer.Children.Select(c => (AlertControl) c);
                 var alertIDs = alertControls.Select(ac => ac.Alert.ID).ToArray();
-                var expectedIDs = new[] { "HumanHealth", "Debug2" };
+                var expectedIDs = new[] { "Debug2" };
                 Assert.That(alertIDs, Is.SupersetOf(expectedIDs));
+                // _STARLIGHT: Accept any health alert type (species-agnostic test)
+                Assert.That(alertIDs.Any(id => id == "HumanHealth" || id == "BorgHealth" || id == "IPCBattery"), Is.True);
             });
 
             await pair.CleanReturnAsync();

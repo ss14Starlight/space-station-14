@@ -228,7 +228,9 @@ public sealed partial class IPCSystem
         
         // _STARLIGHT: Knock down IPC immediately when power runs out (unconscious, not critical)
         // Only knockdown if not already knocked down (prevents TimeSpan overflow from repeated EMPs)
-        if (_state.IsAlive(ent) && !TryComp<KnockedDownComponent>(ent, out _))
+        // _STARLIGHT: Also check for MobStateComponent to avoid knockdown during entity deletion/gibbing
+        // This prevents TimeSpan overflow when AddKnockdownTime tries to add MaxValue to existing time
+        if (_state.IsAlive(ent) && TryComp<MobStateComponent>(ent, out _) && !TryComp<KnockedDownComponent>(ent, out _))
             _stun.TryKnockdown(ent.Owner, TimeSpan.MaxValue, refresh: false, autoStand: false);
             
         RaiseLocalEvent(ent, new IPCBatteryDeathTimerStart());

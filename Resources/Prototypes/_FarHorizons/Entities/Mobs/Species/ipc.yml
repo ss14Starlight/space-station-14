@@ -46,7 +46,8 @@
   - type: UseDelay
     delay: 10 # 10 second cooldown between lock/unlock actions
   # _STARLIGHT: Removed BorgChassis component - IPCs use IPCBattery system instead to avoid duplicate battery indicators
-  # _STARLIGHT: DamageVisuals overridden - IPCs use Silicon damage container (Heat instead of Burn)
+  # _STARLIGHT: DamageVisuals overridden - IPCs show burn/heat damage (sparks/melting) but NOT brute damage (no bleeding)
+  # IPCs are robots and shouldn't display red blood-like marks when taking brute damage
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:
@@ -57,9 +58,7 @@
     - "enum.HumanoidVisualLayers.RArm"
     - "enum.HumanoidVisualLayers.RLeg"
     damageOverlayGroups:
-      Brute:
-        sprite: Mobs/Effects/brute_damage.rsi
-        color: "#FF0000"
+      # Brute damage removed - robots don't bleed
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
         color: "#FFA500"
