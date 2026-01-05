@@ -1,11 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Linq;
 using System.Text;
 using Content.Shared._Starlight.UXN;
 using Content.Shared._Starlight.UXN.Devices;
+using Content.Shared._Starlight.UXN.Devices.ComponentDevices;
+using Content.Shared.Fax.Components;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Primitive;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight;
@@ -17,22 +16,25 @@ public sealed partial class UxnSystem : EntitySystem
     private readonly ResPath _compilerRom = new("/_Starlight/Uxn/Rom/drifloon.rom");
 
     private readonly UXNProcessor _compiler = new();
+
+    //private readonly Dictionary<Type, Func<ComponentUxnDeviceInner>> _componentDeviceMap = new();
     
     public override void Initialize()
     {
-        //var encodings = Encoding.GetEncodings();
-
         base.Initialize();
-        SubscribeLocalEvent<UxnAttachedComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<UxnAttachableComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<FaxMachineComponent, OnGetUxnDevices>(OnAttachFaxMachineComponent);
     }
 
-    private void OnMapInit(EntityUid euid, UxnAttachedComponent uxn, MapInitEvent map)
+    private void OnMapInit(EntityUid euid, UxnAttachableComponent uxn, MapInitEvent map)
     {
-        var reader = _resourceManager.ContentFileReadText(uxn.UxntalSourceFile);
-        if (Compile(reader.ReadToEnd(), out var error, out var rom))
-        {
+        
+    }
 
-        }
+    private void OnAttachFaxMachineComponent(Entity<FaxMachineComponent> ent, ref OnGetUxnDevices ev)
+    {
+        ComponentUxnDevice<FaxMachineComponent> dev = new FaxComponentDevice();
+        ev.AddDevice<FaxMachineComponent>(ent.Comp, dev, ent);
     }
 
     public bool Compile(string uxnTal, [NotNullWhen(false)] out string? error, [NotNullWhen(true)] out List<byte>? rom)
@@ -64,7 +66,7 @@ public sealed partial class UxnSystem : EntitySystem
         // we allow it to run "unlimited" cause we know that the input uxntal has a finite length
         // the finite input is usually 10k chars max on paper
         // but it *should* run out of memory before assembling uxntal that big tbh.
-        _compiler.RunUnlimited(Log);
+        _compiler.RunUnlimited();
 
         Log.Info($"Assembled UXN program in {_compiler.InstructionCounter} instructions, FakedStdio provided {stdio.CharCount}/{uxnTal.Length} chars");
 
@@ -81,4 +83,23 @@ public sealed partial class UxnSystem : EntitySystem
         error = null;
         return true;
     }
+}
+
+[ByRefEvent]
+public struct OnGetUxnDevices
+{
+    public readonly Dictionary<string, UXNDevice> Devices = new();
+
+    public void AddDevice<T>(Entity<T> ent, ComponentUxnDevice<T> dev) where T : IComponent
+        => AddDevice(ent.Comp, dev, ent.Owner);
+    public void AddDevice<T>(T comp, ComponentUxnDevice<T> dev, EntityUid ent) where T : IComponent
+    {
+        var typeName = comp.GetType().Name;
+        this.Devices[typeName[..^"Component".Length].ToLower()] = dev;
+        dev.Setup(ent, comp);
+    }
+    public void AddDevice(string name, UXNDevice dev)
+        => this.Devices[name.ToLower()] = dev;
+
+    public OnGetUxnDevices(){}
 }

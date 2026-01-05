@@ -783,7 +783,7 @@ public sealed class UXNProcessor
         return false;
     }
 
-    public bool RunUnlimited(ISawmill? sawmill = null)
+    public bool RunUnlimited()
     {
         while (Running)
         {
