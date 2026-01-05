@@ -539,6 +539,7 @@
     sprite:  _Starlight/Clothing/Neck/Cloaks/CRD_mantle.rsi
   - type: Clothing
     sprite:  _Starlight/Clothing/Neck/Cloaks/CRD_mantle.rsi
+
 - type: entity
   parent: [ClothingNeckMantleCMO, BaseCentcommContraband]
   id: ClothingNeckCloakCMDMantle

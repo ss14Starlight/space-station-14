@@ -72,7 +72,6 @@
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: false
-    slotFlags: BELT
   - type: ItemSlots
     slots:
       cell_slot:

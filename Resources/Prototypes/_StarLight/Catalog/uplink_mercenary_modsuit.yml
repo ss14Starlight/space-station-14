@@ -7,13 +7,12 @@
   description: uplink-mercenary-modsuit-desc
   icon:
     sprite: _Starlight/Clothing/Back/Modsuits/MODSUITMercenary.rsi
-    state: control-sealed
-  productEntity: ClothingBackpackMercenaryModsuitControlSealed
+    state: control
+  productEntity: ClothingBackpackVanguardSuitStorageComplete
   cost:
     Telecrystal: 12
   categories:
-  - UplinkBundles
-  - UplinkArmor
+  - UplinkWeaponry
 
 # Individual components (if players want to buy pieces separately)
 - type: listing
@@ -23,11 +22,11 @@
   icon:
     sprite: _Starlight/Clothing/Hands/Modsuits/MODSUITMercenary.rsi
     state: gauntlets
-  productEntity: ClothingHandsGlovesMercenaryModsuit
+  productEntity: ClothingHandsGlovesVanguardSuit
   cost:
     Telecrystal: 2
   categories:
-  - UplinkArmor
+  - UplinkWeaponry
 
 - type: listing
   id: UplinkMercenaryModsuitBoots
@@ -36,8 +35,8 @@
   icon:
     sprite: _Starlight/Clothing/Shoes/Modsuits/MODSUITMercenary.rsi
     state: boots
-  productEntity: ClothingShoesBootsMercenaryModsuit
+  productEntity: ClothingShoesBootsVanguardSuit
   cost:
     Telecrystal: 2
   categories:
-  - UplinkArmor
+  - UplinkWeaponry

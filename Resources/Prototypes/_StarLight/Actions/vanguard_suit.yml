@@ -5,13 +5,14 @@
   id: ActionToggleVanguardDome
   name: Toggle Energy Dome
   description: Toggle the personal energy dome shield on or off.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    itemIconStyle: NoItem
     icon:
       sprite: _Starlight/Clothing/OuterClothing/Modsuits/MODSUITMercenary.rsi
       state: chestplate-sealed
-    useDelay: 1
+  - type: InstantAction
     event: !type:ToggleActionEvent
 
 # Handcannon Deployment Action
@@ -19,11 +20,12 @@
   id: ActionDeployVanguardHandcannon
   name: Deploy Handcannon
   description: Deploy the integrated C.H.I.M.P. handcannon from your gloves. Takes 5 seconds.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
+    itemIconStyle: NoItem
     icon:
       sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
       state: base
-    useDelay: 60
+  - type: InstantAction
     event: !type:DeployHandcannonActionEvent

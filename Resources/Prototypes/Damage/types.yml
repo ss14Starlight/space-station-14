@@ -92,3 +92,10 @@
   armorCoefficientPrice: 1
   armorFlatPrice: 1
 
+# Stamina damage. Represents exhaustion and non-lethal combat damage.
+- type: damageType
+  id: Stamina
+  name: damage-type-stamina
+  armorCoefficientPrice: 1
+  armorFlatPrice: 1
+
