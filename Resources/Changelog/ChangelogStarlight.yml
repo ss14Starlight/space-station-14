@@ -25311,5 +25311,152 @@ Entries:
   id: 261400
   time: '2026-01-04T22:38:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2614
+- author: CawsForConcern
+  changes:
+  - message: Several map are being removed due to being out-of-date, unmaintained,
+      and not being used in the map pool rotation
+    type: Remove
+  - message: Amber Station (StarlightAmber)
+    type: Remove
+  - message: Marathon Station (StarlightMarathon)
+    type: Remove
+  - message: Meta Station (StarlightMeta)
+    type: Remove
+  - message: Core Station (StarlightCore)
+    type: Remove
+  - message: Crescent Station (StarlightCrescent)
+    type: Remove
+  - message: Gateway (Gateway)
+    type: Remove
+  - message: Exo Station (StarlightExo) for now, to be re-pulled from Upstream at
+      a later point
+    type: Remove
+  id: 271000
+  time: '2026-01-05T14:38:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2710
+- author: CawsForConcern
+  changes:
+  - message: (Orwell) Two (2) Boxer jobs have been added to Orwell, champions rejoice
+    type: Add
+  - message: (Orwell) Replaced HOS WT550 with the 'HOS weapon spawner' (no gameplay
+      difference, just mapping stuff)
+    type: Tweak
+  id: 271100
+  time: '2026-01-05T14:38:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2711
+- author: CawsForConcern
+  changes:
+  - message: (Lagan) Document and paperbin printer to Cargo, techs rejoice
+    type: Add
+  - message: (Lagan) Replaced HOS WT550 with the 'HOS weapon spawner' (no gameplay
+      difference, just mapping stuff)
+    type: Tweak
+  - message: (Lagan) Replaced Command doors to the NTR / BSO office with NTR-access
+      doors
+    type: Tweak
+  - message: (Lagan) Extended the Salvage/Mining Docking arm, installed a real airlock,
+      and removed an air sensor that's only job was to drive Atmos insane
+    type: Tweak
+  - message: (Lagan) Fixed the airlock to Salvage/Mining Bay being Salvage only
+    type: Fix
+  - message: (Lagan) Fixed the HOP Office having Command access doors instead of HOP-only
+      doors
+    type: Fix
+  - message: (Lagan) Fixed the recycler in Disposals being wired backwards
+    type: Fix
+  - message: (Lagan) Fixed all of the belts and the recycler in Salvage/Mining Bay
+      being wired wrong
+    type: Fix
+  id: 271400
+  time: '2026-01-05T14:38:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2714
+- author: Penguinwizzard
+  changes:
+  - message: Fixed internal sequencing issue in rule component evaluation that could
+      lead to being unable to follow unclaimed spawners for nukeops and brighteyes.
+    type: Fix
+  - message: Fixed an issue where the syndicate would keep allocating more bases to
+      an established nukie team.
+    type: Fix
+  id: 265300
+  time: '2026-01-05T15:52:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2653
+- author: mikeysaurus
+  changes:
+  - message: Morgues can now be labeled with paper.
+    type: Add
+  id: 263100
+  time: '2026-01-05T15:56:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2631
+- author: TacoLlama
+  changes:
+  - message: Paramedic defibrillator
+    type: Add
+  - message: Lockable body bags
+    type: Add
+  - message: Added a rescue knife for paramedics so the clown spider you find dragging
+      the dead body away has something to worry about
+    type: Add
+  - message: Senior Paramedic uniforms and PDA
+    type: Add
+  - message: Modified the standard paramedic PDA's visuals
+    type: Tweak
+  - message: Added infection resistance to void suit, medical gloves, and sterile
+      masks
+    type: Tweak
+  - message: Resprite of the emergency crew monitor
+    type: Tweak
+  - message: Added External access to Paramedic IDs
+    type: Tweak
+  id: 222000
+  time: '2026-01-05T16:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2220
+- author: FeralCreature
+  changes:
+  - message: Detective's Energy Magnum is now hitscan as intended. Hitting ~~tiders~~
+      your target has never been easier!
+    type: Fix
+  id: 270500
+  time: '2026-01-05T16:03:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2705
+- author: Happyrobot33
+  changes:
+  - message: Removed all non-starlight modified upstream maps from the files. This
+      should have no direct gameplay effect, however the download size should be smaller
+      now
+    type: Tweak
+  id: 252500
+  time: '2026-01-05T16:15:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2525
+- author: Makeshiftt
+  changes:
+  - message: Ported & Starlighted Plasma from upstream!
+    type: Add
+  id: 219800
+  time: '2026-01-05T16:15:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2198
+- author: Penguinwizzard
+  changes:
+  - message: Added internal support for randomized grid fills (e.g. support for randomized
+      escape pods and nukie ships)
+    type: Add
+  id: 221300
+  time: '2026-01-05T16:15:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2213
+- author: SevenShades
+  changes:
+  - message: Light Xenoborg walls and windows
+    type: Add
+  - message: Xenoborg glass airlocks
+    type: Add
+  - message: Xenoborg RCD, capable of printing Xenoborg airlocks, light windows and
+      walls, and Xenoborg tiles, and the module for it
+    type: Add
+  - message: Replaced the engineering module in engi Xenoborgs with a Xenoborg engineering
+      module
+    type: Tweak
+  id: 269200
+  time: '2026-01-05T16:50:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2692
 Order: -1
 
