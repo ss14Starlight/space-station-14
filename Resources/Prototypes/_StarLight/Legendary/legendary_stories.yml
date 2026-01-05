@@ -12,12 +12,14 @@
     - starlight-weapon-mid-3
     - starlight-weapon-mid-4
     - starlight-weapon-mid-5
+    - starlight-weapon-mid-patron-1
   ends:
     - starlight-weapon-end-1
     - starlight-weapon-end-2
     - starlight-weapon-end-3
     - starlight-weapon-end-4
     - starlight-weapon-end-5
+    - starlight-weapon-end-patron-1
 
 - type: legendaryStory
   id: Firearm
@@ -33,12 +35,14 @@
     - starlight-firearm-mid-3
     - starlight-firearm-mid-4
     - starlight-firearm-mid-5
+    - starlight-firearm-mid-patron-1
   ends:
     - starlight-firearm-end-1
     - starlight-firearm-end-2
     - starlight-firearm-end-3
     - starlight-firearm-end-4
     - starlight-firearm-end-5
+    - starlight-firearm-end-patron-1
 
 - type: legendaryStory
   id: Plush
@@ -54,12 +58,14 @@
     - starlight-plush-mid-3
     - starlight-plush-mid-4
     - starlight-plush-mid-5
+    - starlight-plush-mid-patron-1
   ends:
     - starlight-plush-end-1
     - starlight-plush-end-2
     - starlight-plush-end-3
     - starlight-plush-end-4
     - starlight-plush-end-5
+    - starlight-plush-end-patron-1
 
 - type: legendaryStory
   id: Trinket
@@ -75,12 +81,14 @@
     - starlight-trinket-mid-3
     - starlight-trinket-mid-4
     - starlight-trinket-mid-5
+    - starlight-trinket-mid-patron-1
   ends:
     - starlight-trinket-end-1
     - starlight-trinket-end-2
     - starlight-trinket-end-3
     - starlight-trinket-end-4
     - starlight-trinket-end-5
+    - starlight-trinket-end-patron-1
 
 - type: legendaryStory
   id: Clothing
@@ -96,9 +104,11 @@
     - starlight-clothing-mid-3
     - starlight-clothing-mid-4
     - starlight-clothing-mid-5
+    - starlight-clothing-mid-patron-1
   ends:
     - starlight-clothing-end-1
     - starlight-clothing-end-2
     - starlight-clothing-end-3
     - starlight-clothing-end-4
     - starlight-clothing-end-5
+    - starlight-clothing-end-patron-1

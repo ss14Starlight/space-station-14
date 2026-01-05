@@ -19,4 +19,5 @@ public sealed partial class LegendaryItemComponent : Component
 
     public bool LegendaryApplied;
     public bool RollProcessed;
+    public bool PatronReferenceApplied;
 }
