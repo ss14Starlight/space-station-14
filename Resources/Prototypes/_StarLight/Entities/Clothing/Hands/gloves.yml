@@ -11,6 +11,12 @@
   - type: Fiber
     fiberMaterial: fibers-black-nitrile
   - type: FingerprintMask
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Caustic: 0.9
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9
 
 - type: entity
   parent: [ClothingHandsButcherable, BaseSecurityContraband]

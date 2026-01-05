@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "'hands' Modified from robohands.rsi, paperwork-module, bartending-module, bookkeeping-module, and cooking-module created for Starlight by TacoLlama (github)",
+    "copyright": "'hands' Modified from robohands.rsi, paperwork-module, bartending-module, bookkeeping-module, cooking-module, and xenoborg-rcd-module created for Starlight by TacoLlama (github)",
     "size": {
         "x": 32,
         "y": 32
@@ -18,6 +18,9 @@
         },
         {
             "name": "paperwork-module"
+        },
+        {
+            "name": "xenoborg-rcd-module"
         },
         {
             "name": "hands",
