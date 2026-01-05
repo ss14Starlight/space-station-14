@@ -911,8 +911,8 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianHead
-  - CargoTechnicianHeadFormal # Starlight
   - CargoTechnicianBeret # 🌟Starlight🌟
+  - CargoTechnicianHeadFormal # Starlight
   - CargoTechnicianBeretFormal # 🌟Starlight🌟
 
 - type: loadoutGroup
@@ -1435,19 +1435,19 @@
   minLimit: 0
   loadouts:
   - BrigmedicBeret
-  - SecurityHelmet
-  - CorpsmanBeret #Starlight
   - BrigmedicNurseHat # Starlight
+  - CorpsmanBeret #Starlight
   - CorpsmanNurseHat # Starlight
   - BrigmedicNurseHatOfLife # Starlight
+  - SecurityHelmet
 
 - type: loadoutGroup
   id: BrigmedicJumpsuit
   name: loadout-group-brigmedic-jumpsuit
   loadouts:
   - JumpsuitBrigmedic
-  - JumpsuitCorpsman
-  - JumpskirtBrigmedic
+  - JumpskirtBrigmedic # Starlight line swap v
+  - JumpsuitCorpsman # Starlight line swap ^
   - JumpskirtCorpsman #Starlight
   - CorpsmanResponse # Starlight
   - CorpsmanTrauma # Starlight
@@ -1470,10 +1470,10 @@
   defaultSelected: 1 # starlight
   loadouts:
   - BrigmedicCoat
-  - SecurityOfficerWintercoat
-  - CorpsmanCoat #Starlight
   - BrigmedicLabCoat # Starlight
+  - CorpsmanCoat #Starlight
   - CorpsmanLabCoat # Starlight
+  - SecurityOfficerWintercoat
 
 - type: loadoutGroup
   id: BrigmedicEyewear
@@ -1498,6 +1498,7 @@
   loadouts:
   - Nitrile
   - BlackNitrile
+  - LatexGloves
 #Starlight End
 
 - type: loadoutGroup
@@ -1829,6 +1830,9 @@
   - ChemistBackpack
   - ChemistSatchel
   - ChemistDuffel
+  - SeniorChemistBackpack # Starlight
+  - SeniorChemistSatchel # Starlight
+  - SeniorChemistDuffel # Starlight
   - LeatherSatchel # starlight
 
 - type: loadoutGroup
@@ -1851,6 +1855,15 @@
   loadouts:
   - ParamedicJumpsuit
   - ParamedicJumpskirt
+  - SeniorParamedicJumpsuit #Starlight
+  - SeniorParamedicJumpskirt #Starlight
+
+- type: loadoutGroup #Starlight start
+  id: ParamedicPDA
+  name: loadout-group-paramedic-id
+  loadouts:
+  - ParamedicPDA
+  - SeniorParamedicPDA #Starlight end
 
 - type: loadoutGroup
   id: ParamedicOuterClothing
@@ -1868,6 +1881,7 @@
   - WhiteShoes
   - MedicalWinterBoots
   - Heels # 🌟Starlight🌟
+  - HighHeelBoots # Starlight
 
 - type: loadoutGroup
   id: ParamedicJobTrinkets
