@@ -17,7 +17,8 @@ public sealed partial class DevilComponent : Component
     {
         "ActionSummonDemonicContract",
         "ActionDamnationsMenu",
-        "ActionDevilRejuvenate"
+        "ActionDevilRejuvenate",
+        "ActionSummonDevilPen"
     };
 
     
@@ -74,6 +75,9 @@ public sealed partial class DevilComponent : Component
 
     [DataField, AutoNetworkedField]
     public DevilChangeCriteria EvilHaloAppearance = new(6);
+
+    [DataField, AutoNetworkedField]
+    public DevilChangeCriteria BidentAction = new(7);
 
     /// <summary>
     /// Is the devil currently being banished?

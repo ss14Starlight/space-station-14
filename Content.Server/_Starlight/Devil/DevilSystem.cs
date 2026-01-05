@@ -33,6 +33,8 @@ public sealed partial class DevilSystem : SharedDevilSystem
     [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly PointLightSystem _pointLight = default!;
 
+    private EntProtoId SummonBidentActionProto = "ActionSummonBident";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -81,14 +83,14 @@ public sealed partial class DevilSystem : SharedDevilSystem
     private void OnDevilSoulsDamnedCountChanged(EntityUid uid, DevilComponent devilComp, ref DevilSoulsDamnedCountChangedEvent args)
     {
         // if chain looks evil but this is the most sensible way I could find to do this
-        if(FitsChangeCriteria(devilComp, devilComp.RedEyesAppearance))
+        if (FitsChangeCriteria(devilComp, devilComp.RedEyesAppearance))
         {
             _humanoidAppearance.SetEyeColor(uid, Color.Red);
             _humanoidAppearance.SetMarkingGlowing(uid, MarkingCategories.Eyes, 0, true);
             devilComp.RedEyesAppearance.Completed = true;
         }
 
-        if(FitsChangeCriteria(devilComp, devilComp.EvilHaloAppearance))
+        if (FitsChangeCriteria(devilComp, devilComp.EvilHaloAppearance))
         {
             AppliedSpriteLayerComponent appliedSpriteLayer = new()
             {
@@ -98,7 +100,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
             EntityManager.AddComponent(uid, appliedSpriteLayer, true);
         }
 
-        if(FitsChangeCriteria(devilComp, devilComp.OminousHum))
+        if (FitsChangeCriteria(devilComp, devilComp.OminousHum))
         {
             AddComp<AmbientSoundComponent>(uid);
             _ambientSound.SetSound(uid, new SoundPathSpecifier(new ResPath("/Audio/Weapons/ebladehum.ogg")));
@@ -106,12 +108,17 @@ public sealed partial class DevilSystem : SharedDevilSystem
             _ambientSound.SetRange(uid, 3);
         }
 
-        if(FitsChangeCriteria(devilComp, devilComp.RedAuraAppearance))
+        if (FitsChangeCriteria(devilComp, devilComp.RedAuraAppearance))
         {
             AddComp<PointLightComponent>(uid);
             _pointLight.SetColor(uid, Color.Red);
             _pointLight.SetRadius(uid, 2);
             _pointLight.SetEnergy(uid, 3);
+        }
+
+        if (FitsChangeCriteria(devilComp, devilComp.BidentAction))
+        {
+            _actions.AddAction(uid, SummonBidentActionProto);
         }
     }
     #endregion
