@@ -561,6 +561,9 @@
     sprite: _Starlight/Clothing/Neck/Cloaks/black.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Cloaks/black.rsi
+
+- type: entity
+  parent: ClothingNeckBase
   id: RedRegaliaCloak
   name: Red Regalia Cloak
   description: A fancy red cloak like a mafiaoso would wear.
