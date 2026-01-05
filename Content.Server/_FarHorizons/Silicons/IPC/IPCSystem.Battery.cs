@@ -227,11 +227,12 @@ public sealed partial class IPCSystem
         ent.Comp.Timer = ent.Comp.DieWithoutPowerAfter;
         
         // _STARLIGHT: Knock down IPC immediately when power runs out (unconscious, not critical)
-        // Only knockdown if not already knocked down (prevents TimeSpan overflow from repeated EMPs)
+        // Use refresh: true to replace existing knockdown time rather than adding to it
+        // This prevents TimeSpan overflow when AddKnockdownTime tries to add to existing time
+        // Use a very large but safe timespan (30 days) instead of MaxValue
         // _STARLIGHT: Also check for MobStateComponent to avoid knockdown during entity deletion/gibbing
-        // This prevents TimeSpan overflow when AddKnockdownTime tries to add MaxValue to existing time
-        if (_state.IsAlive(ent) && TryComp<MobStateComponent>(ent, out _) && !TryComp<KnockedDownComponent>(ent, out _))
-            _stun.TryKnockdown(ent.Owner, TimeSpan.MaxValue, refresh: false, autoStand: false);
+        if (_state.IsAlive(ent) && TryComp<MobStateComponent>(ent, out _))
+            _stun.TryKnockdown(ent.Owner, TimeSpan.FromDays(30), refresh: true, autoStand: false);
             
         RaiseLocalEvent(ent, new IPCBatteryDeathTimerStart());
     }
