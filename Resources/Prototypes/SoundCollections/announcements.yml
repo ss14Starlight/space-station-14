@@ -4,6 +4,9 @@
   - /Audio/Announcements/RoundEnd/apc_destroyed.ogg
   - /Audio/Announcements/RoundEnd/disappointed.ogg
   - /Audio/Announcements/RoundEnd/notevenpaidforthis.ogg
+  - /Audio/_Starlight/Announcements/RoundEnd/anyone_there.ogg #Starlight
+  - /Audio/_Starlight/Announcements/RoundEnd/for_the_syndicate.ogg #Starlight
+  - /Audio/_Starlight/Announcements/RoundEnd/whats_this_button_do.ogg #Starlight
 
 - type: soundCollection
   id: PowerOn

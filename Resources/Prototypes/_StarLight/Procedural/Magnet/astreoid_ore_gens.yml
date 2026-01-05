@@ -1,0 +1,7 @@
+- type: oreDunGen
+  id: OreBluespace
+  replacement: AsteroidRock
+  entity: AsteroidRockBluespace
+  count: 2
+  minGroupSize: 1
+  maxGroupSize: 2

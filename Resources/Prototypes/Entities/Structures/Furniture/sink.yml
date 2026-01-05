@@ -65,6 +65,9 @@
     range: 8
     sound:
       path: /Audio/Ambience/Objects/drain.ogg
+  - type: Construction # Starlight
+    graph: Sink # Starlight
+    node: sink # Starlight
 
 
 - type: entity

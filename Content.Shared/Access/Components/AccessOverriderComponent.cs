@@ -33,6 +33,12 @@ public sealed partial class AccessOverriderComponent : Component
     [DataField, AutoNetworkedField]
     public List<ProtoId<AccessLevelPrototype>> AccessLevels = new();
 
+    /// <summary>
+    /// When changing settings on a target, ignore filters based on target e.g. door electronics type?
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool OverridesTargetRestrictions = false;
+
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public float DoAfter;

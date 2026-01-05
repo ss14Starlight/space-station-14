@@ -34,7 +34,7 @@
 - type: entity
   parent: AmmoProviderShotgunShell
   id: BoxBeanbag
-  name: ammunition box (.50 beanbag)
+  name: box of 12 gauge beanbag slugs # Starlight change: .50 -> 12 gauge
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgunBeanbag
@@ -51,7 +51,7 @@
       - state: beanbag
 
 - type: entity
-  name: ammunition box (.50 pellet)
+  name: box of 12 gauge buckshot # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxLethalshot
   components:
@@ -66,7 +66,7 @@
       - state: lethal
 
 - type: entity
-  name: ammunition box (.50 slug)
+  name: box of 12 gauge slugs # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunSlug
   components:
@@ -85,7 +85,7 @@
       - state: slug
 
 - type: entity
-  name: ammunition box (.50 flare)
+  name: box of 12 gauge flares # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunFlare
   components:
@@ -104,7 +104,7 @@
       - state: flare
 
 - type: entity
-  name: ammunition box (.50 incendiary)
+  name: box of 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunIncendiary
   components:
@@ -123,7 +123,7 @@
       - state: incendiary
 
 - type: entity
-  name: ammunition box (.50 uranium)
+  name: box of 12 gauge uranium buckshot # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunUranium
   components:
@@ -142,7 +142,7 @@
       - state: uranium
 
 - type: entity
-  name: ammunition box (.50 practice)
+  name: box of 12 gauge blanks # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunPractice
   components:
@@ -161,7 +161,7 @@
       - state: practice
 
 - type: entity
-  name: ammunition box (.50 tranquilizer)
+  name: box of 12 gauge tranquilizer slugs # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShellTranquilizer
   components:

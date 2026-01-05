@@ -89,3 +89,22 @@
   components:
     - type: Contraband
       allowedDepartments: [ Engineering, Security ]
+
+# for ~objective items not held by command
+- type: entity
+  id: BaseWardenGrandTheftContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: GrandTheft
+    allowedDepartments: [ Command ]
+    allowedJobs: [ Warden ]
+
+- type: entity
+  id: BaseDetectiveGrandTheftContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: GrandTheft
+    allowedDepartments: [ Command ]
+    allowedJobs: [ Detective ]

@@ -1,0 +1,49 @@
+- type: entity
+  id: BrighteyeCondition
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+  - type: Conditions
+    conditions:
+    - !type:SubjectMindAntagCondition
+      whitelist:
+      - Brighteye
+
+- type: entity
+  id: RRCardBrighteyeDark
+  parent: [BrighteyeCondition]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RailroadSpawnFlow
+    count:
+      min: 2
+      max: 3
+  - type: RailroadCard
+    title: rr-brighteye-dark
+    icon: 
+    iconColor: "#000000"
+    color: "#6c15ae"
+    image: /Textures/_Starlight/Railroading/shadekin.png
+    description: rr-brighteye-dark-desc
+  - type: RailroadDarkTask
+    amount: 
+      min: 50
+      max: 200
+
+- type: entity
+  id: RRCardBrighteyePortalCritical
+  parent: [BrighteyeCondition]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RailroadSpawnFlow
+    count:
+      min: 1
+      max: 2
+  - type: RailroadCard
+    title: rr-brighteye-portal-crit
+    icon: 
+    iconColor: "#000000"
+    color: "#6c15ae"
+    image: /Textures/_Starlight/Railroading/shadekin.png
+    description: rr-brighteye-portal-crit-desc
+  - type: RailroadSupercritPortalTask

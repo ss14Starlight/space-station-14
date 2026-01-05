@@ -113,6 +113,7 @@
     - id: WeaponPistolCHIMP
       weight: 0.1
     - id: WeaponSniperMosin
+    - id: WeaponShotgunToz106Extended # Starlight
     - id: WeaponMakeshiftLaser
       weight: 0.1
     - id: Sledgehammer

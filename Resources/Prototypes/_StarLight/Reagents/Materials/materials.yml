@@ -5,3 +5,11 @@
   icon: { sprite: Objects/Misc/bureaucracy.rsi, state: paper }
   color: "#ffffff"
   price: 0.05
+
+- type: material
+  id: BluespaceCrystal
+  stackEntity: BluespaceCrystal1
+  name: Bluespace Crystal
+  icon: { sprite: _Starlight/Objects/Materials/materials.rsi, state: refined_bluespace_crystal }
+  color: "#2f32fa"
+  price: 1 # $100 for 1 unit
