@@ -1,10 +1,10 @@
-# SVS Vanguard Pressure Suit Storage - A storage backpack for the armor set
+# SVS Vanguard Suit Storage - A storage backpack for the armor set
 - type: entity
-  id: ClothingBackpackVanguardPressureSuitStorage
+  id: ClothingBackpackVanguardSuitStorage
   parent: [ ClothingBackpackDuffel, BaseSalvageContraband ]
-  name: SVS vanguard pressure suit storage
+  name: SVS vanguard suit storage
   suffix: vanguard
-  description: A rugged storage container designed to hold a full set of SVS Vanguard pressure suit components.
+  description: A rugged storage container designed to hold a full set of SVS Vanguard suit components.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Modsuits/MODSUITMercenary.rsi
@@ -18,15 +18,14 @@
 
 # Complete set - spawns with all pieces inside
 - type: entity
-  id: ClothingBackpackVanguardPressureSuitStorageComplete
-  parent: ClothingBackpackVanguardPressureSuitStorage
-  name: SVS vanguard pressure suit storage
+  id: ClothingBackpackVanguardSuitStorageComplete
+  parent: ClothingBackpackVanguardSuitStorage
+  name: SVS vanguard suit storage
   suffix: complete, vanguard
-  description: A storage container with a complete sealed set of SVS Vanguard pressure suit armor.
+  description: A storage container with a complete set of SVS Vanguard suit armor.
   components:
   - type: StorageFill
     contents:
-    - id: ClothingOuterVanguardPressureSuitSealed
-    - id: ClothingHeadHelmetVanguardPressureSuitSealed
-    - id: ClothingHandsGlovesVanguardPressureSuitSealed
-    - id: ClothingShoesBootsVanguardPressureSuitSealed
+    - id: ClothingOuterVanguardSuit
+    - id: ClothingHandsGlovesVanguardSuit
+    - id: ClothingShoesBootsVanguardSuit

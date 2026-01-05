@@ -1,9 +1,29 @@
+# Combat Power Cell - High capacity EMP-immune self-recharging cell
+- type: entity
+  parent: BasePowerCell
+  id: PowerCellCombat
+  name: combat power cell
+  description: A military-grade self-recharging power cell with EMP shielding. Higher capacity and faster recharge than standard microreactors.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: microreactor
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: PredictedBattery
+    maxCharge: 1500
+    startingCharge: 1500
+  - type: PredictedBatterySelfRecharger
+    autoRechargeRate: 25
+  - type: EmpImmune
+
 # SVS Vanguard MKI Prototype - Chestplate
 - type: entity
   parent: ClothingOuterBase
-  id: ClothingOuterVanguardPressureSuit
-  name: SVS 'vanguard' MKI prototype chestplate
-  suffix: prototype
+  id: ClothingOuterVanguardSuit
+  name: SVS 'vanguard' MKI chestplate
   description: An experimental military-grade combat suit prototype featuring integrated energy dome technology. The first of its kind, combining advanced defensive systems with cutting-edge shield projection.
   components:
   - type: Sprite
@@ -45,8 +65,8 @@
       RLeg: OUTERCLOTHING
       LLeg: OUTERCLOTHING
   - type: EnergyDomeGenerator
-    domePrototype: VanguardEnergyDome
-    canInteractUse: false
+    domePrototype: EnergyDomeSmallRed
+    canInteractUse: true
     toggleAction: ActionToggleVanguardDome
     damageEnergyDraw: 5
   - type: PowerCellSlot
@@ -57,21 +77,20 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellCombat
         whitelist:
           tags:
             - PowerCell
-            - PowerCellSmall
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
+  - type: EmpImmune
 
 # SVS Vanguard MKI Prototype - Gloves
 - type: entity
   parent: ClothingHandsGlovesCombat
-  id: ClothingHandsGlovesVanguardPressureSuit
-  name: SVS 'vanguard' MKI prototype gloves
-  suffix: prototype
+  id: ClothingHandsGlovesVanguardSuit
+  name: SVS 'vanguard' MKI gloves
   description: Prototype tactical gauntlets featuring an experimental concealed handcannon deployment system. A marvel of miniaturized weaponry engineering, though still in field testing.
   components:
   - type: Sprite
@@ -112,10 +131,9 @@
 
 # SVS Vanguard MKI Prototype - Boots
 - type: entity
-  parent: ClothingShoesBootsCombat
-  id: ClothingShoesBootsVanguardPressureSuit
-  name: SVS 'vanguard' MKI prototype boots
-  suffix: prototype
+  parent: [ClothingShoesBootsCombat, BaseToggleClothing]
+  id: ClothingShoesBootsVanguardSuit
+  name: SVS 'vanguard' MKI boots
   description: Prototype reinforced combat boots with integrated mag-lock stabilizers. Part of the experimental MKI combat system, designed for extreme environmental operations.
   components:
   - type: Sprite
@@ -144,3 +162,12 @@
     layers:
       RFoot: FEET
       LFoot: FEET
+  - type: ToggleClothing
+    action: ActionToggleMagboots
+  - type: ComponentToggler
+    components:
+    - type: NoSlip
+  - type: Magboots
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
