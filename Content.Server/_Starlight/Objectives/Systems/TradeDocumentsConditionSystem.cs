@@ -1,17 +1,18 @@
+using System.Diagnostics;
+using System.Linq;
+using Content.Server._Starlight.Objectives.Components;
+using Content.Server.Objectives;
 using Content.Server.Objectives.Components;
+using Content.Server.Objectives.Systems;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
-using Robust.Shared.Random;
-using System.Linq;
-using Content.Server.Objectives.Components.Targets;
 using Robust.Shared.Prototypes;
-using System.Diagnostics;
-using Content.Server._Starlight.Objectives.Components;
+using Robust.Shared.Random;
 using HoldDocumentObjectiveComponent = Content.Server._Starlight.Objectives.Components.HoldDocumentObjectiveComponent;
 using TradeDocumentsConditionComponent = Content.Server._Starlight.Objectives.Components.TradeDocumentsConditionComponent;
 
-namespace Content.Server.Objectives.Systems;
+namespace Content.Server._Starlight.Objectives.Systems;
 
 /// <summary>
 ///     Handles the logic for the trade document objective.

@@ -1,5 +1,5 @@
 
-namespace Content.Server.Objectives.Components;
+namespace Content.Server._Starlight.Objectives.Components;
 
 /// <summary>
 ///     Objective that requires you to hold a document until evacuation. When assigned, will give the player the document.

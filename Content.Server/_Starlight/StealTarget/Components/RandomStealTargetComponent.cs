@@ -1,4 +1,4 @@
-namespace Content.Shared.ImportantDocument;
+namespace Content.Server._Starlight.StealTarget.Components;
 
 /// <summary>
 ///     Ensures the StealTargetComponent is on the object and then will set the steal target to a random one in

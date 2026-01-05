@@ -1,4 +1,4 @@
-namespace Content.Shared.ImportantDocument;
+namespace Content.Server._Starlight.StealTarget.Components;
 
 /// <summary>
 ///     When added to an entity with a StealTargetComponent the entitys name will be

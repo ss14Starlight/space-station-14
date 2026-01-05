@@ -1,14 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._Starlight.Objectives.Components;
-using Robust.Server.GameObjects;
-using Content.Shared.Storage.EntitySystems;
-using Content.Server.Objectives.Components;
-using Content.Shared.Objectives.Components;
+using Content.Server.Objectives.Systems;
 using Content.Shared.Inventory;
+using Content.Shared.Objectives.Components;
 using Content.Shared.Storage;
+using Content.Shared.Storage.EntitySystems;
+using Robust.Server.GameObjects;
 using GiveItemsForObjectiveComponent = Content.Server._Starlight.Objectives.Components.GiveItemsForObjectiveComponent;
 
-namespace Content.Server.Objectives.Systems;
+namespace Content.Server._Starlight.Objectives.Systems;
 
 /// <summary>
 ///     The system for dealing with spawning the items for the GiveItemsForObjectiveComponent.

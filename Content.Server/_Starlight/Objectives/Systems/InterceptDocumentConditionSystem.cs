@@ -1,11 +1,13 @@
+using System.Diagnostics;
+using Content.Server.Objectives;
 using Content.Server.Objectives.Components;
+using Content.Server.Objectives.Systems;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
-using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
-using System.Diagnostics;
+using Robust.Shared.Random;
 
-namespace Content.Server.Objectives.Systems;
+namespace Content.Server._Starlight.Objectives.Systems;
 
 /// <summary>
 ///     Handles the logic for the intercept document objective.

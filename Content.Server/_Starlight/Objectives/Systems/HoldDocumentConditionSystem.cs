@@ -1,12 +1,12 @@
 using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Objectives.Components;
-using Content.Server.Objectives.Components.Targets;
-using Robust.Shared.Prototypes;
+using Content.Server.Objectives.Systems;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
+using Robust.Shared.Prototypes;
 using HoldDocumentObjectiveComponent = Content.Server._Starlight.Objectives.Components.HoldDocumentObjectiveComponent;
 
-namespace Content.Server.Objectives.Systems;
+namespace Content.Server._Starlight.Objectives.Systems;
 
 public sealed class HoldDocumentConditionSystem : EntitySystem
 {

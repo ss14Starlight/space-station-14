@@ -1,7 +1,6 @@
 using Robust.Shared.Random;
-using Content.Server.Objectives.Components.Targets;
 
-namespace Content.Shared.ImportantDocument;
+namespace Content.Server._Starlight.StealTarget.Components;
 
 public sealed class RandomStealTargetSystem : EntitySystem
 {

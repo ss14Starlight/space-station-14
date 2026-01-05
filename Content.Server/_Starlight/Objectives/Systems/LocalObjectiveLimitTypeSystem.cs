@@ -1,6 +1,7 @@
-using Content.Server.Objectives.Components;
 using Content.Shared.Objectives.Components;
 using LocalObjectiveLimitTypeComponent = Content.Server._Starlight.Objectives.Components.LocalObjectiveLimitTypeComponent;
+
+namespace Content.Server._Starlight.Objectives.Systems;
 
 public sealed class LocalObjectiveLimitTypeSystem : EntitySystem
 {

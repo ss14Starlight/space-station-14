@@ -1,9 +1,7 @@
-
-using Content.Server.Objectives.Components.Targets;
-using Robust.Shared.Prototypes;
 using Content.Shared.Objectives;
+using Robust.Shared.Prototypes;
 
-namespace Content.Shared.ImportantDocument;
+namespace Content.Server._Starlight.StealTarget.Components;
 
 public sealed class RenameItemToStealTargetSystem : EntitySystem
 {
