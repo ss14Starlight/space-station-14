@@ -1,6 +1,6 @@
 using Content.Server.Objectives.Systems;
 
-namespace Content.Server.Objectives.Components;
+namespace Content.Server._Starlight.Objectives.Components;
 
 /// <summary>
 ///     Will give an item to the player when assigned the objective.

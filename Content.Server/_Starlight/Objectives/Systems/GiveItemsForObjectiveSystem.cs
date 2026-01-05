@@ -1,10 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._Starlight.Objectives.Components;
 using Robust.Server.GameObjects;
 using Content.Shared.Storage.EntitySystems;
 using Content.Server.Objectives.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Storage;
+using GiveItemsForObjectiveComponent = Content.Server._Starlight.Objectives.Components.GiveItemsForObjectiveComponent;
 
 namespace Content.Server.Objectives.Systems;
 

@@ -7,6 +7,9 @@ using System.Linq;
 using Content.Server.Objectives.Components.Targets;
 using Robust.Shared.Prototypes;
 using System.Diagnostics;
+using Content.Server._Starlight.Objectives.Components;
+using HoldDocumentObjectiveComponent = Content.Server._Starlight.Objectives.Components.HoldDocumentObjectiveComponent;
+using TradeDocumentsConditionComponent = Content.Server._Starlight.Objectives.Components.TradeDocumentsConditionComponent;
 
 namespace Content.Server.Objectives.Systems;
 

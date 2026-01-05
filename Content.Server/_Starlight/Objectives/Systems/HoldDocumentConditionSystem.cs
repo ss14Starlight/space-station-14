@@ -1,8 +1,10 @@
+using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Components.Targets;
 using Robust.Shared.Prototypes;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
+using HoldDocumentObjectiveComponent = Content.Server._Starlight.Objectives.Components.HoldDocumentObjectiveComponent;
 
 namespace Content.Server.Objectives.Systems;
 
