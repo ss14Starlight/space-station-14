@@ -163,7 +163,7 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
         HashSet<ProtoId<AccessLevelPrototype>> allowedByDoorGroups = new();
         HashSet<ProtoId<AccessLevelPrototype>> actuallySetOnDoor = new();
 
-        ProtoId<AccessLevelPrototype>[] availableAccess;
+        ProtoId<AccessLevelPrototype>[] availableAccess = [];
         ProtoId<AccessLevelPrototype>[] pressedAccess;
         ProtoId<AccessLevelPrototype>[] missingAccess;
         // Starlight edit End
@@ -218,7 +218,9 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
                 allowedByDoorGroups.UnionWith(allowedByConfigurator);
             }
 
-            availableAccess = allowedByConfigurator.Intersect(allowedByDoorGroups).ToArray();
+            availableAccess = !component.OverridesTargetRestrictions
+                ? allowedByConfigurator.Intersect(allowedByDoorGroups).ToArray()
+                : allowedByConfigurator.ToArray();
 
             foreach (var set in accessReaderEnt.Value.Comp.AccessLists)
                 actuallySetOnDoor.UnionWith(set);

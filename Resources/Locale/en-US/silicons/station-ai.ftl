@@ -35,6 +35,10 @@ station-ai-customization-categories = Categories
 station-ai-customization-options = Options (choice of one)
 station-ai-customization-core = AI core displays
 station-ai-customization-hologram = Holographic avatars
+# SL start
+station-ai-customization-menu-label-rename = New name:
+station-ai-customization-name = Rename
+# SL end
 
 # Customizations
 station-ai-icon-ai = Ghost in the machine

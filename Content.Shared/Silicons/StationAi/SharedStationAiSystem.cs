@@ -8,7 +8,6 @@ using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.Doors.Systems;
 using Content.Shared.DoAfter;
-using Content.Shared.Doors.Systems;
 using Content.Shared.Electrocution;
 using Content.Shared.Intellicard;
 using Content.Shared.Interaction;
@@ -41,6 +40,8 @@ using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Starlight;
 using Content.Shared.Starlight.TextToSpeech;
 using Robust.Shared.Player;
+using System.Linq;
+using Content.Shared.Silicons.Borgs.Components;
 #endregion Starlight
 
 namespace Content.Shared.Silicons.StationAi;
@@ -85,7 +86,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     private EntityQuery<BroadphaseComponent> _broadphaseQuery;
     private EntityQuery<MapGridComponent> _gridQuery;
 
-    private static readonly EntProtoId DefaultAi = "StationAiBrain";
+    private static readonly EntProtoId DefaultAi = "StationAiBrainConstructed"; // Starlight edit
     private readonly ProtoId<ChatNotificationPrototype> _downloadChatNotificationPrototype = "IntellicardDownload";
 
     public override void Initialize()
@@ -131,8 +132,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         var user = args.User;
 
         // Admin option to take over the station AI core
-        if (_admin.IsAdmin(args.User) &&
-            !TryGetHeld((ent.Owner, ent.Comp), out _))
+        if (_admin.IsAdmin(args.User)) // removed check here since it just seemed to make things inconvenient for mins
         {
             args.Verbs.Add(new Verb()
             {
@@ -142,7 +142,15 @@ public abstract partial class SharedStationAiSystem : EntitySystem
                 {
                     if (_net.IsClient)
                         return;
+                    // Starlight start
+                    foreach (var entity in _containers.GetAllContainers(ent.Owner).SelectMany(container => container.ContainedEntities))
+                    {
+                        if (!HasComp<BorgBrainComponent>(entity)) continue;
+                        _mind.ControlMob(user, entity);
+                        return;
+                    }
                     var brain = SpawnInContainerOrDrop(DefaultAi, ent.Owner, StationAiCoreComponent.Container);
+                    // Starlight end
                     _mind.ControlMob(user, brain);
                 },
                 Impact = LogImpact.High,

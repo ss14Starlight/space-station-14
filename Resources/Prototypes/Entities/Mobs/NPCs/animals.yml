@@ -643,6 +643,7 @@
         type: StrippableBoundUserInterface
   - type: InventorySlots
   - type: Inventory
+    forceDisplacements: true # SL
     speciesId: hamster
     templateId: hamster
     displacements:
@@ -2999,6 +3000,7 @@
   - type: MessyDrinker
   - type: Puller
     needsHands: false
+  - type: Blindable # Starlight - why is this not base?
 
 - type: entity
   parent: MobCorgiBase

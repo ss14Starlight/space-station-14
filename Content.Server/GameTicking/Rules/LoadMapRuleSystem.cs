@@ -3,10 +3,13 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.GridPreloader;
 using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Tag; // Starlight
+using Content.Shared.GameTicking.Rules; // Starlight
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -19,8 +22,14 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly GridPreloaderSystem _gridPreloader = default!;
-
-    protected override void Added(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args)
+    #region Starlight
+    [Dependency] private readonly IMapManager _maps = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly EntityManager _entMan = default!;
+    [Dependency] private readonly DynamicRuleSystem _dynamicRule = default!;
+    #endregion Starlight
+    
+    protected override void Started(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleStartedEvent args) // Starlight-edit - Added -> Started. This allows us to reference the rule tree, as during "added" the parent rule hasn't been told about the child rule yet.
     {
         if (comp.PreloadedGrid != null && !_gridPreloader.PreloadingEnabled)
         {
@@ -29,6 +38,9 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
             ForceEndSelf(uid, rule);
             return;
         }
+
+        if (comp.MapTag.HasValue && LoadMapTag(uid, comp, rule, args, comp.MapTag.Value))
+            return;
 
         MapId mapId;
         IReadOnlyList<EntityUid> grids;
@@ -43,12 +55,12 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
             grids = GameTicker.LoadGameMap(gameMap, out mapId, null);
             Log.Info($"Created map {mapId} for {ToPrettyString(uid):rule}");
         }
-        else if (comp.MapPath is {} path)
+        else if (comp.MapPath is { } path)
         {
             DebugTools.AssertNull(comp.GridPath);
             DebugTools.AssertNull(comp.PreloadedGrid);
 
-            var opts = DeserializationOptions.Default with {InitializeMaps = true};
+            var opts = DeserializationOptions.Default with { InitializeMaps = true };
             if (!_mapLoader.TryLoadMap(path, out var map, out var gridSet, opts))
             {
                 Log.Error($"Failed to load map from {path}!");
@@ -56,8 +68,11 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
                 return;
             }
 
-            grids = gridSet.Select( x => x.Owner).ToList();
+            grids = gridSet.Select(x => x.Owner).ToList();
             mapId = map.Value.Comp.MapId;
+
+            if (comp.MapTag.HasValue)
+                _tag.AddTag(map.Value, comp.MapTag.Value);
         }
         else if (comp.GridPath is { } gPath)
         {
@@ -65,7 +80,7 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
 
             // I fucking love it when "map paths" choses to ar
             _map.CreateMap(out mapId);
-            var opts = DeserializationOptions.Default with {InitializeMaps = true};
+            var opts = DeserializationOptions.Default with { InitializeMaps = true };
             if (!_mapLoader.TryLoadGrid(mapId, gPath, out var grid, opts))
             {
                 Log.Error($"Failed to load grid from {gPath}!");
@@ -73,9 +88,9 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
                 return;
             }
 
-            grids = new List<EntityUid> {grid.Value.Owner};
+            grids = new List<EntityUid> { grid.Value.Owner };
         }
-        else if (comp.PreloadedGrid is {} preloaded)
+        else if (comp.PreloadedGrid is { } preloaded)
         {
             // TODO: If there are no preloaded grids left, any rule announcements will still go off!
             if (!_gridPreloader.TryGetPreloadedGrid(preloaded, out var loadedShuttle))
@@ -100,6 +115,61 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
         var ev = new RuleLoadedGridsEvent(mapId, grids);
         RaiseLocalEvent(uid, ref ev);
 
-        base.Added(uid, comp, rule, args);
+        PropagateLoadEvent(uid, mapId, grids); // Starlight
+
+        base.Started(uid, comp, rule, args); // Starlight-edit - Added -> Started
     }
+
+    // Starlight begin
+    /// <summary>
+    /// Recursively propagate the load event up the rule tree.
+    /// </summary>
+    private void PropagateLoadEvent(EntityUid child, MapId mapId, IReadOnlyList<EntityUid> grids) {
+        var rules = _entMan.AllEntityQueryEnumerator<DynamicRuleComponent>();
+        while (rules.MoveNext(out var uid, out var comp))
+        {
+            if (_dynamicRule.Rules((uid, (DynamicRuleComponent?)comp)).Contains(child)) {
+                var ev = new RuleLoadedGridsEvent(mapId, grids);
+                RaiseLocalEvent(uid, ref ev);
+                PropagateLoadEvent(uid, mapId, grids);
+                break;
+            }
+        }
+    }
+
+    private bool LoadMapTag(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleStartedEvent args, ProtoId<TagPrototype> MapTag)
+    {
+        MapId mapId;
+        IReadOnlyList<EntityUid> grids;
+
+        if (comp.MapPath is { } path)
+        {
+            var query = EntityQueryEnumerator<MapComponent>();
+            while (query.MoveNext(out var mapuid, out var mapcomp))
+            {
+                if (mapcomp.MapPaused)
+                    continue;
+
+                if (_tag.HasTag(mapuid, MapTag))
+                {
+                    mapId = mapcomp.MapId;
+
+                    var gridSet = _maps.GetAllGrids(mapcomp.MapId).ToList();
+                    grids = gridSet.Select(x => x.Owner).ToList();
+
+                    var ev = new RuleLoadedGridsEvent(mapId, grids);
+                    RaiseLocalEvent(uid, ref ev);
+
+                    PropagateLoadEvent(uid, mapId, grids);
+
+                    base.Started(uid, comp, rule, args);
+
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // Starlight end
 }

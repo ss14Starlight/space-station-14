@@ -22,7 +22,6 @@
   result: FoodFalafel
   time: 5
   group: Savory
-  deviceType: Oven
   reagents:
     Hummus: 10
     TableSalt: 1
@@ -38,7 +37,6 @@
   result: FoodHummusDip
   time: 5
   group: Savory
-  deviceType: Oven
   reagents:
     Hummus: 10
     TableSalt: 1
@@ -55,7 +53,6 @@
   result: FoodShawarma
   time: 5
   group: Savory
-  deviceType: Oven
   reagents:
     Hummus: 10
   solids:
@@ -72,7 +69,6 @@
   result: FoodFalafelSandwich
   time: 5
   group: Savory
-  deviceType: Oven
   reagents:
     JuiceLemon: 1
   solids:
@@ -87,7 +83,6 @@
   result: FoodFalafelSandwich
   time: 5
   group: Savory
-  deviceType: Oven
   solids:
     FoodCheeseSlice: 1
     FoodFalafel: 1
@@ -103,7 +98,6 @@
   result: FoodSouvlaki
   time: 5
   group: Savory
-  deviceType: Oven
   solids:
     FoodMeatCutletCooked: 1
     FoodBreadPita: 1
@@ -118,7 +112,6 @@
   result: FoodDonerKebab
   time: 5
   group: Savory
-  deviceType: Oven
   reagents:
     Hummus: 10
   solids:
@@ -133,7 +126,6 @@
   result: FoodDonerKebab
   time: 5
   group: Savory
-  deviceType: Oven
   reagents:
     Hummus: 10
   solids:

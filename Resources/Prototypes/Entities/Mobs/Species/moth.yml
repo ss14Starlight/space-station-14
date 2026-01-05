@@ -37,6 +37,7 @@
     accent: zombieMoth
   - type: Speech
     speechVerb: Moth
+    speechSounds: UnisexMoth # Starlight: Add talk sounds
     allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: TypingIndicator
     proto: moth

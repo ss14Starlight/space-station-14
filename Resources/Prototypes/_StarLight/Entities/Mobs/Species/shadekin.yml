@@ -12,7 +12,14 @@
       understands:
       - GalacticCommon
       - Marish
+    - type: CollectiveMind
+      blockWhenUnconscious: true
     - type: Shadekin
+      thresholds:
+        0.8: Low
+        5: Annoying
+        10: High
+        15: Extreme
     - type: Absorbable
     - type: Hunger
     - type: Thirst

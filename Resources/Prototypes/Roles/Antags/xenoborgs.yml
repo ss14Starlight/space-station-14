@@ -4,9 +4,10 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-mothership-core-objective
+  roleLoadout: [ AntagMothership ] # Starlight
   requirements:
   - !type:RoleTimeRequirement
-    role: JobBorg
+    role: JobStationAi # Starlight
     time: 18000  # 5 hrs
   guides: [ Xenoborgs ]
 
@@ -16,8 +17,9 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-xenoborg-objective
+  roleLoadout: [ AntagXenoborg ] # Starlight
   requirements:
   - !type:RoleTimeRequirement
     role: JobBorg
-    time: 18000  # 5 hrs
+    time: 54000  # Starlight 15 hrs
   guides: [ Xenoborgs ]

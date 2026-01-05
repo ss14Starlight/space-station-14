@@ -33,4 +33,10 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<int> AutogammaRiftCount =
         CVarDef.Create("game.autogamma_minimum_rifts", 2, CVar.SERVERONLY);
+    
+    /// <summary>
+    /// Whether gamma will automatically be called upon <see cref="AutogammaRiftCount"/> fully charged rifts
+    /// </summary>
+    public static readonly CVarDef<bool> AutogammaRiftEnabled =
+        CVarDef.Create("game.autogamma_enabled", false, CVar.SERVERONLY);
 }

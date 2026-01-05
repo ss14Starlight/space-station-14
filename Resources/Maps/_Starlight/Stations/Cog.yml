@@ -186932,7 +186932,7 @@ entities:
     - type: Transform
       pos: 28.44084,14.530041
       parent: 2
-- proto: ToiletDirtyWater
+- proto: ToiletDirtyWaterFilled
   entities:
   - uid: 28261
     components:
@@ -186980,7 +186980,7 @@ entities:
     - type: Transform
       pos: -18.5,48.5
       parent: 2
-- proto: ToiletEmpty
+- proto: ToiletFilled
   entities:
   - uid: 28269
     components:

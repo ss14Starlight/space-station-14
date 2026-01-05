@@ -27,6 +27,7 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
     insaneMode: false
+    requireHands: false # 🌟Starlight🌟
     contentsViewers:
       components:
       - Ghost
@@ -39,6 +40,7 @@
   components:
     - type: RandomGift
       insaneMode: true
+      requireHands: false # 🌟Starlight🌟
 
 - type: entity
   id: PresentRandom
@@ -380,6 +382,7 @@
         orGroup: GiftPool
     sound:
       path: /Audio/Effects/unwrap.ogg
+    requireHands: false # 🌟Starlight🌟
 
 - type: entity
   id: PresentRandomCoal
@@ -402,6 +405,7 @@
         orGroup: GiftPool
     sound:
       path: /Audio/Effects/unwrap.ogg
+    requireHands: false # 🌟Starlight🌟
 
 - type: entity
   id: PresentRandomCash
@@ -439,6 +443,7 @@
         orGroup: GiftPool
     sound:
       path: /Audio/Effects/unwrap.ogg
+    requireHands: false # 🌟Starlight🌟
 
 - type: entity
   id: PresentTrash

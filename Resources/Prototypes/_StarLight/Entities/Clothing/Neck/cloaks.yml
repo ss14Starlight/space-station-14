@@ -549,3 +549,14 @@
     sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_mantle.rsi
   - type: Clothing
     sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_mantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: RedRegaliaCloak
+  name: Red Regalia Cloak
+  description: A fancy red cloak like a mafiaoso would wear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/red_regalia.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Cloaks/red_regalia.rsi

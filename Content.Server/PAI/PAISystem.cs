@@ -1,16 +1,12 @@
-// Starlight-edit: alphabetized
-using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Instruments;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Kitchen.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Kitchen;
 using Content.Shared.PAI;
 using Content.Shared.Popups;
 using Content.Shared.Instruments;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 using System.Text;
 
@@ -27,7 +23,7 @@ public sealed class PAISystem : EntitySystem
     /// <summary>
     /// Possible symbols that can be part of a scrambled pai's name.
     /// </summary>
-    private static readonly char[] SYMBOLS = new[] { '#', '~', '-', '@', '&', '^', '%', '$', '*', ' '};
+    private static readonly char[] SYMBOLS = new[] { '#', '~', '-', '@', '&', '^', '%', '$', '*', ' ' };
 
     public override void Initialize()
     {

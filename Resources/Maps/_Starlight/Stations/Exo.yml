@@ -112833,7 +112833,7 @@ entities:
       parent: 2
     - type: DeltaPressure
       gridUid: 2
-- proto: ToiletEmpty
+- proto: ToiletFilled
   entities:
   - uid: 16776
     components:

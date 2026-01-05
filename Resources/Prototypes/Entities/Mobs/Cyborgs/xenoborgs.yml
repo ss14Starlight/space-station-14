@@ -2,7 +2,7 @@
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
   id: XenoborgEngi
   name: engi xenoborg
-  suffix: with brain
+  suffix: No Brain # Starlight edit
   description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army. This one seems to be an engineering type, as it has more tools for supporting the other Xenoborgs.
   components:
   - type: BorgTransponder
@@ -23,6 +23,8 @@
       map: ["light"]
       visible: false
   - type: BorgChassis
+    jobIconOverride: JobIconXenoborg # Starlight
+    jobTitleOverride: chat-radio-xenoborg # Starlight
     maxModules: 7
     hasMindState: borg_e
     noMindState: borg_e_r
@@ -34,8 +36,10 @@
       - BorgModuleGeneric
   - type: ContainerFill
     containers:
-      borg_brain:
-      - MMIFilled
+      # Starlight edit Start
+      # borg_brain:
+      # - MMIFilled
+      # Starlight edit End
       borg_module:
       - XenoborgModuleBasic
       - BorgModuleAdvancedTool
@@ -58,7 +62,7 @@
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
   id: XenoborgHeavy
   name: heavy xenoborg
-  suffix: with brain
+  suffix: No Brain # Starlight edit
   description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army. This type is has heavy lasers and is covered in thick armor plates. It may be tougher, but its speed matches its brawn.
   components:
   - type: BorgTransponder
@@ -135,8 +139,10 @@
     doAfterDelay: 25 # more HP, more time to heal
   - type: ContainerFill
     containers:
-      borg_brain:
-      - MMIFilled
+      # Starlight edit Start
+      # borg_brain:
+      # - MMIFilled
+      # Starlight edit End
       borg_module:
       - XenoborgModuleBasic
       - XenoborgModuleTool
@@ -152,7 +158,7 @@
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
   id: XenoborgScout
   name: scout xenoborg
-  suffix: with brain
+  suffix: No Brain # Starlight edit
   description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army. This is a scout type, its nimble thrusters allow it to move quickly through space.
   components:
   - type: BorgTransponder
@@ -190,8 +196,10 @@
     baseSprintSpeed : 6
   - type: ContainerFill
     containers:
-      borg_brain:
-      - MMIFilled
+      # Starlight edit Start
+      # borg_brain:
+      # - MMIFilled
+      # Starlight edit End
       borg_module:
       - XenoborgModuleBasic
       - XenoborgModuleTool
@@ -207,7 +215,7 @@
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
   id: XenoborgStealth
   name: stealth xenoborg
-  suffix: with brain
+  suffix: No Brain # Starlight edit
   description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army. This one is a stealth type. Its armor shimmers in the light like no other material you've seen.
   components:
   - type: BorgTransponder
@@ -244,8 +252,10 @@
   #   maxInterval: 150
   - type: ContainerFill
     containers:
-      borg_brain:
-      - MMIFilled
+      # Starlight edit Start
+      # borg_brain:
+      # - MMIFilled
+      # Starlight edit End
       borg_module:
       - XenoborgModuleBasic
       - XenoborgModuleTool

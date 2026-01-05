@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/6b3f58d7de4d4e374282819a7001eaa9bde1676d. Vox state by Flareguy for Space Station 14. Reptilian state by TiniestShark (Github). Avali state by DocMoth (Github).",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/6b3f58d7de4d4e374282819a7001eaa9bde1676d. Vox state by Flareguy for Space Station 14. Reptilian state by TiniestShark (Github). Avali state and light sprites by DocMoth (Github).",
   "size": {
     "x": 32,
     "y": 32
@@ -11,19 +11,38 @@
       "name": "icon"
     },
     {
-      "name": "equipped-HELMET",
+      "name": "icon-flash"
+    },
+    {
+      "name": "off-equipped-HELMET",
       "directions": 4
     },
     {
-      "name": "equipped-HELMET-vox",
+      "name": "on-equipped-HELMET",
       "directions": 4
     },
     {
-      "name": "equipped-HELMET-reptilian",
+      "name": "off-equipped-HELMET-vox",
       "directions": 4
     },
     {
-      "name": "equipped-HELMET-avali",
+      "name": "on-equipped-HELMET-vox",
+      "directions": 4
+    },
+    {
+      "name": "off-equipped-HELMET-reptilian",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-HELMET-reptilian",
+      "directions": 4
+    },
+    {
+      "name": "off-equipped-HELMET-avali",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-HELMET-avali",
       "directions": 4
     }
   ]
