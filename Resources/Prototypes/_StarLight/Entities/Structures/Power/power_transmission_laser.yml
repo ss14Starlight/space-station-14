@@ -45,7 +45,7 @@
     board: PowerTransmissionLaserMachineCircuitboard
   - type: PowerTransmissionLaser
     cycleTimeSeconds: 2
-    spesosPerMwPerCycle: 60
+    spesosPerMwPerCycle: 50
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: ActivatableUIRequiresPower
