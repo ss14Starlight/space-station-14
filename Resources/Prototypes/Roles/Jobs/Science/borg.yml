@@ -33,7 +33,7 @@
   canBeAntag: false
   icon: JobIconBorg
   supervisors: job-supervisors-rd
-  jobEntity: PlayerBorgBattery
+  jobEntity: PlayerBorgChassis # Starlight edit
   # Cosmatic Drift Record System-start: Cyborg shells do not use humanoid profiles, so avoid seeding records.
   special:
   - !type:AddComponentSpecial

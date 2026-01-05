@@ -65,7 +65,7 @@
   - type: Speech
     speechVerb: Slime
     speechSounds: Slime
-    allowedEmotes: ['Squish']
+    allowedEmotes: ['Squish', 'Bubble', 'Pop'] # Starlight
   - type: TypingIndicator
     proto: slime
   - type: Vocal

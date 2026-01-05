@@ -43,6 +43,17 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
 
 - type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSeniorChemist
+  name: senior chemist jumpskirt
+  description: A sign of skill, prestige, and alchemical prowess
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_chemist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_chemist.rsi
+
+- type: entity
   parent: [ ClothingUniformSkirtBase, BaseSecurityContraband ]
   id: ClothingUniformJumpskirtCorpsman
   name: corpsman's skirt
@@ -52,6 +63,17 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseSecurityContraband ]
+  id: ClothingUniformJumpskirtCorpsmanTrauma
+  name: corpsman's trauma wear
+  description: I've seen worse. I've seen far worse.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman_trauma.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman_trauma.rsi
 
 # Fashion-O-Mat-Start, not obtainable any other way, unless mapped
 # All CC/Synd stuff in Fashion-O-Mat is replica

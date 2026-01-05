@@ -16,12 +16,14 @@
       - HideContextMenu
   - type: AnimationPlayer
 
+# starlight start
+# split base laser hitscan into a variant with and without visual beams
+# this is done so that projectiles such as disablers and tasers do not have laser travel visuals
 - type: entity
   id: BasicHitscan
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanAmmo
-  - type: HitscanBasicRaycast
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -32,8 +34,7 @@
     impactFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_laser
-  - type: HitscanReflect
-  - type: HitscanBasicEffects
+# starlight end
 
 - type: entity
   parent: BasicHitscan

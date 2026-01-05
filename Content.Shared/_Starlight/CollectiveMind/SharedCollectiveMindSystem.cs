@@ -134,4 +134,17 @@ public abstract partial class SharedCollectiveMindSystem : EntitySystem
 
         return data;
     }
+
+    public bool CheckCanSpeak(EntityUid uid, CollectiveMindPrototype collectiveMind)
+    {
+        foreach (var component in StringsToRegs(collectiveMind.CanSpeakComponents))
+            if (EntityManager.HasComponent(uid, component))
+                return true;
+
+        foreach (var tag in collectiveMind.CanSpeakTags)
+            if (_tag.HasTag(uid, tag))
+                return true;
+
+        return false;
+    }
 }

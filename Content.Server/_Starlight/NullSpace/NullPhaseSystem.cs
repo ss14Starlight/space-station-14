@@ -6,9 +6,8 @@ using Content.Shared.Maps;
 using Robust.Server.GameObjects;
 using Content.Shared.Popups;
 using Content.Shared.Physics;
-using Content.Shared._Starlight;
+using Content.Shared._Starlight.Shadekin;
 using System.Linq;
-using Content.Server.Light.Components;
 using Content.Server.Ghost;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
@@ -16,7 +15,7 @@ using Content.Shared.Light.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 
-public sealed class EtherealPhaseSystem : EntitySystem
+public sealed class NullSpacePhaseSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
@@ -26,9 +25,9 @@ public sealed class EtherealPhaseSystem : EntitySystem
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
 
-    private EntProtoId ShadekinShadow = "ShadekinShadow";
-    private EntProtoId ShadekinPhaseInEffect = "ShadekinPhaseInEffect";
-    private EntProtoId ShadekinPhaseOutEffect = "ShadekinPhaseOutEffect";
+    private readonly EntProtoId _shadekinShadow = "ShadekinShadow";
+    private readonly EntProtoId ShadekinPhaseInEffect = "ShadekinPhaseInEffect";
+    private readonly EntProtoId ShadekinPhaseOutEffect = "ShadekinPhaseOutEffect";
 
     public override void Initialize()
     {
@@ -66,7 +65,9 @@ public sealed class EtherealPhaseSystem : EntitySystem
 
     private void OnPhaseAction(EntityUid uid, NullPhaseComponent component, NullPhaseActionEvent args)
     {
-        Phase(uid);
+        if (CanPhase(uid))
+            Phase(uid);
+
         args.Handled = true;
     }
 
@@ -78,9 +79,9 @@ public sealed class EtherealPhaseSystem : EntitySystem
             _actionsSystem.RemoveAction(uid, component.PhaseAction);
     }
 
-    public bool Phase(EntityUid uid)
+    public bool CanPhase(EntityUid uid)
     {
-        if (TryComp<NullSpaceComponent>(uid, out var ethereal))
+        if (TryComp<NullSpaceComponent>(uid, out var nullspace))
         {
             var tileref = _turf.GetTileRef(Transform(uid).Coordinates);
             if (tileref != null
@@ -89,7 +90,32 @@ public sealed class EtherealPhaseSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("revenant-in-solid"), uid, uid);
                 return false;
             }
+        }
+        else
+        {
+            if (_container.IsEntityInContainer(uid))
+            {
+                _popup.PopupEntity(Loc.GetString("phase-fail-generic"), uid, uid);
+                return false;
+            }
 
+            foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+            {
+                if (HasComp<NullSpaceBlockerComponent>(entity))
+                {
+                    _popup.PopupEntity(Loc.GetString("phase-fail-generic"), uid, uid);
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public void Phase(EntityUid uid)
+    {
+        if (TryComp<NullSpaceComponent>(uid, out var nullspace))
+        {
             if (HasComp<ShadekinComponent>(uid))
             {
                 var lightQuery = _lookup.GetEntitiesInRange(uid, 5, flags: LookupFlags.StaticSundries)
@@ -101,18 +127,12 @@ public sealed class EtherealPhaseSystem : EntitySystem
                 Transform(effect).LocalRotation = Transform(uid).LocalRotation;
             }
             else
-                SpawnAtPosition(ShadekinShadow, Transform(uid).Coordinates);
+                SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
 
-            RemComp(uid, ethereal);
+            RemComp(uid, nullspace);
         }
         else
         {
-            if (_container.IsEntityInContainer(uid))
-            {
-                _popup.PopupEntity(Loc.GetString("phase-fail-generic"), uid, uid);
-                return false;
-            }
-
             EnsureComp<NullSpaceComponent>(uid);
 
             if (HasComp<ShadekinComponent>(uid))
@@ -126,8 +146,7 @@ public sealed class EtherealPhaseSystem : EntitySystem
                 Transform(effect).LocalRotation = Transform(uid).LocalRotation;
             }
             else
-                SpawnAtPosition(ShadekinShadow, Transform(uid).Coordinates);
+                SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
         }
-        return true;
     }
 }

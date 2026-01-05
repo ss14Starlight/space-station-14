@@ -623,7 +623,7 @@
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Command"]]
+    access: [["Ntrep"]] # Starlight
   - type: EntityStorageVisuals
     stateBaseClosed: hop
     stateDoorOpen: hop_open

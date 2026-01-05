@@ -1,0 +1,6 @@
+- type: entity
+  parent: BaseGameRule
+  id: NukiePlanetSpawn
+  components:
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/nukieplanet.yml

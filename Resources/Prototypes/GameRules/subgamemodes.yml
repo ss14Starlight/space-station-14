@@ -131,11 +131,19 @@
     - prefRoles: [ MothershipCore ]
       fallbackRoles: [ Xenoborg ]
       spawnerPrototype: SpawnPointGhostRoleMothershipCore
+      # Starlight Start
+      roleLoadout:
+      - AntagMothership
+      # Starlight End
       mindRoles:
       - MindRoleMothershipCore
     - prefRoles: [ Xenoborg ]
       fallbackRoles: [ MothershipCore ]
       spawnerPrototype: SpawnPointGhostRoleXenoborg
+      # Starlight Start
+      roleLoadout:
+      - AntagXenoborg
+      # Starlight End
       mindRoles:
       - MindRoleXenoborg
       min: 4

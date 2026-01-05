@@ -2,7 +2,6 @@
   id: DefaultStarlightMapPool
   maps:
   - StarlightBagel
-  - StarlightBarratry
   - StarlightCog
   - StarlightCork
   - StarlightFland
@@ -26,6 +25,7 @@
   - StarlightCluster
   - StarlightBox
   - StarlightPacked
+# - StarlightBarratry
 # - StarlightExo
 # - StarlightMarathon
 # - StarlightMeta
