@@ -25081,5 +25081,235 @@ Entries:
   id: 232500
   time: '2026-01-03T02:20:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2325
+- author: Citrea
+  changes:
+  - message: Unsafe presents can now *also* be opened by borgs.
+    type: Fix
+  id: 270200
+  time: '2026-01-04T20:05:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2702
+- author: teapoterror
+  changes:
+  - message: Change the Light in the Syndicate Hideout of GNT9 to be harder for the
+      turret to accidentally shoot out.
+    type: Tweak
+  - message: Remove Klaxon Sirens from Biohaz, replaced with a normal red light.
+    type: Tweak
+  - message: Change the airlock in the Syndicate Hideout to be unlocked.
+    type: Tweak
+  - message: Removed one of the lights in the beach (It was a tad too bright)
+    type: Tweak
+  id: 269400
+  time: '2026-01-04T20:09:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2694
+- author: Karma
+  changes:
+  - message: Updated Corporate Law in Game
+    type: Tweak
+  id: 266500
+  time: '2026-01-04T20:13:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2665
+- author: CawsForConcern
+  changes:
+  - message: (Omega) New pipe in Atmospherics to make it much easier to set up the
+      TEG properly
+    type: Add
+  - message: (Omega) Document and paperbin printer to Security, SOP abiders rejoice
+    type: Add
+  - message: (Omega) Fax machine and paperbin to Courtroom, Magistrates rejoice
+    type: Add
+  - message: (Omega) Paperbin to Law office, IAAs rejoice
+    type: Add
+  - message: (Omega) Replaced HOS WT550 with the 'HOS weapon spawner' (no gameplay
+      difference, just mapping stuff)
+    type: Tweak
+  - message: (Omega) Recolored the Hot / Cold loops of the TEG to match other maps
+    type: Tweak
+  - message: (Omega) Re-enabled Magistrate job slot on. Magistrates rejoice
+    type: Fix
+  id: 270100
+  time: '2026-01-04T20:17:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2701
+- author: CawsForConcern
+  changes:
+  - message: (Bagel) Document printer and paperbin in Bridge, Command rejoice
+    type: Add
+  - message: (Bagel) Document printer and paperbin in Security, SOP abiders rejoice
+    type: Add
+  - message: (Bagel) Document printer and paperbin in Law, IAAs rejoice
+    type: Add
+  - message: (Bagel) Document printer and paperbin in Warden, Wardens rejoice
+    type: Add
+  - message: (Bagel) Reorganized the Warden's office slightly to make it less cramped
+    type: Tweak
+  - message: (Bagel) Moved the Implanter crate from the Warden's office into the Armory
+      to be consistent with other maps
+    type: Tweak
+  - message: (Bagel) Replaced HOS WT550 with the 'HOS weapon spawner' (no gameplay
+      difference, just mapping stuff)
+    type: Tweak
+  id: 269600
+  time: '2026-01-04T20:21:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2696
+- author: CawsForConcern
+  changes:
+  - message: (Fland) Added a second Service Request Computer, which is located in
+      the Bar. People had trouble finding the one in the Service Common Area between
+      the Kitchen and Hydroponics.
+    type: Add
+  - message: (Fland) Per Atmos requests, the gas input to the SM chamber has been
+      changed to passive vents (was previously air injectors)
+    type: Tweak
+  - message: (Fland) Maints door in Salvage/Mining was Salvage acces only
+    type: Fix
+  - message: (Fland) Chemistry's lower half was missing power due to a missing LV
+      wire
+    type: Fix
+  - message: (Fland) AI Turret controls were using the wrong turret control prototype,
+      turret controls now fixed
+    type: Fix
+  - message: (Fland) Replaced HOS WT550 with the 'HOS weapon spawner' (no gameplay
+      difference, just mapping stuff)
+    type: Tweak
+  id: 269500
+  time: '2026-01-04T20:22:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2695
+- author: CawsForConcern
+  changes:
+  - message: (Saltern) Mining ticket machine to Salvage/Mining Bay
+    type: Add
+  - message: (Saltern) Jr. Pacman generator to Engineering
+    type: Add
+  - message: (Saltern) Replaced HOS WT550 with the 'HOS weapon spawner' (no gameplay
+      difference, just mapping stuff)
+    type: Tweak
+  - message: (Saltern) Handcuffs at Bridge replaced with Zipties
+    type: Tweak
+  - message: (Saltern) Plantpot spawner was spawning on top of Security's document
+      printer (rude)
+    type: Fix
+  id: 270000
+  time: '2026-01-04T20:22:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2700
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Turret control panel for AI Upload (by Bridge)
+    type: Add
+  - message: (Lobster) One (1) surplus TEG engine in Atmospherics — some assembly
+      required!
+    type: Add
+  - message: (Lobster) Station beacon for Southwest Solars
+    type: Add
+  - message: (Lobster) Medical Records computer to Medical Reception
+    type: Add
+  - message: (Lobster) Replaced HOS WT550 with the 'HOS weapon spawner' (no gameplay
+      difference, just mapping stuff)
+    type: Tweak
+  - message: (Lobster) Artifact pads were not linked in Science
+    type: Fix
+  id: 269800
+  time: '2026-01-04T20:21:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2698
+- author: Rhetorica
+  changes:
+  - message: Extended Mag ZOZ-106
+    type: Fix
+  - message: magazine no longer removable from ZOZ-106, allowing it to require cycling
+      after each shot, as the maints gods intended
+    type: Tweak
+  - message: TOZ-106 admeme weapon
+    type: Add
+  - message: rename .42 shells to 20 gauge shells
+    type: Tweak
+  - message: handcrafted shotgun still referenced .50 shells instead of 12 gauge
+    type: Fix
+  - message: ZOZ-106 to rev supply markers and rift crates
+    type: Add
+  id: 268600
+  time: '2026-01-04T20:41:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2686
+- author: wonderfulnewworld
+  changes:
+  - message: Added Senior Chemistry Backpack/Duffel Bag/Satchel
+    type: Add
+  - message: Chemistry is now actually able to spawn with their Chem bags again
+    type: Fix
+  - message: Science's waistbag is now another 2x1 wider to account for science's
+      expected equipment
+    type: Tweak
+  - message: Reordered some outfits in Brigmedic/Senior Courier to be more consistent/make
+      more aesthetic sense
+    type: Tweak
+  - message: Brigmedic is once again required bring a mask to work for health and
+      safety concerns
+    type: Tweak
+  - message: Brigmedic can now wear white gloves
+    type: Tweak
+  - message: Renamed Corpsman's response jacket to Corpsman's response wear
+    type: Tweak
+  - message: -5% blunt armor on Brigmedic overcoats
+    type: Tweak
+  - message: Decreased price of Industrial/Advanced Industrial Welder in Engineering's
+      vendor from 250->150 and 400->350 respectively
+    type: Tweak
+  id: 268700
+  time: '2026-01-04T20:52:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2687
+- author: PubliclyExecutedPig
+  changes:
+  - message: Mingtenance
+    type: Tweak
+  id: 267500
+  time: '2026-01-04T20:53:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2675
+- author: R3v3l4t1on
+  changes:
+  - message: Changed one of the random gen AI names to avoid accidental rule 6 violations.
+    type: Tweak
+  id: 265400
+  time: '2026-01-04T21:06:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2654
+- author: Citrea
+  changes:
+  - message: Alternate borg frames now have reasonably sensible hat placements.
+    type: Tweak
+  - message: All borgs are now pettable.
+    type: Tweak
+  - message: Medibots can be given hats again.
+    type: Fix
+  - message: Standard borg frames no longer use hat displacements for short borgs
+    type: Fix
+  id: 270400
+  time: '2026-01-04T21:17:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2704
+- author: Shades
+  changes:
+  - message: NPCs, Soviets, Ect... wont fall asleep anymore...
+    type: Fix
+  id: 264800
+  time: '2026-01-04T21:14:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2648
+- author: Fasuh
+  changes:
+  - message: Other people being unable to give vox an external tank.
+    type: Fix
+  id: 268400
+  time: '2026-01-04T21:26:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2684
+- author: redmushie
+  changes:
+  - message: Reduced containment field ejection force to prevent noclipping and getting
+      ejected into deep space
+    type: Fix
+  id: 268800
+  time: '2026-01-04T21:32:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2688
+- author: Scarlet Lightweaver
+  changes:
+  - message: Added a new admeme crate.
+    type: Add
+  id: 261400
+  time: '2026-01-04T22:38:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2614
 Order: -1
 
