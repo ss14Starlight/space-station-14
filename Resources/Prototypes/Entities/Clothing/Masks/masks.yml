@@ -320,6 +320,12 @@
   - type: Tag
     tags:
     - SurgeryCompatibleArmor # Starlight-edit
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Caustic: 0.95 # I kind of just put this here so that it would show the infection resistance...
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingMaskBase
@@ -416,7 +422,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: [ ClothingMaskGas, BaseSalvageContraband ]
+  parent: ClothingMaskGas
   id: ClothingMaskGasMerc
   name: mercenary gas mask
   description: Slightly outdated, but reliable military-style gas mask.
@@ -468,7 +474,7 @@
 - type: entity
   parent: ClothingMaskGasERT
   id: ClothingMaskGasDeathSquad
-  name: death squad gas mask
+  name: ntsf gas mask #starlight
   description: A unique gas mask for the NT's most elite squad.
   components:
   - type: Sprite
@@ -748,6 +754,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - CorgiWearable #Starlight
 
 # Entity tables
 - type: entityTable

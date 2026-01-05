@@ -38,7 +38,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Absinthe
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/absintheglass.rsi
       state: icon_empty
@@ -62,7 +62,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Ale
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/aleglass.rsi
       state: icon_empty
@@ -86,7 +86,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Beer
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/beerglass.rsi
       state: icon_empty
@@ -110,7 +110,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: BlueCuracao
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/curacaoglass.rsi
       state: icon_empty
@@ -134,7 +134,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Cognac
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/cognacglass.rsi
       state: icon_empty
@@ -185,7 +185,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Gin
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
       state: icon_empty
@@ -209,7 +209,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: CoffeeLiqueur
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/coffeeliqueurglass.rsi
       state: icon_empty
@@ -233,7 +233,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: MelonLiquor
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/emeraldglass.rsi
       state: icon_empty
@@ -305,7 +305,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Rum
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/rumglass.rsi
       state: icon_empty
@@ -329,7 +329,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Sake
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/sakeglass.rsi
       state: icon_empty
@@ -353,7 +353,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Tequila
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/tequillaglass.rsi
       state: icon_empty
@@ -377,7 +377,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Vermouth
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/vermouthglass.rsi
       state: icon_empty
@@ -401,7 +401,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Vodka
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
       state: icon_empty
@@ -425,7 +425,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Whiskey
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/whiskeyglass.rsi
       state: icon_empty
@@ -449,7 +449,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Wine
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/wineglass.rsi
       state: icon_empty
@@ -505,7 +505,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: AcidSpit
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/acidspitglass.rsi
       state: icon_empty
@@ -533,7 +533,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: AlienBrainHemorrhage
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/alienbrainhemorrhage.rsi
       state: icon_empty
@@ -561,7 +561,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: AlliesCocktail
-      Quantity: 60 # Two glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/alliescocktail.rsi
       state: icon_empty
@@ -589,7 +589,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Amasec
-      Quantity: 60 # Two glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/amasecglass.rsi
       state: icon_empty
@@ -617,7 +617,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Andalusia
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/andalusia.rsi
       state: icon_empty
@@ -645,7 +645,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Antifreeze
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/antifreeze.rsi
       state: icon_empty
@@ -701,7 +701,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: B52
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/b52glass.rsi
       state: icon_empty
@@ -729,7 +729,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: BahamaMama
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/bahama_mama.rsi
       state: icon_empty
@@ -757,7 +757,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: BananaHonk
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/bananahonkglass.rsi
       state: icon_empty
@@ -785,7 +785,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Barefoot
-      Quantity: 30 # One glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/b&p.rsi
       state: icon_empty
@@ -813,7 +813,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: BeepskySmash
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/beepskysmashglass.rsi
       state: icon_empty
@@ -837,7 +837,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: BlackRussian
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/blackrussianglass.rsi
       state: icon_empty
@@ -865,7 +865,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: BloodyMary
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/bloodymaryglass.rsi
       state: icon_empty
@@ -893,7 +893,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Booger
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/booger.rsi
       state: icon_empty
@@ -917,7 +917,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: BraveBull
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/bravebullglass.rsi
       state: icon_empty
@@ -945,7 +945,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Bronx
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/bronx.rsi
       state: icon_empty
@@ -973,7 +973,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: CoconutRum
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/coconutrum.rsi
       state: icon_empty
@@ -1001,7 +1001,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Cosmopolitan
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/cosmopolitan.rsi
       state: icon_empty
@@ -1029,7 +1029,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: CrushDepth
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/crushdepth.rsi
       state: icon_empty
@@ -1057,7 +1057,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: CubaLibre
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/cubalibreglass.rsi
       state: icon_empty
@@ -1085,7 +1085,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: DarkandStormy
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/dark&stormy.rsi
       state: icon_empty
@@ -1113,7 +1113,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: DemonsBlood
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/demonsblood.rsi
       state: icon_empty
@@ -1169,7 +1169,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: DoctorsDelight
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/doctorsdelightglass.rsi
       state: icon_empty
@@ -1225,7 +1225,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Eggnog
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/eggnogglass.rsi
       state: icon_empty
@@ -1253,7 +1253,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: ElectricShark
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/electricshark.rsi
       state: icon_empty
@@ -1281,7 +1281,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: ErikaSurprise
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/beerstein.rsi
       state: icon_empty
@@ -1309,7 +1309,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: GargleBlaster
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/gargleblasterglass.rsi
       state: icon_empty
@@ -1333,7 +1333,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: GinFizz
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/ginfizzglass.rsi
       state: icon_empty
@@ -1357,7 +1357,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: GinTonic
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/gintonicglass.rsi
       state: icon_empty
@@ -1409,7 +1409,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Grog
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/beerstein.rsi
       state: icon_empty
@@ -1437,7 +1437,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: HippiesDelight
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/hippiesdelightglass.rsi
       state: icon_empty
@@ -1465,7 +1465,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Hooch
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/glass_brown2.rsi
       state: icon
@@ -1489,7 +1489,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: IcedBeer
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/iced_beerglass.rsi
       state: icon_empty
@@ -1517,7 +1517,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: IrishCarBomb
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/irishslammer.rsi
       state: icon_empty
@@ -1541,7 +1541,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: IrishCream
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/irishcreamglass.rsi
       state: icon_empty
@@ -1565,7 +1565,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: IrishCoffee
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/irishcoffeeglass.rsi
       state: icon_empty
@@ -1593,7 +1593,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: JackRose
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/jackrose.rsi
       state: icon_empty
@@ -1621,7 +1621,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: JungleBird
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/junglebird.rsi
       state: icon_empty
@@ -1645,7 +1645,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Kalimotxo
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/kalimotxo.rsi
       state: icon_empty
@@ -1673,7 +1673,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: LongIslandIcedTea
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/longislandicedteaglass.rsi
       state: icon_empty
@@ -1697,7 +1697,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Manhattan
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/manhattanglass.rsi
       state: icon_empty
@@ -1725,7 +1725,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: ManhattanProject
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/proj_manhattanglass.rsi
       state: icon_empty
@@ -1749,7 +1749,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: ManlyDorf
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/manlydorfglass.rsi
       state: icon_empty
@@ -1773,7 +1773,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Margarita
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/margaritaglass.rsi
       state: icon_empty
@@ -1797,7 +1797,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Martini
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/martiniglass.rsi
       state: icon_empty
@@ -1825,7 +1825,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Mead
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/beerstein.rsi
       state: icon_empty
@@ -1849,7 +1849,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Mojito
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/mojito.rsi
       state: icon_empty
@@ -1873,7 +1873,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: MonkeyBusiness
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/monkeybusiness.rsi
       state: icon_empty
@@ -1897,7 +1897,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Moonshine
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/moonshineglass.rsi
       state: icon_empty
@@ -1921,7 +1921,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Painkiller
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/painkiller.rsi
       state: icon_empty
@@ -1945,7 +1945,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Patron
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/patronglass.rsi
       state: icon_empty
@@ -1973,7 +1973,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: RedMead
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/red_meadglass.rsi
       state: icon_empty
@@ -1997,7 +1997,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: PinaColada
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/pinacolada.rsi
       state: icon_empty
@@ -2021,7 +2021,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Radler
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/radler.rsi
       state: icon_empty
@@ -2045,7 +2045,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Sbiten
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/sbitenglass.rsi
       state: icon_empty
@@ -2069,7 +2069,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: ScrewdriverCocktail
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/screwdriverglass.rsi
       state: icon_empty
@@ -2097,7 +2097,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: CogChamp
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/cogchamp.rsi
       state: icon_empty
@@ -2125,7 +2125,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Silencer
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/silencerglass.rsi
       state: icon_empty
@@ -2153,7 +2153,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: SnowWhite
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/snowwhite.rsi
       state: icon_empty
@@ -2181,7 +2181,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: SuiDream
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/sdreamglass.rsi
       state: icon_empty
@@ -2205,7 +2205,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: SyndicateBomb
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/syndicatebomb.rsi
       state: icon_empty
@@ -2229,7 +2229,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: TequilaSunrise
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/tequillasunriseglass.rsi
       state: icon_empty
@@ -2257,7 +2257,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: TheMartinez
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/the_martinez.rsi
       state: icon_empty
@@ -2285,7 +2285,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: ThreeMileIsland
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/threemileislandglass.rsi
       state: icon_empty
@@ -2313,7 +2313,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: ToxinsSpecial
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/toxinsspecialglass.rsi
       state: icon_empty
@@ -2365,7 +2365,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: VodkaMartini
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/martiniglass.rsi
       state: icon_empty
@@ -2389,7 +2389,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: VodkaTonic
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/vodkatonicglass.rsi
       state: icon_empty
@@ -2413,7 +2413,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: WhiskeyCola
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/whiskeycolaglass.rsi
       state: icon_empty
@@ -2437,7 +2437,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: WhiskeySoda
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/whiskeysodaglass.rsi
       state: icon_empty
@@ -2461,7 +2461,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: WhiteGilgamesh
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/glass_brown2.rsi
       state: icon
@@ -2489,7 +2489,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: WhiteRussian
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/whiterussianglass.rsi
       state: icon_empty
@@ -2513,7 +2513,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: VodkaRedBool
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
       state: icon_empty
@@ -2541,7 +2541,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: XenoBasher
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/xenobasher.rsi
       state: icon_empty
@@ -2569,7 +2569,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: IrishBool
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/beerglass.rsi
       state: icon_empty
@@ -2597,7 +2597,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: BudgetInsulsDrink
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/budgetinsulsdrink.rsi
       state: icon_empty
@@ -2625,7 +2625,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: WatermelonWakeup
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/champagneglass.rsi
       state: icon_empty
@@ -2653,7 +2653,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Rubberneck
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/rubberneck.rsi
       state: icon_empty
@@ -2681,7 +2681,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: BlueHawaiian
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/bluehawaiian.rsi
       state: icon_empty
@@ -2729,7 +2729,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: MoscowMule
-      Quantity: 30 # Two Glasses
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/moscowmule.rsi
       state: icon_empty
@@ -2757,7 +2757,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Mimeosa
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/mimeosa.rsi
       state: icon_empty
@@ -2785,7 +2785,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Mimosa
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/mimosa.rsi
       state: icon_empty
@@ -2813,7 +2813,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Mayojito
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/mayojito.rsi
       state: icon_empty
@@ -2837,7 +2837,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: DeathInTheAfternoon
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/deathintheafternoon.rsi
       state: icon_empty
@@ -2865,7 +2865,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Empress75
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/empress75.rsi
       state: icon_empty
@@ -2893,7 +2893,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: EspressoMartini
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/espressomartini.rsi
       state: icon_empty
@@ -2917,7 +2917,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: Daiquiri
-      Quantity: 60 # Two Glasses
+      Quantity: 52 # Two glasses, but allows for vulps to spill 8 times
     icon:
       sprite: Objects/Consumable/Drinks/daiquiri.rsi
       state: icon_empty
@@ -2945,7 +2945,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: TheSunAlsoRises
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/thesunalsorises.rsi
       state: icon_empty
@@ -2969,7 +2969,7 @@
   - type: RailroadMetabolizeTask
     reagents:
     - ReagentId: WhiskeySour
-      Quantity: 30 # One Glass
+      Quantity: 26 # One glass, but allows for vulps to spill 4 times
     icon:
       sprite: Objects/Consumable/Drinks/whiskeysour.rsi
       state: icon_empty

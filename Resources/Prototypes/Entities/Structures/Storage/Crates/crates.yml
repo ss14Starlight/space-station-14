@@ -202,7 +202,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/sec_gear.rsi
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
 
 - type: entity
   parent: CrateBaseSecure
@@ -489,6 +489,8 @@
         - CrateMask #this is so they can go under plastic flaps
         layer:
         - MachineLayer
+  - type: Paintable
+    group: null
 
 - type: entity
   id: CrateLockBoxEngineering
@@ -608,7 +610,7 @@
   - type: OverrideSell
     overrideAccount: Security
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
 
 - type: entity
   id: CrateLockBoxService

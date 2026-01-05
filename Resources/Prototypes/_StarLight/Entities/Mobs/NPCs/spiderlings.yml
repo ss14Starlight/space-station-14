@@ -7,6 +7,13 @@
   description: a small spider which growth into unknown big and dangerous spider.
   abstract: true
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - Chittin
+    - Darktongue
+    understands:
+    - Chittin
+    - Darktongue
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -46,7 +53,10 @@
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodMaxVolume: 50
-    bloodReagent: CopperBlood
+    bloodReagents:
+        reagents:
+        - ReagentId: CopperBlood
+          Quantity: 1
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid

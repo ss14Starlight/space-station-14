@@ -389,15 +389,7 @@ public partial class SharedGunSystem
             // Chamber empty or spent
             if (ent == null)
                 continue;
-            //🌟Starlight🌟
-            if (TryComp<HitScanCartridgeAmmoComponent>(ent, out var hitscanCartridge))
-            {
-                if (hitscanCartridge.Spent)
-                    continue;
-
-                args.Ammo.Add((ent.Value, hitscanCartridge));
-            }
-            else if (TryComp<CartridgeAmmoComponent>(ent, out var cartridge))
+            if (TryComp<CartridgeAmmoComponent>(ent, out var cartridge))
             {
                 if (cartridge.Spent)
                     continue;

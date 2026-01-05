@@ -36,6 +36,7 @@ public sealed class FollowerSystem : EntitySystem
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
 
     private static readonly ProtoId<TagPrototype> ForceableFollowTag = "ForceableFollow";
+    private static readonly ProtoId<TagPrototype> PreventGhostnadoWarpTag = "NotGhostnadoWarpable";
 
     public override void Initialize()
     {
@@ -98,11 +99,11 @@ public sealed class FollowerSystem : EntitySystem
         if (ev.User == ev.Target || IsClientSide(ev.Target))
             return;
 
-        if (HasComp<GhostComponent>(ev.User))
+        if (TryComp<GhostComponent>(ev.User, out var ghost)) // Starlight edit
         {
             var verb = new AlternativeVerb()
             {
-                Priority = 10,
+                Priority = ghost.CanGhostInteract ? -10 : 10, // Starlight edit: Prioritize actions over follow for Aghost
                 Act = () => StartFollowingEntity(ev.User, ev.Target),
                 Impact = LogImpact.Low,
                 Text = Loc.GetString("verb-follow-text"),
@@ -182,7 +183,7 @@ public sealed class FollowerSystem : EntitySystem
     /// </summary>
     /// <param name="follower">The entity that should follow</param>
     /// <param name="entity">The entity to be followed</param>
-    public void StartFollowingEntity(EntityUid follower, EntityUid entity)
+    public void StartFollowingEntity(EntityUid follower, EntityUid entity, bool orbit = true)
     {
         if (follower == entity || TerminatingOrDeleted(entity))
             return;
@@ -198,6 +199,7 @@ public sealed class FollowerSystem : EntitySystem
         }
 
         // Cleanup old following.
+        bool useOrbit = orbit; // Starlight
         if (TryComp<FollowerComponent>(follower, out var followerComp))
         {
             // Already following you goob
@@ -205,6 +207,7 @@ public sealed class FollowerSystem : EntitySystem
                 return;
 
             StopFollowingEntity(follower, followerComp.Following, deparent: false, removeComp: false);
+            useOrbit = followerComp.Orbit; // Starlight
         }
         else
         {
@@ -212,6 +215,7 @@ public sealed class FollowerSystem : EntitySystem
         }
 
         followerComp.Following = entity;
+        followerComp.Orbit = useOrbit; // Starlight
 
         var followedComp = EnsureComp<FollowedComponent>(entity);
 
@@ -232,7 +236,16 @@ public sealed class FollowerSystem : EntitySystem
 
         _physicsSystem.SetLinearVelocity(follower, Vector2.Zero);
 
-        EnsureComp<OrbitVisualsComponent>(follower);
+         // Starlight-start
+        if (useOrbit)
+        {
+            EnsureComp<OrbitVisualsComponent>(follower);
+        }
+        else if (HasComp<OrbitVisualsComponent>(follower))
+        {
+            RemComp<OrbitVisualsComponent>(follower);
+        }
+         // Starlight-end
 
         var followerEv = new StartedFollowingEntityEvent(entity, follower);
         var entityEv = new EntityStartedFollowingEvent(entity, follower);
@@ -321,11 +334,17 @@ public sealed class FollowerSystem : EntitySystem
         var query = EntityQueryEnumerator<FollowerComponent, GhostComponent, ActorComponent>();
         while (query.MoveNext(out _, out var follower, out _, out var actor))
         {
-            // Exclude admins
+            // Don't count admin followers so that players cannot notice if admins are in stealth mode and following someone.
             if (_adminManager.IsAdmin(actor.PlayerSession))
                 continue;
 
             var followed = follower.Following;
+
+            // If the followed entity cannot be ghostnado'd to, we don't count it.
+            // Used for making admins not warpable to, but IsAdmin isn't used for cases where the admin wants to be followed, for example during events.
+            if (_tagSystem.HasTag(followed, PreventGhostnadoWarpTag))
+                continue;
+
             // Add new entry or increment existing
             followedEnts.TryGetValue(followed, out var currentValue);
             followedEnts[followed] = currentValue + 1;

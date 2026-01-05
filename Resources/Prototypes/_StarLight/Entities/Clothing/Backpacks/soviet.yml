@@ -18,12 +18,14 @@
   parent: ClothingBackpackDuffelSSF
   description: Contains a soviet EVA suit and helmet, along with emergency oxygen and nitrogen tanks. For the workers of space!
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterHardsuitSovietEVA
-      - id: ClothingHeadHelmetSovietEVA
-      - id: DoubleEmergencyOxygenTankFilled
-      - id: DoubleEmergencyNitrogenTankFilled
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitSovietEVA
+        - id: ClothingHeadHelmetSovietEVA
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
 
 - type: entity
   id: ClothingBackpackDuffelZaporozhianBundle
@@ -31,24 +33,26 @@
   parent: ClothingBackpackDuffelSSF
   description: Cossacks- have gone to space, and have earned respect within the union.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingUniformJumpsuitCossack
-      - id: ClothingUniformJumpsuitCossack
-      - id: ClothingUniformJumpsuitCossack
-      - id: ClothingHeadHatHetmanHat
-      - id: BladedFlatcapGrey
-      - id: BladedFlatcapBrown
-      - id: ClothingShoesBootsSalvage
-      - id: ClothingShoesBootsSalvage
-      - id: ClothingShoesBootsSalvage
-      - id: HydroponicsToolHatchet
-      - id: HydroponicsToolHatchet
-      - id: WheatBushel
-      - id: WheatBushel
-      - id: MeatwheatBushel
-      - id: MeatwheatBushel
-      - id: ClothingHeadHatStrawHat
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitCossack
+        - id: ClothingUniformJumpsuitCossack
+        - id: ClothingUniformJumpsuitCossack
+        - id: ClothingHeadHatHetmanHat
+        - id: BladedFlatcapGrey
+        - id: BladedFlatcapBrown
+        - id: ClothingShoesBootsSalvage
+        - id: ClothingShoesBootsSalvage
+        - id: ClothingShoesBootsSalvage
+        - id: HydroponicsToolHatchet
+        - id: HydroponicsToolHatchet
+        - id: WheatBushel
+        - id: WheatBushel
+        - id: MeatwheatBushel
+        - id: MeatwheatBushel
+        - id: ClothingHeadHatStrawHat
 
 - type: entity
   id: ClothingBackpackDuffelMarineHardsuitBundle
@@ -56,12 +60,14 @@
   parent: ClothingBackpackDuffelSSF
   description: Contains the USSP's elite marine hardsuit.
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingOuterHardsuitSovietMarine
-      - id: ClothingHandsGlovesCombat
-      - id: DoubleEmergencyOxygenTankFilled
-      - id: DoubleEmergencyNitrogenTankFilled
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitSovietMarine
+        - id: ClothingHandsGlovesCombat
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
 
 - type: entity
   id: ClothingBackpackDuffelMarineLoadout
@@ -69,18 +75,20 @@
   parent: ClothingBackpackDuffelSSF
   description: Bulky olive-drab bag stamped with a faded SSF insignia.
   components:
-  - type: StorageFill
-    contents:
-      - id: DoubleEmergencyOxygenTankFilled
-      - id: DoubleEmergencyNitrogenTankFilled
-      - id: BoxMRE
-      - id: FoodTinMRE
-      - id: FoodTinBeans
-      - id: DrinkVodkizineBottleFull
-      - id: WeaponPistolMakarov
-      - id: ToolDebug
-      - id: WelderIndustrial
-      - id: Multitool
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
+        - id: BoxMRE
+        - id: FoodTinMRE
+        - id: FoodTinBeans
+        - id: DrinkVodkizineBottleFull
+        - id: WeaponPistolMakarov
+        - id: ToolDebug
+        - id: WelderIndustrial
+        - id: Multitool
 
 - type: entity
   id: ClothingSatchelLeatherSovietOfficialLoadout
@@ -89,43 +97,51 @@
   suffix: USSP official
   description: A trend-setting satchel from a bygone era.
   components:
-  - type: StorageFill
-    contents:
-      - id: Finka
-      - id: PenExploding
-      - id: BoxFolderBase
-      - id: BoxFolderClipboard
-      - id: BodyBagFolded
-      - id: DrinkVodkizineBottleFull
-      - id: Flash
-      - id: CigarGoldCase
-      - id: FlippoEngravedLighter
-      - id: MagazinePistolSP
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Finka
+        - id: PenExploding
+        - id: BoxFolderBase
+        - id: BoxFolderClipboard
+        - id: BodyBagFolded
+        - id: DrinkVodkizineBottleFull
+        - id: Flash
+        - id: CigarGoldCase
+        - id: FlippoEngravedLighter
+        - id: MagazinePistolSP
 
 - type: entity
   id: ClothingBackpackDuffelStechkinAPS
   parent: ClothingBackpackDuffelSSF
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponPistolAPS
-      - id: MagazinePistol40SP
-      - id: MagazinePistol40SP
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolAPS
+        - id: MagazinePistol40SP
+        - id: MagazinePistol40SP
 
 - type: entity
   id: ClothingBackpackDuffelDP28Bundle
   parent: ClothingBackpackDuffelSSF
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponLightMachineGunDP28
-      - id: MagazineLightRifleMaxim
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLightMachineGunDP28
+        - id: MagazineLightRifleMaxim
 
 - type: entity
   id: ClothingBackpackDuffelPPShBundle
   parent: ClothingBackpackDuffelSSF
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponSubMachineGunPPSH
-      - id: MagazinePistolSubMachineGunPPSH
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunPPSH
+        - id: MagazinePistolSubMachineGunPPSH

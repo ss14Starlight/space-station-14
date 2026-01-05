@@ -44,6 +44,17 @@
           sprite: "Objects/Misc/module.rsi"
           state: "door_electronics" # /tg/ uses the same sprite, right?
         doAfter: 1
+    # Starlight begin
+    - to: scanner_electronics
+      steps:
+      - tag: WallmountMassScannerElectronics
+        store: board
+        name: construction-graph-tag-wallmount-mass-scanner-electronics
+        icon:
+          sprite: "Objects/Misc/module.rsi"
+          state: "door_electronics"
+        doAfter: 1
+    # Starlight end
     - to: assembly
       completed:
       - !type:GivePrototype
@@ -76,3 +87,29 @@
       steps:
       - tool: Prying
         doAfter: 1
+
+  # Starlight begin
+  - node: scanner_electronics
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: mass_scanner
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: mass_scanner
+    entity: WallmountMassScanner
+    edges:
+    - to: wired
+      conditions:
+      - !type:ContainerNotEmpty
+        container: board
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Prying
+        doAfter: 1
+  # Starlight end

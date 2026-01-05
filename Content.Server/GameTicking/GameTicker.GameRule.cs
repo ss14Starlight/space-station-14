@@ -67,8 +67,22 @@ public sealed partial class GameTicker
     /// start it yet, instead waiting until the rule is actually started by other code (usually roundstart)
     /// </summary>
     /// <returns>The entity for the added gamerule</returns>
-    public EntityUid AddGameRule(string ruleId)
+    public EntityUid AddGameRule(string ruleId, List<EntityUid>? siblings = null) // Starlight - add optional sibling list
     {
+        // Starlight Start: Check if any active game rule denies this rule from being added
+        var activeRules = GetActiveGameRules();
+        foreach (var activeRuleUid in activeRules)
+        {
+            if (!TryComp<GameRuleComponent>(activeRuleUid, out var activeRuleComp))
+                continue;
+            if (activeRuleComp.DenyGameRules.Contains(ruleId))
+            {
+                _sawmill.Info($"Game rule {ruleId} was denied by active rule {ToPrettyString(activeRuleUid)}");
+                return EntityUid.Invalid;
+            }
+        }
+        // Starlight End
+
         var ruleEntity = Spawn(ruleId, MapCoordinates.Nullspace);
         _sawmill.Info($"Added game rule {ToPrettyString(ruleEntity)}");
         _adminLogger.Add(LogType.EventStarted, $"Added game rule {ToPrettyString(ruleEntity)}");
@@ -82,6 +96,11 @@ public sealed partial class GameTicker
         }
 #endif
         Log.Info(str);
+
+        // Starlight start
+        // We add this rule to its sibling list before the GameRuleAddedEvent fires so that the rule hierarchy is available in its Added method.
+        siblings?.Add(ruleEntity);
+        // Starlight end
 
         var ev = new GameRuleAddedEvent(ruleEntity, ruleId);
         RaiseLocalEvent(ruleEntity, ref ev, true);

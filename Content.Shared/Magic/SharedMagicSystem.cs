@@ -6,10 +6,14 @@ using Content.Shared._Starlight.Language.Systems;
 using Content.Shared._Starlight.Magic.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
+using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -23,6 +27,7 @@ using Content.Shared.Ninja.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Speech.Muting;
+using Content.Shared.Station;
 using Content.Shared.Storage;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
@@ -70,10 +75,14 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
+    [Dependency] private readonly ExamineSystemShared _examine= default!;
+
     #region Starlight
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedLanguageSystem _language = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedStationSystem _station = default!;
+
+    private static readonly EntProtoId TowerOfBabel = "TowerOfBabel";
     #endregion
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
@@ -417,22 +426,30 @@ public abstract class SharedMagicSystem : EntitySystem
     #endregion
     #region Knock Spells
     /// <summary>
-    /// Opens all doors and locks within range
+    /// Opens all doors and locks within range.
     /// </summary>
-    /// <param name="args"></param>
     private void OnKnockSpell(KnockSpellEvent args)
     {
         if (args.Handled || !PassesSpellPrerequisites(args.Action, args.Performer))
             return;
 
         args.Handled = true;
+        Knock(args.Performer, args.Range);
+    }
 
-        var transform = Transform(args.Performer);
+    /// <summary>
+    /// Opens all doors and locks within range.
+    /// </summary>
+    /// <param name="performer">Performer of spell. </param>
+    /// <param name="range">Radius around <see cref="performer"/> in which all doors and locks should be opened.</param>
+    public void Knock(EntityUid performer, float range)
+    {
+        var transform = Transform(performer);
 
         // Look for doors and lockers, and don't open/unlock them if they're already opened/unlocked.
-        foreach (var target in _lookup.GetEntitiesInRange(_transform.GetMapCoordinates(args.Performer, transform), args.Range, flags: LookupFlags.Dynamic | LookupFlags.Static))
+        foreach (var target in _lookup.GetEntitiesInRange(_transform.GetMapCoordinates(performer, transform), range, flags: LookupFlags.Dynamic | LookupFlags.Static))
         {
-            if (!_interaction.InRangeUnobstructed(args.Performer, target, range: 0, collisionMask: CollisionGroup.Opaque))
+            if (!_examine.InRangeUnOccluded(performer, target, range: 0))
                 continue;
 
             if (TryComp<DoorBoltComponent>(target, out var doorBoltComp) && doorBoltComp.BoltsDown)
@@ -442,7 +459,7 @@ public abstract class SharedMagicSystem : EntitySystem
                 _door.StartOpening(target);
 
             if (TryComp<LockComponent>(target, out var lockComp) && lockComp.Locked)
-                _lock.Unlock(target, args.Performer, lockComp);
+                _lock.Unlock(target, performer, lockComp);
         }
     }
     // End Knock Spells
@@ -465,10 +482,13 @@ public abstract class SharedMagicSystem : EntitySystem
 
         ev.Handled = true;
 
-        if (wand == null || !TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) || basicAmmoComp.Count == null)
+        if (wand == null)
             return;
 
-        _gunSystem.UpdateBasicEntityAmmoCount(wand.Value, basicAmmoComp.Count.Value + ev.Charge, basicAmmoComp);
+        if (TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) && basicAmmoComp.Count != null)
+            _gunSystem.UpdateBasicEntityAmmoCount(wand.Value, basicAmmoComp.Count.Value + ev.Charge, basicAmmoComp);
+        else if (TryComp<LimitedChargesComponent>(wand, out var charges))
+            _charges.AddCharges((wand.Value, charges), ev.Charge);
     }
     // End Charge Spells
     #endregion
@@ -555,44 +575,23 @@ public abstract class SharedMagicSystem : EntitySystem
     {
         if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
             return;
-        var languages = new HashSet<ProtoId<LanguagePrototype>>();
-        foreach (var language in _prototype.EnumeratePrototypes<LanguagePrototype>())
+        if (_net.IsClient)
+            return;
+        var xform = Transform(ev.Performer);
+
+        foreach (var station in _station.GetStations())
         {
-            languages.Add(language.ID);
+            if (_station.GetLargestGrid(station) is not { } grid)
+                continue;
+
+            if (xform.GridUid != grid)
+                continue;
+
+            var ent = PredictedSpawnAtPosition(TowerOfBabel, xform.Coordinates);
+            ev.Handled = true;
+            return;
         }
-
-        var allLangs = languages.ToList(); //this list is going to be shuffled... ALOT...
-        foreach (var languageKnower in EntityManager.AllEntities<LanguageKnowledgeComponent>())
-        {
-            var comp = languageKnower.Comp;
-            if (
-                comp.SpokenLanguages.Contains(SharedLanguageSystem.UniversalPrototype) ||
-                comp.UnderstoodLanguages.Contains(SharedLanguageSystem.UniversalPrototype)
-                )
-                continue; // One who knows the knowledge of all things cannot know less.
-
-            if (comp.SpokenLanguages.Count > comp.UnderstoodLanguages.Count)
-            {
-                _random.Shuffle(allLangs);
-                comp.SpokenLanguages = [.. allLangs.Take(comp.SpokenLanguages.Count)];
-                var spoken = comp.SpokenLanguages.ToList();
-                _random.Shuffle(spoken);
-                comp.UnderstoodLanguages = [.. spoken.Take(comp.UnderstoodLanguages.Count())];
-            }
-            else
-            {
-                _random.Shuffle(allLangs);
-                comp.UnderstoodLanguages = [.. allLangs.Take(comp.UnderstoodLanguages.Count)];
-                var understood = comp.UnderstoodLanguages.ToList();
-                _random.Shuffle(understood);
-                comp.SpokenLanguages = [.. understood.Take(comp.SpokenLanguages.Count())];
-            }
-
-            if (TryComp<LanguageSpeakerComponent>(languageKnower, out var speaker))
-                _language.UpdateEntityLanguages((languageKnower, speaker));
-        }
-
-        ev.Handled = true;
+        _popup.PopupClient(Loc.GetString("spell-requirements-failed"), ev.Performer, ev.Performer);
     }
     #endregion
 

@@ -3,6 +3,9 @@
   name: job-name-centcomoff
   description: job-description-centcomoff
   playTimeTracker: JobCentralCommandOfficial
+  requirements:
+  - !type:RolesRequirement
+    proto: StaffAndMentorOnlyRolesReq
   setPreference: false
   startingGear: CentcomGear
   icon: "JobIconCentComm"

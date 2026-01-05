@@ -1,4 +1,13 @@
-﻿
+﻿# Accessory Time
+- type: loadoutEffectGroup
+  id: NoviceOfficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 18000 # 5 hrs
+
 # Non-Lethal Weapons
 - type: loadout
   id: SecurityDominator
@@ -37,3 +46,15 @@
     back:
     - WeaponPistolEnforcer
     - MagazinePistolSP
+
+# Jumpsuit
+- type: loadout
+  id: SecurityTshirt
+  equipment:
+    jumpsuit: ClothingUniformSecurityTshirt
+
+#Outerclothes
+- type: loadout
+  id: SecurityBomber
+  equipment:
+    outerClothing: ClothingOuterSecurityBomber

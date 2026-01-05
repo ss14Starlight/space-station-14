@@ -64,7 +64,8 @@
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
-    radius: 1.5
+    radius: 1.7
+    falloff: 3
     softness: 5
     autoRot: true
   - type: Ringer
@@ -778,6 +779,8 @@
   name: paramedic PDA
   description: Shiny and sterile.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi #Starlight
   - type: Pda
     id: ParamedicIDCard
   - type: Appearance
@@ -789,12 +792,13 @@
     borderColor: "#d7d7d0"
     accentVColor: "#2a4b5b"
   - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi #Starlight
     state: pda-paramedic
 
 - type: entity
   parent: BaseMedicalPDA
   id: ChemistryPDA
-  name: chemistry PDA
+  name: chemist PDA # Starlight
   description: It has a few discolored blotches here and there.
   components:
   - type: Pda
@@ -1013,8 +1017,8 @@
   - type: Instrument
     allowPercussion: false
     handheld: true
-    bank: 1
     program: 2
+    bank: 100 # Defined in space-station-14.sf2
 
 - type: entity
   parent: MusicianPDA

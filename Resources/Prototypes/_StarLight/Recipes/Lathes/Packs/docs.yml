@@ -4,7 +4,7 @@
   - PrintedDocumentReportMorgueRecipe
   - PrintedDocumentReportStationRecipe
   - PrintedDocumentReportOnEliminationOfViolationsRecipe
-  - PrintedDocumentReporDepartmentRecipe
+  - PrintedDocumentReportDepartmentRecipe
   - PrintedDocumentReportEmployeePerformanceRecipe
   - PrintedDocumentReportOnTheChaptersMeetingRecipe
   - PrintedDocumentInternalAffairsAgentsReportRecipe
@@ -13,6 +13,7 @@
   - PrintedDocumentExperimentReportRecipe
   - PrintedDocumentDisposalReportRecipe
   - PrintedDocumentArrestReportRecipe
+  - PrintedDocumentSalvageLeadReportRecipe
   # Statements
   - PrintedDocumentStatementAppointmentInterimChapterRecipe
   - PrintedDocumentEmploymentStatementRecipe

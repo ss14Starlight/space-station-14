@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Body.Organ; // Starlight edit
 using Content.Shared.Body.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Timing;
@@ -33,6 +34,7 @@ public abstract class SharedGasTankSystem : EntitySystem
         SubscribeLocalEvent<GasTankComponent, ToggleActionEvent>(OnActionToggle);
         SubscribeLocalEvent<GasTankComponent, GasTankSetPressureMessage>(OnGasTankSetPressure);
         SubscribeLocalEvent<GasTankComponent, GasTankToggleInternalsMessage>(OnGasTankToggleInternals);
+        SubscribeLocalEvent<GasTankComponent, GasTankEmptyOrganMessage>(OnGasTankEmptyOrgan); // Starlight edit
         SubscribeLocalEvent<GasTankComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
     }
 
@@ -54,6 +56,12 @@ public abstract class SharedGasTankSystem : EntitySystem
         Dirty(ent);
         UpdateUserInterface(ent);
     }
+
+    // Starlight edit start - Method overriden by Server
+    protected virtual void OnGasTankEmptyOrgan(Entity<GasTankComponent> ent, ref GasTankEmptyOrganMessage args)
+    {
+    }
+    // Starlight edit end
 
     public virtual void UpdateUserInterface(Entity<GasTankComponent> ent)
     {
@@ -163,6 +171,17 @@ public abstract class SharedGasTankSystem : EntitySystem
             return false;
 
         user ??= ent.Comp.User;
+        // Starlight edit start - Add a check for whether user has a breathable organ
+        if (TryComp<OrganComponent>(ent.Owner, out var organ) && organ.Body != null)
+        {
+            if (TryComp<InternalsComponent>(organ.Body.Value, out var organBodyInternalsComp))
+            {
+                internalsUid = organ.Body.Value;
+                internalsComp = organBodyInternalsComp;
+                return true;
+            }
+        }
+        // Starlight edit end
         // Check if the gas tank's user actually has the component that allows them to use a gas tank and mask
         if (TryComp<InternalsComponent>(user, out var userInternalsComp))
         {

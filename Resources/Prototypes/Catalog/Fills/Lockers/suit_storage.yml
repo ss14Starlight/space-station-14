@@ -181,7 +181,7 @@
       entity_storage: !type:NestedSelector
         tableId: FillSuitStorageSecurity
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
 
 - type: entityTable
   id: FillSuitStorageSecurity
@@ -344,5 +344,6 @@
     - id: NitrogenTankFilled # Starlight - vox gang
     - id: ClothingMaskBreath
     # TODO: Gone until reworked to have no space protection
-    #- id: ClothingOuterHardsuitWizard
+    #- id: ClothingOuterHardsuitWizard #Starlight, fixed with change below
+    - id: ClothingOuterSoftsuitWizard # Starlight: Replace hardsuit with softsuit
     #- id: JetpackVoidFilled

@@ -23,7 +23,6 @@
   - Muted
   - Narcolepsy
   - Pacified
-  - PainNumbness
   - Paracusia
   - PermanentBlindness
   - Snoring
@@ -59,6 +58,8 @@
     # Languages - Starlight
   - LanguageSpeaker
   - ForeignerTrait
+    # TTS - Starlight
+  - TextToSpeech
   eventComponents: 
   - LanguageKnowledge #Clone languages via event so if they get changed you dont suddently re-learn languages.
 
@@ -105,6 +106,8 @@
 - type: cloningSettings
   id: ParadoxCloningSettings
   parent: [BaseClone, Antag]
+  components:
+  - Forensics # This is so hugging data is copied to the clone, so you can't hug metagame them
 
 # changeling identity copying
 - type: cloningSettings
@@ -121,6 +124,13 @@
   - TemperatureProtection
   - TypingIndicator
   - ScaleVisuals # for dwarf height
+  # Extended Character Descriptions - Starlight
+  - CharacterDescription
+  - CharacterSecrets
+  - ExploitableInfo
+  - MindSecrets
+  - RoleplayInfo
+  # Starlight end
   eventComponents:
   # these need special treatment in the event subscription
   - Inventory # arachnid pockets and diona feet

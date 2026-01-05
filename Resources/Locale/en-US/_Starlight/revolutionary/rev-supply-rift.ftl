@@ -15,6 +15,8 @@ banner-desc = Dying with purpose, comrade.
 soviet-encryption-key-conversion-desc = Share your status report tovarisch.
 aps-name = Stechkin APS
 aps-desc = To a brigadier of your choosing, or yourself.
+lawboard-name = Commiemov AI lawboard
+lawboard-desc = The USSP is open to everyone, even the AI! Do keep in mind that you will need a way to unlock the AI upload console if you plan to use this.
 
 # Telebonds
 # Weapons
@@ -30,6 +32,8 @@ dp-name = DP-28 LMG
 dp-desc = From RA-TA-TA-TA with love. Uses .30 ammo.
 ppsh-name = PPSH 59 SMG
 ppsh-desc = The legendary discontinued PPSH 59. Inaccurate as hell, but delivers it. Uses .35 ammo.
+toz-name = ZOZ-106
+toz-desc = Aim at head and eyes. Uses .42 ammo, comes with extended magazine.
 
 # Wearables
 soviet-eva-name = Soviet EVA Suit

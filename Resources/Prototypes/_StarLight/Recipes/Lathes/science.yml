@@ -1,0 +1,14 @@
+- type: latheRecipePack
+  id: ScienceBlueSpaceStatic
+  recipes:
+  - BluespaceCrystalScience
+
+- type: latheRecipePack
+  id: ScienceBlueSpace
+  recipes:
+  - ArtificialBluespaceCrystal
+
+- type: latheRecipePack
+  id: NullSpaceDrainer
+  recipes:
+  - NullSpaceDrainer

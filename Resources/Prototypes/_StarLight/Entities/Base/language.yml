@@ -2,6 +2,7 @@
   id: BaseSiliconLanguages
   abstract: true
   components:
+    - type: LanguageSpeaker
     - type: LanguageKnowledge
       speaks:
       - GalacticCommon
@@ -23,11 +24,13 @@
       - VoxPidgin
       - Scratch
       - Thaveyan
+      - Darktongue
 
 - type: entity
   id: BaseBorgiLanguages
   abstract: true
   components:
+    - type: LanguageSpeaker
     - type: LanguageKnowledge
       speaks:
       - GalacticCommon
@@ -51,11 +54,13 @@
       - Scratch
       - Thaveyan
       - Dog
+      - Darktongue
 
 - type: entity
   id: BaseSiliconBrainLanguages
   abstract: true
   components:
+  - type: LanguageSpeaker
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon

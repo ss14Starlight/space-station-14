@@ -3,7 +3,7 @@
   name: trait-language-foreigner-light-name
   description: trait-language-foreigner-light-desc
   category: LanguageTraits
-  cost: -1
+  cost: -2
   components:
   - type: ForeignerTrait
     cantUnderstand: false
@@ -14,7 +14,7 @@
   name: trait-language-foreigner-name
   description: trait-language-foreigner-desc
   category: LanguageTraits
-  cost: -2
+  cost: -4
   components:
   - type: ForeignerTrait
     baseTranslator: TranslatorForeigner
@@ -24,7 +24,7 @@
   name: trait-language-signlanguage-name
   description: trait-language-signlanguage-desc
   category: LanguageTraits
-  cost: 1
+  cost: 2
   components:
   - type: LanguageSpeaker
   languagesSpoken:
@@ -63,7 +63,7 @@
   name: trait-language-scratch-name
   description: trait-language-scratch-desc
   category: LanguageTraits
-  cost: 1
+  cost: 2
   components:
     - type: LanguageSpeaker
   languagesSpoken:
@@ -72,11 +72,63 @@
     - Scratch
 
 - type: trait
+  id: Darktongue
+  name: trait-language-darktongue-name
+  description: trait-language-darktongue-desc
+  category: LanguageTraits
+  cost: 1
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Darktongue
+  languagesUnderstood:
+    - Darktongue
+
+- type: trait
+  id: Classical
+  name: trait-language-classical-name
+  description: trait-language-classical-desc
+  category: LanguageTraits
+  cost: 1
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Classical
+  languagesUnderstood:
+    - Classical
+
+- type: trait
+  id: Aielic
+  name: trait-language-aielic-name
+  description: trait-language-aielic-desc
+  category: LanguageTraits
+  cost: 2
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Aielic
+  languagesUnderstood:
+    - Aielic
+
+- type: trait
+  id: Grumbakul
+  name: trait-language-grumbakul-name
+  description: trait-language-grumbakul-desc
+  category: LanguageTraits
+  cost: 2
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Grumbakul
+  languagesUnderstood:
+    - Grumbakul
+
+- type: trait
   id: SolCommon
   name: trait-language-solcommon-name
   description: trait-language-solcommon-desc
   category: LanguageTraits
-  cost: 1
+  cost: 2
   components:
     - type: LanguageSpeaker
   languagesSpoken:

@@ -8,6 +8,8 @@ using Content.Shared.Inventory;
 using Content.Shared.Movement.Events;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
+using Content.Shared.Tag; // Starlight Edit
+using Robust.Server.GameObjects; // Starlight Edit
 using Robust.Shared.Containers;
 
 namespace Content.Server.Resist;
@@ -19,6 +21,8 @@ public sealed class EscapeInventorySystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!; // Starlight Edit
+    [Dependency] private readonly TransformSystem _transformSystem = default!; // Starlight Edit
 
     public override void Initialize()
     {
@@ -53,7 +57,18 @@ public sealed class EscapeInventorySystem : EntitySystem
 
         // Uncontested
         if (HasComp<StorageComponent>(container.Owner) || HasComp<InventoryComponent>(container.Owner) || HasComp<SecretStashComponent>(container.Owner))
+        // Starlight edit start - Add another escapable container
+        {
             AttemptEscape(uid, container.Owner, component);
+            return;
+        }
+        
+        // Uncontested - Escape from borg modules and such
+        if (_tagSystem.HasTag(container.Owner, "PersonnelStorage"))
+        {
+            AttemptEscape(uid, container.Owner, component);
+        }
+        // Starlight edit end
     }
 
     private void AttemptEscape(EntityUid user, EntityUid container, CanEscapeInventoryComponent component, float multiplier = 1f)
@@ -82,7 +97,19 @@ public sealed class EscapeInventorySystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        _containerSystem.AttachParentToContainerOrGrid((uid, Transform(uid)));
+        // Starlight edit start - Special handling for borg modules
+        if (_containerSystem.TryGetContainingContainer((uid, null, null), out var container) &&
+            _tagSystem.HasTag(container.Owner, "PersonnelStorage"))
+        {
+            // Remove from the container and put on the floor
+            _containerSystem.Remove((uid, Transform(uid)), container, reparent: false);
+            _transformSystem.AttachToGridOrMap(uid, Transform(uid));
+        }
+        else
+        {
+            _containerSystem.AttachParentToContainerOrGrid((uid, Transform(uid)));
+        }
+        // Starlight edit end
         args.Handled = true;
     }
 

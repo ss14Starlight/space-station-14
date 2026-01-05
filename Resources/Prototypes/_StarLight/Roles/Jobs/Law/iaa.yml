@@ -17,11 +17,11 @@
   canBeAntag: false
   displayWeight: 40
   access:
-  - Service
   - Brig
   - Maintenance
-  - External
   - Lawyer
+  - GenpopEnter
+  - GenpopLeave
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

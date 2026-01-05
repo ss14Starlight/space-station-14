@@ -66,6 +66,19 @@
   - !type:StockLimitedListingCondition
     stockLimit: 4
 
+- type: listing
+  id: UplinkCommiemovCircuitBoard
+  name: lawboard-name
+  description: lawboard-desc
+  productEntity: CommiemovCircuitBoard
+  cost:
+    Conversion: 18
+  categories:
+  - RevUplinkPassive
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
+
 # 500 crates
 - type: listing
   id: RevSupplyRiftListing
@@ -132,6 +145,20 @@
   conditions:
   - !type:StockLimitedListingCondition
     stockLimit: 6
+
+- type: listing
+  id: SKBToz106
+  name: toz-name
+  description: toz-desc
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi, state: base }
+  productEntity: WeaponShotgunToz106Extended
+  cost:
+    Telebond: 4
+  categories:
+  - RevUplinkWeaponry
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 4
 
 - type: listing
   id: SNKVDAPS

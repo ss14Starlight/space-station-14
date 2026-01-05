@@ -1,3 +1,7 @@
+# The mind roles specified here will be overwritten by the actual entities' GhostRoleComponent when they spawn
+# But the mind roles specified here are the ones checked for role bans when taking a ghost role!
+# TODO make this simpler
+
 - type: entity
   abstract: true
   parent: MarkerBase
@@ -88,15 +92,9 @@
   - type: GhostRole
     rules: ghost-role-information-rules-default-team-antagonist
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleNukeops
     raffle:
       settings: default
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 21600 # 6h STARLIGHT
   - type: GhostRoleMobSpawner
     prototype: MobHumanNukeOp
   - type: Sprite
@@ -136,12 +134,6 @@
     rules: ghost-role-information-loneop-rules
     mindRoles:
     - MindRoleLoneops
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 21600 # 6h STARLIGHT
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -159,16 +151,7 @@
     description: roles-antag-nuclear-operative-commander-objective
     rules: ghost-role-information-rules-default-team-antagonist
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 43200 # 12h STARLIGHT
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 21600 # 6h STARLIGHT
+    - MindRoleNukeopsCommander
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -180,19 +163,7 @@
     description: roles-antag-nuclear-operative-agent-objective
     rules: ghost-role-information-rules-default-team-antagonist
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
-    - !type:RoleTimeRequirement
-      role: JobChemist
-      time: 10800 # 3h STARLIGHT
-    - !type:RoleTimeRequirement
-      role: JobSurgeon
-      time: 10800 # 3h STARLIGHT
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 21600 # 6h STARLIGHT
+    - MindRoleNukeopsMedic
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -204,7 +175,7 @@
     description: roles-antag-nuclear-operative-objective
     rules: ghost-role-information-rules-default-team-antagonist
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
+    - MindRoleNukeops
     #inherits requirements from lone op
 
 - type: entity
@@ -217,11 +188,7 @@
     description: ghost-role-information-space-dragon-description
     rules: ghost-role-information-space-dragon-rules
     mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    requirements:
-    - !type:RoleTimeRequirement
-      role: JobSalvageSpecialist
-      time: 10800 # 3h STARLIGHT
+    - MindRoleDragon
   - type: Sprite
     layers:
     - state: green
@@ -238,13 +205,9 @@
     description: ghost-role-information-space-ninja-description
     rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleNinja
     raffle:
       settings: default
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 10800 # 3h STARLIGHT
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -262,12 +225,9 @@
     description: ghost-role-information-paradox-clone-description
     rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleParadoxClone
     raffle:
       settings: default
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
   - type: Sprite
     layers:
     - sprite: Markers/jobs.rsi
@@ -296,20 +256,60 @@
     name: ghost-role-information-derelict-cyborg-name
     description: ghost-role-information-derelict-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleSubvertedSilicon
     raffle:
       settings: default
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
-    - !type:RoleTimeRequirement
-      role: JobBorg
-      time: 21600 # 6h STARLIGHT
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
     - state: green
     - sprite: Mobs/Silicon/Chassis/derelict.rsi
       state: derelict_icon
+
+- type: entity
+  categories: [ Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostRoleMothershipCore
+  components:
+  - type: Tag
+    tags:
+    - ForceFixRotations
+    - MothershipCoreGhostrole
+  - type: GhostRole
+    name: ghost-role-information-mothership-core-name
+    description: ghost-role-information-mothership-core-desc
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleMothershipCore
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/mothership_core.rsi
+      state: core-idle
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostRoleXenoborg
+  components:
+  - type: Tag
+    tags:
+    - ForceFixRotations
+    - XenoborgGhostrole
+  - type: GhostRole
+    name: ghost-role-information-xenoborg-name
+    description: ghost-role-information-xenoborg-desc
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleXenoborg
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/Chassis/xeno_engi.rsi #Starlight, we moved these
+      state: borg #Starlight, we moved these
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -370,15 +370,9 @@
     name: ghost-role-information-wizard-name
     description: ghost-role-information-wizard-desc
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleWizard
     raffle:
       settings: default
-    requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 21600 # 6h STARLIGHT
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

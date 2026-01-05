@@ -17,6 +17,8 @@
   - SalvageLead
   - Maintenance
   - External
+  extendedAccess:
+  - Mining
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -24,7 +26,6 @@
 - type: startingGear
   id: SalvageLeadGear
   equipment:
-    id: SalvageLeadPDA
     ears: ClothingHeadsetSalvageLead
   #storage:
     #back:

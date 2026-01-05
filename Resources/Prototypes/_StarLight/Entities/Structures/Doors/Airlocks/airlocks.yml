@@ -185,3 +185,28 @@
 
 ## AirlockSalvage is in Wizden airlocks.yml
 ## AirlockSalvageGlass is in Wizden airlocks.yml
+
+#EVA
+- type: entity
+  parent: Airlock
+  id: AirlockEVA
+  suffix: Command (EVA)
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Doors/Airlocks/Standard/eva.rsi
+    - type: Wires
+      layoutId: AirlockCommand
+    - type: Paintable
+      group: AirlockStandard
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockEVAGlass
+  suffix: Command (EVA), Glass
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Doors/Airlocks/Glass/eva.rsi
+    - type: Wires
+      layoutId: AirlockCommand
+    - type: Paintable
+      group: AirlockGlass

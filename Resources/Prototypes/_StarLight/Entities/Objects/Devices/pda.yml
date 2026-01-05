@@ -23,6 +23,121 @@
     - Silicon
 
 - type: entity
+  parent: BaseMedicalPDA
+  id: SeniorChemistPDA
+  name: senior chemist PDA
+  description: Smells faintly of bratwurst.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: ChemistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorchemist
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#B34200"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-seniorchemist
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: VeteranBrigmedicPDA
+  name: veteran brigmedic PDA
+  description: This pulse has never stopped under my watch.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BrigmedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-veteranbrigmedic
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#d7d7d0"
+    accentVColor: "#d7d7d0"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veteranbrigmedic
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: CorpsmanPDA
+  name: corpsman PDA
+  description: How's it going to end?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BrigmedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-corpsman
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#d7d7d0"
+    accentVColor: "#d7d7d0"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-corpsman
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: VeteranCorpsmanPDA
+  name: veteran corpsman PDA
+  description: I've seen the end. I couldn't change a thing...
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BrigmedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-veterancorpsman
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#d7d7d0"
+    accentVColor: "#d7d7d0"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veterancorpsman
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+
+- type: entity
   parent: BasePDA
   id: MagistratePDA
   name: magistrate PDA
@@ -127,30 +242,75 @@
   name: salvage lead PDA
   description: Smells like blood and ash.
   components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Devices/pda.rsi
-    - type: Pda
-      id: SalvageLeadIDCard
-    - type: Appearance
-      appearanceDataInit:
-        enum.PdaVisuals.PdaType:
-          !type:String
-          pda-salvagelead
-    - type: PdaBorderColor
-      borderColor: "#af9366"
-      accentHColor: "#8900c9"
-      accentVColor: "#8900c9"
-    - type: Icon
-      sprite: _Starlight/Objects/Devices/pda.rsi
-      state: pda-salvagelead
-    - type: CartridgeLoader
-      uiKey: enum.PdaUiKey.Key
-      preinstalled:
-        - CrewManifestCartridge
-        - NotekeeperCartridge
-        - NanoTaskCartridge
-        - NewsReaderCartridge
-        - AstroNavCartridge
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: SalvageLeadIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-salvagelead
+  - type: PdaBorderColor
+    borderColor: "#af9366"
+    accentHColor: "#8900c9"
+    accentVColor: "#8900c9"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-salvagelead
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+
+- type: entity
+  parent: SalvageLeadPDA
+  id: VeteranSalvageLeadPDA
+  name: veteran salvage lead PDA
+  description: looks like this was patched up with a bunch of scrap. barely.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: SalvageLeadIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-veteransalvagelead
+  - type: PdaBorderColor
+    borderColor: "#af9366"
+    accentHColor: "#8900c9"
+    accentVColor: "#8f36c6"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veteransalvagelead
+
+- type: entity
+  parent: SalvagePDA
+  id: VeteranSalvagePDA
+  name: veteran salvage PDA
+  description: looks like this was patched up with a bunch of scrap. barely.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: SalvageIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-veteransalvage
+  - type: PdaBorderColor
+    borderColor: "#af9366"
+    accentVColor: "#8f36c6"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veteransalvage
 
 - type: entity
   parent: BasePDA
@@ -181,6 +341,28 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+
+- type: entity
+  parent: MiningPDA
+  id: VeteranMiningPDA
+  name: veteran mining PDA
+  description: the screen is cracked, and the buttons barely work.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: MiningIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-veteranmining
+  - type: PdaBorderColor
+    borderColor: "#af9366"
+    accentVColor: "#6e63be"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veteranmining
 
 - type: entity
   parent: BasePDA
@@ -294,3 +476,77 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: SeniorParamedicPDA
+  name: senior paramedic PDA
+  description: Shiny and sterile, despite the scuffs and scratches
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: ParamedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorparamedic
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#2a4b5b"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-seniorparamedic
+
+- type: entity
+  parent: CentcomPDA
+  id: NTSFPDA
+  suffix: NTSF #starlight
+  components:
+  - type: Pda
+    id: CentcomIDCardNTSF
+  - type: HealthAnalyzer
+    maxScanRange: null
+    scanDelay: 0
+    silent: true
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - WantedListCartridge
+      - LogProbeCartridge
+      - AstroNavCartridge
+
+- type: entity
+  parent: CentcomPDA
+  id: DecimusPDA
+  suffix: ERROR #starlight
+  components:
+  - type: Pda
+    id: CentcomIDCardDecimus
+  - type: HealthAnalyzer
+    maxScanRange: null
+    scanDelay: 0
+    silent: true
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - WantedListCartridge
+      - LogProbeCartridge
+      - AstroNavCartridge

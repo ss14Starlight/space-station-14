@@ -1,3 +1,4 @@
+# NT stamps
 - type: entity
   name: magistrate stamp
   parent: [ RubberStampBase, BaseCommandContraband ]
@@ -54,6 +55,7 @@
     sprite: _Starlight/Objects/Misc/stamps.rsi
     state: stamp-bso
 
+# Brigmedic stamp
 - type: entity
   name: brigmedic's rubber stamp
   parent: RubberStampBase
@@ -68,6 +70,7 @@
       sprite: _Starlight/Objects/Misc/stamps.rsi
       state: stamp-brigmedic
 
+# CC Division Stamps
 - type: entity
   name: Central Administration Division rubber stamp
   parent: RubberStampBase
@@ -186,6 +189,184 @@
   - type: Sprite
     state: stamp-hos
 
+- type: entity
+  name: cc department stamps box
+  parent: BoxCardboard
+  id: BoxStampsCCDepartments
+  components:
+    - type: Storage
+      maxItemSize: Small
+      grid:
+        - 0,0,4,4
+      whitelist:
+        components:
+          - Stamp
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: RubberStampCentcom
+            - id: RubberStampCAD
+            - id: RubberStampCCD
+            - id: RubberStampCED
+            - id: RubberStampCID
+            - id: RubberStampCMD
+            - id: RubberStampCRD
+            - id: RubberStampCDD
+            - id: RubberStampCSOD
+            - id: RubberStampCSD
+    - type: Sprite
+      sprite: _Starlight/Objects/Storage/boxes.rsi
+      layers:
+        - state: box-cc
+        - state: stamp-cc-departments
+    
+# CC Administrative Stamps
+- type: entity
+  name: ACKNOWLEDGED rubber stamp
+  parent: RubberStampBase
+  id: RubberStampAcknowledged
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: "Acknowledged"
+    stampedColor: "#79ae00"
+    stampState: "paper_stamp-ok"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-acknowledged
+      
+- type: entity
+  name: MISSING STAMPS rubber stamp
+  parent: RubberStampBase
+  id: RubberStampMissingStamps
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: "Missing Stamps"
+    stampedColor: "#9b5100"
+    stampState: "paper_stamp-deny"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-missingstamps
+
+- type: entity
+  name: INCORRECT STAMPS rubber stamp
+  parent: RubberStampBase
+  id: RubberStampIncorrectStamps
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: "Incorrect Stamps"
+    stampedColor: "#9b5100"
+    stampState: "paper_stamp-deny"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-missingstamps
+
+- type: entity
+  name: INCORRECT FORM rubber stamp
+  parent: RubberStampBase
+  id: RubberStampIncorrectForm
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: "Incorrect Form"
+    stampedColor: "#9b3600"
+    stampState: "paper_stamp-deny"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-incorrectform
+
+- type: entity
+  name: INCOMPLETE FORM rubber stamp
+  parent: RubberStampBase
+  id: RubberStampIncompleteForm
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: "Incomplete Form"
+    stampedColor: "#9b3600"
+    stampState: "paper_stamp-deny"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-incorrectform
+
+- type: entity
+  name: SENT TO ATS rubber stamp
+  parent: RubberStampBase
+  id: RubberStampSentToATS
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: "Sent to ATS"
+    stampedColor: "#b3844b"
+    stampState: "paper_stamp-qm"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-senttoATS
+  
+- type: entity
+  name: DEFER TO COMMAND rubber stamp
+  parent: RubberStampBase
+  id: RubberStampDeferToCommand
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: "Defer to Command"
+    stampedColor: "#fcc032"
+    stampState: "paper_stamp-ntrep"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-ntrep
+
+- type: entity
+  name: STANDBY rubber stamp
+  parent: RubberStampBase
+  id: RubberStampStandby
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: "Standby"
+    stampedColor: "#e0c300"
+    stampState: "paper_stamp-standby"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-standby
+
+- type: entity
+  name: cc administrative stamps box
+  parent: BoxCardboard
+  id: BoxStampsCCAdministrative
+  components:
+    - type: Storage
+      maxItemSize: Small
+      grid:
+        - 0,0,4,4
+      whitelist:
+        components:
+          - Stamp
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: RubberStampAcknowledged
+            - id: RubberStampMissingStamps
+            - id: RubberStampIncorrectStamps
+            - id: RubberStampIncorrectForm
+            - id: RubberStampIncompleteForm
+            - id: RubberStampSentToATS
+            - id: RubberStampDeferToCommand
+            - id: RubberStampStandby
+            - id: RubberStampApproved
+            - id: RubberStampDenied
+    - type: Sprite
+      sprite: _Starlight/Objects/Storage/boxes.rsi
+      layers:
+        - state: box-cc
+        - state: stamp-cc-admin
+
+# Salvage stamp
 - type: entity
   name: Salvage Lead's rubber stamp
   parent: RubberStampBase

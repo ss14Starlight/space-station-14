@@ -1,3 +1,14 @@
+# Veteran Time
+- type: loadoutEffectGroup
+  id: VeteranSalvageSpecialist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 216000 # 60 hrs
+
+# Jumpsuit
 - type: loadout
   id: ClothingUniformJumpsuitMiningSpecialist
   equipment:
@@ -29,3 +40,17 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorCargo
+
+# PDA
+- type: loadout
+  id: SalvagePDA
+  equipment:
+    id: SalvagePDA
+
+- type: loadout
+  id: VeteranSalvagePDA
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: VeteranSalvageSpecialist
+  equipment:
+    id: VeteranSalvagePDA

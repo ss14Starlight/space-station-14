@@ -29,11 +29,3 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorPhysician
-
-- type: loadout
-  id: MedicalDoctorJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtMedicalDoctor
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician

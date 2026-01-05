@@ -309,3 +309,15 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSalvageMining ]
+
+# Grid-spawning airlocks
+- type: entity
+  parent: AirlockGlassShuttleSyndicate
+  id: AirlockExternalGlassNukeopsShuttle
+  suffix: Random Nukeops Shuttle
+  components:
+  - type: RandomGridFill
+    pathWeights:
+      "/Maps/Shuttles/infiltrator.yml": 1
+    addComponents:
+    - type: NukeOpsShuttle

@@ -1,10 +1,12 @@
 using System.Numerics;
+using Robust.Shared.GameObjects; // Starlight
 using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Clothing;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DoAfter;
+using Content.Shared.Emp;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Interaction;
@@ -49,6 +51,8 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawn);
         SubscribeLocalEvent<SuitSensorComponent, ClothingGotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<SuitSensorComponent, ClothingGotUnequippedEvent>(OnUnequipped);
+        SubscribeLocalEvent<SuitSensorComponent, EmpPulseEvent>(OnEmpPulse);
+        SubscribeLocalEvent<SuitSensorComponent, EmpDisabledRemovedEvent>(OnEmpFinished);
         SubscribeLocalEvent<SuitSensorComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<SuitSensorComponent, GetVerbsEvent<Verb>>(OnVerb);
         SubscribeLocalEvent<SuitSensorComponent, EntGotInsertedIntoContainerMessage>(OnInsert);
@@ -133,6 +137,25 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         Dirty(ent);
     }
 
+    private void OnEmpPulse(Entity<SuitSensorComponent> ent, ref EmpPulseEvent args)
+    {
+        args.Affected = true;
+        args.Disabled = true;
+
+        ent.Comp.PreviousMode = ent.Comp.Mode;
+        SetSensor(ent.AsNullable(), SuitSensorMode.SensorOff, null);
+
+        ent.Comp.PreviousControlsLocked = ent.Comp.ControlsLocked;
+        ent.Comp.ControlsLocked = true;
+        // SetSensor already calls Dirty
+    }
+
+    private void OnEmpFinished(Entity<SuitSensorComponent> ent, ref EmpDisabledRemovedEvent args)
+    {
+        SetSensor(ent.AsNullable(), ent.Comp.PreviousMode, null);
+        ent.Comp.ControlsLocked = ent.Comp.PreviousControlsLocked;
+    }
+
     private void OnExamine(Entity<SuitSensorComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)
@@ -153,6 +176,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             case SuitSensorMode.SensorCords:
                 msg = "suit-sensor-examine-cords";
                 break;
+
             default:
                 return;
         }
@@ -290,6 +314,10 @@ public abstract class SharedSuitSensorSystem : EntitySystem
 
         sensors.Comp.Mode = mode;
         Dirty(sensors);
+
+        // Starlight-start
+        RaiseLocalEvent(sensors.Owner, new SuitSensorModeChangedEvent(mode));
+        // Starlight-end
 
         if (userUid != null)
         {
@@ -466,3 +494,15 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         return status;
     }
 }
+
+// Starlight-start
+public sealed class SuitSensorModeChangedEvent : EntityEventArgs
+{
+    public SuitSensorMode Mode { get; }
+
+    public SuitSensorModeChangedEvent(SuitSensorMode mode)
+    {
+        Mode = mode;
+    }
+}
+// Starlight-end

@@ -6,6 +6,7 @@
   name: revenant
   description: A spooky ghostie.
   components:
+  - type: DarkLight # Starlight
   - type: LanguageSpeaker
   - type: UniversalLanguageSpeaker
   - type: Emag
@@ -70,6 +71,9 @@
         type: StoreBoundUserInterface
   - type: Visibility
     layer: 2 #ghost vis layer
+  - type: ActionGrant
+    actions:
+    - ActionRevenantShop
   - type: Store
     name: store-preset-name-revenant #Starlight UI change for data purity
     categories:

@@ -1,12 +1,14 @@
+using Content.Shared.Damage.Systems;
+
 namespace Content.Server.Chat.Systems;
 
+using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Chat; // Starlight
 
 public sealed class EmoteOnDamageSystem : EntitySystem
 {

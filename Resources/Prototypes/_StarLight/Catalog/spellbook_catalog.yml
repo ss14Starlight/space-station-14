@@ -37,3 +37,17 @@
   - !type:ListingLimitedStockCondition
     stock: 1
   disableRefund: true
+
+- type: listing
+  id: SpellbookManaBlade
+  name: spellbook-event-mana-blade-name
+  description: spellbook-event-mana-blade-description
+  productAction: ActionRetractableItemManaBlade
+  cost:
+    WizCoin: 1 #it's only a sword, should probably be fairly cheap
+  categories:
+  - SpellbookOffensive
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+    

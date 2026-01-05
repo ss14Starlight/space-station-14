@@ -6,16 +6,16 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 72000 # 20 hours
+      time: 20h # Starlight
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 72000 # 20 hours
+      time: 20h # Starlight
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 72000 # 20 hours
+      time: 20h # Starlight
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 90000 # 25 hours
+      time: 25h # Starlight
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"

@@ -5,6 +5,11 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 
+#region Starlight
+using Content.Shared.Intellicard;
+using Content.Shared.NameIdentifier;
+#endregion Starlight
+
 namespace Content.Shared.Silicons.StationAi;
 
 public abstract partial class SharedStationAiSystem
@@ -12,11 +17,12 @@ public abstract partial class SharedStationAiSystem
     private ProtoId<StationAiCustomizationGroupPrototype> _stationAiCoreCustomGroupProtoId = "StationAiCoreIconography";
     private ProtoId<StationAiCustomizationGroupPrototype> _stationAiHologramCustomGroupProtoId = "StationAiHolograms";
 
-    private readonly SpriteSpecifier.Rsi _stationAiRebooting = new(new ResPath("Mobs/Silicon/station_ai.rsi"), "ai_fuzz");
+    private readonly SpriteSpecifier.Rsi _stationAiRebooting = new(new ResPath("_Starlight/Mobs/Silicon/station_ai.rsi"), "ai_fuzz"); // Starlight - use our sprite
 
     private void InitializeCustomization()
     {
         SubscribeLocalEvent<StationAiCoreComponent, StationAiCustomizationMessage>(OnStationAiCustomization);
+        SubscribeLocalEvent<StationAiCoreComponent, StationAiRenameMessage>(OnStationAiRename); // Starlight
 
         SubscribeLocalEvent<StationAiCustomizationComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<StationAiCustomizationComponent, PlayerDetachedEvent>(OnPlayerDetached);
@@ -49,6 +55,23 @@ public abstract partial class SharedStationAiSystem
         if (groupPrototype.Category == StationAiCustomizationType.CoreIconography && TryComp<StationAiHolderComponent>(entity, out var stationAiHolder))
             UpdateAppearance((entity, stationAiHolder));
     }
+    
+    // Starlight begin
+    private void OnStationAiRename(EntityUid uid, StationAiCoreComponent comp, StationAiRenameMessage args)
+    {
+        if (!TryGetHeld((uid, comp), out var core)) return;
+        if (comp.RemoteEntity is null) return;
+        var identifier = "";
+        if (TryComp<NameIdentifierComponent>(core, out var identifierComp))
+        {
+            identifier = identifierComp.FullIdentifier;
+        }
+        _metadata.SetEntityName(core.Value, args.NewName);
+        _metadata.SetEntityName(uid, $"{args.NewName} {identifier}");
+        _metadata.SetEntityName(comp.RemoteEntity.Value, $"{args.NewName} {identifier}");
+        Comp<StationAiCustomizationComponent>(core.Value).RenameAvailable = false;
+    }
+    // Starlight end
 
     private void OnPlayerAttached(Entity<StationAiCustomizationComponent> ent, ref PlayerAttachedEvent args)
     {
@@ -139,5 +162,28 @@ public abstract partial class SharedStationAiSystem
         layerData = prototype.LayerData;
 
         return true;
+    }
+
+    private void CustomizeIntellicardAppearance(Entity<IntellicardComponent> entity)
+    {
+        if (!TryComp<StationAiHolderComponent>(entity.Owner, out var stationAi))
+            return;
+
+        if (!stationAi.Slot.Item.HasValue)
+        {
+            _appearance.RemoveData(entity.Owner, StationAiVisualLayers.Icon);
+            return;
+        }
+
+        if (!TryComp<StationAiCustomizationComponent>(stationAi.Slot.Item, out var stationAiCustomization) ||
+            !stationAiCustomization.ProtoIds.TryGetValue(_stationAiCoreCustomGroupProtoId, out var protoId) ||
+            !_protoManager.Resolve(protoId, out var prototype) ||
+            !prototype.LayerData.TryGetValue("Intellicard", out var layerData))
+        {
+            return;
+        }
+
+        // This data is handled manually in the client StationAiSystem
+        _appearance.SetData(entity.Owner, StationAiVisualLayers.Icon, layerData);
     }
 }

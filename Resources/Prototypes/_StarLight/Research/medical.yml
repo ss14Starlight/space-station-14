@@ -97,6 +97,7 @@
     - EyeImplantWelding
     - EyeImplantMedical
     - EyeImplantSecurity
+    - CyberRebreather # For now i will be lazy and put it here, not sure if i can excuse making a new pack for just 1 recipe
   technologyPrerequisites:
     - CyberLimbsTech
   radioChannels:
@@ -221,5 +222,21 @@
   recipeUnlocks:
   - LauncherSyringe
   - MiniSyringe
+  radioChannels:
+  - Medical
+
+- type: technology
+  id: CloningSystems
+  name: research-technology-cloning
+  icon:
+    sprite: Structures/Machines/cloning.rsi
+    state: pod_0
+  discipline: Biochemical
+  tier: 3
+  cost: 25000
+  recipeUnlocks:
+  - CloningConsoleComputerCircuitboard 
+  - CloningPodMachineCircuitboard 
+  - MedicalScannerMachineCircuitboard
   radioChannels:
   - Medical

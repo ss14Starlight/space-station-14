@@ -1,10 +1,11 @@
 using Content.Shared._Starlight.Polymorph.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.Chat;
 using Content.Shared.Follower;
 using Content.Shared.Follower.Components;
 using Content.Shared.Mind;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.Laws;
@@ -26,7 +27,7 @@ public sealed class StationAIShuntSystem : EntitySystem
     [Dependency] private readonly FollowerSystem _follower = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly INetManager _net = default!;
-
+    [Dependency] private readonly StationAiVisionSystem _vision = default!;
 
     public override void Initialize()
     {
@@ -45,10 +46,13 @@ public sealed class StationAIShuntSystem : EntitySystem
         if (ev.Handled)
             return;
         var target = ev.Target;
-
+        if (_vision.IsOutsideCameraView(target))
+            return;
         if (!TryComp<StationAIShuntComponent>(target, out var shunt))
             return;
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var _))
+            return;
+        if (!TryComp<MobStateComponent>(uid, out var state) || state.CurrentState != MobState.Alive)
             return;
 
         if (TryComp<BorgChassisComponent>(target, out var chassisComp))
@@ -169,7 +173,7 @@ public sealed class StationAIShuntSystem : EntitySystem
         {
             if (!comp.Return.HasValue)
                 return; //we are in something not inhabited. so obvs we cant shunt out of it.
-            
+
             var unshuntVerb = new AlternativeVerb()
             {
                 Text = Loc.GetString("ai-shunt-out-of"),

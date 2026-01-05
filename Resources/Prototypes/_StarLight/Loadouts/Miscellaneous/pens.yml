@@ -1,0 +1,59 @@
+- type: loadout
+  id: Pen
+  storage:
+    id:
+      - Pen
+
+- type: loadout
+  id: FancyPen
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobLibrarian
+        time: 3600 # 1 hour of reading books (a fate worse than death)
+  storage:
+    id:
+      - LuxuryPen
+
+- type: loadout
+  id: FancyPenNoReq
+  storage:
+    id:
+      - LuxuryPen
+
+- type: loadout
+  id: PenHop
+  storage:
+    id:
+      - PenHop
+
+- type: loadout
+  id: PenCap
+  storage:
+    id:
+      - PenCap
+
+- type: loadout
+  id: PenNTR
+  storage:
+    id:
+      - PenNTR
+
+- type: loadout
+  id: PenCentcom
+  storage:
+    id:
+      - PenCentcom
+
+- type: loadout
+  id: CrayonOrange
+  storage:
+    id:
+      - CrayonOrange
+
+- type: loadout
+  id: CrayonMime
+  storage:
+    id:
+      - CrayonMime

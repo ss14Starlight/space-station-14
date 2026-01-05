@@ -1,5 +1,5 @@
 using System.Threading;
-using Content.Server.DeviceNetwork.Components;
+using Content.Server.DeviceNetwork.Components; // Starlight
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Access;
@@ -8,7 +8,7 @@ using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Popups;
-using Content.Shared.Screen.Components;
+using Content.Shared.Screen.Components; // Starlight
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
@@ -17,7 +17,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Timer = Robust.Shared.Timing.Timer;
-using Content.Shared.Shuttles.Components; //starlight
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -40,7 +39,7 @@ public sealed partial class EmergencyShuttleSystem
     /// How much time remaining until the shuttle consoles for emergency shuttles are unlocked?
     /// </summary>
     private float _consoleAccumulator = float.MinValue;
-    
+
     public float СonsoleAccumulator => _consoleAccumulator;
 
     /// <summary>

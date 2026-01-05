@@ -3,7 +3,7 @@
   id: LockerFillSalvageLead
   table: !type:AllSelector
     children:
-    - id: BoxFolderClipboard
+    - id: BoxFolderClipboardSalvageLead
     - id: RubberStampSalvageLead
     - id: ClothingNeckMantleDecoratedSalvager
 

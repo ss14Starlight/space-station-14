@@ -17,6 +17,15 @@
   - !type:SpeechWireAction
 
 - type: wireLayout
+  id: MassDriver
+  dummyWires: 3
+  wires:
+  - !type:PowerWireAction
+  - !type:PowerWireAction
+    pulseTimeout: 15
+  - !type:MassDriverSecurityWireAction
+
+- type: wireLayout
   id: ScanGate
   dummyWires: 2
   wires:
@@ -25,3 +34,11 @@
     pulseTimeout: 15
   - !type:AccessWireAction
     electrify: true
+
+- type: wireLayout
+  parent: Airlock
+  id: AirlockSyndicate
+
+- type: wireLayout
+  parent: Airlock
+  id: AirlockCentralCommand

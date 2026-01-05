@@ -8,15 +8,15 @@
         <ui1:CharacterViewControl Name="CharacterView" Access="Public"/>
         <BoxContainer Orientation="Vertical" VerticalExpand="True">
             <Label Text="OOC Notes:"/>
-            <Label Name="OOCNotes" Access="Public" MinSize="220 100" Margin="10"
-                   HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Top"/>
+            <RichTextLabel Name="OOCNotes" Access="Public" MinSize="220 100" Margin="10"
+                           VerticalExpand="True" VerticalAlignment="Top"/>
         </BoxContainer>
         <PanelContainer Name="HiddenInfoSection" Access="Public" Visible="False">
             <BoxContainer Orientation="Vertical" VerticalExpand="True">
                 <Label Text="Hidden Info" StyleClasses="LabelHeading"/>
                 <Label Text="Personal Notes:"/>
-                <Label Name="PersonalNotes" Access="Public" MinSize="220 100" Margin="10"
-                       HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Top"/>
+                <RichTextLabel Name="PersonalNotes" Access="Public" MinSize="220 100" Margin="10"
+                       VerticalExpand="True" VerticalAlignment="Top"/>
             </BoxContainer>
         </PanelContainer>
     </BoxContainer>

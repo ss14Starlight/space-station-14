@@ -440,14 +440,14 @@
     containers:
       board: [ DoorElectronicsVault ]
 
-- type: entity
-  parent: AirlockCommand
+- type: entity # 🌟Starlight begin
+  parent: AirlockEVA
   id: AirlockEVALocked
-  suffix: EVA, Locked
+  suffix: Command (EVA), Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsExternal ]
+      board: [ DoorElectronicsCommand ] # Starlight end🌟
 
 # Glass Airlocks
 - type: entity
@@ -843,14 +843,14 @@
     containers:
       board: [ DoorElectronicsArmory ]
 
-- type: entity
-  parent: AirlockCommandGlassLocked
+- type: entity # 🌟Starlight begin
+  parent: AirlockEVAGlass
   id: AirlockEVAGlassLocked
-  suffix: EVA, Locked
+  suffix: Command (EVA), Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsExternal ]
+      board: [ DoorElectronicsCommand ] # Starlight end🌟
 
 - type: entity
   parent: AirlockSyndicateGlass
@@ -1286,10 +1286,19 @@
 #Airtight hatch
 
 - type: entity
-  parent: AirlockHatch
-  id: AirlockHatchSyndicate
+  parent: AirlockHatchSyndicate
+  id: AirlockHatchSyndicateLocked
   suffix: Syndicate, Locked
   components:
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: AirlockHatchMaintenance
+  id: AirlockHatchMaintenanceLocked
+  suffix: Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]

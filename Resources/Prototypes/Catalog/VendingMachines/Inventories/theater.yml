@@ -56,6 +56,8 @@
     ClothingShoesBootsCowboyBlack: 1
     ClothingShoesBootsCowboyWhite: 1
     #Starlight
+    ClothingUniformJumpsuitRisk: 1
+    ClothingHeadHelmetRisk: 1
     CandyClownUniformSuit: 1
     StripedClownUniformSuit: 1
     DruidRobesUniformSuit: 1
@@ -85,6 +87,7 @@
     ClothingShoesBling: 1
     ClothingShoesBootsCowboyFancy: 1
     ClothingOuterDogi: 1
+    ClothingOuterSuitCarp: 1
     ClothingMaskBlushingClown: 1
     ClothingMaskBlushingMime: 1
     ClothingHeadHatCowboyBountyHunter: 1

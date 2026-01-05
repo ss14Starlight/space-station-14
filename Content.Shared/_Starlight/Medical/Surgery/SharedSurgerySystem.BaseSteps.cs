@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
@@ -110,6 +111,8 @@ public abstract partial class SharedSurgerySystem
 
             if (_net.IsServer && TryComp(tool, out SurgeryToolComponent? toolComp) && toolComp.EndSound != null)
                 _audio.PlayPvs(toolComp.EndSound, tool);
+            if (ent.Comp.ReagentId != null && _solutionContainerSystem.TryGetSolution(tool, "drink", out var solution))
+                _solutionContainerSystem.RemoveReagent(solution.Value, new ReagentQuantity(ent.Comp.ReagentId, ent.Comp.ReagentQuantity));
         }
 
         foreach (var reg in (ent.Comp.Add ?? []).Values)
@@ -210,6 +213,13 @@ public abstract partial class SharedSurgerySystem
             else if (TryComp<SurgeryItemSizeConditionComponent>(ent, out var itemSizeComp) && TryComp<ItemComponent>(tool, out var item) && _item.GetSizePrototype(item.Size) > _item.GetSizePrototype(itemSizeComp.Size))
             {
                 args.Invalid = StepInvalidReason.TooHigh;
+                return;
+            }
+            else if (ent.Comp.ReagentId != null && _solutionContainerSystem.GetTotalPrototypeQuantity(tool, ent.Comp.ReagentId) < ent.Comp.ReagentQuantity)
+            {
+                args.Invalid = StepInvalidReason.NotEnoughReagent;
+                if (reg.Component is ISurgeryToolComponent toolComp)
+                    args.Popup = $"You need at least {ent.Comp.ReagentQuantity}u of {ent.Comp.ReagentId} in {toolComp.ToolName} to perform this step!";
                 return;
             }
 
