@@ -6,6 +6,13 @@ using Content.Shared.Humanoid;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using System.Linq;
+using Content.Server.Cargo.Components;
+using Content.Shared.Prayer;
+using Content.Shared.Weapons.Melee;
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Server._Starlight.Legendary.Modifiers;
+using Content.Server._Starlight.Legendary.Visuals;
+using Content.Server.Weapons.Ranged.Systems;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -22,6 +29,7 @@ public sealed class LegendaryItemSystem : EntitySystem
     [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!;
     [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly GunSystem _gunSystem = default!;
 
     public override void Initialize()
     {
@@ -61,7 +69,66 @@ public sealed class LegendaryItemSystem : EntitySystem
             _meta.SetEntityDescription(uid, description, meta);
         }
 
+        ApplyLegendaryStatBonuses(uid, component);
+
+        EnsureComp<LegendaryAuraComponent>(uid); // Aura farming with this one
+
         return true;
+    }
+
+    private void ApplyLegendaryStatBonuses(EntityUid uid, LegendaryItemComponent component)
+    {
+        if (component.Story is not { } storyId)
+            return;
+
+        switch (storyId.Id)
+        {
+            case "Firearm":
+                ApplyFirearmBonuses(uid);
+                break;
+            case "MeleeWeapon":
+                ApplyMeleeBonuses(uid);
+                break;
+            case "Clothing":
+                ApplyClothingBonuses(uid);
+                break;
+            case "Trinket":
+                EnsureComp<PrayableComponent>(uid);
+                break;
+            case "Plush":
+                ApplyPlushBonuses(uid);
+                break;
+        }
+    }
+
+    private void ApplyFirearmBonuses(EntityUid uid)
+    {
+        // Unfortunatly i cant directly write to GunComponent here access is restricted to SharedGunSystem nor GunSystem
+        // Instead attach "bonus" component and let it modify GunRefreshModifiersEvent
+        var bonus = EnsureComp<LegendaryGunFireRateBonusComponent>(uid);
+        bonus.FireRateBonus = 1f;
+
+        if (TryComp(uid, out GunComponent? gun))
+            _gunSystem.RefreshModifiers((uid, gun));
+    }
+
+    private void ApplyMeleeBonuses(EntityUid uid)
+    {
+        if (!TryComp(uid, out MeleeWeaponComponent? melee))
+            return;
+
+        melee.AttackRate = Math.Max(0.1f, melee.AttackRate + 1f);
+        DirtyField(uid, melee, nameof(MeleeWeaponComponent.AttackRate));
+    }
+
+    // Same deal as with firearm 
+    private void ApplyClothingBonuses(EntityUid uid) => EnsureComp<LegendaryArmorBonusComponent>(uid);
+
+    private void ApplyPlushBonuses(EntityUid uid)
+    {
+        var staticPrice = EnsureComp<StaticPriceComponent>(uid);
+        staticPrice.Price = 10000;
+        Dirty(uid, staticPrice);
     }
 
     private string? GetDescription(LegendaryItemComponent component)
@@ -94,20 +161,51 @@ public sealed class LegendaryItemSystem : EntitySystem
         IReadOnlyList<LocId> mids = storyProto.Mids;
         IReadOnlyList<LocId> ends = storyProto.Ends;
 
+        static bool IsPatronKey(LocId key)
+            => key.Id.Contains("-patron-", StringComparison.OrdinalIgnoreCase);
+
         // If we dont have a patron reference, do not select patron specific lines at all
         if (patron is null)
         {
-            opens = opens.Where(k => !k.Id.Contains("-patron-", StringComparison.OrdinalIgnoreCase)).ToList();
-            mids = mids.Where(k => !k.Id.Contains("-patron-", StringComparison.OrdinalIgnoreCase)).ToList();
-            ends = ends.Where(k => !k.Id.Contains("-patron-", StringComparison.OrdinalIgnoreCase)).ToList();
+            opens = opens.Where(k => !IsPatronKey(k)).ToList();
+            mids = mids.Where(k => !IsPatronKey(k)).ToList();
+            ends = ends.Where(k => !IsPatronKey(k)).ToList();
         }
 
         if (opens.Count == 0 || mids.Count == 0 || ends.Count == 0)
             return false;
 
-        var open = Loc.GetString(_random.Pick(opens), locArgs);
-        var mid = Loc.GetString(_random.Pick(mids), locArgs);
-        var end = Loc.GetString(_random.Pick(ends), locArgs);
+        // Patron reference keys may include $patronName. We keep it at most once per generated description
+
+        var openKey = _random.Pick(opens);
+
+        IReadOnlyList<LocId> midPool = mids;
+        IReadOnlyList<LocId> endPool = ends;
+
+        if (patron != null)
+        {
+            var allowPatronInMid = _random.Prob(0.5f);
+
+            if (allowPatronInMid)
+            {
+                var nonPatronEnds = ends.Where(k => !IsPatronKey(k)).ToList();
+                if (nonPatronEnds.Count > 0)
+                    endPool = nonPatronEnds;
+            }
+            else
+            {
+                var nonPatronMids = mids.Where(k => !IsPatronKey(k)).ToList();
+                if (nonPatronMids.Count > 0)
+                    midPool = nonPatronMids;
+            }
+        }
+
+        var midKey = _random.Pick(midPool);
+        var endKey = _random.Pick(endPool);
+
+        var open = Loc.GetString(openKey, locArgs);
+        var mid = Loc.GetString(midKey, locArgs);
+        var end = Loc.GetString(endKey, locArgs);
         var combined = $"{open} {mid} {end}";
 
         if (template != null)
@@ -167,12 +265,8 @@ public sealed class LegendaryItemSystem : EntitySystem
 
         foreach (var session in _playerManager.Sessions)
         {
-            // We only consider online sessions that:
-            // 1. have NullLink player data
-            // 2. have the Discord role required by PatronReq
-            // 3. have cached preferences
-            if (!_nullLinkPlayerManager.TryGetPlayerData(session.UserId, out var playerData) 
-            || !patronReq.Roles.Any(playerData.Roles.Contains) 
+            if (!_nullLinkPlayerManager.TryGetPlayerData(session.UserId, out var playerData)
+            || !patronReq.Roles.Any(playerData.Roles.Contains)
             || !_preferencesManager.TryGetCachedPreferences(session.UserId, out var prefs))
                 continue;
 
@@ -195,7 +289,7 @@ public sealed class LegendaryItemSystem : EntitySystem
 
             // If the player is currently in-round, 
             // avoid referencing the character they playing rn
-            // We compare to the BaseProfile snapshot stored on the humanoid
+            // We compare to the BaseProfile snapshot stored on thumanoid
             var offRound = enabledProfiles
                 .Where(p => current == null || !p.MemberwiseEquals(current))
                 .ToList();
@@ -214,6 +308,10 @@ public sealed class LegendaryItemSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// An a container for the localization arguments used by
+    /// legendary story lines that reference a patrons
+    /// </summary>
     private readonly record struct PatronStoryInfo(
         string Name,
         bool HasPatron,
@@ -223,6 +321,9 @@ public sealed class LegendaryItemSystem : EntitySystem
         string PossPronoun,
         string Reflexive)
     {
+        /// <summary>
+        /// Localization args for the "no patron" case
+        /// </summary>
         public static readonly (string, object)[] EmptyLocArgs =
         [
             ("hasPatron", false),
@@ -234,6 +335,9 @@ public sealed class LegendaryItemSystem : EntitySystem
             ("patronReflexive", string.Empty),
         ];
 
+        /// <summary>
+        /// Creates a <see cref="PatronStoryInfo"/> from a humanoid character profile
+        /// </summary>
         public static PatronStoryInfo FromProfile(HumanoidCharacterProfile profile)
         {
             var pronouns = Pronouns.FromGender(profile.Gender);
@@ -247,6 +351,9 @@ public sealed class LegendaryItemSystem : EntitySystem
                 pronouns.Reflexive);
         }
 
+        /// <summary>
+        /// Builds a loc.. argument array for inserting the patron name + pronouns
+        /// </summary>
         public (string, object)[] ToLocArgs()
             =>
             [
@@ -259,6 +366,9 @@ public sealed class LegendaryItemSystem : EntitySystem
                 ("patronReflexive", Reflexive),
             ];
 
+        /// <summary>
+        /// Merges two loc. argument lists into a single array
+        /// </summary>
         public static (string, object)[] MergeLocArgs((string, object)[] first, params (string, object)[] second)
         {
             if (second.Length == 0)
@@ -270,8 +380,12 @@ public sealed class LegendaryItemSystem : EntitySystem
             return merged;
         }
 
+        /// <summary>
+        /// Pronouns set used for legendary story lines
+        /// </summary>
         private readonly record struct Pronouns(string Subject, string Object, string PossAdj, string PossPronoun, string Reflexive)
         {
+            // Maps a character profile gender to a set of pronouns
             public static Pronouns FromGender(Gender gender)
                 => gender switch
                 {

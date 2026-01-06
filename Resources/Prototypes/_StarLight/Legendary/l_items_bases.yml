@@ -35,6 +35,5 @@
   abstract: true
   components:
     - type: LegendaryItem
-      chance: 0.01
+      chance: 0.1
       story: Clothing
-      description: starlight-legendary-custom-template
