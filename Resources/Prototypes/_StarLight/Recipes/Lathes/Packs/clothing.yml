@@ -13,7 +13,6 @@
   recipes:
   - ClothingHeadHelmetEVA
   - ClothingHeadHelmetEVALarge
-  - ClothingHeadHelmetSyndicate
   - ClothingHeadHelmetEVAHeadOfPersonnel
   - ClothingHeadHelmetEZA
   - ClothingHeadHelmetEVAPro
@@ -23,9 +22,26 @@
   recipes:
   - ClothingOuterHardsuitEVA
   - ClothingOuterHardsuitEVAPrisoner
-  - ClothingOuterEVASuitSyndicate
   - ClothingOuterHardsuitEVAHeadOfPersonel
   - ClothingOuterHardsuitEZA
   - ClothingOuterEVASuitRad
   - ClothingOuterEVASuitFire
   - ClothingOuterEVASuitBio
+
+- type: latheRecipePack
+  id: StarlightEmagEVAHelmets
+  recipes:
+  - ClothingHeadHelmetAncient
+  - ClothingHeadHelmetCentCommEVA
+  - ClothingHeadHelmetNanoTrasenEVA
+  - ClothingHeadHelmetSyndicate
+  - ClothingHeadHelmetSovietEVA
+
+- type: latheRecipePack
+  id: StarlightEmagEVASuits
+  recipes:
+  - ClothingOuterHardsuitAncientEVA
+  - ClothingOuterHardsuitCentCommEVA
+  - ClothingOuterHardsuitNanoTrasenEVA
+  - ClothingOuterEVASuitSyndicate
+  - ClothingOuterHardsuitSovietEVA
