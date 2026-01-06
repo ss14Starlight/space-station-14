@@ -79,7 +79,7 @@
       types:
         Blunt: 1
   - type: HitscanStaminaDamage
-    staminaDamage: 12   
+    staminaDamage: 12
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -173,7 +173,7 @@
       types:
         Piercing: 45 # +30%
   - type: HitscanStaminaDamage
-    staminaDamage: 10    
+    staminaDamage: 10
   - type: HitscanPierce
     chance: 0.03
     deviation: 0.05
@@ -249,7 +249,7 @@
     damage:
       types:
         Blunt: 3
-        Heat: 32
+        Heat: 20
   - type: HitscanPierce
     chance: 0.69
     deviation: 0.05
@@ -451,7 +451,7 @@
     damage:
       types:
         Blunt: 2
-        Heat: 14
+        Heat: 8
   - type: HitscanIgniteEffect
   - type: HitscanPierce
     chance: 0.69
@@ -507,7 +507,7 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: ap
-      
+
 - type: entity
   id: BulletPistolTrace40SP
   parent: BulletTrace
@@ -530,7 +530,7 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: sp
-  
+
 - type: entity
   id: BulletPistolTrace40HP
   parent: BulletTrace
@@ -553,7 +553,7 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: bullet
-  
+
 - type: entity
   id: BulletPistolTrace40FMJ
   parent: BulletTrace
@@ -577,7 +577,7 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: fmj
-  
+
 - type: entity
   id: BulletPistolTrace40AP
   parent: BulletTrace
@@ -790,7 +790,7 @@
     damage:
       types:
         Blunt: 3
-        Heat: 16
+        Heat: 6
   - type: HitscanIgniteEffect
   - type: HitscanPierce
     chance: 0.69
@@ -937,7 +937,7 @@
     damage:
       types:
         Blunt: 2
-        Heat: 15
+        Heat: 7
   - type: HitscanIgniteEffect
   - type: HitscanPierce
     chance: 0.69
@@ -983,7 +983,7 @@
   - type: HitscanStaminaDamage
     staminaDamage: 40
   - type: HitscanPierce
-    chance: 0   
+    chance: 0
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1052,7 +1052,7 @@
     proto: PelletShotgunTrace
     count: 12
     spread: 15
-    
+
 - type: entity
   id: PelletShotgunIncendiaryTrace
   parent: BulletTrace
@@ -1079,7 +1079,7 @@
   components:
   - type: ProjectileSpread
     proto: PelletShotgunIncendiaryTrace
-    count: 12
+    count: 6
     spread: 15
 
 - type: entity
@@ -1270,7 +1270,7 @@
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_blue
 
-- type: entity 
+- type: entity
   id: DeleteBeam
   name: erasing beam
   parent: BasicHitscanNoBeam
@@ -1291,7 +1291,7 @@
     impactFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_blue
-      
+
 - type: entity
   id: DisablerBoltPractice
   name: disabler bolt practice
@@ -1325,7 +1325,7 @@
   components:
   - type: HitscanStaminaDamage
     staminaDamage: 15
-      
+
 - type: entity
   id: TaserBolt
   name: taser bolt
@@ -1348,7 +1348,7 @@
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: spark
       color: "#ffff33"
-      
+
 - type: entity
   id: TaserBoltExtreme
   name: taser bolt
@@ -1369,7 +1369,7 @@
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: spark
       color: "#ffff33"
-      
+
 - type: entity
   id: AdvancedTaserBolt
   name: taser bolt
@@ -1392,7 +1392,7 @@
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: spark
       color: "#ffff33"
-      
+
 - type: entity
   id: EmpPulse
   name: EMP impulse
@@ -1425,7 +1425,7 @@
       sprite:
         sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
         state: declone
-      
+
 - type: entity
   id: SniperBolt
   name: sniper bolt
