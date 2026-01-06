@@ -540,7 +540,7 @@
   - type: OreSiloClient
 
 - type: entity
-  parent: BaseLathe
+  parent: BaseLatheLube # Starlight
   id: UniformPrinter
   name: uniform printer
   description: Prints new or replacement uniforms.

@@ -89,3 +89,130 @@
     tags:
     - SuitEVA
     - WhitelistChameleon
+
+# EZA Suit (Faster EVA)
+- type: entity
+  parent: ClothingOuterEVASuitBase
+  id: ClothingOuterHardsuitEZA
+  name: EZA suit
+  description: A lightweight space suit with the basic ability to protect the wearer from the vacuum of space during emergencies.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Suits/eva.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Suits/eva.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - SuitEVA
+    - MonkeyWearable
+    - CorgiWearable
+    - WhitelistChameleon
+    - CorgiWearable
+
+
+# Radiation EVA
+- type: entity
+  parent: [ClothingOuterEVASuitBase, GeigerCounterClothing, AllowSuitStorageClothing]
+  id: ClothingOuterEVASuitRad
+  name: radiation EVA suit
+  description: "A suit that protects against radiation. The label reads, 'Made with lead. Please do not consume insulation.'"
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Suits/rad.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.90
+        Radiation: 0.01
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Suits/rad.rsi
+  - type: GroupExamine
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetEVARad
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+
+
+# Fire EVA
+- type: entity
+  parent: [ClothingOuterEVASuitBase, AllowSuitStorageClothing]
+  id: ClothingOuterEVASuitFire
+  name: fire EVA suit
+  description: A suit that helps protect against hazardous temperatures.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Suits/fire.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Suits/fire.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.05
+  - type: FireProtection
+    reduction: 0.9 # only good at fire, so actually better than a hardsuit
+  - type: Pierceable
+    level: Wood
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.85
+        Heat: 0.7
+        Cold: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: GroupExamine
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetEVAFire
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+
+# Bio EVA
+- type: entity
+  parent: [ClothingOuterEVASuitBase, AllowSuitStorageClothingGasTanks]
+  id: ClothingOuterEVASuitBio
+  name: bio EVA suit
+  description: A suit that protects against biological contamination.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Bio/general.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Bio/general.rsi
+  - type: HideLayerClothing
+    slots:
+    - Tail
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.8 # Zombies
+        Caustic: 0.75
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.0 # Advanced bio suit, so actually immune.
+  - type: GroupExamine
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetEVABio

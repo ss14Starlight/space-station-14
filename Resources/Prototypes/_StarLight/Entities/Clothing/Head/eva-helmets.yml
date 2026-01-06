@@ -111,11 +111,144 @@
     #Copies ClothingHeadHardsuitBase behavior
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Mecha/mechmove03.ogg
-    equipDelay: 0.5
-    unequipDelay: 0.5
+    equipDelay: 0.3
+    unequipDelay: 0.3
   - type: PointLight
     color: "#adeeff"
   - type: Tag
     tags:
     - HelmetEVA
     - WhitelistChameleon
+
+# EZA Helmet
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetEZA
+  name: EZA helmet
+  description: An old-but-gold helmet designed for extravehicular activites. Infamous for making security officers paranoid.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/eva.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/eva.rsi
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 0.3
+    unequipDelay: 0.3
+  - type: Tag
+    tags:
+    - HelmetEVA
+    - WhitelistChameleon
+    - CorgiWearable
+
+
+# EVA Pro Helmet
+- type: entity
+  parent: [ClothingHeadEVAHelmetBase, ClothingHeadLightBase]
+  id: ClothingHeadHelmetEVAPro
+  name: EVA Pro helmet
+  description: An old-but-gold helmet designed for extravehicular activites. Infamous for making security officers paranoid.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/eva.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/eva.rsi
+  - type: PointLight
+    enabled: false
+    radius: 7
+    energy: 4
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    netsync: false
+  - type: Tag
+    tags:
+    - HelmetEVA
+    - WhitelistChameleon
+    - CorgiWearable
+
+
+# Radiation EVA Helmet
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetEVARad
+  name: radiation EVA hood
+  description: A hood of the hazmat suit, designed for protection from high radioactivity.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hoods/rad.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hoods/rad.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+        Radiation: 0.65
+  - type: IdentityBlocker
+  - type: BreathMask
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+  - type: Tag
+    tags:
+    - HelmetEVA
+
+#Fire EVA Helmet
+- type: entity
+  parent: [ClothingHeadEVAHelmetBase, ClothingHeadLightBase]
+  id: ClothingHeadHelmetEVAFire
+  name: fire EVA helmet
+  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/firehelmet.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/firehelmet.rsi
+    quickEquip: true
+  - type: IngestionBlocker
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.6
+  - type: FireProtection
+    reduction: 0.1 # actually sealed
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - HelmetEVA
+    - WhitelistChameleon
+    - FireHelmet
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+      Snout: HEAD
+
+# Bio EVA Helmet
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetEVABio
+  name: bio EVA hood
+  description: A hood that protects the head and face from biological contaminants.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hoods/Bio/general.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hoods/Bio/general.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: GroupExamine
+  - type: Armor
+    modifiers: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.6 # Not really necessary since 100% protection on the suit, but it's still better than the base hood
+  - type: Tag
+    tags:
+    - HelmetEVA
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+      Snout: HEAD
+      HeadTop: HEAD
+      HeadSide: HEAD

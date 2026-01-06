@@ -1,0 +1,31 @@
+# HoP EVA stuff
+
+- type: latheRecipePack
+  id: StarlightSoftsuitPrinter
+  recipes:
+  - ClothingOuterSuitRad
+  - ClothingOuterSuitFire
+  - ClothingOuterBioGeneral
+  - ClothingHeadHatHoodBioGeneral
+
+- type: latheRecipePack
+  id: StarlightEVAHelmets
+  recipes:
+  - ClothingHeadHelmetEVA
+  - ClothingHeadHelmetEVALarge
+  - ClothingHeadHelmetSyndicate
+  - ClothingHeadHelmetEVAHeadOfPersonnel
+  - ClothingHeadHelmetEZA
+  - ClothingHeadHelmetEVAPro
+
+- type: latheRecipePack
+  id: StarlightEVAPrinter
+  recipes:
+  - ClothingOuterHardsuitEVA
+  - ClothingOuterHardsuitEVAPrisoner
+  - ClothingOuterEVASuitSyndicate
+  - ClothingOuterHardsuitEVAHeadOfPersonel
+  - ClothingOuterHardsuitEZA
+  - ClothingOuterEVASuitRad
+  - ClothingOuterEVASuitFire
+  - ClothingOuterEVASuitBio
