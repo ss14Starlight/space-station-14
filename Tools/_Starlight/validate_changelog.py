@@ -68,7 +68,44 @@ if invalid_entries:
     print(f"::error::Invalid changelog tags found: {', '.join(invalid_entries)}. Valid tags are: {', '.join(valid_tags)}")
     sys.exit(1)
 
-# Check for proper formatting (tag: description)
-if not re.search(r'^[ \t]*[^a-zA-Z0-9]?[ \t]*(add|remove|tweak|fix): .+', changelog_without_comments, re.MULTILINE):
-    print("::error::Changelog entries must follow the format: 'tag: description'")
+# Mapping tag -> required description prefix
+required_prefixes = {
+    "add": "Added ",
+    "remove": "Removed ",
+    "tweak": "Changed ",
+    "fix": "Fixed ",
+}
+
+invalid_lines = []
+
+matched_lines_count = 0
+
+for line in changelog_without_comments.splitlines():
+    line = line.strip()
+
+    # Match lines like "- add: Something"
+    match = re.match(r'^[-*]?\s*(add|remove|tweak|fix):\s*(.+)', line)
+    if not match:
+        continue
+
+    matched_lines_count += 1
+    tag, description = match.groups()
+    required_prefix = required_prefixes[tag]
+
+    if not description.startswith(required_prefix):
+        invalid_lines.append(
+            f"'{tag}:' entries must start with '{required_prefix.strip()}'"
+        )
+    
+    if not description.endswith('.'):
+        invalid_lines.append(
+            f"'{tag}:' entries must end with a period."
+        )
+
+if matched_lines_count == 0:
+    invalid_lines.append("Changelog entries must follow the format: 'tag: description'")
+
+if invalid_lines:
+    for error in invalid_lines:
+        print(f"::error::{error}")
     sys.exit(1)
