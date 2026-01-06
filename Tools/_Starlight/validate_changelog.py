@@ -80,7 +80,7 @@ invalid_lines = []
 
 matched_lines_count = 0
 
-for line in changelog_without_comments.splitlines():
+for line_number, line in enumerate(changelog_without_comments.splitlines(), start=1):
     line = line.strip()
 
     # Match lines like "- add: Something"
@@ -94,12 +94,12 @@ for line in changelog_without_comments.splitlines():
 
     if not description.startswith(required_prefix):
         invalid_lines.append(
-            f"'{tag}:' entries must start with '{required_prefix.strip()}'"
+            f"Line {line_number}: '{tag}:' entries must start with '{required_prefix.strip()}'"
         )
     
     if not description.endswith('.'):
         invalid_lines.append(
-            f"'{tag}:' entries must end with a period."
+            f"Line {line_number}: '{tag}:' entries must end with a period."
         )
 
 if matched_lines_count == 0:
