@@ -76,6 +76,11 @@ required_prefixes = {
     "fix": "Fixed ",
 }
 
+# Amount of symbols which will be printed if we find an error in description
+# Like: "Line 10: 'add: First' entries must start with 'Added '"
+# Where 'First' is 5 symbols
+amount_of_first_description_symbols = 5
+
 invalid_lines = []
 
 matched_lines_count = 0
@@ -94,12 +99,12 @@ for line_number, line in enumerate(changelog_without_comments.splitlines(), star
 
     if not description.startswith(required_prefix):
         invalid_lines.append(
-            f"Line {line_number}: '{tag}:' entries must start with '{required_prefix.strip()}'"
+            f"Line {line_number}: '{tag}: {description[:amount_of_first_description_symbols]}' entries must start with '{required_prefix.strip()}'"
         )
     
     if not description.endswith('.'):
         invalid_lines.append(
-            f"Line {line_number}: '{tag}:' entries must end with a period."
+            f"Line {line_number}: '{tag}: {description[:amount_of_first_description_symbols]}' entries must end with a period."
         )
 
 if matched_lines_count == 0:
