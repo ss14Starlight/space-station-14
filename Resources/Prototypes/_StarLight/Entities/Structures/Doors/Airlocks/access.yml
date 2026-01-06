@@ -310,6 +310,18 @@
     containers:
       board: [ DoorElectronicsSalvageMining ]
 
+# Xenoborg
+- type: entity
+  parent: AirlockXenoborgGlass
+  id: AirlockXenoborgGlassLocked
+  suffix: Xenoborg, Locked
+  components:
+  - type: StationAiWhitelist
+    enabled: false
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsXenoborg ]
+
 # Grid-spawning airlocks
 - type: entity
   parent: AirlockGlassShuttleSyndicate
