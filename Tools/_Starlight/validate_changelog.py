@@ -79,7 +79,7 @@ required_prefixes = {
 # Amount of symbols which will be printed if we find an error in description
 # Like: "Line 10: 'add: First' entries must start with 'Added '"
 # Where 'First' is 5 symbols
-amount_of_first_description_symbols = 5
+amount_of_first_description_symbols = 8
 
 invalid_lines = []
 
