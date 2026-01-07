@@ -46,7 +46,7 @@
         - id: FlashlightSeclite
         - id: ClothingHandsGlovesCombat
         - id: ClothingShoesBootsCombat
-        - id: TrackingImplanter
+        - id: TrackingImplanterDeathRattle
           amount: 3
         - id: MedkitAdvancedFilled
         - id: WeaponPistolSP8T
