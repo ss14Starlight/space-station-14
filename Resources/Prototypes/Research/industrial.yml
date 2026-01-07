@@ -75,6 +75,7 @@
   - AutolatheHyperConvectionMachineCircuitboard
   - ProtolatheHyperConvectionMachineCircuitboard
   - CircuitImprinterHyperConvectionMachineCircuitboard
+  - ExosuitFabricatorHyperConvectionMachineCircuitboard # Starlight
   - SheetifierMachineCircuitboard
 
 - type: technology

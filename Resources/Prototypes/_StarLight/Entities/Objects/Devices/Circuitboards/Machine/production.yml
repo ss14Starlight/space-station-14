@@ -1141,3 +1141,27 @@
       Steel: 5
       Manipulator: 2
       Cable: 4
+
+# Hyperconvection ExoFab
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ExosuitFabricatorHyperConvectionMachineCircuitboard
+  name: hyper convection exosuit fabricator machine board
+  description: A machine printed circuit board for a hyper convection exosuit fabricator.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: ExosuitFabricatorHyperConvection
+    stackRequirements:
+      Manipulator: 4
+    tagRequirements:
+      GlassBeaker:
+        amount: 3
+        defaultPrototype: Beaker
+      Igniter:
+        amount: 1
+        defaultPrototype: Igniter
+  - type: GuideHelp
+    guides:
+    - Robotics

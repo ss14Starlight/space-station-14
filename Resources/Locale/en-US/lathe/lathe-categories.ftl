@@ -38,6 +38,7 @@ lathe-category-wood-tile = Wood
 lathe-category-mechs = Mechs
 lathe-category-modules = Modules
 lathe-category-robotics = Robotics
+lathe-category-hardsuits = Hardsuits
 
 # Security TechFab
 lathe-category-ammo = Ammo
@@ -52,6 +53,8 @@ lathe-category-command = Command
 lathe-category-hats = Hats
 lathe-category-jumpsuits = Jumpsuits
 lathe-category-neck = Neck
+lathe-category-evas = EVAs
+lathe-category-helmets = Helmets
 
 # Mechs
 lathe-category-mechs-vim = Vim

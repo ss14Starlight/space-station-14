@@ -58,3 +58,15 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
+
+# Hyperconvection ExoFab
+- type: entity
+  id: ExosuitFabricatorHyperConvection
+  parent: [ExosuitFabricator, BaseHyperlathe]
+  name: hyper convection exosuit fabricator
+  description: A highly-experimental exosuit fabricator that harnesses the power of extreme heat to slowly create parts for robotics and other mechanical needs more cost-effectively.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/protolathe_hypercon.rsi
+  - type: Machine
+    board: ExosuitFabricatorHyperConvectionMachineCircuitboard

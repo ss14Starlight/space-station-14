@@ -195,10 +195,10 @@
   recipes:
     - ClothingOuterHardsuitGeneric
     - ClothingOuterHardsuitAdvanced
-    #- ClothingOuterHardsuitFireGeneric
-    #- ClothingOuterHardsuitFireAdvanced
-    #- ClothingOuterHardsuitRadiationGeneric
-    #- ClothingOuterHardsuitRadiationAdvanced
+    - ClothingOuterHardsuitFireGeneric
+    - ClothingOuterHardsuitFireAdvanced
+    - ClothingOuterHardsuitRadiationGeneric
+    - ClothingOuterHardsuitRadiationAdvanced
 
 # Emag Hardsuits
 - type: latheRecipePack

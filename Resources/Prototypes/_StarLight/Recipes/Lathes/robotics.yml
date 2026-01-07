@@ -86,3 +86,130 @@
     Glass: 400
     Plasteel: 400
     Durathread: 250
+    Diamond: 50
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitFireGeneric
+  result: ClothingOuterHardsuitFireGeneric
+  materials:
+    Steel: 1100
+    Glass: 300
+    Plasteel: 250
+    Cloth: 200
+    Plasma: 300
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitFireAdvanced
+  result: ClothingOuterHardsuitFireAdvanced
+  materials:
+    Steel: 800
+    PlasmaGlass: 350
+    Plasteel: 400
+    Durathread: 250
+    Diamond: 50
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitRadiationGeneric
+  result: ClothingOuterHardsuitRadiationGeneric
+  materials:
+    Steel: 1000
+    Glass: 400
+    Plasteel: 250
+    Cloth: 300
+    Uranium: 150
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitRadiationAdvanced
+  result: ClothingOuterHardsuitRadiationAdvanced
+  materials:
+    Steel: 700
+    UraniumGlass: 350
+    Plasteel: 450
+    Durathread: 250
+    Diamond: 50
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitArmoredGeneric
+  result: ClothingOuterHardsuitArmoredGeneric
+  materials:
+    Steel: 1600
+    Glass: 400
+    Plasteel: 400
+    Cloth: 300
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitArmoredAdvanced
+  result: ClothingOuterHardsuitArmoredAdvanced
+  materials:
+    Steel: 1300
+    ReinforcedGlass: 400
+    Plasteel: 600
+    Durathread: 350
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitMedicalGeneric
+  result: ClothingOuterHardsuitMedicalGeneric
+  materials:
+    Steel: 800
+    Plastic: 500
+    Glass: 500
+    Plasteel: 200
+    Cloth: 300
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitMedicalAdvanced
+  result: ClothingOuterHardsuitMedicalAdvanced
+  materials:
+    Steel: 700
+    Plastic: 800
+    ReinforcedGlass: 550
+    Plasteel: 350
+    Durathread: 250
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitSalvage
+  result: ClothingOuterHardsuitSalvage
+  materials:
+    Steel: 1350
+    ReinforcedGlass: 400
+    Plasteel: 350
+    Cloth: 300
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitSalvageAdvanced
+  result: ClothingOuterHardsuitSalvageAdvanced
+  materials:
+    Steel: 1100
+    ReinforcedGlass: 650
+    Plasteel: 650
+    Durathread: 400
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitMining
+  result: ClothingOuterHardsuitMining
+  materials:
+    Steel: 1250
+    ReinforcedGlass: 450
+    Plasteel: 300
+    Cloth: 350
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitAdvancedMining
+  result: ClothingOuterHardsuitAdvancedMining
+  materials:
+    Steel: 1000
+    ReinforcedGlass: 700
+    Plasteel: 600
+    Durathread: 500
