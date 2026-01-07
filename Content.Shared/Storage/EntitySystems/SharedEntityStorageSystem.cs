@@ -343,8 +343,14 @@ public abstract class SharedEntityStorageSystem : EntitySystem
 
         RemComp<InsideEntityStorageComponent>(toRemove);
 
-        var pos = TransformSystem.GetWorldPosition(xform) + TransformSystem.GetWorldRotation(xform).RotateVec(component.EnteringOffset);
-        TransformSystem.SetWorldPosition(toRemove, pos);
+        // Starlight Start
+        // Check if the container's parent is valid before trying to set world position
+        if (xform.ParentUid.IsValid() && !TerminatingOrDeleted(container))
+        {
+            var pos = TransformSystem.GetWorldPosition(xform) + TransformSystem.GetWorldRotation(xform).RotateVec(component.EnteringOffset);
+            TransformSystem.SetWorldPosition(toRemove, pos);
+        }
+        // Starlight End
         return true;
     }
 
