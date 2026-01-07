@@ -214,8 +214,8 @@
   parent: [BaseMachineCircuitboard, BaseCommandContraband] # Starlight
   name: uniform printer machine board
   components:
-  - type: Sprite
-    state: command
+  - type: Sprite # Starlight
+    state: command # Starlight
   - type: MachineBoard
     prototype: UniformPrinter
     stackRequirements:
