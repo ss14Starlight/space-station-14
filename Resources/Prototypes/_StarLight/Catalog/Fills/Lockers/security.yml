@@ -67,6 +67,8 @@
           amount: 2
         - id: WeaponDisabler
           amount: 2
+        - id: TrackingImplanter
+          amount: 4
         - id: ClothingOuterHardsuitBrigmedic
           amount: 2
         - id: BoxSterileMask
