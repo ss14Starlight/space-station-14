@@ -1388,6 +1388,13 @@
   loadouts:
   - LizardPlushieHeadofSecurity
   - SecStar
+- type: loadoutGroup
+  id: HeadofSecurityPDA
+  name: loadout-group-head-of-security-pda
+  minLimit: 0
+  loadouts:
+    - BattleScarredHoSPDA
+    - MilitaryIssueHoSPDA
 
 - type: loadoutGroup
   id: WardenHead

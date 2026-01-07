@@ -7,6 +7,24 @@
       !type:RoleTimeRequirement
       role: JobCaptain
       time: 20h
+# Starlight
+- type: loadoutEffectGroup
+  id: Cap60
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobCaptain
+        time: 60h
+# Starlight
+- type: loadoutEffectGroup
+  id: Cap100
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobCaptain
+        time: 100h
 
 # Jumpsuit
 - type: loadout
@@ -100,3 +118,12 @@
   id: CaptainHud
   equipment:
     eyes: ClothingEyesHudCommand
+
+# PDA
+- type: loadout
+  id: BaroqueCaptainPDA
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: Cap60
+  equipment:
+    id: BaroqueCaptainPDA

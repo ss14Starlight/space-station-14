@@ -188,6 +188,77 @@
     state: pda-ancient
 
 - type: entity
+  parent: BaseSecurityPDA
+  id: BattleScarredHoSPDA
+  name: battle scarred head of security PDA
+  description: This PDA has seen hell and back, and just like you, it's still standing.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: HoSIDCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-battlescarredhos
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#447987"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-battlescarredhos
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - LogProbeCartridge
+    
+- type: entity
+  parent: BaseSecurityPDA
+  id: MilitaryIssueHoSPDA
+  name: military issue head of security PDA
+  description: Ha ha! Ain't war hell?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: HoSIDCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-militaryissuehos
+  - type: PdaBorderColor
+    borderColor: "#3A5731"
+    accentHColor: "#1A401B"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-militaryissuehos
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - LogProbeCartridge
+- type: entity
   parent: BasePDA
   id: NanoTrasenRepresentativePDA
   name: NanoTrasen representative PDA

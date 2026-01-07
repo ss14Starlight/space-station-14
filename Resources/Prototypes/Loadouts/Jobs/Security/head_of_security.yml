@@ -7,7 +7,22 @@
       !type:RoleTimeRequirement
       role: JobHeadOfSecurity
       time: 20h
-
+- type: loadoutEffectGroup
+  id: HoS60
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfSecurity
+        time: 60h
+- type: loadoutEffectGroup
+  id: HoS100
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfSecurity
+        time: 100h
 # Jumpsuit
 - type: loadout
   id: HeadofSecurityJumpsuit
@@ -101,3 +116,21 @@
   id: HeadofSecurityWinterCoat
   equipment:
     outerClothing: ClothingOuterWinterHoS
+    
+# PDA
+- type: loadout
+  id: BattleScarredHoSPDA
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: HoS60
+  equipment:
+    id: BattleScarredHoSPDA
+    
+- type: loadout
+  id: MilitaryIssueHoSPDA
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: HoS100
+  equipment:
+    id: MilitaryIssueHoSPDA
+
