@@ -11,33 +11,33 @@ public sealed partial class VehicleBuckleComponent : Component
     /// <summary>
     /// How long it will take to unbuckle a driver
     /// </summary>
-    [DataField("unbuckletime"), AutoNetworkedField]
+    [DataField("unbuckleTime"), AutoNetworkedField]
     public TimeSpan duration = TimeSpan.FromSeconds(3f);
 
     /// <summary>
     /// Should stuns dismount the driver? 
     /// </summary>
-    [DataField("dismountonstun"), AutoNetworkedField]
+    [DataField("dismountOnStun"), AutoNetworkedField]
     public bool stundismount = true;
 
     /// <summary>
     /// Should knockdowns dismount the driver?
     /// </summary>
-    [DataField("dismountonknockdown"), AutoNetworkedField]
+    [DataField("dismountOnKnockdown"), AutoNetworkedField]
     public bool knockdowndismount = true;
 
     /// <summary>
     /// Should knockdowns dismount the driver?
     /// </summary>
-    [DataField("ejectOnCrash"), AutoNetworkedField]
-    public bool ejectOnCrash = false;
-
-    /// <summary>
-    /// Minimum Speed required to eject the driver in case of collision 
-    /// </summary>
-    [DataField("ejectionSpeed"), AutoNetworkedField]
-    public float SpeedToEjectOnCrash = 6;
+    [DataField("armorAffectsVehicle"), AutoNetworkedField]
+    public bool armoraffectsvehicle = false;
     
+    /// <summary>
+    /// Should knockdowns dismount the driver?
+    /// </summary>
+    [DataField("ejectOnCrash"), AutoNetworkedField]
+    public bool EjectOnCrash = false;
+
     /// <summary>
     /// What the buckle offset is used for north
     /// </summary>

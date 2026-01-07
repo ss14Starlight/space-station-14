@@ -4,6 +4,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Timing;
 using Robust.Shared.Containers;
 using Content.Shared._FarHorizons.ReagantDraw.Components;
+using Content.Shared.Destructible;
 
 namespace Content.Server._FarHorizons.ReagantDraw.EntitySystems;
 
@@ -18,6 +19,7 @@ public sealed class SharedReagantDrawSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<ReagantDrawComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ReagantDrawComponent, SolutionTransferAttemptEvent>(OnSolutionTransferAttempt);
+        SubscribeLocalEvent<ReagantDrawComponent, BreakageEventArgs>(OnBreakageEvent);
     }
 
     public override void Update(float frameTime)
@@ -117,5 +119,12 @@ public sealed class SharedReagantDrawSystem : EntitySystem
             args.Cancel("This solution isn't the right solution!");
             return;
         }
+    }
+
+    private void OnBreakageEvent(EntityUid ent, ReagantDrawComponent component, BreakageEventArgs args)
+    {
+        if(!_solutionContainer.ResolveSolution(ent, component.SolutionContainer, ref component.Solution, out var solution)) return;
+
+        UseReagant(ent, solution.Volume.Float(), solution, component);
     }
 }

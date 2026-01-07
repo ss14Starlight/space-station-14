@@ -2,6 +2,9 @@
 # Starlight, Neocyte tags moved to _Starlight/Species/Neocyte/tags.yml because they were all renamed.
 
 - type: Tag
+  id: ClowncarKeys
+
+- type: Tag
   id: GasTurbineBlade
 
 - type: Tag
@@ -27,3 +30,6 @@
 
 - type: Tag
   id: VehicleKey
+
+- type: Tag
+  id: Webbing

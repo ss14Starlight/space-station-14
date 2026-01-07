@@ -11,7 +11,7 @@
 - type: entity
   parent: VehicleKeyBase
   id: VehicleKeySecway
-  name: secway keys
+  name: Secway keys
   description: The keys to the future.
   components:
   - type: Tag
@@ -32,3 +32,17 @@
     tags:
     - VehicleKey
     - ATVKeys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyClowncar
+  name: Clowncar keys
+  description: The keys to an incomprehensible evil...
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ClowncarKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/clowncar.rsi
+    state: keys

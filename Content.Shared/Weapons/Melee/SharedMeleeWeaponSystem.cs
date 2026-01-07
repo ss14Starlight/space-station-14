@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared._Starlight.Weapons.Melee.Events; // Starlight-edit
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Events;
@@ -782,6 +783,13 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
         var resSet = new HashSet<EntityUid>();
 
+        //FarHorizons Start
+        EntityUid? ridden = null;
+
+        if (TryComp<RiderComponent>(ignore, out var rider))
+            ridden = rider.Riding;
+        //FarHorizons End
+
         for (var i = 0; i < increments; i++)
         {
             var castAngle = new Angle(baseAngle + increment * i);
@@ -793,6 +801,13 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                 ignore,
                 false)
                 .ToList();
+            
+            //FarHorizons Start
+            if(ridden != null)
+            {
+                res.RemoveAll(x => x.HitEntity == ridden.Value);
+            }
+            //FarHorizons End
 
             if (res.Count != 0)
             {

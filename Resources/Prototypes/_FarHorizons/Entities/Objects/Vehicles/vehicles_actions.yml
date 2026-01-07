@@ -30,3 +30,18 @@
     itemIconStyle: BigAction
   - type: InstantAction
     event: !type:HornActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleTrunk
+  name: Unlocks/Lock Trunk
+  components:
+  - type: Action  
+    useDelay: 4
+    icon:
+      sprite: Structures/Storage/Crates/generic.rsi
+      state: icon
+    checkCanInteract: false
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:ToggleTrunkActionEvent

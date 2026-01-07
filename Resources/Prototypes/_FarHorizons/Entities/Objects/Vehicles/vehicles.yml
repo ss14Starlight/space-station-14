@@ -1,5 +1,7 @@
 - type: entity
   id: BaseVehicle
+  save: false
+  abstract: true
   components:
   - type: AmbientSound
     sound: "/Audio/Effects/Vehicle/vehicleengineidle.ogg"
@@ -22,61 +24,45 @@
   components:
   - type: InputMover
   - type: MobMover
-  - type: Rotatable
   - type: InteractionOutline
   - type: Pullable
   - type: Physics
     bodyType: KinematicController
   - type: Clickable
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.4
-        density: 360
-        restitution: 0.0
-        mask:
-        - MobMask
-        layer:
-        - TableLayer
   - type: Appearance
   - type: StaticPrice
     price: 750 # Grand Theft Auto.
+  - type: GravityAffected
 
 - type: entity
   parent: BaseVehicleRideable
   id: BaseVehicleRideableDamageable
+  abstract: true
   name: VehicleDamageable
   components:
   - type: Repairable
     doAfterDelay: 20
+    qualityNeeded: Anchoring
+  - type: Pierceable 
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 150
       behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          collection: MetalGlassBreak
-      - !type:ExplodeBehavior
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
 
 - type: entity
   id: VehicleWheelchair
   parent: [BaseVehicleRideable, BaseFoldable, BaseItem]
-  name: wheelchair
+  name: Wheelchair
   description: A chair with big wheels. It looks like you can move in these on your own.
   components:
     - type: Sprite
@@ -84,7 +70,7 @@
       sprite: Objects/Vehicles/wheelchair.rsi
       layers:
       - state: wheelchair
-        map: ["enum.VehicleVisualLayers.AutoAnimate", "unfoldedLayer"]
+        map: ["enum.VehicleVisualLayers.Base", "unfoldedLayer"]
       - state: wheelchair_folded
         map: ["foldedLayer"]
         visible: false
@@ -96,10 +82,16 @@
       requireIgnition: false 
       baseState: wheelchair
       handsNeeded: 0
+      riderWhitelist:
+        components:
+          - HumanoidAppearance
+      soundHit:
+        collection: MetalThud
     - type: VehicleBuckle
-      unbuckletime: 1
-      dismountonstun: true
-      dismountonknockdown: true
+      unbuckleTime: 1
+      dismountOnStun: true
+      dismountOnKnockdown: true
+      armorAffectsVehicle: true
       northOffset: "0, -0.15"
       southOffset: "0, -0.15"
       eastOffset: "0, -0.15"
@@ -118,7 +110,7 @@
           shape:
             !type:PhysShapeCircle
             radius: 0.2
-          density: 360
+          density: 50
           restitution: 0.0
           mask:
             - MobMask
@@ -143,8 +135,8 @@
 
 - type: entity
   id: VehicleSecway
-  parent: BaseVehicleRideable
-  name: secway
+  parent: BaseVehicleRideableDamageable
+  name: Secway
   description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
   components:
   - type: Vehicle
@@ -153,12 +145,21 @@
     frictionNoInput: 4.5
     requireIgnition: true 
     baseState: vehicle
+    brokenState: vehicle
     startupTime: 2
     handsNeeded: 1
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    disallowWielding: true
+    allowGunKnockback: true
+    soundHit:
+      collection: MetalThud
   - type: VehicleBuckle
-    unbuckletime: 2
-    dismountonstun: true
-    dismountonknockdown: true
+    unbuckleTime: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    armorAffectsVehicle: true
     northOffset: "0, -0.12"
     southOffset: "0, -0.12"
     eastOffset: "0, -0.2"
@@ -172,9 +173,21 @@
     sprite: Objects/Vehicles/secway.rsi
     layers:
     - state: vehicle
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      map: ["enum.VehicleVisualLayers.Base"]
     noRot: true
   - type: Strap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 100
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: MovementSpeedModifier
     baseWalkSpeed: 6
     baseSprintSpeed: 9
@@ -189,8 +202,8 @@
           - SecwayKeys
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        disableEject: true
         # Swappable batteries until we can get secway recharge stations
-        #disableEject: true
         #swap: false 
   - type: ContainerContainer
     containers:
@@ -235,21 +248,24 @@
 
 - type: entity
   id: VehicleATV
-  parent: BaseVehicleRideable
+  parent: BaseVehicleRideableDamageable
   name: ATV
   description: All-Tile Vehicle.
   components:
   - type: RandomMetadata
     descriptionSegments: [DescriptionsATV]
   - type: MovementSpeedModifier
-    baseWalkSpeed: 10
+    baseWalkSpeed: 7.5
     baseSprintSpeed: 15
   - type: Vehicle
-    acceleration: 2
+    acceleration: 4
     friction: 4.5
     frictionNoInput: 4.5
-    requireIgnition: true 
+    requireIgnition: true
+    allowCrashing: true
+    crashingSpeed: 10 
     baseState: vehicle
+    brokenState: vehicle
     startupTime: 2
     startUp: 
       path: /Audio/Effects/Vehicle/vehiclestartup.ogg
@@ -259,12 +275,16 @@
       path: /Audio/Effects/Vehicle/carhorn.ogg
       params:
         volume: -3
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    soundHit:
+      collection: MetalThud
   - type: VehicleBuckle
-    unbuckletime: 2
-    dismountonstun: true
-    dismountonknockdown: true
+    unbuckleTime: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
     ejectOnCrash: true
-    ejectionSpeed: 12
     northOffset: "0, -0.12"
     southOffset: "0, -0.12"
     eastOffset: "0, -0.2"
@@ -278,9 +298,21 @@
     sprite: Objects/Vehicles/atv.rsi
     layers:
     - state: vehicle
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      map: ["enum.VehicleVisualLayers.Base"]
     noRot: true
   - type: Strap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 360
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: ItemSlots
     slots:
       key_slot:
@@ -353,3 +385,178 @@
       containers:
         key_slot:
         - VehicleKeyATV
+
+- type: entity
+  id: VehicleClownCar
+  parent: BaseVehicleRideableDamageable
+  name: Clown Car
+  description: What sort of horrors lie within...
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 7.5
+    baseSprintSpeed: 15
+  - type: Vehicle
+    acceleration: 4
+    friction: 4.5
+    frictionNoInput: 2
+    requireIgnition: true 
+    allowCrashing: true
+    crashingSpeed: 10 
+    baseState: vehicle
+    brokenState: vehicle_broken
+    startupTime: 2
+    startUp: 
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+    hornSound: 
+      path: /Audio/Items/Toys/pushHornHonk.ogg
+      params:
+        volume: -3
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    soundHit:
+      collection: MetalThud
+  - type: VehicleContainer
+    seats: 8
+    passengerWhitelist:
+      components:
+        - Body
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _FarHorizons/Objects/Vehicles/clowncar.rsi
+    scale: 0.75, 0.75
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ClowncarKeys
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      passenger_slot: !type:Container
+      storagebase: !type:Container
+        ents: []
+  - type: SolutionContainerManager
+    solutions:
+      fueltank:
+        maxVol: 150
+  - type: RefillableSolution
+    solution: fueltank
+  - type: ExaminableSolution
+    solution: fueltank
+    exactVolume: true
+  - type: ReagantDraw
+    enabled: false
+    solutionContainer: fueltank
+    whitelistedReagants: 
+    - WeldingFuel
+    drainRate: 0.25
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 10
+    softness: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
+      params:
+        volume: -11
+        pitch: 1.15
+        variation: 0.10
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 1000
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 300
+    intensitySlope: 5
+    maxIntensity: 8
+    canCreateVacuum: false
+    deleteAfterExplosion: false
+  - type: Storage
+    grid:
+    - 0,0,9,4
+    maxItemSize: Huge
+    openOnActivate: false
+    clickInsert: false
+  - type: UseDelay
+    delay: 0.5
+  - type: LockedStorage
+  - type: Lock
+    locked: true
+    showLockVerbs: false
+    unlockOnClick: false
+    popupMessage: false
+    showExamine: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+      - !type:ExplodeBehavior
+      - !type:EmptyContainersBehaviour
+        containers:
+        - passenger_slot
+        - storagebase
+
+- type: entity
+  id: VehicleClownCarFueled
+  parent: VehicleClownCar
+  suffix: Fueled
+  components: 
+    - type: ContainerContainer
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+
+- type: entity
+  id: VehicleClownCarFueledwithKeys
+  parent: VehicleClownCar
+  suffix: Fueled, Keys
+  components: 
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyClowncar

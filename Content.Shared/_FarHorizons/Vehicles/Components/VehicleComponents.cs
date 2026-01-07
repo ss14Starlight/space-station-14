@@ -1,6 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
+using Content.Shared.Whitelist;
 
 namespace Content.Shared._FarHorizons.Vehicles.Components;
 
@@ -24,6 +25,30 @@ public sealed partial class VehicleComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Started = false;
+
+    /// <summary>
+    /// check if a person is allow to wield a weapon for two handed bonuses
+    /// </summary>
+    [DataField("disallowWielding"), AutoNetworkedField]
+    public bool DisallowWieldingGuns = false;
+
+    /// <summary>
+    /// check if a person takes stamina damage from shooting while in a vehicle
+    /// </summary>
+    [DataField("allowGunKnockback"), AutoNetworkedField]
+    public bool AllowGunKnockback = false;
+
+    /// <summary>
+    /// just to check for if the vehicle is moving for other things
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool isMoving = false;
+
+    /// <summary>
+    /// just to check for if the vehicle is moving for other things
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool isBroken = false;
 
     /// <summary>
     /// How many hands are blocked by the vehicle
@@ -71,6 +96,18 @@ public sealed partial class VehicleComponent : Component
     public Direction? currentDirection;
 
     /// <summary>
+    /// Trigger crash?
+    /// </summary>
+    [DataField("allowCrashing"), AutoNetworkedField]
+    public bool AllowCrashing = false;
+
+    /// <summary>
+    /// Crashing speed if enabled
+    /// </summary>
+    [DataField("crashingSpeed"), AutoNetworkedField]
+    public float CrashingSpeed = 6;
+
+    /// <summary>
     /// Sound played whenever the vehicle is started
     /// </summary>
     [DataField]
@@ -82,8 +119,20 @@ public sealed partial class VehicleComponent : Component
     [DataField]
     public SoundSpecifier? HornSound;
 
+    /// <summary>
+    /// Sound played whenever running over someone or crashing
+    /// </summary>
+    [DataField("soundHit", required: true), ViewVariables(VVAccess.ReadWrite)]
+    public SoundSpecifier SoundHit = default!;
+
+    [DataField]
+    public EntityWhitelist? RiderWhitelist;
+
     [DataField, AutoNetworkedField]
     public string? BaseState;
+
+    [DataField, AutoNetworkedField]
+    public string? BrokenState;
 
     [DataField, AutoNetworkedField]
     public EntProtoId HornVehicleAction = "ActionVehicleHorn";
@@ -94,4 +143,12 @@ public sealed partial class VehicleComponent : Component
     public EntProtoId TurnKeysAction = "ActionTurnKeys";
     
     [DataField, AutoNetworkedField] public EntityUid? TurnKeysActionEntity;
+
+    [DataField, AutoNetworkedField]
+    public EntProtoId ToggleTrunkAction = "ActionToggleTrunk";
+    
+    [DataField, AutoNetworkedField] public EntityUid? ToggleTrunkActionEntity;
+
+    [DataField, AutoNetworkedField]
+    public EntProtoId? SirenToggleAction;
 }
