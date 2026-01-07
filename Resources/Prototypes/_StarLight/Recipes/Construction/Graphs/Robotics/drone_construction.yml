@@ -1,0 +1,39 @@
+- type: constructionGraph
+  id: Drone
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: drone_complete
+      steps:
+      - tag: BorgLArm
+        name: construction-graph-tag-drone-left-arm
+        icon:
+          sprite: Objects/Specific/Robotics/cyborg_parts.rsi
+          state: borg_l_arm
+      - tag: BorgRArm
+        name: construction-graph-tag-drone-right-arm
+        icon:
+          sprite: Objects/Specific/Robotics/cyborg_parts.rsi
+          state: borg_r_arm
+      - tool: Screwing
+        doAfter: 1
+      - tag: CableApc
+        name: construction-graph-tag-drone-lv-wire
+        icon:
+          sprite: Objects/Power/power_cells.rsi
+          state: full
+      - tag: PowerCell
+        name: construction-graph-tag-power-cell
+        icon:
+          sprite: Objects/Power/power_cells.rsi
+          state: full
+      - tag: Flash
+        name: construction-graph-tag-drone-flash-1
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: inhand-right
+      - tool: Screwing
+        doAfter: 1
+  - node: drone_complete
+    edges: []

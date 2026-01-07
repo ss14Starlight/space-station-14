@@ -32,3 +32,285 @@
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
+
+- type: entity
+  name: drone
+  id: Drone
+  components:
+  - type: Input
+    context: "human"
+  - type: InputMover
+  - type: MobMover
+  - type: MovementAlwaysTouching
+  - type: NoSlip
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+    minimumFrictionSpeed: 0
+    weightlessAcceleration: 1.2
+    weightlessFriction: 1
+    weightlessFrictionNoInput: 2
+    offGridFriction: 1.5
+    weightlessModifier: 1
+  - type: Clickable
+  - type: InteractionOutline
+  - type: ComplexInteraction
+  - type: Hands
+    showInHands: false
+  - type: Inventory
+    templateId: drone
+  - type: InventorySlots
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot {}
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: true
+  - type: PowerCellDraw
+    drawRate: 0.6
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Bloodstream
+    bloodReagent: Oil
+    bloodlossDamage:
+      types:
+        Bloodloss: 1
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -1
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+    stateAlertDict:
+      Alive: BotHealth
+      Dead: BotDead
+  - type: StatusEffects
+    allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      50: 0.5
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+  - type: Repairable
+    fuelcost: 15
+    doAfterDelay: 8
+  - type: ProtectedFromStepTriggers
+  - type: Sprite
+    noRot: true
+    drawdepth: SmallMobs
+    layers:
+      - state: shell
+        sprite: _Starlight/Mobs/Silicon/Bots/drone.rsi
+        map: ["base"]
+  - type: TextToSpeech
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSilicon
+    wilhelmProbability: 0
+  - type: DamagedSiliconAccent
+    startPowerCorruptionAtCharIdx: 4
+    maxPowerCorruptionAtCharIdx: 20
+  - type: UnblockableSpeech
+  - type: TypingIndicator
+    proto: robot
+  - type: Emoting
+  - type: CombatMode
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10
+  - type: GuideHelp
+    guides:
+    - Cyborgs
+    - Robotics
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - SiliconEmotes
+    - Unimplantable
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.DroneVisuals.Status:
+        base:
+          Off: { state: shell }
+          On: { state: drone }
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    softness: 1
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+  - type: Body
+    prototype: Drone
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+      - Machine
+    understands:
+      - Machine
+  - type: Drone
+  - type: IgnoreHumanoids
+  - type: NameIdentifier
+    group: Drone
+  - type: Access
+    tags:
+      - AllAccess
+  - type: SiliconLawBound
+  - type: SiliconLawProvider
+    laws: Drone
+  - type: GhostRole
+    makeSentient: true
+    name: Maintenance Drone
+    description: Maintain the station. Ignore other beings except drones.
+    rules: |
+      You are bound by these laws both in-game and out-of-character:
+      1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another PROXY Unit.
+      2. You may not harm any being, regardless of intent or circumstance.
+      3. Your goals are to build, maintain, repair, improve, and power to the best of your abilities. You must never actively work against these goals.
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Silicon
+        time: 18000 #5h
+  - type: GhostTakeoverAvailable
+  - type: ActionGrant
+    actions:
+      - ActionViewLaws
+      - ActionDroneOpenMap
+      - ActionDronePlayMidi
+  - type: StationMap
+  - type: Instrument
+    allowPercussion: false
+    handheld: false
+    bank: 1
+    program: 2
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+      enum.StationMapUiKey.Key:
+        type: StationMapBoundUserInterface
+  - type: Strippable
+  - type: Pullable
+  - type: Puller
+  - type: StandingState
+  - type: Examiner
+  - type: Alerts
+  - type: Actions
+  - type: ContentEye
+    maxZoom: 1.2, 1.2
+  - type: DoAfter
+  - type: Item
+  - type: CanEscapeInventory
+  - type: UnpoweredFlashlight
+  - type: Loadout
+    prototypes:
+      - StartingGearDrone
+  - type: PAI
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: DroneBag
+  name: Drone Storage Cube
+  suffix: Unremoveable
+  description: An internal pocket to hold your stuff. The space is limited.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/drone_storage_cube.rsi
+    state: drone_storage_cube
+  - type: Unremoveable
+  - type: Clothing
+    slots: [back]
+  - type: Storage
+    grid:
+    - 0,0,7,1
+  - type: Appearance
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionDroneOpenMap
+  name: Open Map
+  description: Look upon yourself.
+  components:
+  - type: Action
+    icon: { sprite: Interface/Actions/pai-map.rsi, state: icon }
+  - type: InstantAction
+    event: !type:OpenUiActionEvent
+      key: enum.StationMapUiKey.Key
+
+- type: entity
+  parent: BaseMentalAction
+  id: ActionDronePlayMidi
+  name: Play MIDI
+  description: Contribute to the ambiance.
+  components:
+  - type: Action
+    icon: Interface/Actions/pai-midi.png
+  - type: InstantAction
+    event: !type:OpenUiActionEvent
+      key: enum.InstrumentUiKey.Key
+
+- type: startingGear
+  id: StartingGearDrone
+  equipment:
+    back: DroneBag

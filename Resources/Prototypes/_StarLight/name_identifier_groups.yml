@@ -1,0 +1,5 @@
+- type: nameIdentifierGroup
+  id: Drone
+  format: name-identifier-format-silicon
+  minValue: 1000
+  maxValue: 9999

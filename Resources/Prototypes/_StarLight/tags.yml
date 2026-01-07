@@ -136,6 +136,9 @@
   id: DrinkCarton
 
 - type: Tag
+  id: DroneUsable
+
+- type: Tag
   id: ElderArena
 
 - type: Tag

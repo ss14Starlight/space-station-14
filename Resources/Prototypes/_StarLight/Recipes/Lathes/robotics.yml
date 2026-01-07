@@ -58,3 +58,10 @@
   parent: BaseBorgModuleRecipe
   id: BorgModuleUppies
   result: BorgModuleUppies
+
+- type: latheRecipe
+  parent: BaseRoboticsRecipe
+  id: DroneShell
+  result: DroneShell
+  materials:
+    Steel: 200
