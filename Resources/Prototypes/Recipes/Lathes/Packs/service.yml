@@ -31,7 +31,7 @@
   id: ServiceBoardsStatic
   recipes:
   - BiogeneratorMachineCircuitboard
-  - UniformPrinterMachineCircuitboard
+#  - UniformPrinterMachineCircuitboard Starlight, no longer mass produceable as HoP can now print EVAs/suits there.
   - MicrowaveMachineCircuitboard
   - OvenMachineCircuitboard # Starlight-edit
   - StoveMachineCircuitboard # Starlight-edit
