@@ -1,0 +1,16 @@
+# Brass! Finally, a non-contra reason for Zinc
+- type: reaction
+  id: BrassSheet # It's here because Plastic is in fun.yml as well.
+  impact: Low
+  quantized: true
+  minTemp: 373
+  reactants:
+    Copper:
+      amount: 3
+    Zinc:
+      amount: 1
+    SulfuricAcid:
+      amount: 2
+  effects:
+    - !type:SpawnEntity
+      entity: SheetBrass1

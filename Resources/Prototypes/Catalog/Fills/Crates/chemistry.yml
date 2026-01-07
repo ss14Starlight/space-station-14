@@ -50,6 +50,7 @@
         - id: JugGold
         - id: JugMercury
         - id: JugSilver
+        - id: JugZinc # Starlight
 
 - type: entity
   parent: CrateGenericSteel

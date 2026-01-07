@@ -13,6 +13,23 @@
         - ReagentId: Uranium
           Quantity: 200
 
+# Did you know there is no zinc jug
+- type: entity
+  parent: Jug
+  suffix: zinc
+  id: JugZinc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-zinc
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Zinc
+          Quantity: 200
+
+
 # Medicine Jugs for Chemist Locker
 - type: entity
   parent: Jug

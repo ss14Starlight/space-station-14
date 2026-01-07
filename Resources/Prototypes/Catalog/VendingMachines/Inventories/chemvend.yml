@@ -23,6 +23,7 @@
     JugSugar: 3
     JugSulfur: 1
   contrabandInventory:
+    JugZinc: 1 # Starlight. It's not in the syndicate one because free licoxide is a lot stronger for nukies than it is for random chemist traitor.
     DrinkLithiumFlask: 1
     StrangePill: 3
     ChemistryBottleToxin: 1
