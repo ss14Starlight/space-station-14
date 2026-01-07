@@ -1,0 +1,68 @@
+- type: alert
+  id: BotHealth
+  category: Health
+  icons:
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_alive.rsi
+    state: health0
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_alive.rsi
+    state: health1
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_alive.rsi
+    state: health2
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_alive.rsi
+    state: health3
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_alive.rsi
+    state: health4
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_alive.rsi
+    state: health5
+  name: alerts-health-name
+  description: alerts-health-desc
+  minSeverity: 0
+  maxSeverity: 5
+
+- type: alert
+  id: BotCrit
+  category: Health
+  icons:
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_critical.rsi
+    state: critical
+  name: alerts-crit-name
+  description: alerts-crit-desc
+
+- type: alert
+  id: BotDead
+  category: Health
+  icons:
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_dead.rsi
+    state: dead
+  name: alerts-dead-name
+  description: alerts-dead-desc
+
+- type: alert
+  id: BotBattery
+  category: Battery
+  icons:
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_battery.rsi
+    state: battery0
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_battery.rsi
+    state: battery1
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_battery.rsi
+    state: battery2
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_battery.rsi
+    state: battery3
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_battery.rsi
+    state: battery4
+  name: alerts-battery-name
+  description: alerts-battery-desc
+  minSeverity: 0
+  maxSeverity: 4
+  clientHandled: true # the power cell is read on the client so that we don't have to periodically network the charge
+
+- type: alert
+  id: BotBatteryNone
+  category: Battery
+  icons:
+  - sprite: _Starlight/Interface/Alerts/silicons/bot_battery.rsi
+    state: battery-none
+  name: alerts-no-battery-name
+  description: alerts-no-battery-desc
+  clientHandled: true # the power cell battery is read on the client so that we don't have to periodically network the charge
