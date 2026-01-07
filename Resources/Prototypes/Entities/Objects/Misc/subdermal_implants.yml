@@ -80,7 +80,7 @@
   parent: BaseSubdermalImplant
   id: TrackingImplant
   name: tracking implant
-  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the Security radio channel.
+  description: This implant has a tracking device attached to the suit sensor network.
   categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant
@@ -98,14 +98,6 @@
     - type: StationLimitedNetwork
     - type: WirelessNetworkConnection
       range: 500
-    #region Starlight Tracker rattle
-    - type: TriggerOnMobstateChange
-      mobState:
-      - Critical
-    - type: RattleOnTrigger
-      targetUser: true
-      radioChannel: Security
-    #endregion Starlight tracker rattle
 
 #Traitor implants
 

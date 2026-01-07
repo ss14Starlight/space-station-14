@@ -73,3 +73,17 @@
     targetUser: true
   - type: SpawnOnTrigger
     proto: RedspaceImplantEffect
+
+- type: entity
+  parent: TrackingImplant
+  id: TrackingImplantDeathRattle
+  name: death rattle tracking implant
+  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the Security radio channel.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TriggerOnMobstateChange
+      mobState:
+      - Critical
+    - type: RattleOnTrigger
+      targetUser: true
+      radioChannel: Security

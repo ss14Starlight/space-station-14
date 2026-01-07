@@ -118,3 +118,11 @@
   components:
     - type: Implanter
       implant: RedspaceImplant
+
+- type: entity
+  id: TrackingImplanterDeathRattle
+  name: death rattle tracking implanter
+  parent: TrackingImplanter
+  components:
+    - type: Implanter
+      implant: TrackingImplantDeathRattle
