@@ -1,0 +1,41 @@
+- type: entity
+  id: UniversalSpawnerBase
+  parent: MarkerBase
+  name: universal spawner
+  abstract: true
+  description: A configurable spawner.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Markers/spawners.rsi
+    layers:
+      - state: golden_spawner
+  - type: UniversalSpawner
+    triggerType: Mapinit
+    deleteAfterSpawn: false
+    maxSpawns: 1
+    minSpawns: 1
+    offset: 0.2
+    spawnChance: 1.0
+  - type: UserInterface
+    interfaces:
+      enum.UniversalSpawnerUiKey.Key:
+        type: UniversalSpawnerBoundUserInterface
+  - type: ActivatableUI
+    key: enum.UniversalSpawnerUiKey.Key
+    inHandsOnly: false
+    singleUser: true
+    requireActiveHand: false
+
+- type: entity
+  id: UniversalSpawnerEmpty
+  parent: UniversalSpawnerBase
+  name: Universal Spawner
+  suffix: Empty
+  components:
+  - type: UniversalSpawner
+    triggerType: None
+    deleteAfterSpawn: false
+    maxSpawns: 1
+    minSpawns: 1
+    offset: 0.2
+    spawnChance: 1.0

@@ -1,0 +1,172 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      Title="{Loc 'universal-spawner-window-title'}"
+                      MinSize="1000 750"
+                      SetSize="1100 850">
+    <BoxContainer Orientation="Vertical" Margin="10">
+
+        <!-- Status Panel -->
+        <PanelContainer StyleClasses="AngleRect" Margin="0 0 0 10">
+            <BoxContainer Orientation="Horizontal" Margin="5">
+                <Label Text="{Loc 'universal-spawner-status-label'}" MinWidth="100"/>
+                <Label Name="StatusLabel" Text="Ready" HorizontalExpand="True"/>
+                <Button Name="TriggerButton" 
+                        Text="{Loc 'universal-spawner-trigger-button'}" 
+                        MinWidth="120"
+                        Margin="5 0 5 0"
+                        ToolTip="{Loc 'universal-spawner-trigger-tooltip'}"/>
+                <Button Name="ResetButton" 
+                        Text="{Loc 'universal-spawner-reset-button'}" 
+                        MinWidth="120"
+                        ToolTip="{Loc 'universal-spawner-reset-tooltip'}"/>
+            </BoxContainer>
+        </PanelContainer>
+
+        <controls:HLine Color="#404040" Thickness="2" Margin="0 5 0 10"/>
+
+        <!-- Settings Section -->
+        <PanelContainer StyleClasses="AngleRect">
+            <BoxContainer Orientation="Vertical" Margin="10">
+                <Label Text="{Loc 'universal-spawner-settings-header'}" 
+                       StyleClasses="LabelHeading"
+                       Margin="0 0 0 5"/>
+                
+                <BoxContainer Orientation="Vertical" Margin="0 2 0 0">
+                    <!-- Min Spawns -->
+                    <BoxContainer Orientation="Horizontal" Margin="0 2">
+                        <Label Text="{Loc 'universal-spawner-min-spawns-label'}" VAlign="Center" MinWidth="140"/>
+                        <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-min-spawns-tooltip'}"/></Control>
+                        <SpinBox Name="MinSpawnsBox" Value="1" MinWidth="80" HorizontalExpand="False"/>
+                        
+                        <Control MinWidth="10"/>
+                        <Label Text="{Loc 'universal-spawner-max-spawns-label'}" VAlign="Center" MinWidth="140"/>
+                        <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-max-spawns-tooltip'}"/></Control>
+                        <SpinBox Name="MaxSpawnsBox" Value="1" MinWidth="80" HorizontalExpand="False"/>
+                        <Control HorizontalExpand="True"/>
+                    </BoxContainer>
+
+                    <!-- Offset and Spawn Chance -->
+                    <BoxContainer Orientation="Horizontal" Margin="0 2">
+                        <Label Text="{Loc 'universal-spawner-offset-label'}" VAlign="Center" MinWidth="140"/>
+                        <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-offset-tooltip'}"/></Control>
+                        <FloatSpinBox Name="OffsetBox" Value="0" MinWidth="80" HorizontalExpand="False"/>
+                        
+                        <Control MinWidth="10"/>
+                        <Label Text="{Loc 'universal-spawner-chance-label'}" VAlign="Center" MinWidth="140"/>
+                        <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-chance-tooltip'}"/></Control>
+                        <FloatSpinBox Name="SpawnChanceBox" Value="1.0" MinWidth="80" HorizontalExpand="False"/>
+                        <Control HorizontalExpand="True"/>
+                    </BoxContainer>
+
+                    <!-- Min/Max Rolls -->
+                    <BoxContainer Orientation="Horizontal" Margin="0 2">
+                        <Label Text="{Loc 'universal-spawner-min-rolls-label'}" VAlign="Center" MinWidth="140"/>
+                        <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-min-rolls-tooltip'}"/></Control>
+                        <SpinBox Name="MinRollsBox" Value="1" MinWidth="80" HorizontalExpand="False"/>
+                        
+                        <Control MinWidth="10"/>
+                        <Label Text="{Loc 'universal-spawner-max-rolls-label'}" VAlign="Center" MinWidth="140"/>
+                        <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-max-rolls-tooltip'}"/></Control>
+                        <SpinBox Name="MaxRollsBox" Value="1" MinWidth="80" HorizontalExpand="False"/>
+                        <Control HorizontalExpand="True"/>
+                    </BoxContainer>
+
+                    <!-- Delete After Spawn and Trigger Type -->
+                    <BoxContainer Orientation="Horizontal" Margin="0 2">
+                        <Label Text="{Loc 'universal-spawner-delete-label'}" VAlign="Center" MinWidth="140"/>
+                        <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-delete-tooltip'}"/></Control>
+                        <CheckBox Name="DeleteCheckBox"/>
+                        
+                        <Control MinWidth="10"/>
+                        <Label Text="{Loc 'universal-spawner-trigger-type-label'}" VAlign="Center" MinWidth="80"/>
+                        <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-trigger-type-tooltip'}"/></Control>
+                        <OptionButton Name="TriggerTypeDropdown" MinWidth="150" HorizontalExpand="False"/>
+                        <Control HorizontalExpand="True"/>
+                    </BoxContainer>
+                </BoxContainer>
+                
+                <!-- Conditional Trigger Time Row -->
+                <BoxContainer Name="TriggerTimeRow" Orientation="Horizontal" Margin="0 2" Visible="False">
+                    <Label Text="{Loc 'universal-spawner-trigger-time-label'}" MinWidth="140" VAlign="Center"/>
+                    <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-trigger-time-tooltip'}"/></Control>
+                    <FloatSpinBox Name="TriggerTimeBox" Value="60" MinWidth="80" HorizontalExpand="False"/>
+                    <Control HorizontalExpand="True"/>
+                </BoxContainer>
+                
+                <!-- Conditional Trigger Gamerule Row -->
+                <BoxContainer Name="TriggerGameRuleRow" Orientation="Horizontal" Margin="0 2" Visible="False">
+                    <Label Text="{Loc 'universal-spawner-trigger-gamerule-label'}" MinWidth="140" VAlign="Center"/>
+                    <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-trigger-gamerule-tooltip'}"/></Control>
+                    <OptionButton Name="TriggerGameRuleDropdown" MinWidth="200" HorizontalExpand="False"/>
+                    <Control HorizontalExpand="True"/>
+                </BoxContainer>
+                
+                <!-- Trigger Proximity Row -->
+                <BoxContainer Name="TriggerProximityRow" Orientation="Horizontal" Margin="0 2" Visible="False">
+                    <Label Text="{Loc 'universal-spawner-trigger-proximity-label'}" MinWidth="140" VAlign="Center"/>
+                    <Control SetSize="21 21"><TextureButton StyleClasses="HelpButton" TexturePath="/Textures/Interface/Nano/help.svg.png" ToolTip="{Loc 'universal-spawner-trigger-proximity-tooltip'}"/></Control>
+                    <FloatSpinBox Name="TriggerProximityBox" MinWidth="80" Value="5.0" HorizontalExpand="False"/>
+                    <Control HorizontalExpand="True"/>
+                </BoxContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <controls:HLine Color="#404040" Thickness="2" Margin="0 10 0 10"/>
+
+        <!-- Spawn Table Section -->
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
+            <Label Text="{Loc 'universal-spawner-table-header'}" 
+                   StyleClasses="LabelHeading"/>
+            <Control MinWidth="10"/>
+            <Label Text="{Loc 'universal-spawner-entry-count-label'}" StyleClasses="LabelSubText"/>
+            <Label Name="EntryCountLabel" Text="0" StyleClasses="LabelSubText" Margin="5 0 0 0"/>
+        </BoxContainer>
+        
+        <!-- Entry Management Toolbar -->
+        <BoxContainer Orientation="Horizontal" Margin="0 5 0 5">
+            <Button Name="AddEntryButton" 
+                    Text="{Loc 'universal-spawner-add-entry-button'}" 
+                    MinWidth="100"
+                    ToolTip="{Loc 'universal-spawner-add-entry-tooltip'}"/>
+            <Control MinWidth="5"/>
+            <Button Name="ClearAllButton" 
+                    Text="{Loc 'universal-spawner-clear-all-button'}" 
+                    MinWidth="100"
+                    StyleClasses="ButtonColorRed"
+                    ToolTip="{Loc 'universal-spawner-clear-all-tooltip'}"/>
+            <Control MinWidth="10"/>
+            <Label Text="{Loc 'universal-spawner-batch-label'}" VAlign="Center" Margin="5 0 5 0"/>
+            <Button Name="EnableAllButton" 
+                    Text="{Loc 'universal-spawner-enable-all-button'}" 
+                    MinWidth="90"
+                    ToolTip="{Loc 'universal-spawner-enable-all-tooltip'}"/>
+            <Control MinWidth="5"/>
+            <Button Name="DisableAllButton" 
+                    Text="{Loc 'universal-spawner-disable-all-button'}" 
+                    MinWidth="90"
+                    ToolTip="{Loc 'universal-spawner-disable-all-tooltip'}"/>
+            <Control HorizontalExpand="True"/>
+        </BoxContainer>
+
+        <!-- Entries List -->
+        <ScrollContainer HorizontalExpand="True" VerticalExpand="True" MinSize="0 300">
+            <BoxContainer Name="EntriesContainer" 
+                          Orientation="Vertical" 
+                          Margin="0 5 0 0"/>
+        </ScrollContainer>
+
+        <controls:HLine Color="#404040" Thickness="2" Margin="0 10 0 5"/>
+
+        <!-- Bottom Buttons -->
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Button Name="ApplyButton" 
+                    Text="{Loc 'universal-spawner-apply-button'}" 
+                    MinWidth="120"
+                    StyleClasses="ButtonColorGreen"
+                    ToolTip="{Loc 'universal-spawner-apply-tooltip'}"/>
+            <Control HorizontalExpand="True"/>
+            <Label Name="ValidationLabel" Text="" StyleClasses="LabelSubText" VAlign="Center" Margin="0 0 10 0"/>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
