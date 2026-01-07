@@ -54,10 +54,25 @@ public sealed class LegendaryAuraSystem : EntitySystem
         RemoveAura(ent);
     }
 
-    private void OnGotRemovedFromContainer(Entity<LegendaryAuraComponent> ent, ref EntGotRemovedFromContainerMessage args) => UpdateAura(ent);
+    private void OnGotRemovedFromContainer(Entity<LegendaryAuraComponent> ent, ref EntGotRemovedFromContainerMessage args)
+    {
+        if (TerminatingOrDeleted(ent.Owner))
+        {
+            RemoveAura(ent);
+            return;
+        }
+
+        UpdateAura(ent);
+    }
 
     private void UpdateAura(Entity<LegendaryAuraComponent> ent)
     {
+        if (TerminatingOrDeleted(ent.Owner))
+        {
+            RemoveAura(ent);
+            return;
+        }
+
         if (ent.Comp.PickedUpOnce)
         {
             RemoveAura(ent);
@@ -75,6 +90,9 @@ public sealed class LegendaryAuraSystem : EntitySystem
 
     private void EnsureAura(Entity<LegendaryAuraComponent> ent)
     {
+        if (TerminatingOrDeleted(ent.Owner))
+            return;
+
         if (ent.Comp.AuraEntity is { } existing && Exists(existing))
             return;
 
