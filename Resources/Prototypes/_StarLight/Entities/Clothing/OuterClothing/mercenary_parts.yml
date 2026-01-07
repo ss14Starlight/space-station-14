@@ -90,7 +90,7 @@
   parent: ClothingHandsGlovesCombat
   id: ClothingHandsGlovesVanguardSuit
   name: SVS 'vanguard' MKI gloves
-  description: Prototype tactical gauntlets featuring an experimental concealed handcannon deployment system. A marvel of miniaturized weaponry engineering, though still in field testing.
+  description: Prototype tactical gauntlets with reinforced plating and kinetic strike enhancers. Delivers devastating blows capable of shattering armor and structures. Part of the experimental MKI combat system.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Hands/Modsuits/MODSUITMercenary.rsi
@@ -123,10 +123,17 @@
     layers:
       RHand: GLOVES
       LHand: GLOVES
-  - type: HandcannonDeployment
-    handcannonPrototype: WeaponPistolCHIMP
-    deployDelay: 5
-    deployAction: ActionDeployVanguardHandcannon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.6
+    damage:
+      types:
+        Blunt: 20
+        Structural: 40
+    soundHit:
+      collection: ExplosionSmall
+    angle: 120
+    animation: WeaponArcPunch
 
 # SVS Vanguard MKI Prototype - Boots
 - type: entity

@@ -14,18 +14,3 @@
       state: chestplate-sealed
   - type: InstantAction
     event: !type:ToggleActionEvent
-
-# Handcannon Deployment Action
-- type: entity
-  id: ActionDeployVanguardHandcannon
-  name: Deploy Handcannon
-  description: Deploy the integrated C.H.I.M.P. handcannon from your gloves. Takes 5 seconds.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: NoItem
-    icon:
-      sprite: Objects/Weapons/Guns/Revolvers/chimp.rsi
-      state: base
-  - type: InstantAction
-    event: !type:DeployHandcannonActionEvent
