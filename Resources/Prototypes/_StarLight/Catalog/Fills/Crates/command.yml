@@ -14,3 +14,16 @@
         - id: CommsComputerCircuitboard
         - id: AutolatheMachineCircuitboard
         - id: CircuitImprinterMachineCircuitboard
+          
+- type: entity
+  parent: CrateCommandSecure
+  suffix: Death Rattle, Secure
+  id: CrateTrackingImplantsDeathRattle
+  name: death rattle tracking implant crate
+  description: Contains 5 death rattle tracking implanters. Comes with a critical condition monitor for the Security radio channel.
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        entity_storage:
+          id: TrackingImplanterDeathRattle
+          amount: 5
