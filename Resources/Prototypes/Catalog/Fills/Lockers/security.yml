@@ -120,8 +120,10 @@
     - id: ClothingEyesGlassesSecurity #Starlight
     - id: WeaponTaser
     - id: WeaponDisabler
-    - id: TrackingImplanter
-      amount: 2
+    # Starlight Start: Reducing availability of roundstart Tracking Implants
+    # - id: TrackingImplanter 
+    #   amount: 2
+    # Starlight End
     - id: ClothingOuterHardsuitBrigmedic
     - id: BoxSterileMask
     - id: ClothingHeadHatBeretBrigmedic
