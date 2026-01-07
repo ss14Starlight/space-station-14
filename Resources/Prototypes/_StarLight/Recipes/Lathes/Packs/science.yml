@@ -3,3 +3,17 @@
   id: StarlightNullspaceStatic
   recipes:
   - NullspaceAnchorMachineCircuitboard
+
+# Glass Compression
+- type: latheRecipePack
+  id: GlassCompressionStatic
+  recipes:
+  - SheetRGlass
+
+- type: latheRecipePack
+  id: GlassCompressionDynamic
+  recipes:
+  - SheetPGlass
+  - SheetRPGlass
+  - SheetUGlass
+  - SheetRUGlass

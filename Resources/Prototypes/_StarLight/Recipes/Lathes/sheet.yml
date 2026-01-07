@@ -37,3 +37,48 @@
   materials:
     Plasma: 1500
     Diamond: 1500
+
+# Protolathe material compression. Named without a number like the reinforced glass one.
+- type: latheRecipe
+  id: SheetPGlass
+  printTicket: false
+  result: SheetPGlass1
+  applyMaterialDiscount: false # No duplication
+  completetime: 0
+  materials:
+    Glass: 100
+    Plasma: 100
+
+
+- type: latheRecipe
+  id: SheetRPGlass
+  printTicket: false
+  result: SheetRPGlass1
+  applyMaterialDiscount: false # No duplication
+  completetime: 0
+  materials:
+    Glass: 100
+    Plasma: 100
+    Steel: 50
+
+- type: latheRecipe
+  id: SheetUGlass
+  printTicket: false
+  result: SheetUGlass1
+  applyMaterialDiscount: false # No duplication
+  completetime: 0
+  materials:
+    Glass: 100
+    Uranium: 100
+
+
+- type: latheRecipe
+  id: SheetRUGlass
+  printTicket: false
+  result: SheetRUGlass1
+  applyMaterialDiscount: false # No duplication
+  completetime: 0
+  materials:
+    Glass: 100
+    Uranium: 100
+    Steel: 50

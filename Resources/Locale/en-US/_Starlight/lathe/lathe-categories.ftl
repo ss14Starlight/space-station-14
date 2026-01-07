@@ -16,3 +16,10 @@ lathe-category-error = Error
 lathe-category-communication = Communication
 
 lathe-category-silicon = Silicon
+
+# Science
+lathe-category-hardsuits = Hardsuits
+
+# Uniforms
+lathe-category-evas = EVAs
+lathe-category-helmets = Helmets

@@ -80,8 +80,8 @@
   id: AdvancedHardsuits
   name: research-technology-advanced-hardsuits
   icon:
-    sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
-    state: base
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+    state: icon
   discipline: Industrial
   tier: 2
   cost: 10000

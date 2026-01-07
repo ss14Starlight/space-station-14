@@ -221,7 +221,7 @@
   parent: [ClothingOuterEVASuitBase, BaseCentcommContraband]
   id: ClothingOuterHardsuitCentCommEVA
   name: central command EVA suit
-  description: A green EVA suit typically worn by central command interns after a CRD member has a \"fun\" idea at the company social.
+  description: A green EVA suit typically worn by central command interns after a CRD member has a "fun" idea at the company social.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/eva.rsi
@@ -249,7 +249,7 @@
   parent: [ClothingOuterEVASuitBase, BaseLawContraband]
   id: ClothingOuterHardsuitNanoTrasenEmergencyEVA
   name: nanotrasen emergency EVA suit
-  description: A very stylish, lightweight EVA suit with the letters \"NT\" written on the back that will have every crew member fawning over you. Oh, it also folds. Doesn't have good temperate insulation.
+  description: A very stylish, lightweight EVA suit with the letters "NT" written on the back that will have every crew member fawning over you. Oh, it also folds. Doesn't have good temperate insulation.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/eva_emergency.rsi

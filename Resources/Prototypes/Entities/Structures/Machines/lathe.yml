@@ -200,6 +200,7 @@
     - NullSpaceDrainer # Starlight
     - ScienceBlueSpaceStatic # Starlight
     - ChemistryStatic
+    - GlassCompressionStatic # Starlight
     dynamicPacks:
     - ScienceBlueSpace # Starlight
     - AdvancedTools
@@ -216,6 +217,7 @@
     - Instruments
     - Equipment
     - StarlightProtolatheLootable # Starlight start
+    - GlassCompressionDynamic
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -228,6 +230,9 @@
     - StarlightSecurityEquipment
     - StarlightSecurityWeapons
     - StarlightDefenseStatic
+    - StarlightAutolatheLootable
+    - StarlightSecurityTechFabLootable
+    - StarlightMedicalTechFabLootable
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
@@ -319,6 +324,7 @@
     - StarlightSecurityBoards
     emagStaticPacks: # Starlight
     - StarlightDangerousLawboards # Starlight
+    - StarlightSyndicateVendorBoards # Starlight, looks like it was forgotten originally
 
 - type: entity
   id: ExosuitFabricator

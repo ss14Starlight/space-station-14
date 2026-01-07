@@ -61,6 +61,10 @@
   cost: 10000
   recipeUnlocks:
   - FlatpackerMachineCircuitboard
+  - SheetPGlass # Starlight
+  - SheetRPGlass # Starlight
+  - SheetUGlass # Starlight
+  - SheetRUGlass # Starlight
 
 - type: technology
   id: IndustrialEngineering

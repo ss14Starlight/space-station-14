@@ -22,6 +22,7 @@
   - HandheldStationMap
   - ClothingHeadHatWelding
   - ClothingHeadHatCone
+  - WelderMini # Starlight
 
 - type: latheRecipePack
   id: AtmosStatic
