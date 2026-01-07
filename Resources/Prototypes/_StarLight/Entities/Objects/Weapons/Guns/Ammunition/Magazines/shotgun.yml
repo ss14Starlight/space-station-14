@@ -2,7 +2,8 @@
 
 - type: entity
   id: BaseMagazineShotgunToz
-  name: magazine (.42 shells)
+  name: magazine (20 gauge shells)
+  description: "Piotr, what am I supposed to do with this? The magazine won't come out of the gun!"
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -42,7 +43,7 @@
 
 - type: entity
   id: MagazineShotgunTozEmpty
-  name: magazine (.42 shells any)
+  name: 20 gauge magazine
   suffix: empty
   parent: BaseMagazineShotgunToz
   components:
@@ -51,7 +52,7 @@
 
 - type: entity
   id: MagazineShotgunToz
-  name: magazine (.42 pellet)
+  name: 20 gauge pellet magazine
   parent: BaseMagazineShotgunToz
   components:
   - type: BallisticAmmoProvider
@@ -65,7 +66,7 @@
 
 - type: entity
   id: MagazineShotgunTozExtendedEmpty
-  name: magazine (.42 shells any)
+  name: 20 gauge extended magazine
   suffix: empty
   parent: BaseMagazineShotgunToz
   components:
@@ -81,7 +82,7 @@
 
 - type: entity
   id: MagazineShotgunTozExtended
-  name: magazine (.42 pellet)
+  name: 20 gauge pellet extended magazine
   parent: BaseMagazineShotgunToz
   components:
   - type: BallisticAmmoProvider

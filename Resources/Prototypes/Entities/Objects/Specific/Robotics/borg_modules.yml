@@ -1538,8 +1538,9 @@
     - item: Wrench
     - item: Screwdriver
     - item: Wirecutter
-    - item: Multitool
-    - item: RefuelingWelder
+    - item: RefuelingWelder # Starlight: FIXING THE ORDER OF TOOLS
+    - item: Multitool # Starlight: FIXING THE ORDER OF TOOLS
+    - item: SprayPainterBorg # Starlight: Artistic xenoborgs GO! TODO mby make a xenoborg variant?
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-tool-module }
 

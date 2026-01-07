@@ -7,7 +7,7 @@
   roleLoadout: [ AntagMothership ] # Starlight
   requirements:
   - !type:RoleTimeRequirement
-    role: JobBorg
+    role: JobStationAi # Starlight
     time: 18000  # 5 hrs
   guides: [ Xenoborgs ]
 
@@ -21,5 +21,5 @@
   requirements:
   - !type:RoleTimeRequirement
     role: JobBorg
-    time: 18000  # 5 hrs
+    time: 54000  # Starlight 15 hrs
   guides: [ Xenoborgs ]
