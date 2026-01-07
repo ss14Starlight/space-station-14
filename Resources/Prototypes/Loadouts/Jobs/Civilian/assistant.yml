@@ -26,6 +26,15 @@
       !type:RoleTimeRequirement
       role: JobPassenger
       time: 100h # for the Ancient PDA
+      
+- type: loadoutEffectGroup
+  id: Assistant60
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobPassenger
+        time: 60h # for the Grey PDA
 
 # Mask
 - type: loadout

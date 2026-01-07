@@ -491,6 +491,14 @@
       proto: Assistant100
   equipment:
     id: AncientPDA
+    
+- type: loadout
+  id: GreyPDA
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: Assistant60
+  equipment:
+    id: GreyPDA
 
 - type: loadout
   id: RedLeatherJacker

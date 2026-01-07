@@ -127,3 +127,11 @@
       proto: Cap60
   equipment:
     id: BaroqueCaptainPDA
+    
+- type: loadout
+  id: DeluxeCaptainPDA
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: Cap100
+  equipment:
+    id: DeluxeCaptainPDA

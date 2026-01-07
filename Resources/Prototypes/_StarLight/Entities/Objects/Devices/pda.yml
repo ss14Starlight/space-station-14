@@ -186,6 +186,33 @@
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-ancient
+    
+- type: entity
+  parent: BasePDA
+  id: GreyPDA
+  name: grey PDA
+  description: Hey! It's grey!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/pda.rsi
+    - type: Pda
+      id: AssistantIDCard
+      penSlot:
+        startingItem: Pen
+        priority: -1
+        whitelist:
+          tags:
+            - Write
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-grey
+    - type: PdaBorderColor
+      borderColor: "#575757"
+    - type: Icon
+      sprite: _Starlight/Objects/Devices/pda.rsi
+      state: pda-grey
 
 - type: entity
   parent: BaseSecurityPDA
@@ -224,6 +251,39 @@
     - LogProbeCartridge
     
 - type: entity
+  parent: BasePDA
+  id: BaroqueCaptainPDA
+  name: baroque captain PDA
+  description: A relic of older times. Just like you.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: CaptainIDCard
+    penSlot:
+      startingItem: PenCap
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-baroquecaptain
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
+    accentHColor: "#221B5E"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-baroquecaptain
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+- type: entity
   parent: BaseSecurityPDA
   id: MilitaryIssueHoSPDA
   name: military issue head of security PDA
@@ -258,6 +318,44 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    
+- type: entity
+  parent: BasePDA
+  id: DeluxeCaptainPDA
+  name: deluxe captain PDA
+  description: Fancy! Expensive! Includes an onboard suite of all available cartridges! Hope you weren't planning on retiring anytime soon, because this just sent all your savings down the drain!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: CaptainIDCard
+    penSlot:
+      startingItem: PenCap
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-deluxecaptain
+  - type: PdaBorderColor
+    borderColor: "#161517"
+    accentHColor: "#221B5E"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-deluxecaptain
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - MedTekCartridge
+    - WantedListCartridge
+    - LogProbeCartridge
+    - AstroNavCartridge
 - type: entity
   parent: BasePDA
   id: NanoTrasenRepresentativePDA

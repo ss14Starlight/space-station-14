@@ -135,7 +135,7 @@
   id: AssistantPDA
   name: loadout-group-assistant-pda
   loadouts:
- # - AssistantPDA
+  - GreyPDA
   - AncientPDA
 
 - type: loadoutGroup

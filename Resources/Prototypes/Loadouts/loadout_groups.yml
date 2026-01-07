@@ -226,6 +226,14 @@
   minLimit: 0
   loadouts:
   - LizardPlushieCaptain
+  - 
+- type: loadoutGroup
+  id: CaptainPDA
+  name: loadout-group-captain-pda
+  minLimit: 0
+  loadouts:
+    - BaroqueCaptainPDA
+    - DeluxeCaptainPDA
 
 - type: loadoutGroup
   id: HoPHead
