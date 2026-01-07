@@ -178,10 +178,25 @@
   id: GygaxRLeg
 
 - type: Tag
+  id: Hardlight
+
+- type: Tag
   id: HiltPlasteel
 
 - type: Tag
   id: HiltWood
+
+- type: Tag
+  id: HoloDisk
+
+- type: Tag
+  id: HoloProjectorCamera
+
+- type: Tag
+  id: HoloProjectorServer
+
+- type: Tag # For entities that are 'mapped' in to a Hologram's processing, like walls on a station.
+  id: HoloMapped
 
 - type: Tag
   id: ImprovisedAmmoBox

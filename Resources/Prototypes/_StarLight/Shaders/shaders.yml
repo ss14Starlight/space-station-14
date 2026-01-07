@@ -33,3 +33,12 @@
   id: NullSpaceShader
   kind: source
   path: "/Textures/_Starlight/Shaders/nullspace.swsl"
+
+# Hologram
+- type: shader
+  id: StarlightHologram
+  kind: source
+  path: "/Textures/_Starlight/Shaders/hologram.swsl"
+  params:
+    textureHeight: 32
+    hue: 0.64

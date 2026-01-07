@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "",
+  "copyright": "",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "beam",
+      "delays": [ [ 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ] ]
+    }
+  ]
+}

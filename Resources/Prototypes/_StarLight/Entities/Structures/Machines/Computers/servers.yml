@@ -1,0 +1,50 @@
+- type: entity
+  id: HologramServer
+  parent: BaseMachinePowered
+  name: hologram server
+  description: Contains the collective knowledge of holo
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/servers.rsi
+      layers:
+      - state: holo-off
+      - state: holo-on
+        visible: false
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: holo-o
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: {visible: true}
+            False: {visible: false}
+    - type: ApcPowerReceiver
+      powerLoad: 200
+      priority: Low
+    - type: ExtensionCableReceiver
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTrigger
+            damage: 300
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/metalbreak.ogg
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 1
+                  max: 2
+    - type: AmbientSound
+      volume: -9
+      range: 5
+      sound:
+        path: /Audio/Ambience/Objects/server_fans.ogg
+    - type: Tag
+      tags:
+        - HoloProjectorServer
+    - type: HologramServer

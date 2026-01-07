@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "holo-on",
+            "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/85e01a497fea86ab31c2a16ab20de03b7b7720ab/icons/obj/machines/telecomms.dmi",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "holo-off",
+            "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/85e01a497fea86ab31c2a16ab20de03b7b7720ab/icons/obj/machines/telecomms.dmi"
+        },
+        {
+            "name": "holo-o",
+            "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/85e01a497fea86ab31c2a16ab20de03b7b7720ab/icons/obj/machines/telecomms.dmi"
+        }
+    ]
+}

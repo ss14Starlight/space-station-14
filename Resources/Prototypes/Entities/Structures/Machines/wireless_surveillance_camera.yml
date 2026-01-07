@@ -37,6 +37,12 @@
       interfaces:
         enum.SurveillanceCameraSetupUiKey.Camera:
           type: SurveillanceCameraSetupBoundUi
+    # Starlight Start: Temporary till I figure out how I want holo's projected
+    - type: HologramProjector
+    - type: Tag
+      tags:
+        - HoloProjectorCamera
+    # Starlight End
   placement:
     mode: SnapgridCenter
 

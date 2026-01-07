@@ -1,0 +1,78 @@
+- type: entity
+  parent: BriefcaseBaseSecure
+  id: HolographicBriefcase
+  name: holographic briefcase
+  description: A portable hologram projection system in a secure briefcase. Requires power to project holograms.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Storage/Briefcases/briefcase_secure.rsi
+      layers:
+        - state: icon
+        - state: open
+          shader: unshaded
+        - state: closed
+          shader: unshaded
+          map: ["enum.LockVisualLayers.Lock"]
+        - state: spark
+          shader: unshaded
+          visible: false
+          map: ["spark"]
+    - type: LockVisuals
+      stateLocked: closed
+      stateUnlocked: open
+    - type: Item
+      sprite: _Starlight/Objects/Storage/Briefcases/briefcase_secure.rsi
+      size: Huge
+    - type: Storage
+      maxItemSize: Large
+      grid:
+        - 0,0,3,2
+    # - type: Lock
+    #   locked: true
+    - type: AccessReader
+      access: [["ResearchDirector"]]
+    - type: ActivatableUI
+      key: enum.HologramConsoleUiKey.Key
+      closeOnHandDeselect: false
+      inHandsOnly: false
+    - type: ActivatableUIRequiresAccess
+    - type: HologramConsole
+      maxActiveHolograms: 2
+      allowHologramCarry: false
+      powerDrawPerHologram: 50
+      diskSlot: hologram_disk_slot
+      searchRange: 0 # Don't search for servers in portable mode
+    - type: HologramProjector
+      projectorRange: 5.0
+    - type: ContainerContainer
+      containers:
+        hologram_disk_slot: !type:ContainerSlot
+        cell_slot: !type:ContainerSlot
+        storagebase: !type:Container
+    - type: ItemSlots
+      slots:
+        hologram_disk_slot:
+          name: Hologram Disk
+          whitelist:
+            requireAll: true
+            tags:
+              - HoloDisk
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMedium
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+        enum.DigitalLockUiKey.Key:
+          type: DigitalLockBoundUserInterface
+        enum.HologramConsoleUiKey.Key:
+          type: HologramConsoleBoundUserInterface
+    - type: AmbientSound
+      enabled: false
+      volume: -8
+      range: 8
+      sound:
+        path: /Audio/Ambience/Objects/server_fans.ogg

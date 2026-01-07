@@ -1,0 +1,9 @@
+- files: ["holo_off.ogg"]
+  license: "Custom"
+  copyright: "I have no clue where this is from, original PR has no attributions"
+  source: "https://github.com/Simple-Station/Parkstation/pull/233"
+
+- files: ["holo_on.ogg"]
+  license: "Custom"
+  copyright: "I have no clue where this is from, original PR has no attributions"
+  source: "https://github.com/Simple-Station/Parkstation/pull/233"

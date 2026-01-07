@@ -26,3 +26,106 @@
     tags:
     - CannotSuicide
     - VimPilot
+
+- type: entity
+  abstract: true
+  parent: BaseMob
+  id: BaseHologramAnimal
+  name: holographic animal
+  components:
+  - type: Hologram
+  - type: MovementIgnoreGravity
+  - type: NoSlip
+  - type: Stealth
+    lastVisibility: 0.8
+  - type: AnimationPlayer
+  - type: FloatingVisuals
+  - type: ReplacementAccent
+    accent: silicon
+  - type: Speech
+    speechSounds: Robotic
+  - type: Vocal
+    sounds:
+      Male: UnisexSiliconRobotic
+      Female: UnisexSiliconRobotic
+      Unsexed: UnisexSiliconRobotic
+  - type: InputMover
+  - type: MobMover
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - BulletImpassable
+  - type: Body
+    prototype: HologramAnimal
+    requiredLegs: 1
+  - type: DoAfter
+  - type: Examiner
+  - type: StandingState
+  - type: Alerts
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: TypingIndicator
+    proto: holo
+  - type: Appearance
+  - type: RotationVisuals
+  - type: Actions
+  - type: MobState
+
+- type: entity
+  name: holo corgi
+  description: "A holographic projection of a corgi, computed by the SAI and materialized into hardlight via a nearby projector"
+  parent: BaseHologramAnimal
+  id: MobCorgiHolo
+  suffix: AI
+  components:
+  - type: LagCompensation
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Input
+    context: "human"
+  - type: NpcFactionMember
+    factions:
+    - Pet
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 3
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Pets/holo_corgi.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: holo-corgi
+    netsync: false
+  - type: ReplacementAccent
+    accent: dog
+  - type: InteractionPopup
+    interactSuccessString: hugging-success-hologram-others
+    interactSuccessSound:
+      path: /Audio/_Starlight/Effects/Holograms/holo_on.ogg
+  - type: Grammar
+    attributes:
+      gender: epicene
+  # - type: DogVision # TODO: These, can steal from park station
+  # - type: RandomBark
+  - type: Polymorphable
+  - type: HologramProjected
+    gracePeriod: 0.08
+    validProjectorWhitelist:
+      tags:
+      - HoloProjectorCamera
+    effectPrototype: EffectHologramProjectionBeam

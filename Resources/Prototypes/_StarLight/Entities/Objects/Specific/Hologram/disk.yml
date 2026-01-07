@@ -1,0 +1,43 @@
+- type: entity
+  parent: BaseItem
+  id: BaseHologramDisk
+  name: hologram disk
+  abstract: true
+  description: A disk for storing holographic projection data.
+  components:
+    - type: Sprite
+      sprite: Objects/Specific/Research/researchdisk.rsi
+      state: icon
+      color: "#4cc9f0"
+    - type: HologramDisk
+    - type: Tag
+      tags:
+        - HoloDisk
+
+- type: entity
+  parent: BaseHologramDisk
+  id: HologramDisk
+  name: hologram disk
+  description: A disk for storing holographic projection data. Can store a mind for holographic transfer.
+  components:
+    - type: MindContainer
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: robot
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+      - Binary
+    - type: MobState
+      allowedStates:
+      - Alive
+
+- type: entity
+  parent: BaseHologramDisk
+  id: HologramDiskCorgi
+  name: hologram corgi disk
+  description: A hologram disk containing the projection data for the station AI's faithful companion.
+  components:
+    - type: HologramDisk
+      hologramPrototype: MobCorgiHolo

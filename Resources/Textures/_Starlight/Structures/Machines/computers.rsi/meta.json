@@ -142,6 +142,53 @@
                     0.2
                 ]
             ]
+        },
+        {
+            "name": "holo",
+            "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/a73b77b3bbb0fa94946b9a6d47b3d0dfd93cd33f/icons/obj/machines/modular_console.dmi",
+            "directions": 4,
+            "delays": [
+                [
+                    1,
+                    0.1,
+                    1,
+                    0.1,
+                    1,
+                    0.1,
+                    1,
+                    0.1
+                ],
+                [
+                    1,
+                    0.1,
+                    1,
+                    0.1,
+                    1,
+                    0.1,
+                    1,
+                    0.1
+                ],
+                [
+                    1,
+                    0.1,
+                    1,
+                    0.1,
+                    1,
+                    0.1,
+                    1,
+                    0.1
+                ],
+                [
+                    1,
+                    0.1,
+                    1,
+                    0.1,
+                    1,
+                    0.1,
+                    1,
+                    0.1
+                ]
+            ]
         }
     ]
 }

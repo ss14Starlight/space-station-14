@@ -79,3 +79,19 @@
       state: cpu_supply
     - type: ComputerBoard
       prototype: ComputerShuttleSecurity
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: HologramConsoleCircuitboard
+  name: hologram console board
+  description: A circuit board for a hologram console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: HologramConsole
+    - type: StaticPrice
+      price: 750
+    - type: Tag
+      tags:
+      - HighRiskItem
