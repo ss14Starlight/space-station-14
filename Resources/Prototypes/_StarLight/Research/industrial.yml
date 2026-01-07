@@ -75,3 +75,20 @@
   - WeaponTurretPointDefenseMachineCircuitboard
   radioChannels:
   - Engineering
+
+- type: technology
+  id: AdvancedHardsuits
+  name: research-technology-advanced-hardsuits
+  icon:
+    sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+    state: base
+  discipline: Industrial
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - ClothingOuterHardsuitAdvanced
+  - ClothingOuterHardsuitFireAdvanced
+  - ClothingOuterHardsuitRadiationAdvanced
+  - ClothingOuterHardsuitArmoredAdvanced # emag
+  radioChannels:
+  - Engineering

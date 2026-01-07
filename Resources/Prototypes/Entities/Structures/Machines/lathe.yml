@@ -344,7 +344,7 @@
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
-    - StarlightHardsuitFabricator # Starlight
+    - StarlightHardsuitFabricatorStatic # Starlight
     dynamicPacks:
     - Robotics
     - BorgModules
@@ -353,13 +353,16 @@
     - StarlightMechEquipment
     - StarlightSecurityMechs
     - StarlightMechParts
-    - StarlightExoFabLootable # Starlight
+    - StarlightHardsuitFabricatorDynamic # Starlight
+    - StarlightExoFabLootableBasic # Starlight
+    - StarlightExoFabLootableAdvanced # Starlight
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightMechWeapon
     - StarlightSyndicateModules
+    - StarlightEmagHardsuitFabricatorStatic # Starlight
     emagDynamicPacks: # Starlight
-    - StarlightEmagHardsuitFabricator # Starlight
+    - StarlightEmagHardsuitFabricatorDynamic # Starlight
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

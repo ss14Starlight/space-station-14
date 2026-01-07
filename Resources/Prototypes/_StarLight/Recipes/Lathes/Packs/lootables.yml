@@ -43,11 +43,15 @@
 
 #Hardsuits
 - type: latheRecipePack
-  id: StarlightExoFabLootable
+  id: StarlightExoFabLootableBasic
   recipes:
   - ClothingOuterHardsuitMedicalGeneric
-  - ClothingOuterHardsuitMedicalAdvanced
   - ClothingOuterHardsuitSalvage
-  - ClothingOuterHardsuitSalvageAdvanced
   - ClothingOuterHardsuitMining
+
+- type: latheRecipePack
+  id: StarlightExoFabLootableAdvanced
+  recipes:
+  - ClothingOuterHardsuitMedicalAdvanced
+  - ClothingOuterHardsuitSalvageAdvanced
   - ClothingOuterHardsuitAdvancedMining

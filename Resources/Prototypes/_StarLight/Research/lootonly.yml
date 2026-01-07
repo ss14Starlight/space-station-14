@@ -20,6 +20,9 @@
   - AssistantPDA
   - AstroNavCartridge
   - MedTekCartridge
+  - ClothingOuterHardsuitMedicalGeneric
+  - ClothingOuterHardsuitSalvage
+  - ClothingOuterHardsuitMining
   radioChannels:
   - Binary
 
@@ -41,6 +44,9 @@
   - DefibrillatorCompact
   - AirGrenade
   - ComputerIFFCircuitboard
+  - ClothingOuterHardsuitMedicalAdvanced
+  - ClothingOuterHardsuitSalvageAdvanced
+  - ClothingOuterHardsuitAdvancedMining
   radioChannels:
   - Binary
 

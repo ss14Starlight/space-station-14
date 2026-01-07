@@ -151,6 +151,7 @@
     ReinforcedGlass: 400
     Plasteel: 600
     Durathread: 350
+    Diamond: 50
 
 - type: latheRecipe
   parent: BaseHardsuitRecipe
@@ -173,6 +174,7 @@
     ReinforcedGlass: 550
     Plasteel: 350
     Durathread: 250
+    Diamond: 50
 
 - type: latheRecipe
   parent: BaseHardsuitRecipe
@@ -193,6 +195,7 @@
     ReinforcedGlass: 650
     Plasteel: 650
     Durathread: 400
+    Diamond: 50
 
 - type: latheRecipe
   parent: BaseHardsuitRecipe
@@ -213,3 +216,4 @@
     ReinforcedGlass: 700
     Plasteel: 600
     Durathread: 500
+    Diamond: 50

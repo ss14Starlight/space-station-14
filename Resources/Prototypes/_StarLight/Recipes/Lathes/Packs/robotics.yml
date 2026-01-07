@@ -191,24 +191,32 @@
 
 # Hardsuits!
 - type: latheRecipePack
-  id: StarlightHardsuitFabricator
+  id: StarlightHardsuitFabricatorStatic
   recipes:
     - ClothingOuterHardsuitGeneric
-    - ClothingOuterHardsuitAdvanced
     - ClothingOuterHardsuitFireGeneric
-    - ClothingOuterHardsuitFireAdvanced
     - ClothingOuterHardsuitRadiationGeneric
+
+- type: latheRecipePack
+  id: StarlightHardsuitFabricatorDynamic
+  recipes:
+    - ClothingOuterHardsuitAdvanced
+    - ClothingOuterHardsuitFireAdvanced
     - ClothingOuterHardsuitRadiationAdvanced
 
 # Emag Hardsuits
 - type: latheRecipePack
-  id: StarlightEmagHardsuitFabricator
+  id: StarlightEmagHardsuitFabricatorStatic
   recipes:
     - ClothingOuterHardsuitArmoredGeneric
+
+- type: latheRecipePack
+  id: StarlightEmagHardsuitFabricatorDynamic
+  recipes:
     - ClothingOuterHardsuitArmoredAdvanced
 
 # Helmets
-- type: latheRecipePack
-  id: StarlightHelmetFabricator
-  recipes:
-    - ClothingHeadHelmetFire
+#- type: latheRecipePack
+#  id: StarlightHelmetFabricator
+#  recipes:
+#    - ClothingHeadHelmetFire
