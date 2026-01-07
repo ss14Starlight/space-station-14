@@ -39,6 +39,10 @@
   id: JobBorg
   nameDataset: NamesBorg
   canCustomizeName: true
+  # Starlight Start: Selectable Silicon Brain
+  groups:
+  - SiliconBrainType
+  # Starlight End
 
 - type: roleLoadout
   id: JobStationAi
@@ -570,13 +574,19 @@
 - type: roleLoadout
   id: JobChemist
   groups:
-#  - GroupTankHarness - Starlight removed
+# - GroupTankHarness - Starlight removed
+  - ChemistHead # Starlight
   - MedicalMask
   - ChemistJumpsuit
   - MedicalGloves
   - ChemistBackpack
+  - ChemistBag # Starlight
   - ChemistOuterClothing
-  - MedicalShoes
+  - ChemistShoes # Starlight
+  - ChemistPDA # Starlight
+  - ChemistEyewear # Starlight
+  - ChemistBeaker # Starlight
+  - ChemistLabeler # Starlight
   - SurvivalMedical
   - Trinkets
   - Scarves # Starlight
@@ -595,6 +605,7 @@
   - MedicalBackpack
   - ParamedicOuterClothing
   - ParamedicShoes
+  - ParamedicPDA # Starlight
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets

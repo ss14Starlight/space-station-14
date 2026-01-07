@@ -1,6 +1,9 @@
 - type: vendingMachineInventory
   id: RoboDrobeInventory
   startingInventory:
+    ClothingBackpackRoboticist: 3 # Starlight
+    ClothingBackpackSatchelRoboticist: 3 # Starlight
+    ClothingBackpackDuffelRoboticist: 3 # Starlight
     ClothingOuterCoatRobo: 2
     ClothingUniformJumpsuitRoboticist: 2
     ClothingUniformJumpskirtRoboticist: 2
@@ -8,5 +11,6 @@
     ClothingHandsGlovesRobohands: 2
     ClothingHeadHatCorpsoft: 2
     ClothingHeadBandSkull: 2
+    ClothingHeadHatBlacksoft: 2 # Starlight
     ClothingHeadsetRobotics: 2
     ClothingOuterWinterRobo: 2

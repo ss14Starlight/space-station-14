@@ -1,14 +1,38 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Darkrell",
+  "copyright": "Taken from Paradise at https://github.com/ParadiseSS13/Paradise/blob/cd7cb01a1f846272dcf3dc2c37970eff377b58a4/icons/obj/stacks/minerals.dmi",
   "size": {
-    "x": 64,
-    "y": 64
+    "x": 32,
+    "y": 32
   },
   "states": [
     {
-      "name": "abyss_core"
+      "name": "bluespace_crystal"
+    },
+    {
+      "name": "bluespace_crystal_2"
+    },
+    {
+      "name": "bluespace_crystal_3"
+    },
+    {
+      "name": "refined_bluespace_crystal"
+    },
+    {
+      "name": "refined_bluespace_crystal_2"
+    },
+    {
+      "name": "refined_bluespace_crystal_3"
+    },
+    {
+      "name": "synthetic_bluespace_crystal"
+    },
+    {
+      "name": "synthetic_bluespace_crystal_2"
+    },
+    {
+      "name": "synthetic_bluespace_crystal_3"
     }
   ]
 }

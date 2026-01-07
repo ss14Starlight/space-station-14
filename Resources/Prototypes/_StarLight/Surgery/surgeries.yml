@@ -869,3 +869,56 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryShadekinCore
+  name: Extract Core
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenRibcage
+    steps:
+    - SurgeryStepPreparePatient
+    - SurgeryStepLocateCore
+    - SurgeryStepClampShadekinCoreVessels
+    - SurgeryStepExtractShadekinCore
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - Shadekin
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  - type: SurgeryOrganExistCondition
+    organ:
+    - type: OrganShadekinCore
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+    state: core
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantShadekinCore
+  name: Implant Core
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenRibcage
+    steps:
+    - SurgeryStepCleanImplantSite
+    - SurgeryStepInsertShadekinCore
+    - SurgeryStepConnectShadekinCoreVessels
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - Shadekin
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  - type: SurgeryOrganDontExistCondition
+    organ:
+    - type: OrganShadekinCore
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+    state: core

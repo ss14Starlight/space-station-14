@@ -1,13 +1,12 @@
 using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Server._Starlight.NullSpace;
 
-public sealed class ShowEtherealSystem : EntitySystem
+public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
 {
     [Dependency] private readonly EyeSystem _eye = default!;
     public override void Initialize()
@@ -17,8 +16,6 @@ public sealed class ShowEtherealSystem : EntitySystem
         SubscribeLocalEvent<ShowNullSpaceComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ShowNullSpaceComponent, GotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<ShowNullSpaceComponent, GotUnequippedEvent>(OnUnequipped);
-        SubscribeLocalEvent<ShowNullSpaceComponent, InteractionAttemptEvent>(OnInteractionAttempt);
-        SubscribeLocalEvent<ShowNullSpaceComponent, AttackAttemptEvent>(OnAttackAttempt);
     }
 
     private void OnInit(EntityUid uid, ShowNullSpaceComponent component, MapInitEvent args)
@@ -59,22 +56,5 @@ public sealed class ShowEtherealSystem : EntitySystem
             return;
 
         _eye.SetVisibilityMask(uid, (int) VisibilityFlags.Normal, eye);
-    }
-
-    private void OnInteractionAttempt(EntityUid uid, ShowNullSpaceComponent component, ref InteractionAttemptEvent args)
-    {
-        if (!HasComp<NullSpaceComponent>(args.Target))
-            return;
-
-        args.Cancelled = true;
-    }
-
-    private void OnAttackAttempt(EntityUid uid, ShowNullSpaceComponent component, AttackAttemptEvent args)
-    {
-        if (HasComp<NullSpaceComponent>(uid)
-            || !HasComp<NullSpaceComponent>(args.Target))
-            return;
-
-        args.Cancel();
     }
 }

@@ -69,8 +69,8 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!;
-    [Dependency] private readonly SpeechSystem _speechSystem = default!; //Starlight
+    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
+    [Dependency] private readonly SpeechSystem _speechSystem = default!; // Starlight
     [Dependency] private readonly LanguageSystem _language = default!; // Starlight
     [Dependency] private readonly SharedPopupSystem _popups = default!; // Starlight
 
@@ -305,7 +305,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             sendType = InGameOOCChatType.Dead;
 
         // If crit player LOOC is disabled, don't send the message at all.
-        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
+        // Starlight edit Start
+        var critCheckEvent = new LoocCritCheckEvent(source);
+        RaiseLocalEvent(source, critCheckEvent, true);
+        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source) && !critCheckEvent.AllowCritLooc)
+        // Starlight edit End
             return;
 
         // Systems can differentiate Looc and DeadChat by type, and cancel the speak attempt if necessary.
@@ -486,6 +490,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (_mobStateSystem.IsDead(source) || collectiveMind == null || message == "" || !TryComp<CollectiveMindComponent>(source, out var sourceCollectiveMindComp) || !sourceCollectiveMindComp.Minds.ContainsKey(collectiveMind))
             return;
 
+        if (collectiveMind.CanSpeak && !_collectiveMind.CheckCanSpeak(source, collectiveMind))
+            return;
+
         //raise the message event for modifications
         var evMsg = new CollectiveMindMessageAttemptEvent(source, message);
         RaiseLocalEvent(source, evMsg, false);
@@ -534,6 +541,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("message", FormattedMessage.EscapeText(message)),
             ("channel", collectiveMind.LocalizedName),
             ("number", Number));
+
+        if (collectiveMind.ShowNames)
+            messageWrap = adminMessageWrap;
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"CollectiveMind chat from {ToPrettyString(source):Player}: {FormattedMessage.EscapeText(message)}");
 
@@ -794,7 +804,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         else if (!_loocEnabled) return;
 
         // If crit player LOOC is disabled, don't send the message at all.
-        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
+        // Starlight edit Start
+        var critCheckEvent = new LoocCritCheckEvent(source);
+        RaiseLocalEvent(source, critCheckEvent, true);
+        if (!_critLoocEnabled && _mobStateSystem.IsCritical(source) && !critCheckEvent.AllowCritLooc)
+        // Starlight edit End
             return;
 
         var wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
@@ -808,6 +822,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal,
             player.UserId,
             languageOverride: LanguageSystem.Universal); // Starlight
+
+        // Starlight Start: Telephone Looc
+        var loocEv = new EntityLoocEvent(source, message);
+        RaiseLocalEvent(source, loocEv, true);
+        // Starlight End
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");
     }
 
@@ -1195,3 +1214,35 @@ public sealed partial class ChatSystem : SharedChatSystem
 public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Dictionary<ICommonSession, ChatSystem.ICChatRecipientData> Recipients)
 {
 }
+
+// Starlight Start
+/// <summary>
+///     Should entity be exempt from crit LOOC restrictions.
+/// </summary>
+public sealed class LoocCritCheckEvent : EntityEventArgs
+{
+    public EntityUid Source;
+    public bool AllowCritLooc;
+
+    public LoocCritCheckEvent(EntityUid source)
+    {
+        Source = source;
+        AllowCritLooc = false;
+    }
+}
+
+/// <summary>
+///     Raised on an entity when it sends a LOOC message. Used for holopad/telephone relay.
+/// </summary>
+public sealed class EntityLoocEvent : EntityEventArgs
+{
+    public readonly EntityUid Source;
+    public readonly string Message;
+
+    public EntityLoocEvent(EntityUid source, string message)
+    {
+        Source = source;
+        Message = message;
+    }
+}
+// Starlight End

@@ -137,6 +137,7 @@
     - StarlightAutolatheLootable
   - type: EmagLatheRecipes
     emagStaticPacks:
+    - StarlightSyndicateAmmoStatic
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSecurityAmmoEmagStatic # Starlight end
@@ -196,8 +197,11 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
+    - NullSpaceDrainer # Starlight
+    - ScienceBlueSpaceStatic # Starlight
     - ChemistryStatic
     dynamicPacks:
+    - ScienceBlueSpace # Starlight
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -226,7 +230,8 @@
     - StarlightDefenseStatic
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
-    - StarlightSecurityAmmoStatic # Starlight end
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic # Starlight end
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -269,6 +274,7 @@
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
     - StarlightVendorBoards # Starlight
+    - StarlightNullspaceStatic # Starlight
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
@@ -424,9 +430,11 @@
     runningState: icon
     staticPacks:
     - SecurityEquipmentStatic # Starlight start
+    - NullSpaceDrainer
     - SecurityPracticeStatic
     - StarlightSecurityAmmoStatic
     - StarlightSecurityAmmoEmagStatic
+    - StarlightNullspaceStatic
     - SecurityWeaponsStatic # Starlight end
     dynamicPacks:
     - SalvageSecurityBoards
@@ -445,6 +453,7 @@
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
+    - StarlightSyndicateAmmoStatic
   #endregion Starlight secfab emagging
     - SyndicateAmmoStatic
   - type: MaterialStorage
@@ -480,6 +489,7 @@
       #- SecurityAmmoStatic # SL - disable in favor of previous line
     - type: EmagLatheRecipes
       emagStaticPacks:
+      - StarlightSyndicateAmmoStatic # Starlight
       - SyndicateAmmoStatic
     - type: MaterialStorage
       whitelist: *StandardMaterialWhitelist
