@@ -47,7 +47,7 @@
         - id: ClothingHandsGlovesCombat
         - id: ClothingShoesBootsCombat
         - id: TrackingImplanterDeathRattle
-          amount: 3
+          amount: 4
         - id: MedkitAdvancedFilled
         - id: WeaponPistolSP8T
         - id: MagazinePistol40SP
