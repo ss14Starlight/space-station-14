@@ -40,3 +40,14 @@
   id: StarlightUniformPrinterLootable
   recipes:
   - AssistantPDA
+
+#Hardsuits
+- type: latheRecipePack
+  id: StarlightExoFabLootable
+  recipes:
+  - ClothingOuterHardsuitMedicalGeneric
+  - ClothingOuterHardsuitMedicalAdvanced
+  - ClothingOuterHardsuitSalvage
+  - ClothingOuterHardsuitSalvageAdvanced
+  - ClothingOuterHardsuitMining
+  - ClothingOuterHardsuitAdvancedMining

@@ -58,3 +58,31 @@
   parent: BaseBorgModuleRecipe
   id: BorgModuleUppies
   result: BorgModuleUppies
+
+# Hardsuit recipes start
+- type: latheRecipe
+  abstract: true
+  id: BaseHardsuitRecipe
+  categories:
+  - Hardsuits
+  completetime: 10
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitGeneric
+  result: ClothingOuterHardsuitGeneric
+  materials:
+    Steel: 1200
+    Glass: 400
+    Plasteel: 250
+    Cloth: 300
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: ClothingOuterHardsuitAdvanced
+  result: ClothingOuterHardsuitAdvanced
+  materials:
+    Steel: 900
+    Glass: 400
+    Plasteel: 400
+    Durathread: 250

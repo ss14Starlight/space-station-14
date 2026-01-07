@@ -10,6 +10,19 @@
   id: Implants
   name: lathe-category-implants
 
+# HoP/Robotics
+- type: latheCategory
+  id: Hardsuits
+  name: lathe-category-hardsuits
+
+- type: latheCategory
+  id: EVAs
+  name: lathe-category-evas
+
+- type: latheCategory
+  id: Helmets
+  name: lathe-category-helmets
+
 # Doc Printer
 
 - type: latheCategory

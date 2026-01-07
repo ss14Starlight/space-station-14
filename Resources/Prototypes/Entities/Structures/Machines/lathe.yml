@@ -344,6 +344,7 @@
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
+    - StarlightHardsuitFabricator # Starlight, testing
     dynamicPacks:
     - Robotics
     - BorgModules

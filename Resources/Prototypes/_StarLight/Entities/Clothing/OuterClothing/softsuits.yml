@@ -247,23 +247,26 @@
 # NanoTrasen EVA, spawns in IAA's briefcase
 - type: entity
   parent: [ClothingOuterEVASuitBase, BaseLawContraband]
-  id: ClothingOuterHardsuitNanoTrasenEVA
-  name: nanotrasen EVA suit
-  description: A very stylish EVA suit with the letters \"NT\" written on the back that will have every crew member fawning over you. Oh, it also folds.
+  id: ClothingOuterHardsuitNanoTrasenEmergencyEVA
+  name: nanotrasen emergency EVA suit
+  description: A very stylish, lightweight EVA suit with the letters \"NT\" written on the back that will have every crew member fawning over you. Oh, it also folds. Doesn't have good temperate insulation.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Suits/eva.rsi
+    sprite: Clothing/OuterClothing/Suits/eva_emergency.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/Suits/eva.rsi
+    sprite: Clothing/OuterClothing/Suits/eva_emergency.rsi
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
+  - type: TemperatureProtection
+    heatingCoefficient: 0.85
+    coolingCoefficient: 0.6
   - type: Armor
     modifiers:
       coefficients:
-        Heat: 0.9
-        Cold: 0.85
-        Shock: 0.9
+        Heat: 0.95
+        Cold: 0.95
+        Shock: 0.95
   - type: Tag
     tags:
     - SuitEVA

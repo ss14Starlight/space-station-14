@@ -28,6 +28,7 @@
   - ClothingOuterEVASuitFire
   - ClothingOuterEVASuitBio
 
+# Emag EVAs
 - type: latheRecipePack
   id: StarlightEmagEVAHelmets
   recipes:
@@ -42,6 +43,6 @@
   recipes:
   - ClothingOuterHardsuitAncientEVA
   - ClothingOuterHardsuitCentCommEVA
-  - ClothingOuterHardsuitNanoTrasenEVA
+  - ClothingOuterHardsuitNanoTrasenEmergencyEVA
   - ClothingOuterEVASuitSyndicate
   - ClothingOuterHardsuitSovietEVA

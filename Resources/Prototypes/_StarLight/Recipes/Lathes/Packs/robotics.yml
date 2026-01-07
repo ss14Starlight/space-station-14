@@ -188,3 +188,27 @@
     - VendingMachineBoozeSyndicateCircuitboard
     - VendingMachineSyndieDrobeCircuitboard
     - VendingMachineChemicalsSyndicateCircuitboard
+
+# Hardsuits!
+- type: latheRecipePack
+  id: StarlightHardsuitFabricator
+  recipes:
+    - ClothingOuterHardsuitGeneric
+    - ClothingOuterHardsuitAdvanced
+    #- ClothingOuterHardsuitFireGeneric
+    #- ClothingOuterHardsuitFireAdvanced
+    #- ClothingOuterHardsuitRadiationGeneric
+    #- ClothingOuterHardsuitRadiationAdvanced
+
+# Emag Hardsuits
+- type: latheRecipePack
+  id: StarlightEmagHardsuitFabricator
+  recipes:
+    - ClothingOuterHardsuitArmoredGeneric
+    - ClothingOuterHardsuitArmoredAdvanced
+
+# Helmets
+- type: latheRecipePack
+  id: StarlightHelmetFabricator
+  recipes:
+    - ClothingHeadHelmetFire
