@@ -135,9 +135,10 @@
 
 - type: entity
   id: VehicleSecway
-  parent: BaseVehicleRideableDamageable
+  parent: [BaseVehicleRideableDamageable, BaseSecurityContraband]
   name: Secway
   description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
+  suffix: NT
   components:
   - type: Vehicle
     acceleration: 2
@@ -146,6 +147,7 @@
     requireIgnition: true 
     baseState: vehicle
     brokenState: vehicle
+    sirenToggleAction: ActionVehicleToggleSecuritySiren
     startupTime: 2
     handsNeeded: 1
     riderWhitelist:
@@ -170,7 +172,7 @@
     westDrawDepth: OverMobs
   - type: Sprite
     drawdepth: OverMobs
-    sprite: Objects/Vehicles/secway.rsi
+    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
     layers:
     - state: vehicle
       map: ["enum.VehicleVisualLayers.Base"]
@@ -189,8 +191,15 @@
         layer:
         - MobLayer
   - type: MovementSpeedModifier
-    baseWalkSpeed: 6
-    baseSprintSpeed: 9
+    baseWalkSpeed: 2
+    baseSprintSpeed: 5.5 #4.5 is default, so this is 1 faster than normal run
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 10
+    softness: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
   - type: ItemSlots
     slots:
       key_slot:
@@ -227,7 +236,7 @@
 - type: entity
   id: VehicleSecwayBattery
   parent: VehicleSecway
-  suffix: Battery
+  suffix: Battery, NT
   components: 
     - type: ContainerFill
       containers:
@@ -237,7 +246,7 @@
 - type: entity
   id: VehicleSecwayBatterywithKeys
   parent: VehicleSecway
-  suffix: Battery, Keys
+  suffix: Battery, Keys, NT
   components: 
     - type: ContainerFill
       containers:
@@ -245,6 +254,66 @@
         - PowerCellMedium
         key_slot:
         - VehicleKeySecway
+
+- type: entity
+  id: VehicleSecwayBatterywithKeysS
+  parent: VehicleSecway
+  suffix: Battery, Keys, S
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/syndicatesecway.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecway
+
+- type: entity
+  id: VehicleSecwayTurboBatterywithKeys
+  parent: [VehicleSecway, BaseSecurityContraband]
+  name: Secway Turbo
+  suffix: Battery, Keys, NT
+  description: An upgraded Secway, it is better in every single aspect.
+  components:
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 6
+      baseSprintSpeed: 9
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - SecwayTurboKeys
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          # Swappable batteries until we can get secway recharge stations
+          #disableEject: true
+          #swap: false
+    - type: PowerCellDraw
+      drawRate: 1.5 # Eats through cells
+      enabled: false 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecwayTurbo
 
 - type: entity
   id: VehicleATV
@@ -354,6 +423,20 @@
         volume: -11
         pitch: 1.15
         variation: 0.10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+      - !type:EmptyContainersBehaviour
+        containers:
+        - storagebase
 
 - type: entity
   id: VehicleATVFueled
@@ -385,6 +468,89 @@
       containers:
         key_slot:
         - VehicleKeyATV
+
+- type: entity
+  id: VehicleATVFueledwithKeysNTSec
+  parent: [VehicleATV, BaseSecurityContraband]
+  name: STV
+  suffix: Fueled, Keys, NT
+  description: Law enforcement variant of the ATV, comes included with sirens to blare at Tiders. #Not actually included yet :P
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+    - type: ContainerContainer
+      containers:
+        key_slot: !type:ContainerSlot
+        storagebase: !type:Container
+          ents: []
+    - type: Vehicle
+      acceleration: 4
+      friction: 4.5
+      frictionNoInput: 4.5
+      requireIgnition: true
+      allowCrashing: true
+      crashingSpeed: 10 
+      baseState: vehicle
+      brokenState: vehicle
+      sirenToggleAction: ActionVehicleToggleSecuritySiren
+      startupTime: 2
+      startUp: 
+        path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+        params:
+          volume: -3
+      hornSound: 
+        path: /Audio/Effects/Vehicle/carhorn.ogg
+        params:
+          volume: -3
+      riderWhitelist:
+        components:
+          - HumanoidAppearance
+      soundHit:
+        collection: MetalThud
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: Storage
+      grid:
+      - 0,0,6,4
+      maxItemSize: Huge
+      openOnActivate: false
+      clickInsert: false
+    - type: UseDelay
+      delay: 0.5
+    - type: LockedStorage
+    - type: Lock
+      locked: true
+      showLockVerbs: false
+      unlockOnClick: false
+      popupMessage: false
+      showExamine: false
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - STVKeys
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeySTV
 
 - type: entity
   id: VehicleClownCar

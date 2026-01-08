@@ -2,15 +2,31 @@
   name: Secway Spawner
   id: SpawnVehicleSecway
   parent: MarkerBase
+  suffix: NT
   components:
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Vehicles/secway.rsi
-        state: keys
+      - sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - VehicleSecwayBatterywithKeys
+
+- type: entity
+  name: Secway Spawner
+  id: SpawnVehicleSecwayS
+  parent: MarkerBase
+  suffix: Syndicate
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/syndicatesecway.rsi
+        state: icon
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleSecwayBatterywithKeysS
 
 - type: entity
   name: ATV Spawner
@@ -25,6 +41,20 @@
   - type: ConditionalSpawner
     prototypes:
       - VehicleATVFueledwithKeys
+
+- type: entity
+  name: STV Spawner
+  id: SpawnVehicleSTV
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+        state: icon
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleATVFueledwithKeysNTSec
 
 - type: entity
   name: Wheelchair Spawner

@@ -1,0 +1,29 @@
+- type: entity
+  id: CrateSecuritySecway
+  parent: CrateSecgear
+  name: Secway Crate
+  description: A standard-issue secway for apprehending criminals, or a poor substitute for exercise. Probably both.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleSecwayBatterywithKeys
+
+- type: entity
+  id: CrateSecuritySecwayTurbo
+  parent: CrateSecgear
+  name: Secway Turbo Crate
+  description: A premium-grade secway for catching and shooting criminals at the same time.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleSecwayTurboBatterywithKeys
+
+- type: entity
+  id: CrateSecuritySTV
+  parent: CrateSecgear
+  name: STV Crate
+  description: A security-grade ATV for catching criminals and running over Tiders.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleATVFueledwithKeysNTSec

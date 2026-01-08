@@ -14,7 +14,6 @@
   - type: InstantAction
     event: !type:TurnKeysEvent
 
-
 - type: entity
   parent: BaseAction
   id: ActionVehicleHorn
@@ -30,6 +29,19 @@
     itemIconStyle: BigAction
   - type: InstantAction
     event: !type:HornActionEvent
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionVehicleToggleSecuritySiren
+  name: Toggle Security Siren
+  description: Toggles the security siren on and off.
+  components:
+  - type: Action
+    icon:
+      sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security.rsi
+      state: siren
+    useDelay: 1
+    itemIconStyle: BigAction
 
 - type: entity
   parent: BaseAction

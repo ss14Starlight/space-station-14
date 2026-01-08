@@ -150,5 +150,5 @@ public sealed partial class VehicleComponent : Component
     [DataField, AutoNetworkedField] public EntityUid? ToggleTrunkActionEntity;
 
     [DataField, AutoNetworkedField]
-    public EntProtoId? SirenToggleAction;
+    public EntProtoId? SirenToggleAction = "ActionVehicleToggleSecuritySiren";
 }

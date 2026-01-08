@@ -1,0 +1,29 @@
+- type: cargoProduct
+  id: SecuritySecway
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+    state: icon
+  product: CrateSecuritySecway
+  cost: 2000
+  category: Security
+  group: market
+
+- type: cargoProduct
+  id: SecuritySecwayTurbo
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
+    state: icon
+  product: CrateSecuritySecwayTurbo
+  cost: 8500 #Very strong tool in the right hands
+  category: Security
+  group: market
+
+- type: cargoProduct
+  id: SecuritySTV
+  icon:
+    sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+    state: icon
+  product: CrateSecuritySTV
+  cost: 5500 # Upcharge for more secure keys compared to buying civ
+  category: Security
+  group: market
