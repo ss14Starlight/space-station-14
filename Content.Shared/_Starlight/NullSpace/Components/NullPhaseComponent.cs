@@ -8,6 +8,8 @@ public sealed partial class NullPhaseComponent : Component
 {
     [DataField]
     public EntityUid? PhaseAction;
+
+    [DataField] public bool PreventLightFlicker;
 }
 
 public sealed partial class NullPhaseActionEvent : InstantActionEvent { }

@@ -56,11 +56,13 @@ public sealed class NullSpacePhaseSystem : EntitySystem
             return;
 
         EnsureComp<NullPhaseComponent>(args.Equipee);
+        if(component.PreventLightFlicker) EnsureComp<NullPhasePreventLightFlickerComponent>(args.Equipee);
     }
 
     private void OnUnequipped(EntityUid uid, NullPhaseComponent component, GotUnequippedEvent args)
     {
         RemComp<NullPhaseComponent>(args.Equipee);
+        if(component.PreventLightFlicker) RemComp<NullPhasePreventLightFlickerComponent>(args.Equipee);
     }
 
     private void OnPhaseAction(EntityUid uid, NullPhaseComponent component, NullPhaseActionEvent args)
@@ -118,10 +120,13 @@ public sealed class NullSpacePhaseSystem : EntitySystem
         {
             if (HasComp<ShadekinComponent>(uid))
             {
-                var lightQuery = _lookup.GetEntitiesInRange(uid, 5, flags: LookupFlags.StaticSundries)
-                    .Where(x => HasComp<PoweredLightComponent>(x));
-                foreach (var light in lightQuery)
-                    _ghost.DoGhostBooEvent(light);
+                if (!HasComp<NullPhasePreventLightFlickerComponent>(uid))
+                {
+                    var lightQuery = _lookup.GetEntitiesInRange(uid, 5, flags: LookupFlags.StaticSundries)
+                        .Where(x => HasComp<PoweredLightComponent>(x));
+                    foreach (var light in lightQuery)
+                        _ghost.DoGhostBooEvent(light);
+                }
 
                 var effect = SpawnAtPosition(ShadekinPhaseInEffect, Transform(uid).Coordinates);
                 Transform(effect).LocalRotation = Transform(uid).LocalRotation;
@@ -137,10 +142,13 @@ public sealed class NullSpacePhaseSystem : EntitySystem
 
             if (HasComp<ShadekinComponent>(uid))
             {
-                var lightQuery = _lookup.GetEntitiesInRange(uid, 5, flags: LookupFlags.StaticSundries)
-                    .Where(x => HasComp<PoweredLightComponent>(x));
-                foreach (var light in lightQuery)
-                    _ghost.DoGhostBooEvent(light);
+                if (!HasComp<NullPhasePreventLightFlickerComponent>(uid))
+                {
+                    var lightQuery = _lookup.GetEntitiesInRange(uid, 5, flags: LookupFlags.StaticSundries)
+                        .Where(x => HasComp<PoweredLightComponent>(x));
+                    foreach (var light in lightQuery)
+                        _ghost.DoGhostBooEvent(light);
+                }
 
                 var effect = SpawnAtPosition(ShadekinPhaseOutEffect, Transform(uid).Coordinates);
                 Transform(effect).LocalRotation = Transform(uid).LocalRotation;
