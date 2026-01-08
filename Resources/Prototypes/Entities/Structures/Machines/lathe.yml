@@ -200,7 +200,7 @@
     - NullSpaceDrainer # Starlight
     - ScienceBlueSpaceStatic # Starlight
     - ChemistryStatic
-    - GlassCompressionStatic # Starlight
+    - StarlightGlassCompressionStatic # Starlight
     dynamicPacks:
     - ScienceBlueSpace # Starlight
     - AdvancedTools
@@ -217,7 +217,8 @@
     - Instruments
     - Equipment
     - StarlightProtolatheLootable # Starlight start
-    - GlassCompressionDynamic
+    - StarlightGlassCompressionDynamic
+    - StarlightThreadSuperpositionDynamic
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -362,6 +363,7 @@
     - StarlightHardsuitFabricatorDynamic # Starlight
     - StarlightExoFabLootableBasic # Starlight
     - StarlightExoFabLootableAdvanced # Starlight
+    - StarlightThreadSuperpositionDynamic # Starlight, Durathread quick crafting
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightMechWeapon
@@ -587,12 +589,19 @@
     - Scarves
     - Carpets
     - Bedsheets
+    - StarlightHelmetsStatic # Starlight
+    - StarlightEVAPrinterStatic # Starlight
     dynamicPacks:
     - StarlightUniformPrinterLootable
+    - StarlightThreadSuperpositionDynamic # Starlight, Durathread quick-crafting
+    - StarlightHelmetsDynamic # Starlight
+    - StarlightEVAPrinterDynamic # Starlight
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ClothingCentComm
     - ClothingSyndie
+    - StarlightEmagEVAHelmets # Starlight
+    - StarlightEmagEVASuits # Starlight
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

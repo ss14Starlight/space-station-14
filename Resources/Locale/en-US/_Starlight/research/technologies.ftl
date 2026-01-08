@@ -30,3 +30,4 @@ research-technology-loot-only-3 = Loot Only Technologies Tier 3
 
 research-technology-bluespace-manipulation = Bluespace Manipulation
 research-technology-advanced-hardsuits = Advanced Hardsuits
+research-technology-advanced-eva-suits = Advanced EVA Suits

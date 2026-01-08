@@ -277,7 +277,7 @@
 # NT EVA Helmet, spawns in IAA's briefcase
 - type: entity
   parent: [ClothingHeadEVAHelmetBase, BaseLawContraband]
-  id: ClothingHeadHelmetNanoTrasenEVA
+  id: ClothingHeadHelmetNanoTrasenEmergencyEVA
   name: nanotrasen EVA helmet
   description: Support your company with pride while wearing this NanoTrasen commemorative EVA helmet.
   components:

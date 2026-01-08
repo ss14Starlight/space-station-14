@@ -22,4 +22,6 @@ lathe-category-hardsuits = Hardsuits
 
 # Uniforms
 lathe-category-evas = EVAs
+lathe-category-softsuits = Softsuits
 lathe-category-helmets = Helmets
+lathe-category-hoods = Hoods

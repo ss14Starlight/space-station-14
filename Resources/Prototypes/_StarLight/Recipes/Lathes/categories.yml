@@ -16,12 +16,20 @@
   name: lathe-category-hardsuits
 
 - type: latheCategory
+  id: Softsuits
+  name: lathe-category-softsuits
+
+- type: latheCategory
   id: EVAs
   name: lathe-category-evas
 
 - type: latheCategory
   id: Helmets
   name: lathe-category-helmets
+
+- type: latheCategory
+  id: Hoods
+  name: lathe-category-hoods
 
 # Doc Printer
 

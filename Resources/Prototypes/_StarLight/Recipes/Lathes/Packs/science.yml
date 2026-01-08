@@ -6,14 +6,19 @@
 
 # Glass Compression
 - type: latheRecipePack
-  id: GlassCompressionStatic
+  id: StarlightGlassCompressionStatic
   recipes:
   - SheetRGlass
 
 - type: latheRecipePack
-  id: GlassCompressionDynamic
+  id: StarlightGlassCompressionDynamic
   recipes:
   - SheetPGlass
   - SheetRPGlass
   - SheetUGlass
   - SheetRUGlass
+
+- type: latheRecipePack
+  id: StarlightThreadSuperpositionDynamic
+  recipes:
+  - LatheDurathread

@@ -6,23 +6,44 @@
   - ClothingOuterSuitRad
   - ClothingOuterSuitFire
   - ClothingOuterBioGeneral
+  - ClothingOuterBioCmo
+  - ClothingOuterBioJanitor
+  - ClothingOuterBioScientist
+  - ClothingOuterBioSecurity
+  - ClothingOuterBioVirology
   - ClothingHeadHatHoodBioGeneral
+  - ClothingHeadHatHoodBioCmo
+  - ClothingHeadHatHoodBioJanitor
+  - ClothingHeadHatHoodBioScientist
+  - ClothingHeadHatHoodBioSecurity
+  - ClothingHeadHatHoodBioVirology
 
+# Helmets
 - type: latheRecipePack
-  id: StarlightEVAHelmets
+  id: StarlightHelmetsStatic
   recipes:
   - ClothingHeadHelmetEVA
   - ClothingHeadHelmetEVALarge
-  - ClothingHeadHelmetEVAHeadOfPersonnel
-  - ClothingHeadHelmetEZA
-  - ClothingHeadHelmetEVAPro
+  - ClothingHeadHelmetFire
 
 - type: latheRecipePack
-  id: StarlightEVAPrinter
+  id: StarlightHelmetsDynamic
+  recipes:
+  - ClothingHeadHelmetEVAPro
+  - ClothingHeadHelmetEZA
+
+# HoP only
+- type: latheRecipePack
+  id: StarlightEVAPrinterStatic
   recipes:
   - ClothingOuterHardsuitEVA
   - ClothingOuterHardsuitEVAPrisoner
+  - ClothingHeadHelmetEVAHeadOfPersonnel
   - ClothingOuterHardsuitEVAHeadOfPersonel
+
+- type: latheRecipePack
+  id: StarlightEVAPrinterDynamic
+  recipes:
   - ClothingOuterHardsuitEZA
   - ClothingOuterEVASuitRad
   - ClothingOuterEVASuitFire
@@ -34,7 +55,7 @@
   recipes:
   - ClothingHeadHelmetAncient
   - ClothingHeadHelmetCentCommEVA
-  - ClothingHeadHelmetNanoTrasenEVA
+  - ClothingHeadHelmetNanoTrasenEmergencyEVA
   - ClothingHeadHelmetSyndicate
   - ClothingHeadHelmetSovietEVA
 

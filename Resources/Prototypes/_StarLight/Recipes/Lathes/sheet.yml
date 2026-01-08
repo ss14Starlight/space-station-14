@@ -82,3 +82,13 @@
     Glass: 100
     Uranium: 100
     Steel: 50
+
+- type: latheRecipe
+  id: LatheDurathread
+  printTicket: false
+  result: Durathread1
+  applyMaterialDiscount: false # No duplication
+  completetime: 0
+  materials:
+    Plastic: 100
+    Cloth: 100

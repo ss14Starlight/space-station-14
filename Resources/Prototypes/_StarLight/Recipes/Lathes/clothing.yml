@@ -1,0 +1,350 @@
+# A ton of stuff in the uniform printer
+
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: BaseEVARecipe
+  categories:
+  - EVAs
+  completetime: 7
+  materials:
+    Cloth: 500
+    Durathread: 300
+
+- type: latheRecipe
+  abstract: true
+  id: BaseSoftsuitRecipe
+  categories:
+  - Softsuits
+  completetime: 7
+  materials:
+    Cloth: 500
+    Durathread: 300
+
+#Biosuit Template
+- type: latheRecipe
+  abstract: true
+  id: BaseBiosuitRecipe
+  categories:
+  - Softsuits
+  completetime: 7
+  materials:
+    Cloth: 450
+    Durathread: 350
+
+- type: latheRecipe
+  abstract: true
+  id: BaseHelmetRecipe
+  categories:
+  - Helmets
+  completetime: 3
+  materials:
+    Steel: 100
+    Plastic: 100
+    Glass: 100
+    Cloth: 300
+
+- type: latheRecipe
+  abstract: true
+  id: BaseHoodRecipe
+  categories:
+  - Hoods
+  completetime: 3
+  materials:
+    Plastic: 150
+    Durathread: 100
+
+#Biohood Template
+- type: latheRecipe
+  abstract: true
+  id: BaseBiohoodRecipe
+  categories:
+  - Hoods
+  completetime: 3
+  materials:
+    Cloth: 100
+    Plastic: 150
+    Durathread: 150
+
+############### Let's begin.
+
+# Softsuits & their hoods (aka a ton of biosuits)
+
+#Rad Suit
+- type: latheRecipe
+  parent: BaseSoftsuitRecipe
+  id: ClothingOuterSuitRad
+  result: ClothingOuterSuitRad
+  materials:
+    Cloth: 550
+    Durathread: 250
+    Uranium: 50
+
+#Fire Suit
+- type: latheRecipe
+  parent: BaseSoftsuitRecipe
+  id: ClothingOuterSuitFire
+  result: ClothingOuterSuitFire
+  materials:
+    Cloth: 550
+    Durathread: 250
+    Plasma: 50
+
+# Biosuits and their variants w/ Hoods
+#General
+- type: latheRecipe
+  parent: BaseBiohoodRecipe
+  id: ClothingHeadHatHoodBioGeneral
+  result: ClothingHeadHatHoodBioGeneral
+
+- type: latheRecipe
+  parent: BaseBiosuitRecipe
+  id: ClothingOuterBioGeneral
+  result: ClothingOuterBioGeneral
+
+#CMO
+- type: latheRecipe
+  parent: BaseBiohoodRecipe
+  id: ClothingHeadHatHoodBioCmo
+  result: ClothingHeadHatHoodBioCmo
+  materials:
+    Cloth: 150
+    Plastic: 200
+    Durathread: 150
+  categories:
+  - Hoods
+  - Command
+  - Medical
+
+- type: latheRecipe
+  parent: BaseBiosuitRecipe
+  id: ClothingOuterBioCmo
+  result: ClothingOuterBioCmo
+  materials:
+    Cloth: 500
+    Durathread: 450
+  categories:
+  - Softsuits
+  - Command
+  - Medical
+
+#Janitor
+- type: latheRecipe
+  parent: BaseBiohoodRecipe
+  id: ClothingHeadHatHoodBioJanitor
+  result: ClothingHeadHatHoodBioJanitor
+  materials:
+    Cloth: 100
+    Plastic: 150
+    Durathread: 200
+  categories:
+  - Hoods
+  - Service
+
+- type: latheRecipe
+  parent: BaseBiosuitRecipe
+  id: ClothingOuterBioJanitor
+  result: ClothingOuterBioJanitor
+  materials:
+    Cloth: 450
+    Durathread: 400
+  categories:
+  - Softsuits
+  - Service
+
+#Science
+- type: latheRecipe
+  parent: BaseBiohoodRecipe
+  id: ClothingHeadHatHoodBioScientist
+  result: ClothingHeadHatHoodBioScientist
+  categories:
+  - Hoods
+  - Research
+
+- type: latheRecipe
+  parent: BaseBiosuitRecipe
+  id: ClothingOuterBioScientist
+  result: ClothingOuterBioScientist
+  categories:
+  - Softsuits
+  - Research
+
+#Security
+- type: latheRecipe
+  parent: BaseBiohoodRecipe
+  id: ClothingHeadHatHoodBioSecurity
+  result: ClothingHeadHatHoodBioSecurity
+  materials:
+    Cloth: 150
+    Plastic: 200
+    Durathread: 150
+    Plasma: 25
+  categories:
+  - Hoods
+  - Security
+
+- type: latheRecipe
+  parent: BaseBiosuitRecipe
+  id: ClothingOuterBioSecurity
+  result: ClothingOuterBioSecurity
+  materials:
+    Cloth: 500
+    Durathread: 450
+    Plasma: 50
+  categories:
+  - Softsuits
+  - Security
+
+#Virology
+- type: latheRecipe
+  parent: BaseBiohoodRecipe
+  id: ClothingHeadHatHoodBioVirology
+  result: ClothingHeadHatHoodBioVirology
+  - Hoods
+  - Medical
+
+- type: latheRecipe
+  parent: BaseBiosuitRecipe
+  id: ClothingOuterBioVirology
+  result: ClothingOuterBioVirology
+  categories:
+  - Softsuits
+  - Medical
+
+########## EVAs and Helmets below
+
+#Fire Helmet
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetFire
+  result: ClothingHeadHelmetFire
+
+
+# EVA suits with their helmets
+#Basic EVA
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetEVA
+  result: ClothingHeadHelmetEVA
+
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterHardsuitEVA
+  result: ClothingOuterHardsuitEVA
+
+#Large EVA Helmet
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetEVALarge
+  result: ClothingHeadHelmetEVALarge
+
+#Prisoner EVA
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterHardsuitEVAPrisoner
+  result: ClothingOuterHardsuitEVAPrisoner
+
+#HoP's EVA
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetEVAHeadOfPersonnel
+  result: ClothingHeadHelmetEVAHeadOfPersonnel
+
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterHardsuitEVAHeadOfPersonel
+  result: ClothingOuterHardsuitEVAHeadOfPersonel
+
+#EVA Pro - No suit, just a helmet
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetEVAPro
+  result: ClothingHeadHelmetEVAPro
+
+# EZA
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetEZA
+  result: ClothingHeadHelmetEZA
+
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterHardsuitEZA
+  result: ClothingOuterHardsuitEZA
+
+#Radiation EVA
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterEVASuitRad
+  result: ClothingOuterEVASuitRad
+
+#Fire EVA
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterEVASuitFire
+  result: ClothingOuterEVASuitFire
+
+#Bio EVA
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterEVASuitBio
+  result: ClothingOuterEVASuitBio
+
+
+# Emag EVAs
+#Ancient EVA
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetAncient
+  result: ClothingHeadHelmetAncient
+
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterHardsuitAncientEVA
+  result: ClothingOuterHardsuitAncientEVA
+
+#CentComm (Intern) EVA. Not actually used at CentComm in game, just something for the emag to show.
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetCentCommEVA
+  result: ClothingHeadHelmetCentCommEVA
+
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterHardsuitCentCommEVA
+  result: ClothingOuterHardsuitCentCommEVA
+
+#NT Emergency EVA. Spawns in IAAs' lockers.
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetNanoTrasenEmergencyEVA
+  result: ClothingHeadHelmetNanoTrasenEmergencyEVA
+
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterHardsuitNanoTrasenEmergencyEVA
+  result: ClothingOuterHardsuitNanoTrasenEmergencyEVA
+
+#Syndicate EVA
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetSyndicate
+  result: ClothingHeadHelmetSyndicate
+
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterEVASuitSyndicate
+  result: ClothingOuterEVASuitSyndicate
+
+#Soviet EVA. If a differentation is ever made between the Traitor/Nukie Emags and the Soviet Wooden Emag, only let this one show up with the Wooden Emag
+- type: latheRecipe
+  parent: BaseHelmetRecipe
+  id: ClothingHeadHelmetSovietEVA
+  result: ClothingHeadHelmetSovietEVA
+
+- type: latheRecipe
+  parent: BaseEVARecipe
+  id: ClothingOuterHardsuitSovietEVA
+  result: ClothingOuterHardsuitSovietEVA
+  
