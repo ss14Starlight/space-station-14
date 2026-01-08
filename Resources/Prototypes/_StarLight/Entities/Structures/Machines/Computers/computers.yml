@@ -470,7 +470,7 @@
         sprite: Structures/Machines/computers.rsi
         state: generic_keys
     - type: Computer
-      board: HologramConsoleCircuitboard
+      board: ComputerHologramCircuitboard
     - type: PointLight
       radius: 1.5
       energy: 1.6
