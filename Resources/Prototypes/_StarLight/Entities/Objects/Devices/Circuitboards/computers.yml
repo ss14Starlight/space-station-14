@@ -82,14 +82,14 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: HologramConsoleCircuitboard
+  id: ComputerHologramCircuitboard
   name: hologram console board
   description: A circuit board for a hologram console.
   components:
     - type: Sprite
       state: cpu_science
     - type: ComputerBoard
-      prototype: HologramConsole
+      prototype: ComputerHologram
     - type: StaticPrice
       price: 750
     - type: Tag

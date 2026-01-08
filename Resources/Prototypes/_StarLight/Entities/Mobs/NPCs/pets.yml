@@ -43,12 +43,13 @@
   - type: ReplacementAccent
     accent: silicon
   - type: Speech
-    speechSounds: Robotic
+    speechVerb: Robotic
+    speechSounds: Borg
   - type: Vocal
     sounds:
-      Male: UnisexSiliconRobotic
-      Female: UnisexSiliconRobotic
-      Unsexed: UnisexSiliconRobotic
+      Male: UnisexSilicon
+      Female: UnisexSilicon
+      Unsexed: UnisexSilicon
   - type: InputMover
   - type: MobMover
   - type: Clickable
@@ -99,7 +100,7 @@
     context: "human"
   - type: NpcFactionMember
     factions:
-    - Pet
+    - PetsNT
   - type: MovementSpeedModifier
     baseWalkSpeed : 4.5
     baseSprintSpeed : 3

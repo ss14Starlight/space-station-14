@@ -33,7 +33,7 @@
               acts: ["Destruction"]
             - !type:PlaySoundBehavior
               sound:
-                path: /Audio/Effects/metalbreak.ogg
+                path: /Audio/Effects/metalbreak1.ogg
             - !type:SpawnEntitiesBehavior
               spawn:
                 SheetSteel1:

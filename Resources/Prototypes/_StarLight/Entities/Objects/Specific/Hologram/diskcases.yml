@@ -33,7 +33,6 @@
       access: [["ResearchDirector"]]
     - type: ActivatableUI
       key: enum.HologramConsoleUiKey.Key
-      closeOnHandDeselect: false
       inHandsOnly: false
     - type: ActivatableUIRequiresAccess
     - type: HologramConsole

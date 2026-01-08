@@ -1,6 +1,5 @@
 - type: entity
   id: EffectHologramProjectionBeam
-  noSpawn: true
   components:
   - type: Sprite
     drawdepth: Effects

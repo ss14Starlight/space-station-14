@@ -17,7 +17,8 @@
   - type: ReplacementAccent
     accent: silicon
   - type: Speech
-    speechSounds: Robotic
+    speechVerb: Robotic
+    speechSounds: Borg
   - type: Input
     context: "human"
   - type: InputMover
@@ -171,21 +172,19 @@
     laws: Drone
   - type: Vocal
     sounds:
-      Male: UnisexSiliconRobotic
-      Female: UnisexSiliconRobotic
-      Unsexed: UnisexSiliconRobotic
+      Male: UnisexSilicon
+      Female: UnisexSilicon
+      Unsexed: UnisexSilicon
     screamId: Scream
     screamAction: ActionScream
 
 # Hardlight hologram 
 - type: entity
   name: Urist McLight
-  suffix: Hardlight
   parent: BaseHologramHumanoid
   id: MobHologramHardlight
   components:
   - type: Hologram
-    IsHardLight: true
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Hardlight
@@ -223,7 +222,6 @@
         layer:
           - MobLayer
   - type: CombatMode
-    disarm: null
   - type: CameraRecoil
   - type: NpcFactionMember
     factions:
