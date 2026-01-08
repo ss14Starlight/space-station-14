@@ -13,14 +13,22 @@
 
   IPCs are [color=#1e90ff]completely immune to biological hazards[/color], including:
   - Toxins and poisons
-  - Radiation exposure
-  - Suffocation and pressure damage
-  - Bleeding and diseases
+  - Radiation exposure (complete immunity)
+  - Disease and viruses
+  - Bleeding
   - Food and drink requirements
 
+  ### Resistances
+  IPCs have [color=#87ceeb]specialized mechanical features[/color] providing:
+  - [color=#87ceeb]50% resistance to pressure damage (space)[/color]
+  - [color=#87ceeb]Dexterous hands with built-in prying tools[/color]
+  - [color=#87ceeb]Perform actions 15% faster[/color]
+
   However, they have significant vulnerabilities:
-  - [color=#ffa500]Take 250% damage from Shock sources[/color]
-  - [color=#ff6347]Highly vulnerable to EMPs[/color]
+  - [color=#ff6347]Take 10% extra Brute damage (Blunt/Slash)[/color]
+  - [color=#ff6347]Take 10% extra Heat damage[/color]
+  - [color=#ffa500]Take 20% extra Pierce damage[/color]
+  - [color=#ff6347]Highly vulnerable to EMPs (stuns, shocks, and damages systems)[/color]
   - [color=#ffa500]Cannot heal naturally over time[/color]
   - Require constant power to function
 
@@ -67,18 +75,22 @@
   IPCs have distinct tactical strengths and weaknesses:
 
   [color=#90ee90]Advantages:[/color]
-  - Immune to biological warfare (toxins, gas, disease)
+  - Immune to biological warfare (toxins, gas, disease, viruses)
+  - Complete radiation immunity (ideal for nuclear operations)
+  - 50% resistance to space pressure (can survive depressurization longer)
   - No blood loss or bleeding wounds
+  - Dexterous hands with built-in prying tools for emergency access
+  - Perform actions 15% faster (construction, surgery, repairs, etc.)
   - Can function in extreme temperatures longer than organics
-  - Radiation immunity makes them ideal for nuclear operations
   - Don't need to eat, drink, or breathe
 
   [color=#ffa500]Disadvantages:[/color]
-  - Tasers and stun batons deal massive damage
-  - EMP grenades can disable systems or cause instant death
-  - Cannot heal without specific tools
+  - Take 10% extra damage from brute sources (impacts, blades)
+  - Take 10% extra damage from heat sources
+  - Vulnerable to piercing weapons (20% extra damage - circuits exposed)
+  - EMP/Ion grenades stun, shock, and damage systems severely
+  - Cannot heal without specific tools (welders/cable)
   - Power dependency creates vulnerability during extended operations
-  - Slower healing compared to medical treatment for organics
 
   ## Roleplay Notes
 

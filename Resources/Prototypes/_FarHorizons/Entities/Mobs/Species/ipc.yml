@@ -4,19 +4,28 @@
 # CODE: Original implementation by Starlight Chimes
 # EDITED: 
 #   - Added WelderHealing component for welding repairs
-#   - Adjusted Temperature thresholds/damage (specificHeat=600, heatDamageThreshold=400K, heatDamage=1.0)
-#   - Reduced Shock damage from 3.5x to 2x in Silicon modifier set
+#   - Added Temperature component for cold damage (electronics can freeze)
+#   - Added Barotrauma component with 50% pressure resistance
 #   - Removed BorgChassis to use IPCBattery system instead (avoids duplicate battery indicators)
+#   - Removed CyborgSparkEffect (no sparks from environmental damage)
 #   - Removed DamageVisuals (Silicon container has different damage types than Biological)
+#   - Added DoAfterSpeedModifier (15% faster actions)
+#   - Added Prying component (built-in crowbar arms)
+#   - Silicon damage modifiers: 10% brute weakness, 10% heat weakness, 20% pierce weakness
+#   - Radiation/Virus immune via damage container and ZombieImmune component
 
 - type: entity
-  parent:
-  - BaseMobSpecies
-  - MobFlammable
+  parent: BaseMobSpecies
   id: BaseMobIPC
   name: IPC
   abstract: true
   components:
+  - type: Flammable # _STARLIGHT: IPCs can catch fire like organics
+    fireSpread: true
+    canResistFire: true
+    damage:
+      types:
+        Heat: 1.5
   - type: IPC # _STARLIGHT: Marker component for IPC mechanics (sleep prevention, etc.)
   - type: HumanoidAppearance
     species: IPC
@@ -62,7 +71,6 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
         color: "#FFA500"
-  - type: CyborgSparkEffect # _STARLIGHT: Spark effects when hit by hitscan bullets (like borgs)
   - type: MeleeSound # _STARLIGHT: Metal clang sound when hit in melee (like borgs)
     soundTypes:
       Blunt:
@@ -119,6 +127,26 @@
     rebootTime: 3
   - type: WelderHealing # _STARLIGHT: Allow welders to repair IPC damage
   - type: ZombieImmune # _STARLIGHT: IPCs can't be infected by zombies (no biology)
+  # _STARLIGHT: IPCs immune to radiation (electronics shielded) - RadiationReceiver component not inherited
+  - type: Temperature # _STARLIGHT: IPCs can take cold damage (electronics can freeze/malfunction)
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
+    currentTemperature: 310.15
+    specificHeat: 42
+    coldDamage:
+      types:
+        Cold: 0.1 # Same as humans
+    heatDamage:
+      types:
+        Heat: 1.5 # Same as humans
+  - type: Barotrauma # _STARLIGHT: 50% resistance to pressure damage, no spark sounds
+    damage:
+      types:
+        Blunt: 0.425 # 0.85 * 0.5 = 0.425 (50% resistance applied)
+        Heat: 0.05 # 0.1 * 0.5 = 0.05 (50% resistance applied)
+  - type: PressureProtection # _STARLIGHT: 50% resistance to space pressure
+    highPressureMultiplier: 0.5 # 50% resistance to high pressure
+    lowPressureMultiplier: 0.5 # 50% resistance to low pressure (space)
   - type: Hunger
     baseDecayRate: 0
   - type: Thirst
@@ -129,26 +157,12 @@
     speechVerb: Robotic
   - type: Deathgasp # _STARLIGHT: Custom death message for IPCs
     prototype: IPCDeathgasp
-  - type: AtmosExposed # Allows IPCs to be affected by atmospheric temperature
-  - type: Temperature
-    heatDamageThreshold: 400 # 127°C - electronics can handle high temps before damage starts
-    coldDamageThreshold: 173 # -100°C - extreme cold damages circuits and batteries
-    currentTemperature: 293 # Room temperature (20°C / 68°F) - normal operating temperature
-    specificHeat: 600 # Higher thermal mass - metal chassis resists temperature changes
-    atmosTemperatureTransferEfficiency: 0.05 # _STARLIGHT: Much slower temp changes - metal chassis insulates well (gets cold ~50% slower, hot ~25% slower than humans)
-    coldDamage:
-      types:
-        Cold: 0.3 # Reduced cold damage
-    heatDamage:
-      types:
-        Heat: 1.0 # Reduced from 2.5 to prevent crit spam from heat damage
-  - type: TemperatureSpeed # Cold slows down movement (like other species)
-    thresholds:
-      293: 0.9
-      280: 0.8
-      260: 0.7
   - type: EyeProtection # _STARLIGHT: IPCs immune to welding flashes - protective optical filters
     protectionTime: 120 # 2 minutes protection (welders apply 10s blind = full immunity)
+  - type: Prying # _STARLIGHT: IPCs have hydraulic arms that work like crowbars for prying
+    speedModifier: 1.0
+  - type: DoAfterSpeedModifier # _STARLIGHT: IPCs perform actions 15% faster with dexterous hands
+    speedModifier: 1.15
   - type: LanguageKnowledge # _STARLIGHT: Added Machine language for IPC communication
     speaks:
     - GalacticCommon
