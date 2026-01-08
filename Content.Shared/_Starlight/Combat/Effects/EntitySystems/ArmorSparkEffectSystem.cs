@@ -30,6 +30,10 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         SubscribeLocalEvent<ArmorSparkEffectComponent, InventoryRelayedEvent<DamageModifyEvent>>(OnArmorDamageModify);
         SubscribeLocalEvent<CyborgSparkEffectComponent, DamageModifyEvent>(OnCyborgDamageModify);
         SubscribeLocalEvent<CyborgSparkEffectComponent, DamageChangedEvent>(OnCyborgDamageChanged); // _STARLIGHT: For melee hits
+        
+        // Clean up spawned sparks when components are removed
+        SubscribeLocalEvent<ArmorSparkEffectComponent, ComponentShutdown>(OnArmorSparkShutdown);
+        SubscribeLocalEvent<CyborgSparkEffectComponent, ComponentShutdown>(OnCyborgSparkShutdown);
     }
 
     private void OnArmorDamageModify(EntityUid uid, ArmorSparkEffectComponent component, InventoryRelayedEvent<DamageModifyEvent> args)
@@ -113,7 +117,7 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         // Spawn the effect at the wearer's position with offset
         var effectCoords = wearerTransform.Coordinates.Offset(offset);
         
-        SparkEffectAt(effectCoords, component.SparkEffectPrototype, component.RicochetSoundCollection);
+        SparkEffectAt(effectCoords, component.SparkEffectPrototype, component.RicochetSoundCollection, component);
     }
 
     private void OnCyborgDamageModify(EntityUid uid, CyborgSparkEffectComponent component, DamageModifyEvent args)
@@ -142,7 +146,7 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         // Spawn the effect at the cyborg's position with offset
         var effectCoords = cyborgTransform.Coordinates.Offset(offset);
         
-        SparkEffectAt(effectCoords, component.SparkEffectPrototype, component.RicochetSoundCollection);
+        SparkEffectAt(effectCoords, component.SparkEffectPrototype, component.RicochetSoundCollection, component);
     }
 
     // _STARLIGHT: Handle melee/general damage events for cyborgs
@@ -170,12 +174,43 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         SpawnCyborgSparkEffect(uid, component);
     }
 
-    private void SparkEffectAt(EntityCoordinates coordinates, string effectPrototype, string soundCollection)
+    private void SparkEffectAt(EntityCoordinates coordinates, string effectPrototype, string soundCollection, Component ownerComponent)
     {
-        SpawnSparkEffectAt(coordinates, effectPrototype);
+        var sparkUid = SpawnSparkEffectAt(coordinates, effectPrototype);
         PlayRicochetSound(coordinates, soundCollection);
+        
+        // Track the spawned spark for cleanup
+        if (sparkUid != null)
+        {
+            if (ownerComponent is ArmorSparkEffectComponent armorComp)
+                armorComp.SpawnedSparks.Add(sparkUid.Value);
+            else if (ownerComponent is CyborgSparkEffectComponent cyborgComp)
+                cyborgComp.SpawnedSparks.Add(sparkUid.Value);
+        }
     }
 
-    protected abstract void SpawnSparkEffectAt(EntityCoordinates coordinates, string effectPrototype);
+    private void OnArmorSparkShutdown(EntityUid uid, ArmorSparkEffectComponent component, ComponentShutdown args)
+    {
+        // Clean up any spawned spark entities when the armor is deleted
+        foreach (var spark in component.SpawnedSparks)
+        {
+            if (Exists(spark))
+                Del(spark);
+        }
+        component.SpawnedSparks.Clear();
+    }
+
+    private void OnCyborgSparkShutdown(EntityUid uid, CyborgSparkEffectComponent component, ComponentShutdown args)
+    {
+        // Clean up any spawned spark entities when the cyborg is deleted
+        foreach (var spark in component.SpawnedSparks)
+        {
+            if (Exists(spark))
+                Del(spark);
+        }
+        component.SpawnedSparks.Clear();
+    }
+
+    protected abstract EntityUid? SpawnSparkEffectAt(EntityCoordinates coordinates, string effectPrototype);
     protected abstract void PlayRicochetSound(EntityCoordinates coordinates, string soundCollection);
 }

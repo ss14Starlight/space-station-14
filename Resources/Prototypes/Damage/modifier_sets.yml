@@ -12,14 +12,15 @@
 
 # _STARLIGHT-Start: IPC damage modifiers - Balanced for mechanical beings
 # IPCs are robots with metal chassis but electronic internals
-# 10% brute/heat WEAKNESS, Pierce weakness 20%
+# 12% brute/heat WEAKNESS, 15% pierce weakness, 2x shock weakness
 - type: damageModifierSet
   id: Silicon
   coefficients:
-    Blunt: 1.10     # 10% weakness - joints/servos vulnerable to impacts
-    Slash: 1.10     # 10% weakness - metal can be cut/torn
-    Piercing: 1.20  # 20% weakness - circuits/wiring vulnerable to punctures
-    Heat: 1.10      # 10% weakness - electronics vulnerable to heat
+    Blunt: 1.12     # 12% weakness - joints/servos vulnerable to impacts
+    Slash: 1.12     # 12% weakness - metal can be cut/torn
+    Piercing: 1.15  # 15% weakness - circuits/wiring vulnerable to punctures
+    Heat: 1.12      # 12% weakness - electronics vulnerable to heat
+    Shock: 2.0      # 100% extra damage (2x) - electrical damage is dangerous to circuits
     Cold: 1.0       # No modifier - handled by temperature system
     Caustic: 1.0    # No modifier - metal resistant to acid
 #Starlight-End

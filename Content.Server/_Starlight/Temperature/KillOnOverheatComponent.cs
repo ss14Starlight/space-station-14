@@ -34,4 +34,11 @@ public sealed partial class KillOnOverheatComponent : Component
     /// </summary>
     [DataField]
     public LocId OverheatPopup = "ipc-overheat-popup";
+
+    /// <summary>
+    /// Tracks if the entity has already triggered overheat shutdown this cycle.
+    /// Reset when temperature drops below threshold or entity is healed.
+    /// </summary>
+    [DataField]
+    public bool HasOverheated = false;
 }

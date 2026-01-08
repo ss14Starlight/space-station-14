@@ -17,28 +17,33 @@
   - Disease and viruses
   - Bleeding
   - Food and drink requirements
+  - [color=#87ceeb]IPCs do not breathe any air[/color]
 
   ### Resistances
   IPCs have [color=#87ceeb]specialized mechanical features[/color] providing:
   - [color=#87ceeb]50% resistance to pressure damage (space)[/color]
-  - [color=#87ceeb]Dexterous hands with built-in prying tools[/color]
-  - [color=#87ceeb]Perform actions 15% faster[/color]
+  - [color=#87ceeb]Dexterous hands with built-in prying tools (like crowbars, NOT jaws of life)[/color]
+  - [color=#87ceeb]Perform actions 25% faster[/color] (does NOT apply when repairing yourself)
 
   However, they have significant vulnerabilities:
-  - [color=#ff6347]Take 10% extra Brute damage (Blunt/Slash)[/color]
-  - [color=#ff6347]Take 10% extra Heat damage[/color]
-  - [color=#ffa500]Take 20% extra Pierce damage[/color]
+  - [color=#ff6347]Take 12% extra Brute damage (Blunt/Slash)[/color]
+  - [color=#ff6347]Take 12% extra Heat damage[/color]
+  - [color=#ffa500]Take 15% extra Pierce damage[/color]
+  - [color=#ff6347]Take 200% damage from Shock sources (2x)[/color]
   - [color=#ff6347]Highly vulnerable to EMPs (stuns, shocks, and damages systems)[/color]
   - [color=#ffa500]Cannot heal naturally over time[/color]
+  - [color=#ffa500]Can overheat and shutdown if exposed to extreme temperatures[/color]
   - Require constant power to function
 
   ## Temperature Regulation
 
   IPCs have specialized thermal characteristics:
-  - [color=#87ceeb]Much slower temperature changes[/color] than organic species (takes longer to heat up or cool down)
-  - [color=#ffa500]Heat damage begins at 400K (127°C)[/color]
-  - [color=#1e90ff]Cold damage begins at 173K (-100°C)[/color]
-  - Can operate in more extreme temperature ranges before taking damage
+  - [color=#ffa500]NO active temperature regulation[/color] - unlike organics who warm themselves up, IPCs rely purely on environmental heat sources
+  - [color=#ff6347]Metal chassis conducts heat ~15% faster than organic tissue[/color] - temperature changes more rapidly
+  - [color=#87ceeb]Movement slowdown from cold identical to humans[/color]
+  - [color=#90ee90]CAN warm up in heated environments[/color] (warm rooms, fires, heaters)
+  - [color=#ffa500]Heat damage begins at 325K (52°C)[/color]
+  - [color=#1e90ff]Cold damage begins at 260K (-13°C)[/color]
 
   ## Repair and Maintenance
 
@@ -77,20 +82,26 @@
   [color=#90ee90]Advantages:[/color]
   - Immune to biological warfare (toxins, gas, disease, viruses)
   - Complete radiation immunity (ideal for nuclear operations)
+  - Complete poison immunity (no bloodstream)
   - 50% resistance to space pressure (can survive depressurization longer)
   - No blood loss or bleeding wounds
-  - Dexterous hands with built-in prying tools for emergency access
-  - Perform actions 15% faster (construction, surgery, repairs, etc.)
-  - Can function in extreme temperatures longer than organics
+  - Dexterous hands with built-in prying tools (crowbars, NOT jaws of life)
+  - Perform actions 25% faster (excludes self-healing with welders/cables)
+  - Can shutdown voluntarily or be rebooted after death
+  - Overheat protection (emergency shutdown prevents circuit death)
   - Don't need to eat, drink, or breathe
 
   [color=#ffa500]Disadvantages:[/color]
-  - Take 10% extra damage from brute sources (impacts, blades)
-  - Take 10% extra damage from heat sources
-  - Vulnerable to piercing weapons (20% extra damage - circuits exposed)
+  - Take 12% extra damage from brute sources (impacts, blades)
+  - Take 12% extra damage from heat sources
+  - Vulnerable to piercing weapons (15% extra damage - circuits exposed)
+  - Tasers and stun batons deal double damage (2x shock)
   - EMP/Ion grenades stun, shock, and damage systems severely
   - Cannot heal without specific tools (welders/cable)
+  - Self-healing is NOT faster (25% speed bonus doesn't apply)
+  - No active temperature regulation (can't warm up on their own)
   - Power dependency creates vulnerability during extended operations
+  - Overheat causes forced shutdown in extreme heat
 
   ## Roleplay Notes
 

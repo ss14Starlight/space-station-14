@@ -49,20 +49,34 @@ public sealed class KillOnOverheatSystem : EntitySystem
         var query = EntityQueryEnumerator<KillOnOverheatComponent, TemperatureComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var comp, out var temp, out var mob))
         {
-            // Performance optimization: skip entities that are already down
-            if (mob.CurrentState != MobState.Alive)
-                continue;
-
             // Check if temperature exceeds overheat threshold
-            if (temp.CurrentTemperature <= comp.OverheatThreshold)
-                continue;
+            if (temp.CurrentTemperature > comp.OverheatThreshold)
+            {
+                // Performance optimization: skip entities that are already down
+                if (mob.CurrentState != MobState.Alive)
+                    continue;
 
-            // Entity has overheated! Show popup and knock out
-            var msg = Loc.GetString(comp.OverheatPopup, ("name", Identity.Name(uid, EntityManager)));
-            _popup.PopupEntity(msg, uid, PopupType.LargeCaution);
-            
-            // Knock out the entity (not kill, so they can recover)
-            _mob.ChangeMobState(uid, MobState.Critical, mob);
+                // Entity has overheated! Show popup and knock out (only once)
+                if (!comp.HasOverheated)
+                {
+                    var msg = Loc.GetString(comp.OverheatPopup, ("name", Identity.Name(uid, EntityManager)));
+                    _popup.PopupEntity(msg, uid, PopupType.LargeCaution);
+                    
+                    // Knock out the entity (not kill, so they can recover)
+                    _mob.ChangeMobState(uid, MobState.Critical, mob);
+                    comp.HasOverheated = true;
+                    Dirty(uid, comp);
+                }
+            }
+            else
+            {
+                // Temperature has dropped below threshold, reset overheat flag
+                if (comp.HasOverheated)
+                {
+                    comp.HasOverheated = false;
+                    Dirty(uid, comp);
+                }
+            }
         }
     }
 }

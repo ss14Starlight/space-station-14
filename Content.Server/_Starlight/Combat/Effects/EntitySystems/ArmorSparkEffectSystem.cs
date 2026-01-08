@@ -13,10 +13,10 @@ public sealed class ArmorSparkEffectSystem : SharedArmorSparkEffectSystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
-    protected override void SpawnSparkEffectAt(EntityCoordinates coordinates, string effectPrototype)
+    protected override EntityUid? SpawnSparkEffectAt(EntityCoordinates coordinates, string effectPrototype)
     {
-        // Spawn the spark effect entity at the specified coordinates
-        Spawn(effectPrototype, coordinates);
+        // Spawn the spark effect entity at the specified coordinates and return its UID
+        return Spawn(effectPrototype, coordinates);
     }
 
     protected override void PlayRicochetSound(EntityCoordinates coordinates, string soundCollection)

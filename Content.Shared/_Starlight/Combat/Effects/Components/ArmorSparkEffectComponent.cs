@@ -26,4 +26,11 @@ public sealed partial class ArmorSparkEffectComponent : Component
     /// </summary>
     [DataField("maxOffset")]
     public float MaxOffset = 0.4f;
+
+    /// <summary>
+    /// List of currently active spark effect entities spawned by this armor.
+    /// Tracked so they can be cleaned up when the armor is deleted.
+    /// </summary>
+    [ViewVariables]
+    public List<EntityUid> SpawnedSparks = new();
 }

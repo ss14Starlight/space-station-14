@@ -1,18 +1,21 @@
-# _STARLIGHT: IPC (Integrated Positronic Chassis) Mob Entity
-# SPRITES: Far-Horizons-SS14 (used with permission - sprites only)
-# https://github.com/Far-Horizons-SS14/Far-Horizons-SS14
-# CODE: Original implementation by Starlight Chimes
-# EDITED: 
+# IPC (Integrated Positronic Chassis) Mob Entity
+# ORIGINAL: Far-Horizons-SS14 (KillerTheFlareon & princess-gurchi)
+# https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
+# PORTED TO STARLIGHT BY: Starlight Chimes
+# STARLIGHT CHANGES:
 #   - Added WelderHealing component for welding repairs
 #   - Added Temperature component for cold damage (electronics can freeze)
 #   - Added Barotrauma component with 50% pressure resistance
 #   - Removed BorgChassis to use IPCBattery system instead (avoids duplicate battery indicators)
 #   - Removed CyborgSparkEffect (no sparks from environmental damage)
 #   - Removed DamageVisuals (Silicon container has different damage types than Biological)
-#   - Added DoAfterSpeedModifier (15% faster actions)
-#   - Added Prying component (built-in crowbar arms)
-#   - Silicon damage modifiers: 10% brute weakness, 10% heat weakness, 20% pierce weakness
-#   - Radiation/Virus immune via damage container and ZombieImmune component
+#   - Added DoAfterSpeedModifier (25% faster actions, excluding self-healing)
+#   - Added Prying component (built-in crowbar arms, NOT jaws of life)
+#   - Silicon damage modifiers: 12% brute weakness, 12% heat weakness, 15% pierce weakness, 2x shock
+#   - Radiation/Poison/Virus immune via Silicon damage container and ZombieImmune component
+#   - Added AtmosExposed for temperature interaction
+#   - Can overheat and shutdown (KillOnOverheat system - modified to prevent spam)
+#   - Temperature conducts 15% faster (specificHeat: 36 vs humans' 42)
 
 - type: entity
   parent: BaseMobSpecies
@@ -128,17 +131,25 @@
   - type: WelderHealing # _STARLIGHT: Allow welders to repair IPC damage
   - type: ZombieImmune # _STARLIGHT: IPCs can't be infected by zombies (no biology)
   # _STARLIGHT: IPCs immune to radiation (electronics shielded) - RadiationReceiver component not inherited
+  - type: AtmosExposed # _STARLIGHT: IPCs need this to interact with atmosphere and change temperature
   - type: Temperature # _STARLIGHT: IPCs can take cold damage (electronics can freeze/malfunction)
-    heatDamageThreshold: 325
-    coldDamageThreshold: 260
-    currentTemperature: 310.15
-    specificHeat: 42
+    # NOTE: IPCs do NOT have ThermalRegulator component - they don't actively warm up like organics
+    # They gain/lose temperature purely from environmental sources (atmos, fire, etc.)
+    heatDamageThreshold: 325 # Same as humans
+    coldDamageThreshold: 260 # Same as humans
+    currentTemperature: 293 # Room temperature (20°C), cooler than humans
+    specificHeat: 42 # Same as humans
     coldDamage:
       types:
         Cold: 0.1 # Same as humans
     heatDamage:
       types:
         Heat: 1.5 # Same as humans
+  - type: TemperatureSpeed # _STARLIGHT: IPCs slow down when cold (same as humans)
+    thresholds:
+      293: 0.9 # 20°C: 10% slower
+      280: 0.8 # 7°C: 20% slower
+      260: 0.7 # -13°C: 30% slower
   - type: Barotrauma # _STARLIGHT: 50% resistance to pressure damage, no spark sounds
     damage:
       types:
@@ -161,8 +172,8 @@
     protectionTime: 120 # 2 minutes protection (welders apply 10s blind = full immunity)
   - type: Prying # _STARLIGHT: IPCs have hydraulic arms that work like crowbars for prying
     speedModifier: 1.0
-  - type: DoAfterSpeedModifier # _STARLIGHT: IPCs perform actions 15% faster with dexterous hands
-    speedModifier: 1.15
+  - type: DoAfterSpeedModifier # _STARLIGHT: IPCs perform actions 25% faster (excludes self-healing)
+    speedModifier: 1.25
   - type: LanguageKnowledge # _STARLIGHT: Added Machine language for IPC communication
     speaks:
     - GalacticCommon

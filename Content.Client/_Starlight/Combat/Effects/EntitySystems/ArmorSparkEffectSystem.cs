@@ -8,9 +8,10 @@ namespace Content.Client._Starlight.Combat.Effects.EntitySystems;
 /// </summary>
 public sealed class ArmorSparkEffectSystem : SharedArmorSparkEffectSystem
 {
-    protected override void SpawnSparkEffectAt(EntityCoordinates coordinates, string effectPrototype)
+    protected override EntityUid? SpawnSparkEffectAt(EntityCoordinates coordinates, string effectPrototype)
     {
         // Client doesn't spawn effects directly - handled by server
+        return null;
     }
 
     protected override void PlayRicochetSound(EntityCoordinates coordinates, string soundCollection)
