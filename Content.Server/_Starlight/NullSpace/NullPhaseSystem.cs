@@ -42,6 +42,7 @@ public sealed class NullSpacePhaseSystem : EntitySystem
     private void OnInit(EntityUid uid, NullPhaseComponent component, MapInitEvent args)
     {
         Toggle(uid, component, true);
+        if (component.PreventLightFlicker) EnsureComp<NullPhasePreventLightFlickerComponent>(uid);
     }
 
     public void OnShutdown(EntityUid uid, NullPhaseComponent component, ComponentShutdown args)
