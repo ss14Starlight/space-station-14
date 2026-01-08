@@ -86,7 +86,7 @@
 - type: latheRecipe
   id: LatheDurathread
   printTicket: false
-  result: Durathread1
+  result: MaterialDurathread1
   applyMaterialDiscount: false # No duplication
   completetime: 0
   materials:

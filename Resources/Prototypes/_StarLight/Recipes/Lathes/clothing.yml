@@ -201,6 +201,7 @@
   parent: BaseBiohoodRecipe
   id: ClothingHeadHatHoodBioVirology
   result: ClothingHeadHatHoodBioVirology
+  categories:
   - Hoods
   - Medical
 
@@ -246,11 +247,6 @@
   result: ClothingOuterHardsuitEVAPrisoner
 
 #HoP's EVA
-- type: latheRecipe
-  parent: BaseHelmetRecipe
-  id: ClothingHeadHelmetEVAHeadOfPersonnel
-  result: ClothingHeadHelmetEVAHeadOfPersonnel
-
 - type: latheRecipe
   parent: BaseEVARecipe
   id: ClothingOuterHardsuitEVAHeadOfPersonel
