@@ -16,12 +16,14 @@ public sealed partial class DevilComponent : Component
     public List<ProtoId<EntityPrototype>> BaseActions = new()
     {
         "ActionSummonDemonicContract",
+        "ActionSummonDevilPen",
         "ActionDamnationsMenu",
         "ActionDevilRejuvenate",
-        "ActionSummonDevilPen"
     };
 
-    
+    /// <summary>
+    /// What damnatios can the devil use in their contracts?
+    /// </summary>
     [DataField]
     public List<ProtoId<DamnationPrototype>> AvailableDamnations = new()
     {
@@ -37,7 +39,8 @@ public sealed partial class DevilComponent : Component
         "Health",
         "Time",
         "Organ",
-        "Power"
+        "Power",
+        "Friendship"
     };
 
     /// <summary>

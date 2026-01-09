@@ -219,3 +219,25 @@
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
+# devil familiar humanoid
+- type: entity
+  id: RandomHumanoidFriendshipFamiliar
+  name: friendship damnation familiar ghost role
+  components:
+  - type: RandomHumanoidSpawner
+    settings: FriendshipFamiliar
+
+- type: randomHumanoidSettings
+  id: FriendshipFamiliar
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-familiar-player-name
+      description: ghost-role-information-familiar-player-description
+      rules: ghost-role-information-familiar-rules
+      mindRoles:
+      - MindRoleGhostRoleFamiliar
+      raffle:
+        settings: short
+    - type: Loadout
+      roleLoadout: [ RoleSurvivalStandard ]
