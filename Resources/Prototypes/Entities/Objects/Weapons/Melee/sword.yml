@@ -2,7 +2,7 @@
 
 #BaseSword
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, StarlightLegendaryMeleeWeaponBase]
   id: BaseSword
   abstract: true
   components:
