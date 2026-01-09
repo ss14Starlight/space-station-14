@@ -86,8 +86,25 @@ public sealed class HologramConsoleSystem : EntitySystem
 
     public bool IsPortable(EntityUid uid) => HasComp<ItemComponent>(uid);
     public bool IsBatteryPowered(EntityUid uid) => HasComp<PowerCellSlotComponent>(uid);
-    private void OnUIOpened(EntityUid uid, HologramConsoleComponent component, BoundUIOpenedEvent args) =>
+    
+    private void OnUIOpened(EntityUid uid, HologramConsoleComponent component, BoundUIOpenedEvent args)
+    {
+        // Scan for server when UI opens (stationary mode)
+        if (!IsPortable(uid) && (component.LinkedServer == null || !TryComp<HologramServerComponent>(component.LinkedServer, out _)))
+        {
+            // Try to find nearby server
+            foreach (var nearby in _lookup.GetEntitiesInRange(Transform(uid).Coordinates, component.SearchRange))
+            {
+                if (TryComp<HologramServerComponent>(nearby, out _))
+                {
+                    component.LinkedServer = nearby;
+                    break;
+                }
+            }
+        }
+        
         UpdateUserInterface(uid, component);
+    }
 
     private void OnDiskInserted(EntityUid uid, HologramConsoleComponent component, EntInsertedIntoContainerMessage args) =>
         UpdateUserInterface(uid, component);
@@ -122,8 +139,64 @@ public sealed class HologramConsoleSystem : EntitySystem
             }
         }
 
-        // Check if console has a disk
-        if (component.DiskSlot != null && 
+        // Check for disks - try ItemSlots first (portable), then single slot (stationary)
+        var foundDisks = false;
+        
+        // Check ItemSlots component (for portable projectors)
+        if (TryComp<ItemSlotsComponent>(console, out var diskSlotsComp))
+        {
+            foreach (var slot in diskSlotsComp.Slots.Values)
+            {
+                // Only check slots that accept HoloDisk
+                if (slot.Whitelist?.Tags?.Contains("HoloDisk") ?? false)
+                {
+                    if (slot.Item != null && TryComp<HologramDiskComponent>(slot.Item, out var diskComp))
+                    {
+                        foundDisks = true;
+                        var disk = slot.Item.Value;
+                        
+                        // Check if disk has either a mind or a prototype
+                        if (diskComp.HoloMind != null || diskComp.HologramPrototype != null)
+                        {
+                            string hologramName;
+                            bool isActive;
+                            
+                            if (IsPortable(console))
+                            {
+                                // Portable mode: check if disk is in active holograms map
+                                isActive = component.ActiveHolograms.ContainsKey(disk);
+                                if (isActive) activeCount++;
+                            }
+                            else
+                            {
+                                // Stationary mode: check server's linked hologram
+                                isActive = server != null && 
+                                           TryComp<HologramServerComponent>(server.Value, out var srvComp) && 
+                                           srvComp.LinkedHologram != null;
+                            }
+                            
+                            if (diskComp.HoloMind != null && TryComp<MindComponent>(diskComp.HoloMind, out var mindComp))
+                            {
+                                hologramName = mindComp.CharacterName ?? "Unknown";
+                            }
+                            else if (diskComp.HologramPrototype != null)
+                            {
+                                hologramName = MetaData(disk).EntityName;
+                            }
+                            else
+                            {
+                                hologramName = "Unknown";
+                            }
+
+                            disks.Add(new DiskInfo(GetNetEntity(disk), hologramName, isActive));
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Fallback to single container slot (for stationary consoles)
+        if (!foundDisks && component.DiskSlot != null && 
             TryComp<ContainerManagerComponent>(console, out var containerManager) &&
             containerManager.Containers.TryGetValue(component.DiskSlot, out var container) &&
             container.ContainedEntities.Count > 0)
@@ -214,13 +287,21 @@ public sealed class HologramConsoleSystem : EntitySystem
 
         // Count actual disk slots from ItemSlots component
         var maxDiskSlots = 1; // Default to 1
+        var hasDiskSlots = false;
         if (TryComp<ItemSlotsComponent>(console, out var itemSlotsComp))
         {
             // Count slots that have HoloDisk whitelist
             maxDiskSlots = itemSlotsComp.Slots.Values.Count(slot => 
-                slot.Whitelist?.Tags?.Contains("HoloDisk") ?? false);
+                slot.Whitelist != null && slot.Whitelist.Tags != null && slot.Whitelist.Tags.Contains("HoloDisk"));
+            hasDiskSlots = maxDiskSlots > 0;
             if (maxDiskSlots == 0) maxDiskSlots = 1; // Fallback
         }
+
+        // Determine if disk panel should be shown
+        var showDiskPanel = component.ShowDiskPanel && hasDiskSlots;
+        
+        // Check if server is connected (for stationary mode)
+        var hasServer = IsPortable(console) || server != null;
 
         var state = new HologramConsoleBoundUserInterfaceState(
             disks, 
@@ -232,7 +313,12 @@ public sealed class HologramConsoleSystem : EntitySystem
             component.AllowHologramCarry,
             activeCount,
             component.MaxActiveHolograms,
-            maxDiskSlots);
+            maxDiskSlots,
+            component.ShowMap,
+            component.ShowProjectButton,
+            component.ShowRecallButton,
+            showDiskPanel,
+            hasServer);
             
         _ui.SetUiState(console, HologramConsoleUiKey.Key, state);
     }

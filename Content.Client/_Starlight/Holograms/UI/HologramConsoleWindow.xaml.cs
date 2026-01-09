@@ -131,10 +131,16 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
         SettingsPanel.Visible = isPortable;
         ModeLabel.Visible = isPortable;
         
+        // Control UI element visibility
+        MapPanel.Visible = state.ShowMap;
+        LeftPanel.Visible = state.ShowDiskPanel;
+        ProjectButton.Visible = state.ShowProjectButton;
+        RecallButton.Visible = state.ShowRecallButton;
+        ControlsPanel.Visible = state.ShowProjectButton || state.ShowRecallButton;
+        
         if (isPortable)
         {
             ModeLabel.Text = "PORTABLE MODE";
-            ControlsLabel.Text = "HOLOGRAM CONTROLS";
             
             // Update battery
             if (state.BatteryPercent.HasValue)
@@ -168,8 +174,31 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
         }
         else
         {
-            ControlsLabel.Text = "PROJECTION CONTROLS";
             PortableInfoLabel.Visible = false;
+            
+            // Check if server is connected
+            if (!state.HasServer)
+            {
+                // Show no server labels
+                NoServerDiskLabel.Visible = true;
+                NoServerMapLabel.Visible = true;
+                
+                // Clear UI elements
+                DisksList.RemoveAllChildren();
+                StatusLabel.Text = "No server connected";
+                StatusLabel.FontColorOverride = Color.FromHex("#ef4444");
+                ActiveIndicator.Text = "● OFFLINE";
+                ActiveIndicator.FontColorOverride = Color.FromHex("#ef4444");
+                ProjectButton.Disabled = true;
+                RecallButton.Disabled = true;
+                
+                // Don't set up NavMap
+                return;
+            }
+            
+            // Hide no server labels when server is connected
+            NoServerDiskLabel.Visible = false;
+            NoServerMapLabel.Visible = false;
             
             // Set up NavMap for stationary mode
             SetupNavMap(state);
@@ -180,7 +209,7 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
         {
             StatusLabel.Text = "No hologram disks loaded";
             StatusLabel.FontColorOverride = Color.FromHex("#ef4444");
-            ActiveIndicator.Text = "● NO DATA";
+            ActiveIndicator.Text = " ● NO DATA ";
             ActiveIndicator.FontColorOverride = Color.FromHex("#6b7280");
             DisksList.RemoveAllChildren();
             ProjectButton.Disabled = true;
@@ -215,7 +244,7 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
         DiskCountLabel.Text = $"{state.Disks.Count} / {state.MaxDiskSlots}";
 
         // Update projector count and map (both modes)
-        ProjectorCountLabel.Text = state.Projectors.Count > 0 ? $"{state.Projectors.Count} Projectors" : "No Projectors";
+        ProjectorCountLabel.Text = state.Projectors.Count > 0 ? $" {state.Projectors.Count} Projectors " : " No Projectors ";
         
         // Set up NavMap
         SetupNavMap(state);

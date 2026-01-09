@@ -5,7 +5,6 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Storage.Components;
 using Content.Shared.Database;
 using Content.Shared._Starlight.Holograms.Components;
-using Robust.Shared.Configuration;
 using Content.Shared.Whitelist;
 using Content.Shared.Movement.Pulling.Components;
 
@@ -13,8 +12,6 @@ namespace Content.Shared._Starlight.Holograms;
 
 public partial class SharedHologramSystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-
     private void InitializeProjected() =>
         SubscribeLocalEvent<HologramComponent, EntityStorageInsertedIntoAttemptEvent>(OnStoreInContainerAttempt);
 

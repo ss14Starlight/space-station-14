@@ -27,12 +27,11 @@
       maxItemSize: Large
       grid:
         - 0,0,3,2
-    # - type: Lock
-    #   locked: true
     - type: AccessReader
       access: [["ResearchDirector"]]
     - type: ActivatableUI
-      key: enum.HologramConsoleUiKey.Key
+      key: enum.HologramConsoleUiKey.Key 
+      # I gotta split this into a second UI, making both work with if statements is killing me
       inHandsOnly: false
     - type: ActivatableUIRequiresAccess
     - type: HologramConsole
@@ -41,6 +40,7 @@
       powerDrawPerHologram: 50
       diskSlot: hologram_disk_slot
       searchRange: 0 # Don't search for servers in portable mode
+      showMap: false
     - type: HologramProjector
       projectorRange: 5.0
     - type: ContainerContainer

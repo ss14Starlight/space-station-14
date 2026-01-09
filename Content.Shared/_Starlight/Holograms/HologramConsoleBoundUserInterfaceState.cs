@@ -18,6 +18,11 @@ public sealed class HologramConsoleBoundUserInterfaceState : BoundUserInterfaceS
     public int ActiveCount { get; init; }
     public int MaxActive { get; init; }
     public int MaxDiskSlots { get; init; }
+    public bool ShowMap { get; init; }
+    public bool ShowProjectButton { get; init; }
+    public bool ShowRecallButton { get; init; }
+    public bool ShowDiskPanel { get; init; }
+    public bool HasServer { get; init; }
     
     public HologramConsoleBoundUserInterfaceState(
         List<DiskInfo> disks, 
@@ -29,7 +34,12 @@ public sealed class HologramConsoleBoundUserInterfaceState : BoundUserInterfaceS
         bool allowCarry = false,
         int activeCount = 0,
         int maxActive = 0,
-        int maxDiskSlots = 8)
+        int maxDiskSlots = 8,
+        bool showMap = true,
+        bool showProjectButton = true,
+        bool showRecallButton = true,
+        bool showDiskPanel = true,
+        bool hasServer = true)
     {
         Disks = disks;
         ActiveHologram = activeHologram;
@@ -41,6 +51,11 @@ public sealed class HologramConsoleBoundUserInterfaceState : BoundUserInterfaceS
         ActiveCount = activeCount;
         MaxActive = maxActive;
         MaxDiskSlots = maxDiskSlots;
+        ShowMap = showMap;
+        ShowProjectButton = showProjectButton;
+        ShowRecallButton = showRecallButton;
+        ShowDiskPanel = showDiskPanel;
+        HasServer = hasServer;
     }
 }
 

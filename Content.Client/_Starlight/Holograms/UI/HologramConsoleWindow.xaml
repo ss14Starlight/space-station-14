@@ -3,9 +3,7 @@
                xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                xmlns:ui="clr-namespace:Content.Client._Starlight.Holograms.UI"
                Title="{Loc 'hologram-console-window-title'}"
-               Resizable="False"
-               MinSize="1400 850"
-               SetSize="1400 850">
+               Resizable="False">
     <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="8">
         <!-- Header -->
         <PanelContainer StyleClasses="AngleRect">
@@ -76,23 +74,30 @@
         <!-- Main Content -->
         <BoxContainer Orientation="Horizontal" SeparationOverride="8">
             <!-- Left Panel - Disks -->
-            <BoxContainer Orientation="Vertical" SetWidth="340" SeparationOverride="6">
+            <BoxContainer Name="LeftPanel" Orientation="Vertical" SetWidth="420" SeparationOverride="6">
                 <BoxContainer Orientation="Horizontal">
                     <Label Text="HOLOGRAM DATABASE" StyleClasses="LabelHeading">
                         <Label.FontColorOverride>#a78bfa</Label.FontColorOverride>
                     </Label>
-                    <Label Name="DiskCountLabel" Text="0 / 8" StyleClasses="LabelSmall">
+                    <Label Name="DiskCountLabel" Text=" 0 / 8 " StyleClasses="LabelSmall">
                         <Label.FontColorOverride>#9ca3af</Label.FontColorOverride>
                     </Label>
                 </BoxContainer>
                 
-                <PanelContainer SetHeight="580" StyleClasses="AngleRect">
+                <PanelContainer VerticalExpand="True" HorizontalExpand="True" StyleClasses="AngleRect">
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BackgroundColor="#111827"/>
                     </PanelContainer.PanelOverride>
                     <ScrollContainer>
                         <BoxContainer Name="DisksList" Orientation="Vertical" Margin="6" SeparationOverride="4"/>
                     </ScrollContainer>
+                    <Label Name="NoServerDiskLabel"
+                           Text="NO SERVER CONNECTED"
+                           StyleClasses="LabelHeading"
+                           FontColorOverride="#ef4444"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Visible="False"/>
                 </PanelContainer>
 
                 <!-- Settings -->
@@ -112,10 +117,26 @@
                         </BoxContainer>
                     </BoxContainer>
                 </PanelContainer>
+
+                <!-- Controls -->
+                <PanelContainer Name="ControlsPanel" StyleClasses="AngleRect">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#0f172a"/>
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+                        <BoxContainer Orientation="Vertical" SeparationOverride="8">
+                            <Button Name="ProjectButton" Text="▶ PROJECT" Disabled="True" MinSize="300 50" StyleClasses="OpenBoth" />
+                            <Button Name="RecallButton" Text="◼ RECALL" Disabled="True" MinSize="300 50" StyleClasses="OpenBoth" />
+                        </BoxContainer>
+                        <Label Name="PortableInfoLabel" Text="" StyleClasses="LabelSmall" Visible="False" Margin="4 0 0 0">
+                            <Label.FontColorOverride>#9ca3af</Label.FontColorOverride>
+                        </Label>
+                    </BoxContainer>
+                </PanelContainer>
             </BoxContainer>
 
             <!-- Right Panel - Map -->
-            <BoxContainer Orientation="Vertical" SetWidth="990" SeparationOverride="6">
+            <BoxContainer Name="MapPanel" Orientation="Vertical" SeparationOverride="6">
                 <!-- Map -->
                 <BoxContainer Orientation="Vertical" SeparationOverride="6">
                     <BoxContainer Orientation="Horizontal">
@@ -127,32 +148,20 @@
                         </Label>
                     </BoxContainer>
                     
-                    <PanelContainer SetHeight="730" StyleClasses="AngleRect">
+                    <PanelContainer StyleClasses="AngleRect">
                         <PanelContainer.PanelOverride>
                             <gfx:StyleBoxFlat BackgroundColor="#0a0e1a"/>
                         </PanelContainer.PanelOverride>
-                        <ui:HologramConsoleNavMapControl Name="NavMap" HorizontalExpand="True" VerticalExpand="True"/>
+                        <ui:HologramConsoleNavMapControl Name="NavMap"/>
+                        <Label Name="NoServerMapLabel"
+                               Text="NO SERVER CONNECTED"
+                               StyleClasses="LabelHeading"
+                               FontColorOverride="#ef4444"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Visible="False"/>
                     </PanelContainer>
                 </BoxContainer>
-
-                <!-- Controls -->
-                <PanelContainer StyleClasses="AngleRect">
-                    <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="#0f172a"/>
-                    </PanelContainer.PanelOverride>
-                    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
-                        <Label Name="ControlsLabel" Text="PROJECTION CONTROLS" StyleClasses="LabelSmall">
-                            <Label.FontColorOverride>#cbd5e1</Label.FontColorOverride>
-                        </Label>
-                        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
-                            <Button Name="ProjectButton" Text="▶ PROJECT" Disabled="True" MinSize="300 50" StyleClasses="OpenBoth" />
-                            <Button Name="RecallButton" Text="◼ RECALL" Disabled="True" MinSize="300 50" StyleClasses="OpenBoth" />
-                        </BoxContainer>
-                        <Label Name="PortableInfoLabel" Text="" StyleClasses="LabelSmall" Visible="False" Margin="4 0 0 0">
-                            <Label.FontColorOverride>#9ca3af</Label.FontColorOverride>
-                        </Label>
-                    </BoxContainer>
-                </PanelContainer>
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>
