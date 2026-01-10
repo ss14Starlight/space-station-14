@@ -51,7 +51,7 @@
       speaks:
         - GalacticCommon
         - SolCommon
-        - Chitten
+        - Chittin
         - Sylvan
         - Moffic
         - Mothroach
@@ -63,7 +63,7 @@
       understands:
         - GalacticCommon
         - SolCommon
-        - Chitten
+        - Chittin
         - Sylvan
         - Moffic
         - Mothroach
