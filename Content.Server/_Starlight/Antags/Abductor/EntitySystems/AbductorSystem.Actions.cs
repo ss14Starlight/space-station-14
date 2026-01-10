@@ -23,7 +23,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
     [Dependency] private readonly InventorySystem _inv = default!;
-    [Dependency] private readonly StarlightActionsSystem _starlightActions = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly RemoteEyeSystem _remoteEye = default!;
 

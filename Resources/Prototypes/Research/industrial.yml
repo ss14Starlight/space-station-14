@@ -201,6 +201,8 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  technologyPrerequisites:
+  - BluespaceManipulation
 
 - type: technology
   id: OptimizedMicrogalvanism

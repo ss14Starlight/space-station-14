@@ -420,7 +420,7 @@
   8. Sedition, Conspiracy, Treason, Enemy of Corporation
   
   ## Minor Crimes
-  Those who commit a minor crime should be issued a warning for their first offense, however repeat offenses are cumulative and should result in jail time of up to 10 minutes per minor crime committed. 
+  Those who commit a minor crime should be issued a warning for their first offense, however repeat offenses are cumulative and should result in jail time of up to 5 minutes per minor crime committed. 
   <Table Columns="2">
     <ColorBox>
       <Box>
@@ -505,7 +505,7 @@
   </Table>
 
   ## Moderate Crimes
-  Those who commit a moderate crime should receive up to a 10 minute sentence per moderate crime committed.
+  Those who commit a moderate crime should receive up to a 5 minute sentence per moderate crime committed.
   <Table Columns="2">
     <ColorBox>
       <Box>
@@ -590,7 +590,7 @@
   </Table>
 
   ## Major Crimes
-  Those who commit a major crime should receive up to 20 minutes of jail time per major crime committed. Major assault and manslaughter are linked crimes and do not stack against a suspect.
+  Those who commit a major crime should receive up to 10 minutes of jail time per major crime committed. Major assault and manslaughter are linked crimes and do not stack against a suspect.
   <Table Columns="2">
     <ColorBox>
       <Box>
@@ -735,7 +735,7 @@
   </Table>
 
   ## Extreme Crimes
-  Those who commit an extreme crime may receive up to 40 minutes of jail time per extreme crime committed. Particularly violent offenders may be placed in perma. Attempted murder and murder are linked crimes and cannot be stacked together.
+  Those who commit an extreme crime may receive up to 20 minutes of jail time per extreme crime committed. Particularly violent offenders may be placed in perma. Attempted murder and murder are linked crimes and cannot be stacked together.
   <Table Columns="2">
     <ColorBox>
       <Box>
@@ -863,7 +863,7 @@
     </ColorBox>
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To unlawfully execute an individual without authorization or outside of Standard Operating Procedure. This law is distinct from murder, and applies primarily to Security, Command, and Central Command forces such as Emergency Response
+        To unlawfully execute an individual without authorization or outside of Standard Operating Procedure. This law is distinct from murder, and applies primarily to Security, Command, and Central Command forces such as Emergency Response Teams.
       </Box>
     </ColorBox>
     <ColorBox Color="#4d2e2e">

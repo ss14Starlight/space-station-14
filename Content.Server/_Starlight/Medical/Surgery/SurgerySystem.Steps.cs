@@ -15,6 +15,7 @@ using Microsoft.CodeAnalysis;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Components;
 
 
 namespace Content.Server.Starlight.Medical.Surgery;
@@ -26,8 +27,7 @@ namespace Content.Server.Starlight.Medical.Surgery;
 //However, I don’t want to touch the official systems, so I need to come up with extensions for them.
 public sealed partial class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly IComponentFactory _compFactory = default!;
+    [Dependency] private readonly IGameTiming Timing = default!;
     [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly StarlightEntitySystem _entity = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
@@ -159,7 +159,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
 
-        if (!HasComp<PainNumbnessComponent>(args.Body) && !HasComp<SleepingComponent>(args.Body))
+        if (!HasComp<PainNumbnessStatusEffectComponent>(args.Body) && !HasComp<SleepingComponent>(args.Body))
             _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
         else
             _sleeping.TryWaking(args.Body); // If the patient sleeping without n2o or reagents, wake them up.

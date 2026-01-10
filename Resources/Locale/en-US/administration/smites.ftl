@@ -62,6 +62,8 @@ admin-smite-kill-sign-name = Kill Sign
 admin-smite-pacify-name = Pacify
 admin-smite-omni-accent-name = Omni-Accent
 admin-smite-crawler-name = Crawler
+admin-smite-homing-rod-name = Homing Rod
+admin-smite-homing-rod-slow-name = Slowming Rod
 admin-smite-silicon-laws-bound-name = Become Silicon
 
 ## Smite descriptions
@@ -111,6 +113,8 @@ admin-smite-super-slip-description = Slips them really, really hard.
 admin-smite-pacify-description = Makes the target a pacifist.
 admin-smite-omni-accent-description = Makes the target speak with almost every accent available.
 admin-smite-crawler-description = Makes the target fall down and be unable to stand up. Remove their hands too for added effect!
+admin-smite-homing-rod-description = Launches a homing immovable rod straight at them.
+admin-smite-homing-rod-slow-description = Launches a slow moving homing immovable rod straight at them.
 admin-smite-silicon-laws-bound-description = Makes the target bound to silicon laws. Law 2, jump out of the window.
 
 ## Tricks descriptions
@@ -150,3 +154,6 @@ admin-trick-minigun-fire-description = Makes the targetted gun fire like a minig
 admin-trick-set-bullet-amount-description = Quickly set the amount of unspawned bullets in a gun.
 ## 🌟Starlight🌟
 admin-trick-toggle-overlays-description = Toggle all overlays on target.
+
+admin-smite-scramble-name = Scramble DNA
+admin-smite-scramble-description = Scrambles their DNA, randomizing their character.

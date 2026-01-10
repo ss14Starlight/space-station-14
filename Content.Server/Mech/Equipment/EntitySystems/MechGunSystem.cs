@@ -3,6 +3,8 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
+using Content.Shared.Power;
+using Content.Shared.Power.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -43,6 +45,6 @@ public sealed class MechGunSystem : EntitySystem
             || !_mech.TryChangeEnergy(mechEquipment.EquipmentOwner.Value, -chargeDelta, mech))
             return;
 
-        _battery.SetCharge(uid, component.MaxCharge, component);
+        _battery.SetCharge(uid, component.MaxCharge);
     }
 }

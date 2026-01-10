@@ -35,7 +35,7 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
             return;
 
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
+        if (_emag.CheckFlag(uid, EmagType.Interaction, args.EmagComponent)) // Starlight edit | allow bypass if differing factions
             return;
 
         // prevent self-emagging

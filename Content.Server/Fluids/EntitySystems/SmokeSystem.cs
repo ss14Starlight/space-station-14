@@ -20,8 +20,9 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server.Body.Components; // Starlight
 using System.Linq;
-
+using Content.Shared.EntityEffects.Effects.Solution;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Server.Fluids.EntitySystems;
@@ -269,6 +270,9 @@ public sealed class SmokeSystem : EntitySystem
 
         var blockIngestion = _internals.AreInternalsWorking(entity);
 
+        if (!HasComp<RespiratorComponent>(entity)) // Starlight - Shadekin does not breathe and "AreInternalsWorking" does not check for that.
+            blockIngestion = true;
+
         var cloneSolution = solution.Clone();
         var availableTransfer = FixedPoint2.Min(cloneSolution.Volume, component.TransferRate);
         var transferAmount = FixedPoint2.Min(availableTransfer, chemSolution.AvailableVolume);
@@ -278,11 +282,10 @@ public sealed class SmokeSystem : EntitySystem
         {
             if (reagentQuantity.Quantity == FixedPoint2.Zero)
                 continue;
-            var reagentProto = _prototype.Index<ReagentPrototype>(reagentQuantity.Reagent.Prototype);
 
-            _reactive.ReactionEntity(entity, ReactionMethod.Touch, reagentProto, reagentQuantity, transferSolution);
+            _reactive.ReactionEntity(entity, ReactionMethod.Touch, reagentQuantity);
             if (!blockIngestion)
-                _reactive.ReactionEntity(entity, ReactionMethod.Ingestion, reagentProto, reagentQuantity, transferSolution);
+                _reactive.ReactionEntity(entity, ReactionMethod.Ingestion, reagentQuantity);
         }
 
         if (blockIngestion)

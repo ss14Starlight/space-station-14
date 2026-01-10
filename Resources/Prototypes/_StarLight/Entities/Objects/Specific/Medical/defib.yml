@@ -1,6 +1,6 @@
 - type: entity
   id: DefibrillatorBrigmedical
-  parent: [ BaseDefibrillator, PowerCellSlotTinyItem ]
+  parent: [ BaseDefibrillator, PowerCellSlotMediumItem ]
   name: brigmedic defibrillator
   description: Hand-held device that can save lives, and act as a weapon in a pinch.
   components:
@@ -23,7 +23,7 @@
     size: Normal
   - type: ToggleCellDraw
   - type: PowerCellDraw
-    useRate: 50
+    useCharge: 50
   - type: Defibrillator
     zapHeal:
       types:
@@ -81,4 +81,60 @@
       types:
         Blunt: 8
         Shock: 16
+
+
+- type: entity
+  id: DefibrillatorParamed
+  parent: Defibrillator
+  name: paramedic defibrillator
+  description: A more compact defibrilator for paramedics to carry, with a small storage compartment for medical supplies and spare cells
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/defibpara.rsi
+    layers:
+      - state: icon
+      - state: screen
+        map: [ "enum.ToggleableVisuals.Layer" ]
+        visible: false
+        shader: unshaded
+      - state: ready
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: unshaded
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 4
+  - type: DoAfter
+  - type: UseDelay
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Items/Defib/defib_zap.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Items/Defib/defib_zap.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedDamage:
+      types:
+        Blunt: 4
+        Shock: 5
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      cell_slot: !type:ContainerSlot { }
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,2
 

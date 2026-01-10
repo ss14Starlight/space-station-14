@@ -7,3 +7,8 @@ stack-sepia-tile = sepia tile
 stack-terracotta-tile = terracotta tile
 stack-terracotta-diagonal-tile = diagonal terracotta tile
 stack-terracotta-small-tile = small terracotta tile
+
+stack-bluespacecrystal = {$amount ->
+    [1] bluespace
+    *[other] bluespaces
+}

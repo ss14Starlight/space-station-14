@@ -1,107 +1,113 @@
 - type: lobbyBackground
   id: Positivity
   background: /Textures/_Starlight/LobbyScreens/positivity.webp
-  title: Positivity
-  artist: Doner
+  title: lobby-state-background-positivity-title
+  artist: lobby-state-background-positivity-artist
 
 - type: lobbyBackground
   id: IPCsaster
   background: /Textures/_Starlight/LobbyScreens/IPCsaster.webp
-  title: IPC-saster
-  artist: TheAnaRina
+  title: lobby-state-background-ipcsaster-title
+  artist: lobby-state-background-ipcsaster-artist
 
 - type: lobbyBackground
   id: Reflection
   background: /Textures/_Starlight/LobbyScreens/reflection.webp
-  title: Reflection
-  artist: Conflee
+  title: lobby-state-background-reflection-title
+  artist: lobby-state-background-reflection-artist
 
 - type: lobbyBackground
   id: TriesteNT
   background: /Textures/_Starlight/LobbyScreens/trieste-nt.webp
-  title: Trieste NT
-  artist: Conflee
+  title: lobby-state-background-triestent-title
+  artist: lobby-state-background-triestent-artist
 
 - type: lobbyBackground
   id: LingKiller
   background: /Textures/_Starlight/LobbyScreens/thelingkiller.webp
-  title: The Ling Killer
-  artist: voy0099
+  title: lobby-state-background-lingkiller-title
+  artist: lobby-state-background-lingkiller-artist
 
 - type: lobbyBackground
   id: NTOsprey
   background: /Textures/_Starlight/LobbyScreens/ntosprey.webp
-  title: NT Osprey
-  artist: ItsAbby11
+  title: lobby-state-background-ntosprey-title
+  artist: lobby-state-background-ntosprey-artist
 
 - type: lobbyBackground
   id: FriendsForever
   background: /Textures/_Starlight/LobbyScreens/friendsforever.webp
-  title: Friends Forever
-  artist: ItsAbby11
+  title: lobby-state-background-friendsforever-title
+  artist: lobby-state-background-friendsforever-artist
 
 - type: lobbyBackground
   id: AgainstTheXeno
   background: /Textures/_Starlight/LobbyScreens/againstthexeno.webp
-  title: Against The Xeno
-  artist: Ramblinger
+  title: lobby-state-background-againstthexeno-title
+  artist: lobby-state-background-againstthexeno-artist
 
 - type: lobbyBackground
   id: SOCOMOperation
   background: /Textures/_Starlight/LobbyScreens/operation.webp
-  title: Operation
-  artist: JustAdler
+  title: lobby-state-background-socomoperation-title
+  artist: lobby-state-background-socomoperation-artist
 
 - type: lobbyBackground
   id: BombDefusalBorg
   background: /Textures/_Starlight/LobbyScreens/bombdefusalborg.webp
-  title: Bomb Defusal Borg
-  artist: voy0099
+  title: lobby-state-background-bombdefusalborg-title
+  artist: lobby-state-background-bombdefusalborg-artist
 
 - type: lobbyBackground
   id: Turncoats
   background: /Textures/_Starlight/LobbyScreens/turncoats.webp
-  title: Turncoats
-  artist: voy0099
+  title: lobby-state-background-turncoats-title
+  artist: lobby-state-background-turncoats-artist
 
 - type: lobbyBackground
   id: YouAreNotFunny
   background: /Textures/_Starlight/LobbyScreens/you-are-not-funny.webp
-  title: You are not funny
-  artist: Prazat911
+  title: lobby-state-background-youarenotfunny-title
+  artist: lobby-state-background-youarenotfunny-artist
 
 - type: lobbyBackground
   id: AFriendlyFaceInSpace
   background: /Textures/_Starlight/LobbyScreens/friendly-face-in-space.webp
-  title: A Friendly Face In Space
-  artist: Ramblinger
+  title: lobby-state-background-afriendlyfaceinspace-title
+  artist: lobby-state-background-afriendlyfaceinspace-artist
 
 - type: lobbyBackground
   id: TritfireDragon
   background: /Textures/_Starlight/LobbyScreens/tritfire_dragon.webp
-  title: Tritfire Dragon
-  artist: Conflee
+  title: lobby-state-background-tritfiredragon-title
+  artist: lobby-state-background-tritfiredragon-artist
 
 - type: lobbyBackground
   id: SecurityShowdown
   background: /Textures/_Starlight/LobbyScreens/securityshowdown.webp
-  title: Security Showdown
-  artist: TheKillerDumb & Bukkataro
+  title: lobby-state-background-securityshowdown-title
+  artist: lobby-state-background-securityshowdown-artist
 
 - type: lobbyBackground
   id: RevClown
   background: /Textures/_Starlight/LobbyScreens/rev-clown.webp
-  title: Rev Clown
-  artist: Zigo
+  title: lobby-state-background-revclown-title
+  artist: lobby-state-background-revclown-artist
 
 - type: lobbyBackground
   id: The_mid-round_antag's_bane
   background: /Textures/_Starlight/LobbyScreens/The_mid-round_antag's_bane.webp
-  title: The mid round antag's bane
-  artist: voy0099
+  title: lobby-state-background-themidroundantagsbane-title
+  artist: lobby-state-background-themidroundantagsbane-artist
 
 - type: lobbyBackground
   id: blackfeathers
   background: /Textures/_Starlight/LobbyScreens/blackfeathers.webp
-  title: Blackfeathers
-  artist: Gib Schmib
+  title: lobby-state-background-blackfeathers-title
+  artist: lobby-state-background-blackfeathers-artist
+
+- type: lobbyBackground
+  id: mime
+  background: /Textures/LobbyScreens/mime.webp
+  title: lobby-state-background-mime-title #starlight
+  artist: lobby-state-background-mime-artist #starlight

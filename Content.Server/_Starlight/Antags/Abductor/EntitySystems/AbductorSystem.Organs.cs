@@ -20,6 +20,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Server.Chat.Systems;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Starlight.Antags.Abductor;
 

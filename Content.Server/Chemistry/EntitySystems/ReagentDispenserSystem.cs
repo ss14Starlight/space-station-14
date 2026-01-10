@@ -22,10 +22,10 @@ using Content.Shared.Destructible;
 using Content.Shared.PowerCell.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Server.PowerCell;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Shared.UserInterface;
+using Content.Shared.Power.EntitySystems;
 // Starlight end
 
 namespace Content.Server.Chemistry.EntitySystems
@@ -50,7 +50,7 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly PowerCellSystem _powercell = default!;
         [Dependency] private readonly SharedContainerSystem _container = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly BatterySystem _battery = default!;
+        [Dependency] private readonly PredictedBatterySystem _battery = default!;
         private readonly Dictionary<EntityUid, float> _uiUpdateAccumulators = new();
         private const float UiUpdateInterval = 0.5f;
         // Starlight-end
@@ -94,7 +94,7 @@ namespace Content.Server.Chemistry.EntitySystems
             var query = EntityQueryEnumerator<ReagentDispenserComponent, PowerCellSlotComponent, ApcPowerReceiverComponent, ActivatableUIComponent>();
             while (query.MoveNext(out var uid, out var dispenser, out var cellSlot, out var powerReceiver, out var activatableUI))
             {
-                if (!_powercell.TryGetBatteryFromSlot(uid, out var batteryUid, out var battery, cellSlot))
+                if (!_powercell.TryGetBatteryFromSlot((uid, cellSlot), out var batteryUid))
                     continue;
 
                 float chargeRate;
@@ -108,7 +108,7 @@ namespace Content.Server.Chemistry.EntitySystems
                     // Charge at 5W when connected to power
                     chargeRate = 5f;
                     
-                    if (_battery.IsFull(batteryUid.Value, battery))
+                    if (_battery.IsFull((batteryUid.Value, batteryUid.Value.Comp)))
                         continue;
                     
                     isChargingOrDraining = true;
@@ -118,7 +118,7 @@ namespace Content.Server.Chemistry.EntitySystems
                     // Drain at 5W when UI is open and not powered by APC
                     chargeRate = -5f;
                     
-                    if (battery.CurrentCharge <= 0)
+                    if (batteryUid.Value.Comp.LastCharge <= 0)
                     {
                         // Close UI if cell is dead
                         if (activatableUI.Key != null)
@@ -133,7 +133,7 @@ namespace Content.Server.Chemistry.EntitySystems
                     continue;
                 }
 
-                if (chargeRate > 0 && battery.CurrentCharge + (chargeRate * frameTime) > battery.MaxCharge)
+                if (chargeRate > 0 && batteryUid.Value.Comp.LastCharge + (chargeRate * frameTime) > batteryUid.Value.Comp.LastCharge)
                 {
                     if (uiOpen)
                     {
@@ -150,9 +150,9 @@ namespace Content.Server.Chemistry.EntitySystems
                     continue;
                 }
 
-                _battery.ChangeCharge(batteryUid.Value, chargeRate * frameTime, battery);
+                _battery.ChangeCharge((batteryUid.Value, batteryUid.Value.Comp), chargeRate * frameTime);
                 
-                if (chargeRate < 0 && battery.CurrentCharge <= 0 && uiOpen)
+                if (chargeRate < 0 && batteryUid.Value.Comp.LastCharge <= 0 && uiOpen)
                 {
                     UpdateUiState((uid, dispenser));
                     if (activatableUI.Key != null)
@@ -179,7 +179,7 @@ namespace Content.Server.Chemistry.EntitySystems
             if (!_powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery))
                 return;
 
-            var energy = battery.CurrentCharge / battery.MaxCharge;
+            var energy = battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge;
             var message = new ReagentDispenserEnergyUpdateMessage(energy);
             _userInterfaceSystem.ServerSendUiMessage(reagentDispenser.Owner, ReagentDispenserUiKey.Key, message);
         }
@@ -226,7 +226,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
             var inventory = GetInventory(reagentDispenser);
 
-            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? battery.CurrentCharge / battery.MaxCharge : 0f; // Starlight-edit: Energy bar
+            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge : 0f; // Starlight-edit: Energy bar
 
             var state = new ReagentDispenserBoundUserInterfaceState(outputContainerInfo, GetNetEntity(outputContainer), inventory, reagentDispenser.Comp.DispenseAmount, energy); // Starlight-edit: Energy bar
             _userInterfaceSystem.SetUiState(reagentDispenser.Owner, ReagentDispenserUiKey.Key, state);
@@ -303,7 +303,9 @@ namespace Content.Server.Chemistry.EntitySystems
         private void OnDispenseReagentMessage(Entity<ReagentDispenserComponent> reagentDispenser, ref ReagentDispenserDispenseReagentMessage message)
         {
             if (!TryComp<StorageComponent>(reagentDispenser.Owner, out var storage))
+            {
                 return;
+            }
 
             // Starlight Start
             var outputContainer = _itemSlotsSystem.GetItemOrNull(reagentDispenser, SharedReagentDispenser.OutputSlotName);
@@ -355,10 +357,10 @@ namespace Content.Server.Chemistry.EntitySystems
 
                     // force open container, if applicable, to avoid confusing people on why it doesn't dispense
                     _openable.SetOpen(storedContainer, true);
-                    _solutionTransferSystem.Transfer(reagentDispenser,
+                    _solutionTransferSystem.Transfer(new SolutionTransferData(reagentDispenser,
                             storedContainer, src.Value,
                             outputContainer.Value, dst.Value,
-                            (int)reagentDispenser.Comp.DispenseAmount);
+                            (int)reagentDispenser.Comp.DispenseAmount));
                 }
             }
 

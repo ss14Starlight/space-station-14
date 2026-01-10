@@ -4130,7 +4130,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-5.5
       parent: 2
-- proto: ToiletDirtyWater
+- proto: ToiletDirtyWaterFilled
   entities:
   - uid: 137
     components:

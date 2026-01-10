@@ -433,8 +433,14 @@
   name: Station Modification Permit
   categories: [HideSpawnMenu]
   components:
-    - type: Paper
-      content: doc-text-printer-atmos-engineering-permission-station-modification
+  - type: Paper
+    content: doc-text-printer-atmos-engineering-permission-station-modification
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Paper
+          amount: 20
 
 # Cargo
 

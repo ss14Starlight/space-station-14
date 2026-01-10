@@ -5,7 +5,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.StationEvents.Components;
 
-[RegisterComponent, Access(typeof(WreckSwarmSystem)), AutoGenerateComponentPause]
+[RegisterComponent, Access(typeof(WreckSwarmSystem))]
 public sealed partial class WreckSwarmComponent : Component
 {
     [DataField]
