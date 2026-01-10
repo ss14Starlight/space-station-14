@@ -226,6 +226,7 @@
   components:
   - type: RandomHumanoidSpawner
     settings: FriendshipFamiliar
+  - type: FriendshipFamiliarMob
 
 - type: randomHumanoidSettings
   id: FriendshipFamiliar

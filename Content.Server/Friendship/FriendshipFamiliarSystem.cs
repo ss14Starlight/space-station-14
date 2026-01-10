@@ -59,4 +59,4 @@ public sealed partial class FriendshipFamiliarSystem : EntitySystem
     }
 }
 
-public sealed partial class SummonFriendInstantEvent : InstantActionEvent;
+public sealed partial class SummonFriendInstantEvent : InstantActionEvent { };

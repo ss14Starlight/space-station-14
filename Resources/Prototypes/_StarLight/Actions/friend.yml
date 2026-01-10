@@ -1,8 +1,7 @@
 - type: entity
   id: ActionFriendship
-  parent: BaseAction
   name: Summon Friend
-  description: Summon for a friend.... If used again, instantly evaporates your friend at will.
+  description: Summon for a friend. If used again, instantly evaporates your friend at will.
   components:
   - type: Action
     itemIconStyle: BigAction
@@ -12,4 +11,6 @@
     useDelay: 180
     raiseOnAction: true
   - type: InstantAction
-    event: !type:SummonFriendInstantEvent
+    event: !type:SummonFriendInstantEvent {}
+  - type: FriendshipFamiliar
+    mobToSpawn: SpawnPointGhostFamiliarPlayerSpecies
