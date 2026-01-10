@@ -12,7 +12,7 @@ public sealed partial class StealConditionComponent : Component
     /// <summary>
     /// A group of items to be stolen
     /// </summary>
-    [DataField(required: true)]
+    [DataField] //Starlight needs to be optional for the case of Document theft
     public ProtoId<StealTargetGroupPrototype> StealGroup;
 
     /// <summary>

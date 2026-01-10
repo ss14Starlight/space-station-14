@@ -35,7 +35,6 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
     [Dependency] private readonly SharedJobSystem _job = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly TraitorRuleSystem _traitorRule = default!; //Starlight document theft
-    [Dependency] private readonly SharedJobSystem _job = default!; //Starlight document theft
 
     private IEnumerable<string>? _objectives;
 

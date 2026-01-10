@@ -1,4 +1,5 @@
 using Content.Shared.Objectives;
+using Content.Shared.Objectives.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.StealTarget.Components;

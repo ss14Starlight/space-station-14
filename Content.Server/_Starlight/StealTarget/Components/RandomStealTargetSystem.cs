@@ -1,3 +1,4 @@
+using Content.Shared.Objectives.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.StealTarget.Components;

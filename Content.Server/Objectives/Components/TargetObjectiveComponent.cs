@@ -9,7 +9,7 @@ public sealed partial class TargetObjectiveComponent : Component
     /// Locale id for the objective title.
     /// It is passed "targetName" and "job" arguments.
     /// </summary>
-    [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables(VVAccess.ReadWrite)] //Starlight can be optional for Document theft objectives
     public string Title = string.Empty;
 
     /// <summary>
