@@ -358,11 +358,6 @@
   text: "/ServerInfo/Guidebook/Engineering/RTG.xml"
 
 - type: guideEntry
-  id: PTL
-  name: guide-entry-ptl
-  text: "/ServerInfo/Guidebook/Engineering/PTL.xml"
-
-- type: guideEntry
   id: PortableGenerator
   name: guide-entry-portable-generator
   text: "/ServerInfo/Guidebook/Engineering/PortableGenerator.xml"
