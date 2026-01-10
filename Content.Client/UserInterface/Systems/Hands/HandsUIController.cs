@@ -347,8 +347,12 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             if (hand.Location == HandLocation.Functional)
                 HandsGui.FunctionalHandContainer.AddButton(button);
             else
-            // 🌟Starlight🌟  end
+            {
+                var existingHands = HandsGui.HandContainer.ButtonCount;
                 HandsGui.HandContainer.AddButton(button);
+                button.SetPositionInParent(Math.Min((int)hand.Location, existingHands));
+            }
+            // 🌟Starlight🌟  end
         }
         else
         {

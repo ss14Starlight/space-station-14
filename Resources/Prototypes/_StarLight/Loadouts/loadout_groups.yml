@@ -489,7 +489,7 @@
 - type: loadoutGroup
   id: BrigmedicMask
   name: loadout-group-brigmedic-mask
-  minLimit: 0
+  minLimit: 1
   loadouts:
     - BrigmedicBreathMaskMedicalSecurity
     - BrigmedicMaskGasSecurity
@@ -507,8 +507,8 @@
   name: loadout-group-brigmedic-id
   loadouts:
     - BrigmedicPDA
-    - CorpsmanPDA
     - VeteranBrigmedicPDA
+    - CorpsmanPDA
     - VeteranCorpsmanPDA
 
 - type: loadoutGroup

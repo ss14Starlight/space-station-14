@@ -2,3 +2,20 @@
   parent: [ BaseCircuitboardRecipe, BaseEngineeringComputerRecipeCategory ]
   id: MassDriverComputerCircuitboard
   result: MassDriverComputerCircuitboard
+
+# region: Desktop Computers
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralComputerRecipeCategory ]
+  id: PersonalCircuitboardDesktop
+  result: ComputerPersonalCircuitboardDesktop
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceComputerRecipeCategory ]
+  id: MassMediaCircuitboardDesktop
+  result: ComputerMassMediaCircuitboardDesktop
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseSecurityComputerRecipeCategory ]
+  id: SurveillanceCameraMonitorCircuitboardDesktop
+  result: SurveillanceCameraMonitorCircuitboardDesktop
+# endregion: Desktop Computers

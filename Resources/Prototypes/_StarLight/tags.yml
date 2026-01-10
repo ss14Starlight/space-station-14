@@ -259,6 +259,9 @@
   id: OvenMachineBoard
 
 - type: Tag
+  id: ParaKnife
+
+- type: Tag
   id: Patch
 
 - type: Tag
@@ -422,3 +425,15 @@
   
 - type: Tag
   id: MicroLaserStockPart
+
+- type: Tag
+  id: Meson
+
+- type: Tag
+  id: DamagedShadekinCore
+
+- type: Tag
+  id: ShadekinCore
+
+- type: Tag
+  id: ShadekinEyes

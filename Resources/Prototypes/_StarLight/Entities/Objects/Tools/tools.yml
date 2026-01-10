@@ -892,4 +892,54 @@
       - Wrench
       - PlantSampleTaker
       - Wirecutter
-      - Screwdriver
+      - Screwdriver 
+
+- type: entity
+  id: RCDXeno
+  parent: [ BaseItem, BaseEngineeringContraband ]
+  name: Xenoborg RCD
+  description: Xenoborg-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
+  components:
+  - type: RCD
+    availablePrototypes:
+    - XenoDoor
+    - XenoDoorGlass
+    - XenoWall
+    - XenoWindow
+    - FloorXeno
+    - Plating
+    - Catwalk
+    - Grille
+    - Window
+    - WindowDirectional
+    - WindowReinforcedDirectional
+    - Firelock
+    - TubeLight
+    - BulbLight
+    - LVCable
+    - MVCable
+    - HVCable
+    - CableTerminal
+    - Deconstruct
+  - type: LimitedCharges
+    maxCharges: 25
+  - type: AutoRecharge
+    rechargeDuration: 10
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/xenoborg_rcd.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 600
+      Plastic: 100
+  - type: StaticPrice
+    price: 110
+  - type: UserInterface
+    interfaces:
+      enum.RcdUiKey.Key:
+        type: RCDMenuBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: true
+    key: enum.RcdUiKey.Key

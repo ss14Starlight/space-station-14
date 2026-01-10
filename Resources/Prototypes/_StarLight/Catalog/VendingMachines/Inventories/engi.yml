@@ -15,7 +15,7 @@
   id: VendorWelderIndustrial
   productEntity: WelderIndustrial
   cost:
-    NTCredit: 250
+    NTCredit: 150
   categories:
   - SLEnginery
   conditions:
@@ -28,7 +28,7 @@
   id: VendorWelderIndustrialAdvanced
   productEntity: WelderIndustrialAdvanced
   cost:
-    NTCredit: 400
+    NTCredit: 350
   categories:
   - SLEnginery
   conditions:

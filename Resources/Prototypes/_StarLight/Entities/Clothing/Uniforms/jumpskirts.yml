@@ -530,3 +530,14 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSeniorParamedic
+  name: senior paramedic jumpskirt
+  description: These epaulettes mark a paramedic that has walked through fire and void to save those in need
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_paramedic.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_paramedic.rsi

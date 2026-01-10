@@ -1,0 +1,116 @@
+﻿# Made by KarmaKitsuna for SS14 Starlight Servers
+- type: entity
+  abstract: true
+  id: MobPureHonkmotherBase
+  description: Insert funny pun here
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Demons/purehonkmother.rsi
+      drawdepth: Ghosts
+      layers:
+        - state: purehonkmother
+          shader: unshaded
+
+
+- type: entity
+  parent: [MobPureHonkmotherBase, BaseMob, MobCombat]
+  id: PureHonkmother
+  name: Honkmother
+  components:
+    - type: StaticPrice
+      price: -500000.1 # Pay someone to take her
+    - type: ContentEye
+      maxZoom: 2.0,2.0
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.40
+          density: 100
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    # Starlight-start: Languages
+    - type: LanguageKnowledge
+      speaks:
+        - GalacticCommon
+        - SolCommon
+        - Chitten
+        - Sylvan
+        - Moffic
+        - Mothroach
+        - Draconic
+        - Scratch
+        - Bubblish
+        - VoxPidgin
+        - Canilunzt
+      understands:
+        - GalacticCommon
+        - SolCommon
+        - Chitten
+        - Sylvan
+        - Moffic
+        - Mothroach
+        - Draconic
+        - Scratch
+        - Bubblish
+        - VoxPidgin
+        - Canilunzt
+    - type: Input
+      context: "human"
+    - type: MovementIgnoreGravity
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+        - Binary
+        - Common
+        - Command
+        - CentCom
+        - Engineering
+        - Medical
+        - Science
+        - Security
+        - Service
+        - Supply
+        - Syndicate
+      globalReceive: true
+    - type: Physics
+      bodyType: Dynamic
+      bodyStatus: InAir
+    - type: CanMoveInAir
+    - type: VentCrawler
+    - type: ComplexInteraction
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: BatteryAmmoProvider
+      proto: RedLaser
+      fireCost: 62.5
+    - type: PredictedBattery
+      maxCharge: 1000
+      startingCharge: 1000
+    - type: PredictedBatterySelfRecharger
+      autoRechargeRate: 40
+    - type: Gun
+      fireRate: 2
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_clown.ogg
+    - type: Speech
+    - type: CombatMode
+    - type: Polymorphable
+      innatePolymorphs:
+        - CorruptHonkmotherMorph
+
+- type: polymorph          
+  id: CorruptHonkmotherMorph
+  configuration:
+    entity: CorruptHonkmotherTransform
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true

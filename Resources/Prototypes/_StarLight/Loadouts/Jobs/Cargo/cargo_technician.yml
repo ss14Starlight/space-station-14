@@ -22,7 +22,12 @@
   - !type:GroupLoadoutEffect
     proto: SeniorCargo
 
-# Hat
+# Hat 
+- type: loadout
+  id: CargoTechnicianBeret
+  equipment:
+    head: ClothingHeadHatBeretCargo
+
 - type: loadout
   id: CargoTechnicianHeadFormal
   equipment:
@@ -30,11 +35,6 @@
   effects:
     - !type:GroupLoadoutEffect
       proto: SeniorCargo
-      
-- type: loadout
-  id: CargoTechnicianBeret
-  equipment:
-    head: ClothingHeadHatBeretCargo
 
 - type: loadout
   id: CargoTechnicianBeretFormal
