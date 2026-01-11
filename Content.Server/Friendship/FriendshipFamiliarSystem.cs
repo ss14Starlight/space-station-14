@@ -2,7 +2,6 @@ using Content.Server.Ghost.Roles.Events;
 using Content.Server.Popups;
 using Content.Shared._Starlight.Doomed;
 using Content.Shared._Starlight.Friendship;
-using Content.Shared.Actions;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 
@@ -58,5 +57,3 @@ public sealed partial class FriendshipFamiliarSystem : EntitySystem
         friendshipFamiliarComp.SpawnedMob = args.Spawned;
     }
 }
-
-public sealed partial class SummonFriendInstantEvent : InstantActionEvent { };
