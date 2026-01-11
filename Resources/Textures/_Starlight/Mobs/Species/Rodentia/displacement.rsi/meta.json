@@ -15,11 +15,15 @@
             "directions": 4
         },
         {
+            "name": "back",
+            "directions": 4
+        },
+        {
             "name": "head",
             "directions": 4
         },
         {
-            "name": "gloves",
+            "name": "hands",
             "directions": 4
         },
         {
