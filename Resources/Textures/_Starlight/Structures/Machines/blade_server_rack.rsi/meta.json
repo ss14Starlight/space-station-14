@@ -31,6 +31,18 @@
             "copyright": "GitHub @Centronias; based on telecomms.rsi by Spangs04"
         },
         {
+            "name": "powered",
+            "copyright": "GitHub @Centronias; based on telecomms.rsi by Spangs04",
+            "delays": [
+                [
+                    0.20,
+                    0.20,
+                    0.20,
+                    0.45
+                ]
+            ]
+        },
+        {
             "name": "blade-powered-0",
             "copyright": "GitHub @Centronias; based on telecomms.rsi by Spangs04",
             "delays": [
@@ -76,7 +88,11 @@
             ]
         },
         {
-            "name": "blade-stripe",
+            "name": "stripe",
+            "copyright": "GitHub @Centronias; based on telecomms.rsi by Spangs04"
+        },
+        {
+            "name": "wires",
             "copyright": "GitHub @Centronias; based on telecomms.rsi by Spangs04"
         }
     ]
