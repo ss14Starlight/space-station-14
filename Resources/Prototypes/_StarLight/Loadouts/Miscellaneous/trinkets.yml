@@ -478,6 +478,18 @@
       - LeftArmCyberRipper
 
 - type: loadout
+  id: rightmechwrightarm
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobStationEngineer
+        time: 72000 # 20 hours of banging wrenches on things
+  storage:
+    back: 
+      - RightArmCyberMechwright
+
+- type: loadout
   id: CigPackBub
   effects:
     - !type:JobRequirementLoadoutEffect

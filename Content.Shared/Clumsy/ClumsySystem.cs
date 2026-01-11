@@ -145,6 +145,12 @@ public sealed class ClumsySystem : EntitySystem
         if (!ent.Comp.ClumsyVaulting)
             return;
 
+        // Starlight Start
+        // checks if climbed structure is bonkable.
+        if (!TryComp(args.BeingClimbedOn, out BonkableComponent? bonk))
+            return;
+        //Starlight End
+
         // TODO: Replace with RandomPredicted once the engine PR is merged
         var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
         var rand = new System.Random(seed);

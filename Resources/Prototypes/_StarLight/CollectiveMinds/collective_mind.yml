@@ -54,8 +54,7 @@
   keycode: 'n'
   color: "#FF7922"
   requiredTags: 
-  - Resomi
-  - Avali
+  - Nexus
 
 - type: collectiveMind
   id: Empathy

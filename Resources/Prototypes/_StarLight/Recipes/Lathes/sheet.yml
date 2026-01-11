@@ -35,5 +35,5 @@
   result: ArtificialBluespaceCrystal1
   completetime: 5
   materials:
-    Plasma: 1500
-    Diamond: 1500
+    Plasma: 2000
+    Diamond: 50
