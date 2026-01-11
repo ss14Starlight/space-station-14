@@ -42,7 +42,6 @@ public sealed partial class SalarySystem : SharedSalarySystem
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly INullLinkPlayerManager _nullLinkRoles = default!;
     [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
