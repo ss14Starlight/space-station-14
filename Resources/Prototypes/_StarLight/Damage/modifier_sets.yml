@@ -61,6 +61,11 @@
     Bloodloss: 0
 
 - type: damageModifierSet
+  id: SlimeFireproofPotionEffect
+  coefficients:
+    Heat: -10.0
+
+- type: damageModifierSet
   id: Hardlight
   coefficients:
     Blunt: 1.6

@@ -25736,5 +25736,14 @@ Entries:
   id: 129500
   time: '2026-01-11T05:21:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1295
+- author: STARLIGHT TEAM
+  changes:
+  - message: Cyberhands can accept hand implants.
+    type: Fix
+  - message: Gave everyone their eyes back.
+    type: Fix
+  id: 278700
+  time: '2026-01-11T18:00:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2787
 Order: -1
 
