@@ -11,8 +11,8 @@
   cost: 7500
   recipeUnlocks:
   - ClothingHeadHelmetEVAPro
-  - ClothingHeadHelmetEZA
-  - ClothingOuterHardsuitEZA
+  - ClothingHeadHelmetDEVA
+  - ClothingOuterHardsuitDEVA
   - ClothingOuterEVASuitRad
   - ClothingOuterEVASuitFire
   - ClothingOuterEVASuitBio

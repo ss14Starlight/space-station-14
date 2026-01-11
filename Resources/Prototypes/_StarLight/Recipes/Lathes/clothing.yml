@@ -9,8 +9,8 @@
   - EVAs
   completetime: 7
   materials:
-    Cloth: 500
-    Durathread: 300
+    Cloth: 300
+    Durathread: 500
 
 - type: latheRecipe
   abstract: true
@@ -40,10 +40,8 @@
   - Helmets
   completetime: 3
   materials:
-    Steel: 100
-    Plastic: 100
-    Glass: 100
-    Cloth: 300
+    Steel: 200
+    ReinforcedGlass: 100
 
 - type: latheRecipe
   abstract: true
@@ -220,6 +218,10 @@
   parent: BaseHelmetRecipe
   id: ClothingHeadHelmetFire
   result: ClothingHeadHelmetFire
+  materials:
+    Steel: 150
+    ReinforcedGlass: 100
+    Plasma: 50
 
 
 # EVA suits with their helmets
@@ -251,6 +253,11 @@
   parent: BaseEVARecipe
   id: ClothingOuterHardsuitEVAHeadOfPersonel
   result: ClothingOuterHardsuitEVAHeadOfPersonel
+  materials:
+    Cloth: 300
+    Durathread: 500
+    Gold: 50
+    Silver: 100
 
 #EVA Pro - No suit, just a helmet
 - type: latheRecipe
@@ -258,35 +265,57 @@
   id: ClothingHeadHelmetEVAPro
   result: ClothingHeadHelmetEVAPro
 
-# EZA
+# DEVA - It's faster and the helmet is faster to equip
 - type: latheRecipe
   parent: BaseHelmetRecipe
-  id: ClothingHeadHelmetEZA
-  result: ClothingHeadHelmetEZA
+  id: ClothingHeadHelmetDEVA
+  result: ClothingHeadHelmetDEVA
+  materials:
+    Steel: 200
+    ReinforcedGlass: 100
+    Silver: 50
 
 - type: latheRecipe
   parent: BaseEVARecipe
-  id: ClothingOuterHardsuitEZA
-  result: ClothingOuterHardsuitEZA
+  id: ClothingOuterHardsuitDEVA
+  result: ClothingOuterHardsuitDEVA
+  materials:
+    Cloth: 300
+    Durathread: 500
+    Diamond: 25
 
 #Radiation EVA
 - type: latheRecipe
   parent: BaseEVARecipe
   id: ClothingOuterEVASuitRad
   result: ClothingOuterEVASuitRad
+  materials:
+    Steel: 200
+    Cloth: 300
+    Durathread: 500
+    Uranium: 50
 
 #Fire EVA
 - type: latheRecipe
   parent: BaseEVARecipe
   id: ClothingOuterEVASuitFire
   result: ClothingOuterEVASuitFire
+  materials:
+    Steel: 200
+    Cloth: 300
+    Durathread: 500
+    Plasma: 50
 
 #Bio EVA
 - type: latheRecipe
   parent: BaseEVARecipe
   id: ClothingOuterEVASuitBio
   result: ClothingOuterEVASuitBio
-
+  materials:
+    Steel: 200
+    Cloth: 400
+    Durathread: 500
+    Diamond: 25
 
 # Emag EVAs
 #Ancient EVA
@@ -299,6 +328,9 @@
   parent: BaseEVARecipe
   id: ClothingOuterHardsuitAncientEVA
   result: ClothingOuterHardsuitAncientEVA
+  materials:
+    Cloth: 300
+    Durathread: 500
 
 #CentComm (Intern) EVA. Not actually used at CentComm in game, just something for the emag to show.
 - type: latheRecipe
@@ -321,6 +353,10 @@
   parent: BaseEVARecipe
   id: ClothingOuterHardsuitNanoTrasenEmergencyEVA
   result: ClothingOuterHardsuitNanoTrasenEmergencyEVA
+  materials:
+    Cloth: 300
+    Durathread: 500
+    Silver: 50
 
 #Syndicate EVA
 - type: latheRecipe
@@ -338,9 +374,14 @@
   parent: BaseHelmetRecipe
   id: ClothingHeadHelmetSovietEVA
   result: ClothingHeadHelmetSovietEVA
+  materials:
+    Steel: 750
+    Glass: 600
 
 - type: latheRecipe
   parent: BaseEVARecipe
   id: ClothingOuterHardsuitSovietEVA
   result: ClothingOuterHardsuitSovietEVA
-  
+  materials:
+    Steel: 900
+    Cloth: 400

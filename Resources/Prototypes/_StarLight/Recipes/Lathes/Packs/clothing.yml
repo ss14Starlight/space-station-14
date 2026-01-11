@@ -30,7 +30,7 @@
   id: StarlightHelmetsDynamic
   recipes:
   - ClothingHeadHelmetEVAPro
-  - ClothingHeadHelmetEZA
+  - ClothingHeadHelmetDEVA
 
 # HoP only
 - type: latheRecipePack
@@ -43,7 +43,7 @@
 - type: latheRecipePack
   id: StarlightEVAPrinterDynamic
   recipes:
-  - ClothingOuterHardsuitEZA
+  - ClothingOuterHardsuitDEVA
   - ClothingOuterEVASuitRad
   - ClothingOuterEVASuitFire
   - ClothingOuterEVASuitBio
