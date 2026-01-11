@@ -1,3 +1,23 @@
+# Tier 2
+- type: technology
+  id: AdvancedEVASuits
+  name: research-technology-advanced-eva-suits
+  icon:
+    sprite: Clothing/OuterClothing/Suits/eva.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - ClothingHeadHelmetEVAPro
+  - ClothingHeadHelmetDEVA
+  - ClothingOuterHardsuitDEVA
+  - ClothingOuterEVASuitRad
+  - ClothingOuterEVASuitFire
+  - ClothingOuterEVASuitBio
+  radioChannels:
+  - Service
+
 - type: technology
   id: CivilianCyberLimbsTech
   name: research-technology-civilian-cyberlimbs
