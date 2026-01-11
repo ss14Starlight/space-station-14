@@ -12,7 +12,6 @@ namespace Content.Server._Starlight.Commands;
 [UsedImplicitly, AnyCommand]
 public sealed class CloudEmoteCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystems = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityNetworkManager _net = default!;

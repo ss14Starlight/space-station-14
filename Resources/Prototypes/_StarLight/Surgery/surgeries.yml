@@ -17,7 +17,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    
+
 - type: entity
   parent: SurgeryOpenIncision
   id: SurgeryOpenIncisionSlime
@@ -49,7 +49,53 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+
+- type: entity
+  parent: SurgeryCloseIncision
+  id: SurgeryCloseIncisionHead
+  name: Close Incision
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    priority: 100
+    steps:
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepMendSkull
+    - SurgeryStepCloseIncision
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - SlimePerson
+  - type: SurgeryPartCondition
+    parts:
+    - Head
+
+- type: entity
+  parent: SurgeryCloseIncision
+  id: SurgeryCloseIncisionLimb
+  name: Close Incision
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    priority: 100
+    steps:
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+    - SurgeryStepCloseIncision
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - SlimePerson
+  - type: SurgeryPartCondition
+    parts:
+    - Arm
+    - Leg
+    - Hand
+    - Foot
+
 - type: entity
   parent: SurgeryCloseIncision
   id: SurgeryCloseIncisionSlime
@@ -59,7 +105,7 @@
     - SurgeryOpenIncisionSlime
     priority: 100
     steps:
-    - SurgeryStepMendRibcage
+    - SurgeryStepMendSlime
     - SurgeryStepCloseIncision
   - type: SurgerySpeciesCondition
     speciesBlacklist: []
@@ -79,7 +125,7 @@
     - SurgeryStepSawBones
     - SurgeryStepPriseOpenBones
   - type: SurgeryPartCondition
-    parts: 
+    parts:
     - Torso
   - type: SurgerySpeciesCondition
     speciesBlacklist:
@@ -87,14 +133,14 @@
   - type: Sprite
     sprite: Mobs/Species/Skeleton/parts.rsi
     state: torso_m
-    
+
 - type: entity
   parent: SurgeryBase
   id: SurgeryOpenAbdomen
   name: Open Abdomen
   components:
   - type: Surgery
-    requirement: 
+    requirement:
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
     priority: -50
@@ -115,7 +161,7 @@
   description: Remove speech defects, accents.
   components:
   - type: Surgery
-    requirement: 
+    requirement:
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
     steps:
@@ -124,7 +170,7 @@
     - SurgeryStepSutureIncision
   - type: SurgeryAnyAccentCondition
   - type: SurgeryPartCondition
-    parts: 
+    parts:
     - Head
   - type: Sprite
     sprite: Objects/Fun/Instruments/microphone.rsi
@@ -157,7 +203,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: liver
-    
+
 - type: entity
   parent: SurgeryBase
   id: SurgeryImplantLiver
@@ -371,7 +417,7 @@
     layers:
       - state: lung-l
       - state: lung-r
-      
+
 - type: entity
   parent: SurgeryBase
   id: SurgeryExtractLungsSlime
@@ -625,6 +671,200 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
       - state: eye_implant_welding
+
+#
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractHandImplant
+  name: Extract Hand Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    - SurgeryOpenIncisionSlime
+    steps:
+    - SurgeryStepLocateImplant
+    - SurgeryStepExposeNerves
+    - SurgeryStepRemoveHandImplant
+  - type: SurgeryPartCondition
+    parts:
+    - Hand
+  - type: SurgeryOrganExistCondition
+    organ:
+    - type: HandImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: hand_implant_insulated
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantHandImplant
+  name: Implant Hand Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    - SurgeryOpenIncisionSlime
+    steps:
+    - SurgeryStepPrepareImplantSiteHand
+    - SurgeryStepInsertHandImplant
+    - SurgeryStepRejoinNerves
+  - type: SurgeryPartCondition
+    parts:
+    - Hand
+  - type: SurgeryOrganDontExistCondition
+    organ:
+    - type: HandImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: hand_implant_insulated
+
+#
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractBrainImplant
+  name: Extract Brain Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    steps:
+    - SurgeryStepPreparePatient
+    - SurgeryStepShaveHead
+    - SurgeryStepDisinfectScalp
+    - SurgeryStepMakeIncisionScalp
+    - SurgeryStepRetractScalp
+    - SurgeryStepDrillBurrHoles
+    - SurgeryStepCutSkull
+    - SurgeryStepRemoveBoneFlap
+    - SurgeryStepClampDuraMater
+    - SurgeryStepInciseDuraMater
+    - SurgeryStepRetractDuraMater
+    - SurgeryStepSeverCranialNerves
+    - SurgeryStepRemoveBrainImplant
+    - SurgeryStepReconnectCranialNerves
+    - SurgeryStepReplaceDuraMater
+    - SurgeryStepSealDuraMater
+    - SurgeryStepReplaceBoneFlap
+    - SurgeryStepSecureBoneFlap
+    - SurgeryStepReplaceScalp
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - SlimePerson
+  - type: SurgeryPartCondition
+    parts:
+    - Head
+  - type: SurgeryOrganExistCondition
+    organ:
+    - type: BrainImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: brain_implant_translator
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantBrainImplant
+  name: Implant Brain Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    steps:
+    - SurgeryStepCleanImplantSite
+    - SurgeryStepPrepareScalp
+    - SurgeryStepMakeIncisionScalp
+    - SurgeryStepRetractScalp
+    - SurgeryStepDrillBurrHoles
+    - SurgeryStepCutSkull
+    - SurgeryStepRemoveBoneFlap
+    - SurgeryStepPrepareDuraMater
+    - SurgeryStepInciseDuraMater
+    - SurgeryStepRetractDuraMater
+    - SurgeryStepInsertBrainImplant
+    - SurgeryStepReconnectCranialNerves
+    - SurgeryStepReplaceDuraMater
+    - SurgeryStepSealDuraMater
+    - SurgeryStepReplaceBoneFlap
+    - SurgeryStepSecureBoneFlap
+    - SurgeryStepReplaceScalp
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - SlimePerson
+  - type: SurgeryPartCondition
+    parts:
+    - Head
+  - type: SurgeryOrganDontExistCondition
+    organ:
+    - type: BrainImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: brain_implant_translator
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractBrainImplantSlime
+  name: Extract Core Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenAbdomen
+    steps:
+    - SurgeryStepPreparePatient
+    - SurgeryStepDisinfectScalp
+    - SurgeryStepMakeIncisionScalp
+    - SurgeryStepRetractScalp
+    - SurgeryStepRemoveBrainImplant
+    - SurgeryStepReplaceScalp
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - SlimePerson
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  - type: SurgeryOrganExistCondition
+    organ:
+    - type: BrainImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: brain_implant_translator
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantBrainImplantSlime
+  name: Implant Core Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenAbdomen
+    steps:
+    - SurgeryStepCleanImplantSite
+    - SurgeryStepPrepareScalp
+    - SurgeryStepMakeIncisionScalp
+    - SurgeryStepRetractScalp
+    - SurgeryStepInsertBrainImplant
+    - SurgeryStepReplaceScalp
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - SlimePerson
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  - type: SurgeryOrganDontExistCondition
+    organ:
+    - type: BrainImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: brain_implant_translator
+
+
 #
 - type: entity
   parent: SurgeryBase
@@ -740,7 +980,7 @@
     sprite: Mobs/Species/Human/organs.rsi
     state: brain
 
-# 
+#
 - type: entity
   parent: SurgeryBase
   id: SurgeryExtractCore
@@ -768,7 +1008,7 @@
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
     state: brain-slime
-    
+
 - type: entity
   parent: SurgeryBase
   id: SurgeryImplantCore

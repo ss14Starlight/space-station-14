@@ -44,6 +44,7 @@
     - Nekomimetic
   languagesUnderstood:
     - Nekomimetic
+    - Cat
 
 - type: trait
   id: Canilunzt
@@ -57,6 +58,8 @@
     - Canilunzt
   languagesUnderstood:
     - Canilunzt
+    - Fox
+    - Dog
 
 - type: trait
   id: Scratch
@@ -226,3 +229,18 @@
     - Moffic
   languagesUnderstood:
     - Moffic
+    - Mothroach
+
+- type: trait
+  id: Thaveyan
+  name: trait-language-thaveyan-name
+  description: trait-language-thaveyan-desc
+  category: LanguageTraits
+  cost: 2
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Thaveyan
+  languagesUnderstood:
+    - Thaveyan
+    - Carptongue

@@ -133,7 +133,7 @@
 # Shadekin
 
 - type: entity
-  parent: [ClothingEyesBase]
+  parent: [ClothingEyesBase, BaseSecurityScienceCommandContraband]
   id: ClothingEyesGlassesNullSpace
   name: nullspace goggles
   description: An unusual pair of goggles developed during a time of inhumane experimentation involving Shadekin. They are designed to allow the wearer to peer into NullSpace.
@@ -143,6 +143,10 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/nullspacegoogles.rsi
   - type: ShowNullSpace
+    showShader: true
+  - type: Construction
+    graph: ClothingGlassesNullSpace
+    node: glasses
 
 - type: entity
   parent: [ ClothingEyesBase, BaseSalvageContraband ]
