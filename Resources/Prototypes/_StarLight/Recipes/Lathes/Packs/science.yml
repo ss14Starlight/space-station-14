@@ -1,9 +1,3 @@
-## Static recipes
-- type: latheRecipePack
-  id: StarlightNullspaceStatic
-  recipes:
-  - NullspaceAnchorMachineCircuitboard
-
 # Glass Compression
 - type: latheRecipePack
   id: StarlightGlassCompressionStatic
