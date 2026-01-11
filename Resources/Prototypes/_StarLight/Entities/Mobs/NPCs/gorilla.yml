@@ -54,6 +54,11 @@
       distance: 5
     - type: NPCRetaliation
     - type: FactionException
+    - type: LanguageKnowledge
+      speaks:
+      - Ancestor
+      understands:
+      - Ancestor
     - type: NpcFactionMember
       factions:
         - Gorilla
@@ -129,8 +134,6 @@
 - type: entity
   parent: BaseMobGorilla
   id: MobGorilla
-  components:
-    - type: MonkeyAccent
 
 - type: entity
   name: Rampaging Gorilla
@@ -175,6 +178,12 @@
   id: MobCargorilla
   description: Cargo's pet gorilla. He seems to have an 'I love Mom' tattoo.
   components:
+    - type: LanguageKnowledge
+      speaks:
+      - Ancestor
+      understands:
+      - Ancestor
+      - GalacticCommon
     - type: Sprite
       drawdepth: Mobs
       layers:

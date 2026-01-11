@@ -143,6 +143,7 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
         // Starlight-start: Movement sprite state
         if (!(TryComp<BorgSwitchableSubtypeComponent>(entity, out var subtype) && subtype.BorgSubtype != null))
         {
+        // Starlight-end: Movement sprite state
             if (prototype.SpriteBodyMovementState is { } movementState)
             {
                 var spriteMovement = EnsureComp<SpriteMovementComponent>(entity);
@@ -161,8 +162,6 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
             {
                 RemComp<SpriteMovementComponent>(entity);
             }
-        }
-
-        // Starlight-end
+        } // Starlight - close of movement sprite state block
     }
 }

@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: PartCyber
   parent: [BaseItem, BasePart]
   name: "cyber body part"
@@ -155,7 +155,7 @@
       state: "r_foot"
     - type: RoundstartImplantable
       cost: 1
-      
+
 #reaper
 - type: entity
   id: LeftArmCyberReaper
@@ -164,24 +164,41 @@
   components:
     - type: BaseLayerId
       layer: CyberLArmSilver
-    - type: BaseLayerIdToggled
-      layer: CyberLArmSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_silver_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_silver_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberReaper
+
+- type: entity
+  id: LeftHandCyberReaper
+  name: "left reaper hand"
+  parent: [PartCyber, BaseLeftHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandSilver
+    - type: BaseLayerIdToggled
+      layer: CyberLHandSilverReaper
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_silver_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_silver_hand"
     - type: LimbItemStorage
       items:
         - ScalpelCyber
+        - HemostatCyber
         - RetractorCyber
+        - BoneSetterCyber
+        - BoneGelCyber
         - CauteryCyber
         - DrillCyber
         - SawCyber
-        - HemostatCyber
-        - BoneSetterCyber
-        - BoneGel
     - type: LimbItemDeployer
       action: ActionToggleCyberHandLeft
       sound: 
@@ -189,10 +206,6 @@
       handWhitelist:
         tags:
           - CyberHandItem
-          - BoneGel
-    - type: WithAttachedBodyParts
-      parts:
-        left hand: LeftHandCyber
 
 - type: entity
   id: RightArmCyberReaper
@@ -201,24 +214,41 @@
   components:
     - type: BaseLayerId
       layer: CyberRArmSilver
-    - type: BaseLayerIdToggled
-      layer: CyberRArmSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_silver_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_silver_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberReaper
+
+- type: entity
+  id: RightHandCyberReaper
+  name: "right reaper hand"
+  parent: [PartCyber, BaseRightHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandSilver
+    - type: BaseLayerIdToggled
+      layer: CyberRHandSilverReaper
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_silver_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_silver_hand"
     - type: LimbItemStorage
       items:
         - ScalpelCyber
+        - HemostatCyber
         - RetractorCyber
+        - BoneSetterCyber
+        - BoneGelCyber
         - CauteryCyber
         - DrillCyber
         - SawCyber
-        - HemostatCyber
-        - BoneSetterCyber
-        - BoneGel
     - type: LimbItemDeployer
       action: ActionToggleCyberHandRight
       sound: 
@@ -226,10 +256,7 @@
       handWhitelist:
         tags:
           - CyberHandItem
-          - BoneGel
-    - type: WithAttachedBodyParts
-      parts:
-        right hand: RightHandCyber
+
 #Mechwright
 - type: entity
   id: LeftArmCyberMechwright
@@ -238,14 +265,31 @@
   components:
     - type: BaseLayerId
       layer: CyberLArmSteel
-    - type: BaseLayerIdToggled
-      layer: CyberLArmSteelMechwright
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_steel_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_steel_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberMechwright
+
+- type: entity
+  id: LeftHandCyberMechwright
+  name: "left mechwright hand"
+  parent: [PartCyber, BaseLeftHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandSteel
+    - type: BaseLayerIdToggled
+      layer: CyberLHandSteelMechwright
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_steel_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_steel_hand"
     - type: LimbItemStorage
       items:
         - WrenchCyber
@@ -260,9 +304,7 @@
       handWhitelist:
         tags:
           - CyberHandItem
-    - type: WithAttachedBodyParts
-      parts:
-        left hand: LeftHandCyber
+
 - type: entity
   id: RightArmCyberMechwright
   name: "right mechwright arm"
@@ -270,14 +312,31 @@
   components:
     - type: BaseLayerId
       layer: CyberRArmSteel
-    - type: BaseLayerIdToggled
-      layer: CyberRArmSteelMechwright
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_steel_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_steel_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberMechwright
+
+- type: entity
+  id: RightHandCyberMechwright
+  name: "right mechwright hand"
+  parent: [PartCyber, BaseRightHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandSteel
+    - type: BaseLayerIdToggled
+      layer: CyberRHandSteelMechwright
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_steel_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_steel_hand"
     - type: LimbItemStorage
       items:
         - WrenchCyber
@@ -292,29 +351,46 @@
       handWhitelist:
         tags:
           - CyberHandItem
-    - type: WithAttachedBodyParts
-      parts:
-        right hand: RightHandCyber
-#Bulwark 
+
+#Engineer
 - type: entity
-  id: LeftArmCyberBulwark
-  name: "left bulwark arm"
-  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  id: LeftArmCyberEngineer
+  name: "left engineer arm"
+  parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layer: CyberLArmBulwark
-    - type: BaseLayerIdToggled
-      layer: CyberLArmBulwarkToggled
+      layer: CyberLArmEngineer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_bulwark_arm"
+      state: "l_engineer_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
-      state: "l_bulwark_arm"
+      state: "l_engineer_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberEngineer
+
+- type: entity
+  id: LeftHandCyberEngineer
+  name: "left engineer hand"
+  parent: [PartCyber, BaseLeftHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandEngineer
+    - type: BaseLayerIdToggled
+      layer: CyberLHandEngineerTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_engineer_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_engineer_hand"
     - type: LimbItemStorage
       items:
-        - EnergyShieldCyber
-        - CyberEnergyChainsword
+        - JawsOfLifeCyber
+        - PowerDrillCyber
+        - WelderExperimentalCyber
+        - RCDCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandLeft
       sound: 
@@ -322,9 +398,97 @@
       handWhitelist:
         tags:
           - CyberHandItem
+
+- type: entity
+  id: RightArmCyberEngineer
+  name: "right engineer arm"
+  parent: [PartCyber, BaseRightArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmEngineer
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_engineer_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_engineer_arm"
     - type: WithAttachedBodyParts
       parts:
-        left hand: LeftHandCyber
+        right hand: RightHandCyberEngineer
+
+- type: entity
+  id: RightHandCyberEngineer
+  name: "right engineer hand"
+  parent: [PartCyber, BaseRightHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandEngineer
+    - type: BaseLayerIdToggled
+      layer: CyberRHandEngineerTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_engineer_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_engineer_hand"
+    - type: LimbItemStorage
+      items:
+        - JawsOfLifeCyber
+        - PowerDrillCyber
+        - WelderExperimentalCyber
+        - RCDCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound: 
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+#Bulwark
+- type: entity
+  id: LeftArmCyberBulwark
+  name: "left bulwark arm"
+  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmBulwark
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberBulwark
+
+- type: entity
+  id: LeftHandCyberBulwark
+  name: "left bulwark hand"
+  parent: [PartCyber, BaseLeftHand, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandBulwark
+    - type: BaseLayerIdToggled
+      layer: CyberLHandBulwarkToggled
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_hand"
+    - type: LimbItemStorage
+      items:
+        - EnergyShieldCyber
+        - CyberEnergyChainsword
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
 
 - type: entity
   id: RightArmCyberBulwark
@@ -333,14 +497,31 @@
   components:
     - type: BaseLayerId
       layer: CyberRArmBulwark
-    - type: BaseLayerIdToggled
-      layer: CyberRArmBulwarkToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberBulwark
+
+- type: entity
+  id: RightHandCyberBulwark
+  name: "right bulwark hand"
+  parent: [PartCyber, BaseRightHand, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandBulwark
+    - type: BaseLayerIdToggled
+      layer: CyberRHandBulwarkToggled
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bulwark_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bulwark_hand"
     - type: LimbItemStorage
       items:
         - EnergyShieldCyber
@@ -352,9 +533,6 @@
       handWhitelist:
         tags:
           - CyberHandItem
-    - type: WithAttachedBodyParts
-      parts:
-        right hand: RightHandCyber
 
 #Mantis Blade
 - type: entity
@@ -364,14 +542,31 @@
   components:
     - type: BaseLayerId
       layer: CyberLArmMantisBlade
-    - type: BaseLayerIdToggled
-      layer: CyberLArmMantisBladeToggled 
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_mantis_blade_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_mantis_blade_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberMantisBlade
+
+- type: entity
+  id: LeftHandCyberMantisBlade
+  name: "left mantis blade hand"
+  parent: [PartCyber, BaseLeftHand, BaseSyndicateContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandMantisBlade
+    - type: BaseLayerIdToggled
+      layer: CyberLHandMantisBladeToggled
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_mantis_blade_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_mantis_blade_hand"
     - type: LimbItemStorage
       items:
         - CyberMantisBlade
@@ -382,9 +577,6 @@
       handWhitelist:
         tags:
           - CyberHandItem
-    - type: WithAttachedBodyParts
-      parts:
-        left hand: LeftHandCyber
 
 - type: entity
   id: RightArmCyberMantisBlade
@@ -393,14 +585,31 @@
   components:
     - type: BaseLayerId
       layer: CyberRArmMantisBlade
-    - type: BaseLayerIdToggled
-      layer: CyberRArmMantisBladeToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_mantis_blade_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_mantis_blade_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberMantisBlade
+        
+- type: entity
+  id: RightHandCyberMantisBlade
+  name: "right mantis blade hand"
+  parent: [PartCyber, BaseRightHand, BaseSyndicateContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandMantisBlade
+    - type: BaseLayerIdToggled
+      layer: CyberRHandMantisBladeToggled
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_mantis_blade_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_mantis_blade_hand"
     - type: LimbItemStorage
       items:
         - CyberMantisBlade
@@ -411,9 +620,6 @@
       handWhitelist:
         tags:
           - CyberHandItem
-    - type: WithAttachedBodyParts
-      parts:
-        right hand: RightHandCyber
 
 #ripperdoc
 - type: entity
@@ -423,14 +629,34 @@
   components:
     - type: BaseLayerId
       layer: CyberLArmRipper
-    - type: BaseLayerIdToggled
-      layer: CyberLArmRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_ripper_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_ripper_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberRipper
+    - type: Construction
+      graph: RipperLeftGraph
+      node: left
+
+- type: entity
+  id: LeftHandCyberRipper
+  name: "left ripperdoc hand"
+  parent: [PartCyber, BaseLeftHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandRipper
+    - type: BaseLayerIdToggled
+      layer: CyberLHandRipperRipping
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_ripper_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_ripper_hand"
     - type: LimbItemStorage
       items:
         - ScalpelRipper
@@ -448,13 +674,6 @@
       handWhitelist:
         tags:
           - CyberHandItem
-          - BoneGel
-    - type: WithAttachedBodyParts
-      parts:
-        left hand: LeftHandCyber
-    - type: Construction
-      graph: RipperLeftGraph
-      node: left
 
 - type: entity
   id: RightArmCyberRipper
@@ -463,14 +682,34 @@
   components:
     - type: BaseLayerId
       layer: CyberRArmRipper
-    - type: BaseLayerIdToggled
-      layer: CyberRArmRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_ripper_arm"
     - type: Icon
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_ripper_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberRipper
+    - type: Construction
+      graph: RipperRightGraph
+      node: right
+
+- type: entity
+  id: RightHandCyberRipper
+  name: "right ripperdoc hand"
+  parent: [PartCyber, BaseRightHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandRipper
+    - type: BaseLayerIdToggled
+      layer: CyberRHandRipperRipping
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_ripper_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_ripper_hand"
     - type: LimbItemStorage
       items:
         - ScalpelRipper
@@ -489,9 +728,651 @@
         tags:
           - CyberHandItem
           - BoneGel
+
+# Spacer
+- type: entity
+  id: LeftArmCyberSpacer
+  name: "left spacer arm"
+  parent: [PartCyber, BaseLeftArm]
+  description: Augmented arm for the salvager of the modern age.
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmSpacer
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_spacer_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_spacer_arm"
     - type: WithAttachedBodyParts
       parts:
-        right hand: RightHandCyber
-    - type: Construction
-      graph: RipperRightGraph
-      node: right
+        left hand: LeftHandCyberSpacer
+
+- type: entity
+  id: LeftHandCyberSpacer
+  name: "left spacer hand"
+  parent: [PartCyber, BaseLeftHand]
+  description: Augmented hand for the salvager of the modern age.
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandSpacer
+    - type: BaseLayerIdToggled
+      layer: CyberLHandSpacerTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_spacer_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_spacer_hand"
+    - type: LimbItemStorage
+      items:
+        - ProtokineticAcceleratorCyber
+        - WeaponGrapplingGunCyber
+        - WeaponCrusherDaggerCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+- type: entity
+  id: RightArmCyberSpacer
+  name: "right spacer arm"
+  parent: [PartCyber, BaseRightArm]
+  description: Augmented arm for the salvager of the modern age.
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmSpacer
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_spacer_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_spacer_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberSpacer
+
+- type: entity
+  id: RightHandCyberSpacer
+  name: "right spacer hand"
+  parent: [PartCyber, BaseRightHand]
+  description: Augmented hand for the salvager of the modern age.
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandSpacer
+    - type: BaseLayerIdToggled
+      layer: CyberRHandSpacerTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_spacer_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_spacer_hand"
+    - type: LimbItemStorage
+      items:
+        - ProtokineticAcceleratorCyber
+        - WeaponGrapplingGunCyber
+        - WeaponCrusherDaggerCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+# GORILLA
+- type: entity
+  id: LeftArmCyberGorilla
+  name: "left G.O.R.I.L.L.A arm"
+  parent: [PartCyber, BaseLeftArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmGorilla
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_gorilla_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_gorilla_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberGorilla
+
+- type: entity
+  id: LeftHandCyberGorilla
+  name: "left G.O.R.I.L.L.A hand"
+  parent: [PartCyber, BaseLeftHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandGorilla
+    - type: BaseLayerIdToggled
+      layer: CyberLHandGorillaTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_gorilla_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_gorilla_hand"
+    - type: LimbItemStorage
+      items:
+        - WeaponGauntletGorillaCyber
+        - WeaponPistolCHIMPCyber
+        - AnomalyScannerCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+- type: entity
+  id: RightArmCyberGorilla
+  name: "right G.O.R.I.L.L.A arm"
+  parent: [PartCyber, BaseRightArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmGorilla
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_gorilla_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_gorilla_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberGorilla
+
+- type: entity
+  id: RightHandCyberGorilla
+  name: "right G.O.R.I.L.L.A hand"
+  parent: [PartCyber, BaseRightHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandGorilla
+    - type: BaseLayerIdToggled
+      layer: CyberRHandGorillaTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_gorilla_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_gorilla_hand"
+    - type: LimbItemStorage
+      items:
+        - WeaponGauntletGorillaCyber
+        - WeaponPistolCHIMPCyber
+        - AnomalyScannerCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+# Angel
+- type: entity
+  id: LeftArmCyberAngel
+  name: "left angel arm"
+  parent: [PartCyber, BaseLeftArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmAngel
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_angel_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_angel_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberAngel
+
+- type: entity
+  id: LeftHandCyberAngel
+  name: "left angel hand"
+  parent: [PartCyber, BaseLeftHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandAngel
+    - type: BaseLayerIdToggled
+      layer: CyberLHandAngelTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_angel_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_angel_hand"
+    - type: LimbItemStorage
+      items:
+        - AutoinjectorCyberTricordrazine
+        - AutoinjectorCyberInaprovaline
+        - DefibrillatorCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+- type: entity
+  id: RightArmCyberAngel
+  name: "right angel arm"
+  parent: [PartCyber, BaseRightArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmAngel
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_angel_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_angel_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberAngel
+
+- type: entity
+  id: RightHandCyberAngel
+  name: "right angel hand"
+  parent: [PartCyber, BaseRightHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandAngel
+    - type: BaseLayerIdToggled
+      layer: CyberRHandAngelTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_angel_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_angel_hand"
+    - type: LimbItemStorage
+      items:
+        - AutoinjectorCyberTricordrazine
+        - AutoinjectorCyberInaprovaline
+        - DefibrillatorCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+# Zeus
+- type: entity
+  id: LeftArmCyberZeus
+  name: "left zeus arm"
+  parent: [PartCyber, BaseLeftArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmZeus
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_zeus_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_zeus_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberZeus
+
+- type: entity
+  id: LeftHandCyberZeus
+  name: "left zeus hand"
+  parent: [PartCyber, BaseLeftHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandZeus
+    - type: BaseLayerIdToggled
+      layer: CyberLHandZeus
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_zeus_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_zeus_hand"
+    - type: LimbItemStorage
+      items:
+        - MeleeWeaponCyberStunFist
+        - MeleeWeaponCyberEmpFist
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+- type: entity
+  id: RightArmCyberZeus
+  name: "right zeus arm"
+  parent: [PartCyber, BaseRightArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmZeus
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_zeus_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_zeus_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberZeus
+
+- type: entity
+  id: RightHandCyberZeus
+  name: "right zeus hand"
+  parent: [PartCyber, BaseRightHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandZeus
+    - type: BaseLayerIdToggled
+      layer: CyberRHandZeus
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_zeus_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_zeus_hand"
+    - type: LimbItemStorage
+      items:
+        - MeleeWeaponCyberStunFist
+        - MeleeWeaponCyberEmpFist
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+# Riplet
+- type: entity
+  id: LeftArmCyberRiplet
+  name: "left riplet arm"
+  parent: [PartCyber, BaseLeftArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmRiplet
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_riplet_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_riplet_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberRiplet
+
+- type: entity
+  id: LeftHandCyberRiplet
+  name: "left riplet hand"
+  parent: [PartCyber, BaseLeftHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandRiplet
+    - type: BaseLayerIdToggled
+      layer: CyberLHandRipletTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_riplet_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_riplet_hand"
+    - type: LimbItemStorage
+      items:
+        - CyberEquipmentGrabber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+- type: entity
+  id: RightArmCyberRiplet
+  name: "right riplet arm"
+  parent: [PartCyber, BaseRightArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmRiplet
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_riplet_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_riplet_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberRiplet
+
+- type: entity
+  id: RightHandCyberRiplet
+  name: "right riplet hand"
+  parent: [PartCyber, BaseRightHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandRiplet
+    - type: BaseLayerIdToggled
+      layer: CyberRHandRipletTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_riplet_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_riplet_hand"
+    - type: LimbItemStorage
+      items:
+        - CyberEquipmentGrabber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+# Persephone
+- type: entity
+  id: LeftArmCyberPersephone
+  name: "left persephone arm"
+  parent: [PartCyber, BaseLeftArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmPersephone
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_persephone_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_persephone_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberPersephone
+
+- type: entity
+  id: LeftHandCyberPersephone
+  name: "left persephone hand"
+  parent: [PartCyber, BaseLeftHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberLHandPersephone
+    - type: BaseLayerIdToggled
+      layer: CyberLHandPersephoneTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_persephone_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_persephone_hand"
+    - type: LimbItemStorage
+      items:
+        - CyberToolMiniHoe
+        - CyberToolClippers
+        - CyberToolDropper
+        - CyberToolHatchet
+        - CyberToolScythe
+        - CyberToolSpade
+        - CyberReagentGrinder
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+- type: entity
+  id: RightArmCyberPersephone
+  name: "right persephone arm"
+  parent: [PartCyber, BaseRightArm]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmPersephone
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_persephone_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_persephone_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberPersephone
+
+- type: entity
+  id: RightHandCyberPersephone
+  name: "right persephone hand"
+  parent: [PartCyber, BaseRightHand]
+  components:
+    - type: BaseLayerId
+      layer: CyberRHandPersephone
+    - type: BaseLayerIdToggled
+      layer: CyberRHandPersephoneTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_persephone_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_persephone_hand"
+    - type: LimbItemStorage
+      items:
+        - CyberToolMiniHoe
+        - CyberToolClippers
+        - CyberToolDropper
+        - CyberToolHatchet
+        - CyberToolScythe
+        - CyberToolSpade
+        - CyberReagentGrinder
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+# Hydraulic Legs
+- type: entity
+  id: LeftLegCyberHydraulic
+  name: "left hydraulic cyber leg"
+  parent: [PartCyber, BaseLeftLeg]
+  components:
+    - type: BaseLayerId
+      layer: CyberLLegHydraulic
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_leg_hydraulic"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_leg_hydraulic"
+    - type: MovementBodyPart
+      sprintSpeed : 3.4
+      maxDensity: 10000 #Lift the Planet!
+      minSpeedMod: 1.0
+      maxSpeedMod: 1.0
+    - type: WithAttachedBodyParts
+      parts:
+        left foot: LeftFootCyber
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+
+- type: entity
+  id: RightLegCyberHydraulic
+  name: "right hydraulic cyber leg"
+  parent: [PartCyber, BaseRightLeg]
+  components:
+    - type: BaseLayerId
+      layer: CyberRLegHydraulic
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_leg_hydraulic"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_leg_hydraulic"
+    - type: MovementBodyPart
+      sprintSpeed : 3.4
+      maxDensity: 10000 #Lift the Planet!
+      minSpeedMod: 1.0
+      maxSpeedMod: 1.0
+    - type: WithAttachedBodyParts
+      parts:
+        right foot: RightFootCyber
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+
+# Pilebunker Legs
+- type: entity
+  id: LeftLegCyberPilebunker
+  name: "left pilebunker leg"
+  parent: [PartCyber, BaseLeftLeg]
+  components:
+    - type: BaseLayerId
+      layer: CyberLLegPilebunker
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_leg_pilebunker"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_leg_pilebunker"
+    - type: MovementBodyPart
+      sprintSpeed : 4.5
+      maxDensity: 111
+    - type: WithAttachedBodyParts
+      parts:
+        left foot: LeftFootCyber
+    - type: LimbWithAction
+      action: JumpPilebunkerLeg
+
+- type: entity
+  id: RightLegCyberPilebunker
+  name: "right pilebunker leg"
+  parent: [PartCyber, BaseRightLeg]
+  components:
+    - type: BaseLayerId
+      layer: CyberRLegPilebunker
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_leg_pilebunker"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_leg_pilebunker"
+    - type: MovementBodyPart
+      sprintSpeed : 4.5
+      maxDensity: 111
+    - type: WithAttachedBodyParts
+      parts:
+        right foot: RightFootCyber
+    - type: LimbWithAction
+      action: JumpPilebunkerLeg

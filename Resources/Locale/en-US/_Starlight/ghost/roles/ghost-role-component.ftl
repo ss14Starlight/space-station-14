@@ -71,3 +71,6 @@ ghost-role-information-cossack-rules = You are [color={role-type-freelance-color
 ghost-role-information-syndie-soldier-rules = You are [color={role-type-syndicate-aligned-color}][bold]{role-type-syndicate-aligned-name}[/bold][/color].
 ghost-role-information-syndie-soldier-teamlead-rules = You are [color={role-type-syndicate-aligned-color}][bold]{role-type-syndicate-aligned-name}[/bold][/color].
 ghost-role-information-syndicate-monkey-reinforcement-rules = You are [color={role-type-syndicate-aligned-color}][bold]{role-type-syndicate-aligned-name}[/bold][/color].
+ghost-role-information-xenomoproach-name = Xenomoproach
+ghost-role-information-xenomoproach-description = You are a small Xenoborg wearing the skin of a moproach as a disguise.
+ghost-role-information-xenomoproach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other xenoborgs. Your goal is not to attack organic beings, rather you are tasked with being cute and distracting the organics while gathering intel.

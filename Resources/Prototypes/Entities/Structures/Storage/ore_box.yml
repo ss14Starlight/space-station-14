@@ -108,6 +108,7 @@
     components: 
     - type: MagnetPickup
       range: 2
+      requiresEquipping: false
       slotFlags: 0
   - type: Dumpable
     # Starlight Edit End

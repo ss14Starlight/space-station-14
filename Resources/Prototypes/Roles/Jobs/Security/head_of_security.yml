@@ -4,18 +4,18 @@
   description: job-description-hos
   playTimeTracker: JobHeadOfSecurity
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 72000 # 20 hours
     - !type:RoleTimeRequirement
       role: JobWarden
-      time: 18000 # 5 hrs
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 18000 # 5 hrs
+      time: 5h # Starlight
     - !type:RoleTimeRequirement
       role: JobDetective
-      time: 18000 # 5 hrs
+      time: 5h # knowing how to use the tools is important # Starlight
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 5h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 20h # Starlight
 
   weight: 10
   startingGear: HoSGear
@@ -29,7 +29,6 @@
   - Security
   - Armory
   - Maintenance
-  - Service
   - External
   - Detective
   - Cryogenics

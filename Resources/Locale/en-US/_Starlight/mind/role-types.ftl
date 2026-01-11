@@ -35,3 +35,4 @@ role-type-syndicate-aligned-color = #8b0000
 role-type-temporal-anomaly-color = #4169e1
 role-type-ussp-aligned-color = #dc143c
 role-type-wizard-federation-aligned-color = #9370db
+role-subtype-abductor = Abductor

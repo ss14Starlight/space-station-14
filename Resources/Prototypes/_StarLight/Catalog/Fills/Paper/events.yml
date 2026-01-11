@@ -44,7 +44,7 @@
     normalState: fire
   - type: Damageable
     damageModifierSet: Wood
-  - type: Food
+  - type: Edible
     solution: food
     delay: 7
     forceFeedDelay: 7

@@ -69,7 +69,10 @@
   - type: ReplacementAccent
     accent: genericAggressive
   - type: Bloodstream
-    bloodReagent: Blood
+    bloodReagents:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 1
     bloodMaxVolume: 250
     bloodlossDamage:
       types:

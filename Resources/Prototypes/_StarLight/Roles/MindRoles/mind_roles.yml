@@ -279,3 +279,15 @@
   parent: [ MindRoleGhostRoleNeutral, MindRoleFreelance ]
   id: MindRoleGhostRoleFreelance
   name: Ghost Role (Freelance)
+    - type: MindRole
+      roleType: CorporateAligned
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleSSF
+  name: Soviet Special Forces Role
+  components:
+  - type: MindRole
+    antagPrototype: SSF
+    roleType: TeamAntagonist
+    subtype: role-subtype-revolutionary

@@ -35,6 +35,11 @@ namespace Content.Client.Access.UI
             AccessGroupControlContainer.RemoveAllChildren();
             AccessLevelControlContainer.RemoveAllChildren();
 
+            /* Starlight: disabled upstream code
+            _accessButtons.Clear();
+            AccessLevelGrid.RemoveAllChildren();
+            *///End of disabled upstream code
+
             // Groups
             _accessGroups.Populate(accessGroups, currentGroup ?? accessGroups.FirstOrDefault(), protoManager);
             AccessGroupControlContainer.AddChild(_accessGroups);

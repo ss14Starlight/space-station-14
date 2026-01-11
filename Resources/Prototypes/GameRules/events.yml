@@ -300,7 +300,7 @@
       pickPlayer: false
       startingGear: ParadoxCloneGear
       roleLoadout:
-      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
+      # - RoleSurvivalVoxTank - Starlight edit - Should no longer be needed
       briefing:
         text: paradox-clone-role-greeting
         color: lightblue
@@ -682,6 +682,11 @@
     maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
     weight: 5
   - type: MobReplacementRule
+    # Starlight start
+    protos:
+      MobMimic: 45
+      MobMimicHostile: 55
+    # Starlight end
 
 - type: entity
   id: DoorLaggingVirus

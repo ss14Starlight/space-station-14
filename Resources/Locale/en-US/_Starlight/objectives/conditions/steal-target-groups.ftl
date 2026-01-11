@@ -7,3 +7,4 @@ steal-target-groups-hopboard = bureaucratic digiboard
 
 # Thief single items
 steal-target-groups-proto5x = Head Of Security's Proto-5x
+steal-target-groups-weapon-energy-shot-gun = energy shotgun

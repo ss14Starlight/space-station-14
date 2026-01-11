@@ -5,13 +5,15 @@
   id: BoxPancakes
   description: Look like someone who cares more about pancakes than what others think of her. Look like-A ROBOT??!
   components:
-  - type: StorageFill
-    contents:
-      - id: ClothingHeadHoney
-      - id: ClothingUniformPastryDress
-      - id: ClothingUniformApron
-      - id: FoodBakedPancake
-        amount: 2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingHeadHoney
+        - id: ClothingUniformPastryDress
+        - id: ClothingUniformApron
+        - id: FoodBakedPancake
+          amount: 2
 # Fashion-O-Mat-End
 
 # Expedition Encryption Keys
@@ -20,17 +22,21 @@
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeyExpedition
   components:
-    - type: StorageFill
-      contents:
-        - id: EncryptionKeyExpedition
-          amount: 4
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: EncryptionKeyExpedition
+            amount: 4
 
 - type: entity
   name: salvage encryption key box
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeySalvage
   components:
-    - type: StorageFill
-      contents:
-        - id: EncryptionKeySalvage
-          amount: 4
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: EncryptionKeySalvage
+            amount: 4

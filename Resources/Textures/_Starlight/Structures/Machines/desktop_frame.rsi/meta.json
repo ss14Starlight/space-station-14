@@ -1,0 +1,38 @@
+{
+  "version": 1,
+
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Conflee",
+
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+    "states": [
+        {
+            "name": "0",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "1",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "2",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "3",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "4",
+            "directions": 4,
+  			"copyright": "Conflee"
+        }
+    ]
+}
