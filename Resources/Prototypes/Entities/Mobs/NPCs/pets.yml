@@ -853,12 +853,23 @@
   - type: NpcFactionMember
     factions:
       - PetsNT
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: shiva
-      sprite: Mobs/Pets/shiva.rsi
+  # 🌟Starlight🌟 start
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: Mobs/Pets/shiva.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: shiva
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/shiva.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: shiva
+  # 🌟Starlight🌟 end
   - type: SpriteMovement
     movementLayers:
       movement:

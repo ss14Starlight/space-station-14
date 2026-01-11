@@ -9,6 +9,11 @@
   - ArtificialBluespaceCrystal
 
 - type: latheRecipePack
+  id: SecurityScienceBlueSpace
+  recipes:
+  - NullspaceAnchorMachineCircuitboard
+
+- type: latheRecipePack
   id: NullSpaceDrainer
   recipes:
   - NullSpaceDrainer

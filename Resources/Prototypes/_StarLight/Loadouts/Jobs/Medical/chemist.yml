@@ -72,11 +72,38 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorChemist
 
+# Senior Bags
+- type: loadout
+  id: SeniorChemistBackpack
+  equipment:
+    back: ClothingBackpackChemistrySenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChemist
+  
+
+- type: loadout
+  id: SeniorChemistSatchel
+  equipment:
+    back: ClothingBackpackSatchelChemistrySenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChemist
+
+- type: loadout
+  id: SeniorChemistDuffel
+  equipment:
+    back: ClothingBackpackDuffelChemistrySenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChemist
+
+
 # Chem bag
 - type: loadout
   id: ChemBag
   equipment:
-    bag: ChemBag
+    belt: ChemBag
 
 - type: loadout
   id: SeniorChemBag
@@ -84,7 +111,7 @@
     - !type:GroupLoadoutEffect
         proto: SeniorChemist
   equipment:
-    bag: SeniorChemBag
+    belt: SeniorChemBag
 
 # Senior Outer clothing
 - type: loadout

@@ -146,6 +146,8 @@
   id: AntagXenoborg
   nameDataset: NamesXenoborg
   canCustomizeName: true
+  groups:
+  - SiliconBrainType
 
 - type: roleLoadout
   id: AntagMothership

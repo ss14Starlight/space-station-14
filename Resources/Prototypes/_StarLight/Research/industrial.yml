@@ -75,3 +75,44 @@
   - WeaponTurretPointDefenseMachineCircuitboard
   radioChannels:
   - Engineering
+
+# Tier 3
+
+- type: technology
+  id: CargoCyberLimbsTech
+  name: research-technology-cargo-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: ripletclaw
+  discipline: Industrial
+  tier: 3
+  cost: 9320
+  recipeUnlocks:
+    - LeftArmCyberSpacer
+    - RightArmCyberSpacer
+    - LeftArmCyberRiplet
+    - RightArmCyberRiplet
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Medical
+  - Supply
+
+# Tier 4
+- type: technology
+  id: EngineeringCyberLimbsTech
+  name: research-technology-engineering-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: rcd
+  discipline: Industrial
+  tier: 4
+  cost: 30000
+  recipeUnlocks:
+    - LeftArmCyberEngineer
+    - RightArmCyberEngineer
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Medical
+  - Engineering

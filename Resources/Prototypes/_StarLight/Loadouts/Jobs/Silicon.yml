@@ -1,0 +1,16 @@
+# Species Brain
+- type: loadout
+  id: LoadoutSiliconSpeciesBrain
+  dummyEntity: MMIFilled # Yes im lazy and using a dummyEntity what you gonna do about it
+  effects:
+  - !type:SiliconBrainLoadoutEffect
+    # No brainProto, uses character's species brain
+
+# Positronic brain
+- type: loadout
+  id: LoadoutSiliconPositronicBrain
+  dummyEntity: PositronicBrain
+  effects:
+  - !type:SiliconBrainLoadoutEffect
+    brainPrototype: PositronicBrain
+    useMMI: false
