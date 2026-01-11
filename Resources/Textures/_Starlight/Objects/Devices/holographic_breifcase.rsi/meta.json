@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "closed",
+            "copyright": "Taken from Aurora.3 at https://github.com/Aurorastation/Aurora.3/blob/35d60d088612c60268eb20c261a133fc8cda3a87/icons/obj/modular_laptop.dmi, Modified by CrazyPhantom779(Github)"
+        },
+        {
+            "name": "open",
+            "copyright": "Taken from Aurora.3 at https://github.com/Aurorastation/Aurora.3/blob/35d60d088612c60268eb20c261a133fc8cda3a87/icons/obj/modular_laptop.dmi, Modified by CrazyPhantom779(Github)"
+        },
+        {
+            "name": "screen",
+            "copyright": "Taken from Aurora.3 at https://github.com/Aurorastation/Aurora.3/blob/35d60d088612c60268eb20c261a133fc8cda3a87/icons/obj/modular_laptop.dmi, Modified by CrazyPhantom779(Github)",
+            "delays": [
+                [
+                    1,
+                    0.1,
+                    1,
+                    0.1,
+                    1,
+                    0.1,
+                    1,
+                    0.1
+                ]
+            ]
+        }
+    ]
+}
