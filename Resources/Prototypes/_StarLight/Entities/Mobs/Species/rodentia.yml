@@ -26,7 +26,7 @@
     butcheringType: Spike
     spawned:
       - id: FoodMeat
-        amount: 5
+        amount: 3
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -50,12 +50,12 @@
     speechSounds: Squeak
     allowedEmotes: ['Squeak'] # MIKEY - add more emotes. Look at MobMouse for inspo?
   - type: Fixtures
-    fixtures: # TODO: This needs a second fixture just for mob collisions.
+    fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.28
-        density: 140
+          radius: 0.30
+        density: 110
         restitution: 0.0
         mask:
           - MobMask
@@ -80,10 +80,55 @@
       Unsexed: MaleRodentia
   - type: Inventory
     speciesId: rodentia
+    displacements: # MIKEY - verify all work
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: gloves
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: ears
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: mask
+      outerclothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: outerclothing
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: shoes
   - type: AlwaysTriggerMousetrap
   - type: CrawlUnderObjects
     actionProto: ActionToggleSneakMode
-#    displacements: # MIKEY - add displacements when Zeyria finishes them
 
 - type: entity
   save: false
@@ -95,3 +140,8 @@
   components:
   - type: HumanoidAppearance
     species: Rodentia
+  - type: Body
+    prototype: Rodentia
+#  - type: Inventory # MIKEY add displacements when finalized
+#    speciesId: rodentia
+#    displacements:

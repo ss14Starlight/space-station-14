@@ -2,7 +2,7 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Trigger.Systems;
 using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Physics.Components;
-using Content.Shared.DeltaV.Abilities; // Starlight
+using Content.Shared._DeltaV.Abilities; // Starlight
 
 namespace Content.Shared.Mousetrap;
 
