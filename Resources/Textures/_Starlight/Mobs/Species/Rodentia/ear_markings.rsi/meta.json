@@ -53,14 +53,6 @@
       "directions": 4
     },
     {
-      "name": "rabbit",
-      "directions": 4
-    },
-    {
-      "name": "rabbit_overlay",
-      "directions": 4
-    },
-    {
       "name": "small",
       "directions": 4
     }
