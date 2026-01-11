@@ -111,17 +111,6 @@
       state: pointy
 
 - type: marking
-  id: RodentiaHeadTopEarRabbit
-  markingCategory: HeadTop
-  bodyPart: HeadTop
-  speciesRestriction: [Rodentia]
-  sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
-      state: rabbit
-    - sprite: _Starlight/Mobs/Species/Rodentia/ear_markings.rsi
-      state: rabbit_overlay
-
-- type: marking
   id: RodentiaHeadTopEarSmall
   markingCategory: HeadTop
   bodyPart: HeadTop
@@ -338,26 +327,6 @@
   sprites:
     - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
       state: mouse
-
-- type: marking
-  id: RodentiaTailRabbit
-  markingCategory: Tail
-  bodyPart: Tail
-  speciesRestriction: [Rodentia]
-  sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
-      state: rabbit
-
-- type: marking
-  id: RodentiaTailRabbitCounter
-  markingCategory: Tail
-  bodyPart: Tail
-  speciesRestriction: [Rodentia]
-  sprites:
-    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
-      state: rabbit
-    - sprite: _Starlight/Mobs/Species/Rodentia/tail_markings.rsi
-      state: rabbit_overlay
 
 - type: marking
   id: RodentiaTailShort
