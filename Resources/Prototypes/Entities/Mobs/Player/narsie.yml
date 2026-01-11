@@ -32,7 +32,7 @@
       shader: unshaded
   # spawn animation lasts 3.5 seconds
   - type: TimedDespawn
-    lifetime: 3.5
+    lifetime: 10
   - type: SpawnOnDespawn
     prototype: MobNarsie
 

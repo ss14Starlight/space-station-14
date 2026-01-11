@@ -1,0 +1,46 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by TacoLlama (github)",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+        {
+            "name": "full"
+        },
+        {
+            "name": "xenoborglight0",
+            "directions": 4
+        },
+        {
+            "name": "xenoborglight1",
+            "directions": 4
+        },
+        {
+            "name": "xenoborglight2",
+            "directions": 4
+        },
+        {
+            "name": "xenoborglight3",
+            "directions": 4
+        },
+        {
+            "name": "xenoborglight4",
+            "directions": 4
+        },
+        {
+            "name": "xenoborglight5",
+            "directions": 4
+        },
+        {
+            "name": "xenoborglight6",
+            "directions": 4
+        },
+        {
+            "name": "xenoborglight7",
+            "directions": 4
+        }
+    ]
+}

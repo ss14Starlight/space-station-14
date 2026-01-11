@@ -150,7 +150,7 @@
     # Starlight Start
     denyGameRules:
     - AbductorsSpawn
-  - type: DynamicRule
+  - type: SubRule
     table: !type:GroupSelector
       children:
       - id: NukiePlanetSpawn

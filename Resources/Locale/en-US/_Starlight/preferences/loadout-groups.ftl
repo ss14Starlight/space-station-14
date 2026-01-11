@@ -57,17 +57,20 @@ loadout-group-mining-id = Mining Specialist ID
 loadout-group-salvage-id = Salvage Specialist ID
 loadout-group-salvage-lead-mantle = Salvage Lead mantle 
 
+# Silicons
+loadout-group-borg-brain-type = Cyborg Brain Type
+
 # Medical
 loadout-group-chemist-head = Chemist head
 loadout-group-chemist-eyewear = Chemist eyewear
 loadout-group-chemist-id = Chemist ID
+loadout-group-paramedic-id = Paramedic ID
 loadout-group-chemist-beaker = Chemist beaker
 loadout-group-chemist-bag = Chemist bag
 loadout-group-chemist-labeler = Chemist labeler
 loadout-group-chemist-shoes = Chemist shoes
 
 # Other
-
 loadout-group-scarves = Scarf
 loadout-group-pens = Pen
 

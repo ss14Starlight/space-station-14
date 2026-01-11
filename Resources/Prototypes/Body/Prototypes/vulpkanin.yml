@@ -12,6 +12,7 @@
         eyes: OrganHumanEyes
         tongue: OrganHumanTongue #Starlight - surgery
         eye_implant: null #Starlight - surgery
+        brain_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoVulpkanin
       connections:
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandVulpkanin
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     left hand:
       part: LeftHandVulpkanin
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     right leg:
       part: RightLegVulpkanin
       connections:

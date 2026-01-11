@@ -936,15 +936,15 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
-    proto: BulletLaserMagnum
+    proto: BulletLaserMagnumSL  # Starlight - Hitscan
     fireCost: 150
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BulletLaserMagnum
+    - proto: BulletLaserMagnumSL # Starlight - Hitscan
       fireCost: 150
-    - proto: BulletLaserWindowPiercingMagnum
+    - proto: BulletLaserWindowPiercingMagnumSL # Starlight - Hitscan
       fireCost: 150
-    - proto: BulletDisabler
+    - proto: DisablerBolt # Starlight - Hitscan
       fireCost: 62.5
       pacifismAllowedMode: true
   - type: PredictedBatterySelfRecharger

@@ -2363,15 +2363,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -59.5,-8.5
       parent: 1
+- proto: AirlockExternalGlassNukeopsShuttle
+  entities:
   - uid: 21230
     components:
     - type: Transform
       pos: -59.5,12.5
       parent: 1
-    - type: GridFill
-      addComponents:
-      - type: NukeOpsShuttle
-      path: /Maps/Shuttles/infiltrator.yml
 - proto: AirlockSyndicateGlass
   entities:
   - uid: 27

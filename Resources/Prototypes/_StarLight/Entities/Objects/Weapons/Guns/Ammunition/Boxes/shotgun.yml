@@ -16,7 +16,7 @@
     capacity: 8
 
 - type: entity
-  name: ammunition box (.42 pellet)
+  name: 20 gauge pellet ammunition box
   description: Open and ready to be used.
   parent: AmmoProviderShotgunShellToz
   suffix: opened
@@ -26,9 +26,10 @@
     proto: ShellShotgunToz
 
 - type: entity
-  name: ammunition box (.42 pellet)
+  name: 20 gauge pellet ammunition box
   description: The nearly-illegible text on the packaging says you should use a knife, but it's so cheap you can just rip it open.
   parent: BaseItem
+  suffix: sealed
   id: BoxLethalshotToz
   components:
   - type: Sprite
