@@ -6,6 +6,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared.StatusIcon; // Starlight
 
 namespace Content.Shared.Silicons.Borgs.Components;
 
@@ -147,6 +148,13 @@ public sealed partial class BorgChassisComponent : Component
     /// </summary>
     [DataField]
     public bool CanOpenSelfUi;
+    
+    // Starlight begin
+    [DataField] public ProtoId<JobIconPrototype> JobIconOverride = "JobIconBorg";
+    [DataField] private string? _jobTitle;
+    [DataField] public LocId? JobTitleOverride = "job-name-borg";
+    public string? LocalizedJobTitle { set => _jobTitle = value; get => _jobTitle ?? Loc.GetString(JobTitleOverride ?? string.Empty); }
+    // Starlight end
 }
 
 [Serializable, NetSerializable]

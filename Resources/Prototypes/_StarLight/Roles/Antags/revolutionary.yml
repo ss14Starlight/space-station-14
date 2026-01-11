@@ -2,7 +2,7 @@
   id: SSF
   name: roles-antag-ssf-name
   antagonist: true
-  setPreference: true
+  setPreference: false
   objective: roles-antag-ssf-objective
   requirements:
   - !type:OverallPlaytimeRequirement

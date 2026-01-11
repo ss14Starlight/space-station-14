@@ -23,7 +23,6 @@ using Content.Shared.Mobs.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Chat; // Starlight
 
 namespace Content.Server.Body.Systems;
 

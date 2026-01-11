@@ -7,12 +7,28 @@
   description: a small spider which growth into unknown big and dangerous spider.
   abstract: true
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: alive
-      sprite: _Starlight/Mobs/Animals/spiderling.rsi
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: _Starlight/Mobs/Animals/Spiders/spiderling.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/spiderling.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+  - type: LanguageKnowledge
+    speaks:
+    - Chittin
+    - Darktongue
+    understands:
+    - Chittin
+    - Darktongue
   - type: VentCrawler
   - type: Physics
   - type: Fixtures

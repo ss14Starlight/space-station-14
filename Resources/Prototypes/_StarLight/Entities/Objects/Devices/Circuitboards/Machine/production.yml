@@ -1114,6 +1114,23 @@
         Glass: 2
 
 - type: entity
+  id: NullspaceAnchorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Nullspace anchor circuitboard
+  description: A machine printed circuit board for a nullspace anchor
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: nullspaceanchor
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        CableHV: 10
+        BluespaceCrystal: 1
+        Glass: 2
+          
+- type: entity
   parent: BaseMachineCircuitboard
   id: MassDriverCircuitboard
   name: mass driver board

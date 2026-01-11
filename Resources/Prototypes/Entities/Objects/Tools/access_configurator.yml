@@ -85,6 +85,7 @@
       - Syndicate
       - Silicon
       - Xenoborg
+      overridesTargetRestrictions: true
       privilegedIdSlot:
         name: AccessOverrider-privilegedId # Starlight-edit
         startingItem: UniversalIDCard

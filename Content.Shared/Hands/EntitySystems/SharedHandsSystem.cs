@@ -95,6 +95,7 @@ public abstract partial class SharedHandsSystem
         //Starlight start
         switch (hand.Location) 
         {
+            case HandLocation.Middle: //Middle hands are functional hands but on hotbar. Special sorting for this would be possible, but quite inefficient.
             case HandLocation.Functional:
                 ent.Comp.SortedHands.Add(handName);
                 break;

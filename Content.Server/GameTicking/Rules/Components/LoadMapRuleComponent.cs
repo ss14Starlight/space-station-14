@@ -1,6 +1,7 @@
 using Content.Server.GameTicking.Rules;
 using Content.Server.Maps;
 using Content.Shared.GridPreloader.Prototypes;
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -41,4 +42,11 @@ public sealed partial class LoadMapRuleComponent : Component
     /// </summary>
     [DataField, Obsolete("Do not pre-load grids. This causes the server to have to keep that grid loaded in memory during the entire round, even if that grid is never summoned to the playspace.")]
     public ProtoId<PreloadedGridPrototype>? PreloadedGrid;
+
+    /// <summary>
+    /// Starlight - If a map with the tag below already exist, we do not load a new one and give info on the current one.
+    /// THIS ONLY SUPPORT "MapPath"
+    /// </summary>
+    [DataField]
+    public ProtoId<TagPrototype>? MapTag;
 }

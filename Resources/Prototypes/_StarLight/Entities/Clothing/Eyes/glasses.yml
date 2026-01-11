@@ -25,6 +25,23 @@
 
 - type: entity
   parent: ClothingEyesBase
+  id: ClothingEyesGlassesJensenChemical
+  name: advanced jensen glasses
+  description: A pair of magenta tinted folding glasses that can scan the chemical composition of a solution. You specifically asked for these.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/advancedjensen.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/advancedjensen.rsi
+  - type: SolutionScanner
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesBase
   id: ClothingEyesSunGlassesHudSkill
   name: skills sunglasses
   description: Sunglasses with a build-in skills HUD, showing the employment history of nearby NT crew members.
@@ -116,7 +133,7 @@
 # Shadekin
 
 - type: entity
-  parent: [ClothingEyesBase, BaseMajorContraband]
+  parent: [ClothingEyesBase, BaseSecurityScienceCommandContraband]
   id: ClothingEyesGlassesNullSpace
   name: nullspace goggles
   description: An unusual pair of goggles developed during a time of inhumane experimentation involving Shadekin. They are designed to allow the wearer to peer into NullSpace.
@@ -126,12 +143,16 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/nullspacegoogles.rsi
   - type: ShowNullSpace
+    showShader: true
+  - type: Construction
+    graph: ClothingGlassesNullSpace
+    node: glasses
 
 - type: entity
   parent: [ ClothingEyesBase, BaseSalvageContraband ]
   id: ClothingEyesGlassesSalvageMercenary
   name: scrapper glasses
-  description: Glasses made for salvaging. They provide protection from flashes and welding.
+  description: Glasses made for salvaging. They provide protection from welding and flashes.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Eyes/Glasses/salvage.rsi
@@ -139,6 +160,5 @@
       sprite: _Starlight/Clothing/Eyes/Glasses/salvage.rsi
     - type: FlashImmunity
     - type: EyeProtection
-      protectionTime: 5
     - type: IdentityBlocker
       coverage: EYES

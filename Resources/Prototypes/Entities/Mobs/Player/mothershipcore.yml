@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseControllable, BaseStructure ]
+  parent: [ BaseControllable, BaseStructure, BaseSiliconLanguages] # Starlight
   id: MothershipCore
   name: mothership core
   description: A sentient machine that can produce Xenoborgs. Without this the Xenoborgs are doomed.
@@ -173,6 +173,8 @@
     disableExplosionRecursion: true
     canBeStripped: false
   - type: BorgChassis
+    jobIconOverride: JobIconXenoborgMothership # Starlight
+    jobTitleOverride: chat-radio-mothership # Starlight
     canOpenSelfUi: true
     maxModules: 2
     hasMindState: core-e

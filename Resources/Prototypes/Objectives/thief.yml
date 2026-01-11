@@ -61,7 +61,7 @@
     minCollectionSize: 10
     maxCollectionSize: 18 #will be limited to the number of figures on the station anyway.
   - type: Objective
-    difficulty: 0.25
+    difficulty: 0.7 #Starlight edit, youre fighting others for em
 
 - type: entity
   parent: BaseThiefStealCollectionObjective
@@ -83,7 +83,7 @@
     minCollectionSize: 3
     maxCollectionSize: 6
   - type: Objective
-    difficulty: 1.0
+    difficulty: 1.3 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealCollectionObjective
@@ -133,7 +133,7 @@
     maxCollectionSize: 8
     verifyMapExistence: false
   - type: Objective
-    difficulty: 0.8
+    difficulty: 0.3 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealCollectionObjective
@@ -147,7 +147,7 @@
     maxCollectionSize: 10
     verifyMapExistence: false
   - type: Objective
-    difficulty: 0.7
+    difficulty: 0.5 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealCollectionObjective
@@ -200,7 +200,7 @@
   - type: StealCondition
     stealGroup: FlippoEngravedLighter
   - type: Objective
-    difficulty: 0.8
+    difficulty: 0.5 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealObjective
@@ -262,7 +262,7 @@
   - type: StealCondition
     stealGroup: FireAxe
   - type: Objective
-    difficulty: 0.8
+    difficulty: 0.5 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealObjective
@@ -284,7 +284,7 @@
   - type: StealCondition
     stealGroup: ChiefEngineerToolBelt
   - type: Objective
-    difficulty: .7
+    difficulty: 0.7
 
 - type: entity                                      #Cargo subgroup
   parent: BaseThiefStealObjective
@@ -385,7 +385,7 @@
   - type: StealCondition
     stealGroup: FaxMachineCaptain
   - type: Objective
-    difficulty: 2
+    difficulty: 1.3 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealStructureObjective
@@ -407,7 +407,7 @@
   - type: StealCondition
     stealGroup: XenoArtifact
   - type: Objective
-    difficulty: 0.5
+    difficulty: 0.3 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealStructureObjective
@@ -418,7 +418,7 @@
   - type: StealCondition
     stealGroup: FreezerHeater
   - type: Objective
-    difficulty: 0.5
+    difficulty: 0.3 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealStructureObjective
@@ -451,7 +451,7 @@
   - type: StealCondition
     stealGroup: AltarNanotrasen
   - type: Objective
-    difficulty: 0.5
+    difficulty: 0.3 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealStructureObjective
@@ -462,7 +462,7 @@
   - type: StealCondition
     stealGroup: PlantRD
   - type: Objective
-    difficulty: 0.8
+    difficulty: 0.5 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealStructureObjective
@@ -473,7 +473,7 @@
   - type: StealCondition
     stealGroup: ToiletGoldenDirtyWater
   - type: Objective
-    difficulty: 2
+    difficulty: 1.3 #Starlight edit
 
 # Animal
 
@@ -486,7 +486,7 @@
   - type: StealCondition
     stealGroup: AnimalIan
   - type: Objective
-    difficulty: 2.5
+    difficulty: 1.3 #Starlight edit, i get ian is a contested steal but what do you MEAN harder to get than caps pet
 
 - type: entity
   parent: BaseThiefStealAnimalObjective
@@ -537,7 +537,7 @@
   - type: StealCondition
     stealGroup: AnimalRenault
   - type: Objective
-    difficulty: 2
+    difficulty: 1.7 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealAnimalObjective
@@ -548,7 +548,7 @@
   - type: StealCondition
     stealGroup: AnimalShiva
   - type: Objective
-    difficulty: 2
+    difficulty: 1.3 #Starlight edit
 
 - type: entity
   parent: BaseThiefStealAnimalObjective
@@ -570,7 +570,7 @@
   description: You don't want your illegal activities to be discovered by anyone, do you?
   components:
   - type: Objective
-    difficulty: 1.3
+    difficulty: 0.7 #Starlight edit, formerly 1.3, took up like half the max difficulty for thief, weird
     icon:
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
