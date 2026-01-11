@@ -86,3 +86,20 @@
       toPointer: false
       sound:
         path: /Audio/_Starlight/Effects/Jump/jetpack.ogg
+
+- type: entity
+  parent: Jump
+  id: JumpPilebunkerLeg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Actions/resomi.rsi
+      state: jump
+  - type: WorldTargetAction
+    event: !type:JumpActionEvent
+      distance: 5
+      sound:
+        path: /Audio/Weapons/block_metal1.ogg

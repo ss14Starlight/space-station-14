@@ -61,3 +61,14 @@
   suffix: Avali
   categories: [ HideSpawnMenu ]
 #Placeholder until sprited
+
+- type: entity
+  id: OrganAvaliEyes
+  parent: OrganHumanEyes
+  name: eyes
+  suffix: Avali
+  description: "The eyes of an Avali."
+  components:
+  - type: OrganVisualization
+    layer: Eyes
+    prototype: MobAvaliEyes

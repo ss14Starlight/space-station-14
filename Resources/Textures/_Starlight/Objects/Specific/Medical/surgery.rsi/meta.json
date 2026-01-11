@@ -48,6 +48,10 @@
 		},
 		{
 			"name": "sawripper"
+		},
+		{
+			"name": "bonegel",
+      		"copyright": "modified from cautery, done by Citrea"
 		}
     ]
 }

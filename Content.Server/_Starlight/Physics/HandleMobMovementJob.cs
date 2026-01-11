@@ -45,7 +45,7 @@ public struct HandleMobMovementJob(SLMoverController moverController) : IParalle
             _sounds[index] = playSound;
             _rotations[index] = rotation;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
 
         }
