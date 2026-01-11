@@ -1,0 +1,24 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "cortical-stack",
+            "copyright": "Taken from Paradise at https://github.com/ParadiseSS13/Paradise/blob/3c7ca73c0481294ed7a2746cbc90dcef90f38d91/icons/obj/surgery.dmi",
+            "delays": [
+                [
+                    1.5,
+                    0.1,
+                    0.1,
+                    1,
+                    0.1
+                ]
+            ]
+        }
+    ]
+}
