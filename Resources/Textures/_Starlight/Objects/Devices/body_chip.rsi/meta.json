@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "body-chip",
+            "copyright": "Taken from Aurora.3 at https://github.com/Aurorastation/Aurora.3/blob/755a841674f41a9788bf2d915ae2efba35ddbf42/icons/obj/stock_parts.dmi"
+        }
+    ]
+}
