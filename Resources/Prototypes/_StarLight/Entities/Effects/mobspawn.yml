@@ -48,6 +48,7 @@
       - id: OrganReptilianStomach
       - id: OrganResomiEyes
       - id: OrganMothEyes
+      - id: OrganRodentiaEyes
       - id: OrganSlimeLungs
       - id: OrganSlimeHeart
       - id: OrganVoxLungs

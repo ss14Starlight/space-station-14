@@ -95,12 +95,12 @@
         sizeMaps:
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
-            state: gloves
-      head:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
-            state: head
+            state: hands
+#      head:
+#        sizeMaps:
+#          32:
+#            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+#            state: head
       back:
         sizeMaps:
           32:

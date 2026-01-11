@@ -16,6 +16,12 @@
   - Male
   - Female
   - Unsexed
+#  minHeight: 0.8 # MIKEY figure out stats for this
+#  defaultHeight: 0.8
+#  maxHeight: 0.9
+#  standardSize: 170
+#  standardWeight: 48
+#  standardDensity: 45
 
 - type: speciesBaseSprites
   id: MobRodentiaSprites
@@ -30,7 +36,7 @@
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
-    Eyes: MobHumanoidEyes
+    Eyes: MobRodentiaEyes
     LArm: MobRodentiaLArm
     RArm: MobRodentiaRArm
     LHand: MobRodentiaLHand
@@ -80,6 +86,12 @@
 #      points: 1
 #      required: true
 #      defaultMarkings: [ RMCUndershirtStandard ]
+
+- type: humanoidBaseSprite
+  id: MobRodentiaEyes
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+    state: eyes
 
 - type: humanoidBaseSprite
   id: MobRodentiaHead
@@ -164,3 +176,5 @@
   baseSprite:
     sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
     state: r_foot
+
+# MIKEY add tail part here for crazyphantom

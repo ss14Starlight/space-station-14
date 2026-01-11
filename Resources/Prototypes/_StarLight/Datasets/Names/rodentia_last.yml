@@ -1,6 +1,6 @@
 # rodentia name scheme is "adjective-trait name", like "long-ears monty"
 
-- type: dataset
+- type: localizedDataset
   id: names_rodentia_last
   values:
     prefix: names-rodentia-last-dataset-
