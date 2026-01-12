@@ -4,13 +4,8 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-<<<<<<< HEAD
   time: 12/22/2025 00:44:28
   entityCount: 41076
-=======
-  time: 01/10/2026 23:11:33
-  entityCount: 41077
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
 maps:
 - 1
 grids:
@@ -28158,11 +28153,7 @@ entities:
       pos: -36.5,1.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -420017.94
-=======
-      secondsUntilStateChange: -418751.53
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -29094,11 +29085,7 @@ entities:
       pos: 30.5,-55.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -115418.234
-=======
-      secondsUntilStateChange: -114151.836
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 4
@@ -30806,11 +30793,7 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -418676.47
-=======
-      secondsUntilStateChange: -417410.06
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -31126,11 +31109,7 @@ entities:
       pos: 35.5,21.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -122635.055
-=======
-      secondsUntilStateChange: -121368.66
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31142,11 +31121,7 @@ entities:
       pos: 35.5,20.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -122639.89
-=======
-      secondsUntilStateChange: -121373.49
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31158,11 +31133,7 @@ entities:
       pos: 35.5,19.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -122635.89
-=======
-      secondsUntilStateChange: -121369.49
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31367,11 +31338,7 @@ entities:
       pos: 21.5,-37.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -130547.4
-=======
-      secondsUntilStateChange: -129281
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31412,11 +31379,7 @@ entities:
       pos: 7.5,-33.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -400947.1
-=======
-      secondsUntilStateChange: -399680.7
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31462,11 +31425,7 @@ entities:
       pos: -1.5,46.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -25875.582
-=======
-      secondsUntilStateChange: -24609.19
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31532,11 +31491,7 @@ entities:
       pos: 13.5,49.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -62107.63
-=======
-      secondsUntilStateChange: -60841.234
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31629,11 +31584,7 @@ entities:
       pos: 29.5,43.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -89587.34
-=======
-      secondsUntilStateChange: -88320.945
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -31773,11 +31724,7 @@ entities:
       pos: -38.5,7.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -223157.36
-=======
-      secondsUntilStateChange: -221890.97
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32326,11 +32273,7 @@ entities:
       pos: -9.5,34.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -450605.53
-=======
-      secondsUntilStateChange: -449339.12
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32454,11 +32397,7 @@ entities:
       pos: -47.5,-26.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -396345.16
-=======
-      secondsUntilStateChange: -395078.75
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32931,11 +32870,7 @@ entities:
       pos: -6.5,19.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -356612.78
-=======
-      secondsUntilStateChange: -355346.38
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -32946,11 +32881,7 @@ entities:
       pos: -2.5,19.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -356615.28
-=======
-      secondsUntilStateChange: -355348.88
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -119117,11 +119048,7 @@ entities:
       pos: 45.5,-3.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -90061.55
-=======
-      secondsUntilStateChange: -88795.15
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 16942
     components:
@@ -119130,11 +119057,7 @@ entities:
       pos: 45.5,-5.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -90060.74
-=======
-      secondsUntilStateChange: -88794.34
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
 - proto: CurtainsBlackOpen
   entities:
@@ -119210,11 +119133,7 @@ entities:
       pos: 4.5,-52.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -117778.445
-=======
-      secondsUntilStateChange: -116512.05
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Closing
   - uid: 16955
     components:
@@ -119222,11 +119141,7 @@ entities:
       pos: 2.5,-52.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -117779.88
-=======
-      secondsUntilStateChange: -116513.484
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Closing
   - uid: 16956
     components:
@@ -119234,11 +119149,7 @@ entities:
       pos: 3.5,-52.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -117779.05
-=======
-      secondsUntilStateChange: -116512.65
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Closing
   - uid: 16957
     components:
@@ -119246,11 +119157,7 @@ entities:
       pos: 2.5,-57.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -117791.78
-=======
-      secondsUntilStateChange: -116525.38
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Closing
   - uid: 16958
     components:
@@ -119258,11 +119165,7 @@ entities:
       pos: 3.5,-57.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -117784.98
-=======
-      secondsUntilStateChange: -116518.58
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Closing
   - uid: 16959
     components:
@@ -119270,11 +119173,7 @@ entities:
       pos: 1.5,-57.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -166835.8
-=======
-      secondsUntilStateChange: -165569.4
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Closing
   - uid: 16960
     components:
@@ -119383,11 +119282,7 @@ entities:
       pos: 37.5,40.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -89265.39
-=======
-      secondsUntilStateChange: -87998.99
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Closing
 - proto: CurtainsOrangeOpen
   entities:
@@ -134393,11 +134288,7 @@ entities:
       pos: 36.5,-43.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -170507.56
-=======
-      secondsUntilStateChange: -169241.17
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 19493
     components:
@@ -202116,11 +202007,7 @@ entities:
       pos: 16.5,73.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -105283.67
-=======
-      secondsUntilStateChange: -104017.27
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 28393
     components:
@@ -202129,11 +202016,7 @@ entities:
       pos: 14.5,78.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -105282.63
-=======
-      secondsUntilStateChange: -104016.234
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 28394
     components:
@@ -202142,11 +202025,7 @@ entities:
       pos: 17.5,79.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -105281.54
-=======
-      secondsUntilStateChange: -104015.14
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 28395
     components:
@@ -202155,11 +202034,7 @@ entities:
       pos: 8.5,83.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -105280.54
-=======
-      secondsUntilStateChange: -104014.14
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 28396
     components:
@@ -202168,11 +202043,7 @@ entities:
       pos: 11.5,73.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -105284.734
-=======
-      secondsUntilStateChange: -104018.336
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
 - proto: MicroManipulatorStockPart
   entities:
@@ -235030,13 +234901,6 @@ entities:
     components:
     - type: Transform
       pos: 27.5,5.5
-      parent: 2
-- proto: SpawnPointDrillInstructor
-  entities:
-  - uid: 41077
-    components:
-    - type: Transform
-      pos: 18.5,-0.5
       parent: 2
 - proto: SpawnPointHeadOfPersonnel
   entities:
@@ -277546,11 +277410,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -422836.56
-=======
-      secondsUntilStateChange: -421570.16
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: Airlock
       autoClose: False
@@ -279809,11 +279669,7 @@ entities:
       pos: -32.5,-9.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -137046.73
-=======
-      secondsUntilStateChange: -135780.34
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 41026
     components:
@@ -279821,11 +279677,7 @@ entities:
       pos: -29.5,-5.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -352191.38
-=======
-      secondsUntilStateChange: -350924.97
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 41027
     components:
@@ -279833,11 +279685,7 @@ entities:
       pos: -30.5,-2.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -352193.38
-=======
-      secondsUntilStateChange: -350926.97
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 41028
     components:
@@ -279850,11 +279698,7 @@ entities:
       pos: -34.5,-9.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -19594.225
-=======
-      secondsUntilStateChange: -18327.832
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 41030
     components:
@@ -279872,11 +279716,7 @@ entities:
       pos: -1.5,95.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -126860.83
-=======
-      secondsUntilStateChange: -125594.43
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
   - uid: 41033
     components:
@@ -279899,11 +279739,7 @@ entities:
       pos: -59.5,32.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -77179.586
-=======
-      secondsUntilStateChange: -75913.19
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
 - proto: WoodenBench
   entities:

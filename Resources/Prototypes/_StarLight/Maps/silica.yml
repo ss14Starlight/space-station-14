@@ -49,12 +49,11 @@
             Scientist: [ 3, 4 ]
             ResearchAssistant: [ 2, 2 ]
             Roboticist: [ 2, 2 ]
-            #security (17)
+            #security (16)
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             SecurityOfficer: [ 4, 8 ]
             Detective: [ 1, 1 ]
-            DrillInstructor: [ 1, 1 ]
             SecurityCadet: [ 2, 4 ]
             Brigmedic: [ 1, 1 ]
             #supply (15)

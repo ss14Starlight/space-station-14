@@ -4,13 +4,8 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-<<<<<<< HEAD
   time: 01/04/2026 09:19:16
   entityCount: 24963
-=======
-  time: 01/10/2026 23:21:54
-  entityCount: 25023
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
 maps:
 - 1
 grids:
@@ -13069,11 +13064,7 @@ entities:
       pos: 19.5,52.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -98810.016
-=======
-      secondsUntilStateChange: -95812.3
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13147,11 +13138,7 @@ entities:
       pos: 72.5,0.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -182885.48
-=======
-      secondsUntilStateChange: -179887.78
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13391,11 +13378,7 @@ entities:
       pos: 9.5,13.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -141921.89
-=======
-      secondsUntilStateChange: -138924.19
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13405,11 +13388,7 @@ entities:
       pos: -2.5,11.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -298412.72
-=======
-      secondsUntilStateChange: -295415
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13455,11 +13434,7 @@ entities:
       pos: 3.5,11.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -319401.44
-=======
-      secondsUntilStateChange: -316403.72
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13561,11 +13536,7 @@ entities:
       pos: -8.5,11.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -292574.9
-=======
-      secondsUntilStateChange: -289577.2
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13979,11 +13950,7 @@ entities:
       pos: -60.5,-1.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -272037.78
-=======
-      secondsUntilStateChange: -269040.06
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -14105,7 +14072,6 @@ entities:
       pos: 86.5,29.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -223615.38
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -14135,9 +14101,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -25.5,20.5
       parent: 2
-=======
-      secondsUntilStateChange: -220617.67
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -14580,11 +14543,7 @@ entities:
       pos: 53.5,9.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -24373.09
-=======
-      secondsUntilStateChange: -21375.38
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14595,11 +14554,7 @@ entities:
       pos: 53.5,10.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -24373.29
-=======
-      secondsUntilStateChange: -21375.58
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14968,11 +14923,7 @@ entities:
       pos: 2.5,18.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -308756.88
-=======
-      secondsUntilStateChange: -305759.16
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15150,11 +15101,7 @@ entities:
       pos: 10.5,-2.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -127876.76
-=======
-      secondsUntilStateChange: -124879.04
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15531,11 +15478,7 @@ entities:
       pos: 32.5,16.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -251743.27
-=======
-      secondsUntilStateChange: -248745.56
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15682,11 +15625,7 @@ entities:
       pos: 10.5,48.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -62833.074
-=======
-      secondsUntilStateChange: -59835.363
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -72852,11 +72791,7 @@ entities:
       pos: 16.5,4.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -20005.06
-=======
-      secondsUntilStateChange: -17007.352
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
 - proto: FenceMetalStraight
   entities:
@@ -75176,11 +75111,7 @@ entities:
       pos: 76.5,2.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -126891.19
-=======
-      secondsUntilStateChange: -123893.47
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Closing
   - uid: 11293
     components:
@@ -76830,11 +76761,7 @@ entities:
       pos: 68.5,32.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -59283.65
-=======
-      secondsUntilStateChange: -56285.938
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -122048,11 +121975,7 @@ entities:
     - type: Transform
       pos: -0.5,25.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17513
-=======
-  - uid: 17491
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 0.5,25.5
@@ -122064,11 +121987,7 @@ entities:
     - type: Transform
       pos: 18.5,54.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17515
-=======
-  - uid: 17493
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,-9.5
@@ -122080,11 +121999,7 @@ entities:
     - type: Transform
       pos: 23.5,39.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17517
-=======
-  - uid: 17495
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,39.5
@@ -122117,11 +122032,7 @@ entities:
     - type: Transform
       pos: 61.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17522
-=======
-  - uid: 17500
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 62.5,31.5
@@ -122196,47 +122107,27 @@ entities:
     - type: Transform
       pos: 0.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17527
-=======
-  - uid: 17505
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 85.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17528
-=======
-  - uid: 17506
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 82.5,3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17529
-=======
-  - uid: 17507
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 0.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17530
-=======
-  - uid: 17508
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -55.5,-3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17531
-=======
-  - uid: 17509
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -19.5,20.5
@@ -122248,29 +122139,17 @@ entities:
     - type: Transform
       pos: -7.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17533
-=======
-  - uid: 17511
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -6.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17534
-=======
-  - uid: 17512
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17535
-=======
-  - uid: 17513
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -4.5,12.5
@@ -122282,20 +122161,12 @@ entities:
     - type: Transform
       pos: 56.5,45.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17537
-=======
-  - uid: 17515
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 56.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17538
-=======
-  - uid: 17516
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 44.5,-18.5
@@ -122360,29 +122231,17 @@ entities:
     - type: Transform
       pos: 61.5,45.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17549
-=======
-  - uid: 17527
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 61.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17550
-=======
-  - uid: 17528
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 61.5,47.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17551
-=======
-  - uid: 17529
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 61.5,46.5
@@ -122401,29 +122260,17 @@ entities:
     - type: Transform
       pos: 72.5,26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17554
-=======
-  - uid: 17532
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 72.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17555
-=======
-  - uid: 17533
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 64.5,21.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17556
-=======
-  - uid: 17534
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 78.5,47.5
@@ -122491,11 +122338,7 @@ entities:
     - type: Transform
       pos: 51.726486,21.517685
       parent: 2
-<<<<<<< HEAD
   - uid: 17560
-=======
-  - uid: 17539
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 51.226486,21.528109
@@ -122575,20 +122418,12 @@ entities:
     - type: Transform
       pos: 15.5,21.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17572
-=======
-  - uid: 17551
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 15.5,20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17573
-=======
-  - uid: 17552
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 15.5,19.5
@@ -122600,193 +122435,19 @@ entities:
     - type: Transform
       pos: 33.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17575
-=======
-  - uid: 17554
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 33.5,39.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17576
-=======
-  - uid: 17555
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 33.5,38.5
       parent: 2
 - proto: LockerSteel
   entities:
-<<<<<<< HEAD
   - uid: 1240
-=======
-  - uid: 17556
-    components:
-    - type: Transform
-      pos: 9.5,-17.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 17558
-          - 17559
-          - 17557
-          - 17560
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 17561
-    components:
-    - type: Transform
-      pos: 3.5,-19.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 17564
-          - 17563
-          - 17562
-          - 17565
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 17566
-    components:
-    - type: Transform
-      pos: 3.5,-18.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 17570
-          - 17568
-          - 17567
-          - 17569
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 17571
-    components:
-    - type: Transform
-      pos: 9.5,-19.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 17574
-          - 17573
-          - 17572
-          - 17575
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 17576
-    components:
-    - type: Transform
-      pos: 9.5,-18.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 17578
-          - 17577
-          - 17579
-          - 17580
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 17581
-    components:
-    - type: Transform
-      pos: 3.5,-17.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 17583
-          - 17582
-          - 17584
-          - 17585
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 18872
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 46.5,40.5
@@ -123011,23 +122672,11 @@ entities:
     - type: Transform
       pos: 0.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 17611
-=======
-  - uid: 17589
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -19.5,33.5
       parent: 2
-<<<<<<< HEAD
-=======
-  - uid: 17590
-    components:
-    - type: Transform
-      pos: -3.5,49.5
-      parent: 2
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
 - proto: LootSpawnerIndustrial
   entities:
   - uid: 17612
@@ -126003,59 +125652,35 @@ entities:
     - type: Transform
       pos: 27.5,18.5
       parent: 2
-<<<<<<< HEAD
   - uid: 18004
-=======
-  - uid: 17962
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 27.5,19.5
       parent: 2
-<<<<<<< HEAD
   - uid: 18005
-=======
-  - uid: 17963
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 25.5,18.5
       parent: 2
-<<<<<<< HEAD
   - uid: 18006
-=======
-  - uid: 17964
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 27.5,21.5
       parent: 2
-<<<<<<< HEAD
   - uid: 18007
-=======
-  - uid: 17965
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 89.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 18008
-=======
-  - uid: 17966
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 90.5,6.5
       parent: 2
-<<<<<<< HEAD
   - uid: 18009
-=======
-  - uid: 17967
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -134108,407 +133733,227 @@ entities:
     - type: Transform
       pos: -15.5,45.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19360
-=======
-  - uid: 19387
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -17.5,49.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19361
-=======
-  - uid: 19388
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -21.5,49.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19362
-=======
-  - uid: 19389
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19363
-=======
-  - uid: 19390
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -19.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19364
-=======
-  - uid: 19391
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -20.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19365
-=======
-  - uid: 19392
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,47.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19366
-=======
-  - uid: 19393
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -17.5,47.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19367
-=======
-  - uid: 19394
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19368
-=======
-  - uid: 19395
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -21.5,47.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19369
-=======
-  - uid: 19396
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -17.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19370
-=======
-  - uid: 19397
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19371
-=======
-  - uid: 19398
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,44.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19372
-=======
-  - uid: 19399
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -16.5,44.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19373
-=======
-  - uid: 19400
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -13.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19374
-=======
-  - uid: 19401
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -17.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19375
-=======
-  - uid: 19402
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -7.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19376
-=======
-  - uid: 19403
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -4.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19377
-=======
-  - uid: 19404
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19378
-=======
-  - uid: 19405
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -19.5,44.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19379
-=======
-  - uid: 19406
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -17.5,38.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19380
-=======
-  - uid: 19407
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -7.5,38.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19381
-=======
-  - uid: 19408
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -11.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19382
-=======
-  - uid: 19409
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19383
-=======
-  - uid: 19410
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,38.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19384
-=======
-  - uid: 19411
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -13.5,38.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19385
-=======
-  - uid: 19412
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,38.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19386
-=======
-  - uid: 19413
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19387
-=======
-  - uid: 19414
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,38.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19388
-=======
-  - uid: 19415
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,25.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19389
-=======
-  - uid: 19416
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -21.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19390
-=======
-  - uid: 19417
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -17.5,44.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19391
-=======
-  - uid: 19418
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19392
-=======
-  - uid: 19419
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -6.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19393
-=======
-  - uid: 19420
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -11.5,38.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19394
-=======
-  - uid: 19421
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 39.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19395
-=======
-  - uid: 19422
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -7.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19396
-=======
-  - uid: 19423
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -8.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19397
-=======
-  - uid: 19424
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19398
-=======
-  - uid: 19425
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 32.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19399
-=======
-  - uid: 19426
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 39.5,-3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19400
-=======
-  - uid: 19427
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 31.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19401
-=======
-  - uid: 19428
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 32.5,-3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19402
-=======
-  - uid: 19429
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 40.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19403
-=======
-  - uid: 19430
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 38.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19404
-=======
-  - uid: 19431
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 33.5,2.5
@@ -134520,4196 +133965,2332 @@ entities:
     - type: Transform
       pos: 11.5,87.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19406
-=======
-  - uid: 19433
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,82.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19407
-=======
-  - uid: 19434
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19408
-=======
-  - uid: 19435
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,81.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19409
-=======
-  - uid: 19436
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 15.5,64.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19410
-=======
-  - uid: 19437
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,82.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19411
-=======
-  - uid: 19438
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,83.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19412
-=======
-  - uid: 19439
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19413
-=======
-  - uid: 19440
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,88.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19414
-=======
-  - uid: 19441
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,67.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19415
-=======
-  - uid: 19442
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,89.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19416
-=======
-  - uid: 19443
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19417
-=======
-  - uid: 19444
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 82.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19418
-=======
-  - uid: 19445
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 78.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19419
-=======
-  - uid: 19446
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 79.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19420
-=======
-  - uid: 19447
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 80.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19421
-=======
-  - uid: 19448
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 79.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19422
-=======
-  - uid: 19449
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 85.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19423
-=======
-  - uid: 19450
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 85.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19424
-=======
-  - uid: 19451
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 84.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19425
-=======
-  - uid: 19452
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 80.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19426
-=======
-  - uid: 19453
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 84.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19427
-=======
-  - uid: 19454
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 78.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19428
-=======
-  - uid: 19455
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 83.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19429
-=======
-  - uid: 19456
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 83.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19430
-=======
-  - uid: 19457
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 65.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19431
-=======
-  - uid: 19458
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 69.5,-5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19432
-=======
-  - uid: 19459
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19433
-=======
-  - uid: 19460
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 35.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19434
-=======
-  - uid: 19461
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 36.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19435
-=======
-  - uid: 19462
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -3.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19436
-=======
-  - uid: 19463
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -6.5,4.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19437
-=======
-  - uid: 19464
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -8.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19438
-=======
-  - uid: 19465
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -1.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19439
-=======
-  - uid: 19466
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -2.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19440
-=======
-  - uid: 19467
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19441
-=======
-  - uid: 19468
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -21.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19442
-=======
-  - uid: 19469
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19443
-=======
-  - uid: 19470
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -6.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19444
-=======
-  - uid: 19471
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -13.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19445
-=======
-  - uid: 19472
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -10.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19446
-=======
-  - uid: 19473
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -11.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19447
-=======
-  - uid: 19474
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19448
-=======
-  - uid: 19475
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -12.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19449
-=======
-  - uid: 19476
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -16.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19450
-=======
-  - uid: 19477
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19451
-=======
-  - uid: 19478
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -3.5,4.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19452
-=======
-  - uid: 19479
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -2.5,8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19453
-=======
-  - uid: 19480
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -12.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19454
-=======
-  - uid: 19481
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -11.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19455
-=======
-  - uid: 19482
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -7.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19456
-=======
-  - uid: 19483
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19457
-=======
-  - uid: 19484
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -4.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19458
-=======
-  - uid: 19485
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 1.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19459
-=======
-  - uid: 19486
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 4.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19460
-=======
-  - uid: 19487
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 5.5,13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19461
-=======
-  - uid: 19488
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 5.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19462
-=======
-  - uid: 19489
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -13.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19463
-=======
-  - uid: 19490
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,21.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19464
-=======
-  - uid: 19491
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19465
-=======
-  - uid: 19492
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19466
-=======
-  - uid: 19493
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,15.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19467
-=======
-  - uid: 19494
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 10.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19468
-=======
-  - uid: 19495
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 10.5,0.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19469
-=======
-  - uid: 19496
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -19.5,26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19470
-=======
-  - uid: 19497
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19471
-=======
-  - uid: 19498
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -22.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19472
-=======
-  - uid: 19499
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -22.5,37.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19473
-=======
-  - uid: 19500
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -17.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19474
-=======
-  - uid: 19501
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -3.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19475
-=======
-  - uid: 19502
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -1.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19476
-=======
-  - uid: 19503
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19477
-=======
-  - uid: 19504
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -14.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19478
-=======
-  - uid: 19505
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19479
-=======
-  - uid: 19506
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,39.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19480
-=======
-  - uid: 19507
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19481
-=======
-  - uid: 19508
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -22.5,38.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19482
-=======
-  - uid: 19509
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19483
-=======
-  - uid: 19510
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -14.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19484
-=======
-  - uid: 19511
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19485
-=======
-  - uid: 19512
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -11.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19486
-=======
-  - uid: 19513
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -10.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19487
-=======
-  - uid: 19514
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -12.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19488
-=======
-  - uid: 19515
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -8.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19489
-=======
-  - uid: 19516
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -8.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19490
-=======
-  - uid: 19517
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -16.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19491
-=======
-  - uid: 19518
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -11.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19492
-=======
-  - uid: 19519
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -13.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19493
-=======
-  - uid: 19520
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -11.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19494
-=======
-  - uid: 19521
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -12.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19495
-=======
-  - uid: 19522
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -16.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19496
-=======
-  - uid: 19523
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19497
-=======
-  - uid: 19524
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -7.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19498
-=======
-  - uid: 19525
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -10.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19499
-=======
-  - uid: 19526
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -15.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19500
-=======
-  - uid: 19527
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19501
-=======
-  - uid: 19528
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -13.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19502
-=======
-  - uid: 19529
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -17.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19503
-=======
-  - uid: 19530
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -6.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19504
-=======
-  - uid: 19531
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -8.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19505
-=======
-  - uid: 19532
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19506
-=======
-  - uid: 19533
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -7.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19507
-=======
-  - uid: 19534
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -6.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19508
-=======
-  - uid: 19535
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -10.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19509
-=======
-  - uid: 19536
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -19.5,24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19510
-=======
-  - uid: 19537
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -19.5,25.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19511
-=======
-  - uid: 19538
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -22.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19512
-=======
-  - uid: 19539
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19513
-=======
-  - uid: 19540
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -4.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19514
-=======
-  - uid: 19541
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -4.5,39.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19515
-=======
-  - uid: 19542
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -4.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19516
-=======
-  - uid: 19543
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -4.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19517
-=======
-  - uid: 19544
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 11.5,28.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19518
-=======
-  - uid: 19545
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -21.5,3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19519
-=======
-  - uid: 19546
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -20.5,3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19520
-=======
-  - uid: 19547
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -21.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19521
-=======
-  - uid: 19548
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -20.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19522
-=======
-  - uid: 19549
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19523
-=======
-  - uid: 19550
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19524
-=======
-  - uid: 19551
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,15.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19525
-=======
-  - uid: 19552
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,14.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19526
-=======
-  - uid: 19553
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19527
-=======
-  - uid: 19554
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19528
-=======
-  - uid: 19555
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -24.5,13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19529
-=======
-  - uid: 19556
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -24.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19530
-=======
-  - uid: 19557
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -22.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19531
-=======
-  - uid: 19558
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -21.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19532
-=======
-  - uid: 19559
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -20.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19533
-=======
-  - uid: 19560
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -62.5,3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19534
-=======
-  - uid: 19561
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -62.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19535
-=======
-  - uid: 19562
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -62.5,1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19536
-=======
-  - uid: 19563
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -62.5,0.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19537
-=======
-  - uid: 19564
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -62.5,-0.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19538
-=======
-  - uid: 19565
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19539
-=======
-  - uid: 19566
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19540
-=======
-  - uid: 19567
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -20.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19541
-=======
-  - uid: 19568
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 1.5,26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19542
-=======
-  - uid: 19569
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 6.5,26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19543
-=======
-  - uid: 19570
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 7.5,26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19544
-=======
-  - uid: 19571
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 65.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19545
-=======
-  - uid: 19572
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,-20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19546
-=======
-  - uid: 19573
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,-22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19547
-=======
-  - uid: 19574
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,-23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19548
-=======
-  - uid: 19575
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,-21.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19549
-=======
-  - uid: 19576
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19550
-=======
-  - uid: 19577
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19551
-=======
-  - uid: 19578
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,-24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19552
-=======
-  - uid: 19579
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-19.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19553
-=======
-  - uid: 19580
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19554
-=======
-  - uid: 19581
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-21.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19555
-=======
-  - uid: 19582
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19556
-=======
-  - uid: 19583
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,-12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19557
-=======
-  - uid: 19584
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,-13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19558
-=======
-  - uid: 19585
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 23.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19559
-=======
-  - uid: 19586
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19560
-=======
-  - uid: 19587
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19561
-=======
-  - uid: 19588
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19562
-=======
-  - uid: 19589
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19563
-=======
-  - uid: 19590
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 34.5,13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19564
-=======
-  - uid: 19591
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19565
-=======
-  - uid: 19592
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -12.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19566
-=======
-  - uid: 19593
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -18.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19567
-=======
-  - uid: 19594
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19568
-=======
-  - uid: 19595
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19569
-=======
-  - uid: 19596
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 19.5,82.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19570
-=======
-  - uid: 19597
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 11.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19571
-=======
-  - uid: 19598
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 27.5,86.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19572
-=======
-  - uid: 19599
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 1.5,95.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19573
-=======
-  - uid: 19600
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,67.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19574
-=======
-  - uid: 19601
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 39.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19575
-=======
-  - uid: 19602
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 19.5,81.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19576
-=======
-  - uid: 19603
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 39.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19577
-=======
-  - uid: 19604
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 22.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19578
-=======
-  - uid: 19605
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 18.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19579
-=======
-  - uid: 19606
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 20.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19580
-=======
-  - uid: 19607
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19581
-=======
-  - uid: 19608
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 15.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19582
-=======
-  - uid: 19609
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 43.5,25.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19583
-=======
-  - uid: 19610
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 54.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19584
-=======
-  - uid: 19611
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 47.5,8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19585
-=======
-  - uid: 19612
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 50.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19586
-=======
-  - uid: 19613
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 67.5,-0.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19587
-=======
-  - uid: 19614
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 53.5,3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19588
-=======
-  - uid: 19615
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 53.5,6.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19589
-=======
-  - uid: 19616
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 53.5,4.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19590
-=======
-  - uid: 19617
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 53.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19591
-=======
-  - uid: 19618
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 56.5,8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19592
-=======
-  - uid: 19619
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 55.5,8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19593
-=======
-  - uid: 19620
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 68.5,8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19594
-=======
-  - uid: 19621
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 50.5,6.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19595
-=======
-  - uid: 19622
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 45.5,22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19596
-=======
-  - uid: 19623
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 48.5,8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19597
-=======
-  - uid: 19624
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 60.5,79.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19598
-=======
-  - uid: 19625
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 38.5,40.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19599
-=======
-  - uid: 19626
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 38.5,39.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19600
-=======
-  - uid: 19627
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 42.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19601
-=======
-  - uid: 19628
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 48.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19602
-=======
-  - uid: 19629
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 64.5,25.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19603
-=======
-  - uid: 19630
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 63.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19604
-=======
-  - uid: 19631
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 68.5,24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19605
-=======
-  - uid: 19632
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 62.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19606
-=======
-  - uid: 19633
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,82.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19607
-=======
-  - uid: 19634
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 19.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19608
-=======
-  - uid: 19635
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 48.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19609
-=======
-  - uid: 19636
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 40.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19610
-=======
-  - uid: 19637
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 65.5,71.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19611
-=======
-  - uid: 19638
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 68.5,72.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19612
-=======
-  - uid: 19639
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 76.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19613
-=======
-  - uid: 19640
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 34.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19614
-=======
-  - uid: 19641
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 31.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19615
-=======
-  - uid: 19642
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 31.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19616
-=======
-  - uid: 19643
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 31.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19617
-=======
-  - uid: 19644
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 31.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19618
-=======
-  - uid: 19645
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 18.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19619
-=======
-  - uid: 19646
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 18.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19620
-=======
-  - uid: 19647
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19621
-=======
-  - uid: 19648
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 15.5,13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19622
-=======
-  - uid: 19649
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19623
-=======
-  - uid: 19650
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 64.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19624
-=======
-  - uid: 19651
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 63.5,76.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19625
-=======
-  - uid: 19652
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 66.5,71.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19626
-=======
-  - uid: 19653
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 76.5,67.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19627
-=======
-  - uid: 19654
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 76.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19628
-=======
-  - uid: 19655
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 76.5,69.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19629
-=======
-  - uid: 19656
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 76.5,68.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19630
-=======
-  - uid: 19657
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 64.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19631
-=======
-  - uid: 19658
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 63.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19632
-=======
-  - uid: 19659
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 62.5,27.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19633
-=======
-  - uid: 19660
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 66.5,22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19634
-=======
-  - uid: 19661
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 72.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19635
-=======
-  - uid: 19662
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 71.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19636
-=======
-  - uid: 19663
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 70.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19637
-=======
-  - uid: 19664
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 54.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19638
-=======
-  - uid: 19665
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 42.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19639
-=======
-  - uid: 19666
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 43.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19640
-=======
-  - uid: 19667
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 38.5,45.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19641
-=======
-  - uid: 19668
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 34.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19642
-=======
-  - uid: 19669
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 38.5,44.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19643
-=======
-  - uid: 19670
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 54.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19644
-=======
-  - uid: 19671
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 40.5,50.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19645
-=======
-  - uid: 19672
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19646
-=======
-  - uid: 19673
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 55.5,72.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19647
-=======
-  - uid: 19674
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 40.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19648
-=======
-  - uid: 19675
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 16.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19649
-=======
-  - uid: 19676
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 55.5,73.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19650
-=======
-  - uid: 19677
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 74.5,72.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19651
-=======
-  - uid: 19678
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 51.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19652
-=======
-  - uid: 19679
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 53.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19653
-=======
-  - uid: 19680
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 51.5,64.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19654
-=======
-  - uid: 19681
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 75.5,62.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19655
-=======
-  - uid: 19682
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 73.5,62.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19656
-=======
-  - uid: 19683
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 57.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19657
-=======
-  - uid: 19684
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 57.5,43.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19658
-=======
-  - uid: 19685
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19659
-=======
-  - uid: 19686
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 18.5,37.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19660
-=======
-  - uid: 19687
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 18.5,38.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19661
-=======
-  - uid: 19688
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 18.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19662
-=======
-  - uid: 19689
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 20.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19663
-=======
-  - uid: 19690
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 18.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19664
-=======
-  - uid: 19691
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 18.5,39.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19665
-=======
-  - uid: 19692
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 23.5,60.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19666
-=======
-  - uid: 19693
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 25.5,60.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19667
-=======
-  - uid: 19694
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19668
-=======
-  - uid: 19695
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 18.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19669
-=======
-  - uid: 19696
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 16.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19670
-=======
-  - uid: 19697
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19671
-=======
-  - uid: 19698
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 67.5,1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19672
-=======
-  - uid: 19699
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 41.5,20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19673
-=======
-  - uid: 19700
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 41.5,25.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19674
-=======
-  - uid: 19701
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 42.5,25.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19675
-=======
-  - uid: 19702
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 39.5,23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19676
-=======
-  - uid: 19703
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 39.5,22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19677
-=======
-  - uid: 19704
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 42.5,20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19678
-=======
-  - uid: 19705
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 45.5,23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19679
-=======
-  - uid: 19706
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 50.5,-0.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19680
-=======
-  - uid: 19707
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 50.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19681
-=======
-  - uid: 19708
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 43.5,20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19682
-=======
-  - uid: 19709
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 27.5,-12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19683
-=======
-  - uid: 19710
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 27.5,-15.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19684
-=======
-  - uid: 19711
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 27.5,-13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19685
-=======
-  - uid: 19712
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 27.5,-14.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19686
-=======
-  - uid: 19713
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 67.5,0.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19687
-=======
-  - uid: 19714
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 68.5,-6.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19688
-=======
-  - uid: 19715
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 68.5,-7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19689
-=======
-  - uid: 19716
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 67.5,-7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19690
-=======
-  - uid: 19717
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 67.5,-8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19691
-=======
-  - uid: 19718
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 66.5,-8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19692
-=======
-  - uid: 19719
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 66.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19693
-=======
-  - uid: 19720
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 64.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19694
-=======
-  - uid: 19721
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 63.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19695
-=======
-  - uid: 19722
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 63.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19696
-=======
-  - uid: 19723
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 62.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19697
-=======
-  - uid: 19724
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 62.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19698
-=======
-  - uid: 19725
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 61.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19699
-=======
-  - uid: 19726
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 61.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19700
-=======
-  - uid: 19727
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 60.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19701
-=======
-  - uid: 19728
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 60.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19702
-=======
-  - uid: 19729
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 59.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19703
-=======
-  - uid: 19730
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 58.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19704
-=======
-  - uid: 19731
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 58.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19705
-=======
-  - uid: 19732
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 57.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19706
-=======
-  - uid: 19733
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 57.5,-8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19707
-=======
-  - uid: 19734
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 56.5,-8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19708
-=======
-  - uid: 19735
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 69.5,-6.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19709
-=======
-  - uid: 19736
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 56.5,-7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19710
-=======
-  - uid: 19737
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 55.5,-7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19711
-=======
-  - uid: 19738
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 59.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19712
-=======
-  - uid: 19739
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 58.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19713
-=======
-  - uid: 19740
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 57.5,8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19714
-=======
-  - uid: 19741
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 58.5,8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19715
-=======
-  - uid: 19742
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,-19.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19716
-=======
-  - uid: 19743
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 67.5,5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19717
-=======
-  - uid: 19744
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 43.5,-22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19718
-=======
-  - uid: 19745
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 43.5,-21.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19719
-=======
-  - uid: 19746
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 44.5,-22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19720
-=======
-  - uid: 19747
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 45.5,-22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19721
-=======
-  - uid: 19748
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 47.5,-24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19722
-=======
-  - uid: 19749
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 48.5,-24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19723
-=======
-  - uid: 19750
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 49.5,-24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19724
-=======
-  - uid: 19751
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 50.5,-24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19725
-=======
-  - uid: 19752
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 51.5,-23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19726
-=======
-  - uid: 19753
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 51.5,-22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19727
-=======
-  - uid: 19754
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 51.5,-21.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19728
-=======
-  - uid: 19755
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 51.5,-20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19729
-=======
-  - uid: 19756
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19730
-=======
-  - uid: 19757
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 79.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19731
-=======
-  - uid: 19758
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -3.5,-26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19732
-=======
-  - uid: 19759
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -4.5,-26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19733
-=======
-  - uid: 19760
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,-25.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19734
-=======
-  - uid: 19761
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,-24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19735
-=======
-  - uid: 19762
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,-23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19736
-=======
-  - uid: 19763
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,-21.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19737
-=======
-  - uid: 19764
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,-20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19738
-=======
-  - uid: 19765
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,-19.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19739
-=======
-  - uid: 19766
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19740
-=======
-  - uid: 19767
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,-16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19741
-=======
-  - uid: 19768
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,-15.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19742
-=======
-  - uid: 19769
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,-14.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19743
-=======
-  - uid: 19770
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19744
-=======
-  - uid: 19771
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 24.5,-26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19745
-=======
-  - uid: 19772
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 27.5,-16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19746
-=======
-  - uid: 19773
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 19.5,67.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19747
-=======
-  - uid: 19774
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 39.5,64.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19748
-=======
-  - uid: 19775
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19749
-=======
-  - uid: 19776
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,60.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19750
-=======
-  - uid: 19777
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19751
-=======
-  - uid: 19778
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,67.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19752
-=======
-  - uid: 19779
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 19.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19753
-=======
-  - uid: 19780
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 11.5,67.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19754
-=======
-  - uid: 19781
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 11.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19755
-=======
-  - uid: 19782
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,82.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19756
-=======
-  - uid: 19783
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,80.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19757
-=======
-  - uid: 19784
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 37.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19758
-=======
-  - uid: 19785
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 26.5,83.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19759
-=======
-  - uid: 19786
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,77.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19760
-=======
-  - uid: 19787
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,78.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19761
-=======
-  - uid: 19788
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 37.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19762
-=======
-  - uid: 19789
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 26.5,87.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19763
-=======
-  - uid: 19790
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 11.5,82.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19764
-=======
-  - uid: 19791
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 11.5,88.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19765
-=======
-  - uid: 19792
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,68.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19766
-=======
-  - uid: 19793
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,81.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19767
-=======
-  - uid: 19794
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,89.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19768
-=======
-  - uid: 19795
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,81.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19769
-=======
-  - uid: 19796
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 11.5,83.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19770
-=======
-  - uid: 19797
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 11.5,81.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19771
-=======
-  - uid: 19798
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 19.5,83.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19772
-=======
-  - uid: 19799
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,88.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19773
-=======
-  - uid: 19800
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,91.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19774
-=======
-  - uid: 19801
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 19.5,89.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19775
-=======
-  - uid: 19802
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 19.5,88.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19776
-=======
-  - uid: 19803
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,89.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19777
-=======
-  - uid: 19804
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,88.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19778
-=======
-  - uid: 19805
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,87.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19779
-=======
-  - uid: 19806
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 11.5,89.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19780
-=======
-  - uid: 19807
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,95.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19781
-=======
-  - uid: 19808
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 1.5,94.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19782
-=======
-  - uid: 19809
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,95.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19783
-=======
-  - uid: 19810
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -2.5,86.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19784
-=======
-  - uid: 19811
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -2.5,84.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19785
-=======
-  - uid: 19812
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -1.5,84.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19786
-=======
-  - uid: 19813
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,84.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19787
-=======
-  - uid: 19814
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -2.5,82.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19788
-=======
-  - uid: 19815
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -2.5,72.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19789
-=======
-  - uid: 19816
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -2.5,70.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19790
-=======
-  - uid: 19817
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -1.5,70.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19791
-=======
-  - uid: 19818
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,70.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19792
-=======
-  - uid: 19819
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -2.5,68.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19793
-=======
-  - uid: 19820
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -1.5,68.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19794
-=======
-  - uid: 19821
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -1.5,72.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19795
-=======
-  - uid: 19822
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,87.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19796
-=======
-  - uid: 19823
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 5.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19797
-=======
-  - uid: 19824
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19798
-=======
-  - uid: 19825
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 6.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19799
-=======
-  - uid: 19826
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 27.5,84.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19800
-=======
-  - uid: 19827
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 27.5,85.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19801
-=======
-  - uid: 19828
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 7.5,65.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19802
-=======
-  - uid: 19829
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,72.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19803
-=======
-  - uid: 19830
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,68.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19804
-=======
-  - uid: 19831
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -1.5,82.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19805
-=======
-  - uid: 19832
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,86.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19806
-=======
-  - uid: 19833
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,79.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19807
-=======
-  - uid: 19834
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,78.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19808
-=======
-  - uid: 19835
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,76.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19809
-=======
-  - uid: 19836
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,75.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19810
-=======
-  - uid: 19837
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,77.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19811
-=======
-  - uid: 19838
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,76.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19812
-=======
-  - uid: 19839
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,74.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19813
-=======
-  - uid: 19840
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,73.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19814
-=======
-  - uid: 19841
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,72.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19815
-=======
-  - uid: 19842
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,71.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19816
-=======
-  - uid: 19843
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,75.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19817
-=======
-  - uid: 19844
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,70.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19818
-=======
-  - uid: 19845
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,79.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19819
-=======
-  - uid: 19846
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,69.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19820
-=======
-  - uid: 19847
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 3.5,90.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19821
-=======
-  - uid: 19848
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,91.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19822
-=======
-  - uid: 19849
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,90.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19823
-=======
-  - uid: 19850
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,89.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19824
-=======
-  - uid: 19851
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -1.5,86.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19825
-=======
-  - uid: 19852
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,64.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19826
-=======
-  - uid: 19853
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,63.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19827
-=======
-  - uid: 19854
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -0.5,62.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19828
-=======
-  - uid: 19855
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19829
-=======
-  - uid: 19856
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,87.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19830
-=======
-  - uid: 19857
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 19.5,87.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19831
-=======
-  - uid: 19858
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,83.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19832
-=======
-  - uid: 19859
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,83.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19833
-=======
-  - uid: 19860
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19834
-=======
-  - uid: 19861
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19835
-=======
-  - uid: 19862
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19836
-=======
-  - uid: 19863
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19837
-=======
-  - uid: 19864
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -11.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19838
-=======
-  - uid: 19865
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -10.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19839
-=======
-  - uid: 19866
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -9.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19840
-=======
-  - uid: 19867
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19841
-=======
-  - uid: 19868
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19842
-=======
-  - uid: 19869
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19843
-=======
-  - uid: 19870
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,18.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19844
-=======
-  - uid: 19871
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 83.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19845
-=======
-  - uid: 19872
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 83.5,47.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19846
-=======
-  - uid: 19873
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 83.5,45.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19847
-=======
-  - uid: 19874
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 83.5,44.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19848
-=======
-  - uid: 19875
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 83.5,43.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19849
-=======
-  - uid: 19876
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 83.5,42.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19850
-=======
-  - uid: 19877
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 68.5,-5.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19851
-=======
-  - uid: 19878
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -24.5,15.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19852
-=======
-  - uid: 19879
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -24.5,16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19853
-=======
-  - uid: 19880
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -24.5,14.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19854
-=======
-  - uid: 19881
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -20.5,19.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19855
-=======
-  - uid: 19882
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -21.5,19.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19856
-=======
-  - uid: 19883
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -22.5,19.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19857
-=======
-  - uid: 19884
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 66.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19858
-=======
-  - uid: 19885
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 37.5,64.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19859
-=======
-  - uid: 19886
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,89.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19860
-=======
-  - uid: 19887
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,67.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19861
-=======
-  - uid: 19888
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,87.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19862
-=======
-  - uid: 19889
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,82.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19863
-=======
-  - uid: 19890
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,81.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19864
-=======
-  - uid: 19891
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,83.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19865
-=======
-  - uid: 19892
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,88.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19866
-=======
-  - uid: 19893
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 12.5,-33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19867
-=======
-  - uid: 19894
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 12.5,-34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19868
-=======
-  - uid: 19895
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 12.5,-35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19869
-=======
-  - uid: 19896
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 26.5,-33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19870
-=======
-  - uid: 19897
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 26.5,-34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19871
-=======
-  - uid: 19898
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 26.5,-35.5
@@ -138722,763 +136303,451 @@ entities:
       rot: 3.141592653589793 rad
       pos: 67.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19873
-=======
-  - uid: 19900
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 68.5,-8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19874
-=======
-  - uid: 19901
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 57.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19875
-=======
-  - uid: 19902
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 55.5,-8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19876
-=======
-  - uid: 19903
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 66.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19877
-=======
-  - uid: 19904
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 69.5,-7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19878
-=======
-  - uid: 19905
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 56.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19879
-=======
-  - uid: 19906
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -7.5,3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19880
-=======
-  - uid: 19907
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -7.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19881
-=======
-  - uid: 19908
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -4.5,1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19882
-=======
-  - uid: 19909
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -6.5,3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19883
-=======
-  - uid: 19910
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -5.5,0.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19884
-=======
-  - uid: 19911
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19885
-=======
-  - uid: 19912
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -8.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19886
-=======
-  - uid: 19913
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,0.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19887
-=======
-  - uid: 19914
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,-26.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19888
-=======
-  - uid: 19915
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 16.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19889
-=======
-  - uid: 19916
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 24.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19890
-=======
-  - uid: 19917
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19891
-=======
-  - uid: 19918
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 15.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19892
-=======
-  - uid: 19919
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 23.5,-10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19893
-=======
-  - uid: 19920
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 23.5,-12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19894
-=======
-  - uid: 19921
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 22.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19895
-=======
-  - uid: 19922
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 15.5,-12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19896
-=======
-  - uid: 19923
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,4.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19897
-=======
-  - uid: 19924
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,4.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19898
-=======
-  - uid: 19925
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 67.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19899
-=======
-  - uid: 19926
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 69.5,13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19900
-=======
-  - uid: 19927
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 68.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19901
-=======
-  - uid: 19928
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 68.5,13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19902
-=======
-  - uid: 19929
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 38.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19903
-=======
-  - uid: 19930
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 37.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19904
-=======
-  - uid: 19931
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 66.5,23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19905
-=======
-  - uid: 19932
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 67.5,23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19906
-=======
-  - uid: 19933
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 56.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19907
-=======
-  - uid: 19934
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 67.5,24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19908
-=======
-  - uid: 19935
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 56.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19909
-=======
-  - uid: 19936
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 38.5,47.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19910
-=======
-  - uid: 19937
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 37.5,47.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19911
-=======
-  - uid: 19938
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 37.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19912
-=======
-  - uid: 19939
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 53.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19913
-=======
-  - uid: 19940
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 37.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19914
-=======
-  - uid: 19941
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 28.5,-8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19915
-=======
-  - uid: 19942
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 27.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19916
-=======
-  - uid: 19943
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 53.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19917
-=======
-  - uid: 19944
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 57.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19918
-=======
-  - uid: 19945
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 54.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19919
-=======
-  - uid: 19946
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 62.5,77.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19920
-=======
-  - uid: 19947
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 61.5,78.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19921
-=======
-  - uid: 19948
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 63.5,77.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19922
-=======
-  - uid: 19949
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 61.5,79.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19923
-=======
-  - uid: 19950
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 62.5,78.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19924
-=======
-  - uid: 19951
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 61.5,62.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19925
-=======
-  - uid: 19952
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 67.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19926
-=======
-  - uid: 19953
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 70.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19927
-=======
-  - uid: 19954
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 69.5,8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19928
-=======
-  - uid: 19955
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 70.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19929
-=======
-  - uid: 19956
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 48.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19930
-=======
-  - uid: 19957
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 47.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19931
-=======
-  - uid: 19958
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 48.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19932
-=======
-  - uid: 19959
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 29.5,-7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19933
-=======
-  - uid: 19960
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 29.5,-8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19934
-=======
-  - uid: 19961
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 28.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19935
-=======
-  - uid: 19962
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 69.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19936
-=======
-  - uid: 19963
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 51.5,-24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19937
-=======
-  - uid: 19964
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -18.5,-12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19938
-=======
-  - uid: 19965
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -17.5,-13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19939
-=======
-  - uid: 19966
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -16.5,-14.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19940
-=======
-  - uid: 19967
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -15.5,-15.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19941
-=======
-  - uid: 19968
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -14.5,-16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19942
-=======
-  - uid: 19969
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -13.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19943
-=======
-  - uid: 19970
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -13.5,-16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19944
-=======
-  - uid: 19971
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -14.5,-15.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19945
-=======
-  - uid: 19972
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -15.5,-14.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19946
-=======
-  - uid: 19973
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -16.5,-13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19947
-=======
-  - uid: 19974
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -17.5,-12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19948
-=======
-  - uid: 19975
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 82.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19949
-=======
-  - uid: 19976
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 83.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 19950
-=======
-  - uid: 19977
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -140800,30 +138069,18 @@ entities:
     - type: Transform
       pos: -58.5,4.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20128
-=======
-  - uid: 20156
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -55.5,4.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20129
-=======
-  - uid: 20157
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -58.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20130
-=======
-  - uid: 20158
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -140845,31 +138102,19 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 42.5,14.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20133
-=======
-  - uid: 20161
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 42.5,13.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20134
-=======
-  - uid: 20162
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 42.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20135
-=======
-  - uid: 20163
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -140883,394 +138128,230 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 18.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20137
-=======
-  - uid: 20165
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,38.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20138
-=======
-  - uid: 20166
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,37.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20139
-=======
-  - uid: 20167
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,39.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20140
-=======
-  - uid: 20168
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20141
-=======
-  - uid: 20169
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 71.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20142
-=======
-  - uid: 20170
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 70.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20143
-=======
-  - uid: 20171
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 72.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20144
-=======
-  - uid: 20172
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 73.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20145
-=======
-  - uid: 20173
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 74.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20146
-=======
-  - uid: 20174
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 45.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20147
-=======
-  - uid: 20175
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 44.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20148
-=======
-  - uid: 20176
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 42.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20149
-=======
-  - uid: 20177
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 42.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20150
-=======
-  - uid: 20178
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 42.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20151
-=======
-  - uid: 20179
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20152
-=======
-  - uid: 20180
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,45.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20153
-=======
-  - uid: 20181
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,44.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20154
-=======
-  - uid: 20182
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 22.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20155
-=======
-  - uid: 20183
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 23.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20156
-=======
-  - uid: 20184
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 21.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20157
-=======
-  - uid: 20185
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 20.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20158
-=======
-  - uid: 20186
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20159
-=======
-  - uid: 20187
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 16.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20160
-=======
-  - uid: 20188
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 15.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20161
-=======
-  - uid: 20189
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 12.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20162
-=======
-  - uid: 20190
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 14.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20163
-=======
-  - uid: 20191
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 13.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20164
-=======
-  - uid: 20192
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 17.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20165
-=======
-  - uid: 20193
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 55.5,-7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20166
-=======
-  - uid: 20194
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 56.5,-7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20167
-=======
-  - uid: 20195
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 57.5,-8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20168
-=======
-  - uid: 20196
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 58.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20169
-=======
-  - uid: 20197
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 60.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20170
-=======
-  - uid: 20198
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 61.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20171
-=======
-  - uid: 20199
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 62.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20172
-=======
-  - uid: 20200
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 63.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20173
-=======
-  - uid: 20201
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 65.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20174
-=======
-  - uid: 20202
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 66.5,-8.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20175
-=======
-  - uid: 20203
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 67.5,-7.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20176
-=======
-  - uid: 20204
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 68.5,-6.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20177
-=======
-  - uid: 20205
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -141284,41 +138365,25 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -62.5,3.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20179
-=======
-  - uid: 20207
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -62.5,2.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20180
-=======
-  - uid: 20208
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -62.5,1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20181
-=======
-  - uid: 20209
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -62.5,0.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20182
-=======
-  - uid: 20210
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -141332,59 +138397,35 @@ entities:
       rot: 3.141592653589793 rad
       pos: -56.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20184
-=======
-  - uid: 20212
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -57.5,4.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20185
-=======
-  - uid: 20213
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -56.5,4.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20186
-=======
-  - uid: 20214
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -57.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20187
-=======
-  - uid: 20215
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 14.5,24.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20188
-=======
-  - uid: 20216
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 14.5,25.5
       parent: 2
-<<<<<<< HEAD
   - uid: 20189
-=======
-  - uid: 20217
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -146429,13 +143470,6 @@ entities:
     components:
     - type: Transform
       pos: 34.5,53.5
-      parent: 2
-- proto: SpawnPointDrillInstructor
-  entities:
-  - uid: 18024
-    components:
-    - type: Transform
-      pos: 40.5,42.5
       parent: 2
 - proto: SpawnPointHeadOfPersonnel
   entities:
@@ -152039,20 +149073,12 @@ entities:
     - type: Transform
       pos: 38.5,-16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 21674
-=======
-  - uid: 21689
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 39.5,-16.5
       parent: 2
-<<<<<<< HEAD
 - proto: ToiletDirtyWaterFilled
-=======
-- proto: ToiletDirtyWater
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
   entities:
   - uid: 21675
     components:
@@ -169301,20 +166327,12 @@ entities:
     - type: Transform
       pos: 26.5,18.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24765
-=======
-  - uid: 24756
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 28.5,18.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24766
-=======
-  - uid: 24757
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -169328,195 +166346,115 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 9.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24768
-=======
-  - uid: 24759
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24769
-=======
-  - uid: 24760
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 11.5,23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24770
-=======
-  - uid: 24761
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 11.5,22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24771
-=======
-  - uid: 24762
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 57.5,61.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24772
-=======
-  - uid: 24763
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 42.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24773
-=======
-  - uid: 24764
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 34.5,19.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24774
-=======
-  - uid: 24765
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 34.5,20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24775
-=======
-  - uid: 24766
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 36.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24776
-=======
-  - uid: 24767
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 35.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24777
-=======
-  - uid: 24768
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 60.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24778
-=======
-  - uid: 24769
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 60.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24779
-=======
-  - uid: 24770
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 42.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24780
-=======
-  - uid: 24771
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 44.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24781
-=======
-  - uid: 24772
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 45.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24782
-=======
-  - uid: 24773
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 57.5,62.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24783
-=======
-  - uid: 24774
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 22.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24784
-=======
-  - uid: 24775
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 23.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24785
-=======
-  - uid: 24776
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 47.5,14.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24786
-=======
-  - uid: 24777
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 79.5,32.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24787
-=======
-  - uid: 24778
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -169530,71 +166468,43 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 42.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24789
-=======
-  - uid: 24780
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 45.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24790
-=======
-  - uid: 24781
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 44.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24791
-=======
-  - uid: 24782
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 42.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24792
-=======
-  - uid: 24783
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 37.5,62.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24793
-=======
-  - uid: 24784
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 37.5,61.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24794
-=======
-  - uid: 24785
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 37.5,60.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24795
-=======
-  - uid: 24786
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -169608,21 +166518,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24797
-=======
-  - uid: 24788
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 11.5,23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24798
-=======
-  - uid: 24789
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -169643,59 +166545,35 @@ entities:
     - type: Transform
       pos: 61.5,58.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24801
-=======
-  - uid: 24792
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 58.5,57.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24802
-=======
-  - uid: 24793
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 50.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24803
-=======
-  - uid: 24794
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 52.5,66.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24804
-=======
-  - uid: 24795
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 74.5,62.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24805
-=======
-  - uid: 24796
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 57.5,61.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24806
-=======
-  - uid: 24797
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -169709,41 +166587,25 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 60.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24808
-=======
-  - uid: 24799
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 60.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24809
-=======
-  - uid: 24800
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 66.5,37.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24810
-=======
-  - uid: 24801
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 66.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24811
-=======
-  - uid: 24802
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -169756,47 +166618,27 @@ entities:
     - type: Transform
       pos: -13.5,16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24813
-=======
-  - uid: 24804
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 84.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24814
-=======
-  - uid: 24805
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 80.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24815
-=======
-  - uid: 24806
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 83.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24816
-=======
-  - uid: 24807
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 82.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24817
-=======
-  - uid: 24808
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 76.5,11.5
@@ -169809,21 +166651,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 9.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24819
-=======
-  - uid: 24810
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 9.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24820
-=======
-  - uid: 24811
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -169845,51 +166679,31 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 66.5,37.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24823
-=======
-  - uid: 24814
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 66.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24824
-=======
-  - uid: 24815
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 66.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24825
-=======
-  - uid: 24816
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 80.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24826
-=======
-  - uid: 24817
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 80.5,44.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24827
-=======
-  - uid: 24818
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -169925,30 +166739,18 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 33.5,21.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24832
-=======
-  - uid: 24821
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 39.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24833
-=======
-  - uid: 24822
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 34.5,20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24834
-=======
-  - uid: 24823
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -169961,11 +166763,7 @@ entities:
     - type: Transform
       pos: 46.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24836
-=======
-  - uid: 24825
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -169979,21 +166777,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 36.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24838
-=======
-  - uid: 24827
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 35.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24839
-=======
-  - uid: 24828
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -170006,31 +166796,19 @@ entities:
     - type: Transform
       pos: 19.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24841
-=======
-  - uid: 24830
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 22.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24842
-=======
-  - uid: 24831
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 23.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24843
-=======
-  - uid: 24832
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 20.5,41.5
@@ -170043,49 +166821,29 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24845
-=======
-  - uid: 24834
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 7.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24846
-=======
-  - uid: 24835
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 8.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24847
-=======
-  - uid: 24836
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24848
-=======
-  - uid: 24837
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24849
-=======
-  - uid: 24838
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -170098,38 +166856,22 @@ entities:
     - type: Transform
       pos: 70.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24851
-=======
-  - uid: 24840
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 71.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24852
-=======
-  - uid: 24841
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 72.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24853
-=======
-  - uid: 24842
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 73.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24854
-=======
-  - uid: 24843
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 74.5,41.5
@@ -170141,48 +166883,28 @@ entities:
     - type: Transform
       pos: 40.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24856
-=======
-  - uid: 24845
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 41.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24857
-=======
-  - uid: 24846
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 37.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24858
-=======
-  - uid: 24847
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 36.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24859
-=======
-  - uid: 24848
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 38.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24860
-=======
-  - uid: 24849
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -170190,28 +166912,12 @@ entities:
       parent: 2
 - proto: WindowFrostedDirectional
   entities:
-<<<<<<< HEAD
   - uid: 24861
-=======
-  - uid: 24850
-    components:
-    - type: Transform
-      pos: 27.5,-9.5
-      parent: 2
-  - uid: 24851
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 29.5,-7.5
-      parent: 2
-  - uid: 24852
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 52.5,76.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24862
     components:
     - type: Transform
@@ -170219,158 +166925,36 @@ entities:
       pos: 50.5,-11.5
       parent: 2
   - uid: 24863
-=======
-  - uid: 24853
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 37.5,35.5
-      parent: 2
-  - uid: 24854
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 53.5,30.5
-      parent: 2
-  - uid: 24855
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 67.5,11.5
-      parent: 2
-  - uid: 24856
-    components:
-    - type: Transform
-      pos: -8.5,-1.5
-      parent: 2
-  - uid: 24857
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 57.5,30.5
-      parent: 2
-  - uid: 24858
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 56.5,29.5
-      parent: 2
-  - uid: 24859
-    components:
-    - type: Transform
-      pos: -5.5,0.5
-      parent: 2
-  - uid: 24860
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,1.5
-      parent: 2
-  - uid: 24861
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 38.5,36.5
-      parent: 2
-  - uid: 24862
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 37.5,48.5
-      parent: 2
-  - uid: 24863
-    components:
-    - type: Transform
-      pos: 38.5,47.5
-      parent: 2
-  - uid: 24864
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 61.5,62.5
-      parent: 2
-  - uid: 24865
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 69.5,13.5
-      parent: 2
-  - uid: 24866
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 70.5,10.5
-      parent: 2
-  - uid: 24867
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 47.5,12.5
-      parent: 2
-  - uid: 24868
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 48.5,11.5
-      parent: 2
-  - uid: 24869
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 50.5,-11.5
-      parent: 2
-  - uid: 24870
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 49.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24864
-=======
-  - uid: 24871
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 47.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24865
-=======
-  - uid: 24872
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 46.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24866
-=======
-  - uid: 24873
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 44.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24867
-=======
-  - uid: 24874
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 45.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24868
-=======
-  - uid: 24875
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -170384,770 +166968,450 @@ entities:
       rot: 3.141592653589793 rad
       pos: 76.5,54.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24870
-=======
-  - uid: 17548
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 78.5,56.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24871
-=======
-  - uid: 17549
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 78.5,54.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24872
-=======
-  - uid: 20885
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 75.5,54.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24873
-=======
-  - uid: 20886
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 75.5,56.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24874
-=======
-  - uid: 20887
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 76.5,56.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24875
-=======
-  - uid: 24876
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 60.5,58.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24876
-=======
-  - uid: 24877
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 59.5,58.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24877
-=======
-  - uid: 24878
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 11.5,23.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24878
-=======
-  - uid: 24879
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 33.5,20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24879
-=======
-  - uid: 24880
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,10.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24880
-=======
-  - uid: 24881
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24881
-=======
-  - uid: 24882
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 9.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24882
-=======
-  - uid: 24883
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 9.5,12.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24883
-=======
-  - uid: 24884
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -14.5,16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24884
-=======
-  - uid: 24885
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: -12.5,16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24885
-=======
-  - uid: 24886
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24886
-=======
-  - uid: 24887
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 23.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24887
-=======
-  - uid: 24888
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 17.5,48.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24888
-=======
-  - uid: 24889
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 65.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24889
-=======
-  - uid: 24890
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 45.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24890
-=======
-  - uid: 24891
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 57.5,60.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24891
-=======
-  - uid: 24892
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 57.5,60.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24892
-=======
-  - uid: 24893
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 44.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24893
-=======
-  - uid: 24894
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 34.5,20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24894
-=======
-  - uid: 24895
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 34.5,19.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24895
-=======
-  - uid: 24896
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 11.5,22.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24896
-=======
-  - uid: 24897
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 60.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24897
-=======
-  - uid: 24898
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 60.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24898
-=======
-  - uid: 24899
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 66.5,37.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24899
-=======
-  - uid: 24900
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 42.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24900
-=======
-  - uid: 24901
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 45.5,29.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24901
-=======
-  - uid: 24902
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 42.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24902
-=======
-  - uid: 24903
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 35.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24903
-=======
-  - uid: 24904
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 36.5,30.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24904
-=======
-  - uid: 24905
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 57.5,62.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24905
-=======
-  - uid: 24906
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 57.5,60.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24906
-=======
-  - uid: 24907
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 22.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24907
-=======
-  - uid: 24908
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 18.5,44.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24908
-=======
-  - uid: 24909
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 19.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24909
-=======
-  - uid: 24910
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 20.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24910
-=======
-  - uid: 24911
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 18.5,46.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24911
-=======
-  - uid: 24912
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 60.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24912
-=======
-  - uid: 24913
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 47.5,16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24913
-=======
-  - uid: 24914
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 47.5,16.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24914
-=======
-  - uid: 24915
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 47.5,14.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24915
-=======
-  - uid: 24916
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 47.5,15.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24916
-=======
-  - uid: 24917
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 47.5,15.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24917
-=======
-  - uid: 24918
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 66.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24918
-=======
-  - uid: 24919
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 64.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24919
-=======
-  - uid: 24920
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 63.5,-1.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24920
-=======
-  - uid: 24921
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 44.5,-17.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24921
-=======
-  - uid: 24922
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 47.5,-18.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24922
-=======
-  - uid: 24923
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 47.5,-20.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24923
-=======
-  - uid: 24924
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 78.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24924
-=======
-  - uid: 24925
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 79.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24925
-=======
-  - uid: 24926
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 81.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24926
-=======
-  - uid: 24927
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 85.5,9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24927
-=======
-  - uid: 24928
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 36.5,63.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24928
-=======
-  - uid: 24929
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 80.5,31.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24929
-=======
-  - uid: 24930
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 79.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24930
-=======
-  - uid: 24931
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 79.5,34.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24931
-=======
-  - uid: 24932
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 79.5,35.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24932
-=======
-  - uid: 24933
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 79.5,36.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24933
-=======
-  - uid: 24934
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -13.5,-9.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24934
-=======
-  - uid: 24935
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -10.5,-11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24935
-=======
-  - uid: 24936
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 80.5,47.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24936
-=======
-  - uid: 24937
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 80.5,45.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24937
-=======
-  - uid: 24938
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 80.5,43.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24938
-=======
-  - uid: 24939
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 80.5,41.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24939
-=======
-  - uid: 24940
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 81.5,45.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24940
-=======
-  - uid: 24941
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 81.5,43.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24941
-=======
-  - uid: 24942
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 82.5,43.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24942
-=======
-  - uid: 24943
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 82.5,45.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24943
-=======
-  - uid: 24944
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 75.5,11.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24944
-=======
-  - uid: 24945
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 63.5,58.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24945
-=======
-  - uid: 24946
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 62.5,58.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24946
-=======
-  - uid: 24947
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 42.5,61.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24947
-=======
-  - uid: 24948
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 42.5,59.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24948
-=======
-  - uid: 24949
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 42.5,33.5
       parent: 2
-<<<<<<< HEAD
   - uid: 24949
-=======
-  - uid: 24950
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 66.5,36.5
@@ -171167,13 +167431,8 @@ entities:
       pos: 38.5,-15.5
       parent: 2
     - type: Door
-<<<<<<< HEAD
       secondsUntilStateChange: -188255.67
   - uid: 24952
-=======
-      secondsUntilStateChange: -185257.97
-  - uid: 24954
->>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
     components:
     - type: Transform
       pos: 38.5,-17.5
