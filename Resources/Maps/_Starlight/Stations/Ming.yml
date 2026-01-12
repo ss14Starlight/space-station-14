@@ -4,8 +4,13 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
+<<<<<<< HEAD
   time: 01/04/2026 12:40:48
   entityCount: 29418
+=======
+  time: 01/10/2026 22:57:29
+  entityCount: 29426
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
 maps:
 - 1
 grids:
@@ -10290,7 +10295,11 @@ entities:
       pos: -63.5,-31.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -179042.1
+=======
+      secondsUntilStateChange: -178342.6
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10315,7 +10324,11 @@ entities:
       pos: -58.5,-45.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -177439.6
+=======
+      secondsUntilStateChange: -176740.1
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10450,7 +10463,11 @@ entities:
       pos: -32.5,-52.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -184694.62
+=======
+      secondsUntilStateChange: -183995.12
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10913,7 +10930,11 @@ entities:
       pos: -71.5,-38.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -179552.42
+=======
+      secondsUntilStateChange: -178852.92
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -11108,7 +11129,11 @@ entities:
       pos: -83.5,-42.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -4113.674
+=======
+      secondsUntilStateChange: -3414.169
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11120,7 +11145,11 @@ entities:
       pos: -83.5,-46.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -4114.274
+=======
+      secondsUntilStateChange: -3414.769
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11132,7 +11161,11 @@ entities:
       pos: -83.5,-50.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -4115.0405
+=======
+      secondsUntilStateChange: -3415.5356
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11144,7 +11177,11 @@ entities:
       pos: -83.5,-32.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -4112.274
+=======
+      secondsUntilStateChange: -3412.769
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11156,7 +11193,11 @@ entities:
       pos: -83.5,-28.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -4111.707
+=======
+      secondsUntilStateChange: -3412.2024
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11168,7 +11209,11 @@ entities:
       pos: -83.5,-24.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -4111.207
+=======
+      secondsUntilStateChange: -3411.7024
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11180,7 +11225,11 @@ entities:
       pos: 47.5,53.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -4136.5073
+=======
+      secondsUntilStateChange: -3437.0024
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11192,7 +11241,11 @@ entities:
       pos: 47.5,57.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -4135.8735
+=======
+      secondsUntilStateChange: -3436.369
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11205,7 +11258,11 @@ entities:
     - type: GridFill
       path: /Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -59923.785
+=======
+      secondsUntilStateChange: -59224.28
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
 - proto: AirlockExternalGlassShuttleLocked
   entities:
@@ -12513,7 +12570,11 @@ entities:
       pos: 34.5,43.5
       parent: 2
     - type: Door
+<<<<<<< HEAD
       secondsUntilStateChange: -257900.1
+=======
+      secondsUntilStateChange: -257200.6
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -143420,11 +143481,14 @@ entities:
     - type: Transform
       pos: 37.5,-64.5
       parent: 2
+<<<<<<< HEAD
   - uid: 10063
     components:
     - type: Transform
       pos: -4.5,-13.5
       parent: 2
+=======
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
   - uid: 10302
     components:
     - type: Transform
@@ -143626,6 +143690,14 @@ entities:
     - type: Transform
       pos: -6.5,-13.5
       parent: 2
+<<<<<<< HEAD
+=======
+  - uid: 22754
+    components:
+    - type: Transform
+      pos: -4.5,-13.5
+      parent: 2
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
   - uid: 22755
     components:
     - type: Transform
@@ -151616,6 +151688,13 @@ entities:
     - type: Transform
       pos: 39.5,-19.5
       parent: 2
+- proto: SpawnPointDrillInstructor
+  entities:
+  - uid: 25665
+    components:
+    - type: Transform
+      pos: 34.5,1.5
+      parent: 2
 - proto: SpawnPointHeadOfPersonnel
   entities:
   - uid: 24075
@@ -158189,7 +158268,11 @@ entities:
     - type: Transform
       pos: -72.5,43.5
       parent: 2
+<<<<<<< HEAD
 - proto: ToiletDirtyWaterFilled
+=======
+- proto: ToiletDirtyWater
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
   entities:
   - uid: 25139
     components:
@@ -181674,6 +181757,14 @@ entities:
     - type: Transform
       pos: -28.5,13.5
       parent: 2
+<<<<<<< HEAD
+=======
+  - uid: 29462
+    components:
+    - type: Transform
+      pos: -19.5,20.5
+      parent: 2
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
   - uid: 29463
     components:
     - type: Transform
@@ -181684,6 +181775,14 @@ entities:
     - type: Transform
       pos: -20.5,20.5
       parent: 2
+<<<<<<< HEAD
+=======
+  - uid: 29465
+    components:
+    - type: Transform
+      pos: -17.5,21.5
+      parent: 2
+>>>>>>> acd6909ccc07e210d0eac912378a7ae44ee33a33
   - uid: 29466
     components:
     - type: Transform

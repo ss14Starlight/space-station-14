@@ -51,6 +51,7 @@
             Warden: [ 1, 1 ]
             SecurityOfficer: [ 9, 9 ]
             Detective: [ 2, 2 ]
+            DrillInstructor: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ]
             Brigmedic: [ 1, 1 ]
             #supply
