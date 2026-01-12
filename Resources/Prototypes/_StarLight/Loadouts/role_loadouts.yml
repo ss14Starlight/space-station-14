@@ -141,6 +141,26 @@
     - Survival
     - Trinkets
 
+- type: roleLoadout
+  id: JobDrillInstructor
+  groups:
+    - SecurityHead
+    - SecurityJumpsuit
+    - SecurityBackpack
+    - SecurityEyewear
+    - SecurityOuterClothing
+    - SecurityShoes
+    - SecurityPDA
+    - SecurityBelt
+    - SecurityNonLethalWeapon 
+    - SecuritySidearm 
+    - SurvivalSecurity
+    - Trinkets
+    - Scarves 
+    - Pens 
+    - SecurityJobTrinkets
+    - GroupSpeciesBreathToolSecurity
+
 # Antagonist Loadouts
 - type: roleLoadout
   id: AntagXenoborg
@@ -162,24 +182,3 @@
   - BrighteyeShoes
   - BrighteyeGloves
   - Scarves
-    - GroupSpeciesBreathTool
-
-- type: roleLoadout
-  id: JobDrillInstructor
-  groups:
-    - SecurityHead
-    - SecurityJumpsuit
-    - SecurityBackpack
-    - SecurityEyewear
-    - SecurityOuterClothing
-    - SecurityShoes
-    - SecurityPDA
-    - SecurityBelt
-    - SecurityNonLethalWeapon 
-    - SecuritySidearm 
-    - SurvivalSecurity
-    - Trinkets
-    - Scarves 
-    - Pens 
-    - SecurityJobTrinkets
-    - GroupSpeciesBreathToolSecurity
