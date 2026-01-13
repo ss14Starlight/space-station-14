@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "made by neomoth",
+    "copyright": "displacements by neomoth",
     "size":
     {
         "x": 32,
@@ -14,7 +14,7 @@
     "states":
     [
         {
-            "name": "eyes",
+            "name": "ears",
             "directions": 4
         }
     ]

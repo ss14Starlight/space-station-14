@@ -598,7 +598,7 @@
     variation: 0.125
   sounds:
     Scream:
-      path: /Audio/Voice/Resomi/resomi_scream.ogg
+      path: /Audio/_Starlight/Effects/avali_scream.ogg
     Laugh:
       collection: ResomiLaugh
     Honk:

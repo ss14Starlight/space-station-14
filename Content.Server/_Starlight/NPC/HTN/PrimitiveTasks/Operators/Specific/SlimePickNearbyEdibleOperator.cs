@@ -8,6 +8,8 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared._Starlight.Xenobiology;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Specific;
 
@@ -50,6 +52,13 @@ public sealed partial class SlimePickNearbyEdibleOperator : HTNOperator
     /// </summary>
     [DataField("targetDamageThreshold", required: true)]
     public FixedPoint2 TargetDamageThreshold = 0;
+
+    /// <summary>
+    /// If not null, will only allow slimes to eat entities with the specified damage container.
+    /// If null, will try to eat everything.
+    /// </summary>
+    [DataField("onlyTarget", required: true)]
+    public ProtoId<DamageContainerPrototype>? OnlyTarget = default!;
     
     public const string TargetDamageTypeKey = "TargetDamageType";
     public const string TargetDamageThresholdKey = "TargetDamageThreshold";
@@ -85,6 +94,11 @@ public sealed partial class SlimePickNearbyEdibleOperator : HTNOperator
                 // Don't target entities that aren't mobs
                 if (!mobStateQuery.HasComponent(entity))
                     continue;
+                
+                // Don't target entities in the wrong damage group
+                if (OnlyTarget.HasValue)
+                    if (!(damage.DamageContainerID.HasValue && damage.DamageContainerID.Value == OnlyTarget.Value))
+                        continue;
                 
                 // Only target entities that are not damaged enough
                 if (!(damage.TotalDamage < TargetDamageThreshold))

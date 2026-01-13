@@ -145,6 +145,14 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
             Category = VerbCategory.Insert,
             Act = () =>
             {
+                // STARLIGHT START
+                if (component.Container.ContainedEntities.Count > component.MaxItems)
+                {
+                    _popupSystem.PopupClient(Loc.GetString("disposal-unit-full"), uid);
+                    return;
+                }
+                // STARLIGHT END
+                
                 _handsSystem.TryDropIntoContainer((args.User, args.Hands), args.Using.Value, component.Container, checkActionBlocker: false);
                 _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.User):player} inserted {ToPrettyString(args.Using.Value)} into {ToPrettyString(uid)}");
                 AfterInsert(uid, component, args.Using.Value, args.User);
@@ -218,6 +226,13 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
         {
             return;
         }
+
+        // STARLIGHT START
+        if (component.Container.ContainedEntities.Count > component.MaxItems)
+        {
+            return;
+        }
+        // STARLIGHT END
 
         if (!CanInsert(uid, component, args.Used) || !_handsSystem.TryDropIntoContainer(args.User, args.Used, component.Container))
         {
