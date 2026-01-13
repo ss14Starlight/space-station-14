@@ -10,8 +10,14 @@
   - /Audio/_Starlight/Voice/Resomi/resomi_call_1.ogg
   - /Audio/_Starlight/Voice/Resomi/resomi_call_2.ogg
 
-  
 - type: soundCollection
   id: ResomiSquawk
   files:
   - /Audio/_Starlight/Voice/Resomi/resomi_squawk_1.ogg
+
+- type: soundCollection
+  id: ResomiCry
+  files:
+    - /Audio/_Starlight/Voice/Resomi/resomi_cry_1.ogg
+    - /Audio/_Starlight/Voice/Resomi/resomi_cry_2.ogg
+    - /Audio/_Starlight/Voice/Resomi/resomi_cry_3.ogg

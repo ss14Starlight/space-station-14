@@ -25736,5 +25736,265 @@ Entries:
   id: 129500
   time: '2026-01-11T05:21:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1295
+- author: STARLIGHT TEAM
+  changes:
+  - message: Cyberhands can accept hand implants.
+    type: Fix
+  - message: Gave everyone their eyes back.
+    type: Fix
+  id: 278700
+  time: '2026-01-11T18:00:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2787
+- author: FeralCreature, AegisShield
+  changes:
+  - message: Health analyzers now show all chemicals currently metabolizing in the
+      bloodstream of the scanned entity.
+    type: Add
+  - message: Adjusted the interface of health analyzers to increase readability and
+      improve appearance.
+    type: Tweak
+  id: 273000
+  time: '2026-01-11T23:10:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2730
+- author: Citrea
+  changes:
+  - message: Laspi heads can be closed again.
+    type: Fix
+  - message: Laspi no longer have skulls in their arms.
+    type: Fix
+  - message: The blueprints for the new cyberlegs had been misplaced during transfer.
+      We have located them again, and you should find them in your medfab.
+    type: Fix
+  id: 278800
+  time: '2026-01-12T00:29:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2788
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added missing localization for xenobiology reagants.
+    type: Add
+  - message: Added missing localization for adamantine.
+    type: Add
+  - message: Slime speed potion given verb to allow applying speed modifier to bags.
+    type: Tweak
+  - message: Slime mutation potion now works.
+    type: Fix
+  - message: Slime mind transference potion now works.
+    type: Fix
+  id: 279000
+  time: '2026-01-12T02:07:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2790
+- author: Aedler
+  changes:
+  - message: Hardsuits (if helmets enabled) now block tranquilizer shells and Wonderprod
+      injections, now with a popup to notify you. (Other means of feedback later)
+    type: Tweak
+  - message: Wonderprod act as a slower beefier stun baton instead if used against
+      hardsuits.
+    type: Tweak
+  - message: Abductors recall to ship is canceled if stunned, cuffed or dead. They
+      can still return if crit.
+    type: Fix
+  id: 118300
+  time: '2026-01-12T21:11:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1183
+- author: neomoth
+  changes:
+  - message: New breath mask sprite for hamsters/mothroaches. Looks less jank when
+      they pull it down now.
+    type: Add
+  - message: Xenomoproaches can now wear headsets to make recon easier.
+    type: Add
+  - message: Mothroach displacements now account for the fact that their antennae
+      do in fact exist, so it should prevent headwear from covering it weirdly.
+    type: Tweak
+  - message: Xenomoproaches now escape inventories way quicker.
+    type: Tweak
+  - message: Mothroach displacements adjusted to hopefully prevent sprite issues.
+    type: Fix
+  - message: Xenomoproaches now use their displacements.
+    type: Fix
+  - message: Xenomoproaches now use the correct job icon on comms.
+    type: Fix
+  - message: Xenomoproaches now give their xenoborg briefing when initially controlled
+      by a player instead of altered silicon briefing.
+    type: Fix
+  - message: Xenomoproaches can no longer be unlocked while holding them, and no longer
+      provide xenoborg access to those holding one.
+    type: Fix
+  id: 276300
+  time: '2026-01-12T21:27:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2763
+- author: neomoth
+  changes:
+  - message: Lights only go out on the station that had its alert level set to delta
+      or epsilon, no more pitch black CC after nuke explodes.
+    type: Tweak
+  - message: Screens now only show the alert level of the station that they are on.
+    type: Tweak
+  - message: Station events choose their target station on add now instead of as it
+      starts.
+    type: Tweak
+  - message: Station events now only broadcast their announcement to people currently
+      on a grid belonging to the target station.
+    type: Tweak
+  - message: Midround stations must now opt-in to having events target it.
+    type: Tweak
+  - message: Supermatter destabilizing now only broadcasts over radio instead of a
+      global announcement.
+    type: Tweak
+  id: 261800
+  time: '2026-01-12T21:49:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2618
+- author: neomoth
+  changes:
+  - message: Adds a toggle to shadekins to prevent flickering the lights when entering
+      or leaving nullspace. Epileptics rejoice.
+    type: Add
+  id: 275200
+  time: '2026-01-12T21:43:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2752
+- author: Citrea
+  changes:
+  - message: To more easily comply with SOP, surgery consent forms now come with a
+      checkbox to refuse anesthetics, if such is desired.
+    type: Tweak
+  id: 277400
+  time: '2026-01-12T21:59:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2774
+- author: DocMoth
+  changes:
+  - message: upped limit of Red Regalia to 2
+    type: Tweak
+  id: 276400
+  time: '2026-01-12T22:03:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2764
+- author: Coolsurf6
+  changes:
+  - message: Scrubbed secret CC knowledge from Magistrate guidebook entry
+    type: Tweak
+  id: 273800
+  time: '2026-01-12T22:03:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2738
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed yellow slime extract light's blinking on toggle.
+    type: Fix
+  - message: Fixed broken RSI on an outdated test sprite.
+    type: Fix
+  id: 279900
+  time: '2026-01-13T01:15:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2799
+- author: neomoth
+  changes:
+  - message: Fix the stupid fucking annoying ass holopad bug that's been annoying
+      everyone for months on end. Hallelujah.
+    type: Fix
+  id: 279700
+  time: '2026-01-13T01:38:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2797
+- author: Fasuh
+  changes:
+  - message: Fixed breathable organs activating on a wrong verb.
+    type: Fix
+  id: 274500
+  time: '2026-01-13T04:02:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2745
+- author: Fasuh
+  changes:
+  - message: Added back Vox gas tanks, tank harnesses, and masks on roundstart.
+    type: Add
+  - message: Removed gas tank lungs from Vox.
+    type: Remove
+  id: 274600
+  time: '2026-01-13T04:02:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2746
+- author: Fasuh
+  changes:
+  - message: Added new magnet animation on bags.
+    type: Add
+  - message: Added sounds and visual indicator to mail bag magnet.
+    type: Add
+  - message: Changed the interaction UX on mail bag.
+    type: Tweak
+  id: 275300
+  time: '2026-01-13T04:03:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2753
+- author: Penguinwizzard
+  changes:
+  - message: Stations can now be cursed!
+    type: Add
+  id: 266200
+  time: '2026-01-13T06:15:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2662
+- author: Sparlight
+  changes:
+  - message: Fixed borgi cubes sometimes not hydrating.
+    type: Fix
+  id: 279500
+  time: '2026-01-13T07:50:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2795
+- author: Rinary
+  changes:
+  - message: Added limit of 50 items to disposal bins per flush.
+    type: Add
+  - message: Changed steel tiles, now they don't deal blunt damage on throw, consider
+      using spears or other throw damage items for killer disposal cannons.
+    type: Tweak
+  - message: Changed disposal unit, now you receive popup when it's full and you can't
+      place more items.
+    type: Tweak
+  id: 194900
+  time: '2026-01-13T12:40:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1949
+- author: Fractalflower
+  changes:
+  - message: Added miscellaneous item slot, for pins/medals/etc
+    type: Add
+  - message: Changed gender pins & medals slot to misc slot
+    type: Tweak
+  - message: Added a pin loadout slot.
+    type: Add
+  - message: Fixed bug whe brigmedics and salvage leads are not permitted to bring
+      a scarf to work.
+    type: Fix
+  id: 197000
+  time: '2026-01-13T12:54:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1970
+- author: Scarlet and toaster0423
+  changes:
+  - message: Added the Dispatcher for duty officers, wardens and heads of securities!
+      (admin only for now til ammo is balanced)
+    type: Add
+  id: 226100
+  time: '2026-01-13T13:22:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2261
+- author: Teapoterror
+  changes:
+  - message: Nuclear Operative Base, 'Colt Station'
+    type: Add
+  - message: Nuclear Operative Shuttle, 'Blackhorse'
+    type: Add
+  - message: Nuclear Operative Base's are now Randomized between the Original and
+      'Colt Station'
+    type: Tweak
+  id: 213500
+  time: '2026-01-13T13:14:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2135
+- author: Fractalflower
+  changes:
+  - message: Glasses now properly fix short-sightedness.
+    type: Tweak
+  id: 210400
+  time: '2026-01-13T13:13:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2104
+- author: Fractalflower
+  changes:
+  - message: Terror spiders can now speak/understand Xeno and Chittin
+    type: Add
+  - message: Terror spiders can now hiss
+    type: Add
+  id: 230300
+  time: '2026-01-13T13:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2303
 Order: -1
 

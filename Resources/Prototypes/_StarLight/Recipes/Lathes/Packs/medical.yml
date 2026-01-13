@@ -37,6 +37,10 @@
   - RightLegCyber
   - LeftFootCyber
   - RightFootCyber
+  - LeftLegCyberHydraulic
+  - RightLegCyberHydraulic
+  - LeftLegCyberPilebunker
+  - RightLegCyberPilebunker
 
   - LeftArmCyberReaper
   - RightArmCyberReaper

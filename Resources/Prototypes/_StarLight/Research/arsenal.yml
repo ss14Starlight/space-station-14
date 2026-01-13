@@ -155,6 +155,8 @@
     - RightArmCyberBulwark
     - LeftArmCyberZeus
     - RightArmCyberZeus
+    - LeftLegCyberPilebunker
+    - RightLegCyberPilebunker
   technologyPrerequisites:
     - CyberLimbsTech
   radioChannels:

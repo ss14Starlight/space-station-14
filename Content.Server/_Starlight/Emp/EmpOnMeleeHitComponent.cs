@@ -28,5 +28,11 @@ public sealed partial class EmpOnMeleeHitComponent : Component
     [DataField]
     public float EnergyPerUse = 0f;
 
+    /// <summary>
+    /// Does the EMP disable the item?
+    /// </summary>
+    [DataField]
+    public bool DisableOnHit = true;
+
 
 }

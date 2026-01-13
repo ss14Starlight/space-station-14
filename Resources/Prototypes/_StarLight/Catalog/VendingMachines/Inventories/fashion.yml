@@ -465,4 +465,4 @@
     - SLFashionOther
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 1
+      stock: 2
