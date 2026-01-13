@@ -23,6 +23,7 @@
         core: SentientSlimeCore
         lungs: OrganSlimeLungs
         cavity: null
+        brain_implant: null # 🌟Starlight🌟
     right arm:
       part: RightArmSlime
       connections:
@@ -33,8 +34,12 @@
       - left hand
     right hand:
       part: RightHandSlime
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     left hand:
       part: LeftHandSlime
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     right leg:
       part: RightLegSlime
       connections:

@@ -265,6 +265,7 @@
   id: DerelictBorgiSpawn
   components:
     - type: StationEvent
+      globalAnnouncement: false # Starlight
       weight: 5
       earliestStart: 15
       reoccurrenceDelay: 20
@@ -316,7 +317,8 @@
     - prefRoles: [ Brighteye ]
       playerRatio: 1
       spawnerPrototype: SpawnPointGhostBrighteye
-      startingGear: BrighteyeGear
+      roleLoadout:
+      - AntagBrighteye
       briefing:
         text: brighteye-role-greeting
         color: "#F200FF"

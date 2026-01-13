@@ -83,6 +83,13 @@ namespace Content.Client.Lobby.UI
         /// </summary>
         public JobPrototype? JobOverride;
 
+        // Starlight Start: Antag Loadouts
+        /// <summary>
+        /// Temporary override of their selected antag, used to preview roles.
+        /// </summary>
+        public ProtoId<AntagPrototype>? AntagOverride;
+        // Starlight End
+
         /// <summary>
         /// Track the state of the ShowClothes button to use for the profile preview
         /// </summary>
@@ -890,13 +897,42 @@ namespace Content.Client.Lobby.UI
 
                 antagContainer.AddChild(selector);
 
-                antagContainer.AddChild(new Button()
+                var loadoutWindowBtn = new Button() // Starlight edit: Antag loadouts
                 {
-                    Disabled = true,
+                    // Disabled = true, // Starlight edit: Antag loadouts
                     Text = Loc.GetString("loadout-window"),
                     HorizontalAlignment = HAlignment.Right,
                     Margin = new Thickness(3f, 0f, 0f, 0f),
-                });
+                }; // Starlight edit: Antag loadouts
+
+                // Starlight Start: Antag loadouts
+                var antagLoadoutId = antag.RoleLoadout?.FirstOrDefault();
+
+                if (antagLoadoutId == null || !_prototypeManager.TryIndex<RoleLoadoutPrototype>(antagLoadoutId.Value, out var roleLoadoutProto))
+                {
+                    loadoutWindowBtn.Disabled = true;
+                }
+                else
+                {
+                    loadoutWindowBtn.OnPressed += _ =>
+                    {
+                        RoleLoadout? loadout = null;
+
+                        Profile?.Loadouts.TryGetValue(roleLoadoutProto.ID, out loadout);
+                        loadout = loadout?.Clone();
+
+                        if (loadout == null)
+                        {
+                            loadout = new RoleLoadout(roleLoadoutProto.ID);
+                            loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager, force: true);
+                        }
+
+                        OpenAntagLoadout(antag, loadout, roleLoadoutProto);
+                    };
+                }
+
+                antagContainer.AddChild(loadoutWindowBtn);
+                // Starlight ENd
 
                 AntagList.AddChild(antagContainer);
             }
@@ -953,6 +989,7 @@ namespace Content.Client.Lobby.UI
             CharacterSlot = slot;
             IsDirty = false;
             JobOverride = null;
+            AntagOverride = null; // Starlight: Antag Loadouts
 
             UpdateNameEdit();
             UpdateCustomSpecieNameEdit(); // Starlight
@@ -1259,7 +1296,63 @@ namespace Content.Client.Lobby.UI
             UpdateJobPreferences();
         }
 
-        //starlight start
+        // Starlight Start: Antag loadouts
+        private void OpenAntagLoadout(AntagPrototype antagProto, RoleLoadout roleLoadout, RoleLoadoutPrototype roleLoadoutProto)
+        {
+            _loadoutWindow?.Dispose();
+            _loadoutWindow = null;
+            var collection = IoCManager.Instance;
+
+            if (collection == null || _playerManager.LocalSession == null || Profile == null)
+                return;
+
+            var session = _playerManager.LocalSession;
+
+            _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, session, collection)
+            {
+                Title = Loc.GetString("loadout-window-title-loadout", ("job", Loc.GetString(antagProto.Name))),
+            };
+
+            _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
+            _loadoutWindow.OpenCenteredLeft();
+
+            _loadoutWindow.OnNameChanged += name =>
+            {
+                roleLoadout.EntityName = name;
+                Profile = Profile.WithLoadout(roleLoadout);
+                SetDirty();
+            };
+
+            _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
+            {
+                roleLoadout.AddLoadout(loadoutGroup, loadoutProto, _prototypeManager);
+                _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
+                Profile = Profile?.WithLoadout(roleLoadout);
+                ReloadPreview();
+            };
+
+            _loadoutWindow.OnLoadoutUnpressed += (loadoutGroup, loadoutProto) =>
+            {
+                roleLoadout.RemoveLoadout(loadoutGroup, loadoutProto, _prototypeManager);
+                _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
+                Profile = Profile?.WithLoadout(roleLoadout);
+                ReloadPreview();
+            };
+
+            AntagOverride = antagProto.ID;
+            JobOverride = antagProto.PreviewStartingGear != null
+                ? _prototypeManager.EnumeratePrototypes<JobPrototype>().FirstOrDefault(j => j.StartingGear == antagProto.PreviewStartingGear)
+                : null;
+
+            ReloadPreview();
+
+            _loadoutWindow.OnClose += () =>
+            {
+                AntagOverride = null;
+                JobOverride = null;
+                ReloadPreview();
+            };
+        }
         private void OnPhysicalDescChanged(TextEdit.TextEditEventArgs args)
         {
             if (Profile is null)
@@ -1268,7 +1361,6 @@ namespace Content.Client.Lobby.UI
             Profile = Profile.WithPhysicalDesc(Rope.Collapse(args.TextRope).Trim());
             IsDirty = true;
         }
-
 
         private void OnPersonalityDescChanged(TextEdit.TextEditEventArgs args)
         {

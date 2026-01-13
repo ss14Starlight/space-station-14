@@ -9,9 +9,10 @@
       - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        eyes: OrganAvaliEyes
         tongue: OrganHumanTongue
         eye_implant: null
+        brain_implant: BrainImplantNexus
     torso:
       part: TorsoAvali
       connections:
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandAvali
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandAvali
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegAvali
       connections:

@@ -5,6 +5,7 @@ using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Shared._Starlight.EntityTable; //#Starlight
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking.Components; // Starlight
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 
@@ -232,8 +233,48 @@ public sealed partial class GameTicker
         var rules = new List<EntityUid>(GetAddedGameRules());
         foreach (var rule in rules)
         {
+            // Starlight start
+            // We're only handling rules that aren't intentionally delayed. If a rule _is_ supposed to be delayed, ignore it.
+            if (HasComp<DelayedStartRuleComponent>(rule))
+                continue;
+            // Starlight end
             StartGameRule(rule);
         }
+
+        // Starlight start
+        // We're not ingame yet, so if gamerules were added during the StartGameRule pass,
+        // they weren't started automatically. This leads to a bit of a chicken-and-egg
+        // problem, as the engine otherwise assumes that StartGamePresetRules will have
+        // moved any existing GameRule objects to a started state. To make this invariant
+        // hold properly, we continue iterating over the game rules until all are started.
+        var expectedRuleCount = rules.Count;
+        rules = new List<EntityUid>(GetAddedGameRules());
+        // The iteration count limit is supposed to prevent us from infinite looping in
+        // the event that a rule adds a copy of itself.
+        var iteration = 0;
+        const int maxIterations = 5;
+        while (expectedRuleCount != rules.Count && iteration < maxIterations)
+        {
+            Log.Warning($"Rules added while starting preset rules - count updated from {expectedRuleCount} to {rules.Count}. Doing another pass to start extra rule(s)...");
+            foreach (var rule in rules)
+            {
+                // We're only handling rules that aren't intentionally delayed. If a rule _is_ supposed to be delayed, ignore it.
+                if (HasComp<DelayedStartRuleComponent>(rule))
+                    continue;
+                StartGameRule(rule);
+            }
+
+            expectedRuleCount = rules.Count;
+            rules = new List<EntityUid>(GetAddedGameRules());
+
+            iteration += 1;
+        }
+
+        if (iteration == maxIterations && expectedRuleCount != rules.Count)
+        {
+            _sawmill.Error($"Rule startup did not converge within {maxIterations} passes, continuing regardless - unstarted rules: {string.Join(", ", rules.Where(rule => !(HasComp<ActiveGameRuleComponent>(rule) || HasComp<EndedGameRuleComponent>(rule))).Select<EntityUid, string>(rule => ToPrettyString(rule)))}");
+        }
+        // Starlight end
     }
 
     private void IncrementRoundNumber()

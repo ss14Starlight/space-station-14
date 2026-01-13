@@ -27,6 +27,7 @@
       min: 10
       max: 10
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startColor: "#18abf5"
     startAudio:
       path: /Audio/Announcements/announce.ogg

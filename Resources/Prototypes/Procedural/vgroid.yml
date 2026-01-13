@@ -93,7 +93,7 @@
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockBluespace
-      count: 5
+      count: 15
       minGroupSize: 1
       maxGroupSize: 2
     #Starlight-edit: end

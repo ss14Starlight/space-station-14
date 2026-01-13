@@ -101,6 +101,23 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
     private void EmbedAttach(EntityUid uid, EntityUid target, EntityUid? user, EmbeddableProjectileComponent component)
     {
+        // Starlight start
+        // Embedding can be triggered more than once leading to fail "SpawnAndDeleteAllEntitiesInTheSameSpot" test
+        if (component.EmbeddedIntoUid != null)
+        {
+            if (component.EmbeddedIntoUid == target && TryComp<EmbeddedContainerComponent>(target, out var existingContainer))
+            {
+                if (!existingContainer.EmbeddedObjects.Contains(uid))
+                {
+                    existingContainer.EmbeddedObjects.Add(uid);
+                    Dirty(target, existingContainer);
+                }
+            }
+
+            return;
+        }
+        // Starlight end
+        
         TryComp<PhysicsComponent>(uid, out var physics);
         _physics.SetLinearVelocity(uid, Vector2.Zero, body: physics);
         _physics.SetBodyType(uid, BodyType.Static, body: physics);
@@ -122,12 +139,12 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         Dirty(uid, component);
 
         EnsureComp<EmbeddedContainerComponent>(target, out var embeddedContainer);
+        // Startlight start
+        if (!embeddedContainer.EmbeddedObjects.Contains(uid))
+            embeddedContainer.EmbeddedObjects.Add(uid);
 
-        //Assert that this entity not embed
-        //STARLIGHT COMMENT: This randomly is not true, and will cause a test fail. TODO: Figure out repro steps and fix
-        DebugTools.AssertEqual(embeddedContainer.EmbeddedObjects.Contains(uid), false);
-
-        embeddedContainer.EmbeddedObjects.Add(uid);
+        Dirty(target, embeddedContainer);
+        // Starlight end
     }
 
     public void EmbedDetach(EntityUid uid, EmbeddableProjectileComponent? component, EntityUid? user = null)

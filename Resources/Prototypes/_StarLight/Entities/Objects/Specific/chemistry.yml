@@ -233,6 +233,8 @@
   - type: Clothing
     sprite: _Starlight/Objects/Specific/Chemistry/senior_chem_bag.rsi
     quickEquip: false
+    slots:
+    - belt
 
 - type: entity
   parent: HandLabeler
