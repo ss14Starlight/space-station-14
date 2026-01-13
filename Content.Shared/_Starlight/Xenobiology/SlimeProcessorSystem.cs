@@ -23,7 +23,6 @@ public sealed class SlimeProcessorSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<SlimeProcessorComponent, ActivateInWorldEvent>(OnAfterActivate);
-        SubscribeLocalEvent<SlimeProcessorComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<SlimeProcessorComponent, PowerChangedEvent>(OnPowerChanged);
     }
 
@@ -32,12 +31,6 @@ public sealed class SlimeProcessorSystem : EntitySystem
         if (ent.Comp.SlimeContainer.ContainedEntities.Count <= 0) return;
         EnableProcessing(ent, _entityManager, _gameTiming);
         _jitteringSystem.AddJitter(ent.Owner, -10, 100);
-    }
-
-    private void OnComponentInit(Entity<SlimeProcessorComponent> ent, ref ComponentInit args)
-    {
-        ent.Comp.SlimeContainer = _container.EnsureContainer<ContainerSlot>(ent.Owner, SlimeProcessorComponent.SlimeContainerName);
-        EnableCollecting(ent, _entityManager, _gameTiming);
     }
     
     private void OnPowerChanged(Entity<SlimeProcessorComponent> ent, ref PowerChangedEvent args)
@@ -136,6 +129,7 @@ public sealed class CollectingSlimeProcessorSystem : EntitySystem
         while (query.MoveNext(out var uid, out var collectingSlimeProcessorComponent))
         {
             if (!_entityManager.TryGetComponent(uid, out SlimeProcessorComponent? slimeProcessorComponent)) continue;
+            slimeProcessorComponent.SlimeContainer = _container.EnsureContainer<ContainerSlot>(uid, SlimeProcessorComponent.SlimeContainerName);
             if (!collectingSlimeProcessorComponent.SlimeAcquireMoment.HasValue)
             {
                 collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + slimeProcessorComponent.SlimeAcquireCooldown;
