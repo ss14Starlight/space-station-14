@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
@@ -8,6 +9,7 @@ using Content.Shared.Security;
 using Content.Shared.StationRecords;
 using Content.Shared._CD.Records;
 using Robust.Server.GameObjects;
+using Robust.Shared.Log;
 
 namespace Content.Server._CD.Records.Consoles;
 
@@ -16,6 +18,8 @@ namespace Content.Server._CD.Records.Consoles;
 /// </summary>
 public sealed class CharacterRecordConsoleSystem : EntitySystem
 {
+    private static readonly ISawmill Sawmill = Logger.GetSawmill("characterrecords.console");
+
     [Dependency] private readonly CharacterRecordsSystem _characterRecords = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
@@ -50,6 +54,9 @@ public sealed class CharacterRecordConsoleSystem : EntitySystem
         UpdateUi(ent);
     }
 
+    /// <summary>
+    /// Rebuilds the console UI state, ensuring selections stay valid after filters or data changes.
+    /// </summary>
     private void UpdateUi(EntityUid entity, CharacterRecordConsoleComponent? console = null)
     {
         if (!Resolve(entity, ref console))
@@ -65,42 +72,91 @@ public sealed class CharacterRecordConsoleSystem : EntitySystem
         }
 
         var characterRecords = _characterRecords.QueryRecords(station.Value);
-        var names = new Dictionary<uint, CharacterRecordConsoleState.CharacterInfo>();
+        var filteredRecords = new List<(uint Key, CharacterRecordConsoleState.CharacterInfo Info, FullCharacterRecords Record)>();
+
         foreach (var (key, record) in characterRecords)
         {
-            var netEntity = _entityManager.GetNetEntity(record.Owner!.Value);
-            var displayName = console.ConsoleType != RecordConsoleType.Admin
-                ? $"{record.Name} ({record.JobTitle})"
-                : $"{record.Name} ({netEntity}, {record.JobTitle})";
-
-            // Allow local filtering before the entry shows up in the UI list.
-            if (console.Filter != null && IsSkippedRecord(console.Filter, record, displayName))
+            if (console.Filter != null && IsSkippedRecord(console.Filter, record))
                 continue;
 
-            if (names.ContainsKey(key))
+            string displayName;
+            if (console.ConsoleType != RecordConsoleType.Admin)
             {
-                Log.Error($"Duplicate character record key {key} for console {ToPrettyString(entity)}");
-                continue;
+                displayName = $"{record.Name} ({record.JobTitle})";
+            }
+            else if (record.Owner != null)
+            {
+                var netEntity = _entityManager.GetNetEntity(record.Owner.Value);
+                displayName = $"{record.Name} ({netEntity}, {record.JobTitle})";
+            }
+            else
+            {
+                displayName = $"{record.Name} ({record.JobTitle})";
             }
 
-            names[key] = new CharacterRecordConsoleState.CharacterInfo
+            var info = new CharacterRecordConsoleState.CharacterInfo
             {
                 CharacterDisplayName = displayName,
                 StationRecordKey = record.StationRecordsKey,
             };
+
+            filteredRecords.Add((key, info, record));
         }
 
-        var selectedRecord = console.SelectedIndex != null
-            && characterRecords.TryGetValue(console.SelectedIndex.Value, out var value)
-                ? value
-                : null;
+        var listing = new Dictionary<uint, CharacterRecordConsoleState.CharacterInfo>();
+        foreach (var entry in filteredRecords)
+        {
+            if (!listing.TryAdd(entry.Key, entry.Info))
+            {
+                Sawmill.Error($"Duplicate character record key {entry.Key} for console {ToPrettyString(entity)}.");
+            }
+        }
+
+        uint? selectedIndex = console.SelectedIndex;
+        if (selectedIndex == null || !listing.ContainsKey(selectedIndex.Value))
+        {
+            if (filteredRecords.Count > 0)
+            {
+                var fallback = filteredRecords
+                    .OrderBy(r => r.Info.CharacterDisplayName, StringComparer.CurrentCultureIgnoreCase)
+                    .First();
+                selectedIndex = fallback.Key;
+                console.SelectedIndex = selectedIndex;
+                Sawmill.Debug($"Auto-selected character record {selectedIndex} for console {ToPrettyString(entity)}.");
+            }
+            else
+            {
+                selectedIndex = null;
+                console.SelectedIndex = null;
+            }
+        }
+
+        FullCharacterRecords? selectedRecord = null;
+        if (selectedIndex is { } idx)
+        {
+            foreach (var entry in filteredRecords)
+            {
+                if (entry.Key != idx)
+                    continue;
+
+                selectedRecord = entry.Record;
+                break;
+            }
+
+            if (selectedRecord == null)
+            {
+                Sawmill.Warning($"Console {ToPrettyString(entity)} references missing character record id {idx}; clearing selection.");
+                selectedIndex = null;
+                console.SelectedIndex = null;
+            }
+        }
 
         (SecurityStatus, string?)? securityStatus = null;
         CriminalRecord? selectedCriminalRecord = null;
-        if ((console.ConsoleType == RecordConsoleType.Admin || console.ConsoleType == RecordConsoleType.Security)
-            && selectedRecord?.StationRecordsKey != null)
+        if (selectedRecord != null
+            && (console.ConsoleType == RecordConsoleType.Admin || console.ConsoleType == RecordConsoleType.Security)
+            && selectedRecord.StationRecordsKey != null)
         {
-            // Security-facing consoles surface the linked criminal record for quick context.
             var key = new StationRecordKey(selectedRecord.StationRecordsKey.Value, station.Value);
             if (_records.TryGetRecord<CriminalRecord>(key, out var entry))
             {
@@ -113,8 +169,8 @@ public sealed class CharacterRecordConsoleSystem : EntitySystem
             new CharacterRecordConsoleState
             {
                 ConsoleType = console.ConsoleType,
-                CharacterList = names,
-                SelectedIndex = console.SelectedIndex,
+                CharacterList = listing,
+                SelectedIndex = selectedIndex,
                 SelectedRecord = selectedRecord,
                 Filter = console.Filter,
                 SelectedSecurityStatus = securityStatus,
@@ -127,29 +183,24 @@ public sealed class CharacterRecordConsoleSystem : EntitySystem
         _ui.SetUiState(entity, CharacterRecordConsoleKey.Key, state);
     }
 
-    private static bool IsSkippedRecord(StationRecordsFilter filter, FullCharacterRecords record, string nameJob)
+    private static bool IsSkippedRecord(StationRecordsFilter filter, FullCharacterRecords record)
     {
-        // Each console type exposes a slightly different search surface; bail out early when nothing was typed.
-        var isFilter = filter.Value.Length > 0;
-        if (!isFilter)
+        if (StationRecordFilterHelper.IsFilterEmpty(filter, out var filterText))
             return false;
 
-        var filterLowerCaseValue = filter.Value.ToLower();
         return filter.Type switch
         {
             StationRecordFilterType.Name =>
-                !nameJob.Contains(filterLowerCaseValue, StringComparison.CurrentCultureIgnoreCase),
+                !StationRecordFilterHelper.ContainsText(record.Name, filterText),
+            StationRecordFilterType.Job =>
+                !StationRecordFilterHelper.ContainsText(record.JobTitle, filterText),
+            StationRecordFilterType.Species =>
+                !StationRecordFilterHelper.ContainsText(record.Species, filterText),
             StationRecordFilterType.Prints => record.Fingerprint != null
-                && IsFilterWithSomeCodeValue(record.Fingerprint, filterLowerCaseValue),
+                && !StationRecordFilterHelper.MatchesCodePrefix(record.Fingerprint, filterText),
             StationRecordFilterType.DNA => record.DNA != null
-                && IsFilterWithSomeCodeValue(record.DNA, filterLowerCaseValue),
+                && !StationRecordFilterHelper.MatchesCodePrefix(record.DNA, filterText),
             _ => throw new ArgumentOutOfRangeException(nameof(filter), "Invalid Character Record filter type"),
         };
-    }
-
-    private static bool IsFilterWithSomeCodeValue(string value, string filter)
-    {
-        // DNA / fingerprint filters only care about the prefix, mirroring the console UI expectations.
-        return !value.StartsWith(filter, StringComparison.CurrentCultureIgnoreCase);
     }
 }

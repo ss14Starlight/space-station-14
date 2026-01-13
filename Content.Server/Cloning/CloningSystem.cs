@@ -9,6 +9,7 @@ using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Whitelist;
@@ -17,6 +18,10 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
+using Robust.Shared.Utility;
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 
 namespace Content.Server.Cloning;
 
@@ -36,6 +41,8 @@ public sealed partial class CloningSystem : SharedCloningSystem
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!; // 🌟Starlight🌟
+    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!; //TODO: This system has to support both the old and new status effect systems, until the old is able to be fully removed.
 
     /// <summary>
     ///     Spawns a clone of the given humanoid mob at the specified location or in nullspace.
@@ -75,13 +82,27 @@ public sealed partial class CloningSystem : SharedCloningSystem
         if (settings.CopyImplants)
             CopyImplants(original, clone.Value, settings.CopyInternalStorage, settings.Whitelist, settings.Blacklist);
 
+        // Copy permanent status effects
+        if (settings.CopyStatusEffects)
+            CopyStatusEffects(original, clone.Value);
+
         var originalName = _nameMod.GetBaseName(original);
+
+        CopyCyberwareStates(original, clone.Value); // 🌟Starlight🌟 Copy species-native cyberware
 
         // Set the clone's name. The raised events will also adjust their PDA and ID card names.
         _metaData.SetEntityName(clone.Value, originalName);
 
         _adminLogger.Add(LogType.Chat, LogImpact.Medium, $"The body of {original:player} was cloned as {clone.Value:player}");
         return true;
+    }
+
+    public override void CloneComponents(EntityUid original, EntityUid clone, ProtoId<CloningSettingsPrototype> settings)
+    {
+        if (!_prototype.Resolve(settings, out var proto))
+            return;
+
+        CloneComponents(original, clone, proto);
     }
 
     public override void CloneComponents(EntityUid original, EntityUid clone, CloningSettingsPrototype settings)
@@ -259,4 +280,65 @@ public sealed partial class CloningSystem : SharedCloningSystem
         }
 
     }
+    
+    /// <summary>
+    ///    Scans all permanent status effects applied to the original entity and transfers them to the clone.
+    /// </summary>
+    public void CopyStatusEffects(Entity<StatusEffectContainerComponent?> original, Entity<StatusEffectContainerComponent?> target)
+    {
+        if (!Resolve(original, ref original.Comp, false))
+            return;
+
+        if (original.Comp.ActiveStatusEffects is null)
+            return;
+
+        foreach (var effect in original.Comp.ActiveStatusEffects.ContainedEntities)
+        {
+            if (!TryComp<StatusEffectComponent>(effect, out var effectComp))
+                continue;
+
+            //We are not interested in temporary effects, only permanent ones.
+            if (effectComp.EndEffectTime is not null)
+                continue;
+
+            var effectProto = Prototype(effect);
+
+            if (effectProto is null)
+                continue;
+
+            _statusEffects.TrySetStatusEffectDuration(target, effectProto);
+        }
+    }
+
+#region: Starlight
+    /// <summary>
+    ///     Copies all data of cyberware from one mob to another.
+    ///     Only copies data of cyberware target mob has.
+    ///     Can copy the storage inside a storage implant according to a whitelist and blacklist.
+    /// </summary>
+    /// <param name="original">Entity to copy cyberware data from.</param>
+    /// <param name="target">Entity to copy cyberware data to.</param>
+    private void CopyCyberwareStates(EntityUid original, EntityUid target)
+    {
+        if(!TryComp(original, out BodyComponent? originalBody)
+        ||!TryComp(target, out BodyComponent? targetBody))
+            return;
+
+        if (!_prototype.Resolve((ProtoId<CloningSettingsPrototype>)"BaseClone", out var settings))
+            return; // invalid settings
+
+        var originalOrgans = _body.GetBodyOrgans(original);
+        foreach (var organ in _body.GetBodyOrgans(target))
+        {
+            var originalOrgan = originalOrgans.Where(o => MetaData(o.Id).EntityPrototype?.ID == MetaData(organ.Id).EntityPrototype?.ID).FirstOrNull();
+            if (originalOrgan != null && (
+            TryComp(organ.Id, out BrainImplantComponent? _) 
+            || TryComp(organ.Id, out HandImplantComponent? _) 
+            || TryComp(organ.Id, out EyeImplantComponent? _)))
+            {
+                CloneComponents(originalOrgan.Value.Id, organ.Id, settings);
+            }
+        }
+    }
+#endregion: Starlight
 }

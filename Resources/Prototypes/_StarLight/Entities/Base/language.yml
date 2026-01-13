@@ -24,6 +24,7 @@
       - VoxPidgin
       - Scratch
       - Thaveyan
+      - Darktongue
 
 - type: entity
   id: BaseBorgiLanguages
@@ -53,6 +54,7 @@
       - Scratch
       - Thaveyan
       - Dog
+      - Darktongue
 
 - type: entity
   id: BaseSiliconBrainLanguages

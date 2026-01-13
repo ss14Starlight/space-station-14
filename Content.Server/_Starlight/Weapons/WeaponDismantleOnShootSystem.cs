@@ -17,19 +17,13 @@ using Content.Shared.Wieldable;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.Weapon.Systems;
 public sealed partial class WeaponDismantleOnShootSystem : SharedWeaponDismantleOnShootSystem
 {
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
-    [Dependency] private readonly ILogManager _log = default!;
-    [Dependency] protected readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] protected readonly DamageableSystem Damageable = default!;
+    [Dependency] private readonly DamageableSystem Damageable = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     public override void Initialize()
@@ -43,9 +37,12 @@ public sealed partial class WeaponDismantleOnShootSystem : SharedWeaponDismantle
         if (DismantleCheck(ent, ref args) == false)
             return;
 
+        if (!args.Shooter.HasValue)
+            return;
+
         //apply the damage to the shooter
         //get the shooters damageable component
-        Damageable.TryChangeDamage(args.Shooter, ent.Comp.SelfDamage, origin:args.Shooter);
+        Damageable.TryChangeDamage(args.Shooter.Value, ent.Comp.SelfDamage, origin:args.Shooter.Value);
 
         //we need the user past this point
         if (!args.Shooter.HasValue)

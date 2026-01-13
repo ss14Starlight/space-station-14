@@ -40,6 +40,7 @@
   - BoozeDispenserMachineCircuitboard
   - SodaDispenserMachineCircuitboard
   - SmartFridgeCircuitboard
+  - PersonalCircuitboardDesktop #Starlight
 
 ## Dynamic
 
@@ -68,3 +69,4 @@
   - ReagentGrinderIndustrialMachineCircuitboard
   - JukeboxCircuitBoard
   - DawInstrumentMachineCircuitboard
+  - SlopDispenserMachineCircuitboard #SL

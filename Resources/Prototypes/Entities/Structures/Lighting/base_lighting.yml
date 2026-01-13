@@ -51,7 +51,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.4,0.5,0.4,0.35"
+          bounds: "-0.4,0.35,0.4,0.5"
         density: 190
         mask:
         - None
@@ -275,7 +275,7 @@
         fix1:
           shape:
             !type:PhysShapeAabb
-            bounds: "-0.1,0.5,0.1,0.255"
+            bounds: "-0.1,0.255,0.1,0.5"
           density: 190
           mask:
           - None
@@ -443,8 +443,8 @@
   components:
   - type: PointLight
     enabled: false
-    radius: 5
-    energy: 0.6
+    radius: 7 #Starlight
+    energy: 1 #Starlight
     offset: "0, 0.4"
     color: "#7CFC00"
     mask: /Textures/Effects/LightMasks/double_cone.png

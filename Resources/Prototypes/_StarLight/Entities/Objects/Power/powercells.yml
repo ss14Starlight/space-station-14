@@ -12,9 +12,35 @@
       state: tiny
   - type: Item
     size: Small    
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 250 #while in theory this could give five uses, in practice it gives 2-3 uses (between charge-up time, cooldown and idle-time). Any lower and the margins are too narrow to get more than 1 use out of the defib.
     startingCharge: 250
   - type: Tag
     tags:
       - PowerCellTiny
+  - type: GenericVisualizer #TODO: make these real states
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerCellVisualLayers.Unshaded:
+          Full: {visible: false}
+          Neither: {visible: false}
+          Empty: {visible: false}
+
+- type: entity
+  parent: BasePowerCell
+  id: YellowSlimeExtractPowercell
+  name: yellow slime extract powercell
+  components:
+    - type: Sprite
+      layers:
+        - map: [ "enum.PowerCellVisualLayers.Base" ]
+          state: microreactor
+        - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+          state: o2
+          shader: unshaded
+      color: "#ffeb52ff" # Yes I'm just taking the microreactor sprite and painting it yellow, sue me
+    - type: PredictedBattery
+      maxCharge: 5000
+      startingCharge: 5000
+    - type: PredictedBatterySelfRecharger
+      autoRechargeRate: 50

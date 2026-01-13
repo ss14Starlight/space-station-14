@@ -1,16 +1,11 @@
 using System.Linq;
-using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Access.Systems;
-using Content.Server.Body.Systems;
-using Content.Server.GameTicking;
 using Content.Server.Humanoid;
 using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.DetailExaminable;
@@ -21,15 +16,21 @@ using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Starlight.TextToSpeech;
 using Content.Shared.Station;
 using JetBrains.Annotations;
-using Prometheus;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+// Starlight Start
+using Content.Server.Body.Systems;
+using Content.Server.GameTicking;
+using Content.Server._Starlight.Medical.Limbs;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Part;
+using Prometheus;
+// Starlight End
 
 namespace Content.Server.Station.Systems;
 
@@ -146,8 +147,13 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // Make sure custom names get handled, what is gameticker control flow whoopy.
             if (loadout != null)
             {
-                EquipRoleName(jobEntity, loadout, roleProto!);
+                EquipRoleLoadout(jobEntity, loadout, roleProto!, profile); // Starlight edit
             }
+            
+            // Raise gear equipped event for non-humanoid jobs
+            var jobEntityGearEv = new StartingGearEquippedEvent(jobEntity);
+            RaiseLocalEvent(jobEntity, ref jobEntityGearEv);
+            // Starlight End
 
             DoJobSpecials(job, jobEntity);
             _identity.QueueIdentityUpdate(jobEntity);
@@ -175,9 +181,24 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         SetupCybernetics(entity.Value, profile?.Cybernetics ?? []); // Starlight
 
+        // Starlight begin - we try to do a unified load of loadout and startinggear in one shot to
+        // make it more consistent and equip things in a more effective order.
         if (loadout != null)
         {
-            EquipRoleLoadout(entity.Value, loadout, roleProto!);
+            var startingGear = prototype?.StartingGear != null ? [_prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear)] : Array.Empty<IEquipmentLoadout>();
+            StarlightEquipRoleLoadout(entity.Value, loadout, startingGear, roleProto!);
+        }
+        else if (prototype?.StartingGear != null)
+        {
+            var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
+            EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+        }
+        // Starlight end
+
+        /* Starlight - add comment
+        if (loadout != null)
+        {
+            EquipRoleLoadout(entity.Value, loadout, roleProto!, profile); // Starlight edit
         }
 
         if (prototype?.StartingGear != null)
@@ -185,6 +206,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
             EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         }
+        */ // Starlight - add end of comment
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);
@@ -325,7 +347,6 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (pdaComponent != null)
             _pdaSystem.SetOwner(idUid.Value, pdaComponent, entity, characterName);
     }
-
 
     #endregion Player spawning helpers
 }

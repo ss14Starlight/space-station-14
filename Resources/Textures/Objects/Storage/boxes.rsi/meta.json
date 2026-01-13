@@ -137,6 +137,9 @@
             "name": "solution_trays"
         },
         {
+            "name": "stamp"
+        },
+        {
             "name": "sterile"
         },
         {
@@ -183,6 +186,15 @@
             "directions": 4
         },
         {
+            "name": "tote-0"
+        },
+        {
+            "name": "tote-1"
+        },
+        {
+            "name": "tote-2"
+        },
+        {
             "name": "shelltoy"
         },
         {
@@ -197,6 +209,9 @@
         {
             "name": "vials"
         },
+		{
+            "name": "trigger"
+		},
         {
             "name": "envelope"
         },

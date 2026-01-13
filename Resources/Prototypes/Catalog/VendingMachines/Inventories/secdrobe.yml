@@ -32,6 +32,7 @@
     ClothingShoesBootsCombat: 1
     ClothingShoesBootsWinterSec: 2
     ClothingOuterSecurityBomber: 2 #SL Edit
+    ClothingOuterWindbreakerSecurity: 2 #Starlight
     ClothingHeadHelmetJustice: 1
   contrabandInventory:
     ClothingMaskClownSecurity: 1

@@ -5,3 +5,13 @@
   components:
     - type: MindRole
       roleType: CorporateAligned
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleSSF
+  name: Soviet Special Forces Role
+  components:
+  - type: MindRole
+    antagPrototype: SSF
+    roleType: TeamAntagonist
+    subtype: role-subtype-revolutionary

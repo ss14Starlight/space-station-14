@@ -18,8 +18,6 @@ namespace Content.Server.CollectiveMind;
 
 public sealed partial class CollectiveMind : SharedCollectiveMindSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
     {
@@ -32,15 +30,15 @@ public sealed partial class CollectiveMind : SharedCollectiveMindSystem
     {
         var uid = ent.Owner;
 
-        if (ent.Comp.CorruptWhenUnconscious)
+        //we need to check if the entity is sleeping, or crit
+        if (TryComp<MobStateComponent>(uid, out var mobState))
         {
-            //we need to check if the entity is sleeping, or crit
-            if (TryComp<MobStateComponent>(uid, out var mobState))
+            if (mobState.CurrentState == MobState.Critical || TryComp<SleepingComponent>(uid, out _))
             {
-                if (mobState.CurrentState == MobState.Critical || TryComp<SleepingComponent>(uid, out _))
-                {
+                if (ent.Comp.CorruptWhenUnconscious)
                     args.Message = Corrupt(args.Message, ref ent.Comp);
-                }
+                if (ent.Comp.BlockWhenUnconscious)
+                    args.Cancel();
             }
         }
     }
@@ -69,9 +67,12 @@ public sealed partial class CollectiveMind : SharedCollectiveMindSystem
         return res switch
         {
             < 0.0 => letter.ToString(), // shouldn't be less than 0!
-            < 0.5 => CorruptRandom(), // 50% chance to replace with random characters
-            < 0.75 => "", // 25% chance to remove character
-            < 1.00 => CorruptRepeat(letter), // 25% to repeat the character
+            < 0.1 => CorruptRandom(), // 15% chance to replace with one random character
+            < 0.25 => CorruptRandomMultiple(_random.Next(2, 5)), // 10% chance for between 2 and 5 random characters
+            < 0.5 => "", // 25% chance to remove character
+            < 0.75 => CorruptRepeat(letter), // 25% to repeat the character
+            < 0.9 => CorruptRepeat(CorruptRandom()[0]), // 15% to repeat a corrupted character
+            < 1.0 => CorruptRepeat(CorruptRandomMultiple(_random.Next(2, 5))[0]), // 10% chance for between 2 and 5 random corrupted characters
             _ => letter.ToString(), // shouldn't be greater than 1!
         };
     }
@@ -81,6 +82,17 @@ public sealed partial class CollectiveMind : SharedCollectiveMindSystem
         //const string punctuation = "\"\\`~!@#$%^&*()_+-={}[]|\\;:<>,.?/";
         const string ran = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return ran[_random.NextByte((byte)ran.Length)].ToString();
+    }
+
+    private string CorruptRandomMultiple(int repeats)
+    {
+        string corrupted = "";
+        for (int repeat = 0; repeat < repeats; repeat++)
+        {
+            const string ran = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            corrupted += ran[_random.NextByte((byte)ran.Length)].ToString();
+        }
+        return corrupted;
     }
 
     private string CorruptRepeat(char letter)

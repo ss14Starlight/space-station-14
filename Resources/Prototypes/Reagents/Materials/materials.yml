@@ -141,3 +141,12 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: diamond }
   color: "#80ffff"
   price: 20 # big diamond gaslit us so hard diamonds actually became extremely rare
+
+- type: material
+  id: CrushedPhosphorus
+  stackEntity: CrushedPhosphorus1
+  name: red phosphorus
+  unit: materials-unit-piece
+  icon: { sprite: _Starlight/Objects/Materials/phosphorus.rsi, state: phosphorus }
+  color: "#f5f58c"
+  price: 0

@@ -75,8 +75,8 @@ public sealed partial class TraitorRuleComponent : Component
     public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Ambience/Antag/traitor_start.ogg");
 
     /// <summary>
-    /// The amount of TC traitors start with.
+    /// The amount of TC traitors start with. Starlight Edit: 20 -> 25
     /// </summary>
     [DataField]
-    public FixedPoint2 StartingBalance = 20;
+    public FixedPoint2 StartingBalance = 25;
 }

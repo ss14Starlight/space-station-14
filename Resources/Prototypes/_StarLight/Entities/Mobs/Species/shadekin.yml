@@ -12,7 +12,14 @@
       understands:
       - GalacticCommon
       - Marish
+    - type: CollectiveMind
+      blockWhenUnconscious: true
     - type: Shadekin
+      thresholds:
+        0.8: Low
+        5: Annoying
+        10: High
+        15: Extreme
     - type: Absorbable
     - type: Hunger
     - type: Thirst
@@ -25,7 +32,7 @@
       prototype: Shadekin
       requiredLegs: 2
     - type: Speech
-      allowedEmotes: ["Mar", "Wurble", "Hisses", "Growl", "Purr"]
+      allowedEmotes: ["Marr", "Wurble", "Hisses", "Growl", "Purr"]
     - type: Vocal
       sounds:
         Male: MaleShadekin
@@ -52,7 +59,7 @@
         - reagents: [Water, SpaceCleaner]
           methods: [Touch]
           effects:
-            - !type:WashCreamPieReaction
+            - !type:WashCreamPie
             - !type:Emote
               emote: Hisses
               showInChat: false

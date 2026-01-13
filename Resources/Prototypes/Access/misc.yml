@@ -34,15 +34,16 @@
   - Atmospherics
   - GenpopEnter
   - GenpopLeave
-  - Magistrate # Starlight Job
-  - Ntrep # Starlight Job
-  - Brigmedic # Starlight Job
-  - BlueShield # Starlight Job
-  - Robotics # Starlight Job
-  - Surgery # Starlight Job
-  - Paramedic # Starlight Job
-  - Mining # Starlight Job
-  - SalvageLead # Starlight Job
+  - Cadet # Starlight start
+  - Magistrate
+  - Ntrep
+  - Brigmedic
+  - BlueShield
+  - Robotics
+  - Surgery
+  - Paramedic
+  - Mining
+  - SalvageLead # Starlight end
 
 
 - type: accessGroup

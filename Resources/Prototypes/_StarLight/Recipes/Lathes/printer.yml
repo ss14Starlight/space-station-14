@@ -31,8 +31,8 @@
     SheetPrinter: 100
     
 - type: latheRecipe
-  id: PrintedDocumentReporDepartmentRecipe
-  result: PrintedDocumentReporDepartment
+  id: PrintedDocumentReportDepartmentRecipe
+  result: PrintedDocumentReportDepartment
   categories:
   - Reports
   completetime: 2

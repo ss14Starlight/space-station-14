@@ -10,6 +10,9 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Verbs;
+using Content.Shared.Interaction;
+using Robust.Shared.Map;
 
 namespace Content.Server.Holiday.Christmas;
 
@@ -36,6 +39,7 @@ public sealed class RandomGiftSystem : EntitySystem
         SubscribeLocalEvent<RandomGiftComponent, MapInitEvent>(OnGiftMapInit);
         SubscribeLocalEvent<RandomGiftComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<RandomGiftComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<RandomGiftComponent, GetVerbsEvent<AlternativeVerb>>(OnGetWrapperVerbs); // 🌟Starlight🌟
         BuildIndex();
     }
 
@@ -53,26 +57,51 @@ public sealed class RandomGiftSystem : EntitySystem
         if (args.Handled)
             return;
 
+    // 🌟Starlight🌟 start
+    //Functionality was moved and slightly modified
+        var coords = Transform(args.User).Coordinates;
+        SpawnItems(uid, component, args.User, coords);
+        args.Handled = true;
+    }
+
+    private void SpawnItems(EntityUid uid, RandomGiftComponent component, EntityUid user, EntityCoordinates coordinates)
+    {
         if (component.SelectedEntity is null)
             return;
 
-        var coords = Transform(args.User).Coordinates;
-        var handsEnt = Spawn(component.SelectedEntity, coords);
-        _adminLogger.Add(LogType.EntitySpawn, LogImpact.Low, $"{ToPrettyString(args.User)} used {ToPrettyString(uid)} which spawned {ToPrettyString(handsEnt)}");
+        var handsEnt = Spawn(component.SelectedEntity, coordinates);
+        _adminLogger.Add(LogType.EntitySpawn, LogImpact.Low, $"{ToPrettyString(user)} used {ToPrettyString(uid)} which spawned {ToPrettyString(handsEnt)}");
         if (component.Wrapper is not null)
-            Spawn(component.Wrapper, coords);
+            Spawn(component.Wrapper, coordinates);
 
-        _audio.PlayPvs(component.Sound, args.User);
+        _audio.PlayPvs(component.Sound, user);
 
         // Don't delete the entity in the event bus, so we queue it for deletion.
         // We need the free hand for the new item, so we send it to nullspace.
         _transform.DetachEntity(uid, Transform(uid));
         QueueDel(uid);
 
-        _hands.PickupOrDrop(args.User, handsEnt);
-
-        args.Handled = true;
+        _hands.PickupOrDrop(user, handsEnt);
     }
+
+    private void OnGetWrapperVerbs(EntityUid uid, RandomGiftComponent component, ref GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || (component.RequireHands && args.Hands != null) )
+            return;
+
+        if (_hands.IsHolding(args.User, uid))
+            return;
+
+        var user = args.User;
+        var coords = Transform(uid).Coordinates;
+
+        args.Verbs.Add(new AlternativeVerb()
+        {
+            Act = () => SpawnItems(uid, component, user, coords),
+            Text = Loc.GetString("delivery-open-verb"),
+        });
+    }
+    // 🌟Starlight🌟 end
 
     private void OnGiftMapInit(EntityUid uid, RandomGiftComponent component, MapInitEvent args)
     {

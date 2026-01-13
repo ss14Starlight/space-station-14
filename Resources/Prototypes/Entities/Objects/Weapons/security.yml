@@ -32,6 +32,8 @@
     activatedDamage:
       types:
         Blunt: 0
+    deactivatedSoundOnHit: #starlight
+      collection: GenericHit #starlight
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -40,6 +42,8 @@
     bluntStaminaDamageFactor: 2.0
     angle: 60
     animation: WeaponArcThrust
+    soundHit: #starlight
+      collection: GenericHit #starlight
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
@@ -47,7 +51,7 @@
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1000
     startingCharge: 1000
   - type: UseDelay

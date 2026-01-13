@@ -36,7 +36,10 @@
       Burn:
         sprite: Mobs/Effects/Resomi/burn_damage.rsi
   - type: Bloodstream # Starlight
-    bloodReagent: ResomiBlood
+    bloodReagents:
+      reagents:
+      - ReagentId: ResomiBlood
+        Quantity: 1
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Resomi_minor_burning
@@ -46,7 +49,7 @@
     undergarmentTop: UndergarmentTopTanktopResomi
     undergarmentBottom: UndergarmentBottomBoxersResomi
   - type: Fixtures
-    fixtures: 
+    fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
@@ -79,7 +82,7 @@
       170: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      51: 0.7  #Basicly 60% and 80% 
+      51: 0.7  #Basicly 60% and 80%
       68: 0.5
   - type: MeleeWeapon
     soundHit:
@@ -149,6 +152,11 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: neck
+      misc: # Starlight start
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: neck # Starlight end
       mask:
         sizeMaps:
           32:
@@ -210,6 +218,11 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: neck
+      misc: # Starlight start
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: neck # Starlight end
       mask:
         sizeMaps:
           32:
@@ -251,7 +264,7 @@
   - type: NightVision
   - type: FlashModifier
     modifier: 2
-    
+
 - type: entity
   parent: BaseSpeciesDummy
   id: MobResomiDummy
@@ -303,6 +316,11 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: neck
+      misc: # Starlight start
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: neck # Starlight end
       mask:
         sizeMaps:
           32:
@@ -364,6 +382,11 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: neck
+      misc: # Starlight start
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: neck # Starlight end
       mask:
         sizeMaps:
           32:

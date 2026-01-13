@@ -8,10 +8,11 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        brain: OrganVoxBrain # starlight
+        eyes: OrganVoxEyes
         tongue: OrganHumanTongue
         eye_implant: null
+        brain_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoVox
       connections:
@@ -24,7 +25,7 @@
         lungs: OrganVoxLungs
         stomach: OrganVoxStomach
         liver: OrganVoxLiver
-        kidneys: OrganHumanKidneys
+        kidneys: OrganVoxKidneys
         cavity: null
     right arm:
       part: RightArmVox
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandVox
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     left hand:
       part: LeftHandVox
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     right leg:
       part: RightLegVox
       connections:

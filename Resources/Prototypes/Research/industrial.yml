@@ -127,6 +127,7 @@
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
+  - WallmountMassScannerElectronics # Starlight
   radioChannels:
   - Engineering
 
@@ -200,6 +201,8 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  technologyPrerequisites:
+  - BluespaceManipulation
 
 - type: technology
   id: OptimizedMicrogalvanism

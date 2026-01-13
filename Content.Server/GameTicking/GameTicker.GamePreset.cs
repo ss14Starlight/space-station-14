@@ -5,6 +5,7 @@ using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Shared._Starlight.EntityTable; //#Starlight
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking.Components; // Starlight
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 
@@ -36,6 +37,7 @@ public sealed partial class GameTicker
 
     private bool StartPreset(ICommonSession[] origReadyPlayers, bool force)
     {
+        _sawmill.Info($"Attempting to start preset '{CurrentPreset?.ID}'");
         var startAttempt = new RoundStartAttemptEvent(origReadyPlayers, force);
         RaiseLocalEvent(startAttempt);
 
@@ -57,10 +59,13 @@ public sealed partial class GameTicker
             var fallbackPresets = _cfg.GetCVar(CCVars.GameLobbyFallbackPreset).Split(",");
             var startFailed = true;
 
+            _sawmill.Info($"Fallback - Failed to start round, attempting to start fallback presets.");
             foreach (var preset in fallbackPresets)
             {
+                _sawmill.Info($"Fallback - Clearing up gamerules");
                 ClearGameRules();
-                SetGamePreset(preset);
+                _sawmill.Info($"Fallback - Attempting to start '{preset}'");
+                SetGamePreset(preset, resetDelay: 1);
                 AddGamePresetRules();
                 StartGamePresetRules();
 
@@ -77,6 +82,7 @@ public sealed partial class GameTicker
                     startFailed = false;
                     break;
                 }
+                _sawmill.Info($"Fallback - '{preset}' failed to start.");
             }
 
             if (startFailed)
@@ -88,6 +94,7 @@ public sealed partial class GameTicker
 
         else
         {
+            _sawmill.Info($"Fallback - Failed to start preset but fallbacks are disabled. Returning to Lobby.");
             FailedPresetRestart();
             return false;
         }
@@ -139,11 +146,11 @@ public sealed partial class GameTicker
         }
     }
 
-    public void SetGamePreset(string preset, bool force = false)
+    public void SetGamePreset(string preset, bool force = false, int? resetDelay = null)
     {
         var proto = FindGamePreset(preset);
         if (proto != null)
-            SetGamePreset(proto, force);
+            SetGamePreset(proto, force, null, resetDelay);
     }
 
     public GamePresetPrototype? FindGamePreset(string preset)
@@ -226,8 +233,48 @@ public sealed partial class GameTicker
         var rules = new List<EntityUid>(GetAddedGameRules());
         foreach (var rule in rules)
         {
+            // Starlight start
+            // We're only handling rules that aren't intentionally delayed. If a rule _is_ supposed to be delayed, ignore it.
+            if (HasComp<DelayedStartRuleComponent>(rule))
+                continue;
+            // Starlight end
             StartGameRule(rule);
         }
+
+        // Starlight start
+        // We're not ingame yet, so if gamerules were added during the StartGameRule pass,
+        // they weren't started automatically. This leads to a bit of a chicken-and-egg
+        // problem, as the engine otherwise assumes that StartGamePresetRules will have
+        // moved any existing GameRule objects to a started state. To make this invariant
+        // hold properly, we continue iterating over the game rules until all are started.
+        var expectedRuleCount = rules.Count;
+        rules = new List<EntityUid>(GetAddedGameRules());
+        // The iteration count limit is supposed to prevent us from infinite looping in
+        // the event that a rule adds a copy of itself.
+        var iteration = 0;
+        const int maxIterations = 5;
+        while (expectedRuleCount != rules.Count && iteration < maxIterations)
+        {
+            Log.Warning($"Rules added while starting preset rules - count updated from {expectedRuleCount} to {rules.Count}. Doing another pass to start extra rule(s)...");
+            foreach (var rule in rules)
+            {
+                // We're only handling rules that aren't intentionally delayed. If a rule _is_ supposed to be delayed, ignore it.
+                if (HasComp<DelayedStartRuleComponent>(rule))
+                    continue;
+                StartGameRule(rule);
+            }
+
+            expectedRuleCount = rules.Count;
+            rules = new List<EntityUid>(GetAddedGameRules());
+
+            iteration += 1;
+        }
+
+        if (iteration == maxIterations && expectedRuleCount != rules.Count)
+        {
+            _sawmill.Error($"Rule startup did not converge within {maxIterations} passes, continuing regardless - unstarted rules: {string.Join(", ", rules.Where(rule => !(HasComp<ActiveGameRuleComponent>(rule) || HasComp<EndedGameRuleComponent>(rule))).Select<EntityUid, string>(rule => ToPrettyString(rule)))}");
+        }
+        // Starlight end
     }
 
     private void IncrementRoundNumber()

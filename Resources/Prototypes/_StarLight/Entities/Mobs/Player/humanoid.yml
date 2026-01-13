@@ -45,12 +45,6 @@
       raffle:
         settings: default
       job: NTNCBlueshield
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobSecurityOfficer
-        time: 18000 # 5h
     - type: Loadout
       prototypes: [ NTNCBasicGear ]
       roleLoadout: [ RoleSurvivalStandard ]
@@ -72,12 +66,6 @@
       raffle:
         settings: default
       job: NTNCBlueshield
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobSecurityOfficer
-        time: 18000 # 5h
     - type: Loadout
       prototypes: [ NTNCHardsuitGear ]
       roleLoadout: [ RoleSurvivalStandard ]
@@ -115,13 +103,7 @@
       raffle:
         settings: default
       mindRoles:
-      - MindRoleGhostRoleFamiliar
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 36000 # 10h
+      - MindRoleSSF
     - type: Loadout
       prototypes: [ SSFMarineGear ]
     - type: RandomMetadata
@@ -133,3 +115,107 @@
     - type: NpcFactionMember
       factions:
       - DungeonSoviet
+
+## NTSf
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSF
+  name: NTSF Operative
+  suffix: ERTRole, NTSF
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: ntsficon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFoperative
+
+- type: randomHumanoidSettings
+  id: NTSFoperative
+  parent: EventHumanoidCentcomm
+  speciesBlacklist:
+  - Arachnid
+  - Diona
+  - Reptilian
+  - Resomi
+  - Vox
+  - Vulpkanin
+  - Avali
+  - Felionoid
+  - Shadekin
+  - Thaven
+  components:
+    - type: GhostRole
+      name: ghost-role-information-nanotrasen-special-forces-name
+      description: ghost-role-information-nanotrasen-special-forces-description
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
+      raffle:
+        settings: short
+      mindRoles:
+#      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+      - MindRoleGhostCorporateAligned # Starlight
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [ NanoTrasenSpecialForcesGear ]
+      roleLoadout: [ RoleSurvivalEVA ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+
+- type: entity
+  id: RandomHumanoidSpawnerDecimus
+  name: Decimus Operative
+  suffix: ERTRole, Decimus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: decimusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: Decimusoperative
+
+- type: randomHumanoidSettings
+  id: Decimusoperative
+  parent: EventHumanoidCentcomm
+  speciesBlacklist:
+  - Arachnid
+  - Diona
+  - Reptilian
+  - Resomi
+  - Vox
+  - Vulpkanin
+  - Avali
+  - Felionoid
+  - Shadekin
+  - Thaven
+  components:
+    - type: GhostRole
+      name: ghost-role-information-decimus-name
+      description: ghost-role-information-decimus-description
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
+      raffle:
+        settings: short
+      mindRoles:
+#      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+      - MindRoleGhostCorporateAligned # Starlight
+      job: Decimus
+    - type: Loadout
+      prototypes: [ DecimusGear ]
+      roleLoadout: [ RoleSurvivalEVA ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+

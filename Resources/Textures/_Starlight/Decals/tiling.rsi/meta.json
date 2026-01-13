@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Conflee, some derived from base VG/TG tiles",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "broken_tile_dark"
+    },
+    {
+      "name": "broken_tile_steel"
+    },
+    {
+      "name": "broken_tile_white"
+    },
+    {
+      "name": "corner_1_dark"
+    },
+    {
+      "name": "corner_1_steel"
+    },
+    {
+      "name": "corner_1_white"
+    },
+    {
+      "name": "corner_2_dark"
+    },
+    {
+      "name": "corner_2_steel"
+    },
+    {
+      "name": "corner_2_white"
+    },
+    {
+      "name": "corner_3_dark"
+    },
+    {
+      "name": "corner_3_steel"
+    },
+    {
+      "name": "corner_3_white"
+    },
+    {
+      "name": "corner_4_dark"
+    },
+    {
+      "name": "corner_4_steel"
+    },
+    {
+      "name": "corner_4_white"
+    },
+    {
+      "name": "diagonal_overlay"
+    },
+    {
+      "name": "diagonal_overlay_corner"
+    },
+    {
+      "name": "diagonal_steel"
+    },
+    {
+      "name": "diagonal_steel_corner"
+    },
+    {
+      "name": "half_e_dark"
+    },
+    {
+      "name": "half_e_steel"
+    },
+    {
+      "name": "half_e_white"
+    },
+    {
+      "name": "half_n_dark"
+    },
+    {
+      "name": "half_n_steel"
+    },
+    {
+      "name": "half_n_white"
+    },
+    {
+      "name": "half_s_dark"
+    },
+    {
+      "name": "half_s_steel"
+    },
+    {
+      "name": "half_s_white"
+    },
+    {
+      "name": "half_w_dark"
+    },
+    {
+      "name": "half_w_steel"
+    },
+    {
+      "name": "half_w_white"
+    },
+    {
+      "name": "quarter_ne_dark"
+    },
+    {
+      "name": "quarter_ne_steel"
+    },
+    {
+      "name": "quarter_ne_white"
+    },
+    {
+      "name": "quarter_nw_dark"
+    },
+    {
+      "name": "quarter_nw_steel"
+    },
+    {
+      "name": "quarter_nw_white"
+    },
+    {
+      "name": "quarter_se_dark"
+    },
+    {
+      "name": "quarter_se_steel"
+    },
+    {
+      "name": "quarter_se_white"
+    },
+    {
+      "name": "quarter_sw_dark"
+    },
+    {
+      "name": "quarter_sw_steel"
+    },
+    {
+      "name": "quarter_sw_white"
+    }
+  ]
+}

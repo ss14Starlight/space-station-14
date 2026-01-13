@@ -1,0 +1,57 @@
+- type: job
+  id: Decimus
+  name: job-name-decimus
+  description: job-description-decimus
+  playTimeTracker: JobDecimus
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 72000 # 20 hrs
+    - !type:RolesRequirement
+      proto: ExtRolesReq
+  setPreference: false
+  startingGear: DecimusGear
+  icon: JobIconNanotrasen
+  rules: job-rules-corporate-aligned
+  supervisors: job-supervisors-none
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: startingGear
+  id: DecimusGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesBlueShield
+    ears: ClothingHeadsetAltCentComDS
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitDecimus
+    shoes: ClothingShoesBootsMagAdv
+    id: DecimusPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: EnergyShield
+    belt: PrototypeVibrobladeSheath
+    suitstorage: WeaponPulseRifle
+  storage:
+    back:
+    - WeaponPulsePistol
+    - WeaponRevolverMatebaAP
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - BoxFlashbang
+    - ToolDebug # spanish army knife
+    - WelderExperimental
+    - Hypospray
+    - DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
+    - FreedomImplanter
+  inhand:
+  - PrototypeVibroblade
+
+

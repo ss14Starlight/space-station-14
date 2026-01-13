@@ -3,7 +3,7 @@
     xmlns:ui="clr-namespace:Content.Client._Starlight.Character.Info.UI"
     MinSize="400 545"
 >
-    <ScrollContainer>
+    <ScrollContainer HScrollEnabled="False">
         <TabContainer Name="InspectTabs" Access="Public">
             <BoxContainer Orientation="Vertical">
                 <ui:CharacterICInfoControl Access="Public" Name="ICInfo"/>

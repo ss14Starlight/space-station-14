@@ -27,7 +27,7 @@
   - type: NpcFactionMember
     factions:
     - PointDefenseWeapon
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PointDefenseBeam
     fireCost: 500
   - type: Battery

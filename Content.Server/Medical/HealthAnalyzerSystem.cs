@@ -1,12 +1,12 @@
 using Content.Server.Chat.Systems; // Starlight-edit
 using Content.Server.Medical.Components;
-using Content.Server.PowerCell;
-using Content.Server.Temperature.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chat; // Starlight
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.FixedPoint; // Starlight
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -15,6 +15,8 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.PowerCell;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -84,17 +86,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     /// </summary>
     private void OnAfterInteract(Entity<HealthAnalyzerComponent> uid, ref AfterInteractEvent args)
     {
-        if (args.Target == null 
-            || !args.CanReach 
-            || !TryComp<DamageableComponent>(args.Target, out var damageableComponent)
-            || !HasComp<MobStateComponent>(args.Target) 
-            || !_cell.HasDrawCharge(uid, user: args.User))
-            return;
-        
-        if (uid.Comp.DamageContainers != null 
-            && damageableComponent.DamageContainerID != null 
-            && !uid.Comp.DamageContainers.Contains(damageableComponent.DamageContainerID))
-            return;
+        if (args.Target == null || !args.CanReach || !HasComp<MobStateComponent>(args.Target) || !_cell.HasDrawCharge(uid.Owner, user: args.User))
+        	return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
 
@@ -113,7 +106,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
 
     private void OnDoAfter(Entity<HealthAnalyzerComponent> uid, ref HealthAnalyzerDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         if (!uid.Comp.Silent)
@@ -222,9 +215,22 @@ public sealed class HealthAnalyzerSystem : EntitySystem
 
         if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
-        
+
+        // Starlight begin - Get a list of metabolizing chemicals
+        List<(string ReagentId, FixedPoint2 Quantity)>? metabolizingReagents = null;
+        if (TryComp<BloodstreamComponent>(target, out var bloodstreamComp) &&
+            _solutionContainerSystem.TryGetSolution(target, BloodstreamComponent.DefaultChemicalsSolutionName, out _, out var chemicalsSolution))
+        {
+            metabolizingReagents = new List<(string, FixedPoint2)>();
+            foreach (var (reagent, quantity) in chemicalsSolution.Contents)
+            {
+                metabolizingReagents.Add((reagent.Prototype, quantity));
+            }
+        }
+        // Starlight end
+
         // Starlight-start: Talking health analyzer
-        if (healthComp.Talk && healthComp.NextTalk < _timing.CurTime && TryComp<DamageableComponent>(target, out var damageable))
+        if (healthComp.Talk && healthComp.NextTalk < _timing.CurTime && TryComp<DamageableComponent>(target, out var damageable) && scanMode)
         {
             healthComp.NextTalk = _timing.CurTime + healthComp.TalkInterval;
             
@@ -239,7 +245,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             bloodAmount,
             scanMode,
             bleeding,
-            unrevivable
+            unrevivable,
+            metabolizingReagents // Starlight - add metabolizing chemicals to ui message 
         ));
     }
 }

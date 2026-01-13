@@ -26,7 +26,6 @@
 - type: startingGear
   id: SalvageLeadGear
   equipment:
-    id: SalvageLeadPDA
     ears: ClothingHeadsetSalvageLead
   #storage:
     #back:

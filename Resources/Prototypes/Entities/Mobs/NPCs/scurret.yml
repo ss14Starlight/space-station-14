@@ -144,13 +144,16 @@
           state: hand
 
   - type: InventorySlots
-  - type: Food
+  - type: Edible # Why? I'm not sure but I also am afraid of the answer.
   - type: Hunger
     baseDecayRate: 0.05 # They get a lil' hungy
   - type: BodyEmotes # Grants them clapping and so on.
     soundsId: Scurret
   - type: Deathgasp
     prototype: ScurretDeathgasp # You monster
+  - type: AlwaysRevolutionaryConvertible
+  - type: StatusIcon # marks them as crew
+    bounds: -0.5,-0.5,0.5,0.5
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -208,7 +211,7 @@
       prototypes: [ EmotionalSupportScurretGear ]
     - type: NpcFactionMember
       factions:
-      - Passive
+      - Nanotrasen
     - type: GhostRole
       makeSentient: true
       name: ghost-role-information-emotional-support-scurret-name

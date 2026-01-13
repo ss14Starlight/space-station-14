@@ -20,6 +20,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Server.Chat.Systems;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Starlight.Antags.Abductor;
 
@@ -67,12 +68,12 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                 victim.LastActivation = _time.CurTime;
                 _damageable.TryChangeDamage(uid, _passiveHealing);
                 break;
-            case AbductorOrganType.Plasma:
+            case AbductorOrganType.NitrousOxide:
                 if (_time.CurTime - victim.LastActivation < TimeSpan.FromSeconds(120))
                     return;
                 victim.LastActivation = _time.CurTime;
                 var mix = _atmos.GetContainingMixture((uid, Transform(uid)), true, true) ?? new();
-                mix.AdjustMoles(Gas.Plasma, 30);
+                mix.AdjustMoles(Gas.NitrousOxide, 30);
                 _chat.TryEmoteWithChat(uid, "Cough");
                 break;
             case AbductorOrganType.Gravity:

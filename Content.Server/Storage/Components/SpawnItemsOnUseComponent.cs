@@ -27,5 +27,14 @@ namespace Content.Server.Storage.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("uses")]
         public int Uses = 1;
+
+        // 🌟Starlight🌟 start
+        /// <summary>
+        ///     Whether the item requires hands to trigger or not.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
+        public bool RequireHands = true;
+        // 🌟Starlight🌟 end
     }
 }

@@ -154,7 +154,7 @@
   components:
   - type: PointLight
     radius: 1.5
-    energy: 0.5
+    energy: 2
   - type: RgbLightController
     layers: [ 0 ]
 
@@ -184,6 +184,8 @@
     - type: HTN
       rootTask:
         task: DragonCarpCompound
+    - type: Temperature
+      heatDamageThreshold: 1200
    #Starlight
     - type: Flammable
       damage:

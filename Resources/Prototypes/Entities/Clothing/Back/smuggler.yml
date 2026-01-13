@@ -101,6 +101,7 @@
     sprite: Clothing/Back/Satchels/smuggler.rsi
     state: icon
   - type: EntityTableContainerFill
+    ignoreIfCannotFit: true #starlight
     containers:
       storagebase: !type:NestedSelector
         tableId: FillSmugglerBackpack
