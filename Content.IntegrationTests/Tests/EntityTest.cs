@@ -244,6 +244,10 @@ namespace Content.IntegrationTests.Tests
 
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",
+
+                //starlight start
+                "SlimeExtract", //needed as these spawn things if filled
+                //starlight end
             };
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);
