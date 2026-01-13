@@ -274,13 +274,14 @@
               scalingFactor: 0
               scalingOffset: 1
           shouldDelete: true
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:Emp
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: true
+# TODO: Add a proper EMP effect once EMPs have been reworked, because apparently its really bad right now and causing test failures.
+#        - requirements:
+#            Blood: 1
+#          effects:
+#            - effect: !type:Emp
+#              scalingFactor: 1
+#              scalingOffset: 0
+#          shouldDelete: true
         - requirements:
             Plasma: 1
           effects:
