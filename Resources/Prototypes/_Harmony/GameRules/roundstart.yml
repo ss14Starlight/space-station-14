@@ -3,7 +3,7 @@
   id: Conspirators
   components:
   - type: GameRule
-    minPlayers: 15 # minimum of 4 conspirators
+    minPlayers: 28 # minimum of 4 conspirators
   - type: ConspiratorRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
