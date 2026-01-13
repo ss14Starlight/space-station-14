@@ -15,6 +15,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Roles.Components;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Shared._Starlight.Shadekin;
+using Content.Server._Harmony.GameTicking.Rules.Components;
 
 namespace Content.Server.Administration.Systems;
 
@@ -36,6 +37,7 @@ public sealed partial class AdminVerbSystem
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
     private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight
+    private static readonly EntProtoId DefaultConspiratorRule = "Conspirators"; // Harmony
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -258,6 +260,24 @@ public sealed partial class AdminVerbSystem
                 Message = Loc.GetString("admin-verb-make-brighteye"),
             };
             args.Verbs.Add(brighteye);
+
+            // Harmony start
+            var conspiratorName = Loc.GetString("admin-verb-text-make-conspirator");
+            Verb conspirator = new()
+            {
+                Text = conspiratorName,
+                Category = VerbCategory.Antag,
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Harmony/Interface/Misc/job_icons.rsi"), "Conspirator"),
+                Act = () =>
+                {
+                    _antag.ForceMakeAntag<ConspiratorRuleComponent>(targetPlayer, DefaultConspiratorRule);
+                },
+                Impact = LogImpact.High,
+                Message = string.Join(": ", conspiratorName, Loc.GetString("admin-verb-make-conspirator")),
+            };
+            args.Verbs.Add(conspirator);
+            // Harmony end
+
         }
     }
 }
