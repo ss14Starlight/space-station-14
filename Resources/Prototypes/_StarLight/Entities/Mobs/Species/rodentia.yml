@@ -43,6 +43,12 @@
     - HeadTop
     - HeadSide
     - Snout
+#    markingsDisplacement:
+#      Hair:
+#        sizeMaps:
+#          32:
+#            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+#            state: hair
   - type: TypingIndicator
     proto: rodentia
   - type: Speech
