@@ -5,3 +5,11 @@
   targetNode: shoes
   category: construction-category-clothing
   objectType: Item
+
+- type: construction
+  id: ClothingGlassesNullSpace
+  graph: ClothingGlassesNullSpace
+  startNode: start
+  targetNode: glasses
+  category: construction-category-clothing
+  objectType: Item

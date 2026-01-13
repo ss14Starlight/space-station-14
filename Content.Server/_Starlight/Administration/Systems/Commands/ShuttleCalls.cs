@@ -16,6 +16,7 @@ namespace Content.Server.Administration.Commands
         [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly IPrototypeManager _proto = default!;
         [Dependency] private readonly IResourceManager _res = default!;
+        [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
 
         public override string Command => "shuttlecalls";
         public override string Description => "Enable, disable, toggle, or check the status of emergency shuttle calls.";
@@ -34,11 +35,10 @@ namespace Content.Server.Administration.Commands
 
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            var roundEndSystem = EntitySystem.Get<RoundEndSystem>();
 
             if (args.Length == 0)
             {
-                PrintStatus(shell, roundEndSystem.GetShuttleCallsEnabled());
+                PrintStatus(shell, _roundEndSystem.GetShuttleCallsEnabled());
                 shell.WriteLine(Help);
                 return;
             }
@@ -48,15 +48,15 @@ namespace Content.Server.Administration.Commands
             // Status
             if (arg0 == "status")
             {
-                PrintStatus(shell, roundEndSystem.GetShuttleCallsEnabled());
+                PrintStatus(shell, _roundEndSystem.GetShuttleCallsEnabled());
                 return;
             }
 
             // Toggle
             if (arg0 == "toggle")
             {
-                var newState = !roundEndSystem.GetShuttleCallsEnabled();
-                roundEndSystem.SetShuttleCallsEnabled(newState);
+                var newState = !_roundEndSystem.GetShuttleCallsEnabled();
+                _roundEndSystem.SetShuttleCallsEnabled(newState);
                 PrintStatus(shell, newState);
 
                 var makeAnnouncement = true;
@@ -72,7 +72,7 @@ namespace Content.Server.Administration.Commands
             // Set directly (true/false)
             if (bool.TryParse(arg0, out var allowed))
             {
-                roundEndSystem.SetShuttleCallsEnabled(allowed);
+                _roundEndSystem.SetShuttleCallsEnabled(allowed);
                 PrintStatus(shell, allowed);
 
                 // Announce (default true)
@@ -93,7 +93,7 @@ namespace Content.Server.Administration.Commands
             }
 
             shell.WriteError("First argument must be true, false, toggle, or status.");
-            PrintStatus(shell, roundEndSystem.GetShuttleCallsEnabled());
+            PrintStatus(shell, _roundEndSystem.GetShuttleCallsEnabled());
         }
 
         private void PrintStatus(IConsoleShell shell, bool allowed)

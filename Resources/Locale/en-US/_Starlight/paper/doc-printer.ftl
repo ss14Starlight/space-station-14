@@ -1041,6 +1041,8 @@ doc-text-printer-surgery-consent-permit =
 
    ⠀[check] I authorize the Medical Department to dispose of any tissues or organs removed from my body as they see fit, including possibly donating such tissues or organs to other patients.
 
+   ⠀[check] I consent to the operation proceeding without the use of anesthetics.
+
    ⠀ [italic]This form is not legal unless it has been signed by the patient and stamped by the station's Chief Medical Officer or one of the Chief Medical Officer's superiors. It is not required for life-saving surgeries. For punitive and non-elective surgeries, such as those ordered by Security, please file a Medical Intervention Order.[/italic]
 
     ────────────────────────────────────────

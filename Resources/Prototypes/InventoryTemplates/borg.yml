@@ -9,9 +9,9 @@
     displayName: Head
     offset: 0.015625, -0.09375
   # 🌟Starlight🌟 start
-  - name: neck
+  - name: misc
     slotTexture: neck
-    slotFlags: NECK
+    slotFlags: MISC
     uiWindowPos: 0,2
     strippingWindowPos: 0,1
     displayName: Medal
@@ -32,9 +32,9 @@
     displayName: Head
     offset: 0.015625, -0.1875
   # 🌟Starlight🌟 start
-  - name: neck
+  - name: misc
     slotTexture: neck
-    slotFlags: NECK
+    slotFlags: MISC
     uiWindowPos: 0,2
     strippingWindowPos: 0,1
     displayName: Medal
@@ -55,9 +55,9 @@
     displayName: Head
     offset: 0.015625, 0
   # 🌟Starlight🌟 start
-  - name: neck
+  - name: misc
     slotTexture: neck
-    slotFlags: NECK
+    slotFlags: MISC
     uiWindowPos: 0,2
     strippingWindowPos: 0,1
     displayName: Medal
@@ -79,9 +79,9 @@
     displayName: Head
     offset: 0, 0.09375
   # 🌟Starlight🌟 start
-  - name: neck
+  - name: misc
     slotTexture: neck
-    slotFlags: NECK
+    slotFlags: MISC
     uiWindowPos: 0,2
     strippingWindowPos: 0,1
     displayName: Medal
