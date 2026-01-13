@@ -39,6 +39,7 @@
   equipment:
     id: RnDPDA
     ears: ClothingHeadsetRD
+    belt: ClothingBeltStorageWaistbagScience # Starlight
   storage:
     back:
     - Flash

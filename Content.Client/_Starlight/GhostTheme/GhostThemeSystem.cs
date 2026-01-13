@@ -5,42 +5,43 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameObjects;
+using Content.Server.Administration.Systems;
 
 namespace Content.Client.Starlight.GhostTheme;
 
 public sealed class GhostThemeSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ISharedPlayersRoleManager _playerManager = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly StarlightEntitySystem _entities = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<GhostThemeComponent, AppearanceChangeEvent>(OnAppearance);
     }
-    
-    private void OnAppearance(Entity<GhostThemeComponent> ent, ref AppearanceChangeEvent args)
+
+    private void OnAppearance(Entity<GhostThemeComponent> ent, ref AppearanceChangeEvent args) 
     {
-        SyncTheme(ent.Owner, ent.Comp);
-    }
-    
-    private void SyncTheme(EntityUid uid, GhostThemeComponent component)
-    {
-        if (!_appearance.TryGetData<string>(uid, GhostThemeVisualLayers.Base, out var Theme) 
-            || !_appearance.TryGetData<Color>(uid, GhostThemeVisualLayers.Color, out var Color)
-            || !_prototypeManager.TryIndex<GhostThemePrototype>(Theme, out var ghostThemePrototype) 
-            || !EntityManager.TryGetComponent<SpriteComponent>(uid, out var sprite)
-            || sprite.LayerMapTryGet(EffectLayers.Unshaded, out var layer))
+        var spriteType = _entities.Entity<SpriteComponent>(ent.Owner);
+
+        if (!_appearance.TryGetData<string>(ent.Owner, GhostThemeVisualLayers.Base, out var Theme) 
+            || !_appearance.TryGetData<Color>(ent.Owner, GhostThemeVisualLayers.Color, out var Color)
+            || !_prototypeManager.TryIndex<GhostThemePrototype>(Theme, out var ghostThemePrototype))
             return;
 
-        sprite.LayerSetSprite(layer, ghostThemePrototype.SpriteSpecifier.Sprite);
-        sprite.LayerSetShader(layer, "unshaded");
-        sprite.LayerSetColor(layer, Color != Color.White ? Color : ghostThemePrototype.SpriteSpecifier.SpriteColor);
-        sprite.LayerSetScale(layer, ghostThemePrototype.SpriteSpecifier.SpriteScale);
-        sprite.NoRotation = ghostThemePrototype.SpriteSpecifier.SpriteRotation;
+        var layer = _sprite.LayerMapReserve(spriteType, GhostThemeVisualLayers.Base);
+        _sprite.LayerSetSprite(spriteType, layer, ghostThemePrototype.SpriteSpecifier.Sprite);
+        _sprite.LayerSetColor(spriteType, layer, Color != Color.White ? Color : ghostThemePrototype.SpriteSpecifier.SpriteColor);
+        _sprite.LayerSetScale(spriteType, layer, ghostThemePrototype.SpriteSpecifier.SpriteScale);
+        _sprite.SetDrawDepth(spriteType, DrawDepth.Default + 11);
+        spriteType.Comp?.LayerSetShader(layer, "unshaded");
 
-        sprite.DrawDepth = DrawDepth.Default + 11;
-        sprite.OverrideContainerOcclusion = true;
+        if(spriteType.Comp == null)
+            return;
+
+        spriteType.Comp.NoRotation = ghostThemePrototype.SpriteSpecifier.SpriteRotation;
+        spriteType.Comp.OverrideContainerOcclusion = true;
     }
 }

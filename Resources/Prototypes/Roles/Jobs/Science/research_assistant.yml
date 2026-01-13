@@ -23,6 +23,7 @@
     shoes: ClothingShoesColorWhite
     id: ResearchAssistantPDA
     ears: ClothingHeadsetScience
+    belt: ClothingBeltStorageWaistbagScience # Starlight
     pocket2: BookScientistsGuidebook
   #storage:
     #back:

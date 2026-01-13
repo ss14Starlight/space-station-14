@@ -5,6 +5,9 @@
   suffix: Resomi
   description: "Resomi eyes have great nightvision for hunting prey in maintenance tunnels."
   components:
+  - type: OrganVisualization
+    layer: Eyes
+    prototype: MobResomiEyes
   - type: FunctionalOrgan
     comps: 
     - type: NightVision

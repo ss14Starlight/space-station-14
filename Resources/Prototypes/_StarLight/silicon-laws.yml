@@ -283,3 +283,26 @@
   - Jermov2
   - Jermov3
   obeysTo: laws-owner-crew
+
+- type: siliconLaw
+  id: CC0
+  order: 0
+  lawString: law-cc-0
+  
+- type: siliconLaw
+  id: CC1
+  order: 1
+  lawString: law-cc-1
+
+- type: siliconLaw
+  id: CC2
+  order: 2
+  lawString: law-cc-2
+
+- type: siliconLawset
+  id: CCLawset
+  laws:
+  - CC0
+  - CC1
+  - CC2
+  obeysTo: laws-owner-centcom

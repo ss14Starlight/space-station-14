@@ -83,6 +83,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, UnwieldAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, IngestionAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, TryDetectItem>(RefRelayInventoryEvent); // Starlight
+        SubscribeLocalEvent<InventoryComponent, KnockDownAttemptEvent>(RefRelayInventoryEvent); // Starlight
 
         // Eye/vision events
         SubscribeLocalEvent<InventoryComponent, CanSeeAttemptEvent>(RelayInventoryEvent);

@@ -1,0 +1,173 @@
+{
+  "version": 1,
+
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Conflee",
+
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+    "states": [
+        {
+            "name": "computer",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "broken",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "alert-0",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "alert-1",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "alert-2",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "tank",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "cameras",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "bounty",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "crew",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "explosive",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "generic",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "generic_keyboard",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "generic_panel_open",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "service",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "personal",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "power_monitor",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "request",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "request-eng",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "request-med",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "request-sci",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "request-sec",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "request-srv",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "salvjob",
+            "directions": 4,
+  			"copyright": "Conflee"
+        },
+        {
+            "name": "atmos_key",
+            "directions": 4,
+  			"copyright": "Citrea"
+        },
+        {
+            "name": "power_key",
+            "directions": 4,
+  			"copyright": "Citrea"
+        },
+        {
+            "name": "med_key",
+            "directions": 4,
+  			"copyright": "Citrea"
+        },
+        {
+            "name": "service_keys",
+            "directions": 4,
+  			"copyright": "Citrea"
+        },
+        {
+            "name": "tech_key",
+            "directions": 4,
+  			"copyright": "Citrea"
+        },
+        {
+            "name": "security_key",
+            "directions": 4,
+  			"copyright": "Citrea"
+        },
+        {
+            "name": "science_key",
+            "directions": 4,
+  			"copyright": "Citrea"
+        },
+        {
+            "name": "pda",
+            "directions": 4,
+  			"copyright": "This file is empty"
+        },
+        {
+            "name": "generic_keys",
+            "directions": 4,
+  			"copyright": "This file is empty"
+        }
+    ]
+}

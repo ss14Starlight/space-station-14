@@ -253,6 +253,11 @@
   - type: Blindable
   - type: EyeProtection
   - type: Stripping
+  - type: InteractionPopup # All Borgs should now be pettable again
+    interactSuccessString: petting-success-generic-cyborg
+    interactFailureString: petting-failure-generic-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
   #endregion
 
 - type: entity

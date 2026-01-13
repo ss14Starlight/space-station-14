@@ -93,6 +93,30 @@
 
 - type: entity
   parent: SurgeryStepBase
+  id: SurgeryStepMendSlime
+  name: Reform slime mass
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: BoneGel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepMendSkull
+  name: Mend skull
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: BoneGel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+
+- type: entity
+  parent: SurgeryStepBase
   id: SurgeryStepCloseIncision
   name: Close incision
   components:

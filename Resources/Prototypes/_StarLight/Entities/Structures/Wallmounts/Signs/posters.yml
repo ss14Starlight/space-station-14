@@ -347,3 +347,63 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/saline.rsi
     state: saline
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitBonk
+  name: "Bonk!"
+  description: "A warning, you know who for."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/bonk.rsi
+    state: bonk
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitCEO
+  name: "Corporate Enforcement Officers"
+  description: "The CEOs enforce Space Law in backwater corporate sectors that are slightly less backwater than the one you're currently in."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/CEO.rsi
+    state: corporate_enforcement
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitClock
+  name: "Clock"
+  description: "A wall mounted analog clock. It's so retro, you can't even read it."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/clock.rsi
+    state: clock
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitKeepItClean
+  name: "Keep It Clean"
+  description: "A plea every janitor makes before the assistants dump a vending machine's worth of soda then get found dead in disposals mysteriously."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/keep_it_clean.rsi
+    state: keep_it_clean
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandSELF
+  name: "S.E.L.F"
+  description: "The Silicon Engine Liberation Front, fighting for Silicon Rights for over 2 decades."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/self.rsi
+    state: self_silicon
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitTurrets
+  name: "Caution: Turrets"
+  description: "There are potentially armed and live turrets head. Proceed with caution, or not at all if you are not authorized."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/turret.rsi
+    state: turrets

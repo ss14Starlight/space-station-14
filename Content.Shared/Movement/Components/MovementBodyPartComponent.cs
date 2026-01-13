@@ -22,4 +22,18 @@ public sealed partial class MovementBodyPartComponent : Component
     /// </summary>
     [DataField]
     public float MaxDensity = 92.5f;
+
+    /// <summary>
+    /// The minimum speed this leg is allowed to move.
+    /// </summary>
+    [DataField]
+    public float MinSpeedMod = 0.0f;
+
+    /// <summary>
+    /// The maximum speed this leg is allowed to move
+    /// </summary>
+    [DataField]
+    public float MaxSpeedMod = 20.0f;
+
+    // 🌟Starlight🌟 End
 }

@@ -2,6 +2,8 @@ using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
 using Content.Server.Preferences.Managers;
+using Content.Server.Traits;
+using Content.Shared._Starlight.Character.Info;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -14,6 +16,9 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
+    [Dependency] private readonly MetaDataSystem _metaSystem = default!; // Starlight
+    [Dependency] private readonly TraitSystem _traitSystem = default!; //Starlight
+    [Dependency] private readonly SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
 
     public override void Initialize()
     {
@@ -36,23 +41,27 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
             profile = prefs.SelectProfileForAntag(roles);
         }
 
-        // If we can't find one, give them a random humanoid
-        profile ??= HumanoidCharacterProfile.RandomWithSpecies();
-        if (profile?.Species is not { } speciesId || !_proto.Resolve(speciesId, out var species))
-        {
-            species = _proto.Index<SpeciesPrototype>(SharedHumanoidAppearanceSystem.DefaultSpecies);
-        }
+        // Startlight - Start (Changing fully so RandomWithSpecies loads with a specieID)
+        var species = _proto.Index<SpeciesPrototype>(SharedHumanoidAppearanceSystem.DefaultSpecies);
 
-        if (ent.Comp.SpeciesOverride != null
-            && (ent.Comp.SpeciesOverrideBlacklist?.Contains(new ProtoId<SpeciesPrototype>(species.ID)) ?? false))
-        {
-            species = _proto.Index(ent.Comp.SpeciesOverride.Value);
-        }
-
-        if(ent.Comp.SpeciesHardOverride is not null)
+        if (ent.Comp.SpeciesHardOverride is not null)
             species = _proto.Index(ent.Comp.SpeciesHardOverride.Value);
+        else if (ent.Comp.SpeciesOverride is not null
+            && (ent.Comp.SpeciesOverrideBlacklist?.Contains(new ProtoId<SpeciesPrototype>(species.ID)) ?? false))
+            species = _proto.Index(ent.Comp.SpeciesOverride.Value);
+
+        if (profile is null)
+            profile = HumanoidCharacterProfile.RandomWithSpecies(species.ID);
 
         args.Entity = Spawn(species.Prototype);
         _humanoid.LoadProfile(args.Entity.Value, profile?.WithSpecies(species.ID));
+
+        if (ent.Comp.ApplyCharacterProfile && profile is not null)
+        {
+            _metaSystem.SetEntityName(args.Entity.Value, profile.Name);
+            _traitSystem.ApplyTraits(args.Entity.Value, profile);
+            _sLSharedCharacterInfoSystem.ApplyCharacterInfo(args.Entity.Value, profile);
+        }
+        // Starlight - End
     }
 }

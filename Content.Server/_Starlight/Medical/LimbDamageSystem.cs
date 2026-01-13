@@ -27,10 +27,10 @@ using Robust.Shared.Random;
 namespace Content.Server._Starlight.Medical;
 public sealed class LimbDamageSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly ContainerSystem _containers = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
+    //[Dependency] private readonly IRobustRandom _rand = default!;
+    //[Dependency] private readonly BodySystem _body = default!;
+    //[Dependency] private readonly ContainerSystem _containers = default!;
+    //[Dependency] private readonly HandsSystem _hands = default!;
 
     public override void Initialize()
     {
