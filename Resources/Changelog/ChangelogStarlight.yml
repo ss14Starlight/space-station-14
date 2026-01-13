@@ -25919,5 +25919,96 @@ Entries:
   id: 275300
   time: '2026-01-13T04:03:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2753
+- author: Penguinwizzard
+  changes:
+  - message: Stations can now be cursed!
+    type: Add
+  id: 266200
+  time: '2026-01-13T06:15:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2662
+- author: Sparlight
+  changes:
+  - message: Fixed borgi cubes sometimes not hydrating.
+    type: Fix
+  id: 279500
+  time: '2026-01-13T07:50:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2795
+- author: Rinary
+  changes:
+  - message: Added limit of 50 items to disposal bins per flush.
+    type: Add
+  - message: Changed steel tiles, now they don't deal blunt damage on throw, consider
+      using spears or other throw damage items for killer disposal cannons.
+    type: Tweak
+  - message: Changed disposal unit, now you receive popup when it's full and you can't
+      place more items.
+    type: Tweak
+  id: 194900
+  time: '2026-01-13T12:40:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1949
+- author: Fractalflower
+  changes:
+  - message: Added miscellaneous item slot, for pins/medals/etc
+    type: Add
+  - message: Changed gender pins & medals slot to misc slot
+    type: Tweak
+  - message: Added a pin loadout slot.
+    type: Add
+  - message: Fixed bug whe brigmedics and salvage leads are not permitted to bring
+      a scarf to work.
+    type: Fix
+  id: 197000
+  time: '2026-01-13T12:54:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1970
+- author: Scarlet and toaster0423
+  changes:
+  - message: Added the Dispatcher for duty officers, wardens and heads of securities!
+      (admin only for now til ammo is balanced)
+    type: Add
+  id: 226100
+  time: '2026-01-13T13:22:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2261
+- author: Teapoterror
+  changes:
+  - message: Nuclear Operative Base, 'Colt Station'
+    type: Add
+  - message: Nuclear Operative Shuttle, 'Blackhorse'
+    type: Add
+  - message: Nuclear Operative Base's are now Randomized between the Original and
+      'Colt Station'
+    type: Tweak
+  id: 213500
+  time: '2026-01-13T13:14:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2135
+- author: Fractalflower
+  changes:
+  - message: Glasses now properly fix short-sightedness.
+    type: Tweak
+  id: 210400
+  time: '2026-01-13T13:13:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2104
+- author: Fractalflower
+  changes:
+  - message: Terror spiders can now speak/understand Xeno and Chittin
+    type: Add
+  - message: Terror spiders can now hiss
+    type: Add
+  id: 230300
+  time: '2026-01-13T13:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2303
+- author: ankle & CawsForConcern
+  changes:
+  - message: New Resomi crying sounds by ankle (Resomi rejoice)
+    type: Add
+  - message: Resomi whistle was stereo (making it too loud), fixed to be mono
+    type: Fix
+  - message: Removed old resomi crying sounds (stereo, low quality, and unattributed)
+    type: Remove
+  - message: Removed resomi scream due to unattributed copyright, replaced with the
+      avali scream for now
+    type: Remove
+  id: 236400
+  time: '2026-01-13T13:40:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2364
 Order: -1
 

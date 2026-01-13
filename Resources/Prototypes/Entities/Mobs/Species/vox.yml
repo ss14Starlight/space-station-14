@@ -137,6 +137,7 @@
     - map: [ "id" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "misc" ] # Starlight
     - map: [ "suitstorage" ] # This is not in the default order
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]

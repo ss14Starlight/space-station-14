@@ -11,6 +11,7 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathTool
 
@@ -22,6 +23,7 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - LuxuryPens
   - GroupSpeciesBreathTool
 
@@ -41,6 +43,7 @@
   - SurvivalMedical
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathToolMedical
 
@@ -54,6 +57,7 @@
   - NanotrasenRepresentativeShoes
   - Trinkets
   - Scarves
+  - Pins
   - NTRPens
   - Survival
   - GroupSpeciesBreathTool
@@ -67,6 +71,7 @@
   - LawyerShoes
   - Trinkets
   - Scarves
+  - Pins
   - LuxuryPens
   - Survival
   - GroupSpeciesBreathTool
@@ -83,6 +88,7 @@
   - BlueShieldEyewear
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - SurvivalSecurity
   - GroupSpeciesBreathToolSecurity
@@ -100,6 +106,7 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathTool
 
@@ -116,6 +123,7 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathTool
 
@@ -138,6 +146,9 @@
     - SecuritySidearm
     - SurvivalSecurity
     - Trinkets
+    - Scarves
+    - Pins
+    - Pens
     - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
@@ -153,6 +164,9 @@
     - Glasses
     - Survival
     - Trinkets
+    - Scarves
+    - Pins
+    - Pens
     - GroupSpeciesBreathTool
 
 # Antagonist Loadouts
@@ -176,3 +190,4 @@
   - BrighteyeShoes
   - BrighteyeGloves
   - Scarves
+  - Pins

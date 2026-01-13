@@ -25,6 +25,30 @@
   - ScarfPrideLongBacon
 
 - type: loadoutGroup
+  id: Pins
+  name: loadout-group-pins
+  minLimit: 0
+  loadouts:
+  - ClothingNeckLGBTPin
+  - ClothingNeckAllyPin
+  - ClothingNeckAromanticPin
+  - ClothingNeckAroacePin
+  - ClothingNeckAsexualPin
+  - ClothingNeckBisexualPin
+  - ClothingNeckGayPin
+  - ClothingNeckIntersexPin
+  - ClothingNeckLesbianPin
+  - ClothingNeckNonBinaryPin
+  - ClothingNeckPansexualPin
+  - ClothingNeckPluralPin
+  - ClothingNeckOmnisexualPin
+  - ClothingNeckGenderqueerPin
+  - ClothingNeckGenderfluidPin
+  - ClothingNeckTransPin
+  - ClothingNeckAutismPin
+  - ClothingNeckGoldAutismPin
+  
+- type: loadoutGroup
   id: Pens
   name: loadout-group-pens
   minLimit: 1

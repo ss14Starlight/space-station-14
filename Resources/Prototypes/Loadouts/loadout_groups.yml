@@ -21,24 +21,24 @@
   - BoxFolderBaseThreePapers
   - BoxFolderPlasticClipboardThreePapers
   - BoxFolderClipboardThreePapers
-  - ClothingNeckLGBTPin
-  - ClothingNeckAllyPin
-  - ClothingNeckAromanticPin
-  - ClothingNeckAsexualPin
-  - ClothingNeckAroacePin
-  - ClothingNeckBisexualPin
-  - ClothingNeckGayPin
-  - ClothingNeckIntersexPin
-  - ClothingNeckLesbianPin
-  - ClothingNeckNonBinaryPin
-  - ClothingNeckPansexualPin
-  - ClothingNeckPluralPin
-  - ClothingNeckOmnisexualPin
-  - ClothingNeckGenderqueerPin
-  - ClothingNeckGenderfluidPin
-  - ClothingNeckTransPin
-  - ClothingNeckAutismPin
-  - ClothingNeckGoldAutismPin
+  # - ClothingNeckLGBTPin # SL EDIT: moved to pin tab
+  # - ClothingNeckAllyPin
+  # - ClothingNeckAromanticPin
+  # - ClothingNeckAsexualPin
+  # - ClothingNeckAroacePin
+  # - ClothingNeckBisexualPin
+  # - ClothingNeckGayPin
+  # - ClothingNeckIntersexPin
+  # - ClothingNeckLesbianPin
+  # - ClothingNeckNonBinaryPin
+  # - ClothingNeckPansexualPin
+  # - ClothingNeckPluralPin
+  # - ClothingNeckOmnisexualPin
+  # - ClothingNeckGenderqueerPin
+  # - ClothingNeckGenderfluidPin
+  # - ClothingNeckTransPin
+  # - ClothingNeckAutismPin
+  # - ClothingNeckGoldAutismPin
   - OffsetCane
   - OffsetCaneWood
   - OffsetCaneClown
