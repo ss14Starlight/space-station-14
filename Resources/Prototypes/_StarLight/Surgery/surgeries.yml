@@ -113,6 +113,26 @@
     - SlimePerson
 
 - type: entity
+  parent: SurgeryCloseIncision
+  id: SurgeryCloseIncisionSlimeHead
+  name: Close Incision
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    priority: 100
+    steps:
+    - SurgeryStepMendSlime
+    - SurgeryStepCloseIncision
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - SlimePerson
+  - type: SurgeryPartCondition
+    parts:
+    - Head
+
+- type: entity
   parent: SurgeryBase
   id: SurgeryOpenRibcage
   name: Open Ribcage
