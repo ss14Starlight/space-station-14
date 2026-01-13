@@ -36,10 +36,12 @@
             volume: -8
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 5
+# STARLIGHT START
+#  - type: DamageOnLand
+#    damage:
+#      types:
+#        Blunt: 5
+# STARLIGHT END
   - type: GuideHelp
     guides:
     - ExpandingRepairingStation

@@ -44,6 +44,7 @@
     - map: [ "id" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "misc" ] # Starlight
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]

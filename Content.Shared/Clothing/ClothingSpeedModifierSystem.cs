@@ -123,4 +123,10 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
             _movementSpeed.RefreshMovementSpeedModifiers(container.Owner);
         }
     }
+    
+    // Starlight - Start
+    public void SetWalkSpeedModifier(ClothingSpeedModifierComponent modifier, float newSpeed) => modifier.WalkModifier = newSpeed;
+    
+    public void SetSprintSpeedModifier(ClothingSpeedModifierComponent modifier, float newSpeed) => modifier.SprintModifier = newSpeed;
+    // Starlight - End
 }
