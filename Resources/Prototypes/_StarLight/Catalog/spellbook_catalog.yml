@@ -39,6 +39,19 @@
   disableRefund: true
 
 - type: listing
+  id: SpellbookIceStorm
+  name: spellbook-icestorm-name
+  description: spellbook-icestorm-desc
+  productAction: ActionIceStorm
+  cost:
+    WizCoin: 4
+  categories:
+  - SpellbookOffensive
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: SpellbookManaBlade
   name: spellbook-event-mana-blade-name
   description: spellbook-event-mana-blade-description

@@ -8,7 +8,7 @@
     xmlns:style="clr-namespace:Content.Client.Stylesheets"
     xmlns:lobbyUi="clr-namespace:Content.Client.Lobby.UI"
     xmlns:info="clr-namespace:Content.Client.Info"
-    xmlns:nulllink="clr-namespace:Content.Client._NullLink"
+    xmlns:nulllink="clr-namespace:Content.Client._NullLink.UI"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets">
     <!-- Background -->
     <TextureRect Access="Public" VerticalExpand="True" HorizontalExpand="True" Name="Background"
