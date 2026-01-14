@@ -28,7 +28,6 @@
       amount: 1
   - type: Appearance
 
-
 - type: entity
   parent: BaseItem
   id: CardHandBase
@@ -62,7 +61,6 @@
     size: Normal
   - type: PlayingCardDeck
   - type: PlayingCardStack
-
 
 - type: entity
   parent: CardBoxBase
@@ -147,17 +145,18 @@
     - CardSc8OfSpadesBlack
     - CardSc9OfSpadesBlack
     - CardSc10OfSpadesBlack
-    - CardScKingOfSpadesBlack
-    - CardScQueenOfSpadesBlack
     - CardScJackOfSpadesBlack
+    - CardScQueenOfSpadesBlack
+    - CardScKingOfSpadesBlack
     # Joker
+    - CardScJokerBlack
     - CardScJokerBlack
 
 - type: entity
   parent: BaseItem
   id: CardBase
   name: Card
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: EmitSoundOnLand
     sound:
@@ -176,9 +175,10 @@
       state: singlecard_down_black
     flipped: true
 
+#black cards
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc2OfClubsBlack
   components:
   - type: PlayingCard
@@ -189,7 +189,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc3OfClubsBlack
   components:
   - type: PlayingCard
@@ -200,7 +200,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc4OfClubsBlack
   components:
   - type: PlayingCard
@@ -211,7 +211,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc5OfClubsBlack
   components:
   - type: PlayingCard
@@ -222,7 +222,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc6OfClubsBlack
   components:
   - type: PlayingCard
@@ -233,7 +233,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc7OfClubsBlack
   components:
   - type: PlayingCard
@@ -244,7 +244,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc8OfClubsBlack
   components:
   - type: PlayingCard
@@ -255,7 +255,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc9OfClubsBlack
   components:
   - type: PlayingCard
@@ -266,7 +266,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc10OfClubsBlack
   components:
   - type: PlayingCard
@@ -277,7 +277,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScAceOfClubsBlack
   components:
   - type: PlayingCard
@@ -286,10 +286,9 @@
     sprite: _Starlight/Objects/Fun/cards.rsi
     state: sc_Ace_of_Clubs_black
 
-
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScJackOfClubsBlack
   components:
   - type: PlayingCard
@@ -300,7 +299,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScKingOfClubsBlack
   components:
   - type: PlayingCard
@@ -311,7 +310,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScQueenOfClubsBlack
   components:
   - type: PlayingCard
@@ -320,10 +319,9 @@
     sprite: _Starlight/Objects/Fun/cards.rsi
     state: sc_Queen_of_Clubs_black
 
-
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScJackOfDiamondsBlack
   components:
   - type: PlayingCard
@@ -334,7 +332,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScQueenOfDiamondsBlack
   components:
   - type: PlayingCard
@@ -345,7 +343,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScKingOfDiamondsBlack
   components:
   - type: PlayingCard
@@ -356,7 +354,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScAceOfDiamondsBlack
   components:
   - type: PlayingCard
@@ -367,7 +365,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc2OfDiamondsBlack
   components:
   - type: PlayingCard
@@ -378,7 +376,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc3OfDiamondsBlack
   components:
   - type: PlayingCard
@@ -389,7 +387,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc4OfDiamondsBlack
   components:
   - type: PlayingCard
@@ -400,7 +398,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc5OfDiamondsBlack
   components:
   - type: PlayingCard
@@ -411,7 +409,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc6OfDiamondsBlack
   components:
   - type: PlayingCard
@@ -422,7 +420,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc7OfDiamondsBlack
   components:
   - type: PlayingCard
@@ -433,7 +431,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc8OfDiamondsBlack
   components:
   - type: PlayingCard
@@ -444,7 +442,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc9OfDiamondsBlack
   components:
   - type: PlayingCard
@@ -455,7 +453,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc10OfDiamondsBlack
   components:
   - type: PlayingCard
@@ -464,10 +462,9 @@
     sprite: _Starlight/Objects/Fun/cards.rsi
     state: sc_10_of_Diamonds_black
 
-
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc2OfHeartsBlack
   components:
   - type: PlayingCard
@@ -478,7 +475,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc3OfHeartsBlack
   components:
   - type: PlayingCard
@@ -489,7 +486,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc4OfHeartsBlack
   components:
   - type: PlayingCard
@@ -500,7 +497,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc5OfHeartsBlack
   components:
   - type: PlayingCard
@@ -511,7 +508,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc6OfHeartsBlack
   components:
   - type: PlayingCard
@@ -522,7 +519,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc7OfHeartsBlack
   components:
   - type: PlayingCard
@@ -533,7 +530,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc8OfHeartsBlack
   components:
   - type: PlayingCard
@@ -544,7 +541,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc9OfHeartsBlack
   components:
   - type: PlayingCard
@@ -555,7 +552,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc10OfHeartsBlack
   components:
   - type: PlayingCard
@@ -566,7 +563,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScKingOfHeartsBlack
   components:
   - type: PlayingCard
@@ -577,7 +574,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScQueenOfHeartsBlack
   components:
   - type: PlayingCard
@@ -588,7 +585,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScJackOfHeartsBlack
   components:
   - type: PlayingCard
@@ -599,7 +596,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScAceOfHeartsBlack
   components:
   - type: PlayingCard
@@ -608,10 +605,9 @@
     sprite: _Starlight/Objects/Fun/cards.rsi
     state: sc_Ace_of_Hearts_black
 
-
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc2OfSpadesBlack
   components:
   - type: PlayingCard
@@ -622,7 +618,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc3OfSpadesBlack
   components:
   - type: PlayingCard
@@ -633,7 +629,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc4OfSpadesBlack
   components:
   - type: PlayingCard
@@ -644,7 +640,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc5OfSpadesBlack
   components:
   - type: PlayingCard
@@ -655,7 +651,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc6OfSpadesBlack
   components:
   - type: PlayingCard
@@ -666,7 +662,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc7OfSpadesBlack
   components:
   - type: PlayingCard
@@ -677,7 +673,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc8OfSpadesBlack
   components:
   - type: PlayingCard
@@ -688,7 +684,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc9OfSpadesBlack
   components:
   - type: PlayingCard
@@ -697,10 +693,9 @@
     sprite: _Starlight/Objects/Fun/cards.rsi
     state: sc_9_of_Spades_black
 
-
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardSc10OfSpadesBlack
   components:
   - type: PlayingCard
@@ -711,7 +706,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScKingOfSpadesBlack
   components:
   - type: PlayingCard
@@ -722,7 +717,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScQueenOfSpadesBlack
   components:
   - type: PlayingCard
@@ -733,7 +728,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScJackOfSpadesBlack
   components:
   - type: PlayingCard
@@ -744,7 +739,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScAceOfSpadesBlack
   components:
   - type: PlayingCard
@@ -755,7 +750,7 @@
 
 - type: entity
   parent: CardBase
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: CardScJokerBlack
   components:
   - type: PlayingCard
@@ -763,3 +758,1171 @@
   - type: Sprite
     sprite: _Starlight/Objects/Fun/cards.rsi
     state: black_joker
+
+#syndicate
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc2OfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-2-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_2_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc3OfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-3-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_3_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc4OfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-4-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_4_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc5OfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-5-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_5_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc6OfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-6-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_6_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc7OfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-7-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_7_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc8OfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-8-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_8_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc9OfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-9-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_9_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc10OfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-10-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_10_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScAceOfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-ace-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Ace_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScJackOfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-jack-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Jack_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScKingOfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-king-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_King_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScQueenOfClubsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-queen-clubs-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Queen_of_Clubs_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScJackOfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-jack-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Jack_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScQueenOfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-queen-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Queen_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScKingOfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-king-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_King_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScAceOfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-ace-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Ace_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc2OfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-2-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_2_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc3OfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-3-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_3_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc4OfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-4-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_4_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc5OfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-5-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_5_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc6OfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-6-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_6_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc7OfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-7-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_7_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc8OfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-8-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_8_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc9OfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-9-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_9_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc10OfDiamondsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-10-diamonds-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_10_of_Diamonds_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc2OfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-2-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_2_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc3OfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-3-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_3_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc4OfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-4-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_4_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc5OfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-5-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_5_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc6OfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-6-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_6_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc7OfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-7-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_7_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc8OfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-8-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_8_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc9OfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-9-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_9_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc10OfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-10-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_10_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScKingOfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-king-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_King_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScQueenOfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-queen-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Queen_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScJackOfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-jack-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Jack_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScAceOfHeartsSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-ace-hearts-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Ace_of_Hearts_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc2OfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-2-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_2_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc3OfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-3-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_3_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc4OfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-4-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_4_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc5OfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-5-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_5_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc6OfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-6-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_6_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc7OfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-7-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_7_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc8OfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-8-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_8_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc9OfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-9-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_9_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc10OfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-10-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_10_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScKingOfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-king-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_King_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScQueenOfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-queen-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Queen_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScJackOfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-jack-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Jack_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScAceOfSpadesSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-ace-spades-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Ace_of_Spades_syndicate
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScJokerSyndicate
+  components:
+    - type: PlayingCard
+      name: card-sc-joker-syndicate
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: black_syndicate
+
+#nanotrasen
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc2OfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-2-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_2_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc3OfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-3-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_3_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc4OfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-4-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_4_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc5OfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-5-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_5_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc6OfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-6-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_6_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc7OfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-7-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_7_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc8OfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-8-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_8_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc9OfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-9-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_9_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc10OfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-10-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_10_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScAceOfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-ace-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Ace_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScJackOfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-jack-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Jack_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScKingOfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-king-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_King_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScQueenOfClubsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-queen-clubs-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Queen_of_Clubs_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScJackOfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-jack-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Jack_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScQueenOfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-queen-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Queen_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScKingOfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-king-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_King_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScAceOfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-ace-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Ace_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc2OfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-2-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_2_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc3OfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-3-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_3_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc4OfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-4-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_4_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc5OfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-5-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_5_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc6OfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-6-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_6_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc7OfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-7-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_7_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc8OfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-8-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_8_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc9OfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-9-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_9_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc10OfDiamondsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-10-diamonds-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_10_of_Diamonds_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc2OfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-2-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_2_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc3OfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-3-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_3_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc4OfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-4-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_4_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc5OfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-5-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_5_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc6OfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-6-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_6_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc7OfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-7-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_7_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc8OfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-8-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_8_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc9OfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-9-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_9_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc10OfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-10-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_10_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScKingOfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-king-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_King_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScQueenOfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-queen-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Queen_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScJackOfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-jack-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Jack_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScAceOfHeartsNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-ace-hearts-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Ace_of_Hearts_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc2OfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-2-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_2_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc3OfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-3-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_3_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc4OfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-4-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_4_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc5OfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-5-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_5_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc6OfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-6-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_6_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc7OfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-7-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_7_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc8OfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-8-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_8_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc9OfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-9-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_9_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardSc10OfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-10-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_10_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScKingOfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-king-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_King_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScQueenOfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-queen-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Queen_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScJackOfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-jack-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Jack_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScAceOfSpadesNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-ace-spades-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: sc_Ace_of_Spades_nanotrasen
+
+- type: entity
+  parent: CardBase
+  categories: [ HideSpawnMenu ]
+  id: CardScJokerNanotrasen
+  components:
+    - type: PlayingCard
+      name: card-sc-joker-nanotrasen
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/cards.rsi
+      state: black_nanotrasen

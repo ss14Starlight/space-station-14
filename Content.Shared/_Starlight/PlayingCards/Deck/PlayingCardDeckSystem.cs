@@ -7,6 +7,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Serilog;
 
 namespace Content.Shared._Starlight.PlayingCards.Deck;
 
@@ -79,7 +80,7 @@ public sealed class PlayingCardDeckSystem : EntitySystem
 
         EnsureComp<PlayingCardStackComponent>(cardDeck, out var deckStack);
 
-        _cardStackSystem.TransferNLastCardFromStacks(user, stack.Cards.Count, uid, stack, cardDeck, deckStack);
+        _cardStackSystem.TransferNLastCardFromStacks(user, stack.Cards.Count / 2, uid, stack, cardDeck, deckStack);
 
         _hands.TryPickupAnyHand(user, cardDeck);
     }

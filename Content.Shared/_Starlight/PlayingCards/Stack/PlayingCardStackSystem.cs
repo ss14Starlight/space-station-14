@@ -54,7 +54,7 @@ public sealed class PlayingCardStackSystem : EntitySystem
         // Prevents prediction ruining things
         if (_net.IsServer && comp.Cards.Count <= 0)
         {
-            EntityManager.DeleteEntity(uid);
+            EntityManager.QueueDeleteEntity(uid);
         }
         RaiseLocalEvent(uid, new PlayingCardStackQuantityChangeEvent(GetNetEntity(uid), GetNetEntity(card), PlayingCardStackQuantityChangeType.Removed));
         RaiseNetworkEvent(new PlayingCardStackQuantityChangeEvent(GetNetEntity(uid), GetNetEntity(card), PlayingCardStackQuantityChangeType.Removed));
