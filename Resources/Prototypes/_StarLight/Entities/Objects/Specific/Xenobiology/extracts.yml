@@ -31,33 +31,46 @@
       color: "#999999ff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 1
-          effects:
-            - effect: !type:AddReagentToSolution
-                reagent: Epinephrine
-                solution: container
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: false
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:SpawnEntity
-                entity: MonkeyCube
-                number: 3
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                entity: XenobiologySlimeGray
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        - GraySlimeExtractWaterReaction
+        - GraySlimeExtractBloodReaction
+        - GraySlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: GraySlimeExtractWaterReaction
+  requirements:
+    Water: 1
+  effects:
+    - effect: !type:AddReagentToSolution
+        reagent: Epinephrine
+        solution: container
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: false
+
+- type: extractReaction
+  id: GraySlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:SpawnEntity
+        entity: MonkeyCube
+        number: 3
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: GraySlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        entity: XenobiologySlimeGray
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -68,41 +81,54 @@
       color: "#f07a26ff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 5
-          effects:
-            - effect: !type:AddReagentToSolution
-                reagent: OrangeSmokeCauser
-                solution: container
-              scalingFactor: 10
-              scalingOffset: 0
-          shouldDelete: true
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:AddReagentToSolution
-                reagent: CapsaicinOil
-                solution: container
-              scalingFactor: 10
-              scalingOffset: 0
-          shouldDelete: false
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:CreateGas
-                gas: Plasma
-              scalingFactor: 5
-              scalingOffset: 0
-            - effect: !type:CreateGas
-                gas: Oxygen
-              scalingFactor: 5
-              scalingOffset: 0
-            - effect: !type:AddHeat
-                heat: 50000
-              scalingFactor: 5
-              scalingOffset: 0
-          shouldDelete: true
-          delay: 5s
+        - OrangeSlimeExtractWaterReaction
+        - OrangeSlimeExtractBloodReaction
+        - OrangeSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: OrangeSlimeExtractWaterReaction
+  requirements:
+    Water: 5
+  effects:
+    - effect: !type:AddReagentToSolution
+        reagent: OrangeSmokeCauser
+        solution: container
+      scalingFactor: 10
+      scalingOffset: 0
+  shouldDelete: true
+
+- type: extractReaction
+  id: OrangeSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:AddReagentToSolution
+        reagent: CapsaicinOil
+        solution: container
+      scalingFactor: 10
+      scalingOffset: 0
+  shouldDelete: false
+
+- type: extractReaction
+  id: OrangeSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:CreateGas
+        gas: Plasma
+      scalingFactor: 5
+      scalingOffset: 0
+    - effect: !type:CreateGas
+        gas: Oxygen
+      scalingFactor: 5
+      scalingOffset: 0
+    - effect: !type:AddHeat
+        heat: 50000
+      scalingFactor: 5
+      scalingOffset: 0
+  shouldDelete: true
+  delay: 5s
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -113,24 +139,33 @@
       color: "#9721c2ff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:AddReagentToSolution
-                reagent: RegenerativeJelly
-                solution: container
-              scalingFactor: 5
-              scalingOffset: 0
-          shouldDelete: false
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                entity: SlimeSteroidPotion
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        - PurpleSlimeExtractBloodReaction
+        - PurpleSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: PurpleSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:AddReagentToSolution
+        reagent: RegenerativeJelly
+        solution: container
+      scalingFactor: 5
+      scalingOffset: 0
+  shouldDelete: false
+
+- type: extractReaction
+  id: PurpleSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        entity: SlimeSteroidPotion
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -141,40 +176,53 @@
       color: "#34cfebff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 5
-          effects:
-            - effect: !type:AddReagentToSolution
-                reagent: BlueFoamCauser
-                solution: container
-              scalingFactor: 10
-              scalingOffset: 0
-          shouldDelete: true
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:SpawnEntity
-                entity: SlimeStabilizerPotion
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:AddReagentToSolution
-                reagent: FrostOil
-                solution: container
-              scalingFactor: 10
-              scalingOffset: 0
-          shouldDelete: false
+        - BlueSlimeExtractWaterReaction
+        - BlueSlimeExtractBloodReaction
+        - BlueSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: BlueSlimeExtractWaterReaction
+  requirements:
+    Water: 5
+  effects:
+    - effect: !type:AddReagentToSolution
+        reagent: BlueFoamCauser
+        solution: container
+      scalingFactor: 10
+      scalingOffset: 0
+  shouldDelete: true
+
+- type: extractReaction
+  id: BlueSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:SpawnEntity
+        entity: SlimeStabilizerPotion
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: BlueSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:AddReagentToSolution
+        reagent: FrostOil
+        solution: container
+      scalingFactor: 10
+      scalingOffset: 0
+  shouldDelete: false
+
 
 # For the metal extract
-# Is there a way to hide certain entities from the sandbox spawn list?
 - type: entity
   parent: SheetRGlass
   id: SheetRGlass5
   name: reinforced glass
+  categories: [ HideSpawnMenu ]
   suffix: 5
   components:
     - type: Sprite
@@ -186,6 +234,7 @@
 - type: entity
   parent: SheetGlass
   id: SheetGlass15
+  categories: [ HideSpawnMenu ]
   suffix: 15
   components:
     - type: Sprite
@@ -198,6 +247,7 @@
   parent: SheetPlasteel
   id: SheetPlasteel5
   name: plasteel
+  categories: [ HideSpawnMenu ]
   suffix: 5
   components:
     - type: Sprite
@@ -210,6 +260,7 @@
   parent: SheetSteel
   id: SheetSteel15
   name: steel
+  categories: [ HideSpawnMenu ]
   suffix: 15
   components:
     - type: Sprite
@@ -227,34 +278,43 @@
       color: "#5e5e5eff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 1
-          effects:
-            - effect: !type:SpawnEntity
-                entity: SheetRGlass5
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-            - effect: !type:SpawnEntity
-                entity: SheetGlass15
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                entity: SheetPlasteel5
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-            - effect: !type:SpawnEntity
-                entity: SheetSteel15
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        - MetalSlimeExtractWaterReaction
+        - MetalSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: MetalSlimeExtractWaterReaction
+  requirements:
+    Water: 1
+  effects:
+    - effect: !type:SpawnEntity
+        entity: SheetRGlass5
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+    - effect: !type:SpawnEntity
+        entity: SheetGlass15
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: MetalSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        entity: SheetPlasteel5
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+    - effect: !type:SpawnEntity
+        entity: SheetSteel15
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -265,35 +325,49 @@
       color: "#ffeb52ff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 1
-          effects:
-            - effect: !type:SpawnEntity
-                entity: YellowSlimeExtractLight
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:Emp
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                entity: YellowSlimeExtractPowercell
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        - YellowSlimeExtractWaterReaction
+        - YellowSlimeExtractBloodReaction
+        - YellowSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: YellowSlimeExtractWaterReaction
+  requirements:
+    Water: 1
+  effects:
+    - effect: !type:SpawnEntity
+        entity: YellowSlimeExtractLight
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: YellowSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:Emp
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: true
+
+- type: extractReaction
+  id: YellowSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        entity: YellowSlimeExtractPowercell
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: SheetPlasma
   id: SheetPlasma3
+  categories: [ HideSpawnMenu ]
   suffix: 3
   components:
     - type: Sprite
@@ -310,15 +384,20 @@
       color: "#501466ff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                entity: SheetPlasma3
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        - DarkPurpleSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: DarkPurpleSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        entity: SheetPlasma3
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -329,28 +408,37 @@
       color: "#132b6eff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 1
-          effects:
-            - effect: !type:SpawnEntity
-                entity: SlimeFireproofPotion
-                number: 1
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:CreateGas
-                gas: Nitrogen
-              scalingFactor: 5
-              scalingOffset: 0
-            - effect: !type:AddHeat
-                heat: -3000
-              scalingFactor: 5
-              scalingOffset: 0
-          shouldDelete: true
-          delay: 5s
+        - DarkBlueSlimeExtractWaterReaction
+        - DarkBlueSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: DarkBlueSlimeExtractWaterReaction
+  requirements:
+    Water: 1
+  effects:
+    - effect: !type:SpawnEntity
+        entity: SlimeFireproofPotion
+        number: 1
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: DarkBlueSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:CreateGas
+        gas: Nitrogen
+      scalingFactor: 5
+      scalingOffset: 0
+    - effect: !type:AddHeat
+        heat: -3000
+      scalingFactor: 5
+      scalingOffset: 0
+  shouldDelete: true
+  delay: 5s
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -361,28 +449,37 @@
       color: "#aab8bdff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 1
-          effects:
-            - effect: !type:SpawnEntityFromTable
-                number: 1
-                entityTable: !type:NestedSelector
-                  tableId: SilverSlimeDrinkTable
-                offset: 0.2
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntityFromTable
-                number: 1
-                entityTable: !type:NestedSelector
-                  tableId: SilverSlimeFoodTable
-                offset: 0.2
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: true
+        - SilverSlimeExtractWaterReaction
+        - SilverSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: SilverSlimeExtractWaterReaction
+  requirements:
+    Water: 1
+  effects:
+    - effect: !type:SpawnEntityFromTable
+        number: 1
+        entityTable: !type:NestedSelector
+          tableId: SilverSlimeDrinkTable
+        offset: 0.2
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: true
+
+- type: extractReaction
+  id: SilverSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntityFromTable
+        number: 1
+        entityTable: !type:NestedSelector
+          tableId: SilverSlimeFoodTable
+        offset: 0.2
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -393,24 +490,33 @@
       color: "#ffffffff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SlimeBluespaceRadioPotion
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: BluespaceCrystal
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        - BluespaceSlimeExtractWaterReaction
+        - BluespaceSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: BluespaceSlimeExtractWaterReaction
+  requirements:
+    Water: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SlimeBluespaceRadioPotion
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: BluespaceSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: BluespaceCrystal
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -423,6 +529,7 @@
 # Extract reactions for sepia extracts are currently unimplemented as there are no handheld cameras, tiles capable of slowing down, or the ability to stop time.
 # We either need to make these things or come up with different reactions and make this our own thing
 
+
 - type: entity
   parent: BaseSlimeExtract
   id: CeruleanSlimeExtract
@@ -432,16 +539,21 @@
       color: "#5998b3ff"
     - type: SlimeExtract
       extractReactions:
-        # The blood reaction doesn't work until the slime console is implemented.
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SlimeExtractEnhancerPotion
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        #- CeruleanSlimeExtractBloodReaction The blood reaction doesn't work until the slime console is implemented.
+        - CeruleanSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: CeruleanSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SlimeExtractEnhancerPotion
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -452,39 +564,48 @@
       color: "#ebe15bff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:SpawnEntityFromTable
-                number: 1
-                entityTable: !type:GroupSelector
-                  children:
-                    - id: CrayonRed
-                    - id: CrayonOrange
-                    - id: CrayonYellow
-                    - id: CrayonGreen
-                    - id: CrayonBlue
-                    - id: CrayonPurple
-                    - id: CrayonBlack
-                    - id: CrayonWhite
-                offset: 0.2
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SprayPainter
-              scalingFactor: 0
-              scalingOffset: 1
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SprayPainterAmmo
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: true
+        - PyriteSlimeExtractBloodReaction
+        - PyriteSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: PyriteSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:SpawnEntityFromTable
+        number: 1
+        entityTable: !type:GroupSelector
+          children:
+            - id: CrayonRed
+            - id: CrayonOrange
+            - id: CrayonYellow
+            - id: CrayonGreen
+            - id: CrayonBlue
+            - id: CrayonPurple
+            - id: CrayonBlack
+            - id: CrayonWhite
+        offset: 0.2
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: true
+
+- type: extractReaction
+  id: PyriteSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SprayPainter
+      scalingFactor: 0
+      scalingOffset: 1
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SprayPainterAmmo
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -495,25 +616,34 @@
       color: "#fc4e4eff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SlimeSpeedPotion
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        # Need to implement slime rabidity before we can implement the blood reagent reaction
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SlimeMutationPotion
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        - RedSlimeExtractWaterReaction
+        #- RedSlimeExtractBloodReaction Need to implement slime rabidity before we can implement the blood reagent reaction
+        - RedSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: RedSlimeExtractWaterReaction
+  requirements:
+    Water: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SlimeSpeedPotion
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: RedSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SlimeMutationPotion
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -524,24 +654,33 @@
       color: "#4efc4eff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Radium: 1
-          effects:
-            - effect: !type:AddReagentToSolution
-                reagent: UnstableMutationToxin
-                solution: container
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: false
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:AddReagentToSolution
-                reagent: ImperfectMutationToxin
-                solution: container
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: false
+        - GreenSlimeExtractRadiumReaction
+        - GreenSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: GreenSlimeExtractRadiumReaction
+  requirements:
+    Radium: 1
+  effects:
+    - effect: !type:AddReagentToSolution
+        reagent: UnstableMutationToxin
+        solution: container
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: false
+
+- type: extractReaction
+  id: GreenSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:AddReagentToSolution
+        reagent: ImperfectMutationToxin
+        solution: container
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: false
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -552,16 +691,21 @@
       color: "#fc86cfff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SlimeGenderChangePotion
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        # Need to implement slime docility before we can implement the plasma reagent reaction
+        - PinkSlimeExtractBloodReaction
+        #- PinkSlimeExtractPlasmaReaction Need to implement slime docility before we can implement the plasma reagent reaction
+
+- type: extractReaction
+  id: PinkSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SlimeGenderChangePotion
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -572,39 +716,52 @@
       color: "#8a7b1cff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 1
-          effects:
-            - effect: !type:SpawnEntityFromTable
-                number: 1
-                entityTable: !type:NestedSelector
-                  tableId: GoldSlimePeacefulTable
-                offset: 0
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:SpawnEntityFromTable
-                number: 3
-                entityTable: !type:NestedSelector
-                  tableId: GoldSlimeNeutralAndHostileTable
-                offset: 0.2
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntityFromTable
-                number: 5
-                entityTable: !type:NestedSelector
-                  tableId: GoldSlimeHostileTable
-                offset: 0.2
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        - GoldSlimeExtractWaterReaction
+        - GoldSlimeExtractBloodReaction
+        - GoldSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: GoldSlimeExtractWaterReaction
+  requirements:
+    Water: 1
+  effects:
+    - effect: !type:SpawnEntityFromTable
+        number: 1
+        entityTable: !type:NestedSelector
+          tableId: GoldSlimePeacefulTable
+        offset: 0
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: GoldSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:SpawnEntityFromTable
+        number: 3
+        entityTable: !type:NestedSelector
+          tableId: GoldSlimeNeutralAndHostileTable
+        offset: 0.2
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: GoldSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntityFromTable
+        number: 5
+        entityTable: !type:NestedSelector
+          tableId: GoldSlimeHostileTable
+        offset: 0.2
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -615,24 +772,33 @@
       color: "#262626ff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:AddReagentToSolution
-                reagent: Cornoil
-                solution: container
-              scalingFactor: 10
-              scalingOffset: 0
-          shouldDelete: false
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:Explosion
-                explosionType: Default
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: false
-          delay: 5s
+        - OilSlimeExtractBloodReaction
+        - OilSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: OilSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:AddReagentToSolution
+        reagent: Cornoil
+        solution: container
+      scalingFactor: 10
+      scalingOffset: 0
+  shouldDelete: false
+
+- type: extractReaction
+  id: OilSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:Explosion
+        explosionType: Default
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: false
+  delay: 5s
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -643,15 +809,20 @@
       color: "#111111ff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:AddReagentToSolution
-                reagent: AdvancedMutationToxin
-                solution: container
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: false
+        - BlackSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: BlackSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:AddReagentToSolution
+        reagent: AdvancedMutationToxin
+        solution: container
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: false
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -662,24 +833,32 @@
       color: "#ff94d1ff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Water: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SlimeNameChangePotion
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SlimeSentiencePotion
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        - LightPinkSlimeExtractWaterReaction
+        - LightPinkSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: LightPinkSlimeExtractWaterReaction
+  requirements:
+    Water: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SlimeNameChangePotion
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+- type: extractReaction
+  id: LightPinkSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SlimeSentiencePotion
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -690,15 +869,20 @@
       color: "#407985ff"
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SheetAdamantine1
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
+        - AdamantineSlimeExtractPlasmaReaction
+
+- type: extractReaction
+  id: AdamantineSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SheetAdamantine1
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
 
 - type: entity
   parent: BaseSlimeExtract
@@ -709,34 +893,46 @@
       color: "#300636ff" # Yes, this is not a rainbow
     - type: SlimeExtract
       extractReactions:
-        - requirements:
-            Blood: 1
-          effects:
-            - effect: !type:SpawnEntity
-                number: 1
-                entity: SlimeMindTransferencePotion
-              scalingFactor: 0
-              scalingOffset: 1
-          shouldDelete: true
-        - requirements:
-            Plasma: 1
-          effects:
-            - effect: !type:SpawnEntityFromTable
-                number: 1
-                entityTable: !type:NestedSelector
-                  tableId: SlimeExtractsNoRainbow
-                offset: 0.2
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: true
-        - requirements:
-            Radium: 1 # should be slime jelly but that's not implemented yet
-          effects:
-            - effect: !type:SpawnEntityFromTable
-                number: 1
-                entityTable: !type:NestedSelector
-                  tableId: FilledSlimeExtractsNoRainbow
-                offset: 0.2
-              scalingFactor: 1
-              scalingOffset: 0
-          shouldDelete: true
+        - RainbowSlimeExtractBloodReaction
+        - RainbowSlimeExtractPlasmaReaction
+        - RainbowSlimeExtractRadiumReaction
+
+- type: extractReaction
+  id: RainbowSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: SlimeMindTransferencePotion
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: RainbowSlimeExtractPlasmaReaction
+  requirements:
+    Plasma: 1
+  effects:
+    - effect: !type:SpawnEntityFromTable
+        number: 1
+        entityTable: !type:NestedSelector
+          tableId: SlimeExtractsNoRainbow
+        offset: 0.2
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: true
+
+- type: extractReaction
+  id: RainbowSlimeExtractRadiumReaction
+  requirements:
+    Radium: 1 # should be slime jelly but that's not implemented yet
+  effects:
+    - effect: !type:SpawnEntityFromTable
+        number: 1
+        entityTable: !type:NestedSelector
+          tableId: FilledSlimeExtractsNoRainbow
+        offset: 0.2
+      scalingFactor: 1
+      scalingOffset: 0
+  shouldDelete: true

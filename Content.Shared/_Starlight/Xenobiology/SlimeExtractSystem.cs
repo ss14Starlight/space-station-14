@@ -1,3 +1,4 @@
+using System.Collections.Frozen;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -17,6 +18,9 @@ public sealed class SlimeExtractSystem : EntitySystem
     [Dependency] private readonly SharedEntityEffectsSystem _entityEffectsSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+
+    private FrozenDictionary<ProtoId<ExtractReactionPrototype>, ExtractReactionPrototype> _typeToExtractReaction = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -25,8 +29,11 @@ public sealed class SlimeExtractSystem : EntitySystem
         SubscribeLocalEvent<SlimeExtractComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
         SubscribeLocalEvent<SlimeExtractComponent, EntityPausedEvent>(OnPaused);
         SubscribeLocalEvent<SlimeExtractComponent, EntityUnpausedEvent>(OnUnpaused);
+
+        SubscribeLocalEvent<PrototypesReloadedEventArgs>(HandlePrototypesReloaded);
+        LoadPrototypes();
     }
-    
+
     /// <inheritdoc />
     public override void Update(float frameTime)
     {
@@ -40,49 +47,52 @@ public sealed class SlimeExtractSystem : EntitySystem
         {
             if (slimeExtractComponent.CurrentlyPaused) continue;
             if (slimeExtractComponent.RemainingUses <= 0) continue;
-            
-            if (!_solutionContainerSystem.TryGetSolution(uid, slimeExtractComponent.ContainerName, out var solcom, out var currentSolution)) continue;
-            var shouldDelete = false;
-            var shouldExhaust = false;
-            foreach (var reaction in slimeExtractComponent.ExtractReactions)
-            {
-                if ((reaction.ActivationMoment.HasValue && reaction.ActivationMoment.Value <= _gameTiming.CurTime) && IsSolutionRequirementFulfilled(reaction.Requirements, currentSolution))
-                {
-                    var minimumScalingFactor = FindMinimumScalingFactor(reaction.Requirements, currentSolution);
-                    foreach (var requirement in reaction.Requirements)
-                    {
-                        _solutionContainerSystem.RemoveReagent(solcom.Value, new ReagentId(requirement.Key, null), minimumScalingFactor * requirement.Value);
-                    }
-                    foreach (var effect in reaction.Effects)
-                    {
-                        // Need to defer the application of effects in order to avoid modifying the query's collection
-                        // Because the rainbow extract can summon other extracts
-                        var factor = (minimumScalingFactor * effect.ScalingFactor) + effect.ScalingOffset;
-                        applyEffectRecords.Add(new(uid, effect.Effect, factor.Float()));
-                    }
-                    if (reaction.ShouldDelete)
-                    {
-                        shouldDelete = true;
-                    }
-                    shouldExhaust = true;
-                    reaction.ActivationMoment = _gameTiming.CurTime + reaction.Delay;
-                }
-            }
 
-            if (shouldExhaust)
+            if (!_solutionContainerSystem.TryGetSolution(uid, slimeExtractComponent.ContainerName, out var solcom, out var currentSolution)) continue;
+
+            var ToDrop = new List<ProtoId<ExtractReactionPrototype>>();
+
+            foreach ((var reactionId, var activationTime) in slimeExtractComponent.ActivationTimes)
             {
-                slimeExtractComponent.RemainingUses -= 1;
+                // Will activate in the future - ignore
+                if (activationTime > _gameTiming.CurTime)
+                    continue;
+
+                var reaction = _typeToExtractReaction[reactionId];
+
+                if (!IsSolutionRequirementFulfilled(reaction.Requirements, currentSolution))
+                {
+                    ToDrop.Add(reactionId);
+                    continue;
+                }
+
+                HandleReaction((uid, slimeExtractComponent), reaction);
             }
-            if (shouldDelete && slimeExtractComponent.RemainingUses <= 0)
-                deleteRecords.Add(new(uid));
+            foreach (var reactionId in ToDrop)
+            {
+                slimeExtractComponent.ActivationTimes.Remove(reactionId);
+            }
         }
-        
-        foreach (var applyEffectRecord in applyEffectRecords)
-            _entityEffectsSystem.TryApplyEffect(applyEffectRecord._entityUid, applyEffectRecord._entityEffect, applyEffectRecord._scale);
-        foreach (var deleteRecord in deleteRecords)
-            _entityManager.PredictedQueueDeleteEntity(deleteRecord._entityUid);
     }
-    
+
+    private void HandlePrototypesReloaded(PrototypesReloadedEventArgs obj)
+    {
+        if (obj.WasModified<ExtractReactionPrototype>())
+            LoadPrototypes();
+    }
+
+    private void LoadPrototypes()
+    {
+        var dict = new Dictionary<ProtoId<ExtractReactionPrototype>, ExtractReactionPrototype>();
+        foreach (var reaction in _prototypeManager.EnumeratePrototypes<ExtractReactionPrototype>())
+        {
+            if (!dict.TryAdd(reaction.ID, reaction))
+                Log.Error($"Found extract reaction with duplicate id {reaction.ID} - all extract reactions must have a unique id, this one will be skipped");
+        }
+
+        _typeToExtractReaction = dict.ToFrozenDictionary();
+    }
+
     public bool IsSolutionRequirementFulfilled(Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> requiredSolution, Solution currentSolution)
     {
         foreach (var req in requiredSolution)
@@ -90,7 +100,7 @@ public sealed class SlimeExtractSystem : EntitySystem
             var amount = currentSolution.GetTotalPrototypeQuantity(req.Key);
             if (amount < req.Value) return false;
         }
-        
+
         return true;
     }
 
@@ -107,33 +117,80 @@ public sealed class SlimeExtractSystem : EntitySystem
 
     private void OnSolutionChanged(Entity<SlimeExtractComponent> entity, ref SolutionContainerChangedEvent args)
     {
-        foreach (var reaction in entity.Comp.ExtractReactions)
+        if (entity.Comp.RemainingUses <= 0)
+            return;
+
+        foreach (var reactionProtoId in entity.Comp.ExtractReactions)
         {
+            var reaction = _typeToExtractReaction[reactionProtoId];
             if (IsSolutionRequirementFulfilled(reaction.Requirements, args.Solution))
             {
-                reaction.ActivationMoment = _gameTiming.CurTime + reaction.Delay;
+                if (reaction.Delay > TimeSpan.Zero)
+                {
+                    // If we already expect this reaction to go off, don't update the time
+                    if (entity.Comp.ActivationTimes.ContainsKey(reactionProtoId))
+                        continue;
+
+                    entity.Comp.ActivationTimes[reactionProtoId] = _gameTiming.CurTime + reaction.Delay;
+                }
+                else
+                {
+                    // Fire off the reaction immediately
+                    HandleReaction(entity, reaction);
+                }
             }
-            else
+            else if (entity.Comp.ActivationTimes.ContainsKey(reactionProtoId))
             {
-                reaction.ActivationMoment = null;
+                entity.Comp.ActivationTimes.Remove(reactionProtoId);
             }
         }
+    }
+
+    private void HandleReaction(Entity<SlimeExtractComponent> entity, ExtractReactionPrototype reaction)
+    {
+        if (!_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.ContainerName, out var solutionComponent, out var currentSolution)) return;
+
+        var minimumScalingFactor = FindMinimumScalingFactor(reaction.Requirements, currentSolution);
+
+        if (reaction.ShouldDelete)
+        {
+            _entityManager.PredictedQueueDeleteEntity(entity.Owner);
+        }
+        else
+        {
+            foreach (var requirement in reaction.Requirements)
+            {
+                // Remove the reagents directly from the solution, so that we can pass the flag to ignore reagent data
+                currentSolution.RemoveReagent(new ReagentId(requirement.Key, null), minimumScalingFactor * requirement.Value, false, true);
+            }
+
+            // Since we directly removed the reagents from the solution, we need to call the update function
+            // to handle any new chemistry reactions that can occur inside.
+            _solutionContainerSystem.UpdateChemicals(solutionComponent.Value);
+        }
+
+        foreach (var effect in reaction.Effects)
+        {
+            // Need to defer the application of effects in order to avoid modifying the query's collection
+            // Because the rainbow extract can summon other extracts
+            var factor = (minimumScalingFactor * effect.ScalingFactor) + effect.ScalingOffset;
+            _entityEffectsSystem.TryApplyEffect(entity.Owner, effect.Effect, factor.Float());
+        }
+
+        entity.Comp.RemainingUses -= 1;
     }
 
     private void OnPaused(Entity<SlimeExtractComponent> entity, ref EntityPausedEvent args)
     {
         entity.Comp.CurrentlyPaused = true;
     }
-    
+
     private void OnUnpaused(Entity<SlimeExtractComponent> entity, ref EntityUnpausedEvent args)
     {
         entity.Comp.CurrentlyPaused = false;
-        foreach (var reaction in entity.Comp.ExtractReactions)
+        foreach ((var reactionId, var ActivationTime) in entity.Comp.ActivationTimes)
         {
-            if (reaction.ActivationMoment.HasValue)
-            {
-                reaction.ActivationMoment += args.PausedTime;
-            }
+            entity.Comp.ActivationTimes[reactionId] = ActivationTime + args.PausedTime;
         }
     }
 }
@@ -141,7 +198,7 @@ public sealed class SlimeExtractSystem : EntitySystem
 internal record DeleteRecord
 {
     public EntityUid _entityUid;
-    
+
     public DeleteRecord(EntityUid entityUid)
     {
         _entityUid = entityUid;

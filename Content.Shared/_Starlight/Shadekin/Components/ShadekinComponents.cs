@@ -26,6 +26,11 @@ public sealed partial class ShadekinComponent : Component
 
     [DataField("thresholds", required: true)]
     public SortedDictionary<FixedPoint2, ShadekinState> Thresholds = new();
+
+    /// <summary>
+    /// whether to flicker lights or not. default on
+    /// </summary>
+    [DataField] public bool DoLightFlicker = true;
 }
 
 [Serializable, NetSerializable]

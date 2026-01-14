@@ -265,6 +265,7 @@
   id: DerelictBorgiSpawn
   components:
     - type: StationEvent
+      globalAnnouncement: false # Starlight
       weight: 5
       earliestStart: 15
       reoccurrenceDelay: 20

@@ -39,3 +39,9 @@
   
 - type: playTimeTracker
   id: JobDecimus
+
+- type: playTimeTracker
+  id: JobBoxer
+
+- type: playTimeTracker
+  id: JobZookeeper

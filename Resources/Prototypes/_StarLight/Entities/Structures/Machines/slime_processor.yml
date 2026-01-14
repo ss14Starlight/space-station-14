@@ -14,10 +14,7 @@
       processingTime: 5s
       yieldMultiplier: 4
       slimeAcquireCooldown: 1s
+    - type: CollectingSlimeProcessor
     - type: Machine
       board: SlimeProcessorMachineCircuitboard
     - type: ContainerContainer
-      containers:
-        slimes:
-          !type:ContainerSlot
-          showEnts: false
