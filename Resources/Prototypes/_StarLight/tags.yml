@@ -307,6 +307,15 @@
   id: StoveMachineBoard
 
 - type: Tag
+  id: BorgModuleSupply
+
+- type: Tag
+  id: BorgModuleMining
+  
+- type: Tag
+  id: Disabler
+ 
+- type: Tag
   id: SurgeryCompatibleArmor
 
 - type: Tag

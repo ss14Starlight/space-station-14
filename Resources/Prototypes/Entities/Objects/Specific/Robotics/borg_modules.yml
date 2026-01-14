@@ -73,7 +73,7 @@
   components:
   - type: BorgModule
     borgFitTypes:
-    - borg-type-salvage
+    - borg-type-salvage-cargo # Starlight
   - type: Tag
     tags:
     - BorgModuleCargo
@@ -610,8 +610,10 @@
   components:
   - type: Sprite
     layers:
-    - state: cargo
-    - state: icon-mining
+    - sprite: &module-rsi _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: mining
+    - sprite: &icon-rsi Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-mining
   - type: ItemBorgModule
     hands:
     - item: MiningDrill
@@ -636,8 +638,10 @@
   components:
   - type: Sprite
     layers:
-    - state: cargo
-    - state: icon-mining-adv
+    - sprite: *module-rsi
+      state: mining
+    - sprite: *icon-rsi
+      state: icon-mining-adv
   - type: ItemBorgModule
     hands:
     - item: MiningDrillDiamond
@@ -661,8 +665,10 @@
   components:
   - type: Sprite
     layers:
-    - state: cargo
-    - state: icon-grappling-gun
+    - sprite: *module-rsi
+      state: mining
+    - sprite: *icon-rsi
+      state: icon-grappling-gun
   - type: ItemBorgModule
     hands:
     - item: WeaponGrapplingGun
