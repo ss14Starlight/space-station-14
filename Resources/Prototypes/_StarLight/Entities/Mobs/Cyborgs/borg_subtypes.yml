@@ -448,6 +448,7 @@
       spriteHasMindState: heavy_e
       spriteNoMindState: heavy_e_r
       spriteToggleLightState: heavy_l
+      inventoryTemplateId: borg
 
 # region Cargo
 
@@ -462,6 +463,7 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+      inventoryTemplateId: borg
 
 - type: entity
   parent: BorgCargoSubtypeBase
@@ -474,6 +476,7 @@
       spriteHasMindState: noble_e
       spriteNoMindState: noble_e_r
       spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgCargoSubtypeBase
@@ -486,6 +489,7 @@
       spriteHasMindState: cricket_e
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgCargoSubtypeBase

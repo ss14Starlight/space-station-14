@@ -26,6 +26,9 @@
             "name": "mats-module"
         },
         {
+            "name": "xenoborg-rcd-module"
+        },
+        {
             "name": "hands",
             "directions": 1
         }
