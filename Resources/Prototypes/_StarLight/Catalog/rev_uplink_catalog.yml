@@ -154,12 +154,19 @@
   productEntity: MagazineBoxMagnumSP
   cost:
     Telebond: 2
+  id: SKBToz106
+  name: toz-name
+  description: toz-desc
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi, state: base }
+  productEntity: WeaponShotgunToz106Extended
+  cost:
+    Telebond: 4
   categories:
   - RevUplinkWeaponry
   conditions:
   - !type:StockLimitedListingCondition
     stockLimit: 12
-
+    stockLimit: 4
 - type: listing
   id: SNKVDAPS
   name: aps-name

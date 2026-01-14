@@ -16,6 +16,56 @@
   - type: Sprite
     sprite: Structures/floor_web.rsi
     drawdepth: WallMountedItems
+  # Starlight Start
+    color: "#00000055"
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:  
+            sprite: Structures/floor_web.rsi
+            drawdepth: WallMountedItems
+        - options: Arachnophobia
+          data:
+            sprite: _Starlight/Structures/Arachnophobia/floor_web.rsi
+            drawdepth: WallMountedItems
+      enum.CornerLayers.SE:
+        - options: Default
+          data:  
+            sprite: Structures/floor_web.rsi
+            drawdepth: WallMountedItems
+        - options: Arachnophobia
+          data:
+            sprite: _Starlight/Structures/Arachnophobia/floor_web.rsi
+            drawdepth: WallMountedItems
+      enum.CornerLayers.SW:
+        - options: Default
+          data:  
+            sprite: Structures/floor_web.rsi
+            drawdepth: WallMountedItems
+        - options: Arachnophobia
+          data:
+            sprite: _Starlight/Structures/Arachnophobia/floor_web.rsi
+            drawdepth: WallMountedItems
+      enum.CornerLayers.NE:
+        - options: Default
+          data:  
+            sprite: Structures/floor_web.rsi
+            drawdepth: WallMountedItems
+        - options: Arachnophobia
+          data:
+            sprite: _Starlight/Structures/Arachnophobia/floor_web.rsi
+            drawdepth: WallMountedItems
+      enum.CornerLayers.NW:
+        - options: Default
+          data:  
+            sprite: Structures/floor_web.rsi
+            drawdepth: WallMountedItems
+        - options: Arachnophobia
+          data:
+            sprite: _Starlight/Structures/Arachnophobia/floor_web.rsi
+            drawdepth: WallMountedItems
+  # Starlight end
   - type: Appearance
   - type: Clickable
   - type: Transform
@@ -127,7 +177,7 @@
   - type: FlavorProfile
     flavors:
       - sweet
-  - type: Food
+  - type: Edible
     delay: 2
   - type: SolutionContainerManager
     solutions:

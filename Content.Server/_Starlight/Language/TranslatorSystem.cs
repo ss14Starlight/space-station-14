@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server.Popups;
-using Content.Server.PowerCell;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item.ItemToggle.Components;
@@ -143,8 +142,9 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
 
     private void OnPowerCellChanged(EntityUid translator, HandheldTranslatorComponent component, PowerCellChangedEvent args)
     {
-        component.Enabled = !args.Ejected;
-        _powerCell.SetDrawEnabled(translator, !args.Ejected);
+        var canEnable = !args.Ejected && _powerCell.HasDrawCharge(translator);
+        component.Enabled = canEnable;
+        _powerCell.SetDrawEnabled(translator, canEnable);
         OnAppearanceChange(translator, component);
 
         if (_containers.TryGetContainingContainer((translator, null, null), out var holderCont) && HasComp<LanguageSpeakerComponent>(holderCont.Owner))
@@ -153,8 +153,9 @@ public sealed class TranslatorSystem : SharedTranslatorSystem
 
     private void OnItemToggled(EntityUid translator, HandheldTranslatorComponent component, ItemToggledEvent args)
     {
-        component.Enabled = args.Activated;
-        _powerCell.SetDrawEnabled(translator, args.Activated);
+        var canEnable = args.Activated && _powerCell.HasDrawCharge(translator);
+        component.Enabled = canEnable;
+        _powerCell.SetDrawEnabled(translator, canEnable);
         OnAppearanceChange(translator, component);
 
         if (_containers.TryGetContainingContainer((translator, null, null), out var holderCont) && HasComp<LanguageSpeakerComponent>(holderCont.Owner))

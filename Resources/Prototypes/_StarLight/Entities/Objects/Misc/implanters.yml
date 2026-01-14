@@ -102,3 +102,19 @@
   components:
     - type: Implanter
       implant: MagillitisSerumImplant
+
+- type: entity
+  id: BluespaceImplanter
+  name: bluespace implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+    - type: Implanter
+      implant: BluespaceImplant
+
+- type: entity
+  id: RedspaceImplanter
+  name: redspace implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: RedspaceImplant

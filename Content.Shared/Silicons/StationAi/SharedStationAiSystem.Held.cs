@@ -186,6 +186,10 @@ public abstract partial class SharedStationAiSystem
             return;
         }
 
+        // Starlight Start
+        if (_vision.IsOutsideCameraView(args.Target))
+            return;
+        // Starlight End
         var user = args.User;
 
         var target = args.Target;
@@ -213,6 +217,11 @@ public abstract partial class SharedStationAiSystem
     private void ShowDeviceNotRespondingPopup(EntityUid toEntity)
     {
         _popup.PopupClient(Loc.GetString("ai-device-not-responding"), toEntity, PopupType.MediumCaution);
+    }
+
+    private void ShowDeviceNoAccessPopup(EntityUid toEntity)
+    {
+        _popup.PopupClient(Loc.GetString("ai-device-no-access"), toEntity, PopupType.MediumCaution);
     }
 }
 

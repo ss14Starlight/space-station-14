@@ -20,7 +20,6 @@
   roles:
   - Bartender
   - Botanist
-  - Boxer
   - Chaplain
   - Chef
   - Clown
@@ -32,8 +31,11 @@
   - Assistant
   - Reporter
   - Visitor
-  - Zookeeper
   - ServiceWorker
+  # Starlight start
+  - Boxer
+  - Zookeeper
+  # Starlight end
 
 - type: department
   id: CentralCommand
@@ -50,6 +52,7 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
+  - CentralCommandOperator # Starlight Addition
   - NTNCBlueshield ## Starlight Addition
   editorHidden: true
   weight: 120

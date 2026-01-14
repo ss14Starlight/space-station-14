@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from ParadiseStation | Salvage/Mining PDAs by mikeysaurus, Veteran Salvage/Mining PDAs by PeterPoley for Starlight",
+  "copyright": "Taken from ParadiseStation | Salvage/Mining PDAs by mikeysaurus, Veteran Salvage/Mining PDAs by PeterPoley for Starlight | Senior Chemist/Corpsman+Vet Corpsman PDA by wonderfulnewworld (github) for Starlight | Paramedic and Senior Paramedic by TacoLlama (github)",
   "size": {
     "x": 32,
     "y": 32
@@ -61,6 +61,64 @@
     },
     {
       "name": "pda-veteranmining"
+    },
+    {
+      "name": "pda-paramedic",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+    {
+      "name": "pda-seniorparamedic",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+	  {
+      "name": "pda-seniorchemist"
+    },
+    {
+      "name": "pda-veteranbrigmedic",
+	    "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+	{
+      "name": "pda-corpsman",
+	  "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+	{
+      "name": "pda-veterancorpsman",
+	  "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
     }
   ]
 }

@@ -1,0 +1,40 @@
+- type: entity
+  id: NullPhaseAction
+  name: Phase Shift
+  description: Shift yourself out of alignment with realspace to travel quickly to different areas.
+  categories: [HideSpawnMenu]
+  components:
+    - type: Action
+      useDelay: 1
+      icon:
+        sprite: _Starlight/Interface/Actions/shadekin.rsi
+        state: phase
+      itemIconStyle: BigItem
+    - type: InstantAction
+      event: !type:NullPhaseActionEvent
+
+- type: entity
+  id: BrighteyePhaseAction
+  parent: NullPhaseAction
+  categories: [HideSpawnMenu]
+  components:
+    - type: Action
+      checkCanInteract: false
+    - type: InstantAction
+      event: !type:BrighteyePhaseActionEvent
+
+- type: entity
+  id: BrighteyePortalAction
+  name: Create Portal
+  description: Create a portal to the dark at your current location.
+  categories: [HideSpawnMenu]
+  components:
+    - type: Action
+      useDelay: 1
+      icon:
+        sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
+        state: portal
+      itemIconStyle: BigItem
+      checkCanInteract: false
+    - type: InstantAction
+      event: !type:BrighteyePortalActionEvent

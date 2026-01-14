@@ -29,6 +29,7 @@
       - Thaveyan
       - VoxPidgin
       - Sign
+      - Darktongue
       understands:
       - GalacticCommon
       - Scratch
@@ -45,6 +46,7 @@
       - Thaveyan
       - VoxPidgin
       - Sign
+      - Darktongue
   # Starlight end
 
 - type: startingGear

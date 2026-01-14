@@ -21,7 +21,7 @@
   - Science
 
   # Visual
-  inventoryTemplateId: borgShort
+  inventoryTemplateId: borg # Starlight - why was this not always the case?
   spritePath: Mobs/Silicon/Chassis/generic.rsi
 
   # Pet
@@ -125,7 +125,7 @@
     - BorgModuleJanitor
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModuleTool # Starlight
   - BorgModuleCleaning
   - BorgModuleCustodial
 
@@ -158,7 +158,7 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModuleTool # Starlight
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue
@@ -212,7 +212,7 @@
     - BorgModuleService
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModuleTool # Starlight
   - BorgModuleMusique
   # Starlight start 
   - BorgModuleBartending

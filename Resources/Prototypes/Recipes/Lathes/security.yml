@@ -283,7 +283,7 @@
     Steel: 1000
     Glass: 500
     Plastic: 500
-     
+
 - type: latheRecipe
   parent: BaseWeaponRecipeSidearm
   id: WeaponLaserSvalinn

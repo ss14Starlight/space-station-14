@@ -1,6 +1,9 @@
 - type: vendingMachineInventory
   id: SecTechInventory
   startingInventory:
+    #starlight edit start
+    CrisisButton: 5
+    #starlight edit end
     SecurityWhistle: 5
     Handcuffs: 8
     GrenadeFlashBang: 4

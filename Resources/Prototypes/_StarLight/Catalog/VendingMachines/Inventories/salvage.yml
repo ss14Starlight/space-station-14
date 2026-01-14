@@ -382,7 +382,7 @@
   id: VendorSalvageClothingEyesGlassesSalvageMercenary
   productEntity: ClothingEyesGlassesSalvageMercenary
   cost:
-    SalvageTicket: 25
+    SalvageTicket: 90
   categories:
   - SalvageMercenaryEquipment
   conditions:
@@ -442,8 +442,50 @@
   id: VendorSalvageClothingOuterVestWebSalvageMerc
   productEntity: ClothingOuterVestWebSalvageMerc
   cost:
-    SalvageTicket: 350
+    SalvageTicket: 200
   categories:
   - SalvageMercenaryEquipment
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingBeltSalvageMercWebbing
+  productEntity: ClothingBeltSalvageMercWebbing
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageMercenaryEquipment
+  conditions:
+  - !type:BuyerAccessCondition
+
+
+#Cybernetics
+- type: listing
+  id: VendorSalvageBrainImplantCommsExpedition
+  productEntity: BrainImplantCommsExpedition
+  cost:
+    SalvageTicket: 100
+  categories:
+  - SalvageCybernetics
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageLeftArmCyberSpacer
+  productEntity: LeftArmCyberSpacer
+  cost:
+    SalvageTicket: 700
+  categories:
+  - SalvageCybernetics
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageRightArmCyberSpacer
+  productEntity: RightArmCyberSpacer
+  cost:
+    SalvageTicket: 700
+  categories:
+  - SalvageCybernetics
   conditions:
   - !type:BuyerAccessCondition

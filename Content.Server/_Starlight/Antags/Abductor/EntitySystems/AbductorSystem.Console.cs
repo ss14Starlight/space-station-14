@@ -25,7 +25,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly NumberObjectiveSystem _number = default!;
     [Dependency] private readonly SharedItemSwitchSystem _itemSwitch = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly VendingMachineSystem _vending = default!;
     
     public void InitializeConsole()

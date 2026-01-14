@@ -2,3 +2,8 @@
   license: "CC0-1.0"
   copyright: "starlight"
   source: "https://github.com/ss14Starlight/space-station-14/"
+
+- files: ["shadekin.png"]
+  license: "CC-BY-SA-4.0"
+  copyright: "conf"
+  source: "https://github.com/ss14Starlight/space-station-14/"

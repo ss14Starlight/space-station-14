@@ -2,6 +2,11 @@
   id: RRCardMailOpen
   categories: [HideSpawnMenu]
   components:
+  - type: Conditions
+    conditions:
+    - !type:SubjectMindAntagCondition
+      blacklist:
+      - Brighteye
   - type: RailroadSpawnFlow
     count:
       min: 1

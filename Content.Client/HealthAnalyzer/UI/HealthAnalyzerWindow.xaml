@@ -1,14 +1,16 @@
 <controls:FancyWindow
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-    MaxHeight="525"
     MinWidth="300">
+    <!-- Starlight
     <ScrollContainer
         Margin="5 5 5 5"
         ReturnMeasure="True"
         VerticalExpand="True">
+    -->
         <BoxContainer
             Name="RootContainer"
+            Margin="5 5 5 5"
             VerticalExpand="True"
             Orientation="Vertical">
             <Label
@@ -22,11 +24,17 @@
                 <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
                     <SpriteView OverrideDirection="South" Scale="2 2" Name="SpriteView" Access="Public" SetSize="64 64" />
                     <TextureRect Name="NoDataTex" Access="Public" SetSize="64 64" Visible="false" Stretch="KeepAspectCentered" TexturePath="/Textures/Interface/Misc/health_analyzer_out_of_range.png"/>
-                    <BoxContainer Margin="5 0 0 0" Orientation="Vertical" VerticalAlignment="Top">
-                        <RichTextLabel Name="NameLabel" SetWidth="150" />
-                        <Label Name="SpeciesLabel" VerticalAlignment="Top" StyleClasses="LabelSubText" />
+                    <!-- Starlight begin - changed to fix species and name labels overlapping -->
+                    <BoxContainer Margin="5 0 0 0" Orientation="Vertical" VerticalAlignment="Top" SetWidth="155">
+                        <BoxContainer Orientation="Vertical" Margin="0 0 0 4">
+                            <RichTextLabel Name="NameLabel" SetWidth="150" />
+                        </BoxContainer>
+                        <BoxContainer Orientation="Vertical">
+                            <Label Name="SpeciesLabel" StyleClasses="LabelSubText" />
+                        </BoxContainer>
                     </BoxContainer>
-                    <Label Margin="0 0 5 0" HorizontalExpand="True" HorizontalAlignment="Right" VerticalExpand="True"
+                    <!-- Starlight end -->
+                    <Label Margin="0 0 5 0" HorizontalExpand="True" HorizontalAlignment="Right"
                            VerticalAlignment="Top" Name="ScanModeLabel"
                            Text="{Loc 'health-analyzer-window-entity-unknown-text'}" />
                 </BoxContainer>
@@ -59,6 +67,17 @@
                 Orientation="Vertical">
             </BoxContainer>
 
+            <!-- Starlight begin - metabolizing chems section of ui -->
+            <PanelContainer Name="ChemicalsDivider" Visible="False" StyleClasses="LowDivider" />
+
+            <BoxContainer
+                Name="ChemicalsContainer"
+                Visible="False"
+                Margin="0 5 0 5"
+                Orientation="Vertical">
+            </BoxContainer>
+            <!-- Starlight end -->
+
         </BoxContainer>
-    </ScrollContainer>
+    <!-- </ScrollContainer> Starlight -->
 </controls:FancyWindow>
