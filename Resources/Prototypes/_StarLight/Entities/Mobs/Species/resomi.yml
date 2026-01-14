@@ -39,7 +39,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ResomiBlood
-        Quantity: 1
+        Quantity: 300
   - type: FireVisuals
     sprite: _Starlight/Mobs/Effects/onfire.rsi
     normalState: Resomi_minor_burning

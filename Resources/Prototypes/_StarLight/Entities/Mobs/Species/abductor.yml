@@ -51,7 +51,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: AbductorBlood
-        Quantity: 1
+        Quantity: 300
 
 - type: entity
   parent: BaseSpeciesDummy
