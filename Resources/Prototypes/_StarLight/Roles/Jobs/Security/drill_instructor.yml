@@ -5,8 +5,17 @@
   playTimeTracker: JobDrillInstructor
   requirements:
     - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 15h
+    - !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 15h
+    - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 72000 # 20 hrs
+      time: 20h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 50h
 
   startingGear: DrillInstructorGear
   icon: "JobIconDrillInstructor"

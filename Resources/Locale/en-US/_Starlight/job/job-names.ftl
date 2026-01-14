@@ -1,1 +1,15 @@
+job-name-abductor = Abductor
+job-name-blueshield = Officer "Blue Shield"
+job-name-centcomm = CentComm Official
+job-name-centcommoperator = CentComm Operator
+job-name-decimus = Decimus Operative
 job-name-drillInstructor = Drill Instructor
+job-name-iaa = Internal Affairs Agent
+job-name-magistrate = Magistrate
+job-name-mailtech = Mail Technician
+job-name-miningspec = Mining Specialist
+job-name-nanotrasen-special-forces = NTSF Operative
+job-name-ntrep = NanoTrasen Representative
+job-name-ntncblueshield = Nanotrasen Navy Corps Marine
+job-name-salvagelead = Salvage Lead
+job-name-surgeon = Surgeon

@@ -131,3 +131,4 @@
     layers:
       - state: green
       - state: drill_instructor
+      - state: jobicon
