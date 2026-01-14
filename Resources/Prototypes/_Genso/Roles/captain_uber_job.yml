@@ -28,7 +28,7 @@
   id: CaptainUberGear
   equipment:
     shoes: ClothingShoesBootsMagBlinding
-    eyes: ClothingEyesEyepatchHudBeer
+    eyes: ClothingEyesGlassesBrigmedic
     mask: ClothingMaskGasCaptain
     gloves: ClothingHandsGlovesCaptain
     id: CaptainUberPDA
