@@ -1,11 +1,11 @@
-using Content.Server._Impstation.Trigger.Components.Triggers;
+using Content.Server._Starlight.Trigger.Components.Triggers;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Trigger.Systems;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
 
-namespace Content.Server._Impstation.Trigger.Systems;
+namespace Content.Server._Starlight.Trigger.Systems;
 
 public sealed class TriggerOnBatteryFullSystem : EntitySystem
 {
