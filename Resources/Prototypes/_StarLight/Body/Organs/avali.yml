@@ -2,6 +2,7 @@
   id: OrganAvaliStomach
   parent: OrganAnimalStomach
   suffix: Avali
+  name: stomach
   description: "The stomach of an avali, on closer inspection, actually consists of two stomachs."
   components:
   - type: Stomach
@@ -21,6 +22,9 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Avali/organs.rsi
+    state: stomach
 
 - type: entity
   id: OrganAvaliHeart
@@ -35,32 +39,48 @@
     - id: Medicine
     - id: Poison
     - id: Narcotic
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Avali/organs.rsi
+    state: heart-on
 
 - type: entity
   id: OrganAvaliLiver
   parent: OrganHumanLiver
   suffix: Avali
-  categories: [ HideSpawnMenu ]
+  description: "The liver of an avali."
   components:
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [Avali]
     groups:
     - id: Alcohol
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Avali/organs.rsi
+    state: liver
 
 - type: entity
   id: OrganAvaliKidneys
   parent: OrganHumanKidneys
   suffix: Avali
-  categories: [ HideSpawnMenu ]
-#Placeholder until sprited
+  description: "The kidneys of an avali."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Avali/organs.rsi
+    layers:
+      - state: kidney-l
+      - state: kidney-r
 
 - type: entity
   id: OrganAvaliLungs
   parent: OrganHumanLungs
   suffix: Avali
-  categories: [ HideSpawnMenu ]
-#Placeholder until sprited
+  description: "The lungs of an avali."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Avali/organs.rsi
+    layers:
+      - state: lung-l
+      - state: lung-r
 
 - type: entity
   id: OrganAvaliEyes
@@ -71,4 +91,15 @@
   components:
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobAvaliEyes
+    prototypes:
+      Default: MobAvaliEyes
+
+- type: entity
+  id: OrganAvaliBrain
+  parent: OrganHumanBrain
+  suffix: Avali
+  description: "The brain of an Avali. Where Avali think of evil thoughts"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Avali/organs.rsi
+    state: brain

@@ -85,22 +85,14 @@
     transferAmount: 0.75
     solution: melee
   - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Chittin
-    - Xeno
-    understands:
-    - Chittin
-    - Xeno
   - type: NoSlip
   - type: Spider
   - type: IgnoreSpiderWeb
   - type: Bloodstream
-    bloodMaxVolume: 150
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 1
+        Quantity: 150
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid

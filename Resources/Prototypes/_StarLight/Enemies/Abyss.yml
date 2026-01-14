@@ -43,7 +43,7 @@
       baseWalkSpeed: 2.5
       baseSprintSpeed: 3.5
     - type: Stamina
-      critThreshold: 500
+      baseCritThreshold: 500
     - type: DamageStateVisuals
       states:
         Alive:
@@ -125,7 +125,7 @@
       baseWalkSpeed: 2.5
       baseSprintSpeed: 5.5
     - type: Stamina
-      critThreshold: 40
+      baseCritThreshold: 40
       animationThreshold: 20
     - type: DamageStateVisuals
       states:
