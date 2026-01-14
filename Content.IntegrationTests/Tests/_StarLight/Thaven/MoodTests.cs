@@ -70,8 +70,6 @@ public sealed class ThavenMoodTests
         var moodVarSet = mood.MoodVars.Values.ToHashSet();
 
         Assert.That(moodVarSet, Is.EquivalentTo(datasetSet));
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -94,7 +92,5 @@ public sealed class ThavenMoodTests
         var moodVarSet = mood.MoodVars.Values.ToHashSet();
 
         Assert.That(moodVarSet, Is.EquivalentTo(datasetSet));
-
-        await pair.CleanReturnAsync();
     }
 }

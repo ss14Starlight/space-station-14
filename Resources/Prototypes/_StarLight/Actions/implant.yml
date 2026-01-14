@@ -50,3 +50,21 @@
     icon:
       sprite: _Starlight/Effects/portal_implant.rsi
       state: redspace_implant
+
+# Gear Acidifier
+- type: entity
+  parent: BaseImplantAction
+  id: ActionActivateGearAcidifier
+  name: Activate Gear-Acidifier
+  description: Activates your gear-acidifier, melting your equipment but leaving your body intact
+  components:
+  - type: ConfirmableAction
+    popup: gear-acidifier-action-popup
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: gib

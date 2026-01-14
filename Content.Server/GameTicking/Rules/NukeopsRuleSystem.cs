@@ -11,8 +11,6 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Nuke;
@@ -27,9 +25,15 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Station.Components;
 using Content.Shared.Store.Components;
-using Content.Server.Starlight.Antags.Abductor;
+// Starlight Start
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Cuffs.Components;
+using Content.Shared.Cuffs;
 using Prometheus;
-using Robust.Shared.Prototypes; // Starlight
+using Robust.Shared.Prototypes;
+using Robust.Shared.Containers;
+// Starlight End
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -49,10 +53,10 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly SharedCuffableSystem _cuffable = default!; // Starlight
 
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly ProtoId<TagPrototype> NukeOpsUplinkTagPrototype = "NukeOpsUplink";
-
 
     public override void Initialize()
     {
@@ -74,6 +78,8 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
         SubscribeLocalEvent<NukeopsRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterAntagEntSelected);
         SubscribeLocalEvent<NukeopsRuleComponent, RuleLoadedGridsEvent>(OnRuleLoadedGrids);
+
+        SubscribeLocalEvent<NukeOperativeComponent, CuffedStateChangeEvent>(OnNukieCuffStateChanged); // Starlight: Check when nukie is cuffed
     }
 
     protected override void Started(EntityUid uid,
@@ -295,6 +301,10 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         RemCompDeferred(uid, component);
     }
 
+    // Starlight Start: Check round end when nukie is cuffed/uncuffed
+    private void OnNukieCuffStateChanged(EntityUid uid, NukeOperativeComponent component, ref CuffedStateChangeEvent args) => CheckRoundShouldEnd();
+    // Starlight End
+
     private void OnRuleLoadedGrids(Entity<NukeopsRuleComponent> ent, ref RuleLoadedGridsEvent args)
     {
         // Check each nukie shuttle
@@ -474,12 +484,23 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         // Check if there are nuke operatives still alive on the same map as the shuttle,
         // or on the same map as the station.
         // If there are, the round can continue.
-        var operatives = EntityQuery<NukeOperativeComponent, MobStateComponent, TransformComponent>(true);
-        var operativesAlive = operatives
-            .Where(op =>
-                op.Item3.MapID == shuttleMapId
-                || op.Item3.MapID == targetStationMap)
-            .Any(op => op.Item2.CurrentState == MobState.Alive && op.Item1.Running);
+        // Starlight edit Start: Nukies cuff loss check
+        var operatives = EntityQueryEnumerator<NukeOperativeComponent, MobStateComponent, TransformComponent>();
+        var operativesAlive = false;
+        while (operatives.MoveNext(out var uid, out var nukeOp, out var mobState, out var xform))
+        {
+            // Check if alive
+            if (mobState.CurrentState != MobState.Alive || !nukeOp.Running)
+                continue;
+
+            // Check if cuffed
+            if (TryComp<CuffableComponent>(uid, out var cuffable) && _cuffable.IsCuffed((uid, cuffable)))
+                continue;
+
+            operativesAlive = true;
+            break;
+        }
+        // Starlight edit end
 
         if (operativesAlive)
             return; // There are living operatives than can access the shuttle, or are still on the station's map.
@@ -505,7 +526,6 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         nukeops.RoundEndTextSender,
         nukeops.RoundEndTextShuttleCall,
         nukeops.RoundEndTextAnnouncement);
-
 
         // prevent it called multiple times
         nukeops.RoundEndBehavior = RoundEndBehavior.Nothing;
