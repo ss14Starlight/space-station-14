@@ -48,6 +48,8 @@ public sealed class EmpSystem : SharedEmpSystem
         if (_itemToggle.IsActivated(uid) &&
             _powerCell.TryUseActivatableCharge(uid))
         {
+            if(comp.DisableOnHit)
+                _itemToggle.TryDeactivate(uid);
             foreach (var target in args.HitEntities)
                 EmpPulse(_transform.GetMapCoordinates(target), comp.Range, comp.EnergyConsumption, comp.DisableDuration);
         }

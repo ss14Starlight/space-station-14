@@ -84,8 +84,7 @@
   - type: MeleeChemicalInjector
     transferAmount: 0.75
     solution: melee
-  - type: ReplacementAccent
-    accent: xeno
+  - type: LanguageSpeaker
   - type: NoSlip
   - type: Spider
   - type: IgnoreSpiderWeb
@@ -98,7 +97,7 @@
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
-    allowedEmotes: ['Click', 'Chitter']
+    allowedEmotes: ['Click', 'Chitter', 'Hisses']
   - type: Vocal
     sounds:
       Male: UnisexArachnid
@@ -116,7 +115,7 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     damageCap: 89
@@ -158,7 +157,7 @@
     thresholds:
       0: Alive
       140: Dead
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     damageCap: 139
@@ -190,7 +189,7 @@
   components:
   - type: Evolving
     evolveTo: MobTerrorPurple
-    conditions: 
+    conditions:
     - !type:SpiderWebCondition
       targetWebAmount: 36
 
@@ -226,7 +225,7 @@
     thresholds:
       0: Alive
       80: Dead
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     damageCap: 79
@@ -263,10 +262,10 @@
   components:
   - type: Evolving
     evolveTo: MobTerrorBlack
-    conditions: 
+    conditions:
     - !type:SpiderWebCondition
       targetWebAmount: 36
-    
+
 - type: entity
   name: terror green
   parent: MobTerrorSpider
@@ -295,7 +294,7 @@
     thresholds:
       0: Alive
       80: Dead
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     damageCap: 79
@@ -338,7 +337,7 @@
   components:
   - type: Evolving
     evolveTo: MobTerrorWhite
-    conditions: 
+    conditions:
     - !type:EggsInjectCondition
 
 ##########
@@ -482,7 +481,7 @@
     damage:
       types:
         Piercing: 25
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     - Critical
@@ -521,7 +520,7 @@
     thresholds:
       0: Alive
       160: Dead
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     damageCap: 179

@@ -3,7 +3,6 @@
   id: ClothingHeadHatWhiteCatEars
   name: white cat ears
   description: "NYAH!"
-  categories: [ DoNotMap ]
   components:
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
@@ -15,6 +14,7 @@
     accent: OwOAccent
   - type: StaticPrice
     price: 15
+
 - type: entity
   parent: [ClothingHeadHatWhiteCatEars, BaseToggleClothing]
   id: ClothingHeadHatWhiteCatEarsValid

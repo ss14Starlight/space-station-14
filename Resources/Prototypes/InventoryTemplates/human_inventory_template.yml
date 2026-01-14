@@ -34,6 +34,12 @@
       uiWindowPos: 0,2
       strippingWindowPos: 0,1
       displayName: Neck
+    - name: misc # Starlight start
+      slotTexture: neck
+      slotFlags: MISC
+      uiWindowPos: 2,3
+      strippingWindowPos: 2,1
+      displayName: Misc # Starlight end
     - name: mask
       slotTexture: mask
       slotFlags: MASK

@@ -267,15 +267,13 @@
 # Pre-equipped species gear
 
 # Full tank for vox as part of any Survival loadout
-# Starlight edit start - Removed - vox no longer spawn with nitrogen tanks automatically
-# - type: loadout
-#   id: LoadoutSpeciesVoxNitrogen
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: EffectSpeciesVox
-#   equipment:
-#     suitstorage: DoubleEmergencyNitrogenTankFilled
-# Starlight edit end
+- type: loadout
+  id: LoadoutSpeciesVoxNitrogen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    suitstorage: DoubleEmergencyNitrogenTankFilled
 
 # Full EVA Tank, Any Species
 - type: loadout
@@ -312,37 +310,35 @@
     pocket1: DoubleEmergencyOxygenTankFilled
 
 # Tank Harness
-# Starlight edit start - Removed - vox no longer spawn with gas tanks
-# - type: loadout
-#   id: LoadoutTankHarness
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: EffectSpeciesVox
-#   equipment:
-#     outerClothing: ClothingOuterVestTank
+- type: loadout
+  id: LoadoutTankHarness
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    outerClothing: ClothingOuterVestTank
 
 # Breath Tool On Face
-# - type: loadout
-#   id: LoadoutSpeciesBreathTool
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: EffectSpeciesVox
-#   equipment:
-#     mask: ClothingMaskBreath
+- type: loadout
+  id: LoadoutSpeciesBreathTool
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    mask: ClothingMaskBreath
 
-# - type: loadout
-#   id: LoadoutSpeciesBreathToolMedical
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: EffectSpeciesVox
-#   equipment:
-#     mask: ClothingMaskBreathMedical
+- type: loadout
+  id: LoadoutSpeciesBreathToolMedical
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    mask: ClothingMaskBreathMedical
 
-# - type: loadout
-#   id: LoadoutSpeciesBreathToolSecurity
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: EffectSpeciesVox
-#   equipment:
-#     mask: ClothingMaskGasSecurity
-# Starlight edit end
+- type: loadout
+  id: LoadoutSpeciesBreathToolSecurity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    mask: ClothingMaskGasSecurity

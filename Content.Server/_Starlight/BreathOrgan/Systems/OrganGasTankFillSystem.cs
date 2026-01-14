@@ -23,10 +23,10 @@ public sealed class OrganGasTankFillSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<GasCanisterComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<GasCanisterComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
     }
 
-    private void OnGetVerbs(Entity<GasCanisterComponent> canister, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetVerbs(Entity<GasCanisterComponent> canister, ref GetVerbsEvent<Verb> args)
     {
         if (!args.CanAccess || !args.CanInteract || args.Hands == null)
             return;
@@ -57,11 +57,10 @@ public sealed class OrganGasTankFillSystem : EntitySystem
 
         // Add a verb to refill the organ
         var user = args.User;
-        args.Verbs.Add(new AlternativeVerb
+        args.Verbs.Add(new Verb
         {
             Text = Loc.GetString("verb-fill-organ"),
-            Act = () => FillOrganGasTanks(canister, user, organTanks),
-            Priority = 1
+            Act = () => FillOrganGasTanks(canister, user, organTanks)
         });
     }
 

@@ -11,8 +11,3 @@ species-name-skeleton = Skeleton
 species-name-vox = Vox
 species-name-gingerbread = delicious baked good
 species-name-vulpkanin = Vulpkanin
-
-## todo: move these to _Starlight
-species-name-thaven = Thaven
-species-name-resomi = Resomi
-
