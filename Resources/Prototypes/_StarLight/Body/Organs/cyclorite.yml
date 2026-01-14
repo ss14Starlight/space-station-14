@@ -59,7 +59,8 @@
     - type: NightVision
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobCycloriteEyes
+    prototypes:
+      Default: MobCycloriteEyes
 
 - type: entity
   id: OrganCycloriteTongue

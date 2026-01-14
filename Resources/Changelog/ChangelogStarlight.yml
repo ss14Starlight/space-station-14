@@ -25996,5 +25996,136 @@ Entries:
   id: 230300
   time: '2026-01-13T13:36:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2303
+- author: ankle & CawsForConcern
+  changes:
+  - message: New Resomi crying sounds by ankle (Resomi rejoice)
+    type: Add
+  - message: Resomi whistle was stereo (making it too loud), fixed to be mono
+    type: Fix
+  - message: Removed old resomi crying sounds (stereo, low quality, and unattributed)
+    type: Remove
+  - message: Removed resomi scream due to unattributed copyright, replaced with the
+      avali scream for now
+    type: Remove
+  id: 236400
+  time: '2026-01-13T13:40:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2364
+- author: CawsForConcern
+  changes:
+  - message: (Plasma) The plasma chamber now actually has three times the plasma of
+      other stations (was previously 2/3rds vacuum)
+    type: Tweak
+  - message: (Plasma) Un-offset the map (meaning that teleporting to specific coordinates
+      will work as expected in mapping mode now)
+    type: Fix
+  - message: (Plasma) BSO Suit Storage re-added (oops)
+    type: Fix
+  - message: (Plasma) Fixed the entire mail system! Stuff shouldn't get stuck in disposal
+      pipe hell anymore
+    type: Fix
+  - message: (Plasma) Increased Plasma's cargo shuttle generator from 15kW to 20kW
+      to resolve power issues
+    type: Fix
+  id: 280600
+  time: '2026-01-13T18:03:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2806
+- author: STARLIGHT TEAM
+  changes:
+  - message: Removed Eli Vance voice.
+    type: Remove
+  - message: Changed felionoid voice to louder version.
+    type: Tweak
+  - message: Fixed translation line missing.
+    type: Fix
+  - message: Added Blah-DOS voice.
+    type: Add
+  - message: Added Talk-Box voice.
+    type: Add
+  id: 272300
+  time: '2026-01-13T18:23:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2723
+- author: Huaqas, AegisShield, neurovermi
+  changes:
+  - message: Resomi are now an odd amount of pixels wide. I heard it was really painful
+      for the Resomi.
+    type: Tweak
+  - message: All Resomi sprite states have been updated to reflect the new Resomi
+      body sprite.
+    type: Tweak
+  - message: New sprite states for select hard/soft/cosmetic suits and body armors.
+    type: Add
+  - message: Resomi now have a deathgrasp.
+    type: Add
+  - message: 19 new Resomi Hairstyles
+    type: Add
+  - message: Resomi hair, and head markings are hidden under helmets.
+    type: Tweak
+  - message: Resomi tails have had internal restructuring and may break your Resomi
+      character's tails.
+    type: Tweak
+  - message: 5 new Resomi tails markings, 6 new tail feathers marking, 3 new tail
+      prosthetics and 4 new tail band accessories.
+    type: Add
+  - message: new Resomi jewellery, ear, head, arm, leg and chest markings.
+    type: Add
+  id: 266300
+  time: '2026-01-13T18:23:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2663
+- author: teapoterror
+  changes:
+  - message: Decimus Icon
+    type: Add
+  - message: NTSF Icon
+    type: Add
+  - message: Altered the existing NTSF & Decimus roles to have the new Icons instead
+      of the NanoTrasen Icon.
+    type: Tweak
+  id: 266700
+  time: '2026-01-13T18:36:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2667
+- author: Citrea
+  changes:
+  - message: We have received repeated complaints about how it's unethical to attach
+      cybernetic arms to resomi eyesockets. In response, we have decided to add functionality
+      for cyberware to automatically reconfigure into something apropriate for their
+      size.
+    type: Add
+  id: 254800
+  time: '2026-01-13T19:21:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2548
+- author: Shades
+  changes:
+  - message: Added end-of-round popup with rules. It can be hidden after the first
+      time it appears.
+    type: Add
+  id: 280900
+  time: '2026-01-13T19:29:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2809
+- author: Rhetorica
+  changes:
+  - message: animal organs can now be processed in a reagent grinder
+    type: Tweak
+  - message: Haggis, made of an animal stomach and some uncooked protein
+    type: Add
+  - message: Black Pudding, made of blood, water, and fat
+    type: Add
+  - message: Raw Sausage, made of uncooked protein and 1u of enzyme as a catalyst
+    type: Add
+  - message: Cooked Sausage, grilled or fried
+    type: Add
+  - message: Sausage on a bun, just like a hamburger
+    type: Add
+  - message: Peas now have 2x yield of Hummus
+    type: Tweak
+  id: 276100
+  time: '2026-01-13T19:46:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2761
+- author: Sparlight
+  changes:
+  - message: Smart Corgis (and borgis) now have forensic information..
+    type: Add
+  id: 271600
+  time: '2026-01-13T22:38:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2716
 Order: -1
 

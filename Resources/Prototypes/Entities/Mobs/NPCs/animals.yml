@@ -3988,6 +3988,8 @@
   - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth
   - type: Stripping
   - type: ComplexInteraction
+  - type: Dna # Starlight
+  - type: Fingerprint # Starlight
   # Implement custom borgi body type
   - type: Body
     prototype: SmartCorgi
