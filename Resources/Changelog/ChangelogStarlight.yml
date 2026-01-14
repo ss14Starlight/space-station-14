@@ -26257,5 +26257,20 @@ Entries:
   id: 281700
   time: '2026-01-14T07:50:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2817
+- author: Penguinwizzard
+  changes:
+  - message: I accidentally drained all but one unit of blood from abductors, cyclorites,
+      avali, and resomi; turns out they need that.
+    type: Fix
+  id: 281800
+  time: '2026-01-14T09:16:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2818
+- author: DocMoth
+  changes:
+  - message: Resomi and Avali organ sprites.
+    type: Add
+  id: 281200
+  time: '2026-01-14T09:20:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2812
 Order: -1
 
