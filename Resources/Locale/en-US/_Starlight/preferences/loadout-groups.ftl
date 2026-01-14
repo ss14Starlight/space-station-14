@@ -12,6 +12,9 @@ loadout-group-assistant-glasses = Assistant glasses
 loadout-group-assistant-head = Assistant head
 loadout-group-assistant-backpack = Assistant backpack
 
+loadout-group-boxer-jumpsuit = Boxer jumpsuit
+loadout-group-boxer-gloves = Boxer gloves
+
 # Command
 
 loadout-group-nanotrasenrepresentative-head = NanoTrasen representative head
