@@ -1584,7 +1584,7 @@
   parent: BaseComputerAiAccess
   id: ComputerRoboticsControl
   name: robotics control console
-  description: Used to remotely monitor, disable and destroy the station's cyborgs.
+  description: Used to remotely monitor, disable, and destroy the station's cyborgs. # Starlight-edit - add ", disable, and destroy"
   components:
   - type: Sprite
     layers:
@@ -1599,6 +1599,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: RoboticsConsole
+    allowBorgControl: true # Starlight-edit - false -> true, allow disabling/detonating borgs
   - type: ActiveRadio
     channels:
     - Science
