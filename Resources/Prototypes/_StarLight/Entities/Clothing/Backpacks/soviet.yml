@@ -115,6 +115,7 @@
 - type: entity
   id: ClothingBackpackDuffelStechkinAPS
   parent: ClothingBackpackDuffelSSF
+  suffix: APS
   components:
   - type: EntityTableContainerFill
     containers:
@@ -127,33 +128,42 @@
 - type: entity
   id: ClothingBackpackDuffelDP28Bundle
   parent: ClothingBackpackDuffelSSF
+  suffix: DP-28
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponLightMachineGunDP28
-      - id: MagazineLightRifleMaxim
-      - id: MagazineLightRifleMaxim
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLightMachineGunDP28
+        - id: MagazineLightRifleMaxim
+        - id: MagazineLightRifleMaxim
 
 - type: entity
   id: ClothingBackpackDuffelMosinBundle
   parent: ClothingBackpackDuffelSSF
+  suffix: Mosin
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponSniperMosin
-      - id: SpeedLoaderLightRifle
-      - id: MagazineBoxMagnumSP
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSniperMosin
+        - id: SpeedLoaderLightRifle
+        - id: MagazineBoxMagnumSP
 
 - type: entity
   id: ClothingBackpackDuffelAKMSBundle
   parent: ClothingBackpackDuffelSSF
+  suffix: AKMS
   components:
-  - type: StorageFill
-    contents:
-      - id: WeaponRifleAk
-      - id: MagazineLightRifleSP
-      - id: MagazineLightRifleSP
-      - id: MagazineLightRifleFMJ
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleAk
+        - id: MagazineLightRifleSP
+        - id: MagazineLightRifleSP
+        - id: MagazineLightRifleFMJ
 
 - type: entity
   id: BoxSovietCommsKeys
@@ -166,11 +176,13 @@
     - state: box
   - type: Item
     heldPrefix: box
-  - type: StorageFill
-    contents:
-      - id: EncryptionKeySoviet
-      - id: EncryptionKeySoviet
-      - id: EncryptionKeySoviet
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EncryptionKeySoviet
+        - id: EncryptionKeySoviet
+        - id: EncryptionKeySoviet
 
 - type: entity
   id: BoxFinkaKnives
@@ -183,19 +195,16 @@
     - state: box
   - type: Item
     heldPrefix: box
-  - type: StorageFill
-    contents:
-      - id: Finka
-      - id: Finka
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponLightMachineGunDP28
-        - id: MagazineLightRifleMaxim
+        - id: Finka
+        - id: Finka
 - type: entity
   id: ClothingBackpackDuffelPPShBundle
   parent: ClothingBackpackDuffelSSF
+  suffix: PPSh
   components:
   - type: EntityTableContainerFill
     containers:
@@ -203,3 +212,54 @@
         children:
         - id: WeaponSubMachineGunPPSH
         - id: MagazinePistolSubMachineGunPPSH
+
+- type: entity
+  id: ClothingBackpackDuffelSovietAmmoBundle
+  name: soviet ammunition bundle
+  parent: ClothingBackpackDuffelSSF
+  suffix: Ammo
+  description: A duffel bag filled with various soviet ammunition boxes. For resupplying the workers' arsenal!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineBoxLightRifleBig
+        - id: MagazineBoxMagnumSP
+        - id: MagazineBoxMagnumSP
+        - id: MagazineBoxMagnumSP
+        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderLightRifle
+        - id: MagazinePistol40SP
+        - id: MagazinePistol40SP
+        - id: MagazinePistol40SP
+        - id: MagazinePistolSubMachineGunPPSH
+        - id: MagazinePistolSubMachineGunPPSH
+        - id: MagazineLightRifleSP
+        - id: MagazineLightRifleSP
+        - id: MagazineLightRifleSP
+        - id: BoxLethalshotToz
+        - id: BoxLethalshotToz
+        - id: BoxLethalshotToz
+        - !type:NestedSelector
+          tableId: SovietAmmoExtraTable
+          rolls: 5
+
+- type: entityTable
+  id: SovietAmmoExtraTable
+  table: !type:GroupSelector
+    children:
+    - id: MagazineBoxLightRifleBig
+      prob: 0.25
+    - id: MagazineBoxMagnumSP
+      prob: 0.2
+    - id: SpeedLoaderLightRifle
+      prob: 0.2
+    - id: MagazinePistol40SP
+      prob: 0.15
+    - id: MagazineLightRifleSP
+      prob: 0.15
+    - id: BoxLethalshotToz
+      prob: 0.05

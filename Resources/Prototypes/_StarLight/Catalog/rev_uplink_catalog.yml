@@ -154,6 +154,8 @@
   productEntity: MagazineBoxMagnumSP
   cost:
     Telebond: 2
+
+- type: listing
   id: SKBToz106
   name: toz-name
   description: toz-desc
@@ -165,7 +167,6 @@
   - RevUplinkWeaponry
   conditions:
   - !type:StockLimitedListingCondition
-    stockLimit: 12
     stockLimit: 4
 - type: listing
   id: SNKVDAPS
@@ -201,6 +202,20 @@
   description: ppsh-desc
   icon: { sprite: _Starlight/Objects/Weapons/Guns/SMGs/PPSh59.rsi, state: icon }
   productEntity: ClothingBackpackDuffelPPShBundle
+  cost:
+    Telebond: 27
+  categories:
+  - RevUplinkWeaponry
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
+
+- type: listing
+  id: SKBSovietAmmoBundle
+  name: soviet-ammo-bundle-name
+  description: soviet-ammo-bundle-desc
+  icon: { sprite: _Starlight/Clothing/Back/Duffels/soviet_marine_duffel.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSovietAmmoBundle
   cost:
     Telebond: 27
   categories:

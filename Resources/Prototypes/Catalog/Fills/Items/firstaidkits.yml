@@ -132,9 +132,11 @@
   suffix: Filled
   parent: Medkit
   components:
-  - type: StorageFill
-    contents:
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
-      - id: Bloodpack #Starlight end
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Brutepack
+        - id: Ointment
+        - id: Gauze
+        - id: Bloodpack #Starlight end

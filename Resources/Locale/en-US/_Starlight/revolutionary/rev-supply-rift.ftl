@@ -34,6 +34,10 @@ ppsh-name = PPSH 59 SMG
 ppsh-desc = The legendary discontinued PPSH 59. Inaccurate as hell, but delivers it. Uses .35 ammo.
 toz-name = ZOZ-106
 toz-desc = Aim at head and eyes. Uses .42 ammo, comes with extended magazine.
+soviet-ammo-bundle-name = Soviet ammunition bundle
+soviet-ammo-bundle-desc = A duffel bag packed with various soviet ammunition types and magazines. Includes .30, .35, .40, .42, and .45 magnum rounds.
+mosin-ammo-name = .45 magnum ammo box
+mosin-ammo-desc = A box of .45 magnum ammunition for the Mosin rifle.
 
 # Wearables
 soviet-eva-name = Soviet EVA Suit
