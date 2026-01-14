@@ -1,0 +1,527 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Citrea",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "l_arm",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "l_foot",
+      "directions": 4
+    },
+    {
+      "name": "l_hand",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "l_leg",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "r_arm",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "r_foot",
+      "directions": 4
+    },
+    {
+      "name": "r_hand",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "r_leg",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "eyes_thermal",
+      "directions": 4
+    },
+    {
+      "name": "eyes_night",
+      "directions": 4
+    },
+    {
+      "name": "l_silver_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_silver_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_silver_hand_SURG",
+      "directions": 4
+    },
+    {
+      "name": "r_silver_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_silver_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_silver_hand_SURG",
+      "directions": 4
+    },
+    {
+      "name": "l_ripper_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_ripper_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_ripper_hand_SURG",
+      "directions": 4
+    },
+    {
+      "name": "r_ripper_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_ripper_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_ripper_hand_SURG",
+      "directions": 4
+    },
+    {
+      "name": "l_steel_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_steel_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_steel_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_steel_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_steel_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_steel_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "l_bulwark_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_bulwark_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_bulwark_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_bulwark_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_bulwark_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_bulwark_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "l_mantis_blade_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_mantis_blade_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_mantis_blade_hand_BLADE",
+      "directions": 4
+    },
+    {
+      "name": "r_mantis_blade_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_mantis_blade_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_mantis_blade_hand_BLADE",
+      "directions": 4
+    },
+    {
+      "name": "l_spacer_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_spacer_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_spacer_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_spacer_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_spacer_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_spacer_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "l_gorilla_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_gorilla_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_gorilla_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_gorilla_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_gorilla_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_gorilla_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "l_engineer_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_engineer_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_engineer_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_engineer_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_engineer_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_engineer_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "l_angel_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_angel_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_angel_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_angel_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_angel_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_angel_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "l_zeus_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_zeus_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_zeus_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_zeus_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_riplet_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_riplet_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_riplet_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_riplet_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_riplet_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_riplet_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "l_persephone_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_persephone_hand",
+      "directions": 4
+    },
+    {
+      "name": "l_persephone_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "r_persephone_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_persephone_hand",
+      "directions": 4
+    },
+    {
+      "name": "r_persephone_hand_TOOLS",
+      "directions": 4
+    },
+    {
+      "name": "l_leg_hydraulic",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "r_leg_hydraulic",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "l_leg_pilebunker",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    },
+    {
+      "name": "r_leg_pilebunker",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ]
+    }
+  ]
+}

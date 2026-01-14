@@ -40,7 +40,7 @@ public sealed partial class OrganVisualizationComponent : Component
     [DataField]
     public HumanoidVisualLayers Layer;
     [DataField]
-    public ProtoId<HumanoidSpeciesSpriteLayer> Prototype;
+    public Dictionary<string, ProtoId<HumanoidSpeciesSpriteLayer>?> Prototypes = new() { { "Default", null } };
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
