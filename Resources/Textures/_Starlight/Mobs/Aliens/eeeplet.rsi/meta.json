@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+        "name": "eeeplet_dead",
+        "directions": 1,
+        "copyright": "by starlighthowls for impstation"
+      },
+    {
+        "name": "eeeplet_crit",
+        "directions": 1,
+        "copyright": "by starlighthowls for impstation"
+      },
+    {
+        "name": "eeeplet",
+        "directions": 4,
+        "copyright": "by starlighthowls for impstation",
+        "delays": [
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ],
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ],
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ],
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ]
+        ]
+      },
+    {
+        "name": "eeeplet_glow",
+        "directions": 4,
+        "copyright": "by starlighthowls for impstation",
+        "delays": [
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ],
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ],
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ],
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ]
+        ]
+    }
+  ]
+}

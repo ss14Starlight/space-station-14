@@ -97,6 +97,11 @@
       - PowerStorage
       - VoltageNetworks
       - Power
+    # Starlight Start
+    - type: AccessReader
+      access: [["Engineering"]]
+    - type: ActivatableUIRequiresAccess 
+    # Starlight End
 
     # Interface
     - type: BatteryInterface

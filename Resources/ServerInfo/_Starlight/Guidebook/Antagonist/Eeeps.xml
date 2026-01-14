@@ -1,0 +1,19 @@
+<Document>
+  # Electric Sheep
+
+  <Box>
+    <GuideEntityEmbed Entity="MobEeep" Caption=""/>
+
+  </Box>
+  Electric sheep, or Eeeps, are spacefaring creatures sometimes farmed for the power they naturally produce.
+
+  Eeeplets are the adolescent form of the Eeep, little creatures with a love for feeding on electrical energy, [color=yellow]easily draining any power source.[/color]
+
+  They are more annoying than harmful [color=red]unless allowed to consume enough power to grow up;[/color] if so, better hope you have insuls...
+    <GuideEntityEmbed Entity="MobEeeplet" Caption=""/>
+  - They can 'pry' open any door by overcharging it.
+  - Eeeplets can be examined to see their internal charge; they will transform when it reaches 100%, alerting the entire station to their presence.
+  - Eeeps have a [color=green]powerful passive regen[/color] but can be fully killed by [color=yellow]butchering.[/color]
+  - Adult Eeeps have an electric aura that harms on touch and are able to shoot tiny Tesla-like projectiles which have embed damage even if the target is immune to shock.
+  - As an Electric sheep avoid looses. The station can't make yummy power with no engine!
+</Document>

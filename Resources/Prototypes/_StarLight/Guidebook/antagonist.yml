@@ -2,3 +2,8 @@
   id: Brighteye
   name: roles-antag-brighteye-name
   text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Brighteye.xml"
+
+- type: guideEntry
+  id: Eeeps
+  name: guide-entry-impeeeps
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Eeeps.xml"

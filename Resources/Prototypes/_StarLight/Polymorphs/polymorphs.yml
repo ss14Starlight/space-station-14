@@ -13,3 +13,14 @@
       path: /Audio/Magic/forcewall.ogg
     exitPolymorphSound: !type:SoundPathSpecifier
       path: /Audio/Magic/forcewall.ogg
+
+- type: polymorph
+  id: EeepGrow
+  configuration:
+    entity: MobEeep
+    transferName: false
+    transferDamage: false
+    inventory: None
+    forced: true
+    revertOnCrit: false
+    revertOnDeath: false

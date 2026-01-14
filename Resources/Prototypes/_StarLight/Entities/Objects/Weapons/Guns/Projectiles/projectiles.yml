@@ -151,3 +151,16 @@
     soundHit:
       collection: WeakHit
     forceSound: true
+
+- type: entity
+  name: eeep lightning
+  id: EeepGunBullet
+  parent: TeslaGunBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 6
+        Structural: 20
+        Piercing: 10

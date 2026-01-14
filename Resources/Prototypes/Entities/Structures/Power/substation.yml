@@ -25,6 +25,11 @@
     supplyRampTolerance: 5000
     supplyRampRate: 1000
   - type: StationInfiniteBatteryTarget
+  # Starlight Start
+  - type: AccessReader
+    access: [["Engineering"]]
+  - type: ActivatableUIRequiresAccess 
+  # Starlight End
 
   # Interface
   - type: BatteryInterface
