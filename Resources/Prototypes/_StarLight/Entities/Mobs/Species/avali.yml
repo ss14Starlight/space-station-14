@@ -127,7 +127,7 @@
           sprite: Mobs/Effects/brute_damage.rsi
           color: "#6C3BAA"
     - type: Bloodstream
-      bloodReagents:
+      bloodReferenceSolution:
         reagents:
         - ReagentId: AvaliBlood
           Quantity: 1

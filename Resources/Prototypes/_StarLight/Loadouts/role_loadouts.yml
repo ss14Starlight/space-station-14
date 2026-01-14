@@ -169,6 +169,36 @@
     - Pens
     - GroupSpeciesBreathTool
 
+# Wildcards
+- type: roleLoadout
+  id: JobZookeeper
+  groups:
+  - CommonBackpack
+  - CivilianShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - ZookeeperJobTrinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobBoxer
+  groups:
+  - BoxerJumpsuit
+  - BoxerGloves
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - BoxerJobTrinkets
+  - GroupSpeciesBreathTool
+
 # Antagonist Loadouts
 - type: roleLoadout
   id: AntagXenoborg
