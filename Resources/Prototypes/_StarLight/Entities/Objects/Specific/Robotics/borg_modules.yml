@@ -511,3 +511,25 @@
     - item: PinpointerSyndicateNuclear
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
+
+# xenoborg
+- type: entity
+  parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleRCD
+  name: engineering xenoborg module
+  description: Module with a recharging xenoborg RCD
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_engi
+    - state: icon-rcd
+  - type: ItemBorgModule
+    hands:
+    - item: RCDXeno
+    - item: BorgFireExtinguisher
+    - item: BorgHandheldGPSBasic
+    - item: GasAnalyzer
+    - item: HolofanProjectorBorg
+    - item: GeigerCounter
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-rcd-module }

@@ -30,7 +30,7 @@
 - type: entity
   id: OrganVoxLungs
   parent: OrganHumanLungs
-  description: "The blue, anaerobic lungs of a vox, they intake nitrogen to breathe. Any form of gaseous oxygen is lethally toxic if breathed in. Can hold up to 10L of gas."
+  description: "The blue, anaerobic lungs of a vox, they intake nitrogen to breathe. Any form of gaseous oxygen is lethally toxic if breathed in."
   suffix: "vox"
   components:
   - type: Sprite
@@ -39,40 +39,9 @@
     metabolizerTypes: [ Vox ]
   - type: Lung
     alert: LowNitrogen
-    #Starlight start - Make vox lungs work as a gas tank
   - type: Item
-    size: Normal # Increased due to it becoming a gas tank, needs to be rebalanced for that
+    size: Small
     heldPrefix: lungs
-    shape:
-    - 0,0,3,3
-  - type: BreathMask
-  - type: OrganBreathTool
-    startActivated: true
-  - type: GasTank
-    air:
-      volume: 10
-      moles:
-        Nitrogen: 4.1027581 # Prefill with 10L of nitrogen
-      temperature: 293.15
-    outputPressure: 21.3
-  - type: OrganGasTankFillable
-    targetPressure: 1000.0 # 1MPa of pressure target on refill
-  - type: UseDelay
-    delays:
-      gasTank:
-        length: 1.0
-  - type: ActivatableUI
-    key: enum.SharedGasTankUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.SharedGasTankUiKey.Key:
-        type: GasTankBoundUserInterface
-      enum.SharedGasTankUiKey.OrganKey:
-        type: BreathableOrganBoundUserInterface
-  - type: Tag
-    tags:
-    - GasTank
-    #Starlight end
 
 - type: entity
   parent: OrganHumanStomach
@@ -141,9 +110,16 @@
   components:
   - type: Sprite
     sprite: Mobs/Species/Vox/organs.rsi
+  # Starlight Start
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobVoxEyes
+  # Starlight End
   - type: Item
     size: Small
     heldPrefix: eyeballs
+# Starlight End
 
 - type: entity
   id: OrganVoxTongueA

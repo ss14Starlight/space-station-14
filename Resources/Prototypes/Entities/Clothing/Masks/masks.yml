@@ -320,6 +320,12 @@
   - type: Tag
     tags:
     - SurgeryCompatibleArmor # Starlight-edit
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Caustic: 0.95 # I kind of just put this here so that it would show the infection resistance...
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingMaskBase

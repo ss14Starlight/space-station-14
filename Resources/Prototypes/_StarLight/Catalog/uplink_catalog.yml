@@ -274,6 +274,48 @@
         tags:
           - NukeOpsUplink
 
+- type: listing
+  id: UplinkAdvancedClawsImplant
+  name: uplink-advanced-claws-name
+  description: uplink-advanced-claws-desc
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: hand_implant_claws }
+  productEntity: HandImplantClaws
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 0
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkCybernetics
+
+- type: listing
+  id: UplinkForensicsImplant
+  name: uplink-forensics-implant-name
+  description: uplink-forensics-implant-desc
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: hand_implant_forensics }
+  productEntity: HandImplantForensics
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkCybernetics
+
+- type: listing
+  id: UplinkSyndieEyeImplant
+  name: uplink-syndie-implant-name
+  description: uplink-syndie-implant-desc
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: eye_implant_syndicate }
+  productEntity: EyeImplantSyndie
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkCybernetics
+
 # Implants
 - type: listing
   id: UplinkMagillitisSerumImplant
@@ -535,4 +577,22 @@
     Telecrystal: 6
   categories:
   - UplinkDisruption
+
+- type: listing
+  id: uplinkRiggedBoxingGlovesBoxer
+  name: uplink-rigged-boxing-gloves-name
+  description: uplink-rigged-boxing-gloves-desc
+  productEntity: ClothingHandsGlovesBoxingRigged
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Boxer
+
 

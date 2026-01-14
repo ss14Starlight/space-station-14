@@ -22,6 +22,8 @@ highlights-surgeon = Surgeon, Medical, MedBay, "Med"
 highlights-roboticist = Roboticist, Science, Robo, "Sci", Robotics
 
 # Civilian
+highlights-boxer = Boxer
+highlights-zookeeper = Zookeeper
 
 # Law
 highlights-internal-affairs-agent = Internal Affairs Agent, "IAA", "Law", "SOP", Standard Operating Procedure

@@ -1,0 +1,345 @@
+- type: entity
+  id: XenobiologySlimeBase
+  parent:
+    - MobRespirator
+    - MobAtmosStandard
+    - SimpleSpaceMobBase
+  abstract: true
+  description: I don't think you should be seeing this.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _Starlight/Mobs/XenoSlimes/test_sprite.rsi
+      layers:
+        - state: test_slime
+    - type: Hunger
+      baseDecayRate: 1
+    - type: Slime
+      damageOnEat:
+        types:
+          Cellular: 5
+      nutritionOnHit: 10
+      mutationChance: 0.25
+      mutationOnMaxSplit: XenobiologySlimeRainbow
+    - type: HTN
+      rootTask:
+        task: SlimeEatCompound
+    - type: Temperature
+      coldDamage:
+        types:
+          Cold: 10.0
+
+- type: entity
+  name: gray xenobiology slime
+  id: XenobiologySlimeGray
+  parent: XenobiologySlimeBase
+  description: GRAY
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeGray
+      extract: GraySlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeOrange
+        - XenobiologySlimePurple
+        - XenobiologySlimeBlue
+        - XenobiologySlimeMetal
+    - type: Sprite
+      color: "#999999ff"
+
+- type: entity
+  name: orange xenobiology slime
+  id: XenobiologySlimeOrange
+  parent: XenobiologySlimeBase
+  description: ORANGE
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeOrange
+      extract: OrangeSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeYellow
+        - XenobiologySlimeDarkPurple
+        - XenobiologySlimeRed
+        - XenobiologySlimeRed
+    - type: Sprite
+      color: "#f07a26ff"
+
+- type: entity
+  name: purple xenobiology slime
+  id: XenobiologySlimePurple
+  parent: XenobiologySlimeBase
+  description: PURPLE
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimePurple
+      extract: PurpleSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeDarkPurple
+        - XenobiologySlimeDarkBlue
+        - XenobiologySlimeGreen
+        - XenobiologySlimeGreen
+    - type: Sprite
+      color: "#9721c2ff"
+
+- type: entity
+  name: blue xenobiology slime
+  id: XenobiologySlimeBlue
+  parent: XenobiologySlimeBase
+  description: BLUE
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeBlue
+      extract: BlueSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeDarkBlue
+        - XenobiologySlimeSilver
+        - XenobiologySlimePink
+        - XenobiologySlimePink
+    - type: Sprite
+      color: "#34cfebff"
+
+- type: entity
+  name: metal xenobiology slime
+  id: XenobiologySlimeMetal
+  parent: XenobiologySlimeBase
+  description: METAL
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeMetal
+      extract: MetalSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeYellow
+        - XenobiologySlimeSilver
+    - type: Sprite
+      color: "#5e5e5eff"
+
+- type: entity
+  name: yellow xenobiology slime
+  id: XenobiologySlimeYellow
+  parent: XenobiologySlimeBase
+  description: YELLOW
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeYellow
+      extract: YellowSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeOrange
+        - XenobiologySlimeMetal
+        - XenobiologySlimeBluespace
+        - XenobiologySlimeBluespace
+    - type: Sprite
+      color: "#ffeb52ff"
+
+- type: entity
+  name: dark purple xenobiology slime
+  id: XenobiologySlimeDarkPurple
+  parent: XenobiologySlimeBase
+  description: DARK PURPLE
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeDarkPurple
+      extract: DarkPurpleSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeOrange
+        - XenobiologySlimePurple
+        - XenobiologySlimeSepia
+        - XenobiologySlimeSepia
+    - type: Sprite
+      color: "#501466ff"
+
+- type: entity
+  name: dark blue xenobiology slime
+  id: XenobiologySlimeDarkBlue
+  parent: XenobiologySlimeBase
+  description: DARK BLUE
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeDarkBlue
+      extract: DarkBlueSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimePurple
+        - XenobiologySlimeBlue
+        - XenobiologySlimeCerulean
+        - XenobiologySlimeCerulean
+    - type: Sprite
+      color: "#132b6eff"
+
+- type: entity
+  name: silver xenobiology slime
+  id: XenobiologySlimeSilver
+  parent: XenobiologySlimeBase
+  description: SILVER
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeSilver
+      extract: SilverSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeMetal
+        - XenobiologySlimeBlue
+        - XenobiologySlimePyrite
+        - XenobiologySlimePyrite
+    - type: Sprite
+      color: "#aab8bdff"
+
+- type: entity
+  name: bluespace xenobiology slime
+  id: XenobiologySlimeBluespace
+  parent: XenobiologySlimeBase
+  description: BLUESPACE
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeBluespace
+      extract: BluespaceSlimeExtract
+    - type: Sprite
+      color: "#ffffffff"
+
+- type: entity
+  name: sepia xenobiology slime
+  id: XenobiologySlimeSepia
+  parent: XenobiologySlimeBase
+  description: SEPIA
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeSepia
+      extract: SepiaSlimeExtract
+    - type: Sprite
+      color: "#c9b7a9ff"
+
+- type: entity
+  name: cerulean xenobiology slime
+  id: XenobiologySlimeCerulean
+  parent: XenobiologySlimeBase
+  description: CERULEAN
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeCerulean
+      extract: CeruleanSlimeExtract
+    - type: Sprite
+      color: "#5998b3ff"
+
+- type: entity
+  name: pyrite xenobiology slime
+  id: XenobiologySlimePyrite
+  parent: XenobiologySlimeBase
+  description: PYRITE
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimePyrite
+      extract: PyriteSlimeExtract
+    - type: Sprite
+      color: "#ebe15bff"
+
+- type: entity
+  name: red xenobiology slime
+  id: XenobiologySlimeRed
+  parent: XenobiologySlimeBase
+  description: RED
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeRed
+      extract: RedSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeOil
+    - type: Sprite
+      color: "#fc4e4eff"
+
+- type: entity
+  name: green xenobiology slime
+  id: XenobiologySlimeGreen
+  parent: XenobiologySlimeBase
+  description: GREEN
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeGreen
+      extract: GreenSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeBlack
+    - type: Sprite
+      color: "#4efc4eff"
+
+- type: entity
+  name: pink xenobiology slime
+  id: XenobiologySlimePink
+  parent: XenobiologySlimeBase
+  description: PINK
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimePink
+      extract: PinkSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeLightPink
+    - type: Sprite
+      color: "#fc86cfff"
+
+- type: entity
+  name: gold xenobiology slime
+  id: XenobiologySlimeGold
+  parent: XenobiologySlimeBase
+  description: GOLD
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeGold
+      extract: GoldSlimeExtract
+      splitIntoMutation:
+        - XenobiologySlimeAdamantine
+    - type: Sprite
+      color: "#8a7b1cff"
+
+- type: entity
+  name: oil xenobiology slime
+  id: XenobiologySlimeOil
+  parent: XenobiologySlimeBase
+  description: OIL
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeOil
+      extract: OilSlimeExtract
+    - type: Sprite
+      color: "#262626ff"
+
+- type: entity
+  name: black xenobiology slime
+  id: XenobiologySlimeBlack
+  parent: XenobiologySlimeBase
+  description: BLACK
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeBlack
+      extract: OilSlimeExtract
+    - type: Sprite
+      color: "#262626ff"
+
+- type: entity
+  name: light pink xenobiology slime
+  id: XenobiologySlimeLightPink
+  parent: XenobiologySlimeBase
+  description: LIGHT PINK
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeLightPink
+      extract: LightPinkSlimeExtract
+    - type: Sprite
+      color: "#ff94d1ff"
+
+- type: entity
+  name: adamantine xenobiology slime
+  id: XenobiologySlimeAdamantine
+  parent: XenobiologySlimeBase
+  description: ADAMANTINE
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeAdamantine
+      extract: AdamantineSlimeExtract
+    - type: Sprite
+      color: "#407985ff"
+
+- type: entity
+  name: rainbow xenobiology slime
+  id: XenobiologySlimeRainbow
+  parent: XenobiologySlimeBase
+  description: RAINBOW
+  components:
+    - type: Slime
+      splitInto: XenobiologySlimeRainbow
+      extract: RainbowSlimeExtract
+    - type: Sprite
+      color: "#300636ff"

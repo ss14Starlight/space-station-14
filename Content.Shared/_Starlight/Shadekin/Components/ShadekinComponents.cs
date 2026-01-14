@@ -26,6 +26,11 @@ public sealed partial class ShadekinComponent : Component
 
     [DataField("thresholds", required: true)]
     public SortedDictionary<FixedPoint2, ShadekinState> Thresholds = new();
+
+    /// <summary>
+    /// whether to flicker lights or not. default on
+    /// </summary>
+    [DataField] public bool DoLightFlicker = true;
 }
 
 [Serializable, NetSerializable]
@@ -50,6 +55,12 @@ public sealed partial class OrganShadekinCoreComponent : Component
 
     [DataField]
     public bool Damaged = true;
+
+    [DataField]
+    public double DmagedPrice = 200;
+
+    [DataField]
+    public double UndmagedPrice = 30000;
 }
 #endregion
 
