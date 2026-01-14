@@ -38,7 +38,7 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
     /// </summary>
     private void OnStartup(Entity<BatteryDrainerComponent> ent, ref ComponentStartup args)
     {
-        if (ent.Comp.BatteryUid == null && TryComp<BatteryComponent>(ent.Owner, out _))
+        if (ent.Comp.BatteryUid == null && (TryComp<BatteryComponent>(ent.Owner, out _) || TryComp<PredictedBatteryComponent>(ent.Owner, out _)))
             ent.Comp.BatteryUid = ent.Owner;
     }
     // Starlight End
@@ -57,7 +57,13 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
         // handles even if battery is full so you can actually see the poup
         args.Handled = true;
 
-        if (_battery.IsFull(battery))
+        // Starlight edit Start: Check for PredictedBatteryComponent first, then BatteryComponent
+        var isFull = TryComp<PredictedBatteryComponent>(battery, out _) 
+            ? _predictedBattery.IsFull(battery) 
+            : _battery.IsFull(battery);
+        
+        if (isFull)
+        // Starlight edit End
         {
             _popup.PopupEntity(Loc.GetString("battery-drainer-full"), uid, uid, PopupType.Medium);
             return;
@@ -84,7 +90,19 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
     {
         base.OnDoAfterAttempt(ent, ref args);
 
-        if (ent.Comp.BatteryUid is not { } battery || _battery.IsFull(battery))
+        // Starlight edit Start
+        if (ent.Comp.BatteryUid is not { } battery)
+        {
+            args.Cancel();
+            return;
+        }
+
+        var isFull = TryComp<PredictedBatteryComponent>(battery, out _)
+            ? _predictedBattery.IsFull(battery)
+            : _battery.IsFull(battery);
+
+        if (isFull)
+        // Starlight edit End
             args.Cancel();
     }
 
@@ -120,6 +138,10 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
         // PowerCells use PredictedBatteryComponent
         // SMES, substations and APCs use BatteryComponent
         _predictedBattery.ChangeCharge((comp.BatteryUid.Value, battery), output);
+        // Starlight Start: Add minimum Clamp
+        if (comp.MinimumDrain is not null)
+            output = Math.Max(output, (float)comp.MinimumDrain);
+        // Starlight End
         // TODO: create effect message or something
         Spawn("EffectSparks", Transform(target).Coordinates);
         _audio.PlayPvs(comp.SparkSound, target);
