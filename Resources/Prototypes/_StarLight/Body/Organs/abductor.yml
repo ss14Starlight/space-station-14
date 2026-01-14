@@ -54,7 +54,8 @@
       - state: eyeballs
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobAbductorEyes
+    prototypes:
+      Default: MobAbductorEyes
 
 - type: entity
   id: OrganAbductorEars

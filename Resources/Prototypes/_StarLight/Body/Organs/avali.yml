@@ -71,4 +71,5 @@
   components:
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobAvaliEyes
+    prototypes:
+      Default: MobAvaliEyes
