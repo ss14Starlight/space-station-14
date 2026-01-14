@@ -26308,5 +26308,12 @@ Entries:
   id: 233200
   time: '2026-01-14T17:00:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2332
+- author: Scarlet Lightweaver
+  changes:
+  - message: Added new markings for reptilian!
+    type: Add
+  id: 278900
+  time: '2026-01-14T17:45:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2789
 Order: -1
 
