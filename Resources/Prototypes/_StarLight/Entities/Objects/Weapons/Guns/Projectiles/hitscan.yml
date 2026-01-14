@@ -511,6 +511,7 @@
 - type: entity
   id: BulletPistolTrace40SP
   parent: BulletTrace
+<<<<<<< Updated upstream
   damage:
     types:
       Piercing: 25
@@ -522,10 +523,32 @@
   pierceChance: 0.40
   derivation: 0.12
   ricochetChance: 0.30
+=======
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: -0.13
+    damage:
+      types:
+        Piercing: 25
+  - type: HitscanStaminaDamage
+    staminaDamage: 4
+  - type: HitscanPierce
+    chance: 0.40
+    deviation: 0.2
+  - type: HitscanRicochet
+    chance: 0.30
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: sp
+>>>>>>> Stashed changes
   
 - type: entity
   id: BulletPistolTrace40HP
   parent: BulletTrace
+<<<<<<< Updated upstream
   staminaDamage: 10
   damage:
     types:
@@ -538,10 +561,32 @@
   pierceChance: 0.03
   derivation: 0.12
   ricochetChance: 0.15
+=======
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: -1.00
+    damage:
+      types:
+        Piercing: 33 # +30%
+  - type: HitscanStaminaDamage
+    staminaDamage: 10
+  - type: HitscanPierce
+    chance: 0.03
+    deviation: 0.2
+  - type: HitscanRicochet
+    chance: 0.15
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: bullet
+>>>>>>> Stashed changes
   
 - type: entity
   id: BulletPistolTrace40FMJ
   parent: BulletTrace
+<<<<<<< Updated upstream
   damage:
     types:
       Piercing: 18
@@ -554,10 +599,31 @@
   derivation: 0.12
   ricochetChance: 0.80
   pierceLevel: Wood
+=======
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.25
+    damage:
+      types:
+        Piercing: 18 # -30%
+  - type: HitscanPierce
+    chance: 0.69
+    deviation: 0.2
+    pierceLevel: Wood
+  - type: HitscanRicochet
+    chance: 0.80
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: fmj
+>>>>>>> Stashed changes
   
 - type: entity
   id: BulletPistolTrace40AP
   parent: BulletTrace
+<<<<<<< Updated upstream
   damage:
     types:
       Piercing: 18
@@ -570,6 +636,26 @@
   derivation: 0.12
   ricochetChance: 0.35
   pierceLevel: Metal
+=======
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.69
+    damage:
+      types:
+        Piercing: 18 # -30%
+  - type: HitscanPierce
+    chance: 0.81
+    deviation: 0.2
+    pierceLevel: Metal
+  - type: HitscanRicochet
+    chance: 0.48
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: ap
+>>>>>>> Stashed changes
 
 ### caseless rifle <<<<<<<<<<<<<<<
 
