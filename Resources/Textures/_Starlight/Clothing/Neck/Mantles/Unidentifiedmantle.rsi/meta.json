@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "copyright": "Starlight.",
+    "license": "CC-BY-SA-3.0",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "Taken from wizden resprited by scarletlightweaver_ss14 for Starlight",
+            "license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "equipped-NECK",
+            "directions": 4,
+            "copyright": "Hos mantle Taken from wizden resprited by scarletlightweaver_ss14 for Starlight.",
+            "license": "CC-BY-SA-3.0"
+        }
+    ]
+}
