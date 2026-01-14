@@ -93,7 +93,7 @@
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetReflective
   name: reflective helmet
-  description: A shiny helmet for your equally shiny vest.
+  description: A shiny helmet for your equally shiny vest. Provides 100% reflection when worn with the reflective vest.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Helmets/reflect.rsi
@@ -107,12 +107,16 @@
         Piercing: 0.95
         Heat: 0.80
   - type: Reflect
-    reflectProb: 0.2
+    reflectProb: 0.35 # STARLIGHT: Helmet base reflect probability, adds with vest to 100%
     reflects:
       - Energy  
+  # STARLIGHT: Component for set bonus system. Stores original reflection and tag for helmet piece.
+  - type: ReflectiveSetBonus
+    helmetTag: ReflectiveArmorHelmet
   - type: Tag
     tags:
     - SecurityHelmet
+    - ReflectiveArmorHelmet # STARLIGHT: Tag for set bonus system detection
 
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
@@ -282,3 +286,17 @@
         Blunt: 0.95
   - type: ExplosionResistance
     damageCoefficient: 0.95
+
+- type: entity
+  parent: [ ClothingHeadHelmetArmoredBase, BaseSalvageContraband ]
+  id: ClothingHeadHelmetSalvageMerc
+  name: scrapper helmet
+  description: A durable, lightweight helmet favored by salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+    - type: HideLayerClothing
+      layers:
+        Hair: HEAD

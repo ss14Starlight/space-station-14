@@ -4,230 +4,233 @@
     Captain:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 21600 # 6 hours
+      time: 6h # Starlight
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 21600 # 6 hours
+      time: 6h # Starlight
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 21600 # 6 hours
+      time: 6h # Starlight
+# Starlight start
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 21600 # 6 hours
+      time: 6h
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 21600 # 6 hours
+      time: 6h
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 21600 # 6 hours
+      time: 6h
+# Starlight end
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 36000 # 10 hours in Command
+      time: 10h # Starlight
+# Starlight start
     - !type:OverallPlaytimeRequirement
-      time: 36000 # 10 hours overall playtime
+      time: 10h
     - !type:RoleTimeRequirement
       role: JobStationAi
-      time: 3600 # 1 hour as Station AI
+      time: 1h
     HeadOfPersonnel:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 10800 # 3 hours
+      time: 3h
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 10800 # 3 hours
+      time: 3h
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 10800 # 3 hours
+      time: 3h
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 10800 # 3 hours
+      time: 3h
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 10800 # 3 hours
+      time: 3h
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 10800 # 3 hours
+      time: 3h
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 18000 # 5 hours in Command for HoP
+      time: 5h
     - !type:OverallPlaytimeRequirement
-      time: 25200 # 7 hours
+      time: 7h
     HeadOfSecurity:
     - !type:RoleTimeRequirement
       role: JobWarden
-      time: 28800 # 8 hrs
+      time: 8h
     ChiefEngineer:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 10800 # 3 hours
+      time: 3h
     - !type:OverallPlaytimeRequirement
-      time: 18000 # 5 hours
+      time: 5h
     - !type:RoleTimeRequirement
       role: JobAtmosphericTechnician
-      time: 10800 # 3 hours as Atmospheric Technician
+      time: 3h
     - !type:RoleTimeRequirement
       role: JobStationEngineer
-      time: 3600 # 1 hour as Station Engineer
+      time: 1h
     ResearchDirector:
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 10800 # 3 hours
+      time: 3h
     - !type:OverallPlaytimeRequirement
-      time: 18000 # 5 hours
+      time: 5h
     - !type:RoleTimeRequirement
       role: JobScientist
-      time: 3600 # 1 hour as Scientist
+      time: 1h
     ChiefMedicalOfficer:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 10800 # 3 hours
+      time: 3h
     - !type:OverallPlaytimeRequirement
-      time: 18000 # 5 hours
+      time: 5h
     - !type:RoleTimeRequirement
       role: JobMedicalDoctor
-      time: 3600 # 1 hour as Medical Doctor
+      time: 1h
     - !type:RoleTimeRequirement
       role: JobChemist
-      time: 3600 # 1 hour as Chemist
+      time: 1h
     Quartermaster:
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 10800 # 3 hours
+      time: 3h
     - !type:OverallPlaytimeRequirement
-      time: 18000 # 5 hours
+      time: 5h
     - !type:RoleTimeRequirement
       role: JobCargoTechnician
-      time: 3600 # 1 hour as Cargo Technician
+      time: 1h
     - !type:RoleTimeRequirement
       role: JobSalvageSpecialist
-      time: 7200 # 2 hours as Salvage Specialist
+      time: 2h
     MedicalDoctor:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobMedicalIntern
-      time: 3600 # 1 hour as Medical Intern
+      time: 1h
     Chemist:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobMedicalIntern
-      time: 3600 # 1 hour as Medical Intern
+      time: 1h
     Paramedic:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobMedicalDoctor
-      time: 3600 # 1 hour as Medical Doctor
+      time: 1h
     StationEngineer:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobTechnicalAssistant
-      time: 3600 # 1 hour as Technical Assistant
+      time: 1h
     AtmosphericTechnician:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobStationEngineer
-      time: 3600 # 1 hour as Station Engineer
+      time: 1h
     Warden:
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 72000 # 20 hrs
+      time: 20h
     - !type:RoleTimeRequirement
       role: JobDetective
-      time: 3600 # 1 hr
+      time: 1h
     SecurityCadet:
     - !type:OverallPlaytimeRequirement
-      time: 108000 # 30 hrs
+      time: 30h
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 54000 # 15 hrs
+      time: 15h
       inverted: true # stop playing intern if you're good at security!
     SecurityOfficer:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 #10 hrs
+      time: 10h
     Detective:
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 36000 # 10 hrs
+      time: 10h
     Brigmedic:
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 36000 # 10 hrs
+      time: 10h
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 28800 # 8 hrs
+      time: 8h
     StationAi:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobBorg
-      time: 10800 # 3 hours as Borg
+      time: 3h
     Borg:
     - !type:OverallPlaytimeRequirement
-      time: 3600 # 1 hour overall playtime
+      time: 1h
     Bartender:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobServiceWorker
-      time: 1200 # 20 minutes as Service Worker
+      time: 20m
     Chef:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobServiceWorker
-      time: 1200 # 20 minutes as Service Worker
+      time: 20m
     Scientist:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobResearchAssistant
-      time: 3600 # 1 hour as Research Assistant
+      time: 1h
     SalvageSpecialist:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobCargoTechnician
-      time: 5400 # 1 hour 30 minutes as Cargo Technician
+      time: 90m
     Botanist:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobServiceWorker
-      time: 1200 # 20 minutes as Service Worker
+      time: 20m
     Clown:
     - !type:OverallPlaytimeRequirement
       time: 0
     - !type:RoleTimeRequirement
       role: JobPassenger
-      time: 600 # 10 minutes as Assistant
+      time: 10m
     CargoTechnician:
     - !type:OverallPlaytimeRequirement
       time: 0
     TechnicalAssistant:
     - !type:OverallPlaytimeRequirement
-      time: 300 # 5 minutes overall playtime
+      time: 5m
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 54000 # 15 hrs
-      inverted: true 
+      time: 15h
+      inverted: true
     MedicalIntern:
     - !type:OverallPlaytimeRequirement
-      time: 300 # 5 minutes overall playtime
+      time: 5m
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 54000 # 15 hrs
+      time: 15h
       inverted: true 
     ResearchAssistant:
     - !type:OverallPlaytimeRequirement
-      time: 300 # 5 minutes overall playtime
+      time: 5m
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 54000 # 15 hrs
+      time: 15h
       inverted: true 
     Chaplain:
     - !type:OverallPlaytimeRequirement
@@ -249,7 +252,8 @@
       time: 0
     ServiceWorker:
     - !type:OverallPlaytimeRequirement
-      time: 300 # 5 minutes overall playtime
+      time: 5m
     Visitor:
     - !type:OverallPlaytimeRequirement
       time: 0
+# Starlight end

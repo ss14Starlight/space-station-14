@@ -1,4 +1,15 @@
 - type: entity
+  id: SlimeProcessorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: slime processor machine board
+  description: A machine printed circuit board for a slime processor
+  components:
+    - type: MachineBoard
+      prototype: SlimeProcessor
+      stackRequirements:
+        Manipulator: 2
+
+- type: entity
   id: PrinterDocMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: document printer machine board
@@ -1112,3 +1123,32 @@
         Steel: 5
         Manipulator: 1
         Glass: 2
+
+- type: entity
+  id: NullspaceAnchorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Nullspace anchor circuitboard
+  description: A machine printed circuit board for a nullspace anchor
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: nullspaceanchor
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        CableHV: 10
+        BluespaceCrystal: 1
+        Glass: 2
+          
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: MassDriverCircuitboard
+  name: mass driver board
+  components:
+  - type: MachineBoard
+    prototype: MassDriver
+    stackRequirements:
+      Steel: 5
+      Manipulator: 2
+      Cable: 4

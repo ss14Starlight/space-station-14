@@ -89,7 +89,7 @@ public sealed class ScalingSystem : SharedScalingSystem
             if (job == null)
                 continue;
 
-            if (job.Supervisors.Contains("hos")
+            if (((string)job.Supervisors).Contains("hos")
             || job.Name.Contains("Security"))
             {
                 updatedPopulation += 1 * _securityWeight;
@@ -98,7 +98,7 @@ public sealed class ScalingSystem : SharedScalingSystem
             {
                 updatedPopulation += 1 * _salvageWeight;
             }
-            if (job.Supervisors.Contains("centcom")
+            if (((string)job.Supervisors).Contains("centcom")
                 && !job.Name.Contains("Magistrate")
                 && !job.Name.Contains("Representative"))
             {

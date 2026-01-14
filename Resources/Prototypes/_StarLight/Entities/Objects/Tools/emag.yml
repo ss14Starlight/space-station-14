@@ -7,6 +7,7 @@
   components:
   - type: Emag
     lawset: CommiemovLawset
+    owningFaction: Revolutionary
     components:
       - type: Revolutionary # behold. you can now see revs.
     channelAdd:
@@ -17,3 +18,32 @@
   - type: Item
     sprite: _Starlight/Objects/Tools/emag.rsi
   - type: LimitedCharges
+
+- type: entity
+  parent: [BaseItem, BaseCentcommContraband]
+  id: CCEmagUnlimited
+  suffix: Unlimited
+  name: cryptographic encoder
+  description: A modified cryptographic sequencer, specialized for ERT breach and clear operations on NT stations
+  components:
+    - type: Emag
+      owningFaction: NanoTrasen
+      accessGroups: [CentralCommand]
+      channelAdd: [CentCom]
+      lawset: CCLawset
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/ccemag.rsi
+      state: icon
+    - type: Item
+      sprite: _Starlight/Objects/Tools/ccemag.rsi
+      storedRotation: -90
+
+- type: entity
+  parent: CCEmagUnlimited
+  id: CCEmag
+  suffix: Limited
+  components:
+    - type: LimitedCharges
+    - type: AutoRecharge
+    - type: StaticPrice
+      price: 2500

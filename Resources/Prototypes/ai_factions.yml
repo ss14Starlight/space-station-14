@@ -1,23 +1,26 @@
 - type: npcFaction
   id: Dragon
   hostile:
-    - NanoTrasen
-    - NanoTrasenSilicon # starlight
-    - Syndicate
-    - SyndicateSilicon # starlight
-    - DungeonSyndicate
-    - DungeonSoviet
-    - Xeno
-    - PetsNT
-    - Zombie
-    - Revolutionary
-    - Abyss
-    - Vampire
-    - Changeling
-    - AllHostile
-    - Wizard
-    - Gorilla
-    - Abductor # starlight
+  - NanoTrasen
+  - Syndicate
+  - Xeno
+  - PetsNT
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  #Starlight start
+  - Changeling
+  - DungeonSoviet
+  - DungeonSyndicate
+  - Gorilla
+  - NanoTrasenSilicon
+  - Abductor
+  - Abyss
+  - SyndicateSilicon
+  - Vampire
+  #Starlight end
 
 - type: npcFaction
   id: NanoTrasen
@@ -53,6 +56,8 @@
 
 - type: npcFaction
   id: PetsNT
+  friendly:
+  - NanoTrasen
   hostile:
     - Mouse
     - SimpleHostile

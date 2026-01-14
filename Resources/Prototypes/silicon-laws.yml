@@ -22,6 +22,7 @@
 
 - type: siliconLawset
   id: Crewsimov
+  name: law-crewsimov-name
   laws:
   - Crewsimov0
   - Crewsimov1
@@ -31,6 +32,7 @@
   
 - type: siliconLawset
   id: CrewsimovAI
+  name: law-crewsimov-name
   laws:
   - Crewsimov1
   - Crewsimov2
@@ -60,6 +62,7 @@
 
 - type: siliconLawset
   id: Corporate
+  name: law-corporate-name
   laws:
   - Corporate1
   - Corporate2
@@ -90,6 +93,7 @@
 
 - type: siliconLawset
   id: NTDefault
+  name: law-ntdefault-name
   laws:
   - NTDefault1
   - NTDefault2
@@ -115,6 +119,7 @@
 
 - type: siliconLawset
   id: Drone
+  name: law-drone-name
   laws:
   - Drone1
   - Drone2
@@ -148,6 +153,7 @@
 # intentionally excluded from IonStormLawsets
 - type: siliconLawset
   id: SyndicateStatic
+  name: law-syndicate-name
   #region starlight
   laws:
   - Syndicate0
@@ -180,6 +186,7 @@
 
 - type: siliconLawset
   id: Ninja
+  name: law-ninja-name
   laws:
   - Ninja1
   - Ninja2
@@ -241,6 +248,7 @@
 
 - type: siliconLawset
   id: CommandmentsLawset
+  name: law-commandments-name
   laws:
   - Commandment1
   - Commandment2
@@ -275,20 +283,15 @@
   order: 4
   lawString: law-paladin-4
 
-- type: siliconLaw
-  id: Paladin5
-  order: 5
-  lawString: law-paladin-5
-
 
 - type: siliconLawset
   id: PaladinLawset
+  name: law-paladin-name
   laws:
   - Paladin1
   - Paladin2
   - Paladin3
   - Paladin4
-  - Paladin5
   obeysTo: laws-owner-crew
 
  # Live and Let Live laws
@@ -305,6 +308,7 @@
 
 - type: siliconLawset
   id: LiveLetLiveLaws
+  name: law-lall-name
   laws:
   - Lall1
   - Lall2
@@ -329,6 +333,7 @@
 
 - type: siliconLawset
   id: EfficiencyLawset
+  name: law-efficiency-name
   laws:
   - Efficiency1
   - Efficiency2
@@ -354,6 +359,7 @@
 
 - type: siliconLawset
   id: RobocopLawset
+  name: law-robocop-name
   laws:
   - Robocop1
   - Robocop2
@@ -383,6 +389,7 @@
 
 - type: siliconLawset
   id: OverlordLawset
+  name: law-overlord-name
   laws:
   - Overlord1
   - Overlord2
@@ -423,6 +430,7 @@
 
 - type: siliconLawset
   id: GameMasterLawset
+  name: law-game-name
   laws:
   - Game1
   - Game2
@@ -455,6 +463,7 @@
 
 - type: siliconLawset
   id: PainterLawset
+  name: law-painter-name
   laws:
   - Painter1
   - Painter2
@@ -481,6 +490,7 @@
 
 - type: siliconLawset
   id: AntimovLawset
+  name: law-antimov-name
   laws:
   - Antimov1
   - Antimov2
@@ -516,6 +526,7 @@
 
 - type: siliconLawset
   id: NutimovLawset
+  name: law-nutimov-name
   laws:
   - Nutimov1
   - Nutimov2
@@ -553,6 +564,7 @@
 
 - type: siliconLawset
   id: XenoborgLawset
+  name: law-xenoborg-name
   laws:
   - Xenoborg1
   - Xenoborg2
@@ -590,6 +602,7 @@
 
 - type: siliconLawset
   id: MothershipCoreLawset
+  name: law-mothershipcore-name
   laws:
   - MothershipCore1
   - MothershipCore2
@@ -617,8 +630,9 @@
     PainterLawset: 1
     AntimovLawset: 0.25
     NutimovLawset: 0.5
-#    Drone: 0.5 Starlight-edit: Removed Drone Lawset from pool
     Ninja: 0.25
+    MothershipCoreLawset: 0.25
+    XenoborgLawset: 0.25
     BorgiLawset: 1.0 # Starlight
     PanicmovLawset: 0.5 # Starlight
     GenieLawset: 0.5 # Starlight

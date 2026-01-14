@@ -113,11 +113,13 @@
       200: Critical
       300: Dead
   - type: Stamina
-    critThreshold: 250
+    baseCritThreshold: 250
   - type: MovementAlwaysTouching
   - type: Bloodstream
-    bloodMaxVolume: 300
-    bloodReagent: Vodka
+    bloodReferenceSolution:
+        reagents:
+        - ReagentId: Vodka
+          Quantity: 300
   - type: CombatMode
   - type: Temperature
     heatDamageThreshold: 500

@@ -4,6 +4,7 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Strip;
 using Content.Shared.Verbs;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -27,7 +28,7 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
         
         SubscribeLocalEvent<PrivateStorageComponent, PrivateStorageDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<PrivateStorageComponent, GetVerbsEvent<ActivationVerb>>(AddPrivateStorageVerb);
-        SubscribeLocalEvent<PrivateStorageComponent, ActivateInWorldEvent>(OnActivate);
+        SubscribeLocalEvent<PrivateStorageComponent, ActivateInWorldEvent>(OnActivate, after: [typeof(SharedStrippableSystem)]);
     }
 
     private void OnDoAfter(EntityUid uid, PrivateStorageComponent component, DoAfterEvent args)

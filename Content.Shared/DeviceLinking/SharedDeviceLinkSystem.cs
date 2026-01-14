@@ -215,6 +215,17 @@ public abstract class SharedDeviceLinkSystem : EntitySystem
     }
 
     /// <summary>
+    /// Gets the entities linked to a specific source port.
+    /// </summary>
+    public HashSet<EntityUid> GetLinkedSinks(Entity<DeviceLinkSourceComponent?> source, ProtoId<SourcePortPrototype> port)
+    {
+        if (!Resolve(source, ref source.Comp) || !source.Comp.Outputs.TryGetValue(port, out var linked))
+            return new HashSet<EntityUid>(); // not a source or not linked
+
+        return new HashSet<EntityUid>(linked); // clone to prevent modifying the original
+    }
+
+    /// <summary>
     /// Returns the default links for the given list of source port prototypes
     /// </summary>
     /// <param name="sources">The list of source port prototypes to get the default links for</param>
@@ -378,8 +389,8 @@ public abstract class SharedDeviceLinkSystem : EntitySystem
         {
             foreach (var (sourcePort, sinkPort) in ports)
             {
-                RaiseLocalEvent(sourceUid, new PortDisconnectedEvent(sourcePort));
-                RaiseLocalEvent(sinkUid, new PortDisconnectedEvent(sinkPort));
+                RaiseLocalEvent(sourceUid, new PortDisconnectedEvent(sourcePort, sourceUid, sinkUid));
+                RaiseLocalEvent(sinkUid, new PortDisconnectedEvent(sinkPort, sourceUid, sinkUid));
             }
         }
 
@@ -417,8 +428,8 @@ public abstract class SharedDeviceLinkSystem : EntitySystem
             else
                 _adminLogger.Add(LogType.DeviceLinking, LogImpact.Low, $"unlinked {ToPrettyString(sourceUid):source} {source} and {ToPrettyString(sinkUid):sink} {sink}");
 
-            RaiseLocalEvent(sourceUid, new PortDisconnectedEvent(source));
-            RaiseLocalEvent(sinkUid, new PortDisconnectedEvent(sink));
+            RaiseLocalEvent(sourceUid, new PortDisconnectedEvent(source, sourceUid, sinkUid));
+            RaiseLocalEvent(sinkUid, new PortDisconnectedEvent(sink, sourceUid, sinkUid));
 
             outputs.Remove(sinkUid);
             linkedPorts.Remove((source, sink));

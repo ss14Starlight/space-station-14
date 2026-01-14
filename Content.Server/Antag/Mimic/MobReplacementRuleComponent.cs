@@ -11,7 +11,7 @@ public sealed partial class MobReplacementRuleComponent : Component
     // If you want more components use generics, using a whitelist would probably kill the server iterating every single entity.
 
     [DataField]
-    public EntProtoId Proto = "MobMimic";
+    public Dictionary<EntProtoId, float> Protos = new(){["MobMimic"] = 1}; // Starlight edit
 
     /// <summary>
     /// Chance per-entity.

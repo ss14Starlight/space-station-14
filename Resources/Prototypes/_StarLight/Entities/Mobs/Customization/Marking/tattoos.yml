@@ -2,6 +2,10 @@
   id: ResomiTattooEyeLeft
   bodyPart: Eyes
   markingCategory: Head
+  coloring:
+    layers:
+      eye_left:
+        type: !type:EyeColoring
   speciesRestriction: [ Resomi ]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_eyes.rsi
@@ -11,6 +15,10 @@
   id: ResomiTattooEyeRight
   bodyPart: Eyes
   markingCategory: Head
+  coloring:
+    layers:
+      eye_right:
+        type: !type:EyeColoring
   speciesRestriction: [ Resomi ]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_eyes.rsi
@@ -20,6 +28,10 @@
   id: AvaliTattooEyeLeft
   bodyPart: Eyes
   markingCategory: Head
+  coloring:
+    layers:
+      eye_left:
+        type: !type:EyeColoring
   speciesRestriction: [ Avali ]
   sprites:
   - sprite: _Starlight/Mobs/Customization/Avali/avali_eyes.rsi
@@ -29,6 +41,10 @@
   id: AvaliTattooEyeRight
   bodyPart: Eyes
   markingCategory: Head
+  coloring:
+    layers:
+      eye_right:
+        type: !type:EyeColoring
   speciesRestriction: [ Avali ]
   sprites:
   - sprite: _Starlight/Mobs/Customization/Avali/avali_eyes.rsi

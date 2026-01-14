@@ -125,13 +125,15 @@
       visible: false
   - type: HumanoidAppearance
     species: Vulpkanin
+    undergarmentTop: UndergarmentTopTanktopVulpkanin
+    undergarmentBottom: UndergarmentBottomBoxersVulpkanin
     hideLayersOnEquip:
     - Snout
     - SnoutCover
     - HeadTop
     - HeadSide
     - FacialHair
-    - Hair # Starlight
+    - Hair
   # Starlight start
     # our vulpkanin hair follows normal human layout
     #markingsDisplacement:

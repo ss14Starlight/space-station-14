@@ -68,7 +68,7 @@
     stateDoorOpen: bssecure_open
     stateDoorClosed: bssecure_door
   - type: AccessReader
-    access: [ [ "BlueShield" ] ]
+    access: [["BlueShield"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 
@@ -135,3 +135,28 @@
     stateDoorClosed: miner_door
   - type: AccessReader
     access: [["Mining"]]
+
+# Janitor locker
+- type: entity
+  id: LockerJanitor
+  name: janitorial locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: janitor
+      stateDoorOpen: janitor_open
+      stateDoorClosed: janitor_door
+    - type: AccessReader
+      access: [["Janitor"]]
+
+# ERT version
+- type: entity
+  id: LockerJanitorCC
+  parent: LockerJanitor
+  suffix: Central Command
+  components:
+    - type: AccessReader
+      access: [["CentralCommand"]]

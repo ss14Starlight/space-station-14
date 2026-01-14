@@ -83,3 +83,62 @@
   solids:
     FoodDoughCottonFlat: 1
     FoodPacketMRETrash: 2
+
+- type: microwaveMealRecipe
+  id: RecipeCharcuterie
+  name: charcuterie recipe
+  result: FoodCharcuterie
+  time: 5
+  group: Savoury
+  solids:
+    FoodCheeseSlice: 2
+    FoodMeatCutletCooked: 2
+    FoodBreadPlainSlice: 2
+    FoodPlateSmall: 1
+
+- type: microwaveMealRecipe
+  id: RecipeKhlahKalash
+  name: khlav kalash recipe
+  result: FoodMealKhlavKalash
+  time: 5
+  group: Savoury
+  reagents:
+    Enzyme: 1
+  solids:
+    FoodMeatRotten: 2
+    FoodKebabSkewer: 1
+
+# a deliberately annoying recipe for a fairly dangerous dish:
+- type: microwaveMealRecipe
+  id: RecipeStewSoupBlinding # yes the name is backward, this is consistent with the original
+  name: blinding stew recipe
+  result: FoodSoupStewBlinding
+  time: 29 # good luck getting this timing perfect
+  deviceType: Stove
+  group: Secret
+  reagents:
+    WeldingFuel: 10
+  solids:
+    FoodSoupStew: 1
+
+- type: microwaveMealRecipe
+  id: RecipeHaggis
+  name: haggis recipe
+  result: FoodHaggis
+  time: 15
+  group: Meat
+  reagents:
+    UncookedAnimalProteins: 10
+  solids:
+    OrganAnimalStomach: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBlackPudding
+  name: black pudding recipe
+  result: FoodBlackPudding
+  time: 15
+  group: Meat
+  reagents:
+    Blood: 10
+    Water: 10
+    Fat: 10

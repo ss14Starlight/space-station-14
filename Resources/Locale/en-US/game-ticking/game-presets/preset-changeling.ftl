@@ -12,9 +12,10 @@ changeling-gamemode-description =
     The changeling hive has boarded the station, ready to take anything it desires - be it your equipment, your faces, or your lives!
 
 changeling-role-greeting =
-    You are a changeling who has absorbed and taken the form of {$name}!
-    Your objectives are listed in the character menu.
-    Absorb, shapeshift and evolve to complete them!
+    You are a changeling, a highly intelligent predator.
+    Your primary goal is to escape the station alive via assuming the identities of the denizens of this station.
+    You are hungry and will not make it long without sustenance...
+    Kill. Consume. Hide. Survive.
 
 changeling-briefing =
     You are a changeling.

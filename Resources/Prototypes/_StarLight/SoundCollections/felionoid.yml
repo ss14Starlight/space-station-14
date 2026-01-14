@@ -43,10 +43,20 @@
   - /Audio/_Starlight/Voice/Felionoid/cat_growl1.ogg
   - /Audio/_Starlight/Voice/Felionoid/cat_growl2.ogg
 
-  
+
 - type: soundCollection
   id: FelionoidTrills
   files:
   - /Audio/_Starlight/Voice/Felionoid/cat_trill1.ogg
   - /Audio/_Starlight/Voice/Felionoid/cat_trill2.ogg
   - /Audio/_Starlight/Voice/Felionoid/cat_trill3.ogg
+
+- type: soundCollection
+  id: ClawsSheathe
+  files:
+  - /Audio/Items/sheath.ogg
+
+- type: soundCollection
+  id: ClawsUnsheathe
+  files:
+  - /Audio/Items/unsheath.ogg

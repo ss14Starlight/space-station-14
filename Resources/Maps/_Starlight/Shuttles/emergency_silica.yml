@@ -8291,6 +8291,8 @@ entities:
           showEnts: False
           occludes: True
           ents: []
+- proto: ToiletDirtyWaterFilled
+  entities:
   - uid: 1109
     components:
     - type: Transform

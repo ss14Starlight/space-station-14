@@ -102,7 +102,15 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
 
         foreach (var rule in GetRuleSpawns(entity))
         {
-            var res = GameTicker.StartGameRule(rule, out var ruleUid);
+            // Starlight start
+            // We add the rule passing along the list of child rules, so that
+            // if the rule is added, it's added to our child list before the
+            // events calling its Added method are fired. This makes the rule
+            // hierarchy available for the Added method.
+            var ruleUid = GameTicker.AddGameRule(rule, entity.Comp.Rules);
+            var res = GameTicker.StartGameRule(ruleUid);
+            // Starlight end
+            // var res = GameTicker.StartGameRule(rule, out var ruleUid); Starlight - commented out in favor of the above
             Debug.Assert(res);
 
             executedRules.Add(ruleUid);
@@ -118,7 +126,7 @@ public sealed class DynamicRuleSystem : GameRuleSystem<DynamicRuleComponent>
             }
         }
 
-        entity.Comp.Rules.AddRange(executedRules);
+        //entity.Comp.Rules.AddRange(executedRules); // Starlight - comment
         return executedRules;
     }
 

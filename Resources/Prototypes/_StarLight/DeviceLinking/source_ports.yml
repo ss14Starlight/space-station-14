@@ -13,3 +13,9 @@
   id: ScanGateFail
   name: signal-port-name-scan-gate-fail
   description: signal-port-description-scan-gate-fail
+  
+- type: sourcePort  
+  id: MassDriverConsoleSender
+  name: signal-port-name-mass-driver-console-sender
+  description: signal-port-description-mass-driver-console-sender
+  defaultLinks: [ MassDriverConsoleReceiver ]
