@@ -31,6 +31,16 @@
   components:
   - type: SurgeryLimbSlotCondition
     slot: left arm
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryLimbAttachmentStepLeftArm
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
 
 - type: entity
   parent: SurgeryLimbAttachmentHead
@@ -49,6 +59,16 @@
   components:
   - type: SurgeryLimbSlotCondition
     slot: right arm
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryLimbAttachmentStepRightArm
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
 
 - type: entity
   parent: SurgeryLimbAttachmentHead
@@ -140,6 +160,13 @@
   components:
   - type: SurgeryLimbSlotCondition
     slot: left arm
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncisionSlime
+    steps:
+    - SurgeryStepDeepIncision
+    - SurgeryLimbAttachmentStepLeftArm
+    - SurgeryStepRestoreCartilage
 
 - type: entity
   parent: SurgeryLimbAttachmentSlimeHead
@@ -158,6 +185,13 @@
   components:
   - type: SurgeryLimbSlotCondition
     slot: right arm
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncisionSlime
+    steps:
+    - SurgeryStepDeepIncision
+    - SurgeryLimbAttachmentStepRightArm
+    - SurgeryStepRestoreCartilage
 
 - type: entity
   parent: SurgeryLimbAttachmentSlimeHead

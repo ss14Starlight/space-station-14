@@ -331,5 +331,6 @@
   - type: RandomGridFill
     pathWeights:
       "/Maps/Shuttles/infiltrator.yml": 1
+      "/Maps/_Starlight/Shuttles/blackhorse.yml": 1
     addComponents:
     - type: NukeOpsShuttle

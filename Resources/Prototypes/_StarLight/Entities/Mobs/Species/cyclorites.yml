@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: BaseMobSpeciesOrganic
   id: BaseMobCyclorite
   abstract: true
@@ -118,6 +118,11 @@
             sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
             state: shoes
       neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: neck
+      misc:
         sizeMaps:
           32:
             sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi

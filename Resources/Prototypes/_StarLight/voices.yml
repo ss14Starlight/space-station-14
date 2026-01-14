@@ -707,14 +707,6 @@
   voice: 311
 
 - type: voice
-  id: elivance-hl-alyx
-  name: tts-voice-name-elivance-hl-alyx
-  sex: Male
-  silicon: false
-  voice: 312
-
-
-- type: voice
   id: bronya
   name: tts-voice-name-bronya
   sex: Female
@@ -1029,4 +1021,18 @@
   name: tts-voice-name-felinoid
   sex: Unsexed
   silicon: false
-  voice: 510004
+  voice: 510008
+
+- type: voice
+  id: blahdos 
+  name: tts-voice-name-blahdos
+  sex: Unsexed
+  silicon: true
+  voice: 510006
+
+- type: voice
+  id: talkbox 
+  name: tts-voice-name-talkbox
+  sex: Unsexed
+  silicon: true
+  voice: 510007
