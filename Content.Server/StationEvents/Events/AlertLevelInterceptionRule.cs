@@ -13,14 +13,8 @@ public sealed class AlertLevelInterceptionRule : StationEventSystem<AlertLevelIn
     {
         base.Started(uid, component, gameRule, args);
 
-        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
-        EntityUid? chosenStation = null;
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
-        chosenStation = stationEvent.TargetStation;
-        if (chosenStation is null)
-            if (!TryGetRandomStation(out chosenStation))
-                return;
-        //Starlight end
+        if (!TryGetRandomStation(out var chosenStation))
+            return;
         if (_alertLevelSystem.GetLevel(chosenStation.Value) != "green")
             return;
 

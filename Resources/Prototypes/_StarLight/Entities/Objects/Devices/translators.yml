@@ -33,7 +33,7 @@
   - type: HandheldTranslator
     enabled: false
   - type: Clothing
-    slots: [misc]
+    slots: [neck]
 
 - type: entity
   categories: [ HideSpawnMenu ]

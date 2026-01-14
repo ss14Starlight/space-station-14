@@ -779,8 +779,6 @@
   name: paramedic PDA
   description: Shiny and sterile.
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi #Starlight
   - type: Pda
     id: ParamedicIDCard
   - type: Appearance
@@ -792,13 +790,12 @@
     borderColor: "#d7d7d0"
     accentVColor: "#2a4b5b"
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi #Starlight
     state: pda-paramedic
 
 - type: entity
   parent: BaseMedicalPDA
   id: ChemistryPDA
-  name: chemist PDA # Starlight
+  name: chemistry PDA
   description: It has a few discolored blotches here and there.
   components:
   - type: Pda

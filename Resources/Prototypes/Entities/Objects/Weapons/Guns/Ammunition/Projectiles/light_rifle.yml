@@ -1,8 +1,8 @@
 - type: entity
-  parent: BaseBullet
   id: BulletLightRifle
-  categories: [ HideSpawnMenu ]
   name: bullet (.30 rifle)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -10,10 +10,10 @@
         Piercing: 19
 
 - type: entity
-  parent: BaseBulletPractice
   id: BulletLightRiflePractice
-  categories: [ HideSpawnMenu ]
   name: bullet (.30 rifle practice)
+  parent: BaseBulletPractice
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -21,10 +21,10 @@
         Blunt: 2
 
 - type: entity
-  parent: BaseBulletIncendiary
   id: BulletLightRifleIncendiary
-  categories: [ HideSpawnMenu ]
+  parent: BaseBulletIncendiary
   name: bullet (.30 rifle incendiary)
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -33,10 +33,10 @@
         Heat: 5
 
 - type: entity
-  parent: BaseBulletUranium
   id: BulletLightRifleUranium
-  categories: [ HideSpawnMenu ]
+  parent: BaseBulletUranium
   name: bullet (.30 rifle uranium)
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:

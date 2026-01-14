@@ -1,5 +1,0 @@
-# this thing must be mapped (think nuke, comms console, etc)
-- type: entityCategory
-  id: ShouldMapStation
-  name: entity-category-name-shouldmapstation
-  inheritable: false

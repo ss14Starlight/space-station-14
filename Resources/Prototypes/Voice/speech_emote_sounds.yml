@@ -268,12 +268,6 @@
     Whine:
       collection: Whine
     #endregion Afterlight
-    #region Starlight
-    Bubble:
-      collection: Bubbles
-    Pop:
-      collection: Pops
-    #endregion Starlight
   params:
     variation: 0.125
 
@@ -332,12 +326,6 @@
     Whine:
       collection: Whine
     #endregion Afterlight
-    #region Starlight
-    Bubble:
-      collection: Bubbles
-    Pop:
-      collection: Pops
-    #endregion Starlight
   params:
     variation: 0.125
 
@@ -413,18 +401,8 @@
       collection: Hew
     Honk:
       collection: BikeHorn
-    #region Starlight
-    Crying:
-      path: /Audio/_Starlight/Voice/Arachnid/arachnid_cry.ogg
-    Cough:
-      path: /Audio/_Starlight/Voice/Arachnid/arachnid_cough.ogg
-    Yawn:
-      path: /Audio/_Starlight/Voice/Arachnid/arachnid_yawn.ogg
-    Sigh:
-      path: /Audio/_Starlight/Voice/Arachnid/arachnid_sigh.ogg
     Gasp:
-      path: /Audio/_Starlight/Voice/Arachnid/arachnid_gasp.ogg
-    #endregion Starlight
+      collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
 
@@ -535,18 +513,8 @@
       collection: Hew
     Honk:
       collection: BikeHorn
-    #region Starlight
-    Crying:
-      /Audio/_Starlight/Voice/Moth/moth_cry.ogg
-    Cough:
-      /Audio/_Starlight/Voice/Moth/moth_cough.ogg
-    Yawn:
-      /Audio/_Starlight/Voice/Moth/moth_yawn.ogg
-    Sigh:
-      /Audio/_Starlight/Voice/Moth/moth_sigh.ogg
     Gasp:
-      path: /Audio/_Starlight/Voice/Moth/moth_gasp.ogg
-    #endregion Starlight
+      collection: MaleGasp
     DefaultDeathgasp:
       collection: MothDeathGasp
 
@@ -591,6 +559,52 @@
       path: /Audio/Items/bikehorn.ogg
     Ping:
       path: /Audio/Effects/Cargo/ping.ogg
+
+- type: emoteSounds
+  id: UnisexResomi
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Voice/Resomi/resomi_scream.ogg
+    Laugh:
+      collection: ResomiLaugh
+    Honk:
+      collection: BikeHorn
+    Whistle:
+      path: /Audio/Voice/Resomi/resomi_whistle.ogg
+    Chirp:
+      collection: ResomiChirp
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: DeathGasp
+    Sigh:
+      collection: FemaleSigh
+    Crying:
+      collection: ResomiCry
+    Cough:
+      collection: FemaleCoughs
+    Yawn:
+      collection: FemaleYawn
+    Hisses:
+      collection: FelionoidHisses
+    Purr:
+      collection: FelionoidPurrs
+    Growl:
+      collection: FelionoidGrowls
+    Trill:
+      collection: FelionoidTrills
+    Scree:
+      collection: ResomiScrees
+    Call:
+      collection: ResomiCalls
+    Squawk:
+      collection: ResomiSquawk
 
 - type: emoteSounds
   id: UnisexSiliconXenoborg
@@ -639,9 +653,9 @@
     Bark:
       collection: Bark #Starlight bark
     Whine:
-      collection: Whine #Starlight
+      collection: VulpkaninWhines
     Crying:
-      collection: MaleCry
+      collection: VulpkaninWhines
     Howl:
       path: /Audio/_Starlight/Effects/howl.ogg #Starlight howl
     Yip:
@@ -655,8 +669,6 @@
       collection: Weh
     Hew:
       collection: Hew
-    Honk:
-      collection: BikeHorn
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -687,9 +699,9 @@
     Bark:
       collection: Bark #Starlight bark
     Whine:
-      collection: Whine # Starlight
+      collection: VulpkaninWhines
     Crying:
-      collection: FemaleCry
+      collection: VulpkaninWhines
     Howl:
       path: /Audio/_Starlight/Effects/howl.ogg #Starlight howl
     Yip:
@@ -703,8 +715,6 @@
       collection: Weh
     Hew:
       collection: Hew
-    Honk:
-      collection: BikeHorn
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:

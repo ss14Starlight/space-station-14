@@ -1,11 +1,10 @@
-# NT Representative
 - type: entity
   parent: DoorElectronics
   id: DoorElectronicsNtrep
   suffix: Ntrep, Locked
   components:
   - type: AccessReader
-    access: [["Ntrep"], ["BlueShield"]]
+    access: [["Ntrep"]]
 
 # Robotics
 - type: entity

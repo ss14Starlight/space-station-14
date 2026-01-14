@@ -2,6 +2,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using System.Linq;
+using Content.Shared.FixedPoint;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -172,7 +173,7 @@ public sealed class HealingSystem : EntitySystem
             // Is ent missing blood that we can restore?
             if (healing.Comp.ModifyBloodLevel > 0
                 && _solutionContainerSystem.ResolveSolution(target.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
-                && _bloodstreamSystem.GetBloodLevel((target, bloodstream)) < 1)
+                && bloodSolution.Volume < bloodSolution.MaxVolume)
             {
                 return true;
             }
@@ -231,7 +232,7 @@ public sealed class HealingSystem : EntitySystem
             {
                 if (!solution.Contents.Any(sol => healing.Comp.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
                 {
-                    _popupSystem.PopupClient(Loc.GetString("medical-item-solution-missing", ("item", healing.Owner)), healing.Owner, user);
+                    _popupSystem.PopupEntity(Loc.GetString("medical-item-solution-missing", ("item", healing.Owner)), healing.Owner, user);
                     return false;
                 }
             }

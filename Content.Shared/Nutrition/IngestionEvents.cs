@@ -1,3 +1,5 @@
+using Robust.Shared.Prototypes;
+
 using Content.Shared.Chemistry.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;

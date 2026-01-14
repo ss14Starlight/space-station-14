@@ -9,12 +9,12 @@ namespace Content.Shared.Starlight;
 public sealed partial class BaseLayerIdComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public Dictionary<string, ProtoId<HumanoidSpeciesSpriteLayer>?> Layers = new() { { "Default", null } };
+    public ProtoId<HumanoidSpeciesSpriteLayer>? Layer;
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BaseLayerIdToggledComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public Dictionary<string, ProtoId<HumanoidSpeciesSpriteLayer>?> Layers = new() { { "Default", null } };
+    public ProtoId<HumanoidSpeciesSpriteLayer>? Layer;
 }

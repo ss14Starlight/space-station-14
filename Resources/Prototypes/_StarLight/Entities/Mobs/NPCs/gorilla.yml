@@ -35,10 +35,7 @@
         - id: FoodMeat
           amount: 4
     - type: Bloodstream
-      bloodReferenceSolution:
-        reagents:
-        - ReagentId: Blood
-          Quantity: 300
+      bloodMaxVolume: 300
       # if you fuck with the gorilla he will harambe you
     - type: MeleeWeapon
       altDisarm: false
@@ -57,11 +54,6 @@
       distance: 5
     - type: NPCRetaliation
     - type: FactionException
-    - type: LanguageKnowledge
-      speaks:
-      - Ancestor
-      understands:
-      - Ancestor
     - type: NpcFactionMember
       factions:
         - Gorilla
@@ -137,6 +129,8 @@
 - type: entity
   parent: BaseMobGorilla
   id: MobGorilla
+  components:
+    - type: MonkeyAccent
 
 - type: entity
   name: Rampaging Gorilla
@@ -181,12 +175,6 @@
   id: MobCargorilla
   description: Cargo's pet gorilla. He seems to have an 'I love Mom' tattoo.
   components:
-    - type: LanguageKnowledge
-      speaks:
-      - Ancestor
-      understands:
-      - Ancestor
-      - GalacticCommon
     - type: Sprite
       drawdepth: Mobs
       layers:

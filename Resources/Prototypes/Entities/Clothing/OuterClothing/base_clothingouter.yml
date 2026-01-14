@@ -148,7 +148,6 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
-  - type: HardsuitChemicalImmunity #starlight
   - type: HideLayerClothing
     slots:
     - Tail

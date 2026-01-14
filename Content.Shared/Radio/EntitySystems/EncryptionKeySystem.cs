@@ -168,10 +168,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
     {
         if (!args.IsInDetailsRange)
             return;
-        // 🌟Starlight🌟 start
-        if (!component.CanBeExamined)   
-            return;                     
-        // 🌟Starlight🌟 end
+
         if (component.KeyContainer.ContainedEntities.Count == 0)
         {
             args.PushMarkup(Loc.GetString("encryption-keys-no-keys"));

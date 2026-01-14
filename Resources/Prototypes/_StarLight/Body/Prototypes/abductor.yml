@@ -11,7 +11,6 @@
         brain: OrganAbductorBrain
         eyes: OrganAbductorEyes
         eye_implant: null
-        brain_implant: null
     torso:
       part: TorsoAbductor
       connections:
@@ -36,12 +35,8 @@
       - left hand
     right hand:
       part: RightHandAbductor
-      organs:
-        hand_implant: null
     left hand:
       part: LeftHandAbductor
-      organs:
-        hand_implant: null
     right leg:
       part: RightLegAbductor
       connections:

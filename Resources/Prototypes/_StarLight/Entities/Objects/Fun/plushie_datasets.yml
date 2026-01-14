@@ -35,6 +35,12 @@
     count: 8
 
 - type: localizedDataset
+  id: PlushiesTrystan
+  values:
+    prefix: plushie-trystan-
+    count: 6
+
+- type: localizedDataset
   id: PlushiesOp
   values:
     prefix: plushie-op-

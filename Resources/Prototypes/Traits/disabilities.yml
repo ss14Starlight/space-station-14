@@ -24,7 +24,6 @@
   components:
     - type: PermanentBlindness
       blindness: 4
-      glassesFixable: true # Starlight-edit
 
 - type: trait
   id: Narcolepsy
@@ -94,10 +93,8 @@
   name: trait-hemophilia-name
   description: trait-hemophilia-desc
   category: Disabilities
-  specials:
-  - !type:ApplyStatusEffectSpecial
-    statusEffects:
-    - StatusEffectHemophiliaTrait
+  components:
+  - type: Hemophilia
 
 - type: trait
   id: ImpairedMobility

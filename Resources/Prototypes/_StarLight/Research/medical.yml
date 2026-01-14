@@ -86,33 +86,22 @@
 
 - type: technology
   id: CyberImplantsTech
-  name: research-technology-basic-implants
+  name: research-technology-basic-eye-implants
   icon:
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
-    state: eye_implant_janitor
+    state: eye_implant_welding
   discipline: Biochemical
   tier: 2
   cost: 10000
   recipeUnlocks:
     - EyeImplantWelding
     - EyeImplantMedical
-    - EyeImplantChemistry
-    - EyeImplantDiagnostic
     - EyeImplantSecurity
-    - HandImplantInsulated
-    - HandImplantThrusters
-    - HandImplantForensics
-    - HandImplantClaws
-    - BrainImplantComms
-    - BrainImplantTranslator
-    - CyberRebreather # For now i will be lazy and put it here, not sure if i can excuse making a new pack for just 1 recipe
   technologyPrerequisites:
     - CyberLimbsTech
   radioChannels:
   - Security
   - Medical
-  - Engineering
-  - Supply
 
 #starlight, moved from civilian to medical
 - type: technology
@@ -148,22 +137,25 @@
 # Tier 3
 
 - type: technology
-  id: MedicalCyberLimbsTech
-  name: research-technology-medical-cyberlimbs
+  id: FunctionalCyberLimbsTech
+  name: research-technology-functional-cyberlimbs
   icon:
-    sprite: _Starlight/Objects/Tools/cyberling.rsi
-    state: autoinjector
+    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+    state: cyber-hand-left
   discipline: Biochemical
   tier: 3
   cost: 9320
   recipeUnlocks:
     - LeftArmCyberReaper
     - RightArmCyberReaper
-    - LeftArmCyberAngel
-    - RightArmCyberAngel
+    - LeftArmCyberMechwright
+    - RightArmCyberMechwright
+    - LeftArmCyberBulwark
+    - RightArmCyberBulwark
   technologyPrerequisites:
     - CyberLimbsTech
   radioChannels:
+  - Security
   - Medical
 
 - type: technology
@@ -179,6 +171,23 @@
     - CyberEyeNightVision
   technologyPrerequisites:
     - CyberImplantsTech
+  radioChannels:
+  - Security
+  - Medical
+  
+- type: technology
+  id: CyberEyeThermalVision
+  name: research-technology-thermalvision-eyes
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eyes_thermal
+  discipline: Biochemical
+  tier: 3
+  cost: 9320
+  recipeUnlocks:
+    - CyberEyeThermal
+  technologyPrerequisites:
+    - CyberEyeNightVision
   radioChannels:
   - Security
   - Medical

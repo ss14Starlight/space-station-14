@@ -6,7 +6,6 @@ using Content.Shared.Chat; // Starlight
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint; // Starlight
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -22,7 +21,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
-using Content.Server.Body.Systems;
 
 namespace Content.Server.Medical;
 
@@ -37,8 +35,6 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
-
     [Dependency] private readonly ChatSystem _chat = default!; // Starlight-edit
 
     public override void Initialize()
@@ -212,26 +208,13 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
                 ref bloodstream.BloodSolution, out var bloodSolution))
         {
-            bloodAmount = _bloodstreamSystem.GetBloodLevel(target);
+            bloodAmount = bloodSolution.FillFraction;
             bleeding = bloodstream.BleedAmount > 0;
         }
 
         if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
-
-        // Starlight begin - Get a list of metabolizing chemicals
-        List<(string ReagentId, FixedPoint2 Quantity)>? metabolizingReagents = null;
-        if (TryComp<BloodstreamComponent>(target, out var bloodstreamComp) &&
-            _solutionContainerSystem.TryGetSolution(target, bloodstreamComp.BloodSolutionName, out _, out var chemicalsSolution))
-        {
-            metabolizingReagents = new List<(string, FixedPoint2)>();
-            foreach (var (reagent, quantity) in chemicalsSolution.Contents)
-            {
-                metabolizingReagents.Add((reagent.Prototype, quantity));
-            }
-        }
-        // Starlight end
-
+        
         // Starlight-start: Talking health analyzer
         if (healthComp.Talk && healthComp.NextTalk < _timing.CurTime && TryComp<DamageableComponent>(target, out var damageable) && scanMode)
         {
@@ -248,8 +231,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             bloodAmount,
             scanMode,
             bleeding,
-            unrevivable,
-            metabolizingReagents // Starlight - add metabolizing chemicals to ui message 
+            unrevivable
         ));
     }
 }

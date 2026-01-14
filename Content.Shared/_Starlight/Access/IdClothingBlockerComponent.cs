@@ -16,7 +16,4 @@ public sealed partial class IdClothingBlockerComponent : Component
 
     [DataField("beepSound")]
     public SoundSpecifier BeepSound = new SoundPathSpecifier("/Audio/Effects/beep1.ogg");
-
-    [DataField]
-    public bool FreezeUser = true;
 } 

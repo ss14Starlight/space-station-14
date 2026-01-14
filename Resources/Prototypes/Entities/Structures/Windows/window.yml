@@ -103,7 +103,6 @@
   parent: Window
   id: TintedWindow
   name: tinted window
-  description: Smart tinted window with state switching option. # Starlight
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -118,14 +117,6 @@
   - type: Occluder
   - type: StaticPrice
     price: 70
-  # Starlight Start
-  - type: ToggleableOccluder
-  - type: DeviceLinkSink
-    ports:
-    - On
-    - Off
-    - Toggle
-  # Starlight End
 
 - type: entity
   id: WindowRCDResistant

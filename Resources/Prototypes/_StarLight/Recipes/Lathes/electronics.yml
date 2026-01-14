@@ -72,8 +72,3 @@
   parent: BaseSilverCircuitboardRecipe
   id: MedicalScannerMachineCircuitboard
   result: MedicalScannerMachineCircuitboard
-
-- type: latheRecipe
-  parent: BaseSilverCircuitboardRecipe
-  id: NullspaceAnchorMachineCircuitboard
-  result: NullspaceAnchorMachineCircuitboard

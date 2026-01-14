@@ -1,7 +1,5 @@
 using Content.Shared.Emag.Systems;
 using Robust.Shared.GameStates;
-using Content.Shared.NPC.Prototypes; // Starlight
-using Robust.Shared.Prototypes; // Starlight
 
 namespace Content.Shared.Emag.Components;
 
@@ -16,11 +14,4 @@ public sealed partial class EmaggedComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EmagType EmagType = EmagType.None;
-
-    // Starlight begin
-    /// <summary>
-    /// The faction that emagged this device
-    /// </summary>
-    [DataField, AutoNetworkedField] public ProtoId<NpcFactionPrototype>? OwningFaction;
-    // Starlight end
 }

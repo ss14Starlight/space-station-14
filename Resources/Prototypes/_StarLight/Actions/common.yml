@@ -3,39 +3,55 @@
   name: Toggle Limb
   description: Toggle Limb.
   components:
-    - type: Action
-      useDelay: 1
-      icon:
-        sprite: _Starlight/Interface/Actions/actions_cyber.rsi
-        state: cyber-hand-left
-      itemIconStyle: BigItem
-    - type: InstantAction
-      event: !type:ToggleLimbEvent
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+      state: cyber-hand-left
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleLimbEvent
 
 - type: entity
   id: ActionToggleCyberHandLeft
   name: Toggle Hand.
   description: Toggle the left hand
   components:
-    - type: Action
-      useDelay: 1
-      icon:
-        sprite: _Starlight/Interface/Actions/actions_cyber.rsi
-        state: cyber-hand-left
-      itemIconStyle: BigItem
-    - type: InstantAction
-      event: !type:ToggleLimbEvent
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+      state: cyber-hand-left
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleLimbEvent
 
 - type: entity
   id: ActionToggleCyberHandRight
   name: Toggle Hand.
   description: Toggle the right hand
   components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_cyber.rsi
+      state: cyber-hand-right
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleLimbEvent
+
+- type: entity
+  id: NullPhaseAction
+  name: Phase Shift
+  description: Shift yourself out of alignment with realspace to travel quickly to different areas.
+  categories: [HideSpawnMenu]
+  components:
     - type: Action
       useDelay: 1
       icon:
-        sprite: _Starlight/Interface/Actions/actions_cyber.rsi
-        state: cyber-hand-right
+        sprite: _Starlight/Interface/Actions/shadekin.rsi
+        state: phase
       itemIconStyle: BigItem
+      checkCanInteract: false
     - type: InstantAction
-      event: !type:ToggleLimbEvent
+      event: !type:NullPhaseActionEvent

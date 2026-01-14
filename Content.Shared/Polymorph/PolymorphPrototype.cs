@@ -162,14 +162,7 @@ public sealed partial record PolymorphConfiguration
     {
         "LanguageKnowledge",
         "LanguageSpeaker",
-        "Grammar",
-        "MindShield",
-        "NukeOperative",
-        "HeadRevolutionary",
-        "Revolutionary",
-        "CommandStaff",
-        "BibleUser",
-        "MimePowers"
+        "Grammar"
     };
     // Starlight - End
 

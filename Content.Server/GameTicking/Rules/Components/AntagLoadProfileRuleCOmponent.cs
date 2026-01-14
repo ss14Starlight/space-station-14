@@ -23,10 +23,4 @@ public sealed partial class AntagLoadProfileRuleComponent : Component
     /// </summary>
     [DataField]
     public HashSet<ProtoId<SpeciesPrototype>>? SpeciesOverrideBlacklist;
-
-    /// <summary>
-    /// Starlight - Should apply the profile traits, name and CharacterInfo?
-    /// </summary>
-    [DataField]
-    public bool ApplyCharacterProfile = false;
 }

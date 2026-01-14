@@ -31,9 +31,7 @@
     state: ointment
   - type: Item
     heldPrefix: ointment
-    storedSprite:
-      state: ointment-storage
-      sprite: Objects/Specific/Medical/medical.rsi
+    storedRotation: 45
   - type: Healing
     damageContainers:
       - Biological

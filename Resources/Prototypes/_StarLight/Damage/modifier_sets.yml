@@ -59,8 +59,3 @@
     Slash: 2
     Heat: 0.75
     Bloodloss: 0
-
-- type: damageModifierSet
-  id: SlimeFireproofPotionEffect
-  coefficients:
-    Heat: -10.0

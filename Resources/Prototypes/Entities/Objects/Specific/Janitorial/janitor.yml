@@ -37,6 +37,7 @@
   - type: Item
     size: Large
     sprite: Objects/Specific/Janitorial/mop.rsi
+    storedRotation: 45
   - type: Absorbent
     useAbsorberSolution: true
   - type: SolutionContainerManager
@@ -283,7 +284,7 @@
   id: PlungerLoot
   weights:
     RandomSpawner100: 56
-    SpacemenFigurineSpawner90: 28
+    SpacemenFigureSpawner: 28
     SpawnMobCockroach: 5
     MaintenanceToolSpawner: 5
     SpawnMobMoproach: 2

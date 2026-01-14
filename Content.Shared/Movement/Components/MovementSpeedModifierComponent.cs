@@ -64,9 +64,9 @@ namespace Content.Shared.Movement.Components
         #region calculated values
 
         [ViewVariables]
-        public float CurrentWalkSpeed => Math.Clamp(WalkSpeedModifier, MinSpeedMod, MaxSpeedMod) * BaseWalkSpeed; // 🌟Starlight🌟
+        public float CurrentWalkSpeed => WalkSpeedModifier * BaseWalkSpeed;
         [ViewVariables]
-        public float CurrentSprintSpeed => Math.Clamp(SprintSpeedModifier, MinSpeedMod, MaxSpeedMod) * BaseSprintSpeed; // 🌟Starlight🌟
+        public float CurrentSprintSpeed => SprintSpeedModifier * BaseSprintSpeed;
 
         /// <summary>
         /// The acceleration applied to mobs when moving. If this is ever less than Friction the mob will be slower.
@@ -95,14 +95,6 @@ namespace Content.Shared.Movement.Components
 
         [AutoNetworkedField, ViewVariables]
         public float SprintSpeedModifier = 1.0f;
-
-        // 🌟Starlight🌟 Start
-        [AutoNetworkedField, ViewVariables]
-        public float MinSpeedMod = 0.0f;
-
-        [AutoNetworkedField, ViewVariables]
-        public float MaxSpeedMod = 20.0f;
-        // 🌟Starlight🌟 End
 
         #endregion
 

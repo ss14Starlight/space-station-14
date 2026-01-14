@@ -12,7 +12,6 @@
         eyes: OrganHumanEyes
         tongue: OrganHumanTongue
         eye_implant: null
-        brain_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoReptilian
       connections:
@@ -37,12 +36,8 @@
       - left hand
     right hand:
       part: RightHandReptilian
-      organs: # 🌟Starlight🌟
-        hand_implant: null # 🌟Starlight🌟
     left hand:
       part: LeftHandReptilian
-      organs: # 🌟Starlight🌟
-        hand_implant: null # 🌟Starlight🌟
     right leg:
       part: RightLegReptilian
       connections:

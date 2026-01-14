@@ -2,7 +2,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.EntityConditions;
-using Content.Shared.FixedPoint;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -57,12 +56,6 @@ public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEff
                     ApplyEffects(entity, entry.Effects, scale);
             }
         }
-    }
-
-    /// <inheritdoc cref="ApplyEffects(EntityUid,EntityEffect[],float,EntityUid?)"/>
-    public void ApplyEffects(EntityUid target, EntityEffect[] effects, FixedPoint2 scale, EntityUid? user = null)
-    {
-        ApplyEffects(target, effects, scale.Float());
     }
 
     /// <summary>

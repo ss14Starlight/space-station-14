@@ -8,7 +8,6 @@ using Content.Shared.DeviceNetwork.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Log;
 using Content.Shared.TextScreen;
-using Content.Shared.Station.Components; // Starlight
 
 
 namespace Content.Server.Screen.Systems;
@@ -46,10 +45,6 @@ public sealed class ScreenSystem : EntitySystem
         var query = EntityQueryEnumerator<ScreenComponent>();
         while (query.MoveNext(out var uid, out var screen))
         {
-            //Starlight begin
-            if (!TryComp<StationMemberComponent>(Transform(uid).GridUid, out var stationMember)) continue;
-            if (stationMember.Station != args.Station) continue;
-            //Starlight end
             _appearanceSystem.SetData(uid, TextScreenVisuals.AlertLevel, args.AlertLevel);
         }
     }

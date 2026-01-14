@@ -101,10 +101,15 @@ public sealed partial class GhostThemeWindow : DefaultWindow
 
         foreach (var ghostTheme in _prototypeManager.EnumeratePrototypes<GhostThemePrototype>())
         {
-            if (ghostTheme.Private && !_availableThemes.Contains(ghostTheme.ID))
-                continue;
+            var toolTipText = "";
 
-            var toolTipText = string.Join(", ", ghostTheme.Requirements.Select(x=>x.GetRequirementDescription()));
+            if (ghostTheme.Requirement != null && _prototypeManager.TryIndex(ghostTheme.Requirement, out var req))
+            {
+                toolTipText = Loc.GetString(
+                    "roles-req-any-role-required",
+                    ("discord", Loc.GetString(req.Discord)),
+                    ("roles", Loc.GetString(req.RolesLoc)));
+            }
 
             var ghostPicker = new GhostPicker(_sprites,
                 ghostTheme.SpriteSpecifier.Sprite,
@@ -112,15 +117,19 @@ public sealed partial class GhostThemeWindow : DefaultWindow
                 !_availableThemes.Contains(ghostTheme.ID));
             GhostThemesContainer.AddChild(ghostPicker);
 
-            ghostPicker.ToolTip = toolTipText;
-            if (_availableThemes.Contains(ghostTheme.ID))
+            if (!_availableThemes.Contains(ghostTheme.ID))
             {
-                ghostPicker.OnPressed += args =>
-                {
-                    SelectedTheme = ghostTheme.ID;
-                    RefreshUI();
-                };
+                ghostPicker.ToolTip = toolTipText;
             }
+
+            if (ghostTheme.Ckey != null)
+                ghostPicker.Visible = _availableThemes.Contains(ghostTheme.ID);
+
+            ghostPicker.OnPressed += args =>
+            {
+                SelectedTheme = ghostTheme.ID;
+                RefreshUI();
+            };
         }
     }
 

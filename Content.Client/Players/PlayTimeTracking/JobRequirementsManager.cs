@@ -17,10 +17,6 @@ using Robust.Shared.Utility;
 using Content.Client._Starlight.Managers;
 using Content.Client.Lobby;
 using Content.Shared.Starlight;
-using Content.Shared._NullLink;
-using Content.Shared.NullLink.CCVar;
-using static Content.Shared._NullLink.NullLink;
-using Microsoft.CodeAnalysis;
 #endregion Starlight
 
 namespace Content.Client.Players.PlayTimeTracking;
@@ -34,18 +30,10 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
 
+    private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _jobBans = new();
     private readonly List<string> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
-
-    // nulllink start
-    private Dictionary<string, TimeSpan> _originalRoles = [];
-    private readonly Dictionary<string, TimeSpan> _mergedRoles = new();
-    private Dictionary<string, Dictionary<string, TimeSpan>> _rolesPerServer = [];
-    private ServerPlaytimeRecognitionPrototype? _serverPlaytimeRecognition;
-    private string? _project;
-    private string? _server;
-    // nulllink end
 
     private ISawmill _sawmill = default!;
 
@@ -60,71 +48,15 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgPlayTime>(RxPlayTime);
         _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
-        // NullLink start
-        _net.RegisterNetMessage<MsgUpdatePlayerPlayTime>(Update);
-        _cfg.OnValueChanged(NullLinkCCVars.Project, x => _project = x, true);
-        _cfg.OnValueChanged(NullLinkCCVars.Server, x => _server = x, true);
-        // NullLink end
-
         _client.RunLevelChanged += ClientOnRunLevelChanged;
     }
-
-    // Nulllink start
-    private void Update(MsgUpdatePlayerPlayTime message)
-    {
-        _rolesPerServer = message.RolePlayTimePerServer;
-        MergePlayTime();
-    }
-
-    private void MergePlayTime()
-    {
-        _mergedRoles.Clear();
-
-        foreach (var (tracker, time) in _originalRoles)
-            _mergedRoles[tracker] = time;
-
-        if (_server is null || _project is null)
-            return;
-
-        if (_serverPlaytimeRecognition is null)
-        {
-            if (!_prototypes.TryIndex<ServerPlaytimeRecognitionPrototype>(_project, out var serverPlaytimeRecognition))
-                return;
-
-            _serverPlaytimeRecognition = serverPlaytimeRecognition;
-        }
-
-        if (_serverPlaytimeRecognition?.Recognition.TryGetValue(_server, out var servers) is true)
-        {
-            foreach (var server in servers)
-            {
-                if (_rolesPerServer.TryGetValue(server, out var rolesForServer))
-                {
-                    foreach (var (tracker, time) in rolesForServer)
-                    {
-                        if (_mergedRoles.ContainsKey(tracker))
-                            _mergedRoles[tracker] += time;
-                        else
-                            _mergedRoles[tracker] = time;
-                    }
-                }
-            }
-        }
-
-        Updated?.Invoke();
-    }
-    // Nulllink end
 
     private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
     {
         if (e.NewLevel == ClientRunLevel.Initialize)
         {
             // Reset on disconnect, just in case.
-            // NullLink start
-            _originalRoles.Clear();
-            _mergedRoles.Clear();
-            _rolesPerServer.Clear();
-            // NullLink end
+            _roles.Clear();
             _jobWhitelists.Clear();
             _jobBans.Clear();
             _antagBans.Clear();
@@ -144,23 +76,20 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
     private void RxPlayTime(MsgPlayTime message)
     {
-        // NullLink start
-        _originalRoles = message.Trackers;
+        _roles.Clear();
 
-        MergePlayTime();
-        //// NOTE: do not assign _roles = message.Trackers due to implicit data sharing in integration tests.
-        //foreach (var (tracker, time) in message.Trackers)
-        //{
-        //    _originalRoles[tracker] = time;
-        //}
+        // NOTE: do not assign _roles = message.Trackers due to implicit data sharing in integration tests.
+        foreach (var (tracker, time) in message.Trackers)
+        {
+            _roles[tracker] = time;
+        }
 
-        ///*var sawmill = Logger.GetSawmill("play_time");
-        //foreach (var (tracker, time) in _roles)
-        //{
-        //    sawmill.Info($"{tracker}: {time}");
-        //}*/
-        //Updated?.Invoke();
-        // NullLink end
+        /*var sawmill = Logger.GetSawmill("play_time");
+        foreach (var (tracker, time) in _roles)
+        {
+            sawmill.Info($"{tracker}: {time}");
+        }*/
+        Updated?.Invoke();
     }
 
     private void RxJobWhitelist(MsgJobWhitelist message)
@@ -286,7 +215,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         var reasons = new List<string>();
         foreach (var requirement in requirements)
         {
-            if (requirement.Check(_entManager, player, _prototypes, profile, _mergedRoles, out var jobReason))
+            if (requirement.Check(_entManager, player, _prototypes, profile, _roles, out var jobReason))
                 continue;
 
             reasons.Add(jobReason.ToMarkup());
@@ -320,17 +249,10 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         return true;
     }
 
-    // nullink
-    public TimeSpan GetServerPlaytime(string server, string tracker)
-        => _rolesPerServer.TryGetValue(server, out var rolesForServer)
-            && rolesForServer.TryGetValue(tracker, out var time)
-            ? time
-            : TimeSpan.Zero;
-
-    // nullink
     public TimeSpan FetchOverallPlaytime()
-        => _mergedRoles
-            .TryGetValue("Overall", out var overallPlaytime) ? overallPlaytime : TimeSpan.Zero;
+    {
+        return _roles.TryGetValue("Overall", out var overallPlaytime) ? overallPlaytime : TimeSpan.Zero;
+    }
 
     //starlight edit, string changed to JobPrototype
     public IEnumerable<KeyValuePair<JobPrototype, TimeSpan>> FetchPlaytimeByRoles()
@@ -339,7 +261,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         foreach (var job in jobsToMap)
         {
-            if (_mergedRoles.TryGetValue(job.PlayTimeTracker, out var locJobName))
+            if (_roles.TryGetValue(job.PlayTimeTracker, out var locJobName))
             {
                 yield return new KeyValuePair<JobPrototype, TimeSpan>(job, locJobName);
             }
@@ -361,8 +283,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
                 //get it as the actual type
                 if (!_prototypes.TryIndex(job, out JobPrototype? jobProto))
                     continue;
-
-                if (_mergedRoles.TryGetValue(jobProto.PlayTimeTracker, out var time))
+                
+                if (_roles.TryGetValue(jobProto.PlayTimeTracker, out var time))
                 {
                     departmentTime += time;
                 }
@@ -384,6 +306,6 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             return new Dictionary<string, TimeSpan>();
         }
 
-        return _mergedRoles;
+        return _roles;
     }
 }

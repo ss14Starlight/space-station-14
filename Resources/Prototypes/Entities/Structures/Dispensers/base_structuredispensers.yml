@@ -71,6 +71,8 @@
       machine_parts: !type:Container
       beakerSlot: !type:ContainerSlot
       storagebase: !type:Container
+  - type: StaticPrice
+    price: 1000
   - type: WiresPanel
   - type: EmptyOnMachineDeconstruct
     containers:
@@ -101,9 +103,6 @@
       cell_slot: !type:ContainerSlot { }
   - type: PowerCellSlot
     cellSlotId: cell_slot
-  - type: Charger
-    slotId: cell_slot
-    passiveDraw: 5
   - type: ItemSlots
     slots:
       cell_slot:

@@ -39,15 +39,9 @@ public sealed partial class StaminaComponent : Component
     public float StaminaDamage;
 
     /// <summary>
-    /// The base stamina the entity requires to enter stam crit. Should rarely if ever be modified outside of yaml.
+    /// How much stamina damage is required to enter stam crit.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public float BaseCritThreshold = 100f;
-
-    /// <summary>
-    /// Modified crit threshold for when an entity should enter stamcrit.
-    /// </summary>
-    [ViewVariables, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public float CritThreshold = 100f;
 
     /// <summary>

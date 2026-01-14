@@ -163,7 +163,7 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
         HashSet<ProtoId<AccessLevelPrototype>> allowedByDoorGroups = new();
         HashSet<ProtoId<AccessLevelPrototype>> actuallySetOnDoor = new();
 
-        ProtoId<AccessLevelPrototype>[] availableAccess = [];
+        ProtoId<AccessLevelPrototype>[] availableAccess;
         ProtoId<AccessLevelPrototype>[] pressedAccess;
         ProtoId<AccessLevelPrototype>[] missingAccess;
         // Starlight edit End
@@ -218,9 +218,7 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
                 allowedByDoorGroups.UnionWith(allowedByConfigurator);
             }
 
-            availableAccess = !component.OverridesTargetRestrictions
-                ? allowedByConfigurator.Intersect(allowedByDoorGroups).ToArray()
-                : allowedByConfigurator.ToArray();
+            availableAccess = allowedByConfigurator.Intersect(allowedByDoorGroups).ToArray();
 
             foreach (var set in accessReaderEnt.Value.Comp.AccessLists)
                 actuallySetOnDoor.UnionWith(set);
@@ -258,8 +256,7 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
             privilegedIdName,
             targetLabel,
             targetLabelColor,
-            component.ShowPrivilegedId,
-            groupsArray, // Starlight
+            groupsArray,
             component.CurrentAccessGroup); // Starlight
 
         _userInterface.SetUiState(uid, AccessOverriderUiKey.Key, newState);

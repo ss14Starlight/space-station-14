@@ -7,14 +7,3 @@
     exclusiveAntag: true
     antagPrototype: LoneAbductorAntag
   - type: Abductor
-
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleBrighteye
-  name: Brighteye Role
-  components:
-  - type: MindRole
-    antagPrototype: Brighteye
-    subtype: roles-antag-brighteye-name
-    exclusiveAntag: true
-  - type: BrighteyeRole

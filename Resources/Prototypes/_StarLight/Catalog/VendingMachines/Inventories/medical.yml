@@ -2,24 +2,12 @@
   id: VendorGoldenBeaker
   productEntity: GoldenBeaker
   cost:
-    NTCredit: 300
-  categories:
-  - SLChemistry
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
-  - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSilverBeaker
-  productEntity: SilverBeaker
-  cost:
     NTCredit: 200
   categories:
   - SLChemistry
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 5
+    stock: 2
   - !type:BuyerAccessCondition
 
 - type: listing

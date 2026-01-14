@@ -33,8 +33,6 @@
   - type: Sprite
     sprite: Objects/Consumable/Drinks/icebucket.rsi
     state: icon
-  - type: Item # Starlight
-    size: Normal # Starlight
   - type: PhysicalComposition
     materialComposition:
       Steel: 75

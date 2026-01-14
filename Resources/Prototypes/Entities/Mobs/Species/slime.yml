@@ -65,7 +65,7 @@
   - type: Speech
     speechVerb: Slime
     speechSounds: Slime
-    allowedEmotes: ['Squish', 'Bubble', 'Pop'] # Starlight
+    allowedEmotes: ['Squish']
   - type: TypingIndicator
     proto: slime
   - type: Vocal
@@ -93,10 +93,10 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Bloodstream
-    bloodReferenceSolution: # TODO Color slime blood based on their slime color or smth
+    bloodReagents: # TODO Color slime blood based on their slime color or smth
       reagents:
       - ReagentId: Slime
-        Quantity: 300
+        Quantity: 1
   - type: Barotrauma
     damage:
       types:

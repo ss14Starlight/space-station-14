@@ -107,21 +107,18 @@ public sealed class VomitSystem : EntitySystem
         {
             var vomitAmount = solutionSize;
 
-            // Flushes small portion of the chemicals removed from the bloodstream stream
-            if (_solutionContainer.ResolveSolution(uid, bloodStream.BloodSolutionName, ref bloodStream.BloodSolution))
+            // Takes 10% of the chemicals removed from the chem stream
+            if (_solutionContainer.ResolveSolution(uid, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
             {
-                var vomitChemstreamAmount = _bloodstream.FlushChemicals((uid, bloodStream), vomitAmount);
+                var vomitChemstreamAmount = _solutionContainer.SplitSolution(bloodStream.ChemicalSolution.Value, vomitAmount);
+                vomitChemstreamAmount.ScaleSolution(ChemMultiplier);
+                solution.AddSolution(vomitChemstreamAmount, _proto);
 
-                if (vomitChemstreamAmount != null)
-                {
-                    vomitChemstreamAmount.ScaleSolution(ChemMultiplier);
-                    solution.AddSolution(vomitChemstreamAmount, _proto);
-                    vomitAmount -= (float)vomitChemstreamAmount.Volume;
-                }
+                vomitAmount -= (float)vomitChemstreamAmount.Volume;
             }
 
             // Makes a vomit solution the size of 90% of the chemicals removed from the chemstream
-            solution.AddReagent(new ReagentId(VomitPrototype, _bloodstream.GetEntityBloodData((uid, bloodStream))), vomitAmount);
+            solution.AddReagent(new ReagentId(VomitPrototype, _bloodstream.GetEntityBloodData(uid)), vomitAmount);
         }
 
         if (_puddle.TrySpillAt(uid, solution, out var puddle, false))

@@ -512,34 +512,15 @@
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
 
-# region Xenoborg
-- type: entity
-  parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
-  id: XenoborgModuleRCD
-  name: engineering xenoborg module
-  description: Module with a recharging xenoborg RCD
-  components:
-  - type: Sprite
-    layers:
-    - state: xenoborg_engi
-    - state: icon-rcd
-  - type: ItemBorgModule
-    hands:
-    - item: RCDXeno
-    - item: BorgFireExtinguisher
-    - item: BorgHandheldGPSBasic
-    - item: GasAnalyzer
-    - item: HolofanProjectorBorg
-    - item: GeigerCounter
-  - type: BorgModuleIcon
-    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-rcd-module }
-
 # region Cargo
 - type: entity
   id: BaseBorgModuleMining
   parent: BaseBorgModule
   abstract: true
   components:
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-salvage
   - type: Tag
     tags:
     - BorgModuleMining
@@ -559,12 +540,17 @@
         color: "#613D1D"
       - state: base-stripes-inhand-right
         color: "#520079"
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
 
 - type: entity
   id: BaseBorgModuleSupply
   parent: BaseBorgModule
   abstract: true
   components:
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-cargo
   - type: Tag
     tags:
     - BorgModuleSupply
@@ -584,6 +570,8 @@
         color: "#613D1D"
       - state: base-stripes-inhand-right
         color: "#cbb036"
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
 
 - type: entity
   id: BorgModuleBountyPaperPlaceholder
@@ -606,7 +594,6 @@
   name: hauling cyborg module
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-mats
@@ -647,7 +634,6 @@
   name: mail cyborg module
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: hauling
     - state: icon-mail
@@ -660,5 +646,33 @@
         whitelist:
           components:
           - Delivery
+    - hand: # Second one is so it can pick up packages
+        emptyRepresentative: BorgModuleMailPlaceholder 
+        emptyLabel: borg-slot-mail-empty
+        whitelist:
+          components:
+          - Delivery
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: mail-module }
+    
+# region Xenoborg
+- type: entity
+  parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleRCD
+  name: engineering xenoborg module
+  description: Module with a recharging xenoborg RCD
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_engi
+    - state: icon-rcd
+  - type: ItemBorgModule
+    hands:
+    - item: RCDXeno
+    - item: BorgFireExtinguisher
+    - item: BorgHandheldGPSBasic
+    - item: GasAnalyzer
+    - item: HolofanProjectorBorg
+    - item: GeigerCounter
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-rcd-module }

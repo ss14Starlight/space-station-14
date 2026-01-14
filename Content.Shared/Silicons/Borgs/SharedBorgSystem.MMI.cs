@@ -17,7 +17,8 @@ public abstract partial class SharedBorgSystem
         SubscribeLocalEvent<MMIComponent, MindAddedMessage>(OnMMIMindAdded);
         SubscribeLocalEvent<MMIComponent, MindRemovedMessage>(OnMMIMindRemoved);
 
-        SubscribeLocalEvent<MMIComponent, EntRemovedFromContainerMessage>(OnMMILinkedRemoved);
+        SubscribeLocalEvent<MMILinkedComponent, MindAddedMessage>(OnMMILinkedMindAdded);
+        SubscribeLocalEvent<MMILinkedComponent, EntGotRemovedFromContainerMessage>(OnMMILinkedRemoved);
     }
 
     private void OnMMIInit(Entity<MMIComponent> ent, ref ComponentInit args)
@@ -34,6 +35,9 @@ public abstract partial class SharedBorgSystem
             return;
 
         var brain = args.Entity;
+        var linked = EnsureComp<MMILinkedComponent>(brain);
+        linked.LinkedMMI = ent.Owner;
+        Dirty(brain, linked);
 
         if (_mind.TryGetMind(brain, out var mindId, out var mindComp))
         {
@@ -56,22 +60,35 @@ public abstract partial class SharedBorgSystem
         _appearance.SetData(ent.Owner, MMIVisuals.HasMind, false);
     }
 
-    private void OnMMILinkedRemoved(Entity<MMIComponent> ent, ref EntRemovedFromContainerMessage args)
+    private void OnMMILinkedMindAdded(Entity<MMILinkedComponent> ent, ref MindAddedMessage args)
+    {
+        if (ent.Comp.LinkedMMI == null || !_mind.TryGetMind(ent.Owner, out var mindId, out var mindComp))
+            return;
+
+        _mind.TransferTo(mindId, ent.Comp.LinkedMMI, true, mind: mindComp);
+    }
+
+    private void OnMMILinkedRemoved(Entity<MMILinkedComponent> ent, ref EntGotRemovedFromContainerMessage args)
     {
         if (_timing.ApplyingState)
             return; // The changes are already networked with the same game state
 
-        if (args.Container.ID != ent.Comp.BrainSlotId)
+        if (Terminating(ent.Owner))
             return;
 
-        if (_mind.TryGetMind(ent, out var mindId, out var mindComp))
-        {
-            _mind.TransferTo(mindId, args.Entity, true, mind: mindComp);
+        if (ent.Comp.LinkedMMI is not { } linked)
+            return;
 
+        RemCompDeferred<MMILinkedComponent>(ent.Owner);
+
+        if (_mind.TryGetMind(linked, out var mindId, out var mindComp))
+        {
             if (_roles.MindHasRole<SiliconBrainRoleComponent>(mindId))
                 _roles.MindRemoveRole<SiliconBrainRoleComponent>(mindId);
+
+            _mind.TransferTo(mindId, ent.Owner, true, mind: mindComp);
         }
 
-        _appearance.SetData(ent, MMIVisuals.BrainPresent, false);
+        _appearance.SetData(linked, MMIVisuals.BrainPresent, false);
     }
 }

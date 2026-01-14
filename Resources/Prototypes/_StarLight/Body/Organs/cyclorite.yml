@@ -59,8 +59,7 @@
     - type: NightVision
   - type: OrganVisualization
     layer: Eyes
-    prototypes:
-      Default: MobCycloriteEyes
+    prototype: MobCycloriteEyes
 
 - type: entity
   id: OrganCycloriteTongue
@@ -176,6 +175,7 @@
     metabolizerTypes: [ Slime ]
     groups:
     - id: Alcohol
+      rateModifier: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
 
 - type: entity
   id: OrganCycloriteKidneys

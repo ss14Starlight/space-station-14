@@ -114,10 +114,11 @@
     - type: Input
       context: "human"
     - type: Bloodstream
-      bloodReferenceSolution:
+      bloodMaxVolume: 300
+      bloodReagents:
         reagents:
         - ReagentId: Laughter
-          Quantity: 300
+          Quantity: 1
 - type: entity
   name: behonker
   parent: BaseMobBehonker

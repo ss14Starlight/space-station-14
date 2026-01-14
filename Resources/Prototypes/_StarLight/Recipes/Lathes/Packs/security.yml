@@ -110,6 +110,7 @@
   - MagazineShotgun
   - MagazineShotgunEmpty
   - MagazineShotgunSlug
+
   - SpeedLoaderMagnumBasic
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug
@@ -307,12 +308,3 @@
   recipes:
   - LeftArmCyberBulwark
   - RightArmCyberBulwark
-  - LeftArmCyberZeus
-  - RightArmCyberZeus
-
-- type: latheRecipePack
-  id: SecurityImplants
-  recipes:
-  - HandImplantClaws
-  - HandImplantForensics
-

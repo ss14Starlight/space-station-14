@@ -5,6 +5,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Bots;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Chat; // Starlight
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Specific;
 

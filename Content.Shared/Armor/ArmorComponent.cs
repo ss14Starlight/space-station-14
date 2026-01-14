@@ -17,6 +17,9 @@ public sealed partial class ArmorComponent : Component
     [DataField(required: true)]
     public DamageModifierSet Modifiers = default!;
     
+    [DataField("staminaModifier")]
+    public float StaminaDamageModifier = 1.0f;
+    
     /// <summary>
     /// A multiplier applied to the calculated point value
     /// to determine the monetary value of the armor
@@ -29,21 +32,6 @@ public sealed partial class ArmorComponent : Component
     /// </summary>
     [DataField]
     public bool ShowArmorOnExamine = true;
-
-    #region Starlight
-
-    /// <summary>
-    /// If true, ignores knockdown from tasers.
-    /// </summary>
-    [DataField]
-    public bool IgnoreKnockdown = false;
-
-    /// <summary>
-    /// Stamina damage reduction
-    /// </summary>
-    [DataField("staminaModifier")]
-    public float StaminaDamageModifier = 1.0f;
-    #endregion
 }
 
 /// <summary>

@@ -1,94 +1,44 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Starlight, Monke Station, Paradise Station",
+  "copyright": "Made by Conflee",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "arrowup",
-	  "copyright": "Conflee"
+      "name": "arrowup"
     },
     {
-      "name": "bee",
-	  "copyright": "Paradise"
+      "name": "bee"
     },
     {
       "name": "borgsrogue"
     },
     {
-      "name": "crab",
-	  "copyright": "Paradise"
+      "name": "crab"
     },
     {
-      "name": "hazard_middle",
-	  "copyright": "Monke"
+      "name": "hazard_middle"
     },
     {
-      "name": "lies",
-	  "copyright": "Paradise"
+      "name": "lies"
     },
     {
-      "name": "road_corner",
-	  "copyright": "Monke"
+      "name": "road_corner"
     },
     {
-      "name": "road_straight",
-	  "copyright": "Monke"
+      "name": "road_straight"
     },
     {
-      "name": "skull_sketch",
-	  "copyright": "Paradise"
+      "name": "skull_sketch"
     },
     {
-      "name": "stop_line",
-	  "copyright": "Monke"
+      "name": "stop_line"
     },
     {
-      "name": "yip",
-	  "copyright": "Paradise"
-    },
-	{
-      "name": "aurum",
-	  "copyright": "Conflee"
-    },
-	{
-      "name": "devil",
-	  "copyright": "Conflee"
-    },
-	{
-      "name": "gray",
-	  "copyright": "Conflee"
-    },
-	{
-      "name": "heart_arrow",
-	  "copyright": "Paradise"
-    },
-	{
-      "name": "marsfall",
-	  "copyright": "Conflee"
-    },
-	{
-      "name": "syndikat",
-	  "copyright": "Paradise"
-    },
-	{
-      "name": "TSPD",
-	  "copyright": "Conflee"
-    },
-	{
-      "name": "USSPsketch",
-	  "copyright": "Conflee"
-    },
-	{
-      "name": "xenoborg",
-	  "copyright": "Conflee"
-    },
-	{
-      "name": "you_are_dead",
-	  "copyright": "Paradise"
+      "name": "yip"
     }
   ]
 }

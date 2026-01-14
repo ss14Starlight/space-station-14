@@ -94,7 +94,6 @@
   id: WeaponMiniEnergyGun
   description: An energy gun capable of switching between lethal and debilitating lasers.
   components:
-  - type: StationGridMemory
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/mini.rsi
     layers:
@@ -165,7 +164,6 @@
   id: WeaponDominator
   description: A high-tech weapon created by the law enforcement organization Sibyl System, designed specifically to fight crime.
   components:
-  - type: StationGridMemory
   - type: Appearance
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/dominator.rsi
@@ -272,7 +270,8 @@
   - type: PredictedBattery
     maxCharge: 1500
     startingCharge: 1500
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
+    autoRecharge: true
     autoRechargeRate: 20
 
 - type: entity
@@ -316,7 +315,8 @@
   - type: PredictedBattery
     maxCharge: 2000
     startingCharge: 2000
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
+    autoRecharge: true
     autoRechargeRate: 100
     autoRechargePauseTime: 44
 
@@ -341,7 +341,8 @@
     - Back
   - type: Gun
     fireRate: 0.6
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
+    autoRecharge: true
     autoRechargeRate: 40 #100sec+60Sec Pause
     autoRechargePauseTime: 60
   - type: BatteryAmmoProvider
@@ -378,7 +379,8 @@
     - 0, 0, 3, 1
   - type: Gun
     fireRate: 0.6
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
+    autoRecharge: true
     autoRechargeRate: 40 #100sec+60Sec Pause
     autoRechargePauseTime: 60
   - type: BatteryAmmoProvider
@@ -462,7 +464,8 @@
     size: Small
     shape:
     - 0, 0, 1, 1
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
+    autoRecharge: true
     autoRechargeRate: 200
   - type: MagazineVisuals
     magState: stun
@@ -783,7 +786,8 @@
   - type: PredictedBattery
     maxCharge: 2000
     startingCharge: 2000
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
+    autoRecharge: true
     autoRechargeRate: 500
 
 - type: entity
@@ -805,7 +809,8 @@
     - type: BatteryAmmoProvider
       proto: ProjectilePolyboltJohnToe
       fireCost: 200
-    - type: PredictedBatterySelfRecharger
+    - type: BatterySelfRecharger
+      autoRecharge: true
       autoRechargeRate: 40 #every 5 seconds another becomes toe.
     - type: MagazineVisuals
       magState: mag
@@ -875,7 +880,8 @@
   - type: PredictedBattery
     maxCharge: 1500
     startingCharge: 1500
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
+    autoRecharge: true
     autoRechargeRate: 80
     autoRechargePauseTime: 10
 
@@ -917,6 +923,7 @@
   - type: PredictedBattery
     maxCharge: 500
     startingCharge: 500
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
+    autoRecharge: true
     autoRechargeRate: 50
     autoRechargePauseTime: 10

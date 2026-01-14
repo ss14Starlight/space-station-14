@@ -110,8 +110,7 @@ names-ai-dataset-78 = NT v6.0
 names-ai-dataset-79 = Packard Bell
 names-ai-dataset-80 = PTO
 names-ai-dataset-81 = Project Y2K
-# Starlight edit - Avoiding other people getting an accidental note for impersonation
-names-ai-dataset-82 = GLaTRES
+names-ai-dataset-82 = Revelation
 names-ai-dataset-83 = Robot Devil
 names-ai-dataset-84 = S.A.M.
 names-ai-dataset-85 = S.H.O.C.K.

@@ -11,9 +11,6 @@
       blacklist:
       - Abductor
       - Skeleton
-    - !type:SubjectMindAntagCondition
-      blacklist:
-      - Brighteye
       
 # Example(Smokeable) Prototype
 

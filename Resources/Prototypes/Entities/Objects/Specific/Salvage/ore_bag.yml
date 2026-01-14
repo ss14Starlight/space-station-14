@@ -51,7 +51,7 @@
     visuals:
       enum.ToggleableVisuals.Enabled:
         enum.ToggleableVisuals.Layer:
-          True: { state: "magnet" }
+          True: { state: "icon-on" }
           False: { state: "icon" }
   # Starlight Edit End
 

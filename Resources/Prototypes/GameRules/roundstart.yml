@@ -150,15 +150,9 @@
     # Starlight Start
     denyGameRules:
     - AbductorsSpawn
-  - type: SubRule
-    table: !type:GroupSelector
-      children:
-      - id: NukiePlanetSpawn
-      - id: NukiePlanetSpawnWestern
-  # Starlight end
-  # Starlight - removing the LoadMapRule from here to instead handle it in the dynamic rules above
-  #- type: LoadMapRule
-  #  mapPath: /Maps/_Starlight/nukieplanet.yml
+    # Starlight End
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/nukieplanet.yml
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:

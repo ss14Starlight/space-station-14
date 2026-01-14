@@ -2,8 +2,7 @@
   id: StarlightOasis
   mapName: 'Oasis'
   mapPath: /Maps/_Starlight/Stations/Oasis.yml
-  minPlayers: 50
-  maxPlayers: 150
+  minPlayers: 65
   stations:
     StarlightOasis:
       stationProto: StandardNanotrasenStation

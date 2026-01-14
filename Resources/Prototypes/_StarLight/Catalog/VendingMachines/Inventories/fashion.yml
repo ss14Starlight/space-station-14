@@ -455,14 +455,3 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
-
-- type: listing
-  id: ClothingBackpackDuffelRegaliaFilled
-  productEntity: ClothingBackpackDuffelRegaliaFilled
-  cost:
-    NTCredit: 500
-  categories:
-    - SLFashionOther
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2

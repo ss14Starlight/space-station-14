@@ -1,7 +1,6 @@
 using Content.Shared.Guidebook;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Content.Shared.Preferences.Loadouts; // Starlight
 
 namespace Content.Shared.Roles;
 
@@ -57,14 +56,6 @@ public sealed partial class AntagPrototype : IPrototype
     /// </summary>
     [DataField]
     public List<ProtoId<GuideEntryPrototype>>? Guides;
-
-    // Starlight Start
-    /// <summary>
-    /// Antag Loadout prototype
-    /// </summary>
-    [DataField]
-    public List<ProtoId<RoleLoadoutPrototype>>? RoleLoadout;
-    // Starlight End
 
     /// <summary>
     /// If this is not null, this antag will be allowed to be displayed on the character customization screen if that

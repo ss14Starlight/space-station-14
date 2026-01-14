@@ -8,6 +8,8 @@ namespace Content.Server.Speech.EntitySystems
 {
     public sealed class ChavAccentSystem : EntitySystem
     {
+        [Dependency] private readonly IRobustRandom _random = default!;
+
         // Regex for splitting on words:
         private static readonly Regex s_wordSplit = new(pattern: "([\\p{P}\\p{Z}])",
             options: RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -23,11 +25,11 @@ namespace Content.Server.Speech.EntitySystems
             { "neck", "Gregory" }, // 'Gregory Peck'
             { "necks", "Gregories" }, // 'Gregory Peck'
             { "fart", "raspberry" }, // 'raspberry tart'
-            // { "head", "loaf" }, // 'loaf of bread'
-            // { "heads", "loaves" }, // 'loaf of bread'
-            // { "eye", "mince" }, // 'mince pie'
-            // { "eyes", "minces" }, // 'mince pie'
-            // { "feet", "plates" }, // 'plates of meat'
+            { "head", "loaf" }, // 'loaf of bread'
+            { "heads", "loaves" }, // 'loaf of bread'
+            { "eye", "mince" }, // 'mince pie'
+            { "eyes", "minces" }, // 'mince pie'
+            { "feet", "plates" }, // 'plates of meat'
             { "hat", "titfer" }, // 'tit for tat'
             { "wife", "trouble" }, // 'trouble and strife'
             { "sweetheart", "treacle" }, // 'treacle tart'
@@ -51,7 +53,7 @@ namespace Content.Server.Speech.EntitySystems
             { "bro", "bruv" },
             { "brother", "bruvva" },
             { "bud", "bruv" },
-            { "friend", "wanka" },
+            { "friend", "wankuh" },
             { "friends", "mates" },
             { "sister", "sista" },
             { "sir", "guv" },
@@ -60,16 +62,16 @@ namespace Content.Server.Speech.EntitySystems
             { "secoff", "bobby" },
             { "secoffs", "bobbies" },
             { "officer", "guv" },
-            /* { "hop", "form fairy" },
+            { "hop", "form fairy" },
             { "qm", "jobsworth" },
             { "doctor", "quack" },
             { "doctors", "quacks" },
-            { "psych", "pill pusher" },*/
+            { "psych", "pill pusher" },
             { "psychologist", "pill pusher" },
             { "surgeon", "sawbones" },
             { "surgeons", "sawbones" },
             { "medbay", "A&E" },
-            // { "station", "madhouse" },
+            { "station", "madhouse" },
             { "speso", "quid" },
             { "spesos", "quid" },
             { "credit", "quid" },
@@ -91,17 +93,14 @@ namespace Content.Server.Speech.EntitySystems
             { "stolen", "nicked" },
             { "steals", "nicks" },
             { "stealing", "nicking" },
-            /*{ "cc", "Council" },
+            { "cc", "Council" },
             { "centcom", "Council" },
-            { "centcomm", "Council" },*/
+            { "centcomm", "Council" },
             { "maam", "lady" },
             { "this", "dis" },
             { "that", "dat" },
             { "these", "deez" },
             { "those", "doze" },
-            { "though", "al'o" },
-            { "although", "al'o" },
-            { "alright", "awlrite" },
             { "they", "dey" },
             { "the", "da" },
             { "their", "ez" },
@@ -137,7 +136,7 @@ namespace Content.Server.Speech.EntitySystems
             { "bartenders", "barkeeps" },
             { "assistant", "drudge" },
             { "assistants", "drudges" },
-            { "jerk", "wanka" },
+            { "jerk", "wankuh" },
             { "asshole", "berk" },
             { "idiot", "twit" },
             { "guy", "bloke" },
@@ -154,30 +153,28 @@ namespace Content.Server.Speech.EntitySystems
             { "woman", "dame" },
             { "stinky", "rancid" },
             { "smelly", "foul" },
-            { "moff", "buggy wanka" },
-            { "birb", "feavvery wanka" },
-            { "moffs", "buggy wankas" },
-            { "birbs", "feavvery wankas" },
+            { "moff", "wankuh" },
+            { "birb", "wankuh" },
             { "feather", "feavver" },
             { "feathery", "feavvery" },
             { "feathers", "feavvers" },
             { "feathered", "feavvered" },
             { "feathering", "feavvering" },
-            { "bird", "feavvery wanka" },
+            { "bird", "feavvery wankuh" },
             { "girl", "bird" },
             { "girls", "birds" },
-            { "vox", "gassy wanka" },
-            { "cat", "hissy wanka" },
-            { "cyclorite", "one-eyed wanka" },
-            { "resomi", "wanka" },
-            { "avali", "wanka" },
-            { "vulp", "drooling wanka" },
-            { "voxes", "gassy wankas" },
-            { "cats", "hissy wankas" },
-            { "cyclorites", "one-eyed wankas" },
-            { "resomis", "wankas" },
-            { "avalis", "wankas" },
-            { "vulps", "drooling wankas" },
+            { "vox", "gassy wankuh" },
+            { "cat", "hissy wankuh" },
+            { "cyclorite", "cyclops" },
+            { "resomi", "wankuh" },
+            { "avali", "wankuh" },
+            { "vulp", "drooling wankuh" },
+            { "voxes", "gassy wankuhs" },
+            { "cats", "hissy wankuhs" },
+            { "cyclorites", "cyclopses" },
+            { "resomis", "wankuhs" },
+            { "avalis", "wankuhs" },
+            { "vulps", "drooling wankuhs" },
             { "dorf", "manlet" },
             { "dorfs", "manlets" },
             { "dwarf", "manlet" },
@@ -185,12 +182,12 @@ namespace Content.Server.Speech.EntitySystems
             { "dwarves", "manlets" },
             { "borg", "toaster" },
             { "borgs", "toasters" },
-            /*{ "bso", "filth" },
+            { "bso", "filth" },
             { "cap", "boss" },
             { "captain", "boss" },
             { "iaa", "shark" },
             { "iaas", "sharks" },
-            { "ntr", "judge" },*/
+            { "ntr", "judge" },
             { "magi", "fancy nob" },
             { "right", "roight" },
             { "fine", "foine" },

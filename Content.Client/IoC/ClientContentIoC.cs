@@ -73,7 +73,6 @@ namespace Content.Client.IoC
             // NullLink start
             collection.Register<INullLinkPlayerRolesManager, NullLinkPlayerRolesManager>();  
             collection.Register<ISharedNullLinkPlayerRolesReqManager, PlayerRolesReqManager>();
-            collection.Register<INullLinkPlayTimeManager, NullLinkPlayTimeManager>();
             // NullLink end
 
             collection.Register<PreWrittenDocumentManager>(); // Starlight

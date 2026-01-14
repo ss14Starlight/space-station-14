@@ -55,7 +55,7 @@
     steps:
     - SurgeryStepDeepIncision
     - SurgeryStepInciseCartilage
-    - SurgeryStepSeparateSlime
+    - SurgeryStepSawSkull
   - type: SurgerySpeciesCondition
     speciesBlacklist: []
     speciesWhitelist:

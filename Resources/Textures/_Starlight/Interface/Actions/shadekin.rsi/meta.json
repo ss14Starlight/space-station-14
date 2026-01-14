@@ -10,14 +10,6 @@
         {
             "name": "phase",
             "directions": 1
-        },
-        {
-            "name": "rest",
-            "directions": 1
-        },
-        {
-            "name": "shadeskip",
-            "directions": 1
         }
     ]
 }

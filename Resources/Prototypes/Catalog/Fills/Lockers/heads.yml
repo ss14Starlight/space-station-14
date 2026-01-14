@@ -418,7 +418,7 @@
     children:
     - id: ClothingNeckCloakHosElite # Starlight
     - id: WeaponEnergySMG # Starlight
-    # - id: WeaponEnergyMagnum # Starlight - Removed, given to det
+    - id: WeaponEnergyMagnum
     - id: BookSpaceLaw
     - id: BoxEncryptionKeySecurity
     - id: CigarGoldCase

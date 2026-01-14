@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC0-1.0",
-    "copyright": "Created by TacoLlama (github) for Starlight",
+    "copyright": "Created by TacoLlama (github) for Starlight, Inhands taken from vgstation at commit https://github.com/vgstation-coders/vgstation13/commit/cdbcb1e858b11f083994a7a269ed67ef5b452ce9",
     "size": {
         "x": 32,
         "y": 32
@@ -14,7 +14,11 @@
             "name": "hauling"
         },
         {
+<<<<<<< HEAD
             "name": "salvage"
+=======
+            "name": "mining"
+>>>>>>> a8952d0e51ca9a581c30a7fe657d1a62bca4461b
         },
         {
             "name": "icon-mats"
@@ -24,6 +28,38 @@
         },
         {
             "name": "icon-paperwork"
+        },
+        {
+            "name": "base-icon-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-icon-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-module-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-module-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-part-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-part-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-stripes-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-stripes-inhand-right",
+            "directions": 4
         }
     ]
 }
