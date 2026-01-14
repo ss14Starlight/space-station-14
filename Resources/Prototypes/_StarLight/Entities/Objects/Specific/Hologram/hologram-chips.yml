@@ -1,0 +1,50 @@
+# Brain Chip
+- type: entity
+  parent: BaseItem
+  id: HologramBrainChip
+  name: hologram brain chip
+  description: A chip containing the neural data for holographic projection. The cortical stack of a vox.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/cortical_stack.rsi
+      layers:
+        - state: cortical-stack
+    - type: Tag
+      tags:
+        - HologramBrainChip
+    - type: Item
+      size: Small
+    - type: HologramBrainChip
+    - type: MindContainer
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: robot
+
+# Body Chip
+- type: entity
+  parent: BaseItem
+  id: HologramBodyChip
+  name: hologram body chip
+  description: A chip containing the physical appearance data for holographic projection.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/body_chip.rsi
+      state: body-chip
+    - type: Tag
+      tags:
+        - HologramBodyChip
+    - type: Item
+      size: Small
+    - type: HologramBodyChip
+
+# Holo Corgi Body Chip
+- type: entity
+  parent: HologramBodyChip
+  id: HologramBodyChipCorgi
+  name: hologram body chip (holo corgi)
+  description: A chip pre-programmed with Holo Corgi appearance data.
+  components:
+    - type: HologramBodyChip
+      hologramPrototype: MobCorgiHolo
+      hologramName: "Holo Corgi"

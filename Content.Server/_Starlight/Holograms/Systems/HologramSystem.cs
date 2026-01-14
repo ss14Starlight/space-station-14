@@ -119,7 +119,7 @@ public sealed class HologramSystem : SharedHologramSystem
         var mob = HoloFetchAndSpawn(pref, coords, "MobHologramHardlight");
 
         // Only prompt for consent if requested
-        // When spawning from disk, consent was already obtained when saving to disk
+        // When spawning from blade server, consent was already obtained when saving to blade server
         if (promptConsent)
         {
             HologramsWaitingForMind.Add(mindId, mob);

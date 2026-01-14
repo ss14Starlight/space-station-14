@@ -12,12 +12,12 @@ using System.Linq;
 namespace Content.Client._Starlight.Holograms.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class HologramConsoleWindow : DefaultWindow
+public sealed partial class HologramConsoleWindow : BaseWindow
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    private readonly IEntityManager _entManager;
     private readonly SpriteSystem _spriteSystem;
     
-    private NetEntity? _selectedDisk;
+    private NetEntity? _selectedBladeServer;
     private NetEntity? _selectedProjector;
     private bool _isPortableMode;
     private readonly Texture? _blipTexture;
@@ -25,24 +25,29 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
 
     public event Action<NetEntity, NetEntity>? OnProjectHologram;
     public event Action? OnRecallHologram;
-    public event Action<NetEntity>? OnEjectDisk;
+    public event Action<NetEntity>? OnEjectBladeServer;
     public event Action<bool>? OnToggleCarry;
 
     public HologramConsoleWindow()
     {
         RobustXamlLoader.Load(this);
-        IoCManager.InjectDependencies(this);
         
+        var dependencies = IoCManager.InitThread();
+        _entManager = dependencies.Resolve<IEntityManager>();
         _spriteSystem = _entManager.System<SpriteSystem>();
         _blipTexture = _spriteSystem.Frame0(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_circle.png")));
 
+        // Initialize NavMap as hidden until server is connected
+        NavMap.Visible = false;
+        NoServerOverlay.Visible = true;
+
         ProjectButton.OnPressed += _ =>
         {
-            if (_selectedDisk.HasValue)
+            if (_selectedBladeServer.HasValue)
             {
                 // In portable mode, projector selection is not needed use dummy NetEntity
                 var projector = _isPortableMode ? NetEntity.Invalid : (_selectedProjector ?? NetEntity.Invalid);
-                OnProjectHologram?.Invoke(_selectedDisk.Value, projector);
+                OnProjectHologram?.Invoke(_selectedBladeServer.Value, projector);
             }
         };
 
@@ -65,6 +70,9 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
     
     private void SetupNavMap(HologramConsoleBoundUserInterfaceState state)
     {
+        // Ensure NavMap is visible before setting up
+        NavMap.Visible = true;
+        
         // Get the first projector's grid for the NavMap
         if (state.ProjectorCoordinates.Count > 0)
         {
@@ -74,12 +82,7 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
             if (_entManager.TryGetComponent<TransformComponent>(firstCoords.EntityId, out var xform))
             {
                 NavMap.MapUid = xform.GridUid;
-                NavMap.Visible = true;
             }
-        }
-        else
-        {
-            NavMap.Visible = false;
         }
         
         // Update projector blips on the map
@@ -133,7 +136,7 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
         
         // Control UI element visibility
         MapPanel.Visible = state.ShowMap;
-        LeftPanel.Visible = state.ShowDiskPanel;
+        LeftPanel.Visible = state.ShowBladeServerPanel;
         ProjectButton.Visible = state.ShowProjectButton;
         RecallButton.Visible = state.ShowRecallButton;
         ControlsPanel.Visible = state.ShowProjectButton || state.ShowRecallButton;
@@ -141,6 +144,10 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
         if (isPortable)
         {
             ModeLabel.Text = "PORTABLE MODE";
+            
+            // Hide NavMap in portable mode
+            NavMap.Visible = false;
+            NoServerOverlay.Visible = false;
             
             // Update battery
             if (state.BatteryPercent.HasValue)
@@ -176,72 +183,101 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
         {
             PortableInfoLabel.Visible = false;
             
-            // Check if server is connected
+            // Check if connected to hologram server machine (NOT blade servers)
             if (!state.HasServer)
             {
-                // Show no server labels
-                NoServerDiskLabel.Visible = true;
-                NoServerMapLabel.Visible = true;
+                // Debug: Confirm we're in the no-server path
+                
+                // Show overlay that covers the NavMap
+                NoServerOverlay.Visible = true;
+                NavMap.Visible = false;
+                
+                // Clear any existing NavMap data
+                NavMap.TrackedEntities.Clear();
+                NavMap.MapUid = null;
                 
                 // Clear UI elements
-                DisksList.RemoveAllChildren();
                 StatusLabel.Text = "No server connected";
                 StatusLabel.FontColorOverride = Color.FromHex("#ef4444");
                 ActiveIndicator.Text = "● OFFLINE";
                 ActiveIndicator.FontColorOverride = Color.FromHex("#ef4444");
-                ProjectButton.Disabled = true;
-                RecallButton.Disabled = true;
                 
-                // Don't set up NavMap
+                // Don't set up NavMap - no HologramServer machine
                 return;
             }
             
-            // Hide no server labels when server is connected
-            NoServerDiskLabel.Visible = false;
-            NoServerMapLabel.Visible = false;
+            // Hide overlay and show NavMap when connected to HologramServer machine
+            NoServerOverlay.Visible = false;
+            NavMap.Visible = true;
             
-            // Set up NavMap for stationary mode
+            // Check if blade servers are available for hologram list
+            if (state.BladeServers.Count == 0)
+            {
+                // Show no blade servers label
+                NoBladeServersLabel.Visible = true;
+                
+                // Clear blade servers list
+                BladeServersList.RemoveAllChildren();
+                StatusLabel.Text = "No blade servers available";
+                StatusLabel.FontColorOverride = Color.FromHex("#ef4444");
+                ActiveIndicator.Text = " ● NO DATA ";
+                ActiveIndicator.FontColorOverride = Color.FromHex("#6b7280");
+                
+                ProjectButton.Disabled = true;
+                RecallButton.Disabled = true;
+            }
+            else
+            {
+                // Hide no blade servers label when blade servers exist
+                NoBladeServersLabel.Visible = false;
+            }
+        }
+        
+        // Set up NavMap for stationary mode (when connected to HologramServer machine)
+        if (!isPortable && state.HasServer)
+        {
             SetupNavMap(state);
         }
 
         // Update status
-        if (state.Disks.Count == 0)
+        if (state.BladeServers.Count == 0)
         {
-            StatusLabel.Text = "No hologram disks loaded";
+            StatusLabel.Text = "No blade servers available";
             StatusLabel.FontColorOverride = Color.FromHex("#ef4444");
             ActiveIndicator.Text = " ● NO DATA ";
             ActiveIndicator.FontColorOverride = Color.FromHex("#6b7280");
-            DisksList.RemoveAllChildren();
+            
+            // Clear blade server list but keep it visible
+            BladeServersList.RemoveAllChildren();
+            
             ProjectButton.Disabled = true;
             RecallButton.Disabled = true;
         }
         else
         {
-            StatusLabel.Text = $"{state.Disks.Count} hologram profile(s) available";
+            StatusLabel.Text = $"{state.BladeServers.Count} hologram(s) available";
             StatusLabel.FontColorOverride = Color.FromHex("#7dd3fc");
             
             var hasActive = state.ActiveHologram != null || state.ActiveCount > 0;
             ActiveIndicator.Text = hasActive ? "● ACTIVE" : "● READY";
             ActiveIndicator.FontColorOverride = hasActive ? Color.FromHex("#10b981") : Color.FromHex("#fbbf24");
             
-            // Update disk list
-            DisksList.RemoveAllChildren();
-            foreach (var disk in state.Disks)
+            // Update blade server list
+            BladeServersList.RemoveAllChildren();
+            foreach (var bladeServer in state.BladeServers)
             {
-                var diskEntry = new DiskListEntry(disk, hasActive && disk.IsActive);
-                diskEntry.OnSelected += () =>
+                var bladeServerEntry = new BladeServerListEntry(bladeServer, hasActive && bladeServer.IsActive);
+                bladeServerEntry.OnSelected += () =>
                 {
-                    _selectedDisk = disk.Uid;
+                    _selectedBladeServer = bladeServer.Uid;
                     UpdateSelectionState(state);
                 };
-                diskEntry.OnEject += () => OnEjectDisk?.Invoke(disk.Uid);
-                DisksList.AddChild(diskEntry);
+                bladeServerEntry.OnEject += () => OnEjectBladeServer?.Invoke(bladeServer.Uid);
+                BladeServersList.AddChild(bladeServerEntry);
             }
             
             RecallButton.Disabled = !hasActive;
         }
-
-        DiskCountLabel.Text = $"{state.Disks.Count} / {state.MaxDiskSlots}";
 
         // Update projector count and map (both modes)
         ProjectorCountLabel.Text = state.Projectors.Count > 0 ? $" {state.Projectors.Count} Projectors " : " No Projectors ";
@@ -260,11 +296,11 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
 
     private void UpdateSelectionState(HologramConsoleBoundUserInterfaceState state)
     {
-        // Update disk selections
-        foreach (var child in DisksList.Children)
+        // Update blade server selections
+        foreach (var child in BladeServersList.Children)
         {
-            if (child is DiskListEntry entry)
-                entry.SetSelected(entry.DiskUid == _selectedDisk);
+            if (child is BladeServerListEntry entry)
+                entry.SetSelected(entry.BladeServerUid == _selectedBladeServer);
         }
         
         // Projector selection is now done via NavMap blips
@@ -275,29 +311,29 @@ public sealed partial class HologramConsoleWindow : DefaultWindow
         // Enable project button based on mode
         if (state.IsPortable)
         {
-            // Portable: just need a disk, projects at briefcase location
-            ProjectButton.Disabled = _selectedDisk == null || state.ActiveCount >= state.MaxActive;
+            // Portable: just need a blade server, projects at briefcase location
+            ProjectButton.Disabled = _selectedBladeServer == null || state.ActiveCount >= state.MaxActive;
             ProjectButton.Text = state.ActiveCount > 0 ? "▶ PROJECT ANOTHER" : "▶ PROJECT";
         }
         else
         {
-            // Stationary: need disk and projector, single active hologram
-            ProjectButton.Disabled = _selectedDisk == null || _selectedProjector == null || state.ActiveHologram != null;
+            // Stationary: need blade server and projector, single active hologram
+            ProjectButton.Disabled = _selectedBladeServer == null || _selectedProjector == null || state.ActiveHologram != null;
         }
     }
 }
 
-public sealed class DiskListEntry : PanelContainer
+public sealed class BladeServerListEntry : PanelContainer
 {
-    public NetEntity DiskUid { get; }
+    public NetEntity BladeServerUid { get; }
     public event Action? OnSelected;
     public event Action? OnEject;
     
     private readonly PanelContainer _panel;
 
-    public DiskListEntry(DiskInfo info, bool isActive)
+    public BladeServerListEntry(BladeServerInfo info, bool isActive)
     {
-        DiskUid = info.Uid;
+        BladeServerUid = info.Uid;
 
         _panel = new PanelContainer
         {

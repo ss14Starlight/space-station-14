@@ -23,6 +23,7 @@ accept-hologram-window-deny-button = Deny
 
 # Hologram Console UI
 hologram-console-window-title = Hologram Console
+hologram-console-window-footer-flavor = DEVICE FIRMWARE © 2125 NANOSOFT
 hologram-console-no-disk = No hologram disk loaded
 hologram-console-disk-loaded = Hologram disk loaded
 hologram-console-projector-list = Available Projectors

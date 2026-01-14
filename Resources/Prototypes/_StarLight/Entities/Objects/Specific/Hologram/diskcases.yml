@@ -5,28 +5,37 @@
   description: A portable hologram projection system in a secure briefcase. Requires power to project holograms.
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Storage/Briefcases/briefcase_secure.rsi
+      sprite: _Starlight/Objects/Devices/holographic_breifcase.rsi
+      noRot: true
       layers:
-        - state: icon
-        - state: open
-          shader: unshaded
         - state: closed
-          shader: unshaded
-          map: ["enum.LockVisualLayers.Lock"]
-        - state: spark
-          shader: unshaded
+          map: ["base"]
+        - state: screen
           visible: false
-          map: ["spark"]
-    - type: LockVisuals
-      stateLocked: closed
-      stateUnlocked: open
+          map: ["screen"]
+        - sprite: _Starlight/Structures/Machines/blade_server.rsi
+          state: inhand
+          visible: false
+          map: ["blade"]
+    - type: GenericVisualizer
+      visuals:
+        enum.HologramBriefcaseVisuals.State:
+          base:
+            Closed: { state: closed }
+            Open: { state: open }
+            Active: { state: open }
+          screen:
+            Closed: { visible: false }
+            Open: { visible: true }
+            Active: { visible: true }
+        enum.HologramBriefcaseVisuals.HasBlade:
+          blade:
+            True: { visible: true }
+            False: { visible: false }
+    - type: Appearance
     - type: Item
       sprite: _Starlight/Objects/Storage/Briefcases/briefcase_secure.rsi
       size: Huge
-    - type: Storage
-      maxItemSize: Large
-      grid:
-        - 0,0,3,2
     - type: AccessReader
       access: [["ResearchDirector"]]
     - type: ActivatableUI
@@ -38,33 +47,32 @@
       maxActiveHolograms: 2
       allowHologramCarry: false
       powerDrawPerHologram: 50
-      diskSlot: hologram_disk_slot
       searchRange: 0 # Don't search for servers in portable mode
+      bladeServerScanRange: 15 # Scan for blade servers
       showMap: false
     - type: HologramProjector
       projectorRange: 5.0
     - type: ContainerContainer
       containers:
-        hologram_disk_slot: !type:ContainerSlot
         cell_slot: !type:ContainerSlot
-        storagebase: !type:Container
+        blade_server_slot: !type:ContainerSlot
     - type: ItemSlots
       slots:
-        hologram_disk_slot:
-          name: Hologram Disk
-          whitelist:
-            requireAll: true
-            tags:
-              - HoloDisk
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellMedium
+        blade_server_slot:
+          name: Blade Server
+          whitelist:
+            components:
+              - BladeServer
+          insertOnInteract: true
+          ejectOnInteract: false
+          ejectOnBreak: true
     - type: PowerCellSlot
       cellSlotId: cell_slot
     - type: UserInterface
       interfaces:
-        enum.StorageUiKey.Key:
-          type: StorageBoundUserInterface
         enum.DigitalLockUiKey.Key:
           type: DigitalLockBoundUserInterface
         enum.HologramConsoleUiKey.Key:

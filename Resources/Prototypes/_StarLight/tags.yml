@@ -187,7 +187,13 @@
   id: HiltWood
 
 - type: Tag
-  id: HoloDisk
+  id: HologramDisk
+
+- type: Tag
+  id: HologramBodyChip
+
+- type: Tag
+  id: HologramBrainChip
 
 - type: Tag
   id: HoloProjectorCamera

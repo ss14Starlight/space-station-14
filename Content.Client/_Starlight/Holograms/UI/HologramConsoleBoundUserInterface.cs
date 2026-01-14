@@ -19,7 +19,7 @@ public sealed class HologramConsoleBoundUserInterface : BoundUserInterface
         _window = this.CreateWindow<HologramConsoleWindow>();
         _window.OnProjectHologram += OnProjectHologram;
         _window.OnRecallHologram += OnRecallHologram;
-        _window.OnEjectDisk += OnEjectDisk;
+        _window.OnEjectBladeServer += OnEjectBladeServer;
         _window.OnToggleCarry += OnToggleCarry;
     }
 
@@ -33,14 +33,14 @@ public sealed class HologramConsoleBoundUserInterface : BoundUserInterface
         _window?.UpdateState(castState);
     }
 
-    private void OnProjectHologram(NetEntity diskUid, NetEntity projectorUid) =>
-        SendMessage(new HologramConsoleProjectHologramMessage(diskUid, projectorUid));
+    private void OnProjectHologram(NetEntity bladeServerUid, NetEntity projectorUid) =>
+        SendMessage(new HologramConsoleProjectHologramMessage(bladeServerUid, projectorUid));
 
     private void OnRecallHologram() =>
         SendMessage(new HologramConsoleRecallMessage());
 
-    private void OnEjectDisk(NetEntity diskUid) =>
-        SendMessage(new HologramConsoleEjectDiskMessage(diskUid));
+    private void OnEjectBladeServer(NetEntity bladeServerUid) =>
+        SendMessage(new HologramConsoleEjectBladeServerMessage(bladeServerUid));
 
     private void OnToggleCarry(bool allowCarry) =>
         SendMessage(new HologramConsoleToggleCarryMessage(allowCarry));

@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server._Starlight.Holograms.Components;
+using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Starlight.Holograms;
 using Content.Shared._Starlight.Holograms.Components;
@@ -27,20 +28,21 @@ public sealed class HologramConsoleSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly PredictedBatterySystem _battery = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<HologramConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
+        SubscribeLocalEvent<HologramConsoleComponent, BoundUIClosedEvent>(OnUIClosed);
         SubscribeLocalEvent<HologramConsoleComponent, HologramConsoleProjectHologramMessage>(OnProjectHologram);
         SubscribeLocalEvent<HologramConsoleComponent, HologramConsoleRecallMessage>(OnRecallHologram);
-        SubscribeLocalEvent<HologramConsoleComponent, HologramConsoleEjectDiskMessage>(OnEjectDisk);
         SubscribeLocalEvent<HologramConsoleComponent, HologramConsoleToggleCarryMessage>(OnToggleCarry);
-        SubscribeLocalEvent<HologramConsoleComponent, EntInsertedIntoContainerMessage>(OnDiskInserted);
-        SubscribeLocalEvent<HologramConsoleComponent, EntRemovedFromContainerMessage>(OnDiskRemoved);
         SubscribeLocalEvent<HologramConsoleComponent, PowerCellSlotEmptyEvent>(OnBatteryEmpty);
         SubscribeLocalEvent<HologramConsoleComponent, PowerChangedEvent>(OnConsolePowerChanged);
+        SubscribeLocalEvent<HologramConsoleComponent, EntInsertedIntoContainerMessage>(OnBladeInserted);
+        SubscribeLocalEvent<HologramConsoleComponent, EntRemovedFromContainerMessage>(OnBladeRemoved);
         SubscribeLocalEvent<HologramServerComponent, ComponentRemove>(OnServerRemoved);
     }
 
@@ -89,28 +91,83 @@ public sealed class HologramConsoleSystem : EntitySystem
     
     private void OnUIOpened(EntityUid uid, HologramConsoleComponent component, BoundUIOpenedEvent args)
     {
-        // Scan for server when UI opens (stationary mode)
+        // Scan for server on same grid when UI opens (stationary mode)
         if (!IsPortable(uid) && (component.LinkedServer == null || !TryComp<HologramServerComponent>(component.LinkedServer, out _)))
         {
-            // Try to find nearby server
-            foreach (var nearby in _lookup.GetEntitiesInRange(Transform(uid).Coordinates, component.SearchRange))
+            // Try to find server on the same grid
+            var xform = Transform(uid);
+            if (xform.GridUid is { } grid)
             {
-                if (TryComp<HologramServerComponent>(nearby, out _))
+                var servers = new HashSet<Entity<HologramServerComponent>>();
+                _lookup.GetGridEntities(grid, servers);
+                
+                if (servers.FirstOrDefault() is { } server)
                 {
-                    component.LinkedServer = nearby;
-                    break;
+                    component.LinkedServer = server;
                 }
             }
         }
         
         UpdateUserInterface(uid, component);
+        UpdateBriefcaseAppearance(uid, component);
     }
 
-    private void OnDiskInserted(EntityUid uid, HologramConsoleComponent component, EntInsertedIntoContainerMessage args) =>
-        UpdateUserInterface(uid, component);
+    private void OnUIClosed(EntityUid uid, HologramConsoleComponent component, BoundUIClosedEvent args) =>
+        UpdateBriefcaseAppearance(uid, component);
 
-    private void OnDiskRemoved(EntityUid uid, HologramConsoleComponent component, EntRemovedFromContainerMessage args) =>
+    private void OnBladeInserted(EntityUid uid, HologramConsoleComponent component, EntInsertedIntoContainerMessage args)
+    {
+        if (args.Container.ID != "blade_server_slot")
+            return;
+        
+        UpdateBriefcaseAppearance(uid, component);
         UpdateUserInterface(uid, component);
+    }
+
+    private void OnBladeRemoved(EntityUid uid, HologramConsoleComponent component, EntRemovedFromContainerMessage args)
+    {
+        if (args.Container.ID != "blade_server_slot")
+            return;
+        
+        UpdateBriefcaseAppearance(uid, component);
+        UpdateUserInterface(uid, component);
+    }
+
+    private void UpdateBriefcaseAppearance(EntityUid uid, HologramConsoleComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, logMissing: false))
+            return;
+
+        if (!IsPortable(uid))
+            return;
+
+        if (!HasComp<AppearanceComponent>(uid))
+            return;
+
+        // Check if UI is open
+        var uiOpen = _ui.IsUiOpen(uid, HologramConsoleUiKey.Key);
+        
+        // Check if there are active holograms
+        var hasActive = component.ActiveHolograms.Count > 0;
+
+        // Determine state
+        HologramBriefcaseState state;
+        if (!uiOpen)
+            state = HologramBriefcaseState.Closed;
+        else if (hasActive)
+            state = HologramBriefcaseState.Active;
+        else
+            state = HologramBriefcaseState.Open;
+
+        // Check if blade is inserted
+        var hasBlade = _itemSlots.GetItemOrNull(uid, "blade_server_slot") != null;
+
+        // Blade should only be visible when briefcase is open (not closed) AND blade is inserted
+        var showBlade = hasBlade && uiOpen;
+
+        _appearance.SetData(uid, HologramBriefcaseVisuals.State, state);
+        _appearance.SetData(uid, HologramBriefcaseVisuals.HasBlade, showBlade);
+    }
 
     private void UpdateUserInterface(EntityUid console, HologramConsoleComponent? component = null)
     {
@@ -120,7 +177,7 @@ public sealed class HologramConsoleSystem : EntitySystem
         if (!_ui.HasUi(console, HologramConsoleUiKey.Key))
             return;
 
-        var disks = new List<DiskInfo>();
+        var bladeServerList = new List<BladeServerInfo>();
         var activeCount = 0;
 
         // Find linked server (stationary mode only)
@@ -139,107 +196,129 @@ public sealed class HologramConsoleSystem : EntitySystem
             }
         }
 
-        // Check for disks - try ItemSlots first (portable), then single slot (stationary)
-        var foundDisks = false;
+        // Scan for powered hologram blade servers within range
+        // Blade servers with both brain and body chips populated will appear in the list
+        var entitiesInRange = _lookup.GetEntitiesInRange(Transform(console).Coordinates, component.BladeServerScanRange);
+        var bladeServers = new HashSet<EntityUid>();
         
-        // Check ItemSlots component (for portable projectors)
-        if (TryComp<ItemSlotsComponent>(console, out var diskSlotsComp))
+        // Collect blade servers - both standalone and those in racks
+        foreach (var entity in entitiesInRange)
         {
-            foreach (var slot in diskSlotsComp.Slots.Values)
+            // Direct blade servers (only if not in a container)
+            if (HasComp<HologramBladeServerComponent>(entity))
             {
-                // Only check slots that accept HoloDisk
-                if (slot.Whitelist?.Tags?.Contains("HoloDisk") ?? false)
+                // Check if this blade server is contained in something (e.g., a rack)
+                if (!TryComp(entity, out TransformComponent? xform) || xform.ParentUid == EntityUid.Invalid || !HasComp<ItemSlotsComponent>(xform.ParentUid))
                 {
-                    if (slot.Item != null && TryComp<HologramDiskComponent>(slot.Item, out var diskComp))
+                    // Standalone blade server - add it
+                    bladeServers.Add(entity);
+                }
+            }
+            // Blade servers inside racks
+            else if (TryComp<Content.Shared._Starlight.BladeServer.BladeServerRackComponent>(entity, out var rack))
+            {
+                // Get all blade servers from the rack's item slots
+                if (TryComp<ItemSlotsComponent>(entity, out var rackSlots))
+                {
+                    foreach (var slot in rackSlots.Slots.Values)
                     {
-                        foundDisks = true;
-                        var disk = slot.Item.Value;
-                        
-                        // Check if disk has either a mind or a prototype
-                        if (diskComp.HoloMind != null || diskComp.HologramPrototype != null)
+                        if (slot.Item != null && HasComp<HologramBladeServerComponent>(slot.Item.Value))
                         {
-                            string hologramName;
-                            bool isActive;
-                            
-                            if (IsPortable(console))
-                            {
-                                // Portable mode: check if disk is in active holograms map
-                                isActive = component.ActiveHolograms.ContainsKey(disk);
-                                if (isActive) activeCount++;
-                            }
-                            else
-                            {
-                                // Stationary mode: check server's linked hologram
-                                isActive = server != null && 
-                                           TryComp<HologramServerComponent>(server.Value, out var srvComp) && 
-                                           srvComp.LinkedHologram != null;
-                            }
-                            
-                            if (diskComp.HoloMind != null && TryComp<MindComponent>(diskComp.HoloMind, out var mindComp))
-                            {
-                                hologramName = mindComp.CharacterName ?? "Unknown";
-                            }
-                            else if (diskComp.HologramPrototype != null)
-                            {
-                                hologramName = MetaData(disk).EntityName;
-                            }
-                            else
-                            {
-                                hologramName = "Unknown";
-                            }
-
-                            disks.Add(new DiskInfo(GetNetEntity(disk), hologramName, isActive));
+                            bladeServers.Add(slot.Item.Value);
                         }
                     }
                 }
             }
         }
         
-        // Fallback to single container slot (for stationary consoles)
-        if (!foundDisks && component.DiskSlot != null && 
-            TryComp<ContainerManagerComponent>(console, out var containerManager) &&
-            containerManager.Containers.TryGetValue(component.DiskSlot, out var container) &&
-            container.ContainedEntities.Count > 0)
+        foreach (var bladeServerUid in bladeServers)
         {
-            var disk = container.ContainedEntities[0];
-            if (TryComp<HologramDiskComponent>(disk, out var diskComp))
-            {
-                // Check if disk has either a mind or a prototype
-                if (diskComp.HoloMind != null || diskComp.HologramPrototype != null)
-                {
-                    string hologramName;
-                    bool isActive;
-                    
-                    if (IsPortable(console))
-                    {
-                        // Portable mode: check if disk is in active holograms map
-                        isActive = component.ActiveHolograms.ContainsKey(disk);
-                        if (isActive) activeCount++;
-                    }
-                    else
-                    {
-                        // Stationary mode: check server's linked hologram
-                        isActive = server != null && 
-                                   TryComp<HologramServerComponent>(server.Value, out var srvComp) && 
-                                   srvComp.LinkedHologram != null;
-                    }
-                    
-                    if (diskComp.HoloMind != null && TryComp<MindComponent>(diskComp.HoloMind, out var mindComp))
-                    {
-                        hologramName = mindComp.CharacterName ?? "Unknown";
-                    }
-                    else if (diskComp.HologramPrototype != null)
-                    {
-                        hologramName = MetaData(disk).EntityName;
-                    }
-                    else
-                    {
-                        hologramName = "Unknown";
-                    }
+            if (!TryComp<HologramBladeServerComponent>(bladeServerUid, out var bladeServer))
+                continue;
 
-                    disks.Add(new DiskInfo(GetNetEntity(disk), hologramName, isActive));
-                }
+            // Check if the blade server itself is powered, OR if its containing rack is powered
+            bool isPowered = false;
+            
+            // Check if blade server has direct power (standalone)
+            if (TryComp<ApcPowerReceiverComponent>(bladeServerUid, out var powerReceiver) && powerReceiver.Powered)
+            {
+                isPowered = true;
             }
+            // Check if blade server is in a powered rack
+            else if (TryComp(bladeServerUid, out TransformComponent? xform) && 
+                     xform.ParentUid != EntityUid.Invalid &&
+                     TryComp<ApcPowerReceiverComponent>(xform.ParentUid, out var rackPower) && 
+                     rackPower.Powered)
+            {
+                isPowered = true;
+            }
+            
+            if (!isPowered)
+                continue;
+
+            // Get ItemSlots to access chips
+            if (!TryComp<ItemSlotsComponent>(bladeServerUid, out var itemSlots))
+                continue;
+
+            // Get brain chip using ItemSlotsSystem
+            if (!_itemSlots.TryGetSlot(bladeServerUid, bladeServer.BrainChipSlot, out var brainSlot, itemSlots) || brainSlot.Item == null)
+                continue;
+
+            // Get body chip using ItemSlotsSystem
+            if (!_itemSlots.TryGetSlot(bladeServerUid, bladeServer.BodyChipSlot, out var bodySlot, itemSlots) || bodySlot.Item == null)
+                continue;
+
+            // Both chips present - extract data
+            var brainChip = brainSlot.Item.Value;
+            var bodyChip = bodySlot.Item.Value;
+
+            if (!TryComp<HologramBrainChipComponent>(brainChip, out var brainComp))
+                continue;
+
+            if (!TryComp<HologramBodyChipComponent>(bodyChip, out var bodyComp))
+                continue;
+
+            // Check if either has valid data
+            if (brainComp.HoloMind == null && bodyComp.HologramPrototype == null)
+                continue;
+
+            string hologramName;
+            bool isActive;
+
+            if (IsPortable(console))
+            {
+                // Portable mode: check if blade server is in active holograms map
+                isActive = component.ActiveHolograms.ContainsKey(bladeServerUid);
+                if (isActive) activeCount++;
+            }
+            else
+            {
+                // Stationary mode: check server's linked hologram
+                isActive = server != null && 
+                           TryComp<HologramServerComponent>(server.Value, out var srvComp) && 
+                           srvComp.LinkedHologram != null;
+            }
+
+            // Get name from mind or body chip
+            if (brainComp.HoloMind != null && TryComp<MindComponent>(brainComp.HoloMind, out var mindComp))
+            {
+                hologramName = mindComp.CharacterName ?? "Unknown";
+            }
+            else if (bodyComp.HologramName != null)
+            {
+                hologramName = bodyComp.HologramName;
+            }
+            else if (bodyComp.HologramPrototype != null)
+            {
+                hologramName = MetaData(bodyChip).EntityName;
+            }
+            else
+            {
+                hologramName = "Unknown";
+            }
+
+            // Add blade server to list (using blade server UID as identifier)
+            bladeServerList.Add(new BladeServerInfo(GetNetEntity(bladeServerUid), hologramName, isActive));
         }
 
         // Get projector list with locations (stationary mode only)
@@ -285,26 +364,17 @@ public sealed class HologramConsoleSystem : EntitySystem
             batteryPercent = maxCharge > 0 ? charge / maxCharge * 100f : 0f;
         }
 
-        // Count actual disk slots from ItemSlots component
-        var maxDiskSlots = 1; // Default to 1
-        var hasDiskSlots = false;
-        if (TryComp<ItemSlotsComponent>(console, out var itemSlotsComp))
-        {
-            // Count slots that have HoloDisk whitelist
-            maxDiskSlots = itemSlotsComp.Slots.Values.Count(slot => 
-                slot.Whitelist != null && slot.Whitelist.Tags != null && slot.Whitelist.Tags.Contains("HoloDisk"));
-            hasDiskSlots = maxDiskSlots > 0;
-            if (maxDiskSlots == 0) maxDiskSlots = 1; // Fallback
-        }
-
-        // Determine if disk panel should be shown
-        var showDiskPanel = component.ShowDiskPanel && hasDiskSlots;
+        // Always show the blade server panel if ShowBladeServerPanel is enabled
+        var showBladeServerPanel = component.ShowBladeServerPanel;
         
-        // Check if server is connected (for stationary mode)
-        var hasServer = IsPortable(console) || server != null;
+        // Check if linked to hologram server machine (for stationary mode)
+        var hasServer = IsPortable(console) || component.LinkedServer != null;
+        
+        // Always show map container if ShowMap is enabled (client will show "NO SERVER CONNECTED" when hasServer is false)
+        var showMap = component.ShowMap;
 
         var state = new HologramConsoleBoundUserInterfaceState(
-            disks, 
+            bladeServerList, 
             activeHologram, 
             projectors,
             projectorCoordinates,
@@ -313,11 +383,11 @@ public sealed class HologramConsoleSystem : EntitySystem
             component.AllowHologramCarry,
             activeCount,
             component.MaxActiveHolograms,
-            maxDiskSlots,
-            component.ShowMap,
+            bladeServerList.Count,
+            showMap,
             component.ShowProjectButton,
             component.ShowRecallButton,
-            showDiskPanel,
+            showBladeServerPanel,
             hasServer);
             
         _ui.SetUiState(console, HologramConsoleUiKey.Key, state);
@@ -341,20 +411,34 @@ public sealed class HologramConsoleSystem : EntitySystem
 
     private void OnProjectHologram(EntityUid console, HologramConsoleComponent component, HologramConsoleProjectHologramMessage args)
     {
-        // Get the specified disk
-        var disk = GetEntity(args.DiskUid);
-        if (!Exists(disk) || !TryComp<HologramDiskComponent>(disk, out var diskComp))
+        // Get the specified blade server (args.BladeServerUid refers to blade server)
+        var bladeServer = GetEntity(args.BladeServerUid);
+        if (!Exists(bladeServer) || !TryComp<HologramBladeServerComponent>(bladeServer, out var bladeComp))
             return;
 
-        // Verify disk is in console
-        if (component.DiskSlot == null || 
-            !TryComp<ContainerManagerComponent>(console, out var containerManager) ||
-            !containerManager.Containers.TryGetValue(component.DiskSlot, out var container) ||
-            !container.Contains(disk))
+        // Get ItemSlots to access chips
+        if (!TryComp<ItemSlotsComponent>(bladeServer, out var itemSlots))
+            return;
+
+        // Get brain chip using ItemSlotsSystem
+        if (!_itemSlots.TryGetSlot(bladeServer, bladeComp.BrainChipSlot, out var brainSlot, itemSlots) || brainSlot.Item == null)
+            return;
+
+        // Get body chip using ItemSlotsSystem
+        if (!_itemSlots.TryGetSlot(bladeServer, bladeComp.BodyChipSlot, out var bodySlot, itemSlots) || bodySlot.Item == null)
+            return;
+
+        var brainChip = brainSlot.Item.Value;
+        var bodyChip = bodySlot.Item.Value;
+
+        if (!TryComp<HologramBrainChipComponent>(brainChip, out var brainChipComp))
+            return;
+
+        if (!TryComp<HologramBodyChipComponent>(bodyChip, out var bodyChipComp))
             return;
 
         // Check if we have either a mind or a prototype
-        if (diskComp.HoloMind == null && diskComp.HologramPrototype == null)
+        if (brainChipComp.HoloMind == null && bodyChipComp.HologramPrototype == null)
             return;
         
         if (IsPortable(console))
@@ -371,20 +455,20 @@ public sealed class HologramConsoleSystem : EntitySystem
             var spawnCoords = new EntityCoordinates(consoleXform.MapUid ?? EntityUid.Invalid, _transform.GetWorldPosition(consoleXform));
 
             // Spawn from prototype
-            if (diskComp.HologramPrototype != null)
+            if (bodyChipComp.HologramPrototype != null)
             {
-                holo = Spawn(diskComp.HologramPrototype, spawnCoords);
+                holo = Spawn(bodyChipComp.HologramPrototype, spawnCoords);
             }
             // Spawn from mind
-            else if (diskComp.HoloMind != null)
+            else if (brainChipComp.HoloMind != null)
             {
-                _hologram.TryGenerateHumanoidHologram(diskComp.HoloMind.Value, spawnCoords, out holo);
+                _hologram.TryGenerateHumanoidHologram(brainChipComp.HoloMind.Value, spawnCoords, out holo);
             }
 
             if (holo != null)
             {
-                // Track the disk
-                component.ActiveHolograms[disk] = holo.Value;
+                // Track the blade server
+                component.ActiveHolograms[bladeServer] = holo.Value;
                 
                 // Set the console itself as projector and override so holograms don't jump to cameras
                 if (TryComp<HologramProjectedComponent>(holo.Value, out var projectedComp))
@@ -417,14 +501,14 @@ public sealed class HologramConsoleSystem : EntitySystem
             EntityUid? holo = null;
 
             // Spawn from prototype
-            if (diskComp.HologramPrototype != null)
+            if (bodyChipComp.HologramPrototype != null)
             {
-                holo = Spawn(diskComp.HologramPrototype, projectorCoords);
+                holo = Spawn(bodyChipComp.HologramPrototype, projectorCoords);
             }
             // Spawn from mind
-            else if (diskComp.HoloMind != null)
+            else if (brainChipComp.HoloMind != null)
             {
-                _hologram.TryGenerateHumanoidHologram(diskComp.HoloMind.Value, projectorCoords, out holo);
+                _hologram.TryGenerateHumanoidHologram(brainChipComp.HoloMind.Value, projectorCoords, out holo);
             }
 
             if (holo != null)
@@ -440,6 +524,7 @@ public sealed class HologramConsoleSystem : EntitySystem
         }
 
         UpdateUserInterface(console, component);
+        UpdateBriefcaseAppearance(console, component);
     }
 
     private void OnRecallHologram(EntityUid console, HologramConsoleComponent component, HologramConsoleRecallMessage args)
@@ -467,57 +552,7 @@ public sealed class HologramConsoleSystem : EntitySystem
         }
 
         UpdateUserInterface(console, component);
-    }
-
-    private void OnEjectDisk(EntityUid console, HologramConsoleComponent component, HologramConsoleEjectDiskMessage args)
-    {
-        var disk = GetEntity(args.DiskUid);
-        if (!Exists(disk))
-            return;
-
-        // Verify disk is in console
-        if (component.DiskSlot == null)
-            return;
-
-        // Recall hologram if disk is active
-        if (IsPortable(console))
-        {
-            if (component.ActiveHolograms.TryGetValue(disk, out var hologram))
-            {
-                if (Exists(hologram))
-                    _hologram.DoKillHologram(hologram);
-                component.ActiveHolograms.Remove(disk);
-            }
-        }
-        else
-        {
-            // For stationary consoles, check if this disk's hologram is currently active
-            var server = component.LinkedServer;
-            if (server != null && TryComp<HologramServerComponent>(server.Value, out var serverComp))
-            {
-                // Check if the active hologram belongs to this disk
-                if (serverComp.LinkedHologram != null && TryComp<HologramDiskComponent>(disk, out var diskComp))
-                {
-                    // If disk has a mind, check if the hologram has that mind
-                    bool shouldRecall = false;
-                    if (diskComp.HoloMind != null && TryComp<MindContainerComponent>(serverComp.LinkedHologram.Value, out var mindContainer))
-                    {
-                        shouldRecall = mindContainer.Mind == diskComp.HoloMind;
-                    }
-                    
-                    if (shouldRecall)
-                    {
-                        _hologram.DoKillHologram(serverComp.LinkedHologram.Value);
-                        serverComp.LinkedHologram = null;
-                    }
-                }
-            }
-        }
-
-        // Eject disk using item slots system
-        _itemSlots.TryEject(console, component.DiskSlot, null, out var _);
-        
-        UpdateUserInterface(console, component);
+        UpdateBriefcaseAppearance(console, component);
     }
 
     private void OnToggleCarry(EntityUid console, HologramConsoleComponent component, HologramConsoleToggleCarryMessage args)
@@ -565,8 +600,8 @@ public sealed class HologramConsoleSystem : EntitySystem
                 .Select(kvp => kvp.Key)
                 .ToList();
             
-            foreach (var disk in toRemove)
-                component.ActiveHolograms.Remove(disk);
+            foreach (var bladeServer in toRemove)
+                component.ActiveHolograms.Remove(bladeServer);
         }
     }
 }

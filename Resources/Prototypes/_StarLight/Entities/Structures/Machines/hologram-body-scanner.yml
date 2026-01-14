@@ -1,0 +1,16 @@
+- type: entity
+  id: HologramBodyScanner
+  parent: MedicalScanner
+  name: hologram body scanner
+  description: A specialized scanner that captures physical appearance data for holographic projection. Outputs brain and body chips.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/scanner.rsi
+    snapCardinals: true
+    layers:
+    - state: open
+      map: [machineLayer]
+    - state: idle_unlit
+      map: [terminalLayer]
+      color: "#4cc9f0"
+  - type: HologramBodyScanner

@@ -433,22 +433,11 @@
   parent: BaseComputer
   id: ComputerHologram
   name: hologram console
-  description: A computer for managing hologram projection. Insert a disk and select a projector.
+  description: A computer for managing hologram projection. Scans for powered blade servers within range.
   components:
     - type: HologramConsole
       searchRange: 5
-      diskSlot: hologram_disk_slot
-    - type: ContainerContainer
-      containers:
-        hologram_disk_slot: !type:ContainerSlot
-    - type: ItemSlots
-      slots:
-        hologram_disk_slot:
-          name: Hologram Disk
-          whitelist:
-            requireAll: true
-            tags:
-              - HoloDisk
+      bladeServerScanRange: 15
     - type: ActivatableUI
       key: enum.HologramConsoleUiKey.Key
     - type: UserInterface

@@ -1,7 +1,7 @@
 namespace Content.Server._Starlight.Holograms.Components;
 
 /// <summary>
-/// Console that allows hologram disk management and projector selection.
+/// Console that allows hologram blade server management and projector selection.
 /// Supports both stationary and portable (briefcase) modes.
 /// </summary>
 [RegisterComponent]
@@ -21,10 +21,11 @@ public sealed partial class HologramConsoleComponent : Component
     public float SearchRange = 5f;
 
     /// <summary>
-    /// Container slot ID for the hologram disk
+    /// Maximum range to search for hologram blade servers.
+    /// Consoles read blade servers with both chips inserted to populate hologram list.
     /// </summary>
-    [DataField("diskSlot")]
-    public string? DiskSlot = "hologram_disk_slot";
+    [DataField("bladeServerScanRange")]
+    public float BladeServerScanRange = 15f;
 
     /// <summary>
     /// Maximum number of holograms that can be projected simultaneously (Requires item component)
@@ -58,11 +59,10 @@ public sealed partial class HologramConsoleComponent : Component
     public bool ShowRecallButton = true;
 
     /// <summary>
-    /// Whether to show the disk panel sidebar.
-    /// Automatically set to false if the console has no disk slots.
+    /// Whether to show the blade server panel sidebar.
     /// </summary>
-    [DataField("showDiskPanel")]
-    public bool ShowDiskPanel = true;
+    [DataField("showBladeServerPanel")]
+    public bool ShowBladeServerPanel = true;
 
     /// <summary>
     /// Power draw per active hologram in watts (Requires cell)
@@ -71,13 +71,13 @@ public sealed partial class HologramConsoleComponent : Component
     public float PowerDrawPerHologram = 50f;
 
     /// <summary>
-    /// Dictionary mapping disk UIDs to their spawned hologram UIDs
+    /// Dictionary mapping blade server UIDs to their spawned hologram UIDs (portable mode only)
     /// </summary>
     [DataField("activeHolograms")]
     public Dictionary<EntityUid, EntityUid> ActiveHolograms = new();
 
     /// <summary>
-    /// EntityUid of the hologram that was called from disk in exclusive mode
+    /// EntityUid of the hologram that was called from blade server in exclusive mode
     /// </summary>
     [DataField("calledHologram")]
     public EntityUid? CalledHologram;

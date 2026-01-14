@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.Holograms;
 [Serializable, NetSerializable]
 public sealed class HologramConsoleBoundUserInterfaceState : BoundUserInterfaceState
 {
-    public List<DiskInfo> Disks { get; init; } = new();
+    public List<BladeServerInfo> BladeServers { get; init; } = new();
     public NetEntity? ActiveHologram { get; init; }
     public List<ProjectorInfo> Projectors { get; init; } = new();
     public Dictionary<NetEntity, NetCoordinates> ProjectorCoordinates { get; init; } = new();
@@ -17,15 +17,15 @@ public sealed class HologramConsoleBoundUserInterfaceState : BoundUserInterfaceS
     public bool AllowCarry { get; init; }
     public int ActiveCount { get; init; }
     public int MaxActive { get; init; }
-    public int MaxDiskSlots { get; init; }
+    public int MaxBladeServerSlots { get; init; }
     public bool ShowMap { get; init; }
     public bool ShowProjectButton { get; init; }
     public bool ShowRecallButton { get; init; }
-    public bool ShowDiskPanel { get; init; }
+    public bool ShowBladeServerPanel { get; init; }
     public bool HasServer { get; init; }
     
     public HologramConsoleBoundUserInterfaceState(
-        List<DiskInfo> disks, 
+        List<BladeServerInfo> bladeServers, 
         NetEntity? activeHologram, 
         List<ProjectorInfo> projectors,
         Dictionary<NetEntity, NetCoordinates> projectorCoordinates,
@@ -34,14 +34,14 @@ public sealed class HologramConsoleBoundUserInterfaceState : BoundUserInterfaceS
         bool allowCarry = false,
         int activeCount = 0,
         int maxActive = 0,
-        int maxDiskSlots = 8,
+        int maxBladeServerSlots = 8,
         bool showMap = true,
         bool showProjectButton = true,
         bool showRecallButton = true,
-        bool showDiskPanel = true,
+        bool showBladeServerPanel = true,
         bool hasServer = true)
     {
-        Disks = disks;
+        BladeServers = bladeServers;
         ActiveHologram = activeHologram;
         Projectors = projectors;
         ProjectorCoordinates = projectorCoordinates;
@@ -50,23 +50,23 @@ public sealed class HologramConsoleBoundUserInterfaceState : BoundUserInterfaceS
         AllowCarry = allowCarry;
         ActiveCount = activeCount;
         MaxActive = maxActive;
-        MaxDiskSlots = maxDiskSlots;
+        MaxBladeServerSlots = maxBladeServerSlots;
         ShowMap = showMap;
         ShowProjectButton = showProjectButton;
         ShowRecallButton = showRecallButton;
-        ShowDiskPanel = showDiskPanel;
+        ShowBladeServerPanel = showBladeServerPanel;
         HasServer = hasServer;
     }
 }
 
 [Serializable, NetSerializable]
-public sealed class DiskInfo
+public sealed class BladeServerInfo
 {
     public NetEntity Uid { get; init; }
     public string HologramName { get; init; }
     public bool IsActive { get; init; }
     
-    public DiskInfo(NetEntity uid, string hologramName, bool isActive)
+    public BladeServerInfo(NetEntity uid, string hologramName, bool isActive)
     {
         Uid = uid;
         HologramName = hologramName;
@@ -92,12 +92,12 @@ public sealed class ProjectorInfo
 [Serializable, NetSerializable]
 public sealed class HologramConsoleProjectHologramMessage : BoundUserInterfaceMessage
 {
-    public NetEntity DiskUid { get; }
+    public NetEntity BladeServerUid { get; }
     public NetEntity ProjectorUid { get; }
     
-    public HologramConsoleProjectHologramMessage(NetEntity diskUid, NetEntity projectorUid)
+    public HologramConsoleProjectHologramMessage(NetEntity bladeServerUid, NetEntity projectorUid)
     {
-        DiskUid = diskUid;
+        BladeServerUid = bladeServerUid;
         ProjectorUid = projectorUid;
     }
 }
@@ -108,12 +108,12 @@ public sealed class HologramConsoleRecallMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
-public sealed class HologramConsoleEjectDiskMessage : BoundUserInterfaceMessage
+public sealed class HologramConsoleEjectBladeServerMessage : BoundUserInterfaceMessage
 {
-    public NetEntity DiskUid { get; }
+    public NetEntity BladeServerUid { get; }
     
-    public HologramConsoleEjectDiskMessage(NetEntity diskUid) =>
-        DiskUid = diskUid;
+    public HologramConsoleEjectBladeServerMessage(NetEntity bladeServerUid) =>
+        BladeServerUid = bladeServerUid;
 }
 
 [Serializable, NetSerializable]
