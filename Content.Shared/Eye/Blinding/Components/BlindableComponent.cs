@@ -1,4 +1,5 @@
 using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared.Traits.Assorted; // Starlight-edit
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Eye.Blinding.Components;
@@ -42,4 +43,12 @@ public sealed partial class BlindableComponent : Component
     /// </description>
     [Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool GraceFrame = false;
+
+    #region Starlight
+    [DataField, Access(typeof(PermanentBlindnessSystem), typeof(BlurryVisionSystem))]
+    public bool GlassesFixable = false;
+
+    [AutoNetworkedField, Access(typeof(PermanentBlindnessSystem), typeof(BlurryVisionSystem))]
+    public bool IsWearingGlasses = false;
+    #endregion
 }

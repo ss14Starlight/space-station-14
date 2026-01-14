@@ -96,9 +96,9 @@ public sealed class StationAiSystem : SharedStationAiSystem
     private readonly ProtoId<ChatNotificationPrototype> _aiCriticalPowerChatNotificationPrototype = "AiCriticalPower";
 
     private readonly ProtoId<JobPrototype> _stationAiJob = "StationAi";
-    private readonly EntProtoId _stationAiBrain = "StationAiBrain";
+    private readonly EntProtoId _stationAiBrain = "StationAiBrainConstructed"; // SL edit
 
-    private readonly ProtoId<AlertPrototype> _batteryAlert = "BorgBattery";
+    private readonly ProtoId<AlertPrototype> _batteryAlert = "AiBattery";
     private readonly ProtoId<AlertPrototype> _damageAlert = "BorgHealth";
 
     public override void Initialize()

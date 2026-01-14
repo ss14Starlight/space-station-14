@@ -1,0 +1,12 @@
+#bathroom
+- type: construction
+  id: Sink
+  graph: Sink
+  startNode: start
+  targetNode: sink
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

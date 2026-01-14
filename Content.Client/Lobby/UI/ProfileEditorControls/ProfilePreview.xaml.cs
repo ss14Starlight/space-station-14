@@ -86,7 +86,7 @@ public sealed partial class ProfilePreview : BoxContainer
         if (_editor?.Profile == null)
             return;
 
-        SpriteView.LoadPreview(_editor.Profile, _editor?.JobOverride, _editor?.ShouldShowClothes ?? true);
+        SpriteView.LoadPreview(_editor.Profile, _editor?.JobOverride, _editor?.ShouldShowClothes ?? true, _editor?.AntagOverride); // Starlight edit: Antag Loadouts
     }
 
     /// <summary>

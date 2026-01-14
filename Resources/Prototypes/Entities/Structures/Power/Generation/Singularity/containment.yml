@@ -100,7 +100,7 @@
     sprite: Structures/Power/Generation/Singularity/containment_field.rsi
     state: field
   - type: ContainmentField
-    throwForce: 50
+    throwForce: 10 # Starlight: Stop yeeting players through walls and into deep-space
   - type: SyncSprite
   - type: GuideHelp
     guides:

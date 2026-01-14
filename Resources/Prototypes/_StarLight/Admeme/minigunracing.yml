@@ -1,0 +1,166 @@
+- type: entity
+  name: Bird Thruster
+  id: WeaponMinigunRacingThruster
+  parent: [ BaseItem ]
+  description: Vroom vroooooom!
+  suffix: ADMEME
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 0.2
+        staminaMultiplier: 0.0
+      Resomi:
+        knockback: 0.02
+        staminaMultiplier: 0.0
+      Avali:
+        knockback: 0.01
+        staminaMultiplier: 0.0
+      Felionoid:
+        knockback: 0.01
+        staminaMultiplier: 0.0
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+  - type: Gun
+    fireRate: 15
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/minigun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: StaticPrice
+    price: 500
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Objects/Weapons/Guns/HMGs/minigun.rsi
+    size: Ginormous
+  - type: BallisticAmmoProvider
+    proto: CartridgeMinigunThruster
+    capacity: 99999999
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: ClothingSpeedModifier
+    walkModifier: 0.4
+    sprintModifier: 0.0
+  - type: AmmoCounter
+
+- type: entity
+  id: SkatesRacing
+  name: High Speed Racing Skates
+  parent: ClothingShoesSkates
+  suffix: ADMEME
+  description: SuperGlideTM racing skates with built in collision protection!
+  components:
+  - type: Skates
+    speedDamage: 0.0
+    friction: 0.0
+    frictionNoInput: 0.0
+    stunSeconds: 0.0
+
+- type: entity
+  id: CartridgeMinigunThruster
+  name: thruster cartridge
+  parent: CartridgeMinigun
+  components:
+  - type: CartridgeAmmo
+    proto: BulletThruster
+    deleteOnSpawn: true
+
+- type: entity
+  id: BulletThruster
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 0
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle
+    travelFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: trace
+    impactFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: rubber
+
+- type: entity
+  id: SuitRacingRandom
+  name: High Speed Racing Suit
+  parent: ClothingUniformRandom
+  suffix: ADMEME
+  description: This just looks like normal clothing...
+  abstract: true
+  components:
+  - type: Armor
+    modifiers:
+        coefficients:
+            Blunt: 1.0
+            Slash: 1.0
+            Piercing: 1.0
+            Heat: 1.0
+            Radiation: 1.0
+            Caustic: 1.0
+    staminaModifier: 0.0
+
+- type: entity
+  parent: SuitRacingRandom
+  id: SuitRacingRandomSpawner
+  name: Random High Speed Racing Outfit
+  components:
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - SuitRacingArmless
+    - SuitRacingStandard
+    - SuitRacingBra
+    - SuitRacingShorts
+    - SuitRacingShirt
+
+- type: entity
+  id: SuitRacingArmless
+  name: Armless High Speed Racing Outfit
+  parent: [SuitRacingRandom, ClothingUniformRandomArmless]
+  suffix: ADMEME
+  description: This just looks like normal clothing...
+
+- type: entity
+  id: SuitRacingStandard
+  name: High Speed Racing Outfit
+  parent: [SuitRacingRandom, ClothingUniformRandomStandard]
+  suffix: ADMEME
+  description: This just looks like normal clothing...
+
+- type: entity
+  id: SuitRacingBra
+  name: Cropped High Speed Racing Outfit
+  parent: [SuitRacingRandom, ClothingUniformRandomBra]
+  suffix: ADMEME
+  description: This just looks like normal clothing...
+
+- type: entity
+  id: SuitRacingShorts
+  name: Topless High Speed Racing Outfit
+  parent: [SuitRacingRandom, ClothingUniformRandomShorts]
+  suffix: ADMEME
+  description: This just looks like normal clothing...
+
+- type: entity
+  id: SuitRacingShirt
+  name: High Speed Racing Shirt
+  parent: [SuitRacingRandom, ClothingUniformRandomShirt]
+  suffix: ADMEME
+  description: This just looks like normal clothing...

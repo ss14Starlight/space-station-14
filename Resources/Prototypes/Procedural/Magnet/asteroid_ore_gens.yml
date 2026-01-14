@@ -11,6 +11,7 @@
     OreUranium: 0.20
     OreArtifactFragment: 0.10
     OreBananium: 0.10
+    OreBluespace: 0.5 # Starlight
 
 - type: oreDunGen
   id: OreIron

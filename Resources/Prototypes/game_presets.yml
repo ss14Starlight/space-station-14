@@ -164,19 +164,21 @@
   - BasicRoundstartVariation
   - RailroadingMinor # 🌟Starlight🌟
 
-- type: gamePreset
-  id: Deathmatch
-  alias:
-    - deathmatch
-    - dm
-  name: death-match-title
-  description: death-match-description
-  minPlayers: 4
-  maxPlayers: 15
-  showInVote: true
-  supportedMaps: DeathMatchMapPool
-  rules:
-    - DeathMatch31
+#Starlight start, disabled because maps are removed
+# - type: gamePreset
+#   id: Deathmatch
+#   alias:
+#     - deathmatch
+#     - dm
+#   name: death-match-title
+#   description: death-match-description
+#   minPlayers: 4
+#   maxPlayers: 15
+#   showInVote: true
+#   supportedMaps: DeathMatchMapPool
+#   rules:
+#     - DeathMatch31
+#Starlight end
 
 - type: gamePreset
   id: Nukeops
@@ -239,7 +241,7 @@
   showInVote: false
   rules:
   - Xenoborgs
-  - DummyNonAntagChance
+  # - DummyNonAntagChance 🌟Starlight🌟
   - SubGamemodesRuleNoWizardNoXenoborg # no two motherships
   - BasicStationEventScheduler
   - MeteorSwarmScheduler

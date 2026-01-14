@@ -20,6 +20,7 @@ public sealed partial class StationAiCustomizationMenu : FancyWindow
     private Dictionary<ProtoId<StationAiCustomizationGroupPrototype>, ButtonGroup> _buttonGroups = new();
 
     public event Action<ProtoId<StationAiCustomizationGroupPrototype>, ProtoId<StationAiCustomizationPrototype>>? SendStationAiCustomizationMessageAction;
+    public event Action<string>? SendStationAiRenameMessageAction; // Starlight
 
     private const float IconScale = 1.75f;
 
@@ -52,6 +53,27 @@ public sealed partial class StationAiCustomizationMenu : FancyWindow
         }
 
         Title = Loc.GetString("station-ai-customization-menu");
+        
+        //Starlight begin | Add option to rename self if they are 
+        if (stationAiCustomization is null) return;
+        if (!stationAiCustomization.RenameAvailable) return;
+        var nameContainer = new BoxContainer();
+        var label = new Label();
+        var entryField = new LineEdit();
+        var submitButton = new Button();
+        label.Text = Loc.GetString("station-ai-customization-menu-label-rename");
+        submitButton.Text = Loc.GetString("ui-options-function-text-submit");
+        entryField.HorizontalExpand = true;
+        nameContainer.AddChild(label);
+        nameContainer.AddChild(entryField);
+        nameContainer.AddChild(submitButton);
+        CustomizationGroupsContainer.AddTab(nameContainer, Loc.GetString("station-ai-customization-name"));
+        submitButton.OnPressed += _ =>
+        {
+            if (string.IsNullOrWhiteSpace(entryField.Text)) return;
+            SendStationAiRenameMessageAction?.Invoke(entryField.Text);
+        };
+        //Starlight end
     }
 
     public void OnSendStationAiCustomizationMessage

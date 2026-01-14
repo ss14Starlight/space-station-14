@@ -232,7 +232,7 @@
   name: makeshift shotgun
   parent: [WeaponFlareGunSecurity, BaseMinorContraband]
   id: WeaponShotgunMakeshift
-  description: A small hand-cannon that fires .50 shotgun shells. Has no cloth to hold it together, so it has a high chance of falling apart with every shot.
+  description: A small hand-cannon that fires 12 gauge shotgun shells. Has no cloth to hold it together, so it has a high chance of falling apart with every shot.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/makeshift_shotgun.rsi
@@ -261,3 +261,111 @@
       - id: RifleStock
         launchAngle: 180
         prob: 0.80
+
+# it's the TOZ!
+- type: entity
+  name: ZOZ-106
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband]
+  id: WeaponShotgunToz106
+  description: A cheap Soviet shotgun that received an indifferent welcome from hunters. Aim at the head and eyes for best results. Uses less-powerful 20 gauge shotgun shells.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    spread: 10
+    pump: true
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+    size: Normal
+    shape:
+    - 0,0,3,0
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgunToz
+    capacity: 2
+    proto: ShellShotgunToz
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Appearance
+  - type: StaticPrice
+    price: 400
+
+# TOZ with extended mag:
+- type: entity
+  parent: WeaponShotgunToz106
+  id: WeaponShotgunToz106Extended
+  description: A cheap Soviet shotgun that received an indifferent welcome from hunters. Aim at the head and eyes for best results. Uses less-powerful 20 gauge shotgun shells. Extended magazine version.
+  suffix: extended mag
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgunToz
+    capacity: 5
+    proto: ShellShotgunToz
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+# fully shitposted TOZ with no mag restrictions!
+- type: entity
+  name: TOZ-106
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband]
+  id: WeaponShotgunToz106Shitpost
+  description: Piotr said his custom ZOZ-106 could accept ANY magazine. No one believed him until it was too late.
+  suffix: Admeme, DO NOT MAP
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    spread: 10
+    pump: true
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+    size: Normal
+    shape:
+    - 0,0,3,0
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: MagazineShotgunTozExtended
+  - type: ChamberMagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Appearance
+  - type: StaticPrice
+    price: 1
