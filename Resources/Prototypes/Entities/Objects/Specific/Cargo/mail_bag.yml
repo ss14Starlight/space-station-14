@@ -5,10 +5,10 @@
   description: A bag for carrying mail around the station. Made from tanned space bear hide.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Cargo/mail_bag.rsi
+    sprite: _Starlight/Objects/Specific/Cargo/mail_bag.rsi
     state: icon
   - type: Clothing
-    sprite: Objects/Specific/Cargo/mail_bag.rsi
+    sprite: _Starlight/Objects/Specific/Cargo/mail_bag.rsi
     quickEquip: false
     slots:
     - belt
@@ -33,10 +33,32 @@
     tags:
     - ScurretWearable
     - CorgiWearable
-  - type: ItemToggle  #starlight edit, added toggle
+    # Starlight Edit Start - added toggle to activate magnet
+  - type: ItemToggle 
     onUse: false
+    onActivate: false
     verbToggleOn: "Activate Magnet"
     verbToggleOff: "Deactivate Magnet"
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+  - type: AltUseToggle
+  # Starlight Edit End
   - type: ComponentToggler
     components: 
     - type: MagnetPickup
+      requiresEquipping: false # Starlight Edit - make it work even without being equipped
+  # Starlight Edit Start - added visual indicator for magnet
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: "magnet" }
+          False: { state: "icon" }
+  # Starlight Edit End

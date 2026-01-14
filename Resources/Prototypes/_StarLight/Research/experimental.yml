@@ -38,3 +38,21 @@
   cost: 10000
   recipeUnlocks:
   - ArtificialBluespaceCrystal
+  - NullspaceAnchorMachineCircuitboard
+
+# Tier 3
+- type: technology
+  id: ScienceCyberLimbsTech
+  name: research-technology-science-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: gorillagauntlet
+  discipline: Experimental
+  tier: 3
+  cost: 9320
+  recipeUnlocks:
+    - LeftArmCyberGorilla
+    - RightArmCyberGorilla
+  technologyPrerequisites:
+    - CyberLimbsTech
+    - AdvancedAnomalyResearch

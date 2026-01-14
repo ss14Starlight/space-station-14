@@ -21,6 +21,7 @@
                 <Label Text="{Loc 'ui-options-accessability-header-content'}"
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="CensorNudityCheckBox" Text="{Loc 'ui-options-censor-nudity'}" />
+                <CheckBox Name="ArachnophobiaCheckBox" Text="{Loc 'ui-options-arachnophobia'}" /> <!-- Starlight -->
             </BoxContainer>
         </ScrollContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />

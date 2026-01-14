@@ -8,8 +8,6 @@ namespace Content.Server.Speech.EntitySystems
 {
     public sealed class ChavAccentSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
-
         // Regex for splitting on words:
         private static readonly Regex s_wordSplit = new(pattern: "([\\p{P}\\p{Z}])",
             options: RegexOptions.Compiled | RegexOptions.IgnoreCase);

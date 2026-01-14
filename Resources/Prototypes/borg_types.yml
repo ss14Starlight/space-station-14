@@ -126,7 +126,7 @@
     - BorgModuleJanitor
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModuleTool # Starlight
   - BorgModuleCleaning
   - BorgModuleCustodial
 
@@ -159,7 +159,7 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModuleTool # Starlight
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue
@@ -213,7 +213,7 @@
     - BorgModuleService
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModuleTool # Starlight
   - BorgModuleMusique
   # Starlight start 
   - BorgModuleBartending
