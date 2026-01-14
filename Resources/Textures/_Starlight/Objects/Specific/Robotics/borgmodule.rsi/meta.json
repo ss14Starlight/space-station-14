@@ -14,11 +14,7 @@
             "name": "hauling"
         },
         {
-<<<<<<< HEAD
-            "name": "salvage"
-=======
             "name": "mining"
->>>>>>> a8952d0e51ca9a581c30a7fe657d1a62bca4461b
         },
         {
             "name": "icon-mats"
