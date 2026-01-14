@@ -71,7 +71,7 @@
     back:
     - WeaponPistolViper
     - PinpointerSyndicateNuclear
-    - DeathAcidifierImplanter
+    - GearAcidifierImplanter # Starlight edit
 
 #Nuclear Operative Gear
 - type: startingGear
@@ -131,7 +131,7 @@
     - PinpointerSyndicateNuclear
     - HandheldHealthAnalyzer
     - CombatMedipen
-    - DeathAcidifierImplanter
+    - GearAcidifierImplanter # Starlight edit
 
 - type: chameleonOutfit
   id: NukeopsMedicOutfit

@@ -184,6 +184,9 @@
   id: FormerSoldierTraitBackground
 
 - type: Tag
+  id: GearAcidifier
+
+- type: Tag
   id: GasTank
 
 - type: Tag
