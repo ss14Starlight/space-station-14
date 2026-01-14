@@ -1,0 +1,4 @@
+- type: ninjaHackingThreat
+  id: Eeeplet
+  announcement: terror-eeep
+  rule: EeepEvent

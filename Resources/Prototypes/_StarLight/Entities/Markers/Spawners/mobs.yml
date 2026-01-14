@@ -62,7 +62,7 @@
   name: ghost role spawn point
   suffix: eeeplet
   categories: [ HideSpawnMenu, Spawner ]
-  parent: BaseAntagSpawner
+  parent: MarkerBase
   components:
   - type: GhostRole
     name: ghost-role-information-eeeplet-name
@@ -72,3 +72,12 @@
     - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobEeeplet
+  - type: Sprite
+    layers:
+    - state: green
+    - state: eeeplet
+      sprite: _Starlight/Mobs/Aliens/eeeplet.rsi
+    - state: eeeplet_glow
+      sprite: _Starlight/Mobs/Aliens/eeeplet.rsi

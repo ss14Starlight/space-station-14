@@ -4,6 +4,7 @@
   weights:
     Dragon: 1
     Revenant: 1
+    Eeeplet: 1 # Starlight
 
 - type: ninjaHackingThreat
   id: Dragon

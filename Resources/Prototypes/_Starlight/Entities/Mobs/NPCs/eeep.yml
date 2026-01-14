@@ -1,9 +1,11 @@
 - type: entity
-  parent: [ SimpleSpaceMobBase, FlyingMobBase ]
+  parent: [ SimpleSpaceMobBase ]
   id: MobEeepBase
   abstract: true
   categories: [ HideSpawnMenu ]
   components:
+  - type: ThermalVision
+  - type: NoSlip
   - type: GhostTakeoverAvailable
   - type: Examiner
   - type: Speech
@@ -14,9 +16,8 @@
   - type: MobMover
   - type: InputMover
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 5
-    baseWeightlessModifier: 1.5
+    baseWalkSpeed: 1
+    baseSprintSpeed: 3
   - type: Fixtures
     fixtures:
       fix1:
@@ -68,13 +69,14 @@
     energy: 3
     color: "#afa2ff"
     castShadows: true
-  - type: NightVision
   - type: BatteryDrainer
     fullDrain: true
     drainTime: 10
     sparkSound:
      path: /Audio/Effects/PowerSink/charge_fire.ogg
     minimumDrain: 1000
+  - type: BatteryAlert
+  - type: Alerts
   - type: ComplexInteraction
   - type: ExaminableBattery
   - type: PassiveDamage # passive regen.
@@ -104,6 +106,7 @@
     - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
+    briefing: eeep-role-briefing
   - type: Bloodstream
     bloodMaxVolume: 200
     bloodReagents:
@@ -151,27 +154,12 @@
   - type: MeleeChemicalInjector
     solution: chloralhydrate
     transferAmount: 5
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 30000
     startingCharge: 0
   - type: PolymorphOnTrigger
     polymorph: EeepGrow
   - type: TriggerOnBatteryFull
-
-- type: entity
-  id: EeepSpark
-  parent: TeslaMiniEnergyBall
-  categories: [ HideSpawnMenu ]
-  name: eeep spark
-  description: You monster.
-  components:
-  - type: TimedDespawn
-    lifetime: 10
-  - type: Sprite
-    drawdepth: Effects
-    sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
-    layers:
-    - state: tesla_projectile
 
 - type: entity
   parent: [ MobEeepBase ]
@@ -217,7 +205,7 @@
     thresholds:
       0: Alive
       400: Critical
-      500: Dead
+      450: Dead
   - type: AmbientSound
     volume: -3
     range: 4
@@ -238,10 +226,10 @@
   - type: BatteryAmmoProvider
     proto: EeepGunBullet
     fireCost: 100
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 20
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1000
     startingCharge: 1000
   - type: LightningArcShooter
@@ -264,3 +252,18 @@
     disableDuration: 20
   - type: Perishable
     rotAfter: 2000
+
+- type: entity
+  id: EeepSpark
+  parent: TeslaMiniEnergyBall
+  categories: [ HideSpawnMenu ]
+  name: eeep spark
+  description: You monster.
+  components:
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
+    layers:
+    - state: tesla_projectile

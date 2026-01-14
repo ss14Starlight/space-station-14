@@ -364,17 +364,7 @@
     earliestStart: 25
     reoccurrenceDelay: 40
     minimumPlayers: 30
-    duration: null
-  - type: SpaceSpawnRule
-    spawnDistance: 0
-  - type: AntagSpawner
-    prototype: MobEeeplet
-  - type: AntagSelection
-    agentName: ghost-role-information-eeep-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostEeeplet
-      min: 1
-      max: 1
-      pickPlayer: false
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
+  - type: VentCrittersRule
+    specialEntries:
+    - id: SpawnPointGhostEeeplet
+      prob: 0
