@@ -64,6 +64,47 @@ public sealed class MachineBoardTest
         await pair.CleanReturnAsync();
     }
 
+    // Starlight Start: Blade Server board test
+    /// <summary>
+    /// Ensures that every blade server specified to be a machine board's associated blade server also specifies that
+    /// its board is that machine board.
+    /// </summary>
+    [Test]
+    public async Task TestBladeServerBoardHasValidBladeServer()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+
+        var protoMan = server.ResolveDependency<IPrototypeManager>();
+        var compFact = server.ResolveDependency<IComponentFactory>();
+
+        await server.WaitAssertion(() =>
+        {
+            foreach (var p in protoMan.EnumeratePrototypes<EntityPrototype>()
+                         .Where(p => !p.Abstract)
+                         .Where(p => !pair.IsTestPrototype(p))
+                         .Where(p => !_ignoredPrototypes.Contains(p.ID)))
+            {
+                if (!p.TryGetComponent<MachineBoardComponent>(out var mbc, compFact) ||
+                    mbc.BladeServerPrototype is not {} bsId)
+                    continue;
+
+                Assert.Multiple(() =>
+                {
+                    Assert.That(protoMan.TryIndex<EntityPrototype>(bsId, out var bsProto),
+                        $"Machine board {p.ID}'s corresponding blade server has an invalid prototype.");
+                    Assert.That(bsProto.TryGetComponent<MachineComponent>(out var mComp, compFact),
+                        $"Machine board {p.ID}'s corresponding blade server {bsId} does not have {nameof(MachineComponent)}");
+                    Assert.That(mComp.Board, Is.EqualTo(p.ID),
+                        $"Machine {bsId}'s BoardPrototype is not equal to its corresponding machine board, {p.ID}");
+                });
+            }
+        });
+
+        await pair.CleanReturnAsync();
+    }
+    // Starlight End
+
     /// <summary>
     /// Ensures that every single computer board's corresponding entity
     /// is a computer that can be properly deconstructed to the correct board

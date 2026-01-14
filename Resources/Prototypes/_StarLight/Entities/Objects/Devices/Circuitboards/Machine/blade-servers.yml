@@ -1,0 +1,19 @@
+- type: entity
+  id: HologramServerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: hologram blade server circuitboard
+  description: A machine printed circuit board for a hologram blade server.
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: HologramBladeServer
+      stackRequirements:
+        Steel: 2
+        Manipulator: 1
+        Glass: 1
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: HologramServerMachineCircuitboard
+  result: HologramServerMachineCircuitboard

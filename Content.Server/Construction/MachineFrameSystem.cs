@@ -42,7 +42,10 @@ public sealed class MachineFrameSystem : EntitySystem
         if (TryComp<ConstructionComponent>(uid, out var construction) && construction.TargetNode == null)
         {
             // Attempt to set pathfinding to the machine node...
-            _construction.SetPathfindingTarget(uid, "machine", construction);
+            // Starlight edit Start: Blade Server Construction
+            if (!_construction.SetPathfindingTarget(uid, "machine", construction))
+                _construction.SetPathfindingTarget(uid, "bladeServer", construction);
+            // Starlight edit End
         }
     }
 

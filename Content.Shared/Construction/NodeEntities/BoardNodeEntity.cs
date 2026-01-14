@@ -12,8 +12,12 @@ namespace Content.Shared.Construction.NodeEntities;
 [DataDefinition]
 public sealed partial class BoardNodeEntity : IGraphNodeEntity
 {
+    // Starlight edit Start: Enable blade server construction
+    [DataField("container")] public string Container { get; private set; } = string.Empty;
+
     [DataField]
-    public string Container { get; private set; } = string.Empty;
+    public bool BladeServer;
+    // Starlight edit End
 
     public string? GetId(EntityUid? uid, EntityUid? userUid, GraphNodeEntityArgs args)
     {
@@ -30,7 +34,7 @@ public sealed partial class BoardNodeEntity : IGraphNodeEntity
 
         // There should not be a case where more than one of these components exist on the same entity
         if (args.EntityManager.TryGetComponent(board, out MachineBoardComponent? machine))
-            return machine.Prototype;
+            return BladeServer ? machine.BladeServerPrototype : machine.Prototype; // Starlight Edit: Blade Server construction
 
         if (args.EntityManager.TryGetComponent(board, out ComputerBoardComponent? computer))
             return computer.Prototype;

@@ -31,6 +31,11 @@ public sealed partial class MachineBoardComponent : Component
     /// </summary>
     [DataField(required: true)]
     public EntProtoId Prototype;
+
+    // Starlight Start: Blade Server Construction from existing boards
+    [DataField]
+    public EntProtoId? BladeServerPrototype;
+    // Starlight End
 }
 
 /// <summary>
