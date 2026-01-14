@@ -106,13 +106,7 @@
     - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
-    briefing: eeep-role-briefing
   - type: Bloodstream
-    bloodMaxVolume: 200
-    bloodReagents:
-      reagents:
-      - ReagentId: ChloralHydrate
-        Quantity: 1
   - type: Sprite
     sprite: _Starlight/Mobs/Aliens/eeeplet.rsi
     noRot: true
@@ -227,7 +221,6 @@
     proto: EeepGunBullet
     fireCost: 100
   - type: PredictedBatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 20
   - type: PredictedBattery
     maxCharge: 1000
