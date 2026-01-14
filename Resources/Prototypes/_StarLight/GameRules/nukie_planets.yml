@@ -3,11 +3,11 @@
   id: NukiePlanetSpawn
   components:
   - type: LoadMapRule
-    mapPath: /Maps/_Starlight/nukieplanet.yml
+    mapPath: /Maps/_Starlight/Nonstations/nukieplanet.yml
 
 - type: entity
   parent: BaseGameRule
   id: NukiePlanetSpawnWestern
   components:
   - type: LoadMapRule
-    mapPath: /Maps/_Starlight/nukiewestern.yml
+    mapPath: /Maps/_Starlight/Nonstations/nukiewestern.yml
