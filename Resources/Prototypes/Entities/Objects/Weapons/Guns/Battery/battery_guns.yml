@@ -650,6 +650,7 @@
     fireRate: 0.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
+    projectileSpeed: 25
   - type: BatteryAmmoProvider
     proto: BulletTaser
     fireCost: 200
@@ -936,15 +937,15 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
-    proto: BulletLaserMagnum
+    proto: BulletLaserMagnumSL  # Starlight - Hitscan
     fireCost: 150
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BulletLaserMagnum
+    - proto: BulletLaserMagnumSL # Starlight - Hitscan
       fireCost: 150
-    - proto: BulletLaserWindowPiercingMagnum
+    - proto: BulletLaserWindowPiercingMagnumSL # Starlight - Hitscan
       fireCost: 150
-    - proto: BulletDisabler
+    - proto: DisablerBolt # Starlight - Hitscan
       fireCost: 62.5
       pacifismAllowedMode: true
   - type: PredictedBatterySelfRecharger
@@ -996,14 +997,22 @@
     price: 100
 
 - type: entity
-  name: xenoborg laser gun
   parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
-  id: XenoborgLaserGun
+  id: WeaponLaserGunXenoborg
+  name: xenoborg laser gun
 
 - type: entity
-  name: xenoborg heavy laser gun
-  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
-  id: XenoborgHeavyLaserGun
+  parent: [WeaponLaserCannon, BaseXenoborgContraband]
+  id: WeaponLaserCannonXenoborg
+  name: xenoborg laser cannon
   components:
-  - type: BatteryAmmoProvider
-    proto: RedHeavyLaser
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+  # "remove" wield bonus and penalty so borgs can use it
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+  - type: Gun
+    fireRate: 2
+    minAngle: 1
+    maxAngle: 2

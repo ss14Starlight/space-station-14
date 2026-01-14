@@ -72,11 +72,10 @@
   - type: Speech
     speechVerb: Cluwne
   - type: Bloodstream
-    bloodMaxVolume: 100
-    bloodReagents:
+    bloodReferenceSolution:
         reagents:
         - ReagentId: Laughter
-          Quantity: 1
+          Quantity: 100
   - type: InjectOnHit
     limit: 20
     reagents:

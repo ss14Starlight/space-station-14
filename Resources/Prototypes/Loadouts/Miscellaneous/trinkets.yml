@@ -232,6 +232,11 @@
 
 - type: loadout
   id: ClothingNeckGoldAutismPin
+  effects: # Starlight addition.
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 360000 # 100 hours - you ain't neurotypical with that much.
   storage:
     back:
     - ClothingNeckGoldAutismPin

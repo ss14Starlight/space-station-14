@@ -15,7 +15,7 @@ public sealed class StartEndGameRulesTest
     [Test]
     public async Task TestAllConcurrent()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
+        var pair = await PoolManager.GetServerClient(new PoolSettings
         {
             Dirty = true,
             DummyTicker = false

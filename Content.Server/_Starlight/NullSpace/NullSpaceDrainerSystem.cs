@@ -10,7 +10,6 @@ namespace Content.Server._Starlight.NullSpace;
 
 public sealed class NullSpaceDrainerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     public override void Initialize()
     {
@@ -50,7 +49,7 @@ public sealed class NullSpaceDrainerSystem : EntitySystem
         if (component.Target is not null && TryComp<BrighteyeComponent>(component.Target.Value, out var brighteye) && brighteye.Energy > 0)
         {
             brighteye.Energy -= 1;
-            args.Points += 50;
+            args.Points += component.Points;
             Dirty(component.Target.Value, brighteye);
         }
     }

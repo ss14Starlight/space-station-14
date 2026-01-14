@@ -25,3 +25,22 @@
           Full: {visible: false}
           Neither: {visible: false}
           Empty: {visible: false}
+
+- type: entity
+  parent: BasePowerCell
+  id: YellowSlimeExtractPowercell
+  name: yellow slime extract powercell
+  components:
+    - type: Sprite
+      layers:
+        - map: [ "enum.PowerCellVisualLayers.Base" ]
+          state: microreactor
+        - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+          state: o2
+          shader: unshaded
+      color: "#ffeb52ff" # Yes I'm just taking the microreactor sprite and painting it yellow, sue me
+    - type: PredictedBattery
+      maxCharge: 5000
+      startingCharge: 5000
+    - type: PredictedBatterySelfRecharger
+      autoRechargeRate: 50
