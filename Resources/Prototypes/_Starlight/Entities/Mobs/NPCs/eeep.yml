@@ -16,8 +16,8 @@
   - type: MobMover
   - type: InputMover
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 3
+    baseWalkSpeed: 2
+    baseSprintSpeed: 5
   - type: Fixtures
     fixtures:
       fix1:
