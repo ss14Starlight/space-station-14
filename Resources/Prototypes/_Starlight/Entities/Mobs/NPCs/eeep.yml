@@ -107,6 +107,10 @@
     raffle:
       settings: default
   - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 200
   - type: Sprite
     sprite: _Starlight/Mobs/Aliens/eeeplet.rsi
     noRot: true
