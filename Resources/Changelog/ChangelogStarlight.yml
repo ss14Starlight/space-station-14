@@ -26250,5 +26250,70 @@ Entries:
   id: 258000
   time: '2026-01-14T02:28:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2580
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed Lobby Hub.
+    type: Fix
+  id: 281700
+  time: '2026-01-14T07:50:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2817
+- author: Penguinwizzard
+  changes:
+  - message: I accidentally drained all but one unit of blood from abductors, cyclorites,
+      avali, and resomi; turns out they need that.
+    type: Fix
+  id: 281800
+  time: '2026-01-14T09:16:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2818
+- author: DocMoth
+  changes:
+  - message: Resomi and Avali organ sprites.
+    type: Add
+  id: 281200
+  time: '2026-01-14T09:20:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2812
+- author: SCARLET
+  changes:
+  - message: Rebalanced reflective armor! you now need both helmet and vest to reflect
+      100%!
+    type: Tweak
+  id: 220200
+  time: '2026-01-14T14:28:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2202
+- author: Scarlet Lightweaver
+  changes:
+  - message: Added a new mantle.. a early forgotten prototype!
+    type: Add
+  id: 252700
+  time: '2026-01-14T16:43:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2527
+- author: scarlet lightweaver
+  changes:
+  - message: THE WIZARD HAS BEGUN A COLD ERA LOOK FOR A NEW SPELL IN THE GRIMORE!
+    type: Add
+  id: 230800
+  time: '2026-01-14T16:50:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2308
+- author: CrazyPhantom
+  changes:
+  - message: Gear Acidifier. Capture RP go BRRRR
+    type: Add
+  - message: Nukies now have Gear Acidifier instead of normal.
+    type: Tweak
+  - message: Nukies now lose if they are cuffed.
+    type: Tweak
+  - message: TEMPORARILY increases nukie evac timer to 8 minutes so it can be recalled.
+      Revert when console is fixed
+    type: Tweak
+  id: 233200
+  time: '2026-01-14T17:00:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2332
+- author: Scarlet Lightweaver
+  changes:
+  - message: Added new markings for reptilian!
+    type: Add
+  id: 278900
+  time: '2026-01-14T17:45:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2789
 Order: -1
 

@@ -39,7 +39,7 @@ public sealed partial class NukeopsRuleComponent : Component
     /// Time to emergency shuttle to arrive if RoundEndBehavior is ShuttleCall.
     /// </summary>
     [DataField]
-    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(3);
+    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(8); // Starlight edit: TEMP FIX till i fix communication consoles
 
     /// <summary>
     /// Whether or not nukie left their outpost

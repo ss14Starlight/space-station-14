@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Client._Starlight.UI;
 using Content.Client.Eui;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._NullLink;
 using Content.Shared.Eui;
@@ -20,7 +21,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
-namespace Content.Client._NullLink;
+namespace Content.Client._NullLink.UI;
 
 // It’s not finished, still needs a lot of info displayed, scroll support once more servers show up, max hub width, a hide button, etc.
 // But I’m rushing it for the upstream, will finish it properly someday.
@@ -47,11 +48,12 @@ internal sealed class Hub : PanelContainer, IDisposable
         HorizontalExpand = true;
         VerticalExpand = true;
         Margin = new Thickness(1);
-        StyleClasses.Add("AngleRect");
+        StyleClasses.Add(StyleClass.BackgroundPanel);
 
         _gridContainer = new GridContainer
         {
             Columns = 4,
+            Margin = new Thickness(1),
             HorizontalExpand = true,
             VerticalExpand = true,
         };
@@ -119,17 +121,6 @@ internal sealed class Hub : PanelContainer, IDisposable
         _gridContainer.RemoveAllChildren();
         _rows.Clear();
 
-        for (var i = 0; i < 4; i++)
-        {
-            var stripe = new StripeBack();
-            stripe.AddChild(new RichTextLabel
-            {
-                Text = "-----",
-                HorizontalAlignment = HAlignment.Center,
-            });
-            _gridContainer.AddChild(stripe);
-        }
-
         var currentHostName = _hub.CurrentGameHostName;
         foreach (var server in _hub.Servers ?? [])
             AddRow(currentHostName, server.Key, server.Value);
@@ -157,10 +148,11 @@ internal sealed class Hub : PanelContainer, IDisposable
             {
                 Text = "Connect",
                 TooltipDelay = 1f,
-                ToolTip = server.Description
+                ToolTip = server.Description,
             };
             connectButton.OnPressed += _ => _game.Redial(server.ConnectionString);
         }
+        connectButton.AddStyleClass(StyleClass.ButtonSmall);
 
         var row = new Row()
         {
