@@ -51,7 +51,7 @@
 - type: cargoProduct
   id: StationAiCore
   icon:
-    sprite: _Starlight/Mobs/Silicon/station_ai.rsi
+    sprite: _Starlight/Mobs/Silicon/station_ai.rsi # Starlight - use our AI sprite
     state: frame_4
   product: CrateStationAiCore
   cost: 10000

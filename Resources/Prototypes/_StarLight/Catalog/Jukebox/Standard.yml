@@ -1,0 +1,35 @@
+- type: jukebox
+  id: cueball
+  name: Christofori - Cue Ball
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/cue_ball_by_christofori.ogg
+
+- type: jukebox
+  id: drunkreflections
+  name: JAM - Drunk Reflections
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/drunk_reflections_by_JAM.ogg
+
+- type: jukebox
+  id: jazzical
+  name: Christofori - Jazzical Interpolation
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/jazzical_interpolation_by_christofori.ogg
+
+- type: jukebox
+  id: shadesoffutility
+  name: Christofori - Shades of Futility
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/shades_of_futility_by_christofori.ogg
+
+- type: jukebox
+  id: drunkenmonkey
+  name: Cristofori - The Drunken Monkey
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/the_drunken_monkey_by_christofori.ogg
+
+- type: jukebox
+  id: midnightcry
+  name: Christofori - The Midnight Cry
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/the_midnight_cry_by_christofori.ogg

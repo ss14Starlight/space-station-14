@@ -7,13 +7,13 @@ using Content.Server.Administration.Managers;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
-using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.Maps;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
@@ -511,7 +511,7 @@ namespace Content.Server.Voting.Managers
                     (Loc.GetString("ui-vote-votekick-abstain"), "abstain")
                 },
                 Duration = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimer)),
-                InitiatorTimeout = TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.VotekickTimeout)),
+                InitiatorTimeout = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimeout)),
                 VoterEligibility = voterEligibility,
                 DisplayVotes = false,
                 TargetEntity = targetNetEntity
@@ -526,7 +526,7 @@ namespace Content.Server.Voting.Managers
             var webhookState = _voteWebhooks.CreateWebhookIfConfigured(options, _cfg.GetCVar(CCVars.DiscordVotekickWebhook), Loc.GetString("votekick-webhook-name"), options.Title + "\n" + Loc.GetString("votekick-webhook-description", ("initiator", initiatorName), ("target", targetSession)));
 
             // Time out the vote now that we know it will happen
-            TimeoutStandardVote(StandardVoteType.Votekick);
+            TimeoutStandardVote(StandardVoteType.Votekick, TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimeout)));
 
             vote.OnFinished += (_, eventArgs) =>
             {
@@ -633,9 +633,9 @@ namespace Content.Server.Voting.Managers
             }
         }
 
-        private void TimeoutStandardVote(StandardVoteType type)
+        private void TimeoutStandardVote(StandardVoteType type, TimeSpan? timeoutOverride = null)
         {
-            var timeout = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteSameTypeTimeout));
+            var timeout = timeoutOverride ?? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteSameTypeTimeout));
             _standardVoteTimeout[type] = _timing.RealTime + timeout;
             DirtyCanCallVoteAll();
         }

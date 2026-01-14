@@ -181,7 +181,7 @@
     Honk:
       collection: BikeHorn
     Whistle:
-      path: /Audio/Voice/Resomi/resomi_whistle.ogg
+      path: /Audio/_Starlight/Voice/Resomi/resomi_whistle.ogg
     Chirp:
       collection: ResomiChirp
 
@@ -231,9 +231,55 @@
     Honk:
       collection: BikeHorn
     Whistle:
-      path: /Audio/Voice/Resomi/resomi_whistle.ogg
+      path: /Audio/_Starlight/Voice/Resomi/resomi_whistle.ogg
     Chirp:
       collection: ResomiChirp
+
+- type: emoteSounds
+  id: UnisexResomi
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/_Starlight/Effects/avali_scream.ogg
+    Laugh:
+      collection: ResomiLaugh
+    Honk:
+      collection: BikeHorn
+    Whistle:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_whistle.ogg
+    Chirp:
+      collection: ResomiChirp
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_deathgrasp.ogg
+    Sigh:
+      collection: FemaleSigh
+    Crying:
+      collection: ResomiCry
+    Cough:
+      collection: FemaleCoughs
+    Yawn:
+      collection: FemaleYawn
+    Hisses:
+      collection: FelionoidHisses
+    Purr:
+      collection: FelionoidPurrs
+    Growl:
+      collection: FelionoidGrowls
+    Trill:
+      collection: FelionoidTrills
+    Scree:
+      collection: ResomiScrees
+    Call:
+      collection: ResomiCalls
+    Squawk:
+      collection: ResomiSquawk
 
 - type: emoteSounds
   id: MaleShadekin
@@ -266,7 +312,7 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
-    Mar:
+    Marr:
       path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
     Wurble:
       path: /Audio/_Starlight/Voice/Shadekin/wurble.ogg
@@ -308,7 +354,7 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
-    Mar:
+    Marr:
       path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
     Wurble:
       path: /Audio/_Starlight/Voice/Shadekin/wurble.ogg

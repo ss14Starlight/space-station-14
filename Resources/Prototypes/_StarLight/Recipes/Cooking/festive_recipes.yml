@@ -1,0 +1,104 @@
+
+# Recipes for Festive Foods
+
+- type: microwaveMealRecipe
+  id: RecipeGravyBoat # technically a drink, but keeping it here is slightly more tidy
+  name: gravy boat recipe
+  result: DrinkGravyBoat
+  time: 5
+  reagents:
+    Gravy: 50
+  solids:
+    FoodBowlBig: 1
+
+- type: microwaveMealRecipe
+  id: RecipeStuffing
+  name: stuffing recipe
+  result: FoodStuffing
+  time: 15
+  deviceType: Oven
+  reagents:
+    TableSalt: 5
+  solids:
+    FoodBreadPlainSlice: 3
+    FoodOnionSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeStuffingCotton
+  name: cotton stuffing recipe
+  result: FoodStuffingCotton
+  time: 15
+  deviceType: Oven
+  reagents:
+    TableSalt: 5
+  solids:
+    FoodBreadCottonSlice: 3
+    FoodOnionSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeFeastFestiveDinner
+  name: festive feast recipe
+  result: FoodFeastFestiveDinner
+  time: 5
+  solids:
+    FoodFeastTurkey: 1
+    FoodCabbage: 2
+    FoodFeastPotatoGravy: 1
+    FoodPlate: 1
+
+- type: microwaveMealRecipe
+  id: RecipeFeastTurkey
+  name: turkey recipe
+  result: FoodFeastTurkey
+  time: 30
+  reagents:
+    TableSalt: 10
+    Blackpepper: 10
+  solids:
+    FoodStuffing: 1
+    FoodMeatChicken: 4
+    FoodGarlic: 1
+    FoodPlate: 1
+
+- type: microwaveMealRecipe
+  id: RecipeFeastPotatoMashed
+  name: big mashed potato recipe
+  result: FoodFeastPotatoMashed
+  time: 10
+  reagents:
+    Milk: 10
+  solids:
+    FoodPotato: 5
+    FoodButter: 1
+
+- type: microwaveMealRecipe
+  id: RecipePotatoMashed
+  name: small mashed potato recipe
+  result: FoodPotatoMashed
+  time: 5
+  reagents:
+    Milk: 2
+  solids:
+    FoodPotato: 1
+    FoodButterSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeFeastPotatoGravy
+  name: big gravy potato recipe
+  result: FoodFeastPotatoGravy
+  time: 5
+  reagents:
+    Gravy: 50
+  solids:
+    FoodFeastPotatoMashed: 1
+
+- type: microwaveMealRecipe
+  id: RecipePotatoGravy
+  name: small gravy potato recipe
+  result: FoodPotatoGravy
+  time: 5
+  reagents:
+    Gravy: 10
+  solids:
+    FoodPotatoMashed: 1
+

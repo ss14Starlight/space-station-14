@@ -2,6 +2,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Roles;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Traits;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
@@ -18,6 +19,7 @@ public sealed class TraitSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
@@ -49,17 +51,24 @@ public sealed class TraitSystem : EntitySystem
             if (!_prototypeManager.TryIndex<TraitPrototype>(traitId, out var traitPrototype))
             {
                 Log.Error($"No trait found with ID {traitId}!");
-                return;
+                continue;
             }
 
             if (_whitelistSystem.IsWhitelistFail(traitPrototype.Whitelist, Mob) ||
-                _whitelistSystem.IsBlacklistPass(traitPrototype.Blacklist, Mob)) //Starlight
+                _whitelistSystem.IsWhitelistPass(traitPrototype.Blacklist, Mob))
                 continue;
 
             // Add all components required by the prototype
-            EntityManager.AddComponents(Mob, traitPrototype.Components, false); //Starlight
+            if (traitPrototype.Components.Count > 0)
+                EntityManager.AddComponents(Mob, traitPrototype.Components, false);
 
-            // Starlight - start
+            // Add all JobSpecials required by the prototype
+            foreach (var special in traitPrototype.Specials)
+            {
+                special.AfterEquip(Mob);
+            }
+
+			// Starlight - start
             var language = EntityManager.System<LanguageSystem>();
 
             if (traitPrototype.RemoveLanguagesSpoken is not null)

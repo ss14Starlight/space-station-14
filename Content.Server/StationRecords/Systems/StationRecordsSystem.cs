@@ -15,6 +15,10 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+// Starlight Start
+using Content.Shared.Silicons.StationAi;
+using Content.Shared.Silicons.Borgs.Components;
+// Starlight End
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -133,9 +137,16 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             specie = profile.CustomSpecieName + " (" + profile.Species + ")";
         /// Starlight - End
 
-        CreateGeneralRecord(station, idUid, profile.Name, profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie)
+        // Starlight Start: Silicons use the correct name for mail
+        string characterName = profile.Name;
+        if (HasComp<StationAiHeldComponent>(player) || HasComp<BorgChassisComponent>(player))
+        {
+            var metaData = MetaData(player);
+            characterName = metaData.EntityName;
+        }
+        // Starlight End
+        CreateGeneralRecord(station, idUid, characterName, profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie, profile.Name -> characterName)
     }
-
 
     /// <summary>
     ///     Create a general record to store in a station's record set.
@@ -266,29 +277,6 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
 
         Sawmill.Warning($"Attempted to remove non-existent station record {key.Id} from {ToPrettyString(key.OriginStation)}.");
         return false;
-    }
-
-    /// <summary>
-    ///     Try to get a record from this station's record entries,
-    ///     from the provided station record key. Will always return
-    ///     null if the key does not match the station.
-    /// </summary>
-    /// <param name="key">Station and key to try and index from the record set.</param>
-    /// <param name="entry">The resulting entry.</param>
-    /// <param name="records">Station record component.</param>
-    /// <typeparam name="T">Type to get from the record set.</typeparam>
-    /// <returns>True if the record was obtained, false otherwise.</returns>
-    public bool TryGetRecord<T>(StationRecordKey key, [NotNullWhen(true)] out T? entry, StationRecordsComponent? records = null)
-    {
-        entry = default;
-
-        if (!Resolve(key.OriginStation, ref records))
-        {
-            Sawmill.Debug($"Unable to resolve {nameof(StationRecordsComponent)} for {ToPrettyString(key.OriginStation)} while retrieving record {key.Id}.");
-            return false;
-        }
-
-        return records.Records.TryGetRecordEntry(key.Id, out entry);
     }
 
     /// <summary>

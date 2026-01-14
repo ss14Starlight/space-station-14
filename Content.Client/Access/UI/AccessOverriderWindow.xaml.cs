@@ -35,6 +35,11 @@ namespace Content.Client.Access.UI
             AccessGroupControlContainer.RemoveAllChildren();
             AccessLevelControlContainer.RemoveAllChildren();
 
+            /* Starlight: disabled upstream code
+            _accessButtons.Clear();
+            AccessLevelGrid.RemoveAllChildren();
+            *///End of disabled upstream code
+
             // Groups
             _accessGroups.Populate(accessGroups, currentGroup ?? accessGroups.FirstOrDefault(), protoManager);
             AccessGroupControlContainer.AddChild(_accessGroups);
@@ -65,6 +70,8 @@ namespace Content.Client.Access.UI
 
         public void UpdateState(IPrototypeManager protoManager, AccessOverriderBoundUserInterfaceState state)
         {
+            PrivilegedIdGrid.Visible = state.ShowPrivilegedIdGrid;
+
             PrivilegedIdLabel.Text = state.PrivilegedIdName;
             PrivilegedIdButton.Text = state.IsPrivilegedIdPresent
                 ? Loc.GetString("access-overrider-window-eject-button")
@@ -110,7 +117,9 @@ namespace Content.Client.Access.UI
                 }
                 if (missingPrivileges.Any())
                 {
-                    MissingPrivilegesLabel.Text = Loc.GetString("access-overrider-window-missing-privileges");
+                    MissingPrivilegesLabel.Text = state.ShowPrivilegedIdGrid ?
+                        Loc.GetString("access-overrider-window-missing-privileges") :
+                        Loc.GetString("access-overrider-window-missing-privileges-no-id");
                     MissingPrivilegesText.Text = string.Join(", ", missingPrivileges);
                 }
                 // Starlight edit End

@@ -78,5 +78,6 @@ public sealed partial class StationJobsComponent : Component
     /// Negative values implies that there is no limit.
     /// </summary>
     [DataField("availableJobs", required: true)]
+    [Access(typeof(StationSystem))] // Starlight
     public Dictionary<ProtoId<JobPrototype>, int[]> SetupAvailableJobs = default!;
 }

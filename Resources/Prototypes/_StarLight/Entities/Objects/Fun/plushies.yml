@@ -52,30 +52,6 @@
         voice: ganyu
 
 - type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieTrystan
-  name: trystan plushie
-  description: He yeeps...
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/trystan_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/trystan_plushie.rsi
-    layers: 
-      - state: icon
-  - type: ItemToggle
-    onUse: false
-    verbToggleOn: plushie-voicebox-activate
-    verbToggleOff: plushie-voicebox-deactivate
-  - type: ComponentToggler
-    components:
-      - type: DatasetVocalizer
-        dataset: PlushiesTrystan
-      - type: TextToSpeech
-        voice: barneycalhoun
-
-- type: entity
   parent: BaseResomiPlushie
   id: PlushieMorgana
   name: morgana plushie
@@ -225,7 +201,7 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Voice/Human/femalescream_5.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Human/femalescream_2.ogg
@@ -362,7 +338,7 @@
     - type: MeleeWeapon
       soundHit:
         collection: CatMothSounds
-    - type: Food
+    - type: Edible
       useSound:
         collection: CatMothScreams
     - type: Clothing
@@ -403,7 +379,7 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_Starlight/Items/Toys/panda_noise1.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/panda_noise2.ogg
@@ -432,7 +408,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
@@ -477,7 +453,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/deerplush_nun.ogg
@@ -523,7 +499,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Misc/alien_teleport.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Misc/alien_teleport.ogg
@@ -556,7 +532,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak3.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -589,7 +565,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak3.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -622,7 +598,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Items/Toys/yippie.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/yippie.ogg
@@ -655,7 +631,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Starlight/Items/Toys/gnome_hahe.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Items/Toys/gnome_stop.ogg
@@ -688,7 +664,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak3.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -721,7 +697,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/dog_bark3.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -754,7 +730,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/dog_bark3.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -787,7 +763,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/cat_meow2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -820,7 +796,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/pig_oink.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -853,7 +829,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/fox8.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Animals/fox_squeak.ogg
@@ -886,7 +862,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -919,7 +895,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -952,7 +928,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -985,7 +961,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -1018,7 +994,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -1051,7 +1027,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/cat_meow2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -1084,7 +1060,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/toysqueak2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -1117,7 +1093,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Stamp/thick_stamp_sub.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Effects/gib1.ogg
@@ -1150,7 +1126,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Items/Toys/weh.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/hew.ogg
@@ -1183,7 +1159,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Voice/Slime/slime_squish.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Human/femalescream_4.ogg
@@ -1444,7 +1420,7 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
@@ -1542,7 +1518,7 @@
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Items/Toys/weh.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/weh.ogg
@@ -1714,7 +1690,7 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Animals/cat_meow2.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Items/Toys/toysqueak3.ogg
@@ -1826,7 +1802,7 @@
     - type: EmitSoundOnCollide
       sound:
         path: /Audio/_Starlight/Voice/Felionoid/cat_scream3.ogg
-    - type: Food
+    - type: Edible
       requiresSpecialDigestion: true
       useSound:
         path: /Audio/_Starlight/Voice/Felionoid/cat_scream2.ogg

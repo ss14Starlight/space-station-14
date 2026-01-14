@@ -1,0 +1,9 @@
+- type: foodSequenceElement
+  id: MeatSausage
+  sprites:
+  - sprite: _Starlight/Objects/Consumable/Food/organmeats.rsi
+    state: sausage-cooked
+  tags:
+  - Cooked
+  - Meat
+  - Sausage

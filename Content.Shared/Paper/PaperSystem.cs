@@ -459,7 +459,7 @@ public sealed class PaperSystem : EntitySystem
         // Get the identity entity (ID card, etc.)
         var identityEntity = player;
         if (TryComp<IdentityComponent>(player, out var identity) &&
-            identity.IdentityEntitySlot.ContainedEntity is { } idEntity)
+            identity.IdentityEntitySlot?.ContainedEntity is { } idEntity)
         {
             identityEntity = idEntity;
         }

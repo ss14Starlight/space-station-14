@@ -8,7 +8,7 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Light.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Salvage;
@@ -105,10 +105,12 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
             return;
 
         EnsureComp<ShuttleComponent>(ev.EntityUid);
-        if (HasComp<RoofComponent>(ev.EntityUid))   // 🌟Starlight🌟 Wont add imp roof on grids with no roof, since it bugs lighting on those grids
-        {
+
+        // This and RoofComponent should be mutually exclusive, so ImplicitRoof should be removed if the grid has RoofComponent
+        if (HasComp<RoofComponent>(ev.EntityUid))
+            RemComp<ImplicitRoofComponent>(ev.EntityUid);
+        else
             EnsureComp<ImplicitRoofComponent>(ev.EntityUid);
-        }
     }
 
     private void OnShuttleStartup(EntityUid uid, ShuttleComponent component, ComponentStartup args)

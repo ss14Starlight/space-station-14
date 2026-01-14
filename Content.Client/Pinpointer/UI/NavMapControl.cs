@@ -129,11 +129,7 @@ public partial class NavMapControl : MapGridControl
 
         var topPanel = new PanelContainer()
         {
-            PanelOverride = new StyleBoxFlat()
-            {
-                BackgroundColor = StyleNano.ButtonColorContext.WithAlpha(1f),
-                BorderColor = StyleNano.PanelDark
-            },
+            StyleClasses = { StyleClass.PanelDark },
             VerticalExpand = false,
             HorizontalExpand = true,
             SetWidth = 650f,
@@ -487,6 +483,27 @@ public partial class NavMapControl : MapGridControl
             UpdateNavMap();
         }
     }
+
+    // Carpmosia-start - AI Navmap
+    public void AiFrameUpdate(float seconds, EntityUid? newMapUid)
+    {
+        if (MapUid != newMapUid)
+        {
+            MapUid = newMapUid;
+            ForceNavMapUpdate();
+        }
+        else
+        {
+            // Update the timer
+            _updateTimer += seconds;
+            if (_updateTimer >= UpdateTime)
+            {
+                _updateTimer -= UpdateTime;
+                UpdateNavMap();
+            }
+        }
+    }
+    // Carpmosia-end - AI Navmap
 
     protected virtual void UpdateNavMap()
     {

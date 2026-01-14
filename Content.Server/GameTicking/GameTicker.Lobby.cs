@@ -173,12 +173,14 @@ namespace Content.Server.GameTicking
                 return;
             }
 
+            // Starlight start - add ready possibility check
             // Ensure that the player has a character enabled with a compatible job that can even join.
             var readyPossible = (_prefsManager.GetPreferencesOrNull(player.UserId)?.JobPrioritiesFiltered().Count ?? 0) != 0;
 
             _playerGameStatuses[player.UserId] = ready && readyPossible
                 ? PlayerGameStatus.ReadyToPlay
                 : PlayerGameStatus.NotReadyToPlay;
+            // Starlight end - add ready possibility check
             RaiseNetworkEvent(GetStatusMsg(player), player.Channel);
             // update server info to reflect new ready count
             UpdateInfoText();

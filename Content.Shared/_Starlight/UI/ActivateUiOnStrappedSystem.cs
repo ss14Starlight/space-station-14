@@ -17,8 +17,8 @@ public sealed partial class ActivateUiOnStrappedSystem : EntitySystem
     {
         if (!_net.IsServer) return;
 
-        var oae = new ActivatableUIOpenAttemptEvent(args.Buckle);
-        var uae = new UserOpenActivatableUIAttemptEvent(args.Buckle, uid);
+        var oae = new ActivatableUIOpenAttemptEvent(args.Buckle, false);
+        var uae = new UserOpenActivatableUIAttemptEvent(args.Buckle, uid, false);
         RaiseLocalEvent(args.Buckle, uae);
         RaiseLocalEvent(uid, oae);
 
@@ -31,7 +31,7 @@ public sealed partial class ActivateUiOnStrappedSystem : EntitySystem
         _ui.OpenUi(uid, component.Key, args.Buckle);
 
         //Let the component know a user opened it so it can do whatever it needs to do
-        var aae = new AfterActivatableUIOpenEvent(args.Buckle, args.Buckle);
+        var aae = new AfterActivatableUIOpenEvent(args.Buckle);
         RaiseLocalEvent(uid, aae);
     }
 }

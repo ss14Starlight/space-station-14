@@ -9,6 +9,10 @@
     state: icon_alt
   - type: Clothing
     equippedPrefix: alt
+  #Starlight begin
+  - type: Tag
+    tags: [ XenomoproachWearable ]
+  #Starlight end
 
 - type: entity
   parent: ClothingHeadsetAlt

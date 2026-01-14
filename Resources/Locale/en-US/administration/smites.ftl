@@ -59,9 +59,12 @@ admin-smite-ghostkick-name = Ghost Kick
 admin-smite-nyanify-name = Cat Ears - Black
 admin-smite-nyanify-name2 = Cat Ears - White
 admin-smite-kill-sign-name = Kill Sign
+admin-smite-kill-sign-hidden-name = Hidden Kill Sign
 admin-smite-pacify-name = Pacify
 admin-smite-omni-accent-name = Omni-Accent
 admin-smite-crawler-name = Crawler
+admin-smite-homing-rod-name = Homing Rod
+admin-smite-homing-rod-slow-name = Slowming Rod
 admin-smite-silicon-laws-bound-name = Become Silicon
 
 ## Smite descriptions
@@ -83,6 +86,7 @@ admin-smite-ghostkick-description = Silently kicks the user, dropping their conn
 admin-smite-nyanify-description = Forcibly add black cat ears, there is no escape.
 admin-smite-nyanify2-description = Forcibly add white cat ears, there is no escape.
 admin-smite-kill-sign-description = Marks a player for death by their fellows.
+admin-smite-kill-sign-hidden-description = Marks a player for death by their fellows. Hidden from the targeted player.
 admin-smite-cluwne-description = Cluwnes them. The suit cannot be removed and the station's crew may murder them freely.
 admin-smite-anger-pointing-arrows-description = Angers the pointing arrows, causing them to assault this entity explosively.
 admin-smite-dust-description = Reduces the target to a small pile of ash.
@@ -111,6 +115,8 @@ admin-smite-super-slip-description = Slips them really, really hard.
 admin-smite-pacify-description = Makes the target a pacifist.
 admin-smite-omni-accent-description = Makes the target speak with almost every accent available.
 admin-smite-crawler-description = Makes the target fall down and be unable to stand up. Remove their hands too for added effect!
+admin-smite-homing-rod-description = Launches a homing immovable rod straight at them.
+admin-smite-homing-rod-slow-description = Launches a slow moving homing immovable rod straight at them.
 admin-smite-silicon-laws-bound-description = Makes the target bound to silicon laws. Law 2, jump out of the window.
 
 ## Tricks descriptions
@@ -150,3 +156,6 @@ admin-trick-minigun-fire-description = Makes the targetted gun fire like a minig
 admin-trick-set-bullet-amount-description = Quickly set the amount of unspawned bullets in a gun.
 ## 🌟Starlight🌟
 admin-trick-toggle-overlays-description = Toggle all overlays on target.
+
+admin-smite-scramble-name = Scramble DNA
+admin-smite-scramble-description = Scrambles their DNA, randomizing their character.

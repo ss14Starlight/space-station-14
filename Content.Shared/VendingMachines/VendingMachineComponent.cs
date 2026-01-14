@@ -87,6 +87,8 @@ namespace Content.Shared.VendingMachines
         [ViewVariables]
         public InventoryType CurrentItemType; // inventory bucket for NextItemToEject during current operation
         // Startlight-edit end:
+
+        [DataField]
         public bool Broken;
 
         /// <summary>
@@ -334,5 +336,7 @@ namespace Content.Shared.VendingMachines
         public TimeSpan? DenyEnd;
 
         public TimeSpan? DispenseOnHitEnd;
+
+        public bool Broken;
     }
 }

@@ -6,7 +6,7 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Abductor/organs.rsi
   - type: Organ
-  - type: Food
+  - type: Edible
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionContainerManager
@@ -54,7 +54,8 @@
       - state: eyeballs
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobAbductorEyes
+    prototypes:
+      Default: MobAbductorEyes
 
 - type: entity
   id: OrganAbductorEars

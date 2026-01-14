@@ -4,6 +4,11 @@
   name: cryogenic sleep unit
   description: A super-cooled container that keeps crewmates safe during space travel.
   components:
+  - type: AmbientSound #SL
+    volume: -7 #SL
+    range: 4 #SL
+    sound: #SL
+      path: /Audio/_Starlight/Effects/Machinery/electric_buzz.ogg #SL
   - type: Anchorable
     flags:
     - Anchorable

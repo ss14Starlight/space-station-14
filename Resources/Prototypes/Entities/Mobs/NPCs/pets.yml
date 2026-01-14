@@ -853,12 +853,23 @@
   - type: NpcFactionMember
     factions:
       - PetsNT
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: shiva
-      sprite: Mobs/Pets/shiva.rsi
+  # 🌟Starlight🌟 start
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: Mobs/Pets/shiva.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: shiva
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/shiva.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: shiva
+  # 🌟Starlight🌟 end
   - type: SpriteMovement
     movementLayers:
       movement:
@@ -1054,10 +1065,7 @@
     name: ghost-role-information-punpun-name
     description: ghost-role-information-punpun-description
     rules: ghost-role-information-nonantagonist-rules
-    requirements:
-    - !type:RoleTimeRequirement
-      role: JobBartender
-      time: 7200 # 2h STARLIGHT
+    job: Bartender # Starlight - TODO - we need a PunPun job with the 2hr bartender requirement
   - type: GhostTakeoverAvailable
   - type: Butcherable
     butcheringType: Spike

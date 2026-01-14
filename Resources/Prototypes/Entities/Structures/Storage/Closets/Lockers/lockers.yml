@@ -388,7 +388,7 @@
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
 
 - type: entity
   id: GunSafe
@@ -623,7 +623,7 @@
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Command"]]
+    access: [["Ntrep"]] # Starlight
   - type: EntityStorageVisuals
     stateBaseClosed: hop
     stateDoorOpen: hop_open
