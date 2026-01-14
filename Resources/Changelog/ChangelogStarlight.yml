@@ -26280,5 +26280,12 @@ Entries:
   id: 220200
   time: '2026-01-14T14:28:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2202
+- author: Scarlet Lightweaver
+  changes:
+  - message: Added a new mantle.. a early forgotten prototype!
+    type: Add
+  id: 252700
+  time: '2026-01-14T16:43:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2527
 Order: -1
 
