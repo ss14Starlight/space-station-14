@@ -26127,5 +26127,135 @@ Entries:
   id: 271600
   time: '2026-01-13T22:38:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2716
+- author: WizDen Team and Penguinwizzard
+  changes:
+  - message: Added upstream changes up to 78189bbe6407daac401432f2dc8df1c2d584fe75
+    type: Add
+  - message: Changed Ephedrine, Desoxyephedrine and Hyperzine properties
+    type: Tweak
+  - message: Added Warfarin and Hemorrhinol, reagents that interact with blood clotting
+      and bleeding speed.
+    type: Add
+  - message: Added Arcryox, a new cryomed.
+    type: Add
+  - message: Bloodstream and Chemstream have been merged. Injected chemicals can now
+      react with your blood.
+    type: Tweak
+  - message: Recharging spray painters should now be more reliable.
+    type: Tweak
+  - message: Several figurines have new voice lines.
+    type: Add
+  - message: Shuttle FTL display now works on higher UI scales.
+    type: Fix
+  - message: Bananas, Mimanas, Corn, Gatfruit, Capfruit, Bungo, and Cherries can now
+      be butchered to get their waste product in addition to being eaten.
+    type: Add
+  - message: Added Impedrezene, Fresium, Heartbreaker, Benzene, Tear Gas, Bleach,
+      Mannitol, Lipolicide, Wine, Beer, Coffee and Space Glue to random plant reagent
+      mutations.
+    type: Add
+  - message: Removed Nocturine, Lexorin and Hyperzine from random plant reagent mutations.
+    type: Remove
+  - message: Vestine can now be used to mutate plants into producing syndicate chems.
+    type: Add
+  - message: Lowered the hypopen refill delay from 1.25s to 0.75s.
+    type: Tweak
+  - message: The voice mask has been replaced with a voice mask implanter in the uplink
+      and the thief communicator kit.
+    type: Tweak
+  - message: The Hushpup, a 10 TC silenced shotgun, is now available via the uplink
+      for traitors and nukies.
+    type: Add
+  - message: The syndicate jaws of life and authentication disruptors now function
+      on bolted doors.
+    type: Tweak
+  - message: Fixed rigged power cells immediately exploding when inserted into a device
+      even if it's toggled off.
+    type: Fix
+  - message: Escape objectives now properly specify escape via the shuttle rather
+      than escape pods.
+    type: Fix
+  - message: The scram implanter now teleports you within a 100 tile radius, as originally
+      intended, and will not teleport you into open space.
+    type: Fix
+  - message: Xenoborg mothership core won't explode, pending a bugfix for an issue
+      with it exploding.
+    type: Tweak
+  - message: Xenoborg engiborg now has a Xenoborg door control module.
+    type: Tweak
+  - message: Added the sticky grappling hand, a clown version of the grappling gun.
+    type: Add
+  - message: Added the foolbox, a pranking kit for clowns.
+    type: Add
+  - message: Snap Pops can now crafted into a more dangerous version by adding extra
+      gunpowder.
+    type: Add
+  - message: Holy book healing rates have been reduced back to normal.
+    type: Tweak
+  - message: Randomly generated first characters for new players should use a smaller
+      pool excluding some of the more complex races.
+    type: Tweak
+  - message: APCs now have a power limit! If exceeded, they will automatically trip
+      to protect systems.
+    type: Add
+  - message: Batteries once again properly count toward battery bounties.
+    type: Fix
+  - message: Soda Dispenser, Booze Dispenser, and ChemDispenser have had their prices
+      reduced.
+    type: Tweak
+  - message: Five cargo bounties have had their worth reduced so you can't make a
+      profit buying crates for them.
+    type: Tweak
+  - message: Gas canisters can now have paper labels attached to them.
+    type: Add
+  - message: Explosions with heat now ignite inflammable gas mixes in the atmosphere.
+    type: Fix
+  - message: Fixed monkeys(and other mobs) being immune to eye damage when welding
+    type: Fix
+  - message: Diona are now less harmed by rooting in blood.
+    type: Tweak
+  - message: Smart Fridges now hold almost anything edible.
+    type: Tweak
+  - message: Cyborgs no longer lose access when they run out of power.
+    type: Tweak
+  - message: Added crowbar to the Medical Borg's Rescue module.
+    type: Add
+  - message: Repairing borgs now takes multiple mini doafters instead of one big one.
+    type: Tweak
+  - message: Borgs with rechargable ballistic weapons (e.g. Syndicate Assault Borgs)
+      no longer lose their entire magazine upon being EMP'd. The EMP still disables
+      the ammo recharge for its effective duration.
+    type: Fix
+  - message: Station AI is now rolled before most non-Command/non-Security roles.
+    type: Tweak
+  - message: Fixed the station AI's battery alert not updating.
+    type: Fix
+  - message: Potassium Iodide is now sometimes available in radiation lockers.
+    type: Add
+  - message: Added Random logic gate.
+    type: Add
+  - message: Skeletons are now vulnerable to Holy damage from sources such as the
+      space bible or holy water.
+    type: Add
+  - message: Maintenance lockers will now have more toys.
+    type: Tweak
+  - message: To improve safety, most guns now start with an empty chamber.
+    type: Tweak
+  - message: PunPun's outfit is now available in the bardrobe.
+    type: Add
+  - message: Getting stunned or killed while buckled/crawling will drop any held items.
+    type: Tweak
+  - message: Flammable items no longer have bonus mass.
+    type: Fix
+  id: 258000
+  time: '2026-01-14T02:28:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2580
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed Lobby Hub.
+    type: Fix
+  id: 281700
+  time: '2026-01-14T07:50:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2817
 Order: -1
 

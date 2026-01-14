@@ -149,7 +149,7 @@
       80: Critical
       100: Dead
   - type: Stamina
-    critThreshold: 200
+    baseCritThreshold: 200
   - type: Body
     prototype: SindSiliconMouseops
     requiredLegs: 2

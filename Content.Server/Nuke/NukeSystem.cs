@@ -18,12 +18,14 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server._Starlight.Lock; // Starlight-edit
+using Robust.Shared.Timing;
+
+#region Starlight
+using Content.Server._Starlight.Lock;
+#endregion Starlight
 
 namespace Content.Server.Nuke;
 
@@ -46,6 +48,8 @@ public sealed class NukeSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
     [Dependency] private readonly DigitalLockSystem _digitalLock = default!; // Starlight-edit
 
     /// <summary>
@@ -239,6 +243,12 @@ public sealed class NukeSystem : EntitySystem
     {
         if (component.Status != NukeStatus.AWAIT_CODE)
             return;
+
+        var curTime = _timing.CurTime;
+        if (curTime < component.LastCodeEnteredAt + SharedNukeComponent.EnterCodeCooldown)
+            return; // Validate that they are not entering codes faster than the cooldown.
+
+        component.LastCodeEnteredAt = curTime;
 
         UpdateStatus(uid, component);
         UpdateUserInterface(uid, component);

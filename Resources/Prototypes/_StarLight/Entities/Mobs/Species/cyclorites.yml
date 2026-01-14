@@ -69,7 +69,7 @@
   - type: Sprite
     scale: 1.08, 1.08
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
         Quantity: 1
