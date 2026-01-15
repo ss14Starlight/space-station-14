@@ -11,6 +11,20 @@
         - id: SupermatterFlatpack
 
 - type: entity
+  id: CrateTEGFlatpack
+  parent: CrateEngineeringSecure
+  name: TEG Crate
+  description: A crate containing a flatpacked Thermo-Electric Generator.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: TEGCenterFlatpack
+        - id: TEGCirculatorFlatpack
+          amount: 2
+
+- type: entity
   id: CrateEngineeringReflector
   parent: CrateEngineeringSecure
   name: Reflector Crate

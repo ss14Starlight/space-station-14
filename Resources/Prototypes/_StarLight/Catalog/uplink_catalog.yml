@@ -336,6 +336,22 @@
         - Scientist
         - ResearchDirector
 
+- type: listing
+  id: UplinkGearAcidifierImplanter
+  name: uplink-gear-acidifier-implant-name
+  description: uplink-gear-acidifier-implant-desc
+  icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
+  productEntity: GearAcidifierImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkImplants
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
 # Wearables
 - type: listing
   id: UplinkHardsuitInfiltration
