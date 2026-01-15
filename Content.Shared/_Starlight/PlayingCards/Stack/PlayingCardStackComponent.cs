@@ -21,6 +21,7 @@ public sealed partial class PlayingCardStackComponent : Component
 
     [DataField, AutoNetworkedField] public List<EntityUid> Cards = [];
 
+    [DataField] public LocId ShuffleLocId = "cards-verb-shuffle";
     [DataField] public LocId JoinCardsLocId = "card-verb-join";
     [DataField] public LocId OrganizeValueLocId = "card-verb-organize-value";
     [DataField] public LocId OrganizeSuitLocId = "card-verb-organize-suit";

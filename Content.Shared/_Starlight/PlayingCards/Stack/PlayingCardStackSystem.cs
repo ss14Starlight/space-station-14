@@ -257,7 +257,7 @@ public sealed class PlayingCardStackSystem : EntitySystem
         args.Verbs.Add(new AlternativeVerb()
         {
             Act = () => TryShuffle(uid, component, args.User),
-            Text = Loc.GetString("cards-verb-shuffle"),
+            Text = Loc.GetString(component.ShuffleLocId),
             Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
             Priority = 6
         });
@@ -328,7 +328,7 @@ public sealed class PlayingCardStackSystem : EntitySystem
             return;
 
         _audio.PlayPvs(stack.ShuffleSound, deck, AudioHelpers.WithVariation(0.05f, _random));
-        _popup.PopupEntity(Loc.GetString("card-verb-shuffle-success", ("user", MetaData(user).EntityName)), deck);
+        _popup.PopupEntity(Loc.GetString($"{stack.ShuffleLocId}-success", ("user", MetaData(user).EntityName)), deck);
     }
 
     private void TryFlipCards(EntityUid deck, PlayingCardStackComponent stack, EntityUid user, bool isFlipped)
