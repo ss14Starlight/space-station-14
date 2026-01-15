@@ -32,10 +32,7 @@
             </BoxContainer>
 
             <!-- Horizontal rule -->
-            <PanelContainer>
-                <PanelContainer.PanelOverride>
-                    <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" ContentMarginTopOverride="2" />
-                </PanelContainer.PanelOverride>
+            <PanelContainer StyleClasses="highlight">
             </PanelContainer>
 
             <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="0">
@@ -65,10 +62,7 @@
                 </BoxContainer> <!-- End "Left side of the window" -->
 
                 <!-- Vertical rule -->
-                <PanelContainer MinSize="2 0">
-                    <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="{x:Static style:StyleNano.NanoGold}" ContentMarginTopOverride="2" />
-                    </PanelContainer.PanelOverride>
+                <PanelContainer MinSize="2 0" StyleClasses="highlight">
                 </PanelContainer>
 
                 <!-- The "right" side of the window, where the character and priority editors are instantiated -->

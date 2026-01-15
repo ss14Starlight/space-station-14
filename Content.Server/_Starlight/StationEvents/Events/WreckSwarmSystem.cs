@@ -113,7 +113,7 @@ public sealed class WreckSwarmSystem : GameRuleSystem<WreckSwarmComponent>
         ForceEndSelf(uid, gameRule);
     }
 
-    protected ResPath SelectGrid(WreckSwarmComponent component) {
+    private ResPath SelectGrid(WreckSwarmComponent component) {
         if (component.FixedGrid is not null) {
             return (ResPath)component.FixedGrid;
         } else {
@@ -131,7 +131,7 @@ public sealed class WreckSwarmSystem : GameRuleSystem<WreckSwarmComponent>
         }
     }
 
-    protected void Announce(string announcement, SoundSpecifier? sound) {
+    private void Announce(string announcement, SoundSpecifier? sound) {
         // Let the players know (but we don't want to send to players who aren't in game (i.e. in the lobby))
         Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
 

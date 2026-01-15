@@ -2,29 +2,36 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using YamlDotNet.RepresentationModel;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking;
-using Content.Server.Maps;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Shared.Shuttles.Components; //Starlight-edit
 using Content.Shared.CCVar;
+using Content.Shared.Maps;
 using Content.Shared.Roles;
+using Content.Shared.Station.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Prototypes;
-using Content.Shared.Station.Components;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Map.Events;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+
+// Starlight-start
 using YamlDotNet.RepresentationModel;
 using Robust.Shared.Map.Events;
+using Robust.Packaging.AssetProcessing;
+using Content.Shared.Mobs;
+// Starlight-end
 
 namespace Content.IntegrationTests.Tests
 {
@@ -36,17 +43,17 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] NoSpawnMaps =
         {
-            "CentComm",
             "StarlightCentCommG24", //starlight
             "StarlightCentCommSC17", //starlight
+            "StarlightCentCommGNT9", //starlight
             "Dart"
         };
 
         private static readonly string[] Grids =
         {
-            "/Maps/centcomm.yml",
             //"/Maps/_Starlight/Centcomms/CC_Outpost_G24",
             //"/Maps/_Starlight/Centcomms/CC_Outpost_SC17",
+            //"/Maps/_Starlight/Centcomms/CC_Outpost_GNT9",
             AdminTestArenaSystem.ArenaMapPath
         };
 
@@ -60,12 +67,20 @@ namespace Content.IntegrationTests.Tests
         /// </remarks>
         private static readonly Dictionary<string, HashSet<EntProtoId>> DoNotMapWhitelistSpecific = new()
         {
-            {"/Maps/bagel.yml", ["RubberStampMime"]},
-            {"/Maps/reach.yml", ["HandheldCrewMonitor"]},
             {"/Maps/Shuttles/ShuttleEvent/honki.yml", ["GoldenBikeHorn", "RubberStampClown"]},
             {"/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", ["RubberStampSyndicate"]},
             {"/Maps/Shuttles/ShuttleEvent/cruiser.yml", ["ShuttleGunPerforator"]},
             {"/Maps/Shuttles/ShuttleEvent/instigator.yml", ["ShuttleGunFriendship"]},
+            {"/Maps/_Starlight/Stations/Cork.yml", ["RubberStampSyndicate"]}, // Starlight start
+            {"/Maps/_Starlight/Shuttles/RecluseClassSHC.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Shuttles/Signaleer.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Nonstations/nukieplanet.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Nonstations/nukiewestern.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Dungeon/syndie.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml", ["RubberStampSyndicate", "TraitorCodePaper"]},
+            {"/Maps/_Starlight/Centcomms/CC_Outpost_SC17.yml", ["BoxFolderCentCom", "RubberStampCentcom"]},
+            {"/Maps/_Starlight/Centcomms/CC_Outpost_G24.yml", ["BoxFolderCentCom", "RubberStampCentcom", "RubberStampQm"]},
+            {"/Maps/_Starlight/Centcomms/CC_Outpost_GNT9.yml", ["BoxFolderCentCom", "RubberStampCAD", "RubberStampCCD", "RubberStampCDD", "RubberStampCED", "RubberStampCentcom", "RubberStampCID", "RubberStampCMD", "RubberStampCRD", "RubberStampCSD"]}// Starlight end
         };
 
         /// <summary>
@@ -77,32 +92,22 @@ namespace Content.IntegrationTests.Tests
         /// </remarks>
         private static readonly string[] DoNotMapWhitelist =
         {
-            "/Maps/centcomm.yml",
             "/Maps/Shuttles/AdminSpawn/**", // admin gaming
-            "/Maps/bagel.yml", // Contains mime's rubber stamp --> Either fix this, remove the category, or remove this comment if intentional.
-            "/Maps/reach.yml", // Contains handheld crew monitor
            #region starlight
-            "/Maps/nanoStation.yml",
-            "/Maps/_Starlight/nukieplanet.yml", //starlight nukie spawn map
-            "/Maps/_Starlight/Centcomms/CC_Outpost_G24.yml", //starlight centcomm map
-            "/Maps/_Starlight/Centcomms/CC_Outpost_SC17.yml", //starlight centcomm map
-            "/Maps/_Starlight/Dungeon/syndie.yml",
-            "/Maps/_Starlight/Shuttles/Radiotower.yml",
-            "/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml",
-            "/Maps/_Starlight/Shuttles/Signaleer.yml",
-            //TODO: Review these, either remove the do not map from the offending entities or remove the entities from the map
-            "/Maps/_Starlight/Stations/Bagel.yml",
-            "/Maps/_Starlight/Stations/Barratry.yml",
-            "/Maps/_Starlight/Stations/Cork.yml",
-            "/Maps/_Starlight/Stations/Lagan.yml",
-            "/Maps/_Starlight/Stations/Lobster.yml",
-            "/Maps/_Starlight/Stations/Orwell.yml",
-            "/Maps/_Starlight/Stations/Remix.yml",
-            "/Maps/_Starlight/Stations/Starboard.yml",
-            "/Maps/_Starlight/Shuttles/RecluseClassSHC.yml"
+            "/Maps/_Starlight/Shuttles/Radiotower.yml", // Command stamps - listening post.
+            "/Maps/_Starlight/Stations/Remix.yml", // Admeme map
             #endregion
         };
 
+        // starlight start
+        private static readonly ProtoId<EntityCategoryPrototype> ShouldMapCategory = "ShouldMapStation";
+        
+        /// <summary>
+        /// list of map filenames that shouldn't be checked against necessary entities
+        /// </summary>
+        private static readonly string[] ShouldMapWhitelist = { };
+        // starlight end
+      
         /// <summary>
         /// Converts the above globs into regex so your eyes dont bleed trying to add filepaths.
         /// </summary>
@@ -114,31 +119,14 @@ namespace Content.IntegrationTests.Tests
         {
             "Dev",
             "TestTeg",
-            "Fland",
-            "Packed",
-            "Bagel",
-            "CentComm",
-            "Box",
-            "Marathon",
-            "MeteorArena",
-            "Saltern",
-            "Reach",
-            "Oasis",
-            "Amber",
-            "Plasma",
-            "Elkridge",
-            "Relic",
-            "dm01-entryway",
-            "Exo",
-            "dm01-entryway",
+            //Starlight, do not accept any upstream maps into this list, we are keeping them out for package size and just general management reasons
+            #region Starlight
             "StarlightBarratry",
             "StarlightCork",
             "StarlightKiloton",
             "StarlightLagan",
             "StarlightLobster",
             "StarlightManor",
-            #region Starlight
-            "Gateway",
             "StarlightLeth",
             "StarlightMing",
             "StarlightOrigin",
@@ -146,20 +134,15 @@ namespace Content.IntegrationTests.Tests
             "StarlightPrism",
             "StarlightRemix",
             "StarlightStarboard",
-            "StarlightAmber",
             "StarlightBagel",
             "StarlightBox",
             "StarlightCentCommG24",
             "StarlightCentCommSC17",
+            "StarlightCentCommGNT9",
             "StarlightCog",
-            "StarlightCore",
-            "StarlightCrescent",
             "StarlightElkridge",
-            "StarlightExo",
             "StarlightFland",
             "StarlightHotel",
-            "StarlightMarathon",
-            "StarlightMeta",
             "StarlightOasis",
             "StarlightOmega",
             "StarlightPacked",
@@ -167,7 +150,9 @@ namespace Content.IntegrationTests.Tests
             "StarlightSaltern",
             "StarlightSilica",
             "StarlightCluster",
-            "StarlightStationBuilding"
+            "StarlightStationBuilding",
+            "StarlightPlasma",
+			"StarlightSpaceMall"
             #endregion
         };
 
@@ -238,7 +223,7 @@ namespace Content.IntegrationTests.Tests
                 .Where(filePath =>
                     filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
                 .ToArray();
-            
+
             shuttles = shuttles.Concat(starlightShuttles).ToArray();
 
             await server.WaitPost(() =>
@@ -283,6 +268,14 @@ namespace Content.IntegrationTests.Tests
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
                 .ToArray();
 
+            // starlight start
+            // which entities are an absolute requirement? computed outside loop for performance
+            var shouldMapStationEntities = protoManager.EnumeratePrototypes<EntityPrototype>()
+                .Where(p => p.Categories.Any(x => x.ID == ShouldMapCategory))
+                .Select(x => x.ID)
+                .ToArray();
+            // starlight end
+
             var v7Maps = new List<ResPath>();
             Assert.Multiple(() =>
             {
@@ -313,6 +306,15 @@ namespace Content.IntegrationTests.Tests
                     // TODO MAP TESTS
                     // Move this to some separate test?
                     CheckDoNotMap(map, root, protoManager);
+
+                    // starlight start
+
+                    // is this a station? if so, perform the required entities check
+                    if (map.Directory.ToString().Contains("Stations") && !ShouldMapWhitelist.Contains(map.ToString()))
+                    {
+                        CheckForEntitiesOfID(map, root, shouldMapStationEntities);
+                    }
+                    // starlight end
 
                     if (version >= 7)
                     {
@@ -389,7 +391,7 @@ namespace Content.IntegrationTests.Tests
                         continue;
 
                     Assert.That(!proto.Categories.Contains(dnmCategory) || IsWhitelistedForMap(protoId, map),
-                        $"\nMap {map} contains entities in the DO NOT MAP category ({proto.Name})");
+                        $"\nMap {map} contains entities in the DO NOT MAP category: {proto.Name} ({proto.ID})"); // SL change, helps for debugging
 
                     // The proto id is used on this map, so remove it from the set
                     unusedExemptions.Remove(protoId);
@@ -400,6 +402,24 @@ namespace Content.IntegrationTests.Tests
             Assert.That(unusedExemptions, Is.Empty,
                 $"Map {map} has DO NOT MAP entities whitelisted that are not present in the map: {string.Join(", ", unusedExemptions)}");
         }
+
+        // starlight start
+        private void CheckForEntitiesOfID(ResPath map, YamlNode node, string[] requiredProtos)
+        {
+            var allMapEntityIds = ((YamlSequenceNode)node["entities"])
+                .Select(x => x["proto"].AsString())
+                .ToArray();
+
+            Assert.Multiple(() =>
+            {
+                foreach (var requiredProto in requiredProtos)
+                {
+                    Assert.That(allMapEntityIds.Contains(requiredProto),
+                        $"\nMap {map} does not contain required entity {requiredProto}");
+                }
+            });
+        }
+        // starlight end
 
         private bool IsPreInit(ResPath map,
             MapLoaderSystem loader,

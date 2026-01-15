@@ -5,16 +5,18 @@
   suffix: Observer Bundle, Do Not Map
   description: You wear this on your back and put items into it.
   components:
-  - type: StorageFill
-    contents:
-    - id: ClothingEyesGlassesHiddenSecurity
-    - id: CameraBug
-    - id: SurveillanceCameraMonitorCircuitboard
-    - id: SheetSteel
-    - id: CableApcStack
-    - id: Screwdriver
-    - id: RemoteSignaller
-    - id: ClothingHandsGlovesColorBlack
-    - id: ClothingMaskBandBlack
-    - id: BoxFolderBlack
-    - id: Pen
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingEyesGlassesHiddenSecurity
+        - id: CameraBug
+        - id: SurveillanceCameraMonitorCircuitboard
+        - id: SheetSteel
+        - id: CableApcStack
+        - id: Screwdriver
+        - id: RemoteSignaller
+        - id: ClothingHandsGlovesColorBlack
+        - id: ClothingMaskBandBlack
+        - id: BoxFolderBlack
+        - id: Pen

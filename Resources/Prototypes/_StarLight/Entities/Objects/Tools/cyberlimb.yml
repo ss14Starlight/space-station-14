@@ -1,3 +1,4 @@
+# Mechwright
 - type: entity
   name: wrench
   parent: Wrench
@@ -252,3 +253,683 @@
   - type: Tag
     tags:
       - CyberHandItem
+
+# Spacer
+- type: entity
+  id: ProtokineticAcceleratorCyber
+  name: cyber protokinetic accelerator
+  description: Fires low-damage kinetic bolts at a short range. The lack of stabilisation leads to decreased accuracy when firing in short succession.
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      state: protokineticaccelerator
+    - type: Gun
+      fireRate: 0.5
+      selectedMode: SemiAuto
+      angleDecay: 20
+      minAngle: 1
+      maxAngle: 60
+      angleIncrease: 15
+      availableModes:
+      - SemiAuto
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+    - type: AmmoCounter
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.AmmoVisuals.HasAmmo:
+          empty-icon:
+            True: { visible: False }
+            False: { visible: True }
+          #todo: add other 'empty' animations
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.75
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletKinetic
+      capacity: 1
+      count: 1
+    - type: Clothing
+      sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+      quickEquip: false
+      slots:
+      - suitStorage
+      - Belt
+    - type: UseDelay
+      delay: 1
+    - type: UpgradeableGun
+      whitelist:
+        tags:
+        - PKAUpgrade
+    - type: ContainerContainer
+      containers:
+        upgrades: !type:Container
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+
+- type: entity
+  name: cyber grappling gun
+  parent: BaseItem
+  id: WeaponGrapplingGunCyber
+  components:
+    - type: AmmoCounter
+    - type: GrapplingGun
+    - type: Gun
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
+      fireRate: 0.5
+      clumsyProof: true
+    - type: BasicEntityAmmoProvider
+      proto: GrapplingHook
+      capacity: 1
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      layers:
+        - state: grapplinghook
+        - state: grapplinghook-loaded
+          map: [ "unshaded" ]
+          visible: true
+    - type: UseDelay
+      delay: 1.5
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.TetherVisualsStatus.Key:
+          unshaded:
+            True: { state: grapplinghook-loaded }
+            False: { state: grapplinghook-unloaded }
+    - type: PacifismAllowedGun
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+- type: entity
+  parent: [ BaseKnife, BaseWeaponCrusher]
+  id: WeaponCrusherDaggerCyber
+  name: cyber crusher dagger
+  description: A scaled down version of a proto-kinetic crusher. Uses kinetic energy to vibrate the blade at high speeds.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      state: crusherdagger
+    - type: MeleeWeapon
+      autoAttack: true
+      wideAnimationRotation: -135
+      attackRate: 2
+      damage:
+        types:
+          Slash: 12
+    - type: DisarmMalus
+      malus: 0.225
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+# Gorilla
+- type: entity
+  name: G.O.R.I.L.L.A. gauntlet arm attachment
+  parent: BaseItem
+  id: WeaponGauntletGorillaCyber
+  description: A robust piece of research equipment. When powered with an anomaly core, a single blow can launch anomalous objects through the air.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      state: gorillagauntlet
+    - type: MeleeWeapon
+      attackRate: 0.5
+      angle: 0
+      animation: WeaponArcFist
+      wideAnimationRotation: -135
+      damage:
+        types:
+          Blunt: 20
+      soundHit:
+        path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
+    - type: CorePoweredThrower
+    - type: MeleeThrowOnHit
+      unanchorOnHit: Unanchorable
+    - type: ItemSlots
+      slots:
+        core_slot:
+          name: anomaly-gorilla-core-slot-name
+          insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+          whitelist:
+            components:
+            - AnomalyCore
+    - type: ContainerContainer
+      containers:
+        core_slot: !type:ContainerSlot
+    - type: DamageOnAttackedProtection
+      damageProtection:
+        flatReductions:
+          Heat: 100
+          Cold: 100
+          Radiation: 100
+      slots: NONE
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+- type: entity
+  name: C.H.I.M.P. handcannon arm attachment
+  parent: BaseWeaponBatterySmall
+  id: WeaponPistolCHIMPCyber
+  description: Just because it's a little C.H.I.M.P. doesn't mean it can't punch like an A.P.E.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      layers:
+        - state: chimphandcannon
+          map: ["enum.GunVisualLayers.Base"]
+        - state: mag-unshaded-1
+          visible: false
+          map: ["enum.GunVisualLayers.MagUnshaded"]
+          shader: unshaded
+    - type: Appearance
+    - type: MagazineVisuals
+      magState: mag
+      steps: 3
+      zeroVisible: false
+    - type: Gun
+      projectileSpeed: 10
+      fireRate: 1.5
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+    - type: BatteryAmmoProvider
+      proto: AnomalousParticleDeltaStrong
+      fireCost: 100
+    - type: BatteryWeaponFireModes
+      fireModes:
+      - proto: AnomalousParticleDeltaStrong
+        fireCost: 100
+      - proto: AnomalousParticleEpsilonStrong
+        fireCost: 100
+      - proto: AnomalousParticleZetaStrong
+        fireCost: 100
+      - proto: AnomalousParticleSigmaStrong
+        fireCost: 100
+    - type: StaticPrice
+      price: 0
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 2 # takes 6 minutes to charge itself back to full
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+- type: entity
+  parent: BaseItem
+  id: AnomalyScannerCyber
+  name: anomaly scanner arm attachment
+  description: An arm-mounted scanner built to collect information on various anomalous objects.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      state: anomalyscanner
+    - type: ActivatableUI
+      key: enum.AnomalyScannerUiKey.Key
+      requireActiveHand: false
+      inHandsOnly: true
+    - type: UserInterface
+      interfaces:
+        enum.AnomalyScannerUiKey.Key:
+          type: AnomalyScannerBoundUserInterface
+    - type: AnomalyScanner
+    - type: GuideHelp
+      guides:
+      - ScannersAndVessels
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+# Responder
+- type: entity
+  name: autoinjector cybernetic arm attachment
+  parent: BaseItem
+  description: A sterile injector for rapid administration of drugs to patients.
+  id: AutoinjectorCyber
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      layers:
+        - state: autoinjector
+          map: ["enum.SolutionContainerLayers.Base"]
+        - state: autoinjector-fill-1
+          map: ["enum.SolutionContainerLayers.Fill"]
+          visible: false
+    - type: SolutionContainerManager
+      solutions:
+        hypospray:
+          maxVol: 15
+    - type: ExaminableSolution
+      solution: hypospray
+    - type: Hypospray
+      onlyAffectsMobs: false
+      transferAmount: 15
+    - type: StaticPrice
+      price: 0
+    - type: Appearance
+    - type: SolutionContainerVisuals
+      maxFillLevels: 1
+      fillBaseName: autoinjector-fill-
+      solutionName: hypospray
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+- type: entity
+  name: tricordrazine cyber autoinjector
+  parent: AutoinjectorCyber
+  description: A sterile injector for rapid administration of drugs to patients.
+  id: AutoinjectorCyberTricordrazine
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        hypospray:
+          maxVol: 15
+    - type: Hypospray
+      onlyAffectsMobs: false
+      transferAmount: 15
+      reagentWhitelist:
+        - Tricordrazine
+
+- type: entity
+  name: inaprovaline cyber autoinjector
+  parent: AutoinjectorCyber
+  description: A sterile injector for rapid administration of drugs to patients.
+  id: AutoinjectorCyberInaprovaline
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        hypospray:
+          maxVol: 15
+    - type: Hypospray
+      onlyAffectsMobs: false
+      transferAmount: 15
+      reagentWhitelist:
+        - Inaprovaline
+
+- type: entity
+  id: DefibrillatorCyber
+  parent: BaseDefibrillator
+  name: cyber defibrillator
+  description: Arm-mounted device that can save lives, and act as a weapon in a pinch.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      layers:
+        - state: defibrillator
+        - state: defibrillator-ready
+          map: [ "enum.ToggleableVisuals.Layer" ]
+          visible: false
+          shader: unshaded
+    - type: MeleeWeapon
+      damage:
+        types:
+          Blunt: 4
+    - type: ToggleCellDraw
+    - type: PowerCellDraw
+      useCharge: 50
+    - type: Defibrillator
+      zapHeal:
+        types:
+          Asphyxiation: -40
+      doAfterDuration: 6
+    - type: DoAfter
+    - type: UseDelay
+    - type: ItemToggleMeleeWeapon
+      activatedSoundOnHit:
+        path: /Audio/Items/Defib/defib_zap.ogg
+        params:
+          variation: 0.250
+      activatedSoundOnHitNoDamage:
+        path: /Audio/Items/Defib/defib_zap.ogg
+        params:
+          variation: 0.250
+          volume: -10
+      activatedDamage:
+        types:
+          Blunt: 4
+          Shock: 7
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot { }
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          insertOnInteract: false
+          disableEject: true
+          whitelist:
+            components:
+              - PowerCell
+            requireAll: true
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellTinyCyber
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+- type: entity
+  name: Cyber Defibrillator Battery Cell
+  description: A tiny microreactor... Has some startup lag after use.
+  id: PowerCellTinyCyber
+  suffix: Full
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Power/power_cells.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: tiny
+  - type: Item
+    size: Small
+  - type: PredictedBattery
+    maxCharge: 250 #while in theory this could give five uses, in practice it gives 2-3 uses (between charge-up time, cooldown and idle-time). Any lower and the margins are too narrow to get more than 1 use out of the defib.
+    startingCharge: 250
+  - type: Tag
+    tags:
+      - PowerCellTiny
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 3 # Full charge in two minutes
+    autoRechargePauseTime: 30
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerCellVisualLayers.Unshaded:
+          Full: {visible: false}
+          Neither: {visible: false}
+          Empty: {visible: false}
+
+# Riplet
+- type: entity
+  id: CyberEquipmentGrabber
+  parent: BaseItem
+  name: riplet clamp
+  description: Gives you the ability to carry things, like a tiny Ripley!
+  components:
+    - type: LargeGrabber
+      maxContents: 1
+    - type: ContainerContainer
+      containers:
+        item-container: !type:Container
+        cell_slot: !type:ContainerSlot { }
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          whitelist:
+            components:
+              - PowerCell
+            requireAll: true
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMedium
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      layers:
+        - state: ripletclaw
+        - state: ripletclaw-full
+          map: [ "enum.ToggleableVisuals.Layer" ]
+          visible: false
+    - type: DoAfter
+    - type: ItemToggle
+      onActivate: false
+      onUse: false
+      soundActivate:
+        path: /Audio/Items/change_jaws.ogg
+      soundDeactivate:
+        path: /Audio/Items/change_jaws.ogg
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ToggleableVisuals.Enabled:
+          enum.ToggleableVisuals.Layer:
+            True: { visible: true }
+            False: { visible: false }
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+# Persephone
+- type: entity
+  id: CyberReagentGrinder
+  parent: BaseItem
+  name: integrated reagent grinder
+  description: From BlenderTech. Will It Blend? Let's find out!
+  suffix: grinder/juicer
+  components:
+    - type: ReagentGrinder
+      needsPower: false
+      storageMaxEntities: 2
+    - type: ActivatableUI
+      key: enum.ReagentGrinderUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.ReagentGrinderUiKey.Key:
+          type: ReagentGrinderBoundUserInterface
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ReagentGrinderVisualState.BeakerAttached:
+          grinder:
+            True: {state: "handheldgrinder-beaker-attached"}
+            False: {state: "handheldgrinder-empty"}
+    - type: Physics
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      layers:
+        - state: handheldgrinder
+        - state: handheldgrinder-empty
+          map: [ "enum.ToggleableVisuals.Layer" ]
+    - type: ItemSlots
+      slots:
+        beakerSlot:
+          whitelist:
+            components:
+            - FitsInDispenser
+    - type: Machine
+      board: ReagentGrinderMachineCircuitboard
+    - type: ContainerContainer
+      containers:
+        beakerSlot: !type:ContainerSlot
+        inputContainer: !type:Container
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+- type: entity
+  name: mini hoe cybernetic arm attachment
+  parent: HydroponicsToolMiniHoe
+  id: CyberToolMiniHoe
+  description: It's used for removing weeds or scratching your back.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      state: minihoe
+    - type: Tag
+      tags:
+        - CyberHandItem
+        - BotanyHoe
+        - Hoe
+
+- type: entity
+  name: plant clippers cybernetic arm attachment
+  parent: HydroponicsToolClippers
+  id: CyberToolClippers
+  description: A tool used to take samples from plants.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      state: clippers
+    - type: Tag
+      tags:
+        - CyberHandItem
+        - PlantSampleTaker
+
+- type: entity
+  name: scythe cybernetic arm attachment
+  parent: HydroponicsToolScythe
+  id: CyberToolScythe
+  description: A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      state: scythe
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+- type: entity
+  name: hatchet cybernetic arm attachment
+  parent: HydroponicsToolHatchet
+  id: CyberToolHatchet
+  description: A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      state: hatchet
+    - type: Tag
+      tags:
+        - CyberHandItem
+        - BotanyHatchet
+
+- type: entity
+  name: spade cybernetic arm attachment
+  parent: HydroponicsToolSpade
+  id: CyberToolSpade
+  description: A small tool for digging and moving dirt.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      state: spade
+    - type: Tag
+      tags:
+        - CyberHandItem
+        - BotanyShovel
+
+
+- type: entity
+  parent: Dropper
+  id: CyberToolDropper
+  name: hydraulic pipette cybernetic arm attachment
+  description: State-of-the-art hydraulic dropper built into a cybernetic arm. It features a higher capacity than hand-powered droppers, able to hold 15 units of liquid.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      layers:
+        - state: dropper
+          map: ["enum.SolutionContainerLayers.Base"]
+        - state: dropper1
+          map: ["enum.SolutionContainerLayers.Fill"]
+          visible: false
+    - type: SolutionContainerManager
+      solutions:
+        injector:
+          maxVol: 15
+    - type: Tag
+      tags:
+        - CyberHandItem
+    - type: SolutionContainerVisuals
+      maxFillLevels: 1
+      fillBaseName: dropper
+      inHandsMaxFillLevels: 0
+
+# Engineer
+- type: entity
+  name: Cyber drill
+  parent: PowerDrill
+  id: PowerDrillCyber
+  description: A simple powered hand drill.
+  components:
+  - type: Tag
+    tags:
+    - CyberHandItem
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: drill_screw
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Screwing
+        sprite:
+          sprite: _Starlight/Objects/Tools/cyberling.rsi
+          state: drill_screw
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Anchoring
+        sprite:
+          sprite: _Starlight/Objects/Tools/cyberling.rsi
+          state: drill_bolt
+        useSound:
+          path: /Audio/Items/drill_use.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+
+- type: entity
+  name: cybernetic jaws of life
+  parent: JawsOfLife
+  id: JawsOfLifeCyber
+  description: A set of jaws of life, compressed through the magic of science.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: jaws_pry
+  - type: Tag
+    tags:
+    - CyberHandItem
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Prying
+        sprite:
+          sprite: _Starlight/Objects/Tools/cyberling.rsi
+          state: jaws_pry
+        useSound: /Audio/Items/jaws_pry.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+      - behavior: Cutting
+        sprite:
+          sprite: _Starlight/Objects/Tools/cyberling.rsi
+          state: jaws_cutter
+        useSound: /Audio/Items/jaws_cut.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+
+- type: entity
+  name: experimental cyber-welder
+  parent: WelderExperimental
+  id: WelderExperimentalCyber
+  description: "An experimental welder capable of self-fuel generation and less harmful to the eyes."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    layers:
+    - state: expwelder
+    - state: indwelder-on
+      visible: false
+      shader: unshaded
+      map: ["enum.ToggleableVisuals.Layer"]
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+
+- type: entity
+  id: RCDCyber
+  parent: RCD
+  name: Cybernetic RCD
+  description: The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: rcd

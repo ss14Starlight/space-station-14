@@ -12,16 +12,56 @@ namespace Content.Server._Starlight.Station;
 [Access(typeof(GameTicker), typeof(StationSystem))]
 public sealed partial class BecomesStationMidRoundComponent : Component
 {
+    /// <summary>
+    /// Initialized ID of station
+    /// </summary>
     [ViewVariables(VVAccess.ReadOnly)] public string? InitializedId = null;
+    /// <summary>
+    /// ID of station
+    /// </summary>
     [DataField(required: true)] public string? Id = null;
-    [DataField] public List<EntProtoId> BaseStationProtos = default!; // will combine all components from specified station protos
-    [DataField] public bool AllowFTLDestination; // whether you can inherently FTL to the station or not.
-    [DataField] public bool UseEmergencyShuttle; // false will ignore any emergency shuttle related settings. | Prevents adding emergency shuttle comp
-    [DataField] public bool UseArmories; // whether to spawn armories or not.
-    [DataField] public bool UseArrivals; // whether to add to arrivals rotation or not.
-    [DataField] public bool AllowDungeonSpawn; // allow a new dungeon to spawn or not | Prevents spawning dungeon regardless of gridspawn
-    [DataField] public bool AllowCargoShuttle; // allows the cargo shuttle "ferry" to spawn or not.
-    [DataField] public string[] AllowedGridSpawns; // whitelisted gridspawn keys. Only affects GridSpawn groups, not DungeonSpawns.
+    /// <summary>
+    /// Prototypes to use when constructing station
+    /// </summary>
+    [DataField] public List<EntProtoId> BaseStationProtos = default!;
+    /// <summary>
+    /// Always allow FTLing to this station
+    /// </summary>
+    [DataField] public bool AllowFTLDestination;
+    /// <summary>
+    /// Whether to use an emergency shuttle
+    /// </summary>
+    [DataField] public bool UseEmergencyShuttle;
+    /// <summary>
+    /// Whether to add armories or not
+    /// </summary>
+    [DataField] public bool UseArmories;
+    /// <summary>
+    /// Whether to add an arrivals shuttle or not
+    /// </summary>
+    [DataField] public bool UseArrivals;
+    /// <summary>
+    /// Prevents dungeons from spawning
+    /// </summary>
+    [DataField] public bool AllowDungeonSpawn;
+    /// <summary>
+    /// Allows the cargo ferry to spawn
+    /// </summary>
+    [DataField] public bool AllowCargoShuttle;
+    /// <summary>
+    /// Whitelisted gridspawns
+    /// </summary>
+    [DataField] public string[] AllowedGridSpawns = default!;
+    /// <summary>
+    /// Overrides the emergency shuttle grid
+    /// </summary>
     [DataField] public string? EmergencyShuttleOverridePath = null;
-    [DataField] public Dictionary<ProtoId<JobPrototype>, int>? AvailableJobs = null; // null = no jobs
+    /// <summary>
+    /// Jobs available on init
+    /// </summary>
+    [DataField] public Dictionary<ProtoId<JobPrototype>, int>? AvailableJobs = null;
+    /// <summary>
+    /// Allows events to target this station
+    /// </summary>
+    [DataField] public bool AllowEvents;
 }

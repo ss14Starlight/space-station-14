@@ -70,16 +70,6 @@
     # once it would say bloated, turn into the rotten prototype
     stage: 1
 
-# bruh
-- type: Tag
-  id: Raw
-
-- type: Tag
-  id: Cooked
-
-- type: Tag
-  id: Cutlet
-
 # Raw
 
 - type: entity
@@ -387,6 +377,11 @@
       - crabby
   - type: Sprite
     state: crab
+  - type: Extractable # Starlight
+    juiceSolution: # Starlight
+      reagents: # Starlight
+      - ReagentId: JuiceCrab # Starlight
+        Quantity: 30 # Starlight
   - type: SolutionContainerManager
     solutions:
       food:
@@ -1241,6 +1236,23 @@
       right:
       - state: plain-cooked-inhand-right
         color: "#F7E3A3"
+
+- type: entity
+  parent: FoodMeatChickenFried
+  id: FoodMeatChickenFriedVox
+  name: mystery fried chicken
+  description: “Eleven secret herbs and… oh no. That’s not chicken."
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Ammonia
+          Quantity: 3
 
 - type: entity
   parent: FoodMeatBase

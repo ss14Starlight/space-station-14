@@ -3,6 +3,7 @@
   mapName: 'Fland Installation'
   mapPath: /Maps/_Starlight/Stations/Fland.yml
   minPlayers: 65
+  maxPlayers: 350
   stations:
     StarlightFland:
       stationProto: StandardNanotrasenStation
@@ -13,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'B'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_delta.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_delta.yml
         - type: StationCargoShuttle
           path: /Maps/Shuttles/cargo_fland.yml
         - type: StationJobs

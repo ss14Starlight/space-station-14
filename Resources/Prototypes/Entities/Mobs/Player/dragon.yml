@@ -19,7 +19,10 @@
   # Starlight-end
   - type: ThermalVision
   - type: Bloodstream
-    bloodMaxVolume: 600
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 650
   - type: AntagMonsterScaling ## Starlight
   - type: GhostRole
     allowMovement: true
@@ -120,7 +123,7 @@
     - RadiationProtection
     - Adrenaline
   - type: Temperature
-    heatDamageThreshold: 800
+    heatDamageThreshold: 2400
   - type: Metabolizer
     solutionOnBody: false
     updateInterval: 0.25

@@ -11,6 +11,7 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+      inventoryTemplateId: borg
 
 - type: entity
   parent: BorgEngineerSubtypeBase
@@ -23,6 +24,7 @@
       spriteHasMindState: generic_e
       spriteNoMindState: generic_e_r
       spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgEngineerSubtypeBase
@@ -35,6 +37,7 @@
       spriteHasMindState: antique_e
       spriteNoMindState: antique_e_r
       spriteToggleLightState: antique_l
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgEngineerSubtypeBase
@@ -47,6 +50,7 @@
       spriteHasMindState: noble_e
       spriteNoMindState: noble_e_r
       spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgEngineerSubtypeBase
@@ -59,6 +63,7 @@
       spriteHasMindState: cricket_e
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
 
 # region Generic
 
@@ -73,6 +78,7 @@
       spriteHasMindState: generic_e
       spriteNoMindState: generic_e_r
       spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgGenericSubtypeBase
@@ -85,6 +91,7 @@
       spriteHasMindState: droid_e
       spriteNoMindState: droid_e_r
       spriteToggleLightState: droid_l
+      inventoryTemplateId: borg
 
 - type: entity
   parent: BorgGenericSubtypeBase
@@ -97,6 +104,7 @@
       spriteHasMindState: noble_e
       spriteNoMindState: noble_e_r
       spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
 
 # region Janitor
 
@@ -111,6 +119,7 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+      inventoryTemplateId: borg
 
 - type: entity
   parent: BorgJanitorSubtypeBase
@@ -123,6 +132,7 @@
       spriteHasMindState: generic_e
       spriteNoMindState: generic_e_r
       spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgJanitorSubtypeBase
@@ -135,6 +145,7 @@
       spriteHasMindState: mopbot_e
       spriteNoMindState: mopbot_e_r
       spriteToggleLightState: mopbot_l
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgJanitorSubtypeBase
@@ -147,6 +158,7 @@
       spriteHasMindState: noble_e
       spriteNoMindState: noble_e_r
       spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgJanitorSubtypeBase
@@ -159,6 +171,7 @@
       spriteHasMindState: cricket_e
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
 
 # region Medical
 
@@ -173,6 +186,7 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+      inventoryTemplateId: borg
 
 - type: entity
   parent: BorgMedicalSubtypeBase
@@ -185,6 +199,7 @@
       spriteHasMindState: generic_e
       spriteNoMindState: generic_e_r
       spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgMedicalSubtypeBase
@@ -197,6 +212,7 @@
       spriteHasMindState: generic_e
       spriteNoMindState: generic_e_r
       spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgMedicalSubtypeBase
@@ -209,6 +225,7 @@
       spriteHasMindState: droid_e
       spriteNoMindState: droid_e_r
       spriteToggleLightState: droid_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgMedicalSubtypeBase
@@ -221,6 +238,7 @@
       spriteHasMindState: noble_e
       spriteNoMindState: noble_e_r
       spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgMedicalSubtypeBase
@@ -233,6 +251,7 @@
       spriteHasMindState: cricket_e
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
 
 # region Mining(Salvage)
 
@@ -247,6 +266,7 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+      inventoryTemplateId: borg
 
 - type: entity
   parent: BorgMiningSubtypeBase
@@ -259,6 +279,7 @@
       spriteHasMindState: generic_e
       spriteNoMindState: generic_e_r
       spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgMiningSubtypeBase
@@ -271,6 +292,7 @@
       spriteHasMindState: droid_e
       spriteNoMindState: droid_e_r
       spriteToggleLightState: droid_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgMiningSubtypeBase
@@ -283,6 +305,7 @@
       spriteHasMindState: noble_e
       spriteNoMindState: noble_e_r
       spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgMiningSubtypeBase
@@ -295,6 +318,7 @@
       spriteHasMindState: cricket_e
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
 
 # region Service
 
@@ -309,6 +333,7 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+      inventoryTemplateId: borg
 
 - type: entity
   parent: BorgServiceSubtypeBase
@@ -318,6 +343,7 @@
     - type: BorgSubtypeDefinition
       spritePath: Mobs/Silicon/Chassis/service.rsi
       spriteBodyState: generic
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgServiceSubtypeBase
@@ -327,6 +353,7 @@
     - type: BorgSubtypeDefinition
       spritePath: Mobs/Silicon/Chassis/service.rsi
       spriteBodyState: waitress
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgServiceSubtypeBase
@@ -338,6 +365,7 @@
       spriteBodyState: brobot
       spriteHasMindState: brobot_e
       spriteNoMindState: brobot_e_r
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgServiceSubtypeBase
@@ -350,6 +378,7 @@
       spriteHasMindState: maximillion_e
       spriteNoMindState: maximillion_e_r
       price: 500
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgServiceSubtypeBase
@@ -362,6 +391,7 @@
       spriteHasMindState: noble_e
       spriteNoMindState: noble_e_r
       spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgServiceSubtypeBase
@@ -374,6 +404,7 @@
       spriteHasMindState: cricket_e
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
 
 # Security
 
@@ -388,6 +419,7 @@
       spriteHasMindState: red-knight_e
       spriteNoMindState: red-knight_e_r
       spriteToggleLightState: red-knight_l
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgSecuritySubtypeBase
@@ -400,6 +432,7 @@
       spriteHasMindState: black-knight_e
       spriteNoMindState: black-knight_e_r
       spriteToggleLightState: black-knight_l
+      inventoryTemplateId: borgTall
 
 - type: entity
   parent: BorgSecuritySubtypeBase
@@ -412,6 +445,7 @@
       spriteHasMindState: standard_e
       spriteNoMindState: standard_e_r
       spriteToggleLightState: standard_l
+      inventoryTemplateId: borg
 
 - type: entity
   parent: BorgSecuritySubtypeBase
@@ -424,6 +458,7 @@
       spriteHasMindState: noble_e
       spriteNoMindState: noble_e_r
       spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgSecuritySubtypeBase
@@ -436,6 +471,7 @@
       spriteHasMindState: cricket_e
       spriteNoMindState: cricket_e_r
       spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
 
 - type: entity
   parent: BorgSecuritySubtypeBase
@@ -448,3 +484,4 @@
       spriteHasMindState: heavy_e
       spriteNoMindState: heavy_e_r
       spriteToggleLightState: heavy_l
+      inventoryTemplateId: borg

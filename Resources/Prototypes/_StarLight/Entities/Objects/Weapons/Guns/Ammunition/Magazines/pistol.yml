@@ -264,7 +264,7 @@
       - MagazinePistolSubMachineGunTopMounted
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgePistolFMJ
+    proto: CartridgePistolSP # Starlight
     whitelist:
       tags:
       - CartridgePistol

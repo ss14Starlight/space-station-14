@@ -58,3 +58,9 @@
   parent: BaseBorgModuleRecipe
   id: BorgModuleUppies
   result: BorgModuleUppies
+
+# Medical
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleSurgical
+  result: BorgModuleSurgical

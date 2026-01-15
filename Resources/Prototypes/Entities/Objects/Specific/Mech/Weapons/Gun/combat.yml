@@ -17,7 +17,7 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: Pulse
     fireCost: 80
   - type: Appearance
@@ -42,7 +42,7 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
 # 🌟Starlight-start🌟
     proto: IgnitionRedLaser
     fireCost: 40
@@ -69,7 +69,7 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
 # 🌟Starlight-start🌟
     proto: RedHeavyLaser
     fireCost: 28
@@ -104,7 +104,7 @@
 # 🌟Starlight-start🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 14 # 🌟Starlight-Change
   - type: Appearance
@@ -138,7 +138,7 @@
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
         variation: 0.2
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TeslaGunBullet
     fireCost: 100
   - type: Appearance
@@ -163,7 +163,7 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletDisablerSmgSpread
     fireCost: 30 # 🌟Starlight-Change
   - type: Appearance
@@ -193,7 +193,7 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TaserBolt
     fireCost: 40
   - type: Appearance
@@ -221,7 +221,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
 # 🌟Starlight-start🌟
     proto: ShellShotgunMech
     fireCost: 80
@@ -246,7 +246,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
 # 🌟Starlight-start🌟
     proto: ShellShotgunMechIncendiary
     fireCost: 80
@@ -273,7 +273,7 @@
       - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletLightRifleTraceSP
     fireCost: 20
   - type: Appearance
@@ -299,7 +299,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: EmpPulse
     fireCost: 400
   - type: Appearance
@@ -331,7 +331,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaserBeam
     fireCost: 20
   - type: Appearance
@@ -356,7 +356,7 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: XrayLaser
     fireCost: 48 # 🌟Starlight-Change
   - type: Appearance
@@ -382,7 +382,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletWeakRocket
     fireCost: 50
   - type: Appearance
@@ -405,7 +405,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: GrenadeBlast
     fireCost: 220
   - type: Appearance
@@ -433,7 +433,7 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: GrenadeFlash
     fireCost: 60
   - type: Appearance

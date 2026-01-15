@@ -22,8 +22,8 @@
         amount: 0.45
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Bloodsucker
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
         damage:
           groups:
             Brute: -3
@@ -34,10 +34,11 @@
         boozePower: 5
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: DraganSpecial
           min: 6
-        - !type:OrganType
-          type: Vox
+        - !type:MetabolizerTypeCondition
+          type: [ Vox ]
         damage:
           types:
             Poison: 0.4
@@ -51,31 +52,33 @@
         force: true
         probability: 0.9
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: DraganSpecial
           min: 6
       # Toxin damage for non-Vox who dare to drink it
       - !type:HealthChange
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
+          reagent: DraganSpecial
           min: 3
-        - !type:OrganType
-          type: Vox
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Vox ]
+          inverted: true
         damage:
           types:
             Poison: 2
-      - !type:ChemVomit
+      - !type:Vomit
         probability: 0.1
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: DraganSpecial
           min: 8
-        - !type:OrganType
-          type: Vox
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Vox ]
+          inverted: true
     Narcotic:
       effects:
-      - !type:MovespeedModifier
+      - !type:MovementSpeedModifier
         walkSpeedModifier: 1.20
         sprintSpeedModifier: 1.20
       - !type:GenericStatusEffect
@@ -92,11 +95,10 @@
         type: Remove
       - !type:GenericStatusEffect
         conditions:
-        - !type:ReagentThreshold
+        - !type:ReagentCondition
           reagent: DraganSpecial
           min: 9
         key: SeeingRainbows
         component: SeeingRainbows
         type: Add
         time: 120
-        refresh: true

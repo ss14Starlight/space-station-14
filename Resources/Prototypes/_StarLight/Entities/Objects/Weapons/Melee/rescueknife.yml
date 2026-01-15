@@ -1,0 +1,76 @@
+- type: entity
+  name: rescue knife
+  parent: [BaseKnife, BaseMedicalContraband]
+  id: RescueKnife
+  description: A rescue knife issued to paramedics, with a built in striker for breaking thorugh anything keeping them from a patient.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/rescueknife.rsi
+    state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/rescueknife.rsi
+    storedSprite:
+      state: stored
+      sprite: _Starlight/Objects/Weapons/Melee/rescueknife.rsi
+  - type: UseDelay
+  - type: ItemSwitch
+    state: sheathed
+    states:
+      sheathed: !type:ItemSwitchState
+        verb: sheathe
+        sprite:
+          sprite: _Starlight/Objects/Weapons/Melee/rescueknife.rsi
+          state: folded
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: 45
+          attackRate: 1
+          damage:
+            types:
+              Structural: 10
+              Blunt: 6.5
+        - type: DamageOtherOnHit
+          damage:
+            types:
+              Blunt: 0
+        - type: EmbeddableProjectile #Reference conf's boxcutter, that's where I stole like all of the code from
+          minimumSpeed: 100000
+          embedOnThrow: false
+
+      unsheathed: !type:ItemSwitchState
+        verb: unsheath
+        sprite:
+          sprite: _Starlight/Objects/Weapons/Melee/rescueknife.rsi
+          state: icon
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 1.2
+          damage:
+            types:
+              Slash: 10
+          soundHit:
+            path: /Audio/Weapons/bladeslice.ogg
+        - type: DamageOtherOnHit
+          damage:
+            types:
+              Slash: 8
+        - type: EmbeddableProjectile
+          sound: /Audio/Weapons/star_hit.ogg
+          offset: -0.15,0.0
+        - type: LandAtCursor
+  - type: ThrowingAngle
+    angle: 225
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Slicing
+        useSound: /Audio/Items/Culinary/chop.ogg
+        SpeedModifier: 1
+      - behavior: Screwing
+        useSound: /Audio/Items/screwdriver.ogg
+        SpeedModifier: 0.95
+  - type: Tag
+    tags: 
+    - ParaKnife
+    - Knife
