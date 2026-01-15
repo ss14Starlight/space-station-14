@@ -58,7 +58,7 @@
         thresholds:
         - trigger:
             !type:DamageTrigger
-          damage: 50 # starlight change: was 100 and is changed to nerf the staff
+            damage: 50 # starlight change: was 100 and is changed to nerf the staff
           behaviors:
           - !type:DoActsBehavior
             acts: ["Destruction"]
