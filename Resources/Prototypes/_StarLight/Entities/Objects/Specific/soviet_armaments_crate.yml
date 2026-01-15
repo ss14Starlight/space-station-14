@@ -43,10 +43,8 @@
         - id: SpearUranium
           weight: 4
         - id: EmagCommie
-          weight: 2
+          weight: 3
         - id: MedkitCombatFilled
-          weight: 2
-        - id: SeismicCharge
           weight: 2
         - id: ClothingBackpackDuffelStechkinAPS
         - id: ClothingBackpackDuffelAKMSBundle
