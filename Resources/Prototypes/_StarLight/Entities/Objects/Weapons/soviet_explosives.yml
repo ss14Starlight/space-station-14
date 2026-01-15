@@ -1,0 +1,47 @@
+- type: entity
+  name: PVV-5A shaped charge
+  description: A soviet military-grade shaped charge designed for breaching and demolition. More powerful than standard seismic charges, but not quite as destructive as C4.
+  parent: [ BaseSovietContraband, BasePlasticExplosive ]
+  id: SovietShapedChargePVV5A
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/seismic.rsi
+    state: icon
+    layers:
+    - state: icon
+      map: ["base"]
+  - type: TriggerOnActivate
+  - type: TriggerOnSignal
+  - type: TriggerOnStuck
+    keyOut: stuck
+  - type: ToggleTriggerCondition
+    keys:
+    - stuck
+    toggleVerb: toggle-trigger-condition-stick-verb
+    toggleOn: toggle-trigger-condition-stick-on
+    toggleOff: toggle-trigger-condition-stick-off
+  - type: TimerTrigger
+    keysIn:
+    - trigger
+    - stuck
+    delay: 8
+    delayOptions: [8, 15, 30, 60]
+    initialBeepDelay: 0
+    beepSound:
+      path: /Audio/Effects/Cargo/buzz_two.ogg
+      params:
+        volume: -3
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+  - type: Explosive
+    explosionType: DemolitionCharge
+    totalIntensity: 75
+    intensitySlope: 4
+    maxIntensity: 30
+    canCreateVacuum: false
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: StaticPrice
+    price: 450

@@ -136,7 +136,6 @@
         children:
         - id: WeaponLightMachineGunDP28
         - id: MagazineLightRifleMaxim
-        - id: MagazineLightRifleMaxim
 
 - type: entity
   id: ClothingBackpackDuffelMosinBundle
@@ -162,7 +161,7 @@
         children:
         - id: WeaponRifleAk
         - id: MagazineLightRifleSP
-        - id: MagazineLightRifleSP
+          amount: 2
         - id: MagazineLightRifleFMJ
 
 - type: entity
@@ -181,8 +180,7 @@
       storagebase: !type:AllSelector
         children:
         - id: EncryptionKeySoviet
-        - id: EncryptionKeySoviet
-        - id: EncryptionKeySoviet
+          amount: 3
 
 - type: entity
   id: BoxFinkaKnives
@@ -200,7 +198,8 @@
       storagebase: !type:AllSelector
         children:
         - id: Finka
-        - id: Finka
+          amount: 2
+
 - type: entity
   id: ClothingBackpackDuffelPPShBundle
   parent: ClothingBackpackDuffelSSF
@@ -214,6 +213,18 @@
         - id: MagazinePistolSubMachineGunPPSH
 
 - type: entity
+  id: ClothingBackpackDuffelToz106Bundle
+  parent: ClothingBackpackDuffelSSF
+  suffix: Toz-106
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponShotgunToz106Extended
+        - id: BoxLethalshotToz
+
+- type: entity
   id: ClothingBackpackDuffelSovietAmmoBundle
   name: soviet ammunition bundle
   parent: ClothingBackpackDuffelSSF
@@ -225,24 +236,19 @@
       storagebase: !type:AllSelector
         children:
         - id: MagazineBoxLightRifleBig
+          amount: 2
         - id: MagazineBoxMagnumSP
-        - id: MagazineBoxMagnumSP
-        - id: MagazineBoxMagnumSP
+          amount: 3
         - id: SpeedLoaderLightRifle
-        - id: SpeedLoaderLightRifle
-        - id: SpeedLoaderLightRifle
-        - id: SpeedLoaderLightRifle
+          amount: 4
         - id: MagazinePistol40SP
-        - id: MagazinePistol40SP
-        - id: MagazinePistol40SP
+          amount: 3
         - id: MagazinePistolSubMachineGunPPSH
-        - id: MagazinePistolSubMachineGunPPSH
+          amount: 2
         - id: MagazineLightRifleSP
-        - id: MagazineLightRifleSP
-        - id: MagazineLightRifleSP
+          amount: 3
         - id: BoxLethalshotToz
-        - id: BoxLethalshotToz
-        - id: BoxLethalshotToz
+          amount: 3
         - !type:NestedSelector
           tableId: SovietAmmoExtraTable
           rolls: 5
@@ -251,15 +257,13 @@
   id: SovietAmmoExtraTable
   table: !type:GroupSelector
     children:
-    - id: MagazineBoxLightRifleBig
-      prob: 0.25
     - id: MagazineBoxMagnumSP
-      prob: 0.2
+      weight: 25
     - id: SpeedLoaderLightRifle
-      prob: 0.2
+      weight: 25
     - id: MagazinePistol40SP
-      prob: 0.15
+      weight: 20
     - id: MagazineLightRifleSP
-      prob: 0.15
+      weight: 20
     - id: BoxLethalshotToz
-      prob: 0.05
+      weight: 10
