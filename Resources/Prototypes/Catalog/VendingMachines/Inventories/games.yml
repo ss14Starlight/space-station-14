@@ -16,7 +16,10 @@
     PaperCNCSheet: 6
     MysteryFigureBox: 2
     BooksBag: 3
+    CardBoxNanotrasen: 2 # Starlight
+    CardBoxBlack: 2 # Starlight
   contrabandInventory:
     Basketball: 1
     FoodSnackBoritos: 3
     DrinkSpaceMountainWindCan: 3
+    CardBoxSyndicate: 2 # Starlight
