@@ -12,8 +12,11 @@ uplink-stechkin-name = Stechkin pistol
 uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors.
 uplink-pistol-magnum-magazine-name = Pistol Magazine (.45 magnum)
 uplink-pistol-magnum-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Desert Eagle.
+
 uplink-magillitis-serum-implanter-name = Magillitis Serum Implanter
 uplink-magillitis-serum-implanter-desc = An experimental biochip which causes irreversable rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas.
+uplink-gear-acidifier-implant-name = Gear Acidifier Implant
+uplink-gear-acidifier-implant-desc = Melts your equipment on use or death, leaving your body intact. Does not destroy restraints.
 
 uplink-pitbull-bundle-name = Pitbull Bundle
 uplink-pitbull-bundle-desc = A large bullpup rifle with a low fire-rate but excellent accuracy. Chambered in .45 magnum. 
