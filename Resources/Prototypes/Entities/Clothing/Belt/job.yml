@@ -270,6 +270,31 @@
     sprite: Clothing/Belt/emt.rsi
   - type: Clothing
     sprite: Clothing/Belt/emt.rsi
+  - type: Storage #Starlight start
+    maxItemSize: Large
+    whitelist:
+      tags:
+        - Crowbar
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - Dropper
+        - Medkit
+        - BodyBag
+        - ParaKnife
+      components:
+        - Hypospray
+        - Injector
+        - Pill
+        - HandLabeler #Starlight end
 
 - type: entity
   parent: ClothingBeltStorageBase

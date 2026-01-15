@@ -11,6 +11,7 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathTool
 
@@ -22,6 +23,7 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - LuxuryPens
   - GroupSpeciesBreathTool
 
@@ -41,6 +43,7 @@
   - SurvivalMedical
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathToolMedical
 
@@ -54,6 +57,7 @@
   - NanotrasenRepresentativeShoes
   - Trinkets
   - Scarves
+  - Pins
   - NTRPens
   - Survival
   - GroupSpeciesBreathTool
@@ -67,6 +71,7 @@
   - LawyerShoes
   - Trinkets
   - Scarves
+  - Pins
   - LuxuryPens
   - Survival
   - GroupSpeciesBreathTool
@@ -83,6 +88,7 @@
   - BlueShieldEyewear
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - SurvivalSecurity
   - GroupSpeciesBreathToolSecurity
@@ -100,6 +106,7 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathTool
 
@@ -116,6 +123,7 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathTool
 
@@ -123,17 +131,24 @@
   id: JobBrigmedic
   groups:
     - BrigmedicHead
+    - BrigmedicMask
     - BrigmedicJumpsuit
+    - BrigmedicTie
     - BrigmedicBackpack
     - BrigmedicOuterClothing
     - BrigmedicBelt
     - BrigmedicGloves
     - BrigmedicEyewear
+    - BrigmedicPDA
+    - BrigmedicBeaker
     - SecurityShoes
     - SecurityNonLethalWeapon
     - SecuritySidearm
     - SurvivalSecurity
     - Trinkets
+    - Scarves
+    - Pins
+    - Pens
     - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
@@ -149,4 +164,60 @@
     - Glasses
     - Survival
     - Trinkets
+    - Scarves
+    - Pins
+    - Pens
     - GroupSpeciesBreathTool
+
+# Wildcards
+- type: roleLoadout
+  id: JobZookeeper
+  groups:
+  - CommonBackpack
+  - CivilianShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - ZookeeperJobTrinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobBoxer
+  groups:
+  - BoxerJumpsuit
+  - BoxerGloves
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - BoxerJobTrinkets
+  - GroupSpeciesBreathTool
+
+# Antagonist Loadouts
+- type: roleLoadout
+  id: AntagXenoborg
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+  groups:
+  - SiliconBrainType
+
+- type: roleLoadout
+  id: AntagMothership
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: AntagBrighteye
+  groups:
+  - BrighteyeJumpsuit
+  - BrighteyeNeck
+  - BrighteyeShoes
+  - BrighteyeGloves
+  - Scarves
+  - Pins

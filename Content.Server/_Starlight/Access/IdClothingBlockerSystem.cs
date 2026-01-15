@@ -20,7 +20,7 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<HandsComponent, DidEquipHandEvent>(OnAnyHandEquipped);
         SubscribeLocalEvent<HandsComponent, DidUnequipHandEvent>(OnAnyHandUnequipped);
         SubscribeLocalEvent<InventoryComponent, DidEquipEvent>(OnAnyInventoryEquipped);
@@ -29,10 +29,14 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 
     protected override void OnUnauthorizedAccess(EntityUid clothingUid, IdClothingBlockerComponent component, EntityUid wearer)
     {
-        var blockedComponent = EntityManager.EnsureComponent<IdClothingFrozenComponent>(wearer);
-        blockedComponent.ClothingItem = clothingUid;
+        if (component.FreezeUser)
+        {
+            var blockedComponent = EntityManager.EnsureComponent<IdClothingFrozenComponent>(wearer);
+            blockedComponent.ClothingItem = clothingUid;
+            Dirty(wearer, blockedComponent);
+        }
+
         UpdateClothingBlockingState(wearer);
-        Dirty(wearer, blockedComponent);
 
         _popup.PopupEntity(Loc.GetString("access-clothing-blocker-notify-unauthorized-access"), clothingUid, PopupType.MediumCaution);
     }

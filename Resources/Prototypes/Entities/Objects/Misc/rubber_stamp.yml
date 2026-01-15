@@ -67,7 +67,7 @@
   name: chaplain's rubber stamp
   parent: RubberStampBase
   id: RubberStampChaplain
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-chaplain
@@ -93,7 +93,7 @@
   name: clown's rubber stamp
   parent: RubberStampBase
   id: RubberStampClown
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-clown
@@ -158,7 +158,7 @@
   name: mime's rubber stamp
   parent: RubberStampBase
   id: RubberStampMime
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-mime
@@ -275,7 +275,7 @@
   name: psychologist's rubber stamp
   parent: RubberStampBase
   id: RubberStampPsychologist
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal
   description: A rubber stamp for stamping important documents. Prescribe those treatments!
   components:
   - type: Stamp

@@ -1,7 +1,7 @@
 language-Universal-name = Universal
 language-Universal-description = What are you?
 
-language-GalacticCommon-name = Galactic common
+language-GalacticCommon-name = Galactic Common
 language-GalacticCommon-description = The common galactic tongue, engineered for cross-species communication. Every spacer there is knows this!
 
 language-Sign-name = Galactic Sign Language
@@ -69,7 +69,7 @@ language-Carptongue-name = Carptongue
 language-Carptongue-description = Various fishy sounds that might make sense to space carps.
 
 language-Xeno-name = Xeno
-language-Xeno-description = The common tongue of the xenos
+language-Xeno-description = The common tongue of the xenos.
 
 language-Cat-name = Cat
 language-Cat-description = Meow
@@ -94,3 +94,15 @@ language-Bat-description = Eek!
 
 language-Thaveyan-name = Thaveyan
 language-Thaveyan-description = A lyrical sing-songy language common to the Thaven which reminds others of listening to the waves.
+
+language-Darktongue-name = Darktongue
+language-Darktongue-description = Sounds a bit like clearing your throat, or perhaps slitting someone else's.
+
+language-Grumbakul-name = Grumbakul
+language-Grumbakul-description = A terse, sturdy language fit for drink and industry.
+
+language-Classical-name = Classical
+language-Classical-description = Once upon a time, everyone spoke this language. They were mostly quite bad at it.
+
+language-Aielic-name = Aielic
+language-Aielic-description = The musical language of a nearly-extinct species known for its beautiful literature, pointy ears, once-vast empire.

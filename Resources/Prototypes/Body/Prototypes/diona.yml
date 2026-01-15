@@ -12,6 +12,7 @@
         eyes: OrganHumanEyes
         tongue: OrganHumanTongue
         eye_implant: null
+        brain_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoDiona
       connections:
@@ -33,8 +34,12 @@
       - left hand
     right hand:
       part: RightHandDiona
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     left hand:
       part: LeftHandDiona
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     right leg:
       part: RightLegDiona
       connections:

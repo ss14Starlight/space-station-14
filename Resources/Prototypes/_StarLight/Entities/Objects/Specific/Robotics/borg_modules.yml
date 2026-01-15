@@ -511,3 +511,65 @@
     - item: PinpointerSyndicateNuclear
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
+
+# region Medical
+- type: entity
+  id: BorgModuleOrganPlaceholder
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: heart-off
+
+- type: entity
+  id: BorgModuleSurgical
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: surgery cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-surgery
+  - type: ItemBorgModule
+    hands:
+    - item: Scalpel
+    - item: Hemostat
+    - item: Retractor
+    - item: BoneSetter
+    - item: Cautery
+    - item: SawElectric
+    - item: Drill
+    - item: BoneGel
+    - hand:
+        emptyLabel: borg-slot-organs-empty
+        emptyRepresentative: BorgModuleOrganPlaceholder
+        whitelist:
+          components:
+          - Organ
+          - OrganDamage
+          - FunctionalOrgan
+          - BodyPart
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: surgery-module }
+    
+# region Xenoborg
+- type: entity
+  parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleRCD
+  name: engineering xenoborg module
+  description: Module with a recharging xenoborg RCD
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_engi
+    - state: icon-rcd
+  - type: ItemBorgModule
+    hands:
+    - item: RCDXeno
+    - item: BorgFireExtinguisher
+    - item: BorgHandheldGPSBasic
+    - item: GasAnalyzer
+    - item: HolofanProjectorBorg
+    - item: GeigerCounter
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-rcd-module }

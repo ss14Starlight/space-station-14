@@ -1,22 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Content.Shared._Starlight.Combat.Ranged.Pierce;
-using Content.Shared.Construction.Prototypes;
-using Content.Shared.Damage;
-using Content.Shared.Physics;
-using Content.Shared.Starlight;
-using Content.Shared.Starlight.Utility;
-using Content.Shared.Weapons.Ranged;
-using Content.Shared.Weapons.Reflect;
-using Lidgren.Network;
-using Robust.Shared.Audio;
+﻿using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
-using Robust.Shared.Utility;
 
 namespace Content.Shared._NullLink;
 public sealed class MsgUpdatePlayerRoles : NetMessage

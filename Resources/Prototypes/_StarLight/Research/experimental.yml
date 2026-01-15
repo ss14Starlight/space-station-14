@@ -26,3 +26,33 @@
   - JermovCircuitBoard
   radioChannels:
   - Binary
+
+- type: technology
+  id: BluespaceManipulation
+  name: research-technology-bluespace-manipulation
+  icon:
+    sprite: _Starlight/Objects/Materials/materials.rsi
+    state: synthetic_bluespace_crystal_3
+  discipline: Experimental
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - ArtificialBluespaceCrystal
+  - NullspaceAnchorMachineCircuitboard
+- type: technology
+  id: ScienceCyberLimbsTech
+  name: research-technology-science-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: gorillagauntlet
+  discipline: Experimental
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+    - LeftArmCyberGorilla
+    - RightArmCyberGorilla
+  technologyPrerequisites:
+    - CyberLimbsTech
+    - AdvancedAnomalyResearch
+
+# Tier 3

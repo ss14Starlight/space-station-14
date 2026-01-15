@@ -35,3 +35,75 @@
     - type: PolymorphOnTrigger
       polymorph: RampagingGorilla
       targetUser: true
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BluespaceImplant
+  name: bluespace implant
+  description: An advanced subdermal implant that, when activated, teleports the user far away.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateBluespaceImplant
+  - type: TriggerOnMobstateChange
+    mobState:
+      - Dead
+  - type: TriggerOnActivateImplant
+  - type: DeleteOnTrigger
+    targetUser: true
+  - type: SpawnOnTrigger
+    proto: BluespaceImplantEffect
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RedspaceImplant
+  name: redspace implant
+  description: An advanced subdermal implant that, when activated, teleports the user far away.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateRedspaceImplant
+  - type: TriggerOnMobstateChange
+    mobState:
+      - Dead
+  - type: TriggerOnActivateImplant
+  - type: DeleteOnTrigger
+    targetUser: true
+  - type: SpawnOnTrigger
+    proto: RedspaceImplantEffect
+
+# Gear Acidifier
+- type: entity
+  parent: BaseSubdermalImplant
+  id: GearAcidifierImplant
+  name: gear-acidifier implant
+  description: This implant melts the user's equipment upon death, leaving the body intact.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateGearAcidifier
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: TriggerOnActivateImplant
+  - type: GibOnTrigger
+    targetUser: true
+    deleteItems: true
+    gibBody: false
+  - type: PopupOnTrigger
+    targetUser: true
+    text: death-acidifier-implant-activate-gear
+  - type: SpawnOnTrigger
+    targetUser: true
+    proto: GearAcidifier
+    predicted: true
+  - type: DeleteOnTrigger
+    targetUser: false
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - GearAcidifier

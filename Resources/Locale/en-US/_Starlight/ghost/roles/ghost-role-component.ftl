@@ -32,3 +32,6 @@ ghost-role-information-decimus-description = You are a Decimus Operative. Enact 
 
 ghost-role-information-syndicate-cyborg-stealth-name = Syndicate Stealth Cyborg
 
+ghost-role-information-xenomoproach-name = Xenomoproach
+ghost-role-information-xenomoproach-description = You are a small Xenoborg wearing the skin of a moproach as a disguise.
+ghost-role-information-xenomoproach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other xenoborgs. Your goal is not to attack organic beings, rather you are tasked with being cute and distracting the organics while gathering intel.

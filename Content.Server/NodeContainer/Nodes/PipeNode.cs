@@ -142,17 +142,7 @@ namespace Content.Server.NodeContainer.Nodes
         public override void OnAnchorStateChanged(IEntityManager entityManager, bool anchored)
         {
             if (!anchored)
-            // Starlight Start: DockPipeSystem
-            {
-                if (_alwaysReachable != null)
-                {
-                    _alwaysReachable.Clear();
-                    if (NodeGroup != null)
-                        entityManager.System<NodeGroupSystem>().QueueRemakeGroup((BaseNodeGroup) NodeGroup);
-                }
                 return;
-            }
-            // Starlight End
 
             // update valid pipe directions
 

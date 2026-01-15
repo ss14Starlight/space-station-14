@@ -91,7 +91,7 @@
     baseWalkSpeed : 3
     baseSprintSpeed : 4
   - type: Stamina
-    critThreshold: 120
+    baseCritThreshold: 120
   - type: Destructible
     thresholds:
     - trigger:
@@ -395,6 +395,8 @@
     interfaces:
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+      enum.StrippingUiKey.Key:              # Starlight
+        type: StrippableBoundUserInterface  # Starlight Readded stipping UI to medibots, wirepanels overwrote them
 
 - type: entity
   parent:

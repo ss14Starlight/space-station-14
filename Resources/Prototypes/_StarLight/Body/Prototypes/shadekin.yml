@@ -12,6 +12,7 @@
         eyes: OrganShadekinEyes
         tongue: OrganShadekinTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoShadekin
       connections:
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandShadekin
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandShadekin
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegShadekin
       connections:
