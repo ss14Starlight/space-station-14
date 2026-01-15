@@ -1,10 +1,10 @@
 // IPC System - Spark Effects (Shared)
-// SOURCE: Far-Horizons-SS14 (Starlight Upstream)  
-// https://github.com/Far-Horizons-SS14/Far-Horizons-SS14
+// SOURCE: Far-Horizons-SS14 (Starlight Upstream) PR #135
+// https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
 // _STARLIGHT: Ported from upstream ArmorSparkEffectSystem for IPC spark effects
 
 using System.Numerics;
-using Content.Shared._Starlight.Silicons.IPC.Components;
+using Content.Shared._Starlight.Combat.Effects.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio;
@@ -59,7 +59,7 @@ public abstract partial class SharedIPCSystem
         // Spawn spark effect entity
         Spawn(component.SparkEffectPrototype, effectCoords);
         
-        // Play spark sound
-        _audio.PlayPvs(component.SparkSound, effectCoords);
+        // Play spark sound from the sound collection
+        _audio.PlayPvs(component.RicochetSoundCollection, effectCoords);
     }
 }

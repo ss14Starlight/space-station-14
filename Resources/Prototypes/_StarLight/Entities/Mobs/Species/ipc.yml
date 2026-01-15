@@ -116,6 +116,9 @@
     - APCHighCapacity
     - APCSuperCapacity
     - APCHyperCapacity
+    - SubstationBasic
+    - SubstationBasicEmpty
+    - SubstationWallBasic
   - type: BatteryDrainer # _STARLIGHT: Allow IPCs to drain power from APCs/machines/substations
     disableHandInteraction: true # _STARLIGHT: Power draining is ALT-click only (alternative verb)
   - type: HumanoidEMP # _STARLIGHT: EMP effects on IPCs
