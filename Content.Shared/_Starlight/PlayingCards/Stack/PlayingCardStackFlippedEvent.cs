@@ -7,3 +7,9 @@ public sealed class PlayingCardStackFlippedEvent(NetEntity cardStack) : EntityEv
 {
     public NetEntity CardStack = cardStack;
 }
+
+[Serializable, NetSerializable]
+public sealed class PlayingCardStackDeckFlippedEvent(NetEntity cardStack) : EntityEventArgs
+{
+    public NetEntity CardStack = cardStack;
+}

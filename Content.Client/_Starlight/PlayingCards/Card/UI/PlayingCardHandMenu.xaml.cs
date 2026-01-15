@@ -50,7 +50,7 @@ public sealed partial class PlayingCardHandMenu : RadialMenu
             {
                 StyleClasses = { "RadialMenuButton" },
                 SetSize = new Vector2(64f, 64f),
-                ToolTip = Loc.GetString(cardComp.Name),
+                ToolTip = Loc.GetString($"card-sc-{Enum.GetName(cardComp.Suit)?.ToLower()}-{cardComp.Value}"),
             };
 
             if (_entManager.TryGetComponent<SpriteComponent>(card, out var sprite))

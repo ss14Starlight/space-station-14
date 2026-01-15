@@ -1,84 +1,70 @@
-using System.Linq;
-using Content.Shared._Starlight.PlayingCards.Card;
+using System.Numerics;
+using Content.Shared._Starlight.PlayingCards;
+using Content.Shared._Starlight.PlayingCards.Hand;
 using Robust.Client.GameObjects;
-using Robust.Shared.Utility;
 
-namespace Content.Client._Starlight.PlayingCards.Hand;
+namespace Content.Client._Starlight.PlayingCards.Card;
 
 public sealed class PlayingCardHandSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
+    [Dependency] private readonly PlayingCardSpriteSystem _cardSpriteSystem = default!;
     
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<PlayingCardComponent, ComponentStartup>(OnComponentStartupEvent);
-        SubscribeNetworkEvent<PlayingCardFlipUpdatedEvent>(OnFlip);
+        SubscribeLocalEvent<PlayingCardHandComponent, ComponentStartup>(OnComponentStartupEvent);
+        SubscribeNetworkEvent<PlayingCardStackInitiatedEvent>(OnStackStart);
+        SubscribeNetworkEvent<PlayingCardStackQuantityChangeEvent>(OnStackUpdate);
     }
 
-    private void OnComponentStartupEvent(EntityUid uid, PlayingCardComponent comp, ComponentStartup args)
+    public void UpdateSprite(EntityUid uid, PlayingCardHandComponent comp)
     {
-        if (!TryComp(uid, out SpriteComponent? spriteComponent))
+        if (!TryComp(uid, out SpriteComponent? sprite))
             return;
 
-        for (var i = 0; i < spriteComponent.AllLayers.Count(); i++)
-        {
-            Log.Debug($"Layer {i}");
-            if (!spriteComponent.TryGetLayer(i, out var layer) || layer.State.Name == null)
-                continue;
+        if (!TryComp(uid, out PlayingCardStackComponent? cardStack))
+            return;
 
-            var rsi = layer.RSI ?? spriteComponent.BaseRSI;
-            if (rsi == null)
-                continue;
+        _cardSpriteSystem.TryAdjustLayerQuantity((uid, sprite, cardStack), comp.Limit);
 
-            Log.Debug("FOI");
-            comp.FrontSpriteLayers?.Add(new SpriteSpecifier.Rsi(rsi.Path, layer.State.Name));
-        }
+        var cardCount = Math.Min(cardStack.Cards.Count, comp.Limit);
 
-        comp.BackSpriteLayers ??= comp.FrontSpriteLayers;
-        Dirty(uid, comp);
+        var intervalAngle = comp.Angle / (cardCount-1);
+        var intervalSize = comp.XOffset / (cardCount - 1);
+
+        _cardSpriteSystem.TryHandleLayerConfiguration(
+            (uid, sprite, cardStack),
+            cardCount,
+            (sprt, cardIndex, layerIndex) =>
+            {
+                var angle = (-(comp.Angle/2)) + cardIndex * intervalAngle;
+                var x = (-(comp.XOffset / 2)) + cardIndex * intervalSize;
+                var y = -(x * x) + 0.10f;
+
+                sprt.Comp.LayerSetRotation(layerIndex, Angle.FromDegrees(-angle));
+                sprt.Comp.LayerSetOffset(layerIndex, new Vector2(x, y));
+                sprt.Comp.LayerSetScale(layerIndex, new Vector2(comp.Scale, comp.Scale));
+                return true;
+            }
+        );
+    }
+
+    private void OnStackUpdate(PlayingCardStackQuantityChangeEvent args)
+    {
+        if (!TryComp(GetEntity(args.CardStack), out PlayingCardHandComponent? comp))
+            return;
+        UpdateSprite(GetEntity(args.CardStack), comp);
+    }
+
+    private void OnStackStart(PlayingCardStackInitiatedEvent args)
+    {
+        var entity = GetEntity(args.CardStack);
+        if (!TryComp(entity, out PlayingCardHandComponent? comp))
+            return;
+
+        UpdateSprite(entity, comp);
+    }
+
+    private void OnComponentStartupEvent(EntityUid uid, PlayingCardHandComponent comp, ComponentStartup args) =>
         UpdateSprite(uid, comp);
-    }
-
-    private void OnFlip(PlayingCardFlipUpdatedEvent args)
-    {
-        if (!TryComp(GetEntity(args.Card), out PlayingCardComponent? comp))
-            return;
-        UpdateSprite(GetEntity(args.Card), comp);
-    }
-
-    private void UpdateSprite(EntityUid uid, PlayingCardComponent comp)
-    {
-        var newSprite = comp.Flipped ? comp.BackSpriteLayers : comp.FrontSpriteLayers;
-        if (newSprite == null)
-            return;
-
-        if (!TryComp(uid, out SpriteComponent? spriteComponent))
-            return;
-
-        var layerCount = newSprite.Count();
-
-        //inserts Missing Layers
-        if (spriteComponent.AllLayers.Count() < layerCount)
-        {
-            for (var i = spriteComponent.AllLayers.Count(); i < layerCount; i++)
-            {
-                spriteComponent.AddBlankLayer(i);
-            }
-        }
-        //Removes extra layers
-        else if (spriteComponent.AllLayers.Count() > layerCount)
-        {
-            for (var i = spriteComponent.AllLayers.Count() - 1; i >= layerCount; i--)
-            {
-                spriteComponent.RemoveLayer(i);
-            }
-        }
-
-        for (var i = 0; i < newSprite.Count(); i++)
-        {
-            var layer = newSprite[i];
-            spriteComponent.LayerSetSprite(i, layer);
-        }
-    }
 }

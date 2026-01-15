@@ -1,4 +1,8 @@
+using System.Linq;
+using Content.Shared._Starlight.PlayingCards.Card;
+using Content.Shared._Starlight.PlayingCards.Hand;
 using Content.Shared.Audio;
+using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -17,10 +21,12 @@ public sealed class PlayingCardDeckSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly PlayingCardStackSystem _cardStackSystem = default!;
+    [Dependency] private readonly PlayingCardHandSystem _cardHand = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly INetManager _net = default!;
 
     private const string PlayingCardDeckBaseName = "CardDeckBase";
+    private const string PlayingCardHandBaseName = "CardHandBase";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -40,33 +46,28 @@ public sealed class PlayingCardDeckSystem : EntitySystem
 
         args.Verbs.Add(new AlternativeVerb()
         {
-            Act = () => TrySplit(args.Target, component, comp, args.User),
+            Act = () =>
+            {
+                if (_hands.TryGetActiveItem((args.User, args.Hands), out var item) &&
+                    TryComp<PlayingCardComponent>(item, out var card))
+                {
+                    _cardStackSystem.InsertCardOnStack(args.User, args.Target, comp, item.Value);
+                    return;
+                }
+                TrySplit(args.Target, component, comp, args.User);
+            },
             Text = Loc.GetString("cards-verb-split"),
             Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/dot.svg.192dpi.png")),
-            Priority = 4
+            Priority = 7
         });
         args.Verbs.Add(new AlternativeVerb()
         {
-            Act = () => TryShuffle(uid, component, comp),
-            Text = Loc.GetString("cards-verb-shuffle"),
-            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
-            Priority = 3
+            Act = () => ConvertToHand(args.User, uid),
+            Text = Loc.GetString("cards-verb-convert-to-hand"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png")),
+            Priority = 5
         });
-        args.Verbs.Add(new AlternativeVerb()
-        {
-            Act = () => TryOrganize(uid, component, comp, false),
-            Text = Loc.GetString("cards-verb-organize-up"),
-            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/refresh.svg.192dpi.png")),
-            Priority = 1
-        });
-        args.Verbs.Add(new AlternativeVerb()
-        {
-            Act = () => TryOrganize(uid, component, comp, true),
-            Text = Loc.GetString("cards-verb-organize-down"),
-            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/refresh.svg.192dpi.png")),
-            Priority = 2
-        });
-
+        
     }
 
     private void TrySplit(EntityUid uid, PlayingCardDeckComponent deck, PlayingCardStackComponent stack, EntityUid user)
@@ -84,27 +85,7 @@ public sealed class PlayingCardDeckSystem : EntitySystem
 
         _hands.TryPickupAnyHand(user, cardDeck);
     }
-    
-    private void TryShuffle(EntityUid deck, PlayingCardDeckComponent comp, PlayingCardStackComponent? stack)
-    {
-        _cardStackSystem.ShuffleCards(deck, stack);
-        if (_net.IsClient)
-            return;
 
-        _audio.PlayPvs(comp.ShuffleSound, deck, AudioHelpers.WithVariation(0.05f, _random));
-        _popup.PopupEntity(Loc.GetString("card-verb-shuffle-success", ("target", MetaData(deck).EntityName)), deck);
-    }
-
-    private void TryOrganize(EntityUid deck, PlayingCardDeckComponent comp, PlayingCardStackComponent? stack, bool isFlipped)
-    {
-        if (_net.IsClient)
-            return;
-        _cardStackSystem.FlipAllCards(deck, stack, isFlipped: isFlipped);
-
-        _audio.PlayPvs(comp.ShuffleSound, deck, AudioHelpers.WithVariation(0.05f, _random));
-        _popup.PopupEntity(Loc.GetString("card-verb-organize-success", ("target", MetaData(deck).EntityName)), deck);
-    }
-    
     private void OnInteractHand(EntityUid uid, PlayingCardDeckComponent component, InteractHandEvent args)
     {
         if (args.Handled)
@@ -127,5 +108,25 @@ public sealed class PlayingCardDeckSystem : EntitySystem
         _audio.PlayPredicted(component.PickUpSound, Transform(uid).Coordinates, args.User);
 
         args.Handled = true;
+    }
+    
+    private void ConvertToHand(EntityUid user, EntityUid deck)
+    {
+        if (_net.IsClient)
+            return;
+
+        var cardDeck = Spawn(PlayingCardHandBaseName, Transform(deck).Coordinates);
+
+        var isHoldingCards = _hands.IsHolding(user, deck);
+
+        if (!TryComp(cardDeck, out PlayingCardStackComponent? deckStack))
+            return;
+        if (!TryComp(deck, out PlayingCardStackComponent? handStack))
+            return;
+        if (TryComp<HandsComponent>(user, out var hands)) _hands.TryDrop((user, hands), deck);
+        _cardStackSystem.TryJoinStacks(cardDeck, deck, deckStack, handStack);
+
+        if (isHoldingCards)
+            _hands.TryPickupAnyHand(user, cardDeck);
     }
 }

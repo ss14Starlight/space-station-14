@@ -7,7 +7,6 @@ public enum PlayingCardStackQuantityChangeType : sbyte
 {
     Added,
     Removed,
-    Joined,
 }
 
 [Serializable, NetSerializable]

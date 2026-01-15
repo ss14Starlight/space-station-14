@@ -19,7 +19,9 @@ public sealed class PlayingCardDeckSystem : EntitySystem
         SubscribeNetworkEvent<PlayingCardStackInitiatedEvent>(OnStackStart);
         SubscribeNetworkEvent<PlayingCardStackQuantityChangeEvent>(OnStackUpdate);
         SubscribeNetworkEvent<PlayingCardStackReorderedEvent>(OnReorder);
+        SubscribeNetworkEvent<PlayingCardStackOrganizedEvent>(OnOrganized);
         SubscribeNetworkEvent<PlayingCardStackFlippedEvent>(OnStackFlip);
+        SubscribeNetworkEvent<PlayingCardStackDeckFlippedEvent>(OnDeckFlip);
         SubscribeLocalEvent<PlayingCardDeckComponent, AppearanceChangeEvent>(OnAppearanceChanged);
     }
 
@@ -111,8 +113,22 @@ public sealed class PlayingCardDeckSystem : EntitySystem
             return;
         UpdateSprite(GetEntity(args.CardStack), comp);
     }
+    
+    private void OnDeckFlip(PlayingCardStackDeckFlippedEvent args)
+    {
+        if (!TryComp(GetEntity(args.CardStack), out PlayingCardDeckComponent? comp))
+            return;
+        UpdateSprite(GetEntity(args.CardStack), comp);
+    }
 
     private void OnReorder(PlayingCardStackReorderedEvent args)
+    {
+        if (!TryComp(GetEntity(args.CardStack), out PlayingCardDeckComponent? comp))
+            return;
+        UpdateSprite(GetEntity(args.CardStack), comp);
+    }
+    
+    private void OnOrganized(PlayingCardStackOrganizedEvent args)
     {
         if (!TryComp(GetEntity(args.CardStack), out PlayingCardDeckComponent? comp))
             return;

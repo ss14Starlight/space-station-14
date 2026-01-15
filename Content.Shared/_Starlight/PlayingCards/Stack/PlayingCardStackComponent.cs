@@ -20,4 +20,12 @@ public sealed partial class PlayingCardStackComponent : Component
     [ViewVariables] public BaseContainer ItemContainer = default!;
 
     [DataField, AutoNetworkedField] public List<EntityUid> Cards = [];
+
+    [DataField] public LocId JoinCardsLocId = "card-verb-join";
+    [DataField] public LocId OrganizeValueLocId = "card-verb-organize-value";
+    [DataField] public LocId OrganizeSuitLocId = "card-verb-organize-suit";
+    [DataField] public LocId FlipCardsUpLocId = "card-verb-cards-flip-up";
+    [DataField] public LocId FlipCardsDownLocId = "card-verb-cards-flip-down";
+    [DataField] public LocId FlipDeckLocId = "card-verb-deck-flip";
+    [DataField] public string PopupSuccessSuffix = "success";
 }

@@ -22,7 +22,8 @@ public sealed class PlayingCardSystem : EntitySystem
     {
         if (args.IsInDetailsRange && !component.Flipped)
         {
-            args.PushMarkup(Loc.GetString("card-examined", ("target",  Loc.GetString(component.Name))));
+            args.PushMarkup(Loc.GetString("card-examined",
+                ("target", Loc.GetString($"card-sc-{Enum.GetName(component.Suit)?.ToLower()}-{component.Value}"))));
         }
     }
     
