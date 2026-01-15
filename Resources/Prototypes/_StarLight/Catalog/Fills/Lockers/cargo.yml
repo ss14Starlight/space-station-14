@@ -1,4 +1,4 @@
-﻿#Salvave Lead
+#Salvave Lead
 - type: entityTable
   id: LockerFillSalvageLead
   table: !type:AllSelector

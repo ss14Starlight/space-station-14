@@ -1,4 +1,4 @@
-﻿- type: accent
+- type: accent
   id: archaic
   wordReplacements:
     accent-archaic-replaced-1: accent-archaic-replacement-1

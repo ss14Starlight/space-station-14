@@ -48,12 +48,15 @@ public sealed class WelderHealingSystem : EntitySystem
         if (!TryComp<WelderComponent>(args.Used, out var welder) || !welder.Enabled)
             return;
 
-        // Check if target has Silicon damage container
+        // Check if target has damageable component
         if (!TryComp<DamageableComponent>(uid, out var damageable))
             return;
 
-        // Check if entity uses Silicon damage container
-        if (damageable.DamageContainerID != "Silicon")
+        // Check if entity uses an allowed damage container (if specified)
+        if (component.AllowedContainers != null && 
+            component.AllowedContainers.Count > 0 && 
+            damageable.DamageContainerID != null &&
+            !component.AllowedContainers.Contains(damageable.DamageContainerID))
             return;
 
         // Check if target needs healing
@@ -105,10 +108,8 @@ public sealed class WelderHealingSystem : EntitySystem
         // Consume fuel
         _solution.RemoveReagent(welderSolutionEnt.Value, welderComp.FuelReagent, FixedPoint2.New(component.FuelCost));
 
-        // Heal damage - only Blunt type
-        var damage = new DamageSpecifier();
-        damage.DamageDict.Add("Blunt", FixedPoint2.New(-component.HealAmount));
-        _damageable.TryChangeDamage(target, damage, origin: args.User);
+        // Heal damage using configured damage specifier
+        _damageable.TryChangeDamage(target, component.DamageHealed, origin: args.User);
 
         // Play sound and show popup
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Items/welder.ogg"), target);

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: Moth Soup
   parent: FoodBowlBase
   id: FoodSoupMothBowl

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: SurgeryStepBase
   id: SurgeryLimbAttachmentStep
   name: attach a limb

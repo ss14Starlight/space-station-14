@@ -1,4 +1,4 @@
-﻿book-text-conspiracies = [bold] Forward from the author:[/bold] Congratulations on the best decision of your life, reading this book! While the others remain content being silently controlled and manipulated you seek the truth. And within these pages I fully intend to give it to you.
+book-text-conspiracies = [bold] Forward from the author:[/bold] Congratulations on the best decision of your life, reading this book! While the others remain content being silently controlled and manipulated you seek the truth. And within these pages I fully intend to give it to you.
         I am well aware that my reputation proceeds me and thus will skip introductions to get straight to the point. We don't have much time. Neo-conspiracies abound and continue to influence the mass general sheep populace. Our overlords believe that those of us that strike out from the herd are to be sheared and culled. Do not be surprised if you begin losing your hair. Our baldness distinguishes us and will allow us to recognize eachother.
         
         CyberSun invented bureaucracy to sell more pens!

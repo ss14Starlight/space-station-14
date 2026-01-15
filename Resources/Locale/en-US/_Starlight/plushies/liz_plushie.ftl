@@ -1,4 +1,4 @@
-﻿plushie-liz-1 = Hey stinki!
+plushie-liz-1 = Hey stinki!
 plushie-liz-2 = SCREECH!!
 plushie-liz-3 = I call my friends stinki, no it is not weird
 plushie-liz-4 = Get them!

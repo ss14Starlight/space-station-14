@@ -1,4 +1,4 @@
-﻿- type: constructionGraph
+- type: constructionGraph
   id: DrinkWaterBottleEmpty
   start: start
   graph:

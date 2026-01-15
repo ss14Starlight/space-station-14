@@ -1,4 +1,4 @@
-﻿## icons
+## icons
 station-ai-icon-alien = Alien Lifeform
 station-ai-icon-thinking = Curiousity
 station-ai-icon-database = Station Database

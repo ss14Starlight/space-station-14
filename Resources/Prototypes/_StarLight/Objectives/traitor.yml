@@ -1,4 +1,4 @@
-﻿# Teach a Lesson
+# Teach a Lesson
 - type: entity
   parent: [BaseTraitorObjective, BaseTeachALessonObjective]
   id: TeachRandomPersonObjective

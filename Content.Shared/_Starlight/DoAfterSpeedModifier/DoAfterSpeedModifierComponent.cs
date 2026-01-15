@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.DoAfterSpeedModifier;
 
@@ -16,4 +17,11 @@ public sealed partial class DoAfterSpeedModifierComponent : Component
     /// </summary>
     [DataField]
     public float SpeedModifier = 1.0f;
+
+    /// <summary>
+    /// List of DoAfter event types that should NOT have their speed modified.
+    /// Use the full type name (e.g., "Content.Shared._Starlight.Silicons.WelderHealingDoAfterEvent")
+    /// </summary>
+    [DataField]
+    public HashSet<string> ExcludedEvents = new();
 }

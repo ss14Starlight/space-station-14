@@ -1,4 +1,4 @@
-﻿- type: localizedDataset
+- type: localizedDataset
   id: NamesSovietMarinesFirstLeader
   values:
     prefix: names-soviet-marine-leader-first-dataset-

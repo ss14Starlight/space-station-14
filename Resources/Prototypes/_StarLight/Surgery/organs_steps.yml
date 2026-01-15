@@ -1,4 +1,4 @@
-﻿#liver
+#liver
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepLocateLiver

@@ -1,4 +1,4 @@
-﻿- type: latheRecipe
+- type: latheRecipe
   id: NutrientPasteDispenserSlop
   result: FoodThaSlop
   categories:

@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: PartFelionoid
   parent: [BaseItem, BasePart]
   name: "felionoid body part"

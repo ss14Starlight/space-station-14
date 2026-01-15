@@ -1,4 +1,4 @@
-﻿names-thaven-1 = Adaptability
+names-thaven-1 = Adaptability
 names-thaven-2 = Aid The Righteous
 names-thaven-3 = Attentiveness
 names-thaven-4 = Be Courteous

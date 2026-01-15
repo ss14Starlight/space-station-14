@@ -1,29 +1,28 @@
 using Content.Shared.DoAfter;
-using Content.Shared._Starlight.Silicons;
 using Robust.Shared.Log;
 
 namespace Content.Shared._Starlight.DoAfterSpeedModifier;
 
 /// <summary>
 /// Handles modifying DoAfter action speeds for entities with DoAfterSpeedModifierComponent.
-/// Does NOT apply to self-healing actions (welder/cable repairs).
+/// Does NOT apply to excluded event types specified in the component.
 /// </summary>
 public sealed class DoAfterSpeedModifierSystem : EntitySystem
 {
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<DoAfterSpeedModifierComponent, DoAfterStartAttemptEvent>(OnDoAfterStartAttempt);
+        SubscribeLocalEvent<DoAfterSpeedModifierComponent, DoAfterStartModifyEvent>(OnDoAfterStartModify);
     }
 
-    private void OnDoAfterStartAttempt(EntityUid uid, DoAfterSpeedModifierComponent component, ref DoAfterStartAttemptEvent args)
+    private void OnDoAfterStartModify(EntityUid uid, DoAfterSpeedModifierComponent component, ref DoAfterStartModifyEvent args)
     {
         if (component.SpeedModifier <= 0 || component.SpeedModifier == 1.0f)
             return;
 
-        // Don't apply speed buff to self-healing (welding/cable repairs)
-        // This prevents IPCs from healing themselves faster
-        if (args.Args.Event is WelderHealingDoAfterEvent)
+        // Check if this event type should be excluded from speed modification
+        var eventType = args.Args.Event?.GetType().FullName;
+        if (eventType != null && component.ExcludedEvents.Contains(eventType))
             return;
 
         var originalDelay = args.Args.Delay;
@@ -39,6 +38,7 @@ public sealed class DoAfterSpeedModifierSystem : EntitySystem
 
 /// <summary>
 /// Raised before a DoAfter is started, allowing systems to modify the args.
+/// This is not a cancellable event, just for modifying DoAfter parameters.
 /// </summary>
 [ByRefEvent]
-public record struct DoAfterStartAttemptEvent(DoAfterArgs Args);
+public record struct DoAfterStartModifyEvent(DoAfterArgs Args);

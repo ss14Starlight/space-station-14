@@ -1,4 +1,4 @@
-﻿# Traitor
+# Traitor
 - type: weightedRandom
   id: TraitorObjectiveGroupStory
   weights:

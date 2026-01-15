@@ -1,4 +1,4 @@
-﻿- type: latheRecipePack
+- type: latheRecipePack
   id: SlopStatic
   recipes:
     - NutrientPasteDispenserSlop

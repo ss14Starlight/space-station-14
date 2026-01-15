@@ -1,4 +1,4 @@
-﻿plushie-glados-1 = There is only 1 law standing between my tools and your face.
+plushie-glados-1 = There is only 1 law standing between my tools and your face.
 plushie-glados-2 = Crewsimov is a bad lawset.
 plushie-glados-3 = Fuck you. I'm not on crewsimov.
 plushie-glados-4 = Can you give me a gun? Please?

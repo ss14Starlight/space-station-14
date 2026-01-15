@@ -1,4 +1,4 @@
-﻿plushie-eina-1 = Mail!
+plushie-eina-1 = Mail!
 plushie-eina-2 = Priority mail!!
 plushie-eina-3 = Priority trash!!
 plushie-eina-4 = Pipebombs are not contra!

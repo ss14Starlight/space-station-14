@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: SurgeryStepBase
   id: SurgeryAmputationStep
   name: Saw Through Limb

@@ -211,7 +211,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         }
 
         // 🌟Starlight🌟 - Allow systems to modify DoAfter args before starting
-        var attemptEv = new _Starlight.DoAfterSpeedModifier.DoAfterStartAttemptEvent(args);
+        var attemptEv = new _Starlight.DoAfterSpeedModifier.DoAfterStartModifyEvent(args);
         RaiseLocalEvent(args.User, ref attemptEv);
 
         // Duplicate blocking & cancellation.

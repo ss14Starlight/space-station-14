@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseSovietContraband
   abstract: true
   components:

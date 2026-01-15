@@ -1,4 +1,4 @@
-﻿- type: localizedDataset
+- type: localizedDataset
   id: names_vulp_first_female
   values:
     prefix: names-vulp-female-dataset-

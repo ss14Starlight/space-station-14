@@ -1,11 +1,12 @@
 // Temperature Shutdown Component
-// _STARLIGHT: Original implementation for Starlight Chimes
+// _STARLIGHT: Original implementation for Starlight
 //
 // Purpose: Knock out IPCs when temperature reaches extreme heat threshold,
 // simulating protective circuit shutdown to prevent permanent damage.
 // Cold temperatures only slow actions (via IPCColdSlowedComponent).
 
 using Content.Shared.Atmos;
+using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.Temperature;
 
@@ -36,9 +37,9 @@ public sealed partial class KillOnOverheatComponent : Component
     public LocId OverheatPopup = "ipc-overheat-popup";
 
     /// <summary>
-    /// Tracks if the entity has already triggered overheat shutdown this cycle.
-    /// Reset when temperature drops below threshold or entity is healed.
+    /// The mob state to set the entity to when overheating.
+    /// Default: Critical (allows recovery when temperature drops)
     /// </summary>
     [DataField]
-    public bool HasOverheated = false;
+    public MobState TargetMobState = MobState.Critical;
 }

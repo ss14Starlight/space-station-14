@@ -1,4 +1,4 @@
-﻿plushie-einalia-1 = HE'S REACHING!!!
+plushie-einalia-1 = HE'S REACHING!!!
 plushie-einalia-2 = I hate bald people.
 plushie-einalia-3 = Just one normal shift for once... please...
 plushie-einalia-4 = ACK MY SENSITIVE BIRD EYES!

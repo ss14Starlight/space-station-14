@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: ActionWebball
   name: Webball
   description: Fires a webball towards the clicked location.

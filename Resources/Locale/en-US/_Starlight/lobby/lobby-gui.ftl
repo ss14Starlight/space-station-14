@@ -1,1 +1,1 @@
-﻿ui-lobby-mhelp-button = MHelp
+ui-lobby-mhelp-button = MHelp

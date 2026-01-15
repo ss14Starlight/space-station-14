@@ -1,0 +1,194 @@
+# IPC (Integrated Positronic Chassis) Mob Entity
+# ORIGINAL: Far-Horizons-SS14 (KillerTheFlareon & princess-gurchi)
+# https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
+# PORTED TO STARLIGHT BY: Starlight Chimes
+# STARLIGHT CHANGES:
+#   - Added WelderHealing component for welding repairs
+#   - Added Temperature component for cold damage (electronics can freeze)
+#   - Added Barotrauma component with 50% pressure resistance
+#   - Removed BorgChassis to use IPCBattery system instead (avoids duplicate battery indicators)
+#   - Added CyborgSparkEffect component (sparks when taking damage)
+#   - Removed DamageVisuals (Silicon container has different damage types than Biological)
+#   - Added DoAfterSpeedModifier (25% faster actions, excluding self-healing)
+#   - Added Prying component (built-in crowbar arms, NOT jaws of life)
+#   - Silicon damage modifiers: 12% brute weakness, 12% heat weakness, 15% pierce weakness, 2x shock
+#   - Radiation/Poison/Virus immune via Silicon damage container and ZombieImmune component
+#   - Added AtmosExposed for temperature interaction
+#   - Can overheat and shutdown (KillOnOverheat system - modified to prevent spam)
+#   - Temperature conducts 15% faster (specificHeat: 36 vs humans' 42)
+
+- type: entity
+  parent: BaseMobSpecies
+  id: BaseMobIPC
+  name: IPC
+  abstract: true
+  components:
+  - type: Flammable # _STARLIGHT: IPCs can catch fire like organics
+    fireSpread: true
+    canResistFire: true
+    damage:
+      types:
+        Heat: 1.5
+  - type: IPC # _STARLIGHT: Marker component for IPC mechanics (sleep prevention, etc.)
+  - type: CyborgSparkEffect # _STARLIGHT: Spawn spark effects when IPC takes damage
+  - type: HumanoidAppearance
+    species: IPC
+  - type: Body
+    prototype: IPC
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: PowerCellDraw
+    drawRate: 0.5
+    enabled: true
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: WiresPanel
+  - type: ActivatableUIRequiresPanel
+  - type: LockedWiresPanel
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+    unlockTime: 10 # 10 second do-after for panel unlocking
+    lockTime: 10 # 10 second do-after for panel locking
+  - type: UseDelay
+    delay: 10 # 10 second cooldown between lock/unlock actions
+  # _STARLIGHT: Removed BorgChassis component - IPCs use IPCBattery system instead to avoid duplicate battery indicators
+  # _STARLIGHT: DamageVisuals overridden - IPCs show burn/heat damage (sparks/melting) but NOT brute damage (no bleeding)
+  # IPCs are robots and shouldn't display red blood-like marks when taking brute damage
+  - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      # Brute damage removed - robots don't bleed
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+        color: "#FFA500"
+  - type: MeleeSound # _STARLIGHT: Metal clang sound when hit in melee (like borgs)
+    soundTypes:
+      Blunt:
+        collection: MetalSlam
+      Slash:
+        collection: MetalSlam
+      Piercing:
+        collection: MetalSlam
+  - type: Tag
+    tags:
+    - SiliconEmotes
+    - DoorBumpOpener
+  - type: Emoting
+  - type: Vocal
+    sounds:
+      Male: UnisexSilicon
+      Female: UnisexSilicon
+      Unsexed: UnisexSilicon
+    wilhelmProbability: 0
+  - type: TransferMindOnGib # _STARLIGHT: Transfer mind to brain when IPC gibs
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: Silicon # Balanced resistances: immune to bio damage, 2x shock vulnerability
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+  - type: IPCBattery
+    numWarnings: 3
+    warningSound:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+    drainAllowedTargets:
+    - APCBasic
+    - APCHighCapacity
+    - APCSuperCapacity
+    - APCHyperCapacity
+  - type: BatteryDrainer # _STARLIGHT: Allow IPCs to drain power from APCs/machines/substations
+    disableHandInteraction: true # _STARLIGHT: Power draining is ALT-click only (alternative verb)
+  - type: HumanoidEMP # _STARLIGHT: EMP effects on IPCs
+    stunTime: 3
+    damage:
+      types:
+        Shock: 15
+        Heat: 10
+    knockdownTime: 2
+    dropHeldItems: true
+  - type: IPCRevive
+    rebootButton: true
+    rebootTime: 3
+  - type: WelderHealing # _STARLIGHT: Allow welders to repair IPC damage
+  - type: ZombieImmune # _STARLIGHT: IPCs can't be infected by zombies (no biology)
+  # _STARLIGHT: IPCs immune to radiation (electronics shielded) - RadiationReceiver component not inherited
+  - type: AtmosExposed # _STARLIGHT: IPCs need this to interact with atmosphere and change temperature
+  - type: Temperature # _STARLIGHT: IPCs can take cold damage (electronics can freeze/malfunction)
+    # NOTE: IPCs do NOT have ThermalRegulator component - they don't actively warm up like organics
+    # They gain/lose temperature purely from environmental sources (atmos, fire, etc.)
+    heatDamageThreshold: 325 # Same as humans
+    coldDamageThreshold: 260 # Same as humans
+    currentTemperature: 293 # Room temperature (20°C), cooler than humans
+    specificHeat: 42 # Same as humans
+    coldDamage:
+      types:
+        Cold: 0.1 # Same as humans
+    heatDamage:
+      types:
+        Heat: 1.5 # Same as humans
+  - type: TemperatureSpeed # _STARLIGHT: IPCs slow down when cold (same as humans)
+    thresholds:
+      293: 0.9 # 20°C: 10% slower
+      280: 0.8 # 7°C: 20% slower
+      260: 0.7 # -13°C: 30% slower
+  - type: Barotrauma # _STARLIGHT: 50% resistance to pressure damage, no spark sounds
+    damage:
+      types:
+        Blunt: 0.425 # 0.85 * 0.5 = 0.425 (50% resistance applied)
+        Heat: 0.05 # 0.1 * 0.5 = 0.05 (50% resistance applied)
+  - type: PressureProtection # _STARLIGHT: 50% resistance to space pressure
+    highPressureMultiplier: 0.5 # 50% resistance to high pressure
+    lowPressureMultiplier: 0.5 # 50% resistance to low pressure (space)
+  - type: Hunger
+    baseDecayRate: 0
+  - type: Thirst
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechSounds: Borg
+    speechVerb: Robotic
+  - type: Deathgasp # _STARLIGHT: Custom death message for IPCs
+    prototype: IPCDeathgasp
+  - type: EyeProtection # _STARLIGHT: IPCs immune to welding flashes - protective optical filters
+    protectionTime: 120 # 2 minutes protection (welders apply 10s blind = full immunity)
+  - type: Prying # _STARLIGHT: IPCs have hydraulic arms that work like crowbars for prying
+    speedModifier: 1.0
+  - type: DoAfterSpeedModifier # _STARLIGHT: IPCs perform actions 25% faster (excludes self-healing)
+    speedModifier: 1.25
+    excludedEvents:
+      - Content.Shared._Starlight.Silicons.WelderHealingDoAfterEvent
+  - type: LanguageKnowledge # _STARLIGHT: Added Machine language for IPC communication
+    speaks:
+    - GalacticCommon
+    - Machine
+    understands:
+    - GalacticCommon
+    - Machine
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobIPCDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: IPC

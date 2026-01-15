@@ -1,4 +1,4 @@
-﻿- type: gameMap
+- type: gameMap
   id: Gateway
   mapName: 'Gateway'
   mapPath: /Maps/_Starlight/Stations/Gateway.yml

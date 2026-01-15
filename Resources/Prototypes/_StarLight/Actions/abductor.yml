@@ -1,4 +1,4 @@
-﻿# Actions
+# Actions
 - type: entity
   id: ActionExitConsole
   name: Exit console
