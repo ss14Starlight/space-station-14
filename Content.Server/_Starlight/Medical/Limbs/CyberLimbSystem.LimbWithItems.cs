@@ -23,7 +23,7 @@ public sealed partial class CyberLimbSystem : EntitySystem
         {
             var toggleLimbEvent = new ToggleLimbEvent()
             {
-                Performer = args.Body,
+                Performer = ent.Owner,
             };
             OnLimbToggle((args.Limb, ent.Comp), ref toggleLimbEvent);
         }

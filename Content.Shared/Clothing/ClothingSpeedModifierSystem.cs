@@ -56,7 +56,7 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
 
     private void OnRefreshMoveSpeed(EntityUid uid, ClothingSpeedModifierComponent component, InventoryRelayedEvent<RefreshMovementSpeedModifiersEvent> args)
     {
-        if (component.RequireActivated && !_toggle.IsActivated(uid))
+        if (!_toggle.IsActivated(uid))
             return;
 
         if (component.Standing != null && !_standing.IsMatchingState(args.Owner, component.Standing.Value))
@@ -114,9 +114,6 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
 
     private void OnToggled(Entity<ClothingSpeedModifierComponent> ent, ref ItemToggledEvent args)
     {
-        if (!ent.Comp.RequireActivated)
-            return;
-
         // make sentient boots slow or fast too
         _movementSpeed.RefreshMovementSpeedModifiers(ent);
 
@@ -126,10 +123,4 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
             _movementSpeed.RefreshMovementSpeedModifiers(container.Owner);
         }
     }
-    
-    // Starlight - Start
-    public void SetWalkSpeedModifier(ClothingSpeedModifierComponent modifier, float newSpeed) => modifier.WalkModifier = newSpeed;
-    
-    public void SetSprintSpeedModifier(ClothingSpeedModifierComponent modifier, float newSpeed) => modifier.SprintModifier = newSpeed;
-    // Starlight - End
 }

@@ -36,7 +36,6 @@
 
 - type: entity
   id: LockerBSOFilled
-  categories: [ ShouldMapStation ]
   suffix: Filled
   parent: LockerBlueshield
   components:

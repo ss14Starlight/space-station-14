@@ -37,7 +37,6 @@
     accent: zombieMoth
   - type: Speech
     speechVerb: Moth
-    speechSounds: UnisexMoth # Starlight: Add talk sounds
     allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: TypingIndicator
     proto: moth
@@ -47,10 +46,10 @@
     - id: FoodMeat
       amount: 5
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 300
+        Quantity: 1
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -124,7 +123,6 @@
       - map: [ "enum.HumanoidVisualLayers.Tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
       - map: [ "back" ]
       - map: [ "neck" ]
-      - map: [ "misc" ] # Starlight
       - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.Hair" ]

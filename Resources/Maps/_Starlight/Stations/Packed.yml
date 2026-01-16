@@ -96472,14 +96472,14 @@ entities:
       parent: 2
     - type: DeltaPressure
       gridUid: 2
-- proto: ToiletDirtyWaterFilled
+- proto: ToiletDirtyWater
   entities:
   - uid: 8395
     components:
     - type: Transform
       pos: 43.5,22.5
       parent: 2
-- proto: ToiletFilled
+- proto: ToiletEmpty
   entities:
   - uid: 460
     components:

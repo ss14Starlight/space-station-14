@@ -493,9 +493,10 @@
         - !type:NestedSelector
           tableId: GenericTrashItems
           weight: 35
-        - !type:NestedSelector
-          tableId: AllPlushiesTable
+        - !type:AllSelector
           weight: 1
+          children:
+          - id: ToySpawner
 
 - type: entity
   id: XenoArtifactEffectLightFlicker

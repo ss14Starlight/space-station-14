@@ -20,6 +20,7 @@
   roles:
   - Bartender
   - Botanist
+  - Boxer
   - Chaplain
   - Chef
   - Clown
@@ -31,11 +32,8 @@
   - Assistant
   - Reporter
   - Visitor
-  - ServiceWorker
-  # Starlight start
-  - Boxer
   - Zookeeper
-  # Starlight end
+  - ServiceWorker
 
 - type: department
   id: CentralCommand

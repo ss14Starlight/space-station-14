@@ -14,7 +14,7 @@ public sealed partial class SpawnEntityTableOnTriggerComponent : BaseXOnTriggerC
     /// <summary>
     /// The table to spawn.
     /// </summary>
-    [DataField(required: true)]
+    [DataField(required: true), AutoNetworkedField]
     public EntityTableSelector Table;
 
     /// <summary>

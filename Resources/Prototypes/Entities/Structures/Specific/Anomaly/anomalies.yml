@@ -141,7 +141,6 @@
     energy: 20
     color: "#1e070e"
     castShadows: false
-  - type: DarkLight # Starlight
   - type: GravityAnomaly
   - type: GravityWell
   - type: RadiationSource
@@ -1007,7 +1006,6 @@
     radius: 1.5
     energy: 12.5
     color: "#793a80"
-  - type: DarkLight # Starlight
   - type: AmbientSound
     range: 5
     volume: -5

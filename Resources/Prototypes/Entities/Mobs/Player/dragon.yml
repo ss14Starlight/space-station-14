@@ -19,10 +19,7 @@
   # Starlight-end
   - type: ThermalVision
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 650
+    bloodMaxVolume: 600
   - type: AntagMonsterScaling ## Starlight
   - type: GhostRole
     allowMovement: true

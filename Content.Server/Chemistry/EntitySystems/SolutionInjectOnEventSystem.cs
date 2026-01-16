@@ -1,6 +1,5 @@
 using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Components;
-using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Events;
@@ -88,11 +87,6 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
         if (!_solutionContainer.TryGetSolution(injector.Owner, injector.Comp.Solution, out var injectorSolution))
             return false;
 
-        // starlight-start: Check if the solution actually has any volume to inject
-        if (injectorSolution.Value.Comp.Solution.Volume <= 0)
-            return false;
-        // starlight-end
-
         // Build a list of bloodstreams to inject into
         var targetBloodstreams = new ValueList<Entity<BloodstreamComponent>>();
         foreach (var target in targets)
@@ -100,16 +94,8 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             if (Deleted(target))
                 continue;
 
-            // starlight-start
-            // Use our new cancellable event system instead of hardcoded checks
-            var injectAttempt = new SolutionInjectAttemptEvent(target, source, injector.Owner);
-            RaiseLocalEvent(target, ref injectAttempt, true);
-            if (injectAttempt.Cancelled)
-                continue;
-
-            // Fallback to old hardcoded logic for backwards compatibility
-            // TODO: Remove this once all immunity systems use the new event
-            // starlight-end
+            // Yuck, this is way to hardcodey for my tastes
+            // TODO blocking injection with a hardsuit should probably done with a cancellable event or something
             if (!injector.Comp.PierceArmor && _inventory.TryGetSlotEntity(target, "outerClothing", out var suit) && _tag.HasTag(suit.Value, HardsuitTag))
             {
                 // Only show popup to attacker
@@ -162,7 +148,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             // Take our portion of the adjusted solution for this target
             var individualInjection = solutionToInject.SplitSolution(volumePerBloodstream);
             // Inject our portion into the target's bloodstream
-            if (_bloodstream.TryAddToBloodstream(targetBloodstream.AsNullable(), individualInjection))
+            if (_bloodstream.TryAddToChemicals(targetBloodstream.AsNullable(), individualInjection))
                 anySuccess = true;
         }
 

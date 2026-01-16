@@ -142,12 +142,6 @@
   - type: Fiber
     fiberMaterial: fibers-latex
   - type: FingerprintMask
-  - type: Armor # Starlight start
-    modifiers:
-      coefficients:
-        Caustic: 0.9
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingHandsButcherable
@@ -162,12 +156,6 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile
   - type: FingerprintMask
-  - type: Armor # Starlight start
-    modifiers:
-      coefficients:
-        Caustic: 0.9
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingHandsButcherable

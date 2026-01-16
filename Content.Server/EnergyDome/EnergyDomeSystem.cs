@@ -255,17 +255,12 @@ public sealed partial class EnergyDomeSystem : EntitySystem
             }
         }
 
-        Toggle(generator.Owner, status, generator.Comp);
+        Toggle(generator, status);
         return true;
     }
 
-    public void Toggle(EntityUid uid, bool status, EnergyDomeGeneratorComponent? component = null)
+    private void Toggle(Entity<EnergyDomeGeneratorComponent> generator, bool status)
     {
-        if (!Resolve(uid, ref component))
-            return;
-
-        var generator = new Entity<EnergyDomeGeneratorComponent>(uid, component);
-
         if (status)
             TurnOn(generator);
         else

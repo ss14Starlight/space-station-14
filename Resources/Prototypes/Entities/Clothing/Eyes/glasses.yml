@@ -69,7 +69,6 @@
     tags:
     - PetWearable
     - WhitelistChameleon
-    - Meson
 
 - type: entity
   parent: ClothingEyesBase

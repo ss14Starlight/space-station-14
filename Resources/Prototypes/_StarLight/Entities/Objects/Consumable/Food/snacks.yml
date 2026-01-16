@@ -20,7 +20,6 @@
       - id: FoodSnackHardCandyOpen
     sound:
       path: /Audio/Effects/unwrap.ogg
-    requireHands: false # 🌟Starlight🌟
 
 - type: entity
   parent: FoodSnackBase

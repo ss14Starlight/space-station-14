@@ -89,9 +89,8 @@ public sealed class ActionButton : Control, IEntityControl
         {
             HorizontalExpand = true,
             VerticalExpand = true,
-            MaxSize = new Vector2(64, 64),
-            Stretch = StretchMode.KeepAspectCentered,
-            Visible = false,
+            Stretch = StretchMode.Scale,
+            Visible = false
         };
         _smallActionIcon = new TextureRect
         {

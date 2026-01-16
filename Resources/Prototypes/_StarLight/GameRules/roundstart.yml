@@ -27,8 +27,6 @@
 #      prob: 0.25
     - id: SubWizard
       prob: 0.05
-    - id: Xenoborgs
-      prob: 0.05
       
 - type: entity
   parent: BaseGameRule

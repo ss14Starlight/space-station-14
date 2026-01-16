@@ -49,9 +49,4 @@ public sealed partial class EncryptionKeyHolderComponent : Component
     /// </summary>
     [ViewVariables]
     public string? DefaultChannel;
-
-    #region Starlight
-    [DataField]
-    public bool CanBeExamined = true;
-    #endregion Starlight
 }

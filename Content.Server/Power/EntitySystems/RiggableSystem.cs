@@ -90,10 +90,13 @@ public sealed class RiggableSystem : EntitySystem
         if (!ent.Comp.IsRigged)
             return;
 
-        if (args.Charge == 0f)
-            return; // No charge to cause an explosion.
+        if (TryComp<BatteryComponent>(ent, out var batteryComponent))
+        {
+            if (batteryComponent.CurrentCharge == 0f)
+                return;
 
-        Explode(ent, args.Charge);
+            Explode(ent, batteryComponent.CurrentCharge);
+        }
     }
 
     // predicted batteries
@@ -102,13 +105,13 @@ public sealed class RiggableSystem : EntitySystem
         if (!ent.Comp.IsRigged)
             return;
 
-        if (args.CurrentCharge == 0f)
-            return; // No charge to cause an explosion.
+        if (TryComp<PredictedBatteryComponent>(ent, out var predictedBatteryComponent))
+        {
+            var charge = _predictedBattery.GetCharge((ent.Owner, predictedBatteryComponent));
+            if (charge == 0f)
+                return;
 
-        // Don't explode if we are not using any charge.
-        if (args.CurrentChargeRate == 0f && args.Delta == 0f)
-            return;
-
-        Explode(ent, args.CurrentCharge);
+            Explode(ent, charge);
+        }
     }
 }

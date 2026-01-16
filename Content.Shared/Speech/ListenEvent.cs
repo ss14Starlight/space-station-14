@@ -21,17 +21,3 @@ public sealed class ListenAttemptEvent : CancellableEntityEventArgs
         Source = source;
     }
 }
-
-// Starlight Start: Holopads support LOOC
-public sealed class LoocListenEvent : EntityEventArgs
-{
-    public readonly string Message;
-    public readonly EntityUid Source;
-
-    public LoocListenEvent(string message, EntityUid source)
-    {
-        Message = message;
-        Source = source;
-    }
-}
-// Starlight End

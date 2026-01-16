@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
@@ -15,7 +14,9 @@ using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.Effects.Body;
 using Content.Shared.EntityEffects.Effects.Solution;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -137,29 +138,17 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
             return;
         }
 
-        // Copy the solution do not edit the original solution list
-        var list = solution.Contents.ToList();
-
-        // Collecting blood reagent for filtering
-        var ev = new MetabolismExclusionEvent();
-        RaiseLocalEvent(solutionEntityUid.Value, ref ev);
-
         // randomize the reagent list so we don't have any weird quirks
         // like alphabetical order or insertion order mattering for processing
+        var list = solution.Contents.ToArray();
         _random.Shuffle(list);
 
-        bool isDead = _mobStateSystem.IsDead(solutionEntityUid.Value);
-
-        var actualEntity = ent.Comp2?.Body ?? solutionEntityUid.Value; // Starlight-edit - moved up from below
+            var actualEntity = ent.Comp2?.Body ?? solutionEntityUid.Value; // Starlight-edit
 
         int reagents = 0;
         foreach (var (reagent, quantity) in list)
         {
             if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var proto))
-                continue;
-
-            // Skip blood reagents
-            if (ev.Reagents.Contains(reagent))
                 continue;
 
             var mostToRemove = FixedPoint2.Zero;
@@ -211,8 +200,11 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 // if it's possible for them to be dead, and they are,
                 // then we shouldn't process any effects, but should probably
                 // still remove reagents
-                if (isDead && !proto.WorksOnTheDead)
-                    continue;
+                if (TryComp<MobStateComponent>(solutionEntityUid.Value, out var state))
+                {
+                    if (!proto.WorksOnTheDead && _mobStateSystem.IsDead(solutionEntityUid.Value, state))
+                        continue;
+                }
 
                 // Starlight-edit: Moved actualEntity up from ForEach to use it in another places.
 

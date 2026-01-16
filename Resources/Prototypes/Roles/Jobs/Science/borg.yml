@@ -9,7 +9,6 @@
   - !type:RoleTimeRequirement
     role: JobBorg
     time: 5h
-  weight: 10
   canBeAntag: false
   icon: JobIconStationAi
   supervisors: job-supervisors-rd
@@ -34,7 +33,7 @@
   canBeAntag: false
   icon: JobIconBorg
   supervisors: job-supervisors-rd
-  jobEntity: PlayerBorgChassis # Starlight edit
+  jobEntity: PlayerBorgBattery
   # Cosmatic Drift Record System-start: Cyborg shells do not use humanoid profiles, so avoid seeding records.
   special:
   - !type:AddComponentSpecial

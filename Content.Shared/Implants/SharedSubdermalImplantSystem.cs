@@ -169,14 +169,7 @@ public abstract partial class SharedSubdermalImplantSystem : EntitySystem
 [ByRefEvent]
 public readonly record struct ImplantImplantedEvent
 {
-    /// <summary>
-    /// The implant itself
-    /// </summary>
     public readonly EntityUid Implant;
-
-    /// <summary>
-    /// The entity getting implanted
-    /// </summary>
     public readonly EntityUid Implanted;
 
     public ImplantImplantedEvent(EntityUid implant, EntityUid implanted)

@@ -35,11 +35,6 @@ namespace Content.Server.Kitchen.Components
         public GrinderAutoMode AutoMode = GrinderAutoMode.Off;
 
         public EntityUid? AudioStream;
-
-        #region Starlight
-        [DataField]
-        public bool NeedsPower = true;
-        #endregion Starlight
     }
 
     [Access(typeof(ReagentGrinderSystem)), RegisterComponent]

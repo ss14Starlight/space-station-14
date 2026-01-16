@@ -64,11 +64,6 @@
     eyes: ClothingEyesHudBlueShield
 
 - type: loadout
-  id: BlueShieldEyePatchHud
-  equipment:
-    eyes: ClothingEyesEyepatchHudBlueShield
-
-- type: loadout
   id: BlueShieldCoat
   equipment:
     outerClothing: ClothingOuterCoatBlueShield

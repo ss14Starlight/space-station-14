@@ -119,10 +119,6 @@
   id: SalvageMercenaryEquipment
   name: Scrapper
 
-- type: storeCategory
-  id: SalvageCybernetics
-  name: Cybernetics
-
 # mining
 - type: storeCategory
   id: MiningEquipment

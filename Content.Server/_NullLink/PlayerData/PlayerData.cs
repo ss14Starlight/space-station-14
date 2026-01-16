@@ -7,6 +7,5 @@ public sealed class PlayerData
     public string? Title { get; set; }
     public required ICommonSession Session { get; init; }
     public HashSet<ulong> Roles { get; set; } = [];
-    public Dictionary<string, Dictionary<string, TimeSpan>> RolePlayTimePerServer { get; set; } = [];
     public ulong DiscordId { get; set; }
 }

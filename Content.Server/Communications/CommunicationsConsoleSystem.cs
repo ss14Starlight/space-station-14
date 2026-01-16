@@ -22,10 +22,7 @@ using Robust.Shared.Configuration;
 // Starlight Start
 using System;
 using System.Collections.Generic;
-using Content.Server.Shuttles.Components;
 using Content.Shared.Speech;
-using Content.Shared.Station.Components;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 // Starlight End
 
@@ -105,13 +102,6 @@ namespace Content.Server.Communications
         {
             comp.AnnouncementCooldownRemaining = comp.InitialDelay;
             UpdateCommsConsoleInterface(uid, comp);
-            
-            //Starlight begin
-            if (!TryComp<StationMemberComponent>(Transform(uid).GridUid, out var stationMember)) return;
-            if (!TryComp<StationCentcommComponent>(stationMember.Station, out var ccComp)) return;
-            if (ccComp.Entity is null) return;
-            comp.AdditionalGrids.Add(ccComp.Entity.Value);
-            //Starlight end
         }
 
         /// <summary>
@@ -320,20 +310,6 @@ namespace Content.Server.Communications
             }
 
             _chatSystem.DispatchCommunicationsConsoleAnnouncement(uid, msg, title, announcementSound: comp.Sound, colorOverride: comp.Color); // 🌟Starlight🌟
-            //Starlight begin
-            foreach (var grid in comp.AdditionalGrids)
-            {
-                var allPlayersOnGrid = Filter.Empty().AddWhere(session =>
-                {
-                    if (session.AttachedEntity is null) return false;
-                    var gridUid = Transform(session.AttachedEntity.Value).GridUid;
-                    if (gridUid == Transform(uid).GridUid) return false; // They already got the announcement from the dispatch above this
-                    return gridUid == grid;
-                });
-                
-                _chatSystem.DispatchFilteredAnnouncement(allPlayersOnGrid, msg, announcementSound: comp.Sound, colorOverride: comp.Color, sender: title);
-            }
-            //Starlight end
 
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
 

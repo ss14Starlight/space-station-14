@@ -1,6 +1,6 @@
 - type: entity
   id: BaseSpeedLoaderShotgun
-  name: 12 gauge speedloader
+  name: "speed loader (.50)"
   parent: [ BaseItem ]
   abstract: true
   components:
@@ -34,10 +34,10 @@
     steps: 8
     zeroVisible: false
   - type: Appearance
-
+  
 - type: entity
   id: SpeedLoaderShotgunEmpty
-  name: 12 gauge speedloader
+  name: "speed loader (.50 any)"
   parent: [ BaseSpeedLoaderShotgun, BaseSecuritySalvageContraband ]
   components:
   - type: BallisticAmmoProvider
@@ -52,10 +52,10 @@
       - state: base-tip-1
         map: [ "enum.GunVisualLayers.Tip" ]
         color: "#F4001F"
-
+        
 - type: entity
   id: SpeedLoaderMagnumBasic
-  name: 12 gauge buckshot speedloader
+  name: "speed loader (.50 pellet)"
   parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
   components:
   - type: BallisticAmmoProvider
@@ -70,10 +70,10 @@
       - state: base-tip-7
         map: [ "enum.GunVisualLayers.Tip" ]
         color: "#F4001F"
-
+        
 - type: entity
   id: SpeedLoaderShotgunBeanbag
-  name: 12 gauge beanbag speedloader
+  name: "speed loader (.50 beanbag)"
   parent: [ BaseSpeedLoaderShotgun, BaseSecurityBartenderContraband ]
   components:
   - type: BallisticAmmoProvider
@@ -91,7 +91,7 @@
 
 - type: entity
   id: SpeedLoaderShotgunSlug
-  name: 12 gauge slug speedloader
+  name: "speed loader (.50 slug)"
   parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
   components:
   - type: BallisticAmmoProvider
@@ -109,7 +109,7 @@
 
 - type: entity
   id: SpeedLoaderShotgunUranium
-  name: 12 gauge uranium speedloader
+  name: "speed loader (.50 uranium)"
   parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
   components:
   - type: BallisticAmmoProvider
@@ -127,7 +127,7 @@
 
 - type: entity
   id: SpeedLoaderShotgunIncendiary
-  name: 12 gauge incendiary speedloader
+  name: "speed loader (.50 incendiary)"
   parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
   components:
   - type: BallisticAmmoProvider

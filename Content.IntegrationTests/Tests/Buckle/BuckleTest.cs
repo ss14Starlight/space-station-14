@@ -315,10 +315,10 @@ namespace Content.IntegrationTests.Tests.Buckle
                 // Still buckled
                 Assert.That(buckle.Buckled);
 
-                // Still with items in hand
+                // Now with no item in any hand
                 foreach (var hand in hands.Hands.Keys)
                 {
-                    Assert.That(handsSys.GetHeldItem((human, hands), hand), Is.Not.Null);
+                    Assert.That(handsSys.GetHeldItem((human, hands), hand), Is.Null);
                 }
 
                 buckleSystem.Unbuckle(human, human);

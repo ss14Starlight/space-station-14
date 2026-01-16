@@ -123,7 +123,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (!TryComp<AirlockComponent>(uid, out var airlock))
             return;
 
-        if (!airlock.Powered)
+        if (!airlock.Powered) //starlight change
             return;
 
         if (door.State != DoorState.Closed)
@@ -371,7 +371,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
             Audio.PlayPvs(door.OpenSound, uid, AudioParams.Default.WithVolume(-5));
 
         if (lastState == DoorState.Emagging && TryComp<DoorBoltComponent>(uid, out var doorBoltComponent))
-            SetBoltsDown((uid, doorBoltComponent), true, user, true);
+            SetBoltsDown((uid, doorBoltComponent), !doorBoltComponent.BoltsDown, user, true);
     }
 
     /// <summary>
@@ -576,13 +576,6 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
             if (!otherPhysics.Comp.CanCollide)
                 continue;
-
-            // Starlight start
-            // In order to make firelocks behave consistently between glass and non-glass airlocks, we
-            // need to match upstream's exclusion of glass airlock collision from the following block.
-            if (otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.AirlockLayer)
-                continue;
-            // Starlight end
 
             //TODO: Make only shutters ignore these objects upon colliding instead of all airlocks
             // Excludes Glasslayer for windows, GlassAirlockLayer for windoors, TableLayer for tables

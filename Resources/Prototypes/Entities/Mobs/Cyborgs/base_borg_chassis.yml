@@ -104,9 +104,7 @@
     - Science
   - type: ZombieImmune
   - type: Repairable
-    damageValue: -10 # 10 seconds to repair from crit
-    doAfterDelay: 1
-    fuelCost: 0.5
+    doAfterDelay: 10
     allowSelfRepair: false
   - type: BorgChassis
   - type: LockingWhitelist
@@ -255,11 +253,6 @@
   - type: Blindable
   - type: EyeProtection
   - type: Stripping
-  - type: InteractionPopup # All Borgs should now be pettable again
-    interactSuccessString: petting-success-generic-cyborg
-    interactFailureString: petting-failure-generic-cyborg
-    interactSuccessSound:
-      path: /Audio/Ambience/Objects/periodic_beep.ogg
   #endregion
 
 - type: entity
@@ -474,6 +467,8 @@
     - Mothership
     - Xenoborg
     - Binary
+  - type: Repairable
+    doAfterDelay: 13 # 25% more HP, so 30% more time to heal
   - type: BorgChassis
     maxModules: 0
     hasMindState: robot_e
@@ -540,8 +535,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: PointLight
-    color: "#3010ff"
-    energy: 7
+    color: "#0033ff"
   - type: GuideHelp
     guides:
     - Cyborgs

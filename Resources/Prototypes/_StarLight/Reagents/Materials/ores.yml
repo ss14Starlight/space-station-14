@@ -6,12 +6,3 @@
   icon: { sprite: _Starlight/Objects/Materials/ore.rsi, state: abyssium }
   color: "#B096FD"
   price: 0.4
-
-- type: material
-  id: RawBluespaceCrystal
-  stackEntity: RawBluespaceCrystal1
-  name: Raw Bluespace Crystal
-  unit: materials-unit-chunk
-  icon: { sprite: _Starlight/Objects/Materials/materials.rsi, state: bluespace_crystal }
-  color: "#2f32fa"
-  price: 0.3 # $30 for 1 unit.

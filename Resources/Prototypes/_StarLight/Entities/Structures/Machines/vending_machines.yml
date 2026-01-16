@@ -196,7 +196,6 @@
     - SalvageWeapons
     - SalvageConsumeables
     - SalvageMercenaryEquipment
-    - SalvageCybernetics
     currencyWhitelist:
     - SalvageTicket
 

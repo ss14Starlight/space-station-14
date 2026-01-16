@@ -5,6 +5,11 @@ using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Speech.Muting;
+using Content.Shared.Actions.Events;
+
+#region Starlight
+using Content.Shared.Chat;
+#endregion Starlight
 
 namespace Content.Server.Speech.EntitySystems;
 

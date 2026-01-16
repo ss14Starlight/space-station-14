@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from https://github.com/ParadiseSS13/Paradise/pull/20830, claws icon by Citrea",
+  "copyright": "Taken from https://github.com/ParadiseSS13/Paradise/pull/20830",
   "rsic": false,
   "size": {
     "x": 32,
@@ -9,12 +9,7 @@
   },
   "states": [
     {
-      "name": "gorilla_rampage",
-      "copyright": "Taken from https://github.com/ParadiseSS13/Paradise/pull/20830"
-    },
-    {
-      "name": "toggle_claws",
-      "copyright": "Citrea"
+      "name": "gorilla_rampage"
     }
   ]
 }

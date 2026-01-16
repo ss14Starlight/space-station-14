@@ -88,13 +88,13 @@ namespace Content.IntegrationTests.Tests
             await pair.CleanReturnAsync();
         }
 
-        private const string TestMap = "Maps/_Starlight/Stations/Saltern.yml"; //Starlight path instead of upstream path
+        private const string TestMap = "Maps/bagel.yml";
 
         /// <summary>
         ///     Loads the default map, runs it for 5 ticks, then assert that it did not change.
         /// </summary>
         [Test]
-        public async Task LoadSaveTicksSave() //Starlight, test renamed as it referenced upstream map in the test name
+        public async Task LoadSaveTicksSaveBagel()
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
@@ -181,7 +181,7 @@ namespace Content.IntegrationTests.Tests
         ///     caught the mentioned bug.
         /// </remarks>
         [Test]
-        public async Task LoadTickLoad() //Starlight, test renamed as it referenced upstream map in the test name
+        public async Task LoadTickLoadBagel()
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;

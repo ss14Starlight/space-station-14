@@ -30,7 +30,7 @@ public sealed class RoundEndVoteSystem : EntitySystem
     {
         if (_playerManager.PlayerCount < _cfg.GetCVar(StarlightCCVars.MinPlayerToVote))
         {
-            Log.Warning($"Not enought players, player count: {_playerManager.PlayerCount}");
+            Logger.Warning($"Not enought players, player count: {_playerManager.PlayerCount}");
             return;
         }
         

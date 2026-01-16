@@ -18,14 +18,8 @@ public sealed class BureaucraticErrorRule : StationEventSystem<BureaucraticError
     {
         base.Started(uid, component, gameRule, args);
 
-        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
-        EntityUid? chosenStation = null;
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
-        chosenStation = stationEvent.TargetStation;
-        if (chosenStation is null)
-            if (!TryGetRandomStation(out chosenStation))
-                return;
-        //Starlight end
+        if (!TryGetRandomStation(out var chosenStation, HasComp<StationJobsComponent>))
+            return;
 
         var jobList = _stationJobs.GetJobs(chosenStation.Value).Keys.ToList();
 

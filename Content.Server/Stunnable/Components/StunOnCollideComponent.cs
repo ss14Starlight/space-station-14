@@ -62,12 +62,5 @@ public sealed partial class StunOnCollideComponent : Component
     /// Fixture we track for the collision.
     /// </summary>
     [DataField("fixture")] public string FixtureID = "projectile";
-
-    #region Starlight
-
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool Forced = false;
-
-    #endregion
 }
 

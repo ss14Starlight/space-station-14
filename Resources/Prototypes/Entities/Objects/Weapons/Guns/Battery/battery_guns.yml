@@ -650,7 +650,6 @@
     fireRate: 0.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
-    projectileSpeed: 25
   - type: BatteryAmmoProvider
     proto: BulletTaser
     fireCost: 200
@@ -858,7 +857,7 @@
 
 - type: entity
   name: energy shotgun
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseWardenGrandTheftContraband] # Starlight - warden grand contra
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGrandTheftContraband]
   id: WeaponEnergyShotgun
   description: A one-of-a-kind prototype energy weapon that uses various shotgun configurations. It offers the possibility of both lethal and non-lethal shots, making it a versatile weapon.
   components:
@@ -904,10 +903,15 @@
   - type: PredictedBattery
     maxCharge: 480
     startingCharge: 480
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 20
+    autoRechargePauseTime: 10
+
 
 - type: entity
   name: energy magnum
-  parent: [BaseWeaponBatterySmall, BaseDetectiveGrandTheftContraband] # Starlight - detective grand contra
+  parent: [BaseWeaponBatterySmall, BaseGrandTheftContraband]
   id: WeaponEnergyMagnum
   description: A high powered self-charging energy pistol designed for elite security personnel. It has has three firing modes allowing for either high damage, window piercing, or non-lethal disabling.
   components:
@@ -937,15 +941,15 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
-    proto: BulletLaserMagnumSL  # Starlight - Hitscan
+    proto: BulletLaserMagnum
     fireCost: 150
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BulletLaserMagnumSL # Starlight - Hitscan
+    - proto: BulletLaserMagnum
       fireCost: 150
-    - proto: BulletLaserWindowPiercingMagnumSL # Starlight - Hitscan
+    - proto: BulletLaserWindowPiercingMagnum
       fireCost: 150
-    - proto: DisablerBolt # Starlight - Hitscan
+    - proto: BulletDisabler
       fireCost: 62.5
       pacifismAllowedMode: true
   - type: PredictedBatterySelfRecharger
@@ -997,22 +1001,14 @@
     price: 100
 
 - type: entity
-  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
-  id: WeaponLaserGunXenoborg
   name: xenoborg laser gun
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
+  id: XenoborgLaserGun
 
 - type: entity
-  parent: [WeaponLaserCannon, BaseXenoborgContraband]
-  id: WeaponLaserCannonXenoborg
-  name: xenoborg laser cannon
+  name: xenoborg heavy laser gun
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
+  id: XenoborgHeavyLaserGun
   components:
-  - type: BatterySelfRecharger
-    autoRechargeRate: 30
-  # "remove" wield bonus and penalty so borgs can use it
-  - type: GunWieldBonus
-    minAngle: 0
-    maxAngle: 0
-  - type: Gun
-    fireRate: 2
-    minAngle: 1
-    maxAngle: 2
+  - type: BatteryAmmoProvider
+    proto: RedHeavyLaser

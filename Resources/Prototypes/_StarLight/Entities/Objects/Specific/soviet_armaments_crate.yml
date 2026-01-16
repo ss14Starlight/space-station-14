@@ -36,7 +36,5 @@
           weight: 1
         - id: ClothingOuterArmorSovietFlak
           weight: 3
-        - id: WeaponShotgunToz106Extended
-          weight: 6
         rolls: !type:ConstantNumberSelector
           value: 1

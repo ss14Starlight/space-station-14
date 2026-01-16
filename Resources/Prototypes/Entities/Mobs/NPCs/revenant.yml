@@ -6,7 +6,6 @@
   name: revenant
   description: A spooky ghostie.
   components:
-  - type: DarkLight # Starlight
   - type: LanguageSpeaker
   - type: UniversalLanguageSpeaker
   - type: Emag

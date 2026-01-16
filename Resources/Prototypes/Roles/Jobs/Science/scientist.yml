@@ -22,7 +22,6 @@
   id: ScientistGear
   equipment:
     ears: ClothingHeadsetScience
-    belt: ClothingBeltStorageWaistbagScience # Starlight
   #storage:
     #back:
     #- Stuff

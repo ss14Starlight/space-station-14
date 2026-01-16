@@ -18,6 +18,8 @@ namespace Content.Server.CollectiveMind;
 
 public sealed partial class CollectiveMind : SharedCollectiveMindSystem
 {
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
     {
@@ -30,15 +32,15 @@ public sealed partial class CollectiveMind : SharedCollectiveMindSystem
     {
         var uid = ent.Owner;
 
-        //we need to check if the entity is sleeping, or crit
-        if (TryComp<MobStateComponent>(uid, out var mobState))
+        if (ent.Comp.CorruptWhenUnconscious)
         {
-            if (mobState.CurrentState == MobState.Critical || TryComp<SleepingComponent>(uid, out _))
+            //we need to check if the entity is sleeping, or crit
+            if (TryComp<MobStateComponent>(uid, out var mobState))
             {
-                if (ent.Comp.CorruptWhenUnconscious)
+                if (mobState.CurrentState == MobState.Critical || TryComp<SleepingComponent>(uid, out _))
+                {
                     args.Message = Corrupt(args.Message, ref ent.Comp);
-                if (ent.Comp.BlockWhenUnconscious)
-                    args.Cancel();
+                }
             }
         }
     }

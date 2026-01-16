@@ -125,8 +125,7 @@ namespace Content.Shared.Movement.Systems
             Dirty(uid, move);
         }
 
-        public void ChangeBaseSpeed(EntityUid uid, float baseWalkSpeed, float baseSprintSpeed, float acceleration, MovementSpeedModifierComponent? move = null,
-         float minSpeed = 0.0f, float maxSpeed = 20.0f) // 🌟Starlight🌟
+        public void ChangeBaseSpeed(EntityUid uid, float baseWalkSpeed, float baseSprintSpeed, float acceleration, MovementSpeedModifierComponent? move = null)
         {
             if (!Resolve(uid, ref move, false))
                 return;
@@ -134,8 +133,6 @@ namespace Content.Shared.Movement.Systems
             move.BaseWalkSpeed = baseWalkSpeed;
             move.BaseSprintSpeed = baseSprintSpeed;
             move.Acceleration = acceleration;
-            move.MinSpeedMod = minSpeed; // 🌟Starlight🌟
-            move.MaxSpeedMod = maxSpeed; // 🌟Starlight🌟
             Dirty(uid, move);
         }
 

@@ -40,11 +40,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-// Starlight Start
-using Content.Shared.Humanoid.Prototypes;
-using Content.Shared.Preferences;
-using Content.Shared.Preferences.Loadouts;
-// Starlight End
 
 namespace Content.Server.Antag;
 
@@ -66,7 +61,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Starlight
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
@@ -500,10 +494,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (def.StartingGear is not null)
             gear.Add(def.StartingGear.Value);
 
-        // Starlight edit Start: Antag Loadouts
-        var selectedLoadout = GetSelectedLoadout(session, player, def.RoleLoadout, out var selectedLoadoutProto);
-        _loadout.Equip(player, gear, def.RoleLoadout, selectedLoadout, selectedLoadoutProto);
-        // Starlight edit End
+        _loadout.Equip(player, gear, def.RoleLoadout);
 
         if (session != null)
         {
@@ -529,49 +520,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         var afterEv = new AfterAntagEntitySelectedEvent(session, player, ent, def);
         RaiseLocalEvent(ent, ref afterEv, true);
     }
-
-    // Starlight Start: Antag Loadouts
-    private RoleLoadout? GetSelectedLoadout(ICommonSession? session, EntityUid player, List<ProtoId<RoleLoadoutPrototype>>? roleLoadouts, out RoleLoadoutPrototype? proto)
-    {
-        proto = null;
-
-        if (session == null || roleLoadouts == null || roleLoadouts.Count == 0)
-            return null;
-
-        ProtoId<RoleLoadoutPrototype>? selectedId = null;
-
-        foreach (var candidate in roleLoadouts)
-        {
-            if (_prototypeManager.HasIndex(candidate))
-            {
-                selectedId = candidate;
-                break;
-            }
-        }
-
-        if (selectedId == null || !_prototypeManager.TryIndex(selectedId.Value, out proto))
-            return null;
-
-        HumanoidCharacterProfile? profile = null;
-
-        if (TryComp<HumanoidAppearanceComponent>(player, out var humanoid))
-        {
-            profile = _appearance.GetBaseProfile((player, humanoid));
-        }
-
-        if (profile == null && _pref.TryGetCachedPreferences(session.UserId, out var pref))
-        {
-            profile = pref.Characters.Values
-                .OfType<HumanoidCharacterProfile>()
-                .FirstOrDefault(p => p.Enabled);
-        }
-
-        if (profile == null)
-            return null;
-
-        return profile.GetLoadoutOrDefault(selectedId.Value, session, profile.Species, EntityManager, _prototypeManager).Clone();
-    }
-    // Starlight End
 
     /// <summary>
     /// Gets an ordered player pool based on player preferences and the antagonist definition.

@@ -1,4 +1,3 @@
-using Content.Shared.Inventory;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -39,25 +38,4 @@ public sealed partial class RetractableItemActionComponent : Component
     /// The container ID used to store the item.
     /// </summary>
     public const string ContainerId = "item-action-item-container";
-
-    #region Starlight
-    /// <summary>
-    /// Does the item get summoned into your hand?
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool SpawnInHand = true;
-
-    /// <summary>
-    /// Which slot does the item get retracted from?
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public SlotFlags RequiredSlots = SlotFlags.NONE;
-
-    /// <summary>
-    /// Which slot does the item get summoned into?
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public string Slot = "none";
-
-    #endregion Starlight
 }

@@ -7,9 +7,7 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
       state: ghost-narsie
     color: "#ffffff"
-  requirements:
-  - !type:DiscordRolesRequirement
-    requirement: MentorRolesReq
+  requirement: MentorRolesReq
 
 - type: ghostTheme
   id: Daemon
@@ -20,6 +18,4 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
       state: ghost-daemon
     color: "#ffffff"
-  requirements:
-  - !type:DiscordRolesRequirement
-    requirement: MentorRolesReq
+  requirement: MentorRolesReq

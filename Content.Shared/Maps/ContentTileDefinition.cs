@@ -19,7 +19,7 @@ namespace Content.Shared.Maps
 
         public const string SpaceID = "Space";
 
-        [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ContentTileDefinition>))]
+        [ParentDataFieldAttribute(typeof(AbstractPrototypeIdArraySerializer<ContentTileDefinition>))]
         public string[]? Parents { get; private set; }
 
         [NeverPushInheritance]

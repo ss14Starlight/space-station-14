@@ -197,8 +197,7 @@ namespace Content.Server.Disposal.Tube
             if (args.Holder.PreviousDirectionFrom == Direction.Invalid ||
                 args.Holder.PreviousDirectionFrom == next)
             {
-                // Starlight: Making disposals more consistent. HEAVILY RELIES ON THE '180' BEING DEFINED 2ND.
-                args.Next = ev.Connectable[2];
+                args.Next = _random.Pick(directions);
                 return;
             }
 
@@ -212,18 +211,8 @@ namespace Content.Server.Disposal.Tube
 
         private void OnGetRouterNextDirection(EntityUid uid, DisposalRouterComponent component, ref GetDisposalsNextDirectionEvent args)
         {
-            var next = Transform(uid).LocalRotation.GetDir(); // Starlight
             var ev = new GetDisposalsConnectableDirectionsEvent();
             RaiseLocalEvent(uid, ref ev);
-
-            // region starlight improving dispo consistensy
-            if (args.Holder.PreviousDirectionFrom == Direction.Invalid ||
-                args.Holder.PreviousDirectionFrom != ev.Connectable[2])
-            {
-                args.Next = ev.Connectable[2];
-                return;
-            }
-            // end region starlight
 
             if (args.Holder.Tags.Overlaps(component.Tags) || (args.Holder.Tags.Count != 0 && component.Tags.Contains("*")))// starlight, wildcard support
             {
@@ -231,7 +220,7 @@ namespace Content.Server.Disposal.Tube
                 return;
             }
 
-            args.Next = next;
+            args.Next = Transform(uid).LocalRotation.GetDir();
         }
 
         private void OnGetTransitConnectableDirections(EntityUid uid, DisposalTransitComponent component, ref GetDisposalsConnectableDirectionsEvent args)

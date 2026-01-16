@@ -20,6 +20,12 @@
             "name": "paperwork-module"
         },
         {
+            "name": "mail-module"
+        },
+        {
+            "name": "mats-module"
+        },
+        {
             "name": "xenoborg-rcd-module"
         },
         {

@@ -160,5 +160,3 @@
   cost: 10000
   recipeUnlocks:
   - DeviceDesynchronizer
-  technologyPrerequisites:
-  - BluespaceManipulation

@@ -11,17 +11,3 @@
   icon: { sprite: _Starlight/Objects/Materials/phosphorus.rsi, state: phosphorus_3 }
   spawn: CrushedPhosphorus1
   maxCount: 30
-
-- type: stack
-  id: RawBluespaceCrystal
-  name: stack-bluespacecrystal
-  icon: { sprite: _Starlight/Objects/Materials/materials.rsi, state: bluespace_crystal }
-  spawn: RawBluespaceCrystal1
-  maxCount: 30
-
-- type: stack
-  id: BluespaceCrystal
-  name: stack-bluespacecrystal
-  icon: { sprite: _Starlight/Objects/Materials/materials.rsi, state: refined_bluespace_crystal }
-  spawn: BluespaceCrystal1
-  maxCount: 10

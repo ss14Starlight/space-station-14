@@ -1,8 +1,8 @@
 - type: entity
-  parent: BaseItem
   id: BulletFoam
-  name: foam dart
   description: I hope you're wearing eye protection.
+  name: foam dart
+  parent: BaseItem
   components:
   - type: Fixtures
     fixtures:

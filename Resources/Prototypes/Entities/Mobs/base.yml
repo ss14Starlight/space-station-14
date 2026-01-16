@@ -308,7 +308,7 @@
   components:
   - type: SolutionContainerManager
   - type: InjectableSolution
-    solution: bloodstream
+    solution: chemicals
   - type: Bloodstream
     bloodlossDamage:
       types:

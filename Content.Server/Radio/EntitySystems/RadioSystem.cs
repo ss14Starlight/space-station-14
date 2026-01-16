@@ -61,9 +61,7 @@ public sealed class RadioSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<IntrinsicRadioReceiverComponent, RadioReceiveEvent>(OnIntrinsicReceive);
-        SubscribeLocalEvent<IntrinsicRadioReceiverComponent, EncryptionChannelsChangedEvent>(OnReceiverEncryptionChannelsChanged); // 🌟Starlight🌟
         SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EntitySpokeEvent>(OnIntrinsicSpeak);
-        SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EncryptionChannelsChangedEvent>(OnTransmitterEncryptionChannelsChanged); // 🌟Starlight🌟
 
         _exemptQuery = GetEntityQuery<TelecomExemptComponent>();
     }
@@ -256,10 +254,10 @@ public sealed class RadioSystem : EntitySystem
             }
         }
 
-        if (TryComp<BorgChassisComponent>(messageSource, out var chassis) || HasComp<BorgBrainComponent>(messageSource)) // Starlight edit
+        if (HasComp<BorgChassisComponent>(messageSource) || HasComp<BorgBrainComponent>(messageSource))
         {
-            iconId = chassis?.JobIconOverride ?? "JobIconBorg"; // Starlight edit
-            jobName = Loc.GetString(chassis?.LocalizedJobTitle ?? "job-name-borg"); // Starlight edit
+            iconId = "JobIconBorg";
+            jobName = Loc.GetString("job-name-borg");
         }
 
         if (HasComp<StationAiHeldComponent>(messageSource) || (TryComp<StationAIShuntComponent>(messageSource, out var aiShunt) && aiShunt.Return.HasValue))
@@ -325,13 +323,4 @@ public sealed class RadioSystem : EntitySystem
         }
         return false;
     }
-
-    #region Starlight
-    private void OnTransmitterEncryptionChannelsChanged(Entity<IntrinsicRadioTransmitterComponent> ent, ref EncryptionChannelsChangedEvent args) => ent.Comp.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
-    private void OnReceiverEncryptionChannelsChanged(Entity<IntrinsicRadioReceiverComponent> ent, ref EncryptionChannelsChangedEvent args)
-    {
-        if(TryComp(ent.Owner, out ActiveRadioComponent? radio))
-            radio.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))]; 
-    }
-    #endregion Starlight
 }

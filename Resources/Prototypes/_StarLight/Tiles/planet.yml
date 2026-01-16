@@ -67,6 +67,8 @@
     sprite: /Textures/_Starlight/Decals/Abyss/bushes.rsi
     state: bush3
 
+
+
 - type: entity
   id: BaseObelisk
   abstract: true

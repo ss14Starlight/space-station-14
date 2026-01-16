@@ -138,24 +138,13 @@
     back:
     - AccessConfiguratorUniversal
     - AnomalyScanner
-    - RubberStampCentcom
     - RubberStampCAD
     - RubberStampCED
     - RubberStampCMD
     - RubberStampCRD
     - RubberStampCCD
     - RubberStampCSD
-    - RubberStampCDD 
-    - RubberStampAcknowledged
-    - RubberStampMissingStamps
-    - RubberStampIncorrectStamps
-    - RubberStampIncorrectForm
-    - RubberStampIncompleteForm
-    - RubberStampSentToATS
-    - RubberStampDeferToCommand
-    - RubberStampStandby
-    - RubberStampApproved 
-    - RubberStampDenied #starlight end
+    - RubberStampCDD #starlight end
 
 #Gladiator with spear
 - type: startingGear

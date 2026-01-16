@@ -410,11 +410,3 @@ rr-bacchusblessing-desc = Wine, gods, and the promise of a very loud evening.
 # Mail
 rr-mail-open = Mail
 rr-mail-open-desc = Did they write to me? I really want to know.
-
-# Brighteye
-rr-brighteye-dark = Darkness
-rr-brighteye-dark-desc = Spread the influence of the Dark. Give unto them the comfort of nothingness.
-rr-brighteye-dark-task = Spread {$Amount} dark tiles.
-
-rr-brighteye-portal-crit = Portal
-rr-brighteye-portal-crit-desc = Influence and enhance the flow of the Dark. Unleash the shadows. (Make your portal go Supercritical.)

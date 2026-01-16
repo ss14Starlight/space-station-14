@@ -1,8 +1,6 @@
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Audio;
-using Robust.Shared.Prototypes;
-using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Shared.Chemistry.Components;
 
@@ -59,13 +57,4 @@ public sealed partial class HyposprayComponent : Component
     /// </summary>
     [DataField]
     public bool InjectOnly = false;
-
-    #region Starlight
-    /// <summary>
-    /// The names of each solution insertable into this entity
-    /// </summary>
-    [DataField]
-    public List<ProtoId<ReagentPrototype>> ReagentWhitelist = [];
-
-    #endregion Starlight
 }

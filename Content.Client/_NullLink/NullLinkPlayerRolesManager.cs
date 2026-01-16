@@ -1,9 +1,17 @@
 using System.Linq;
-using Content.Client.Administration.Managers;
+using Content.Client._Starlight.Managers;
 using Content.Shared._NullLink;
+using Content.Shared.NullLink.CCVar;
+using Content.Shared.Starlight;
+using Robust.Client.Console;
+using Robust.Client.UserInterface;
+using Robust.Shared.Configuration;
+using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
-namespace Content.Client._NullLink;
+namespace Content.Client.Administration.Managers;
 
 public sealed class NullLinkPlayerRolesManager : INullLinkPlayerRolesManager
 {

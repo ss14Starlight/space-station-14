@@ -1,16 +1,15 @@
 using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared._Starlight.NullSpace;
-using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server._Starlight.NullSpace;
 
-public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
+public sealed class ShowEtherealSystem : EntitySystem
 {
     [Dependency] private readonly EyeSystem _eye = default!;
-    [Dependency] private readonly ISerializationManager _serialization = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -18,6 +17,8 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
         SubscribeLocalEvent<ShowNullSpaceComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ShowNullSpaceComponent, GotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<ShowNullSpaceComponent, GotUnequippedEvent>(OnUnequipped);
+        SubscribeLocalEvent<ShowNullSpaceComponent, InteractionAttemptEvent>(OnInteractionAttempt);
+        SubscribeLocalEvent<ShowNullSpaceComponent, AttackAttemptEvent>(OnAttackAttempt);
     }
 
     private void OnInit(EntityUid uid, ShowNullSpaceComponent component, MapInitEvent args)
@@ -36,9 +37,7 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        var copy = _serialization.CreateCopy(component, notNullableOverride: true);
-        copy.Owner = args.Equipee;
-        AddComp(args.Equipee, copy, true);
+        EnsureComp<ShowNullSpaceComponent>(args.Equipee);
     }
 
     private void OnUnequipped(EntityUid uid, ShowNullSpaceComponent component, GotUnequippedEvent args)
@@ -53,12 +52,29 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
 
         if (toggle)
         {
-            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int)(VisibilityFlags.NullSpace), eye);
+            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) (VisibilityFlags.NullSpace), eye);
             return;
         }
         else if (HasComp<NullSpaceComponent>(uid))
             return;
 
-        _eye.SetVisibilityMask(uid, (int)VisibilityFlags.Normal, eye);
+        _eye.SetVisibilityMask(uid, (int) VisibilityFlags.Normal, eye);
+    }
+
+    private void OnInteractionAttempt(EntityUid uid, ShowNullSpaceComponent component, ref InteractionAttemptEvent args)
+    {
+        if (!HasComp<NullSpaceComponent>(args.Target))
+            return;
+
+        args.Cancelled = true;
+    }
+
+    private void OnAttackAttempt(EntityUid uid, ShowNullSpaceComponent component, AttackAttemptEvent args)
+    {
+        if (HasComp<NullSpaceComponent>(uid)
+            || !HasComp<NullSpaceComponent>(args.Target))
+            return;
+
+        args.Cancel();
     }
 }

@@ -16,6 +16,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Clumsy;
 
@@ -144,12 +145,6 @@ public sealed class ClumsySystem : EntitySystem
         // checks if ClumsyVaulting is false, if so, skips.
         if (!ent.Comp.ClumsyVaulting)
             return;
-
-        // Starlight Start
-        // checks if climbed structure is bonkable.
-        if (!TryComp(args.BeingClimbedOn, out BonkableComponent? bonk))
-            return;
-        //Starlight End
 
         // TODO: Replace with RandomPredicted once the engine PR is merged
         var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);

@@ -6,8 +6,9 @@ using Content.Shared.Maps;
 using Robust.Server.GameObjects;
 using Content.Shared.Popups;
 using Content.Shared.Physics;
-using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight;
 using System.Linq;
+using Content.Server.Light.Components;
 using Content.Server.Ghost;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
@@ -15,7 +16,7 @@ using Content.Shared.Light.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 
-public sealed class NullSpacePhaseSystem : EntitySystem
+public sealed class EtherealPhaseSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
@@ -25,9 +26,9 @@ public sealed class NullSpacePhaseSystem : EntitySystem
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
 
-    private readonly EntProtoId _shadekinShadow = "ShadekinShadow";
-    private readonly EntProtoId ShadekinPhaseInEffect = "ShadekinPhaseInEffect";
-    private readonly EntProtoId ShadekinPhaseOutEffect = "ShadekinPhaseOutEffect";
+    private EntProtoId ShadekinShadow = "ShadekinShadow";
+    private EntProtoId ShadekinPhaseInEffect = "ShadekinPhaseInEffect";
+    private EntProtoId ShadekinPhaseOutEffect = "ShadekinPhaseOutEffect";
 
     public override void Initialize()
     {
@@ -56,27 +57,16 @@ public sealed class NullSpacePhaseSystem : EntitySystem
             return;
 
         EnsureComp<NullPhaseComponent>(args.Equipee);
-        if (!component.PreventLightFlicker 
-            || !TryComp<ShadekinComponent>(args.Equipee, out var shadekin)) 
-            return;
-        component.OriginalFlickerFlagState = shadekin.DoLightFlicker;
-        shadekin.DoLightFlicker = false;
     }
 
     private void OnUnequipped(EntityUid uid, NullPhaseComponent component, GotUnequippedEvent args)
     {
         RemComp<NullPhaseComponent>(args.Equipee);
-        if (!component.PreventLightFlicker 
-            || !TryComp<ShadekinComponent>(args.Equipee, out var shadekin)) 
-            return;
-        shadekin.DoLightFlicker = component.OriginalFlickerFlagState;
     }
 
     private void OnPhaseAction(EntityUid uid, NullPhaseComponent component, NullPhaseActionEvent args)
     {
-        if (CanPhase(uid))
-            Phase(uid);
-
+        Phase(uid);
         args.Handled = true;
     }
 
@@ -88,9 +78,9 @@ public sealed class NullSpacePhaseSystem : EntitySystem
             _actionsSystem.RemoveAction(uid, component.PhaseAction);
     }
 
-    public bool CanPhase(EntityUid uid)
+    public bool Phase(EntityUid uid)
     {
-        if (TryComp<NullSpaceComponent>(uid, out var nullspace))
+        if (TryComp<NullSpaceComponent>(uid, out var ethereal))
         {
             var tileref = _turf.GetTileRef(Transform(uid).Coordinates);
             if (tileref != null
@@ -99,6 +89,21 @@ public sealed class NullSpacePhaseSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("revenant-in-solid"), uid, uid);
                 return false;
             }
+
+            if (HasComp<ShadekinComponent>(uid))
+            {
+                var lightQuery = _lookup.GetEntitiesInRange(uid, 5, flags: LookupFlags.StaticSundries)
+                    .Where(x => HasComp<PoweredLightComponent>(x));
+                foreach (var light in lightQuery)
+                    _ghost.DoGhostBooEvent(light);
+
+                var effect = SpawnAtPosition(ShadekinPhaseInEffect, Transform(uid).Coordinates);
+                Transform(effect).LocalRotation = Transform(uid).LocalRotation;
+            }
+            else
+                SpawnAtPosition(ShadekinShadow, Transform(uid).Coordinates);
+
+            RemComp(uid, ethereal);
         }
         else
         {
@@ -108,60 +113,21 @@ public sealed class NullSpacePhaseSystem : EntitySystem
                 return false;
             }
 
-            foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
-            {
-                if (HasComp<NullSpaceBlockerComponent>(entity))
-                {
-                    _popup.PopupEntity(Loc.GetString("phase-fail-generic"), uid, uid);
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    public void Phase(EntityUid uid)
-    {
-        if (TryComp<NullSpaceComponent>(uid, out var nullspace))
-        {
-            if (TryComp<ShadekinComponent>(uid, out var shadekin))
-            {
-                if (shadekin.DoLightFlicker)
-                {
-                    var lightQuery = _lookup.GetEntitiesInRange(uid, 5, flags: LookupFlags.StaticSundries)
-                        .Where(x => HasComp<PoweredLightComponent>(x));
-                    foreach (var light in lightQuery)
-                        _ghost.DoGhostBooEvent(light);
-                }
-
-                var effect = SpawnAtPosition(ShadekinPhaseInEffect, Transform(uid).Coordinates);
-                Transform(effect).LocalRotation = Transform(uid).LocalRotation;
-            }
-            else
-                SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
-
-            RemComp(uid, nullspace);
-        }
-        else
-        {
             EnsureComp<NullSpaceComponent>(uid);
 
-            if (TryComp<ShadekinComponent>(uid, out var shadekin))
+            if (HasComp<ShadekinComponent>(uid))
             {
-                if (shadekin.DoLightFlicker)
-                {
-                    var lightQuery = _lookup.GetEntitiesInRange(uid, 5, flags: LookupFlags.StaticSundries)
-                        .Where(x => HasComp<PoweredLightComponent>(x));
-                    foreach (var light in lightQuery)
-                        _ghost.DoGhostBooEvent(light);
-                }
+                var lightQuery = _lookup.GetEntitiesInRange(uid, 5, flags: LookupFlags.StaticSundries)
+                    .Where(x => HasComp<PoweredLightComponent>(x));
+                foreach (var light in lightQuery)
+                    _ghost.DoGhostBooEvent(light);
 
                 var effect = SpawnAtPosition(ShadekinPhaseOutEffect, Transform(uid).Coordinates);
                 Transform(effect).LocalRotation = Transform(uid).LocalRotation;
             }
             else
-                SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
+                SpawnAtPosition(ShadekinShadow, Transform(uid).Coordinates);
         }
+        return true;
     }
 }

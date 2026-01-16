@@ -1,0 +1,23 @@
+- type: entity
+  name: integrated mail bag
+  id: BorgMailBag
+  categories: [ HideSpawnMenu ]
+  parent: BaseStorageItem
+  description: A bag for carrying mail around the station built into a cyborg's chassis
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Cargo/mail_bag.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,11,3
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      components:
+      - Delivery
+    openOnActivate: true
+  - type: Dumpable

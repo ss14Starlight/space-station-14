@@ -14,9 +14,6 @@
       - Moth
       - Skeleton
       - Reptilian
-    - !type:SubjectMindAntagCondition
-      blacklist:
-      - Brighteye
 
 - type: entity
   id: FoodConditionWithReptilian
@@ -33,9 +30,6 @@
       - Abductor
       - Moth
       - Skeleton
-    - !type:SubjectMindAntagCondition
-      blacklist:
-      - Brighteye
 
 - type: entity
   id: RRCardFoodApplePie

@@ -25,7 +25,7 @@
         - ReagentId: Water
           Quantity: 9999999
   - type: SolutionRegeneration
-    solution: pool # Starlight
+    solution: tank
     generated:
       reagents:
       - ReagentId: Water

@@ -135,7 +135,7 @@
     slots: [Belt]
   - type: Prayable
   - type: StaticPrice
-    price: 100 # reduced price due to heisentests
+    price: 1000
   - type: PointLight
     radius: 1.2
     energy: 2.2

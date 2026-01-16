@@ -29,15 +29,15 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
-
-#region Starlight
-using Content.Server.Storage.EntitySystems;
+using Content.Shared.NameModifier.Components;
+using Content.Shared.Power;
+using System.Linq;
 using Content.Shared.Ghost;
 using Content.Shared.Inventory;
 using Robust.Server.Containers;
-using System.Linq;
-#endregion Starlight
+using Content.Server.Storage.EntitySystems;
+using Content.Shared.DeviceNetwork.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Fax;
 
@@ -647,7 +647,7 @@ public sealed class FaxSystem : EntitySystem
             //check if attached
             if (client.AttachedEntity == null)
                 continue;
-
+            
             //check if they are a ghost
             if (!TryComp<GhostComponent>(client.AttachedEntity.Value, out var ghostComp))
                 continue;
