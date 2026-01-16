@@ -251,7 +251,7 @@
           amount: 3
         - !type:NestedSelector
           tableId: SovietAmmoExtraTable
-          rolls: 5
+          rolls: 2
 
 - type: entityTable
   id: SovietAmmoExtraTable
