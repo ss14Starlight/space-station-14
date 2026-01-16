@@ -17,6 +17,7 @@
     - Cautery
     - Saw
     - Hemostat
+    - BorgModuleSurgical #Starlight
   radioChannels:
   - Medical
 
@@ -145,8 +146,6 @@
   recipeUnlocks:
   - BorgModuleAdvancedChemical
 
-# Tier 3
-
 - type: technology
   id: MedicalCyberLimbsTech
   name: research-technology-medical-cyberlimbs
@@ -154,8 +153,8 @@
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: autoinjector
   discipline: Biochemical
-  tier: 3
-  cost: 9320
+  tier: 2
+  cost: 5000
   recipeUnlocks:
     - LeftArmCyberReaper
     - RightArmCyberReaper
@@ -165,6 +164,8 @@
     - CyberLimbsTech
   radioChannels:
   - Medical
+
+# Tier 3
 
 - type: technology
   id: CyberEyeNightVision

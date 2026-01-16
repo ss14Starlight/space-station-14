@@ -151,7 +151,8 @@ namespace Content.IntegrationTests.Tests
             "StarlightSilica",
             "StarlightCluster",
             "StarlightStationBuilding",
-            "StarlightPlasma"
+            "StarlightPlasma",
+			"StarlightSpaceMall"
             #endregion
         };
 

@@ -76,8 +76,6 @@
   radioChannels:
   - Engineering
 
-# Tier 3
-
 - type: technology
   id: CargoCyberLimbsTech
   name: research-technology-cargo-cyberlimbs
@@ -85,8 +83,8 @@
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: ripletclaw
   discipline: Industrial
-  tier: 3
-  cost: 9320
+  tier: 2
+  cost: 5000
   recipeUnlocks:
     - LeftArmCyberSpacer
     - RightArmCyberSpacer
@@ -100,7 +98,8 @@
   - Medical
   - Supply
 
-# Tier 4
+# Tier 3
+
 - type: technology
   id: EngineeringCyberLimbsTech
   name: research-technology-engineering-cyberlimbs
@@ -108,8 +107,8 @@
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: rcd
   discipline: Industrial
-  tier: 4
-  cost: 30000
+  tier: 3
+  cost: 9320
   recipeUnlocks:
     - LeftArmCyberEngineer
     - RightArmCyberEngineer
@@ -118,3 +117,5 @@
   radioChannels:
   - Medical
   - Engineering
+
+# Tier 4
