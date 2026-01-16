@@ -19,6 +19,23 @@ public sealed class VehicleSystems : SharedVehicleSystems
         SubscribeLocalEvent<VehicleBuckleComponent, MoveInputEvent>(OnMoveInputEvent);
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        var query = EntityQueryEnumerator<VehicleComponent>();
+        while (query.MoveNext(out var uid, out var vehicle))
+        {
+            if(vehicle.Headlight == null && vehicle.Sirenlight == null)
+                continue;
+            if(vehicle.Headlight != null && TryComp<SpriteComponent>(vehicle.Headlight, out var headlightSprite) &&
+                headlightSprite.Visible)
+                _sprite.SetVisible((vehicle.Headlight.Value, headlightSprite), false);
+            if(vehicle.Sirenlight != null && TryComp<SpriteComponent>(vehicle.Sirenlight, out var sirelightSprite) &&
+                sirelightSprite.Visible)
+                _sprite.SetVisible((vehicle.Sirenlight.Value, sirelightSprite), false);
+        }
+    }
+
     private void OnAppearanceChanged(EntityUid uid, VehicleComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)

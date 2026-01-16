@@ -149,6 +149,24 @@ public sealed partial class VehicleComponent : Component
     
     [DataField, AutoNetworkedField] public EntityUid? ToggleTrunkActionEntity;
 
+    /// <summary>
+    /// UID for the invisible headlight
+    /// </summary>
     [DataField, AutoNetworkedField]
-    public EntProtoId? SirenToggleAction = "ActionVehicleToggleSecuritySiren";
+    public EntityUid? Headlight;
+    
+    [DataField, AutoNetworkedField]
+    public EntProtoId ToggleSirenAction = "ActionVehicleToggleSecuritySiren";
+
+    /// <summary>
+    /// UID for the invisible sirenlight
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? Sirenlight;
+
+    /// <summary>
+    /// Container that holds all the equipment for a vehicle
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string VehicleModsSlot = "vehicle_mods_container";
 }

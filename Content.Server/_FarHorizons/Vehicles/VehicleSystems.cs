@@ -56,13 +56,17 @@ using Content.Shared.Repairable;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Effects;
 using Robust.Shared.Player;
-using Content.Server.Emp;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Coordinates;
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Toggleable;
+using Content.Shared.Interaction;
+using Content.Shared.CombatMode.Pacification;
 
 namespace Content.Server._FarHorizons.Vehicle;
 
 public sealed partial class VehicleSystems : SharedVehicleSystems
-{    
+{
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -98,7 +102,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         base.Initialize();
 
         _projQuery = GetEntityQuery<ProjectileComponent>();
-        
+
         SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VehicleComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<VehicleComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
@@ -135,15 +139,35 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         SubscribeLocalEvent<RiderComponent, RefreshMovementSpeedModifiersEvent>(OnMovementSpeedRefreshRiderEvent);
 
         SubscribeLocalEvent<TransformComponent, JetJumpActionEvent>(OnJetJumpActionEvent);
+        SubscribeLocalEvent<ItemToggleComponent, ToggleSirenActionEvent>(OnSirenToggle);
 
         _transform.OnGlobalMoveEvent += OnMoveEvent;
     }
+
     #region Vehicle Generic Events
     private void OnMapInit(Entity<VehicleComponent> ent, ref MapInitEvent args)
     {
         if(!TryComp<MovementSpeedModifierComponent>(ent.Owner, out var msmComp)) return;
         _movementSpeed.ChangeFrictionAndAcceleration(ent.Owner, ent.Comp.Friction, ent.Comp.FrictionNoInput, ent.Comp.Acceleration, msmComp);
         _appearance.SetData(ent.Owner, VehicleVisuals.VisualState, false);
+
+        if(_container.TryGetContainer(ent.Owner, ent.Comp.VehicleModsSlot, out var modSlot))
+        {
+            foreach (var item in modSlot.ContainedEntities)
+            {
+                if(HasComp<PointLightComponent>(item))
+                {
+                    var metaData = MetaData(item);
+                    var light = SpawnAtPosition(metaData.EntityPrototype!.ID, ent.Owner.ToCoordinates());
+                    _transform.SetParent(light, ent.Owner);
+                    if(HasComp<RotatingLightComponent>(light))
+                        ent.Comp.Sirenlight = light;
+                    else
+                        ent.Comp.Headlight = light;
+                }
+            }
+        }
+        Dirty(ent.Owner, ent.Comp);
     }
 
     private void OnComponentStartup(Entity<VehicleComponent> ent, ref ComponentStartup args)
@@ -174,7 +198,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             {
                 if(ent.Comp.Rider != null)
                 {
-                    _actionBlocker.UpdateCanMove(ent.Comp.Rider.Value);
+                    if(TryComp<InputMoverComponent>(ent.Comp.Rider.Value, out var imComp) && imComp.CanMove)
+                        _actionBlocker.UpdateCanMove(ent.Comp.Rider.Value);
                     if(ent.Comp.TurnKeysActionEntity != null)
                         _actions.RemoveProvidedAction(ent.Comp.Rider.Value, ent.Owner, ent.Comp.TurnKeysActionEntity.Value);
 
@@ -183,7 +208,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
                         _virtualItem.DeleteInHandsMatching(ent.Comp.Rider.Value, ent.Owner);
                     }
                 }
-                    
+
                 TurnOffVehicle(ent.Owner, ent.Comp);
             }
             else
@@ -213,7 +238,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             _handsSystem.PickupOrDrop(args.User, keys);
 
             if(ent.Comp.Rider == null) return;
-            _actionBlocker.UpdateCanMove(ent.Comp.Rider.Value);
+            if(TryComp<InputMoverComponent>(ent.Comp.Rider.Value, out var imComp) && imComp.CanMove)
+                _actionBlocker.UpdateCanMove(ent.Comp.Rider.Value);
 
             for (var i = 0; i < ent.Comp.HandsNeeded; i++)
             {
@@ -240,7 +266,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         {
             _popup.PopupEntity(Loc.GetString("vehicle-turn-keys-stop"), ent.Owner, PopupType.Medium);
             _adminLogger.Add(Shared.Database.LogType.Action, Shared.Database.LogImpact.Low, $"{ToPrettyString(ent.Comp.Rider.Value)} stopped the engine of {ToPrettyString(ent.Owner)}");
-        }        
+        }
         var ev = new TurnKeysDoAfter();
         var doAfter = new DoAfterArgs(EntityManager, ent.Comp.Rider.Value, ent.Comp.startupTime, ev, ent.Owner)
         {
@@ -249,15 +275,15 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         _doAfter.TryStartDoAfter(doAfter);
         args.Handled = true;
     }
-    
+
     private void OnTurnKeysDoAfter(Entity<VehicleComponent> ent, ref TurnKeysDoAfter args)
     {
         if(args.Cancelled) return;
         if(ent.Comp.Rider == null) return;
-        
+
         if(!ent.Comp.Started)
         {
-            if((HasComp<PowerCellDrawComponent>(ent.Owner) && !_powerCell.HasDrawCharge(ent.Owner)) 
+            if((HasComp<PowerCellDrawComponent>(ent.Owner) && !_powerCell.HasDrawCharge(ent.Owner))
             || (HasComp<ReagantDrawComponent>(ent.Owner) && !_reagantDraw.HasDrawReagant(ent.Owner)))
                 return;
 
@@ -300,12 +326,12 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     {
         if(ent.Comp.Rider == null) return;
         var rider = ent.Comp.Rider.Value;
-        
+
         if(!ent.Comp.AllowCrashing) return;
 
         var speed = args.OurBody.LinearVelocity.Length();
         if (speed < ent.Comp.CrashingSpeed) return;
-        
+
         if (args.OurFixture.Hard && args.OtherFixture.Hard)
         {
             if(TryComp<VehicleBuckleComponent>(ent.Owner, out var vbComp) && TryComp<BuckleComponent>(rider, out var buckleComp))
@@ -330,14 +356,14 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         }
         else if(args.OurFixture.Hard && !args.OtherFixture.Hard)
         {
-            if(!HasComp<DamageableComponent>(args.OtherEntity)) return; 
-            
+            if(!HasComp<DamageableComponent>(args.OtherEntity) || HasComp<PacifiedComponent>(ent.Owner)) return;
+
             DamageTypePrototype? _blunt = _prototypes.Index<DamageTypePrototype>(_bluntname);
             DamageSpecifier? _damage = new(_blunt, Math.Clamp(10 * (1 + (0.5 * speed / ent.Comp.CrashingSpeed)), 10, 20));
             _damageable.TryChangeDamage(args.OtherEntity, _damage, origin: ent.Comp.Rider.Value);
             _color.RaiseEffect(Color.Red, new List<EntityUid>() { args.OtherEntity, }, Filter.Pvs(args.OtherEntity, entityManager: EntityManager));
-            
-            if(!TryComp<MovementSpeedModifierComponent>(ent.Owner, out var msmComp)) return; 
+
+            if(!TryComp<MovementSpeedModifierComponent>(ent.Owner, out var msmComp)) return;
 
             Timer.Spawn(TimeSpan.FromSeconds(2), () => _movementSpeed.ChangeBaseSpeed(ent.Owner, msmComp.BaseWalkSpeed * 4, msmComp.BaseSprintSpeed * 4, msmComp.Acceleration));
             _movementSpeed.ChangeBaseSpeed(ent.Owner, msmComp.BaseWalkSpeed/4, msmComp.BaseSprintSpeed/4, msmComp.Acceleration);
@@ -356,23 +382,25 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     {
         TurnOffVehicle(ent.Owner, ent.Comp);
 
-        if(ent.Comp.Rider != null)  
-            _actionBlocker.UpdateCanMove(ent.Owner);
+        if(ent.Comp.Rider != null)
+            if(TryComp<InputMoverComponent>(ent.Comp.Rider.Value, out var imComp) && imComp.CanMove)
+                _actionBlocker.UpdateCanMove(ent.Comp.Rider.Value);
     }
 
     private void OnPowerCellEmpty(Entity<VehicleComponent> ent, ref PowerCellSlotEmptyEvent args)
     {
         TurnOffVehicle(ent.Owner, ent.Comp);
 
-        if(ent.Comp.Rider != null)  
-            _actionBlocker.UpdateCanMove(ent.Owner);
+        if(ent.Comp.Rider != null)
+            if(TryComp<InputMoverComponent>(ent.Comp.Rider.Value, out var imComp) && imComp.CanMove)
+                _actionBlocker.UpdateCanMove(ent.Comp.Rider.Value);
     }
 
     private void OnRepairFinished(Entity<VehicleComponent> ent, ref RepairFinishedEvent args)
     {
         _adminLogger.Add(Shared.Database.LogType.Action, Shared.Database.LogImpact.Low, $"{ToPrettyString(args.User)} repaired the vehicle {ToPrettyString(ent.Owner)}");
         ent.Comp.isBroken = false;
-        
+
         if(TryComp<VehicleBuckleComponent>(ent, out var vbComp))
         {
             _buckle.StrapSetEnabled(ent, true);
@@ -411,7 +439,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         {
             _buckle.StrapSetEnabled(ent, false);
         }
-        
+
         component.isBroken = true;
 
         TryUpdateVisualState(ent);
@@ -455,10 +483,9 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     private void OnUnstrapped(Entity<VehicleBuckleComponent> ent, ref UnstrappedEvent args)
     {
         if(!TryComp<VehicleComponent>(ent, out var vehicleComp)) return;
-        if(vehicleComp.Rider == null) return;
-        
-        if(HasComp<RiderComponent>(vehicleComp.Rider.Value))
-            RemoveRider(vehicleComp.Rider.Value, ent.Owner, vehicleComp);
+
+        if(HasComp<RiderComponent>(args.Buckle.Owner))
+            RemoveRider(args.Buckle.Owner, ent.Owner, vehicleComp);
     }
 
     private void OnUnbuckleDoAfter(Entity<VehicleBuckleComponent> ent, ref VehicleUnbuckleDoAfter args)
@@ -487,7 +514,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
-        if(!TryComp<VehicleComponent>(uid, out var vehicleComp)) return; 
+        if(!TryComp<VehicleComponent>(uid, out var vehicleComp)) return;
         if(TryComp<DestructibleComponent>(uid, out var destructibleComp) && destructibleComp.IsBroken) return;
 
         if (CanInsert(uid, component) && !component.PassengerSlot.ContainedEntities.Contains(args.User))
@@ -501,7 +528,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
                     {
                         BreakOnMove = true,
                     };
-                    
+
                     _doAfter.TryStartDoAfter(doAfterEventArgs);
                 }
             };
@@ -521,7 +548,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             };
             args.Verbs.Add(exitVerb);
         }
-        
+
         if(component.PassengerSlot.ContainedEntities.Count != 0 && !component.PassengerSlot.ContainedEntities.Contains(args.User))
         {
             var removeVerb = new AlternativeVerb
@@ -542,7 +569,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             args.Verbs.Add(removeVerb);
         }
     }
-    
+
     private void OnDragDrop(Entity<VehicleContainerComponent> ent, ref DragDropTargetEvent args)
     {
         if(args.Handled) return;
@@ -576,15 +603,15 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     {
         if (args.Cancelled || args.Handled)
             return;
-        
+
         if(!TryComp<VehicleComponent>(ent, out var vehicleComp)) return;
         RemoveRider(ent.Comp.PassengerSlot.ContainedEntities.First(), ent.Owner, vehicleComp);
-        
+
         if(!TryRemove(ent.Comp.PassengerSlot.ContainedEntities.First(), ent.Owner, ent.Comp)) return;
 
         args.Handled = true;
     }
- 
+
     private void OnDamageChanged(EntityUid ent, VehicleContainerComponent component, DamageChangedEvent args)
     {
         if (args.DamageIncreased &&
@@ -618,13 +645,13 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     }
 
     private void OnStunned(Entity<RiderComponent> ent, ref StunnedEvent args)
-    { 
+    {
         var vehicle = ent.Comp.Riding;
         if(!TryComp<VehicleBuckleComponent>(vehicle, out var vehicleBuckleComp)) return;
         if(!vehicleBuckleComp.stundismount) return;
         if(!TryComp<BuckleComponent>(ent.Owner, out var buckleComp)) return;
 
-        _buckle.Unbuckle((ent.Owner, buckleComp), ent.Owner);   
+        _buckle.Unbuckle((ent.Owner, buckleComp), ent.Owner);
     }
 
     private void OnKnockdown(Entity<RiderComponent> ent, ref KnockedDownEvent args)
@@ -633,10 +660,10 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(!TryComp<VehicleBuckleComponent>(vehicle, out var vehicleBuckleComp)) return;
         if(!vehicleBuckleComp.knockdowndismount) return;
         if(!TryComp<BuckleComponent>(ent.Owner, out var buckleComp)) return;
-        
-        _buckle.Unbuckle((ent.Owner, buckleComp), ent.Owner);   
+
+        _buckle.Unbuckle((ent.Owner, buckleComp), ent.Owner);
     }
-    
+
     private void OnJumpActionEvent(Entity<RiderComponent> ent, ref JumpActionEvent args)
     {
         if(!TryComp<BuckleComponent>(ent.Owner, out var buckleComp)) return;
@@ -726,7 +753,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
     private void OnMoveEvent(ref MoveEvent ev)
     {
-        var vehicle = ev.Entity.Owner; 
+        var vehicle = ev.Entity.Owner;
         if(!TryComp<VehicleComponent>(vehicle, out var vehicleComp)) return;
         if(!TryComp<PhysicsComponent>(vehicle, out var vehiclePhys)) return;
 
@@ -735,8 +762,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             vehicleComp.isMoving = true;
         else if(speed < 0.3)
             vehicleComp.isMoving = false;
-            
-        TryUpdateVisualState(vehicle);  
+
+        TryUpdateVisualState(vehicle);
         Dirty(vehicle, vehicleComp);
 
         if( vehicleComp.Rider == null) return;
@@ -752,11 +779,21 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
                 _transform.SetLocalRotation(rider, 0f, riderTransform);
         }
 
-        if((HasComp<PowerCellDrawComponent>(vehicle) && !_powerCell.HasDrawCharge(vehicle)) 
+        if((HasComp<PowerCellDrawComponent>(vehicle) && !_powerCell.HasDrawCharge(vehicle))
         || (HasComp<ReagantDrawComponent>(vehicle) && !_reagantDraw.HasDrawReagant(vehicle)))
-            _actionBlocker.UpdateCanMove(rider);
+            if(TryComp<InputMoverComponent>(rider, out var imComp) && imComp.CanMove)
+                _actionBlocker.UpdateCanMove(rider);
     }
-    
+
+    private void OnSirenToggle(Entity<ItemToggleComponent> ent, ref ToggleSirenActionEvent args)
+    {
+        if(!HasComp<UnpoweredFlashlightComponent>(ent.Owner) && !HasComp<ItemToggleComponent>(ent.Owner)) return;
+        var evToggle = new ToggleActionEvent();
+        var evActivate = new ActivateInWorldEvent(args.Performer, ent.Owner, false);
+        RaiseLocalEvent(ent.Owner, evToggle);
+        RaiseLocalEvent(ent.Owner, evActivate);
+    }
+
     #endregion
     #region Functions
     private void SetUpRider(EntityUid rider, EntityUid vehicle, VehicleComponent vehicleComp)
@@ -765,6 +802,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         riderComp.Riding = vehicle;
         Dirty(rider, riderComp);
         _adminLogger.Add(Shared.Database.LogType.Action, Shared.Database.LogImpact.Low, $"{ToPrettyString(rider)} entered vehicle {ToPrettyString(vehicle)}");
+        if(TryComp<InputMoverComponent>(rider, out var imComp) && imComp.CanMove)
+            _actionBlocker.UpdateCanMove(rider);
 
         if(_whitelist.IsWhitelistFail(vehicleComp.RiderWhitelist, rider)) return;
         if(vehicleComp.Rider != null) return;
@@ -772,9 +811,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         vehicleComp.Rider = rider;
         Dirty(vehicle, vehicleComp);
 
-        _actionBlocker.UpdateCanMove(rider);
         AddActions(vehicleComp.Rider.Value, vehicle, vehicleComp);
-
         if(vehicleComp.Started)
         {
             for (var i = 0; i < vehicleComp.HandsNeeded; i++)
@@ -782,7 +819,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
                 if (_virtualItem.TrySpawnVirtualItem(vehicle, rider, out var virtItem))
                 {
                     EnsureComp<UnremoveableComponent>(virtItem.Value);
-                    _handsSystem.TryForcePickupAnyHand(rider, virtItem.Value);
+                    Timer.Spawn(0, () => _handsSystem.TryForcePickupAnyHand(rider, virtItem.Value, checkActionBlocker: false));
                 }
             }
         }
@@ -795,12 +832,21 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(HasComp<RiderComponent>(rider))
             RemComp<RiderComponent>(rider);
         _adminLogger.Add(Shared.Database.LogType.Action, Shared.Database.LogImpact.Low, $"{ToPrettyString(rider)} exited vehicle {ToPrettyString(vehicle)}");
+        if(TryComp<InputMoverComponent>(rider, out var imComp) && !imComp.CanMove)
+            _actionBlocker.UpdateCanMove(rider);
 
         if(rider != vehicleComp.Rider) return;
         vehicleComp.Rider = null;
-        _actionBlocker.UpdateCanMove(rider);
         _actions.RemoveProvidedActions(rider, vehicle);
-        
+        if(vehicleComp.Headlight != null)
+            _actions.RemoveProvidedActions(rider, vehicleComp.Headlight.Value);
+        if(vehicleComp.Sirenlight != null)
+            _actions.RemoveProvidedActions(rider, vehicleComp.Sirenlight.Value);
+
+        if(_container.TryGetContainer(vehicle, vehicleComp.VehicleModsSlot, out var items))
+            foreach(var item in items.ContainedEntities)
+                _actions.RemoveProvidedActions(rider, item);
+
         for (var i = 0; i < vehicleComp.HandsNeeded; i++)
         {
             _virtualItem.DeleteInHandsMatching(rider, vehicle);
@@ -825,14 +871,14 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
                 _actions.AddAction(rider, ref component.ToggleTrunkActionEntity, component.ToggleTrunkAction, vehicle);
         }
 
-        if(TryComp<UnpoweredFlashlightComponent>(vehicle, out var flashComp))
-            _actions.AddAction(rider, ref flashComp.ToggleActionEntity, flashComp.ToggleAction, vehicle);
-
         if(component.HornSound != null)
             _actions.AddAction(rider, ref component.HornVehicleActionEntity, component.HornVehicleAction, vehicle);
 
-        if(component.SirenToggleAction != null)
-            _actions.AddAction(rider, component.SirenToggleAction, vehicle);
+        if(component.Headlight != null && TryComp<UnpoweredFlashlightComponent>(component.Headlight, out var headLight))
+            _actions.AddAction(rider, ref headLight.ToggleActionEntity, headLight.ToggleAction, component.Headlight.Value);
+
+        if(component.Sirenlight != null && HasComp<PointLightComponent>(component.Sirenlight))
+            _actions.AddAction(rider, component.ToggleSirenAction, component.Sirenlight.Value);
     }
 
     private bool TryInsert(EntityUid? Rider, EntityUid Vehicle, VehicleContainerComponent? component=null)
@@ -842,7 +888,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
         if(Rider == null)
             return false;
-                
+
         if (!CanInsert(Vehicle, component))
             return false;
 
@@ -884,7 +930,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         {
             pcdComp.Enabled = false;
             Dirty(vehicle, pcdComp);
-        }   
+        }
         if(TryComp<ReagantDrawComponent>(vehicle, out var rdComp) && rdComp.Enabled)
         {
             rdComp.Enabled = false;

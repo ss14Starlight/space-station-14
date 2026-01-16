@@ -146,8 +146,7 @@
     frictionNoInput: 4.5
     requireIgnition: true 
     baseState: vehicle
-    brokenState: vehicle
-    sirenToggleAction: ActionVehicleToggleSecuritySiren
+    brokenState: vehicle_broken
     startupTime: 2
     handsNeeded: 1
     riderWhitelist:
@@ -193,13 +192,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 5.5 #4.5 is default, so this is 1 faster than normal run
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    radius: 10
-    softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
   - type: ItemSlots
     slots:
       key_slot:
@@ -218,6 +210,7 @@
     containers:
       key_slot: !type:ContainerSlot
       cell_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: false
@@ -234,16 +227,6 @@
     stealGroup: VehicleSecwaySteal
 
 - type: entity
-  id: VehicleSecwayBattery
-  parent: VehicleSecway
-  suffix: Battery, NT
-  components: 
-    - type: ContainerFill
-      containers:
-        cell_slot:
-        - PowerCellMedium
-
-- type: entity
   id: VehicleSecwayBatterywithKeys
   parent: VehicleSecway
   suffix: Battery, Keys, NT
@@ -254,6 +237,9 @@
         - PowerCellMedium
         key_slot:
         - VehicleKeySecway
+        vehicle_mods_container:
+        - SecwayLight
+        - SecSiren
 
 - type: entity
   id: VehicleSecwayBatterywithKeysS
@@ -273,6 +259,9 @@
         - PowerCellMedium
         key_slot:
         - VehicleKeySecway
+        vehicle_mods_container:
+        - SecwayLight
+        - SecSiren
 
 - type: entity
   id: VehicleSecwayTurboBatterywithKeys
@@ -303,7 +292,7 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           # Swappable batteries until we can get secway recharge stations
-          #disableEject: true
+          disableEject: true
           #swap: false
     - type: PowerCellDraw
       drawRate: 1.5 # Eats through cells
@@ -314,6 +303,9 @@
         - PowerCellMedium
         key_slot:
         - VehicleKeySecwayTurbo
+        vehicle_mods_container:
+        - SecwayLight
+        - SecSiren
 
 - type: entity
   id: VehicleATV
@@ -334,7 +326,7 @@
     allowCrashing: true
     crashingSpeed: 10 
     baseState: vehicle
-    brokenState: vehicle
+    brokenState: vehicle_broken
     startupTime: 2
     startUp: 
       path: /Audio/Effects/Vehicle/vehiclestartup.ogg
@@ -364,7 +356,7 @@
     westDrawDepth: BelowMobs
   - type: Sprite
     drawdepth: OverMobs
-    sprite: Objects/Vehicles/atv.rsi
+    sprite: _FarHorizons/Objects/Vehicles/atv.rsi
     layers:
     - state: vehicle
       map: ["enum.VehicleVisualLayers.Base"]
@@ -394,6 +386,7 @@
   - type: ContainerContainer
     containers:
       key_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
   - type: SolutionContainerManager
     solutions:
       fueltank:
@@ -409,13 +402,6 @@
     whitelistedReagants: 
     - WeldingFuel
     drainRate: 0.25
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    radius: 10
-    softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
@@ -437,6 +423,7 @@
       - !type:EmptyContainersBehaviour
         containers:
         - storagebase
+  - type: Hitch
 
 - type: entity
   id: VehicleATVFueled
@@ -468,6 +455,8 @@
       containers:
         key_slot:
         - VehicleKeyATV
+        vehicle_mods_container:
+        - ATVHeadlight
 
 - type: entity
   id: VehicleATVFueledwithKeysNTSec
@@ -488,6 +477,7 @@
         key_slot: !type:ContainerSlot
         storagebase: !type:Container
           ents: []
+        vehicle_mods_container: !type:Container
     - type: Vehicle
       acceleration: 4
       friction: 4.5
@@ -496,8 +486,7 @@
       allowCrashing: true
       crashingSpeed: 10 
       baseState: vehicle
-      brokenState: vehicle
-      sirenToggleAction: ActionVehicleToggleSecuritySiren
+      brokenState: vehicle_broken
       startupTime: 2
       startUp: 
         path: /Audio/Effects/Vehicle/vehiclestartup.ogg
@@ -551,6 +540,9 @@
       containers:
         key_slot:
         - VehicleKeySTV
+        vehicle_mods_container:
+        - ATVHeadlight
+        - SecSiren
 
 - type: entity
   id: VehicleClownCar
@@ -611,6 +603,7 @@
       key_slot: !type:ContainerSlot
       passenger_slot: !type:Container
       storagebase: !type:Container
+      vehicle_mods_container: !type:Container
         ents: []
   - type: SolutionContainerManager
     solutions:
@@ -627,13 +620,6 @@
     whitelistedReagants: 
     - WeldingFuel
     drainRate: 0.25
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    radius: 10
-    softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
@@ -697,20 +683,6 @@
         - storagebase
 
 - type: entity
-  id: VehicleClownCarFueled
-  parent: VehicleClownCar
-  suffix: Fueled
-  components: 
-    - type: ContainerContainer
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
-
-- type: entity
   id: VehicleClownCarFueledwithKeys
   parent: VehicleClownCar
   suffix: Fueled, Keys
@@ -726,3 +698,5 @@
       containers:
         key_slot:
         - VehicleKeyClowncar
+        vehicle_mods_container:
+        - ATVHeadlight

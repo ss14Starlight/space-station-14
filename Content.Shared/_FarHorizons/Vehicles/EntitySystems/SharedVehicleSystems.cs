@@ -5,7 +5,6 @@ using Content.Shared.Lock;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
-using Content.Shared.Damage;
 using Content.Shared.Examine;
 
 namespace Content.Shared._FarHorizons.Vehicles.EntitySystems;

@@ -31,7 +31,7 @@
     event: !type:HornActionEvent
 
 - type: entity
-  parent: BaseToggleAction
+  parent: BaseAction
   id: ActionVehicleToggleSecuritySiren
   name: Toggle Security Siren
   description: Toggles the security siren on and off.
@@ -42,6 +42,8 @@
       state: siren
     useDelay: 1
     itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:ToggleSirenActionEvent
 
 - type: entity
   parent: BaseAction

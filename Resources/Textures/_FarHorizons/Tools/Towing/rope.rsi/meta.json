@@ -1,0 +1,17 @@
+{
+	"version": 1,
+	"license": "CC-BY-SA-3.0",
+    "copyright": "Taken from cev-eris at https://github.com/discordia-space/CEV-Eris/commit/740ff31a81313086cf16761f3677cf1e2ab46c93. Modified by AthenaAI to look like a rope for FH., Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/456cd10d94084c7c2574f628cf7ac9b67087ba26. Recolored, adjusted, and inhands created by EmoGarbage404 and Modified by AthenaAI to just have the hook end.",
+	"size": {
+		"x": 32,
+		"y": 32
+	},
+	"states": [
+		{
+			"name": "rope"
+		},
+        {
+            "name": "hook"
+        }
+	]
+}

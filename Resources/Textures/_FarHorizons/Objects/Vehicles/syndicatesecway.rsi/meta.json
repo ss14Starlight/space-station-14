@@ -5,7 +5,7 @@
     "y": 32
   },
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, then heavily retrofitted (and Key entirely remade) by Killer Tamashi (Discord)",
+  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, then heavily retrofitted (and Key entirely remade) by Killer Tamashi (Discord) and Broken Sprites by ScorchFollower",
   "states": [
     {
       "name": "vehicle",
@@ -42,6 +42,9 @@
     },
     {
       "name": "icon"
+    },
+    {
+      "name": "vehicle_broken"
     }
   ]
 }
