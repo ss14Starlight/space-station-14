@@ -27,7 +27,9 @@
     - type: NightVision
   - type: OrganVisualization
     layer: Eyes
-    prototype: CyberEyesNightVision
+    prototypes:
+      Default: CyberEyesNightVision
+      Resomi: ResomiCyberEyesNightVision
 
 - type: entity
   id: CyberEyeThermal
@@ -43,7 +45,9 @@
     - type: ThermalVision
   - type: OrganVisualization
     layer: Eyes
-    prototype: CyberEyesThermalVision
+    prototypes:
+      Default: CyberEyesThermalVision
+      Resomi: ResomiCyberEyesThermalVision
 
 - type: entity
   id: BudgetCyberEyes
@@ -61,7 +65,19 @@
     - type: NoirOverlay
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobHumanoidEyes
+    prototypes:
+      Default: MobHumanoidEyes
+      Resomi: MobResomiEyes
+      Moth: MobMothEyes
+      Felionoid: MobFelionoidEyes
+      Thaven: MobThavenEyes
+      Avali: MobAvaliEyes
+      Shadekin: MobShadekinEyes
+      Arachnid: MobArachnidEyes
+      Diona: MobDionaEyes
+      Vox: MobVoxEyes
+      Cyclorite: MobCycloriteEyes
+      Abductor: MobAbductorEyes
 
 - type: entity
   id: BudgetCyberTongue

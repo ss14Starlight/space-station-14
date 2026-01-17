@@ -99,10 +99,10 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: AmmoniaBlood
-        Quantity: 1
+        Quantity: 300
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -137,6 +137,7 @@
     - map: [ "id" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "misc" ] # Starlight
     - map: [ "suitstorage" ] # This is not in the default order
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]

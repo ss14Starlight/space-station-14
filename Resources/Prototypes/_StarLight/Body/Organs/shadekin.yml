@@ -22,7 +22,8 @@
     - type: NightVision
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobShadekinEyes
+    prototypes:
+      Default: MobShadekinEyes
   - type: Tag
     tags:
       - ShadekinEyes

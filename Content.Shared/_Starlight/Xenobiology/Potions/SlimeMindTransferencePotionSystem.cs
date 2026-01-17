@@ -19,8 +19,9 @@ public sealed class SlimeMindTransferencePotionSystem : EntitySystem
     {
         if (!args.Target.HasValue || !args.CanReach) return;
         if (!_entityManager.TryGetComponent<MindContainerComponent>(args.User,
-                out _)) return;
-        _sharedMindSystem.TransferTo(ent.Owner, args.Target.Value);
+                out var mindContainerComponent)) return;
+        if (!mindContainerComponent.HasMind) return;
+        _sharedMindSystem.TransferTo(mindContainerComponent.Mind.Value, args.Target.Value);
         PredictedQueueDel(args.Used);
         args.Handled = true;
     }

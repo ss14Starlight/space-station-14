@@ -618,7 +618,7 @@
 # Representative
 - type: entity
   id: LockerRepresentative
-  name: representative locker
+  name: representative's locker # Starlight, added apostrophe s
   parent: LockerBaseSecure
   components:
   - type: Appearance

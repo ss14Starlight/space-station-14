@@ -154,6 +154,7 @@
     table: !type:GroupSelector
       children:
       - id: NukiePlanetSpawn
+      - id: NukiePlanetSpawnWestern
   # Starlight end
   # Starlight - removing the LoadMapRule from here to instead handle it in the dynamic rules above
   #- type: LoadMapRule
@@ -579,3 +580,7 @@
     - id: BasicDecalDirtMonospaceVariationPass
       prob: 0.50
       orGroup: monospaceDecals
+    # Starlight start
+    - id: MaintenanceMonstersVariationPass
+      prob: 0.2
+    # Starlight end

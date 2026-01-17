@@ -1,8 +1,8 @@
 - type: entity
+  abstract: true
+  parent: BaseCartridge
   id: BaseShellShotgun
   name: 12 gauge shotgun shell # Starlight change: .50 -> 12 gauge
-  parent: BaseCartridge
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -18,9 +18,10 @@
     tip: true
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
   id: ShellShotgunBeanbag
   name: 12 gauge beanbag slug # Starlight change: .50 -> 12 gauge
-  parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
+  description: The standard cartridge used by most modern shotguns. Beanbag ammunition contains a single less-than-lethal projectile that can stun targets.
   components:
   - type: Tag
     tags:
@@ -42,9 +43,10 @@
     proto: PelletShotgunBeanbagTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband]
   id: ShellShotgunSlug
   name: 12 gauge slug # Starlight change: .50 -> 12 gauge
-  parent: [ BaseShellShotgun, BaseSecurityContraband]
+  description: The standard cartridge used by most modern shotguns. Slug ammunition contains a single high-density projectile effective at longer ranges than pellet ammunition.
   components:
   - type: Sprite
     layers:
@@ -62,9 +64,10 @@
     proto: PelletShotgunSlugTrace
 
 - type: entity
+  parent: BaseShellShotgun
   id: ShellShotgunFlare
   name: 12 gauge flare # Starlight change: .50 -> 12 gauge
-  parent: BaseShellShotgun
+  description: The standard cartridge used by most modern shotguns. Flare ammunition contains a single brightly-burning projectile intended for illumination and signalling, rather than combat.
   components:
   - type: Tag
     tags:
@@ -87,9 +90,10 @@
       collection: ShellEject
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellShotgun
   name: 12 gauge buckshot # Starlight change: .50 -> 12 gauge
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  description: The standard cartridge used by most modern shotguns. Standard kinetic ammunition is common and useful in most situations.
   components:
   - type: Sprite
     layers:
@@ -107,9 +111,10 @@
     proto: PelletShotgunSpreadTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellShotgunIncendiary
   name: 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  description: The standard cartridge used by most modern shotguns. Incendiary ammunition contains a self-igniting compound that sets targets ablaze.
   components:
   - type: Sprite
     layers:
@@ -128,9 +133,10 @@
     proto: PelletShotgunIncendiarySpreadTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellShotgunPractice
   name: 12 gauge blank # Starlight change: .50 -> 12 gauge
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  description: The standard cartridge used by most modern shotguns. Practice ammunition fires chalk pellets that sting a little, but otherwise cause no lasting damage.
   components:
   - type: Sprite
     layers:
@@ -148,9 +154,10 @@
     proto: PelletShotgunPracticeSpreadTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellTranquilizer
   name: 12 gauge tranquilizer slug # Starlight change: .50 -> 12 gauge
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  description: The standard cartridge used by most modern shotguns. Tranquilizer ammunition contains a single ballistic syringe loaded with a strong sedative that harmlessly puts targets to sleep.
   components:
   - type: Tag
     tags:
@@ -179,10 +186,10 @@
     maxTransferAmount: 3.5
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellShotgunImprovised
   name: improvised 12 gauge shell # Starlight change: .50 -> 12 gauge
-  description: A homemade shotgun shell that shoots painful glass shrapnel. The spread is so wide that it couldn't hit the broad side of a barn.
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  description: A homemade shotgun shell loaded with chunks of glass shrapnel. Surprisingly effective, but the spread is so wide that you couldn't hit the broad side of a barn.
   components:
   - type: Tag
     tags:
@@ -207,9 +214,10 @@
     proto: PelletShotgunImprovisedSpreadTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellShotgunUranium
   name: 12 gauge uranium buckshot shell # Starlight change: .50 -> 12 gauge
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  description: The standard cartridge used by most modern shotguns. Uranium ammunition replaces the lead core of the pellets with fissile material, irradiating targets from the inside.
   components:
   - type: Sprite
     layers:

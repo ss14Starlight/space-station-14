@@ -70,7 +70,6 @@
             - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
@@ -135,7 +134,6 @@
     - type: ChamberMagazineAmmoProvider
       soundRack:
         path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
-    - type: AmmoCounter
     - type: ItemSlots
       slots:
         gun_magazine:
@@ -158,9 +156,14 @@
       containers:
         gun_magazine: !type:ContainerSlot
         gun_chamber: !type:ContainerSlot
-    - type: Appearance
-    - type: StaticPrice
-      price: 10000
-    - type: UseDelay
-      delay: 1
-    # end region starlight
+    #- type: BallisticAmmoProvider
+    #  whitelist:
+    #    tags:
+    #    - CartridgeLightRifle
+    #  capacity: 100
+    #  proto: CartridgeLightRifleSP
+    #  cycleable: false # No synthesizing ammo for your syndicate masters.
+    #- type: BallisticAmmoSelfRefiller # Starlight - disable automatic ammo synthesis
+    #  fireCost: 100
+    #  affectedByEmp: true
+    - type: AmmoCounter

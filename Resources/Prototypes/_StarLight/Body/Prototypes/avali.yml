@@ -8,7 +8,7 @@
       connections:
       - torso
       organs:
-        brain: OrganHumanBrain
+        brain: OrganAvaliBrain
         eyes: OrganAvaliEyes
         tongue: OrganHumanTongue
         eye_implant: null

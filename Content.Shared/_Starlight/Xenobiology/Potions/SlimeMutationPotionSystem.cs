@@ -18,7 +18,7 @@ public sealed class SlimeMutationPotionSystem : EntitySystem
         if (!args.Target.HasValue || !args.CanReach) return;
         if (!_entityManager.TryGetComponent<SlimeComponent>(args.Target.Value,
                 out var slimeComponent)) return;
-        if (slimeComponent.MutationChance >= 0) return;
+        if (slimeComponent.MutationChance >= 1) return;
         slimeComponent.MutationChance = FixedPoint2.Min(1, slimeComponent.MutationChance + 0.12);
         PredictedQueueDel(args.Used);
         args.Handled = true;

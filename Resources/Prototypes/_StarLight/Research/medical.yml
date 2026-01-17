@@ -10,13 +10,14 @@
   tier: 1
   cost: 4000
   recipeUnlocks:
-    - BoneSetter
-    - BoneGel
-    - Scalpel
-    - Retractor
-    - Cautery
-    - Saw
-    - Hemostat
+  - BoneSetter
+  - BoneGel
+  - Scalpel
+  - Retractor
+  - Cautery
+  - Saw
+  - Hemostat
+  - BorgModuleSurgical #Starlight
   radioChannels:
   - Medical
 
@@ -30,14 +31,16 @@
   tier: 1
   cost: 4000
   recipeUnlocks:
-    - LeftArmCyber
-    - RightArmCyber
-    - LeftHandCyber
-    - RightHandCyber
-    - LeftLegCyber
-    - RightLegCyber
-    - LeftFootCyber
-    - RightFootCyber
+  - LeftArmCyber
+  - RightArmCyber
+  - LeftHandCyber
+  - RightHandCyber
+  - LeftLegCyber
+  - RightLegCyber
+  - LeftFootCyber
+  - RightFootCyber
+  technologyPrerequisites:
+  - SurgeryTech
   radioChannels:
   - Medical
 
@@ -51,13 +54,13 @@
   tier: 1
   cost: 4000
   recipeUnlocks:
-    - BudgetCyberEyes
-    - BudgetCyberTongue
-    - BudgetCyberLiver
-    - BudgetCyberStomach
-    - BudgetCyberKidneys
+  - BudgetCyberEyes
+  - BudgetCyberTongue
+  - BudgetCyberLiver
+  - BudgetCyberStomach
+  - BudgetCyberKidneys
   technologyPrerequisites:
-    - SurgeryTech
+  - SurgeryTech
   radioChannels:
   - Medical
 
@@ -73,14 +76,14 @@
   tier: 2
   cost: 7000
   recipeUnlocks:
-    - Drill
-    - SawAdvanced
-    - ScalpelAdvanced
-    - BoneSetterAdvanced
-    - RetractorAdvanced
-    - HemostatAdvanced
+  - Drill
+  - SawAdvanced
+  - ScalpelAdvanced
+  - BoneSetterAdvanced
+  - RetractorAdvanced
+  - HemostatAdvanced
   technologyPrerequisites:
-    - SurgeryTech
+  - SurgeryTech
   radioChannels:
   - Medical
 
@@ -94,20 +97,20 @@
   tier: 2
   cost: 10000
   recipeUnlocks:
-    - EyeImplantWelding
-    - EyeImplantMedical
-    - EyeImplantChemistry
-    - EyeImplantDiagnostic
-    - EyeImplantSecurity
-    - HandImplantInsulated
-    - HandImplantThrusters
-    - HandImplantForensics
-    - HandImplantClaws
-    - BrainImplantComms
-    - BrainImplantTranslator
-    - CyberRebreather # For now i will be lazy and put it here, not sure if i can excuse making a new pack for just 1 recipe
+  - EyeImplantWelding
+  - EyeImplantMedical
+  - EyeImplantChemistry
+  - EyeImplantDiagnostic
+  - EyeImplantSecurity
+  - HandImplantInsulated
+  - HandImplantThrusters
+  - HandImplantForensics
+  - HandImplantClaws
+  - BrainImplantComms
+  - BrainImplantTranslator
+  - CyberRebreather # For now i will be lazy and put it here, not sure if i can excuse making a new pack for just 1 recipe
   technologyPrerequisites:
-    - CyberLimbsTech
+  - CyberLimbsTech
   radioChannels:
   - Security
   - Medical
@@ -145,8 +148,6 @@
   recipeUnlocks:
   - BorgModuleAdvancedChemical
 
-# Tier 3
-
 - type: technology
   id: MedicalCyberLimbsTech
   name: research-technology-medical-cyberlimbs
@@ -154,17 +155,19 @@
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: autoinjector
   discipline: Biochemical
-  tier: 3
-  cost: 9320
+  tier: 2
+  cost: 5000
   recipeUnlocks:
-    - LeftArmCyberReaper
-    - RightArmCyberReaper
-    - LeftArmCyberAngel
-    - RightArmCyberAngel
+  - LeftArmCyberReaper
+  - RightArmCyberReaper
+  - LeftArmCyberAngel
+  - RightArmCyberAngel
   technologyPrerequisites:
-    - CyberLimbsTech
+  - CyberLimbsTech
   radioChannels:
   - Medical
+
+# Tier 3
 
 - type: technology
   id: CyberEyeNightVision
@@ -228,5 +231,7 @@
   - CloningConsoleComputerCircuitboard 
   - CloningPodMachineCircuitboard 
   - MedicalScannerMachineCircuitboard
+  technologyPrerequisites:
+  - MeatManipulation # you need the biomass reclaimer after all
   radioChannels:
   - Medical

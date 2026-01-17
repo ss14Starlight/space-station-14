@@ -31,7 +31,7 @@
             targetMoveKey: TargetCoordinates
             targetDamageType: Cellular
             targetDamageThreshold: 100
-            only_target: Biological
+            onlyTarget: Biological
             range: 4
           preconditions:
             - !type:HungryPrecondition
