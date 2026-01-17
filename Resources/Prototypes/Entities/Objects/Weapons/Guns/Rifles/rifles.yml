@@ -66,8 +66,18 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # Starlight
   - type: StaticPrice
     price: 500
+  # Starlight
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPin
+  - type: FiringPinHolder
+    supportedPins: [ Rifle, GunUpgrade ]
+  # Starlight
+  
 
 - type: entity
   name: AKMS
@@ -111,6 +121,7 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -154,6 +165,7 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -200,6 +212,7 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -294,6 +307,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -343,6 +357,14 @@
   - type: PacifismAllowedGun
   - type: StaticPrice
     price: 100
+  # starlight start
+  - type: FiringPinHolder
+    supportedPins: [ Makeshift ]
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinMakeshift
+  # starlight end
 
 - type: entity
   name: ForceableFollow AKMS

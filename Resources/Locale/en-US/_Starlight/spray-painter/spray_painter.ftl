@@ -13,3 +13,11 @@ spray-painter-style-airlockglass-paramedic = Paramedic
 spray-painter-style-airlockglass-salvagemining = Salvage/Mining
 spray-painter-style-airlockglass-miningcargo = Mining/Cargo
 spray-painter-style-airlockglass-retrosalvagemining = Retro Salvage/Mining
+
+# Lockers
+spray-painter-style-locker-magistrate = Magistrate
+spray-painter-style-locker-iaa = Internal affairs agent
+spray-painter-style-locker-bso = Officer "Blue Shield"
+spray-painter-style-locker-salvagelead = Salvage Lead
+spray-painter-style-locker-mining = Mining
+spray-painter-style-locker-warden = Warden
