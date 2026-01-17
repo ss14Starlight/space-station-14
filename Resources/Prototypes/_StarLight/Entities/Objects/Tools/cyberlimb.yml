@@ -759,6 +759,8 @@
     - type: Tag
       tags:
         - CyberHandItem
+        - BotanyHoe
+        - Hoe
 
 - type: entity
   name: plant clippers cybernetic arm attachment
@@ -772,6 +774,7 @@
     - type: Tag
       tags:
         - CyberHandItem
+        - PlantSampleTaker
 
 - type: entity
   name: scythe cybernetic arm attachment
@@ -798,6 +801,7 @@
     - type: Tag
       tags:
         - CyberHandItem
+        - BotanyHatchet
 
 - type: entity
   name: spade cybernetic arm attachment
@@ -811,6 +815,7 @@
     - type: Tag
       tags:
         - CyberHandItem
+        - BotanyShovel
 
 
 - type: entity

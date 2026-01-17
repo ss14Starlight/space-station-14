@@ -159,9 +159,11 @@
   - CableDetStack1
   - EmptyDetonator
   - ExplosivePayload
+  - GrenadeBaton
   - GrenadeBlast
   - GrenadeEMP
   - GrenadeFlash
+#  - GrenadeFrag
   - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe
