@@ -27,6 +27,14 @@
 #
 
 - type: latheRecipePack
+  id: StarlightAutomendersDynamic
+  recipes:
+  - AutoMenderBrute
+  - AutoMenderBurn
+
+#
+
+- type: latheRecipePack
   id: StarlightCyberlimbDynamic
   recipes:
   - LeftArmCyber

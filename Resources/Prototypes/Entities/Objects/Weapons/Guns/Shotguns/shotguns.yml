@@ -52,8 +52,17 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+      firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 500
+  # starlight start
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPin
+  - type: FiringPinHolder
+    supportedPins: [ Rifle, GunUpgrade ]
+  # starlight end
 
 - type: entity
   parent: BaseWeaponShotgunAny
@@ -109,6 +118,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
   - type: ChamberMagazineAmmoProvider
   - type: MagazineVisuals
     magState: mag
