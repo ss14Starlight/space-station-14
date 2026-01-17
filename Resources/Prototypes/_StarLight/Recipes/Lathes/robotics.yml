@@ -65,3 +65,9 @@
   result: DroneShell
   materials:
     Steel: 200
+
+# Medical
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleSurgical
+  result: BorgModuleSurgical

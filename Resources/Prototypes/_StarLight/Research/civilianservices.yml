@@ -5,8 +5,8 @@
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: wrench
   discipline: CivilianServices
-  tier: 2
-  cost: 4000
+  tier: 1
+  cost: 5000
   recipeUnlocks:
     - LeftArmCyberPersephone
     - RightArmCyberPersephone
