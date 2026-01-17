@@ -539,70 +539,13 @@ namespace Content.Client.Lobby.UI
             UpdateSpeciesGuidebookIcon();
             IsDirty = false;
 
-            //🌟Starlight🌟
-            _voices = _prototypeManager
-                .EnumeratePrototypes<VoicePrototype>()
-                .Where(o => !o.Silicon)
-                .ToList();
-
-            VoiceButton.OnItemSelected += args =>
-            {
-                VoiceButton.SelectId(args.Id);
-                Profile = Profile?.WithVoice(_voices[args.Id].ID);
-                IsDirty = true;
-            };
-            VoicePreviewButton.OnPressed +=
-                _ => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.Voice ?? "");
-
-            // 🌟Starlight🌟 start
-            _siliconVoices = _prototypeManager
-                .EnumeratePrototypes<VoicePrototype>()
-                .Where(o => o.Silicon)
-                .ToList();
-
-            SiliconVoiceButton.OnItemSelected += args =>
-            {
-                SiliconVoiceButton.SelectId(args.Id);
-                Profile = Profile?.WithSiliconVoice(_siliconVoices[args.Id].ID);
-                IsDirty = true;
-            };
-            SiliconVoicePreviewButton.OnPressed +=
-                _ => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.SiliconVoice ?? "");
-
-            SetupTabs();
             // Cosmatic Drift Record System-start
             _recordsTab = CreateRecordEditorTab(); // Instantiate the CD record editor UI
             // Cosmatic Drift Record System-end
             SetupInfoEditors();
             RefreshCharacterInfo();
+            SetupTabs();
             // 🌟Starlight🌟 end
-        }
-        private void UpdateVoicesControls()
-        {
-            if (Profile is null)
-                return;
-
-            VoiceButton.Clear();
-
-            for (var i = 0; i < _voices.Count; i++)
-            {
-                var voice = _voices[i];
-
-                VoiceButton.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", i);
-            }
-
-            if (string.IsNullOrEmpty(Profile.Voice))
-            {
-                var available = _voices.ToArray();
-                if (available.Length > 0)
-                {
-                    var index = new Random().Next(0, available.Length);
-                    Profile.Voice = available[index].ID;
-                }
-            }
-            var voiceChoiceId = _voices.FindIndex(x => x.ID == Profile.Voice);
-            if (voiceChoiceId != -1)
-                VoiceButton.TrySelectId(voiceChoiceId);
         }
         // 🌟Starlight🌟 Start
 
@@ -633,36 +576,6 @@ namespace Content.Client.Lobby.UI
             return recordEditor;
         }
         // Cosmatic Drift Record System-end
-
-        private void UpdateSiliconVoicesControls()
-        {
-            if (Profile is null)
-                return;
-
-            SiliconVoiceButton.Clear();
-
-            for (var i = 0; i < _siliconVoices.Count; i++)
-            {
-                var voice = _siliconVoices[i];
-
-                SiliconVoiceButton.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", i);
-            }
-
-            if (string.IsNullOrEmpty(Profile.SiliconVoice))
-            {
-                var available = _siliconVoices.ToArray();
-                if (available.Length > 0)
-                {
-                    var index = new Random().Next(0, available.Length);
-                    Profile.SiliconVoice = available[index].ID;
-                }
-            }
-
-            var siliconVoiceChoiceId = _siliconVoices.FindIndex(x => x.ID == Profile.SiliconVoice);
-            if (siliconVoiceChoiceId != -1)
-                SiliconVoiceButton.TrySelectId(siliconVoiceChoiceId);
-        }
-
 
         private void SetupInfoEditors()
         {
@@ -1006,10 +919,7 @@ namespace Content.Client.Lobby.UI
             UpdateHairPickers();
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
-            UpdateVoicesControls();
-            UpdateSiliconVoicesControls(); // 🌟Starlight🌟
             UpdateCybernetics(); // Starlight
-
             RefreshAntags();
             RefreshJobs();
             RefreshLoadouts();
@@ -1504,8 +1414,6 @@ namespace Content.Client.Lobby.UI
             UpdateGenderControls();
             Markings.SetSex(newSex);
             ReloadPreview();
-            UpdateVoicesControls();
-            UpdateSiliconVoicesControls(); // 🌟Starlight🌟
         }
 
         private void SetGender(Gender newGender)
