@@ -40,8 +40,8 @@
     - Lawyer
     - Cargo
     - Atmospherics
-    - Cargo
     - Medical
+    - IAA
     - BlueShield
     - Surgery
     - Paramedic
@@ -54,7 +54,7 @@
 - type: startingGear
   id: BlueShieldGear
   equipment:
-    head: ClothingHeadHatBeretBlueShield
+    #head: ClothingHeadHatBeretBlueShield
     id: BlueShieldPDA
     ears: ClothingHeadsetAltBSO # Starlight
     belt: ClothingBeltBlueShieldWebbingFilled

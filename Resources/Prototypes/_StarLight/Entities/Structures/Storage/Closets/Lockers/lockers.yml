@@ -55,6 +55,7 @@
     access: [["Brigmedic"]]
 
 # NanoTrasen Representives
+#BSO
 - type: entity
   id: LockerBlueshield
   parent: LockerBaseSecure
@@ -69,6 +70,43 @@
     stateDoorClosed: bssecure_door
   - type: AccessReader
     access: [["BlueShield"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+#Magistrate
+- type: entity
+  id: LockerMagistrate
+  parent: LockerBaseSecure
+  name: magistrate's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: magi
+    stateDoorOpen: magi_open
+    stateDoorClosed: magi_door
+  - type: AccessReader
+    access: [["Magistrate"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+#Law
+#IAA
+- type: entity
+  id: LockerIAA
+  parent: LockerBaseSecure
+  name: internal affairs agent's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: iaa
+    stateDoorOpen: iaa_open
+    stateDoorClosed: iaa_door
+  - type: AccessReader
+    access: [["IAA"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 

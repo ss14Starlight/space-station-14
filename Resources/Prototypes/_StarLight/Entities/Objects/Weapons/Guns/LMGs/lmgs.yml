@@ -48,6 +48,17 @@
         whitelist:
           tags:
             - LightRifleHeavy
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinSmartLMG
+  - type: FiringPinHolder
+    supportedPins: [ SmartLMG ]
 
 - type: entity
   name: DP-28 LMG
