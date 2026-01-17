@@ -57,3 +57,24 @@
   sprite:
     sprite: _Starlight/Objects/Misc/plutonium_core.rsi
     state: icon
+
+- type: stealTargetGroup
+  id: FiringPin
+  name: steal-target-groups-firing-pin
+  sprite:
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: rifle
+
+- type: stealTargetGroup
+  id: FiringPinAdvancedLaser
+  name: steal-target-groups-firing-pin-advanced-laser
+  sprite:
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: adv-laser
+
+- type: stealTargetGroup
+  id: FiringPinSmartLMG
+  name: steal-target-groups-firing-pin-smart-lmg
+  sprite:
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: lmg

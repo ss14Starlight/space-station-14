@@ -1,0 +1,21 @@
+#Uniforms
+- type: loadout
+  id: MagistrateJumpsuit
+  equipment:
+    jumpsuit: MagistrateUniformSuit
+
+- type: loadout
+  id: MagistrateJumpskirt
+  equipment:
+    jumpsuit: MagistrateUniformSkirt
+
+#Eyewear
+- type: loadout
+  id: MagistrateSecGlasses
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+
+- type: loadout
+  id: MagistrateSkillGlasses
+  equipment:
+    eyes: ClothingEyesSunGlassesHudSkill

@@ -120,7 +120,7 @@
 - type: entity
   parent: PlushieGhost
   id: PlushieGhostRevenant
-  categories: [ DoNotMap ]
+  #categories: [ DoNotMap ] #Starlight, allow this on maps
   name: revenant soft toy
   description: So soft it almost makes you want to take a nap...
   components:

@@ -128,5 +128,5 @@
         volume: -10
     activatedDamage:
       types:
-        Blunt: 8
-        Shock: 16
+        # Blunt: 8 # Starlight removal
+        Shock: 10 # Starlight change: 16 -> 10
