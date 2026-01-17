@@ -6,16 +6,16 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobWarden
-      time: 15h
+      time: 54000 # 15 hrs
     - !type:RoleTimeRequirement
       role: JobHeadOfSecurity
-      time: 15h
+      time: 54000 # 15 hrs
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 20h
+      time: 72000 # 20 hrs
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 50h
+      time: 180000 # 50 hrs
 
   startingGear: DrillInstructorGear
   icon: "JobIconDrillInstructor"
