@@ -1,3 +1,4 @@
+using Content.Server.Administration.Commands;
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
@@ -42,6 +43,15 @@ namespace Content.Server.GameTicking.Commands
                 status != PlayerGameStatus.JoinedGame)
             {
                 ticker.JoinAsObserver(player);
+                // Starlight begin
+                // "Admin Observe" sends player straight into aghost
+                if (isAdminCommand && _adminManager.HasAdminFlag(player, AdminFlags.Moderator))
+                {
+                    var aghostCommand = new AGhostCommand();
+                    IoCManager.InjectDependencies(aghostCommand);
+                    aghostCommand.Execute(shell, string.Empty, []);
+                }
+                // Starlight end
             }
             else
             {

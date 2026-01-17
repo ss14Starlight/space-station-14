@@ -3,6 +3,7 @@
   mapName: 'Fland Installation'
   mapPath: /Maps/_Starlight/Stations/Fland.yml
   minPlayers: 65
+  maxPlayers: 350
   stations:
     StarlightFland:
       stationProto: StandardNanotrasenStation

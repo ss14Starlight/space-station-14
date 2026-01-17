@@ -1,0 +1,8 @@
+- type: antag
+  id: RatKing
+  name: ghost-role-information-rat-king-name
+  antagonist: true
+  setPreference: false
+  objective: never-shown
+  playTimeTracker: AntagRatKing
+

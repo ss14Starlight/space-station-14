@@ -16,6 +16,3 @@ spellbook-event-mana-blade-description = Channel your power into your hand and c
 
 spellbook-icestorm-name = Ice Storm
 spellbook-icestorm-desc = Unleash a freezing blast of ice that chills everything it touches to the bone!
-
-spellbook-icestorm-name = Ice Storm
-spellbook-icestorm-desc = Unleash a freezing blast of ice that chills everything it touches to the bone!

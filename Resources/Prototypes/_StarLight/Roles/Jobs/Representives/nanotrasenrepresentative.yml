@@ -40,8 +40,8 @@
     - Brig
     - Cargo
     - Atmospherics
-    - Cargo
     - Medical
+    - IAA
     - Ntrep
     - Brigmedic
     - Surgery
@@ -57,7 +57,7 @@
   id: NanoTrasenRepresentativeGear
   equipment:
     #shoes: ClothingShoesBootsLaceup
-    head: ClothingHeadHatCapNtrep
+    #head: ClothingHeadHatCapNtrep
     id: NanoTrasenRepresentativePDA
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterCoatNtrep

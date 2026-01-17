@@ -58,3 +58,9 @@
   id: SecurityBomber
   equipment:
     outerClothing: ClothingOuterSecurityBomber
+
+#Eyewear
+- type: loadout
+  id: SecurityGlassesPrescription
+  equipment:
+    eyes: ClothingEyeGlassesSecurityPrescription

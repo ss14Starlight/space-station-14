@@ -26,6 +26,7 @@
   - type: ObserverRole
   - type: MindRole
     sortWeight: -10
+    fallbackPlayTimeTracker: Observer
 
 #Ghost Roles
 - type: entity
@@ -346,4 +347,14 @@
     subtype: role-subtype-zombie
   - type: ZombieRole
 
-#TODO: add Upstream's Changeling
+#TODO: Move the below to a _Starlight folder and add Upstream's Changeling
+# Changeling
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleChangeling
+  name: Changeling Role
+  components:
+  - type: MindRole
+    antagPrototype: Changeling
+  - type: SLChangelingRole

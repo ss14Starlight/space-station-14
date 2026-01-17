@@ -1,0 +1,99 @@
+- type: entityTable
+  id: MaintsMonstersBasic
+  table: !type:GroupSelector
+    children:
+    # harmless critters (except for the radioactive mouse)
+    - !type:NestedSelector
+      tableId: SmallCritterEntityTable
+    # one or more larger harmless critters
+    - !type:GroupSelector
+      children:
+      - !type:AllSelector
+        children:
+        - id: MobChicken
+        - id: MobChicken
+        - id: MobChicken
+      - !type:AllSelector
+        children:
+        - id: MobDuckMallard
+        - id: MobDuckMallard
+        - id: MobDuckMallard
+      - !type:AllSelector
+        children:
+        - id: MobMoproachHat
+        - id: MobMoproach
+        - id: MobMoproach
+      - !type:AllSelector
+        children:
+        - id: MobHamster
+        - id: MobHamster
+        - id: MobHamster
+      - id: MobCow
+      - id: MobPig
+      - id: MobReindeerBuck
+      - id: MobReindeerDoe
+      - id: MobCatSpace
+      - id: MobEmotionalSupportScurret
+      - id: MobKangaroo
+      - id: MobBoxingKangaroo
+      - id: MobParrot
+      - id: MobCorgiSmart
+      - id: MobFox
+      - id: MobFerret
+      - id: MobMonkey
+      - id: MobKobold
+    # minor aggressive mobs
+    - !type:GroupSelector
+      children:
+      - !type:AllSelector
+        children:
+        - id: MobDinosaurCompy
+        - id: MobDinosaurCompy
+        - id: MobDinosaurCompy
+        - id: MobDinosaurCompy
+      - id: MobGorilla
+      # Hostile vent critters
+      - id: MobAdultSlimesBlueAngry
+      - id: MobAdultSlimesGreenAngry
+      - id: MobAdultSlimesYellowAngry
+      - id: MobPurpleSnake
+      - id: MobSmallPurpleSnake
+      - id: MobCobraSpace
+      - id: MobGiantSpiderAngry
+      - id: MobClownSpider
+    # space aggressive mobs
+    - !type:GroupSelector
+      children:
+      - id: MobKangarooSpace
+      - id: MobSpiderSpace
+      - id: MobCobraSpace
+      - id: MobBearSpace
+      - id: MobBearSoviet
+      - id: MobGoliath
+      - id: MobCarp
+    # reagent slimes
+    - !type:GroupSelector
+      children:
+      - id: ReagentSlime
+      - id: ReagentSlimeBeer
+      #- id: ReagentSlimeNocturne # Disabled this one because it's a lot of a syndie chem
+      - id: ReagentSlimeTHC
+      - id: ReagentSlimeBicaridine
+      - id: ReagentSlimeToxin
+      - id: ReagentSlimeNapalm
+      - id: ReagentSlimeOmnizine
+      - id: ReagentSlimeMuteToxin
+      - id: ReagentSlimeNorepinephricAcid
+      - id: ReagentSlimeEphedrine
+      - id: ReagentSlimeRobustHarvest
+    # xenos
+    - !type:GroupSelector
+      children:
+      - id: MobXeno
+      - id: MobXenoPraetorian
+      - id: MobXenoDrone
+      - id: MobXenoQueen
+      - id: MobXenoRavager
+      - id: MobXenoRunner
+      - id: MobXenoRouny
+      - id: MobXenoSpitter
