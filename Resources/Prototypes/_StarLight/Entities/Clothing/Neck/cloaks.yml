@@ -275,7 +275,7 @@
     description: ghost-role-information-horrific-tie-description
     rules: ghost-role-information-horrific-tie-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleNecktie
     raffle:
       settings: default
   - type: GhostTakeoverAvailable

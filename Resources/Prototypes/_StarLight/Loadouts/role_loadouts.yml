@@ -18,6 +18,8 @@
 - type: roleLoadout
   id: JobMagistrate
   groups:
+  - MagistrateJumpsuit
+  - MagistrateEyewear
   - CommonBackpack
   - MagistrateShoes
   - Survival

@@ -50,6 +50,7 @@ using Content.Shared.Tabletop.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared._Starlight.Gnome; // starlight
 using Content.Shared.Trigger; // Starlight
 using Content.Shared.Trigger.Components.Effects; // Starlight
 using Robust.Shared.Map;
@@ -641,6 +642,22 @@ public sealed partial class AdminVerbSystem
                 Message = string.Join(": ", cluwneName, Loc.GetString("admin-smite-cluwne-description"))
             };
             args.Verbs.Add(cluwne);
+
+            // starlight start
+            var gnomeName = Loc.GetString("admin-smite-gnome-name").ToLowerInvariant();
+            Verb gnome = new()
+            {
+                Text = gnomeName,
+                Category = VerbCategory.Smite,
+
+                Icon = new SpriteSpecifier.Rsi(new("_Starlight/Objects/Fun/Plushies/gnome_plushie.rsi"), "icon"),
+
+                Act = () => EnsureComp<GnomeComponent>(args.Target),
+                Impact = LogImpact.Extreme,
+                Message = string.Join(": ", gnomeName, Loc.GetString("admin-smite-gnome-description"))
+            };
+            args.Verbs.Add(gnome);
+            // starlight end
 
             var maidenName = Loc.GetString("admin-smite-maid-name").ToLowerInvariant();
             Verb maiden = new()
