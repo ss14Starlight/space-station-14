@@ -57,6 +57,7 @@
   - PKAUpgradeFireRate
   - WeaponTetherGun
   - WeaponGauntletGorilla
+  - FiringPinExpedition # Starlight
 
 # Only contains parts for making basic modular grenades, no actual explosives
 - type: latheRecipePack
