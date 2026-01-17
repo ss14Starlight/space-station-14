@@ -12,7 +12,7 @@
   <GuideEntityEmbed Entity="MobDiona" Caption="Diona"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="MobVulpkanin" Caption="Vulpkanin"/>
+  <GuideEntityEmbed Entity="FoodBakedVulpkaninPlate" Caption="Vulpkanin"/>
   <GuideEntityEmbed Entity="MobCyclorite" Caption="Cyclorite"/>
   <GuideEntityEmbed Entity="MobVox" Caption="Vox"/>
   <GuideEntityEmbed Entity="MobThaven" Caption="Thaven"/>

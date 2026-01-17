@@ -30,7 +30,6 @@
     requiredLegs: 2
   - type:  HumanoidAppearance
     species: Felionoid
-  - type: OwOAccent
   - type: MobThresholds
     thresholds:
       0: Alive
