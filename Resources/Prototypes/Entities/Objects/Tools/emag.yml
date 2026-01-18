@@ -7,6 +7,7 @@
   components:
   - type: Emag
     accessGroups: [Syndicate] # Starlight
+    channelAdd: [Syndicate] # Starlight
   - type: Sprite
     sprite: Objects/Tools/emag.rsi
     state: icon
