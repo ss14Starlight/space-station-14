@@ -26740,5 +26740,16 @@ Entries:
   id: 285700
   time: '2026-01-18T13:04:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2857
+- author: SnappingOpossum
+  changes:
+  - message: Redone happy honk meals are back, containing a toy, drink, burger, donk
+      pocket, and side once more.
+    type: Add
+  - message: Crayon boxes in current and future happy honk meals have been replaced
+      with magic crayons.
+    type: Tweak
+  id: 286200
+  time: '2026-01-18T13:08:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2862
 Order: -1
 
