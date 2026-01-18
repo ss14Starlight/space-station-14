@@ -4,6 +4,9 @@
 - type: Tag # Funky atmos - metal hydrogen
   id: MetalHydrogenArmor
 
+- type: Tag
+  id: FragileImplant
+
 - type: Tag # Funky atmos - /tg/ gases
   id: SheetUranium # Starlight Edit: UraniumSheet -> SheetUranium
 

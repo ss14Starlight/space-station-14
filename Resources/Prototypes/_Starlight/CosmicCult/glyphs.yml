@@ -85,10 +85,10 @@
       components:
       - PortableScrubber
   - type: CosmicGlyph
-    requiredCultists: 1
+    requiredCultists: 4
     activationDamage:
       types:
-        Asphyxiation: 25
+        Asphyxiation: 50
   - type: CosmicCultExamine
     cultistText: cosmic-examine-glyph-cessation
 

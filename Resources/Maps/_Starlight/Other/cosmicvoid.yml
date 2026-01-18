@@ -37,7 +37,7 @@ entities:
     - type: Broadphase
     - type: OccluderTree
     - type: Parallax
-      parallax: CosmicParallax
+      parallax: CosmicFinaleParallax
   - uid: 2
     components:
     - type: MetaData

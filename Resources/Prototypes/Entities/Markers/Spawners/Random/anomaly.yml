@@ -73,5 +73,6 @@
     - AnomalyTrapGravity
     - AnomalyTrapTech
     - AnomalyTrapRock
+    - CosmicAnomalyTrap # Funky
     #- AnomalyTrapSanta
     chance: 1

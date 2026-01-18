@@ -28,9 +28,9 @@ public sealed class CosmicReturnSystem : EntitySystem
     {
         _damageable.TryChangeDamage(args.User, uid.Comp.ProjectionDamage, true);
         var projectionEnt = Spawn(uid.Comp.SpawnProjection, Transform(uid).Coordinates);
+        EnsureComp<CosmicBlankComponent>(args.User);
         if (_mind.TryGetMind(args.User, out var mindId, out var _))
             _mind.TransferTo(mindId, projectionEnt);
-        EnsureComp<CosmicBlankComponent>(args.User);
         EnsureComp<UncryoableComponent>(args.User); //Starlight: autocryo fix
         EnsureComp<CosmicAstralBodyComponent>(projectionEnt, out var astralComp);
         var mind = Comp<MindComponent>(mindId);

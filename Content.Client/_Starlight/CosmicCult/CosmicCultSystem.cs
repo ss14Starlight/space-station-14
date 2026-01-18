@@ -62,12 +62,14 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         if (args.Alert.ID != ent.Comp.EntropyAlert)
             return;
         var entropy = Math.Clamp(ent.Comp.EntropyStored, 0, 14);
+        var sprite = args.SpriteViewEnt.Comp;
         _sprite.LayerSetRsiState(args.SpriteViewEnt.Owner, AlertVisualLayers.Base, $"base{entropy}");
         _sprite.LayerSetRsiState(args.SpriteViewEnt.Owner, CultAlertVisualLayers.Counter, $"num{entropy}");
     }
     #endregion
 
     #region Layer Additions
+
     private void OnCosmicStarMarkAdded(Entity<CosmicStarMarkComponent> uid, ref ComponentStartup args)
     {
         if (_sprite.LayerMapTryGet(uid.Owner, CosmicRevealedKey.Key, out _, false))
@@ -101,11 +103,17 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     #region Layer Removals
     private void OnCosmicStarMarkRemoved(Entity<CosmicStarMarkComponent> uid, ref ComponentShutdown args)
     {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
         _sprite.RemoveLayer(uid.Owner, CosmicRevealedKey.Key);
     }
 
     private void OnCosmicImpositionRemoved(Entity<CosmicImposingComponent> uid, ref ComponentShutdown args)
     {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
         _sprite.RemoveLayer(uid.Owner, CosmicImposingKey.Key);
     }
     #endregion

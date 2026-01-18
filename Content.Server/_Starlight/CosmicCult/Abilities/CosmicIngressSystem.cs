@@ -5,7 +5,10 @@ using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.NullSpace;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
+using Content.Shared.Humanoid;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -17,12 +20,16 @@ public sealed class CosmicIngressSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    private readonly SoundSpecifier _ingressSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_ingress.ogg");
+    private readonly EntProtoId _genericVFX = "CosmicGenericVFX";
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<CosmicCultComponent, EventCosmicIngress>(OnCosmicIngress);
+
+        SubscribeLocalEvent<HumanoidAppearanceComponent, EventCosmicAnomalyIngress>(OnAnomalyIngress);
 
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusIngress>(OnColossusIngress);
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusIngressDoAfter>(OnColossusIngressDoAfter);
@@ -48,6 +55,18 @@ public sealed class CosmicIngressSystem : EntitySystem
         _audio.PlayPvs(uid.Comp.IngressSFX, uid);
         Spawn(uid.Comp.AbsorbVFX, Transform(target).Coordinates);
         _cult.MalignEcho(uid);
+    }
+
+    private void OnAnomalyIngress(Entity<HumanoidAppearanceComponent> uid, ref EventCosmicAnomalyIngress args)
+    {
+        var target = args.Target;
+        if (args.Handled)
+            return;
+        args.Handled = true;
+
+        _door.StartOpening(target);
+        _audio.PlayPvs(_ingressSFX, uid);
+        Spawn(_genericVFX, Transform(target).Coordinates);
     }
 
     private void OnColossusIngress(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusIngress args)

@@ -4,6 +4,9 @@ using Content.Server.Popups;
 using Content.Shared.Radio.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Mind;
+using Content.Shared.Actions;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Content.Shared.Radio;
@@ -32,8 +35,8 @@ public sealed class CosmicFragmentationSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly LanguageSystem _languageSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-
-    private ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
     public override void Initialize()
     {
@@ -145,6 +148,7 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         var secs = chantryComponent.EventTime.Seconds;
         _antag.SendBriefing(wisp, Loc.GetString("cosmiccult-silicon-chantry-briefing", ("minutesandseconds", $"{mins} minutes and {secs} seconds")), Color.FromHex("#4cabb3"), null);
         args.Succeeded = true;
+        _actions.RemoveAction(args.User, args.User.Comp.CosmicFragmentationActionEntity);
     }
 
     private void OnFragmentAi(Entity<SiliconLawUpdaterComponent> ent, ref MalignFragmentationEvent args)
@@ -156,6 +160,7 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         _container.EmptyContainer(container, true);
         _container.Insert(lawboard, container, Transform(args.Target), true);
         args.Succeeded = true;
+        _actions.RemoveAction(args.User, args.User.Comp.CosmicFragmentationActionEntity);
     }
 
     private void OnLawInserted(ref AILawUpdatedEvent args)
@@ -163,10 +168,14 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         if (args.Lawset.Id == "CosmicCultLaws")
         {
             _languageSystem.AddLanguage(args.Target, _cultLanguage);
+            radio.Channels.Add(_cultRadio);
+            transmitter.Channels.Add(_cultRadio);
             _antag.SendBriefing(args.Target, Loc.GetString("cosmiccult-silicon-subverted-briefing"), Color.FromHex("#4cabb3"), null);
         }
         else
             _languageSystem.RemoveLanguage(args.Target, _cultLanguage);
+            radio.Channels.Remove(_cultRadio);
+            transmitter.Channels.Remove(_cultRadio);
     }
 }
 

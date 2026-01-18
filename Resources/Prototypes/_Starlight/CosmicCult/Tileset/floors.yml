@@ -135,9 +135,6 @@
   - type: IconSmooth
     key: decay
     base: decay
-  - type: Tag
-    tags:
-      - HideContextMenu
   - type: TileEmission
     color: "#42a4ae"
 

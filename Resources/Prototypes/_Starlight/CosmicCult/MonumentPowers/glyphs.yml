@@ -46,7 +46,7 @@
     sprite: _Starlight/CosmicCult/Objects/glyphs.rsi
     state: cessation
   entity: CosmicGlyphCessation
-  tier: 3
+  tier: 2
 
 - type: glyph
   id: ccGlyphTruth

@@ -6,7 +6,6 @@ using Content.Shared._Starlight.CosmicCult;
 using Content.Shared.Damage;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
@@ -15,6 +14,7 @@ using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Mind;
 using Content.Shared._Starlight.NullSpace;
+using Content.Shared.Changeling;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -72,6 +72,11 @@ public sealed class CosmicConversionSystem : EntitySystem
             else if (uid.Comp.NegateProtection == false && HasComp<BibleUserComponent>(target))
             {
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-chaplain"), uid, args.User);
+                args.Cancel();
+            }
+            else if (HasComp<ChangelingComponent>(target))
+            {
+                _popup.PopupEntity(Loc.GetString("cult-glyph-target-otherantag"), uid, args.User);
                 args.Cancel();
             }
             else if (uid.Comp.NegateProtection == false && HasComp<MindShieldComponent>(target))

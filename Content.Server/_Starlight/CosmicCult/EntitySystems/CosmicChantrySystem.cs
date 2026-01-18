@@ -92,9 +92,20 @@ public sealed class CosmicChantrySystem : EntitySystem
         var comp = ent.Comp;
         if (!_mind.TryGetMind(comp.InternalVictim, out var mindId, out var mind))
             return;
-
-        mind.PreventGhosting = false;
-        _mind.TransferTo(mindId, comp.VictimBody);
-        QueueDel(comp.InternalVictim);
+        if (TerminatingOrDeleted(comp.VictimBody))
+        {
+            var tgtpos = Transform(comp.InternalVictim).Coordinates;
+            var fallbackEnt = Spawn(comp.FallbackBrain, tgtpos);
+            Spawn(comp.FallbackVFX, tgtpos);
+            mind.PreventGhosting = false;
+            _mind.TransferTo(mindId, fallbackEnt);
+            QueueDel(comp.InternalVictim);
+        }
+        else
+        {
+            mind.PreventGhosting = false;
+            _mind.TransferTo(mindId, comp.VictimBody);
+            QueueDel(comp.InternalVictim);
+        }
     }
 }

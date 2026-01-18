@@ -6,7 +6,7 @@ using Content.Shared.Alert;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
-using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC;
 using Content.Shared.Popups;
@@ -15,11 +15,14 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Content.Shared.Light.Components;
 using Content.Shared._Starlight.NullSpace;
+using Content.Shared.SSDIndicator;
+using Content.Server._Starlight.CosmicCult.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
 public sealed class CosmicSiphonSystem : EntitySystem
 {
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly CosmicCultRuleSystem _cultRule = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -40,25 +43,30 @@ public sealed class CosmicSiphonSystem : EntitySystem
 
     private void OnCosmicSiphon(Entity<CosmicCultComponent> uid, ref EventCosmicSiphon args)
     {
+        if (args.Handled)
+            return;
+
         foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
             if (HasComp<NullSpaceBlockerComponent>(entity))
             {
                 _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
                 return;
             }
-
         if (uid.Comp.EntropyStored >= uid.Comp.EntropyStoredCap)
         {
             _popup.PopupEntity(Loc.GetString("cosmicability-siphon-full"), uid, uid);
             return;
         }
-        if (HasComp<ActiveNPCComponent>(args.Target) || TryComp<MobStateComponent>(args.Target, out var state) && state.CurrentState != MobState.Alive)
+        if (HasComp<ActiveNPCComponent>(args.Target) || HasComp<CosmicCultComponent>(args.Target) || !_mobState.IsAlive(args.Target))
         {
+            if (TryComp<SSDIndicatorComponent>(args.Target, out var ssdComp) && ssdComp.IsSSD)
+            {
+                _popup.PopupEntity(Loc.GetString("cosmicability-siphon-fail", ("target", Identity.Entity(args.Target, EntityManager))), uid, uid);
+                return;
+            }
             _popup.PopupEntity(Loc.GetString("cosmicability-siphon-fail", ("target", Identity.Entity(args.Target, EntityManager))), uid, uid);
             return;
         }
-        if (args.Handled)
-            return;
 
         var doargs = new DoAfterArgs(EntityManager, uid, uid.Comp.CosmicSiphonDelay, new EventCosmicSiphonDoAfter(), uid, args.Target)
         {
@@ -88,28 +96,10 @@ public sealed class CosmicSiphonSystem : EntitySystem
         uid.Comp.EntropyBudget += uid.Comp.CosmicSiphonQuantity;
         Dirty(uid, uid.Comp);
 
-        _statusEffects.TryAddStatusEffectDuration(target, "EntropicDegen", out _, TimeSpan.FromSeconds(21));
-        if (_cosmicCult.EntityIsCultist(target))
-        {
-            _popup.PopupEntity(Loc.GetString("cosmicability-siphon-cultist-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
-        }
-        else
-        {
-            _popup.PopupEntity(Loc.GetString("cosmicability-siphon-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
-            _alerts.ShowAlert(uid.Owner, uid.Comp.EntropyAlert);
-            _cultRule.IncrementCultObjectiveEntropy(uid);
-        }
-
-        if (uid.Comp.CosmicEmpowered) // if you're empowered there's a 50% chance to flicker lights on siphon
-        {
-            var lights = new HashSet<Entity<PoweredLightComponent>>();
-            _lookup.GetEntitiesInRange<PoweredLightComponent>(Transform(uid).Coordinates, 5, lights, LookupFlags.StaticSundries);
-            foreach (var light in lights) // static range of 5. because.
-            {
-                if (!_random.Prob(0.5f))
-                    continue;
-                _ghost.DoGhostBooEvent(light);
-            }
-        }
+        _popup.PopupEntity(Loc.GetString("cosmicability-siphon-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
+        _alerts.ShowAlert(uid.Owner, uid.Comp.EntropyAlert);
+        _cultRule.IncrementCultObjectiveEntropy(uid);
+        EnsureComp<CosmicDebuffQueueComponent>(target, out var cosmicDebuffQueue);
+        cosmicDebuffQueue.DebuffQuant++;
     }
 }

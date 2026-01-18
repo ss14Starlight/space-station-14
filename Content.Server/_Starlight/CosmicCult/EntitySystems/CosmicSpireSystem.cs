@@ -7,16 +7,18 @@ using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
 public sealed class CosmicSpireSystem : EntitySystem
 {
-    [Dependency] private readonly AmbientSoundSystem _ambient = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedPointLightSystem _lights = default!;
+    [Dependency] private readonly AmbientSoundSystem _ambient = default!;
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly CosmicCultRuleSystem _cosmicRule = default!;
-    [Dependency] private readonly SharedPointLightSystem _lights = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly GasVentScrubberSystem _scrub = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -67,14 +69,32 @@ public sealed class CosmicSpireSystem : EntitySystem
 
         if (ent.Comp.Storage.TotalMoles >= ent.Comp.DrainThreshHold)
         {
-            _popup.PopupCoordinates(Loc.GetString("cosmiccult-spire-entropy"), Transform(ent).Coordinates);
-            ent.Comp.Storage.Clear();
-            Spawn(ent.Comp.SpawnVFX, Transform(ent).Coordinates);
-            Spawn(ent.Comp.EntropyMote, Transform(ent).Coordinates);
+            if (ent.Comp.MotesCreated < ent.Comp.MotesCap)
+            {
+                _popup.PopupCoordinates(Loc.GetString("cosmiccult-spire-entropy"), Transform(ent).Coordinates);
+                ent.Comp.Storage.Clear();
+                ent.Comp.MotesCreated++;
+                Spawn(ent.Comp.SpawnVFX, Transform(ent).Coordinates);
+                Spawn(ent.Comp.EntropyMote, Transform(ent).Coordinates);
 
-            if (_cosmicRule.AssociatedGamerule(ent) is not { } cult)
-                return;
-            cult.Comp.EntropySiphoned++;
+                if (_cosmicRule.AssociatedGamerule(ent) is not { } cult)
+                    return;
+                cult.Comp.EntropySiphoned++;
+            }
+            else
+            {
+                ent.Comp.Enabled = false;
+                var despawnvfx = Spawn(ent.Comp.SpawnVFX, Transform(ent).Coordinates);
+                Spawn(ent.Comp.EntropyMoteStack, Transform(ent).Coordinates);
+                _popup.PopupCoordinates(Loc.GetString("cosmiccult-spire-entropy-cap"), Transform(ent).Coordinates);
+                _ambient.SetAmbience(ent, false);
+                _audio.PlayPvs(ent.Comp.DespawnSFX, despawnvfx);
+                QueueDel(ent);
+
+                if (_cosmicRule.AssociatedGamerule(ent) is not { } cult)
+                    return;
+                cult.Comp.EntropySiphoned += 5;
+            }
         }
     }
 

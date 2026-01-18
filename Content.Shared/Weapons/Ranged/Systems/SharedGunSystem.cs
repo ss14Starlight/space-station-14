@@ -782,6 +782,17 @@ public abstract partial class SharedGunSystem : EntitySystem
     }
 }
 
+// BEGIN FUNKY CHANGES - exposed HitscanEvent for use elsewhere
+/// <summary>
+/// Used for animated effects on the client.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class HitscanEvent : EntityEventArgs
+{
+    public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier Sprite, float Distance)> Sprites = new();
+}
+// END FUNKY CHANGES
+
 /// <summary>
 ///     Raised directed on the gun before firing to see if the shot should go through.
 /// </summary>

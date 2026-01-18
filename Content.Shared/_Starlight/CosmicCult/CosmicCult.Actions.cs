@@ -22,3 +22,6 @@ public sealed partial class EventCosmicColossusSunder : WorldTargetActionEvent;
 public sealed partial class EventCosmicColossusIngress : EntityTargetActionEvent;
 public sealed partial class EventCosmicColossusHibernate : InstantActionEvent;
 public sealed partial class EventCosmicColossusEffigy : InstantActionEvent;
+
+// MISC ACTIONS
+public sealed partial class EventCosmicAnomalyIngress : EntityTargetActionEvent;
