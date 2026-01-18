@@ -110,6 +110,8 @@
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
+
+- type: entity
   parent: [ClothingHeadBase, BaseSecurityContraband]
   id: ClothingHeadNurseHatBrigmedic
   name: brigmedic's medbay hat
