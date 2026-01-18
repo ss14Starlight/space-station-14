@@ -70,10 +70,10 @@ if invalid_entries:
 
 # Mapping tag -> required description prefix
 required_prefixes = {
-    "add": "Added ",
-    "remove": "Removed ",
-    "tweak": "Changed ",
-    "fix": "Fixed ",
+    "add": [ "Added " ],
+    "remove": [ "Removed " ],
+    "tweak": [ "Changed ", "Adjusted"],
+    "fix": [ "Fixed " ],
 }
 
 # Amount of symbols which will be printed if we find an error in description
@@ -95,11 +95,18 @@ for line_number, line in enumerate(changelog_without_comments.splitlines(), star
 
     matched_lines_count += 1
     tag, description = match.groups()
-    required_prefix = required_prefixes[tag]
+    required_prefix_list = required_prefixes[tag]
 
-    if not description.startswith(required_prefix):
+    prefixFounded = False
+
+    for prefix in required_prefix_list:
+        if description.startswith(required_prefix):
+            prefixFounded = True
+            break
+
+    if not prefixFounded:
         invalid_lines.append(
-            f"Line {line_number}: '{tag}: {description[:amount_of_first_description_symbols]}' entries must start with '{required_prefix.strip()}'"
+            f"Line {line_number}: '{tag}: {description[:amount_of_first_description_symbols]}' entries must start with one of: {', '.join(required_prefix_list)}"
         )
     
     if not description.endswith('.'):
