@@ -26,10 +26,10 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         base.Initialize();
         _cfg.OnValueChanged(StarlightCCVars.PeacefulRoundEnd, v => _isEnabled = v, true);
 
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnded);
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
-        SubscribeLocalEvent<GotRehydratedEvent>(OnRehydrateEvent);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
+      //  SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnded);
+      //  SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
+      //  SubscribeLocalEvent<GotRehydratedEvent>(OnRehydrateEvent);
+      //  SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
     }
                                                                                                       
 
