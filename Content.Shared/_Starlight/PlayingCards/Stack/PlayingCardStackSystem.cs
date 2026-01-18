@@ -23,7 +23,6 @@ namespace Content.Shared._Starlight.PlayingCards;
 /// </summary>
 public sealed class PlayingCardStackSystem : EntitySystem
 {
-    public const string ContainerId = "cardstack-container";
     private readonly string PlayingCardHandBaseName = "CardHandBase";
 
     [Dependency] private readonly SharedContainerSystem _container = default!;
@@ -221,11 +220,9 @@ public sealed class PlayingCardStackSystem : EntitySystem
         RaiseNetworkEvent(new PlayingCardStackQuantityChangeEvent(GetNetEntity(firstStack), null, PlayingCardStackQuantityChangeType.Added));
         return true;
     }
-    
-    private void OnStartup(EntityUid uid, PlayingCardStackComponent component, ComponentStartup args)
-    {
-        component.ItemContainer = _container.EnsureContainer<Container>(uid, ContainerId);
-    }
+
+    private void OnStartup(EntityUid uid, PlayingCardStackComponent component, ComponentStartup args) =>
+        component.ItemContainer = _container.EnsureContainer<Container>(uid, component.ContainerId);
 
     private void OnMapInit(EntityUid uid, PlayingCardStackComponent comp, MapInitEvent args)
     {

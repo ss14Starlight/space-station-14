@@ -1,17 +1,11 @@
-using System.Linq;
 using Content.Shared._Starlight.PlayingCards.Card;
-using Content.Shared._Starlight.PlayingCards.Hand;
-using Content.Shared.Audio;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Serilog;
 
 namespace Content.Shared._Starlight.PlayingCards.Deck;
 
@@ -19,10 +13,7 @@ public sealed class PlayingCardDeckSystem : EntitySystem
 {
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly PlayingCardStackSystem _cardStackSystem = default!;
-    [Dependency] private readonly PlayingCardHandSystem _cardHand = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly INetManager _net = default!;
 
     private const string PlayingCardDeckBaseName = "CardDeckBase";

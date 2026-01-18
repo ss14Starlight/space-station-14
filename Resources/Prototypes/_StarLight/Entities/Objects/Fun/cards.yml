@@ -35,17 +35,20 @@
   name: Card hand
   categories: [HideSpawnMenu]
   components:
-  - type: Item
-    size: Small
   - type: PlayingCardHand
   - type: PlayingCardStack
   - type: Sprite
     sprite: _Starlight/Objects/Fun/cards.rsi
     state: singlecard_down_black
+  - type: Item
+    size: Small
   - type: UserInterface
     interfaces:
       enum.CardUiKey.Key:
         type: PlayingCardHandMenuBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      cardstack-container: !type:Container
   - type: ActivatableUI
     key: enum.CardUiKey.Key
 
@@ -62,6 +65,9 @@
     size: Normal
   - type: PlayingCardDeck
   - type: PlayingCardStack
+  - type: ContainerContainer
+    containers:
+      cardstack-container: !type:Container
 
 - type: entity
   parent: CardBoxBase
@@ -363,8 +369,6 @@
   components:
     - type: PlayingCard
       backFaceName: nanotrasen
-
-#TODO: refactor to only require one prototype for each card back
 
 #black cards
 - type: entity

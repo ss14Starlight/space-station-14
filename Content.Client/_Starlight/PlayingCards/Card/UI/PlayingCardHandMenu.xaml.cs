@@ -40,10 +40,11 @@ public sealed partial class PlayingCardHandMenu : RadialMenu
         if (!_entManager.TryGetComponent<PlayingCardStackComponent>(owner, out var stack))
             return;
 
+        if (_playerManager.LocalSession is null)
+            return;
+        
         foreach (var card in stack.Cards)
         {
-            if (_playerManager.LocalSession == null)
-                return;
             if (!_entManager.TryGetComponent<PlayingCardComponent>(card, out var cardComp))
                 return;
             var button = new CardMenuButton()

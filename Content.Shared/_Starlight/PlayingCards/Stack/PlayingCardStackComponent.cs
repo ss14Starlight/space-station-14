@@ -29,4 +29,5 @@ public sealed partial class PlayingCardStackComponent : Component
     [DataField] public LocId FlipCardsDownLocId = "card-verb-cards-flip-down";
     [DataField] public LocId FlipDeckLocId = "card-verb-deck-flip";
     [DataField] public string PopupSuccessSuffix = "success";
+    [ViewVariables] public readonly string ContainerId = "cardstack-container";
 }

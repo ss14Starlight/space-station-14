@@ -8,6 +8,7 @@ namespace Content.Client._Starlight.PlayingCards.Card;
 public sealed class PlayingCardHandSystem : EntitySystem
 {
     [Dependency] private readonly PlayingCardSpriteSystem _cardSpriteSystem = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
     
     /// <inheritdoc/>
     public override void Initialize()
@@ -15,6 +16,10 @@ public sealed class PlayingCardHandSystem : EntitySystem
         SubscribeLocalEvent<PlayingCardHandComponent, ComponentStartup>(OnComponentStartupEvent);
         SubscribeNetworkEvent<PlayingCardStackInitiatedEvent>(OnStackStart);
         SubscribeNetworkEvent<PlayingCardStackQuantityChangeEvent>(OnStackUpdate);
+        SubscribeNetworkEvent<PlayingCardStackReorderedEvent>(OnReorder);
+        SubscribeNetworkEvent<PlayingCardStackOrganizedEvent>(OnOrganized);
+        SubscribeNetworkEvent<PlayingCardStackFlippedEvent>(OnStackFlip);
+        SubscribeNetworkEvent<PlayingCardStackDeckFlippedEvent>(OnDeckFlip);
     }
 
     public void UpdateSprite(EntityUid uid, PlayingCardHandComponent comp)
@@ -29,21 +34,28 @@ public sealed class PlayingCardHandSystem : EntitySystem
 
         var cardCount = Math.Min(cardStack.Cards.Count, comp.Limit);
 
-        var intervalAngle = comp.Angle / (cardCount-1);
+        var intervalAngle = comp.Angle / (cardCount - 1);
         var intervalSize = comp.XOffset / (cardCount - 1);
+
+        // literally just to prevent it from not rendering outright if it somehow doesn't convert to a single card
+        if (intervalAngle == 0 || intervalSize == 0)
+        {
+            intervalAngle = 0.01f;
+            intervalSize = 0.01f;
+        }
 
         _cardSpriteSystem.TryHandleLayerConfiguration(
             (uid, sprite, cardStack),
             cardCount,
-            (sprt, cardIndex, layerIndex) =>
+            (_, cardIndex, layerIndex) =>
             {
-                var angle = (-(comp.Angle/2)) + cardIndex * intervalAngle;
-                var x = (-(comp.XOffset / 2)) + cardIndex * intervalSize;
+                var angle = -(comp.Angle/2) + (cardIndex * intervalAngle);
+                var x = -(comp.XOffset / 2) + (cardIndex * intervalSize);
                 var y = -(x * x) + 0.10f;
 
-                sprt.Comp.LayerSetRotation(layerIndex, Angle.FromDegrees(-angle));
-                sprt.Comp.LayerSetOffset(layerIndex, new Vector2(x, y));
-                sprt.Comp.LayerSetScale(layerIndex, new Vector2(comp.Scale, comp.Scale));
+                _sprite.LayerSetRotation(uid, layerIndex, Angle.FromDegrees(-angle));
+                _sprite.LayerSetOffset(uid, layerIndex, new Vector2(x, y));
+                _sprite.LayerSetScale(uid, layerIndex, new Vector2(comp.Scale, comp.Scale));
                 return true;
             }
         );
@@ -63,6 +75,34 @@ public sealed class PlayingCardHandSystem : EntitySystem
             return;
 
         UpdateSprite(entity, comp);
+    }
+    
+    private void OnStackFlip(PlayingCardStackFlippedEvent args)
+    {
+        if (!TryComp(GetEntity(args.CardStack), out PlayingCardHandComponent? comp))
+            return;
+        UpdateSprite(GetEntity(args.CardStack), comp);
+    }
+    
+    private void OnDeckFlip(PlayingCardStackDeckFlippedEvent args)
+    {
+        if (!TryComp(GetEntity(args.CardStack), out PlayingCardHandComponent? comp))
+            return;
+        UpdateSprite(GetEntity(args.CardStack), comp);
+    }
+
+    private void OnReorder(PlayingCardStackReorderedEvent args)
+    {
+        if (!TryComp(GetEntity(args.CardStack), out PlayingCardHandComponent? comp))
+            return;
+        UpdateSprite(GetEntity(args.CardStack), comp);
+    }
+
+    private void OnOrganized(PlayingCardStackOrganizedEvent args)
+    {
+        if (!TryComp(GetEntity(args.CardStack), out PlayingCardHandComponent? comp))
+            return;
+        UpdateSprite(GetEntity(args.CardStack), comp);
     }
 
     private void OnComponentStartupEvent(EntityUid uid, PlayingCardHandComponent comp, ComponentStartup args) =>

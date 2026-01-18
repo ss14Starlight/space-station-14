@@ -10,7 +10,7 @@ namespace Content.Client._Starlight.PlayingCards.Hand;
 
 public sealed class PlayingCardSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly PlayingCardHandSystem _cardHand = default!;
     
     /// <inheritdoc/>
@@ -51,7 +51,7 @@ public sealed class PlayingCardSystem : EntitySystem
 
         comp.BackSpriteLayers?.Add(new SpriteSpecifier.Rsi(comp.RSIPath, $"{comp.BackFacePrefix}{comp.BackFaceName}"));
 
-        Dirty(uid, comp);
+        // Dirty(uid, comp);
         UpdateSprite(uid, comp);
     }
 
@@ -71,7 +71,7 @@ public sealed class PlayingCardSystem : EntitySystem
         {
             for (var i = spriteComponent.AllLayers.Count(); i < layerCount; i++)
             {
-                spriteComponent.AddBlankLayer(i);
+                _sprite.AddBlankLayer((uid, spriteComponent), i);
             }
         }
         //Removes extra layers
@@ -79,14 +79,14 @@ public sealed class PlayingCardSystem : EntitySystem
         {
             for (var i = spriteComponent.AllLayers.Count() - 1; i >= layerCount; i--)
             {
-                spriteComponent.RemoveLayer(i);
+                _sprite.RemoveLayer(uid, i);
             }
         }
 
         for (var i = 0; i < newSprite.Count(); i++)
         {
             var layer = newSprite[i];
-            spriteComponent.LayerSetSprite(i, layer);
+            _sprite.LayerSetSprite(uid, i, layer);
         }
     }
 }

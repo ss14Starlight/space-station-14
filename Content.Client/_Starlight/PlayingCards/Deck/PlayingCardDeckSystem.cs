@@ -10,6 +10,7 @@ public sealed class PlayingCardDeckSystem : EntitySystem
 {
     private readonly Dictionary<Entity<PlayingCardDeckComponent>, int> _notInitialized = [];
     [Dependency] private readonly PlayingCardSpriteSystem _cardSpriteSystem = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
     
     /// <inheritdoc/>
     public override void Initialize()
@@ -30,7 +31,7 @@ public sealed class PlayingCardDeckSystem : EntitySystem
         base.Update(frameTime);
 
         // Lazy way to make sure the sprite starts correctly
-        foreach (var kv in _notInitialized)
+        foreach (var kv in _notInitialized.ToArray())
         {
             var ent = kv.Key;
 
@@ -44,8 +45,7 @@ public sealed class PlayingCardDeckSystem : EntitySystem
 
             if (!TryComp(ent.Owner, out PlayingCardStackComponent? stack) || stack.Cards.Count <= 0)
                 continue;
-
-
+            
             // If the card was STILL not initialized, we skip it
             if (!TryGetCardLayer(stack.Cards.Last(), out var _))
                 continue;
@@ -62,7 +62,7 @@ public sealed class PlayingCardDeckSystem : EntitySystem
         if (!TryComp(card, out SpriteComponent? cardSprite))
             return false;
 
-        if (!cardSprite.TryGetLayer(0, out var l))
+        if (!_sprite.TryGetLayer((card, cardSprite), 0, out var l, false))
             return false;
 
         layer = l;
@@ -92,9 +92,9 @@ public sealed class PlayingCardDeckSystem : EntitySystem
             comp.CardLimit,
             (_, cardIndex, layerIndex) =>
             {
-                sprite.LayerSetRotation(layerIndex, Angle.FromDegrees(90));
-                sprite.LayerSetOffset(layerIndex, new Vector2(0, (comp.YOffset * cardIndex)));
-                sprite.LayerSetScale(layerIndex, new Vector2(comp.Scale, comp.Scale));
+                _sprite.LayerSetRotation(uid, layerIndex, Angle.FromDegrees(90));
+                _sprite.LayerSetOffset(uid, layerIndex, new Vector2(0, (comp.YOffset * cardIndex)));
+                _sprite.LayerSetScale(uid, layerIndex, new Vector2(comp.Scale, comp.Scale));
                 return true;
             }
         );

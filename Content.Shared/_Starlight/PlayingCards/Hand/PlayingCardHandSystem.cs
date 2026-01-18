@@ -48,8 +48,6 @@ public sealed class PlayingCardHandSystem : EntitySystem
         };
 
         _popupSystem.PopupEntity(Loc.GetString(text, ("quantity", stack.Cards.Count)), uid);
-
-        // _cardStack.FlipAllCards(uid, stack, false);
     }
 
     private void OnCardDraw(EntityUid uid, PlayingCardHandComponent comp, PlayingCardHandDrawMessage args)
@@ -76,10 +74,6 @@ public sealed class PlayingCardHandSystem : EntitySystem
         if (stack.Cards.Count != 1)
             return;
         TryDestroyHandOfCards(args.Actor, uid, out _);
-        // var lastCard = stack.Cards.Last();
-        // if (!_cardStack.TryRemoveCard(uid, lastCard, stack))
-        //     return;
-        // _hands.TryPickupAnyHand(args.Actor, lastCard);
     }
 
     private void OpenHandMenu(EntityUid user, EntityUid hand)
@@ -92,6 +86,8 @@ public sealed class PlayingCardHandSystem : EntitySystem
 
     private void OnAlternativeVerb(EntityUid uid, PlayingCardHandComponent comp, GetVerbsEvent<AlternativeVerb> args)
     {
+        if (!args.CanInteract || !args.CanAccess || !args.CanComplexInteract) return;
+        
         args.Verbs.Add(new AlternativeVerb()
         {
             Act = () =>
@@ -148,9 +144,7 @@ public sealed class PlayingCardHandSystem : EntitySystem
     private void OnInteractUsing(EntityUid uid, PlayingCardComponent comp, InteractUsingEvent args)
     {
         if (TryComp(args.Used, out PlayingCardComponent? usedComp) && TryComp(args.Target, out PlayingCardComponent? targetComp))
-        {
             TrySetupHandOfCards(args.User, args.Used, usedComp, args.Target, out _);
-        }
     }
 
     private void ConvertToDeck(EntityUid user, EntityUid hand)
@@ -185,7 +179,6 @@ public sealed class PlayingCardHandSystem : EntitySystem
             return false;
         if (!_hands.TryPickupAnyHand(user, cardHand))
             return false;
-        // _cardStack.FlipAllCards(cardHand, stack, false);
         result = cardHand;
         return true;
     }
@@ -201,7 +194,6 @@ public sealed class PlayingCardHandSystem : EntitySystem
         _cardStack.TransferNLastCardFromStacks(user, 1, target, targetStack, cardHand, stack);
         if (!_hands.TryPickupAnyHand(user, cardHand))
             return false;
-        // _cardStack.FlipAllCards(cardHand, stack, false);
         result = cardHand;
         return true;
     }

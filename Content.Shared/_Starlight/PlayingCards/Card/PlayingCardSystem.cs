@@ -43,9 +43,10 @@ public sealed class PlayingCardSystem : EntitySystem
     
     private void OnUse(EntityUid uid, PlayingCardComponent comp, UseInHandEvent args)
     {
+        if (_net.IsClient)
+            return;
         if (args.Handled)
             return;
-
         FlipCard(uid, comp);
         args.Handled = true;
     }

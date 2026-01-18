@@ -6,6 +6,8 @@ namespace Content.Client._Starlight.PlayingCards;
 
 public sealed class PlayingCardSpriteSystem : EntitySystem
 {
+    [Dependency] private readonly SpriteSystem _sprite = default!;
+    
     public bool TryAdjustLayerQuantity(Entity<SpriteComponent, PlayingCardStackComponent> uid, int? cardLimit = null)
     {
         var sprite = uid.Comp1;
@@ -23,20 +25,12 @@ public sealed class PlayingCardSpriteSystem : EntitySystem
         }
         //inserts Missing Layers
         if (sprite.AllLayers.Count() < layerCount)
-        {
             for (var i = sprite.AllLayers.Count(); i < layerCount; i++)
-            {
-                sprite.AddBlankLayer(i);
-            }
-        }
+                _sprite.AddBlankLayer(uid, i);
         //Removes extra layers
         else if (sprite.AllLayers.Count() > layerCount)
-        {
             for (var i = sprite.AllLayers.Count() - 1; i >= layerCount; i--)
-            {
-                sprite.RemoveLayer(i);
-            }
-        }
+                _sprite.AddBlankLayer(uid, i);
         return true;
     }
 
@@ -61,9 +55,9 @@ public sealed class PlayingCardSpriteSystem : EntitySystem
         foreach (var obj in layers)
         {
             var (cardIndex, layer) = obj;
-            sprite.LayerSetVisible(j, true);
-            sprite.LayerSetTexture(j, layer.Texture);
-            sprite.LayerSetState(j, layer.RsiState.Name);
+            _sprite.LayerSetVisible((uid, sprite) ,j, true);
+            _sprite.LayerSetTexture((uid, sprite) ,j, layer.Texture);
+            _sprite.LayerSetRsiState((uid, sprite) ,j, layer.RsiState.Name);
             layerFunc.Invoke((uid, sprite), cardIndex, j);
             j++;
         }
