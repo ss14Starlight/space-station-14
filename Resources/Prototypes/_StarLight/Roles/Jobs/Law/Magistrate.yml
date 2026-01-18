@@ -20,6 +20,7 @@
   setPreference: true
   access:
   - Magistrate
+  - IAA
   - Lawyer
   - Brig
   - Security
@@ -37,9 +38,9 @@
 - type: startingGear
   id: MagistrateGear
   equipment:
-    jumpsuit: MagistrateUniformSuit
+    #jumpsuit: MagistrateUniformSuit
     #shoes: ClothingShoesBootsLaceup
-    eyes: ClothingEyesGlassesSecurity
+    #eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesColorWhite
     outerClothing: ClothingOuterRobesJudge
     id: MagistratePDA
@@ -52,7 +53,7 @@
     - ClothingNeckLawyerbadge
     - GavelHammer
     - GavelBlock
-    - MagistrateUniformSkirt
+    #- MagistrateUniformSkirt
 
 - type: chameleonOutfit
   id: MagistrateChameleonOutfit

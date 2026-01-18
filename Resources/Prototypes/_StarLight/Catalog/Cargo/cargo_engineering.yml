@@ -9,6 +9,16 @@
   group: market
 
 - type: cargoProduct
+  id: TEGFlatpackPurchase
+  icon:
+    sprite: Structures/Power/Generation/teg.rsi
+    state: teg
+  product: CrateTEGFlatpack
+  cost: 6000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
   id: ReflectorFlatpackPurchase
   icon:
     sprite: _Starlight/Structures/Reflector/reflector.rsi

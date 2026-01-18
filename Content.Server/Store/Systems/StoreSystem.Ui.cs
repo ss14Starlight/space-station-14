@@ -362,16 +362,11 @@ public sealed partial class StoreSystem
         }
 
         #region Starlight statistics
-        var accu = 0f;
-        foreach (var item in listing.Cost)
-        {
-            accu += item.Value.Float();
-        }
         _storePurchasesMetric.WithLabels([
             Loc.GetString(component.Name),
             listing.ID,
             listing.IsCostModified.ToString()
-        ]).Observe(accu);
+        ]).Observe(1); //we observe *1* purchase of the item.
         #endregion
     }
 

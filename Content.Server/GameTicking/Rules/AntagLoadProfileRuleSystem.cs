@@ -42,7 +42,9 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         }
 
         // Startlight - Start (Changing fully so RandomWithSpecies loads with a specieID)
-        var species = _proto.Index<SpeciesPrototype>(SharedHumanoidAppearanceSystem.DefaultSpecies);
+        var species = _proto.Index(SharedHumanoidAppearanceSystem.DefaultSpecies);
+        if (profile is not null)
+            species = _proto.Index(profile.Species);
 
         if (ent.Comp.SpeciesHardOverride is not null)
             species = _proto.Index(ent.Comp.SpeciesHardOverride.Value);

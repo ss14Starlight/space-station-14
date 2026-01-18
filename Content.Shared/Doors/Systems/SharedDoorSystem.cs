@@ -123,7 +123,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (!TryComp<AirlockComponent>(uid, out var airlock))
             return;
 
-        if (!airlock.Powered) //starlight change
+        if (!airlock.Powered)
             return;
 
         if (door.State != DoorState.Closed)
@@ -371,7 +371,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
             Audio.PlayPvs(door.OpenSound, uid, AudioParams.Default.WithVolume(-5));
 
         if (lastState == DoorState.Emagging && TryComp<DoorBoltComponent>(uid, out var doorBoltComponent))
-            SetBoltsDown((uid, doorBoltComponent), !doorBoltComponent.BoltsDown, user, true);
+            SetBoltsDown((uid, doorBoltComponent), true, user, true);
     }
 
     /// <summary>
