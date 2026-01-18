@@ -1,0 +1,190 @@
+- type: entity
+  parent: [BaseItem, BaseSecurityContraband]
+  id: FiringPin
+  name: firing pin
+  description: Somebody probably really needs this right now...
+  components:
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: rifle
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Weapons/Guns/Casings/casing_fall_2.ogg
+      params:
+        volume: -1
+  - type: StaticPrice
+    price: 500
+  - type: FiringPin
+    pinType: Rifle
+  - type: StealTarget
+    stealGroup: FiringPin
+
+- type: entity
+  parent: FiringPin
+  id: FiringPinPistol
+  name: pistol firing pin
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: pistol
+  - type: FiringPin
+    pinType: Pistol
+
+- type: entity
+  parent: FiringPin
+  id: FiringPinMakeshift
+  name: makeshift firing pin
+  description: It's a nail. Welded to a bottle cap.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: makeshift
+  - type: FiringPin
+    pinType: Makeshift
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  parent: FiringPin
+  id: FiringPinSmartLMG
+  name: smartgun bolt assembly
+  description: One of a kind, unreplaceable. Includes a round counter.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: lmg
+  - type: FiringPin
+    pinType: SmartLMG
+  - type: FiringPinShotCounter
+  - type: StealTarget
+    stealGroup: FiringPinSmartLMG
+
+- type: entity
+  parent: FiringPin
+  id: FiringPinLaser
+  name: laser crystal
+  description: Fragile, not unlike the assistants killed by it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: laser
+  - type: FiringPin
+    pinType: Laser
+  - type: StaticPrice
+    price: 50
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -8
+      - !type:DoActsBehavior
+        acts: [ "Breakage" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -8
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassPlasma:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: FiringPinLaser
+  id: FiringPinAdvancedLaser
+  name: prototype laser crystal
+  description: DO NOT DROP is inscribed on the side. whatever.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: adv-laser
+  - type: FiringPin
+    pinType: AdvancedLaser
+  - type: StealTarget
+    stealGroup: FiringPinAdvancedLaser
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 100 # slightly more impressive than a welding tank explosion
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:ExplodeBehavior
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -8
+      - !type:DoActsBehavior
+        acts: [ "Breakage" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -8
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassPlasma:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:ExplodeBehavior
+
+# cool functionality ish pins
+- type: entity
+  parent: FiringPin
+  id: FiringPinExpedition
+  name: expedition firing pin
+  description: This universal pin prevents the gun from firing when on station, useful for managing weaponry used on offstation exploration.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
+    state: exped
+  - type: FiringPin
+    pinType: GunUpgrade
+  - type: FiringPinExpedition

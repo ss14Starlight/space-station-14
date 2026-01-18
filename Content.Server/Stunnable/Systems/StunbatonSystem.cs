@@ -58,13 +58,13 @@ namespace Content.Server.Stunnable.Systems
             // 🌟Starlight🌟 start
             Entity<PredictedBatteryComponent>? batteryEnt = null;
             if (TryComp<PredictedBatteryComponent>(entity.Owner, out var battery) ||
-             _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt)) // WHY did this get changed to return an entity, aaaa >_<
+                _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
             {
-                if(batteryEnt.HasValue)
+                if (batteryEnt.HasValue)
                     battery = batteryEnt.Value;
                 if (battery != null)
                 {
-                    var count = (int)(battery.LastCharge / entity.Comp.EnergyPerUse);
+                    var count = (int)(_battery.GetCharge((entity.Owner, battery)) / entity.Comp.EnergyPerUse);
                     args.PushMarkup(Loc.GetString("melee-battery-examine", ("color", "yellow"), ("count", count)));
                 }
             }
@@ -78,21 +78,18 @@ namespace Content.Server.Stunnable.Systems
             // 🌟Starlight🌟 start
             Entity<PredictedBatteryComponent>? batteryEnt = null;
             if (TryComp<PredictedBatteryComponent>(entity.Owner, out var battery) ||
-             _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt)) // WHY did this get changed to return an entity, aaaa >_<
+                _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
             {
-                if(batteryEnt.HasValue)
+                if (batteryEnt.HasValue)
                     battery = batteryEnt.Value;
-                if (battery != null)
+                if (battery != null && _battery.GetCharge((entity.Owner, battery)) < entity.Comp.EnergyPerUse)
                 {
-                    if (battery.LastCharge < entity.Comp.EnergyPerUse)
+                    args.Cancelled = true;
+                    if (args.User != null)
                     {
-                        args.Cancelled = true;
-                        if (args.User != null)
-                        {
-                            _popup.PopupEntity(Loc.GetString("stunbaton-component-low-charge"), (EntityUid)args.User, (EntityUid)args.User);
-                        }
-                        return;
+                        _popup.PopupEntity(Loc.GetString("stunbaton-component-low-charge"), (EntityUid)args.User, (EntityUid)args.User);
                     }
+                    return;
                 }
             }
             // 🌟Starlight🌟 end
