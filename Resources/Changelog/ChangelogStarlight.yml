@@ -26639,5 +26639,146 @@ Entries:
   id: 283300
   time: '2026-01-16T22:17:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2833
+- author: Fractalflower
+  changes:
+  - message: Changed the Interdyne Defib damage to deal 10 shock damage when activated
+      instead of blunt + 16 shock.
+    type: Tweak
+  id: 227100
+  time: '2026-01-17T09:56:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2271
+- author: Coolsurf6
+  changes:
+  - message: Brigmedic headsets now default to security comms
+    type: Tweak
+  id: 272000
+  time: '2026-01-17T10:26:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2720
+- author: Citrea
+  changes:
+  - message: Tables no longer slow you down if you properly climb onto them.
+    type: Tweak
+  - message: Tables no longer slow you down if you have the audacity to be in their
+      presence.
+    type: Fix
+  id: 277200
+  time: '2026-01-17T10:35:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2772
+- author: Fasuh
+  changes:
+  - message: Fixed thermal regulation of dead bodies.
+    type: Fix
+  - message: Adjust Corgi's radiated heat.
+    type: Tweak
+  id: 271800
+  time: '2026-01-17T11:00:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2718
+- author: Arkanic
+  changes:
+  - message: Added firing pins to all guns. These come in different varieties, and
+      can be removed with a screwdriver to render a gun inoperable. Some pins are
+      more rare than others.
+    type: Add
+  - message: Added thieving objectives for certain types of firing pins
+    type: Add
+  - message: Added expedition firing pin which can be researched and manufactured
+      by science. This pin only allows a gun to be fired off station, providing a
+      way to manage salvage weaponry if so desired
+    type: Add
+  id: 229200
+  time: '2026-01-17T11:29:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2292
+- author: Artifyber, InanimateIJK
+  changes:
+  - message: New Lobby Track, Unity.
+    type: Add
+  id: 280500
+  time: '2026-01-17T11:45:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2805
+- author: FoxStellar
+  changes:
+  - message: Added the Automenders to research!
+    type: Add
+  id: 269900
+  time: '2026-01-17T12:11:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2699
+- author: CommanderAlex365
+  changes:
+  - message: Added all Starlight specific accesses to the turret control panel.
+    type: Add
+  id: 284900
+  time: '2026-01-17T12:16:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2849
+- author: Coolsurf6
+  changes:
+  - message: Fixed Bagel having an unpowered air vent
+    type: Fix
+  id: 272100
+  time: '2026-01-17T12:33:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2721
+- author: Sparlight
+  changes:
+  - message: Added corgi-specific HUD icons for corgis, smart corgis, and borgis.
+    type: Add
+  id: 273200
+  time: '2026-01-17T12:47:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2732
+- author: mikeysaurus
+  changes:
+  - message: Abductors, Nukies, Wizards, Changelings, and Space Ninjas can no longer
+      be converted by a Head Revolutionary.
+    type: Tweak
+  id: 278600
+  time: '2026-01-17T12:52:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2786
+- author: Fasuh
+  changes:
+  - message: Changed Vulpkanin walking speed.
+    type: Tweak
+  - message: Fixed Avali 0g movement.
+    type: Fix
+  id: 285700
+  time: '2026-01-18T13:04:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2857
+- author: SnappingOpossum
+  changes:
+  - message: Redone happy honk meals are back, containing a toy, drink, burger, donk
+      pocket, and side once more.
+    type: Add
+  - message: Crayon boxes in current and future happy honk meals have been replaced
+      with magic crayons.
+    type: Tweak
+  id: 286200
+  time: '2026-01-18T13:08:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2862
+- author: CawsForConcern
+  changes:
+  - message: Abductor shuttle APC tripping due to a 20.7kW draw
+    type: Fix
+  - message: abductor_shuttleold.yml removed from files (doesn't affect gameplay)
+    type: Remove
+  id: 285900
+  time: '2026-01-18T14:17:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2859
+- author: CawsForConcern
+  changes:
+  - message: (CentComm SC17) Telecomms APC tripping due to a 20.5kW draw
+    type: Fix
+  id: 285800
+  time: '2026-01-18T14:20:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2858
+- author: FeralCreature, AegisShield
+  changes:
+  - message: New icon for the burn damage group in health analyzer window.
+    type: Tweak
+  - message: Damage group boxes in the health analyzer window remain static instead
+      of sorting by highest damage.
+    type: Tweak
+  - message: Health Analyzer no longer shows someones entire blood supply as a metabolizing
+      reagent.
+    type: Fix
+  id: 285200
+  time: '2026-01-18T14:24:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2852
 Order: -1
 

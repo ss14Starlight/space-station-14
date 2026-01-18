@@ -70,6 +70,9 @@
   id: CartridgePistolImprovised
 
 - type: Tag
+  id: CantBecomeRevolutionary
+
+- type: Tag
   id: CentcommVibroblade
 
 - type: Tag

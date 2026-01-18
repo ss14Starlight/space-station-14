@@ -227,6 +227,19 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             metabolizingReagents = new List<(string, FixedPoint2)>();
             foreach (var (reagent, quantity) in chemicalsSolution.Contents)
             {
+                // Skip blood and only show actual chemicals being metabolized
+                var isBlood = false;
+                foreach (var (bloodReagent, _) in bloodstreamComp.BloodReferenceSolution.Contents)
+                {
+                    if (bloodReagent.Prototype == reagent.Prototype)
+                    {
+                        isBlood = true;
+                        break;
+                    }
+                }
+                if (isBlood)
+                    continue;
+                    
                 metabolizingReagents.Add((reagent.Prototype, quantity));
             }
         }

@@ -22,6 +22,21 @@
   - Medical
 
 - type: technology
+  id: AutoMenderTech
+  name: research-technology-automenders
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: mender
+  discipline: Biochemical
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+    - AutoMenderBrute
+    - AutoMenderBurn
+  radioChannels:
+  - Medical
+
+- type: technology
   id: CyberLimbsTech
   name: research-technology-basic-cyberlimbs
   icon:
