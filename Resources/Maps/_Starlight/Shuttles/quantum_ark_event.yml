@@ -42607,7 +42607,7 @@ entities:
       parent: 1400
     - type: Physics
       canCollide: False
-- proto: ToiletDirtyWater
+- proto: ToiletDirtyWaterFilled
   entities:
   - uid: 1948
     components:

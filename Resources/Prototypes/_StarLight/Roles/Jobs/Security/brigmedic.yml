@@ -24,6 +24,7 @@
   - Cryogenics
   - Brigmedic
   - Chemistry
+  - Surgery # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -32,10 +33,10 @@
   id: BrigmedicGear
   equipment:
     ears: ClothingHeadsetBrigmedic
-    neck: ClothingNeckTieRed
+    # neck: ClothingNeckTieRed # Tie variety
     pocket2: HandheldBrigmedicCrewMonitor
-    mask: ClothingMaskBreathMedicalSecurity
-    id: BrigmedicPDA
+    # mask: ClothingMaskBreathMedicalSecurity # Mask variety
+    # id: BrigmedicPDA # No longer needed with veteran PDA.
   storage:
     back:
     - Flash

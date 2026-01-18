@@ -110,9 +110,16 @@
   components:
   - type: Sprite
     sprite: Mobs/Species/Vox/organs.rsi
+  # Starlight Start
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobVoxEyes
+  # Starlight End
   - type: Item
     size: Small
     heldPrefix: eyeballs
+# Starlight End
 
 - type: entity
   id: OrganVoxTongueA

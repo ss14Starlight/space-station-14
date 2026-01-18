@@ -3,7 +3,10 @@
   name: roles-antag-dragon-name
   antagonist: true
   objective: roles-antag-dragon-objective
+  # Starlight start
   requirements:
   - !type:RoleTimeRequirement
     role: JobSalvageSpecialist
-    time: 10800 # 3h STARLIGHT
+    time: 3h
+  playTimeTracker: AntagDragon
+  # Starlight end

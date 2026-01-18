@@ -40,4 +40,13 @@ public sealed partial class RandomGiftComponent : Component
     /// </summary>
     [DataField("selectedEntity"), ViewVariables(VVAccess.ReadWrite)]
     public string? SelectedEntity;
+
+    // 🌟Starlight🌟 start
+    /// <summary>
+    ///     Whether the item requires hands to trigger or not.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public bool RequireHands = true;
+    // 🌟Starlight🌟 end
 }

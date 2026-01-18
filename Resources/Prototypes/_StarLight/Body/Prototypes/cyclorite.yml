@@ -12,6 +12,7 @@
         eyes: OrganCycloriteEye
         tongue: OrganCycloriteTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoCyclorite
       connections:
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandCyclorite
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandCyclorite
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegCyclorite
       connections:

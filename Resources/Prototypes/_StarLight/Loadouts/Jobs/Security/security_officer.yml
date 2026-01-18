@@ -1,4 +1,13 @@
-﻿
+﻿# Accessory Time
+- type: loadoutEffectGroup
+  id: NoviceOfficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 18000 # 5 hrs
+
 # Non-Lethal Weapons
 - type: loadout
   id: SecurityDominator
@@ -49,3 +58,9 @@
   id: SecurityBomber
   equipment:
     outerClothing: ClothingOuterSecurityBomber
+
+#Eyewear
+- type: loadout
+  id: SecurityGlassesPrescription
+  equipment:
+    eyes: ClothingEyeGlassesSecurityPrescription

@@ -53,7 +53,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolSP
         priority: 1
         whitelist:
           tags:
@@ -62,8 +61,17 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 500
+  # starlight start
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinPistol
+  - type: FiringPinHolder
+    supportedPins: [ Pistol, GunUpgrade ]
+  # starlight end
 
 - type: entity
   name: Atreides
@@ -167,14 +175,16 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-  - type: BatteryAmmoProvider
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgePistol
+    capacity: 30
     proto: CartridgePistolSP #Starlight Ammo
-    fireCost: 100
-  - type: PredictedBattery
-    maxCharge: 3000
-    startingCharge: 3000
-  - type: PredictedBatterySelfRecharger
-    autoRechargeRate: 25
+    cycleable: false # No synthesizing ammo for your syndicate masters.
+  - type: BallisticAmmoSelfRefiller
+    autoRefillRate: 4s
+    affectedByEmp: true
   - type: AmmoCounter
 
 - type: entity
@@ -225,7 +235,6 @@
           whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
           name: Chamber
-          startingItem: CartridgePistolFMJ
           priority: 1
           whitelist:
             tags:
@@ -287,7 +296,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolSP # Starlight
         priority: 1
         whitelist:
           tags:

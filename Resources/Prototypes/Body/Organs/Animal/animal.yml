@@ -19,6 +19,8 @@
   - type: FlavorProfile
     flavors:
       - chicken # everything kinda tastes like chicken
+  - type: Extractable           # Starlight - let's make some sausage!
+    grindableSolutionName: food # Starlight - let's make some sausage!
   - type: Tag
     tags:
       - Meat

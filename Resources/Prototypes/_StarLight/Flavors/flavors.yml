@@ -27,3 +27,13 @@
   id: halal
   flavorType: Base
   description: flavor-base-halal
+
+- type: flavor
+  id: greasy
+  flavorType: Base
+  description: flavor-base-greasy
+
+- type: flavor
+  id: festive
+  flavorType: Base
+  description: flavor-base-festive

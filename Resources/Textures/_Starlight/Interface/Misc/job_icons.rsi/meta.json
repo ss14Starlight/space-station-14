@@ -28,6 +28,16 @@
         {
             "name": "CentComm"
         },
+		{
+	            "name": "NTSF",
+	            "copyright": "by teapoterror",
+	            "license": "CC-BY-SA-3.0"
+		},
+		{
+	            "name": "Decimus",
+	            "copyright": "by teapoterror",
+	            "license": "CC-BY-SA-3.0"
+		},
         {
             "name": "CentCommOperator"
         },

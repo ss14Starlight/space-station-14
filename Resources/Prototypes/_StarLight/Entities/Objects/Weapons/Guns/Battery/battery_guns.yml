@@ -94,6 +94,7 @@
   id: WeaponMiniEnergyGun
   description: An energy gun capable of switching between lethal and debilitating lasers.
   components:
+  - type: StationGridMemory
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/mini.rsi
     layers:
@@ -164,6 +165,7 @@
   id: WeaponDominator
   description: A high-tech weapon created by the law enforcement organization Sibyl System, designed specifically to fight crime.
   components:
+  - type: StationGridMemory
   - type: Appearance
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/dominator.rsi
@@ -749,6 +751,15 @@
   - type: PredictedBattery
     maxCharge: 2640
     startingCharge: 2640
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaser
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
 
 - type: entity
   name: ANNIHILATOR
@@ -783,6 +794,15 @@
     startingCharge: 2000
   - type: PredictedBatterySelfRecharger
     autoRechargeRate: 500
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaser
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
 
 - type: entity
   parent: BaseWeaponBatterySmall
@@ -876,6 +896,15 @@
   - type: PredictedBatterySelfRecharger
     autoRechargeRate: 80
     autoRechargePauseTime: 10
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaser
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
 
 - type: entity
   name: pulse cannon
@@ -918,3 +947,12 @@
   - type: PredictedBatterySelfRecharger
     autoRechargeRate: 50
     autoRechargePauseTime: 10
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]

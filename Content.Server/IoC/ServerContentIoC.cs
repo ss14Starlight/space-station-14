@@ -112,7 +112,9 @@ internal static class ServerContentIoC
         // 🌟Starlight🌟 end
         // nulllink start
         deps.Register<IActorRouter, ActorRouter>(); 
+        deps.Register<NullLinkPlayerManager>();
         deps.Register<INullLinkPlayerManager, NullLinkPlayerManager>();
+        deps.Register<INullLinkPlayTimeManager, NullLinkPlayTimeManager>();
         deps.Register<INullLinkEventBusManager, NullLinkEventBusManager>();
         deps.Register<ISharedNullLinkPlayerRolesReqManager, PlayerRolesReqManager>();
         // nulllink end
