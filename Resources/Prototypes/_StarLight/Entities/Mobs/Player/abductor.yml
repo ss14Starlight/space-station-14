@@ -10,6 +10,7 @@
       - Abductor
       - AbductorScientist
       - CanPilot
+      - CantBecomeRevolutionary
       
 - type: entity
   name: abductor scientist

@@ -42,6 +42,7 @@ using Content.Server.Inventory;
 using Content.Server.StationEvents.Components;
 using Content.Server.Store.Systems;
 using Content.Server.Traitor.Uplink;
+using Content.Shared.Whitelist;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants.Components;
@@ -50,7 +51,6 @@ using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Store.Components;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
@@ -80,10 +80,14 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!; // Starlight
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Starlight
-    [Dependency] private readonly SpecialLobbyContentSystem _specialLobbyContent = default!; // Starlight
-    [Dependency] private readonly AlertLevelSystem _alert = default!; // Starlight
+
+    // Starlight-start
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly SpecialLobbyContentSystem _specialLobbyContent = default!;
+    [Dependency] private readonly AlertLevelSystem _alert = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    // Starlight-end
 
     //Used in OnPostFlash, no reference to the rule component is available
     public readonly ProtoId<NpcFactionPrototype> RevolutionaryNpcFaction = "Revolutionary";
@@ -346,14 +350,9 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         if (!_mind.TryGetMind(ev.Target, out var mindId, out var mind) && !alwaysConvertible)
             return;
 
-        if (HasComp<RevolutionaryComponent>(ev.Target) ||
-            HasComp<MindShieldComponent>(ev.Target) ||
-            HasComp<BrighteyeComponent>(ev.Target) || // Starlight Addtion
-            HasComp<BorgChassisComponent>(ev.Target) || // Starlight Addition - Borgis should be emagged not flashed
-            !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
+        if (_whitelistSystem.CheckBoth(ev.Target, comp.Blacklist, comp.Whitelist) && // Starlight-edit: rework all has comp to whitelist & blacklist.
             !alwaysConvertible ||
-            !_mobState.IsAlive(ev.Target) ||
-            HasComp<ZombieComponent>(ev.Target))
+            !_mobState.IsAlive(ev.Target))
         {
             return;
         }

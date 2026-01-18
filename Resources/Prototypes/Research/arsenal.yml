@@ -13,6 +13,7 @@
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
   - MechEquipmentKineticAccelerator
+  - FiringPinExpedition # Starlight
   technologyPrerequisites:
   - SalvageEquipment # starlight
   radioChannels:
