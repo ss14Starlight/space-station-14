@@ -46,7 +46,6 @@
   components:
     - type: ItemToggle
       onUse: false
-      predictable: false
       soundActivate:
         path: /Audio/Items/flashlight_on.ogg
       soundDeactivate:

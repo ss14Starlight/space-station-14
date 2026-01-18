@@ -4,11 +4,12 @@ using Content.Shared.Verbs;
 using Robust.Server.Physics;
 using Content.Shared.DoAfter;
 using Robust.Shared.Physics;
-using System.Numerics;
 using Content.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.Hands.Components;
+using Content.Shared.Movement.Systems;
+using Robust.Shared.Physics.Dynamics.Joints;
 
 namespace Content.Server._FarHorizons.Towing;
 public sealed partial class TowingSystem : EntitySystem
@@ -16,6 +17,7 @@ public sealed partial class TowingSystem : EntitySystem
     [Dependency] private readonly JointSystem _joint = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     private static readonly string _towingRope = "TowingRope";
     private static readonly string _hitchHook = "HitchHook";
     public override void Initialize()
@@ -26,6 +28,7 @@ public sealed partial class TowingSystem : EntitySystem
         SubscribeLocalEvent<TowingComponent, TieUpDoAfter>(OnTieUpDoAfter);
         SubscribeLocalEvent<TiedComponent, UnTieDoAfter>(OnUnTieDoAfter);
         SubscribeLocalEvent<HandsComponent, DeployHitchDoAfter>(OnDeployHitchDoAfter);
+        SubscribeLocalEvent<TiedComponent, JointRemovedEvent>(OnJointRemoved);
         base.Initialize();
     }
 
@@ -58,53 +61,19 @@ public sealed partial class TowingSystem : EntitySystem
         var used = args.Used.Value;
         args.Handled = true;
         
-        if(ent.Comp.EntityA == null)
+        if(ent.Comp.EntityA == null || !EntityManager.EntityExists(ent.Comp.EntityA))
         {
-            var jointComp = EnsureComp<JointComponent>(target);
-            var visualComp = EnsureComp<JointVisualsComponent>(target);
-            var tiedComp = EnsureComp<TiedComponent>(target);
-            var joint = _joint.CreateDistanceJoint(used, target);
-            joint.MaxLength = joint.Length + 1.0f;
-            joint.Stiffness = 1f;
-            joint.MinLength = 0.35f;
-                        
-            visualComp.Sprite = ent.Comp.RopeSprite;
-            visualComp.Target = used;
-
-            tiedComp.TiedBy = ent.Owner;
-            tiedComp.isHitch = false;
-
-            ent.Comp.EntityA = target;
-
-            Dirty(ent.Owner, ent.Comp);
-            Dirty(target, tiedComp);
-            Dirty(target, visualComp);
-            Dirty(target, jointComp);
+            CreateJoint(used, target, ent.Comp, used);
         }
         else
         {
-            var entA = ent.Comp.EntityA!.Value;
+            var entA = ent.Comp.EntityA.Value;
             _joint.ClearJoints(entA);
-            var visualComp = Comp<JointVisualsComponent>(entA);
-            var tiedComp = EnsureComp<TiedComponent>(target);
-            var joint = _joint.CreateDistanceJoint(entA, target, anchorA: new Vector2(0f, 0.5f), anchorB: new Vector2(0f, 0.5F));
-            joint.MaxLength = joint.Length + 0.2f;
-            joint.Stiffness = 1f;
-            joint.MinLength = 0.35f;
-            
-            tiedComp.AttachedTo = entA;
-
-            visualComp.Target = target;
 
             if(TryComp<TiedComponent>(entA, out var tied))
-            {
-                tied.AttachedTo = target;
-                tiedComp.isHitch = tied.isHitch;
-                Dirty(entA, tied);
-            }
-            
-            Dirty(target, tiedComp);
-            Dirty(target, visualComp);
+                CreateJoint(entA, target, ent.Comp, isHitch:tied.isHitch);
+            else
+                CreateJoint(entA, target, ent.Comp);
             QueueDel(ent.Owner);
         }
     }
@@ -154,6 +123,7 @@ public sealed partial class TowingSystem : EntitySystem
             if(tComp.AttachedTo != null)
             {
                 var attachedTo = tComp.AttachedTo.Value;
+                _movementSpeed.RefreshMovementSpeedModifiers(attachedTo);
                 RemComp<TiedComponent>(attachedTo);
                 RemComp<JointComponent>(attachedTo);
                 RemComp<JointVisualsComponent>(attachedTo);
@@ -164,6 +134,7 @@ public sealed partial class TowingSystem : EntitySystem
                 }             
             }
         }
+        _movementSpeed.RefreshMovementSpeedModifiers(target);    
         RemComp<TiedComponent>(target);
         RemComp<JointComponent>(target);
         RemComp<JointVisualsComponent>(target);
@@ -203,25 +174,54 @@ public sealed partial class TowingSystem : EntitySystem
         _hands.TryPickupAnyHand(args.User, hook);
         
         var towComp = Comp<TowingComponent>(hook);
-        var jointComp = EnsureComp<JointComponent>(target);
-        var visualComp = EnsureComp<JointVisualsComponent>(target);
-        var tiedComp = EnsureComp<TiedComponent>(target);
-        var joint = _joint.CreateDistanceJoint(hook, target);
-        joint.MaxLength = joint.Length + 1.0f;
+        CreateJoint(hook, target, towComp, hook, true);
+    }
+
+    private void CreateJoint(EntityUid entityA, EntityUid entityB, TowingComponent towComp, EntityUid? TiedBy=null, bool isHitch=false)
+    {
+        var jointComp = EnsureComp<JointComponent>(entityB);
+        var visualComp = EnsureComp<JointVisualsComponent>(entityB);
+        var tiedComp = EnsureComp<TiedComponent>(entityB);
+        var joint = _joint.CreateDistanceJoint(entityA, entityB);
+        joint.MaxLength = joint.Length + 0.3f;
         joint.Stiffness = 1f;
-        joint.MinLength = 0.35f;
+        joint.MinLength = 0.0f;
                         
         visualComp.Sprite = towComp.RopeSprite;
-        visualComp.Target = hook;
+        visualComp.Target = entityA;
 
-        tiedComp.TiedBy = hook;
-        tiedComp.isHitch = true;
+        tiedComp.TiedBy = TiedBy;
+        tiedComp.isHitch = isHitch;
+        tiedComp.AttachedTo = entityA;
 
-        towComp.EntityA = target;
+        if (TryComp<TiedComponent>(entityA, out var tied))
+        {
+            tied.AttachedTo = entityB;
+            tied.TiedBy = null;
+            Dirty(entityA, tied);
+        }
 
-        Dirty(ent.Owner, towComp);
-        Dirty(target, tiedComp);
-        Dirty(target, visualComp);
-        Dirty(target, jointComp);
+        towComp.EntityA = entityB;
+        
+        _movementSpeed.RefreshMovementSpeedModifiers(entityA);
+        _movementSpeed.RefreshMovementSpeedModifiers(entityB);
+
+        if(TiedBy != null)
+            Dirty(TiedBy.Value, towComp);
+        Dirty(entityB, tiedComp);
+        Dirty(entityB, visualComp);
+        Dirty(entityB, jointComp);
+    }
+
+    private void OnJointRemoved(Entity<TiedComponent> ent, ref JointRemovedEvent args)
+    {
+        if(!HasComp<TiedComponent>(args.OurEntity) || !HasComp<TiedComponent>(args.OtherEntity)) return;
+        if(ent.Comp.AttachedTo != null)
+        {
+            RemComp<JointVisualsComponent>(ent.Comp.AttachedTo.Value);
+            RemComp<TiedComponent>(ent.Comp.AttachedTo.Value);
+        }
+        RemComp<JointVisualsComponent>(ent.Owner);
+        RemComp<TiedComponent>(ent.Owner);
     }
 }
