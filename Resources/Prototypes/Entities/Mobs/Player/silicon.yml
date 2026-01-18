@@ -262,7 +262,7 @@
   - type: ApcPowerReceiverBattery
     idleLoad: 500
     batteryRechargeRate: 1000
-    batteryRechargeEfficiency: 0 # Setting to zero until the light flickering issue associated with dynamic power loads is fixed 
+    batteryRechargeEfficiency: 0 # Setting to zero until the light flickering issue associated with dynamic power loads is fixed
   - type: StationAiCore
   - type: StationAiVision
   - type: InteractionOutline
@@ -331,7 +331,7 @@
       - StationAiCoreElectronics
   - type: StaticPrice
     price: 5000
-      
+
 # The job-ready version of an AI spawn.
 - type: entity
   id: PlayerStationAi
@@ -350,7 +350,7 @@
   description: An unfinished computer core for housing an artifical intelligence.
   components:
   - type: Anchorable
-    flags: 
+    flags:
     - Anchorable
   - type: Rotatable
   - type: Sprite
@@ -478,6 +478,16 @@
     chance: 0.6 # lets just try it at 3/4th the chance of a borg and see how bad it gets
     #endregion
 
+#SL start
+- type: entity
+  parent: StationAiBrain
+  id: StationAiBrainConstructed
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+    - type: StationAiCustomization
+      renameAvailable: true
+#SL end
+
 # Hologram projection that the AI's eye tracks.
 - type: entity
   parent:
@@ -537,7 +547,7 @@
 - type: entity
   id: PlayerBorgBattery
   parent: BorgChassisSelectable
-  suffix: Battery
+  suffix: Battery, Brain # Starlight edit
   components:
   - type: ContainerFill
     containers:

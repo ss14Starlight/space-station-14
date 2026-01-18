@@ -1,0 +1,11 @@
+- type: entity
+  id: OrganMothEyes
+  parent: OrganHumanEyes
+  name: eyes
+  suffix: Moth
+  description: "Moth eyes are very big, to catch the light"
+  components:
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobMothEyes

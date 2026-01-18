@@ -67,6 +67,32 @@
     entity: SupermatterCrystal
 
 - type: entity
+  parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]
+  id: TEGCenterFlatpack
+  name: teg center flatpack
+  description: A flatpack used for constructing the main component of a Thermo-Electric Generator.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: TegCenter
+
+- type: entity
+  parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]
+  id: TEGCirculatorFlatpack
+  name: teg circulator flatpack
+  description: A flatpack used for constructing a Circulator for a Thermo-Electric Generator.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: TegCirculator
+
+- type: entity
   parent: BaseStructureFlatpack
   id: ReflectorFlatpack
   name: Reflector Flatpack

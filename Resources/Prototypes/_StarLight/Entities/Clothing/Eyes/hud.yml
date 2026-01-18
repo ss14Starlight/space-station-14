@@ -2,7 +2,7 @@
   parent: [ ClothingEyesBase, BaseCommandContraband ]
   id: ClothingEyesHudBlueShield
   name: blueshield officer's hud
-  description: A Innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
+  description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Eyes/Hud/blueshield.rsi
@@ -22,6 +22,27 @@
     - HudMedical
   - type: EyeProtection
     protectionTime: 5
+
+- type: entity
+  parent: [ClothingEyesHudBlueShield, ClothingHeadEyeBaseFlippable]
+  id: ClothingEyesEyepatchHudBlueShield
+  name: blueshield officer's hud eyepatch
+  description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information. For true patriots.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/blueshieldpatch.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/blueshieldpatch.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+    - HudMedical
+
+- type: entity
+  parent: [ClothingEyesEyepatchHudBlueShield, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudBlueShieldFlipped
+  name: blueshield officer's hud eyepatch
 
 - type: entity
   parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
@@ -46,6 +67,65 @@
     - WhitelistChameleon
   - type: IdentityBlocker
     coverage: EYES
+
+- type: entity
+  parent: [ClothingEyesHudBrigmedic, ClothingHeadEyeBaseFlippable]
+  id: ClothingEyesEyepatchHudBrigmedic
+  name: brigmedic hud eyepatch
+  description: Tamashi-upgraded HUDs for true patriots. Yes. Brigmedic ones.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/brigmedpatch.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/brigmedpatch.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+    - HudMedical
+
+- type: entity
+  parent: [ClothingEyesEyepatchHudBrigmedic, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudBrigmedicFlipped
+  name: brigmedic hud eyepatch
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesHudChemical
+  name: chemical hud
+  description: A heads-up display that scans the chemical composition of a solution.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/chemhud.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/chemhud.rsi
+  - type: SolutionScanner
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingEyesHudChemical, ClothingHeadEyeBaseFlippable]
+  id: ClothingEyesEyepatchHudChemical
+  name: chemical hud eyepatch
+  description: A heads-up display that scans the chemical composition of a solution. For true patriots.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/chempatch.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/chempatch.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+    - HudMedical
+
+- type: entity
+  parent: [ClothingEyesEyepatchHudChemical, ClothingHeadEyeBaseFlipped]
+  id: ClothingEyesEyepatchHudChemicalFlipped
+  name: chemical hud eyepatch
 
 - type: entity
   parent: ClothingEyesBase

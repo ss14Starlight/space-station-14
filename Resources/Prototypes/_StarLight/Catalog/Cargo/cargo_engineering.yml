@@ -3,8 +3,18 @@
   icon:
     sprite: _Starlight/Objects/Specific/supermatter.rsi
     state: supermatter
-  product: SupermatterFlatpack
+  product: CrateSupermatterFlatpack
   cost: 8000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: TEGFlatpackPurchase
+  icon:
+    sprite: Structures/Power/Generation/teg.rsi
+    state: teg
+  product: CrateTEGFlatpack
+  cost: 6000
   category: cargoproduct-category-name-engineering
   group: market
 

@@ -12,6 +12,7 @@
     time: 6h # Starlight
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateOperativeGearFull
+  playTimeTracker: AntagNukeops # Starlight
 
 - type: antag
   id: NukeopsMedic
@@ -33,6 +34,7 @@
     time: 3h # Starlight
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateOperativeMedicFull
+  playTimeTracker: AntagNukeopsMedic # Starlight
 
 - type: antag
   id: NukeopsCommander
@@ -52,6 +54,7 @@
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateCommanderGearFull
+  playTimeTracker: AntagNukeopsCommander # Starlight
 
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink
@@ -71,7 +74,7 @@
     back:
     - WeaponPistolViper
     - PinpointerSyndicateNuclear
-    - DeathAcidifierImplanter
+    - GearAcidifierImplanter # Starlight edit
 
 #Nuclear Operative Gear
 - type: startingGear
@@ -131,7 +134,7 @@
     - PinpointerSyndicateNuclear
     - HandheldHealthAnalyzer
     - CombatMedipen
-    - DeathAcidifierImplanter
+    - GearAcidifierImplanter # Starlight edit
 
 - type: chameleonOutfit
   id: NukeopsMedicOutfit

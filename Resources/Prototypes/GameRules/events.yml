@@ -103,6 +103,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncementColor: "#18abf5"
     startAudio:
       path: /Audio/Announcements/announce.ogg
@@ -142,6 +143,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 7
     duration: 1
     minimumPlayers: 15
@@ -152,6 +154,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-bureaucratic-error-announcement
     earliestStart: 40 # 🌟Starlight🌟 Why could this happen roundstart?!
     minimumPlayers: 40 # 🌟Starlight🌟
@@ -170,6 +173,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-clerical-error-announcement
     minimumPlayers: 15
     weight: 5
@@ -181,6 +185,7 @@
   id: ClosetSkeleton
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 5
     duration: 1
     minimumPlayers: 10
@@ -192,6 +197,7 @@
   id: DragonSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 3 # 🌟Starlight🌟 Casualization
     earliestStart: 50 # 🌟Starlight🌟 Casualization
     reoccurrenceDelay: 45 # 🌟Starlight🌟 Casualization
@@ -223,6 +229,7 @@
   id: NinjaSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 3 # 🌟Starlight🌟 Casualization
     duration: null
     earliestStart: 45 # 🌟Starlight🌟 Casualization
@@ -269,6 +276,10 @@
         nameFormat: name-format-ninja
       mindRoles:
       - MindRoleNinja
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 75
 
@@ -361,6 +372,10 @@
         nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
 
 # disabled until event is rewritten to be more interesting
 #- type: entity
@@ -400,6 +415,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 5
     startAnnouncement: station-event-power-grid-check-start-announcement
     endAnnouncement: station-event-power-grid-check-end-announcement
@@ -444,6 +460,7 @@
   parent: BaseStationEventLongDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-clog-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -458,6 +475,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -479,6 +497,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
@@ -500,6 +519,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -517,6 +537,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -538,6 +559,7 @@
     minimumPlayers: 40
     weight: 1 # Zombies was happening basically every single survival round, so now it's super rare
     duration: 1
+    occursDuringRoundEnd: false
   - type: ZombieRule
   - type: AntagSelection
     definitions:
@@ -600,6 +622,10 @@
         - Syndicate
       mindRoles:
       - MindRoleLoneops
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 75
 
@@ -652,6 +678,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     earliestStart: 20
     minimumPlayers: 15
     weight: 6
@@ -667,6 +694,7 @@
   id: IonStorm
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 8
     reoccurrenceDelay: 20
     duration: 1
@@ -693,6 +721,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAudio:
       path: /Audio/Announcements/attention.ogg
     weight: 2
@@ -728,6 +757,7 @@
   id: DerelictEngineerCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -749,6 +779,7 @@
   id: DerelictGenericCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -770,6 +801,7 @@
   id: DerelictJanitorCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -791,6 +823,7 @@
   id: DerelictMedicalCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -812,6 +845,7 @@
   id: DerelictMiningCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -833,6 +867,7 @@
   id: DerelictSyndicateAssaultCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 25
     reoccurrenceDelay: 20

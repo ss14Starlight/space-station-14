@@ -126,6 +126,18 @@
     - Security
     - Service
     - Theatre
+    # Starlight start
+    - BlueShield
+    - Brigmedic
+    - Cadet 
+    - Magistrate
+    - Mining
+    - Ntrep
+    - Paramedic
+    - Robotics
+    - SalvageLead 
+    - Surgery
+    # Starlight end
   - type: DeviceList
     isAllowList: true
   - type: DeviceNetwork

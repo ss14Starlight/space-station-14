@@ -358,6 +358,14 @@ namespace Content.Server.Forensics
         /// <param name="blocker">The entity that blocked accessing the fingerprint</param>
         public bool CanAccessFingerprint(EntityUid target, out EntityUid? blocker)
         {
+            //Check if target has masked fingerprints 🌟Starlight🌟 start
+            if (TryComp<FingerprintMaskComponent>(target, out _))
+            {
+                blocker = target;
+                return false;
+            }
+            // 🌟Starlight🌟 end
+
             var ev = new TryAccessFingerprintEvent();
 
             RaiseLocalEvent(target, ev);

@@ -34,6 +34,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Wieldable;
 using Content.Shared.Zombies;
 using Content.Shared._Starlight.ScanGate; // Starlight
+using Content.Shared._Starlight.Body.Events; // Starlight
 
 namespace Content.Shared.Inventory;
 
@@ -83,6 +84,8 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, UnwieldAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, IngestionAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, TryDetectItem>(RefRelayInventoryEvent); // Starlight
+        SubscribeLocalEvent<InventoryComponent, KnockDownAttemptEvent>(RefRelayInventoryEvent); // Starlight
+        SubscribeLocalEvent<InventoryComponent, RadiateHeatAttemptEvent>(RefRelayInventoryEvent); // Starlight
 
         // Eye/vision events
         SubscribeLocalEvent<InventoryComponent, CanSeeAttemptEvent>(RelayInventoryEvent);

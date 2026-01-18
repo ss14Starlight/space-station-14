@@ -8,7 +8,6 @@
     possibleSpawns:
     - SmartSubwooferBorgiChassis
     - SubwooferBorgiChassis
-    - BaseStationBorgiChassis
     - StationBorgiChassis
     - MobCorgiSmart
 
@@ -21,3 +20,13 @@
   - type: Rehydratable
     possibleSpawns:
     - MobEmotionalSupportScurret
+
+- type: entity
+  parent: RehydratableAnimalCube
+  id: CCMoproachCube
+  name: cc moproach cube
+  description: Just add water! *chitters*
+  components:
+    - type: Rehydratable
+      possibleSpawns:
+        - MobCCMoproach 

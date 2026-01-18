@@ -139,3 +139,33 @@
       types:
         Slash: -1.5
         Piercing: -1.5
+
+- type: entity
+  id: EnergyDomeNullspace
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 3.8
+        density: 0
+        hard: false
+        mask:
+        - None
+        layer:
+        - MidImpassable
+  - type: Sprite
+    drawdepth: LowFloors
+    sprite: Effects/EnergyDome/energydome_big.rsi
+    scale: 1.5, 1.5
+    layers:
+    - state: big
+      color: "#6c15ae"
+  - type: Stealth   
+    minVisibility: 0.8
+    maxVisibility: 0.8
+    lastVisibility: 0.8
+  - type: NullSpaceBlocker
