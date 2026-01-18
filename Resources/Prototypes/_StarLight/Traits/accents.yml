@@ -1,3 +1,14 @@
+# Negative Cost (gives points)
+
+- type: trait
+  id: DamagedThroat
+  name: trait-damaged-throat-name
+  description: trait-damaged-throat-desc
+  category: SpeechTraits
+  cost: -2
+  components:
+    - type: DamagedThroat
+
 # 0 Cost Accent
 
 - type: trait

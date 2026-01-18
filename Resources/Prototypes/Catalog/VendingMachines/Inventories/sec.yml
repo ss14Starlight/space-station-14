@@ -13,8 +13,10 @@
     ClothingEyesGlassesSunglasses: 2
     ClothingEyesHudSecurity: 2
     ClothingEyesEyepatchHudSecurity: 2
+    ClothingEyeGlassesSecurityPrescription: 2 #Starlight
     ClothingBeltSecurityWebbing: 5
     CombatKnife: 3
+    CrisisButton: 5 #Starlight
     Zipties: 12
     RiotShield: 2
     RiotLaserShield: 2

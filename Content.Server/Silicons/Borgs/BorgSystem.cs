@@ -13,6 +13,10 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+// Starlight Start
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Server.Chat.Systems;
+// Starlight End
 
 namespace Content.Server.Silicons.Borgs;
 
@@ -37,6 +41,11 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         base.Initialize();
 
+        // Starlight Start: Allow borgs to LOOC while crit
+        SubscribeLocalEvent<BorgChassisComponent, LoocCritCheckEvent>(OnLoocCritCheckChassis);
+        SubscribeLocalEvent<BorgBrainComponent, LoocCritCheckEvent>(OnLoocCritCheckBrain);
+        // Starlight End
+
         InitializeTransponder();
     }
 
@@ -54,4 +63,12 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         UpdateTransponder(frameTime);
     }
+
+    // Starlight Start: Allow borgs to LOOC while crit
+    private void OnLoocCritCheckChassis(EntityUid uid, BorgChassisComponent component, LoocCritCheckEvent args) =>
+        args.AllowCritLooc = true;
+
+    private void OnLoocCritCheckBrain(EntityUid uid, BorgBrainComponent component, LoocCritCheckEvent args) =>
+        args.AllowCritLooc = true;
+    // Starlight End
 }

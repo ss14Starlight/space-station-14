@@ -1,0 +1,52 @@
+- type: entity
+  parent: [ BaseCivilianContraband, SmokeGrenade ]
+  id: WehGrenade
+  name: wehnade
+  description: Grenade filled to the brim with weh foam.
+  components:
+    - type: SmokeOnTrigger
+      keysIn:
+        - timer
+      duration: 15
+      spreadAmount: 50
+      smokePrototype: Foam
+      solution:
+        reagents:
+          - ReagentId: JuiceThatMakesYouWeh
+            Quantity: 30
+
+- type: entity
+  parent: WehGrenade
+  id: WehGrenadePlus
+  name: wehnade+
+  suffix: Admeme
+  description: Grenade filled to the brin with weh foam. Now with bluespace technology!
+  components:
+    - type: SmokeOnTrigger
+      keysIn:
+        - timer
+      duration: 30
+      spreadAmount: 350
+      smokePrototype: Foam
+      solution:
+        reagents:
+          - ReagentId: JuiceThatMakesYouWeh
+            Quantity: 30
+
+- type: entity
+  parent: WehGrenade
+  id: WehGrenadeUltraDeluxe
+  name: wehnade++
+  suffix: Admeme
+  description: Grenade filled to the brin with weh foam. We heard you liked bluespace, so we put bluespace in your bluespace so you can bluespace while you bluespace. Weh.
+  components:
+    - type: SmokeOnTrigger
+      keysIn:
+        - timer
+      duration: 60
+      spreadAmount: 6800
+      smokePrototype: Foam
+      solution:
+        reagents:
+          - ReagentId: JuiceThatMakesYouWeh
+            Quantity: 30

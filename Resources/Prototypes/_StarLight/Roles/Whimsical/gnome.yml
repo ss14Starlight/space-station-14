@@ -1,0 +1,6 @@
+- type: startingGear
+  id: GnomeOutfit
+  equipment:
+    jumpsuit: ClothingUniformOveralls
+    shoes: ClothingShoesBootsSalvage
+    head: ClothingHeadHatPartyRed
