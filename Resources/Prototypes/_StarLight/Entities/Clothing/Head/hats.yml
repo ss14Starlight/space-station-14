@@ -48,8 +48,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatRetroOfficer
-  name: retro-officer's cap
-  description: A vintage peaked cap from old Earth law enforcement. A symbol of authority from a bygone era.
+  name: TSF officer's cap
+  description: A peaked cap from the Trans Solar Federation's law enforcement division. This peacekeeping headgear symbolizes TSF authority across known space.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi

@@ -413,3 +413,25 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+
+- type: entity
+  parent: BasePDA
+  id: TSFOperativePDA
+  name: TSF operative PDA
+  description: A personal data assistant issued by the Trans Solar Federation. Built to military specifications.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: TSFOfficerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-tsfoperative
+  - type: PdaBorderColor
+    borderColor: "#B31E3E"
+    accentVColor: "#1b1b1b"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-tsfoperative

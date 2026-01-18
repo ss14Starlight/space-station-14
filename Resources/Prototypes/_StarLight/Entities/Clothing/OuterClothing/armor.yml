@@ -318,8 +318,8 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterVestRetroOfficer
-  name: retro-officer's duty vest
-  description: A vintage tactical vest from old Earth law enforcement. Provides basic protection and some storage.
+  name: TSF officer's duty vest
+  description: A tactical vest from the Trans Solar Federation. Provides basic protection and some storage for patrol duty.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_vest.rsi
@@ -339,8 +339,8 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterVestRetroOfficerHiVis
-  name: retro-officer's hi-vis vest
-  description: A high-visibility tactical vest from old Earth law enforcement. Good for traffic control and being seen in dangerous situations.
+  name: TSF officer's hi-vis vest
+  description: A high-visibility tactical vest from the Trans Solar Federation. Essential for traffic control and maintaining visibility in dangerous situations.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi

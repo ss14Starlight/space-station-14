@@ -361,3 +361,30 @@
       state: Cluwne
   - type: IdCard
     jobTitle: job-title-cluwne
+
+- type: entity
+  parent: IDCardStandard
+  id: TSFOfficerIDCard
+  name: TSF officer ID card
+  description: An identification card issued by the Trans Solar Federation. Grants all access clearance.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: TSF
+    - sprite: _Starlight/Interface/Misc/job_icons.rsi
+      offset: -0.09375, 0.0625
+      state: TSFOfficer
+  - type: Item
+    heldPrefix: silver
+  - type: IdCard
+    jobTitle: job-title-tsfofficer
+    jobIcon: JobIconTSFOfficer
+  - type: Access
+    groups:
+    - AllAccess
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - WhitelistChameleon
+    - WhitelistChameleonIdCard

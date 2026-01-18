@@ -15,6 +15,9 @@ job-name-salvagelead = Salvage Lead
 job-name-abductor = Abductor
 job-title-borgi = Borgi
 
+job-name-tsfofficer = TSF Officer
+job-title-tsfofficer = TSF Officer
+
 job-greet-information-rules = {$jobRules}
 
 role-type-corporate-aligned-name = Corporate Aligned

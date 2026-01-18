@@ -1,0 +1,27 @@
+- type: startingGear
+  id: TSFOfficerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRetroOfficer
+    head: ClothingHeadHatRetroOfficer
+    back: ClothingBackpackSatchel
+    shoes: ClothingShoesBootsJack
+    outerClothing: ClothingOuterVestRetroOfficer
+    eyes: ClothingEyesGlassesSecurity
+    mask: ClothingMaskGasSecurity
+    ears: ClothingHeadsetAltCentCom
+    gloves: ClothingHandsGlovesCombat
+    id: TSFOperativePDA
+    belt: ClothingBeltRetroOfficer
+    neck: ClothingNeckTSFBadge
+    pocket1: WeaponTaser
+    pocket2: TSFZiptiePack
+  inhand:
+  - WeaponPistolTSFModel17
+  storage:
+    back:
+    - MindShieldImplanter
+    - RadioHandheldSecurity
+    belt:
+    - TSFBatonModel5
+    - MagazinePistolSP
+    - MagazinePistolFMJ
