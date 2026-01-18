@@ -1,6 +1,6 @@
 card-examined = This is a {$target}.
 cards-verb-shuffle = Shuffle
-card-verb-shuffle-success = {$user} shuffled the deck.
+cards-verb-shuffle-success = {$user} shuffled the deck.
 cards-verb-flip = Flip Cards
 card-verb-join = Join Cards
 card-verb-organize-value = Organize deck by value
