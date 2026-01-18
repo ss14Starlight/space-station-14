@@ -72,7 +72,7 @@ if invalid_entries:
 required_prefixes = {
     "add": [ "Added " ],
     "remove": [ "Removed " ],
-    "tweak": [ "Changed ", "Adjusted"],
+    "tweak": [ "Changed ", "Adjusted ", "Replaced ", "Improved " ],
     "fix": [ "Fixed " ],
 }
 
