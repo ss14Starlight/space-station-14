@@ -46,6 +46,21 @@
     sprite: _Starlight/Clothing/Head/Hats/beret_corpsman.rsi
 
 - type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatRetroOfficer
+  name: retro-officer's cap
+  description: A vintage peaked cap from old Earth law enforcement. A symbol of authority from a bygone era.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+
+- type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatSheriffHat
   name: head of security's sheriff hat

@@ -316,6 +316,48 @@
       damageCoefficient: 0.9
 
 - type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterVestRetroOfficer
+  name: retro-officer's duty vest
+  description: A vintage tactical vest from old Earth law enforcement. Provides basic protection and some storage.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_vest.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_vest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.75
+    staminaModifier: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterVestRetroOfficerHiVis
+  name: retro-officer's hi-vis vest
+  description: A high-visibility tactical vest from old Earth law enforcement. Good for traffic control and being seen in dangerous situations.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.75
+    staminaModifier: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
   parent: [ClothingOuterBaseMedium, BaseSovietContraband, AllowSuitStorageClothing ] #"ClothingOuterArmorBase" is stupid and overrides any contraband level.
   id: ClothingOuterArmorSovietFlak
   name: soviet flak vest

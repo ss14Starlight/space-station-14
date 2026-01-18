@@ -496,6 +496,17 @@
       sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagegreen.rsi
 
 - type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRetroOfficer
+  name: retro-officer's jumpsuit
+  description: A vintage uniform reminiscent of old Earth law enforcement. A relic from a bygone era.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/RetroSec.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/RetroSec.rsi
+
+- type: entity
   parent: [ ClothingUniformBase , BaseSalvageContraband ]
   id: ClothingUniformJumpsuitSalvageMercBrown
   name: brown scrapper jumpsuit

@@ -146,6 +146,18 @@
   - type: Appearance
 
 - type: entity
+  parent: ClothingBeltSecurity
+  id: ClothingBeltRetroOfficer
+  name: retro-officer's duty belt
+  description: A vintage leather duty belt from old Earth law enforcement. Can hold security equipment and tools.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/retro_officer_belt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/retro_officer_belt.rsi
+  - type: Appearance
+
+- type: entity
   parent: [ClothingBeltStorageBase, BaseSovietContraband]
   id: ClothingSovietBandolier
   name: marine bandolier
