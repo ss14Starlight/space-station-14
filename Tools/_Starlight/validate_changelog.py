@@ -100,7 +100,7 @@ for line_number, line in enumerate(changelog_without_comments.splitlines(), star
     prefixFounded = False
 
     for prefix in required_prefix_list:
-        if description.startswith(required_prefix):
+        if description.startswith(prefix):
             prefixFounded = True
             break
 
