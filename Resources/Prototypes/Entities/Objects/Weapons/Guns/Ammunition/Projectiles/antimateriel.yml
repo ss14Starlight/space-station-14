@@ -12,5 +12,6 @@
     penetrationThreshold: 360
     penetrationDamageTypeRequirement:
     - Structural
+    ignoreResistances: true
   - type: StaminaDamageOnCollide
     damage: 60
