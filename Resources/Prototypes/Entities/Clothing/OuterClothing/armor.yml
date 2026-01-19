@@ -195,8 +195,6 @@
     # Starlight-start
     staminaModifier: 0.55
     # Starlight-end
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
   - type: StaticPrice
     price: 1500
 
