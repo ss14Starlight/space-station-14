@@ -121,6 +121,8 @@
   recipeUnlocks:
   - WeaponParticleDecelerator
   - HoloprojectorField
+  radioChannels:
+  - Engineering # starlight
 
 - type: technology
   id: GravityManipulation

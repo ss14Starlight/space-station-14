@@ -86,7 +86,12 @@
     FlippoEngravedLighterStealObjective: 0.5
     ClothingHeadHatWardenStealObjective: 1
     WantedListCartridgeStealObjective: 1
-    Proto5xStealObjective: 1        # Starlight // HoS Gun
+    # Starlight-start
+    Proto5xStealObjective: 1                # HoS Gun
+    FiringPinStealObjective: 1
+    FiringPinAdvancedLaserStealObjective: 1
+    FiringPinSmartLMGStealObjective: 1
+    # Starlight-end
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med
     MedicalTechFabCircuitboardStealObjective: 1
     FireAxeStealObjective: 1                            #eng

@@ -18,6 +18,9 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
+  - BorgModuleAdvancedLoading
+  technologyPrerequisites:
+  - CritterMechs
   radioChannels:
   - Supply
 
@@ -73,6 +76,8 @@
   cost: 10000
   recipeUnlocks:
   - WeaponTurretPointDefenseMachineCircuitboard
+  technologyPrerequisites:
+  - SpaceScanning
   radioChannels:
   - Engineering
 

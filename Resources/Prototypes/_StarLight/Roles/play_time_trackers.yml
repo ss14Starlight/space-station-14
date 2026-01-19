@@ -39,9 +39,32 @@
   
 - type: playTimeTracker
   id: JobDecimus
-
+  
 - type: playTimeTracker
   id: JobBoxer
 
 - type: playTimeTracker
   id: JobZookeeper
+
+# Other ghosts
+
+- type: playTimeTracker
+  id: GhostPAI
+
+- type: playTimeTracker
+  id: GhostCritterHarmless
+
+- type: playTimeTracker
+  id: GhostBotHarmless
+
+- type: playTimeTracker
+  id: GhostNecktie
+
+- type: playTimeTracker
+  id: GhostSkeleton
+
+- type: playTimeTracker
+  id: GhostXeno
+
+- type: playTimeTracker
+  id: Observer

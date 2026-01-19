@@ -58,7 +58,7 @@ public sealed class DevourSystem : EntitySystem
     /// </summary>
     private void OnDevourAction(Entity<DevourerComponent> ent, ref DevourActionEvent args)
     {
-        if (args.Handled || _whitelistSystem.IsWhitelistFailOrNull(ent.Comp.Whitelist, args.Target))
+        if (args.Handled || !_whitelistSystem.CheckBoth(args.Target, ent.Comp.Blacklist, ent.Comp.Whitelist)) // Starlight-edit - IsWhitelistFailOrNull -> !CheckBoth
             return;
 
         args.Handled = true;
