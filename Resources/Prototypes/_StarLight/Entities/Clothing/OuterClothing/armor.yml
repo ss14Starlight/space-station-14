@@ -363,6 +363,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.85
 
+- type: entity
   parent: [BaseGrandTheftContraband, ClothingOuterArmorBase]
   id: ClothingOuterReactiveArmourShell
   name: reactive armour shell
