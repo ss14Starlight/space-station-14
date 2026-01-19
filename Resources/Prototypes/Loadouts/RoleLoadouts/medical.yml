@@ -1,0 +1,111 @@
+## Role Loadouts
+
+- type: roleLoadout
+  id: JobChiefMedicalOfficer
+  groups:
+  - GroupTankHarness
+  - ChiefMedicalOfficerHead
+  - MedicalMask
+  - ChiefMedicalOfficerJumpsuit
+  - MedicalBackpack
+  - ChiefMedicalOfficerOuterClothing
+  - ChiefMedicalOfficerNeck
+  - ChiefMedicalOfficerShoes
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - Scarves # 🌟Starlight🌟
+  - Pins # 🌟Starlight🌟
+  - Pens # 🌟Starlight🌟
+  - ChiefMedicalOfficerJobTrinkets
+  - GroupSpeciesBreathToolMedical
+
+- type: roleLoadout
+  id: JobMedicalDoctor
+  groups:
+  - GroupTankHarness
+  - MedicalDoctorHead
+  - MedicalMask
+  - MedicalDoctorJumpsuit
+  - MedicalBackpack
+  - MedicalDoctorOuterClothing
+  - MedicalShoes
+  - MedicalDoctorPDA
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - Scarves # 🌟Starlight🌟
+  - Pins # 🌟Starlight🌟
+  - Pens # 🌟Starlight🌟
+  - MedicalDoctorJobTrinkets
+  - GroupSpeciesBreathToolMedical
+
+- type: roleLoadout
+  id: JobMedicalIntern
+  groups:
+  - GroupTankHarness
+  - MedicalInternJumpsuit
+  # 🌟Starlight🌟 start
+  - MedicalDoctorHead
+  - MedicalMask
+  - MedicalDoctorJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - MedicalDoctorOuterClothing
+  - MedicalShoes
+  # 🌟Starlight🌟 end
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - Scarves # 🌟Starlight🌟
+  - Pins # 🌟Starlight🌟
+  - Pens # 🌟Starlight🌟
+  - MedicalInternJobTrinkets
+  - GroupSpeciesBreathToolMedical
+
+- type: roleLoadout
+  id: JobChemist
+  groups:
+  - GroupTankHarness
+  - ChemistHead # 🌟Starlight🌟
+  - MedicalMask
+  - ChemistJumpsuit
+  - ChemistBackpack
+  - ChemistOuterClothing
+  # 🌟Starlight🌟 start
+  - ChemistBag
+  - ChemistShoes
+  - ChemistPDA
+  - ChemistEyewear
+  - ChemistBeaker
+  - ChemistLabeler
+  #- MedicalShoes
+  #- Glasses
+  # 🌟Starlight🌟 end
+  - SurvivalMedical
+  - Trinkets
+  - Scarves # 🌟Starlight🌟
+  - Pins # 🌟Starlight🌟
+  - Pens # 🌟Starlight🌟
+  - ChemistJobTrinkets
+  - GroupSpeciesBreathToolMedical
+
+- type: roleLoadout
+  id: JobParamedic
+  groups:
+  - GroupTankHarness
+  - ParamedicHead
+  - MedicalMask
+  - ParamedicJumpsuit
+  - MedicalBackpack
+  - ParamedicOuterClothing
+  - ParamedicShoes
+  - ParamedicPDA # 🌟Starlight🌟
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - Scarves # 🌟Starlight🌟
+  - Pins # 🌟Starlight🌟
+  - Pens # 🌟Starlight🌟
+  - ParamedicJobTrinkets
+  - GroupSpeciesBreathToolMedical
