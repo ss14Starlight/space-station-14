@@ -1318,23 +1318,19 @@
       enum.AgentIDCardUiKey.Key:
         type: AgentIDCardBoundUserInterface
 
-# Starlight-edit: Start
-# adding this to the starlight file causes errors
+#starlight-edit
 - type: entity
-  parent: IDCardStandard
+  parent: [ IDCardStandard, BaseSecurityContraband ]
   id: DrillInstructorIDCard
   name: Drill Instructor ID card
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: stripe_top
-      color: *color-security-top
-    - state: stripe_bottom
-      color: *color-security-bottom
-    - sprite: *icon-rsi
+    - sprite: *starlight-icon-rsi
       offset: *icon-offset
       state: DrillInstructor
   - type: PresetIdCard
     job: DrillInstructor
-# Starlight-edit: End
+ #starlight-edit end

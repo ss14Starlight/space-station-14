@@ -550,3 +550,32 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+
+- type: entity
+  parent: BaseSecurityPDA
+  id: DrillInstructorPDA
+  name: drill Instructor PDA
+  description: Gives off an aura of law-abiding authority.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: DrillInstructorIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-drillInstructor
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-drillinstructor
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - WantedListCartridge

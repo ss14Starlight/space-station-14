@@ -13,7 +13,7 @@
   weight: -1
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
-  supervisors: job-supervisors-security
+  supervisors: job-supervisors-drillinstructor #Starlight
   canBeAntag: false
   access:
 # - Security # Starlight change

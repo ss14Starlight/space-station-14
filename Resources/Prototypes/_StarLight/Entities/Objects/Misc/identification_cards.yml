@@ -178,7 +178,7 @@
 
 - type: entity
   parent: [ IDCardStandard, BaseCargoContraband ]
-  id: MailTechIDCard
+  id: mail technician ID card
   name: mailtech ID card
   components:
   - type: Sprite
