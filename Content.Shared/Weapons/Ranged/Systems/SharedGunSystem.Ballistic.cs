@@ -266,6 +266,7 @@ public abstract partial class SharedGunSystem
         for (var i = 0; i < args.Shots; i++)
         {
             EntityUid? ammoEntity = null;
+            bool ejected = false; // Starlight-edit
             if (component.Entities.Count > 0)
             {
                 var existingEnt = component.Entities[^1];
@@ -276,8 +277,8 @@ public abstract partial class SharedGunSystem
                     {
                         component.Entities.RemoveAt(component.Entities.Count - 1);
                         Containers.Remove(existingEnt, component.Container);
-                        ammoEntity = existingEnt;
                     }
+                    ammoEntity = existingEnt;
                 }
                 else
                 {
@@ -293,19 +294,17 @@ public abstract partial class SharedGunSystem
                 component.UnspawnedCount--;
                 DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.UnspawnedCount));
                 ammoEntity = Spawn(component.Proto, args.Coordinates);
+                ejected = true;
             }
 
             if (ammoEntity is { } ent)
             {
                 // Starlight start
-                if (TryComp<GunComponent>(uid, out var gun))
+                if (ejected && TryComp<GunComponent>(uid, out var gun) && gun.Pump)
                 {
-                    if (gun.Pump)
-                    {
-                        Containers.Insert(ent, component.Container, force: true);
-                        component.Entities.Insert(0, ent);
-                        DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.Entities));
-                    }
+                    Containers.Insert(ent, component.Container, force: true);
+                    component.Entities.Insert(0, ent);
+                    DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.Entities));
                 }
                 // Starlight end
 

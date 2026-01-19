@@ -605,6 +605,7 @@
     - Medical
     - Service
     - Engineering
+    - Law
   # Starlight-edit: End
     privilegedIdSlot:
       name: id-card-console-privileged-id

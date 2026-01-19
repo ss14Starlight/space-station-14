@@ -8,6 +8,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 3h # Starlight
+  playTimeTracker: AntagThief # Starlight
 
 - type: startingGear
   id: ThiefGear

@@ -40,10 +40,16 @@
   id: BoneGel
 
 - type: Tag
+  id: BorgModuleMining
+
+- type: Tag
   id: BorgModulePurrfus
 
 - type: Tag
   id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleSupply
 
 - type: Tag
   id: BorgModuleSyndicateStealth
@@ -68,6 +74,9 @@
 
 - type: Tag
   id: CartridgePistolImprovised
+
+- type: Tag
+  id: CantBecomeRevolutionary
 
 - type: Tag
   id: CentcommVibroblade
@@ -243,6 +252,9 @@
 - type: Tag
   id: ImprovisedWrench
 
+- type: Tag
+  id: Inedible # Prevents something from being eaten using DevourSystem, but only if on the direct target (e.g. doesn't apply if in inventory of target)
+  
 - type: Tag
   id: InsulatedFabric
 

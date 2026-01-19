@@ -4,6 +4,7 @@
   antagonist: true
   objective: roles-antag-survivor-objective
   # guides: [  ]
+  playTimeTracker: AntagSurvivor # Starlight
 
 - type: antag
   id: Wizard
@@ -19,5 +20,6 @@
     time: 6h # Starlight
   guides: [ Wizard ]
   previewStartingGear: WizardBlueGear
+  playTimeTracker: AntagWizard # Starlight
 
 # See wizard_startinggear for wiz start gear options
