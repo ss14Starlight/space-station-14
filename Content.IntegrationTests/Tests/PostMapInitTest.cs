@@ -95,7 +95,6 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/AdminSpawn/**", // admin gaming
            #region starlight
             "/Maps/_Starlight/Shuttles/Radiotower.yml", // Command stamps - listening post.
-            "/Maps/_Starlight/Stations/Remix.yml", // Admeme map
             #endregion
         };
 
@@ -132,7 +131,6 @@ namespace Content.IntegrationTests.Tests
             "StarlightOrigin",
             "StarlightOrwell",
             "StarlightPrism",
-            "StarlightRemix",
             "StarlightStarboard",
             "StarlightBagel",
             "StarlightBox",

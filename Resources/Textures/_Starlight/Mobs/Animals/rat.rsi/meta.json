@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from goonstation at https://github.com/goonstation/goonstation/blob/61906c560f450db93f4ef9b520fa22213ff3327d/icons/mob/wraith_critters.dmi",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "giantrat",
+            "directions": 4
+        },
+        {
+            "name": "mediumrat",
+            "directions": 4
+        },
+        {
+            "name": "smallrat",
+            "directions": 4
+        },
+        {
+            "name": "smallrat_eyes",
+            "directions": 4
+        }
+    ]
+}

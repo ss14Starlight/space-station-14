@@ -48,6 +48,7 @@
   - BorgModuleAdvancedClowning
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedMining
+  - BorgModuleAdvancedLoading # Starlight
   - BorgModuleSurgical # Starlight
 
 - type: latheRecipePack

@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: BaseBorgModule
   parent: BaseItem
   name: borg module
@@ -73,7 +73,7 @@
   components:
   - type: BorgModule
     borgFitTypes:
-    - borg-type-salvage
+    - borg-type-salvage-cargo # Starlight
   - type: Tag
     tags:
     - BorgModuleCargo
@@ -605,12 +605,12 @@
 
 - type: entity
   id: BorgModuleMining
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # Starlight
   name: mining cyborg module
   components:
   - type: Sprite
     layers:
-    - state: cargo
+    - state: mining # Starlight
     - state: icon-mining
   - type: ItemBorgModule
     hands:
@@ -630,13 +630,13 @@
 
 - type: entity
   id: BorgModuleAdvancedMining
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # Starlight
   name: advanced mining cyborg module
   description: Advanced cargo module containing advanced mining equipment. Studies show it advances productivity of a cyborg by 150%.
   components:
   - type: Sprite
     layers:
-    - state: cargo
+    - state: mining # Starlight
     - state: icon-mining-adv
   - type: ItemBorgModule
     hands:
@@ -656,12 +656,12 @@
 
 - type: entity
   id: BorgModuleTraversal
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ] # Starlight
   name: traversal cyborg module
   components:
   - type: Sprite
     layers:
-    - state: cargo
+    - state: mining # Starlight
     - state: icon-grappling-gun
   - type: ItemBorgModule
     hands:
