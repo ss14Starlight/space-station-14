@@ -82,7 +82,7 @@
 
 - type: entity
   id: BriefcaseWeaponBulldogFilled
-  parent: BriefcaseWeapon
+  parent: BriefcaseWeaponSmall
   name: secure bulldog case
   components:
   - type: EntityTableContainerFill
