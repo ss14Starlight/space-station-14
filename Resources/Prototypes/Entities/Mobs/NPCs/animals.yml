@@ -59,7 +59,10 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Effects/bite.ogg
@@ -119,7 +122,7 @@
       0: Alive
       10: Dead
   - type: Stamina
-    critThreshold: 10
+    baseCritThreshold: 10
     animationThreshold: 1
   - type: DamageStateVisuals
     states:
@@ -147,11 +150,10 @@
     - Bee
     - Trash
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 1
-    bloodMaxVolume: 0.1
+        Quantity: 0.1
   - type: MobPrice
     price: 50
   - type: NPCRetaliation
@@ -197,7 +199,10 @@
     factions:
     - SimpleHostile
   - type: Bloodstream
-    bloodMaxVolume: 0.1
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 0.1
   - type: ZombieImmune
 
 
@@ -278,7 +283,10 @@
     interactSuccessSound:
       path: /Audio/Animals/chicken_cluck_happy.ogg
   - type: Bloodstream
-    bloodMaxVolume: 100
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
@@ -404,11 +412,10 @@
       Dead:
         Base: cockroach_dead
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 1
-    bloodMaxVolume: 20
+        Quantity: 20
   - type: Edible
   - type: FlavorProfile
     flavors:
@@ -519,7 +526,7 @@
     description: ghost-role-information-mothroach-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleCritterHarmless # Starlight-edit - FreeAgentHarmless -> CritterHarmless
   - type: Fixtures
     fixtures:
       fix1:
@@ -583,10 +590,10 @@
     damageContainer: Biological
     damageModifierSet: Moth
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 1
+        Quantity: 20
   - type: Respirator
     damage:
       types:
@@ -744,7 +751,10 @@
     interactSuccessSound:
       path: /Audio/Animals/duck_quack_happy.ogg
   - type: Bloodstream
-    bloodMaxVolume: 100
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
@@ -870,11 +880,10 @@
     tags:
     - Trash
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 1
-    bloodMaxVolume: 0.1
+        Quantity: 0.1
   - type: MobPrice
     price: 50
   - type: Destructible
@@ -1031,11 +1040,10 @@
   - type: ReplacementAccent
     accent: crab
   - type: Bloodstream
-    bloodMaxVolume: 50
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 1
+        Quantity: 50
   - type: Tag
     tags:
     - VimPilot
@@ -1192,7 +1200,10 @@
     interactSuccessSound:
       path: /Audio/Animals/goose_honk.ogg
   - type: Bloodstream
-    bloodMaxVolume: 100
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
   - type: NpcFactionMember
     factions:
     - Passive
@@ -1474,7 +1485,6 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
-  - type: MonkeyAccent
   - type: NpcFactionMember
     factions:
     - Syndicate
@@ -1699,15 +1709,6 @@
   parent: MobBaseSyndicateKobold
   suffix: syndicate agent
   components:
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
     # make the player a traitor once its taken
   - type: AutoTraitor
     profile: TraitorReinforcement
@@ -1717,15 +1718,6 @@
   parent: MobBaseSyndicateKobold
   suffix: NukeOps
   components:
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: NukeOperative
 
 - type: entity
@@ -1761,7 +1753,7 @@
     description: ghost-role-information-mouse-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleCritterHarmless # Starlight-edit - FreeAgentHarmless -> CritterHarmless
   - type: GhostTakeoverAvailable
   - type: Speech
     speechSounds: Squeak
@@ -1769,7 +1761,7 @@
     allowedEmotes: ['Squeak']
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: Mobs/Animals/mouse.rsi
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mouse-0
@@ -1833,7 +1825,7 @@
       Critical:
         Base: dead-0
       Dead:
-        Base: splat-0
+        Base: dead-0
   - type: Edible
   - type: FlavorProfile
     flavors:
@@ -1902,7 +1894,10 @@
       types:
         Piercing: 0
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
   - type: CanEscapeInventory
   - type: MobPrice
     price: 50
@@ -1982,7 +1977,7 @@
       Critical:
         Base: dead-1
       Dead:
-        Base: splat-1
+        Base: dead-1
   - type: Item
     size: Tiny
     heldPrefix: 1
@@ -1992,26 +1987,27 @@
   id: MobMouse2
   components:
   - type: Sprite
+    color: Gray
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-2
+      state: mouse-0
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: mouse-moving-2
+        state: mouse-moving-0
     noMovementLayers:
       movement:
-        state: mouse-2
+        state: mouse-0
   - type: Clothing
     equippedPrefix: 2
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: mouse-2
+        Base: mouse-0
       Critical:
-        Base: dead-2
+        Base: dead-0
       Dead:
-        Base: splat-2
+        Base: dead-0
   - type: Item
     size: Tiny
     heldPrefix: 2
@@ -2038,10 +2034,10 @@
   - type: RadiationSource
     intensity: 0.3
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: UnstableMutagen
-        Quantity: 1
+        Quantity: 50
   - type: SolutionContainerManager
     solutions:
       food:
@@ -2107,7 +2103,10 @@
     interactSuccessSound:
       path: /Audio/Animals/lizard_happy.ogg
   - type: Bloodstream
-    bloodMaxVolume: 150
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 150
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -2162,7 +2161,10 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
 
 - type: entity
   name: frog
@@ -2219,7 +2221,10 @@
     interactSuccessSound:
       path: /Audio/Animals/frog_ribbit.ogg
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
   - type: Tag
     tags:
     - VimPilot
@@ -2310,7 +2315,10 @@
     interactSuccessSound:
       path: /Audio/Animals/parrot_raught.ogg
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
 
 - type: entity
   parent: MobParrotBase
@@ -2499,7 +2507,10 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -2568,11 +2579,10 @@
   - type: Spider
   - type: IgnoreSpiderWeb
   - type: Bloodstream
-    bloodMaxVolume: 150
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 1
+        Quantity: 150
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
@@ -2635,12 +2645,23 @@
   id: MobGiantSpider
   description: Widely recognized to be the literal worst thing in existence.
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: tarantula
-      sprite: Mobs/Animals/spider.rsi
+  # 🌟Starlight🌟 start
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: Mobs/Animals/spider.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: tarantula
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/spider.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: tarantula
+  # 🌟Starlight🌟 end
   - type: SpriteMovement
     movementLayers:
       movement:
@@ -2678,12 +2699,23 @@
   id: MobClownSpider
   description: Combines the two most terrifying things in existence, spiders and clowns.
   components:
-    - type: Sprite
-      drawdepth: Mobs
-      layers:
-      - map: ["enum.DamageStateVisualLayers.Base"]
-        state: clown
-        sprite: Mobs/Animals/clownspider.rsi
+  # 🌟Starlight🌟 start
+    - type: OptionsVisualizer
+      visuals:
+        base:
+          - options: Default
+            data:
+              drawdepth: Mobs   
+              sprite: Mobs/Animals/clownspider.rsi
+              map: ["enum.DamageStateVisualLayers.Base", "movement"]
+              state: clown
+          - options: Arachnophobia
+            data:
+              drawdepth: Mobs
+              sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/clownspider.rsi
+              map: ["enum.DamageStateVisualLayers.Base", "movement"]
+              state: clown
+  # 🌟Starlight🌟 end
     - type: Butcherable
       spawned:
         - id: MaterialBananium1
@@ -2724,11 +2756,10 @@
     - type: Speech
       speechVerb: Cluwne
     - type: Bloodstream
-      bloodMaxVolume: 150
-      bloodReagents:
+      bloodReferenceSolution:
         reagents:
         - ReagentId: Laughter
-          Quantity: 1
+          Quantity: 150
 - type: entity
   name: wizard spider
   parent: MobGiantSpider
@@ -2931,7 +2962,10 @@
     attributes:
       gender: epicene
   - type: Bloodstream
-    bloodMaxVolume: 100
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -3000,7 +3034,21 @@
   - type: MessyDrinker
   - type: Puller
     needsHands: false
-  - type: Blindable # Starlight - why is this not base?
+  # Starlight Start
+    pullingAlert: CorgiPulling
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+    stateAlertDict:
+      Alive: CorgiHealth
+      Critical: CorgiCrit
+      Dead: CorgiDead
+  - type: Blindable # why is this not base?
+  - type: ThermalRegulator # Lower radiated heat, Corgis are smaller so their body surface area is also smaller.
+    radiatedHeat: 35 # This affects them reallistically only when dead in a spaced room, makes the cold damage scale slower.
+  # Starlight End
 
 - type: entity
   parent: MobCorgiBase
@@ -3086,10 +3134,10 @@
     attributes:
       gender: epicene
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: DemonsBlood
-        Quantity: 1
+        Quantity: 150
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: Infernal
@@ -3636,7 +3684,10 @@
     interactSuccessSound:
       path: /Audio/Animals/fox_squeak.ogg
   - type: Bloodstream
-    bloodMaxVolume: 60
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 60
   - type: CanEscapeInventory
     baseResistTime: 3
   - type: MobPrice
@@ -3766,11 +3817,10 @@
     speciesId: cat
     templateId: pet
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: Sap
-        Quantity: 1
-    bloodMaxVolume: 60
+        Quantity: 60
   - type: DamageStateVisuals
     states:
       Alive:
@@ -3879,7 +3929,10 @@
     - id: FoodMeat
       amount: 4
   - type: Bloodstream
-    bloodMaxVolume: 300
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 300
     # Horns though
   - type: MeleeWeapon
     damage:
@@ -3985,6 +4038,8 @@
   - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth
   - type: Stripping
   - type: ComplexInteraction
+  - type: Dna # Starlight
+  - type: Fingerprint # Starlight
   # Implement custom borgi body type
   - type: Body
     prototype: SmartCorgi

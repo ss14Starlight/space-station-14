@@ -148,10 +148,12 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+  - type: HardsuitChemicalImmunity #starlight
   - type: HideLayerClothing
     slots:
     - Tail
   - type: ArmorSparkEffect #starlight
+  - type: HeatRadiationBlocker # Starlight - Prevents the body from radiating heat
 
 - type: entity
   abstract: true
@@ -184,6 +186,7 @@
   - type: HideLayerClothing
     slots:
     - Tail
+  - type: HeatRadiationBlocker # Starlight - Prevents the body from radiating heat
 
 - type: entity
   parent: ClothingOuterBase

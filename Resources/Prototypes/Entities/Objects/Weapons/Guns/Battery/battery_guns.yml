@@ -70,6 +70,17 @@
   - type: Tag
     tags:
     - LaserWeapon
+  # starlight start
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]
+  # starlight end
 
 - type: entity
   id: BaseWeaponPowerCell
@@ -203,6 +214,17 @@
     tags:
     - Sidearm
     - LaserWeapon
+  # starlight start
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]
+  # starlight end
 
 - type: entity
   name: makeshift laser pistol
@@ -650,6 +672,7 @@
     fireRate: 0.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
+    projectileSpeed: 25
   - type: BatteryAmmoProvider
     proto: BulletTaser
     fireCost: 200
@@ -720,6 +743,17 @@
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.0002 # 5,000 times less likely than 1 regular animal
     # not putting a BlockMovement component here cause that's funny.
+  # starlight start
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaser
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
+  # starlight end
 
 - type: entity
   name: advanced laser pistol
@@ -936,20 +970,31 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
-    proto: BulletLaserMagnum
+    proto: BulletLaserMagnumSL  # Starlight - Hitscan
     fireCost: 150
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BulletLaserMagnum
+    - proto: BulletLaserMagnumSL # Starlight - Hitscan
       fireCost: 150
-    - proto: BulletLaserWindowPiercingMagnum
+    - proto: BulletLaserWindowPiercingMagnumSL # Starlight - Hitscan
       fireCost: 150
-    - proto: BulletDisabler
+    - proto: DisablerBolt # Starlight - Hitscan
       fireCost: 62.5
       pacifismAllowedMode: true
   - type: PredictedBatterySelfRecharger
     autoRechargeRate: 48
     autoRechargePauseTime: 10
+  # starlight start
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaser
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
+  # starlight end
 
 - type: entity
   name: temperature gun
@@ -996,14 +1041,22 @@
     price: 100
 
 - type: entity
-  name: xenoborg laser gun
   parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
-  id: XenoborgLaserGun
+  id: WeaponLaserGunXenoborg
+  name: xenoborg laser gun
 
 - type: entity
-  name: xenoborg heavy laser gun
-  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
-  id: XenoborgHeavyLaserGun
+  parent: [WeaponLaserCannon, BaseXenoborgContraband]
+  id: WeaponLaserCannonXenoborg
+  name: xenoborg laser cannon
   components:
-  - type: BatteryAmmoProvider
-    proto: RedHeavyLaser
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+  # "remove" wield bonus and penalty so borgs can use it
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+  - type: Gun
+    fireRate: 2
+    minAngle: 1
+    maxAngle: 2

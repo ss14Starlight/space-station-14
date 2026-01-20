@@ -58,7 +58,7 @@ public sealed class DevourSystem : EntitySystem
     /// </summary>
     private void OnDevourAction(Entity<DevourerComponent> ent, ref DevourActionEvent args)
     {
-        if (args.Handled || _whitelistSystem.IsWhitelistFailOrNull(ent.Comp.Whitelist, args.Target))
+        if (args.Handled || !_whitelistSystem.CheckBoth(args.Target, ent.Comp.Blacklist, ent.Comp.Whitelist)) // Starlight-edit - IsWhitelistFailOrNull -> !CheckBoth
             return;
 
         args.Handled = true;
@@ -108,7 +108,7 @@ public sealed class DevourSystem : EntitySystem
         // Grant ichor if the devoured thing meets the dragon's food preference
         if (args.Args.Target != null && _whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)args.Args.Target))
         {
-            _bloodstreamSystem.TryAddToChemicals(ent.Owner, ichorInjection);
+            _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjection);
             ent.Comp.Devoured++; //Starlight devour counter.
         }
 

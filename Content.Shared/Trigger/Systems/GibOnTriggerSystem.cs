@@ -19,8 +19,10 @@ public sealed class GibOnTriggerSystem : XOnTriggerSystem<GibOnTriggerComponent>
                 PredictedQueueDel(item);
             }
         }
-
-        _body.GibBody(target, true);
+        // Starlight edit Start: Gear acidifer
+        if (ent.Comp.GibBody)
+            _body.GibBody(target, ent.Comp.GibOrgans);
+        // Starlight edit end
         args.Handled = true;
     }
 }

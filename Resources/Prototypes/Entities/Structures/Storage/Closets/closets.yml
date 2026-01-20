@@ -82,7 +82,7 @@
   name: janitorial bomb suit closet
   parent: ClosetSteelBase
   description: It's a storage unit for janitorial explosion-protective suits.
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal. Why is this DNM???
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -160,6 +160,11 @@
   - type: EntityStorageVisuals
     stateDoorOpen: generic_open
     stateDoorClosed: generic_door
+  # Starlight start
+  - type: RoundstartMonsterSpawn
+  - type: EntityStorage
+    airtight: false # Allow air to move between the inside and outside of the locker, so that mobs that spawn in it don't suffocate
+  # Starlight end
 
 # Syndicate
 - type: entity

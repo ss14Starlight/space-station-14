@@ -1,0 +1,12 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingDogTags
+  name: dog tags
+  description: Never forget.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
+  - type: StaticPrice
+    price: 10

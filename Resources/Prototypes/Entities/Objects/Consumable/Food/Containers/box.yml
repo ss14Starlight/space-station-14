@@ -520,8 +520,20 @@
     - BoxCardboard
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:NestedSelector
-        tableId: HappyHonkToySafeEntityTable
+      # Starlight-start
+      storagebase: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: HappyHonkToySafeEntityTable
+        - !type:NestedSelector
+          tableId: HappyHonkDrinkEntityTable
+        - !type:NestedSelector
+          tableId: HappyHonkBurgerEntityTable
+        - !type:NestedSelector
+          tableId: HappyHonkDonkEntityTable
+        - !type:NestedSelector
+          tableId: HappyHonkSidesEntityTable
+      # Starlight-end
 
 - type: entity
   id: HappyHonkMime
@@ -649,20 +661,8 @@
           - id: ToyNuke
           - id: ToyFigurineAssistant #Starlight assistant
           - id: ToyFigurineGriffin
-          - id: ToyHonk
           - id: ToyIan
-          - id: ToyMarauder
-          - id: ToyMauler
-          - id: ToyGygax
-          - id: ToyOdysseus
           - id: ToyFigurineOwlman
-          - id: ToyDeathRipley
-          - id: ToyPhazon
-          - id: ToyFireRipley
-          - id: ToyReticence
-          - id: ToyRipley
-          - id: ToySeraph
-          - id: ToyDurand
           - id: ToyFigurineSkeleton
           - id: FoamBlade
           - id: ClothingHeadHatBunny
@@ -675,6 +675,9 @@
             weight: 0.5
           - id: GoldenBikeHorn
             weight: 0.1
+          - !type:NestedSelector
+            tableId: AllFigurineMechsTable
+            weight: 6
 
 - type: entity
   parent: BoxCardboard
@@ -702,7 +705,7 @@
         id: MaterialCloth10
 
 - type: entityTable
-  id: HappyHonkToySafeEntityTable
+  id: HappyHonkToySafeEntityTable # size: 2x2-1
   table: !type:GroupSelector
     children:
     - id: ToyMouse
@@ -710,25 +713,13 @@
     - id: ToyNuke
     - id: ToyFigurineAssistant #Starlight assistant
     - id: ToyFigurineGriffin
-    - id: ToyHonk
     - id: ToyIan
-    - id: ToyMarauder
-    - id: ToyMauler
-    - id: ToyGygax
-    - id: ToyOdysseus
     - id: ToyFigurineOwlman
-    - id: ToyDeathRipley
-    - id: ToyPhazon
-    - id: ToyFireRipley
-    - id: ToyReticence
-    - id: ToyRipley
-    - id: ToySeraph
-    - id: ToyDurand
     - id: ToyFigurineSkeleton
     - id: FoamBlade
     - id: ClothingHeadHatBunny
     - id: PersonalAI
-    - id: CrayonBox
+    - id: CrayonMagic # Starlight-edit
     - id: ToySword
     - id: RevolverCapGun
     - id: ToyRubberDuck
@@ -736,6 +727,9 @@
       weight: 0.5
     - id: GoldenBikeHorn
       weight: 0.1
+    - !type:NestedSelector
+      tableId: AllFigurineMechsTable
+      weight: 6
 
 - type: entityTable
   id: HappyHonkToyUnsafeEntityTable

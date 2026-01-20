@@ -150,10 +150,11 @@
     # Starlight Start
     denyGameRules:
     - AbductorsSpawn
-  - type: DynamicRule
+  - type: SubRule
     table: !type:GroupSelector
       children:
       - id: NukiePlanetSpawn
+      - id: NukiePlanetSpawnWestern
   # Starlight end
   # Starlight - removing the LoadMapRule from here to instead handle it in the dynamic rules above
   #- type: LoadMapRule
@@ -178,6 +179,10 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeopsCommander
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
     - prefRoles: [ NukeopsMedic ]
       fallbackRoles: [ Nukeops, NukeopsCommander ]
       spawnerPrototype: SpawnPointNukeopsMedic
@@ -195,6 +200,10 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeopsMedic
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
     - prefRoles: [ Nukeops ]
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
@@ -214,6 +223,10 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeops
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 200
 
@@ -310,6 +323,10 @@
             requireInputValidation: false
       mindRoles:
       - MindRoleChangeling
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: AntagObjectives
     objectives:
     - ChangelingSurviveObjective
@@ -335,6 +352,19 @@
       components:
       - type: Revolutionary
       - type: HeadRevolutionary
+        # Starlight-start
+        blacklist:
+          components:
+          - Revolutionary
+          - BorgChassis
+          - MindShield
+          - Zombie
+          tags:
+          - CantBecomeRevolutionary
+        whitelist:
+          components:
+          - HumanoidAppearance
+        # Starlight-end
       mindRoles:
       - MindRoleHeadRevolutionary
   - type: DynamicRuleCost
@@ -403,6 +433,10 @@
         nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 150
 
@@ -579,3 +613,7 @@
     - id: BasicDecalDirtMonospaceVariationPass
       prob: 0.50
       orGroup: monospaceDecals
+    # Starlight start
+    - id: MaintenanceMonstersVariationPass
+      prob: 0.2
+    # Starlight end

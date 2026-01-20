@@ -67,6 +67,7 @@ guide-entry-sl-money-accounts-and-space-credits = Money Accounts and Space Credi
 guide-entry-sl-security-sop-intro = Security
 guide-entry-sl-security-sop-cadet = Cadet
 guide-entry-sl-security-sop-securityofficer = Security Officer
+guide-entry-sl-security-sop-dutyofficer = Duty Officer
 guide-entry-sl-security-sop-detective = Detective
 guide-entry-sl-security-sop-brigmedic = Brigmedic
 guide-entry-sl-security-sop-warden = Warden
@@ -132,6 +133,7 @@ guide-entry-sl-nano-trasen-employee-sop-nt-rep = NanoTrasen Representative
 guide-entry-sl-nano-trasen-employee-sop-bso = BlueShield Officer
 guide-entry-sl-nano-trasen-employee-sop-magistrate = Magistrate
 guide-entry-sl-nano-trasen-employee-sop-iaa = Internal Affairs Agent
+guide-entry-sl-nano-trasen-employee-sop-nct = Nanotrasen Career Trainer
 
 guide-entry-sl-service-sop-intro = Service
 guide-entry-sl-service-sop-genproc-intro = General Procedures

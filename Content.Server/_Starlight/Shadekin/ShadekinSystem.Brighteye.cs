@@ -9,6 +9,7 @@ using Content.Shared.Inventory;
 using Content.Server.Spawners.Components;
 using Content.Server._Starlight.Bluespace;
 using Content.Shared.Zombies;
+using Content.Server.Cargo.Components;
 
 namespace Content.Server._Starlight.Shadekin;
 
@@ -34,7 +35,11 @@ public sealed partial class ShadekinSystem : EntitySystem
 
         if (TryComp<BodyComponent>(uid, out var body))
             foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body)))
+            {
                 core.Comp1.Damaged = false;
+                if (EnsureComp<StaticPriceComponent>(core, out var price))
+                    price.Price = core.Comp1.UndmagedPrice;
+            }
 
         if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
             SetBrighteyes(uid, humanoid);
@@ -75,7 +80,12 @@ public sealed partial class ShadekinSystem : EntitySystem
 
         if (TryComp<BodyComponent>(uid, out var body))
             foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body)))
+            {
                 core.Comp1.Damaged = true;
+
+                if (EnsureComp<StaticPriceComponent>(core, out var price))
+                    price.Price = core.Comp1.DmagedPrice;
+            }
 
         if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
             SetBlackeyes(uid, humanoid);
@@ -164,10 +174,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     /// <param name="humanoid"></param>
     public void SetBrighteyes(EntityUid uid, HumanoidAppearanceComponent humanoid)
     {
-        var hsv = Color.ToHsv(humanoid.EyeColor);
-        hsv.Z = 1.0f;
-        humanoid.EyeColor = Color.FromHsv(hsv);
-
+        humanoid.EyeColor = EyeColor.MakeBrighteyeValid(humanoid.EyeColor);
         humanoid.EyeGlowing = true;
         Dirty(uid, humanoid);
     }

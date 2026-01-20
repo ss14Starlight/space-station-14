@@ -83,7 +83,7 @@ namespace Content.Client.Chemistry.UI
         public void UpdateEnergyDisplay(float energyAmount)
         {
             EnergyDisplayBar.Value = energyAmount;
-            EnergyDisplay.Text = Loc.GetString("mech-energy-display", ("amount", (int)Math.Round(energyAmount * 100)));
+            EnergyDisplay.Text = Loc.GetString("mech-energy-display", ("amount", (int)MathF.Round(energyAmount * 100))); // Starlight: Use MathF
         }
         // Starlight End
 
