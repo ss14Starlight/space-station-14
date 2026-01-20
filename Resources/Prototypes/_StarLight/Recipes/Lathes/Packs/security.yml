@@ -60,6 +60,8 @@
   - BoxLethalshot
   - BoxShotgunSlug
   - BoxShellTranquilizer
+# Battery
+  - MagazineBoxBattery
 #####################MAGAZINE#######################
 # LMG
   - LightRifleHeavyMagazineSP
@@ -114,6 +116,8 @@
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug
   - SpeedLoaderShotgunBeanbag
+# Battery
+  - MagazineBatteryLr30
 ####################################################
 
 - type: latheRecipePack

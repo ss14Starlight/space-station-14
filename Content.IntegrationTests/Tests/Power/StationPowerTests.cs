@@ -49,7 +49,6 @@ public sealed class StationPowerTests
         "StarlightOrigin",
         "StarlightOrwell",
         "StarlightPrism",
-        "StarlightRemix",
         "StarlightStarboard",
         "StarlightBagel",
         "StarlightBox",

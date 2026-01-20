@@ -46,6 +46,7 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
+            DutyOfficer: [ 2, 3 ]
             SecurityOfficer: [ 10, 10 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 6, 6 ]
@@ -72,3 +73,4 @@
             #Representives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]
