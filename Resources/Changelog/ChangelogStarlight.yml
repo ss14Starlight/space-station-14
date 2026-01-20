@@ -27069,5 +27069,31 @@ Entries:
   id: 288800
   time: '2026-01-20T18:21:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2888
+- author: CawsForConcern
+  changes:
+  - message: (Starboard) Enabled Duty Officers
+    type: Add
+  - message: (Starboard) Enabled Nanotrasen Career Trainers (NCT)
+    type: Add
+  - message: (Starboard) Replaced the 'Command Receptionist' area with a new NCT office
+    type: Add
+  - message: (Starboard) New wall-mounted mass scanners by Cargo
+    type: Add
+  - message: (Starboard) Magistrate Locker
+    type: Add
+  - message: (Starboard) IAA Lockers
+    type: Add
+  - message: (Starboard) SpawnPointLateJoin by Arrivals
+    type: Add
+  - message: (Starboard) AI Restoration Consoles in RD Office and AI Core
+    type: Add
+  - message: (Starboard) Replaced HOS WT550 with the 'HOS weapon spawner' (no gameplay
+      difference, just mapping stuff)
+    type: Tweak
+  - message: (Starboard) Fixed the mirrors in the bathroom being the wrong way around
+    type: Fix
+  id: 289500
+  time: '2026-01-20T18:25:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2895
 Order: -1
 
