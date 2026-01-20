@@ -1,19 +1,4 @@
 ﻿Entries:
-- author: whatston3
-  changes:
-  - message: Lathe UIs are now way smoother when printing mass amounts of fast-printing
-      items.
-    type: Fix
-  id: 8925
-  time: '2025-09-04T19:37:15.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/39886
-- author: Princess-Cheeseballs
-  changes:
-  - message: You can no longer crawl under counters, or tables without space underneath.
-    type: Tweak
-  id: 8926
-  time: '2025-09-04T21:03:10.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/40099
 - author: CawsForConcern
   changes:
   - message: Iced Coffee now contains Theobromine
@@ -3896,7 +3881,7 @@
   changes:
   - message: Longarms in the uplink are cheaper but don't come with extra ammo.
     type: Tweak
-  - message: Syndicate knuckle dusters are now 2 TC
+  - message: Syndicate knuckle dusters are now 4 TC
     type: Tweak
   - message: Shotgun slugs in the uplink are now 2 TC
     type: Tweak
@@ -3956,3 +3941,18 @@
   id: 9431
   time: '2026-01-20T16:02:53.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42444
+- author: sowelipililimute
+  changes:
+  - message: Voice emotes are now correct for your character's sex
+    type: Fix
+  id: 9432
+  time: '2026-01-20T19:29:53.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42550
+- author: Velken, Murphyneko
+  changes:
+  - message: Station tiles and floors can now be placed on planets, asteroids and
+      different platings.
+    type: Tweak
+  id: 9433
+  time: '2026-01-20T20:51:15.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42543
