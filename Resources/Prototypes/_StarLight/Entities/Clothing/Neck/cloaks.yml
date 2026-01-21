@@ -275,7 +275,7 @@
     description: ghost-role-information-horrific-tie-description
     rules: ghost-role-information-horrific-tie-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleNecktie
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -363,6 +363,17 @@
       sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleUnidentified
+  name: unidentified mantle
+  description: A mysterious yet well made mantle of unknown origin.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Mantles/Unidentifiedmantle.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Mantles/Unidentifiedmantle.rsi
 
 ## Cool
 

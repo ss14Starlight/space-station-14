@@ -98,7 +98,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
     private readonly ProtoId<JobPrototype> _stationAiJob = "StationAi";
     private readonly EntProtoId _stationAiBrain = "StationAiBrainConstructed"; // SL edit
 
-    private readonly ProtoId<AlertPrototype> _batteryAlert = "BorgBattery";
+    private readonly ProtoId<AlertPrototype> _batteryAlert = "AiBattery";
     private readonly ProtoId<AlertPrototype> _damageAlert = "BorgHealth";
 
     public override void Initialize()
@@ -781,4 +781,10 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         return hashSet;
     }
+    
+    // Starlight - start
+    public bool AddTag(StationAiVisionComponent stationAiVisionComponent, string tag) => stationAiVisionComponent.Tags.Add(tag);
+    
+    public bool RemoveTag(StationAiVisionComponent stationAiVisionComponent, string tag) => stationAiVisionComponent.Tags.Remove(tag);
+    // Starlight - end
 }

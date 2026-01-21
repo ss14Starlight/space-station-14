@@ -75,6 +75,43 @@
         - id: TearGasGrenade
         - id: MedkitCombatFilled
 
+
+# Duty Officer
+- type: entityTable
+  id: BeltDutyOfficerEntityTable
+  table: !type:AllSelector
+    children:
+    - id: Stunbaton
+    - id: Handcuffs
+    - id: Handcuffs
+    - id: HoloprojectorSecurity
+    - id: RadioHandheldSecurity
+    - id: TearGasGrenade
+    - id: TearGasGrenade
+    - id: GrenadeFlashBang
+    - id: GrenadeFlashBang
+    - id: Zipties
+
+- type: entity
+  id: ClothingBeltDutyOfficerFilled
+  parent: ClothingBeltSecurity
+  suffix: Filled
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:NestedSelector
+          tableId: BeltDutyOfficerEntityTable
+
+- type: entity
+  id: ClothingBeltDutyOfficerWebbingFilled
+  parent: ClothingBeltSecurityWebbing
+  suffix: Filled
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:NestedSelector
+          tableId: BeltDutyOfficerEntityTable
+
 - type: entity
   id: ClothingBeltNTNCRigFilled
   parent: ClothingBeltNTNCRig

@@ -58,7 +58,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
@@ -67,8 +66,18 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # Starlight
   - type: StaticPrice
     price: 500
+  # Starlight
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPin
+  - type: FiringPinHolder
+    supportedPins: [ Rifle, GunUpgrade ]
+  # Starlight
+  
 
 - type: entity
   name: AKMS
@@ -104,7 +113,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
@@ -113,6 +121,7 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -148,7 +157,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifleSP
         priority: 1
         whitelist:
           tags:
@@ -157,6 +165,7 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -195,7 +204,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifleSP
         priority: 1
         whitelist:
           tags:
@@ -204,6 +212,7 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -216,7 +225,7 @@
   name: XL8
   description: |-
     The Experimental Lecter 8
-    An unreasonably expensive military grade assault rifle with integrated optic. 
+    An unreasonably expensive military grade assault rifle with integrated optic.
     Uses .20 rifle ammo.
   components:
   - type: Sprite
@@ -236,7 +245,7 @@
     - Burst
     - SemiAuto
     - FullAuto
-  
+
 - type: entity
   name: Estoc DMR
   parent: [BaseWeaponRifle, BaseSyndicateContraband]
@@ -283,7 +292,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifleSP
         priority: 1
         whitelist:
           tags:
@@ -299,6 +307,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -325,6 +334,7 @@
     sprite: Objects/Fun/Foam/foam_rifle.rsi
   - type: Item
     sprite: Objects/Fun/Foam/foam_rifle_inhand_64x.rsi
+    size: Normal
     shape:
     - 0,0,3,0
   - type: BallisticAmmoProvider
@@ -345,6 +355,16 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     clumsyProof: true
   - type: PacifismAllowedGun
+  - type: StaticPrice
+    price: 100
+  # starlight start
+  - type: FiringPinHolder
+    supportedPins: [ Makeshift ]
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinMakeshift
+  # starlight end
 
 - type: entity
   name: ForceableFollow AKMS

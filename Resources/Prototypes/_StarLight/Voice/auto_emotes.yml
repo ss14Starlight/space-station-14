@@ -1,0 +1,6 @@
+- type: autoEmote
+  id: GnomeGiggle
+  emote: Scream
+  interval: 5.0
+  chance: 0.6
+  withChat: false

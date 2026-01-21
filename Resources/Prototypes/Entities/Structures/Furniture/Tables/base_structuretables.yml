@@ -36,7 +36,7 @@
     whitelist:
       components:
         - KnockedDown
-        - Climbing
+        #- Climbing #SL You should not be slowed down when walking on *or next to* a table
   - type: Bonkable
     bonkDamage:
       types:

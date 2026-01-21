@@ -1,0 +1,71 @@
+- type: playTimeTracker
+  id: AntagDragon
+
+- type: playTimeTracker
+  id: AntagNinja
+
+- type: playTimeTracker
+  id: AntagChangeling
+
+- type: playTimeTracker
+  id: AntagNukeops
+
+- type: playTimeTracker
+  id: AntagNukeopsMedic
+
+- type: playTimeTracker
+  id: AntagNukeopsCommander
+
+- type: playTimeTracker
+  id: AntagParadoxClone
+
+- type: playTimeTracker
+  id: AntagHeadRev
+
+- type: playTimeTracker
+  id: AntagRev
+
+- type: playTimeTracker
+  id: AntagSubvertedSilicon
+
+- type: playTimeTracker
+  id: AntagThief
+
+- type: playTimeTracker
+  id: AntagTraitor
+
+- type: playTimeTracker
+  id: AntagVampire
+
+- type: playTimeTracker
+  id: AntagSurvivor
+
+- type: playTimeTracker
+  id: AntagWizard
+
+- type: playTimeTracker
+  id: AntagMothershipCore
+
+- type: playTimeTracker
+  id: AntagXenoborg
+
+- type: playTimeTracker
+  id: AntagInitialInfected
+
+- type: playTimeTracker
+  id: AntagZombie
+
+- type: playTimeTracker
+  id: AntagLoneAbductor
+
+- type: playTimeTracker
+  id: AntagPirate
+
+- type: playTimeTracker
+  id: AntagPirateCaptain
+
+- type: playTimeTracker
+  id: AntagRatKing
+
+- type: playTimeTracker
+  id: AntagSSF

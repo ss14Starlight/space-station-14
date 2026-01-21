@@ -153,6 +153,7 @@
     slots:
     - Tail
   - type: ArmorSparkEffect #starlight
+  - type: HeatRadiationBlocker # Starlight - Prevents the body from radiating heat
 
 - type: entity
   abstract: true
@@ -185,6 +186,7 @@
   - type: HideLayerClothing
     slots:
     - Tail
+  - type: HeatRadiationBlocker # Starlight - Prevents the body from radiating heat
 
 - type: entity
   parent: ClothingOuterBase

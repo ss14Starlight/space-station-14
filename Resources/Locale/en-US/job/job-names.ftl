@@ -4,7 +4,6 @@ job-name-atmostech = Atmospheric Technician
 job-name-bartender = Bartender
 job-name-borg = Cyborg
 job-name-botanist = Botanist
-job-name-boxer = Boxer
 job-name-brigmedic = Brigmedic
 job-name-cadet = Security Cadet
 job-name-captain = Captain
@@ -50,7 +49,6 @@ job-name-station-ai = Station AI
 job-name-technical-assistant = Technical Assistant
 job-name-visitor = Visitor
 job-name-cluwne = Cluwne
-job-name-zookeeper = Zookeeper
 
 # unused jobs
 # these are required for the agent ID job icon tooltips
@@ -75,7 +73,6 @@ JobAtmosphericTechnician = Atmospheric Technician
 JobBartender = Bartender
 JobBorg = Borg
 JobBotanist = Botanist
-JobBoxer = Boxer
 JobBrigmedic = Brigmedic
 JobCaptain = Captain
 JobCargoTechnician = Cargo Technician
@@ -119,4 +116,3 @@ JobStationEngineer = Station Engineer
 JobTechnicalAssistant = Technical Assistant
 JobVisitor = Visitor
 JobWarden = Warden
-JobZookeeper = Zookeeper
