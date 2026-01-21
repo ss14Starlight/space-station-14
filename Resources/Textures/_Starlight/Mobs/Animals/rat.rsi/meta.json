@@ -12,7 +12,15 @@
             "directions": 4
         },
         {
+            "name": "giantrat_eyes",
+            "directions": 4
+        },
+        {
             "name": "mediumrat",
+            "directions": 4
+        },
+        {
+            "name": "mediumrat_eyes",
             "directions": 4
         },
         {

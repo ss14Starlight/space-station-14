@@ -33,12 +33,12 @@
     - SimpleHostile
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: Mobs/Animals/regalrat.rsi
+    sprite: _Starlight/Mobs/Animals/rat.rsi # Starlight
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: regalrat
+      state: giantrat
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      state: eyes
+      state: giantrat_eyes
       shader: unshaded
   - type: TypingIndicator
     proto: regal
@@ -92,12 +92,12 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: regalrat
+        Base: giantrat
         BaseUnshaded: eyes
       Critical:
-        Base: critical
+        Base: giantrat
       Dead:
-        Base: dead
+        Base: giantrat
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-rat-king-name
@@ -294,12 +294,12 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: rat
-        BaseUnshaded: eyes
+        Base: smallrat
+        BaseUnshaded: smallrat_eyes
       Critical:
-        Base: dead
+        Base: smallrat
       Dead:
-        Base: splat
+        Base: smallrat
   - type: Butcherable
     spawned:
     - id: FoodMeatRat
@@ -327,6 +327,11 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: GibOnTrigger
+    gibOrgans: false
 
 - type: entityTable
   id: RatKingLoot

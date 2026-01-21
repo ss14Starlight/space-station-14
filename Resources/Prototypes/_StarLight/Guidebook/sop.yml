@@ -252,6 +252,7 @@
   children:
   - security-sop-cadet
   - security-sop-securityofficer
+  - security-sop-dutyofficer
   - security-sop-detective
   - security-sop-brigmedic
   - security-sop-warden
@@ -274,46 +275,52 @@
   priority: 2
 
 - type: guideEntry
+  id: security-sop-dutyofficer
+  name: guide-entry-sl-security-sop-dutyofficer
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/DutyOfficer.xml"
+  priority: 3
+
+- type: guideEntry
   id: security-sop-detective
   name: guide-entry-sl-security-sop-detective
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Detective.xml"
-  priority: 3
+  priority: 4
 
 - type: guideEntry
   id: security-sop-brigmedic
   name: guide-entry-sl-security-sop-brigmedic
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Brigmedic.xml"
-  priority: 4
+  priority: 5
 
 - type: guideEntry
   id: security-sop-warden
   name: guide-entry-sl-security-sop-warden
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Warden.xml"
-  priority: 5
+  priority: 6
 
 - type: guideEntry
   id: security-sop-headofsecurity
   name: guide-entry-sl-security-sop-headofsecurity
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/HeadOfSecurity.xml"
-  priority: 6
+  priority: 7
 
 - type: guideEntry
   id: security-sop-prisonertreatment
   name: guide-entry-sl-security-sop-prisonertreatment
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/PrisonerTreatment.xml"
-  priority: 7
+  priority: 8
 
 - type: guideEntry
   id: security-sop-parole
   name: guide-entry-sl-security-sop-parole
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Parole.xml"
-  priority: 8
+  priority: 9
 
 - type: guideEntry
   id: security-sop-permitacquisition
   name: guide-entry-sl-security-sop-permitacquisition
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/PermitAcquisition.xml"
-  priority: 9
+  priority: 10
 
 - type: guideEntry
   id: legal-sop-intro
@@ -359,6 +366,7 @@
       - nano-trasen-employee-sop-bso
       - nano-trasen-employee-sop-magistrate
       - nano-trasen-employee-sop-iaa
+      - nano-trasen-employee-sop-nct
 
 
 - type: guideEntry
@@ -385,7 +393,11 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-iaa.xml"
   priority: 4
 
-
+- type: guideEntry
+  id: nano-trasen-employee-sop-nct
+  name: guide-entry-sl-nano-trasen-employee-sop-nct
+  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-nct.xml"
+  priority: 5
 
 - type: guideEntry
   id: engineering-sop-intro

@@ -123,6 +123,7 @@
   - Detective
   - Warden
   - DrillInstructor # Starlight-edit
+  - DutyOfficer # Starlight
 
 - type: department
   id: Science
