@@ -30,6 +30,9 @@ public sealed class StationAiOverlay : Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
     private readonly HashSet<Vector2i> _visibleTiles = new();
+    // Starlight - start
+    private readonly Dictionary<Vector2i, HashSet<string>> _visibleTileTags = new();
+    // Starlight - end
     private readonly NavMapControl _navMap = new(); // Carpmosia-edit - AI Navmap
 
     private readonly OverlayResourceCache<CachedResources> _resources = new();
@@ -75,6 +78,10 @@ public sealed class StationAiOverlay : Overlay
             && stationAiOverlay.AllowCrossGrid 
             && _entManager.TryGetComponent(playerEnt, out RelayInputMoverComponent? relay))
             playerEnt = relay.RelayEntity;
+
+        // Starlight - start
+        _entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? relayStationAiOverlay);
+        // Starlight - end
     
         _entManager.TryGetComponent(playerEnt, out TransformComponent? playerXform);
         var gridUid = playerXform?.GridUid ?? EntityUid.Invalid;
@@ -99,7 +106,10 @@ public sealed class StationAiOverlay : Overlay
             {
                 _accumulator = MathF.Max(0f, _accumulator + _updateRate);
                 _visibleTiles.Clear();
-                _entManager.System<StationAiVisionSystem>().GetView((gridUid, broadphase, grid), worldBounds, _visibleTiles);
+                // Starlight - start
+                _visibleTileTags.Clear();
+                _entManager.System<StationAiVisionSystem>().GetView((gridUid, broadphase, grid), worldBounds, _visibleTiles, _visibleTileTags);
+                // Starlight - end
             }
 
             var gridMatrix = xforms.GetWorldMatrix(gridUid);
@@ -112,8 +122,27 @@ public sealed class StationAiOverlay : Overlay
 
                 foreach (var tile in _visibleTiles)
                 {
-                    var aabb = lookups.GetLocalBounds(tile, grid.TileSize);
-                    worldHandle.DrawRect(aabb, Color.White);
+                    // Starlight-start: Only render tiles that have all required render tags
+                    var allTagsPresent = true;
+                    if (relayStationAiOverlay is not null)
+                    {
+                        foreach (var requiredTag in relayStationAiOverlay.RequiredTags)
+                        {
+                            if (_visibleTileTags.TryGetValue(tile, out var tag))
+                                if (!tag.Contains(requiredTag))
+                                {
+                                    allTagsPresent = false;
+                                    break;
+                                }
+                        }
+                    }
+
+                    if (allTagsPresent)
+                    {
+                        var aabb = lookups.GetLocalBounds(tile, grid.TileSize);
+                        worldHandle.DrawRect(aabb, Color.White);
+                    }
+                    // Starlight-end
                 }
             },
             Color.Transparent);

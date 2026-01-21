@@ -1,9 +1,7 @@
-using System.Collections.Generic;
 using Content.Server.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Starlight.Antags.Abductor;
-using Robust.Shared.Localization;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 
@@ -12,27 +10,31 @@ namespace Content.Server.Starlight.Antags.Abductor;
 public sealed partial class AbductorSystem
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    private void InitializeRoundEnd()
-    {
-        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
-    }
+    private void InitializeRoundEnd() => SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
 
     private void OnRoundEndText(RoundEndTextAppendEvent ev)
     {
         var uniqueVictims = new HashSet<NetEntity>();
+        var maxAbducted = 0;
 
         var query = EntityQueryEnumerator<AbductConditionComponent>();
         while (query.MoveNext(out var _, out var cond))
         {
+            maxAbducted = Math.Max(maxAbducted, cond.Abducted);
             foreach (var victim in cond.AbductedHashs)
+            {
+                if (victim == NetEntity.Invalid)
+                    continue;
+
                 uniqueVictims.Add(victim);
+            }
         }
 
-    int total = uniqueVictims.Count;
+        var total = Math.Max(uniqueVictims.Count, maxAbducted);
 
-    var abductors = new List<string>();
+        var abductors = new List<string>();
 
-    var abductorsSeen = new HashSet<NetUserId>();
+        var abductorsSeen = new HashSet<NetUserId>();
 
         var mindQuery = EntityQueryEnumerator<MindComponent>();
         while (mindQuery.MoveNext(out var _, out var mind))

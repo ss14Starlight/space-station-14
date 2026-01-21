@@ -41,3 +41,5 @@ ghost-role-information-eeeplet-desc = As a baby electric sheep your favourite fo
 
 ghost-role-information-eeep-name = Eeep
 ghost-role-information-eeep-desc = A bad tempered and fully grown Electric sheep.
+
+ghost-role-information-slime-sentience-potion-description = Made conscious with the power of a sentience potion. Don't worry, you can move and speak!

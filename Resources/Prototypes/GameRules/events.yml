@@ -277,6 +277,10 @@
         nameFormat: name-format-ninja
       mindRoles:
       - MindRoleNinja
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 75
 
@@ -369,6 +373,10 @@
         nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
 
 # disabled until event is rewritten to be more interesting
 #- type: entity
@@ -615,6 +623,10 @@
         - Syndicate
       mindRoles:
       - MindRoleLoneops
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 75
 

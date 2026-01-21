@@ -143,6 +143,10 @@
   - ClothingHeadHatBeretBrigmedic
   - ClothingUniformJumpsuitBrigmedic
   - ClothingUniformJumpskirtBrigmedic
+  - ClothingHeadHatBeretDutyOfficer # Starlight
+  - ClothingHeadHatDutyOfficer # Starlight
+  - ClothingUniformJumpsuitDutyOfficer # Starlight
+  - ClothingUniformJumpskirtDutyOfficer # Starlight
   - ClothingHeadHatBeretWarden
   - ClothingHeadHatWarden
   - ClothingUniformJumpsuitWarden

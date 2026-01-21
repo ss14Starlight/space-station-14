@@ -1,0 +1,59 @@
+- type: entity
+  name: larger rat servant
+  id: MobLargeRatServant
+  parent: MobRatServant
+  description: He's da larger mini rat. He don't make da roolz.
+  categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
+  components:
+  - type: ThermalVision
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/rat.rsi # Starlight
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mediumrat
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
+      state: mediumrat_eyes
+      shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      30: Critical
+      60: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 120
+      behaviors:
+      - !type:GibBehavior
+        recursive: false
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 10
+        Piercing: 6
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mediumrat
+        BaseUnshaded: mediumrat_eyes
+      Critical:
+        Base: mediumrat
+      Dead:
+        Base: mediumrat
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-rat-servant-name
+    description: ghost-role-information-rat-servant-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleRatKing
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
