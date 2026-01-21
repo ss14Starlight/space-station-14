@@ -1,3 +1,5 @@
+### Interaction Popup component
+
 ## Petting silicons
 
 petting-success-cargo-cyborg = You pet {THE($target)} on {POSS-ADJ($target)} hardworking metal head.
