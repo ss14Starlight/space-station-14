@@ -163,8 +163,8 @@ namespace Content.Client.Chemistry.UI
             InputEjectButton.Disabled = castState.InputContainerInfo is null;
             OutputEjectButton.Disabled = castState.OutputContainerInfo is null;
             CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null;
-            CreatePillButton.Disabled = castState.OutputContainerInfo?.Entities == null;
-            CreatePatchButton.Disabled = castState.OutputContainerInfo?.Entities == null; // Starlight-edit
+            CreatePillButton.Disabled = castState.OutputContainerInfo?.PillEntities == null; // Starlight-edit
+            CreatePatchButton.Disabled = castState.OutputContainerInfo?.PatchEntities == null; // Starlight-edit
             
             UpdateDosageFields(castState);
         }
@@ -357,10 +357,13 @@ namespace Content.Client.Chemistry.UI
             var rowCount = 0;
 
             // Handle entities if they are not null
-            if (info.Entities != null)
+            // Starlight-start
+            var entities = info.PillEntities ?? info.PatchEntities;
+            if (entities != null)
             {
-                foreach (var (id, quantity) in info.Entities.Select(x => (x.Id, x.Quantity)))
+                foreach (var (id, quantity) in entities.Select(x => (x.Id, x.Quantity)))
                 {
+                    // Starlight-end
                     control.Children.Add(BuildReagentRow(default(Color), rowCount++, id, default(ReagentId), quantity, false, addReagentButtons));
                 }
             }

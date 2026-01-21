@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Edit by Nairodian (github) of secskirt taken from tgstation at commit https://github.com/tgstation/tgstation/commit/7779930358ba4776575975690d2c952f0d05c6cc, recolored into Sec Blue based on https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039 by wonderfulnewworld for Starlight, with monkey base made by brainfood1183 (github) for ss14, and in hand sprite base scaled down by potato1234_x",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "TG Station, Nairodian, OnlineGirlfriend, and wonderfulnewworld"
+    },
+    {
+      "name": "equipped-INNERCLOTHING",
+      "directions": 4,
+	  "copyright": "TG Station, Nairodian, OnlineGirlfriend, and wonderfulnewworld"
+    },
+    {
+      "name": "equipped-INNERCLOTHING-monkey",
+      "directions": 4,
+	  "copyright": "TG Station, Nairodian, OnlineGirlfriend, brainfood1183, and wonderfulnewworld"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "TG Station, Nairodian, OnlineGirlfriend, potato1234_x, and wonderfulnewworld"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "TG Station, Nairodian, OnlineGirlfriend, potato1234_x, and wonderfulnewworld"
+    }
+  ]
+}

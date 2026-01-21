@@ -141,6 +141,10 @@
     - !type:RoleTimeRequirement
       role: JobDetective
       time: 1h
+    DutyOfficer:
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 5h
     SecurityCadet:
     - !type:OverallPlaytimeRequirement
       time: 30h

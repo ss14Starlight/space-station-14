@@ -10,7 +10,7 @@
     offset: 0.015625, -0.09375
   # 🌟Starlight🌟 start
   - name: misc
-    slotTexture: neck
+    slotTexture: misc
     slotFlags: MISC
     uiWindowPos: 0,2
     strippingWindowPos: 0,1
@@ -33,7 +33,7 @@
     offset: 0.015625, -0.1875
   # 🌟Starlight🌟 start
   - name: misc
-    slotTexture: neck
+    slotTexture: misc
     slotFlags: MISC
     uiWindowPos: 0,2
     strippingWindowPos: 0,1
@@ -56,7 +56,7 @@
     offset: 0.015625, 0
   # 🌟Starlight🌟 start
   - name: misc
-    slotTexture: neck
+    slotTexture: misc
     slotFlags: MISC
     uiWindowPos: 0,2
     strippingWindowPos: 0,1
@@ -80,7 +80,7 @@
     offset: 0, 0.09375
   # 🌟Starlight🌟 start
   - name: misc
-    slotTexture: neck
+    slotTexture: misc
     slotFlags: MISC
     uiWindowPos: 0,2
     strippingWindowPos: 0,1

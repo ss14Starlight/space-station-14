@@ -781,4 +781,10 @@ public sealed class StationAiSystem : SharedStationAiSystem
 
         return hashSet;
     }
+    
+    // Starlight - start
+    public bool AddTag(StationAiVisionComponent stationAiVisionComponent, string tag) => stationAiVisionComponent.Tags.Add(tag);
+    
+    public bool RemoveTag(StationAiVisionComponent stationAiVisionComponent, string tag) => stationAiVisionComponent.Tags.Remove(tag);
+    // Starlight - end
 }

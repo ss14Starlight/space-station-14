@@ -53,12 +53,6 @@
     Gold: 50
     Silver: 50
 
-# Custom Generic Borg Modules
-- type: latheRecipe
-  parent: BaseBorgModuleRecipe
-  id: BorgModuleUppies
-  result: BorgModuleUppies
-
 - type: latheRecipe
   parent: BaseRoboticsRecipe
   id: DroneShell
@@ -66,8 +60,20 @@
   materials:
     Steel: 200
 
+# Custom Generic Borg Modules
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleUppies
+  result: BorgModuleUppies
+  
 # Medical
 - type: latheRecipe
   parent: BaseBorgModuleRecipe
   id: BorgModuleSurgical
   result: BorgModuleSurgical
+
+# Custom advanced modules
+- type: latheRecipe
+  parent: BaseGoldBorgModuleRecipe
+  id: BorgModuleAdvancedLoading
+  result: BorgModuleAdvancedLoading
