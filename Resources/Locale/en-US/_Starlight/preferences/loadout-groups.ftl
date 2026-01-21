@@ -44,6 +44,12 @@ loadout-group-brigmedic-beaker = Brigmedic beaker
 loadout-group-brigmedic-mask = Brigmedic mask
 loadout-group-brigmedic-tie = Brigmedic tie
 
+loadout-group-dutyofficer-head = Duty officer head
+loadout-group-dutyofficer-jumpsuit = Duty officer jumpsuit
+loadout-group-dutyofficer-outerclothing = Duty officer outer clothing
+loadout-group-dutyofficer-belt = Duty officer belt
+
+
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit
 loadout-group-magistrate-eyewear = Magistrate eyewear
@@ -84,3 +90,9 @@ loadout-group-pens = Pen
 loadout-group-brighteye-jumpsuit = Brighteye jumpsuit
 Loadout-group-brighteye-neck = Brighteye neck
 loadout-group-brighteye-gloves = Brighteye gloves
+
+# NCT
+loadout-group-NanotrasenCareerTrainer-jumpsuit = Nanotrasen Career Trainer jumpsuit
+loadout-group-NanotrasenCareerTrainer-hat = Nanotrasen Career Trainer hat
+loadout-group-NanotrasenCareerTrainer-shoes = Nanotrasen Career Trainer shoes
+loadout-group-NanotrasenCareerTrainer-eyewear = Nanotrasen Career Trainer eyewear

@@ -414,4 +414,21 @@ public sealed class TemperatureSystem : SharedTemperatureSystem
 
         return (newHeatThreshold, newColdThreshold);
     }
+
+    // Starlight - begin
+    /// <summary>
+    /// Sets the heat protection of the provided component.
+    /// </summary>
+    /// <param name="component">The temperature component to modify.</param>
+    /// <param name="coefficient">The new heat protection coefficient.</param>
+    public void SetHeatProtection(TemperatureProtectionComponent component, float coefficient) => component.HeatingCoefficient = coefficient;
+    
+    /// <summary>
+    /// Sets the cold protection of the provided component.
+    /// </summary>
+    /// <param name="component">The temperature component to modify.</param>
+    /// <param name="coefficient">The new cold protection coefficient.</param>
+    public void SetColdProtection(TemperatureProtectionComponent component, float coefficient) => component.CoolingCoefficient = coefficient;
+    // Starlight - end
+
 }

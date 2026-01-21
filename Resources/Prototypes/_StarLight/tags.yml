@@ -40,10 +40,16 @@
   id: BoneGel
 
 - type: Tag
+  id: BorgModuleMining
+
+- type: Tag
   id: BorgModulePurrfus
 
 - type: Tag
   id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleSupply
 
 - type: Tag
   id: BorgModuleSyndicateStealth
@@ -68,6 +74,9 @@
 
 - type: Tag
   id: CartridgePistolImprovised
+
+- type: Tag
+  id: CantBecomeRevolutionary
 
 - type: Tag
   id: CentcommVibroblade

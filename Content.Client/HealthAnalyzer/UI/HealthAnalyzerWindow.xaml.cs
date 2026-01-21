@@ -106,12 +106,11 @@ namespace Content.Client.HealthAnalyzer.UI
                   _ => ""
                 };
                 
-                BloodLabel.Text = $"{bloodPercent * 100:F1} %{exclamations}";
+                BloodLabel.Text = $"{bloodPercent * 100:F1}% {exclamations}";
                 
                 // Color gradient: Goes from green at 100% to red at 50% then stays red.
                 var clampedPercent = Math.Max(bloodPercent, 0.5f);
                 var scaled = (clampedPercent - 0.5f) / 0.5f;
-                
                 BloodLabel.FontColorOverride = Color.InterpolateBetween(Red, Green, scaled);
             }
             // Starlight end
@@ -157,16 +156,23 @@ namespace Content.Client.HealthAnalyzer.UI
                 });
 
             // Damage Groups
-
+            /* Starlight begin - old damage group sorting by highest damage
             var damageSortedGroups =
                 damageable.DamagePerGroup.OrderByDescending(damage => damage.Value)
                     .ToDictionary(x => x.Key, x => x.Value);
-
+            Starlight end */
             IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
 
-            DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+            //Starlight begin - Sort damage groups in a fixed order and add metabolizing section
+            var groupOrder = new List<string> { "Burn", "Brute", "Airloss", "Toxin", "Genetic" };
+            var sortedGroups = damageable.DamagePerGroup
+                .OrderBy(g => groupOrder.IndexOf(g.Key))
+                .ToDictionary(g => g.Key, g => g.Value);
 
-            DrawMetabolizingChemicals(msg.MetabolizingReagents); // Starlight - Metabolizing Chemicals Section
+            DrawDiagnosticGroups(sortedGroups, damagePerType);
+
+            DrawMetabolizingChemicals(msg.MetabolizingReagents); 
+            // Starlight end
         }
 
         private static string GetStatus(MobState mobState)

@@ -44,7 +44,8 @@ public sealed partial class GnomeSystem : EntitySystem
 
     private void OnEmote(Entity<GnomeComponent> ent, ref EmoteEvent args)
     {
-        if (args.Handled) return;
+        if (args.Handled || args.Emote.ID != "Scream")  // If it's isn't our emote
+            return;
 
         // endless heheha
         _audio.PlayPvs(ent.Comp.GnomeSound, ent.Owner);
