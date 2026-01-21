@@ -1,12 +1,13 @@
-using Content.Shared._Starlight.Xenobiology.Potions;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Xenobiology;
 
@@ -20,6 +21,7 @@ public sealed class SlimeSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly HungerSystem _hungerSystem = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
     public List<SlimeSplitRecord> SlimeSplitRecords = new();
 
@@ -55,6 +57,14 @@ public sealed class SlimeSystem : EntitySystem
         if (!TryComp<DamageableComponent>(target, out var damage)) return false;
         
         if (!_damageableSystem.TryChangeDamage(target, slime.Comp.DamageOnEat, out var returnDamage, ignoreResistances: true)) return false;
+        _audioSystem.PlayPredicted(new SoundPathSpecifier("/Audio/Effects/bite.ogg"), slime.Owner, null, AudioParams.Default.WithVariation(0.05F));
+
+        var vector = (Transform(target).LocalPosition - Transform(slime.Owner).LocalPosition).Normalized();
+        RaiseNetworkEvent(new SlimeBiteAnimationMessage()
+        {
+            Entity = GetNetEntity(slime.Owner, MetaData(slime.Owner)),
+            Angle = Angle.FromWorldVec(vector),
+        });
 
         if (returnDamage.AnyPositive())
         {
@@ -105,4 +115,11 @@ public sealed class SlimeSystem : EntitySystem
         SlimeSplitRecords.Add(new(slime, splitAmount));
         return true;
     }
+}
+
+[Serializable, NetSerializable]
+public sealed class SlimeBiteAnimationMessage : EntityEventArgs
+{
+    public NetEntity Entity;
+    public Angle Angle;
 }

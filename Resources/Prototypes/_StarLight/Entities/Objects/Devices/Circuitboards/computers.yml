@@ -82,6 +82,17 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: XenobiologyConsoleCircuitboard
+  name: xenobiology console board
+  description: A computer printed circuit board for a xenobiology console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: XenobiologyConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: ComputerHologramCircuitboard
   name: hologram console board
   description: A circuit board for a hologram console.

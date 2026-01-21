@@ -13,3 +13,19 @@
       path: /Audio/Magic/forcewall.ogg
     exitPolymorphSound: !type:SoundPathSpecifier
       path: /Audio/Magic/forcewall.ogg
+
+- type: polymorph
+  id: AdminMouse
+  configuration:
+    entity: MobAdminMouse
+    forced: true
+    inventory: None
+    allowRepeatedMorphs: false
+
+- type: polymorph
+  id: MentorMouse
+  configuration:
+    entity: MobMentorMouse
+    forced: true
+    inventory: None
+    allowRepeatedMorphs: false
