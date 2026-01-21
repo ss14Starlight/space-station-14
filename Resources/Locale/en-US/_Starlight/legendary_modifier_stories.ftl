@@ -11,15 +11,15 @@ starlight-weapon-mid-2 = Scratches tell the story of desperate fights.
 starlight-weapon-mid-3 = The weight feels familiar, as though it were intended for someone specific.
 starlight-weapon-mid-4 = Small engravings commemorate significant victories.
 starlight-weapon-mid-5 = The metal shows signs of having been carefully maintained over the years.
-starlight-weapon-mid-patron-1 = Beneath the old lacquer, a prayer-glyph names { $patronName }; the crew whispers that { $patronSubject } once brought it back from a silent corridor.
+starlight-weapon-mid-patron-1 = Beneath the old lacquer, a prayer-glyph names { $patronName }, the crew whispers that { $patronSubject } once brought it back from a silent corridor.
 
 #Weapon ends
 starlight-weapon-end-1 = This is a weapon that has earned its reputation.
 starlight-weapon-end-2 = Still deadly in the right hands.
-starlight-weapon-end-3 = It's more than just a tool — it's a companion in battle.
+starlight-weapon-end-3 = It's more than just a tool - it's a companion in battle.
 starlight-weapon-end-4 = Its legacy lives on with each new wielder.
 starlight-weapon-end-5 = This is a testament to survival against all odds.
-starlight-weapon-end-patron-1 = The edge still remembers { $patronPossAdj } hand — and it will not forgive a coward.
+starlight-weapon-end-patron-1 = The edge still remembers { $patronPossAdj } hand - and it will not forgive a coward.
 
 #Firearm opens
 starlight-firearm-open-1 = There are scorch marks along the barrel of this firearm.
@@ -42,7 +42,7 @@ starlight-firearm-end-2 = It is reliable enough to be trusted in a vacuum.
 starlight-firearm-end-3 = The echo of distant firefights can be heard.
 starlight-firearm-end-4 = Designed to be used before negotiations break down.
 starlight-firearm-end-5 = A weapon that made its own legend.
-starlight-firearm-end-patron-1 = Old hands swear it fired on its own when { $patronName } was out of ammo — a lie, perhaps, but a stubborn one.
+starlight-firearm-end-patron-1 = Old hands swear it fired on its own when { $patronName } was out of ammo - a lie, perhaps, but a stubborn one.
 
 #Plush opens
 starlight-plush-open-1 = This plush toy shows signs of being well-loved.
@@ -80,7 +80,7 @@ starlight-trinket-mid-2 = Tiny scratches form what might be initials.
 starlight-trinket-mid-3 = The metal is always warm to the touch.
 starlight-trinket-mid-4 = Its design follows an old station tradition.
 starlight-trinket-mid-5 = Small but impossible to lose track of.
-starlight-trinket-mid-patron-1 = The engraving "{ $patronName }" is nearly gone — rubbed thin by nervous fingers and promises that outlived their owners.
+starlight-trinket-mid-patron-1 = The engraving "{ $patronName }" is nearly gone - rubbed thin by nervous fingers and promises that outlived their owners.
 
 #Trinket ends
 starlight-trinket-end-1 = A keepsake that bridges past and present.
@@ -88,7 +88,7 @@ starlight-trinket-end-2 = Proof that small things matter most.
 starlight-trinket-end-3 = A tangible connection to someone far away.
 starlight-trinket-end-4 = Worth more than its materials suggest.
 starlight-trinket-end-5 = A lucky charm that's seen real luck.
-starlight-trinket-end-patron-1 = Whoever wore it last left behind more than { $patronPossAdj } name — the air around it feels like a story you weren't meant to hear.
+starlight-trinket-end-patron-1 = Whoever wore it last left behind more than { $patronPossAdj } name - the air around it feels like a story you weren't meant to hear.
 
 #Clothing opens
 starlight-clothing-open-1 = This garment has seen better days.
@@ -103,12 +103,12 @@ starlight-clothing-mid-2 = Stains that won't wash out mark important moments.
 starlight-clothing-mid-3 = The fit suggests it was custom-made.
 starlight-clothing-mid-4 = Small tears have been carefully mended.
 starlight-clothing-mid-5 = The material is softer than regulation standard.
-starlight-clothing-mid-patron-1 = Inside the seam, "{ $patronName }" is written in careful strokes — like someone expected { $patronObject } to come back for it.
+starlight-clothing-mid-patron-1 = Inside the seam, "{ $patronName }" is written in careful strokes - like someone expected { $patronObject } to come back for it.
 
 #Clothing ends
 starlight-clothing-end-1 = Still protecting its wearer after all these shifts.
 starlight-clothing-end-2 = A uniform that's earned its stripes.
-starlight-clothing-end-3 = More than clothing—it's armor against the void.
+starlight-clothing-end-3 = More than clothing-it's armor against the void.
 starlight-clothing-end-4 = Carrying the dignity of honest work.
 starlight-clothing-end-5 = A reminder that duty comes in many forms.
-starlight-clothing-end-patron-1 = Even now, it hangs as if it remembers { $patronPossAdj } shoulders — and refuses to look right on anyone else.
+starlight-clothing-end-patron-1 = Even now, it hangs as if it remembers { $patronPossAdj } shoulders - and refuses to look right on anyone else.

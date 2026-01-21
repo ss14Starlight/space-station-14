@@ -31,6 +31,11 @@ public sealed class LegendaryItemSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
 
+    /// <summary>
+    /// Cached story reference info built from an online Starlight Patreon subscriber's off-round character.
+    /// </summary>
+    private PatronStoryInfo? _cachedStoryReference;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -52,7 +57,14 @@ public sealed class LegendaryItemSystem : EntitySystem
         }
     }
 
-    private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev) => ApplyPatronReferencesToPendingLegendaryItems();
+    private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
+    {
+        // Try to find an online Starlight Patreon subscriber and use their off-round character
+        if (_cachedStoryReference == null && TryPickOnlinePatronOffRoundProfile(out var info))
+            _cachedStoryReference = info;
+
+        ApplyPatronReferencesToPendingLegendaryItems();
+    }
 
     internal bool TryApplyLegendary(EntityUid uid, LegendaryItemComponent component)
     {
@@ -152,9 +164,7 @@ public sealed class LegendaryItemSystem : EntitySystem
         if (storyProto.Opens.Count == 0 || storyProto.Mids.Count == 0 || storyProto.Ends.Count == 0)
             return false;
 
-        // If we can find an eligible *Starlight* Patreon,
-        // we inject their IC char name(off round) + pronouns into some story lines
-        var patron = TryPickOnlinePatronOffRoundProfile(out var patronInfo) ? patronInfo : default(PatronStoryInfo?);
+        var patron = _cachedStoryReference;
         var locArgs = patron?.ToLocArgs() ?? PatronStoryInfo.EmptyLocArgs;
 
         IReadOnlyList<LocId> opens = storyProto.Opens;
@@ -184,20 +194,17 @@ public sealed class LegendaryItemSystem : EntitySystem
 
         if (patron != null)
         {
-            var allowPatronInMid = _random.Prob(0.5f);
+            var patronOpens = opens.Where(IsPatronKey).ToList();
+            var patronMids = mids.Where(IsPatronKey).ToList();
+            var patronEnds = ends.Where(IsPatronKey).ToList();
 
-            if (allowPatronInMid)
-            {
-                var nonPatronEnds = ends.Where(k => !IsPatronKey(k)).ToList();
-                if (nonPatronEnds.Count > 0)
-                    endPool = nonPatronEnds;
-            }
-            else
-            {
-                var nonPatronMids = mids.Where(k => !IsPatronKey(k)).ToList();
-                if (nonPatronMids.Count > 0)
-                    midPool = nonPatronMids;
-            }
+            // Use only patron lines when available
+            if (patronOpens.Count > 0)
+                opens = patronOpens;
+            if (patronMids.Count > 0)
+                midPool = patronMids;
+            if (patronEnds.Count > 0)
+                endPool = patronEnds;
         }
 
         var midKey = _random.Pick(midPool);
@@ -228,8 +235,7 @@ public sealed class LegendaryItemSystem : EntitySystem
     private void ApplyPatronReferencesToPendingLegendaryItems()
     {
         // This is a retry pass for items that already became legendary
-        // If we still camt find an eligible patron reference then we do nothing
-        if (!TryPickOnlinePatronOffRoundProfile(out var _))
+        if (_cachedStoryReference == null)
             return;
 
         var query = EntityQueryEnumerator<LegendaryItemComponent>();
@@ -244,7 +250,7 @@ public sealed class LegendaryItemSystem : EntitySystem
             if (comp.Story is null)
                 continue;
 
-            // Rebuild story, at this point we expect "patron aware" keys to be eligible for selection
+            // Rebuild story, since now we have the reference available
             if (!TryBuildStory(comp.Story.Value, comp.Description, out var story) || story == null)
                 continue;
 
@@ -254,6 +260,9 @@ public sealed class LegendaryItemSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Tries to find an online player with Starlight Patreon subscription and pick one of their off-round characters.
+    /// </summary>
     private bool TryPickOnlinePatronOffRoundProfile(out PatronStoryInfo info)
     {
         info = default;
@@ -265,20 +274,23 @@ public sealed class LegendaryItemSystem : EntitySystem
 
         foreach (var session in _playerManager.Sessions)
         {
+            // Check if this player has Starlight Patreon subscription
             if (!_nullLinkPlayerManager.TryGetPlayerData(session.UserId, out var playerData)
-            || !patronReq.Roles.Any(playerData.Roles.Contains)
-            || !_preferencesManager.TryGetCachedPreferences(session.UserId, out var prefs))
+                || !patronReq.Roles.Any(playerData.Roles.Contains))
                 continue;
 
-            var enabledProfiles = prefs.Characters.Values
+            if (!_preferencesManager.TryGetCachedPreferences(session.UserId, out var prefs))
+                continue;
+
+            // Get all profiles
+            var allProfiles = prefs.Characters.Values
                 .OfType<HumanoidCharacterProfile>()
-                .Where(p => p.Enabled)
                 .ToList();
 
-            // If they only have one enabled character, do not reference them at all
-            if (enabledProfiles.Count < 2)
+            if (allProfiles.Count == 0)
                 continue;
 
+            // Find the character theyre currently playing
             HumanoidCharacterProfile? current = null;
             if (session.AttachedEntity is { Valid: true } ent
                 && TryComp(ent, out HumanoidAppearanceComponent? humanoid)
@@ -287,10 +299,8 @@ public sealed class LegendaryItemSystem : EntitySystem
                 current = humanoid.BaseProfile;
             }
 
-            // If the player is currently in-round, 
-            // avoid referencing the character they playing rn
-            // We compare to the BaseProfile snapshot stored on thumanoid
-            var offRound = enabledProfiles
+            // Get off-round profiles
+            var offRound = allProfiles
                 .Where(p => current == null || !p.MemberwiseEquals(current))
                 .ToList();
 
