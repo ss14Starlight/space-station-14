@@ -32,23 +32,12 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
         SubscribeLocalEvent<BatteryDrainerComponent, NinjaBatteryChangedEvent>(OnBatteryChanged);
     }
 
-    // Starlight Start
-    /// <summary>
-    ///  Allow entities who are a battery to use themselves as the battery for this component
-    /// </summary>
-    private void OnStartup(Entity<BatteryDrainerComponent> ent, ref ComponentStartup args)
-    {
-        if (ent.Comp.BatteryUid == null && (TryComp<BatteryComponent>(ent.Owner, out _) || TryComp<PredictedBatteryComponent>(ent.Owner, out _)))
-            ent.Comp.BatteryUid = ent.Owner;
-    }
-    // Starlight End
-
     /// <summary>
     ///  Imp add. Allow entities who are a battery to use themselves as the battery for this component
     /// </summary>
     private void OnStartup(Entity<BatteryDrainerComponent> ent, ref ComponentStartup args)
     {
-        if (ent.Comp.BatteryUid == null && TryComp<BatteryComponent>(ent.Owner, out _))
+        if (ent.Comp.BatteryUid == null && (TryComp<BatteryComponent>(ent.Owner, out _) || TryComp<PredictedBatteryComponent>(ent.Owner, out _))) // Starlight Edit: Check for PredictedBattery too.
             ent.Comp.BatteryUid = ent.Owner;
     }
 
