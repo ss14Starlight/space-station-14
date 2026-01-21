@@ -1,0 +1,70 @@
+- type: loadoutEffectGroup
+  id: SeniorDutyOfficer
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobDutyOfficer
+        time: 216000 #60 hrs. No actual benefit for it at this time. PDA will be added with clothes at some point in the future, and a winter coat inspired by Warden.
+# Head
+- type: loadout
+  id: DutyOfficerHead
+  equipment:
+    head: ClothingHeadHatDutyOfficer
+
+- type: loadout
+  id: DutyOfficerBeret
+  equipment:
+    head: ClothingHeadHatBeretDutyOfficer
+
+- type: loadout
+  id: DutyOfficerHelmetRiot
+  equipment:
+    head: ClothingHeadHelmetRiot
+
+# Jumpsuit
+- type: loadout
+  id: DutyOfficerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDutyOfficer
+
+- type: loadout
+  id: DutyOfficerJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtDutyOfficer
+
+- type: loadout
+  id: DutyOfficerJumpsuitBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecBlue
+
+- type: loadout
+  id: DutyOfficerJumpskirtBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecBlue
+
+# Outer Clothing
+- type: loadout
+  id: DutyOfficerArmorRiot
+  equipment:
+    outerClothing: ClothingOuterArmorRiot
+
+
+# Belt
+- type: loadout
+  id: DutyOfficerBelt
+  equipment:
+    belt: ClothingBeltDutyOfficerFilled
+
+- type: loadout
+  id: DutyOfficerWebbing
+  equipment:
+    belt: ClothingBeltDutyOfficerWebbingFilled
+
+
+# PDA
+#- type: loadout
+#  id: DutyOfficerPDA
+#  equipment:
+#    id: DutyOfficerPDA
+# Not needed until they get a senior PDA

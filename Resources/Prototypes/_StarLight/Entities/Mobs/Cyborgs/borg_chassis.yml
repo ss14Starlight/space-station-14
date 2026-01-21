@@ -49,3 +49,12 @@
   - type: TextToSpeech
   - type: BorgSwitchableType
     selectedBorgType: purrfus
+
+- type: entity
+  id: BorgChassisCargo
+  parent: BorgChassisSelectable
+  name: cargo cyborg
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: cargo

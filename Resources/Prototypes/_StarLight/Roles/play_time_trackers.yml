@@ -5,6 +5,9 @@
   id: JobRoboticist
 
 - type: playTimeTracker
+  id: JobDutyOfficer
+
+- type: playTimeTracker
   id: JobMagistrate
 
 - type: playTimeTracker
@@ -45,6 +48,9 @@
 
 - type: playTimeTracker
   id: JobZookeeper
+
+- type: playTimeTracker
+  id: JobNanotrasenCareerTrainer
 
 # Other ghosts
 

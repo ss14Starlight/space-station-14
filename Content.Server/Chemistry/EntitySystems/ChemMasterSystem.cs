@@ -264,6 +264,8 @@ namespace Content.Server.Chemistry.EntitySystems
             var needed = message.Dosage * message.Number;
             if (!WithdrawFromBeaker(chemMaster, needed, user, out var withdrawal)) // Starlight-edit
                 return;
+            
+            _labelSystem.Label(container, message.Label);
 
             for (var i = 0; i < message.Number; i++)
             {
@@ -391,7 +393,7 @@ namespace Content.Server.Chemistry.EntitySystems
                 return null;
             
             //Starlight-start
-            var pills = storage.Container.ContainedEntities.Select((Func<EntityUid, (string, FixedPoint2 quantity)>) (pill =>
+            var items = storage.Container.ContainedEntities.Select((Func<EntityUid, (string, FixedPoint2 quantity)>) (pill =>
             {
                 if (_solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PillSolutionName, out _, out var solution))
                 {
@@ -412,13 +414,13 @@ namespace Content.Server.Chemistry.EntitySystems
             {
                 return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)) / 2, storage.Grid.GetArea() / 2)
                 {
-                    Entities = pills
+                    PatchEntities = items
                 };
             }
 
             return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)), storage.Grid.GetArea())
             {
-                Entities = pills
+                PillEntities = items
             };
             //Starlight-end
         }
