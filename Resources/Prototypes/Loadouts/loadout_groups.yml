@@ -1425,6 +1425,7 @@
   - SecurityGlasses
   - SecurityHud
   - DetectiveNoirGlasses
+  - SecurityGlassesPrescription # Starlight
 
 - type: loadoutGroup
   id: BrigmedicHead
@@ -1479,6 +1480,7 @@
   - BrigmedicGlasses
   - BrigmedicHud
   - BrigmedicEyePatchHud # Starlight
+  - BrigmeicGlassesPrescription # Starlight
 
 - type: loadoutGroup
   id: BrigmedicBelt
@@ -1523,6 +1525,7 @@
   - SeniorOfficerJumpskirt
   - TrooperUniform
   - SecurityJumpsuitBlue
+  - SecurityJumpskirtBlue # Starlight
   - SecurityTshirt #Starlight
 
 - type: loadoutGroup
@@ -1897,6 +1900,7 @@
   - Glasses
   - GlassesJamjar
   - GlassesJensen
+  - MedicalGlassesPrescription # Starlight
 
 - type: loadoutGroup
   id: SurvivalMedical

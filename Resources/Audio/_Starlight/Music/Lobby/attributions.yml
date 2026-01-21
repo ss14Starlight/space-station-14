@@ -47,3 +47,13 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "melcom, https://modarchive.org/index.php?request=view_profile&query=68864"
   source: "https://modarchive.org/index.php?request=view_by_moduleid&query=176234"
+  
+- files: ["Unity.ogg"]
+  license: "CC-BY-ND-4.0"
+  copyright: "Unity by Artifyber, for InanimateIJK & their associated projects."
+  source: "https://soundcloud.com/r3dz3r/unity"
+
+- files: ["Bluespace.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Bluespace by Beptol Corporation Acoustics"
+  source: "https://soundcloud.com/beptolacoustics/space-station-14-unofficial-bluespace"

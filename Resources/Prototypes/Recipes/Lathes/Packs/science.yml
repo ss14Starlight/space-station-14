@@ -9,9 +9,6 @@
   - ExosuitFabricatorMachineCircuitboard
   - CutterMachineCircuitboard
   - BorgChargerCircuitboard
-  # Starlight-start
-  - SlimeProcessorMachineCircuitboard
-  # Starlight-end
 
 ## Dynamic
 
@@ -27,6 +24,9 @@
   - DeviceQuantumSpinInverter
   - DeviceDesynchronizer
   - ClothingBackpackHarmpack
+  # Starlight-start
+  - HandheldSlimeScanner
+  # Starlight-end
 
 - type: latheRecipePack
   id: ScienceClothing
@@ -57,6 +57,7 @@
   - PKAUpgradeFireRate
   - WeaponTetherGun
   - WeaponGauntletGorilla
+  - FiringPinExpedition # Starlight
 
 # Only contains parts for making basic modular grenades, no actual explosives
 - type: latheRecipePack
@@ -86,6 +87,10 @@
   - APECircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ArtifactCrusherMachineCircuitboard
+  # Starlight-start
+  - SlimeProcessorMachineCircuitboard
+  - XenobiologyConsoleCircuitboard
+  # Starlight-end
 
 - type: latheRecipePack
   id: CameraBoards

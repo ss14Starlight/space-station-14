@@ -1,10 +1,12 @@
+# This whole file is starlight-sourced, and should be moved in the vampire rework
 - type: antag
   id: Vampire
   name: roles-antag-vamire-name
   antagonist: true
-  setPreference: false # 🌟Starlight🌟 - disabled until reworked
+  setPreference: false
   objective: roles-antag-vampire-description
 #  guides: [ Changelings ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 10800 # 3h
+    time: 3h
+  playTimeTracker: AntagVampire

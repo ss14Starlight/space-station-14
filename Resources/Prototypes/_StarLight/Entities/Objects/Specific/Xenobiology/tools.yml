@@ -1,0 +1,47 @@
+- type: entity
+  name: slime extract bag
+  id: SlimeExtractBag
+  parent: BaseStorageItem
+  description: A bag for greedy xenobiologists to store unreasonable amounts of extracts.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/Equipment/plant_bag.rsi # TODO: Replace with unique sprite
+      state: icon
+    - type: Item
+      storedRotation: -90
+    - type: Clothing
+      quickEquip: false
+      slots:
+        - belt
+    - type: Storage
+      grid:
+        - 0,0,10,10
+      maxItemSize: Tiny
+      quickInsert: true
+      areaInsert: true
+      whitelist:
+        components:
+          - SlimeExtract
+    - type: Dumpable
+
+- type: entity
+  name: handheld slime scanner
+  id: HandheldSlimeScanner
+  parent: BaseItem
+  description: A hand-held scanner for collecting information on slimes.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_analyzer.rsi
+      state: icon
+    - type: SlimeScanner
+
+- type: entity
+  name: Xenobiology Console Camera Tagger
+  id: XenobiologyConsoleCameraTagger
+  parent: BaseItem
+  description: Can tag any camera to register it to the xenobiology network. Spy on slimes further away, or even your neighbors!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Xenobiology/test_camera_tagger.rsi
+      state: icon
+    - type: XenobiologyConsoleCameraTagger
