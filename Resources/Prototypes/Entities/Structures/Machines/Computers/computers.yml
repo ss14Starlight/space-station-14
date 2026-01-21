@@ -563,7 +563,7 @@
   - type: DeviceNetwork
     deviceNetId: Wired
   - type: DeviceLinkSource
-    range: 5
+    range: 9 # Starlight | Requested by Conflee to have a larger range.
     ports:
       - ArtifactAnalyzerSender
   - type: ActivatableUI
@@ -704,7 +704,7 @@
   - type: DeviceNetwork
     deviceNetId: Wired
   - type: DeviceLinkSource
-    range: 2
+    range: 4
     ports:
       - BodyScannerSender
   # Starlight-end

@@ -18,6 +18,8 @@
   - type: Tag
     tags:
       - Patch
+  - type: Extractable
+    grindableSolutionName: patch
       
 - type: entity
   id: Patch

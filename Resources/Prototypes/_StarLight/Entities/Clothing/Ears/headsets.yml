@@ -94,3 +94,26 @@
     sprite: Clothing/Ears/Headsets/mining.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/mining.rsi
+
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetNCT
+  name: Nanotrasen career trainer radio headset
+  description: This is used by your well-taught corporate training team.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommand
+      - EncryptionKeyCargo
+      - EncryptionKeyEngineering
+      - EncryptionKeyMedicalScience
+      - EncryptionKeyService
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/marauder.ogg
