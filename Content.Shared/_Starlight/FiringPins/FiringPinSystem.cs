@@ -77,7 +77,7 @@ public sealed partial class FiringPinSystem : EntitySystem
                 return;
             }
 
-            _tool.UseTool(args.Used, args.User, ent.Owner, 1.5f, ent.Comp.PinExtractionMethod, new FiringPinRemovalFinishEvent(), toolComponent: toolComp);
+            _tool.UseTool(args.Used, args.User, ent.Owner, 15f, ent.Comp.PinExtractionMethod, new FiringPinRemovalFinishEvent(), toolComponent: toolComp);
         }
     }
 
