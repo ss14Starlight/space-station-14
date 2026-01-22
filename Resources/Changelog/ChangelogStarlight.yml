@@ -27116,5 +27116,288 @@ Entries:
   id: 289700
   time: '2026-01-20T19:25:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2897
+- author: CawsForConcern
+  changes:
+  - message: ERT Shuttle APC tripping fixed
+    type: Fix
+  - message: Lance Pirates APC tripping fixed
+    type: Fix
+  - message: NTSV Harrier Class APC tripping fixed
+    type: Fix
+  - message: Fire Response visitor shuttle APC tripping fixed
+    type: Fix
+  - message: Signaleer APC tripping fixed
+    type: Fix
+  id: 289800
+  time: '2026-01-20T20:35:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2898
+- author: CawsForConcern
+  changes:
+  - message: Oasis has been retired, removed from map pool and gamefiles
+    type: Remove
+  id: 290100
+  time: '2026-01-20T20:48:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2901
+- author: CawsForConcern
+  changes:
+  - message: Origin Station has been retired, removed from map pool and gamefiles
+    type: Remove
+  id: 289900
+  time: '2026-01-20T20:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2899
+- author: CawsForConcern
+  changes:
+  - message: Omega has been retired, removed from map pool and gamefiles
+    type: Remove
+  id: 290200
+  time: '2026-01-20T20:56:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2902
+- author: Seaborne
+  changes:
+  - message: Fixed prescription medical glasses icon sprite!.
+    type: Fix
+  id: 290000
+  time: '2026-01-20T21:02:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2900
+- author: CawsForConcern
+  changes:
+  - message: (Starboard) Removed 2nd Warden (replaced by Duty Officer slots)
+    type: Tweak
+  id: 290300
+  time: '2026-01-20T21:07:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2903
+- author: neomoth
+  changes:
+  - message: Changed body scanner computer's device range from 2 to 4.
+    type: Tweak
+  - message: Changed artifact analyzer computer's device range from 5 to 9.
+    type: Tweak
+  id: 279800
+  time: '2026-01-20T21:20:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2798
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added Xenobiology Console.
+    type: Add
+  - message: Added Xenobiology Console Camera Tagger.
+    type: Add
+  - message: Added Handheld Slime Scanner.
+    type: Add
+  - message: Added Slime Extract Bag.
+    type: Add
+  - message: Added blood reactions for sepia and bluespace extracts.
+    type: Add
+  - message: Added Bluespace tiles.
+    type: Add
+  - message: Added Sepia tiles.
+    type: Add
+  - message: Added xenobiology starter crate for cargo.
+    type: Add
+  - message: Added basic xenobiology technology.
+    type: Add
+  - message: Added eating sound and animation to slimes when they attempt to eat monkeys.
+    type: Tweak
+  - message: Slimes will now swarm monkeys all at once.
+    type: Tweak
+  - message: Slimes will ignore non-monkeys as possible food targets (will be changed
+      when slimes receive an AI update).
+    type: Tweak
+  - message: Added processing sound to slime processor when activated.
+    type: Tweak
+  - message: Added interaction verb to slime processor.
+    type: Tweak
+  - message: Gender change potion now uses verbs.
+    type: Tweak
+  - message: All potions now provide feedback in the form of popups.
+    type: Tweak
+  - message: Inspecting extracts will now tell you whether they are exhausted.
+    type: Tweak
+  - message: Fireproof potions now correctly shield all fire damage and can no longer
+      cause healing.
+    type: Fix
+  - message: Fixed metal slimes not mutating into gold slimes.
+    type: Fix
+  id: 282600
+  time: '2026-01-20T22:37:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2826
+- author: redmushie
+  changes:
+  - message: Xenoborgs are now in the preset voting pool
+    type: Add
+  id: 289600
+  time: '2026-01-21T10:06:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2896
+- author: Rinary
+  changes:
+  - message: Changed `forcemap` command name to `setgamemap` to fix confusion.
+    type: Tweak
+  - message: Changed `golobby` and `forcegamepreset` commands flag to DANGER, so regular
+      admins can't use them.
+    type: Tweak
+  id: 291800
+  time: '2026-01-21T17:49:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2918
+- author: Conflee
+  changes:
+  - message: (Box) Added NCT, Duty Officer, Speakers, IAA/Magistrate Lockers, and
+      Xenobiology Ruins
+    type: Add
+  id: 290500
+  time: '2026-01-21T17:56:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2905
+- author: Conflee
+  changes:
+  - message: (Fland) Added Xenobio ruins, NCT, Duty Officer, IAA/Magistrate lockers,
+      Speakers, etc
+    type: Add
+  id: 290800
+  time: '2026-01-21T18:12:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2908
+- author: Penguinwizzard
+  changes:
+  - message: Removed present anomaly for the year.
+    type: Remove
+  id: 291400
+  time: '2026-01-21T18:16:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2914
+- author: KarmaKitsuna
+  changes:
+  - message: Added a pizza bomb to the syndicate and nuclear operative uplinks.
+    type: Add
+  id: 285100
+  time: '2026-01-21T18:35:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2851
+- author: Ohelig
+  changes:
+  - message: Silica trash now lands on the belt in disposals.
+    type: Fix
+  id: 291500
+  time: '2026-01-21T18:40:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2915
+- author: Conflee
+  changes:
+  - message: (Cog) Added Xenobio ruins, IAA/Magi lockers, Magi office, NCT office,
+      Speakers, etc etc
+    type: Add
+  id: 290600
+  time: '2026-01-21T18:44:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2906
+- author: Conflee
+  changes:
+  - message: (Kiloton) Added Xenobio ruins, speakers, IAA/Magistrate lockers, speakers,
+      NCT, Duty Officer, etc
+    type: Add
+  id: 290900
+  time: '2026-01-21T18:47:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2909
+- author: CawsForConcern
+  changes:
+  - message: (Hotel) Duty Officers
+    type: Add
+  - message: (Hotel) Nanotrasen Career Trainers
+    type: Add
+  - message: (Hotel) NCT Office, where Library used to be
+    type: Add
+  - message: (Hotel) New Library south of the Arcade
+    type: Add
+  - message: (Hotel) IAA lockers
+    type: Add
+  - message: (Hotel) Magistrate locker
+    type: Add
+  - message: (Hotel) SpawnPointLateJoin by Arrivals
+    type: Add
+  - message: (Hotel) That bit of Medical no longer dead-ends if you don't have Medical
+      access. The maints corridor now connects all the way to Cargo Front
+    type: Add
+  - message: (Hotel) AI Restoration consoles in RD's Office and AI Upload
+    type: Add
+  - message: (Hotel) Xenobio Department
+    type: Add
+  - message: (Hotel) Robotics has been full remade
+    type: Add
+  - message: (Hotel) Wall-mounted mass scanners at Cargo Front
+    type: Add
+  - message: (Hotel) Cargo locker room and QM have been moved south of Cargo Bay
+    type: Add
+  - message: (Hotel) Salavee and Mining have been moved further south of Cargo Bay
+    type: Add
+  - message: (Hotel) Halved the size of the Morgue
+    type: Tweak
+  id: 291200
+  time: '2026-01-21T18:53:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2912
+- author: CawsForConcern
+  changes:
+  - message: Nanotrasen Career Trainer station beacon text has now been fixed. Visit
+      your local NCT Office today!
+    type: Fix
+  id: 292000
+  time: '2026-01-21T18:57:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2920
+- author: Makeshift
+  changes:
+  - message: (Elkridge) Duty Officer
+    type: Add
+  - message: (Elkridge) NT Career Trainers
+    type: Add
+  - message: (Elkridge) The spare room near engineering has been converted into an
+      NCT office
+    type: Add
+  - message: (Elkridge) Wall-mounted mass scanner in front of cargo
+    type: Add
+  - message: (Elkridge) IAA Lockers
+    type: Add
+  - message: (Elkridge) Magistrate Locker
+    type: Add
+  - message: (Elkridge) AI restoration Consoles in RD's room and AI
+    type: Add
+  - message: (Elkridge) SpawnPointLateJoin by Arrivals
+    type: Add
+  id: 291600
+  time: '2026-01-21T19:06:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2916
+- author: Vonte
+  changes:
+  - message: Fixed resomi cold slowdown bug.
+    type: Fix
+  id: 292200
+  time: '2026-01-21T19:19:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2922
+- author: Penguinwizzard
+  changes:
+  - message: Added test coverage to ensure that even rarely-seen shuttles shouldn't
+      have overloaded power on startup.
+    type: Add
+  id: 289300
+  time: '2026-01-21T20:06:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2893
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added name and description to xenobiology console eye.
+    type: Tweak
+  - message: Slime processors can now store multiple slime corpses and process them
+      all at once.
+    type: Tweak
+  - message: Fixed slimes being deleted if a player leaves the xenobiology console
+      without placing stored slimes back down.
+    type: Fix
+  - message: Fixed slimes getting confused by dead monkeys and no longer eating.
+    type: Fix
+  - message: Fixed xenobiology console still being usable without power. Now it kicks
+      out users and prevents use until power is restored.
+    type: Fix
+  - message: Fixed being able to activate a slime processor while its already running.
+    type: Fix
+  id: 291300
+  time: '2026-01-22T01:23:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2913
+- author: STARLIGHT TEAM
+  changes:
+  - message: Hopefully fixed a PVS bug where an eating slime entering PVS range would
+      cause a client crash.
+    type: Fix
+  id: 292500
+  time: '2026-01-22T02:57:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2925
 Order: -1
 

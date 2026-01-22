@@ -199101,7 +199101,7 @@ entities:
           Nitrogen: 6.568249
     - type: Physics
       bodyType: Static
-- proto: LockerWardenLargeFilled
+- proto: LockerWardenFilled
   entities:
   - uid: 27925
     components:

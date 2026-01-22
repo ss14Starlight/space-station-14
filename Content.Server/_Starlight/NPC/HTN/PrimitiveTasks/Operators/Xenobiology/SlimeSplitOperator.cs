@@ -3,12 +3,12 @@ using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Shared._Starlight.Xenobiology;
 
-namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Specific;
+namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Xenobiology;
 
 public sealed partial class SlimeSplitOperator : HTNOperator
 {
     [Dependency] private readonly IEntityManager _entMan = default!;
-    private SlimeSystem _slime = default!;
+    private SlimeSystem _slimeSystem = default!;
     
     /// <summary>
     /// The amount of slimes to split into
@@ -19,7 +19,7 @@ public sealed partial class SlimeSplitOperator : HTNOperator
     public override void Initialize(IEntitySystemManager sysManager)
     {
         base.Initialize(sysManager);
-        _slime = sysManager.GetEntitySystem<SlimeSystem>();
+        _slimeSystem = sysManager.GetEntitySystem<SlimeSystem>();
     }
     
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
@@ -29,7 +29,7 @@ public sealed partial class SlimeSplitOperator : HTNOperator
         if (!_entMan.TryGetComponent<SlimeComponent>(owner, out var slime))
             return HTNOperatorStatus.Failed;
 
-        if (!_slime.QueueSlimeSplit((owner, slime), SplitAmount))
+        if (!_slimeSystem.QueueSlimeSplit((owner, slime), SplitAmount))
             return HTNOperatorStatus.Failed;
 
         return HTNOperatorStatus.Finished;

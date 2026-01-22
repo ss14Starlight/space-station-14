@@ -857,7 +857,7 @@
   suffix: NCT
   components:
   - type: NavMapBeacon
-    text: station-beacon-nct
+    defaultText: station-beacon-nct
 
 
 # Ghost Only Beacons
