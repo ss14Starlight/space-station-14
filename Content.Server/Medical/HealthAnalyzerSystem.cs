@@ -23,6 +23,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Content.Server.Body.Systems;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 
 namespace Content.Server.Medical;
 
@@ -38,6 +40,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
 
     [Dependency] private readonly ChatSystem _chat = default!; // Starlight-edit
 
@@ -254,6 +257,29 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             _chat.TrySendInGameICMessage(healthAnalyzer, Loc.GetString(healthComp.TalkMessage, ("damage", damageable.TotalDamage.ToString()), ("blood", bloodLevel)), InGameICChatType.Speak, hideChat: true);
         }
         // Starlight-end
+        
+        // Starlight begin - Get a list of active status effects
+        List<(string StatusEffectId, TimeSpan RemainingTime)>? statusEffects = null;
+        if (TryComp<StatusEffectContainerComponent>(target, out var statusEffectContainer) &&
+            statusEffectContainer.ActiveStatusEffects != null)
+        {
+            statusEffects = new List<(string, TimeSpan)>();
+            foreach (var statusId in statusEffectContainer.ActiveStatusEffects.ContainedEntities)
+            {
+                if (!TryComp<StatusEffectComponent>(statusId, out var statusComp))
+                    continue;
+
+                if (!TryPrototype(statusId, out var statusProto))
+                    continue;
+                
+                // Ignore permanent stuff
+                if (statusComp.EndEffectTime == null)
+                    continue;
+                
+                statusEffects.Add((statusProto.ID, statusComp.EndEffectTime.Value - _timing.CurTime));
+            }
+        }
+        // Starlight-end
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),
@@ -262,7 +288,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             scanMode,
             bleeding,
             unrevivable,
-            metabolizingReagents // Starlight - add metabolizing chemicals to ui message 
+            metabolizingReagents, // Starlight - add metabolizing chemicals to ui message,
+            statusEffects // Starlight - add active status effects
         ));
     }
 }
