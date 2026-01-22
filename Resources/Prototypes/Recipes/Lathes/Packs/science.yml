@@ -9,9 +9,6 @@
   - ExosuitFabricatorMachineCircuitboard
   - CutterMachineCircuitboard
   - BorgChargerCircuitboard
-  # Starlight-start
-  - SlimeProcessorMachineCircuitboard
-  # Starlight-end
 
 ## Dynamic
 
@@ -27,6 +24,9 @@
   - DeviceQuantumSpinInverter
   - DeviceDesynchronizer
   - ClothingBackpackHarmpack
+  # Starlight-start
+  - HandheldSlimeScanner
+  # Starlight-end
 
 - type: latheRecipePack
   id: ScienceClothing
@@ -87,6 +87,10 @@
   - APECircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ArtifactCrusherMachineCircuitboard
+  # Starlight-start
+  - SlimeProcessorMachineCircuitboard
+  - XenobiologyConsoleCircuitboard
+  # Starlight-end
 
 - type: latheRecipePack
   id: CameraBoards

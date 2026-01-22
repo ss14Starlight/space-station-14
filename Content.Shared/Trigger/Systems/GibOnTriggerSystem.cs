@@ -21,7 +21,7 @@ public sealed class GibOnTriggerSystem : XOnTriggerSystem<GibOnTriggerComponent>
         }
         // Starlight edit Start: Gear acidifer
         if (ent.Comp.GibBody)
-            _body.GibBody(target, true);
+            _body.GibBody(target, ent.Comp.GibOrgans);
         // Starlight edit end
         args.Handled = true;
     }

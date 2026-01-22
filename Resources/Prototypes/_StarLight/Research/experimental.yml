@@ -1,3 +1,18 @@
+# Tier 1
+- type: technology
+  id: BasicXenobiologyResearch
+  name: research-technology-basic-xenobiology
+  icon:
+    sprite: _Starlight/Mobs/XenoSlimes/test_sprite.rsi
+    state: test_slime
+  discipline: Experimental
+  tier: 1
+  cost: 1000
+  recipeUnlocks:
+  - HandheldSlimeScanner
+  - SlimeProcessorMachineCircuitboard
+  - XenobiologyConsoleCircuitboard
+
 # Tier 2
 - type: technology
   id: Lawboards

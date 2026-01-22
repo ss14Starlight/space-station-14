@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Starlight, IAA/Magistrate Icons by Chim | CentComm and CentComm Operator Icon by Happyrobot33 and fqqf | MailTech Icon by Happyrobot33 | HeadRevolutionary and Revolutionary by JustAdler | NTCCBlueShield by conf | Syndicate Cargo, Chef, Warden, Science, Security, Engineer, Janitor Icons by IamSidzilla | SalvageLead,SalvageSpecialist icons by mikeysaurus",
+    "copyright": "Starlight, IAA/Magistrate Icons by Chim | CentComm and CentComm Operator Icon by Happyrobot33 and fqqf | MailTech Icon by Happyrobot33 | HeadRevolutionary and Revolutionary by JustAdler | NTCCBlueShield by conf | Syndicate Cargo, Chef, Warden, Science, Security, Engineer, Janitor Icons by IamSidzilla | SalvageLead,SalvageSpecialist icons by mikeysaurus | DutyOfficer by BORT",
     "size": {
         "x": 8,
         "y": 8
@@ -25,6 +25,11 @@
         {
             "name": "MailTech"
          },
+		 {
+	            "name": "DutyOfficer",
+	            "copyright": "BORT",
+	            "license": "CC-BY-SA-3.0"
+		},
         {
             "name": "CentComm"
         },
@@ -36,6 +41,11 @@
 		{
 	            "name": "Decimus",
 	            "copyright": "by teapoterror",
+	            "license": "CC-BY-SA-3.0"
+		},
+        {
+	            "name": "NanotrasenCareerTrainer",
+	            "copyright": "by ShadesMars",
 	            "license": "CC-BY-SA-3.0"
 		},
         {

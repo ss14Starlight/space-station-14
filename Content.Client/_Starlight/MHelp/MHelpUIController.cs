@@ -1,18 +1,8 @@
-using System.Linq;
-using Content.Client._Starlight.Managers;
 using Content.Client._Starlight.MHelp;
 using Content.Client.Administration.Managers;
-using Content.Client.Administration.Systems;
-using Content.Client.Gameplay;
-using Content.Client.Lobby;
-using Content.Client.Lobby.UI;
-using Content.Client.Stylesheets;
-using Content.Client.UserInterface.Controls;
-using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared.Starlight.MHelp;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.Administration;
-using Content.Shared.CCVar;
 using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Audio;
@@ -20,18 +10,18 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
-using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Shared._NullLink;
+using Content.Client.Stylesheets;
 
 namespace Content.Client.UserInterface.Systems.Bwoink;
 
 [UsedImplicitly]
-public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
+public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>
 {
     [Dependency] private readonly INullLinkPlayerRolesManager _playerRoles = default!;
     [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRolesReq = default!;
@@ -39,15 +29,13 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    [Dependency] private readonly StaffHelpUIController _staffhelp = default!;
+    [Dependency] private readonly AHelpUIController _aHelp = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
 
     private MentorSystem? _mentorSystem;
-    private Controls.MenuButton? GameMHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.MHelpButton;
-    private Button? LobbyMHelpButton => (UIManager.ActiveScreen as LobbyGui)?.MHelpButton;
-
     public IMHelpUIHandler? UIHelper;
-    private bool _hasUnreadMHelp;
+    public bool _hasUnreadMHelp;
     private string? _mHelpSound;
 
     public override void Initialize()
@@ -59,23 +47,6 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
         _playerRoles.PlayerRolesChanged += OnPlayerStatusUpdated;
         _config.OnValueChanged(StarlightCCVars.MHelpSound, v => _mHelpSound = v, true);
     }
-    public void UnloadButton()
-    {
-        if (GameMHelpButton != null)
-            GameMHelpButton.OnPressed -= MHelpButtonPressed;
-
-        if (LobbyMHelpButton != null)
-            LobbyMHelpButton.OnPressed -= MHelpButtonPressed;
-    }
-
-    public void LoadButton()
-    {
-        if (GameMHelpButton != null)
-            GameMHelpButton.OnPressed += MHelpButtonPressed;
-
-        if (LobbyMHelpButton != null)
-            LobbyMHelpButton.OnPressed += MHelpButtonPressed;
-    }
 
     private void OnPlayerStatusUpdated()
     {
@@ -84,21 +55,10 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
         EnsureUIHelper();
     }
 
-    private void MHelpButtonPressed(BaseButton.ButtonEventArgs obj)
-    {
-        EnsureUIHelper();
-        UIHelper!.ToggleWindow();
-    }
-
     public void OnSystemLoaded(MentorSystem system)
     {
         _mentorSystem = system;
         _mentorSystem.OnMentoringTextMessageReceived += ReceivedMentoring;
-
-        CommandBinds.Builder
-            .Bind(ContentKeyFunctions.OpenMHelp,
-                InputCmdHandler.FromDelegate(_ => ToggleWindow()))
-            .Register<MHelpUIController>();
     }
 
     public void OnSystemUnloaded(MentorSystem system)
@@ -108,22 +68,6 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
         DebugTools.Assert(_mentorSystem != null);
         _mentorSystem!.OnMentoringTextMessageReceived -= ReceivedMentoring;
         _mentorSystem = null;
-    }
-
-    private void SetMHelpPressed(bool pressed)
-    {
-        if (GameMHelpButton != null)
-        {
-            GameMHelpButton.Pressed = pressed;
-        }
-
-        if (LobbyMHelpButton != null)
-        {
-            LobbyMHelpButton.Pressed = pressed;
-        }
-
-        UIManager.ClickSound();
-        UnreadMHelpRead();
     }
 
     private void ReceivedMentoring(object? sender, SharedMentorSystem.MHelpTextMessage message)
@@ -170,9 +114,6 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
         UIHelper.OnInputTextChanged += (ticket, text) => _mentorSystem?.SendInputTextUpdated(ticket,  text.Length > 0);
         UIHelper.OnTicketClosed += ticket => _mentorSystem?.SendCloseTicket(ticket);
         UIHelper.OnTptoPressed += ticket => _mentorSystem?.SentTpto(ticket);
-        UIHelper.OnClose += () => SetMHelpPressed(false);
-        UIHelper.OnOpen += () => SetMHelpPressed(true);
-        SetMHelpPressed(UIHelper.IsOpen);
     }
 
     public void Open()
@@ -202,65 +143,7 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
 
     private void UnreadMHelpReceived()
     {
-        GameMHelpButton?.StyleClasses.Add(StyleClass.Negative);
-        LobbyMHelpButton?.StyleClasses.Add(StyleClass.Negative);
         _hasUnreadMHelp = true;
-    }
-
-    private void UnreadMHelpRead()
-    {
-        GameMHelpButton?.StyleClasses.Remove(StyleClass.Negative);
-        LobbyMHelpButton?.StyleClasses.Remove(StyleClass.Negative);
-        _hasUnreadMHelp = false;
-    }
-
-    public void OnStateEntered(GameplayState state)
-    {
-        if (GameMHelpButton != null)
-        {
-            GameMHelpButton.OnPressed -= MHelpButtonPressed;
-            GameMHelpButton.OnPressed += MHelpButtonPressed;
-            GameMHelpButton.Pressed = UIHelper?.IsOpen ?? false;
-
-            if (_hasUnreadMHelp)
-            {
-                UnreadMHelpReceived();
-            }
-            else
-            {
-                UnreadMHelpRead();
-            }
-        }
-    }
-
-    public void OnStateExited(GameplayState state)
-    {
-        if (GameMHelpButton != null)
-            GameMHelpButton.OnPressed -= MHelpButtonPressed;
-    }
-
-    public void OnStateEntered(LobbyState state)
-    {
-        if (LobbyMHelpButton != null)
-        {
-            LobbyMHelpButton.OnPressed -= MHelpButtonPressed;
-            LobbyMHelpButton.OnPressed += MHelpButtonPressed;
-            LobbyMHelpButton.Pressed = UIHelper?.IsOpen ?? false;
-
-            if (_hasUnreadMHelp)
-            {
-                UnreadMHelpReceived();
-            }
-            else
-            {
-                UnreadMHelpRead();
-            }
-        }
-    }
-
-    public void OnStateExited(LobbyState state)
-    {
-        if (LobbyMHelpButton != null)
-            LobbyMHelpButton.OnPressed -= MHelpButtonPressed;
+        _staffhelp.RefreshAhelpButton();
     }
 }
