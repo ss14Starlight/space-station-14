@@ -13,7 +13,7 @@
     - id: DoorRemoteCargo
     - id: AstroNavCartridge
     - id: ClothingHandsKnuckleDustersQM
-    - id: PlushieLance #starlight
+ #   - id: PlushieLance #starlight
     - id: RadioHandheldExpedition #starlight
     - id: ClothingOuterHardsuitLuxmax #starlight
     - id: SalvageShuttleConsoleCircuitboard #starlight
@@ -237,7 +237,7 @@
     - id: RCDAmmo
     - id: RubberStampCE
     - id: MetalFoamGrenade
-    - id: PlushieMatthew #starlight
+ #   - id: PlushieMatthew #starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
