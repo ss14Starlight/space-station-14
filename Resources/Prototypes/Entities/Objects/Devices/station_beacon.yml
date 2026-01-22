@@ -851,6 +851,15 @@
   - type: NavMapBeacon
     defaultText: station-beacon-vox
 
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconNCT
+  suffix: NCT
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-nct
+
+
 # Ghost Only Beacons
 - type: entity
   parent: DefaultStationBeacon

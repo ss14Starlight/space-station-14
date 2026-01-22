@@ -371,6 +371,7 @@
         - Sandbox #SL
     #region Starlight
     - id: RDDiploma
+    - id: XenobiologyConsoleCameraTagger
     #- id: PaperIonstormBorgs
     #  prob: 0.10 #1/10 rounds will have this paper that can be signed repeatedly for no discernable effect!
     #endregion Starlight

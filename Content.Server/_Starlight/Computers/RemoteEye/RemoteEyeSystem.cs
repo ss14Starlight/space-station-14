@@ -15,6 +15,9 @@ using Content.Shared._Starlight.Computers.RemoteEye;
 using System.Linq;
 using Content.Shared.Station.Components;
 using Content.Shared._Starlight.Actions.EntitySystems;
+using Content.Shared.Interaction;
+using Content.Shared.Power;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Player;
 
@@ -32,6 +35,7 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
 
     public override void Initialize()
     {
@@ -40,8 +44,10 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
         SubscribeLocalEvent<RemoteEyeActorComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<RemoteEyeActorComponent, GetVisMaskEvent>(OnGetVisMask);
         SubscribeLocalEvent<ExitConsoleEvent>(OnExit);
-
+    
         Subs.BuiEvents<RemoteEyeConsoleComponent>(RemoteEyeUIKey.Key, subs => subs.Event<BeaconChosenBuiMsg>(OnBeaconChosenBuiMsg));
+        SubscribeLocalEvent<RemoteEyeConsoleComponent, ActivateInWorldEvent>(OnActivateInWorld);
+        SubscribeLocalEvent<RemoteEyeConsoleComponent, PowerChangedEvent>(OnCompPowerChange);
         base.Initialize();
     }
 
@@ -99,19 +105,25 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
 
     private void OnBeaconChosenBuiMsg(Entity<RemoteEyeConsoleComponent> ent, ref BeaconChosenBuiMsg args)
     {
-        CameraExit(args.Actor);
+        var viewer = args.Actor;
+        CameraExit(viewer);
 
         var beacon = _entityManager.GetEntity(args.Beacon.NetEnt);
         var eye = SpawnAtPosition(ent.Comp.RemoteEntityProto, Transform(beacon).Coordinates);
         ent.Comp.RemoteEntity = eye;
 
-        var remoteEyeActor = EnsureComp<RemoteEyeActorComponent>(args.Actor);
+        SetupRemoteView(ent, viewer, eye);
+    }
+
+    private void SetupRemoteView(Entity<RemoteEyeConsoleComponent> ent, EntityUid viewer, EntityUid eye)
+    {
+        var remoteEyeActor = EnsureComp<RemoteEyeActorComponent>(viewer);
         remoteEyeActor.VirtualItem = ent.Owner;
         remoteEyeActor.RemoteEntity = eye;
 
-        if (TryComp<HandsComponent>(args.Actor, out var handsComponent))
+        if (TryComp<HandsComponent>(viewer, out var handsComponent))
         {
-            var handy = (args.Actor, handsComponent);
+            var handy = (argsActor: viewer, handsComponent);
             foreach (var hand in _hands.EnumerateHands(handy))
             {
                 if (_hands.GetHeldItem(handy, hand) is var item)
@@ -122,19 +134,19 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
                     _hands.DoDrop(handy, hand, true);
                 }
 
-                if (_virtualItem.TrySpawnVirtualItemInHand(ent.Owner, args.Actor, out var virtItem))
+                if (_virtualItem.TrySpawnVirtualItemInHand(ent.Owner, viewer, out var virtItem))
                     EnsureComp<UnremoveableComponent>(virtItem.Value);
             }
         }
 
-        if (TryComp(args.Actor, out EyeComponent? eyeComp))
+        if (TryComp(viewer, out EyeComponent? eyeComp))
         {
-            _eye.RefreshVisibilityMask(args.Actor);
-            _eye.SetTarget(args.Actor, eye, eyeComp);
-            _eye.SetDrawFov(args.Actor, false);
+            _eye.RefreshVisibilityMask(viewer);
+            _eye.SetTarget(viewer, eye, eyeComp);
+            _eye.SetDrawFov(viewer, false);
 
             if (TryComp<StationAiOverlayComponent>(eye, out var eyeOverlay))
-                AddComp(args.Actor, new StationAiOverlayComponent
+                AddComp(viewer, new StationAiOverlayComponent
                 {
                     AllowCrossGrid = eyeOverlay.AllowCrossGrid,
                     Alfa = eyeOverlay.Alfa
@@ -142,26 +154,44 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
 
             if (!TryComp(eye, out RemoteEyeSourceContainerComponent? remoteEyeSourceContainerComponent))
             {
-                remoteEyeSourceContainerComponent = new RemoteEyeSourceContainerComponent { Actor = args.Actor };
+                remoteEyeSourceContainerComponent = new RemoteEyeSourceContainerComponent { Actor = viewer };
                 AddComp(eye, remoteEyeSourceContainerComponent);
             }
             else
-                remoteEyeSourceContainerComponent.Actor = args.Actor;
+                remoteEyeSourceContainerComponent.Actor = viewer;
 
             Dirty(eye, remoteEyeSourceContainerComponent);
         }
 
-        AddActions(ent, (args.Actor, remoteEyeActor));
+        AddActions(ent, (viewer, remoteEyeActor));
         Dirty(ent);
 
-        _mover.SetRelay(args.Actor, eye);
+        _mover.SetRelay(viewer, eye);
 
-        if(TryComp<InputMoverComponent>(args.Actor, out var mover))
+        if(TryComp<InputMoverComponent>(viewer, out var mover))
         {
             mover.CanMove = true;
-            Dirty(args.Actor, mover);
+            Dirty(viewer, mover);
+        }
+
+        ent.Comp.Users.Add(viewer);
+    }
+
+    private void OnActivateInWorld(Entity<RemoteEyeConsoleComponent> ent, ref ActivateInWorldEvent args)
+    {
+        if (ent.Comp.ViewOnConsolePosition && _power.IsPowered(ent.Owner))
+        {
+            args.Handled = true;
+            var viewer = args.User;
+            CameraExit(viewer);
+            
+            var eye = SpawnAtPosition(ent.Comp.RemoteEntityProto, Transform(ent).Coordinates);
+            ent.Comp.RemoteEntity = eye;
+
+            SetupRemoteView(ent, viewer, eye);
         }
     }
+    
     private void OnPlayerAttached(Entity<RemoteEyeActorComponent> ent, ref PlayerAttachedEvent args) 
         => _eye.RefreshVisibilityMask((ent.Owner, null));
 
@@ -193,5 +223,16 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
             _actions.RemoveAction(actor, actionEnt);
 
         _slActions.UnHideActions(actor, comp.HiddenActions);
+    }
+
+    private void OnCompPowerChange(Entity<RemoteEyeConsoleComponent> entity, ref PowerChangedEvent args)
+    {
+        if (!args.Powered)
+        {
+            foreach (var user in entity.Comp.Users)
+            {
+                CameraExit(user);
+            }
+        }
     }
 }

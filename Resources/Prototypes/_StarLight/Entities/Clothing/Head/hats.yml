@@ -152,6 +152,38 @@
     - WhitelistChameleon
 
 - type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatDutyOfficer
+  name: duty officer's cap
+  description: I'm the only thing that can protect this station from chaos.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/dutyofficer_hat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/dutyofficer_hat.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretDutyOfficer
+  name: duty officer's beret
+  description: A dark-red beret themed after the warden's. Not bad, not bad.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/beret_dutyofficer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/beret_dutyofficer.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatSheriffHat
   name: head of security's sheriff hat
@@ -455,3 +487,35 @@
     sprite: _Starlight/Clothing/Head/Hats/red_regalia.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/red_regalia.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatBeretNCTBlack
+  name: NT Career Trainer's beret
+  description: A beret worn by the mentors and trainers of the Career Training Team. This one is black!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/beret_nct_black.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/beret_nct_black.rsi
+
+- type: entity
+  parent: ClothingHeadHatBeretNCTBlack
+  id: ClothingHeadHatBeretNCTGreen
+  description: A beret worn by the mentors and trainers of the Career Training Team. This one is green!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/beret_nct_green.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/beret_nct_green.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatDrilltrainer
+  name: campaign hat
+  description: A wide-brimmed campaign hat with a drill sergeant feel, worn by Career Trainers to project knowledge and guide new employees with classic style.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/drilltrainer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/drilltrainer.rsi

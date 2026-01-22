@@ -68,9 +68,11 @@
       - id: MobSpiderSpace
       - id: MobCobraSpace
       - id: MobBearSpace
-      - id: MobBearSoviet
       - id: MobGoliath
       - id: MobCarp
+      conditions:
+      - !type:PlayerCountCondition
+        min: 35
     # reagent slimes
     - !type:GroupSelector
       children:
@@ -79,13 +81,13 @@
       #- id: ReagentSlimeNocturne # Disabled this one because it's a lot of a syndie chem
       - id: ReagentSlimeTHC
       - id: ReagentSlimeBicaridine
-      - id: ReagentSlimeToxin
-      - id: ReagentSlimeNapalm
       - id: ReagentSlimeOmnizine
-      - id: ReagentSlimeMuteToxin
       - id: ReagentSlimeNorepinephricAcid
       - id: ReagentSlimeEphedrine
       - id: ReagentSlimeRobustHarvest
+      conditions:
+      - !type:PlayerCountCondition
+        min: 35
     # xenos
     - !type:GroupSelector
       children:
@@ -97,3 +99,17 @@
       - id: MobXenoRunner
       - id: MobXenoRouny
       - id: MobXenoSpitter
+      conditions:
+      - !type:PlayerCountCondition
+        min: 35
+    # high threat
+    - !type:GroupSelector
+      weight: 0.3 # On stations with enough players for these to show up, we still don't want too many of them
+      children:
+      - id: MobBearSoviet # Too high-tier to have roundstart in maints on lower pop
+      - id: ReagentSlimeToxin # This will likely three-shot you
+      - id: ReagentSlimeNapalm # Has wiped a security department
+      - id: ReagentSlimeMuteToxin # Silence effects are strong
+      conditions:
+      - !type:PlayerCountCondition
+        min: 70

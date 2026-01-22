@@ -40,10 +40,16 @@
   id: BoneGel
 
 - type: Tag
+  id: BorgModuleMining
+
+- type: Tag
   id: BorgModulePurrfus
 
 - type: Tag
   id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleSupply
 
 - type: Tag
   id: BorgModuleSyndicateStealth

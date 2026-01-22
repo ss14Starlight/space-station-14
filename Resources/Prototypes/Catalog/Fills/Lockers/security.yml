@@ -376,4 +376,8 @@
   table: !type:AllSelector
     children:
     - id: WeaponLaserCarbine
-      amount: 4
+      amount: 3
+    - id: WeaponLr30
+      amount: 1
+    - id: MagazineBatteryLr30
+      amount: 2

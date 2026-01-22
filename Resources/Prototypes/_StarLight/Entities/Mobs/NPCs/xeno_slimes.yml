@@ -23,7 +23,7 @@
       mutationOnMaxSplit: XenobiologySlimeRainbow
     - type: HTN
       rootTask:
-        task: SlimeEatCompound
+        task: SlimeMainCompound
     - type: Temperature
       coldDamage:
         types:
@@ -109,6 +109,8 @@
       splitIntoMutation:
         - XenobiologySlimeYellow
         - XenobiologySlimeSilver
+        - XenobiologySlimeGold
+        - XenobiologySlimeGold
     - type: Sprite
       color: "#5e5e5eff"
 

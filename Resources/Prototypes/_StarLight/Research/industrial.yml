@@ -18,6 +18,7 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
+  - BorgModuleAdvancedLoading
   technologyPrerequisites:
   - CritterMechs
   radioChannels:
