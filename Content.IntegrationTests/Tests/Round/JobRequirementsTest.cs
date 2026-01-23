@@ -157,8 +157,6 @@ public sealed class JobRequirementsTest
         pair.AssertJob(expectedJob ? wantedJob : "Assistant");
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(10);
-        await pair.ReallyBeIdle(); // ensure round shutdown completes before disposing the pool
         await pair.CleanReturnAsync();
     }
 
@@ -221,8 +219,6 @@ public sealed class JobRequirementsTest
         Assert.That(appearance.Age, Is.EqualTo(75));
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(10);
-        await pair.ReallyBeIdle(); // allow restart to finish so lingering logs don't fire post-disposal
         await pair.CleanReturnAsync();
     }
 
@@ -282,8 +278,6 @@ public sealed class JobRequirementsTest
         pair.AssertJob(expectedJob ? wantedJob : "Assistant");
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(10);
-        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 }
