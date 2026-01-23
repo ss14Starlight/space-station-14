@@ -487,18 +487,6 @@ namespace Content.Shared.Preferences
             if (!Loadouts.SequenceEqual(other.Loadouts))  throw new DebugAssertException($"Loadouts doesn't match expected '{Loadouts}' got '{other.Loadouts}'");
             if (FlavorText != other.FlavorText) throw new DebugAssertException($"FlavorText doesn't match expected '{FlavorText}' got '{other.FlavorText}'");
             if (Enabled != other.Enabled) throw new DebugAssertException($"Enabled doesn't match expected '{Enabled}' got '{other.Enabled}'");
-            // Cosmatic Drift Record System-start
-            if (CDCharacterRecords != null)
-            {
-                if (other.CDCharacterRecords == null)
-                    throw new DebugAssertException($"CDCharacterRecords doesn't match expected '{CDCharacterRecords}' got null");
-                CDCharacterRecords.AssertEquals(other.CDCharacterRecords);
-            }
-            else if (other.CDCharacterRecords != null)
-            {
-                throw new DebugAssertException($"CDCharacterRecords doesn't match expected null got '{other.CDCharacterRecords}'");
-            }
-            // Cosmatic Drift Record System-end
             Appearance.MemberwiseEquals(other.Appearance);
         }
         #endregion
