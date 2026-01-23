@@ -32,8 +32,9 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private IClientAchievementManager _achievements = default!;
 
-    private readonly List<string> _jobBans = new();
-    private readonly List<string> _antagBans = new();
+    private readonly Dictionary<string, TimeSpan> _roles = new();
+    private readonly List<ProtoId<JobPrototype>> _jobBans = new();
+    private readonly List<ProtoId<AntagPrototype>> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
 
     // nulllink start

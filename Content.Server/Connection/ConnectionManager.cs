@@ -303,8 +303,8 @@ namespace Content.Server.Connection
          * TODO: Jesus H Christ what is this utter mess of a function
          * TODO: Break this apart into is constituent steps.
          */
-        private async Task<(ConnectionDenyReason, string, List<ServerBanDef>? bansHit)?> ShouldDeny(
-            NetConnectingArgs e, IPAddress addr) // Starlight: accept resolved IP
+        private async Task<(ConnectionDenyReason, string, List<BanDef>? bansHit)?> ShouldDeny(
+            NetConnectingArgs e, IPAddress addr)
         {
             // Check if banned.
             var userId = e.UserId;

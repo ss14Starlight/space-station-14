@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Text;
-using Content.Server.Administration.Managers;
+﻿using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -100,11 +98,22 @@ public sealed partial class RoleBanCommand : IConsoleCommand
         var targetHWid = located.LastHWId;
 
         var success = true; // Starlight - track success of lookup
+        var banInfo = new CreateRoleBanInfo(reason);
+        if (minutes > 0)
+            banInfo.WithMinutes(minutes);
+        banInfo.AddUser(targetUid, located.Username);
+        banInfo.WithBanningAdmin(shell.Player?.UserId);
+        banInfo.AddHWId(targetHWid);
+        banInfo.WithSeverity(severity);
 
         if (_proto.HasIndex<JobPrototype>(role))
-            _bans.CreateRoleBan<JobPrototype>(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, role, minutes, severity, reason, DateTimeOffset.UtcNow);
+        {
+            banInfo.AddJob(new ProtoId<JobPrototype>(role));
+        }
         else if (_proto.HasIndex<AntagPrototype>(role))
-            _bans.CreateRoleBan<AntagPrototype>(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, role, minutes, severity, reason, DateTimeOffset.UtcNow);
+        {
+            banInfo.AddAntag(new ProtoId<AntagPrototype>(role));
+        }
         else
         { // Starlight - capture failure state
             shell.WriteError(Loc.GetString("cmd-roleban-job-parse", ("job", role)));
@@ -114,6 +123,8 @@ public sealed partial class RoleBanCommand : IConsoleCommand
         // Starlight start - webhook for bans
         if (success)
         {
+            _bans.CreateRoleBan(banInfo);
+        
             HashSet<string>? roles = new() { role }; // Used for updating webhook
             _bans.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, DateTimeOffset.UtcNow);
         }

@@ -3,7 +3,7 @@ using Starlight.NullLink;
 
 namespace Content.Server.Database
 {
-    public sealed class ServerUnbanDef
+    public sealed class UnbanDef
     {
         public int BanId { get; }
 
@@ -15,7 +15,7 @@ namespace Content.Server.Database
 
         public string? ServerName { get; }
 
-        public ServerUnbanDef(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime, string? projectName = null, string? serverName = null)
+        public UnbanDef(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime, string? projectName = null, string? serverName = null)
         {
             BanId = banId;
             UnbanningAdmin = unbanningAdmin;

@@ -79,7 +79,6 @@ namespace Content.IntegrationTests.Tests.Commands
 
             // The existing ban is unaffected
             Assert.That(await banManager.GetServerBanAsync(null, clientId, null, null), Is.Not.Null); // NullLink-edit: move to general method at Manager
-
             var ban = await banManager.GetServerBanAsync(1); // NullLink-edit: move to general method at Manager
             Assert.Multiple(async () =>
             {
@@ -88,7 +87,7 @@ namespace Content.IntegrationTests.Tests.Commands
 
                 // Check that it matches
                 Assert.That(ban.Id, Is.EqualTo(1));
-                Assert.That(ban.UserId, Is.EqualTo(clientId));
+                Assert.That(ban.UserIds, Is.EquivalentTo([clientId]));
                 Assert.That(ban.BanTime.UtcDateTime - DateTime.UtcNow, Is.LessThanOrEqualTo(MarginOfError));
                 Assert.That(ban.ExpirationTime, Is.Not.Null);
                 Assert.That(ban.ExpirationTime.Value.UtcDateTime - DateTime.UtcNow.AddHours(24), Is.LessThanOrEqualTo(MarginOfError));
@@ -116,7 +115,7 @@ namespace Content.IntegrationTests.Tests.Commands
                 Assert.That(await banManager.GetServerBansAsync(null, clientId, null, null), Has.Count.EqualTo(1)); // NullLink-edit: move to general method at Manager
 
                 Assert.That(pardonedBan.Id, Is.EqualTo(1));
-                Assert.That(pardonedBan.UserId, Is.EqualTo(clientId));
+                Assert.That(pardonedBan.UserIds, Is.EquivalentTo([clientId]));
                 Assert.That(pardonedBan.BanTime.UtcDateTime - DateTime.UtcNow, Is.LessThanOrEqualTo(MarginOfError));
                 Assert.That(pardonedBan.ExpirationTime, Is.Not.Null);
                 Assert.That(pardonedBan.ExpirationTime.Value.UtcDateTime - DateTime.UtcNow.AddHours(24), Is.LessThanOrEqualTo(MarginOfError));
