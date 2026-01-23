@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: DonkPocketMachineGoodbyes
+  values:
+    prefix: thankyou-donkpocket-
+    count: 3
+
+- type: localizedDataset
+  id: IceCreamGoodbyes
+  values:
+    prefix: thankyou-icecream-
+    count: 6

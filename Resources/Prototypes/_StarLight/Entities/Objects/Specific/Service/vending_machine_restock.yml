@@ -62,3 +62,36 @@
     - state: green_bit
       shader: unshaded
     - state: refill_costume
+
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: VendingMachineRestockDonk
+  name: donk on the go restock box
+  description: A box full of what is legally food. Load it into a Donk on the Go Vendor for a refill.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - DonkPocketsMachineInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_donksoft
+
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: VendingMachineRestockIceCream
+  name: ice-cream restock box
+  description: A box full of ice-cream and near-liquid nitrogen.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - IceCreamInventory
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_icecream

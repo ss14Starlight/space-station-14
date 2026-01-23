@@ -1,0 +1,35 @@
+- type: entity
+  name: firing pin box
+  description: a box full of standard firing pins
+  id: BoxFiringPin
+  parent: BoxCardboard
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: FiringPin
+        amount: 4
+
+- type: entity
+  name: pistol firing pin box
+  description: a box full of pistol firing pins
+  id: BoxFiringPinPistol
+  parent: BoxCardboard
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: FiringPinPistol
+        amount: 4
+
+- type: entity
+  name: laser crystal box
+  description: a box full of laser crystals
+  id: BoxFiringPinLaser
+  parent: BoxCardboard
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: FiringPinLaser
+        amount: 4
