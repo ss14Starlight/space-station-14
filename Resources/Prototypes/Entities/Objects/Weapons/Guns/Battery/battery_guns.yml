@@ -70,6 +70,17 @@
   - type: Tag
     tags:
     - LaserWeapon
+  # starlight start
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]
+  # starlight end
 
 - type: entity
   id: BaseWeaponPowerCell
@@ -203,6 +214,17 @@
     tags:
     - Sidearm
     - LaserWeapon
+  # starlight start
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]
+  # starlight end
 
 - type: entity
   name: makeshift laser pistol
@@ -721,6 +743,17 @@
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.0002 # 5,000 times less likely than 1 regular animal
     # not putting a BlockMovement component here cause that's funny.
+  # starlight start
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaser
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
+  # starlight end
 
 - type: entity
   name: advanced laser pistol
@@ -951,6 +984,17 @@
   - type: PredictedBatterySelfRecharger
     autoRechargeRate: 48
     autoRechargePauseTime: 10
+  # starlight start
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaser
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
+  # starlight end
 
 - type: entity
   name: temperature gun
@@ -1006,7 +1050,7 @@
   id: WeaponLaserCannonXenoborg
   name: xenoborg laser cannon
   components:
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger # Starlight: Fixed recharging by switching to Predicted variant
     autoRechargeRate: 30
   # "remove" wield bonus and penalty so borgs can use it
   - type: GunWieldBonus

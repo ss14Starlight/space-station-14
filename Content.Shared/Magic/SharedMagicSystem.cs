@@ -96,6 +96,7 @@ public abstract class SharedMagicSystem : EntitySystem
         SubscribeLocalEvent<TeleportSpellEvent>(OnTeleportSpell);
         SubscribeLocalEvent<WorldSpawnSpellEvent>(OnWorldSpawn);
         SubscribeLocalEvent<ProjectileSpellEvent>(OnProjectileSpell);
+        SubscribeLocalEvent<MultiProjectileSpellEvent>(OnMultiProjectileSpell); // Starlight: Multi-projectile spread spell
         SubscribeLocalEvent<ChangeComponentsSpellEvent>(OnChangeComponentsSpell);
         SubscribeLocalEvent<SmiteSpellEvent>(OnSmiteSpell);
         SubscribeLocalEvent<KnockSpellEvent>(OnKnockSpell);
@@ -305,6 +306,49 @@ public abstract class SharedMagicSystem : EntitySystem
         var direction = _transform.ToMapCoordinates(toCoords).Position -
                          fromMap.Position;
         _gunSystem.ShootProjectile(ent, direction, userVelocity, ev.Performer, ev.Performer, 25f);
+    }
+
+    /// <summary>
+    /// Starlight: Fires multiple projectiles in a spread pattern.
+    /// This manually spawns and fires each projectile with an angle offset from the center direction.
+    /// We can't use ProjectileSpreadComponent because it only works in the gun system's ammo handling,
+    /// not with the magic system's direct ShootProjectile calls.
+    /// </summary>
+    private void OnMultiProjectileSpell(MultiProjectileSpellEvent ev)
+    {
+        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer) || !_net.IsServer)
+            return;
+
+        ev.Handled = true;
+
+        var xform = Transform(ev.Performer);
+        var fromCoords = xform.Coordinates;
+        var toCoords = ev.Target;
+        var userVelocity = _physics.GetMapLinearVelocity(ev.Performer);
+
+        // Calculate base direction to target
+        var fromMap = _transform.ToMapCoordinates(fromCoords);
+        var toMap = _transform.ToMapCoordinates(toCoords);
+        var baseDirection = toMap.Position - fromMap.Position;
+        var baseAngle = baseDirection.ToWorldAngle();
+
+        // Convert spread from degrees to radians
+        var spreadRadians = MathHelper.DegreesToRadians(ev.SpreadDegrees);
+
+        // Calculate angle increment between projectiles
+        // For even count, we spread evenly around center
+        var angleIncrement = ev.ProjectileCount > 1 ? spreadRadians / (ev.ProjectileCount - 1) : 0f;
+        var startAngle = baseAngle - spreadRadians / 2f;
+
+        // Spawn and fire each projectile
+        for (var i = 0; i < ev.ProjectileCount; i++)
+        {
+            var projectileAngle = startAngle + (angleIncrement * i);
+            var projectileDirection = projectileAngle.ToWorldVec();
+
+            var ent = Spawn(ev.Prototype, fromMap);
+            _gunSystem.ShootProjectile(ent, projectileDirection, userVelocity, ev.Performer, ev.Performer);
+        }
     }
     // End Projectile Spells
     #endregion

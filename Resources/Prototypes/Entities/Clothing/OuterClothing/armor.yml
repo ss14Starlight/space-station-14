@@ -92,10 +92,16 @@
         Piercing: 0.9
         Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
   - type: Reflect
-    reflectProb: 1
+    reflectProb: 0.65 # STARLIGHT: Vest base reflect probability, adds with helmet to 100%
     reflects:
       - Energy
     reflectingInHands: false
+  # STARLIGHT: Component for set bonus system. Stores original reflection and tag for vest piece.
+  - type: ReflectiveSetBonus
+    vestTag: ReflectiveArmorVest
+  - type: Tag
+    tags:
+    - ReflectiveArmorVest # STARLIGHT: Tag for set bonus system detection
 
 #Detective's vest
 - type: entity
@@ -178,7 +184,6 @@
         Heat: 0.9
     # Starlight-start
     staminaModifier: 0.55
-    ignoreKnockdown: true
     # Starlight-end
   - type: ExplosionResistance
     damageCoefficient: 0.9
@@ -210,7 +215,6 @@
         Caustic: 0.5
     # Starlight-start
     staminaModifier: 0.35
-    ignoreKnockdown: true
     # Starlight-end
   - type: ExplosionResistance
     damageCoefficient: 0.5

@@ -336,6 +336,22 @@
         - Scientist
         - ResearchDirector
 
+- type: listing
+  id: UplinkGearAcidifierImplanter
+  name: uplink-gear-acidifier-implant-name
+  description: uplink-gear-acidifier-implant-desc
+  icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
+  productEntity: GearAcidifierImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkImplants
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
 # Wearables
 - type: listing
   id: UplinkHardsuitInfiltration
@@ -578,6 +594,8 @@
   categories:
   - UplinkDisruption
 
+
+
 - type: listing
   id: uplinkRiggedBoxingGlovesBoxer
   name: uplink-rigged-boxing-gloves-name
@@ -594,5 +612,17 @@
     - !type:BuyerJobCondition
       whitelist:
         - Boxer
-
-
+        
+#Explosives
+- type: listing
+  id: UplinkPizzaBomb
+  name: uplink-pizza-bomb-name
+  description: uplink-pizza-bomb-desc
+  productEntity: Pizzabomb
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost: 
+    Telecrystal: 4
+  categories:
+      - UplinkExplosives

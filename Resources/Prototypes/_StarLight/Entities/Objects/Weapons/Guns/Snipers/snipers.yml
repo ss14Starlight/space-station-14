@@ -56,6 +56,12 @@
   - type: Construction
     graph: MakeshiftSniperGraph
     node: shotgun
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinMakeshift
+  - type: FiringPinHolder
+    supportedPins: [ Makeshift, GunUpgrade ]
 
 - type: entity
   name: Improvised Repeater Rifle

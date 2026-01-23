@@ -166,9 +166,16 @@ namespace Content.Shared.Chemistry
         public readonly FixedPoint2 MaxVolume;
 
         /// <summary>
-        /// A list of the entities and their sizes within the container
+        /// A list of the pill entities and their sizes within the container
+        /// STARLIGHT: Edited to only be pills and not both pills and patches.
         /// </summary>
-        public List<(string Id, FixedPoint2 Quantity)>? Entities { get; init; }
+        public List<(string Id, FixedPoint2 Quantity)>? PillEntities { get; init; }
+        
+        /// <summary>
+        /// A list of the patch entities and their sizes within the container
+        /// STARLIGHT: Added specifically for patches
+        /// </summary>
+        public List<(string Id, FixedPoint2 Quantity)>? PatchEntities { get; init; }
 
         public List<ReagentQuantity>? Reagents { get; init; }
 

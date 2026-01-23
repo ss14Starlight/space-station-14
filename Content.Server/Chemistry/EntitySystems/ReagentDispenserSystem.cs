@@ -133,6 +133,8 @@ namespace Content.Server.Chemistry.EntitySystems
                     continue;
                 }
 
+                _battery.ChangeCharge((batteryUid.Value, batteryUid.Value.Comp), chargeRate * frameTime); // Apply charge change before checking if its changed and updating the ui. Helps with making energy bar display accurate.
+
                 if (chargeRate > 0 && batteryUid.Value.Comp.LastCharge + (chargeRate * frameTime) > batteryUid.Value.Comp.LastCharge)
                 {
                     if (uiOpen)
@@ -150,8 +152,6 @@ namespace Content.Server.Chemistry.EntitySystems
                     continue;
                 }
 
-                _battery.ChangeCharge((batteryUid.Value, batteryUid.Value.Comp), chargeRate * frameTime);
-                
                 if (chargeRate < 0 && batteryUid.Value.Comp.LastCharge <= 0 && uiOpen)
                 {
                     UpdateUiState((uid, dispenser));
@@ -179,7 +179,7 @@ namespace Content.Server.Chemistry.EntitySystems
             if (!_powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery))
                 return;
 
-            var energy = battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge;
+            var energy = _battery.GetChargeLevel(battery.Value.AsNullable()); // Get current energy level for UI with GetChargeLevel.
             var message = new ReagentDispenserEnergyUpdateMessage(energy);
             _userInterfaceSystem.ServerSendUiMessage(reagentDispenser.Owner, ReagentDispenserUiKey.Key, message);
         }
@@ -226,8 +226,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
             var inventory = GetInventory(reagentDispenser);
 
-            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge : 0f; // Starlight-edit: Energy bar
-
+            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? _battery.GetChargeLevel(battery.Value.AsNullable()) : 0f; // Starlight-edit: Energy bar, get current energy level for UI with GetChargeLevel.
             var state = new ReagentDispenserBoundUserInterfaceState(outputContainerInfo, GetNetEntity(outputContainer), inventory, reagentDispenser.Comp.DispenseAmount, energy); // Starlight-edit: Energy bar
             _userInterfaceSystem.SetUiState(reagentDispenser.Owner, ReagentDispenserUiKey.Key, state);
         }

@@ -72,7 +72,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 1
+        Quantity: 300
   - type: Vocal
     sounds:
       Male: MaleCyclorite

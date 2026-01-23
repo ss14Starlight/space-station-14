@@ -233,6 +233,20 @@
   - NanoTrasenRepresentativeMonocle
 
 - type: loadoutGroup
+  id: MagistrateJumpsuit
+  name: loadout-group-magistrate-jumpsuit
+  loadouts:
+  - MagistrateJumpsuit
+  - MagistrateJumpskirt
+
+- type: loadoutGroup
+  id: MagistrateEyewear
+  name: loadout-group-magistrate-eyewear
+  loadouts:
+  - MagistrateSecGlasses
+  - MagistrateSkillGlasses
+
+- type: loadoutGroup
   id: BlueShieldHead
   name: loadout-group-blueshield-head
   loadouts:
@@ -526,6 +540,7 @@
     - ChemicalHud
     - ChemicalEyePatchHud
     - ChemicalJensens
+    - ChemicalGlassesPrescription
 
 - type: loadoutGroup
   id: ChemistBeaker
@@ -574,6 +589,47 @@
     - DarkBeaker
     - SilverBeakerBrigmedic
 
+# Duty Officer
+- type: loadoutGroup
+  id: DutyOfficerHead
+  name: loadout-group-dutyofficer-head
+  loadouts:
+  - DutyOfficerHead
+  - DutyOfficerBeret
+  - DutyOfficerHelmetRiot
+
+- type: loadoutGroup
+  id: DutyOfficerJumpsuit
+  name: loadout-group-dutyofficer-jumpsuit
+  loadouts:
+  - DutyOfficerJumpsuit
+  - DutyOfficerJumpskirt
+  - DutyOfficerJumpsuitBlue
+  - DutyOfficerJumpskirtBlue
+
+- type: loadoutGroup
+  id: DutyOfficerBelt
+  name: loadout-group-dutyofficer-belt
+  loadouts:
+    - DutyOfficerBelt
+    - DutyOfficerWebbing
+
+- type: loadoutGroup
+  id: DutyOfficerOuterClothing
+  name: loadout-group-dutyofficer-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
+  loadouts:
+  - DutyOfficerArmorRiot
+  - ArmorVest
+  - ArmorVestSlim
+  - ArmorVestPlate
+  - ArmorVestStab
+  - ArmorVestHeatAbsorb
+  - SecurityOfficerWintercoat
+  - SecurityBomber #Starlight
+  - WindbreakerSecurity #Starlight
+
 # Brighteye
 - type: loadoutGroup
   id: BrighteyeJumpsuit
@@ -605,3 +661,34 @@
   name: loadout-group-brighteye-gloves
   loadouts:
     - BrighteyeClothWrapGlove
+
+- type: loadoutGroup
+  id: NanotrasenCareerTrainerJumpsuit
+  name: loadout-group-NanotrasenCareerTrainer-jumpsuit
+  loadouts:
+  - JumpsuitNCT
+  - JumpskirtNCT
+
+- type: loadoutGroup
+  id: NanotrasenCareerTrainerHat
+  name: loadout-group-NanotrasenCareerTrainer-hat
+  loadouts:
+  - Drilltrainer
+  - BeretNCTGreen
+  - BeretNCTBlack
+
+- type: loadoutGroup
+  id: NanotrasenCareerTrainerShoes
+  name: loadout-group-NanotrasenCareerTrainer-shoes
+  loadouts:
+  - JackBoots
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: NanotrasenCareerTrainerEyewear
+  name: loadout-group-NanotrasenCareerTrainer-eyewear
+  loadouts:
+  - NanoTrasenRepresentativeGlasses
+  - NanoTrasenRepresentativeHud

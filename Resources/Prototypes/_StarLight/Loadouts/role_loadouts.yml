@@ -18,6 +18,8 @@
 - type: roleLoadout
   id: JobMagistrate
   groups:
+  - MagistrateJumpsuit
+  - MagistrateEyewear
   - CommonBackpack
   - MagistrateShoes
   - Survival
@@ -130,26 +132,46 @@
 - type: roleLoadout
   id: JobBrigmedic
   groups:
-    - BrigmedicHead
-    - BrigmedicMask
-    - BrigmedicJumpsuit
-    - BrigmedicTie
-    - BrigmedicBackpack
-    - BrigmedicOuterClothing
-    - BrigmedicBelt
-    - BrigmedicGloves
-    - BrigmedicEyewear
-    - BrigmedicPDA
-    - BrigmedicBeaker
-    - SecurityShoes
-    - SecurityNonLethalWeapon
-    - SecuritySidearm
-    - SurvivalSecurity
-    - Trinkets
-    - Scarves
-    - Pins
-    - Pens
-    - GroupSpeciesBreathToolSecurity
+  - BrigmedicHead
+  - BrigmedicMask
+  - BrigmedicJumpsuit
+  - BrigmedicTie
+  - BrigmedicBackpack
+  - BrigmedicOuterClothing
+  - BrigmedicBelt
+  - BrigmedicGloves
+  - BrigmedicEyewear
+  - BrigmedicPDA
+  - BrigmedicBeaker
+  - SecurityShoes
+  - SecurityNonLethalWeapon
+  - SecuritySidearm
+  - SurvivalSecurity
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobDutyOfficer
+  groups:
+  - DutyOfficerHead
+  - DutyOfficerJumpsuit
+  - SecurityBackpack
+  - SecurityEyewear
+  - DutyOfficerOuterClothing
+  - SecurityShoes
+  - DutyOfficerBelt
+  - SecurityNonLethalWeapon
+  - SurvivalSecurity
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: JobSalvageLead
@@ -221,3 +243,15 @@
   - BrighteyeGloves
   - Scarves
   - Pins
+
+- type: roleLoadout
+  id: JobNanotrasenCareerTrainer
+  groups:
+  - NanotrasenCareerTrainerJumpsuit
+  - NanotrasenCareerTrainerHat
+  - NanotrasenCareerTrainerEyewear
+  - NanotrasenCareerTrainerShoes
+  - CommonBackpack
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool

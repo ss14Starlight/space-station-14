@@ -122,28 +122,32 @@ public sealed partial class MechSystem : SharedMechSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var thrustDraw = EntityQueryEnumerator<MechThrustersComponent, MechComponent>();
-
-        while (thrustDraw.MoveNext(out var uid, out var comp, out var mechComp))
+        // Starlight-start: Raise ChargeChangedEvent if battery charge changed and NextUpdateTime is reached. Remove old code that only raised ChargeChangedEvent for the thruster component.
+        var mechEnum = EntityQueryEnumerator<MechComponent>();
+        while (mechEnum.MoveNext(out var uid, out var mechComp))
         {
-            if (!comp.ThrustersEnabled)
+            if (Timing.CurTime < mechComp.NextUpdateTime)
                 continue;
+            mechComp.NextUpdateTime += mechComp.Delay;
 
-            if (Timing.CurTime < comp.NextUpdateTime)
-                continue;
+            if (mechComp.BatterySlot.ContainedEntity != null &&
+                TryComp<PredictedBatteryComponent>(mechComp.BatterySlot.ContainedEntity.Value, out var battery))
+            {
+                // Try to draw charge if this mech has thrusters and they're enabled
+                if (TryComp<MechThrustersComponent>(uid, out var thrusters) && thrusters.ThrustersEnabled)
+                {
+                    _battery.TryUseCharge((mechComp.BatterySlot.ContainedEntity.Value, battery), thrusters.DrawRate);
+                }
 
-            comp.NextUpdateTime += comp.Delay;
-
-            if (mechComp.BatterySlot.ContainedEntity == null
-                || !TryComp<BatteryComponent>(mechComp.BatterySlot.ContainedEntity.Value, out var battery))
-                continue;
-
-            if (!_battery.TryUseCharge(mechComp.BatterySlot.ContainedEntity.Value, comp.DrawRate))
-                continue;
-
-            var ev = new ChargeChangedEvent(battery.CurrentCharge, comp.DrawRate, battery.MaxCharge);
-            RaiseLocalEvent(uid, ref ev);
+                var currentCharge = _battery.GetCharge((mechComp.BatterySlot.ContainedEntity.Value, battery));
+                if (mechComp.Energy != currentCharge)
+                {
+                    var ev = new ChargeChangedEvent(currentCharge, 0, battery.MaxCharge);
+                    RaiseLocalEvent(uid, ref ev);
+                }
+            }
         }
+        // Starlight-end
     }
 
     // Starlight-start: fix movement block + Fix UpdateUserInterface
@@ -172,8 +176,8 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
 
         if (component.BatterySlot.ContainedEntity == null
-            || !TryComp<BatteryComponent>(component.BatterySlot.ContainedEntity, out var battery)
-            || battery.CurrentCharge <= 0)
+            || !TryComp<PredictedBatteryComponent>(component.BatterySlot.ContainedEntity, out var battery) // Starlight: Changed to use predicted battery component.
+            || _battery.GetCharge((component.BatterySlot.ContainedEntity.Value, battery)) <= 0) // Starlight: Get current charge level correctly. Lights now work :)
             return;
 
         args.Handled = true;
@@ -326,7 +330,7 @@ public sealed partial class MechSystem : SharedMechSystem
         UpdateUserInterface(uid, component); // Starlight-edit: Correct equipment update
         if (!(args.Container != component.BatterySlot || !TryComp<PredictedBatteryComponent>(args.Entity, out var battery)))
         {
-            component.Energy = battery.LastCharge;
+            component.Energy = _battery.GetCharge((args.Entity, battery)); // Starlight-edit: Correct energy update
             component.MaxEnergy = battery.MaxCharge;
 
             Dirty(uid, component);

@@ -5,7 +5,7 @@
   minPlayers: 0
   stations:
     Empty:
-      stationProto: StandardNanotrasenStation
+      stationProto: StandardNanotrasenStationTestOnly # Starlight - Station -> StationTestOnly
       components:
         - type: StationNameSetup
           mapNameTemplate: "Empty"
