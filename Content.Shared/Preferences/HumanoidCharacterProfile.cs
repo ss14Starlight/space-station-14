@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
 using Content.Shared.Starlight.CCVar; // Starlight
 using Content.Shared.GameTicking;
-using Content.Shared._CD.Records; // Cosmatic Drift Record System
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
@@ -92,10 +91,6 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public HumanoidCharacterAppearance Appearance { get; set; } = new();
-
-        // Cosmatic Drift – stores the player's custom record data on the profile itself.
-        [DataField("cosmaticDriftCharacterRecords")]
-        public PlayerProvidedCharacterRecords? CDCharacterRecords { get; private set; } = PlayerProvidedCharacterRecords.DefaultRecords();
 
         /// <summary>
         /// When spawning into a round what's the preferred spot to spawn.
@@ -191,12 +186,6 @@ namespace Content.Shared.Preferences
                 other.Cybernetics, // Starlight
                 other.Enabled)
         {
-            // Cosmatic Drift Record System-start
-            CDCharacterRecords = other.CDCharacterRecords != null
-                ? new PlayerProvidedCharacterRecords(other.CDCharacterRecords)
-                : PlayerProvidedCharacterRecords.DefaultRecords();
-            CDCharacterRecords.EnsureValid();
-            // Cosmatic Drift Record System-end
         }
 
         /// <summary>
@@ -326,15 +315,6 @@ namespace Content.Shared.Preferences
         {
             return new(this) { Appearance = appearance };
         }
-
-        // Cosmatic Drift Record System-start
-        public HumanoidCharacterProfile WithCDCharacterRecords(PlayerProvidedCharacterRecords records)
-        {
-            var copy = new PlayerProvidedCharacterRecords(records);
-            copy.EnsureValid();
-            return new HumanoidCharacterProfile(this) { CDCharacterRecords = copy };
-        }
-        // Cosmatic Drift Record System-end
 
         public HumanoidCharacterProfile WithSpawnPriorityPreference(SpawnPriorityPreference spawnPriority)
         {
@@ -486,17 +466,6 @@ namespace Content.Shared.Preferences
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
             if (Enabled != other.Enabled) return false;
-            // Cosmatic Drift Record System-start
-            if (CDCharacterRecords != null)
-            {
-                if (other.CDCharacterRecords == null || !CDCharacterRecords.MemberwiseEquals(other.CDCharacterRecords))
-                    return false;
-            }
-            else if (other.CDCharacterRecords != null)
-            {
-                return false;
-            }
-            // Cosmatic Drift Record System-end
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
@@ -628,12 +597,9 @@ namespace Content.Shared.Preferences
             var installedCybernetics = allCybernetics.Where(p => Cybernetics.Contains(p.ID))
                                        .Where(p => p.Type == CyberneticImplantType.Limb)
                                        .ToList();
-            if (installedCybernetics.Select(p => p.Cost).Sum() <= speciesPrototype.RoundstartCyberwareCapacity)
-            {
+            if (installedCybernetics.Select(p => p.Cost).Sum() <= speciesPrototype.RoundstartCyberwareCapacity){
                 Cybernetics = installedCybernetics.Select(p => p.ID).ToList();
-            }
-            else
-            {
+            } else {
                 Cybernetics = [];
             }
             // Starlight - End
@@ -709,10 +675,6 @@ namespace Content.Shared.Preferences
             {
                 _loadouts.Remove(value);
             }
-            // Cosmatic Drift Record System-start
-            CDCharacterRecords ??= PlayerProvidedCharacterRecords.DefaultRecords();
-            CDCharacterRecords.EnsureValid();
-            // Cosmatic Drift Record System-end
         }
 
         /// <summary>
