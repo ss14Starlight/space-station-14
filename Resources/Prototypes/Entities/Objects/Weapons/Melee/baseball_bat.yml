@@ -47,6 +47,12 @@
   - type: Tag
     tags:
     - BaseballBat
+  # Starlight
+  - type: LegendaryItem
+    chance: 0.02
+    story: Weapon
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/metal_baseball_bat.rsi
 
 - type: entity
   name: incomplete baseball bat

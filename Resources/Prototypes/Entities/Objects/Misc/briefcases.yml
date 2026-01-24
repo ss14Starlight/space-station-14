@@ -28,6 +28,13 @@
     state: icon
   - type: Item
     sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+    #Starlight
+  - type: LegendaryItem
+    chance: 0.03
+    story: Tool #placeholder
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/briefcase_cybersun.rsi
+      - _Starlight/Objects/Specific/legendary_items/briefcase_nt.rsi
 
 - type: entity
   parent: BriefcaseBrown

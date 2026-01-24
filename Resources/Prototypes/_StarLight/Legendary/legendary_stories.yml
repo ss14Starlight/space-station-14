@@ -112,3 +112,49 @@
     - starlight-clothing-end-4
     - starlight-clothing-end-5
     - starlight-clothing-end-patron-1
+
+- type: legendaryStory
+  id: Tool
+  opens:
+    - starlight-tool-open-1
+    - starlight-tool-open-2
+    - starlight-tool-open-3
+    - starlight-tool-open-4
+    - starlight-tool-open-5
+  mids:
+    - starlight-tool-mid-1
+    - starlight-tool-mid-2
+    - starlight-tool-mid-3
+    - starlight-tool-mid-4
+    - starlight-tool-mid-5
+    - starlight-tool-mid-patron-1
+  ends:
+    - starlight-tool-end-1
+    - starlight-tool-end-2
+    - starlight-tool-end-3
+    - starlight-tool-end-4
+    - starlight-tool-end-5
+    - starlight-tool-end-patron-1
+
+- type: legendaryStory
+  id: PAI
+  opens:
+    - starlight-pai-open-1
+    - starlight-pai-open-2
+    - starlight-pai-open-3
+    - starlight-pai-open-4
+    - starlight-pai-open-5
+  mids:
+    - starlight-pai-mid-1
+    - starlight-pai-mid-2
+    - starlight-pai-mid-3
+    - starlight-pai-mid-4
+    - starlight-pai-mid-5
+    - starlight-pai-mid-patron-1
+  ends:
+    - starlight-pai-end-1
+    - starlight-pai-end-2
+    - starlight-pai-end-3
+    - starlight-pai-end-4
+    - starlight-pai-end-5
+    - starlight-pai-end-patron-1

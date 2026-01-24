@@ -40,6 +40,12 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  #Starlight
+  - type: LegendaryItem
+    chance: 0.02
+    story: Tool
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/quill.rsi
 
 - type: entity
   parent: Pen

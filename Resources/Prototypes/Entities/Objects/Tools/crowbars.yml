@@ -62,6 +62,13 @@
     storedSprite:
       sprite: Objects/Tools/crowbar.rsi
       state: storage
+  # Starlight
+  - type: LegendaryItem
+    chance: 0.03
+    story: Tool
+    legendarySprites:
+      - _Starlight/Objects/Specific/legendary_items/brass_crowbar.rsi
+      - _Starlight/Objects/Specific/legendary_items/weathered_crowbar.rsi
 
 # Emergency (red) Crowbar
 - type: entity

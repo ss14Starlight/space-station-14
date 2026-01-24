@@ -2,17 +2,13 @@ using Content.Shared._Starlight.Legendary;
 using Content.Server._NullLink.PlayerData;
 using Content.Server.Preferences.Managers;
 using Content.Shared._NullLink;
+using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.GameTicking;
+using Content.Shared.Item;
 using Content.Shared.Preferences;
 using System.Linq;
-using Content.Server.Cargo.Components;
-using Content.Shared.Prayer;
-using Content.Shared.Weapons.Melee;
-using Content.Shared.Weapons.Ranged.Components;
-using Content.Server._Starlight.Legendary.Modifiers;
 using Content.Server._Starlight.Legendary.Visuals;
-using Content.Server.Weapons.Ranged.Systems;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -29,7 +25,8 @@ public sealed class LegendaryItemSystem : EntitySystem
     [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!;
     [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly GunSystem _gunSystem = default!;
+    [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private readonly ClothingSystem _clothing = default!;
 
     /// <summary>
     /// Cached story reference info built from an online Starlight Patreon subscriber's off-round character.
@@ -81,66 +78,27 @@ public sealed class LegendaryItemSystem : EntitySystem
             _meta.SetEntityDescription(uid, description, meta);
         }
 
-        ApplyLegendaryStatBonuses(uid, component);
+        ApplyLegendarySprite(uid, component);
 
         EnsureComp<LegendaryAuraComponent>(uid); // Aura farming with this one
 
         return true;
     }
 
-    private void ApplyLegendaryStatBonuses(EntityUid uid, LegendaryItemComponent component)
+    private void ApplyLegendarySprite(EntityUid uid, LegendaryItemComponent component)
     {
-        if (component.Story is not { } storyId)
+        if (component.LegendarySprites.Count == 0)
             return;
 
-        switch (storyId.Id)
-        {
-            case "Firearm":
-                ApplyFirearmBonuses(uid);
-                break;
-            case "MeleeWeapon":
-                ApplyMeleeBonuses(uid);
-                break;
-            case "Clothing":
-                ApplyClothingBonuses(uid);
-                break;
-            case "Trinket":
-                EnsureComp<PrayableComponent>(uid);
-                break;
-            case "Plush":
-                ApplyPlushBonuses(uid);
-                break;
-        }
-    }
+        var rsiPath = _random.Pick(component.LegendarySprites);
+        var fullPath = "/Textures/" + rsiPath.ToString();
 
-    private void ApplyFirearmBonuses(EntityUid uid)
-    {
-        // Unfortunatly i cant directly write to GunComponent here access is restricted to SharedGunSystem nor GunSystem
-        // Instead attach "bonus" component and let it modify GunRefreshModifiersEvent
-        var bonus = EnsureComp<LegendaryGunFireRateBonusComponent>(uid);
-        bonus.FireRateBonus = 1f;
+        var spriteComp = EnsureComp<LegendarySpriteComponent>(uid);
+        spriteComp.RsiPath = rsiPath;
+        _item.SetSprite(uid, fullPath);
+        _clothing.SetSprite(uid, fullPath);
 
-        if (TryComp(uid, out GunComponent? gun))
-            _gunSystem.RefreshModifiers((uid, gun));
-    }
-
-    private void ApplyMeleeBonuses(EntityUid uid)
-    {
-        if (!TryComp(uid, out MeleeWeaponComponent? melee))
-            return;
-
-        melee.AttackRate = Math.Max(0.1f, melee.AttackRate + 1f);
-        DirtyField(uid, melee, nameof(MeleeWeaponComponent.AttackRate));
-    }
-
-    // Same deal as with firearm 
-    private void ApplyClothingBonuses(EntityUid uid) => EnsureComp<LegendaryArmorBonusComponent>(uid);
-
-    private void ApplyPlushBonuses(EntityUid uid)
-    {
-        var staticPrice = EnsureComp<StaticPriceComponent>(uid);
-        staticPrice.Price = 10000;
-        Dirty(uid, staticPrice);
+        Dirty(uid, spriteComp);
     }
 
     private string? GetDescription(LegendaryItemComponent component)

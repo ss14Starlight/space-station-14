@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Paradise https://github.com/ParadiseSS13/Paradise/blob/HEAD/icons/obj/lighting.dmi, modified for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "flashlight",
+	  "copyright": "Conflee"
+    },
+    {
+      "name": "flashlight-on",
+	  "copyright": "Conflee"
+    },
+    {
+      "name": "flashlight-overlay",
+	  "copyright": "Conflee"
+    },
+    {
+      "name": "inhand-left",
+	  "copyright": "Conflee",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+	  "copyright": "Conflee",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left-light",
+	  "copyright": "Conflee",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right-light",
+	  "copyright": "Conflee",
+      "directions": 4
+    },
+    {
+      "name": "equipped-BELT",
+	  "copyright": "Conflee",
+      "directions": 4
+    }
+  ]
+}

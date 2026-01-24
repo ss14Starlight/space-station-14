@@ -103,6 +103,24 @@ public abstract class SharedItemSystem : EntitySystem
         VisualsChanged(uid);
     }
 
+    // Starlight-start
+    public void SetSprite(EntityUid uid, string? rsiPath, ItemComponent? item = null)
+    {
+        if (!Resolve(uid, ref item, false))
+            return;
+
+        item.RsiPath = rsiPath;
+
+        if (rsiPath != null)
+            item.StoredSprite = new SpriteSpecifier.Rsi(new ResPath(rsiPath), "icon");
+        else
+            item.StoredSprite = null;
+
+        Dirty(uid, item);
+        VisualsChanged(uid);
+    }
+    // Starlight-end
+
     #endregion
 
     private void OnHandInteract(EntityUid uid, ItemComponent component, InteractHandEvent args)

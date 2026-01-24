@@ -60,6 +60,12 @@
     tags:
     - Apron
     - WhitelistChameleon
+  #Starlight
+  - type: LegendaryItem
+    chance: 0.01
+    story: Clothing
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/apronheart.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase

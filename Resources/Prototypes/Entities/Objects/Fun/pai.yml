@@ -110,6 +110,11 @@
   # Starlight Start
   - type: Blindable
   - type: ParentCanBlockVision
+  - type: LegendaryItem
+    chance: 0.05
+    story: PAI
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/nt_pai.rsi
   # Starlight End
 
 - type: entity
@@ -151,6 +156,11 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
+  - type: LegendaryItem
+    chance: 0.02
+    story: PAI
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/killer_pai.rsi
 
 - type: entity
   parent: PersonalAI

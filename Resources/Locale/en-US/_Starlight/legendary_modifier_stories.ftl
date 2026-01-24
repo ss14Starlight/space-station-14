@@ -112,3 +112,49 @@ starlight-clothing-end-3 = More than clothing-it's armor against the void.
 starlight-clothing-end-4 = Carrying the dignity of honest work.
 starlight-clothing-end-5 = A reminder that duty comes in many forms.
 starlight-clothing-end-patron-1 = Even now, it hangs as if it remembers { $patronPossAdj } shoulders - and refuses to look right on anyone else.
+
+#Tool opens
+starlight-tool-open-1 = The handle bears grooves from a lifetime of work.
+starlight-tool-open-2 = Its metal is dulled by countless repairs.
+starlight-tool-open-3 = The finish is worn where steady hands once gripped it.
+starlight-tool-open-4 = A few dents hint at emergencies past.
+starlight-tool-open-5 = This tool has been kept sharp and ready.
+
+#Tool middles
+starlight-tool-mid-1 = It feels balanced, as if it knows what to do.
+starlight-tool-mid-2 = You can almost hear the hum of stations it kept alive.
+starlight-tool-mid-3 = The weight in your palm feels practiced and familiar.
+starlight-tool-mid-4 = Old station grease has soaked into its seams.
+starlight-tool-mid-5 = A tiny notch marks each job well done.
+starlight-tool-mid-patron-1 = A scratched nameplate reads { $patronName }, a quiet reminder of who carried it through the worst shifts.
+
+#Tool ends
+starlight-tool-end-1 = It still does its job without complaint.
+starlight-tool-end-2 = The kind of tool that never truly gets retired.
+starlight-tool-end-3 = It has fixed more than it ever broke.
+starlight-tool-end-4 = Reliable when everything else fails.
+starlight-tool-end-5 = A simple thing that kept a whole station running.
+starlight-tool-end-patron-1 = Some say it works better when { $patronSubject } is watching - superstition, maybe, but no one argues with results.
+
+#PAI opens
+starlight-pai-open-1 = Its casing is scuffed, but the screen still gleams.
+starlight-pai-open-2 = The shell hums faintly, like it remembers old songs.
+starlight-pai-open-3 = A tiny crack runs along the edge of the display.
+starlight-pai-open-4 = The chassis is warm to the touch, as if awake.
+starlight-pai-open-5 = Its serial plate has been polished smooth.
+
+#PAI middles
+starlight-pai-mid-1 = The voice in your head sounds practiced and patient.
+starlight-pai-mid-2 = It reacts faster than your fingers expect.
+starlight-pai-mid-3 = Faint static hides a familiar cadence.
+starlight-pai-mid-4 = The interface feels custom-tailored for someone.
+starlight-pai-mid-5 = Old diagnostics logs hint at long shifts and short rests.
+starlight-pai-mid-patron-1 = A boot screen flashes { $patronName }, like a whisper from the last operator.
+
+#PAI ends
+starlight-pai-end-1 = It is loyal in that quiet, digital way.
+starlight-pai-end-2 = Some tools speak. This one remembers.
+starlight-pai-end-3 = It has seen more stations than most crew.
+starlight-pai-end-4 = Its assistance feels almost personal.
+starlight-pai-end-5 = A little companion that outlasted its crew.
+starlight-pai-end-patron-1 = When it chirps, it almost sounds like { $patronSubject } answering back.

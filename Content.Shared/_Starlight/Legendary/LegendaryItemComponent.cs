@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Legendary;
 
@@ -13,9 +14,11 @@ public sealed partial class LegendaryItemComponent : Component
 
     [DataField]
     public LocId? Description;
-    
+
     [DataField]
     public ProtoId<StoryPrototype>? Story;
+    [DataField]
+    public List<ResPath> LegendarySprites = new();
 
     public bool LegendaryApplied;
     public bool RollProcessed;

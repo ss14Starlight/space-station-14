@@ -54,6 +54,11 @@
       path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
   - type: ItemPrice
     priceCategory: tool_basic
+  - type: LegendaryItem
+    chance: 0.01
+    story: Tool
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/brass_wirecutters.rsi
   # 🌟Starlight-end🌟
 
 - type: entity
@@ -108,6 +113,11 @@
     speed: 1.2
     endSound:
       path: /Audio/Weapons/smash.ogg
+  - type: LegendaryItem
+    chance: 0.01
+    story: Tool
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/brass_screwdriver.rsi
   # 🌟Starlight-end🌟
 
 - type: entity
@@ -151,9 +161,15 @@
   - type: GuideHelp
     guides:
     - Construction
-  # Starlight-start: Vending Machines Prices
+  # Starlight-start
   - type: ItemPrice
     priceCategory: tool_basic
+  - type: LegendaryItem
+    chance: 0.01
+    story: Tool
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/brass_wrench.rsi
+      - _Starlight/Objects/Specific/legendary_items/weathered_wrench.rsi
   # Starlight-end
 
 - type: entity
@@ -520,6 +536,11 @@
   - type: StaticPrice
     price: 25
   - type: Shovel
+  - type: LegendaryItem
+    chance: 0.1
+    story: Tool
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/trench_shovel.rsi
 
 - type: entity
   parent: BaseItem

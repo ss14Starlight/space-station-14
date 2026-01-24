@@ -74,9 +74,14 @@
     quickEquip: false
     slots:
       - Belt
-  # Starlight-start: Vending Machines Prices
+  # Starlight-start
   - type: ItemPrice
     fallbackPrice: 12
+  - type: LegendaryItem
+    chance: 0.05
+    story: Tool
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/retro_flashlight.rsi
   # Starlight-end
 
 - type: entity
@@ -129,6 +134,9 @@
     quickEquip: false
     slots:
       - Belt
+  - type: LegendaryItem
+    chance: 0
+
 
 - type: entity
   parent: FlashlightLantern

@@ -49,6 +49,13 @@
     - WhitelistChameleon
     - WeldingMask
     - CorgiWearable #Starlight
+  # Starlight
+  - type: LegendaryItem
+    chance: 0.01
+    story: Clothing
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/smiley_welding.rsi
+
 
 - type: entity
   parent: ClothingHeadHatWelding

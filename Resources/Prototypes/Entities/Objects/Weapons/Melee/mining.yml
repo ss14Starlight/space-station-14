@@ -46,6 +46,12 @@
     speed: 0.5
     endSound:
       path: "/Audio/Weapons/smash.ogg"
+  - type: LegendaryItem
+    chance: 0.01
+    story: Tool
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/diamond_pickaxe.rsi
+
   # 🌟Starlight-end🌟
 
 - type: entity

@@ -34,6 +34,12 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 50
+  #Starlight
+  - type: LegendaryItem
+    chance: 0.05
+    story: Tool
+    legendarySprites: 
+      - _Starlight/Objects/Specific/legendary_items/wooden_bucket.rsi
 
 - type: entity
   parent: Bucket
