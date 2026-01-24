@@ -1,6 +1,7 @@
 job-description-blueshield = Your primary job is to protect the heads. Remember, you are not a security officer.
 job-description-boxer = Fight your way to the top! Challenge the head of personnel and get brigged when you win.
 job-description-decimus = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
+job-description-dutyofficer = Guard Genpop, process prisoners, fight with the non-compliant. Your job is to make sure that people who were caught, stay caught, and to act as an extension of the warden.
 job-description-iaa = You are a servant of the people, defend, condemn the citizens of your station!
 job-description-magistrate = You are the very justice of the station, your job is to try all major troublemakers.
 job-description-mailtech = Deliver letters and packages to the crew of the station to make cargo money.
@@ -12,3 +13,4 @@ job-description-roboticist = A scientist whose purpose is to repair and create m
 job-description-salvagelead = Lead your salvage team and keep them safe. Remember, you are the Quartermaster's eyes and ears off station.
 job-description-surgeon = Heal people, cripple enemies, and replace limbs and organs!
 job-description-zookeeper = Put on a joyful display of cute animals and space carps for all the crew to see.
+job-description-nct = Your job is to try to assist as many crew members as possible regardless of department. You are NOT permitted to give command staff advice on any command SOP questions or aid in legal advice.

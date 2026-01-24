@@ -1,8 +1,8 @@
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCommandContraband]
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseBlueShieldContraband]
   id: ClothingOuterCoatBlueShield
-  name: blueshield officer's overcoat
-  description: A coat worn by Blueshield Officers who don't mind a little diplomancy. Heavily reinforced for when diplomancy won't cut it.
+  name: blue shield overcoat
+  description: A coat worn by Blue Shield Officers who don't mind a little cold. Heavily reinforced, for when diplomacy won't cut it.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Coats/blueshield_coat.rsi
@@ -374,3 +374,22 @@
   - type: ExplosionResistance
     damageCoefficient: 0.80
   - type: Item
+
+- type: entity
+  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCommandContraband ]
+  id: ClothingOuterCoatNCT
+  name: NT Career Trainer's jacket
+  description: A sharp black coat with beige trim around the cuffs and collar, offering a mix of professionalism and approachability.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/nct.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/nct.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8

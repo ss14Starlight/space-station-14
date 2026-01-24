@@ -1,7 +1,7 @@
 job-name-magistrate = Magistrate
 job-name-ntrep = NanoTrasen Representative
 job-name-iaa = Internal Affairs Agent
-job-name-blueshield = Officer “Blue Shield”
+job-name-blueshield = Blue Shield Officer
 job-name-ntncblueshield = Nanotrasen Navy Corps Marine
 job-name-miningspec = Mining Specialist
 job-name-surgeon = Surgeon
@@ -10,8 +10,10 @@ job-name-centcomm = CentComm Official
 job-name-centcommoperator = CentComm Operator
 job-name-nanotrasen-special-forces = NTSF Operative
 job-name-decimus = Decimus Operative
+job-name-nct = Nanotrasen Career Trainer
 
 job-name-salvagelead = Salvage Lead
+job-name-dutyofficer = Duty Officer
 job-name-abductor = Abductor
 job-title-borgi = Borgi
 

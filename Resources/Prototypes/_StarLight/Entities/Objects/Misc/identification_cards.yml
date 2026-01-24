@@ -93,9 +93,9 @@
     job: IAA
 
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
+  parent: [ IDCardStandard, BaseBlueShieldContraband ]
   id: BlueShieldIDCard
-  name: blueshield officer's ID card
+  name: blue shield ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -179,7 +179,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCargoContraband ]
   id: MailTechIDCard
-  name: mailtech ID card
+  name: mail technician ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -196,6 +196,27 @@
       state: MailTech
   - type: PresetIdCard
     job: MailTech
+
+- type: entity
+  parent: [ IDCardStandard, BaseSecurityContraband ]
+  id: DutyOfficerIDCard
+  name: duty officer ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - sprite: *id-rsi
+      state: stripe_top
+      color: &color-security-top "#cb0000"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: &color-security-bottom "#830000"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: DutyOfficer
+  - type: PresetIdCard
+    job: DutyOfficer
 
 - type: entity
   parent: IDCardStandard
@@ -361,3 +382,53 @@
       state: Cluwne
   - type: IdCard
     jobTitle: job-title-cluwne
+
+- type: entity
+  parent: [ IDCardStandard, BaseCommandContraband ]
+  id: NanotrasenCareerTrainerIDCard
+  name: Nanotrasen Career Trainer ID Card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - sprite: *id-rsi
+      state: default
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#A91169"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#630232"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: NanotrasenCareerTrainer
+  - type: PresetIdCard
+    job: NanotrasenCareerTrainer
+
+- type: entity
+  id: nctdatachip
+  parent: [Clothing, BaseCommandContraband]
+  name: NCT Trainee Access Chip
+  description: A small electronic access token that allows its user to copy the access of their Trainee. Only accessible by NT Career Trainers!
+  components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+    sprite: Objects/Misc/id_cards.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/nctdatachip.rsi
+    layers:
+    - state: base
+    - state: enabled
+      shader: unshaded
+      visible: false
+  - type: Item
+    size: Small
+    heldPrefix: default
+    storedRotation: -90
+  - type: Access
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: NCTDataChip

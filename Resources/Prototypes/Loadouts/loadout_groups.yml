@@ -108,6 +108,8 @@
   - CigPackBub #SL
   - PillCanisterPsicodine #SL
   - ClothingDogTags # SL
+  - PersonalAI #SL
+  - GoldenPersonalAI #SL
 
 - type: loadoutGroup
   id: Glasses
@@ -1525,6 +1527,7 @@
   - SeniorOfficerJumpskirt
   - TrooperUniform
   - SecurityJumpsuitBlue
+  - SecurityJumpskirtBlue # Starlight
   - SecurityTshirt #Starlight
 
 - type: loadoutGroup

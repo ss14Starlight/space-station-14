@@ -29,7 +29,7 @@ thaven-mood-never-alone-name = Loneliness Is Terrible
 thaven-mood-never-alone-desc = You should strive to be around others whenever possible.
 
 thaven-mood-very-religious-name = You Are Very Religious
-thaven-mood-very-religious-desc = You should attend the chapel regularly to pray, and speak with the Chaplain if possible.
+thaven-mood-very-religious-desc = You should visit the shrine regularly to pray, and speak with a chaplain if possible.
 
 thaven-mood-only-speak-to-command-name = VIP
 thaven-mood-only-speak-to-command-desc = You are too important to speak to the rabble. You will only speak to command.

@@ -95,7 +95,6 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/AdminSpawn/**", // admin gaming
            #region starlight
             "/Maps/_Starlight/Shuttles/Radiotower.yml", // Command stamps - listening post.
-            "/Maps/_Starlight/Stations/Remix.yml", // Admeme map
             #endregion
         };
 
@@ -129,10 +128,8 @@ namespace Content.IntegrationTests.Tests
             "StarlightManor",
             "StarlightLeth",
             "StarlightMing",
-            "StarlightOrigin",
             "StarlightOrwell",
             "StarlightPrism",
-            "StarlightRemix",
             "StarlightStarboard",
             "StarlightBagel",
             "StarlightBox",
@@ -143,8 +140,6 @@ namespace Content.IntegrationTests.Tests
             "StarlightElkridge",
             "StarlightFland",
             "StarlightHotel",
-            "StarlightOasis",
-            "StarlightOmega",
             "StarlightPacked",
             "StarlightReach",
             "StarlightSaltern",
@@ -152,7 +147,8 @@ namespace Content.IntegrationTests.Tests
             "StarlightCluster",
             "StarlightStationBuilding",
             "StarlightPlasma",
-			"StarlightSpaceMall"
+			"StarlightSpaceMall",
+            "StarlightSepultum"
             #endregion
         };
 

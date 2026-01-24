@@ -1,0 +1,25 @@
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpskirtBlueShieldSkirt 
+  result: ClothingUniformJumpskirtBlueShieldSkirt 
+
+# Duty Officer
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitDutyOfficer
+  result: ClothingUniformJumpsuitDutyOfficer
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtDutyOfficer
+  result: ClothingUniformJumpskirtDutyOfficer
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatDutyOfficer
+  result: ClothingHeadHatDutyOfficer
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretDutyOfficer
+  result: ClothingHeadHatBeretDutyOfficer
