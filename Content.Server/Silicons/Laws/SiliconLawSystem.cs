@@ -107,8 +107,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     {
         TryComp(uid, out IntrinsicRadioTransmitterComponent? intrinsicRadio);
         var radioChannels = intrinsicRadio?.Channels;
+        var customRadioChannels = intrinsicRadio?.CustomChannels; // Starlight edit
 
-        var state = new SiliconLawBuiState(GetLaws(uid).Laws, radioChannels);
+        var state = new SiliconLawBuiState(GetLaws(uid).Laws, radioChannels, customRadioChannels); // Starlight edit
         _userInterface.SetUiState(args.Entity, SiliconLawsUiKey.Key, state);
     }
 

@@ -11,7 +11,7 @@ public sealed partial class FiringPinShotCounterSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<FiringPinShotCounterComponent, FiringPinFireAttemptEvent>(OnFireAttempt);
-        SubscribeLocalEvent<FiringPinHolderComponent, ExaminedEvent>(OnHolderExamined);
+        SubscribeLocalEvent<FiringPinShotCounterComponent, ExaminedEvent>(OnHolderExamined);
     }
 
     private void OnFireAttempt(Entity<FiringPinShotCounterComponent> ent, ref FiringPinFireAttemptEvent args)
@@ -22,17 +22,9 @@ public sealed partial class FiringPinShotCounterSystem : EntitySystem
         ent.Comp.ShotsFired++;
     }
 
-    private void OnHolderExamined(Entity<FiringPinHolderComponent> ent, ref ExaminedEvent args)
+    private void OnHolderExamined(Entity<FiringPinShotCounterComponent> ent, ref ExaminedEvent args)
     {
         if(!args.IsInDetailsRange) return;
-
-        var firingPins = _firingPin.FiringPins(ent);
-        foreach(var pin in firingPins)
-        {
-            if(TryComp<FiringPinShotCounterComponent>(pin, out var shotCounter))
-            {
-                args.PushMarkup(Loc.GetString("firing-pin-shotcounter-shots-fired", ("shots", shotCounter.ShotsFired)));
-            }
-        }
+        args.PushMarkup(Loc.GetString("firing-pin-shotcounter-shots-fired", ("shots", ent.Comp.ShotsFired)));
     }
 }

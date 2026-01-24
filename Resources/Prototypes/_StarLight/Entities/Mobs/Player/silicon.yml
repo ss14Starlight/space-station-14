@@ -9,11 +9,13 @@
     containers:
       borg_brain:
         - PositronicBrain
-      borg_module:
-        - BorgModuleTool
-        - BorgModuleOperative
-        - BorgModuleSyndicateStealth
-        - BorgModuleSyndicateChameleonProjector
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleSyndicateNukeDisk
+      - BorgModuleOperative
+      - BorgModuleTool
+      - BorgModuleSyndicateStealth
+      - BorgModuleSyndicateChameleonProjector
   - type: ItemSlots
     slots:
       cell_slot:

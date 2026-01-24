@@ -1,4 +1,6 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Combat.Effects.Components;
 
@@ -13,13 +15,13 @@ public sealed partial class CyborgSparkEffectComponent : Component
     /// The prototype ID of the spark effect entity to spawn.
     /// </summary>
     [DataField("sparkEffectPrototype")]
-    public string SparkEffectPrototype = "ArmorSparkEffect";
+    public EntProtoId SparkEffectPrototype = "ArmorSparkEffect";
 
     /// <summary>
     /// The sound collection to play when sparks are triggered.
     /// </summary>
     [DataField("ricochetSoundCollection")]
-    public string RicochetSoundCollection = "armor_ricochet_cyborg";
+    public ProtoId<SoundCollectionPrototype> RicochetSoundCollection = "armor_ricochet_cyborg";
 
     /// <summary>
     /// Maximum random offset in X and Y directions for spark positioning.

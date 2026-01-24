@@ -4,8 +4,8 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 11/22/2025 23:34:12
-  entityCount: 585
+  time: 01/22/2026 01:21:25
+  entityCount: 587
 maps: []
 grids:
 - 1
@@ -159,6 +159,8 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: NavMap
+    - type: ExplosionAirtightGrid
 - proto: AirlockGlassShuttleXenoborgLocked
   entities:
   - uid: 107
@@ -166,11 +168,15 @@ entities:
     - type: Transform
       pos: -0.5,-11.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 108
     components:
     - type: Transform
       pos: 1.5,-11.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal: []
 - proto: AirlockXenoborgLocked
   entities:
   - uid: 27
@@ -184,11 +190,15 @@ entities:
     - type: Transform
       pos: -0.5,-5.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 105
     components:
     - type: Transform
       pos: 1.5,-5.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 106
     components:
     - type: Transform
@@ -199,6 +209,12 @@ entities:
     - type: Transform
       pos: 0.5,-2.5
       parent: 1
+    - type: Door
+      secondsUntilStateChange: -2040.43
+      state: Opening
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: True
   - uid: 365
     components:
     - type: Transform
@@ -1009,11 +1025,21 @@ entities:
       parent: 1
 - proto: BlastDoorXenoborg
   entities:
+  - uid: 328
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-11.5
+      parent: 1
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 370
     components:
     - type: Transform
       pos: 0.5,-5.5
       parent: 1
+    - type: AccessReader
+      accessListsOriginal: []
 - proto: BlastDoorXenoborgOpen
   entities:
   - uid: 94
@@ -1147,6 +1173,13 @@ entities:
     components:
     - type: Transform
       pos: 5.5,2.5
+      parent: 1
+- proto: ButtonFrameCautionSecurity
+  entities:
+  - uid: 5
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -1999,6 +2032,12 @@ entities:
       parent: 1
 - proto: ConveyorBelt
   entities:
+  - uid: 4
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-11.5
+      parent: 1
   - uid: 243
     components:
     - type: Transform
@@ -2040,12 +2079,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-1.5
-      parent: 1
-  - uid: 251
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-0.5
       parent: 1
   - uid: 455
     components:
@@ -2432,6 +2465,19 @@ entities:
     - type: Transform
       pos: -2.5,-4.5
       parent: 1
+- proto: Paper
+  entities:
+  - uid: 587
+    components:
+    - type: Transform
+      rot: -0.39702898170799017 rad
+      pos: -0.8333173,-3.5268762
+      parent: 1
+    - type: Paper
+      content: The radio jammer from the heavy borg also jams multitool links. Remember this when trying to close your blast doors.
+    - type: CollisionWake
+      enabled: False
+    - type: Conveyed
 - proto: PoweredlightBlue
   entities:
   - uid: 127
@@ -2609,6 +2655,23 @@ entities:
         - - Pressed
           - Toggle
         446:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
+  - uid: 586
+    components:
+    - type: MetaData
+      name: recycler blast doors
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        370:
+        - - Pressed
+          - Toggle
+        328:
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -2886,20 +2949,15 @@ entities:
       parent: 1
 - proto: TwoWayLever
   entities:
-  - uid: 5
+  - uid: 251
     components:
+    - type: MetaData
+      name: conveyor control
     - type: Transform
-      pos: 0.5,1.5
+      pos: -0.5,-3.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        251:
-        - - Left
-          - Reverse
-        - - Right
-          - Forward
-        - - Middle
-          - Off
         250:
         - - Left
           - Reverse
@@ -2930,9 +2988,9 @@ entities:
           - Off
         111:
         - - Left
-          - Reverse
-        - - Right
           - Forward
+        - - Right
+          - Reverse
         - - Middle
           - Off
         245:
@@ -2970,20 +3028,13 @@ entities:
           - Forward
         - - Middle
           - Off
-  - uid: 328
-    components:
-    - type: Transform
-      pos: 1.5,-4.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        370:
+        4:
         - - Left
-          - Open
+          - Reverse
         - - Right
-          - Open
+          - Forward
         - - Middle
-          - Close
+          - Off
   - uid: 453
     components:
     - type: Transform
@@ -3074,11 +3125,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-11.5
-      parent: 1
-  - uid: 4
-    components:
-    - type: Transform
-      pos: 0.5,-11.5
       parent: 1
   - uid: 6
     components:
