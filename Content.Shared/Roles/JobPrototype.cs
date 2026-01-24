@@ -69,7 +69,7 @@ namespace Content.Shared.Roles
         ///     When set in job yaml - the player will receive a message about their specific job rules.
         /// </summary>
         [DataField("rules")] 
-        public string JobRules { get; private set; } = string.Empty;
+        public LocId? JobRules { get; private set; }
         // Starlight end
         
         /// <summary>

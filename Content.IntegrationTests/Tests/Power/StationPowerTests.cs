@@ -44,12 +44,10 @@ public sealed class StationPowerTests
         "StarlightLagan",
         "StarlightLobster",
         "StarlightManor",
-        //"StarlightLeth", // Disabled due to failures - re-enable when fixed
+        "StarlightLeth",
         "StarlightMing",
-        "StarlightOrigin",
         "StarlightOrwell",
         "StarlightPrism",
-        "StarlightRemix",
         "StarlightStarboard",
         "StarlightBagel",
         "StarlightBox",
@@ -60,15 +58,14 @@ public sealed class StationPowerTests
         "StarlightElkridge",
         "StarlightFland",
         "StarlightHotel",
-        "StarlightOasis",
-        "StarlightOmega",
         "StarlightPacked",
         "StarlightReach",
         "StarlightSaltern",
         "StarlightSilica",
         "StarlightCluster",
         "StarlightStationBuilding",
-        "StarlightPlasma"
+        "StarlightPlasma",
+        "StarlightSepultum"
         #endregion
     ];
 

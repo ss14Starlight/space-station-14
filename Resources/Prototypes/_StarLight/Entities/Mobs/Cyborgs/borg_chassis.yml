@@ -16,8 +16,10 @@
       shader: unshaded
       map: [ "light" ]
       visible: false
+  - type: Body
+    prototype: BorgSyndicateStealth
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5
     moduleWhitelist:
       tags:
       - BorgModuleGeneric
@@ -49,3 +51,12 @@
   - type: TextToSpeech
   - type: BorgSwitchableType
     selectedBorgType: purrfus
+
+- type: entity
+  id: BorgChassisCargo
+  parent: BorgChassisSelectable
+  name: cargo cyborg
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: cargo

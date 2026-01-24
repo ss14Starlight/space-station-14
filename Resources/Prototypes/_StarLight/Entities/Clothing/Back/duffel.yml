@@ -48,10 +48,10 @@
     sprite: _Starlight/Clothing/Back/Duffels/chemistrysenior.rsi
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseCommandContraband]
+  parent: [ClothingBackpackDuffel, BaseBlueShieldContraband]
   id: ClothingBackpackDuffelBlueShield
-  name: blueshield's duffel bag
-  description: The bag for a Blueshield ready for any contingency. 
+  name: blue shield duffel bag
+  description: The bag for a Blue Shield Officer who is ready for any contingency. 
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Duffels/blueshield.rsi

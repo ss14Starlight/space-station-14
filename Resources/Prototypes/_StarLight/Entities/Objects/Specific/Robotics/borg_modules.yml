@@ -138,7 +138,7 @@
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
 
 
-# purrfus
+# region Purrfus
 - type: entity
   id: BaseBorgModulePurrfus
   parent: BaseBorgModule
@@ -180,7 +180,6 @@
   name: paperwork cyborg module
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
     layers:
     - state: command
     - state: icon-paperwork
@@ -202,7 +201,7 @@
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
 
-# Service
+# region Service
 - type: entity
   id: BorgModuleBartending
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
@@ -380,7 +379,7 @@
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: cooking-module }
     
-#Syndicate
+# region Syndicate
 - type: entity
   id: BorgModuleSyndicateAdvancedTool
   parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule, BaseSyndicateContraband]
@@ -512,6 +511,33 @@
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
 
+- type: entity
+  id: BorgModuleSyndicateNukeDisk
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: syndicate nuke disk carrier module
+  description: Allows for the transportation of the nuclear authentication disk.
+  components:
+    - type: Sprite
+      layers:
+        - state: syndicate
+        - state: icon-syndicate
+    - type: ItemBorgModule
+      hands:
+        - hand:
+            emptyRepresentative: NukeDisk
+            emptyLabel: borg-slot-nuke-disk-empty
+            whitelist:
+              components:
+                - NukeDisk
+              tags:
+                - FakeNukeDisk
+    - type: BorgModuleIcon
+      icon: { sprite: Objects/Misc/nukedisk.rsi, state: icon }
+    - type: Tag
+      tags:
+        - BorgModuleSyndicate
+
+# xenoborg
 # region Medical
 - type: entity
   id: BorgModuleOrganPlaceholder
@@ -573,3 +599,159 @@
     - item: GeigerCounter
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-rcd-module }
+
+# region Cargo
+- type: entity
+  id: BaseBorgModuleMining
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-salvage
+  - type: Tag
+    tags:
+    - BorgModuleMining
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#EBD8B7"
+      - state: base-module-inhand-left
+        color: "#613D1D"
+      - state: base-stripes-inhand-left
+        color: "#520079"
+      right:
+      - state: base-icon-inhand-right
+        color: "#EBD8B7"
+      - state: base-module-inhand-right
+        color: "#613D1D"
+      - state: base-stripes-inhand-right
+        color: "#520079"
+
+- type: entity
+  id: BaseBorgModuleSupply
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-cargo
+  - type: Tag
+    tags:
+    - BorgModuleSupply
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#EBD8B7"
+      - state: base-module-inhand-left
+        color: "#613D1D"
+      - state: base-stripes-inhand-left
+        color: "#cbb036"
+      right:
+      - state: base-icon-inhand-right
+        color: "#EBD8B7"
+      - state: base-module-inhand-right
+        color: "#613D1D"
+      - state: base-stripes-inhand-right
+        color: "#cbb036"
+
+- type: entity
+  id: BorgModuleBountyPaperPlaceholder
+  categories: [ HideSpawnMenu ]
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper
+      color: "#f7e574"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#f7e574"
+      visible: true
+
+- type: entity
+  id: BorgModuleHold
+  parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
+  name: hauling cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: hauling
+    - state: icon-mats
+  - type: ItemBorgModule
+    hands:
+    - item: BorgHold
+    - item: BorgHold
+    - hand: #For loading lathes and making crates
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand: #Attatching lables to crates for bounties
+        emptyRepresentative: BorgModuleBountyPaperPlaceholder
+        emptyLabel: borg-slot-bounty-empty
+        whitelist:
+          tags:
+          - Document
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: mats-module }
+
+- type: entity
+  id: BorgModuleMailPlaceholder
+  categories: [ HideSpawnMenu ]
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Cargo/mail.rsi
+    layers: 
+    - state: icon
+    - state: postmark
+    - state: locked
+
+- type: entity
+  id: BorgModuleMail
+  parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
+  name: mail cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: hauling
+    - state: icon-mail
+  - type: ItemBorgModule
+    hands:
+    - item: MailBag
+    - hand:
+        emptyRepresentative: BorgModuleMailPlaceholder
+        emptyLabel: borg-slot-mail-empty
+        whitelist:
+          components:
+          - Delivery
+    - hand: # Second one is so it can pick up packages
+        emptyRepresentative: BorgModuleMailPlaceholder 
+        emptyLabel: borg-slot-mail-empty
+        whitelist:
+          components:
+          - Delivery
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: mail-module }
+
+- type: entity
+  id: BorgModuleAdvancedLoading
+  parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
+  name: loading cyborg module
+  description: Advanced module for cargo cyborgs, with specialised hydraulic clamps
+  components:
+  - type: Sprite
+    layers:
+    - state: hauling
+    - state: icon-loading
+  - type: ItemBorgModule
+    hands:
+    - item: BorgClamp
+    - item: BorgClamp
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: loading-module }

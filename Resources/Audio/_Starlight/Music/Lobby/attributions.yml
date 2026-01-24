@@ -52,3 +52,8 @@
   license: "CC-BY-ND-4.0"
   copyright: "Unity by Artifyber, for InanimateIJK & their associated projects."
   source: "https://soundcloud.com/r3dz3r/unity"
+
+- files: ["Bluespace.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Bluespace by Beptol Corporation Acoustics"
+  source: "https://soundcloud.com/beptolacoustics/space-station-14-unofficial-bluespace"

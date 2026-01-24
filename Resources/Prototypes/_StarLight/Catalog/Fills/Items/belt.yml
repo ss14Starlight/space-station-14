@@ -61,7 +61,7 @@
 
 - type: entity
   id: ClothingBeltBlueShieldWebbingFilled
-  parent: ClothingBeltBlueShield
+  parent: ClothingBeltBlueShieldWebbing 
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -74,6 +74,59 @@
         - id: GrenadeFlashBang
         - id: TearGasGrenade
         - id: MedkitCombatFilled
+
+- type: entity
+  id: ClothingBeltBlueShieldMedicalBeltFilled
+  parent: ClothingBeltBlueShieldMedicalBelt
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Handcuffs
+        - id: Handcuffs
+        - id: Stunbaton
+        - id: GrenadeFlashBang
+        - id: TearGasGrenade
+        - id: MedkitCombatFilled
+
+
+# Duty Officer
+- type: entityTable
+  id: BeltDutyOfficerEntityTable
+  table: !type:AllSelector
+    children:
+    - id: Stunbaton
+    - id: Handcuffs
+    - id: Handcuffs
+    - id: HoloprojectorSecurity
+    - id: RadioHandheldSecurity
+    - id: TearGasGrenade
+    - id: TearGasGrenade
+    - id: GrenadeFlashBang
+    - id: GrenadeFlashBang
+    - id: Zipties
+
+- type: entity
+  id: ClothingBeltDutyOfficerFilled
+  parent: ClothingBeltSecurity
+  suffix: Filled
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:NestedSelector
+          tableId: BeltDutyOfficerEntityTable
+
+- type: entity
+  id: ClothingBeltDutyOfficerWebbingFilled
+  parent: ClothingBeltSecurityWebbing
+  suffix: Filled
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:NestedSelector
+          tableId: BeltDutyOfficerEntityTable
 
 - type: entity
   id: ClothingBeltNTNCRigFilled

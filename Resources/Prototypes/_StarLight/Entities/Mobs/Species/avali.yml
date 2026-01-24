@@ -15,6 +15,11 @@
       shiveringHeatRegulation: 2000
       normalBodyTemperature: 261
       thermalRegulationTemperatureThreshold: 1
+    - type: TemperatureSpeed
+      thresholds:
+        250: 0.9
+        230: 0.8
+        223: 0.6
 
 - type: entity
   save: false
@@ -110,11 +115,6 @@
         0: Alive
         90: Critical
         180: Dead
-    - type: TemperatureSpeed
-      thresholds:
-        250: 0.9
-        230: 0.8
-        223: 0.6
     - type: Fixtures
       fixtures:
         fix1:
@@ -133,9 +133,9 @@
         Female: FemaleAvali
         Unsexed: MaleAvali
     - type: MovementSpeedModifier
-      weightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
-      weightlessFriction: 1
-      weightlessModifier: 1
+      baseWeightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
+      baseWeightlessFriction: 1
+      baseWeightlessModifier: 1
     - type: Damageable
       damageContainer: Biological
       damageModifierSet: Avali

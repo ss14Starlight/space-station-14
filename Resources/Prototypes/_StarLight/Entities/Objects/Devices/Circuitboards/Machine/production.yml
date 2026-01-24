@@ -252,6 +252,32 @@
         Glass: 2
 
 - type: entity
+  id: VendingMachineDonkCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Donk on the Go circuitboard
+  description: A machine printed circuit board for a Donk on the Go machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineDonkEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineIceCreamCircuitboard
+  parent: BaseMachineCircuitboard
+  name: I Scream Ice-Cream circuitboard
+  description: A machine printed circuit board for a I Scream Ice-Cream machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineIceCreamEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
   id: VendingMachineColaCircuitboard
   parent: BaseMachineCircuitboard
   name: Robust Softdrinks (cola) circuitboard
