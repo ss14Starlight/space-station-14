@@ -50,7 +50,7 @@
   # Starlight
   - type: LegendaryItem
     chance: 0.02
-    story: Weapon
+    story: MeleeWeapon
     legendarySprites: 
       - _Starlight/Objects/Specific/legendary_items/metal_baseball_bat.rsi
 
