@@ -41,6 +41,7 @@ using Content.Shared.Speech;
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language;
 using Content.Shared.Popups;
+using Content.Shared._Starlight.Radio;
 // Starlight End
 
 namespace Content.Server.Chat.Systems;
@@ -238,11 +239,13 @@ public sealed partial class ChatSystem : SharedChatSystem
         // This message may have a radio prefix, and should then be whispered to the resolved radio channel
         if (checkRadioPrefix)
         {
-            if (TryProcessRadioMessage(source, message, out var modMessage, out var channel))
+            //Starlight begin
+            if (TryProcessRadioMessage(source, message, out var modMessage, out var channel, out var customChannel))
             {
-                SendEntityWhisper(source, modMessage, range, channel, nameOverride, language, hideLog, ignoreActionBlocker); // Starlight
+                SendEntityWhisper(source, modMessage, range, channel, nameOverride, language, hideLog, ignoreActionBlocker, customChannel);
                 return;
             }
+            //Starlight end
         }
 
         if (desiredType == InGameICChatType.CollectiveMind)
@@ -658,7 +661,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         string? nameOverride,
         LanguagePrototype language, // Starlight
         bool hideLog = false,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        CustomRadioChannelData? customChannel = null // Starlight
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -732,7 +736,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         var replayWrap = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", name, message, language); // Starlight-edit: Languages
         _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, replayWrap, GetNetEntity(source), null, MessageRangeHideChatForReplay(range))); // Starlight-edit: Languages
 
-        var ev = new EntitySpokeEvent(source, message, channel, languageObfuscatedMessage, true, language); // Starlight-edit: Languages
+        //Starlight begin
+        var ev = customChannel is not null
+            ? new EntitySpokeEvent(source, message, languageObfuscatedMessage, true, language, customChannel)
+            : new EntitySpokeEvent(source, message, channel, languageObfuscatedMessage, true, language);
+        //Starlight end
         RaiseLocalEvent(source, ev, true);
         if (!hideLog)
             if (originalMessage == message)

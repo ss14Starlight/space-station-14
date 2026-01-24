@@ -328,7 +328,7 @@
   parent: BaseFigurine
   id: ToyFigurineChaplain
   name: chaplain figure
-  description: A figurine depicting a Chaplain hopefully praying for good things.
+  description: A figurine depicting a religious leader hopefully praying for good things. # Starlight
   components:
   - type: Sprite
     state: chaplain
@@ -339,7 +339,7 @@
   parent: BaseFigurine
   id: ToyFigurineChef
   name: chef figure
-  description: A figurine depicting a chef, master of the culinary arts!.. most of the time.
+  description: A figurine depicting a chef, master of the culinary arts! ...Most of the time. # Starlight
   components:
   - type: Sprite
     state: chef

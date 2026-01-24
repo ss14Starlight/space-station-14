@@ -22,6 +22,7 @@ public sealed class JammerSystem : SharedJammerSystem
         SubscribeLocalEvent<RadioJammerComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<ActiveRadioJammerComponent, PowerCellChangedEvent>(OnPowerCellChanged);
         SubscribeLocalEvent<RadioSendAttemptEvent>(OnRadioSendAttempt);
+        SubscribeLocalEvent<CustomRadioSendAttemptEvent>(OnCustomRadioSendAttempt); //Starlight
     }
 
     // TODO: Very important: Make this charge rate based instead of updating every single tick
@@ -111,6 +112,14 @@ public sealed class JammerSystem : SharedJammerSystem
             args.Cancelled = true;
         }
     }
+    
+    //Starlight begin
+    private void OnCustomRadioSendAttempt(ref CustomRadioSendAttemptEvent args)
+    {
+        if (ShouldCancelSend(args.RadioSource, args.Channel.Frequency))
+            args.Cancelled = true;
+    }
+    //Starlight end
 
     private bool ShouldCancelSend(EntityUid sourceUid, int frequency)
     {

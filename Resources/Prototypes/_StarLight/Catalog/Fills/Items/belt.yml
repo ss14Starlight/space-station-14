@@ -61,7 +61,23 @@
 
 - type: entity
   id: ClothingBeltBlueShieldWebbingFilled
-  parent: ClothingBeltBlueShield
+  parent: ClothingBeltBlueShieldWebbing 
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Handcuffs
+        - id: Handcuffs
+        - id: Stunbaton
+        - id: GrenadeFlashBang
+        - id: TearGasGrenade
+        - id: MedkitCombatFilled
+
+- type: entity
+  id: ClothingBeltBlueShieldMedicalBeltFilled
+  parent: ClothingBeltBlueShieldMedicalBelt
   suffix: Filled
   components:
   - type: EntityTableContainerFill

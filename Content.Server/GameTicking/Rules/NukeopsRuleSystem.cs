@@ -40,7 +40,7 @@ namespace Content.Server.GameTicking.Rules;
 public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 {
     #region Starlight data collection
-    private static readonly Histogram _nukeopsCount = Metrics.CreateHistogram(
+    private static readonly Counter _nukeopsCount = Metrics.CreateCounter(
         "nukie_count",
         "Number of all nukies Win/Loses Count.",
         ["results"]);
@@ -437,7 +437,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     {
         ent.Comp.WinType = type;
 
-        _nukeopsCount.WithLabels(type.ToString()).Observe(1); // Starlight
+        _nukeopsCount.WithLabels(type.ToString()).Inc(1); // Starlight
 
         if (endRound && (type == WinType.CrewMajor || type == WinType.OpsMajor))
             _roundEndSystem.EndRound();
