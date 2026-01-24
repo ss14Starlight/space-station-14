@@ -163,7 +163,8 @@ ghost-role-information-closet-skeleton-name = Closet Skeleton
 ghost-role-information-closet-skeleton-description = You are arguably one of the oldest members of the station!
 
 ghost-role-information-remilia-name = Remilia, the Chaplain's Familiar
-ghost-role-information-remilia-description = Follow and obey the chaplain. Eat fruit. Screech loudly into people's ears and write it off as echolocation.
+# Starlight:
+ghost-role-information-remilia-description = Follow and obey the Chaplain. Eat fruit. Whisper in a secret language about all the things you've seen. Screech loudly into people's ears and write it off as echolocation.
 
 ghost-role-information-cerberus-name = Cerberus, Evil Familiar
 ghost-role-information-cerberus-description = Obey your master. Spread chaos.

@@ -51,8 +51,8 @@ public sealed partial class SlimeFindEdibleTargetOperator : HTNOperator
         {
             if (_tagSystem.HasTag(entity, TargetFoodTag))
             {
-                _slimeBrainSystem.TryAddTargetFood(entity);
-                return (true, null);
+                if (_slimeBrainSystem.TryAddTargetFood(entity))
+                    return (true, null);
             }
         }
 

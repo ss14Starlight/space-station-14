@@ -1,7 +1,9 @@
+using Robust.Shared.Prototypes;
+
 namespace Content.Shared.VentCraw.Components;
 
 [RegisterComponent]
 public sealed partial class VentCrawEntryComponent : Component
 {
-    public const string HolderPrototypeId = "VentCrawHolder";
+    public static readonly EntProtoId HolderPrototypeId = "VentCrawHolder";
 }

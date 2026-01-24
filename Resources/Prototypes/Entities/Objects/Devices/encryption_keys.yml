@@ -1,5 +1,5 @@
 - type: entity
-  abstract: true
+  #abstract: true # Starlight | There's an actual reason for a blank encryption key to exist now.
   parent: BaseItem
   id: EncryptionKey
   name: encryption key
@@ -10,6 +10,10 @@
     sprite: Objects/Devices/encryption_keys.rsi
   - type: Sprite
     sprite: Objects/Devices/encryption_keys.rsi
+    #Starlight begin
+    layers:
+      - state: crypt_gray
+    #Starlight end
 
 - type: entity
   parent: EncryptionKey

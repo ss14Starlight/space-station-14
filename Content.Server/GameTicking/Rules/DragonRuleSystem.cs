@@ -17,7 +17,7 @@ namespace Content.Server.GameTicking.Rules;
 public sealed class DragonRuleSystem : GameRuleSystem<DragonRuleComponent>
 {
     #region Starlight
-    private static readonly Histogram _dragonWinInfo = Metrics.CreateHistogram(
+    private static readonly Counter _dragonWinInfo = Metrics.CreateCounter(
         "sl_dragon_winning",
         "Contains info on if a dragon won and if so how hard they won",
         ["alive", "rifts"]
@@ -100,7 +100,7 @@ public sealed class DragonRuleSystem : GameRuleSystem<DragonRuleComponent>
             _dragonWinInfo.WithLabels([
                 alive.ToString(),
                 dragon.Comp.Rifts?.ToString() ?? "0"
-            ]).Observe(devoured);  
+            ]).Inc(devoured);  
         }
     }
     #endregion

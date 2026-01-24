@@ -1050,7 +1050,7 @@
   id: WeaponLaserCannonXenoborg
   name: xenoborg laser cannon
   components:
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger # Starlight: Fixed recharging by switching to Predicted variant
     autoRechargeRate: 30
   # "remove" wield bonus and penalty so borgs can use it
   - type: GunWieldBonus

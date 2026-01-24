@@ -36,4 +36,10 @@ public sealed partial class RemoteEyeConsoleComponent : Component
     /// </summary>
     [DataField(readOnly: true)]
     public bool ViewOnConsolePosition = false;
+
+    /// <summary>
+    /// Set of users currently using the console.
+    /// </summary>
+    [ViewVariables]
+    public HashSet<EntityUid> Users = new();
 }
