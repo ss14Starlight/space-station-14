@@ -16,7 +16,7 @@ public sealed partial class EvolvingComponent : Component
     /// The id of action to trigger the evolution.
     /// </summary>
     [DataField]
-    public string EvolveActionId = "ActionEvolve";
+    public EntProtoId EvolveActionId = "ActionEvolve";
 
     /// <summary>
     /// The entity to use for the action to trigger the evolution.

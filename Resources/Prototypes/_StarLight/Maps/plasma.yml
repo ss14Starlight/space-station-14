@@ -53,6 +53,7 @@
             ResearchAssistant: [ 4, 4 ] #intern, not counted
             #security (11 - 13)
             Warden: [ 1, 1 ]
+            DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 6, 8 ]
             Brigmedic: [ 1, 1 ]
             Detective: [ 1, 2 ] #good cop, bad cop
@@ -77,3 +78,4 @@
             #representives (2)
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]

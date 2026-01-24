@@ -42,10 +42,10 @@
     maxAngle: -20
   - type: Gun
     minAngle: 24
-    maxAngle: 45
+    maxAngle: 35
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 8
+    fireRate: 6 # Starlight
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -112,6 +112,11 @@
   - type: Appearance
   - type: StaticPrice
     price: 10000
+    # region starlight
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.90
+    sprintModifier: 0.90
+    # end-region starlight
 
 - type: entity
   name: L6C ROW

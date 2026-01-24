@@ -56,8 +56,10 @@ public sealed class JobSystem : SharedJobSystem
 
         _chat.DispatchServerMessage(session, Loc.GetString("job-greet-supervisors-warning", ("jobName", prototype.LocalizedName), ("supervisors", Loc.GetString(prototype.Supervisors))));
         
-        // Starlight
-        _chat.DispatchServerMessage(session, Loc.GetString("job-greet-information-rules", ("jobRules", Loc.GetString(prototype.JobRules))));
+        // Starlight start
+        if (prototype.JobRules is not null)
+            _chat.DispatchServerMessage(session, Loc.GetString("job-greet-information-rules", ("jobRules", Loc.GetString(prototype.JobRules))));
+        // Starlight end
     }
 
     public void MindAddJob(EntityUid mindId, string jobPrototypeId)

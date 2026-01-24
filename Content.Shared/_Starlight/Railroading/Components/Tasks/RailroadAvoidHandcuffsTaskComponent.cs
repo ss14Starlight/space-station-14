@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.Railroading;
 public sealed partial class RailroadAvoidHandcuffsTaskComponent : Component
 {
     [DataField]
-    public string Message = "rail-avoid-handcuffs-task";
+    public LocId Message = "rail-avoid-handcuffs-task";
 
     [DataField]
     public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Misc/handcuffs.rsi"), "handcuff");

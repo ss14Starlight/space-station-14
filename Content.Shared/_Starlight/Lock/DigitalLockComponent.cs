@@ -1,6 +1,8 @@
-using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
+using Content.Shared.Tools;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Lock;
 
@@ -69,11 +71,11 @@ public sealed partial class DigitalLockComponent : Component
     /// Tool quality for Open Maintenance Panel
     /// </summary>
     [DataField]
-    public string OpenQuality = "Screwing";
+    public ProtoId<ToolQualityPrototype> OpenQuality = "Screwing";
 
     /// <summary>
     /// Tool quality for Reset password
     /// </summary>
     [DataField]
-    public string ResetQuality = "Pulsing";
+    public ProtoId<ToolQualityPrototype> ResetQuality = "Pulsing";
 }

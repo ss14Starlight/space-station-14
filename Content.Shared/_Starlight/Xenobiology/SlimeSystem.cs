@@ -6,6 +6,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 
@@ -64,7 +65,7 @@ public sealed class SlimeSystem : EntitySystem
         {
             Entity = GetNetEntity(slime.Owner, MetaData(slime.Owner)),
             Angle = Angle.FromWorldVec(vector),
-        });
+        }, Filter.Pvs(slime.Owner, 0.5F));
 
         if (returnDamage.AnyPositive())
         {

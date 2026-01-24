@@ -189,3 +189,13 @@
     Steel: 300
     Glass: 100
     Silver: 100
+
+- type: latheRecipe
+  id: FiringPinLaser
+  result: FiringPinLaser
+  categories:
+  - Weapons
+  completetime: 7
+  materials:
+    Steel: 200
+    Glass: 500
