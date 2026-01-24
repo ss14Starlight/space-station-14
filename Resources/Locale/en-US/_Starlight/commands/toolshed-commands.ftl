@@ -1,3 +1,7 @@
+command-description-radio-addcustom =
+    Add a custom channel to the specified component on the piped entity. Specify true or false at the end to ensure the component exists.
+command-description-radio-remcustom =
+    Remove a custom channel with the given ID from the specified component on the piped entity.
 command-description-container-insert =
     Inserts the given entity into the specified container on the piped entity.
 command-description-container-insertmany =

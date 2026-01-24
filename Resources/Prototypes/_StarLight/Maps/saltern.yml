@@ -3,7 +3,7 @@
   mapName: 'Saltern'
   mapPath: /Maps/_Starlight/Stations/Saltern.yml
   minPlayers: 0
-  maxPlayers: 50
+  maxPlayers: 40
   stations:
     StarlightSaltern:
       stationProto: StandardNanotrasenStation
@@ -46,6 +46,7 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
+            DutyOfficer: [ 1, 1 ]
             Detective: [ 1, 1 ]
             SecurityOfficer: [ 4, 4 ]
             SecurityCadet: [ 4, 4 ]
@@ -71,4 +72,5 @@
             #Representives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]
 

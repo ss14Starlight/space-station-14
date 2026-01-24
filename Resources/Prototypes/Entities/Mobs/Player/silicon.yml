@@ -577,6 +577,16 @@
         - BorgModuleOperative
         - BorgModuleL6C
         - BorgModuleDoubleEsword
+        - BorgModuleSyndicateNukeDisk # Starlight
+  # Starlight begin
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleTool
+      - BorgModuleOperative
+      - BorgModuleL6C
+      - BorgModuleDoubleEsword
+      - BorgModuleSyndicateNukeDisk
+  # Starlight end
   - type: ItemSlots
     slots:
       cell_slot:
@@ -613,6 +623,17 @@
         - BorgModuleRCD
         - BorgModuleOperative
         - BorgModuleSyndicateWeapon
+        - BorgModuleSyndicateNukeDisk # Starlight
+    # Starlight begin
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleSyndicateAdvancedTool
+      - BorgModuleConstruction
+      - BorgModuleRCD
+      - BorgModuleOperative
+      - BorgModuleSyndicateWeapon
+      - BorgModuleSyndicateNukeDisk
+    # Starlight end
   - type: ItemSlots
     slots:
       cell_slot:
@@ -649,6 +670,17 @@
         - BorgModuleTopicals
         - BorgModuleSyndicateRescue # starlight
         - BorgModuleSyndicateWeapon
+        - BorgModuleSyndicateNukeDisk # Starlight
+    # Starlight begin
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleTool
+      - BorgModuleSyndicateAdvancedChemical
+      - BorgModuleTopicals
+      - BorgModuleSyndicateRescue
+      - BorgModuleSyndicateWeapon
+      - BorgModuleSyndicateNukeDisk
+    # Starlight end
   - type: ItemSlots
     slots:
       cell_slot:

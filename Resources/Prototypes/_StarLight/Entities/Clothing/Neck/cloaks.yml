@@ -158,10 +158,10 @@
     price: 2000
 
 - type: entity
-  parent: [ ClothingNeckBase, BaseCommandContraband ]
+  parent: [ ClothingNeckBase, BaseBlueShieldContraband ]
   id: ClothingNeckCloakBsoElite
-  name: elite blueshield officer's cloak
-  description: An elite blueshield officer's cloak crafted from the latest composite glowing fabric. Any true BlueShield is not afraid of shining in the dark!
+  name: elite blue shield cloak
+  description: An elite Blue Shield Officer's cloak crafted from the latest composite glowing fabric. No true BSO is afraid of shining in the dark!
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/Cloaks/bso_elite.rsi
@@ -175,10 +175,10 @@
     price: 2000
 
 - type: entity
-  parent: [ ClothingNeckBase, BaseCommandContraband ]
+  parent: [ ClothingNeckBase, BaseBlueShieldContraband ]
   id: ClothingNeckCloakBsoCape
-  name: blueshield officer's formal cloak
-  description: An incredibly large coat, owned only by the most experienced blueshields. It's said the sleeves have never been worn.
+  name: blue shield formal cloak
+  description: An incredibly large coat, owned only by the most experienced Blue Shield Officers. It's said the sleeves have never been worn.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/Cloaks/bso_formal.rsi
@@ -187,9 +187,9 @@
       - neck
 
 - type: entity
-  parent: [ ClothingNeckBase, BaseCommandContraband ]
+  parent: [ ClothingNeckBase, BaseBlueShieldContraband ]
   id: ClothingNeckCloakBsoPoncho
-  name: blueshield officer's poncho
+  name: blue shield poncho
   description: This type of poncho was the signature garment of a legendary BSO with no name, or so it is said.
   components:
   - type: Sprite

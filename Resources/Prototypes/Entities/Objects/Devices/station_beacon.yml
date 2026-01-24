@@ -707,7 +707,7 @@
 - type: entity
   parent: DefaultStationBeacon
   id: DefaultStationBeaconChapel
-  suffix: Chapel
+  suffix: Shrine # Starlight: Chapel -> Shrine
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-chapel
@@ -857,7 +857,7 @@
   suffix: NCT
   components:
   - type: NavMapBeacon
-    text: station-beacon-nct
+    defaultText: station-beacon-nct
 
 
 # Ghost Only Beacons

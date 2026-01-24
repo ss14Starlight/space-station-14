@@ -36,7 +36,28 @@
       "directions": 4
     },
     {
-      "name": "pda-blueshield"
+      "name": "pda-blueshield",
+      "copyright": "Made by SapphicHaymaker for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+    {
+      "name": "pda-veteranblueshield",
+      "copyright": "Made by SapphicHaymaker for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
     },
     {
       "name": "pda-mining"
