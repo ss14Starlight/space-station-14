@@ -238,7 +238,7 @@
     - xenoborgs
   name: xenoborgs-title
   description: xenoborgs-description
-  showInVote: false
+  showInVote: true # 🌟Starlight🌟
   rules:
   - Xenoborgs
   # - DummyNonAntagChance 🌟Starlight🌟

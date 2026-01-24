@@ -40,6 +40,9 @@
   id: BoneGel
 
 - type: Tag
+  id: BorgItem
+
+- type: Tag
   id: BorgModuleMining
 
 - type: Tag

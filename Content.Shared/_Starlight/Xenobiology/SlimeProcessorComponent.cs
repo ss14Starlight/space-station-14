@@ -37,7 +37,7 @@ public sealed partial class SlimeProcessorComponent : Component
     /// Container for dead slimes inserted in the processor.
     /// </summary>
     [ViewVariables]
-    public ContainerSlot SlimeContainer = default!;
+    public Container SlimeContainer = default!;
 }
 
 /// <summary>

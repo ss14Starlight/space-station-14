@@ -54,6 +54,7 @@
             Detective: [ 2, 2 ]
             SecurityCadet: [ 4, 4 ]
             Brigmedic: [ 1, 1 ]
+            DutyOfficer: [ 1, 2]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 5, 5 ]
@@ -75,3 +76,4 @@
             #Representives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]
