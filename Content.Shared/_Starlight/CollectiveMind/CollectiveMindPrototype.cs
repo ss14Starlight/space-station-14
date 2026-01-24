@@ -12,7 +12,7 @@ public sealed partial class CollectiveMindPrototype : IPrototype
     public string ID { get; } = default!;
     
     [DataField("name")]
-    public string Name { get; private set; } = string.Empty;
+    public LocId Name { get; private set; } = string.Empty;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public string LocalizedName => Loc.GetString(Name);

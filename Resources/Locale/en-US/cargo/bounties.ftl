@@ -130,7 +130,8 @@ bounty-description-warm-cloth = The Unathi construction crew freezes and is unab
 bounty-description-battery = As the Arachnid settlement prepares for a solar flare, they are requesting a large shipment of power batteries. We're sending out a request for delivery.
 bounty-description-lasergun = The Salvage Caravan requests a large shipment of laser weapons to mop up a hive of xenomorphs.
 bounty-description-food = After the rat king invasion, a neighboring Unathi station was left completely without food. A large meat food shipment is needed.
-bounty-description-fruit = A heroic monkey helped the chaplain catch a troublemaker hiding in the chapel, and the crew wants to reward him for his good work.
+# Starlight: Chapel -> Shrine:
+bounty-description-fruit = A heroic monkey helped the chaplain catch a troublemaker hiding in the shrine, and the crew wants to reward him for his good work.
 bounty-description-vegetable = The new chef is a vegetarian, and botany can't keep up with their demands. We need some additional veggies to help keep things stocked.
 bounty-description-chili = Today's the CentComm Chili Cookoff, and, well, a few of us forgot to make some. Please help cover for us.
 bounty-description-rollerskates = CentComm Security is proposing a new strategy for helping officers win foot pursuits. Send them a pair so they can learn how bad an idea this is.

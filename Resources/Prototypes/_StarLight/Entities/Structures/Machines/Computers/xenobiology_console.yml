@@ -48,8 +48,8 @@
     - Incorporeal
     - BaseMob
   id: XenobiologyConsoleEye
-  name: "???"
-  description: "ERROR"
+  name: Xenobiology Console Eye
+  description: The eye, or perhaps the claw, extending from the xenobiology console. Is it spying on you?
   categories: [ HideSpawnMenu ]
   suffix: DO NOT MAP
   components:

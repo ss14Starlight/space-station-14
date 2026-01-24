@@ -16,6 +16,8 @@ using System.Linq;
 using Content.Shared.Station.Components;
 using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Power;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Player;
 
@@ -33,6 +35,7 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
 
     public override void Initialize()
     {
@@ -44,6 +47,7 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
     
         Subs.BuiEvents<RemoteEyeConsoleComponent>(RemoteEyeUIKey.Key, subs => subs.Event<BeaconChosenBuiMsg>(OnBeaconChosenBuiMsg));
         SubscribeLocalEvent<RemoteEyeConsoleComponent, ActivateInWorldEvent>(OnActivateInWorld);
+        SubscribeLocalEvent<RemoteEyeConsoleComponent, PowerChangedEvent>(OnCompPowerChange);
         base.Initialize();
     }
 
@@ -169,11 +173,13 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
             mover.CanMove = true;
             Dirty(viewer, mover);
         }
+
+        ent.Comp.Users.Add(viewer);
     }
 
     private void OnActivateInWorld(Entity<RemoteEyeConsoleComponent> ent, ref ActivateInWorldEvent args)
     {
-        if (ent.Comp.ViewOnConsolePosition)
+        if (ent.Comp.ViewOnConsolePosition && _power.IsPowered(ent.Owner))
         {
             args.Handled = true;
             var viewer = args.User;
@@ -217,5 +223,16 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
             _actions.RemoveAction(actor, actionEnt);
 
         _slActions.UnHideActions(actor, comp.HiddenActions);
+    }
+
+    private void OnCompPowerChange(Entity<RemoteEyeConsoleComponent> entity, ref PowerChangedEvent args)
+    {
+        if (!args.Powered)
+        {
+            foreach (var user in entity.Comp.Users)
+            {
+                CameraExit(user);
+            }
+        }
     }
 }
