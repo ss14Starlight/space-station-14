@@ -41,3 +41,7 @@
 - type: font
   id: Darktongue
   path: /Fonts/_Starlight/Darktongue.ttf
+
+- type: font
+  id: Lagomorphian
+  path: /Fonts/_Starlight/Lagomorphian.ttf

@@ -42,4 +42,49 @@
     path: /Audio/_Starlight/Voice/Moth/moth_ask.ogg
   exclaimSound:
     path: /Audio/_Starlight/Voice/Moth/moth_exclaim.ogg
-    
+
+- type: speechSounds
+  id: ALLagomorph
+  saySound:
+    path: /Audio/_Starlight/Voice/Lagomorph/bunny_talk2.ogg
+  askSound:
+    path: /Audio/_Starlight/Voice/Lagomorph/bunny_talk3.ogg
+  exclaimSound:
+    path: /Audio/_Starlight/Voice/Lagomorph/bunny_talk1.ogg
+
+- type: soundCollection
+  id: LagomorphScream
+  files:
+    - /Audio/_Starlight/Voice/Lagomorph/scream1.ogg
+    - /Audio/_Starlight/Voice/Lagomorph/scream2.ogg
+    - /Audio/_Starlight/Voice/Lagomorph/scream3.ogg
+
+- type: soundCollection
+  id: LagomorphSqueak
+  files:
+    - /Audio/_Starlight/Voice/Lagomorph/squeak1.ogg
+    - /Audio/_Starlight/Voice/Lagomorph/squeak2.ogg
+
+- type: soundCollection
+  id: LagomorphSnort
+  files:
+    - /Audio/_Starlight/Voice/Lagomorph/snort1.ogg
+    - /Audio/_Starlight/Voice/Lagomorph/snort2.ogg
+
+- type: soundCollection
+  id: LagomorphSnore
+  files:
+    - /Audio/_Starlight/Voice/Lagomorph/snore1.ogg
+    - /Audio/_Starlight/Voice/Lagomorph/snore2.ogg
+    - /Audio/_Starlight/Voice/Lagomorph/snore3.ogg
+
+- type: soundCollection
+  id: LagomorphSneeze
+  files:
+    - /Audio/_Starlight/Voice/Lagomorph/sneeze1.ogg
+    - /Audio/_Starlight/Voice/Lagomorph/sneeze2.ogg
+
+- type: soundCollection
+  id: LagomorphStomp
+  files:
+    - /Audio/Voice/Reptilian/reptilian_tailthump.ogg

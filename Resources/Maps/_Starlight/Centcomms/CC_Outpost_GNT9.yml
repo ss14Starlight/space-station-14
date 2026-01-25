@@ -43099,8 +43099,6 @@ entities:
     components:
     - type: Transform
       parent: 4121
-    - type: PredictedBattery
-      lastCharge: 720
     - type: Physics
       canCollide: False
   - uid: 6067
