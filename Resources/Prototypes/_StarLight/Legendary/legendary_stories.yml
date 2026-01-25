@@ -45,29 +45,6 @@
     - starlight-firearm-end-patron-1
 
 - type: legendaryStory
-  id: Plush
-  opens:
-    - starlight-plush-open-1
-    - starlight-plush-open-2
-    - starlight-plush-open-3
-    - starlight-plush-open-4
-    - starlight-plush-open-5
-  mids:
-    - starlight-plush-mid-1
-    - starlight-plush-mid-2
-    - starlight-plush-mid-3
-    - starlight-plush-mid-4
-    - starlight-plush-mid-5
-    - starlight-plush-mid-patron-1
-  ends:
-    - starlight-plush-end-1
-    - starlight-plush-end-2
-    - starlight-plush-end-3
-    - starlight-plush-end-4
-    - starlight-plush-end-5
-    - starlight-plush-end-patron-1
-
-- type: legendaryStory
   id: Trinket
   opens:
     - starlight-trinket-open-1

@@ -3,7 +3,7 @@
   name: base towel
   abstract: true
   description: If you want to survive out here, you gotta know where your towel is.
-  parent: [ UnsensoredClothingUniformBase, ClothingHeadBase, ClothingBeltBase, StarlightLegendaryTrinketBase ]
+  parent: [ UnsensoredClothingUniformBase, ClothingHeadBase, ClothingBeltBase ]
   components:
   - type: Sprite
     sprite: Clothing/Multiple/towel.rsi

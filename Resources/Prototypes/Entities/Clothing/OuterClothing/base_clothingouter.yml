@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [Clothing, StarlightLegendaryClothingBase]
+  parent: Clothing 
   id: ClothingOuterBase
   components:
   - type: Clothing

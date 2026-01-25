@@ -1,6 +1,6 @@
 - type: entity
   id: BaseWeaponBattery
-  parent: [BaseItem, StarlightLegendaryFirearmBase]
+  parent: BaseItem
   abstract: true
   components:
   - type: RestrictByUserTag
