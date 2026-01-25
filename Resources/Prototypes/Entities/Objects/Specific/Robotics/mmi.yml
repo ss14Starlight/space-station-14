@@ -69,6 +69,10 @@
       whitelist:
         components:
         - Brain
+  # Starlight Start
+  - type: BorgBrain
+    borgConsent: true # If you are spawning as a filled MMI, you chose to play borg.
+  # Starlight End
 
 - type: entity
   parent: [BaseItem, BaseSiliconBrainLanguages] #Starlight Languages
@@ -101,6 +105,7 @@
     - type: BlockMovement
     - type: Examiner
     - type: BorgBrain
+      borgConsent: true #Starlight - Posibrains choose to play borg.
     - type: IntrinsicRadioReceiver
     - type: IntrinsicRadioTransmitter
       channels:

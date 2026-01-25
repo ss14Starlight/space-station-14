@@ -27910,5 +27910,58 @@ Entries:
   id: 268000
   time: '2026-01-25T15:48:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2680
+- author: Scarlet Lightweaver
+  changes:
+  - message: Addeda new retro cloak for the HOS!
+    type: Add
+  id: 297800
+  time: '2026-01-25T19:22:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2978
+- author: CawsForConcern
+  changes:
+  - message: All CentComms have had their manual doors into Debrief removed / replaced
+      with Command-only turnstiles
+    type: Tweak
+  - message: (CC GNT9) Removed AI's turrets in the Debrief Room
+    type: Tweak
+  - message: (CC GNT9) Moved the CentComm station beacon / warp point to the Panopticon
+      with the fax machine for admin convenience
+    type: Tweak
+  id: 296100
+  time: '2026-01-25T19:28:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2961
+- author: SCARLET LIGHTWEAVER
+  changes:
+  - message: Changed AC-2 from burst to full auto also changed fire rate from 5 to
+      3.2.
+    type: Tweak
+  - message: Changed AC-10 from semi to full auto.
+    type: Tweak
+  - message: 'Changed Gygax speed to faster(from: walk 2.4 and sprint 3.7 to: 2.5
+      and 4.0) and armor.'
+    type: Tweak
+  - message: Changed Durand armor and HP from 400 to 465 also changed pilot damage
+      multiplier from 25% to 15%.
+    type: Tweak
+  - message: Changed Marauder HP from 500 to 575.
+    type: Tweak
+  - message: Changed Seraph HP from 550 to 700.
+    type: Tweak
+  - message: Changed DarkGygax HP from 300 to 375 and speed from 2.2, 4.0 to 3.0,
+      4.5.
+    type: Tweak
+  - message: Changed Mauler armor and HP from 500 to 550, now mauler has point light.
+    type: Tweak
+  id: 221700
+  time: '2026-01-25T19:54:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2217
+- author: Citrea
+  changes:
+  - message: When being borged, you now have the option to ghost immediately and leave
+      a ghost role behind instead.
+    type: Add
+  id: 293700
+  time: '2026-01-25T19:59:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2937
 Order: -1
 

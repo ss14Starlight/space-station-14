@@ -107,6 +107,19 @@
     price: 2000
 
 - type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakHosRetro
+  name: retro-head of security cloak
+  description: A retro-styled cloak for the head of security, reminiscent of days gone by.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/RetroHos.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
   parent: [ ClothingNeckBase, BaseCommandContraband ]
   id: ClothingNeckCloakCeElite
   name: elite chief engineer's cloak
