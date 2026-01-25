@@ -216,9 +216,9 @@
     state: mecha_scatter
   - type: Gun
     fireRate: 1
-    selectedMode: SemiAuto
+    selectedMode: FullAuto # Starlight-edit
     availableModes:
-      - SemiAuto
+      - FullAuto # Starlight-edit
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: BatteryAmmoProvider
@@ -240,7 +240,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_carbine
   - type: Gun
-    fireRate: 1.2
+    fireRate: 1.3 # Starlight-edit
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -265,12 +265,12 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_uac2
   - type: Gun
-    fireRate: 5
-    shotsPerBurst: 3
-    burstCooldown: 1.2
-    selectedMode: Burst
+    # Starlight-start
+    fireRate: 3.2
+    selectedMode: FullAuto
     availableModes:
-      - Burst
+      - FullAuto
+    # Starlight-end
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: BatteryAmmoProvider
