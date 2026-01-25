@@ -161,7 +161,7 @@
     - CannotSuicide
     - VimPilot
     - AnomalyHost
-  - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 423
     coldDamageThreshold: 0
   - type: MovementAlwaysTouching
