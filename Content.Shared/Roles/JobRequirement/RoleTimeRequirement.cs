@@ -57,6 +57,41 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
         var jobProto = jobSystem.GetJobPrototype(proto);
 
+        // Starlight start
+        // Handle non-job role time requirements
+        if (jobProto is null)
+        {
+            if (!protoManager.TryIndex<PlayTimeTrackerPrototype>(proto, out var tracker))
+                return false;
+
+            if (!Inverted)
+            {
+                if (roleDiff <= 0)
+                    return true;
+
+                reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+                    "role-timer-role-insufficient",
+                    ("time", formattedRoleDiff),
+                    ("job", tracker.LocalizedName),
+                    ("departmentColor", departmentColor.ToHex())));
+                return false;
+            }
+            else
+            {
+                if (roleDiff <= 0)
+                {
+                    reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+                        "role-timer-role-too-high",
+                        ("time", formattedRoleDiff),
+                        ("job", tracker.LocalizedName),
+                        ("departmentColor", departmentColor.ToHex())));
+                    return false;
+                }
+                return true;
+            }
+        }
+        // Starlight end
+
         if (jobSystem.TryGetDepartment(jobProto, out var departmentProto))
             departmentColor = departmentProto.Color;
 
