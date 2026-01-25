@@ -50,7 +50,7 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly PowerCellSystem _powercell = default!;
         [Dependency] private readonly SharedContainerSystem _container = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly PredictedBatterySystem _battery = default!;
+        [Dependency] private readonly SharedBatterySystem _battery = default!;
         private readonly Dictionary<EntityUid, float> _uiUpdateAccumulators = new();
         private const float UiUpdateInterval = 0.5f;
         // Starlight-end

@@ -279,7 +279,10 @@ public abstract partial class SharedStaminaSystem : EntitySystem
             value = ev.Value;
         }
 
-        value = UniversalStaminaDamageModifier * value;
+        //Starlight begin - apply base component resistance
+        var baseResistance = component.BaseResistance ?? 1;
+        value = UniversalStaminaDamageModifier * baseResistance * value;
+        //Starlight end
 
         // Have we already reached the point of max stamina damage?
         if (component.Critical)
@@ -291,11 +294,17 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         var oldDamage = component.StaminaDamage;
         component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + (value * staminaModifyEvent.Modifier));
 
+        foreach (var modifier in component.ResistanceModifiers) component.StaminaDamage *= modifier.Item2; //Starlight - apply resistance modifiers from the component itself
+
         // Reset the decay cooldown upon taking damage.
         if (oldDamage < component.StaminaDamage)
         {
-            var nextUpdate = Timing.CurTime + TimeSpan.FromSeconds(component.Cooldown);
-
+            //Starlight begin
+            var totalCooldownMod =
+                component.CooldownModifiers.Aggregate<(NetEntity, float, TimeSpan), float>(1,
+                    (current, modifier) => current * modifier.Item2);
+            var nextUpdate = Timing.CurTime + TimeSpan.FromSeconds(component.Cooldown * totalCooldownMod);
+            //Starlight end
             if (component.NextUpdate < nextUpdate)
                 component.NextUpdate = nextUpdate;
         }
@@ -381,10 +390,16 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
             comp.NextUpdate += TimeSpan.FromSeconds(1f);
 
+            //Starlight begin
+            var totalDecayMod =
+                comp.DecayModifiers.Aggregate<(NetEntity, float, TimeSpan), float>(1,
+                    (current, modifier) => current * modifier.Item2);
+            
             TakeStaminaDamage(
                 uid,
-                comp.AfterCritical ? -comp.Decay * comp.AfterCritDecayMultiplier : -comp.Decay, // Recover faster after crit
+                comp.AfterCritical ? -comp.Decay * comp.AfterCritDecayMultiplier * totalDecayMod : -comp.Decay * totalDecayMod, // Recover faster after crit
                 comp);
+            //Starlight end
 
             Dirty(uid, comp);
         }

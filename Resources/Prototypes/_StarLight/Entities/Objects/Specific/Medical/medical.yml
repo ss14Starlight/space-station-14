@@ -501,10 +501,10 @@
         - Brutepack
         - Bloodpack
         - Gauze
+        - Hypospray
         - Ointment
         - PillCanister
       components:
-        - Hypospray
         - Injector
         - Pill
     grid:
