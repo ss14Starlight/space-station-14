@@ -38,7 +38,7 @@
       slotTexture: misc
       slotFlags: MISC
       uiWindowPos: 2,3
-      strippingWindowPos: 1,2
+      strippingWindowPos: 2,1
       displayName: Misc
     - name: mask
       slotTexture: mask

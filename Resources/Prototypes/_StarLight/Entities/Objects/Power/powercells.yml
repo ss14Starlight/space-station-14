@@ -12,7 +12,7 @@
       state: tiny
   - type: Item
     size: Small    
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 250 #while in theory this could give five uses, in practice it gives 2-3 uses (between charge-up time, cooldown and idle-time). Any lower and the margins are too narrow to get more than 1 use out of the defib.
     startingCharge: 250
   - type: Tag
@@ -39,8 +39,8 @@
           state: o2
           shader: unshaded
       color: "#ffeb52ff" # Yes I'm just taking the microreactor sprite and painting it yellow, sue me
-    - type: PredictedBattery
+    - type: Battery
       maxCharge: 5000
       startingCharge: 5000
-    - type: PredictedBatterySelfRecharger
+    - type: BatterySelfRecharger
       autoRechargeRate: 50

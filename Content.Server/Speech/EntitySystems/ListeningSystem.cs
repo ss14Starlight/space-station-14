@@ -2,6 +2,7 @@ using Content.Server.Chat.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
+using Content.Shared._Starlight.Chat; // Starlight
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -59,7 +60,13 @@ public sealed class ListeningSystem : EntitySystem
                 continue;
             }
 
-            if (obfuscatedEv != null && distance > ChatSystem.WhisperClearRange)
+            //Starlight begin
+            var whisperClearRange = SharedChatSystem.WhisperClearRange;
+            if(TryComp<ChatListenerRangeComponent>(source, out var rangeComp))
+                whisperClearRange = rangeComp.WhisperClearRange;
+            //Starlight end
+            
+            if (obfuscatedEv != null && distance > whisperClearRange) // Starlight-edit
                 RaiseLocalEvent(listenerUid, obfuscatedEv);
             else
                 RaiseLocalEvent(listenerUid, ev);

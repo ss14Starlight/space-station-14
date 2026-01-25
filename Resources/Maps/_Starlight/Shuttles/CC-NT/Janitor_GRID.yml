@@ -4142,7 +4142,7 @@ entities:
     components:
     - type: Transform
       parent: 3
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 169.66339
     - type: Physics
       canCollide: False
@@ -4150,7 +4150,7 @@ entities:
     components:
     - type: Transform
       parent: 6
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 130.0493
     - type: Physics
       canCollide: False
@@ -4158,7 +4158,7 @@ entities:
     components:
     - type: Transform
       parent: 25
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 11.942289
     - type: Physics
       canCollide: False
@@ -4166,7 +4166,7 @@ entities:
     components:
     - type: Transform
       parent: 27
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 17.67758
     - type: Physics
       canCollide: False
@@ -4174,7 +4174,7 @@ entities:
     components:
     - type: Transform
       parent: 40
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 179.0922
     - type: Physics
       canCollide: False
@@ -4182,7 +4182,7 @@ entities:
     components:
     - type: Transform
       parent: 43
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 185.24342
     - type: Physics
       canCollide: False
@@ -4190,7 +4190,7 @@ entities:
     components:
     - type: Transform
       parent: 62
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 137.68709
     - type: Physics
       canCollide: False
@@ -4198,7 +4198,7 @@ entities:
     components:
     - type: Transform
       parent: 64
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 139.5992
     - type: Physics
       canCollide: False
@@ -4206,7 +4206,7 @@ entities:
     components:
     - type: Transform
       parent: 77
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 151.6123
     - type: Physics
       canCollide: False
@@ -4214,7 +4214,7 @@ entities:
     components:
     - type: Transform
       parent: 80
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 153.55397
     - type: Physics
       canCollide: False
@@ -4222,7 +4222,7 @@ entities:
     components:
     - type: Transform
       parent: 99
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 77.99925
     - type: Physics
       canCollide: False
@@ -4230,7 +4230,7 @@ entities:
     components:
     - type: Transform
       parent: 101
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 76.08305
     - type: Physics
       canCollide: False
@@ -4238,7 +4238,7 @@ entities:
     components:
     - type: Transform
       parent: 114
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 181.42456
     - type: Physics
       canCollide: False
@@ -4246,7 +4246,7 @@ entities:
     components:
     - type: Transform
       parent: 117
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 169.57133
     - type: Physics
       canCollide: False
@@ -4254,7 +4254,7 @@ entities:
     components:
     - type: Transform
       parent: 136
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 107.83943
     - type: Physics
       canCollide: False
@@ -4262,7 +4262,7 @@ entities:
     components:
     - type: Transform
       parent: 138
-    - type: PredictedBattery
+    - type: Battery
       lastCharge: 99.33221
     - type: Physics
       canCollide: False

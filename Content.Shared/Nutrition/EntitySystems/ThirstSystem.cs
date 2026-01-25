@@ -11,6 +11,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -218,7 +219,16 @@ public sealed class ThirstSystem : EntitySystem
 
             thirst.NextUpdateTime += thirst.UpdateRate;
 
-            ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            //Starlight begin
+            if (thirst.ThirstDrains.Count > 0)
+            {
+                var totalDrain =
+                    thirst.ThirstDrains.Aggregate<(EntityUid, float, TimeSpan), float>(1,
+                        (current, modifier) => current * modifier.Item2);
+                ModifyThirst(uid, thirst, -totalDrain * thirst.ActualDecayRate);
+            }
+            else ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            //Starlight end
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 
             if (calculatedThirstThreshold == thirst.CurrentThirstThreshold)

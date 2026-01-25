@@ -15,3 +15,9 @@
   - chat-speech-verb-thaven-2
   - chat-speech-verb-thaven-3
   - chat-speech-verb-thaven-4
+
+- type: speechVerb
+  id: Lagomorph
+  name: chat-speech-verb-name-lagomorph
+  speechVerbStrings:
+  - chat-speech-verb-lagomorph

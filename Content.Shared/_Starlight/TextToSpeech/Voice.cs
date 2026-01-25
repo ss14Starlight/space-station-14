@@ -9,20 +9,20 @@ namespace Content.Shared.Starlight.TextToSpeech;
 /// Prototype represent TTS voices
 /// </summary>
 [Prototype("voice")]
-public sealed class VoicePrototype : IPrototype
+public sealed partial class VoicePrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [DataField("voice")]
-    public int Voice { get; }
+    public int Voice { get; private set; }
 
     [DataField("name")]
-    public string Name { get; } = string.Empty;
+    public string Name { get; private set; } = string.Empty;
 
     [DataField("sex", required: true)]
-    public Sex Sex { get; } = default!;
+    public Sex Sex { get; private set; } = default!;
 
     [DataField("silicon")]
-    public bool Silicon { get; } = false;
+    public bool Silicon { get; private set; } = false;
 }
