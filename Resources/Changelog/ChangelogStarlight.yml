@@ -27747,5 +27747,87 @@ Entries:
   id: 261900
   time: '2026-01-24T10:10:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2619
+- author: CrazyPhantom
+  changes:
+  - message: pAI to trinkets for 48h Overall playtime
+    type: Add
+  - message: Golden pAI to trinkets for 8h pAI playtime
+    type: Add
+  id: 179700
+  time: '2026-01-24T12:11:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1797
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added an Art Permit to the Document Printer
+    type: Add
+  - message: Amended Corporate Law to Clarify Art or Construction with a permit is
+      not vandalism
+    type: Tweak
+  id: 296000
+  time: '2026-01-24T20:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2960
+- author: STARLIGHT TEAM
+  changes:
+  - message: All syndicate borgs no longer possess a module that can carry the nuke
+      disk.
+    type: Remove
+  - message: Syndicate borgs can have their modules swapped out again.
+    type: Tweak
+  - message: Syndicate stealth borgs no longer have a hand so they can steal things
+      from people.
+    type: Tweak
+  - message: NO borgs now drop any and all held items not granted by a module on crit.
+    type: Tweak
+  id: 296500
+  time: '2026-01-25T00:09:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2965
+- author: Penguinwizzard
+  changes:
+  - message: Fixed editing loadouts.
+    type: Fix
+  id: 296700
+  time: '2026-01-25T01:31:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2967
+- author: neomoth
+  changes:
+  - message: All syndicate borgs now possess a module that can carry the nuke disk.
+    type: Add
+  - message: Syndicate stealth borgs now have a hand so they can steal things from
+      people.
+    type: Add
+  - message: Syndicate borgs can no longer have their modules swapped out.
+    type: Tweak
+  - message: ALL borgs now drop any and all held items not granted by a module on
+      crit.
+    type: Tweak
+  - message: Fixed borgs not being able to be constructed properly
+    type: Fix
+  id: 296800
+  time: '2026-01-25T02:10:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2968
+- author: neomoth
+  changes:
+  - message: All syndicate borgs now possess a module that can carry the nuke disk.
+      Beware, it can also pick up fake nuke disks! Again...
+    type: Add
+  - message: All syndicate borgs can no longer have their modules swapped out. Again...
+    type: Tweak
+  - message: Syndicate stealth borgs now have a hand so they can steal things from
+      people. Again...
+    type: Tweak
+  - message: ALL borgs now drop any and all held items not granted by a module on
+      crit. Again...
+    type: Tweak
+  id: 297000
+  time: '2026-01-25T02:12:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2970
+- author: neomoth
+  changes:
+  - message: Redo the fix to borgs that got undid by the undoing of the undoing of
+      the update that broke it. Say that 10 times fast.
+    type: Fix
+  id: 297100
+  time: '2026-01-25T02:31:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2971
 Order: -1
 
