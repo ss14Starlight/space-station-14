@@ -4,8 +4,8 @@ meta:
   engineVersion: 268.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/18/2025 17:22:42
-  entityCount: 11129
+  time: 01/24/2026 20:58:23
+  entityCount: 11131
 maps: []
 grids:
 - 1
@@ -258,6 +258,12 @@ entities:
             2488: 8.472959,3.0008636
             2489: 8.468552,4.0010233
             2490: 8.468552,5.000913
+            2501: -28,13
+        - node:
+            color: '#FFFFFFFF'
+            id: Arrows
+          decals:
+            2499: -33,9
         - node:
             angle: 1.5707963267948966 rad
             color: '#FFFFFFFF'
@@ -269,6 +275,7 @@ entities:
             2447: 4.5301065,-5.975676
             2463: 0,6
             2464: 3,6
+            2500: -30,11
         - node:
             zIndex: 1
             angle: 1.5707963267948966 rad
@@ -277,6 +284,12 @@ entities:
           decals:
             2347: 3,-6
             2348: 0,-6
+        - node:
+            angle: 3.141592653589793 rad
+            color: '#FFFFFFFF'
+            id: Arrows
+          decals:
+            2498: -31,7
         - node:
             angle: 4.71238898038469 rad
             color: '#FFFFFFFF'
@@ -294,20 +307,6 @@ entities:
           decals:
             2349: 0,-4
             2350: 3,-4
-        - node:
-            angle: 1.5707963267948966 rad
-            color: '#FF5C5CFF'
-            id: ArrowsGreyscale
-          decals:
-            2267: -30,11
-            2268: -30,11
-        - node:
-            angle: 4.71238898038469 rad
-            color: '#FF5C5CFF'
-            id: ArrowsGreyscale
-          decals:
-            2269: -28,13
-            2270: -28,13
         - node:
             color: '#FFFFFFFF'
             id: Bot
@@ -884,10 +883,11 @@ entities:
             id: BrickTileWhiteInnerNe
           decals:
             844: -36,7
-            851: -31,7
             852: -33,7
             1059: -34,15
-            1060: -30,13
+            2509: -31,7
+            2512: -30,13
+            2518: -30,11
         - node:
             color: '#52B4E9FF'
             id: BrickTileWhiteInnerNe
@@ -958,8 +958,6 @@ entities:
             842: -20,7
             843: -18,7
             859: -26,7
-            1067: -30,12
-            1068: -30,11
             1144: -17,21
             1151: -15,24
             1152: -14,24
@@ -1037,12 +1035,13 @@ entities:
             id: BrickTileWhiteInnerNw
           decals:
             845: -28,28
-            846: -28,13
             847: -28,7
-            848: -31,7
             849: -33,7
             856: -29,25
             1066: -34,15
+            2508: -31,7
+            2513: -28,13
+            2519: -28,11
         - node:
             color: '#52B4E9FF'
             id: BrickTileWhiteInnerNw
@@ -1134,8 +1133,6 @@ entities:
             836: -20,9
             840: -20,7
             841: -18,7
-            860: -28,12
-            861: -28,11
             1147: -15,21
             1148: -15,22
             1149: -15,23
@@ -1205,9 +1202,10 @@ entities:
             id: BrickTileWhiteInnerSe
           decals:
             858: -43,30
-            1061: -30,11
             1062: -31,9
-            1063: -33,9
+            2507: -33,9
+            2511: -30,11
+            2517: -30,13
         - node:
             color: '#52B4E9FF'
             id: BrickTileWhiteInnerSe
@@ -1280,8 +1278,6 @@ entities:
             818: -19,9
             819: -20,9
             839: -18,11
-            1069: -30,12
-            1070: -30,13
             1145: -17,21
             1157: -14,21
             1158: -14,22
@@ -1334,12 +1330,13 @@ entities:
             color: '#4B709CFF'
             id: BrickTileWhiteInnerSw
           decals:
-            853: -28,11
             854: -28,23
             855: -29,25
             857: -28,30
-            1064: -33,9
             1065: -31,9
+            2506: -33,9
+            2510: -28,11
+            2520: -28,13
         - node:
             color: '#52B4E9FF'
             id: BrickTileWhiteInnerSw
@@ -1425,8 +1422,6 @@ entities:
             821: -19,9
             822: -18,9
             838: -20,11
-            862: -28,12
-            863: -28,13
             1161: -15,21
             1162: -15,22
             1163: -15,23
@@ -1508,6 +1503,7 @@ entities:
           decals:
             1027: -30,10
             1028: -30,14
+            2516: -30,12
         - node:
             color: '#52B4E9FF'
             id: BrickTileWhiteLineE
@@ -1758,7 +1754,6 @@ entities:
             1056: -33,15
             1057: -32,15
             1058: -31,15
-            2278: -29,13
         - node:
             color: '#52B4E9FF'
             id: BrickTileWhiteLineN
@@ -1899,7 +1894,6 @@ entities:
             833: -23,11
             1189: -13,28
             1190: -12,28
-            2279: -29,11
         - node:
             color: '#EFB34196'
             id: BrickTileWhiteLineN
@@ -2006,7 +2000,6 @@ entities:
             1039: -35,9
             1040: -34,9
             1041: -32,9
-            2277: -29,11
         - node:
             color: '#52B4E9FF'
             id: BrickTileWhiteLineS
@@ -2153,7 +2146,6 @@ entities:
             1191: -14,26
             1192: -13,26
             1193: -12,26
-            2280: -29,13
         - node:
             color: '#EFB34196'
             id: BrickTileWhiteLineS
@@ -2268,6 +2260,7 @@ entities:
             1044: -42,12
             1047: -42,14
             1048: -42,13
+            2515: -28,12
         - node:
             color: '#52B4E9FF'
             id: BrickTileWhiteLineW
@@ -2938,9 +2931,9 @@ entities:
             1021: -36,9
             1022: -35,9
             1023: -34,9
-            1024: -33,9
             1025: -32,9
             1026: -31,9
+            2505: -33,9
         - node:
             color: '#FFFFFFFF'
             id: MiniTileDarkLineS
@@ -2957,10 +2950,16 @@ entities:
             id: MiniTileDarkLineW
           decals:
             1015: -30,10
-            1016: -30,11
-            1017: -30,12
-            1018: -30,13
             1019: -30,14
+            2502: -30,11
+            2503: -30,12
+            2504: -30,13
+        - node:
+            color: '#4B709CFF'
+            id: MonoOverlay
+          decals:
+            2521: -29,13
+            2522: -29,11
         - node:
             color: '#43990996'
             id: QuarterTileOverlayGreyscale
@@ -3958,9 +3957,9 @@ entities:
           -9,1:
             0: 65535
           -8,2:
-            0: 63344
+            0: 63346
           -9,2:
-            0: 65520
+            0: 65528
           -8,3:
             0: 30711
           -9,3:
@@ -50570,18 +50569,6 @@ entities:
     - type: Transform
       pos: -34.5,52.5
       parent: 1
-- proto: HighSecCommandLocked
-  entities:
-  - uid: 7524
-    components:
-    - type: Transform
-      pos: -30.5,8.5
-      parent: 1
-  - uid: 7525
-    components:
-    - type: Transform
-      pos: -32.5,8.5
-      parent: 1
 - proto: HolofanProjector
   entities:
   - uid: 77
@@ -51230,6 +51217,12 @@ entities:
         - - Pressed
           - Toggle
         8798:
+        - - Pressed
+          - Toggle
+        11131:
+        - - Pressed
+          - Toggle
+        11130:
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -58945,6 +58938,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -42.5,12.5
       parent: 1
+  - uid: 11130
+    components:
+    - type: Transform
+      pos: -32.5,8.5
+      parent: 1
+  - uid: 11131
+    components:
+    - type: Transform
+      pos: -30.5,8.5
+      parent: 1
 - proto: SignalButtonDirectional
   entities:
   - uid: 8802
@@ -63535,16 +63538,25 @@ entities:
       parent: 1
     - type: AccessReader
       accessListsOriginal: []
-- proto: TurnstileGenpopEnter
+- proto: TurnstileCommand
   entities:
+  - uid: 7524
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -30.5,8.5
+      parent: 1
+  - uid: 7525
+    components:
+    - type: Transform
+      pos: -32.5,8.5
+      parent: 1
   - uid: 9541
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -28.5,13.5
       parent: 1
-- proto: TurnstileGenpopLeave
-  entities:
   - uid: 9542
     components:
     - type: Transform
@@ -71330,7 +71342,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -225.13188
+      secondsUntilStateChange: -552.5108
       state: Opening
     - type: Airlock
       autoClose: False
@@ -71344,7 +71356,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -226.03189
+      secondsUntilStateChange: -553.4108
       state: Opening
     - type: Airlock
       autoClose: False
@@ -71358,7 +71370,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -21319.09
+      secondsUntilStateChange: -21646.469
       state: Opening
     - type: Airlock
       autoClose: False
@@ -71387,7 +71399,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -21320.055
+      secondsUntilStateChange: -21647.434
       state: Opening
     - type: Airlock
       autoClose: False
