@@ -1049,6 +1049,29 @@ doc-text-printer-surgery-consent-permit =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
+doc-text-printer-art-permit =
+   ⠀[logo]            [cclogo] 
+
+                             [head=3]NT-CC Consortium Services[/head]
+
+                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+   ⠀⠀                           [bold]ART PERMIT[/bold]
+    ────────────────────────────────────────
+    Date And Time:[color=#0000ff] [form] [/color]
+    Document Compiler:[color=#0000ff] [form] [/color]
+    
+    I, [bolditalic][color=#0000ff] [signature] [/color][/bolditalic], hereby approve the creation of the following work of art in the location given below.
+    
+    Subject of the artpiece:[color=#0000ff] [form] [/color]
+    Location of the artpiece:[color=#0000ff] [form] [/color] [italic][color=#a9a9a9]
+    
+    Art permits require a stamp from the Head of Personnel, the NanoTrasen Representative, or the Captain. If an artwork is located inside of a department or at its lobby the stamp of the relevant head of staff is required as well.
+    
+    Any artwork that requires significant modification to the station's structure may also require the stamp of the Chief Engineer.[/color][/italic]
+    
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
    
 # OrdersAndInstructions

@@ -64,8 +64,8 @@
 - type: entity
   parent: BasePlushieLizardJob
   id: PlushieLizardJobChaplain
-  name: chaplain lizard plushie
-  description: An adorable stuffed toy that resembles a lizardperson as a chaplain. It smells faintly of incense.
+  name: lizard-priest plushie # Starlight
+  description: An adorable stuffed toy that resembles a lizardperson as a Chaplain. It smells faintly of ayahuasca. # Starlight
   components:
   - type: Sprite
     state: chaplain

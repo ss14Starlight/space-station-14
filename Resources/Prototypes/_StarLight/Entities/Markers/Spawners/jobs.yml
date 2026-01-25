@@ -55,7 +55,7 @@
 - type: entity
   id: SpawnPointBlueShield
   parent: SpawnPointJobBase
-  name: officer "blue shield"
+  name: blue shield officer
   components:
   - type: SpawnPoint
     job_id: BlueShield

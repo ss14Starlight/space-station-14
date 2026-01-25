@@ -2,9 +2,10 @@
   id: BaseColdBird
   abstract: true
   components:
-    - type: Temperature
+    - type: TemperatureDamage
       heatDamageThreshold: 310
       coldDamageThreshold: 223
+    - type: Temperature
       currentTemperature: 261
       specificHeat: 48
     - type: ThermalRegulator
@@ -15,6 +16,11 @@
       shiveringHeatRegulation: 2000
       normalBodyTemperature: 261
       thermalRegulationTemperatureThreshold: 1
+    - type: TemperatureSpeed
+      thresholds:
+        250: 0.9
+        230: 0.8
+        223: 0.6
 
 - type: entity
   save: false
@@ -110,11 +116,6 @@
         0: Alive
         90: Critical
         180: Dead
-    - type: TemperatureSpeed
-      thresholds:
-        250: 0.9
-        230: 0.8
-        223: 0.6
     - type: Fixtures
       fixtures:
         fix1:

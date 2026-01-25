@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Resomi sprites by Huaqas (GitHub).",
+    "copyright": "Resomi sprites by Huaqas (GitHub). | Lagomorph srpiets by InanimateIJK",
     "size": {
         "x": 32,
         "y": 32
@@ -15,6 +15,35 @@
                     0.3,
                     0.3,
                     0.4
+                ]
+            ]
+        },
+        {
+            "name": "lagomorph0",
+            "delays": [
+                [
+                    0.2,
+                    0.3,
+                    0.3,
+                    0.5
+                ]
+            ]
+        },
+        {
+            "name": "lagomorph1"
+        },
+        {
+            "name": "lagomorph2"
+        },
+        {
+            "name": "lagomorph3",
+            "delays": [
+                [
+                    0.2,
+                    0.3,
+                    0.3,
+                    0.5,
+                    0.5
                 ]
             ]
         }

@@ -108,6 +108,8 @@
   - CigPackBub #SL
   - PillCanisterPsicodine #SL
   - ClothingDogTags # SL
+  - PersonalAI #SL
+  - GoldenPersonalAI #SL
 
 - type: loadoutGroup
   id: Glasses

@@ -21,14 +21,16 @@
       voice: alvinjr
     - type: IntrinsicRadioReceiver
     - type: IntrinsicRadioTransmitter
-      channels: [Common, CentCom, Command, Engineering, Medical, Science, Security, Service, Supply, Law, Binary, Expedition, Freelance, Xenoborg, Soviet, Mothership, Syndicate]
+      channels: [Common, CentCom, Command, Engineering, Medical, Science, Security, Service, Supply, Law, Binary, Expedition, Freelance, Xenoborg, Soviet, Mothership, Syndicate, Aspace, Global, Blackstar, Merchant]
     - type: ActiveRadio
-      channels: [Common, CentCom, Command, Engineering, Medical, Science, Security, Service, Supply, Law, Binary, Expedition, Freelance, Xenoborg, Soviet, Mothership, Syndicate]
+      channels: [Common, CentCom, Command, Engineering, Medical, Science, Security, Service, Supply, Law, Binary, Expedition, Freelance, Xenoborg, Soviet, Mothership, Syndicate, Aspace, Global, Blackstar, Merchant]
+    - type: MovementAlwaysTouching
     
 - type: entity
   parent: ClothingBackpack
   id: SkubPack
   categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
   name: skubpack
   description: what... the fuck...
   components:
@@ -52,6 +54,7 @@
   name: wide skub barrage
   id: SkubSpreadShot
   categories: [ HideSpawnMenu ]
+  suffix: Admeme, DO NOT MAP
   parent: Skub
   components:
     - type: ProjectileSpread
@@ -62,6 +65,7 @@
 - type: entity
   id: SkubPDA
   categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
   name: Skub PDA
   description: Very skubular.
   parent: AdminPDA
@@ -73,6 +77,7 @@
 - type: entity
   id: SkubIDCard
   categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
   parent: UniversalIDCard
   components:
     - type: IdCard
@@ -81,21 +86,40 @@
 - type: entity
   id: SkubSuit
   categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
   parent: ClothingOuterSkub
   components:
     - type: Unremoveable
+    - type: PressureProtection
+      highPressureMultiplier: 0.02
+      lowPressureMultiplier: 1000
+    - type: TemperatureProtection
+      coolingCoefficient: 0.01
+      heatingCoefficient: 0.01
 
 - type: entity
   id: SkubHat
   categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
   parent: ClothingHeadHatSkub
   components:
     - type: Unremoveable
+    - type: PressureProtection
+      highPressureMultiplier: 0.08
+      lowPressureMultiplier: 1000
+    - type: TemperatureProtection
+      coolingCoefficient: 0.1
+      heatingCoefficient: 0.1
+    - type: BreathMask
+      allowedSlots: [HEAD]
+    - type: IdentityBlocker
+      enabled: false
 
 - type: entity
   id: SpeedySkub
   parent: Skub
   categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
   components:
     - type: MeleeWeapon
       attackRate: 15
@@ -107,6 +131,7 @@
   id: SkubGun
   parent: WeaponRifleFoam
   categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
   components:
     - type: BallisticAmmoProvider
       proto: SkubSpreadShot
@@ -117,6 +142,7 @@
   id: PocketTether
   parent: WeaponTetherGunAdmin
   categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
   components:
     - type: Item
       size: Tiny

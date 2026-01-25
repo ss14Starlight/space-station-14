@@ -34,3 +34,28 @@
       entity_storage: !type:AllSelector
         children:
         - id: MoproachBox
+
+- type: entity
+  name: twinpointer kit crate
+  description: Contains three twinpointer kits for all your bidirectional wayfinding needs.
+  id: CrateFunTwinPointer
+  parent: CrateGenericSteel
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        entity_storage: !type:AllSelector
+          children:
+            - id: TwinPointerKit
+              amount: 3
+              
+- type: entity
+  id: CrateFunMegaShark
+  parent: CrateGenericSteel
+  name: mega shark crate
+  description: One absolutely massive, huggable shark plushie. Perfect for those who need a BIG friend!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PlushieLargeSoftShark

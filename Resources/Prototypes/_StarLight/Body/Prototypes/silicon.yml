@@ -1,0 +1,11 @@
+- type: body
+  id: BorgSyndicateStealth
+  name: cyborg
+  root: torso
+  slots:
+    torso:
+      part: TorsoBorg
+      connections:
+        - righthand
+    righthand:
+      part: RightArmBorg

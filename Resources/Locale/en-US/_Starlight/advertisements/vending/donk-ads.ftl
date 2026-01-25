@@ -1,0 +1,10 @@
+﻿advertisement-donkpocket-1 = With great flavor comes great responsibility!
+advertisement-donkpocket-2 = The Brothers DONK, new episodes streaming every Thursday on Donk Plus!
+advertisement-donkpocket-3 = Quality food for low prices!
+advertisement-donkpocket-4 = Better fed than dead!
+advertisement-donkpocket-5 = It's food, legally!
+advertisement-donkpocket-6 = DONK Pocket waffle flavor discontinued.
+advertisement-donkpocket-7 = Try our Mystery Meat special!
+advertisement-donkpocket-8 = Think you know whats in the Clown Surprise? Think again!
+advertisement-donkpocket-9 = 9/10 doctors agreed under duress!
+advertisement-donkpocket-10 = Doesn't contain performance enhancing drugs, probably.

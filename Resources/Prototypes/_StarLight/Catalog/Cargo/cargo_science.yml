@@ -1,9 +1,10 @@
-- type: cargoProduct
-  id: ScienceStarterXenobiology
-  icon:
-    sprite: _Starlight/Mobs/XenoSlimes/test_sprite.rsi
-    state: test_slime
-  product: CrateStarterXenobiology
-  cost: 5000
-  category: cargoproduct-category-name-science
-  group: market
+#TODO: uncomment once xenobio is properly balanced and sprited
+# - type: cargoProduct
+#   id: ScienceStarterXenobiology
+#   icon:
+#     sprite: _Starlight/Mobs/XenoSlimes/test_sprite.rsi
+#     state: test_slime
+#   product: CrateStarterXenobiology
+#   cost: 5000
+#   category: cargoproduct-category-name-science
+#   group: market
