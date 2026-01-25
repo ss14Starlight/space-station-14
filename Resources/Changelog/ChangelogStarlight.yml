@@ -27829,5 +27829,86 @@ Entries:
   id: 297100
   time: '2026-01-25T02:31:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2971
+- author: Fractalflower
+  changes:
+  - message: Gender pins render on you in the loadout screen.
+    type: Fix
+  - message: Thaven no longer have their jacket welded to their skin.
+    type: Fix
+  id: 297400
+  time: '2026-01-25T09:54:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2974
+- author: WizDen Team and Penguinwizzard
+  changes:
+  - message: Added upstream changes up to 3ad57230f4
+    type: Add
+  - message: Arrivals shuttle power is now childproofed.
+    type: Tweak
+  - message: The syndicate has seen the value in having lockers that can be built
+      into walls or locked.
+    type: Add
+  - message: You can now use cardboard to make small boxes.
+    type: Add
+  - message: Many shields can now be welded to repair them.
+    type: Add
+  - message: Station AIs constructed with an empty positronic brain now search for
+      population using a ghost role.
+    type: Add
+  - message: Cable coils can now be destroyed by damage.
+    type: Tweak
+  - message: FTL arrival effects should now rotate correctly.
+    type: Fix
+  - message: Atmos devices and sensors should now correctly handle large sections
+      of a grid being destroyed and rebuilt.
+    type: Fix
+  - message: Donk Co. microwave is now Syndicate contraband.
+    type: Tweak
+  - message: When getting random chemicals on botany plants randomly, the minimum
+      quantity is now a fifth of the capacity (rather than effectively zero).
+    type: Tweak
+  - message: Jet Injectors, a hypodermic alternative to syringes. Also available in
+      "advanced" form.
+    type: Add
+  - message: The ERT have been encouraged to wear substantially more equipment around
+      the base.
+    type: Add
+  - message: The Syndicate have decided that enough is enough and will now have their
+      IFF hidden by default.
+    type: Tweak
+  - message: Broken vending machines now stop you from using them.
+    type: Fix
+  - message: Happy Honk Big Bite boxes may now contain crayon boxes.
+    type: Add
+  - message: Large grid shuttles colliding should now cause less lag.
+    type: Fix
+  - message: The powers that be may now decree that you are a ninja.
+    type: Add
+  - message: The decoy syndicate bomb now has a repurchase timer, similar to the regular
+      syndicate bomb.
+    type: Tweak
+  - message: Being in ammonia clouds now restores Rat Kings' blood levels, in addition
+      to previous effects.
+    type: Tweak
+  - message: Detective stamp is now aligned with other stamps (icon shifted 2px).
+    type: Fix
+  - message: Chemmasters can now be toggled between filling pills and patches from
+      their buffer or the inserted beaker.
+    type: Tweak
+  - message: Paper can now be extinguished with a fire extinguisher.
+    type: Fix
+  - message: Ninjas now have a custom bag.
+    type: Add
+  id: 281500
+  time: '2026-01-25T13:37:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2815
+- author: AFTERLIGHT Team, Happyrobot33, InanimateIJK, Motherain, Conf, DocMoth, Neomoth,
+    LilyflowerFDL, lukeman
+  changes:
+  - message: Nanotrasen engages in radical strikebreaking methods via the introduction
+      of a new artificially-developed species of laborers known as Lagomorphs.
+    type: Add
+  id: 268000
+  time: '2026-01-25T15:48:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2680
 Order: -1
 

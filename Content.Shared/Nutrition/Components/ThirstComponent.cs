@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared.Alert;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.GameStates;
@@ -6,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Nutrition.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(ThirstSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(ThirstSystem), typeof(SharedStaminaSurgeSystem))] // Starlight edit
 [AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class ThirstComponent : Component
 {
@@ -66,6 +67,13 @@ public sealed partial class ThirstComponent : Component
         {ThirstThreshold.Parched, "Parched"},
         {ThirstThreshold.Dead, "Parched"},
     };
+    
+    //Starlight begin
+    /// <summary>
+    /// A list of values to drain thirst by every update tick. Gets multiplied by decay rate.
+    /// </summary>
+    [DataField] public List<(EntityUid, float, TimeSpan)> ThirstDrains = [];
+    //Starlight end
 }
 
 [Flags]

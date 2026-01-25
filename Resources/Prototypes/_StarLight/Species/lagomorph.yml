@@ -1,0 +1,161 @@
+- type: species
+  id: Lagomorph
+  name: species-name-lagomorph
+  roundStart: true
+  prototype: MobLagomorph
+  sprites: MobLagomorphSprites
+  markingLimits: MobLagomorphMarkingLimits
+  dollPrototype: MobLagomorphDummy
+  skinColoration: Hues
+  customName: true
+  minAge: 22
+  youngAge: 25
+  oldAge: 70
+  maxAge: 80
+  minWidth: 0.9
+  defaultWidth: 1
+  maxWidth: 1.2
+  minHeight: 0.9
+  defaultHeight: 1
+  maxHeight: 1.3
+  standardSize: 150
+  standardWeight: 40
+  standardDensity: 17
+
+- type: speciesBaseSprites
+  id: MobLagomorphSprites
+  sprites:
+    Tail: MobHumanoidAnyMarking
+    Special: MobHumanoidAnyMarking
+    Head: MobLagomorphHead
+    HeadSide: MobHumanoidAnyMarking
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Chest: MobLagomorphTorso
+    Eyes: MobHumanoidEyes
+    HeadTop: MobHumanoidAnyMarking
+    LArm: MobLagomorphLArm
+    RArm: MobLagomorphRArm
+    LHand: MobLagomorphLHand
+    RHand: MobLagomorphRHand
+    LLeg: MobLagomorphLLeg
+    RLeg: MobLagomorphRLeg
+    LFoot: MobLagomorphLFoot
+    RFoot: MobLagomorphRFoot
+
+- type: markingPoints
+  id: MobLagomorphMarkingLimits
+  points:
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ LagomorphTailFluffy ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ LagomorphEarsTall ]
+    HeadSide:
+      points: 2
+      required: false
+    Head:
+      points: 1
+      required: false
+    Special:
+      points: 2
+      required: false
+    Arms:
+      points: 4
+      required: false
+    Legs:
+      points: 3
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobLagomorphHead
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobLagomorphHeadMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobLagomorphHeadFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobLagomorphTorso
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobLagomorphTorsoMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobLagomorphTorsoFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobLagomorphLLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobLagomorphLArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobLagomorphLHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobLagomorphLFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobLagomorphRLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobLagomorphRArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobLagomorphRHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobLagomorphRFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    state: r_foot
