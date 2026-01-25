@@ -170,7 +170,7 @@
       damage:
         types:
           Blunt: 0.15
-    - type: Temperature
+    - type: TemperatureDamage
       coldDamage:
         types:
           Cold: 0.03
@@ -270,7 +270,7 @@
       damage:
         types:
           Blunt: 0.15
-    - type: Temperature
+    - type: TemperatureDamage
       coldDamage:
         types:
           Cold: 0.01

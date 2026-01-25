@@ -19,7 +19,11 @@ namespace Content.Server.GameTicking.Commands
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
+        [Dependency] private readonly ILogManager _logManager = default!;
+
+        [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!; // Starlight
+
+        private readonly ISawmill _sawmill;
 
         public string Command => "joingame";
         public string Description => "";
@@ -28,7 +32,10 @@ namespace Content.Server.GameTicking.Commands
         public JoinGameCommand()
         {
             IoCManager.InjectDependencies(this);
+
+            _sawmill = _logManager.GetSawmill("security");
         }
+
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             if (args.Length != 3)

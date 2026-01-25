@@ -33,6 +33,7 @@
   - type: Battery
     maxCharge: 500
     startingCharge: 0
+    netsync: false
   - type: Damageable
     damageModifierSet: Metallic
   - type: Destructible
