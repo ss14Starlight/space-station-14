@@ -86,10 +86,10 @@
   id: CultDaggerCurved
   components:
   - type: Sprite
-    sprite: BloodCult/Objects/Weapons/Melee/bloodcult_dagger_curved.rsi
+    sprite: /Textures/_Funkystation/BloodCult/Objects/Weapons/Melee/bloodcult_dagger_curved.rsi
     state: icon
   - type: Clothing
-    sprite: BloodCult/Objects/Weapons/Melee/bloodcult_dagger_curved.rsi
+    sprite: /Textures/_Funkystation/BloodCult/Objects/Weapons/Melee/bloodcult_dagger_curved.rsi
 
 - type: entity
   name: cult dagger
@@ -98,10 +98,10 @@
   id: CultDaggerSerrated
   components:
   - type: Sprite
-    sprite: BloodCult/Objects/Weapons/Melee/bloodcult_dagger_serrated.rsi
+    sprite: /Textures/_Funkystation/BloodCult/Objects/Weapons/Melee/bloodcult_dagger_serrated.rsi
     state: icon
   - type: Clothing
-    sprite: BloodCult/Objects/Weapons/Melee/bloodcult_dagger_serrated.rsi
+    sprite: /Textures/_Funkystation/BloodCult/Objects/Weapons/Melee/bloodcult_dagger_serrated.rsi
 
 - type: entity
   name: cult dagger
@@ -110,7 +110,7 @@
   id: CultDaggerStraight
   components:
   - type: Sprite
-    sprite: BloodCult/Objects/Weapons/Melee/bloodcult_dagger_straight.rsi
+    sprite: /Textures/_Funkystation/BloodCult/Objects/Weapons/Melee/bloodcult_dagger_straight.rsi
     state: icon
   - type: Clothing
-    sprite: BloodCult/Objects/Weapons/Melee/bloodcult_dagger_straight.rsi
+    sprite: /Textures/_Funkystation/BloodCult/Objects/Weapons/Melee/bloodcult_dagger_straight.rsi

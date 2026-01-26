@@ -95,13 +95,16 @@ public sealed class BloodCultRuneEffectSystem : EntitySystem
         if (_sprite.LayerMapTryGet(spriteEntity, EffectLayers.Unshaded, out var layerIndex, false))
         {
             var currentState = _sprite.LayerGetRsiState(spriteEntity, layerIndex);
-            var currentStateName = currentState.Name ?? "";
-            
-            // If the state ends with "_drawing", change it to the normal state
-            if (currentStateName.EndsWith("_drawing"))
+            if (currentState != null && currentState.Name != null)
             {
-                var normalState = currentStateName.Substring(0, currentStateName.Length - "_drawing".Length);
-                _sprite.LayerSetRsiState(spriteEntity, EffectLayers.Unshaded, new RSI.StateId(normalState));
+                var currentStateName = currentState.Name;
+                
+                // If the state ends with "_drawing", change it to the normal state
+                if (currentStateName.EndsWith("_drawing"))
+                {
+                    var normalState = currentStateName.Substring(0, currentStateName.Length - "_drawing".Length);
+                    _sprite.LayerSetRsiState(spriteEntity, EffectLayers.Unshaded, new RSI.StateId(normalState));
+                }
             }
         }
 
