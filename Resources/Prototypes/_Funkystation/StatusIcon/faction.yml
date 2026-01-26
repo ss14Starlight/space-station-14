@@ -9,5 +9,5 @@
       - ShowAntagIcons
       - BloodCultist
   icon:
-    sprite: Textures/_Funkystation/Interface/Misc/job_icons.rsi
+    sprite: _Funkystation/Interface/Misc/job_icons.rsi
     state: Cultist
