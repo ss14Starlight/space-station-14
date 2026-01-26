@@ -63,6 +63,7 @@ public sealed class StationPowerTests
         "StarlightReach",
         "StarlightSaltern",
         "StarlightSilica",
+        "StarlightSpaceMall",
         "StarlightCluster",
         "StarlightStationBuilding",
         "StarlightPlasma",
