@@ -1,0 +1,34 @@
+- type: entity
+  id: CultHamstone
+  parent: [ BaseItem, BaseBloodCultContraband ]
+  name: hamstone
+  description: "Crystalized blood of Nar'Sie, containing the brain and soul of a damned hamster."
+  components:
+  - type: Sprite
+    sprite: _Funkystation/BloodCult/Objects/hamstone.rsi
+    state: hamstone
+  - type: Input
+    context: "ghost"
+  - type: SoulStone
+  - type: Clickable
+  - type: MindContainer
+  - type: Speech
+  - type: Emoting
+  - type: Item
+    size: Small
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

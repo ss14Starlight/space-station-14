@@ -1,0 +1,49 @@
+- type: entity
+  id: ForceBarrierSpawnAnimation
+  name: unfinished force barrier
+  description: A materializing force barrier.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ForceBarrier
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: Structures/Magic/forcewall.rsi
+    state: forcewallspawn
+
+- type: entity
+  id: ForceBarrier
+  name: force barrier
+  description: A magical barrier! Too late, alas.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: TimedDespawn
+    lifetime: 25
+  - type: ForceBarrier
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: Structures/Magic/forcewall.rsi
+    state: forcewall
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+  #- type: PreventCollide
+  - type: Physics
+    bodyType: Static
+  - type: Tag
+    tags:
+    - Wall
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+          - FullTileMask
+        layer:
+          - WallLayer
+  - type: Icon
+    sprite: Structures/Magic/forcewall.rsi
+    state: forcewall

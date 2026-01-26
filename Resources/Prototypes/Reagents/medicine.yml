@@ -1199,6 +1199,10 @@
         factor: 3
     Medicine:  # Starlight
       effects:
+      # Funkystation Start: BloodCult
+      - !type:DeCultify
+        amount: 2.5
+      # Funkystation End
       #If vampire
       - !type:HealthChange
         conditions:

@@ -1,0 +1,4 @@
+# This is an evil cult thingy and is illegal to own IC.
+- type: contrabandSeverity
+  id: BloodCult
+  examineText: contraband-examine-text-BloodCult

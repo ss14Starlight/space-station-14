@@ -1,0 +1,45 @@
+- type: entity
+  id: CultSoulStone
+  parent: [ BaseItem, BaseBloodCultContraband ]
+  name: soul stone
+  description: "Crystalized blood of Nar'Sie, containing the brain and soul of the damned."
+  components:
+  - type: Sprite
+    sprite: _Funkystation/BloodCult/Objects/soulstone.rsi
+    state: soulstone
+  - type: Input
+    context: "ghost"
+  - type: SoulStone
+  - type: Clickable
+  - type: MindContainer
+  - type: Speech
+  - type: Emoting
+  - type: Item
+    size: Small
+    heldPrefix: soulstone
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: CultSoulStoneShard
+  parent: CultSoulStone
+  name: soulstone shard
+  description: A fragment of Nar'Sie's crystalized blood, still humming with trapped souls.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/BloodCult/Objects/soulstone.rsi
+    state: soulstone

@@ -14,6 +14,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Roles.Components;
 using Content.Server._Starlight.GameTicking.Rules.Components;
+using Content.Server._Funkystation.GameTicking.Rules.Components;
 using Content.Shared._Starlight.Shadekin;
 
 namespace Content.Server.Administration.Systems;
@@ -37,6 +38,7 @@ public sealed partial class AdminVerbSystem
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
     private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight
+    private static readonly EntProtoId DefaultBloodCultRule = "BloodCult"; // Funkystation: BloodCult
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -226,6 +228,23 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", ninjaName, Loc.GetString("admin-verb-make-space-ninja")),
         };
         args.Verbs.Add(ninja);
+
+        // Funkystation Start: BloodCult verb
+        var bloodCultName = Loc.GetString("admin-verb-text-make-bloodcult");
+        Verb bloodCult = new()
+        {
+            Text = bloodCultName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/BloodCult/bloodrune.rsi"), "offering-icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<BloodCultRuleComponent>(targetPlayer, DefaultBloodCultRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", bloodCultName, Loc.GetString("admin-verb-make-bloodcult")),
+        };
+        args.Verbs.Add(bloodCult);
+        // Funkystation End
 
         if (HasComp<HumanoidAppearanceComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);

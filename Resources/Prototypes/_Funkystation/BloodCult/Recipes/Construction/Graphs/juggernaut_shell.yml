@@ -1,0 +1,17 @@
+- type: constructionGraph
+  id: CultJuggernautShell
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: juggernautShell
+          completed:
+            - !type:SnapToGrid
+              southRotation: false
+          steps:
+            - material: RunedSteel
+              amount: 30
+              doAfter: 20
+
+    - node: juggernautShell
+      entity: CultJuggernautShell

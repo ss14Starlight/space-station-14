@@ -1,0 +1,26 @@
+- type: entity
+  id: BloodCult
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 20
+  - type: BloodCultRule
+  - type: AntagSelection
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ BloodCultist ]
+      min: 3
+      max: 5
+      playerRatio: 10
+      startingGear: BloodCultistGear
+      briefing:
+        text: cult-start-briefing
+        color: CornflowerBlue
+        sound: "/Audio/_Funkystation/Ambience/Antag/cultist_start.ogg"
+      blacklist:
+        components:
+        - BibleUser
+      components:
+      - type: BloodCultist
+      mindRoles:
+      - MindRoleCultist

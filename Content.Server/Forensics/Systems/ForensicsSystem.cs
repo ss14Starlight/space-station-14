@@ -21,6 +21,7 @@ using Robust.Shared.Random;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 using Content.Shared.Hands.Components;
+using Content.Shared._Funkystation.BloodCult.Components; // Funkystation
 
 namespace Content.Server.Forensics
 {
@@ -44,6 +45,7 @@ namespace Content.Server.Forensics
             SubscribeLocalEvent<ForensicsComponent, GotRehydratedEvent>(OnRehydrated);
             SubscribeLocalEvent<CleansForensicsComponent, AfterInteractEvent>(OnAfterInteract, after: new[] { typeof(AbsorbentSystem) });
             SubscribeLocalEvent<ForensicsComponent, CleanForensicsDoAfterEvent>(OnCleanForensicsDoAfter);
+            SubscribeLocalEvent<CleanableRuneComponent, CleanForensicsDoAfterEvent>(OnCleanRuneDoAfter); // Funkystation: BloodCult
             SubscribeLocalEvent<DnaComponent, TransferDnaEvent>(OnTransferDnaEvent);
             SubscribeLocalEvent<DnaSubstanceTraceComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
             SubscribeLocalEvent<CleansForensicsComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
@@ -188,6 +190,13 @@ namespace Content.Server.Forensics
             if (!args.CanInteract || !args.CanAccess)
                 return;
 
+            // Funkystation Start: Check if target is a cleanable rune or has forensics
+            var isRune = HasComp<CleanableRuneComponent>(args.Target);
+            var hasForensics = HasComp<ForensicsComponent>(args.Target);
+
+            if (!isRune && !hasForensics)
+                return;
+            // Funkystation End
             // These need to be set outside for the anonymous method!
             var user = args.User;
             var target = args.Target;
@@ -196,8 +205,10 @@ namespace Content.Server.Forensics
             {
                 Act = () => TryStartCleaning(entity, user, target),
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/bubbles.svg.192dpi.png")),
-                Text = Loc.GetString(Loc.GetString("forensics-verb-text")),
-                Message = Loc.GetString(Loc.GetString("forensics-verb-message")),
+                // Funkstation edit Start: Different text for runes
+				Text = isRune ? Loc.GetString("cult-rune-clean-verb-text") : Loc.GetString("forensics-verb-text"),
+                Message = isRune ? Loc.GetString("cult-rune-clean-verb-message") : Loc.GetString("forensics-verb-message"),
+                // Funkstation edit End
                 // This is important because if its true using the cleaning device will count as touching the object.
                 DoContactInteraction = false
             };
@@ -206,7 +217,7 @@ namespace Content.Server.Forensics
         }
 
         /// <summary>
-        ///     Attempts to clean the given item with the given CleansForensics entity.
+        ///     Attempts to clean the given item with the given CleansForensics entity or CleanableRuneComponent (blood cult runes).
         /// </summary>
         /// <param name="cleanForensicsEntity">The entity that is being used to clean the target.</param>
         /// <param name="user">The user that is using the cleanForensicsEntity.</param>
@@ -214,6 +225,26 @@ namespace Content.Server.Forensics
         /// <returns>True if the target can be cleaned and has some sort of DNA or fingerprints / fibers and false otherwise.</returns>
         public bool TryStartCleaning(Entity<CleansForensicsComponent> cleanForensicsEntity, EntityUid user, EntityUid target)
         {
+			// Funkystation Start: Check if target is a cleanable rune
+            if (TryComp<CleanableRuneComponent>(target, out _))
+            {
+                var cleanDelay = cleanForensicsEntity.Comp.CleanDelay;
+                var doAfterArgs = new DoAfterArgs(EntityManager, user, cleanDelay, new CleanForensicsDoAfterEvent(), target, target: target, used: cleanForensicsEntity)
+                {
+                    NeedHand = true,
+                    BreakOnDamage = true,
+                    BreakOnMove = true,
+                    MovementThreshold = 0.01f,
+                    // DistanceThreshold is null by default, which uses the standard interaction range
+                };
+
+                if (!_doAfterSystem.TryStartDoAfter(doAfterArgs))
+                    return false;
+
+                _popupSystem.PopupEntity(Loc.GetString("cult-rune-cleaning", ("target", target)), user, user);
+                return true;
+            }
+            // Funkystation End
             if (!TryComp<ForensicsComponent>(target, out var forensicsComp))
             {
                 _popupSystem.PopupEntity(Loc.GetString("forensics-cleaning-cannot-clean", ("target", target)), user, user, PopupType.MediumCaution);
@@ -290,6 +321,26 @@ namespace Content.Server.Forensics
 
             return DNA;
         }
+
+        // Funkystation Start: BloodCult
+		private void OnCleanRuneDoAfter(EntityUid uid, CleanableRuneComponent component, CleanForensicsDoAfterEvent args)
+        {
+            if (args.Handled || args.Cancelled || args.Args.Target == null)
+                return;
+
+            var target = args.Args.Target.Value;
+
+            // Double-check it's still a cleanable rune
+            if (!TryComp<CleanableRuneComponent>(target, out _))
+                return;
+
+            // Delete the rune
+            QueueDel(target);
+
+            _popupSystem.PopupEntity(Loc.GetString("cult-rune-cleaned", ("target", target)), args.Args.User, args.Args.User, PopupType.Medium);
+            args.Handled = true;
+        }
+        // Funkystation End
 
         private void ApplyEvidence(EntityUid user, EntityUid target)
         {
