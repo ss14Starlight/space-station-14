@@ -86,4 +86,17 @@ public sealed partial class ToggleableGhostRoleComponent : Component
     /// </summary>
     [DataField("job")]
     public ProtoId<JobPrototype>? JobProto;
+    //Harmony start
+    /// <summary>
+    /// The last contained mind
+    /// </summary>
+    [DataField]
+    public EntityUid? LastMind = default!;
+
+    /// <summary>
+    /// Whether a wiped mind will automatically be returned once toggled back on
+    /// </summary>
+    [DataField]
+    public bool PriorityBoarding = false;
+    //Harmony end
 }

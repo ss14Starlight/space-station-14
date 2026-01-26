@@ -1,0 +1,1 @@
+positronic-brain-disable-device-verb-text = Disable Brain

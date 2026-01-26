@@ -97,10 +97,11 @@
       roleRules: ghost-role-information-silicon-rules
       mindRoles:
       - MindRoleGhostRoleSilicon
-      wipeVerbText: positronic-brain-wipe-device-verb-text
+      wipeVerbText: positronic-brain-disable-device-verb-text # Harmony
       wipeVerbPopup: positronic-brain-wiped-device
       stopSearchVerbText: positronic-brain-stop-searching-verb-text
       stopSearchVerbPopup: positronic-brain-stopped-searching
+      priorityBoarding: true # Harmony
       job: Borg
     - type: BlockMovement
     - type: Examiner

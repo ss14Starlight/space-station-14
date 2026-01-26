@@ -1,10 +1,12 @@
 using Content.Server.Ghost.Roles.Components;
+using Content.Server.Power.EntitySystems; //Harmony
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Shared.Player; //Harmony
 
 namespace Content.Server.Ghost.Roles;
 
@@ -16,6 +18,7 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!; //Harmony
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -48,6 +51,17 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString(component.BeginSearchingText), uid, args.User);
 
         UpdateAppearance(uid, ToggleableGhostRoleStatus.Searching);
+        //Harmony change - If the mind can be found, put it back on reactivation
+        var mindComp = CompOrNull<MindComponent>(component.LastMind);
+        var hasUserId = mindComp?.UserId;
+        var hasActiveSession = hasUserId != null && _playerManager.ValidSessionId(hasUserId.Value);
+
+        if (component.PriorityBoarding && hasActiveSession && component.LastMind != null)
+        {
+            _mind.TransferTo((EntityUid)component.LastMind, uid);
+            return;
+        }
+        //End harmony
 
         ActivateGhostRole((uid, component));
     }
@@ -92,6 +106,11 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
         // Mind was added, shutdown the ghost role stuff so it won't get in the way
         RemCompDeferred<GhostTakeoverAvailableComponent>(uid);
         UpdateAppearance(uid, ToggleableGhostRoleStatus.On);
+        // Harmony start - Once a mind is added, we clear the mind data
+        //                 This is useful to prevent being unable to /ghost out of brains
+        //                 and to ensure that if someone else takes the mind, they now have priority.
+        pai.LastMind = default!;
+        // Harmony end
     }
 
     private void OnMindRemoved(EntityUid uid, ToggleableGhostRoleComponent component, MindRemovedMessage args)
@@ -124,6 +143,7 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
                     // The shutdown of the Mind should cause automatic reset of the pAI during OnMindRemoved
                     _mind.TransferTo(mindId, null, mind: mind);
                     _popup.PopupEntity(Loc.GetString(component.WipeVerbPopup), uid, args.User, PopupType.Large);
+                    component.LastMind = mindId; //Harmony
                 }
             };
             args.Verbs.Add(verb);
