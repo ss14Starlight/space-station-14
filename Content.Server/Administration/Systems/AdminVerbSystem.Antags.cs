@@ -235,7 +235,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = bloodCultName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/BloodCult/bloodrune.rsi"), "offering-icon"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_Funkystation/Structures/BloodCult/bloodrune.rsi"), "offering-icon"),
             Act = () =>
             {
                 _antag.ForceMakeAntag<BloodCultRuleComponent>(targetPlayer, DefaultBloodCultRule);
