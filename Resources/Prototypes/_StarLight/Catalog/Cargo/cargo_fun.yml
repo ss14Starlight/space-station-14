@@ -14,7 +14,7 @@
     sprite: _Starlight/Objects/Storage/boxes.rsi
     state: box-twinpointer
   product: CrateFunTwinPointer
-  cost: 1500
+  cost: 2000
   category: cargoproduct-category-name-fun
   group: market
 
