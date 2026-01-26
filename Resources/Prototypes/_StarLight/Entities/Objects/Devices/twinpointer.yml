@@ -40,6 +40,25 @@
           map: ["enum.PinpointerLayers.Screen"]
           shader: unshaded
           visible: false
+    - type: Item
+      sprite: Objects/Devices/pinpointer.rsi
+      inhandVisuals:
+        left:
+          - state: inhand-left-base
+            color: "#7f7f7f"
+          - state: inhand-left-stripe
+            color: "#7f7f7f"
+          - state: inhand-left-top
+          - state: twinpointer-left-inhand-left
+            sprite: _Starlight/Objects/Devices/pinpointer.rsi
+        right:
+          - state: inhand-right-base
+            color: "#7f7f7f"
+          - state: inhand-right-stripe
+            color: "#7f7f7f"
+          - state: inhand-right-top
+          - state: twinpointer-left-inhand-right
+            sprite: _Starlight/Objects/Devices/pinpointer.rsi
     - type: Icon
       sprite: _Starlight/Objects/Devices/pinpointer.rsi
       state: twinpointer-left
@@ -60,6 +79,25 @@
           map: ["enum.PinpointerLayers.Screen"]
           shader: unshaded
           visible: false
+    - type: Item
+      sprite: Objects/Devices/pinpointer.rsi
+      inhandVisuals:
+        left:
+          - state: inhand-left-base
+            color: "#7f7f7f"
+          - state: inhand-left-stripe
+            color: "#7f7f7f"
+          - state: inhand-left-top
+          - state: twinpointer-right-inhand-left
+            sprite: _Starlight/Objects/Devices/pinpointer.rsi
+        right:
+          - state: inhand-right-base
+            color: "#7f7f7f"
+          - state: inhand-right-stripe
+            color: "#7f7f7f"
+          - state: inhand-right-top
+          - state: twinpointer-right-inhand-right
+            sprite: _Starlight/Objects/Devices/pinpointer.rsi
     - type: Icon
       sprite: _Starlight/Objects/Devices/pinpointer.rsi
       state: twinpointer-right

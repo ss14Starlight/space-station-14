@@ -27963,5 +27963,114 @@ Entries:
   id: 293700
   time: '2026-01-25T19:59:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2937
+- author: Conflee
+  changes:
+  - message: Added Something.
+    type: Add
+  - message: Removed Sanity.
+    type: Remove
+  - message: Changed Everything.
+    type: Tweak
+  - message: Fixed The Ceiling There Is No Ceiling There Is No Ceiling There Is No
+      Ceiling LOOK UP LOOK UP LOOK U-
+    type: Fix
+  id: 298500
+  time: '2026-01-25T23:59:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2985
+- author: CawsForConcern
+  changes:
+  - message: (Silica) Duty Officers
+    type: Add
+  - message: (Silica) Nanotrasen Career Trainers
+    type: Add
+  - message: (Silcia) NCT Office
+    type: Add
+  - message: (Silica) Wall-mounted mass scanners at Cargo Front
+    type: Add
+  - message: (Silica) Xenobio
+    type: Add
+  - message: (Silica) AI Restoration consoles in RD Office & AI Core
+    type: Add
+  - message: (Silica) Magistrate Locker
+    type: Add
+  - message: (Silica) IAA Lockers
+    type: Add
+  - message: (Silica) Theater with a full stage and various costumes
+    type: Add
+  - message: (Silica) New Brig Medic
+    type: Add
+  - message: (Silica) Entirely revamped GenPop!
+    type: Add
+  - message: (Silica) Security Docking Arm now uses the same SEC shuttle as Ming
+    type: Add
+  - message: (Silica) New Clown room
+    type: Add
+  - message: (Silica) New Mime room
+    type: Add
+  - message: (Silica) New Maints east of Engineering
+    type: Add
+  - message: (Silica) New Maints that connect Security to Science
+    type: Add
+  - message: (Silica) Small lounge between HOP and Evac
+    type: Add
+  - message: (Silica) Greatly expanded 'east Service', making the 'loop' from Security
+      to Theater to Dorms to the rest of the station feel more complete
+    type: Add
+  - message: (Silica) New mini-tools room by Engineering Front
+    type: Add
+  - message: (Silica) Security Washroom
+    type: Add
+  - message: (Silica) Expanded Armory with added Disablers safe and Heavy Shotgun
+      safe
+    type: Add
+  - message: (Silica) Revamped Disposals
+    type: Add
+  - message: (Silica) Security Docking Arm now uses regular Security access instead
+      of Armory access
+    type: Tweak
+  - message: (Silica) Expanded the Clothing Boutique slightly, added more clothes
+      to it
+    type: Tweak
+  - message: (Silica) Removed the walls between Cryogenics and Medbay to make it feel
+      less cramped
+    type: Tweak
+  - message: (Silica) Removed the walls between Medical Locker Room and Break Room
+      to make it feel like cramped
+    type: Tweak
+  - message: (Silica) Moved Research Server to RD's Office
+    type: Tweak
+  - message: (Silica) Moved Crew Monitoring Server to CMO's Office
+    type: Tweak
+  - message: (Silica) minPlayers increased from 20 to 25
+    type: Tweak
+  - message: (Silica) maxPlayers increased from 80 to 120
+    type: Tweak
+  - message: (Silica) AI Camera vision in many places (mostly fixing annoying deadzones)
+    type: Tweak
+  - message: (Silica) Science Washrooms (rest in peace)
+    type: Remove
+  - message: (Silica) Engineering Washrooms (rest in peace)
+    type: Remove
+  id: 299200
+  time: '2026-01-26T06:04:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2992
+- author: STARLIGHT TEAM
+  changes:
+  - message: added lagomorphian to languages borgs can understand.
+    type: Fix
+  - message: made it so the feet of lagos dont clip into their pants.
+    type: Fix
+  id: 298200
+  time: '2026-01-26T06:08:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2982
+- author: redmushie
+  changes:
+  - message: Increased twinpointer crate price to 2k per kit
+    type: Tweak
+  - message: Twinpointers now actually have proper inhand sprites
+    type: Fix
+  id: 297900
+  time: '2026-01-26T07:07:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2979
 Order: -1
 
