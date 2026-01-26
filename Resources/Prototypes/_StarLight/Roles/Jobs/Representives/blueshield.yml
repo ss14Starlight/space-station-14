@@ -54,10 +54,10 @@
 - type: startingGear
   id: BlueShieldGear
   equipment:
-    #head: ClothingHeadHatBeretBlueShield
-    id: BlueShieldPDA
+    # head: ClothingHeadHatBeretBlueShield
+    # id: BlueShieldPDA
     ears: ClothingHeadsetAltBSO # Starlight
-    belt: ClothingBeltBlueShieldWebbingFilled
+    # belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat
     pocket1: WeaponMultiphaseGun
     pocket2: HandheldBSOCrewMonitor

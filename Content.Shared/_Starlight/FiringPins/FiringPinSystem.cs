@@ -6,9 +6,9 @@ using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio.Systems;
 using System.Linq;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Examine;
 
 namespace Content.Shared._Starlight.FiringPins;
 
@@ -26,6 +26,7 @@ public sealed partial class FiringPinSystem : EntitySystem
 
         SubscribeLocalEvent<FiringPinHolderComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<FiringPinHolderComponent, InteractUsingEvent>(OnInteractUsing);
+        SubscribeLocalEvent<FiringPinHolderComponent, ExaminedEvent>(OnExamined);
 
         SubscribeLocalEvent<FiringPinHolderComponent, FiringPinRemovalFinishEvent>(OnPinRemovalFinish);
         SubscribeLocalEvent<FiringPinHolderComponent, AttemptShootEvent>(OnBeforeGunShot);
@@ -61,7 +62,6 @@ public sealed partial class FiringPinSystem : EntitySystem
 
             if (_container.Insert(args.Used, ent.Comp.PinContainer))
             {
-                // todo: give this a delay?
                 _popup.PopupClient(Loc.GetString("firing-pin-inserted"), ent.Owner, args.User);
                 _audio.PlayPredicted(ent.Comp.PinInsertionSound, ent.Owner, args.User);
                 return;
@@ -77,7 +77,24 @@ public sealed partial class FiringPinSystem : EntitySystem
                 return;
             }
 
-            _tool.UseTool(args.Used, args.User, ent.Owner, 1.5f, ent.Comp.PinExtractionMethod, new FiringPinRemovalFinishEvent(), toolComponent: toolComp);
+            _tool.UseTool(args.Used, args.User, ent.Owner, ent.Comp.PinExtractionDelay, ent.Comp.PinExtractionMethod, new FiringPinRemovalFinishEvent(), toolComponent: toolComp);
+        }
+    }
+
+    private void OnExamined(Entity<FiringPinHolderComponent> ent, ref ExaminedEvent args)
+    {
+        var pins = FiringPins(ent);
+        if (pins.Count() == 0)
+        {
+            args.PushMarkup(Loc.GetString("firing-pin-no-pin"));
+            return;
+        }
+
+        foreach (var pin in pins)
+        {
+            // reflect onto individual pins so they can add their own descriptions to parent
+            // example, shot counter pin wants to report the number of shots fired on the gun
+            RaiseLocalEvent(pin, args);
         }
     }
 

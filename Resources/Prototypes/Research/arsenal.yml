@@ -58,6 +58,7 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
+  - FiringPinLaser # Starlight
   - WeaponMechCombatFiredartLaser
   radioChannels:
   - Security

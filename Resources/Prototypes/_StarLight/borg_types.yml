@@ -53,6 +53,7 @@
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleSyndicateWeapon
+  - BorgModuleSyndicateNukeDisk
 
   radioChannels:
   - Syndicate
@@ -83,6 +84,7 @@
   - BorgModuleRCD
   - BorgModuleOperative
   - BorgModuleSyndicateWeapon
+  - BorgModuleSyndicateNukeDisk
 
   radioChannels:
   - Syndicate
@@ -110,6 +112,7 @@
   defaultModules:
   - BorgModuleTool
   - BorgModuleOperative
+  - BorgModuleSyndicateNukeDisk
 
   radioChannels:
   - Syndicate

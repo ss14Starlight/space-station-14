@@ -1,4 +1,4 @@
-﻿using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
@@ -41,8 +41,10 @@ public abstract class SharedArmorSystem : EntitySystem
     /// </summary>
     private void OnKnockdownAttempt(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<KnockDownAttemptEvent> args)
     {
-        if (component.IgnoreKnockdown)
+        // Starlight edit start - add check for voluntary value, cancel only involuntary knockdown
+        if (component.IgnoreKnockdown && !args.Args.Voluntary)
             args.Args.Cancelled = true;
+        // Starlight edit end
     }
     #endregion
 

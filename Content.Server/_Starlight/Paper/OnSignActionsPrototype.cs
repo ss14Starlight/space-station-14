@@ -7,7 +7,7 @@ namespace Content.Server._Starlight.Paper;
 public sealed partial class OnSignActionsPrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
 
     [DataField("actions", required: true)]
     public List<OnSignAction> Actions = new();

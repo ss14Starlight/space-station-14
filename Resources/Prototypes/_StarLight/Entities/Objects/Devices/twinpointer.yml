@@ -1,0 +1,65 @@
+﻿- type: entity
+  parent: BoxCardboard
+  id: TwinPointerKit
+  name: twinpointer kit
+  description: A box containing a pair of twinpointers for mutually assured direction.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Storage/boxes.rsi
+      state: box-twinpointer
+    - type: Item
+      size: Large
+      shape:
+        - 0,0,1,1
+    - type: Storage
+      maxItemSize: Small
+      grid:
+        - 0,0,1,1
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: TwinPointerLeft
+            - id: TwinPointerRight
+    - type: TwinPointerBox # this does the linking of left/right twinpointers
+
+- type: entity
+  name: left twinpointer
+  description: The left half of a pair of twinpointers. Great when you're never right.
+  id: TwinPointerLeft
+  parent: PinpointerBase
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      layers:
+        - state: twinpointer-left
+          sprite: _Starlight/Objects/Devices/pinpointer.rsi
+          map: ["enum.PinpointerLayers.Base"]
+        - state: pinonnull
+          sprite: Objects/Devices/pinpointer.rsi
+          map: ["enum.PinpointerLayers.Screen"]
+          shader: unshaded
+          visible: false
+    - type: Icon
+      sprite: _Starlight/Objects/Devices/pinpointer.rsi
+      state: twinpointer-left
+        
+- type: entity
+  name: right twinpointer
+  description: The right half of a pair of twinpointers. Perfect when you have nothing left.
+  id: TwinPointerRight
+  parent: PinpointerBase
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      layers:
+        - state: twinpointer-right
+          sprite: _Starlight/Objects/Devices/pinpointer.rsi
+          map: ["enum.PinpointerLayers.Base"]
+        - state: pinonnull
+          map: ["enum.PinpointerLayers.Screen"]
+          shader: unshaded
+          visible: false
+    - type: Icon
+      sprite: _Starlight/Objects/Devices/pinpointer.rsi
+      state: twinpointer-right

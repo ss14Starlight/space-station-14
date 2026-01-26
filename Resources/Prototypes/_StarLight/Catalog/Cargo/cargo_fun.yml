@@ -7,3 +7,23 @@
   cost: 800
   category: cargoproduct-category-name-fun
   group: market
+
+- type: cargoProduct
+  id: CrateFunTwinPointer
+  icon:
+    sprite: _Starlight/Objects/Storage/boxes.rsi
+    state: box-twinpointer
+  product: CrateFunTwinPointer
+  cost: 1500
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: FunMegaShark
+  icon:
+    sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark.rsi
+    state: icon
+  product: CrateFunMegaShark
+  cost: 2500
+  category: cargoproduct-category-name-fun
+  group: market

@@ -120,7 +120,8 @@
         - id: ClothingNeckCloakBsoElite
         - id: ClothingNeckCloakBsoElite
         - id: RadioHandheldSecurity
-        - id: ClothingUniformJumpsuitBlueShieldCaptain
+        - id: ClothingUniformJumpsuitBlueShieldShirt
+        - id: ClothingUniformJumpskirtBlueShieldSkirt
         - id: ClothingOuterCoatBlueShield
         - id: ClothingNeckCloakBsoCape
         - id: RubberStampBSO

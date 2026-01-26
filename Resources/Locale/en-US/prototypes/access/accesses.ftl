@@ -35,7 +35,8 @@ id-card-access-level-hydroponics = Hydroponics
 id-card-access-level-service = Service
 id-card-access-level-janitor = Janitor
 id-card-access-level-theatre = Theatre
-id-card-access-level-chapel = Chapel
+# Starlight: Chapel -> Shrine
+id-card-access-level-chapel = Shrine
 # Starlight edit: Changed 'Lawyer' to 'Legal"
 id-card-access-level-lawyer = Legal
 

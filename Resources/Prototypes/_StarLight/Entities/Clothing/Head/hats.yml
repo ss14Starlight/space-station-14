@@ -10,10 +10,10 @@
     sprite: _Starlight/Clothing/Head/Hats/ntrep.rsi
     
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandContraband]
+  parent: [ClothingHeadBase, BaseBlueShieldContraband]
   id: ClothingHeadHatBeretBlueShield
-  name: blueshield officer's beret
-  description: This beret completes the outfit of any true BlueShield.
+  name: blue shield beret
+  description: This beret completes the outfit of any true Blue Shield Officer.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hats/blueshield.rsi
@@ -21,10 +21,10 @@
     sprite: _Starlight/Clothing/Head/Hats/blueshield.rsi
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandContraband]
+  parent: [ClothingHeadBase, BaseBlueShieldContraband]
   id: ClothingHeadHatBlueShieldSheriff
-  name: Blueshield bounty hunter's hat
-  description: For when your given charge do not wish to be tracked down.
+  name: blue shield bounty hunter's hat
+  description: For when your charges do not wish to be tracked down.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hats/BSO_Bounty_Hunter_hat.rsi

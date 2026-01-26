@@ -58,9 +58,9 @@
     protectionTime: 5
 
 - type: entity
-  parent: [ClothingEyesBase, BaseCommandContraband]
+  parent: [ClothingEyesBase, BaseBlueShieldContraband]
   id: ClothingEyesGlassesBlueShield
-  name: blueshield officer's glasses
+  name: blue shield glasses
   description: The innovative blue lenses hide your eyes from light flashes and have a built-in visor.
   components:
   - type: Sprite

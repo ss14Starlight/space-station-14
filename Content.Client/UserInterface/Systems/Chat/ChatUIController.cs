@@ -44,6 +44,7 @@ using Robust.Shared.Toolshed.TypeParsers;
 using Robust.Shared.Utility;
 using Content.Client._Starlight.Radio.Systems;
 using Content.Client.CollectiveMind;
+using Content.Shared._Starlight.Radio; //Starlight
 
 
 namespace Content.Client.UserInterface.Systems.Chat;
@@ -709,8 +710,18 @@ public sealed partial class ChatUIController : UIController
         radioChannel = null;
         return _player.LocalEntity is EntityUid { Valid: true } uid
            && _chatSys != null
-           && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, quiet: true);
+           && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, out _, quiet: true); // Starlight edit
     }
+    
+    //Starlight begin
+    private bool TryGetCustomRadioChannel(string text, out CustomRadioChannelData? radioChannel)
+    {
+        radioChannel = null;
+        return _player.LocalEntity is EntityUid { Valid: true } uid
+               && _chatSys != null
+               && _chatSys.TryProcessRadioMessage(uid, text, out _, out _, out radioChannel, quiet: true);
+    }
+    //Starlight end
     
     private bool TryGetCollectiveMind(string text, out CollectiveMindPrototype? collectiveMind)
     {
@@ -722,55 +733,65 @@ public sealed partial class ChatUIController : UIController
 
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _, radioChannel, collectiveMind) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
+        var (prefixChannel, _, radioChannel, collectiveMind, customChannel) = SplitInputContents(box.ChatInput.Input.Text.ToLower()); // Starlight edit
 
         switch (prefixChannel)
         {
             case ChatSelectChannel.None:
-                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null, null);
+                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null, null, null); // Starlight edit
                 break;
             case ChatSelectChannel.CollectiveMind:
-                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, null, collectiveMind);
+                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, null, collectiveMind, null); // Starlight edit
                 break;
             default:
-                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel, null);
+                //Starlight begin
+                if(customChannel is not null) box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, null, null, customChannel);
+                else box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel, null, null);
+                //Starlight end
                 break;
         }
     }
 
-    public (ChatSelectChannel chatChannel, string text, RadioChannelPrototype? radioChannel, CollectiveMindPrototype? collectiveMind) SplitInputContents(string text)
+    public (ChatSelectChannel chatChannel, string text, RadioChannelPrototype? radioChannel, CollectiveMindPrototype? collectiveMind, CustomRadioChannelData? customChannel) SplitInputContents(string text) //Starlight edit
     {
         text = text.Trim();
         if (text.Length == 0)
-            return (ChatSelectChannel.None, text, null, null);
+            return (ChatSelectChannel.None, text, null, null, null); //Starlight edit
 
         // We only cut off prefix only if it is not a radio or local channel, which both map to the same /say command
         // because ????????
 
         ChatSelectChannel chatChannel;
+        //Starlight begin
+        //Coding fucking sucks i need this here or the usage of it on the return statement doesn't resolve despite radioChannel resolving just fine.
+        CustomRadioChannelData? customChannel = null;
         if (TryGetRadioChannel(text, out var radioChannel))
+        {
             chatChannel = ChatSelectChannel.Radio;
+            TryGetCustomRadioChannel(text, out customChannel);
+        }
+        //Starlight end
         else
             chatChannel = PrefixToChannel.GetValueOrDefault(text[0]);
 
         if ((CanSendChannels & chatChannel) == 0)
-            return (ChatSelectChannel.None, text, null, null);
+            return (ChatSelectChannel.None, text, null, null, null); //Starlight edit
 
         if (chatChannel == ChatSelectChannel.Radio)
-            return (chatChannel, text, radioChannel, null);
+            return (chatChannel, text, radioChannel, null, customChannel); //Starlight edit
         
         if (TryGetCollectiveMind(text, out var collectiveMind) && chatChannel == ChatSelectChannel.CollectiveMind)
-            return (chatChannel, text, radioChannel, collectiveMind);
+            return (chatChannel, text, radioChannel, collectiveMind, null); //Starlight edit
 
         if (chatChannel == ChatSelectChannel.Local)
         {
             if (_ghost?.IsGhost != true)
-                return (chatChannel, text, null, null);
+                return (chatChannel, text, null, null, null); //Starlight edit
             else
                 chatChannel = ChatSelectChannel.Dead;
         }
 
-        return (chatChannel, text[1..].TrimStart(), null, null);
+        return (chatChannel, text[1..].TrimStart(), null, null, null); //Starlight edit
     }
 
     public void SendMessage(ChatBox box, ChatSelectChannel channel)
@@ -785,7 +806,7 @@ public sealed partial class ChatUIController : UIController
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        (var prefixChannel, text, var _, var _) = SplitInputContents(text);
+        (var prefixChannel, text, var _, var _, var _) = SplitInputContents(text); // Starlight edit
 
         // Check if message is longer than the character limit
         if (text.Length > MaxMessageLength)

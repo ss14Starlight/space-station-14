@@ -131,6 +131,9 @@
         Piercing: 0.95
         Heat: 0.90
         Radiation: 0.25
+    # Starlight edit start - ignore knockdown
+    ignoreKnockdown: true
+    # Starlight edit end
   - type: ToggleableClothing
     slot: head
   - type: ContainerContainer

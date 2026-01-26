@@ -1,9 +1,49 @@
-#Chapel Pew
+# Chapel (Shrine) Pew
+
+- type: entity
+  name: Pew Base
+  id: PewBase
+  abstract: true
+  parent: ChairBase
+  components:
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 1
+  - type: Tag
+    tags:
+    - Wooden
+  - type: StaticPrice
+    price: 250
+
 - type: entity
   name: Wood Pew
   suffix: End Left
   id: PewEndLeft
-  parent: ChairBase
+  parent: PewBase
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Benches/pew_end_left.rsi
@@ -13,7 +53,7 @@
   name: Wood Pew
   suffix: End Right
   id: PewEndRight
-  parent: ChairBase
+  parent: PewBase
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Benches/pew_end_right.rsi
@@ -23,7 +63,7 @@
   name: Wood Pew
   suffix: Middle
   id: PewMiddle
-  parent: ChairBase
+  parent: PewBase
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Benches/pew_middle.rsi

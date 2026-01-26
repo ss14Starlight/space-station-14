@@ -249,6 +249,8 @@
 - type: loadoutGroup
   id: BlueShieldHead
   name: loadout-group-blueshield-head
+  minLimit: 0
+  defaultSelected: 1
   loadouts:
   - BlueShieldBeret
   - BlueShieldBountyHat
@@ -271,22 +273,41 @@
   - EliteBlueShieldJumpsuit
   - EliteBlueShieldJumpskirt
   - BlueShieldShirt
+  - BlueShieldSkirt
   - FormalBlueShieldJumpsuit
 
 - type: loadoutGroup
   id: BlueShieldOuterclothing
-  name: Loadout-group-blueshield-outerclothing
-  minLimit: 0
+  name: loadout-group-blueshield-outerclothing
+  minLimit: 1
   defaultSelected: 1
   loadouts:
   - BlueShieldVest
   - BlueShieldCoat
 
 - type: loadoutGroup
+  id: BlueShieldBelt
+  name: loadout-group-blueshield-belt
+  minLimit: 1
+  defaultSelected: 1
+  loadouts:
+  - BlueShieldWebbing
+  - BlueShieldMedicalBelt
+
+- type: loadoutGroup
+  id: BlueShieldPDA
+  minLimit: 1
+  defaultSelected: 1
+  name: loadout-group-blueshield-id
+  loadouts:
+    - BlueShieldPDA
+    - VeteranBlueShieldPDA
+
+- type: loadoutGroup
   id: BlueShieldNeck
   minLimit: 0
   defaultSelected: 1
-  name: Loadout-group-blueshield-neck
+  name: loadout-group-blueshield-neck
   loadouts:
   - BlueShieldFormalCloak
   - BlueShieldEliteCloak
@@ -294,6 +315,8 @@
 
 - type: loadoutGroup
   id: BlueShieldEyewear
+  minLimit: 1
+  defaultSelected: 1
   name: loadout-group-blueshield-eyewear
   loadouts:
   - BlueShieldGlasses
@@ -405,6 +428,7 @@
 - type: loadoutGroup
   id: BlueShieldShoes
   name: loadout-group-security-shoes
+  minLimit: 1
   loadouts:
   - CombatBoots
   - HighHeelBootsFilled

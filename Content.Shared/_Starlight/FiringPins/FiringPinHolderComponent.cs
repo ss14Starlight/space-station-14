@@ -16,6 +16,12 @@ public sealed partial class FiringPinHolderComponent : Component
     public ProtoId<ToolQualityPrototype> PinExtractionMethod = "Screwing";
 
     /// <summary>
+    /// How long it takes to remove the pin from the gun
+    /// </summary>
+    [DataField]
+    public float PinExtractionDelay = 10f; // doafters don't support timespans....
+
+    /// <summary>
     /// What pins actually fit this gun?
     /// </summary>
     [DataField]
