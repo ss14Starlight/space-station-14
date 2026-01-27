@@ -576,6 +576,15 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: ClothingNeckCloakSupremeJanitor
+  name: supreme janitor cloak
+  description: A magnificent cloak worn only by the most dedicated janitors. Its ethereal glow is said to ward off dirt itself.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/supreme-janitor-cloak.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
   id: RedRegaliaCloak
   name: Red Regalia Cloak
   description: A fancy red cloak like a mafiaoso would wear.
