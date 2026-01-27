@@ -185,6 +185,7 @@
       rootTask:
         task: DragonCarpCompound
     - type: Temperature
+    - type: TemperatureDamage
       heatDamageThreshold: 1200
    #Starlight
     - type: Flammable

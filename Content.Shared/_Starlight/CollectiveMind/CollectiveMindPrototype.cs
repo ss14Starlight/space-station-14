@@ -9,7 +9,7 @@ namespace Content.Shared.CollectiveMind;
 public sealed partial class CollectiveMindPrototype : IPrototype
 {
     [IdDataField, ViewVariables]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
     
     [DataField("name")]
     public LocId Name { get; private set; } = string.Empty;

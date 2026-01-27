@@ -107,6 +107,19 @@
     price: 2000
 
 - type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakHosRetro
+  name: retro-head of security cloak
+  description: A retro-styled cloak for the head of security, reminiscent of days gone by.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/RetroHos.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
   parent: [ ClothingNeckBase, BaseCommandContraband ]
   id: ClothingNeckCloakCeElite
   name: elite chief engineer's cloak
@@ -561,6 +574,15 @@
   - type: Clothing
     sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_mantle.rsi
 
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakSupremeJanitor
+  name: supreme janitor cloak
+  description: A magnificent cloak worn only by the most dedicated janitors. Its ethereal glow is said to ward off dirt itself.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/supreme-janitor-cloak.rsi
+    
 - type: entity
   parent: ClothingNeckBase
   id: RedRegaliaCloak

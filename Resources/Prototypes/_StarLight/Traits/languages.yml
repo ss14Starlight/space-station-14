@@ -244,3 +244,16 @@
   languagesUnderstood:
     - Thaveyan
     - Carptongue
+
+- type: trait
+  id: Lagomorphian
+  name: trait-language-lagomorphian-name
+  description: trait-language-lagomorphian-desc
+  category: LanguageTraits
+  cost: 2
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Lagomorphian
+  languagesUnderstood:
+    - Lagomorphian

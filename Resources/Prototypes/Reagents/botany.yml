@@ -237,7 +237,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Rat ]
+          type: [ Rat, Avali, Resomi ] #Starlight
           inverted: true
         - !type:ReagentCondition
           reagent: Ammonia
@@ -250,7 +250,7 @@
         probability: 0.12
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Rat, Vox ]
+          type: [ Rat, Vox, Avali, Resomi ] #Starlight
           inverted: true
         - !type:ReagentCondition
           reagent: Ammonia
@@ -278,6 +278,14 @@
             Burn: -2.5
           types:
             Bloodloss: -5
+      - !type:ModifyBloodLevel
+        amount: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Rat ]
+        - !type:ReagentCondition
+          reagent: Ammonia
+          min: 1
       - !type:Oxygenate # ammonia displaces nitrogen in vox blood
         conditions:
         - !type:MetabolizerTypeCondition

@@ -429,9 +429,8 @@
     proto: BulletAcidHitscan
     fireCost: 50
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 150
     startingCharge: 150
   - type: Gun

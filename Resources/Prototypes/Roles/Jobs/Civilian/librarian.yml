@@ -33,6 +33,7 @@
       - Aielic
       - Classical
       - Darktongue
+      - Lagomorphian
       understands:
       - GalacticCommon
       - Scratch
@@ -53,6 +54,7 @@
       - Aielic
       - Classical
       - Darktongue
+      - Lagomorphian
   # Starlight end
 
 - type: startingGear

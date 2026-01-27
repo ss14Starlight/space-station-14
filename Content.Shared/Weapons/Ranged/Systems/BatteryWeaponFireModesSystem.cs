@@ -1,20 +1,23 @@
-using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Content.Shared.Examine;
-using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Item;
-using Content.Shared.Lock;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared._Starlight.Weapons.Ranged.Components; // Starlight-edit
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Network; // Starlight-edit
+
+#region Starlight
+using System.Linq;
+using Content.Shared._Starlight.Weapons.Ranged.Components;
+using Content.Shared.Interaction;
+using Content.Shared.Item;
+using Content.Shared.Lock;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
+#endregion Starlight
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -54,13 +57,16 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
                 if (!_prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var projectile))
                     return;
 
-                args.PushMarkup(Loc.GetString("gun-set-fire-mode", ("mode", projectile.Name)));
+                args.PushMarkup(Loc.GetString("gun-set-fire-mode-examine", ("mode", projectile.Name)));
             }
         }
         // Starlight-end
     }
 
-    private BatteryWeaponFireMode GetMode(BatteryWeaponFireModesComponent component) => component.FireModes[component.CurrentFireMode]; // Starlight-edit: Lambda
+    private BatteryWeaponFireMode GetMode(BatteryWeaponFireModesComponent component)
+    {
+        return component.FireModes[component.CurrentFireMode];
+    }
 
     private void OnGetVerb(EntityUid uid, BatteryWeaponFireModesComponent component, GetVerbsEvent<Verb> args)
     {
@@ -181,7 +187,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
                 Dirty(uid, projectileAmmo);
 
                 if (user != null)
-                    _popupSystem.PopupPredicted(Loc.GetString("gun-set-fire-mode", ("mode", prototype.Name)), uid, user);
+                    _popupSystem.PopupPredicted(Loc.GetString("gun-set-fire-mode-popup", ("mode", prototype.Name)), uid, user);
             }
 
             if (fireMode.HeldPrefix != null)

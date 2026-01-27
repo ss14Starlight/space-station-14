@@ -46,9 +46,10 @@
         Slash: 3
   # starlight start - temp vulpkanin revert
   # - type: Temperature # Same as moth temperatures until below is solved.
+  #   specificHeat: 44
+  # - type: TemperatureDamage
   #   heatDamageThreshold: 320 # TODO: 315 when there is a way to make the temperature alert not blink to the side of the screen and disappear when you "sweat" at 39C.
   #   coldDamageThreshold: 230 # TODO: 220 when the above is solved.
-  #   specificHeat: 44
   #   coldDamage:
   #     types:
   #       Cold: 0.05 # Per second, scales with temperature & other constants
@@ -183,17 +184,18 @@
       Parched: 200
       Dead: 0
     baseDecayRate: 0.125
-  - type: Temperature # Ported over from CD. Afterall, it does make sense that something with fur can handle more cold/less heat. Basegame Moths, apparently, have similar resistances.
+  - type: TemperatureDamage # Ported over from CD. Afterall, it does make sense that something with fur can handle more cold/less heat. Basegame Moths, apparently, have similar resistances.
     heatDamageThreshold: 325
     coldDamageThreshold: 230
-    currentTemperature: 310.15
-    specificHeat: 46
     coldDamage:
       types:
         Cold : 0.05 #per second, scales with temperature & other constants
     heatDamage:
       types:
         Heat : 1.75 #per second, scales with temperature & other constants
+  - type: Temperature # Ported over from CD. Afterall, it does make sense that something with fur can handle more cold/less heat. Basegame Moths, apparently, have similar resistances.
+    currentTemperature: 310.15
+    specificHeat: 46
   - type: ContentEye
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"

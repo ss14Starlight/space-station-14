@@ -80,6 +80,7 @@
         - Brutepack
         - Bloodpack
         - Gauze
+        - Hypospray
         - Ointment
         - PillCanister
         - Radio
@@ -98,7 +99,6 @@
         - Handcuff
         - BallisticAmmoProvider
         - Ammo
-        - Hypospray
         - Injector
         - Pill
         - HandLabeler

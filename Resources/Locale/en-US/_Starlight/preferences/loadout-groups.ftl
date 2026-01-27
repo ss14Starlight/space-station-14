@@ -83,6 +83,9 @@ loadout-group-chemist-bag = Chemist bag
 loadout-group-chemist-labeler = Chemist labeler
 loadout-group-chemist-shoes = Chemist shoes
 
+# Janitor
+loadout-group-janitor-neck = Janitor neck
+
 # Other
 loadout-group-scarves = Scarf
 loadout-group-pins = Pins
