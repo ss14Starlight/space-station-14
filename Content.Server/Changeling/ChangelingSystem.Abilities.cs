@@ -28,6 +28,7 @@ using Content.Shared.Changeling.Systems;
 using Content.Shared.Changeling.Components;
 using Content.Server.Changeling.Systems;
 using Content.Shared.Humanoid; // Starlight edit
+using Content.Shared.Body.Components; // Starlight edit
 
 namespace Content.Server.Changeling;
 
@@ -127,9 +128,19 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         UpdateBiomass(uid, comp, comp.MaxBiomass - comp.TotalAbsorbedEntities);
 
-        _blood.ChangeBloodReagent(target, "FerrochromicAcid");
-        _blood.SpillAllSolutions(target);
-
+        // Starlight edit start - Mix blood from the target with ferrochromic acid instead of replacing it
+        // allows for ling tests to still pass despite being hollowed.
+        if (TryComp<BloodstreamComponent>(target, out var bloodstream) && bloodstream.BloodReferenceSolution is { } originalBlood)
+        {
+            var mixedBlood = originalBlood.Clone();
+            mixedBlood.ScaleTo(FixedPoint2.New(150));
+            mixedBlood.AddReagent("FerrochromicAcid", FixedPoint2.New(150));
+        
+            _blood.ChangeBloodReagents(target, mixedBlood);
+            _blood.SpillAllSolutions(target);
+        }
+        // Starlight edit end
+        
         EnsureComp<AbsorbedComponent>(target);
 
         var popup = Loc.GetString("changeling-absorb-end-self-ling");
