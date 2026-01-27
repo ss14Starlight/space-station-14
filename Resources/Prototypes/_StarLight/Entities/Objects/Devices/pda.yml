@@ -243,6 +243,7 @@
   parent: [ BasePDA, BaseBlueShieldContraband ]
   id: BlueShieldPDA
   name: blue shield PDA
+  description: Comes with a built-in medtek to assess command staff's wounds after you heroically save them.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/pda.rsi
@@ -253,6 +254,9 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-blueshield
+  - type: PdaBorderColor
+    borderColor: "#202125"
+    accentHColor: "#004281"
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-blueshield
@@ -264,6 +268,29 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+
+- type: entity
+  parent: BlueShieldPDA
+  id: VeteranBlueShieldPDA
+  name: veteran blue shield PDA
+  description: Comes with a built-in medtek to assess command staff's wounds after you heroically save them.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BlueShieldIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-veteranblueshield
+  - type: PdaBorderColor
+    borderColor: "#202125"
+    accentHColor: "#004281"
+    accentVColor: "#c2c1c9"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veteranblueshield
 
 - type: entity
   parent: BasePDA

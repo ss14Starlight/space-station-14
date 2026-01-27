@@ -43,6 +43,7 @@
   - PrintedDocumentPermissionDisposeBodyRecipe
   - PrintedDocumentConstructionPermitRecipe
   - PrintedDocumentSurgeryConsentPermitRecipe
+  - PrintedDocumentArtPermitRecipe
   # OrdersAndInstructions
   - PrintedDocumentDismissalOrderRecipe
   - PrintedDocumentAccessRevocationOrderRecipe

@@ -27562,5 +27562,529 @@ Entries:
   id: 266100
   time: '2026-01-23T18:24:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2661
+- author: Scarlet Lightweaver
+  changes:
+  - message: Added a large shark you can order at cargo! Rawr!
+    type: Add
+  id: 294800
+  time: '2026-01-23T21:17:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2948
+- author: ork
+  changes:
+  - message: Criminal records search now works proplerly again
+    type: Fix
+  id: 294500
+  time: '2026-01-23T22:20:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2945
+- author: CawsForConcern
+  changes:
+  - message: (Saltern) Duty Officers
+    type: Add
+  - message: (Saltern) Nanotrasen Career Trainers
+    type: Add
+  - message: (Saltern) NCT Office
+    type: Add
+  - message: (Saltern) Xenobio
+    type: Add
+  - message: (Saltern) Magistrate Locker
+    type: Add
+  - message: (Saltern) IAA Lockers
+    type: Add
+  - message: (Saltern) Wall-mounted mass scanners at Cargo
+    type: Add
+  - message: (Saltern) AI Restoration Console at RD's Office & AI Upload
+    type: Add
+  - message: (Saltern) New Armory for Security
+    type: Add
+  - message: (Saltern) Expanded the Salvage Bay docking arm so Mining and Salvage
+      can dock at the same time
+    type: Add
+  - message: (Saltern) Detective's Room station beacon
+    type: Add
+  - message: (Saltern) AI Upload station beacon
+    type: Add
+  - message: (Saltern) Made Anomaly a little less cramped
+    type: Tweak
+  - message: (Saltern) Adjusted a lot of maints to fit the new Armory, the NCT Office,
+      and Xenobio
+    type: Tweak
+  - message: (Saltern) Dropped `maxPlayers` from 50 to 40
+    type: Tweak
+  - message: (Saltern) Improved meteor protection for Bridge
+    type: Tweak
+  - message: (Saltern) Re-added the extra Salvage Expeditions computer to Salvage
+      Bay
+    type: Fix
+  - message: (Saltern) AI Core's APC wasn't named
+    type: Fix
+  id: 295300
+  time: '2026-01-24T00:33:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2953
+- author: Xale
+  changes:
+  - message: Cotton Bun can now hold most Starlight plushies
+    type: Tweak
+  id: 295100
+  time: '2026-01-24T07:52:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2951
+- author: redmushie
+  changes:
+  - message: Reduced gaseous frezon hallucination/drunkness effects down from hours/days
+      to minutes
+    type: Tweak
+  - message: Buffed liquid frezon hallucination/drunkness effects
+    type: Tweak
+  - message: Haloperidol is now more potent against hallucinations
+    type: Tweak
+  - message: Ethylredoxrazine is now more potent against drunkness
+    type: Tweak
+  id: 293400
+  time: '2026-01-24T08:00:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2934
+- author: redmushie
+  changes:
+  - message: Added twinpointers, a pair of pinpointers that point at each other
+    type: Add
+  - message: Added twinpointer kit to maintenance loot pool
+    type: Add
+  - message: Added twinpointer kit crate to cargo buying options
+    type: Add
+  id: 291700
+  time: '2026-01-24T08:18:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2917
+- author: Penguinwizzard
+  changes:
+  - message: If you see a security borg (which you shouldn't) and pet it (which you
+      shouldn't), you'll now be able to comprehend what you're doing.
+    type: Fix
+  - message: One particular kind of ghost you probably can't be now less mysteriously
+      tells you why you can't be it.
+    type: Fix
+  id: 277100
+  time: '2026-01-24T08:26:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2771
+- author: CawsForConcern
+  changes:
+  - message: L6 SAW bundle from 25TC to 26TC (discounted price unchanged at 20TC)
+    type: Tweak
+  - message: L6 SAW firerate down from 8 to 6
+    type: Tweak
+  - message: L6 SAW max angle down from 45 to 35 (more accurate overall)
+    type: Tweak
+  - message: L6 SAW now slows you down 10% when wielded (no penalty when unwielded)
+    type: Tweak
+  id: 276800
+  time: '2026-01-24T08:30:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2768
+- author: SapphicHaymaker
+  changes:
+  - message: BlueShield Officer's Shirt has been redone and a pencil skirt variant
+      has been added, for the BSO who likes to keep it business casual.
+    type: Tweak
+  - message: BlueShield Officer's Medical Belt, so the chest webbing doesn't swallow
+      your whole model.
+    type: Add
+  - message: Blue Shield Officer's PDA sprites & veteran variant sprites.
+    type: Add
+  - message: The BlueShield Officer no longer spawns with an extra beret at their
+      feet.
+    type: Fix
+  id: 276000
+  time: '2026-01-24T08:34:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2760
+- author: neomoth
+  changes:
+  - message: All syndicate borgs now possess a module that can carry the nuke disk.
+      Beware, it can also pick up fake nuke disks!
+    type: Add
+  - message: All syndicate borgs can no longer have their modules swapped out.
+    type: Tweak
+  - message: Syndicate stealth borgs now have a hand so they can steal things from
+      people.
+    type: Tweak
+  - message: ALL borgs now drop any and all held items not granted by a module on
+      crit.
+    type: Tweak
+  id: 276500
+  time: '2026-01-24T08:46:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2765
+- author: Penguinwizzard
+  changes:
+  - message: Added multiple escape pod variants that replace a small proportion of
+      the escape pods on any given station.
+    type: Add
+  id: 273300
+  time: '2026-01-24T08:49:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2733
+- author: Coolsurf6, Rinary
+  changes:
+  - message: Removed the ability to pull mechs if they have pilot or in maintenance
+      mode.
+    type: Remove
+  id: 275500
+  time: '2026-01-24T08:55:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2755
+- author: neomoth
+  changes:
+  - message: Adds four new radio channels/encryption keys. Mostly for admemes/events.
+    type: Add
+  - message: Adds 5 new headsets. Mostly for admemes/events.
+    type: Add
+  - message: Adds the ability to create custom radio channels via ViewVariables.
+    type: Add
+  - message: The base encryption key is no longer an abstract entity.
+    type: Tweak
+  - message: Fixed weird ordering of text when examining encryption keys.
+    type: Fix
+  id: 263500
+  time: '2026-01-24T09:00:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2635
+- author: Wizard Federation (Scarlet Lightweaver)
+  changes:
+  - message: Tweaked the staff of animation! it will now add HP based off size and
+      can be hit with wideswing!
+    type: Tweak
+  id: 261900
+  time: '2026-01-24T10:10:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2619
+- author: CrazyPhantom
+  changes:
+  - message: pAI to trinkets for 48h Overall playtime
+    type: Add
+  - message: Golden pAI to trinkets for 8h pAI playtime
+    type: Add
+  id: 179700
+  time: '2026-01-24T12:11:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1797
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added an Art Permit to the Document Printer
+    type: Add
+  - message: Amended Corporate Law to Clarify Art or Construction with a permit is
+      not vandalism
+    type: Tweak
+  id: 296000
+  time: '2026-01-24T20:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2960
+- author: STARLIGHT TEAM
+  changes:
+  - message: All syndicate borgs no longer possess a module that can carry the nuke
+      disk.
+    type: Remove
+  - message: Syndicate borgs can have their modules swapped out again.
+    type: Tweak
+  - message: Syndicate stealth borgs no longer have a hand so they can steal things
+      from people.
+    type: Tweak
+  - message: NO borgs now drop any and all held items not granted by a module on crit.
+    type: Tweak
+  id: 296500
+  time: '2026-01-25T00:09:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2965
+- author: Penguinwizzard
+  changes:
+  - message: Fixed editing loadouts.
+    type: Fix
+  id: 296700
+  time: '2026-01-25T01:31:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2967
+- author: neomoth
+  changes:
+  - message: All syndicate borgs now possess a module that can carry the nuke disk.
+    type: Add
+  - message: Syndicate stealth borgs now have a hand so they can steal things from
+      people.
+    type: Add
+  - message: Syndicate borgs can no longer have their modules swapped out.
+    type: Tweak
+  - message: ALL borgs now drop any and all held items not granted by a module on
+      crit.
+    type: Tweak
+  - message: Fixed borgs not being able to be constructed properly
+    type: Fix
+  id: 296800
+  time: '2026-01-25T02:10:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2968
+- author: neomoth
+  changes:
+  - message: All syndicate borgs now possess a module that can carry the nuke disk.
+      Beware, it can also pick up fake nuke disks! Again...
+    type: Add
+  - message: All syndicate borgs can no longer have their modules swapped out. Again...
+    type: Tweak
+  - message: Syndicate stealth borgs now have a hand so they can steal things from
+      people. Again...
+    type: Tweak
+  - message: ALL borgs now drop any and all held items not granted by a module on
+      crit. Again...
+    type: Tweak
+  id: 297000
+  time: '2026-01-25T02:12:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2970
+- author: neomoth
+  changes:
+  - message: Redo the fix to borgs that got undid by the undoing of the undoing of
+      the update that broke it. Say that 10 times fast.
+    type: Fix
+  id: 297100
+  time: '2026-01-25T02:31:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2971
+- author: Fractalflower
+  changes:
+  - message: Gender pins render on you in the loadout screen.
+    type: Fix
+  - message: Thaven no longer have their jacket welded to their skin.
+    type: Fix
+  id: 297400
+  time: '2026-01-25T09:54:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2974
+- author: WizDen Team and Penguinwizzard
+  changes:
+  - message: Added upstream changes up to 3ad57230f4
+    type: Add
+  - message: Arrivals shuttle power is now childproofed.
+    type: Tweak
+  - message: The syndicate has seen the value in having lockers that can be built
+      into walls or locked.
+    type: Add
+  - message: You can now use cardboard to make small boxes.
+    type: Add
+  - message: Many shields can now be welded to repair them.
+    type: Add
+  - message: Station AIs constructed with an empty positronic brain now search for
+      population using a ghost role.
+    type: Add
+  - message: Cable coils can now be destroyed by damage.
+    type: Tweak
+  - message: FTL arrival effects should now rotate correctly.
+    type: Fix
+  - message: Atmos devices and sensors should now correctly handle large sections
+      of a grid being destroyed and rebuilt.
+    type: Fix
+  - message: Donk Co. microwave is now Syndicate contraband.
+    type: Tweak
+  - message: When getting random chemicals on botany plants randomly, the minimum
+      quantity is now a fifth of the capacity (rather than effectively zero).
+    type: Tweak
+  - message: Jet Injectors, a hypodermic alternative to syringes. Also available in
+      "advanced" form.
+    type: Add
+  - message: The ERT have been encouraged to wear substantially more equipment around
+      the base.
+    type: Add
+  - message: The Syndicate have decided that enough is enough and will now have their
+      IFF hidden by default.
+    type: Tweak
+  - message: Broken vending machines now stop you from using them.
+    type: Fix
+  - message: Happy Honk Big Bite boxes may now contain crayon boxes.
+    type: Add
+  - message: Large grid shuttles colliding should now cause less lag.
+    type: Fix
+  - message: The powers that be may now decree that you are a ninja.
+    type: Add
+  - message: The decoy syndicate bomb now has a repurchase timer, similar to the regular
+      syndicate bomb.
+    type: Tweak
+  - message: Being in ammonia clouds now restores Rat Kings' blood levels, in addition
+      to previous effects.
+    type: Tweak
+  - message: Detective stamp is now aligned with other stamps (icon shifted 2px).
+    type: Fix
+  - message: Chemmasters can now be toggled between filling pills and patches from
+      their buffer or the inserted beaker.
+    type: Tweak
+  - message: Paper can now be extinguished with a fire extinguisher.
+    type: Fix
+  - message: Ninjas now have a custom bag.
+    type: Add
+  id: 281500
+  time: '2026-01-25T13:37:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2815
+- author: AFTERLIGHT Team, Happyrobot33, InanimateIJK, Motherain, Conf, DocMoth, Neomoth,
+    LilyflowerFDL, lukeman
+  changes:
+  - message: Nanotrasen engages in radical strikebreaking methods via the introduction
+      of a new artificially-developed species of laborers known as Lagomorphs.
+    type: Add
+  id: 268000
+  time: '2026-01-25T15:48:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2680
+- author: Scarlet Lightweaver
+  changes:
+  - message: Addeda new retro cloak for the HOS!
+    type: Add
+  id: 297800
+  time: '2026-01-25T19:22:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2978
+- author: CawsForConcern
+  changes:
+  - message: All CentComms have had their manual doors into Debrief removed / replaced
+      with Command-only turnstiles
+    type: Tweak
+  - message: (CC GNT9) Removed AI's turrets in the Debrief Room
+    type: Tweak
+  - message: (CC GNT9) Moved the CentComm station beacon / warp point to the Panopticon
+      with the fax machine for admin convenience
+    type: Tweak
+  id: 296100
+  time: '2026-01-25T19:28:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2961
+- author: SCARLET LIGHTWEAVER
+  changes:
+  - message: Changed AC-2 from burst to full auto also changed fire rate from 5 to
+      3.2.
+    type: Tweak
+  - message: Changed AC-10 from semi to full auto.
+    type: Tweak
+  - message: 'Changed Gygax speed to faster(from: walk 2.4 and sprint 3.7 to: 2.5
+      and 4.0) and armor.'
+    type: Tweak
+  - message: Changed Durand armor and HP from 400 to 465 also changed pilot damage
+      multiplier from 25% to 15%.
+    type: Tweak
+  - message: Changed Marauder HP from 500 to 575.
+    type: Tweak
+  - message: Changed Seraph HP from 550 to 700.
+    type: Tweak
+  - message: Changed DarkGygax HP from 300 to 375 and speed from 2.2, 4.0 to 3.0,
+      4.5.
+    type: Tweak
+  - message: Changed Mauler armor and HP from 500 to 550, now mauler has point light.
+    type: Tweak
+  id: 221700
+  time: '2026-01-25T19:54:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2217
+- author: Citrea
+  changes:
+  - message: When being borged, you now have the option to ghost immediately and leave
+      a ghost role behind instead.
+    type: Add
+  id: 293700
+  time: '2026-01-25T19:59:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2937
+- author: Conflee
+  changes:
+  - message: Added Something.
+    type: Add
+  - message: Removed Sanity.
+    type: Remove
+  - message: Changed Everything.
+    type: Tweak
+  - message: Fixed The Ceiling There Is No Ceiling There Is No Ceiling There Is No
+      Ceiling LOOK UP LOOK UP LOOK U-
+    type: Fix
+  id: 298500
+  time: '2026-01-25T23:59:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2985
+- author: CawsForConcern
+  changes:
+  - message: (Silica) Duty Officers
+    type: Add
+  - message: (Silica) Nanotrasen Career Trainers
+    type: Add
+  - message: (Silcia) NCT Office
+    type: Add
+  - message: (Silica) Wall-mounted mass scanners at Cargo Front
+    type: Add
+  - message: (Silica) Xenobio
+    type: Add
+  - message: (Silica) AI Restoration consoles in RD Office & AI Core
+    type: Add
+  - message: (Silica) Magistrate Locker
+    type: Add
+  - message: (Silica) IAA Lockers
+    type: Add
+  - message: (Silica) Theater with a full stage and various costumes
+    type: Add
+  - message: (Silica) New Brig Medic
+    type: Add
+  - message: (Silica) Entirely revamped GenPop!
+    type: Add
+  - message: (Silica) Security Docking Arm now uses the same SEC shuttle as Ming
+    type: Add
+  - message: (Silica) New Clown room
+    type: Add
+  - message: (Silica) New Mime room
+    type: Add
+  - message: (Silica) New Maints east of Engineering
+    type: Add
+  - message: (Silica) New Maints that connect Security to Science
+    type: Add
+  - message: (Silica) Small lounge between HOP and Evac
+    type: Add
+  - message: (Silica) Greatly expanded 'east Service', making the 'loop' from Security
+      to Theater to Dorms to the rest of the station feel more complete
+    type: Add
+  - message: (Silica) New mini-tools room by Engineering Front
+    type: Add
+  - message: (Silica) Security Washroom
+    type: Add
+  - message: (Silica) Expanded Armory with added Disablers safe and Heavy Shotgun
+      safe
+    type: Add
+  - message: (Silica) Revamped Disposals
+    type: Add
+  - message: (Silica) Security Docking Arm now uses regular Security access instead
+      of Armory access
+    type: Tweak
+  - message: (Silica) Expanded the Clothing Boutique slightly, added more clothes
+      to it
+    type: Tweak
+  - message: (Silica) Removed the walls between Cryogenics and Medbay to make it feel
+      less cramped
+    type: Tweak
+  - message: (Silica) Removed the walls between Medical Locker Room and Break Room
+      to make it feel like cramped
+    type: Tweak
+  - message: (Silica) Moved Research Server to RD's Office
+    type: Tweak
+  - message: (Silica) Moved Crew Monitoring Server to CMO's Office
+    type: Tweak
+  - message: (Silica) minPlayers increased from 20 to 25
+    type: Tweak
+  - message: (Silica) maxPlayers increased from 80 to 120
+    type: Tweak
+  - message: (Silica) AI Camera vision in many places (mostly fixing annoying deadzones)
+    type: Tweak
+  - message: (Silica) Science Washrooms (rest in peace)
+    type: Remove
+  - message: (Silica) Engineering Washrooms (rest in peace)
+    type: Remove
+  id: 299200
+  time: '2026-01-26T06:04:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2992
+- author: STARLIGHT TEAM
+  changes:
+  - message: added lagomorphian to languages borgs can understand.
+    type: Fix
+  - message: made it so the feet of lagos dont clip into their pants.
+    type: Fix
+  id: 298200
+  time: '2026-01-26T06:08:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2982
+- author: redmushie
+  changes:
+  - message: Increased twinpointer crate price to 2k per kit
+    type: Tweak
+  - message: Twinpointers now actually have proper inhand sprites
+    type: Fix
+  id: 297900
+  time: '2026-01-26T07:07:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2979
+- author: R3v3l4t1on
+  changes:
+  - message: 'Reverts Wizden #40343'
+    type: Tweak
+  id: 298400
+  time: '2026-01-26T13:12:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2984
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added a new milestone cloak for the janitor!
+    type: Add
+  id: 297600
+  time: '2026-01-26T13:17:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2976
 Order: -1
 

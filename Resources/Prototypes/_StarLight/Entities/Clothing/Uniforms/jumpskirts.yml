@@ -41,6 +41,18 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
+    
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtBlueShieldSkirt
+  name: blueshield officer's pencil skirt
+  description: A collared shirt and pencil skirt for the blueshield officer who likes to keep it business casual.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshieldskirt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshieldskirt.rsi
+
 
 - type: entity
   parent: ClothingUniformSkirtBase

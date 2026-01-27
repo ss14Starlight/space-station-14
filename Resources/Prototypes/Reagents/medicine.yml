@@ -111,7 +111,7 @@
       effects:
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrunk
-        time: 6.0
+        time: 20.0 # Starlight: More potent, up from 6
         type: Remove
       - !type:HealthChange
         damage:
@@ -1562,7 +1562,7 @@
         type: Remove
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
-        time: 10.0
+        time: 30.0 # Starlight: More potent, up from 10
         type: Remove
       - !type:AdjustReagent
         reagent: Desoxyephedrine

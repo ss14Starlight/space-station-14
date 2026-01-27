@@ -188,6 +188,7 @@
   - JanitorGloves
   - CommonBackpack
   - JanitorOuterClothing
+  - JanitorNeck # Starlight
   - Glasses
   - Survival
   - Trinkets
@@ -757,3 +758,8 @@
   groups:
   - GroupEVATank
   - SurvivalExtended
+
+- type: roleLoadout
+  id: RoleSurvivalSpaceNinja
+  groups:
+  - GroupEVATank

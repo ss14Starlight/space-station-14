@@ -56,21 +56,28 @@
 
 - type: playTimeTracker
   id: GhostPAI
+  name: pai-system-role-name
 
 - type: playTimeTracker
   id: GhostCritterHarmless
+  name: ghost-role-critter-harmless
 
 - type: playTimeTracker
   id: GhostBotHarmless
+  name: ghost-role-bot-harmless
 
 - type: playTimeTracker
   id: GhostNecktie
+  name: ghost-role-information-horrific-tie-name
 
 - type: playTimeTracker
   id: GhostSkeleton
+  name: species-name-skeleton
 
 - type: playTimeTracker
   id: GhostXeno
+  name: ghost-role-information-xeno-name
 
 - type: playTimeTracker
   id: Observer
+  name: lobby-state-player-status-observer

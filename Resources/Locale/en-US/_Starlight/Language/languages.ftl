@@ -106,3 +106,6 @@ language-Classical-description = Once upon a time, everyone spoke this language.
 
 language-Aielic-name = Aielic
 language-Aielic-description = The musical language of a nearly-extinct species known for its beautiful literature, pointy ears, once-vast empire.
+
+language-Lagomorphian-name = Laguine
+language-Lagomorphian-description = A very lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.
