@@ -44,7 +44,7 @@ public sealed partial class BleedUnholyBloodEntityEffectSystem : EntityEffectSys
         // Change their blood type to Unholy Blood so that when they bleed, it comes out as Unholy Blood
         // This happens every metabolism tick, ensuring their blood type stays as UnholyBlood while Edge Essentia is active
         var unholyBloodSolution = new Solution();
-        unholyBloodSolution.AddReagent((ProtoId<ReagentPrototype>)"UnholyBlood", FixedPoint2.New(1));
+        unholyBloodSolution.AddReagent((ProtoId<ReagentPrototype>)"UnholyBlood", FixedPoint2.New(300));
         _bloodstream.ChangeBloodReagents((entity, bloodstream), unholyBloodSolution);
     }
 

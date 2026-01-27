@@ -67,7 +67,7 @@ public sealed class BloodCultistMetabolismSystem : EntitySystem
             try
             {
                 var unholyBloodSolution = new Solution();
-                unholyBloodSolution.AddReagent((ProtoId<ReagentPrototype>)"UnholyBlood", FixedPoint2.New(1));
+                unholyBloodSolution.AddReagent((ProtoId<ReagentPrototype>)"UnholyBlood", FixedPoint2.New(300));
                 _bloodstream.ChangeBloodReagents((uid, bloodstream), unholyBloodSolution);
             }
             catch (Exception ex)
@@ -106,7 +106,7 @@ public sealed class BloodCultistMetabolismSystem : EntitySystem
             try
             {
                 var restoreSolution = new Solution();
-                restoreSolution.AddReagent((ProtoId<ReagentPrototype>)restoreReagent, FixedPoint2.New(1));
+                restoreSolution.AddReagent((ProtoId<ReagentPrototype>)restoreReagent, FixedPoint2.New(300));
                 _bloodstream.ChangeBloodReagents((uid, bloodstream), restoreSolution);
             }
             catch (Exception ex)
@@ -140,7 +140,7 @@ public sealed class BloodCultistMetabolismSystem : EntitySystem
         try
         {
                 var restoreSolution = new Solution();
-                restoreSolution.AddReagent((ProtoId<ReagentPrototype>)restoreReagent, FixedPoint2.New(1));
+                restoreSolution.AddReagent((ProtoId<ReagentPrototype>)restoreReagent, FixedPoint2.New(300));
                 _bloodstream.ChangeBloodReagents((uid, bloodstream), restoreSolution);
         }
         catch (Exception ex)
