@@ -28135,5 +28135,38 @@ Entries:
   id: 299300
   time: '2026-01-27T18:53:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2993
+- author: CawsForConcern
+  changes:
+  - message: (Manor) Duty Officers
+    type: Add
+  - message: (Manor) Nanotrasen Career Trainers
+    type: Add
+  - message: (Manor) NCT Office
+    type: Add
+  - message: (Manor) Xenobio
+    type: Add
+  - message: (Manor) SpawnPointLateJoin by arrivals
+    type: Add
+  - message: (Manor) HOS weapon spawner
+    type: Add
+  - message: (Manor) Magistrate Locker
+    type: Add
+  - message: (Manor) IAA Lockers
+    type: Add
+  - message: (Manor) AI Restoration consoles in RD's office and AI Upload
+    type: Add
+  - message: (Manor) Wall-mounted mass scanners at Cargo front
+    type: Add
+  - message: (Manor) Pride-O-Mat vendor outside Bar
+    type: Add
+  - message: (Manor) Added a new cut-thru hallway through Robotics, connects to Xenobio
+    type: Tweak
+  - message: (Manor) Layout of Law office slightly tweaked
+    type: Tweak
+  - message: (Manor) 2nd Warden job slot
+    type: Remove
+  id: 301400
+  time: '2026-01-27T22:20:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3014
 Order: -1
 
