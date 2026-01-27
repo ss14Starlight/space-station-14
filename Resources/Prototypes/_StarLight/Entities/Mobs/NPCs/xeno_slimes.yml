@@ -28,6 +28,9 @@
       coldDamage:
         types:
           Cold: 10.0
+    - type: Tag
+      tags:
+        - XenobiologyClawGrabbable
 
 - type: entity
   name: gray xenobiology slime
