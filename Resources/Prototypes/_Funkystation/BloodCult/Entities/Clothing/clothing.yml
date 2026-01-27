@@ -1,0 +1,72 @@
+- type: entity
+  parent: [ ClothingOuterBaseLarge, BaseMajorContraband ]
+  id: ClothingOuterRobesBloodCult
+  name: bloodcult robes
+  description: An evil-looking cloth robe, dripping with blood and reinforced with armor plates, with an attached hood.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/BloodCult/Clothing/cult_robes.rsi
+  - type: Clothing
+    sprite: _Funkystation/BloodCult/Clothing/cult_robes.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.5
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodBloodCult
+    slot: head
+  - type: GroupExamine
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHoodBloodCult
+  categories: [ HideSpawnMenu ]
+  name: bloodcult hood
+  description: A covering for the head, adorned with symbols of the blood cult.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/BloodCult/Clothing/cult_hood.rsi
+  - type: Clothing
+    sprite: _Funkystation/BloodCult/Clothing/cult_hood.rsi
+    equipSound: /Audio/Effects/rustle1.ogg
+    unequipSound: /Audio/Effects/rustle2.ogg
+    quickEquip: false
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      head-reptilian:
+      - state: equipped-HELMET-reptilian
+      head-vox:
+      - state: equipped-HELMET-vox
+      head-vulpkanin:
+      - state: equipped-HELMET-vulpkanin
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.9
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: entity
+  parent: [ClothingShoesBaseButcherable, BaseMinorContraband]
+  id: ClothingShoesBootsForsaken
+  name: forsaken boots
+  description: Cursed boots that grip the ground with an unnatural tenacity. The blood cult's dark magic ensures you'll never slip.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/BloodCult/Clothing/cult_boots.rsi
+  - type: Clothing
+    sprite: _Funkystation/BloodCult/Clothing/cult_boots.rsi
+  - type: NoSlip
+  - type: SlowedOverSlippery
+    slowdownModifier: 0.7
+  - type: SpeedModifierContactCapClothing
+    maxContactSprintSlowdown: 0.7
+    maxContactWalkSlowdown: 0.7
