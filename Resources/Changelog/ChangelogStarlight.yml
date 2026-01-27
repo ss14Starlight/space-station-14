@@ -28086,5 +28086,54 @@ Entries:
   id: 297600
   time: '2026-01-26T13:17:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2976
+- author: Fasuh
+  changes:
+  - message: Fixed Avali and Resomi getting poisoned from ammonia.
+    type: Fix
+  id: 301000
+  time: '2026-01-27T17:41:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3010
+- author: Ivomink
+  changes:
+  - message: Fixed Cat ear markings
+    type: Fix
+  id: 300900
+  time: '2026-01-27T17:42:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3009
+- author: Fasuh
+  changes:
+  - message: Fixed Corgi overheating in hardsuits.
+    type: Fix
+  id: 300300
+  time: '2026-01-27T18:01:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3003
+- author: Bingus13
+  changes:
+  - message: Scurrets are now capable of pulling objects.
+    type: Tweak
+  id: 300500
+  time: '2026-01-27T18:35:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3005
+- author: Conflee
+  changes:
+  - message: (Space Mall) Changed a lot of things. Mostly small upkeep stuff.
+    type: Tweak
+  id: 299900
+  time: '2026-01-27T18:43:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2999
+- author: Shades
+  changes:
+  - message: Fixed BubbleChat not showing fonts and languages icons.
+    type: Fix
+  id: 299800
+  time: '2026-01-27T18:47:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2998
+- author: Scarlet Lightweaver
+  changes:
+  - message: Changed AC2 to FMJ!
+    type: Tweak
+  id: 299300
+  time: '2026-01-27T18:53:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2993
 Order: -1
 
