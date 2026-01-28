@@ -27,4 +27,4 @@
     icon: { sprite: Objects/Specific/Medical/medical.rsi, state: gauze }
     useDelay: 900 # 15 minutes
   - type: InstantAction
-    event: !type:RejuvenateInstantActionEvent { preserveDamageTypes: [ Cellular ] }
+    event: !type:RejuvenateInstantActionEvent { preserveDamageTypes: [ Radiation ] }

@@ -111,7 +111,7 @@ public sealed partial class DevilComponent : Component
     {
         DamageDict = new()
         {
-            { "Cellular", 10 },
+            { "Radiation", 10 },
         }
     };
 
