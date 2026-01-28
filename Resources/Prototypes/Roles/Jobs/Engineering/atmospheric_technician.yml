@@ -16,6 +16,7 @@
   - Engineering
   - External
   - Atmospherics
+  - Firelock # Starlight
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: FirefighterDay

@@ -5,6 +5,7 @@ id-card-access-level-iaa = Internal Affairs
 
 id-card-access-level-brigmedic = Brigmedic
 
+id-card-access-level-firelock = Firelock
 
 id-card-access-level-robotics = Robotics
 
