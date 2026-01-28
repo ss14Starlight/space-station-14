@@ -7,8 +7,8 @@
     itemIconStyle: BigAction
     useDelay: 30
     icon:
-      sprite: Objects/Misc/pens.rsi
-      state: pen
+      sprite: _Starlight/Objects/Misc/infernal_contract.rsi
+      state: paper_words
   - type: InstantAction
     event: !type:SummonDemonicContractEvent
 
