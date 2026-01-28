@@ -516,3 +516,26 @@
   storage:
     back:
     - ClothingDogTags
+
+- type: loadout
+  id: PersonalAI
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 48h
+  storage:
+    back: 
+      - PersonalAI
+
+- type: loadout
+  id: GoldenPersonalAI
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: GhostPAI
+      time: 8h
+  storage:
+    back: 
+      - GoldenPersonalAI

@@ -33,8 +33,8 @@ public sealed partial class VampireSystem
         RemComp<ThirstComponent>(vampire); //Unsure, should vampires thirst.. or hunger?
 
         //Render immune to cold, but not heat
-        if (TryComp<TemperatureComponent>(vampire, out var temperatureComponent))
-            temperatureComponent.ColdDamageThreshold = Atmospherics.TCMB;
+        if (TryComp<TemperatureDamageComponent>(vampire, out var temperatureComponent))
+            temperatureComponent.ColdDamage.ClampMax(0);
 
         MakeVulnerableToHoly(vampire);
 
@@ -77,15 +77,16 @@ public sealed partial class VampireSystem
         {
             if (TryComp<MetabolizerComponent>(organ.Id, out var metabolizer))
             {
+                var metabolizerEnt = new Entity<MetabolizerComponent>(organ.Id, metabolizer);
                 if (TryComp<StomachComponent>(organ.Id, out var stomachComponent))
                 {
                     //Override the stomach, prevents humans getting sick when ingesting blood
-                    _metabolism.ClearMetabolizerTypes(metabolizer);
+                    _metabolism.ClearMetabolizerTypes(metabolizerEnt);
                     _stomach.SetSpecialDigestible(stomachComponent, VampireComponent.AcceptableFoods);
                 }
 
-                _metabolism.TryAddMetabolizerType(metabolizer, VampireComponent.MetabolizerVampire);
-                _metabolism.TryAddMetabolizerType(metabolizer, VampireComponent.MetabolizerBloodsucker);
+                _metabolism.TryAddMetabolizerType(metabolizerEnt, VampireComponent.MetabolizerVampire);
+                _metabolism.TryAddMetabolizerType(metabolizerEnt, VampireComponent.MetabolizerBloodsucker);
             }
         }
     }
@@ -134,7 +135,7 @@ public sealed partial class VampireSystem
         {
             if (TryComp<MetabolizerComponent>(organ.Id, out var metabolizer))
             {
-                _metabolism.TryRemoveMetabolizerType(metabolizer, VampireComponent.MetabolizerVampire);
+                _metabolism.TryRemoveMetabolizerType((organ.Id, metabolizer), VampireComponent.MetabolizerVampire);
             }
         }
 

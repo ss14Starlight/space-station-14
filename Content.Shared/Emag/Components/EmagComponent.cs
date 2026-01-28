@@ -78,5 +78,15 @@ public sealed partial class EmagComponent : Component
     /// </summary>
     [DataField]
     public HashSet<ProtoId<RadioChannelPrototype>> ChannelAdd = ["Syndicate"];
+
+    /// <summary>
+    /// Overrides borg emagged sound if specified.
+    /// </summary>
+    [DataField] public SoundSpecifier? EmaggedSoundOverride;
+    
+    /// <summary>
+    /// Whether to even play the emagged sound or not.
+    /// </summary>
+    [DataField] public bool DoEmaggedSound = true;
     //#endregion Starlight
 }

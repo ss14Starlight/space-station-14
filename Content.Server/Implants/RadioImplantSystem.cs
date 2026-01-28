@@ -25,6 +25,11 @@ public sealed class RadioImplantSystem : EntitySystem
             if (activeRadio.Channels.Add(channel))
                 ent.Comp.ActiveAddedChannels.Add(channel);
         }
+        //Starlight begin
+        foreach (var channel in ent.Comp.CustomChannels)
+            if (activeRadio.CustomChannels.Add(channel))
+                ent.Comp.ActiveAddedCustomRadioChannels.Add(channel);
+        //Starlight end
 
         EnsureComp<IntrinsicRadioReceiverComponent>(args.Implanted);
 
@@ -34,6 +39,11 @@ public sealed class RadioImplantSystem : EntitySystem
             if (intrinsicRadioTransmitter.Channels.Add(channel))
                 ent.Comp.TransmitterAddedChannels.Add(channel);
         }
+        //Starlight begin
+        foreach (var channel in ent.Comp.CustomChannels)
+            if (intrinsicRadioTransmitter.CustomChannels.Add(channel))
+                ent.Comp.TransmitterAddedCustomRadioChannels.Add(channel);
+        //Starlight end
     }
 
     /// <summary>
@@ -48,8 +58,13 @@ public sealed class RadioImplantSystem : EntitySystem
                 activeRadioComponent.Channels.Remove(channel);
             }
             ent.Comp.ActiveAddedChannels.Clear();
+            //Starlight begin
+            foreach (var channel in ent.Comp.ActiveAddedCustomRadioChannels)
+                activeRadioComponent.CustomChannels.Remove(channel);
+            ent.Comp.ActiveAddedCustomRadioChannels.Clear();
+            //Starlight end
 
-            if (activeRadioComponent.Channels.Count == 0)
+            if (activeRadioComponent.Channels.Count == 0 && activeRadioComponent.CustomChannels.Count == 0) // Starlight edit
             {
                 RemCompDeferred<ActiveRadioComponent>(args.Implanted);
             }
@@ -63,8 +78,14 @@ public sealed class RadioImplantSystem : EntitySystem
             radioTransmitterComponent.Channels.Remove(channel);
         }
         ent.Comp.TransmitterAddedChannels.Clear();
+        
+        //Starlight begin
+        foreach (var channel in ent.Comp.TransmitterAddedCustomRadioChannels)
+            radioTransmitterComponent.CustomChannels.Remove(channel);
+        ent.Comp.TransmitterAddedCustomRadioChannels.Clear();
+        //Starlight end
 
-        if (radioTransmitterComponent.Channels.Count == 0 || activeRadioComponent?.Channels.Count == 0)
+        if ((radioTransmitterComponent.Channels.Count == 0 || activeRadioComponent?.Channels.Count == 0) && (radioTransmitterComponent.CustomChannels.Count==0 || activeRadioComponent?.CustomChannels.Count == 0)) // Starlight edit
         {
             RemCompDeferred<IntrinsicRadioTransmitterComponent>(args.Implanted);
         }

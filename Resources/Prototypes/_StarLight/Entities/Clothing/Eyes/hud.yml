@@ -1,7 +1,7 @@
 - type: entity
-  parent: [ ClothingEyesBase, BaseCommandContraband ]
+  parent: [ ClothingEyesBase, BaseBlueShieldContraband ]
   id: ClothingEyesHudBlueShield
-  name: blueshield officer's hud
+  name: blue shield hud
   description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
   components:
   - type: Sprite
@@ -26,7 +26,7 @@
 - type: entity
   parent: [ClothingEyesHudBlueShield, ClothingHeadEyeBaseFlippable]
   id: ClothingEyesEyepatchHudBlueShield
-  name: blueshield officer's hud eyepatch
+  name: blue shield hud eyepatch
   description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information. For true patriots.
   components:
   - type: Sprite
@@ -42,7 +42,7 @@
 - type: entity
   parent: [ClothingEyesEyepatchHudBlueShield, ClothingHeadEyeBaseFlipped]
   id: ClothingEyesEyepatchHudBlueShieldFlipped
-  name: blueshield officer's hud eyepatch
+  name: blue shield hud eyepatch
 
 - type: entity
   parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]

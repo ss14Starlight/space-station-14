@@ -1,8 +1,8 @@
 #BSO Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseBlueShieldContraband]
   id: ClothingOuterHardsuitBlueshield
-  name: blueshield officer's hardsuit
+  name: blue shield hardsuit
   description: A high-tech hardsuit perfect for diving in front of Mr. Pre- Er, Captain.
   components:
   - type: Sprite

@@ -9,5 +9,6 @@ namespace Content.Shared.Silicons.Borgs.Components;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedBorgSystem))]
 public sealed partial class BorgBrainComponent : Component
 {
-
+    [DataField]
+    public bool BorgConsent = false;
 }

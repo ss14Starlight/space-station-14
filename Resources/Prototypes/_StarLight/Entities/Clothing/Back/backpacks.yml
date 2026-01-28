@@ -26,10 +26,10 @@
     sprite: _Starlight/Clothing/Back/Backpacks/chemistrysenior.rsi
 
 - type: entity
-  parent: [ClothingBackpack, BaseCommandContraband]
+  parent: [ClothingBackpack, BaseBlueShieldContraband]
   id: ClothingBackpackBlueShield
-  name: blueshields backpack
-  description: A lightweight but reliable backpack. Cant go wrong with the classics!
+  name: blue shield backpack
+  description: A lightweight but reliable backpack. Can't go wrong with the classics!
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Backpacks/blueshield.rsi

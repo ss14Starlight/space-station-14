@@ -30,8 +30,10 @@ loadout-group-blueshield-head = Blueshield head
 loadout-group-blueshield-backpack = Blueshield backpack
 loadout-group-blueshield-jumpsuit = Blueshield jumpsuit
 loadout-group-blueshield-eyewear = Blueshield eyewear
-Loadout-group-blueshield-outerclothing = Blueshield Outer Clothing
-Loadout-group-blueshield-neck = Blueshield Neck
+loadout-group-blueshield-outerclothing = Blueshield Outer Clothing
+loadout-group-blueshield-belt = Blueshield Belt
+loadout-group-blueshield-neck = Blueshield Neck
+loadout-group-blueshield-id = Blueshield ID
 
 # Security
 
@@ -80,6 +82,9 @@ loadout-group-chemist-beaker = Chemist beaker
 loadout-group-chemist-bag = Chemist bag
 loadout-group-chemist-labeler = Chemist labeler
 loadout-group-chemist-shoes = Chemist shoes
+
+# Janitor
+loadout-group-janitor-neck = Janitor neck
 
 # Other
 loadout-group-scarves = Scarf

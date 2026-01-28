@@ -117,3 +117,11 @@
     severity: GrandTheft
     allowedDepartments: [ Command ]
     allowedJobs: [ Detective ]
+
+- type: entity
+  id: BaseBlueShieldContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ BlueShield ]

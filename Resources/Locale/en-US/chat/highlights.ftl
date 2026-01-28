@@ -35,7 +35,8 @@ highlights-research-assistant = Research Assistant, Science, "Sci"
 # Civilian
 highlights-bartender = Bartender, Barkeeper, Barkeep, "Bar"
 highlights-botanist = Botanist, Botany, Hydroponics
-highlights-chaplain = Chaplain, "Chap", Chapel
+# Starlight: adding more titles for Chaplain
+highlights-chaplain = Chaplain, "Chap", Chapel, Priest, Priestess, Temple, Shrine, Church, Synagogue, Shrine, Altar, Reverend, Nun, Bishop, Cardinal, Father, Sister, Rabbi, Deacon, Abbot, Monk, Abbess, Brother, Elder, Pastor, Minister, Vicar, Guru, Yogi, Swami, Saint, Imam, Sheikh, Sheikha, Druid, Druidess, Witch, Emir, Deaconess
 highlights-chef = Chef, "Cook", Kitchen
 highlights-clown = Clown, Jester
 highlights-janitor = Janitor, "Jani"
@@ -47,7 +48,8 @@ highlights-service-worker = Service Worker
 
 # Station-specific
 highlights-reporter = Reporter, Journalist
-highlights-psychologist = Psychologist, Psychology
+# Starlight: adding more titles for Psychologist
+highlights-psychologist = Psychologist, Psychology, Psych, Shrink
 
 # Silicon
 highlights-personal-ai = Personal AI, "pAI"

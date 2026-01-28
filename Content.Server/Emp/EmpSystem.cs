@@ -30,6 +30,8 @@ public sealed class EmpSystem : SharedEmpSystem
 
         SubscribeLocalEvent<EmpDisabledComponent, RadioSendAttemptEvent>(OnRadioSendAttempt);
         SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
+        SubscribeLocalEvent<EmpDisabledComponent, CustomRadioSendAttemptEvent>(OnCustomRadioSendAttempt); //Starlight
+        SubscribeLocalEvent<EmpDisabledComponent, CustomRadioReceiveAttemptEvent>(OnCustomRadioReceiveAttempt); //Starlight
         SubscribeLocalEvent<EmpDisabledComponent, ApcToggleMainBreakerAttemptEvent>(OnApcToggleMainBreaker);
         SubscribeLocalEvent<EmpDisabledComponent, SurveillanceCameraSetActiveAttemptEvent>(OnCameraSetActive);
     }
@@ -59,6 +61,16 @@ public sealed class EmpSystem : SharedEmpSystem
 
     private void OnRadioReceiveAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioReceiveAttemptEvent args) => args.Cancelled = true;
 
+    //Starlight begin
+    private void OnCustomRadioSendAttempt(EntityUid uid, EmpDisabledComponent component,
+        ref CustomRadioSendAttemptEvent args) =>
+        args.Cancelled = true;
+
+    private void OnCustomRadioReceiveAttempt(EntityUid uid, EmpDisabledComponent component,
+        ref CustomRadioReceiveAttemptEvent args) =>
+        args.Cancelled = true;
+    //Starlight end
+    
     private void OnApcToggleMainBreaker(EntityUid uid, EmpDisabledComponent component, ref ApcToggleMainBreakerAttemptEvent args) => args.Cancelled = true;
 
     private void OnCameraSetActive(EntityUid uid, EmpDisabledComponent component, ref SurveillanceCameraSetActiveAttemptEvent args) => args.Cancelled = true;

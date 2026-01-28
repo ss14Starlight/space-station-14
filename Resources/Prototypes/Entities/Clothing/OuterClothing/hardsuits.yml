@@ -1033,8 +1033,8 @@
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ]
   id: ClothingOuterHardsuitERTChaplain
-  name: ERT chaplain's hardsuit
-  description: A protective hardsuit worn by the chaplains of an Emergency Response Team.
+  name: ERT chaplain hardsuit # Starlight: remove possessive
+  description: A protective hardsuit worn by the Chaplains of an Emergency Response Team. # Starlight: Capitalization
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi #if you change this, please update the humanoid.yml with a better markers sprite.
