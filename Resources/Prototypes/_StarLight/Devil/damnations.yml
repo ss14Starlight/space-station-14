@@ -130,12 +130,12 @@
   - !type:DamnationActionSpawnLoot
     table: PowerDamnationRandomEquipment
 
-- type: damnation
-  id: Friendship
-  name: have power over a friend
-  description: The signator gains the ability to create and destroy a friend at will.
-  cost: 10
-  actions:
-  - !type:DamnationActionAddAction
-    actions:
-    - ActionFriendship
+#- type: damnation
+#  id: Friendship
+#  name: have power over a friend
+#  description: The signator gains the ability to create and destroy a friend at will.
+#  cost: 10
+#  actions:
+#  - !type:DamnationActionAddAction
+#    actions:
+#    - ActionFriendship
