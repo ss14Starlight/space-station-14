@@ -37,7 +37,7 @@
   name: trait-language-nekomimetic-name
   description: trait-language-nekomimetic-desc
   category: LanguageTraits
-  cost: 21
+  cost: 1
   components:
   - type: LanguageSpeaker
   languagesSpoken:
