@@ -18,6 +18,9 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodBloodCult
     slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot
   - type: GroupExamine
 
 - type: entity
