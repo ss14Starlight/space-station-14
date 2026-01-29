@@ -8,7 +8,7 @@
     layers:
       - state: green
       - sprite: _FarHorizons/Objects/Vehicles/secway.rsi
-        state: icon
+        state: vehicle
   - type: ConditionalSpawner
     prototypes:
       - VehicleSecwayBatterywithKeys
@@ -23,7 +23,7 @@
     layers:
       - state: green
       - sprite: _FarHorizons/Objects/Vehicles/syndicatesecway.rsi
-        state: icon
+        state: vehicle
   - type: ConditionalSpawner
     prototypes:
       - VehicleSecwayBatterywithKeysS
@@ -37,7 +37,7 @@
     layers:
       - state: green
       - sprite: Objects/Vehicles/atv.rsi
-        state: keys
+        state: vehicle
   - type: ConditionalSpawner
     prototypes:
       - VehicleATVFueledwithKeys
@@ -51,7 +51,7 @@
     layers:
       - state: green
       - sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
-        state: icon
+        state: vehicle
   - type: ConditionalSpawner
     prototypes:
       - VehicleATVFueledwithKeysNTSec
@@ -83,3 +83,17 @@
   - type: ConditionalSpawner
     prototypes:
       - VehicleWheelchairFolded
+
+- type: entity
+  name: Janicart Spawner
+  id: SpawnVehicleJanicart
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Vehicles/janicart.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleJanicartBatterywithKeys

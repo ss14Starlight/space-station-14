@@ -56,7 +56,7 @@
 - type: entity
   parent: VehicleKeyBase
   id: VehicleKeyATV
-  name: ATV Keys
+  name: ATV Key
   description: Think this looks like just one key? ATV keys means "actually two vehicle keys."
   components:
   - type: Tag
@@ -82,7 +82,7 @@
 - type: entity
   parent: VehicleKeyBase
   id: VehicleKeyClowncar
-  name: Clowncar keys
+  name: Clowncar Key
   description: The keys to an incomprehensible evil...
   components:
   - type: Tag
@@ -91,4 +91,32 @@
     - ClowncarKeys
   - type: Sprite
     sprite: _FarHorizons/Objects/Vehicles/clowncar.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyJanicart
+  name: Janicart Key
+  description: The keys to the cleanest steed in the station.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - JanicartKeys
+  - type: Sprite
+    sprite: Objects/Vehicles/janicart.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyMotorcycle
+  name: Motorcycle Key
+  description: The keys to a bad ass vehicle.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - MotorcycleKeys
+  - type: Sprite
+    sprite: Objects/Vehicles/motorbike.rsi
     state: keys

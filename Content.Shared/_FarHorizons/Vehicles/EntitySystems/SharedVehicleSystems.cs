@@ -8,8 +8,10 @@ using Robust.Shared.Audio;
 using Content.Shared.Examine;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Toggleable;
-using Content.Shared.Interaction;
 using Content.Shared.Light.Components;
+using Content.Shared.Movement.Pulling.Events;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Buckle;
 
 namespace Content.Shared._FarHorizons.Vehicles.EntitySystems;
 
@@ -19,6 +21,7 @@ public abstract partial class SharedVehicleSystems : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly LockSystem _lock = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
 
     public override void Initialize()
     {
@@ -28,7 +31,10 @@ public abstract partial class SharedVehicleSystems : EntitySystem
         SubscribeLocalEvent<VehicleComponent, StartCollideEvent>(HandleCollide);
         SubscribeLocalEvent<VehicleComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<VehicleComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<ItemToggleComponent, ToggleSirenActionEvent>(OnSirenToggle);
+
+        SubscribeLocalEvent<RiderComponent, PullAttemptEvent>(OnPullAttempt);
+
+        SubscribeLocalEvent<ItemToggleComponent, ToggleActionEvent>(OnSirenToggle);
     }
 
     protected virtual void OnTurnKeysEvent(Entity<VehicleComponent> ent, ref TurnKeysEvent args)
@@ -47,7 +53,7 @@ public abstract partial class SharedVehicleSystems : EntitySystem
         if (args.Handled || ent.Comp.HornSound == null)
             return;
         if(ent.Comp.Rider == null) return;
-        _audio.PlayPredicted(ent.Comp.HornSound, ent.Owner, ent.Comp.Rider.Value);
+        _audio.PlayPvs(ent.Comp.HornSound, ent.Owner);
         args.Handled = true;
     }
 
@@ -57,30 +63,32 @@ public abstract partial class SharedVehicleSystems : EntitySystem
             return;
 
         var finalState = VehicleVisualState.Normal;
-        if (entity.Comp.isMoving)
-        {
-            finalState = VehicleVisualState.Moving;
-        }
-        else if (entity.Comp.isBroken)
+
+        if (entity.Comp.isBroken)
         {
             finalState = VehicleVisualState.Broken;
         }
-
+        else if (entity.Comp.isMoving)
+        {
+            finalState = VehicleVisualState.Moving;
+        }
         _appearance.SetData(entity.Owner, VehicleVisuals.VisualState, finalState);
     }
 
     protected virtual void OnToggleTrunk(Entity<VehicleComponent> ent, ref ToggleTrunkActionEvent args)
     {
+        if(args.Handled) return;
         if(!TryComp<LockComponent>(ent.Owner, out var lockComp)) return;
 
         if(!_lock.IsLocked(ent.Owner))
         {
-            _audio.PlayPredicted(lockComp.UnlockSound, ent.Owner, ent.Comp.Rider!.Value);
+            _audio.PlayPvs(lockComp.UnlockSound, ent.Owner);
         }
         else
         {
-            _audio.PlayPredicted(lockComp.LockSound, ent.Owner, ent.Comp.Rider!.Value);
+            _audio.PlayPvs(lockComp.LockSound, ent.Owner);
         }
+        args.Handled = true;
     }
 
     protected virtual void HandleCollide(Entity<VehicleComponent> ent, ref StartCollideEvent args)
@@ -122,12 +130,25 @@ public abstract partial class SharedVehicleSystems : EntitySystem
             args.PushMarkup(Loc.GetString("vehicle-examine-broken"));
     }
 
-    private void OnSirenToggle(Entity<ItemToggleComponent> ent, ref ToggleSirenActionEvent args)
+    private void OnPullAttempt(Entity<RiderComponent> ent, ref PullAttemptEvent args)
     {
-        if(!HasComp<UnpoweredFlashlightComponent>(ent.Owner) && !HasComp<ItemToggleComponent>(ent.Owner)) return;
-        var evToggle = new ToggleActionEvent();
-        var evActivate = new ActivateInWorldEvent(args.Performer, ent.Owner, false);
-        RaiseLocalEvent(ent.Owner, evToggle);
-        RaiseLocalEvent(ent.Owner, evActivate);
+        if(TryComp<MobStateComponent>(ent.Owner, out var mbState) 
+        && (mbState.CurrentState == Mobs.MobState.Critical 
+            || mbState.CurrentState == Mobs.MobState.Dead 
+            || mbState.CurrentState == Mobs.MobState.Invalid))
+        {
+            _buckle.Unbuckle(ent.Owner, args.PullerUid);
+            return;
+        }
+        args.Cancelled = true;
+    }
+
+    private void OnSirenToggle(Entity<ItemToggleComponent> ent, ref ToggleActionEvent args)
+    {
+        if(args.Handled) return;
+        if(!TryComp<UnpoweredFlashlightComponent>(ent.Owner, out var flashComp) || !HasComp<ItemToggleComponent>(ent.Owner)) return;
+        var toggleUsed = new ItemToggledEvent(true, Activated: flashComp.LightOn, args.Performer);
+        RaiseLocalEvent(ent.Owner, ref toggleUsed);
+        args.Handled = true;
     }
 }

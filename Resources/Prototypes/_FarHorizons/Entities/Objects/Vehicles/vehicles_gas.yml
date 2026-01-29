@@ -1,313 +1,4 @@
 - type: entity
-  id: BaseVehicle
-  save: false
-  abstract: true
-  components:
-  - type: AmbientSound
-    sound: "/Audio/Effects/Vehicle/vehicleengineidle.ogg"
-    range: 10
-    volume: -5
-    enabled: false
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 4.5
-    baseSprintSpeed: 6
-  - type: Tag
-    tags:
-      - DoorBumpOpener
-      - FootstepSound
-
-- type: entity
-  parent: BaseVehicle
-  id: BaseVehicleRideable
-  abstract: true
-  name: Vehicle
-  components:
-  - type: InputMover
-  - type: MobMover
-  - type: InteractionOutline
-  - type: Pullable
-  - type: Physics
-    bodyType: KinematicController
-  - type: Clickable
-  - type: Appearance
-  - type: StaticPrice
-    price: 750 # Grand Theft Auto.
-  - type: GravityAffected
-
-- type: entity
-  parent: BaseVehicleRideable
-  id: BaseVehicleRideableDamageable
-  abstract: true
-  name: VehicleDamageable
-  components:
-  - type: Repairable
-    doAfterDelay: 20
-    qualityNeeded: Anchoring
-  - type: Pierceable 
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 150
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:DoActsBehavior
-        acts: ["Breakage"]
-
-- type: entity
-  id: VehicleWheelchair
-  parent: [BaseVehicleRideable, BaseFoldable, BaseItem]
-  name: Wheelchair
-  description: A chair with big wheels. It looks like you can move in these on your own.
-  components:
-    - type: Sprite
-      drawdepth: BelowMobs
-      sprite: Objects/Vehicles/wheelchair.rsi
-      layers:
-      - state: wheelchair
-        map: ["enum.VehicleVisualLayers.Base", "unfoldedLayer"]
-      - state: wheelchair_folded
-        map: ["foldedLayer"]
-        visible: false
-      noRot: true
-    - type: Vehicle
-      acceleration: 2 # higher acceleration the faster it reaches max baseSpeed
-      friction: 2 # higher friction counteracts the current speed so higher makes it easier to turn but has the inverse effect also it counter acts acceleration
-      frictionNoInput: 2 # same as friction but for when the user doesn't input anything so lower friction means it will take them longer to stop
-      requireIgnition: false 
-      baseState: wheelchair
-      handsNeeded: 0
-      riderWhitelist:
-        components:
-          - HumanoidAppearance
-      soundHit:
-        collection: MetalThud
-    - type: VehicleBuckle
-      unbuckleTime: 1
-      dismountOnStun: true
-      dismountOnKnockdown: true
-      armorAffectsVehicle: true
-      northOffset: "0, -0.15"
-      southOffset: "0, -0.15"
-      eastOffset: "0, -0.15"
-      westOffset: "-0, -0.15"
-      northDrawDepth: OverMobs
-      southDrawDepth: BelowMobs
-      eastDrawDepth: OverMobs
-      westDrawDepth: OverMobs
-    - type: MovementSpeedModifier
-      baseSprintSpeed: 4.5
-      baseWalkSpeed: 2.5
-    - type: Strap
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeCircle
-            radius: 0.2
-          density: 50
-          restitution: 0.0
-          mask:
-            - MobMask
-    - type: FootstepModifier
-      footstepSoundCollection:
-        path: /Audio/Effects/Footsteps/borgwalk1.ogg
-        params:
-          pitch: 0.75
-          variation: 0.05
-    - type: StaticPrice
-      price: 70
-
-- type: entity
-  parent: VehicleWheelchair
-  id: VehicleWheelchairFolded
-  suffix: folded
-  components:
-    - type: Foldable
-      folded: true
-    - type: Strap
-      enabled: false
-
-- type: entity
-  id: VehicleSecway
-  parent: [BaseVehicleRideableDamageable, BaseSecurityContraband]
-  name: Secway
-  description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
-  suffix: NT
-  components:
-  - type: Vehicle
-    acceleration: 2
-    friction: 4.5
-    frictionNoInput: 4.5
-    requireIgnition: true 
-    baseState: vehicle
-    brokenState: vehicle_broken
-    startupTime: 2
-    handsNeeded: 1
-    riderWhitelist:
-      components:
-        - HumanoidAppearance
-    disallowWielding: true
-    allowGunKnockback: true
-    soundHit:
-      collection: MetalThud
-  - type: VehicleBuckle
-    unbuckleTime: 2
-    dismountOnStun: true
-    dismountOnKnockdown: true
-    armorAffectsVehicle: true
-    northOffset: "0, -0.12"
-    southOffset: "0, -0.12"
-    eastOffset: "0, -0.2"
-    westOffset: "-0, -0.2"
-    northDrawDepth: BelowMobs
-    southDrawDepth: OverMobs
-    eastDrawDepth: OverMobs
-    westDrawDepth: OverMobs
-  - type: Sprite
-    drawdepth: OverMobs
-    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
-    layers:
-    - state: vehicle
-      map: ["enum.VehicleVisualLayers.Base"]
-    noRot: true
-  - type: Strap
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.4
-        density: 100
-        restitution: 0.0
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 5.5 #4.5 is default, so this is 1 faster than normal run
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: Keys
-        whitelist:
-          requireAll: true
-          tags:
-          - VehicleKey
-          - SecwayKeys
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        disableEject: true
-        # Swappable batteries until we can get secway recharge stations
-        #swap: false 
-  - type: ContainerContainer
-    containers:
-      key_slot: !type:ContainerSlot
-      cell_slot: !type:ContainerSlot
-      vehicle_mods_container: !type:Container
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-    fitsInCharger: false
-  - type: PowerCellDraw
-    drawRate: 1
-    enabled: false
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/Effects/Footsteps/borgwalk4.ogg
-      params:
-        pitch: 1.15
-        variation: 0.05
-  - type: StealTarget
-    stealGroup: VehicleSecwaySteal
-
-- type: entity
-  id: VehicleSecwayBatterywithKeys
-  parent: VehicleSecway
-  suffix: Battery, Keys, NT
-  components: 
-    - type: ContainerFill
-      containers:
-        cell_slot:
-        - PowerCellMedium
-        key_slot:
-        - VehicleKeySecway
-        vehicle_mods_container:
-        - SecwayLight
-        - SecSiren
-
-- type: entity
-  id: VehicleSecwayBatterywithKeysS
-  parent: VehicleSecway
-  suffix: Battery, Keys, S
-  components:
-    - type: Sprite
-      drawdepth: OverMobs
-      sprite: _FarHorizons/Objects/Vehicles/syndicatesecway.rsi
-      layers:
-      - state: vehicle
-        map: ["enum.VehicleVisualLayers.Base"]
-      noRot: true 
-    - type: ContainerFill
-      containers:
-        cell_slot:
-        - PowerCellMedium
-        key_slot:
-        - VehicleKeySecway
-        vehicle_mods_container:
-        - SecwayLight
-        - SecSiren
-
-- type: entity
-  id: VehicleSecwayTurboBatterywithKeys
-  parent: [VehicleSecway, BaseSecurityContraband]
-  name: Secway Turbo
-  suffix: Battery, Keys, NT
-  description: An upgraded Secway, it is better in every single aspect.
-  components:
-    - type: MovementSpeedModifier
-      baseWalkSpeed: 6
-      baseSprintSpeed: 9
-    - type: Sprite
-      drawdepth: OverMobs
-      sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
-      layers:
-      - state: vehicle
-        map: ["enum.VehicleVisualLayers.Base"]
-      noRot: true
-    - type: ItemSlots
-      slots:
-        key_slot:
-          name: Keys
-          whitelist:
-            requireAll: true
-            tags:
-            - VehicleKey
-            - SecwayTurboKeys
-        cell_slot:
-          name: power-cell-slot-component-slot-name-default
-          # Swappable batteries until we can get secway recharge stations
-          disableEject: true
-          #swap: false
-    - type: PowerCellDraw
-      drawRate: 1.5 # Eats through cells
-      enabled: false 
-    - type: ContainerFill
-      containers:
-        cell_slot:
-        - PowerCellMedium
-        key_slot:
-        - VehicleKeySecwayTurbo
-        vehicle_mods_container:
-        - SecwayLight
-        - SecSiren
-
-- type: entity
   id: VehicleATV
   parent: BaseVehicleRideableDamageable
   name: ATV
@@ -317,14 +8,15 @@
     descriptionSegments: [DescriptionsATV]
   - type: MovementSpeedModifier
     baseWalkSpeed: 7.5
-    baseSprintSpeed: 15
+    baseSprintSpeed: 10
   - type: Vehicle
+    cellPowered: false
     acceleration: 4
     friction: 4.5
     frictionNoInput: 4.5
     requireIgnition: true
     allowCrashing: true
-    crashingSpeed: 10 
+    crashingSpeed: 8
     baseState: vehicle
     brokenState: vehicle_broken
     startupTime: 2
@@ -426,20 +118,6 @@
   - type: Hitch
 
 - type: entity
-  id: VehicleATVFueled
-  parent: VehicleATV
-  suffix: Fueled
-  components: 
-    - type: ContainerContainer
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
-
-- type: entity
   id: VehicleATVFueledwithKeys
   parent: VehicleATV
   suffix: Fueled, Keys
@@ -463,7 +141,7 @@
   parent: [VehicleATV, BaseSecurityContraband]
   name: STV
   suffix: Fueled, Keys, NT
-  description: Law enforcement variant of the ATV, comes included with sirens to blare at Tiders. #Not actually included yet :P
+  description: Law enforcement variant of the ATV, comes included with sirens to blare at Tiders. 
   components:
     - type: Sprite
       drawdepth: OverMobs
@@ -479,6 +157,7 @@
           ents: []
         vehicle_mods_container: !type:Container
     - type: Vehicle
+      cellPowered: false
       acceleration: 4
       friction: 4.5
       frictionNoInput: 4.5
@@ -552,14 +231,15 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed: 7.5
-    baseSprintSpeed: 15
+    baseSprintSpeed: 10
   - type: Vehicle
+    cellPowered: false
     acceleration: 4
     friction: 4.5
     frictionNoInput: 2
     requireIgnition: true 
     allowCrashing: true
-    crashingSpeed: 10 
+    crashingSpeed: 8 
     baseState: vehicle
     brokenState: vehicle_broken
     startupTime: 2
@@ -698,5 +378,153 @@
       containers:
         key_slot:
         - VehicleKeyClowncar
+        vehicle_mods_container:
+        - ATVHeadlight
+
+- type: entity
+  id: VehicleSkeletonMotorcycle
+  parent: BaseVehicleRideableDamageable
+  name: Motorcycle
+  description: Bad to the bone.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 7.5
+    baseSprintSpeed: 12
+  - type: Vehicle
+    cellPowered: false
+    acceleration: 4
+    friction: 4.5
+    frictionNoInput: 4.5
+    requireIgnition: true
+    allowCrashing: true
+    crashingSpeed: 8
+    baseState: vehicle
+    brokenState: vehicle_broken
+    startupTime: 2
+    startUp: 
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+    hornSound: 
+      path: /Audio/Effects/Vehicle/carhorn.ogg
+      params:
+        volume: -3
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    soundHit:
+      collection: MetalThud
+  - type: VehicleBuckle
+    unbuckleTime: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    ejectOnCrash: true
+    northOffset: "0, -0.12"
+    southOffset: "0, -0.12"
+    eastOffset: "0, -0.2"
+    westOffset: "-0, -0.2"
+    northDrawDepth: BelowMobs
+    southDrawDepth: OverMobs
+    eastDrawDepth: BelowMobs
+    westDrawDepth: BelowMobs
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _FarHorizons/Objects/Vehicles/motorbike.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: Strap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 360
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - MotorcycleKeys
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
+  - type: SolutionContainerManager
+    solutions:
+      fueltank:
+        maxVol: 150
+  - type: RefillableSolution
+    solution: fueltank
+  - type: ExaminableSolution
+    solution: fueltank
+    exactVolume: true
+  - type: ReagantDraw
+    enabled: false
+    solutionContainer: fueltank
+    whitelistedReagants: 
+    - WeldingFuel
+    drainRate: 0.33
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
+      params:
+        volume: -11
+        pitch: 1.15
+        variation: 0.10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+      - !type:EmptyContainersBehaviour
+        containers:
+        - storagebase
+  - type: Hitch
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Storage
+    grid:
+    - 0,0,1,5
+    - 3,0,6,5
+    - 8,0,9,5
+    maxItemSize: Huge
+    openOnActivate: false
+    clickInsert: false
+
+- type: entity
+  id: VehicleSkeletonMotorcycleFueledwithKEys
+  parent: VehicleSkeletonMotorcycle
+  suffix: Fueled, Keys
+  components: 
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyMotorcycle
         vehicle_mods_container:
         - ATVHeadlight

@@ -27,6 +27,12 @@ public sealed partial class VehicleComponent : Component
     public bool Started = false;
 
     /// <summary>
+    /// Is it powered by a power cell?
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool CellPowered = true;
+
+    /// <summary>
     /// check if a person is allow to wield a weapon for two handed bonuses
     /// </summary>
     [DataField("disallowWielding"), AutoNetworkedField]
@@ -45,7 +51,7 @@ public sealed partial class VehicleComponent : Component
     public bool isMoving = false;
 
     /// <summary>
-    /// just to check for if the vehicle is moving for other things
+    /// just to check for if the vehicle is broken
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool isBroken = false;
@@ -55,12 +61,6 @@ public sealed partial class VehicleComponent : Component
     /// </summary>
     [DataField("handsNeeded")]
     public int HandsNeeded = 2;
-
-    /// <summary>
-    /// UID for the virtual item for the allowhands check
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid? VirtualItem;
 
     /// <summary>
     /// how long does it take the vehicle to start

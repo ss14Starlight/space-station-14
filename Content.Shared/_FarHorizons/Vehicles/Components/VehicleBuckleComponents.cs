@@ -3,7 +3,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using DrawDepthTag = Robust.Shared.GameObjects.DrawDepth;
 using System.Numerics;
 
-namespace Content.Shared._FarHorizons.VehicleBuckle.Components;
+namespace Content.Shared._FarHorizons.Vehicles.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class VehicleBuckleComponent : Component

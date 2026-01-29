@@ -4,7 +4,6 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Power.NodeGroups;
 using Content.Server.Weapons.Melee;
-using Content.Shared._FarHorizons.VehicleBuckle.Components;
 using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;

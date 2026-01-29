@@ -5,6 +5,7 @@ using Content.Shared.Movement.Systems;
 using JetBrains.Annotations;
 using Content.Shared.Throwing;
 using Robust.Shared.Physics.Events;
+using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Projectiles;
 
 namespace Content.Server.Stunnable.Systems;
@@ -26,6 +27,10 @@ internal sealed partial class StunOnCollideSystem : EntitySystem
 
     private void TryDoCollideStun(Entity<StunOnCollideComponent> ent, EntityUid target)
     {
+        //FarHorizons Start
+        if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
+            target = vehicle.Rider.Value;
+        //FarHorizons End
         var knockedDown = _stunSystem.TryKnockdown(target, ent.Comp.KnockdownAmount, ent.Comp.Refresh, ent.Comp.AutoStand, ent.Comp.Drop, ent.Comp.Forced); // Starlight start - adding admin logging for taser knockdown effect
 
         if (knockedDown)

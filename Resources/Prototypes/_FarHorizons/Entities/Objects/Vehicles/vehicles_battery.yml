@@ -1,0 +1,316 @@
+- type: entity
+  id: VehicleSecway
+  parent: [BaseVehicleRideableDamageable, BaseSecurityContraband]
+  name: Secway
+  description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
+  suffix: NT
+  components:
+  - type: Vehicle
+    acceleration: 2
+    friction: 4.5
+    frictionNoInput: 4.5
+    requireIgnition: true 
+    baseState: vehicle
+    brokenState: vehicle_broken
+    startupTime: 2
+    handsNeeded: 1
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    disallowWielding: true
+    allowGunKnockback: true
+    soundHit:
+      collection: MetalThud
+  - type: VehicleBuckle
+    unbuckleTime: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    armorAffectsVehicle: true
+    northOffset: "0, -0.12"
+    southOffset: "0, -0.12"
+    eastOffset: "0, -0.2"
+    westOffset: "-0, -0.2"
+    northDrawDepth: BelowMobs
+    southDrawDepth: OverMobs
+    eastDrawDepth: OverMobs
+    westDrawDepth: OverMobs
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: Strap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 100
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 5.5 #4.5 is default, so this is 1 faster than normal run
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - SecwayKeys
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        disableEject: true
+        # Swappable batteries until we can get secway recharge stations
+        #swap: false 
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: PowerCellDraw
+    drawRate: 1
+    enabled: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Footsteps/borgwalk4.ogg
+      params:
+        pitch: 1.15
+        variation: 0.05
+  - type: StealTarget
+    stealGroup: VehicleSecwaySteal
+
+- type: entity
+  id: VehicleSecwayBatterywithKeys
+  parent: VehicleSecway
+  suffix: Battery, Keys, NT
+  components: 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecway
+        vehicle_mods_container:
+        - SecwayLight
+        - SecSiren
+
+- type: entity
+  id: VehicleSecwayBatterywithKeysS
+  parent: VehicleSecway
+  suffix: Battery, Keys, S
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/syndicatesecway.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecway
+        vehicle_mods_container:
+        - SecwayLight
+        - SecSiren
+
+- type: entity
+  id: VehicleSecwayTurboBatterywithKeys
+  parent: [VehicleSecway, BaseSecurityContraband]
+  name: Secway Turbo
+  suffix: Battery, Keys, NT
+  description: An upgraded Secway, it is better in every single aspect.
+  components:
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 6
+      baseSprintSpeed: 9
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - SecwayTurboKeys
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          # Swappable batteries until we can get secway recharge stations
+          disableEject: true
+          #swap: false
+    - type: PowerCellDraw
+      drawRate: 1.5 # Eats through cells
+      enabled: false 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecwayTurbo
+        vehicle_mods_container:
+        - SecwayLight
+        - SecSiren
+
+- type: entity
+  id: VehicleJanicart
+  parent: BaseVehicleRideableDamageable
+  name: Janicart
+  description: The janitor's trusty steed.
+  components:
+  - type: Vehicle
+    acceleration: 2
+    friction: 4.5
+    frictionNoInput: 4.5
+    requireIgnition: true 
+    baseState: vehicle
+    brokenState: destroyed
+    startupTime: 2
+    handsNeeded: 2
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    disallowWielding: true
+    allowGunKnockback: true
+    soundHit:
+      collection: MetalThud
+  - type: VehicleBuckle
+    unbuckleTime: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    armorAffectsVehicle: true
+    northOffset: "0, -0.12"
+    southOffset: "0, -0.12"
+    eastOffset: "0, -0.2"
+    westOffset: "-0, -0.2"
+    northDrawDepth: BelowMobs
+    southDrawDepth: OverMobs
+    eastDrawDepth: OverMobs
+    westDrawDepth: OverMobs
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: Objects/Vehicles/janicart.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: Strap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 100
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 5.5
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - JanicartKeys
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        disableEject: true
+      trashbag_slot:
+        name: janitorial-trolley-slot-component-slot-name-trashbag
+        whitelist:
+          tags:
+            - TrashBag
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: PowerCellDraw
+    drawRate: 1
+    enabled: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Footsteps/borgwalk4.ogg
+      params:
+        pitch: 1.15
+        variation: 0.05
+  - type: SolutionContainerManager
+    solutions:
+      watertank:
+        maxVol: 100
+  - type: RefillableSolution
+    solution: watertank
+  - type: ExaminableSolution
+    solution: watertank
+    exactVolume: true
+  - type: ReagantDraw
+    enabled: false
+    solutionContainer: watertank
+    whitelistedReagants: 
+    - Water
+    drainRate: 1
+  - type: ItemMapper
+    mapLayers:
+      storage:
+        whitelist:
+          tags:
+            - TrashBag
+    sprite: Objects/Vehicles/janicart.rsi
+  - type: FloorBuffer
+    solutionContainer: watertank
+  - type: AmbientSound
+    sound: "/Audio/_FarHorizons/Machines/floor_buffer.ogg"
+    range: 10
+    volume: -5
+    enabled: false
+
+- type: entity
+  id: VehicleJanicartBatterywithKeys
+  parent: VehicleJanicart
+  suffix: Battery, Keys
+  components: 
+    - type: SolutionContainerManager
+      solutions:
+        watertank:
+          reagents:
+          - ReagentId: Water
+            Quantity: 100
+          maxVol: 100
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyJanicart
+        vehicle_mods_container:
+        - SecwayLight

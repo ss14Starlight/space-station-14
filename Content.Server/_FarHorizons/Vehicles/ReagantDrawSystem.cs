@@ -83,7 +83,9 @@ public sealed class SharedReagantDrawSystem : EntitySystem
         }
 
         var ev = new ReagantChangedEvent(solution.Volume.Float(), solution.MaxVolume.Float());
+        var ev2 = new SolutionContainerChangedEvent();
         RaiseLocalEvent(uid, ref ev);
+        RaiseLocalEvent(uid, ref ev2);
 
         return solution.Volume.Float();
     }

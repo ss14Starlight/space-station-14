@@ -10,3 +10,16 @@
       state: siren
     useDelay: 1
     itemIconStyle: BigAction
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionToggleZamboni
+  name: Toggle Floor Buffer
+  description: Toggle those mop brushes on and off.
+  components: 
+  - type: Action
+    icon:
+      sprite: Objects/Misc/moproach_shoes.rsi
+      state: mopshoes
+    useDelay: 1
+    itemIconStyle: BigAction

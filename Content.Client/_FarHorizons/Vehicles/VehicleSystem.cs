@@ -1,9 +1,9 @@
 using Content.Shared._FarHorizons.Vehicles;
 using Content.Shared._FarHorizons.Vehicles.Components;
-using Content.Shared._FarHorizons.VehicleBuckle.Components;
 using Content.Shared._FarHorizons.Vehicles.EntitySystems;
 using Robust.Client.GameObjects;
 using Content.Shared.Movement.Events;
+using Content.Shared.Buckle.Components;
 
 namespace Content.Client._FarHorizons.Vehicles;
 
@@ -17,6 +17,7 @@ public sealed class VehicleSystems : SharedVehicleSystems
 
         SubscribeLocalEvent<VehicleComponent, AppearanceChangeEvent>(OnAppearanceChanged);
         SubscribeLocalEvent<VehicleBuckleComponent, MoveInputEvent>(OnMoveInputEvent);
+        SubscribeLocalEvent<VehicleBuckleComponent, UnstrapAttemptEvent>(OnUnstrapAttempt);
     }
 
     public override void Update(float frameTime)
@@ -49,12 +50,22 @@ public sealed class VehicleSystems : SharedVehicleSystems
         UpdateAppearance(uid, visualState, component, args.Sprite);
     }
 
+    private void OnUnstrapAttempt(Entity<VehicleBuckleComponent> ent, ref UnstrapAttemptEvent args)
+    {
+        if(!TryComp<VehicleComponent>(ent.Owner, out var vehicleComp)) return;
+        if(args.User == null || !args.Popup) return;
+        if(vehicleComp.Rider == null) return;
+        if (vehicleComp.Rider != args.User)
+            args.Cancelled = true;
+    }
+
     private void UpdateAppearance(EntityUid uid, VehicleVisualState visualState, VehicleComponent component, SpriteComponent sprite)
     {        
         switch (visualState)
         {
             case VehicleVisualState.Normal:
                 SetLayerState(VehicleVisualLayers.Base, component.BaseState, (uid, sprite));
+                _sprite.LayerSetAnimationTime((uid, sprite), 0, 0f);
                 break;
 
             case VehicleVisualState.Moving:
@@ -72,11 +83,10 @@ public sealed class VehicleSystems : SharedVehicleSystems
         if (string.IsNullOrEmpty(state))
             return;
 
-        _sprite.LayerSetVisible(sprite.AsNullable(), layer, true);
         _sprite.LayerSetAutoAnimated(sprite.AsNullable(), layer, false);
         _sprite.LayerSetRsiState(sprite.AsNullable(), layer, state);
     }
-
+    
     private void OnMoveInputEvent(Entity<VehicleBuckleComponent> ent, ref MoveInputEvent args)
     {
         if(!TryComp<SpriteComponent>(ent.Owner, out var spriteComp)) return;

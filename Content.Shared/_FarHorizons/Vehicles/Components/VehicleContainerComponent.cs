@@ -3,7 +3,7 @@ using Robust.Shared.Containers;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 
-namespace Content.Shared._FarHorizons.VehicleContainer.Components;
+namespace Content.Shared._FarHorizons.Vehicles.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class VehicleContainerComponent : Component

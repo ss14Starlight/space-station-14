@@ -32,3 +32,8 @@
   license: "CC0-1.0"
   copyright: "Created by bassmosphere, remixed and converted Mono and .ogg by Jhrushbe"
   source: https://freesound.org/people/bassmosphere/sounds/384698/
+
+- files: ["floor_buffer.ogg"]
+  license: "CC-BY-NC-3.0"
+  copyright: "Created by Mikeregan5, remixed and converted Mono and .ogg by AthenaAI"
+  source: https://freesound.org/people/Mikeregan5/sounds/565229/

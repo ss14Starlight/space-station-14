@@ -1,4 +1,6 @@
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Chemistry.Components;
+using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Components;
@@ -10,7 +12,6 @@ using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
-using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Chemistry.EntitySystems;
 
@@ -95,11 +96,15 @@ public sealed partial class SolutionInjectOnCollideSystem : EntitySystem
 
         // Build a list of bloodstreams to inject into
         var targetBloodstreams = new ValueList<Entity<BloodstreamComponent>>();
-        foreach (var target in targets)
+        foreach (var targeting in targets)//FarHorizons
         {
+            var target = targeting; //FarHorizons
             if (Deleted(target))
                 continue;
-
+            //FarHorizons Start
+            if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
+                target = vehicle.Rider.Value;
+            //FarHorizons End
             // starlight-start
             // Use our new cancellable event system instead of hardcoded checks
             var injectAttempt = new SolutionInjectAttemptEvent(target, source, injector.Owner);

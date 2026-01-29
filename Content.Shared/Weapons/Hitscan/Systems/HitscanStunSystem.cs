@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Vehicles.Components; //FarHorizons
 using Content.Shared.Damage.Systems;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
@@ -20,6 +21,12 @@ public sealed partial class HitscanStunSystem : EntitySystem
         if (args.Data.HitEntity == null)
             return;
 
-        _stamina.TakeStaminaDamage(args.Data.HitEntity.Value, hitscan.Comp.StaminaDamage, source: args.Data.Shooter ?? args.Data.Gun);
+        //FarHorizons-edit Start
+        var target = args.Data.HitEntity.Value;
+        if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
+            target = vehicle.Rider.Value;
+
+        _stamina.TakeStaminaDamage(target, hitscan.Comp.StaminaDamage, source: args.Data.Shooter ?? args.Data.Gun);
+        //FarHorizons-edit End
     }
 }

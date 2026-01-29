@@ -27,6 +27,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Shared.Damage.Systems;
 
@@ -167,14 +168,18 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
         var toHit = new List<(EntityUid Entity, StaminaComponent Component)>();
 
-        // Split stamina damage between all eligible targets.
+        // Split stamina damage between all eligible targets. //Far Horizons-edit Start
         foreach (var ent in args.HitEntities)
         {
-            if (!_stamQuery.TryGetComponent(ent, out var stam))
+            var target = ent;
+            if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
+                target = vehicle.Rider.Value;
+            if (!_stamQuery.TryGetComponent(target, out var stam))
                 continue;
 
-            toHit.Add((ent, stam));
+            toHit.Add((target, stam));
         }
+        //Far Horizons-edit End
 
         var hitEvent = new StaminaMeleeHitEvent(toHit);
         RaiseLocalEvent(uid, hitEvent);

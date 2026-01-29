@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared._Starlight.Weapons.Hitscan.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Stunnable;
@@ -24,15 +25,19 @@ public sealed partial class HitscanCrawlerTargetEffectsSystem : EntitySystem
     {
         if (args.Data.HitEntity == null)
             return;
+        //FarHorizons-edit Start
+        var target = args.Data.HitEntity.Value;
+        if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
+            target = vehicle.Rider.Value;
 
-        if (TryComp<CrawlerComponent>(args.Data.HitEntity.Value, out var standing))
+        if (TryComp<CrawlerComponent>(target, out var standing))
         {
-            _stunSystem.TryAddStunDuration(args.Data.HitEntity.Value, hitscan.Comp.StunDuration);
+            _stunSystem.TryAddStunDuration(target, hitscan.Comp.StunDuration);
 
-            var knockedDown = _stunSystem.TryKnockdown((args.Data.HitEntity.Value, standing), hitscan.Comp.KnockdownDuration, true);
+            var knockedDown = _stunSystem.TryKnockdown((target, standing), hitscan.Comp.KnockdownDuration, true);
 
             _movementMod.TryUpdateMovementSpeedModDuration(
-                args.Data.HitEntity.Value,
+                target, //FarHorizons-edit end
                 MovementModStatusSystem.TaserSlowdown,
                 hitscan.Comp.SlowDuration,
                 hitscan.Comp.WalkSpeedMultiplier,

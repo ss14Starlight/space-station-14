@@ -1,0 +1,11 @@
+- type: listing
+  id: VendorClownCar
+  productEntity: VehicleClownCarFueledwithKeys
+  cost:
+    NTCredit: 2000
+  categories:
+  - SLClown
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerAccessCondition
