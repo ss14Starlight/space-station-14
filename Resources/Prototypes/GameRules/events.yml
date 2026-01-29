@@ -120,6 +120,7 @@
       min:  30
       max:  30
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncementColor: "#18abf5"
     startAudio:
       path: /Audio/Announcements/announce.ogg
@@ -392,6 +393,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-gas-leak-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -634,6 +636,7 @@
   id: SleeperAgents
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     earliestStart: 40 # 🌟Starlight🌟 Casualization
     weight: 6 # 🌟Starlight🌟 Casualization
     minimumPlayers: 15

@@ -42,7 +42,7 @@
     #shoes: ClothingShoesBootsLaceup
     #eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesColorWhite
-    outerClothing: ClothingOuterRobesJudge
+    #outerClothing: ClothingOuterRobesJudge
     id: MagistratePDA
     ears: ClothingHeadsetMagistrate
     head: ClothingHeadHatPwig
@@ -62,5 +62,5 @@
     head: ClothingHeadHatPwig
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterRobesJudge
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight change slot to misc.
     gloves: ClothingHandsGlovesColorWhite

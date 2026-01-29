@@ -9,6 +9,12 @@
   equipment:
     jumpsuit: MagistrateUniformSkirt
 
+#Outerwear
+- type: loadout
+  id: MagistrateRobes
+  equipment:
+    outerClothing: ClothingOuterRobesJudge
+
 #Eyewear
 - type: loadout
   id: MagistrateSecGlasses

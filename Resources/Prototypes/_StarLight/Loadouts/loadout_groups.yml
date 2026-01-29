@@ -240,6 +240,12 @@
   - MagistrateJumpskirt
 
 - type: loadoutGroup
+  id: MagistrateOuterclothing
+  name: loadout-group-magistrate-outer
+  loadouts:
+  - MagistrateRobes
+
+- type: loadoutGroup
   id: MagistrateEyewear
   name: loadout-group-magistrate-eyewear
   loadouts:
@@ -716,3 +722,10 @@
   loadouts:
   - NanoTrasenRepresentativeGlasses
   - NanoTrasenRepresentativeHud
+
+- type: loadoutGroup
+  id: JanitorNeck
+  name: loadout-group-janitor-neck
+  minLimit: 0
+  loadouts:
+  - SupremeJanitorCloak

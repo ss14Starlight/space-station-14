@@ -795,6 +795,11 @@
   group: Medicine
   desc: reagent-desc-synaptizine
   physicalDesc: reagent-physical-desc-pungent
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedDepartments:
+  - Security
+  # Starlight End
   flavor: medicine
   color: "#d49a2f"
   metabolisms:
@@ -994,6 +999,7 @@
   desc: reagent-desc-ethyloxyephedrine
   group: Medicine
   physicalDesc: reagent-physical-desc-shiny
+  contrabandSeverity: Minor # Starlight None -> Minor
   flavor: medicine
   color: "#d5d5e4"
   metabolisms:
@@ -1474,6 +1480,7 @@
   group: Medicine
   desc: reagent-desc-psicodine
   physicalDesc: reagent-physical-desc-shiny
+  contrabandSeverity: Minor # Starlight None -> Minor
   flavor: bitter
   color: "#07E79E"
   metabolisms:

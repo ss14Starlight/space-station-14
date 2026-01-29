@@ -171,6 +171,8 @@
   id: MagistratePDA
   name: magistrate PDA
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: MagistrateIDCard
     penSlot:
@@ -183,11 +185,12 @@
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-captain
+       pda-magi
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#3b3b3b"
   - type: Icon
-    state: pda-captain
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-magi
 
 - type: entity
   parent: BasePDA

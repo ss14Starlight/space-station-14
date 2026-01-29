@@ -28063,5 +28063,241 @@ Entries:
   id: 298200
   time: '2026-01-26T06:08:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2982
+- author: redmushie
+  changes:
+  - message: Increased twinpointer crate price to 2k per kit
+    type: Tweak
+  - message: Twinpointers now actually have proper inhand sprites
+    type: Fix
+  id: 297900
+  time: '2026-01-26T07:07:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2979
+- author: R3v3l4t1on
+  changes:
+  - message: 'Reverts Wizden #40343'
+    type: Tweak
+  id: 298400
+  time: '2026-01-26T13:12:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2984
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added a new milestone cloak for the janitor!
+    type: Add
+  id: 297600
+  time: '2026-01-26T13:17:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2976
+- author: Fasuh
+  changes:
+  - message: Fixed Avali and Resomi getting poisoned from ammonia.
+    type: Fix
+  id: 301000
+  time: '2026-01-27T17:41:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3010
+- author: Ivomink
+  changes:
+  - message: Fixed Cat ear markings
+    type: Fix
+  id: 300900
+  time: '2026-01-27T17:42:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3009
+- author: Fasuh
+  changes:
+  - message: Fixed Corgi overheating in hardsuits.
+    type: Fix
+  id: 300300
+  time: '2026-01-27T18:01:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3003
+- author: Bingus13
+  changes:
+  - message: Scurrets are now capable of pulling objects.
+    type: Tweak
+  id: 300500
+  time: '2026-01-27T18:35:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3005
+- author: Conflee
+  changes:
+  - message: (Space Mall) Changed a lot of things. Mostly small upkeep stuff.
+    type: Tweak
+  id: 299900
+  time: '2026-01-27T18:43:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2999
+- author: Shades
+  changes:
+  - message: Fixed BubbleChat not showing fonts and languages icons.
+    type: Fix
+  id: 299800
+  time: '2026-01-27T18:47:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2998
+- author: Scarlet Lightweaver
+  changes:
+  - message: Changed AC2 to FMJ!
+    type: Tweak
+  id: 299300
+  time: '2026-01-27T18:53:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2993
+- author: CawsForConcern
+  changes:
+  - message: (Manor) Duty Officers
+    type: Add
+  - message: (Manor) Nanotrasen Career Trainers
+    type: Add
+  - message: (Manor) NCT Office
+    type: Add
+  - message: (Manor) Xenobio
+    type: Add
+  - message: (Manor) SpawnPointLateJoin by arrivals
+    type: Add
+  - message: (Manor) HOS weapon spawner
+    type: Add
+  - message: (Manor) Magistrate Locker
+    type: Add
+  - message: (Manor) IAA Lockers
+    type: Add
+  - message: (Manor) AI Restoration consoles in RD's office and AI Upload
+    type: Add
+  - message: (Manor) Wall-mounted mass scanners at Cargo front
+    type: Add
+  - message: (Manor) Pride-O-Mat vendor outside Bar
+    type: Add
+  - message: (Manor) Added a new cut-thru hallway through Robotics, connects to Xenobio
+    type: Tweak
+  - message: (Manor) Layout of Law office slightly tweaked
+    type: Tweak
+  - message: (Manor) 2nd Warden job slot
+    type: Remove
+  id: 301400
+  time: '2026-01-27T22:20:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3014
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Duty Officers
+    type: Add
+  - message: (Lobster) Nanotrasen Career Trainers
+    type: Add
+  - message: (Lobster) NCT Office
+    type: Add
+  - message: (Lobster) Xenobio
+    type: Add
+  - message: (Lobster) Magistrate Locker
+    type: Add
+  - message: (Lobster) IAA Lockers
+    type: Add
+  - message: (Lobster) AI Restoration consoles in RD Office and AI Upload
+    type: Add
+  - message: (Lobster) Wall-mounted mass scanners at Cargo front
+    type: Add
+  - message: (Lobster) Tweaked Law Office and Security doors around Courtroom
+    type: Tweak
+  id: 301600
+  time: '2026-01-28T00:20:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3016
+- author: katte
+  changes:
+  - message: Syndicate Shuttle Board to Traitor Uplink.
+    type: Add
+  id: 301500
+  time: '2026-01-28T07:49:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3015
+- author: Fasuh
+  changes:
+  - message: Fixed Changelings having 1u of blood.
+    type: Fix
+  id: 301200
+  time: '2026-01-28T07:53:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3012
+- author: PubliclyExecutedPig
+  changes:
+  - message: Mingtenance
+    type: Tweak
+  id: 302900
+  time: '2026-01-28T18:07:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3029
+- author: IQlvlZero
+  changes:
+  - message: Added Lobby Art
+    type: Add
+  id: 303300
+  time: '2026-01-29T04:45:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3033
+- author: Citrea
+  changes:
+  - message: AI can no longer accidentally round-remove itself
+    type: Fix
+  id: 303900
+  time: '2026-01-29T08:15:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3039
+- author: Way
+  changes:
+  - message: New resprited Jumpsuit, Jumpskirt & Robes for the Magistrate
+    type: Add
+  - message: New PDA and Headset sprite unique to the Magistrate.
+    type: Add
+  id: 303200
+  time: '2026-01-29T08:24:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3032
+- author: r3d3mpt1on
+  changes:
+  - message: Moved the starting loadout placement for the Lawyer Badge to the Medal/misc
+      slot, rather than the neck slot.
+    type: Tweak
+  id: 302800
+  time: '2026-01-29T08:37:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3028
+- author: katte
+  changes:
+  - message: Added syndicate shuttle crate to uplink
+    type: Add
+  - message: Added friendship bundle to uplink
+    type: Add
+  - message: Changed syndicate shuttle board price from 4tc to 2tc.
+    type: Tweak
+  id: 303400
+  time: '2026-01-29T09:18:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3034
+- author: r3d3mpt1on
+  changes:
+  - message: Fixed inconsistency between Guidebook and Wiki for Red Alert SOP.
+    type: Fix
+  id: 301800
+  time: '2026-01-29T13:29:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3018
+- author: r3d3mpt1on
+  changes:
+  - message: Aligned the Guidebook's Chemical Contraband statuses with our own designations
+      from Medical's SOP.
+    type: Tweak
+  id: 301300
+  time: '2026-01-29T13:37:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3013
+- author: walksanatora
+  changes:
+  - message: Made wrecks from the wreck swarm event 4x faster so they actually did
+      more then scratch the paint.
+    type: Tweak
+  id: 298000
+  time: '2026-01-29T13:40:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2980
+- author: neomoth
+  changes:
+  - message: Added support for custom radio channels to have keycodes that overlap
+      with one another or with that of a radio channel prototype.
+    type: Add
+  id: 299400
+  time: '2026-01-29T16:39:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2994
+- author: Xale
+  changes:
+  - message: Fix blue ointment inventory sprite
+    type: Fix
+  id: 304300
+  time: '2026-01-29T16:57:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3043
+- author: Huaqas
+  changes:
+  - message: Fixed various visual bugs with new Resomi body.
+    type: Fix
+  id: 296900
+  time: '2026-01-29T17:02:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2969
 Order: -1
 
