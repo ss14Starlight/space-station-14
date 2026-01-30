@@ -55,6 +55,10 @@ central-command-revolution-announcement = Based on our scans from our long-range
 
 soviet-commissariat-revolution-announcement = Long range communications array online. Motherland salutes you comrades, but the battle is not yet over. Your corporation will check if they can reclaim your station one last time, but do not worry! The SSF will arrive shorty. Glory to the USSP!
 
+centcomm-revs-gammarift = Based on long-range sensor scans, we have detected hostile revolutionary activity on-board. Martial law is now in effect. Glory to NanoTrasen.
+
+centcomm-revs-alldead = Long-range sensor scans report all USSP SKB agents on-board are now permanently deceased.
+
 central-command-sender = Central Command
 
 soviet-commissariat-sender = Soviet People's Commissariat

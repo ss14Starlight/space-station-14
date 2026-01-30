@@ -19,7 +19,7 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Thief ]
-      max: 3
+      max: 6 # Starlight. Allows alpha to have more thieves without impacting beta.
       playerRatio: 20
       lateJoinAdditional: true
       allowNonHumans: true
@@ -27,27 +27,40 @@
       startingGear: ThiefGear
       components:
       - type: Pacified
+      - type: Thieving
+        stripTimeReduction: 2
+        stealthy: true
       mindRoles:
       - MindRoleThief
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg"
-        
+  - type: DynamicRuleCost
+    cost: 75
+
 - type: entity
   parent: BaseGameRule
-  id: Changeling
+  id: SLChangeling
   components:
-  - type: ChangelingRule
+  - type: SLChangelingRule
   - type: AntagSelection
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
-      max: 3
-      playerRatio: 10
+      max: 6 # Starlight, same reasoning as the roundstart changeling change, for alpha.
+      playerRatio: 20 # Starlight, to make sure Beta doesn't get more than 3 changelings as a submode.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None
       mindRoles:
       - MindRoleChangeling
+      components:
+        - type: ChangelingDevour
+        - type: ChangelingIdentity
+        - type: ChangelingTransform
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
 
 - type: entity
   parent: BaseGameRule
@@ -76,8 +89,8 @@
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ Wizard ]
-      max: 1
-      playerRatio: 1
+      max: 3 # Starlight. Less egregious than the full wizard mode.
+      playerRatio: 55 # Starlight, ensures Beta only has 1 wizard. Also less egregious.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
       - RoleSurvivalExtended
@@ -89,6 +102,7 @@
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:
+      - type: UniversalLanguageSpeaker # Starlight-edit: Languages
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -99,3 +113,48 @@
         nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
+
+- type: entity
+  parent: BaseGameRule
+  id: Xenoborgs
+  components:
+  - type: XenoborgsRule
+  - type: RuleGrids
+  - type: GameRule
+    minPlayers: 20 # Starlight - 30 -> 20
+  - type: LoadMapRule
+    gridPath: /Maps/Shuttles/mothership.yml
+  - type: AntagMultipleRoleSpawner
+    antagRoleToPrototypes:
+      MothershipCore: [ MothershipCore ]
+      Xenoborg: [ XenoborgEngi, XenoborgHeavy, XenoborgScout, XenoborgStealth ]
+    pickAndTake: true
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ MothershipCore ]
+      fallbackRoles: [ Xenoborg ]
+      spawnerPrototype: SpawnPointGhostRoleMothershipCore
+      # Starlight Start
+      roleLoadout:
+      - AntagMothership
+      # Starlight End
+      mindRoles:
+      - MindRoleMothershipCore
+    - prefRoles: [ Xenoborg ]
+      fallbackRoles: [ MothershipCore ]
+      spawnerPrototype: SpawnPointGhostRoleXenoborg
+      # Starlight Start
+      roleLoadout:
+      - AntagXenoborg
+      # Starlight End
+      mindRoles:
+      - MindRoleXenoborg
+      min: 4
+      max: 4
+  - type: DynamicRuleCost
+    cost: 200

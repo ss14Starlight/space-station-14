@@ -44,8 +44,14 @@ public sealed class GreytideVirusRule : StationEventSystem<GreytideVirusRuleComp
         if (virusComp.Severity == null)
             return;
 
-        if (!TryGetRandomStation(out var chosenStation))
-            return;
+        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
+        EntityUid? chosenStation = null;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        chosenStation = stationEvent.TargetStation;
+        if (chosenStation is null)
+            if (!TryGetRandomStation(out chosenStation))
+                return;
+        //Starlight end
 
         // pick random access groups
         var chosen = _random.GetItems(virusComp.AccessGroups, virusComp.Severity.Value, allowDuplicates: false);
@@ -54,7 +60,7 @@ public sealed class GreytideVirusRule : StationEventSystem<GreytideVirusRuleComp
         var accessIds = new HashSet<ProtoId<AccessLevelPrototype>>();
         foreach (var group in chosen)
         {
-            if (_prototype.TryIndex(group, out var proto))
+            if (_prototype.Resolve(group, out var proto))
                 accessIds.UnionWith(proto.Tags);
         }
 

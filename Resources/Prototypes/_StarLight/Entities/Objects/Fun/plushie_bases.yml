@@ -1,5 +1,14 @@
 - type: entity
   parent: BasePlushie
+  id: BasePlushieVocalizer
+  abstract: true
+  components:
+    - type: Vocalizer
+      minVocalizeInterval: 120
+      maxVocalizeInterval: 240
+
+- type: entity
+  parent: BasePlushieVocalizer
   id: BaseResomiPlushie
   abstract: true
   components:
@@ -14,7 +23,7 @@
       collection: ResomiChirp
   - type: EmitSoundOnCollide
     sound:
-      path: /Audio/Voice/Resomi/resomi_scream.ogg
+      path: /Audio/_Starlight/Effects/avali_scream.ogg
   - type: EmitSoundOnTrigger
     sound:
       collection: ResomiChirp
@@ -22,13 +31,42 @@
     wideAnimationRotation: 180
     soundHit:
       collection: ResomiChirp
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
-      path: /Audio/Voice/Resomi/resomi_scream.ogg
+      path: /Audio/_Starlight/Effects/avali_scream.ogg
 
 - type: entity
-  parent: BasePlushie
+  parent: BasePlushieVocalizer
+  id: BaseAvaliPlushie
+  abstract: true
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Voice/Avali/avali_2.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Voice/Avali/avali_2.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Voice/Avali/avali_2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Starlight/Effects/avali_scream.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Voice/Avali/avali_cry.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Voice/Avali/avali_cry.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Effects/avali_scream.ogg
+
+- type: entity
+  parent: BasePlushieVocalizer
   id: BaseVulpkaninPlushie
   abstract: true
   components:
@@ -54,13 +92,13 @@
     wideAnimationRotation: 180
     soundHit:
       collection: Growl
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Effects/yip.ogg
 
 - type: entity
-  parent: BasePlushie
+  parent: BasePlushieVocalizer
   id: BaseMothPlushie
   abstract: true
   components:
@@ -80,13 +118,13 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Voice/Moth/moth_chitter.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Moth/moth_scream.ogg
 
 - type: entity
-  parent: BasePlushie
+  parent: BasePlushieVocalizer
   id: BaseLizardPlushie
   abstract: true
   components:
@@ -106,13 +144,13 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 
 - type: entity
-  parent: BasePlushie
+  parent: BasePlushieVocalizer
   id: BaseShadekinPlushie
   abstract: true
   components:
@@ -132,7 +170,70 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/_Starlight/Voice/Shadekin/wurble.ogg
-  - type: Food
+  - type: Edible
     requiresSpecialDigestion: true
     useSound:
       collection: FelionoidScreams
+
+- type: entity
+  parent: BasePlushieVocalizer
+  id: BaseBorgPlushie
+  abstract: true
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Effects/chime.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Machines/warning_buzzer.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Effects/Cargo/ping.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Effects/Cargo/buzz_sigh.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Effects/Cargo/buzz_two.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Machines/warning_buzzer.ogg
+  - type: Tool
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+
+- type: entity
+  parent: BasePlushieVocalizer
+  id: BaseFelionoidPlushie
+  abstract: true
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Voice/Felionoid/cat_meow1.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Voice/Felionoid/cat_purr1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Voice/Felionoid/cat_meow2.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Starlight/Voice/Felionoid/cat_mew1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Voice/Felionoid/cat_meow3.ogg
+  - type: EmitSoundOnThrow
+    sound:
+      path: /Audio/_Starlight/Voice/Felionoid/cat_scream1.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Voice/Felionoid/cat_growl1.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Voice/Felionoid/cat_scream2.ogg

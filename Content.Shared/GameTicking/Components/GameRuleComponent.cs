@@ -35,6 +35,14 @@ public sealed partial class GameRuleComponent : Component
     /// </summary>
     [DataField]
     public MinMax? Delay;
+    // Starlight Start
+    /// <summary>
+    /// List of game rule IDs that this game rule prevents from occurring.
+    /// If this game rule is active, the denied rules/events will not run.
+    /// </summary>
+    [DataField]
+    public List<string> DenyGameRules = new();
+    // Starlight End
 }
 
 /// <summary>

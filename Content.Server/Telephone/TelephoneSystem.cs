@@ -3,8 +3,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Power.EntitySystems;
-using Content.Server.Speech;
-using Content.Server.Speech.Components;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Labels.Components;
@@ -13,6 +11,7 @@ using Content.Shared.Power;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Content.Shared.Telephone;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -22,6 +21,12 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using System.Linq;
+// Starlight Start
+using Content.Server._Starlight.Language;
+using Content.Shared.IdentityManagement;
+using Robust.Shared.Player;
+using Content.Server.Chat.Managers;
+// Starlight End
 
 namespace Content.Server.Telephone;
 
@@ -37,6 +42,10 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
+    // Starlight Start
+    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    // Starlight End
 
     // Has set used to prevent telephone feedback loops
     private HashSet<(EntityUid, string, Entity<TelephoneComponent>)> _recentChatMessages = new();
@@ -50,6 +59,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         SubscribeLocalEvent<TelephoneComponent, ListenAttemptEvent>(OnAttemptListen);
         SubscribeLocalEvent<TelephoneComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<TelephoneComponent, TelephoneMessageReceivedEvent>(OnTelephoneMessageReceived);
+        SubscribeLocalEvent<TelephoneComponent, LoocListenEvent>(OnLoocListen); // Starlight
     }
 
     #region: Events
@@ -115,7 +125,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         var range = args.TelephoneSource.Comp.LinkedTelephones.Count > 1 ? ChatTransmitRange.HideChat : ChatTransmitRange.GhostRangeLimit;
         var volume = entity.Comp.SpeakerVolume == TelephoneVolume.Speak ? InGameICChatType.Speak : InGameICChatType.Whisper;
 
-        _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false);
+        _chat.TrySendInGameICMessage(speaker, args.Message, volume, range, nameOverride: name, checkRadioPrefix: false, languageOverride: args.Language); // Starlight
     }
 
     #endregion
@@ -124,7 +134,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
     {
         base.Update(frameTime);
 
-        var query = EntityManager.EntityQueryEnumerator<TelephoneComponent>();
+        var query = EntityQueryEnumerator<TelephoneComponent>();
         while (query.MoveNext(out var uid, out var telephone))
         {
             var entity = new Entity<TelephoneComponent>(uid, telephone);
@@ -228,6 +238,11 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         if (TryComp<LabelComponent>(source, out var label))
             deviceName = label.CurrentLabel;
 
+        // Starlight begin - sanitize tags
+        callerInfo.Item1 = callerInfo.Item1?.Replace("[", @"\[");
+        callerInfo.Item2 = callerInfo.Item2?.Replace("]", @"\]");
+        // Starlight end
+        
         receiver.Comp.LastCallerId = (callerInfo.Item1, callerInfo.Item2, deviceName); // This will be networked when the state changes
         receiver.Comp.LinkedTelephones.Add(source);
         receiver.Comp.Muted = options?.MuteReceiver == true;
@@ -341,7 +356,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         name = FormattedMessage.EscapeText(name);
 
         SpeechVerbPrototype speech;
-        if (ev.SpeechVerb != null && _prototype.TryIndex(ev.SpeechVerb, out var evntProto))
+        if (ev.SpeechVerb != null && _prototype.Resolve(ev.SpeechVerb, out var evntProto))
             speech = evntProto;
         else
             speech = _chat.GetSpeechVerb(messageSource, message);
@@ -371,7 +386,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         RaiseLocalEvent(source, ref evSentMessage);
         source.Comp.StateStartTime = _timing.CurTime;
 
-        var evReceivedMessage = new TelephoneMessageReceivedEvent(message, chatMsg, messageSource, source);
+        var evReceivedMessage = new TelephoneMessageReceivedEvent(message, chatMsg, messageSource, source, _language.GetLanguage(messageSource)); // Starlight
 
         foreach (var receiver in source.Comp.LinkedTelephones)
         {
@@ -490,6 +505,45 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
 
     public bool IsTelephonePowered(Entity<TelephoneComponent> entity)
     {
-        return this.IsPowered(entity, EntityManager) || !entity.Comp.RequiresPower;
+        return this.IsPowered(entity, EntityManager);
     }
+    // Starlight Start: Holopads support LOOC
+    private void OnLoocListen(Entity<TelephoneComponent> entity, ref LoocListenEvent args)
+    {
+        if (args.Source == entity.Owner)
+            return;
+
+        if (!HasComp<MindContainerComponent>(args.Source))
+            return;
+
+        if (!_recentChatMessages.Add((args.Source, args.Message, entity)))
+            return;
+
+        SendTelephoneLoocMessage(args.Source, args.Message, entity);
+    }
+    private void SendTelephoneLoocMessage(EntityUid messageSource, string message, Entity<TelephoneComponent> source)
+    {
+        var name = FormattedMessage.EscapeText(Identity.Name(messageSource, EntityManager));
+
+        foreach (var receiver in source.Comp.LinkedTelephones)
+        {
+            if (!IsTelephonePowered(receiver) || !IsSourceConnectedToReceiver(source, receiver))
+                continue;
+
+            var speaker = receiver.Comp.Speaker != null ? receiver.Comp.Speaker.Value.Owner : receiver.Owner;
+
+            var wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
+                ("entityName", name),
+                ("message", FormattedMessage.EscapeText(message)));
+
+            // Send to all players in range
+            var filter = Filter.Pvs(speaker, entityManager: EntityManager);
+            _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.LOOC, message, wrappedMessage, speaker, hideChat: true, recordReplay: true, colorOverride: null);
+
+            receiver.Comp.StateStartTime = _timing.CurTime;
+        }
+
+        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Telephone LOOC from {ToPrettyString(messageSource):user} on {source}: {message}");
+    }
+    // Starlight End
 }

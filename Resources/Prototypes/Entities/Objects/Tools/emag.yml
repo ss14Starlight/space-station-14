@@ -6,6 +6,7 @@
   description: The all-in-one hacking solution. Friend of any syndicate. The iconic EMAG.
   components:
   - type: Emag
+    accessGroups: [Syndicate] # Starlight
   - type: Sprite
     sprite: Objects/Tools/emag.rsi
     state: icon
@@ -20,3 +21,5 @@
   components:
   - type: LimitedCharges
   - type: AutoRecharge
+  - type: StaticPrice
+    price: 2500

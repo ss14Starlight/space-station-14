@@ -251,6 +251,11 @@
   id: DawInstrumentMachineCircuitboard
   result: DawInstrumentMachineCircuitboard
 
+- type: latheRecipe
+  parent: [BaseCircuitboardRecipe]
+  id: SmartFridgeCircuitboard
+  result: SmartFridgeCircuitboard
+  
 # Bar
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
@@ -385,6 +390,11 @@
   parent: [ BaseGoldCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
   id: BiofabricatorMachineCircuitboard
   result: BiofabricatorMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: SlopDispenserMachineCircuitboard
+  result: SlopDispenserMachineCircuitboard
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]

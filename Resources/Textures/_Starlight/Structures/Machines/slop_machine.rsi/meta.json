@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "inserting & unlit made by stickycheZ101 - building, icon, & panel made by conflee",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "panel"
+    },
+    {
+      "name": "unlit",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "building",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "inserting",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

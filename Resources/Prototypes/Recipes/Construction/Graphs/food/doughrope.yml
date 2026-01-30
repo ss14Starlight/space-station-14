@@ -11,7 +11,14 @@
         doAfter: 1
   - node: rolled
     entity: FoodDoughRope
-
+    edges: # begin starlight
+    - to: flattened
+      steps:
+      - tool: Rolling
+        doAfter: 1
+  - node: flattened
+    entity: FoodDoughPita
+# end starlight
 - type: constructionGraph
   id: DoughRopeCotton
   start: start

@@ -1,0 +1,95 @@
+- type: playTimeTracker
+  id: AntagDragon
+  name: ghost-role-information-space-dragon-name
+
+- type: playTimeTracker
+  id: AntagNinja
+  name: ghost-role-information-space-ninja-name
+
+- type: playTimeTracker
+  id: AntagChangeling
+  name: role-subtype-changeling
+
+- type: playTimeTracker
+  id: AntagNukeops
+  name: roles-antag-nuclear-operative-name
+
+- type: playTimeTracker
+  id: AntagNukeopsMedic
+  name: roles-antag-nuclear-operative-agent-name
+
+- type: playTimeTracker
+  id: AntagNukeopsCommander
+  name: roles-antag-nuclear-operative-commander-name
+
+- type: playTimeTracker
+  id: AntagParadoxClone
+  name: role-subtype-paradox-clone
+
+- type: playTimeTracker
+  id: AntagHeadRev
+  name: role-subtype-head-revolutionary
+
+- type: playTimeTracker
+  id: AntagRev
+  name: role-subtype-revolutionary
+
+- type: playTimeTracker
+  id: AntagSubvertedSilicon
+  name: role-subtype-subverted
+
+- type: playTimeTracker
+  id: AntagThief
+  name: role-subtype-thief
+
+- type: playTimeTracker
+  id: AntagTraitor
+  name: role-subtype-traitor
+
+- type: playTimeTracker
+  id: AntagVampire
+  name: roles-antag-vamire-name
+
+- type: playTimeTracker
+  id: AntagSurvivor
+  name: role-subtype-survivor
+
+- type: playTimeTracker
+  id: AntagWizard
+  name: role-subtype-wizard
+
+- type: playTimeTracker
+  id: AntagMothershipCore
+  name: role-subtype-xenoborg-core
+
+- type: playTimeTracker
+  id: AntagXenoborg
+  name: role-subtype-xenoborg
+
+- type: playTimeTracker
+  id: AntagInitialInfected
+  name: role-subtype-initial-infected
+
+- type: playTimeTracker
+  id: AntagZombie
+  name: role-subtype-zombie
+
+- type: playTimeTracker
+  id: AntagLoneAbductor
+  name: role-subtype-abductor
+
+- type: playTimeTracker
+  id: AntagPirate
+  name: ghost-role-information-pirate-name
+
+- type: playTimeTracker
+  id: AntagPirateCaptain
+  name: ghost-role-information-pirate-captain-name
+
+- type: playTimeTracker
+  id: AntagRatKing
+  name: ghost-role-information-rat-king-name
+
+- type: playTimeTracker
+  id: AntagSSF
+  name: ghost-role-information-soviet-marine-name

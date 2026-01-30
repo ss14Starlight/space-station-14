@@ -5,6 +5,14 @@
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
   components:
+  # Starlight - Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Bubblish
+    understands:
+    - Bubblish
+  # Starlight - End
   - type: VentCrawler
   - type: NpcFactionMember
     factions:
@@ -59,7 +67,10 @@
     damageContainer: Biological
     damageModifierSet: Slime
   - type: Bloodstream
-    bloodReagent: Slime
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Slime
+        Quantity: 150
     bloodlossDamage:
       types:
         Bloodloss:
@@ -80,15 +91,14 @@
     - reagents: [ Water, SpaceCleaner ]
       methods: [ Touch ]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
     - reagents: [ Water ]
       methods: [ Touch ]
       effects:
       - !type:HealthChange
-        scaleByQuantity: true
         damage:
           types:
-            Heat: 0.15
+            Heat: 0.05 #Same as slime species
       - !type:PopupMessage
         type: Local
         messages: [ "slime-hurt-by-water-popup" ]
@@ -124,8 +134,6 @@
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
   components:
-  - type: ReplacementAccent
-    accent: slimes
   - type: GhostTakeoverAvailable
   - type: GhostRole
     makeSentient: true

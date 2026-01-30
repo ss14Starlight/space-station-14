@@ -2,6 +2,7 @@
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:humanoid="clr-namespace:Content.Client.Humanoid"
          xmlns:ui="clr-namespace:Content.Client.Lobby.UI"
+         xmlns:ui1="clr-namespace:Content.Client._Starlight.Lobby.UI"
          xmlns:profileEditorControls="clr-namespace:Content.Client.Lobby.UI.ProfileEditorControls"
          HorizontalExpand="True">
         <!-- Left side -->
@@ -103,6 +104,27 @@
                                     <OptionButton Name="VoiceButton" HorizontalAlignment="Left" />
                                     <Button Name="VoicePreviewButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" MaxWidth="80" />
                                 </BoxContainer>
+                                <!--Starlight Start-->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-silicon-voice-label'}" />
+                                    <Control HorizontalExpand="True"/>
+                                    <OptionButton Name="SiliconVoiceButton" HorizontalAlignment="Left" />
+                                    <Button Name="SiliconVoicePreviewButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" MaxWidth="80" />
+                                </BoxContainer>
+                                <!--Starlight End-->
+                            </BoxContainer>
+                            <!-- STARLIGHT - Species Size -->
+                            <BoxContainer Margin="10" HorizontalExpand="True" Orientation="Vertical">
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label SetWidth="150" Name="HeightDescribeLabel" Margin="5 0 10 0" />
+                                    <Slider Name="HeightSlider" MinValue="0.5" Value="1" MaxValue="1.5" HorizontalExpand="True" Margin="10 0 5 0" />
+                                    <Button Name="HeightResetButton" Text="{Loc 'humanoid-profile-editor-slider-reset'}" />
+                                </BoxContainer>
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label SetWidth="150" Name="WidthDescribeLabel" Margin="5 0 10 0" />
+                                    <Slider Name="WidthSlider" MinValue="0.5" Value="1" MaxValue="1.5" HorizontalExpand="True" Margin="10 0 5 0" />
+                                    <Button Name="WidthResetButton" Text="{Loc 'humanoid-profile-editor-slider-reset'}" />
+                                </BoxContainer>
                             </BoxContainer>
                             <!-- Skin -->
                             <BoxContainer Margin="10" HorizontalExpand="True" Orientation="Vertical">
@@ -147,6 +169,25 @@
                         <humanoid:MarkingPicker Name="Markings" IgnoreCategories="Hair,FacialHair" />
                     </ScrollContainer>
                 </BoxContainer>
+                <!-- Starlight -->
+                <BoxContainer Name="CyberneticsTab" Orientation="Vertical" Margin="10">
+                    <!-- Cybernetics -->
+                    <ScrollContainer VerticalExpand="True">
+                        <humanoid:CyberneticsPicker Name="Cybernetics" />
+                    </ScrollContainer>
+                </BoxContainer>
+                <!-- Starlight start-->
+                <BoxContainer Name="ICInfoTab" Orientation="Vertical" Margin="10" Visible="False">
+                    <ScrollContainer VerticalExpand="True">
+                        <ui1:CharacterInfoEditor Name="ICInfoEditor"/>
+                    </ScrollContainer>
+                </BoxContainer>
+                <BoxContainer Name="OOCInfoTab" Orientation="Vertical" Margin="10" Visible="False">
+                    <ScrollContainer VerticalExpand="True">
+                        <ui1:OOCInfoEditor Name="OOCInfoEditor"/>
+                    </ScrollContainer>
+                </BoxContainer>
+                <!-- Starlight end-->
             </TabContainer>
         </BoxContainer>
         <!-- Right side -->

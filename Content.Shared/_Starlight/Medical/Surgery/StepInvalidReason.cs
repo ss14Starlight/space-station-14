@@ -9,4 +9,5 @@ public enum StepInvalidReason
     MissingTool,
     DisabledTool,
     TooHigh,
+    NotEnoughReagent,
 }

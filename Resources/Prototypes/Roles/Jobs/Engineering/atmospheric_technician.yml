@@ -4,10 +4,10 @@
   description: job-description-atmostech
   playTimeTracker: JobAtmosphericTechnician
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 54000 # 15 hrs
-  weight: -1
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 15h # Starlight
+  weight: 0 # Starlight
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-ce

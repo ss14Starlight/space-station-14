@@ -32,6 +32,8 @@
     activatedDamage:
       types:
         Blunt: 0
+    deactivatedSoundOnHit: #starlight
+      collection: GenericHit #starlight
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -40,6 +42,8 @@
     bluntStaminaDamageFactor: 2.0
     angle: 60
     animation: WeaponArcThrust
+    soundHit: #starlight
+      collection: GenericHit #starlight
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
@@ -139,9 +143,9 @@
       sprite: Objects/Weapons/Melee/flash.rsi
       layers:
       - state: flash
-        map: [ "enum.FlashVisuals.BaseLayer" ]
+        map: [ "enum.FlashVisualLayers.BaseLayer" ]
       - state: flashing
-        map: [ "enum.FlashVisuals.LightLayer" ]
+        map: [ "enum.FlashVisualLayers.LightLayer" ]
         visible: false
         shader: unshaded
     - type: Flash
@@ -157,16 +161,18 @@
       size: Small
       sprite: Objects/Weapons/Melee/flash.rsi
     - type: UseDelay
+      delay: 4 # has to be the same as the FlashingTime datafield in FlashComponent
+    - type: UseDelayOnMeleeHit
     - type: StaticPrice
       price: 40
     - type: Appearance
     - type: GenericVisualizer
       visuals:
         enum.FlashVisuals.Burnt:
-          enum.FlashVisuals.BaseLayer:
+          enum.FlashVisualLayers.BaseLayer:
             True: {state: burnt}
         enum.FlashVisuals.Flashing:
-          enum.FlashVisuals.LightLayer:
+          enum.FlashVisualLayers.LightLayer:
             True: {visible: true}
             False: {visible: false}
     - type: GuideHelp
@@ -190,6 +196,7 @@
   description: An ultrabright flashbulb with a proximity trigger, useful for making an area security-only.
   components:
     - type: EmitSoundOnTrigger
+      predicted: true
       sound:
         path: /Audio/Weapons/flash.ogg
     - type: FlashOnTrigger

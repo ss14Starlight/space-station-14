@@ -5,6 +5,16 @@
   id: BaseMobMoth
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Moffic
+    understands:
+    - GalacticCommon
+    - Moffic
+    - Mothroach
+  # Starlight-end
   - type: Jump
     action: JumpMoth
   - type: Absorbable
@@ -27,7 +37,8 @@
     accent: zombieMoth
   - type: Speech
     speechVerb: Moth
-    allowedEmotes: ['Chitter', 'Squeak']
+    speechSounds: UnisexMoth # Starlight: Add talk sounds
+    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: TypingIndicator
     proto: moth
   - type: Butcherable
@@ -36,7 +47,10 @@
     - id: FoodMeat
       amount: 5
   - type: Bloodstream
-    bloodReagent: InsectBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 300
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -50,19 +64,22 @@
       Male: UnisexMoth
       Female: UnisexMoth
       Unsexed: UnisexMoth
+  - type: BodyEmotes # Starlight: Add separate sound set for Moth bodies
+    soundsId: MothBodyEmotes
   - type: MovementSpeedModifier
-    weightlessAcceleration: 1.5 # Move around more easily in space.
-    weightlessFriction: 1
+    baseWeightlessAcceleration: 1.5 # Move around more easily in space.
+    baseWeightlessFriction: 1
     baseWeightlessModifier: 1
   - type: Flammable
     damage:
       types:
-        Heat: 4.5 # moths burn more easily
-  - type: Temperature # Moths hate the heat and thrive in the cold.
-    heatDamageThreshold: 320
-    coldDamageThreshold: 230
+        Heat: 4.5 # #Starlight: bring back the glory days of moths fearing fire
+  - type: Temperature
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage # Moths hate the heat and thrive in the cold.
+    heatDamageThreshold: 320
+    coldDamageThreshold: 230
     coldDamage:
       types:
         Cold : 0.05 #per second, scales with temperature & other constants
@@ -71,9 +88,9 @@
         Heat : 3 #per second, scales with temperature & other constants
   - type: TemperatureSpeed
     thresholds:
-      289: 0.8
-      275: 0.6
-      250: 0.4
+      289: 0.9
+      275: 0.8
+      250: 0.7
   - type: Sprite # sprite again because we want different layer ordering
     noRot: true
     drawdepth: Mobs
@@ -108,6 +125,8 @@
       - map: [ "enum.HumanoidVisualLayers.Tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
       - map: [ "back" ]
       - map: [ "neck" ]
+      - map: [ "misc" ] # Starlight
+      - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.Hair" ]
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

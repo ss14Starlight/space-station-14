@@ -32,7 +32,7 @@
     jumpsuit: ClothingUniformJumpskirtJanimaid
     id: JanitorPDA
     gloves: ClothingHandsGlovesJanitor
-    head: ClothingHeadHatCatEars
+    head: ClothingHeadHatWhiteCatEars #Starlight
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
 

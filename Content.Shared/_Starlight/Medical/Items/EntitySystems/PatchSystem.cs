@@ -14,6 +14,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Components;
 
 namespace Content.Shared.Medical.Items.EntitySystems;
 

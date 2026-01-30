@@ -1,5 +1,14 @@
 using Content.Shared.Holopad;
+using Content.Shared.Mobs;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
+
+#region Starlight
+using Content.Shared.Intellicard;
+using Content.Shared.NameIdentifier;
+#endregion Starlight
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -8,14 +17,21 @@ public abstract partial class SharedStationAiSystem
     private ProtoId<StationAiCustomizationGroupPrototype> _stationAiCoreCustomGroupProtoId = "StationAiCoreIconography";
     private ProtoId<StationAiCustomizationGroupPrototype> _stationAiHologramCustomGroupProtoId = "StationAiHolograms";
 
+    private readonly SpriteSpecifier.Rsi _stationAiRebooting = new(new ResPath("_Starlight/Mobs/Silicon/station_ai.rsi"), "ai_fuzz"); // Starlight - use our sprite
+
     private void InitializeCustomization()
     {
         SubscribeLocalEvent<StationAiCoreComponent, StationAiCustomizationMessage>(OnStationAiCustomization);
+        SubscribeLocalEvent<StationAiCoreComponent, StationAiRenameMessage>(OnStationAiRename); // Starlight
+
+        SubscribeLocalEvent<StationAiCustomizationComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<StationAiCustomizationComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<StationAiCustomizationComponent, MobStateChangedEvent>(OnMobStateChanged);
     }
 
     private void OnStationAiCustomization(Entity<StationAiCoreComponent> entity, ref StationAiCustomizationMessage args)
     {
-        if (!_protoManager.TryIndex(args.GroupProtoId, out var groupPrototype) || !_protoManager.TryIndex(args.CustomizationProtoId, out var customizationProto))
+        if (!_protoManager.Resolve(args.GroupProtoId, out var groupPrototype) || !_protoManager.Resolve(args.CustomizationProtoId, out var customizationProto))
             return;
 
         if (!TryGetHeld((entity, entity.Comp), out var held))
@@ -29,15 +45,68 @@ public abstract partial class SharedStationAiSystem
 
         stationAiCustomization.ProtoIds[args.GroupProtoId] = args.CustomizationProtoId;
 
-        Dirty(held, stationAiCustomization);
+        Dirty(held.Value, stationAiCustomization);
 
         // Update hologram
         if (groupPrototype.Category == StationAiCustomizationType.Hologram)
-            UpdateHolographicAvatar((held, stationAiCustomization));
+            UpdateHolographicAvatar((held.Value, stationAiCustomization));
 
         // Update core iconography
         if (groupPrototype.Category == StationAiCustomizationType.CoreIconography && TryComp<StationAiHolderComponent>(entity, out var stationAiHolder))
             UpdateAppearance((entity, stationAiHolder));
+    }
+    
+    // Starlight begin
+    private void OnStationAiRename(EntityUid uid, StationAiCoreComponent comp, StationAiRenameMessage args)
+    {
+        if (!TryGetHeld((uid, comp), out var core)) return;
+        if (comp.RemoteEntity is null) return;
+        var identifier = "";
+        if (TryComp<NameIdentifierComponent>(core, out var identifierComp))
+        {
+            identifier = identifierComp.FullIdentifier;
+        }
+        _metadata.SetEntityName(core.Value, args.NewName);
+        _metadata.SetEntityName(uid, $"{args.NewName} {identifier}");
+        _metadata.SetEntityName(comp.RemoteEntity.Value, $"{args.NewName} {identifier}");
+        Comp<StationAiCustomizationComponent>(core.Value).RenameAvailable = false;
+    }
+    // Starlight end
+
+    private void OnPlayerAttached(Entity<StationAiCustomizationComponent> ent, ref PlayerAttachedEvent args)
+    {
+        var state = _mobState.IsDead(ent) ? StationAiState.Dead : StationAiState.Occupied;
+        SetStationAiState(ent, state);
+    }
+
+    private void OnPlayerDetached(Entity<StationAiCustomizationComponent> ent, ref PlayerDetachedEvent args)
+    {
+        var state = _mobState.IsDead(ent) ? StationAiState.Dead : StationAiState.Rebooting;
+        SetStationAiState(ent, state);
+    }
+
+    protected virtual void OnMobStateChanged(Entity<StationAiCustomizationComponent> ent, ref MobStateChangedEvent args)
+    {
+        var state = (args.NewMobState == MobState.Dead) ? StationAiState.Dead : StationAiState.Rebooting;
+        SetStationAiState(ent, state);
+    }
+
+    protected void SetStationAiState(Entity<StationAiCustomizationComponent> ent, StationAiState state)
+    {
+        if (ent.Comp.State != state)
+        {
+            ent.Comp.State = state;
+            Dirty(ent);
+
+            var ev = new StationAiCustomizationStateChanged(state);
+            RaiseLocalEvent(ent, ref ev);
+        }
+
+        if (_containers.TryGetContainingContainer(ent.Owner, out var container) &&
+             TryComp<StationAiHolderComponent>(container.Owner, out var holder))
+        {
+            UpdateAppearance((container.Owner, holder));
+        }
     }
 
     private void UpdateHolographicAvatar(Entity<StationAiCustomizationComponent> entity)
@@ -48,7 +117,7 @@ public abstract partial class SharedStationAiSystem
         if (!entity.Comp.ProtoIds.TryGetValue(_stationAiHologramCustomGroupProtoId, out var protoId))
             return;
 
-        if (!_protoManager.TryIndex(protoId, out var prototype))
+        if (!_protoManager.Resolve(protoId, out var prototype))
             return;
 
         if (!prototype.LayerData.TryGetValue(StationAiState.Hologram.ToString(), out var layerData))
@@ -62,21 +131,59 @@ public abstract partial class SharedStationAiSystem
     {
         var stationAi = GetInsertedAI(entity);
 
-        if (stationAi == null)
-        {
-            _appearance.RemoveData(entity.Owner, StationAiVisualState.Key);
-            return;
-        }
-
         if (!TryComp<StationAiCustomizationComponent>(stationAi, out var stationAiCustomization) ||
-            !stationAiCustomization.ProtoIds.TryGetValue(_stationAiCoreCustomGroupProtoId, out var protoId) ||
-            !_protoManager.TryIndex(protoId, out var prototype) ||
-            !prototype.LayerData.TryGetValue(state.ToString(), out var layerData))
+            !TryGetCustomizedAppearanceData((stationAi.Value, stationAiCustomization), out var layerData) ||
+            !layerData.TryGetValue(state.ToString(), out var stateData))
         {
             return;
         }
 
         // This data is handled manually in the client StationAiSystem
-        _appearance.SetData(entity.Owner, StationAiVisualState.Key, layerData);
+        _appearance.SetData(entity.Owner, StationAiVisualLayers.Icon, stateData);
+    }
+
+    /// <summary>
+    /// Returns a dictionary containing the station AI's appearance for different states.
+    /// </summary>
+    /// <param name="entity">The station AI.</param>
+    /// <param name="layerData">The apperance data, indexed by possible AI states.</param>
+    /// <returns>True if the apperance data was found.</returns>
+    public bool TryGetCustomizedAppearanceData(Entity<StationAiCustomizationComponent> entity, [NotNullWhen(true)] out Dictionary<string, PrototypeLayerData>? layerData)
+    {
+        layerData = null;
+
+        if (!entity.Comp.ProtoIds.TryGetValue(_stationAiCoreCustomGroupProtoId, out var protoId) ||
+           !_protoManager.Resolve(protoId, out var prototype) ||
+            prototype.LayerData.Count == 0)
+        {
+            return false;
+        }
+
+        layerData = prototype.LayerData;
+
+        return true;
+    }
+
+    private void CustomizeIntellicardAppearance(Entity<IntellicardComponent> entity)
+    {
+        if (!TryComp<StationAiHolderComponent>(entity.Owner, out var stationAi))
+            return;
+
+        if (!stationAi.Slot.Item.HasValue)
+        {
+            _appearance.RemoveData(entity.Owner, StationAiVisualLayers.Icon);
+            return;
+        }
+
+        if (!TryComp<StationAiCustomizationComponent>(stationAi.Slot.Item, out var stationAiCustomization) ||
+            !stationAiCustomization.ProtoIds.TryGetValue(_stationAiCoreCustomGroupProtoId, out var protoId) ||
+            !_protoManager.Resolve(protoId, out var prototype) ||
+            !prototype.LayerData.TryGetValue("Intellicard", out var layerData))
+        {
+            return;
+        }
+
+        // This data is handled manually in the client StationAiSystem
+        _appearance.SetData(entity.Owner, StationAiVisualLayers.Icon, layerData);
     }
 }

@@ -2,9 +2,9 @@ using System.Linq;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.GameTicking;
-using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Station.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.StationEvents.Events;
@@ -43,9 +43,16 @@ public sealed class CargoGiftsRule : StationEventSystem<CargoGiftsRuleComponent>
 
         component.TimeUntilNextGifts += 30f;
 
-        if (!TryGetRandomStation(out var station, HasComp<StationCargoOrderDatabaseComponent>) ||
-                !TryComp<StationDataComponent>(station, out var stationData))
+        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
+        EntityUid? station = null;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        station = stationEvent.TargetStation;
+        if (station is null)
+            if (!TryGetRandomStation(out station, HasComp<StationCargoOrderDatabaseComponent>)) return;
+
+        if (!TryComp<StationDataComponent>(station, out var stationData))
             return;
+        //Starlight end
 
         if (!TryComp<StationCargoOrderDatabaseComponent>(station, out var cargoDb))
         {
@@ -53,7 +60,7 @@ public sealed class CargoGiftsRule : StationEventSystem<CargoGiftsRuleComponent>
         }
 
         // Add some presents
-        var outstanding = CargoSystem.GetOutstandingOrderCount(cargoDb, component.Account);
+        var outstanding = _cargoSystem.GetOutstandingOrderCount((station.Value, cargoDb), component.Account);
         while (outstanding < cargoDb.Capacity - component.OrderSpaceToLeave && component.Gifts.Count > 0)
         {
             // I wish there was a nice way to pop this

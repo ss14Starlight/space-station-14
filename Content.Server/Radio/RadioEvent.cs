@@ -1,10 +1,30 @@
 using Content.Shared.Chat;
 using Content.Shared.Radio;
+using Content.Shared._Starlight.Language; // Starlight
+using Content.Shared._Starlight.Radio; // Starlight
 
 namespace Content.Server.Radio;
 
+/// <summary>
+/// <param name="OriginalChatMsg">The message to display when the speaker can understand "language"</param>
+/// <param name="LanguageObfuscatedChatMsg">The message to display when the Speaker cannot understand "language"</param>
+/// </summary>
 [ByRefEvent]
-public readonly record struct RadioReceiveEvent(string Message, EntityUid MessageSource, RadioChannelPrototype Channel, EntityUid RadioSource, MsgChatMessage ChatMsg, List<EntityUid> Receivers);
+public readonly record struct RadioReceiveEvent(
+    EntityUid MessageSource,
+    RadioChannelPrototype? Channel, // Starlight edit | nothing uses this + means i dont need to redefine this
+    ChatMessage OriginalChatMsg,
+    ChatMessage LanguageObfuscatedChatMsg,
+    LanguagePrototype Language,
+    EntityUid RadioSource,
+    List<EntityUid> Receivers
+    ); // Starlight
+
+/// <summary>
+/// Event raised on the parent entity of a headset radio when a radio message is received
+/// </summary>
+[ByRefEvent]
+public readonly record struct HeadsetRadioReceiveRelayEvent(RadioReceiveEvent RelayedEvent);
 
 /// <summary>
 /// Use this event to cancel sending message per receiver
@@ -28,3 +48,28 @@ public record struct RadioSendAttemptEvent(RadioChannelPrototype Channel, Entity
     public readonly EntityUid RadioSource = RadioSource;
     public bool Cancelled = false;
 }
+
+//Starlight begin
+/// <summary>
+/// Use this event to cancel sending message per receiver
+/// </summary>
+[ByRefEvent]
+public record struct CustomRadioReceiveAttemptEvent(CustomRadioChannelData Channel, EntityUid RadioSource, EntityUid RadioReceiver)
+{
+    public readonly CustomRadioChannelData Channel = Channel;
+    public readonly EntityUid RadioSource = RadioSource;
+    public readonly EntityUid RadioReceiver = RadioReceiver;
+    public bool Cancelled = false;
+}
+
+/// <summary>
+/// Use this event to cancel sending message to every receiver
+/// </summary>
+[ByRefEvent]
+public record struct CustomRadioSendAttemptEvent(CustomRadioChannelData Channel, EntityUid RadioSource)
+{
+    public readonly CustomRadioChannelData Channel = Channel;
+    public readonly EntityUid RadioSource = RadioSource;
+    public bool Cancelled = false;
+}
+//Starlight end

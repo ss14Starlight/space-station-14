@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Starlight.Utility;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Examine;
 using Content.Shared.Labels.Components;
@@ -54,7 +55,11 @@ public sealed partial class LabelSystem : EntitySystem
     {
         label ??= EnsureComp<LabelComponent>(uid);
 
-        label.CurrentLabel = text;
+        label.CurrentLabel = text == null // STARLIGHT: Don't blanket escape, instead sanitize using whitelist.
+            ? null
+            : FormattedMessage.FromMarkupPermissive(text)
+                .SanitizeWhitelist(FormattedMessageSanitizer.ItemLabelTags)
+                .ToMarkup();
         _nameModifier.RefreshNameModifiers(uid);
 
         Dirty(uid, label);
@@ -68,9 +73,10 @@ public sealed partial class LabelSystem : EntitySystem
         if (ent.Comp.CurrentLabel == null)
             return;
 
-        var message = new FormattedMessage();
-        message.AddText(Loc.GetString("hand-labeler-has-label", ("label", ent.Comp.CurrentLabel)));
-        args.PushMessage(message);
+        // STARLIGHT: Remove all markup for the examine text.
+        var text = Loc.GetString("hand-labeler-has-label", ("label", ent.Comp.CurrentLabel));
+        var message = FormattedMessage.FromMarkupPermissive(text).ToString();
+        args.PushMarkup(message);
     }
 
     private void OnRefreshNameModifiers(Entity<LabelComponent> entity, ref RefreshNameModifiersEvent args)
@@ -116,7 +122,9 @@ public sealed partial class LabelSystem : EntitySystem
 
             args.PushMarkup(Loc.GetString("comp-paper-label-has-label"));
             var text = paper.Content;
-            args.PushMarkup(text.TrimEnd());
+            // STARLIGHT: Remove all markup for the examine text.
+            var message = FormattedMessage.FromMarkupPermissive(text.TrimEnd()).ToString();
+            args.PushMarkup(message);
         }
     }
 

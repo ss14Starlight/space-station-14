@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "tgstation at 606005645d3a14c4439e5ce14785650121b22678, modified by EmoGarbage404, edited for Starlight by Conflee",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "slsign1"
+    },
+    {
+      "name": "slsign2"
+    },
+    {
+      "name": "slsign3"
+    },
+    {
+      "name": "slsign4"
+    },
+    {
+      "name": "slsign5"
+    },
+    {
+      "name": "slsign6"
+    },
+    {
+      "name": "slsign7"
+    }
+  ]
+}

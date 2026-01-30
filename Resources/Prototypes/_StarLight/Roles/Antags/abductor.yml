@@ -4,5 +4,10 @@
   antagonist: true
   objective: roles-antag-abductor-objective
   requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 3600 # 1h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 3h
+  - !type:RoleTimeRequirement
+    role: JobSurgeon
+    time: 3h
+  playTimeTracker: AntagLoneAbductor

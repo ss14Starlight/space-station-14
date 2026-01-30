@@ -12,7 +12,6 @@ using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Maps;
 using Content.Server.RoundEnd;
-using Content.Shared.Starlight;
 using Content.Shared.Administration.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking.Components;

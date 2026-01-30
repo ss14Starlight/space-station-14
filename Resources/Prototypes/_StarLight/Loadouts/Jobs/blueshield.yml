@@ -1,0 +1,132 @@
+# Senior Time
+- type: loadoutEffectGroup
+  id: VeteranBlueshield
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 60h
+
+- type: loadout
+  id: BlueShieldBeret
+  equipment:
+    head: ClothingHeadHatBeretBlueShield
+
+- type: loadout
+  id: BlueShieldBountyHat
+  equipment:
+    head: ClothingHeadHatBlueShieldSheriff
+    
+- type: loadout
+  id: BlueShieldBackpack
+  equipment:
+    back: ClothingBackpackBlueShield
+
+- type: loadout
+  id: BlueShieldDuffel
+  equipment:
+    back: ClothingBackpackDuffelBlueShield
+
+- type: loadout
+  id: BlueShieldSatchel
+  equipment:
+    back: ClothingBackpackSatchelBlueShield
+
+- type: loadout
+  id: BlueShieldJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBlueShield
+
+- type: loadout
+  id: BlueShieldJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueShield
+
+- type: loadout
+  id: EliteBlueShieldJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtEliteBlueShield
+
+- type: loadout
+  id: EliteBlueShieldJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEliteBlueShield
+
+- type: loadout
+  id: FormalBlueShieldJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalBlueShield
+
+- type: loadout
+  id: BlueShieldShirt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueShieldShirt
+
+- type: loadout
+  id: BlueShieldSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBlueShieldSkirt
+
+- type: loadout
+  id: BlueShieldGlasses
+  equipment:
+    eyes: ClothingEyesGlassesBlueShield
+
+- type: loadout
+  id: BlueShieldHud
+  equipment:
+    eyes: ClothingEyesHudBlueShield
+
+- type: loadout
+  id: BlueShieldEyePatchHud
+  equipment:
+    eyes: ClothingEyesEyepatchHudBlueShield
+
+- type: loadout
+  id: BlueShieldCoat
+  equipment:
+    outerClothing: ClothingOuterCoatBlueShield
+
+- type: loadout
+  id: BlueShieldVest
+  equipment:
+    outerClothing: ClothingOuterArmorBlueShield
+
+- type: loadout
+  id: BlueShieldFormalCloak
+  equipment:
+    neck: ClothingNeckCloakBsoCape
+
+- type: loadout
+  id: BlueShieldEliteCloak
+  equipment:
+    neck: ClothingNeckCloakBsoElite
+
+- type: loadout
+  id: BlueShieldPoncho
+  equipment:
+    neck: ClothingNeckCloakBsoPoncho
+
+- type: loadout
+  id: BlueShieldWebbing
+  equipment:
+    belt: ClothingBeltBlueShieldWebbingFilled
+
+- type: loadout
+  id: BlueShieldMedicalBelt
+  equipment:
+    belt: ClothingBeltBlueShieldMedicalBeltFilled
+    
+- type: loadout
+  id: BlueShieldPDA
+  equipment:
+    id: BlueShieldPDA
+
+- type: loadout
+  id: VeteranBlueShieldPDA
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBlueshield
+  equipment:
+    id: VeteranBlueShieldPDA

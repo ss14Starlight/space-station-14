@@ -33,4 +33,14 @@ public sealed class FireProtectionSystem : EntitySystem
         args.Msg.PushNewline();
         args.Msg.AddMarkupOrThrow(Loc.GetString(ent.Comp.ExamineMessage, ("value", value)));
     }
+    
+    // Starlight - begin
+    /// <summary>
+    /// Sets the damage reduction of the fire protection component.
+    /// </summary>
+    /// <param name="component">The fire protection component.</param>
+    /// <param name="reduction">The percentage (0.0 - 1.0) that fire damage is reduced by.</param>
+    public void SetFireProtection(FireProtectionComponent component, float reduction) =>
+        component.Reduction = reduction;
+    // Starlight - end
 }

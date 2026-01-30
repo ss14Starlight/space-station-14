@@ -1,11 +1,11 @@
 - type: gameMap
-  id: Lobster
+  id: StarlightLobster
   mapName: 'Lobster Station'
   mapPath: /Maps/_Starlight/Stations/Lobster.yml
   minPlayers: 40
-  #maxPlayers: 75
+  maxPlayers: 150
   stations:
-    Lobster:
+    StarlightLobster:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
@@ -37,6 +37,7 @@
             Chemist: [ 2, 3 ]
             MedicalDoctor: [ 7, 12 ]
             MedicalIntern: [ 6, 8 ]
+            Psychologist: [ 1, 1 ]
             Paramedic: [ 2, 2 ]
             Surgeon: [ 2, 2 ]
             #science
@@ -47,6 +48,7 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
+            DutyOfficer: [ 2, 2 ]
             SecurityOfficer: [ 8, 14 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 5 ]
@@ -57,6 +59,7 @@
             CargoTechnician: [ 6, 8 ]
             MailTech: [ 2, 2 ]
             MiningSpecialist: [ 3, 3 ]
+            SalvageLead: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
@@ -71,3 +74,4 @@
             #Representives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]

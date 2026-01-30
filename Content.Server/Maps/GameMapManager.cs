@@ -4,6 +4,7 @@ using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Holiday;
 using Content.Shared.CCVar;
+using Content.Shared.Maps;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
@@ -106,11 +107,13 @@ public sealed class GameMapManager : IGameMapManager
         var poolPrototype = _entityManager.System<GameTicker>().Preset?.MapPool ??
                    _configurationManager.GetCVar(CCVars.GameMapPool);
         
+        /*
         if (_holiday.IsCurrentlyHoliday("NewYear"))
         {
             Logger.Debug("[Rinary] Map pool changed to christmas! Have a good Christmas!");
             poolPrototype = "ChristmasStarlightMapPool";
         }
+        */
 
         if (_prototypeManager.TryIndex<GameMapPoolPrototype>(poolPrototype, out var pool))
         {

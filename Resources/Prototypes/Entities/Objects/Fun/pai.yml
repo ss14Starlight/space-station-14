@@ -1,17 +1,20 @@
 # Placeholder PAIs, aka semi-automatic ghost roles
 
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, BaseSiliconLanguages ] #Starlight Languages
   id: PersonalAI
   name: personal ai device
   description: Your electronic pal who's fun to be with!
   components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
   - type: TextToSpeech
+  # Starlight-end
   - type: Instrument
     allowPercussion: false
     handheld: false
-    bank: 1
     program: 2
+    bank: 100 # Defined in space-station-14.sf2
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
@@ -47,7 +50,7 @@
     roleDescription: pai-system-role-description
     roleRules: ghost-role-information-familiar-rules
     mindRoles:
-    - MindRoleGhostRoleFamiliar
+    - MindRoleGhostRolePAI
     wipeVerbText: pai-system-wipe-device-verb-text
     wipeVerbPopup: pai-system-wiped-device
     stopSearchVerbText: pai-system-stop-searching-verb-text
@@ -59,7 +62,11 @@
     - Common
   - type: DoAfter
   - type: Actions
+  - type: ActionGrant
+    actions:
+    - ActionPAIOpenShop
   - type: Store
+    name: store-preset-name-pai #Starlight name change for data purity
     categories:
     - PAIAbilities
     currencyWhitelist:
@@ -94,6 +101,16 @@
       components:
         - SecretStash
         - WrappedParcel
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSilicon
+  - type: Tag
+    tags:
+    - SiliconEmotes
+  # Starlight Start
+  - type: Blindable
+  - type: ParentCanBlockVision
+  # Starlight End
 
 - type: entity
   parent: [ PersonalAI, BaseSyndicateContraband]
@@ -114,7 +131,7 @@
     roleDescription: pai-system-role-description-syndicate
     roleRules: ghost-role-information-syndicate-pai-rules
     mindRoles:
-    - MindRoleGhostRoleFamiliar
+    - MindRoleGhostRolePAI
   - type: IntrinsicRadioTransmitter
     channels:
     - Syndicate
@@ -129,6 +146,26 @@
           Off: { state: syndicate-pai-off-overlay }
           Searching: { state: syndicate-pai-searching-overlay }
           On: { state: syndicate-pai-on-overlay }
+  - type: StaticPrice
+    price: 500
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+
+- type: entity
+  parent: PersonalAI
+  id: GoldenPersonalAI
+  name: golden personal ai device
+  description: Your electronic pal who's fun to be with! Special golden edition!
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/pai.rsi
+    layers:
+    - state: golden-pai-base
+    - state: pai-off-overlay
+      shader: unshaded
+      map: ["screen"]
+  - type: Appearance
 
 - type: entity
   parent: PersonalAI
@@ -149,7 +186,7 @@
     roleDescription: pai-system-role-description-potato
     roleRules: ghost-role-information-familiar-rules
     mindRoles:
-    - MindRoleGhostRoleFamiliar
+    - MindRoleGhostRolePAI
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -163,15 +200,10 @@
     node: potatoai
 
 - type: entity
-  parent: BaseMentalAction
+  parent: ActionIntrinsicStore
   id: ActionPAIOpenShop
   name: Software Catalog
   description: Install new software to assist your owner.
-  components:
-  - type: Action
-    icon: Interface/Actions/shop.png
-  - type: InstantAction
-    event: !type:PAIShopActionEvent
 
 - type: entity
   parent: BaseMentalAction

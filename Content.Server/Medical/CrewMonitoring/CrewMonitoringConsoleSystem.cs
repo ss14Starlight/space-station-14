@@ -1,13 +1,18 @@
+using System; // Starlight
 using System.Linq;
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.PowerCell;
+using Content.Shared.PowerCell;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Medical.CrewMonitoring;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Pinpointer;
+using Content.Server.Silicons.StationAi;
 using Robust.Server.GameObjects;
+using Robust.Shared.Log; // Starlight
+using Content.Shared.Silicons.StationAi; // Starlight
+using Robust.Shared.Map; // Starlight
 
 namespace Content.Server.Medical.CrewMonitoring;
 
@@ -15,6 +20,9 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 {
     [Dependency] private readonly PowerCellSystem _cell = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly StationAiSystem _stationAiSystem = default!; // Starlight
+
+    private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
 
     public override void Initialize()
     {
@@ -22,6 +30,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
+        SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight
     }
 
     private void OnRemove(EntityUid uid, CrewMonitoringConsoleComponent component, ComponentRemove args)
@@ -73,4 +82,36 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         var allSensors = component.ConnectedSensors.Values.ToList();
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(allSensors));
     }
+    // Starlight-start
+    private void OnWarpRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
+    {
+        if (args.Actor is not { Valid: true } actor)
+        {
+            _sawmill.Warning($"Received crew monitor warp request with no valid actor for console {uid}.");
+            return;
+        }
+
+        if (!HasComp<StationAiHeldComponent>(actor))
+        {
+            _sawmill.Warning($"Entity {Name(actor)} ({actor}) attempted to warp via crew monitor {uid} without StationAiHeldComponent.");
+            return;
+        }
+
+        EntityCoordinates coordinates;
+        try
+        {
+            coordinates = GetCoordinates(args.Coordinates);
+        }
+        catch (Exception e)
+        {
+            _sawmill.Error($"Failed to convert network coordinates {args.Coordinates} for crew monitor warp request from {Name(actor)} ({actor}).", e);
+            return;
+        }
+
+        if (!_stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates))
+        {
+            _sawmill.Debug($"Crew monitor warp request from {Name(actor)} ({actor}) to {coordinates} was rejected.");
+        }
+    }
+    // Starlight-end
 }

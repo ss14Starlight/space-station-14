@@ -15,7 +15,7 @@
     - type: Tag
       tags:
         - ClothMade
-    - type: Food
+    - type: Edible
       requiresSpecialDigestion: true 
     - type: SolutionContainerManager
       solutions:

@@ -64,6 +64,7 @@
       - id: UniformScrubsColorPurple
         weight: 0.05
     - id: ClothingMaskSterile
+    - id: JetInjector
 
 - type: entity
   parent: LockerMedical
@@ -95,6 +96,8 @@
     - id: BoxBeaker
       prob: 0.3
     - id: BoxPillCanister
+    - id: PatchPack # Starlight
+    - id: PatchPack # Starlight
     - id: BoxBottle
     - id: BoxVial
     - id: PlasmaChemistryVial
@@ -132,7 +135,9 @@
     - id: HandheldGPSBasic
     - id: MedkitFilled
       prob: 0.3
+    - id: JetInjector
     - id: PlushieKiosha #starlight
+    - id: EmergencyHandheldCrewMonitor #starlight
 
 - type: entity
   parent: LockerParamedic

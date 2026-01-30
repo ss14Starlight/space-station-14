@@ -16,18 +16,58 @@
 - files:
   - cat_growl1.ogg
   - cat_growl2.ogg
+  license: "CC-BY-3.0"
+  copyright: "Taken from freesound.org, converted to ogg and small edits made by Rinary(SS14 Starlight)"
+  source: "https://freesound.org/people/Christyboy100/sounds/495693/"
+
+- files:
   - cat_meow1.ogg
+  license: "CC0-1.0"
+  copyright: "Taken from freesound.org, converted to ogg and small edits made by Rinary(SS14 Starlight)"
+  source: "https://freesound.org/people/Sarahussain374/sounds/812250/"
+
+- files:
   - cat_meow2.ogg
+  license: "CC0-1.0"
+  copyright: "Taken from freesound.org, converted to ogg and small edits made by Rinary(SS14 Starlight)"
+  source: "https://freesound.org/people/spacether/sounds/385892/"
+
+- files:
   - cat_meow3.ogg
+  license: "CC0-1.0"
+  copyright: "Taken from freesound.org, converted to ogg and small edits made by Rinary(SS14 Starlight)"
+  source: "https://freesound.org/people/Abir19/sounds/629502/"
+
+- files:
   - cat_meow4.ogg
+  license: "CC-BY-3.0"
+  copyright: "Taken from freesound.org, author is ebcrosby, converted to ogg and small edits made by Rinary(SS14 Starlight)"
+  source: "https://freesound.org/people/ebcrosby/sounds/334435/"
+
+- files:
   - cat_meow5.ogg
+  license: "CC-BY-3.0"
+  copyright: "Taken from freesound.org, author is Christyboy100, converted to ogg and small edits made by Rinary(SS14 Starlight)"
+  source: "https://freesound.org/people/Christyboy100/sounds/495694/"
+
+- files:
   - cat_meow6.ogg
+  license: "CC-BY-4.0"
+  copyright: "Taken from freesound.org, author is Dave_Girtsman, converted to ogg and small edits made by Rinary(SS14 Starlight)"
+  source: "https://freesound.org/people/Dave_Girtsman/sounds/397661/"
+
+- files:
   - cat_purr1.ogg
   - cat_purr2.ogg
   - cat_purr3.ogg
+  license: "CC0-1.0"
+  copyright: "Taken from freesound.org, converted to ogg and small edits made by Rinary(SS14 Starlight)"
+  source: "https://freesound.org/people/druulian/sounds/656500/"
+
+- files:
   - cat_trill1.ogg
   - cat_trill2.ogg
   - cat_trill3.ogg
   license: "CC0-1.0"
-  copyright: "Taken from https://pixabay.com/"
-  source: "https://github.com/ss14Starlight/space-station-14"
+  copyright: "Taken from freesound.org, converted to ogg and small edits made by Rinary(SS14 Starlight)"
+  source: "https://freesound.org/people/jsbarrett/sounds/200336/"

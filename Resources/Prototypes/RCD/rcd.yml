@@ -7,7 +7,7 @@
   id: Deconstruct
   name: rcd-component-deconstruct
   category: Main
-  sprite: /Textures/Interface/Radial/RCD/deconstruct.png
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/deconstruct.png
   mode: Deconstruct
   prototype: EffectRCDDeconstructPreview
   rotation: Camera
@@ -78,7 +78,7 @@
 - type: rcd
   id: WallSolid
   category: WallsAndFlooring
-  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/solid_wall.png
   mode: ConstructObject
   prototype: WallSolid
   cost: 4
@@ -103,7 +103,7 @@
 - type: rcd
   id: Window
   category: WindowsAndGrilles
-  sprite: /Textures/Interface/Radial/RCD/window.png
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/window.png
   mode: ConstructObject
   prototype: Window
   cost: 3
@@ -117,7 +117,7 @@
 - type: rcd
   id: WindowDirectional
   category: WindowsAndGrilles
-  sprite: /Textures/Interface/Radial/RCD/directional.png
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/directional.png
   mode: ConstructObject
   prototype: WindowDirectional
   cost: 2
@@ -132,7 +132,7 @@
 - type: rcd
   id: ReinforcedWindow
   category: WindowsAndGrilles
-  sprite: /Textures/Interface/Radial/RCD/window_reinforced.png
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/window_reinforced.png
   mode: ConstructObject
   prototype: ReinforcedWindow
   cost: 4
@@ -146,7 +146,7 @@
 - type: rcd
   id: WindowReinforcedDirectional
   category: WindowsAndGrilles
-  sprite: /Textures/Interface/Radial/RCD/directional_reinforced.png
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/directional_reinforced.png
   mode: ConstructObject
   prototype: WindowReinforcedDirectional
   cost: 3
@@ -162,7 +162,7 @@
 - type: rcd
   id: Airlock
   category: Airlocks
-  sprite: /Textures/Interface/Radial/RCD/airlock.png
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/airlock.png
   mode: ConstructObject
   prototype: Airlock
   cost: 4
@@ -174,7 +174,7 @@
 - type: rcd
   id: AirlockGlass
   category: Airlocks
-  sprite: /Textures/Interface/Radial/RCD/glass_airlock.png
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/glass_airlock.png
   mode: ConstructObject
   prototype: AirlockGlass
   cost: 4

@@ -1,7 +1,7 @@
 ## NTCC Default Settings
 
 - type: randomHumanoidSettings
-  id: EventHumanoidNTCC
+  id: EventHumanoidNTNC
   parent: EventHumanoidMindShielded
   components:
   - type: AutoImplant
@@ -12,35 +12,62 @@
 ## NTCC Blueshield
 
 - type: entity
-  name: NT-CC Consortium Blueshield
-  id: RandomHumanoidNTCCConsortiumBlueshieldSpawner
+  name: NT-NC Consortium Blueshield
+  suffix: Basic
+  id: RandomHumanoidNTNCConsortiumBlueshieldSpawnerBasic
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
       state: obs
     - type: RandomHumanoidSpawner
-      settings: NTCCConsortiumBlueshield
+      settings: NTNCConsortiumBlueshieldBasic
+
+- type: entity
+  name: NT-NC Consortium Blueshield
+  suffix: Hardsuit
+  id: RandomHumanoidNTNCConsortiumBlueshieldSpawnerEVA
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: obs
+    - type: RandomHumanoidSpawner
+      settings: NTNCConsortiumBlueshieldEVA
 
 - type: randomHumanoidSettings
-  id: NTCCConsortiumBlueshield
-  parent: EventHumanoidNTCC
+  id: NTNCConsortiumBlueshieldBasic
+  parent: EventHumanoidNTNC
   randomizeName: false
   components:
     - type: GhostRole
-      name: ghost-role-information-ntcc-consortium-officer-name
-      description: ghost-role-information-ntcc-consortium-officer-description
-      rules: ghost-role-information-nonantagonist-rules
+      name: ghost-role-information-ntnc-consortium-officer-name
+      description: ghost-role-information-ntnc-consortium-officer-description
+      rules: ghost-role-information-corporate-aligned-rules
       raffle:
         settings: default
-      job: NTCCBlueshield
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobSecurityOfficer
-        time: 18000 # 5h
+      job: NTNCBlueshield
     - type: Loadout
-      prototypes: [ NTCCBlueShieldGear ]
+      prototypes: [ NTNCBasicGear ]
+      roleLoadout: [ RoleSurvivalStandard ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: randomHumanoidSettings
+  id: NTNCConsortiumBlueshieldEVA
+  parent: EventHumanoidNTNC
+  randomizeName: false
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntnc-consortium-officer-name
+      description: ghost-role-information-ntnc-consortium-officer-description
+      rules: ghost-role-information-corporate-aligned-rules
+      raffle:
+        settings: default
+      job: NTNCBlueshield
+    - type: Loadout
+      prototypes: [ NTNCHardsuitGear ]
       roleLoadout: [ RoleSurvivalStandard ]
     - type: RandomMetadata
       nameSegments:
@@ -76,13 +103,7 @@
       raffle:
         settings: default
       mindRoles:
-      - MindRoleGhostRoleFamiliar
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 36000 # 10h
+      - MindRoleSSF
     - type: Loadout
       prototypes: [ SSFMarineGear ]
     - type: RandomMetadata
@@ -90,3 +111,111 @@
         - NamesSovietMarinesFirst
         - NamesSovietMarinesLast
       nameFormat: name-format-ert
+    - type: Revolutionary # change if you do soviet invasion gamemode
+    - type: NpcFactionMember
+      factions:
+      - DungeonSoviet
+
+## NTSf
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSF
+  name: NTSF Operative
+  suffix: ERTRole, NTSF
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: ntsficon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFoperative
+
+- type: randomHumanoidSettings
+  id: NTSFoperative
+  parent: EventHumanoidCentcomm
+  speciesBlacklist:
+  - Arachnid
+  - Diona
+  - Reptilian
+  - Resomi
+  - Vox
+  - Vulpkanin
+  - Avali
+  - Felionoid
+  - Shadekin
+  - Thaven
+  components:
+    - type: GhostRole
+      name: ghost-role-information-nanotrasen-special-forces-name
+      description: ghost-role-information-nanotrasen-special-forces-description
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
+      raffle:
+        settings: short
+      mindRoles:
+#      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+      - MindRoleGhostCorporateAligned # Starlight
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [ NanoTrasenSpecialForcesGear ]
+      roleLoadout: [ RoleSurvivalEVA ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+
+- type: entity
+  id: RandomHumanoidSpawnerDecimus
+  name: Decimus Operative
+  suffix: ERTRole, Decimus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: decimusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: Decimusoperative
+
+- type: randomHumanoidSettings
+  id: Decimusoperative
+  parent: EventHumanoidCentcomm
+  speciesBlacklist:
+  - Arachnid
+  - Diona
+  - Reptilian
+  - Resomi
+  - Vox
+  - Vulpkanin
+  - Avali
+  - Felionoid
+  - Shadekin
+  - Thaven
+  components:
+    - type: GhostRole
+      name: ghost-role-information-decimus-name
+      description: ghost-role-information-decimus-description
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
+      raffle:
+        settings: short
+      mindRoles:
+#      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+      - MindRoleGhostCorporateAligned # Starlight
+      job: Decimus
+    - type: Loadout
+      prototypes: [ DecimusGear ]
+      roleLoadout: [ RoleSurvivalEVA ]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+

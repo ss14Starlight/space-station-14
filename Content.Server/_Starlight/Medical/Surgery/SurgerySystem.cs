@@ -9,11 +9,13 @@ using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Prototypes;
+using Content.Shared.Bed.Sleep;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Server.Administration.Systems;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -27,7 +29,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ContainerSystem _containers = default!;
-    [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
+    [Dependency] private readonly SleepingSystem _sleeping = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()
@@ -72,7 +74,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         foreach (var surgery in _surgeries)
         {
-            if (!_entitySystem.TryGetSingleton(surgery, out var surgeryEnt)
+            if (!_entity.TryGetSingleton(surgery, out var surgeryEnt)
                 || !TryComp(surgeryEnt, out SurgeryComponent? surgeryComp)
                 || (surgeryComp.Requirement.Count() > 0 && !progress.CompletedSurgeries.Any(x => surgeryComp.Requirement.Contains(x))))
                 continue;
@@ -80,7 +82,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             var ev = new SurgeryValidEvent(body, part);
 
             var isCompleted = progress.CompletedSurgeries.Contains(surgery);
-            if (!progress.StartedSurgeries.Contains(surgery) 
+            if (!progress.StartedSurgeries.Contains(surgery)
                 && !isCompleted)
             {
                 RaiseLocalEvent(surgeryEnt, ref ev);

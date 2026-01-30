@@ -1,6 +1,7 @@
+using Content.Server.Codewords;
 using Content.Shared.Dataset;
 using Content.Shared.FixedPoint;
-﻿using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.Random;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
@@ -18,16 +19,13 @@ public sealed partial class TraitorRuleComponent : Component
     public ProtoId<AntagPrototype> TraitorPrototypeId = "Traitor";
 
     [DataField]
+    public ProtoId<CodewordFactionPrototype> CodewordFactionPrototypeId = "Traitor";
+
+    [DataField]
     public ProtoId<NpcFactionPrototype> NanoTrasenFaction = "NanoTrasen";
 
     [DataField]
     public ProtoId<NpcFactionPrototype> SyndicateFaction = "Syndicate";
-
-    [DataField]
-    public ProtoId<LocalizedDatasetPrototype> CodewordAdjectives = "Adjectives";
-
-    [DataField]
-    public ProtoId<LocalizedDatasetPrototype> CodewordVerbs = "Verbs";
 
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> ObjectiveIssuers = "TraitorCorporations";
@@ -51,7 +49,6 @@ public sealed partial class TraitorRuleComponent : Component
     public bool GiveBriefing = true;
 
     public int TotalTraitors => TraitorMinds.Count;
-    public string[] Codewords = new string[3];
 
     public enum SelectionState
     {
@@ -78,14 +75,8 @@ public sealed partial class TraitorRuleComponent : Component
     public SoundSpecifier GreetSoundNotification = new SoundPathSpecifier("/Audio/Ambience/Antag/traitor_start.ogg");
 
     /// <summary>
-    /// The amount of codewords that are selected.
+    /// The amount of TC traitors start with. Starlight Edit: 20 -> 25
     /// </summary>
     [DataField]
-    public int CodewordCount = 4;
-
-    /// <summary>
-    /// The amount of TC traitors start with.
-    /// </summary>
-    [DataField]
-    public FixedPoint2 StartingBalance = 20;
+    public FixedPoint2 StartingBalance = 25;
 }

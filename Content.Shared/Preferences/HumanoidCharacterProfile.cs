@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
 using Content.Shared.Starlight.CCVar; // Starlight
 using Content.Shared.GameTicking;
+using Content.Shared._CD.Records; // Cosmatic Drift Record System
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
@@ -27,7 +28,6 @@ namespace Content.Shared.Preferences
     public sealed partial class HumanoidCharacterProfile : ICharacterProfile
     {
         private static readonly Regex RestrictedNameRegex = new(@"[^A-Za-z0-9 '\-,]"); //Starlight edit, allow commas
-        private static readonly Regex RestrictedCustomSpecieNameRegex = new(@"[^A-Za-z0-9 '\-,]|\B\s+|\s+\B"); //Starlight
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
         /// <summary>
@@ -67,21 +67,11 @@ namespace Content.Shared.Preferences
 
         [DataField]
         public string Voice { get; set; } = "";
-
-        /// <summary>
-        /// Detailed text that can appear for the character if <see cref="CCVars.FlavorText"/> is enabled.
-        /// </summary>
-        [DataField]
-        public string FlavorText { get; set; } = string.Empty;
-
         /// <summary>
         /// Associated <see cref="SpeciesPrototype"/> for this profile.
         /// </summary>
         [DataField]
         public ProtoId<SpeciesPrototype> Species { get; set; } = SharedHumanoidAppearanceSystem.DefaultSpecies;
-
-        [DataField] // Starlight
-        public string CustomSpecieName { get; set; } = "";
 
         [DataField]
         public int Age { get; set; } = 18;
@@ -102,6 +92,10 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public HumanoidCharacterAppearance Appearance { get; set; } = new();
+
+        // Cosmatic Drift – stores the player's custom record data on the profile itself.
+        [DataField("cosmaticDriftCharacterRecords")]
+        public PlayerProvidedCharacterRecords? CDCharacterRecords { get; private set; } = PlayerProvidedCharacterRecords.DefaultRecords();
 
         /// <summary>
         /// When spawning into a round what's the preferred spot to spawn.
@@ -127,7 +121,13 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile(
             string name,
             string voice,
-            string flavortext,
+            string siliconVoice, // 🌟Starlight🌟
+            string physicalDesc,// Starlight
+            string personalityDesc,// Starlight
+            string personalNotes,// Starlight
+            string oocNotes,// Starlight
+            string secrets, //Starlight
+            string exploitableInfo, //Starlight
             string species,
             string customspeciename, // Starlight
             int age,
@@ -139,12 +139,19 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
+            List<string> cybernetics, // Starlight
             bool enabled)
         {
             Name = name;
             Voice = voice;
-            FlavorText = flavortext;
-            Species = species;
+            SiliconVoice = siliconVoice; // 🌟Starlight🌟
+            PhysicalDescription = physicalDesc;//Starlight
+            PersonalityDescription = personalityDesc;//Starlight
+            PersonalNotes = personalNotes;//Starlight
+            OOCNotes = oocNotes;//Starlight
+            Secrets = secrets; //Starlight
+            ExploitableInfo = exploitableInfo; //Starlight
+            Species = species;//Starlight
             CustomSpecieName = customspeciename; // Starlight
             Age = age;
             Sex = sex;
@@ -155,6 +162,7 @@ namespace Content.Shared.Preferences
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
+            Cybernetics = cybernetics; // Starlight
             Enabled = enabled;
         }
 
@@ -162,7 +170,13 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile(HumanoidCharacterProfile other)
             : this(other.Name,
                 other.Voice,
-                other.FlavorText,
+                other.SiliconVoice, // 🌟Starlight🌟
+                other.PhysicalDescription,//Starlight
+                other.PersonalityDescription, //Starlight
+                other.PersonalNotes,//Starlight
+                other.OOCNotes,//Starlight
+                other.Secrets,
+                other.ExploitableInfo,
                 other.Species,
                 other.CustomSpecieName, // Starlight
                 other.Age,
@@ -174,8 +188,15 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
+                other.Cybernetics, // Starlight
                 other.Enabled)
         {
+            // Cosmatic Drift Record System-start
+            CDCharacterRecords = other.CDCharacterRecords != null
+                ? new PlayerProvidedCharacterRecords(other.CDCharacterRecords)
+                : PlayerProvidedCharacterRecords.DefaultRecords();
+            CDCharacterRecords.EnsureValid();
+            // Cosmatic Drift Record System-end
         }
 
         /// <summary>
@@ -192,8 +213,10 @@ namespace Content.Shared.Preferences
         /// </summary>
         /// <param name="species">The species to use in this default profile. The default species is <see cref="SharedHumanoidAppearanceSystem.DefaultSpecies"/>.</param>
         /// <returns>Humanoid character profile with default settings.</returns>
-        public static HumanoidCharacterProfile DefaultWithSpecies(string species = SharedHumanoidAppearanceSystem.DefaultSpecies)
+        public static HumanoidCharacterProfile DefaultWithSpecies(string? species = null)
         {
+            species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
+
             return new()
             {
                 Species = species,
@@ -216,17 +239,23 @@ namespace Content.Shared.Preferences
             return RandomWithSpecies(species);
         }
 
-        public static HumanoidCharacterProfile RandomWithSpecies(string species = SharedHumanoidAppearanceSystem.DefaultSpecies)
+        public static HumanoidCharacterProfile RandomWithSpecies(string? species = null)
         {
+            species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
+
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var random = IoCManager.Resolve<IRobustRandom>();
 
             var sex = Sex.Unsexed;
             var age = 18;
+            var width = 1f; //starlight
+            var height = 1f; //starlight
             if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             {
                 sex = random.Pick(speciesPrototype.Sexes);
                 age = random.Next(speciesPrototype.MinAge, speciesPrototype.OldAge); // people don't look and keep making 119 year old characters with zero rp, cap it at middle aged
+                width = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth); //starlight
+                height = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight); //starlight
             }
 
             var gender = Gender.Epicene;
@@ -286,20 +315,26 @@ namespace Content.Shared.Preferences
         {
             return new(this) { Voice = id };
         }
+
         public HumanoidCharacterProfile WithSpecies(string species)
         {
             return new(this) { Species = species };
         }
-        // Starlight - Start
-        public HumanoidCharacterProfile WithCustomSpecieName(string customspeciename)
-        {
-            return new(this) { CustomSpecieName = customspeciename };
-        }
+
         // Starlight - End
         public HumanoidCharacterProfile WithCharacterAppearance(HumanoidCharacterAppearance appearance)
         {
             return new(this) { Appearance = appearance };
         }
+
+        // Cosmatic Drift Record System-start
+        public HumanoidCharacterProfile WithCDCharacterRecords(PlayerProvidedCharacterRecords records)
+        {
+            var copy = new PlayerProvidedCharacterRecords(records);
+            copy.EnsureValid();
+            return new HumanoidCharacterProfile(this) { CDCharacterRecords = copy };
+        }
+        // Cosmatic Drift Record System-end
 
         public HumanoidCharacterProfile WithSpawnPriorityPreference(SpawnPriorityPreference spawnPriority)
         {
@@ -362,7 +397,6 @@ namespace Content.Shared.Preferences
                 _antagPreferences = list,
             };
         }
-
         public HumanoidCharacterProfile WithTraitPreference(ProtoId<TraitPrototype> traitId, IPrototypeManager protoManager)
         {
             // null category is assumed to be default.
@@ -374,7 +408,7 @@ namespace Content.Shared.Preferences
             // Category not found so dump it.
             TraitCategoryPrototype? traitCategory = null;
 
-            if (category != null && !protoManager.TryIndex(category, out traitCategory))
+            if (category != null && !protoManager.Resolve(category, out traitCategory))
                 return new(this);
 
             var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences) { traitId };
@@ -444,6 +478,7 @@ namespace Content.Shared.Preferences
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (CustomSpecieName != other.CustomSpecieName) return false; // Starlight
+            if (!Cybernetics.SequenceEqual(other.Cybernetics)) return false; // Starlight
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPreferences.SequenceEqual(other._jobPreferences)) return false;
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
@@ -451,9 +486,53 @@ namespace Content.Shared.Preferences
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
             if (Enabled != other.Enabled) return false;
+            // Cosmatic Drift Record System-start
+            if (CDCharacterRecords != null)
+            {
+                if (other.CDCharacterRecords == null || !CDCharacterRecords.MemberwiseEquals(other.CDCharacterRecords))
+                    return false;
+            }
+            else if (other.CDCharacterRecords != null)
+            {
+                return false;
+            }
+            // Cosmatic Drift Record System-end
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
+        #region Starlight, walksanator fucking loses it and makes a throwing version of MemberwiseEquals
+        public void AssertEquals(ICharacterProfile maybeOther)
+        {
+            if (maybeOther is not HumanoidCharacterProfile other) throw new DebugAssertException($"other is not HumanoidCharacterProfile it is {maybeOther.GetType()}");
+            if (Name != other.Name) throw new DebugAssertException($"Name doesn't match expected '{Name}' got '{other.Name}'");
+            if (Age != other.Age) throw new DebugAssertException($"Age doesn't match expected '{Age}' got '{other.Age}'");
+            if (Sex != other.Sex) throw new DebugAssertException($"Sex doesn't match expected '{Sex}' got '{other.Sex}'");
+            if (Gender != other.Gender) throw new DebugAssertException($"Gender doesn't match expected '{Gender}' got '{other.Gender}'");;
+            if (Species != other.Species) throw new DebugAssertException($"Species doesn't match expected '{Species.Id}' got '{other.Species.Id}'");;
+            if (CustomSpecieName != other.CustomSpecieName) throw new DebugAssertException($"CustomSpecieName doesn't match expected '{CustomSpecieName}' got '{other.CustomSpecieName}'");
+            if (!Cybernetics.SequenceEqual(other.Cybernetics)) throw new DebugAssertException($"Cybernetics doesn't match expected '{Cybernetics}' got '{other.Cybernetics}'");
+            if (SpawnPriority != other.SpawnPriority) throw new DebugAssertException($"SpawnPriority doesn't match expected '{SpawnPriority}' got '{other.SpawnPriority}'");
+            if (!_jobPreferences.SequenceEqual(other._jobPreferences)) throw new DebugAssertException($"_jobPreferences doesn't match expected '{_jobPreferences}' got '{other._jobPreferences}'");;
+            if (!_antagPreferences.SequenceEqual(other._antagPreferences)) throw new DebugAssertException($"_antagPreferences doesn't match expected '{_antagPreferences}' got '{other._antagPreferences}'");
+            if (!_traitPreferences.SequenceEqual(other._traitPreferences)) throw new DebugAssertException($"_traitPreferences doesn't match expected '{_traitPreferences}' got '{other._traitPreferences}'");
+            if (!Loadouts.SequenceEqual(other.Loadouts))  throw new DebugAssertException($"Loadouts doesn't match expected '{Loadouts}' got '{other.Loadouts}'");
+            if (FlavorText != other.FlavorText) throw new DebugAssertException($"FlavorText doesn't match expected '{FlavorText}' got '{other.FlavorText}'");
+            if (Enabled != other.Enabled) throw new DebugAssertException($"Enabled doesn't match expected '{Enabled}' got '{other.Enabled}'");
+            // Cosmatic Drift Record System-start
+            if (CDCharacterRecords != null)
+            {
+                if (other.CDCharacterRecords == null)
+                    throw new DebugAssertException($"CDCharacterRecords doesn't match expected '{CDCharacterRecords}' got null");
+                CDCharacterRecords.AssertEquals(other.CDCharacterRecords);
+            }
+            else if (other.CDCharacterRecords != null)
+            {
+                throw new DebugAssertException($"CDCharacterRecords doesn't match expected null got '{other.CDCharacterRecords}'");
+            }
+            // Cosmatic Drift Record System-end
+            Appearance.MemberwiseEquals(other.Appearance);
+        }
+        #endregion
         public void EnsureValid(ICommonSession session, IDependencyCollection collection)
         {
             var configManager = collection.Resolve<IConfigurationManager>();
@@ -544,6 +623,19 @@ namespace Content.Shared.Preferences
                     }
                 }
             }
+
+            var allCybernetics = CyberneticImplant.GetAllCybernetics(prototypeManager);
+            var installedCybernetics = allCybernetics.Where(p => Cybernetics.Contains(p.ID))
+                                       .Where(p => p.Type == CyberneticImplantType.Limb)
+                                       .ToList();
+            if (installedCybernetics.Select(p => p.Cost).Sum() <= speciesPrototype.RoundstartCyberwareCapacity)
+            {
+                Cybernetics = installedCybernetics.Select(p => p.ID).ToList();
+            }
+            else
+            {
+                Cybernetics = [];
+            }
             // Starlight - End
 
             string flavortext;
@@ -607,6 +699,9 @@ namespace Content.Shared.Preferences
                     continue;
                 }
 
+                // This happens after we verify the prototype exists
+                // These values are set equal in the database and we need to make sure they're equal here too!
+                loadouts.Role = roleName;
                 loadouts.EnsureValid(this, session, collection);
             }
 
@@ -614,6 +709,10 @@ namespace Content.Shared.Preferences
             {
                 _loadouts.Remove(value);
             }
+            // Cosmatic Drift Record System-start
+            CDCharacterRecords ??= PlayerProvidedCharacterRecords.DefaultRecords();
+            CDCharacterRecords.EnsureValid();
+            // Cosmatic Drift Record System-end
         }
 
         /// <summary>
@@ -638,7 +737,7 @@ namespace Content.Shared.Preferences
                 }
 
                 // No category so dump it.
-                if (!protoManager.TryIndex(traitProto.Category, out var category))
+                if (!protoManager.Resolve(traitProto.Category, out var category))
                     continue;
 
                 var existing = groups.GetOrNew(category.ID);
@@ -669,10 +768,17 @@ namespace Content.Shared.Preferences
             var namingSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<NamingSystem>();
             return namingSystem.GetName(species, gender);
         }
+        public bool Equals(HumanoidCharacterProfile? other)
+        {
+            if (other is null)
+                return false;
+
+            return ReferenceEquals(this, other) || MemberwiseEquals(other);
+        }
 
         public override bool Equals(object? obj)
         {
-            return ReferenceEquals(this, obj) || obj is HumanoidCharacterProfile other && Equals(other);
+            return obj is HumanoidCharacterProfile other && Equals(other);
         }
 
         public override int GetHashCode()
@@ -692,6 +798,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Appearance);
             hashCode.Add((int)SpawnPriority);
             hashCode.Add(Enabled);
+            hashCode.Add(Cybernetics); // Starlight
             return hashCode.ToHashCode();
         }
 

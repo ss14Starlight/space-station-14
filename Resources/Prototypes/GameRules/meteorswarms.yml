@@ -38,6 +38,8 @@
     - id: GameRulePotatoSwarm
     - id: GameRuleFunSwarm
     - id: ImmovableRodSpawn
+    - !type:NestedSelector # Starlight-edit: Kessler Wrecks
+        tableId: WreckSwarmEventsTable # Starlight-edit: Kessler Wrecks
 
 - type: weightedRandomEntity
   id: MeteorSpawnAsteroidWallTable

@@ -108,7 +108,7 @@
         Radiation: 0.3 #salv is supposed to have radiation hazards in the future
         Caustic: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
+    walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing
@@ -122,15 +122,15 @@
 
 #Salvage Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
+  parent: [ClothingOuterHardsuitBase, BaseSalvageMiningContraband] # Starlight
   id: ClothingOuterHardsuitSalvage
-  name: mining hardsuit
+  name: salvage hardsuit # Starlight - rename for mining hardsuit addition
   description: A special suit that protects against hazardous, low pressure environments. Has reinforced plating for wildlife encounters.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/salvage.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/salvage.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -141,9 +141,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.6
-        Piercing: 0.65
+      # region starlight: lowered values
+        Blunt: 0.7 
+        Slash: 0.7 
+        Piercing: 0.8
+        # end region starlight
         Heat: 0.7
         Radiation: 0.3
         Caustic: 0.7
@@ -179,11 +181,11 @@
     modifiers:
       coefficients:
         Blunt: 0.7
-        Slash: 0.7
+        Slash: 0.65 #SL change: thick goliath plates! resistant to slashing
         Piercing: 0.5
         Heat: 0.7 #Goliath hide gets grilled instead of you
         Radiation: 0.3
-        Caustic: 0.8
+        Caustic: 0.7 # Starlight change: Goliath hide gets slagged instead of you
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -199,12 +201,12 @@
     - Hardsuit
     - WhitelistChameleon
 
-#Maxim Hardsuit
+# Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
+  parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ] #Starlight salvContra
   id: ClothingOuterHardsuitMaxim
   name: salvager maxim hardsuit
-  description: Fire. Heat. These things forge great weapons, they also forge great salvagers.  Has built-in battery-powered energy barrier technology.
+  description: Fire. Heat. These things forge great weapons, they also forge great salvagers. #Has built-in battery-powered energy barrier technology.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/maxim.rsi
@@ -213,50 +215,58 @@
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
   - type: Pierceable
     level: Metal
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.5
-        Heat: 0.3
-        Radiation: 0.1
+      # region starlight: maxim lowered values
+        Blunt: 0.65 
+        Slash: 0.65 
+        Piercing: 0.65 
+        Heat: 0.6 
+        Radiation: 0.3 
+        Caustic: 0.8 
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85 
   - type: ExplosionResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.4 
+    # end region starlight
+  - type: HeldSpeedModifier #Starlight addition
   - type: TemperatureProtection
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMaxim  
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-      toggleable-clothing: !type:ContainerSlot
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
-        whitelist:
-          tags:
-            - PowerCell
-            - PowerCellSmall
-  - type: EnergyDomeGenerator
-    damageEnergyDraw: 6
-    domePrototype: EnergyDomeSmallPink
-  - type: PowerCellDraw
-    enabled: false
-    drawRate: 8
-    useRate: 0
-  - type: UseDelay
-    delay: 10.0
+    clothingPrototype: ClothingHeadHelmetHardsuitMaxim
+    # region starlight: bubble shield removal
+  #- type: ContainerContainer
+    #containers:
+      #cell_slot: !type:ContainerSlot
+      #toggleable-clothing: !type:ContainerSlot
+  #- type: PowerCellSlot
+    #cellSlotId: cell_slot
+  #- type: ItemSlots
+    #slots:
+      #cell_slot:
+        #name: power-cell-slot-component-slot-name-default
+        #startingItem: PowerCellSmall
+        #whitelist:
+          #tags:
+            #- PowerCell
+            #- PowerCellSmall
+  #- type: EnergyDomeGenerator
+    #damageEnergyDraw: 6
+    #domePrototype: EnergyDomeSmallPink
+  #- type: PowerCellDraw
+    #enabled: false
+    #drawRate: 8
+    #useCharge: 0
+  #- type: UseDelay
+    #delay: 10.0
+
+#Starlight edit. maxim bubble shield was buggy, made no sense for salvs, and was on a suit with better stats than a blood red.
+# end region starlight
 
 #Security Hardsuit
 - type: entity
@@ -266,9 +276,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/security.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security.rsi #Starlight
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/security.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security.rsi #Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -282,7 +292,7 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
-        Heat: 0.8
+        Heat: 0.7 # Starlight Edit
         Caustic: 0.7
     staminaModifier: 0.7
   - type: ClothingSpeedModifier
@@ -291,6 +301,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurity
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
 
 #Brigmedic Hardsuit
 - type: entity
@@ -315,9 +330,12 @@
       coefficients:
         Blunt: 0.7
         Slash: 0.6
-        Piercing: 0.6
+        Piercing: 0.6 # Starlight edit
+        Heat: 0.7 # Starlight Edit
         Caustic: 0.7
     staminaModifier: 0.7
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.7 # Starlight
   - type: ClothingSpeedModifier
     walkModifier: 0.80
     sprintModifier: 0.80
@@ -333,9 +351,9 @@
   description: A specialized, heavy riot suit geared to combat low pressure environments.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/security-warden.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security-warden.rsi #Starlight
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/security-warden.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security-warden.rsi #Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -349,7 +367,7 @@
         Blunt: 0.4
         Slash: 0.5
         Piercing: 0.6
-        Heat: 0.8
+        Heat: 0.7 # Starlight Edit
         Caustic: 0.7
     staminaModifier: 0.7
   - type: ClothingSpeedModifier
@@ -429,7 +447,7 @@
         Radiation: 0.0
         Caustic: 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
+    walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing
@@ -461,10 +479,10 @@
       coefficients:
         Caustic: 0.1
   - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.4
+    zombificationResistanceCoefficient: 0.0 # Starlight Edit
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.95
+    walkModifier: 1.0 # Starlight Edit
+    sprintModifier: 1.0 # Starlight Edit
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMedical
@@ -513,6 +531,8 @@
     tags:
     - WhitelistChameleon
     - HighRiskItem
+    - CorgiWearable
+    - Hardsuit
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
   - type: StaticPrice
@@ -528,9 +548,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/security-red.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security-red.rsi #Starlight
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/security-red.rsi
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security-red.rsi #Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
@@ -544,7 +564,7 @@
         Blunt: 0.6
         Slash: 0.5
         Piercing: 0.5
-        Heat: 0.8
+        Heat: 0.7 # Starlight Edit
         Radiation: 0.5
         Caustic: 0.6
     staminaModifier: 0.6
@@ -575,7 +595,7 @@
   - type: PowerCellDraw
     enabled: false
     drawRate: 6
-    useRate: 0
+    useCharge: 0
   - type: UseDelay
     delay: 10.0
 
@@ -585,7 +605,7 @@
   id: ClothingOuterHardsuitLuxury #DO NOT MAP - https://github.com/space-wizards/space-station-14/pull/19738#issuecomment-1703486738
   name: luxury mining hardsuit
   description: A refurbished mining hardsuit, fashioned after the Quartermaster's colors. Graphene lining provides less protection, but is much easier to move.
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL change
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi
@@ -608,7 +628,7 @@
         Radiation: 0.5
         Caustic: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
+    walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
@@ -633,6 +653,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.75
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -644,8 +666,9 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
+    # Starlight-start
     staminaModifier: 0.3
-    ingoreKnockdown: true
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -658,6 +681,9 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
+    - ScurretWearable
+  - type: StaticPrice
+    price: 5000
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -672,6 +698,8 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieMedic
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75 # Starlight Edit
   - type: Tag
     tags:
     - Hardsuit
@@ -698,24 +726,27 @@
     damageCoefficient: 0.2
   - type: FireProtection
     reduction: 0.8
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.6
   - type: Pierceable
     level: Metal
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.70 #SL EDIT
-        Slash: 0.70 #SL EDIT
+        Blunt: 0.6 #SL EDIT
+        Slash: 0.6 #SL EDIT
         Piercing: 0.60 #SL EDIT
-        Heat: 0.2
+        Heat: 0.1 #SL EDIT
         Radiation: 0.01
         Caustic: 0.5
+    # Starlight-start
     staminaModifier: 0.2
-    ingoreKnockdown: true
+    # Starlight-end
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
@@ -741,6 +772,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.6
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -752,14 +785,21 @@
         Heat: 0.5
         Radiation: 0.25
         Caustic: 0.4
+    # Starlight-start
     staminaModifier: 0.1
-    ingoreKnockdown: true
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -772,11 +812,16 @@
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
+    equipSound: /Audio/Mecha/mechmove03.ogg #starlight
+    unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
+    equipDelay: 3 #starlight
+    unequipDelay: 3 #starlight
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.3
+  # - type: StaminaResistance # Should not have stamina resistance, this is purely so people know it was not forgotten.
   - type: Pierceable
     level: Rock
   - type: Armor
@@ -788,18 +833,29 @@
         Heat: 0.2
         Radiation: 0.2
         Caustic: 0.2
+    # Starlight-start
     staminaModifier: 0.1
-    ingoreKnockdown: true
+    # Starlight-end
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
+    walkModifier: 0.65
     sprintModifier: 0.65
   - type: HeldSpeedModifier
+  - type: FootstepModifier #starlight
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -6
+        pitch: 0.7
+        variation: 0.025
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCybersun
   - type: Tag
     tags:
     - MonkeyWearable
+    - CorgiWearable
+    - Hardsuit
     - WhitelistChameleon
+    - RequiredForLmgTag #Starlight
 
 #Wizard Hardsuit
 - type: entity
@@ -957,28 +1013,28 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
-  - type: ExplosionResistance #sl Change
-    damageCoefficient: 0.2 #sl Change
-  - type: Armor #sl Change
-    modifiers: #sl Change
-      coefficients: #sl Change
-        Blunt: 0.4 #sl Change
-        Slash: 0.4 #sl Change
-        Piercing: 0.3 #sl Change
-        Heat: 0.2 #sl Change
-        Radiation: 0.01 #sl Change
-        Caustic: 0.4 #sl Change
-    staminaModifier: 0.1
-    ingoreKnockdown: true
+  # Starlight-start
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.2
+        Radiation: 0.01
+        Caustic: 0.4
+    # Starlight-end
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitJuggernaut ]
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ]
   id: ClothingOuterHardsuitERTChaplain
-  name: ERT chaplain's hardsuit
-  description: A protective hardsuit worn by the chaplains of an Emergency Response Team.
+  name: ERT chaplain hardsuit # Starlight: remove possessive
+  description: A protective hardsuit worn by the Chaplains of an Emergency Response Team. # Starlight: Capitalization
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi #if you change this, please update the humanoid.yml with a better markers sprite.
@@ -989,7 +1045,7 @@
 
 #ERT Engineer Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ]
   id: ClothingOuterHardsuitERTEngineer
   name: ERT engineer's hardsuit
   description: A protective hardsuit worn by the engineers of an emergency response team.
@@ -1019,7 +1075,7 @@
 
 #ERT Security Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ] #sl Change
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ] #sl Change
   id: ClothingOuterHardsuitERTSecurity
   name: ERT security's hardsuit
   description: A protective hardsuit worn by the security officers of an emergency response team.
@@ -1028,6 +1084,23 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5 #Starlight edit
+  - type: StaminaResistance 
+    damageCoefficient: 0.75
+  - type: Armor #Starlight edit - all resists are new, ert sec was formerly a copy of elite suit, it should not be.
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.3
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTSecurity
   - type: Tag
@@ -1037,7 +1110,7 @@
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ]
   id: ClothingOuterHardsuitERTJanitor
   name: ERT janitor's hardsuit
   description: A protective hardsuit worn by the janitors of an emergency response team.
@@ -1070,6 +1143,8 @@
     damageCoefficient: 0.2
   - type: FireProtection
     reduction: 0.8
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
   - type: Pierceable
     level: Rock
   - type: Armor
@@ -1081,8 +1156,9 @@
         Heat: 0.1
         Radiation: 0.1
         Caustic: 0.1
+    # Starlight-start
     staminaModifier: 0.0
-    ingoreKnockdown: true
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1095,6 +1171,7 @@
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitCBURN
   name: CBURN exosuit
+  suffix: DO NOT USE # Starlight
   description: A lightweight yet strong exosuit used for special cleanup operations.
   components:
   - type: Sprite
@@ -1122,7 +1199,9 @@
         Shock: 0.1
         Radiation: 0.1
         Caustic: 0.1
+    # Starlight-start
     staminaModifier: 0.2
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -1157,7 +1236,6 @@
         Piercing: 0.9
         Caustic: 0.8
     staminaModifier: 0.8
-    ingoreKnockdown: true
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9

@@ -1,0 +1,16 @@
+- files: ["drunk_reflections_by_JAM.ogg"]
+  license: "CC0-1.0"
+  copyright: "JAM, https://modarchive.org/index.php?request=view_profile&query=81691"
+  source: "https://modarchive.org/index.php?request=view_by_moduleid&query=168639"
+
+
+- files:
+  - "cue_ball_by_christofori.ogg"
+  - "jazzical_interpolation_by_christofori.ogg"
+  - "shades_of_futility_by_christofori.ogg"
+  - "the_drunken_monkey_by_christofori.ogg"
+  - "the_midnight_cry_by_christofori.ogg"
+  license: "CC0-1.0"
+  copyright: "Christofori, http://www.christofori.net"
+  source: "https://modarchive.org/index.php?request=view_profile&query=69248"
+

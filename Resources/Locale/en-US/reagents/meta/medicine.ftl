@@ -24,10 +24,11 @@ reagent-desc-dermaline = An advanced chemical that is more effective at treating
 
 # Starlight Start
 reagent-name-dexalin = dexalin
-reagent-desc-dexalin = Used for treating minor oxygen deprivation and bloodloss, mildly toxic to Avali. A required reagent for dexalin plus.
+reagent-desc-dexalin = Used for treating minor oxygen deprivation and bloodloss, mildly toxic to Avali and Resomi. A required reagent for dexalin plus.
 
 reagent-name-dexalin-plus = dexalin plus
-reagent-desc-dexalin-plus = Used in treatment of extreme cases of oxygen deprivation and bloodloss, toxic to Avali. Flushes heartbreaker toxin out of the blood stream.
+reagent-name-dexalin-plus-saline = dexalin plus & saline
+reagent-desc-dexalin-plus = Used in treatment of extreme cases of oxygen deprivation and bloodloss, toxic to Avali and Resomi. Flushes heartbreaker toxin out of the blood stream.
 # Starlight End
 
 reagent-name-epinephrine = epinephrine
@@ -110,13 +111,14 @@ reagent-desc-sigynate = A thick pink syrup useful for neutralizing acids and soo
 
 # Starlight Start
 reagent-name-saline = saline
-reagent-desc-saline = A mixture of salt and water, highly toxic to Avali. Commonly used to treat dehydration or low fluid presence in blood.
+reagent-desc-saline = A mixture of salt and water, highly toxic to Avali and Resomi. Commonly used to treat dehydration or low fluid presence in blood.
 #Starlight End
 
 reagent-name-lacerinol = lacerinol
 reagent-desc-lacerinol = A fairly unreactive chemical that boosts collagen sythesis to incredible levels, healing slash trauma.
 
 reagent-name-puncturase = puncturase
+reagent-name-puncturase-tranexamic = puncturase & tranexamic
 reagent-desc-puncturase = A fizzy chemical that helps rebuild trauma caused by piercing damage, leaving a slight amount of tissue damage behind.
 
 reagent-name-bruizine = bruizine
@@ -126,6 +128,7 @@ reagent-name-holywater = holy water
 reagent-desc-holywater = The cleanest and purest of waters straight from the hands of god, is known to magically heal wounds.
 
 reagent-name-pyrazine = pyrazine
+reagent-name-pyrazine-dermaline = pyrazine & dermaline
 reagent-desc-pyrazine = Efficiently heals burns from the hottest of fires. Causes massive internal bleeding when overdosed.
 
 reagent-name-insuzine = insuzine
@@ -133,6 +136,9 @@ reagent-desc-insuzine = Rapidly repairs dead tissue caused by electrocution, but
 
 reagent-name-opporozidone = opporozidone
 reagent-desc-opporozidone= A difficult to synthesize cryogenic drug used to regenerate rotting tissue and brain matter.
+
+reagent-name-arcryox = arcryox
+reagent-desc-arcryox = A sickeningly blue cryogenics chemical that is able to heal extreme wounds even on the dead. It has trouble stabilizing patients however.
 
 reagent-name-necrosol = necrosol
 reagent-desc-necrosol = A necrotic substance that seems to be able to heal frozen corpses. It can treat and rejuvenate plants when applied in small doses.
@@ -151,3 +157,6 @@ reagent-desc-potassium-iodide = Will reduce the damaging effects of radiation by
 
 reagent-name-haloperidol = haloperidol
 reagent-desc-haloperidol = Removes most stimulating and hallucinogenic drugs. Reduces druggy effects and jitteriness. Causes drowsiness.
+
+reagent-name-warfarin = warfarin
+reagent-desc-warfarin = Commonly used as an anticoagulant medication. Causes blood to have difficulty forming clots. Can cause internal bleeding when overdosed.

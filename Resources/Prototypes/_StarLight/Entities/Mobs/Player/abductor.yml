@@ -3,12 +3,14 @@
   parent: BaseMobAbductor
   id: MobAbductor
   components:
+  - type: UniversalLanguageSpeaker
   - type: Abductor
   - type: Tag
     tags:
       - Abductor
       - AbductorScientist
       - CanPilot
+      - CantBecomeRevolutionary
       
 - type: entity
   name: abductor scientist
@@ -24,6 +26,8 @@
     rules: abductors-ghost-role-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleLoneAbductor
   - type: AbductorScientist
   - type: ActionGrant
     actions:
@@ -41,11 +45,13 @@
     objectives:
     - StealResearchObjective
   - type: GhostRole
-    name: abductors-ghost-role-name
-    description: abductors-ghost-role-desc
+    name: abductora-ghost-role-name
+    description: abductora-ghost-role-desc
     rules: abductors-ghost-role-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleLoneAbductor
   - type: AbductorAgent
   - type: ActionGrant
     actions:
@@ -97,9 +103,11 @@
   id: AbductorAgentSpawner
   components:
   - type: GhostRole
-    name: abductors-ghost-role-name
-    description: abductors-ghost-role-desc
+    name: abductora-ghost-role-name
+    description: abductora-ghost-role-desc
     rules: abductors-ghost-role-rules
+    mindRoles:
+    - MindRoleLoneAbductor
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -129,6 +137,8 @@
     name: abductors-ghost-role-name
     description: abductors-ghost-role-desc
     rules: abductors-ghost-role-rules
+    mindRoles:
+    - MindRoleLoneAbductor
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

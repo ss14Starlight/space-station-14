@@ -101,7 +101,7 @@ public partial class SharedGunSystem
             return false;
 
         // If it's a speedloader try to get ammo from it.
-        if (EntityManager.HasComponent<SpeedLoaderComponent>(uid))
+        if (HasComp<SpeedLoaderComponent>(uid))
         {
             var freeSlots = 0;
 
@@ -389,15 +389,7 @@ public partial class SharedGunSystem
             // Chamber empty or spent
             if (ent == null)
                 continue;
-            //🌟Starlight🌟
-            if (TryComp<HitScanCartridgeAmmoComponent>(ent, out var hitscanCartridge))
-            {
-                if (hitscanCartridge.Spent)
-                    continue;
-
-                args.Ammo.Add((ent.Value, hitscanCartridge));
-            }
-            else if (TryComp<CartridgeAmmoComponent>(ent, out var cartridge))
+            if (TryComp<CartridgeAmmoComponent>(ent, out var cartridge))
             {
                 if (cartridge.Spent)
                     continue;

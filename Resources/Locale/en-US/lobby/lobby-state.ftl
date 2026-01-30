@@ -21,3 +21,29 @@ lobby-state-song-text = Playing: [color=white]{$songTitle}[/color] by [color=whi
 lobby-state-song-no-song-text = No lobby song playing.
 lobby-state-song-unknown-title = [color=dimgray]Unknown title[/color]
 lobby-state-song-unknown-artist = [color=dimgray]Unknown artist[/color]
+lobby-state-background-text = Menu art: [color=white]{$backgroundTitle}[/color] by [color=white]{$backgroundArtist}[/color]
+lobby-state-background-no-background-text = No menu art loaded.
+lobby-state-background-unknown-title = [color=dimgray]Unknown title[/color]
+lobby-state-background-unknown-artist = [color=dimgray]Unknown artist[/color]
+
+#starlight edit remove demeaning comments
+lobby-state-playtime-comment-normal =
+    You've spent {$hours} {$hours ->
+    [1]hour
+    *[other]hours
+    } ingame today.
+lobby-state-playtime-comment-concerning =
+    You've spent {$hours} {$hours ->
+    [1]hour
+    *[other]hours
+    } ingame today.
+lobby-state-playtime-comment-grasstouchless =
+    You've spent {$hours} {$hours ->
+    [1]hour
+    *[other]hours
+    } ingame today.
+lobby-state-playtime-comment-selfdestructive =
+    You've spent {$hours} {$hours ->
+    [1]hour
+    *[other]hours
+    } ingame today.

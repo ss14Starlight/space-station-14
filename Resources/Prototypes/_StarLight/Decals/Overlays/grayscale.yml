@@ -1,0 +1,15 @@
+- type: decal
+  id: diagonaloverlay
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_overlay
+
+- type: decal
+  id: diagonalcorneroverlay
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_overlay_corner

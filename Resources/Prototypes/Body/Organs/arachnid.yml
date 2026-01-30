@@ -6,7 +6,7 @@
   - type: Sprite
     sprite: Mobs/Species/Arachnid/organs.rsi
   - type: Organ
-  - type: Food
+  - type: Edible
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionContainerManager
@@ -28,7 +28,7 @@
 - type: entity
   id: OrganArachnidStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
-  name: stomach
+  name: animal stomach
   description: "Gross. This is hard to stomach."
   components:
   - type: Sprite
@@ -124,7 +124,6 @@
     metabolizerTypes: [Animal]
     groups:
     - id: Alcohol
-      rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
 
 - type: entity
   id: OrganArachnidKidneys
@@ -162,7 +161,10 @@
     heldPrefix: eyeballs
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobArachnidEyes
+    # 🌟Starlight🌟 start
+    prototypes:
+      Default: MobArachnidEyes
+    # 🌟Starlight🌟 end
 
 - type: entity
   id: OrganArachnidTongue

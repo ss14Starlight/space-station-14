@@ -2,7 +2,7 @@ using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Doors.Components;
 using Content.Shared.Emag.Systems;
@@ -23,6 +23,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Doors.Systems;
 
@@ -46,9 +47,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
 
-
-    [ValidatePrototypeId<TagPrototype>]
-    public const string DoorBumpTag = "DoorBumpOpener";
+    public static readonly ProtoId<TagPrototype> DoorBumpTag = "DoorBumpOpener";
 
     /// <summary>
     ///     A set of doors that are currently opening, closing, or just queued to open/close after some delay.
@@ -124,7 +123,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (!TryComp<AirlockComponent>(uid, out var airlock))
             return;
 
-        if (IsBolted(uid) || !airlock.Powered)
+        if (!airlock.Powered)
             return;
 
         if (door.State != DoorState.Closed)
@@ -204,9 +203,12 @@ public abstract partial class SharedDoorSystem : EntitySystem
     #region Interactions
     protected void OnActivate(EntityUid uid, DoorComponent door, ActivateInWorldEvent args)
     {
-        if (args.Handled || !args.Complex || !door.ClickOpen)
+        // Starlight edit start: Enable entities with prying capabilities on themselves to open doors
+        var pryingCapable = args.Complex || HasComp<PryingComponent>(args.User);
+        if (args.Handled || !pryingCapable || !door.ClickOpen)
             return;
-
+        // Starlight edit end
+        
         if (!TryToggleDoor(uid, door, args.User, predicted: true))
             _pryingSystem.TryPry(uid, args.User, out _);
 
@@ -369,7 +371,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
             Audio.PlayPvs(door.OpenSound, uid, AudioParams.Default.WithVolume(-5));
 
         if (lastState == DoorState.Emagging && TryComp<DoorBoltComponent>(uid, out var doorBoltComponent))
-            SetBoltsDown((uid, doorBoltComponent), !doorBoltComponent.BoltsDown, user, true);
+            SetBoltsDown((uid, doorBoltComponent), true, user, true);
     }
 
     /// <summary>
@@ -535,7 +537,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
             if (door.CrushDamage != null)
                 _damageableSystem.TryChangeDamage(entity, door.CrushDamage, origin: uid);
 
-            _stunSystem.TryParalyze(entity, stunTime, true);
+            _stunSystem.TryUpdateParalyzeDuration(entity, stunTime);
         }
 
         if (door.CurrentlyCrushing.Count == 0)
@@ -574,6 +576,13 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
             if (!otherPhysics.Comp.CanCollide)
                 continue;
+
+            // Starlight start
+            // In order to make firelocks behave consistently between glass and non-glass airlocks, we
+            // need to match upstream's exclusion of glass airlock collision from the following block.
+            if (otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.AirlockLayer)
+                continue;
+            // Starlight end
 
             //TODO: Make only shutters ignore these objects upon colliding instead of all airlocks
             // Excludes Glasslayer for windows, GlassAirlockLayer for windoors, TableLayer for tables

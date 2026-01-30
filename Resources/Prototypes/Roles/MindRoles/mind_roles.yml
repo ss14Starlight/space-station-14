@@ -26,6 +26,7 @@
   - type: ObserverRole
   - type: MindRole
     sortWeight: -10
+    fallbackPlayTimeTracker: Observer
 
 #Ghost Roles
 - type: entity
@@ -197,6 +198,14 @@
   - type: MindRole
     antagPrototype: NukeopsCommander
 
+- type: entity
+  parent: MindRoleNukeops
+  id: MindRoleLoneops
+  name: Loneops Operative Role
+  components:
+  - type: MindRole
+    roleType: SoloAntagonist
+
 # Revolutionaries
 - type: entity
   parent: BaseMindRoleAntag
@@ -284,6 +293,31 @@
     subtype: role-subtype-wizard
   - type: WizardRole
 
+# Xenoborgs
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleMothershipCore
+  name: Mothership Core Role
+  components:
+  - type: MindRole
+    antagPrototype: MothershipCore
+    exclusiveAntag: true
+    roleType: Silicon
+    subtype: role-subtype-xenoborg-core
+  - type: XenoborgRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleXenoborg
+  name: Xenoborg Role
+  components:
+  - type: MindRole
+    antagPrototype: Xenoborg
+    exclusiveAntag: true
+    roleType: Silicon
+    subtype: role-subtype-xenoborg
+  - type: XenoborgRole
+
 # Zombie Squad
 - type: entity
   parent: BaseMindRoleAntag
@@ -307,7 +341,8 @@
     exclusiveAntag: true
     subtype: role-subtype-zombie
   - type: ZombieRole
-  
+
+#TODO: Move the below to a _Starlight folder and add Upstream's Changeling
 # Changeling
 
 - type: entity
@@ -317,15 +352,4 @@
   components:
   - type: MindRole
     antagPrototype: Changeling
-  - type: ChangelingRole
-  
-# Vampire
-
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleVampire
-  name: Vampire Role
-  components:
-  - type: MindRole
-    antagPrototype: Vampire
-  - type: VampireRole
+  - type: SLChangelingRole

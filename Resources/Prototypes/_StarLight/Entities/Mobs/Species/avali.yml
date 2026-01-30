@@ -1,10 +1,41 @@
 - type: entity
+  id: BaseColdBird
+  abstract: true
+  components:
+    - type: TemperatureDamage
+      heatDamageThreshold: 310
+      coldDamageThreshold: 223
+    - type: Temperature
+      currentTemperature: 261
+      specificHeat: 48
+    - type: ThermalRegulator
+      metabolismHeat: 400 # icebirb go brrr
+      radiatedHeat: 100
+      implicitHeatRegulation: 1500
+      sweatHeatRegulation: 2000
+      shiveringHeatRegulation: 2000
+      normalBodyTemperature: 261
+      thermalRegulationTemperatureThreshold: 1
+    - type: TemperatureSpeed
+      thresholds:
+        250: 0.9
+        230: 0.8
+        223: 0.6
+
+- type: entity
   save: false
   name: Urist McAvali
-  parent: [ BaseMobSpeciesOrganic, BaseSpeciesPickupable ]
+  parent: [ BaseColdBird, BaseMobSpeciesOrganic, BaseSpeciesPickupable ]
   id: BaseMobAvali
   abstract: true
   components:
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Scratch
+      understands:
+      - GalacticCommon
+      - Scratch
     - type: Tag
       tags:
         - CanPilot
@@ -15,6 +46,9 @@
     - type: Absorbable
     - type: HumanoidAppearance
       species: Avali
+      hideLayersOnEquip:
+      - Tail
+      - HeadTop
     - type: Hunger # on 2x more
       thresholds:
         Overfed: 250
@@ -38,6 +72,11 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: jumpsuit
+        outerClothing:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: outerclothing
         shoes: # DM only for colored shoes!
           sizeMaps:
             32:
@@ -58,6 +97,11 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: back
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: gloves
     - type: Butcherable
       butcheringType: Spike
       spawned:
@@ -66,18 +110,12 @@
     - type: Speech
       speechVerb: Parrot # RMC did it right.
       speechSounds: MaleAvali
+      allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk']
     - type: MobThresholds
       thresholds:
         0: Alive
         90: Critical
         180: Dead
-    - type: Sprite
-      scale: 0.91, 0.91
-    - type: TemperatureSpeed
-      thresholds:
-        250: 0.9
-        230: 0.8
-        223: 0.6
     - type: Fixtures
       fixtures:
         fix1:
@@ -96,9 +134,9 @@
         Female: FemaleAvali
         Unsexed: MaleAvali
     - type: MovementSpeedModifier
-      weightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
-      weightlessFriction: 1
-      weightlessModifier: 1
+      baseWeightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
+      baseWeightlessFriction: 1
+      baseWeightlessModifier: 1
     - type: Damageable
       damageContainer: Biological
       damageModifierSet: Avali
@@ -108,7 +146,10 @@
           sprite: Mobs/Effects/brute_damage.rsi
           color: "#6C3BAA"
     - type: Bloodstream
-      bloodReagent: AvaliBlood
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: AvaliBlood
+          Quantity: 300
     - type: MeleeWeapon
       soundHit:
         path: /Audio/Weapons/pierce.ogg
@@ -117,22 +158,19 @@
       damage:
         types:
           Slash: 6.25
-    - type: Temperature
-      heatDamageThreshold: 310
-      coldDamageThreshold: 223
-      currentTemperature: 261
-      specificHeat: 48
-    - type: ThermalRegulator
-      metabolismHeat: 400 # icebirb go brrr
-      radiatedHeat: 100
-      implicitHeatRegulation: 1500
-      sweatHeatRegulation: 2000
-      shiveringHeatRegulation: 2000
-      normalBodyTemperature: 261
-      thermalRegulationTemperatureThreshold: 1
     - type: Stasis
       enterStasisAction: ActionStasisEnter
       exitStasisAction: ActionStasisExit
+      updateInterval: 1s
+      healingPerUpdate:
+        types:
+          Heat: 2
+          Cold: 2
+        groups:
+          Brute: 6
+      bleedHealPerUpdate: 1.0
+      critHealingModifier: 2.0
+      stasisDamageReduction: 0.5
 
 # Chirp!
 
@@ -144,6 +182,8 @@
   components:
     - type: HumanoidAppearance
       species: Avali
+      undergarmentTop: UndergarmentTopTanktopAvali
+      undergarmentBottom: UndergarmentBottomBoxersAvali
     - type: Inventory
       speciesId: Avali
       displacements:
@@ -152,6 +192,11 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: jumpsuit
+        outerClothing:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: outerclothing
         shoes: # DM only for colored shoes!
           sizeMaps:
             32:
@@ -172,5 +217,10 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: back
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: gloves
 
 # Chirp!

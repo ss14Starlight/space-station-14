@@ -132,9 +132,8 @@ public sealed class MechGrabberSystem : EntitySystem
         if (args.Target == args.User || component.DoAfter != null)
             return;
 
-        if (TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static ||
-            HasComp<WallMountComponent>(target) ||
-            HasComp<MobStateComponent>(target))
+        if ((TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static) ||
+            HasComp<WallMountComponent>(target)) // Starlight change: Removes check for mob type since checked for component later
         {
             return;
         }
@@ -154,6 +153,9 @@ public sealed class MechGrabberSystem : EntitySystem
         if (!_interaction.InRangeUnobstructed(args.User, target))
             return;
 
+        if (!component.CanGrabMobs && HasComp<MobStateComponent>(target)) // Starlight change checks for if entity is a mob and if the claw can pick it up
+            return;       
+        
         args.Handled = true;
         component.AudioStream = _audio.PlayPvs(component.GrabSound, uid)?.Entity;
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.GrabDelay, new GrabberDoAfterEvent(), uid, target: target, used: uid)

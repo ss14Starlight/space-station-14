@@ -1,0 +1,36 @@
+- type: startingGear
+  id: SyndicateCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombat
+    pocket1: SyndicateBusinessCard
+    pocket2: Telecrystal1
+
+- type: startingGear
+  id: NukieCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsCombat
+    outerClothing: ClothingOuterHardsuitSyndie
+    pocket1: WeaponPistolViper
+    pocket2: Telecrystal1
+
+- type: startingGear
+  id: SovietCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSovietFatigues
+    shoes: ClothingShoesBootsCombat
+    pocket1: CigPackSoviet
+
+- type: startingGear
+  id: MercenaryCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    shoes: ClothingShoesBootsMerc
+
+- type: startingGear
+  id: PirateCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPirate
+    outerClothing: ClothingOuterCoatPirate
+    pocket1: TreasureCoinGold

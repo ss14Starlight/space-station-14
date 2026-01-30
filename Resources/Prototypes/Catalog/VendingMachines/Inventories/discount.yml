@@ -8,6 +8,9 @@
     FoodSnackPopcorn: 3
     FoodSnackEnergy: 3
     CigPackMixed: 2
+    DiscountDanLighter: 1
+    CigPackRollie: 1 # Starlight-edit
+    DrinkCrabJuiceCan: 2 # Starlight
   contrabandInventory:
     FoodSnackDanDanNoodles: 3
     FoodBakedBunHoney: 3

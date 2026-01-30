@@ -1,5 +1,8 @@
 using Content.Server.Chat.Systems;
-using Content.Server.Speech.Components;
+using Content.Shared.Chat;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
+using Content.Shared._Starlight.Chat; // Starlight
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -9,19 +12,23 @@ namespace Content.Server.Speech.EntitySystems;
 public sealed class ListeningSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _xforms = default!;
+    [Dependency] private readonly ChatSystem _chat = default!; // Starlight
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<EntitySpokeEvent>(OnSpeak);
+        SubscribeLocalEvent<EntityLoocEvent>(OnLooc); // Starlight
     }
 
-    private void OnSpeak(EntitySpokeEvent ev)
-    {
-        PingListeners(ev.Source, ev.Message, ev.ObfuscatedMessage);
-    }
+    // Starlight edit Start
+    private void OnSpeak(EntitySpokeEvent ev) =>
+        PingListeners(ev.Source, ev.Message, ev.IsWhisper);
+    private void OnLooc(EntityLoocEvent ev) =>
+        PingLoocListeners(ev.Source, ev.Message);
+    // Starlight End
 
-    public void PingListeners(EntityUid source, string message, string? obfuscatedMessage)
+    public void PingListeners(EntityUid source, string message, bool isWhisper) // Starlight
     {
         // TODO whispering / audio volume? Microphone sensitivity?
         // for now, whispering just arbitrarily reduces the listener's max range.
@@ -32,7 +39,7 @@ public sealed class ListeningSystem : EntitySystem
 
         var attemptEv = new ListenAttemptEvent(source);
         var ev = new ListenEvent(message, source);
-        var obfuscatedEv = obfuscatedMessage == null ? null : new ListenEvent(obfuscatedMessage, source);
+        var obfuscatedEv = !isWhisper ? null : new ListenEvent(_chat.ObfuscateMessageReadability(message), source); // Starlight
         var query = EntityQueryEnumerator<ActiveListenerComponent, TransformComponent>();
 
         while(query.MoveNext(out var listenerUid, out var listener, out var xform))
@@ -53,10 +60,47 @@ public sealed class ListeningSystem : EntitySystem
                 continue;
             }
 
-            if (obfuscatedEv != null && distance > ChatSystem.WhisperClearRange)
+            //Starlight begin
+            var whisperClearRange = SharedChatSystem.WhisperClearRange;
+            if(TryComp<ChatListenerRangeComponent>(source, out var rangeComp))
+                whisperClearRange = rangeComp.WhisperClearRange;
+            //Starlight end
+            
+            if (obfuscatedEv != null && distance > whisperClearRange) // Starlight-edit
                 RaiseLocalEvent(listenerUid, obfuscatedEv);
             else
                 RaiseLocalEvent(listenerUid, ev);
         }
     }
+    // Starlight Start: Holopads support LOOC
+    public void PingLoocListeners(EntityUid source, string message)
+    {
+        var xformQuery = GetEntityQuery<TransformComponent>();
+        var sourceXform = xformQuery.GetComponent(source);
+        var sourcePos = _xforms.GetWorldPosition(sourceXform, xformQuery);
+
+        var attemptEv = new ListenAttemptEvent(source);
+        var ev = new LoocListenEvent(message, source);
+        var query = EntityQueryEnumerator<ActiveListenerComponent, TransformComponent>();
+
+        while(query.MoveNext(out var listenerUid, out var listener, out var xform))
+        {
+            if (xform.MapID != sourceXform.MapID)
+                continue;
+
+            var distance = (sourcePos - _xforms.GetWorldPosition(xform, xformQuery)).LengthSquared();
+            if (distance > listener.Range * listener.Range)
+                continue;
+
+            RaiseLocalEvent(listenerUid, attemptEv);
+            if (attemptEv.Cancelled)
+            {
+                attemptEv.Uncancel();
+                continue;
+            }
+
+            RaiseLocalEvent(listenerUid, ev);
+        }
+    }
+    // Starlight End
 }

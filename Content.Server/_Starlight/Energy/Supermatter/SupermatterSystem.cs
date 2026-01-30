@@ -2,13 +2,16 @@ using System;
 using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Managers;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Starlight.Energy.Supermatter;
 using Content.Shared.Abilities.Goliath;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
@@ -39,6 +42,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ExplosionSystem _explosion = default!;
 
     private readonly Dictionary<EntityUid, Entity<SupermatterComponent>> _supermatters = [];
     private DamageGroupPrototype? _brute;
@@ -112,7 +116,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void Cascad(Entity<SupermatterComponent> supermatter)
     {
         if (supermatter.Comp.Durability > 0.01) return;
-
+        _explosion.QueueExplosion(supermatter, ExplosionSystem.DefaultExplosionPrototypeId, 150, 3, 20);
         _cascade.StartCascade(Transform(supermatter.Owner).Coordinates);
         QueueDel(supermatter.Owner);
     }
@@ -130,13 +134,16 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
 
         if (currentDurability > lastDurability)
             _radioSystem.SendRadioMessage(supermatter.Owner, $"The crystal is regenerating. Durability: {currentDurability}%", _engi, supermatter.Owner);
-        else switch (currentDurability)
-            {
-                case > 75: _radioSystem.SendRadioMessage(supermatter.Owner, $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter.Owner); break;
-                case > 50: _chat.DispatchServerAnnouncement($"Attention! The crystal is destabilizing. Durability: {currentDurability}%", Color.Yellow); break;
-                case > 25: _chat.DispatchServerAnnouncement($"Critical state of the crystal! Durability: {currentDurability}%", Color.OrangeRed); break;
-                default: _chat.DispatchServerAnnouncement($"Crystal destruction is inevitable. Current durability: {currentDurability}%", Color.Red); break;
-            }
+        else
+            _radioSystem.SendRadioMessage(supermatter.Owner,
+                $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter.Owner);
+        // else switch (currentDurability)
+        //     {
+        //         case > 75: _radioSystem.SendRadioMessage(supermatter.Owner, $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter.Owner); break;
+        //         case > 50: _chat.DispatchServerAnnouncement($"Attention! The crystal is destabilizing. Durability: {currentDurability}%", Color.Yellow); break;
+        //         case > 25: _chat.DispatchServerAnnouncement($"Critical state of the crystal! Durability: {currentDurability}%", Color.OrangeRed); break;
+        //         default: _chat.DispatchServerAnnouncement($"Crystal destruction is inevitable. Current durability: {currentDurability}%", Color.Red); break;
+        //     }
     }
 
     private void HandleDestruction(Entity<SupermatterComponent> supermatter)
@@ -183,7 +190,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
             radiationStability += prop.RadiationStability * percent;
         }
 
-        supermatter.Comp.RadiationStability = MathHelper.Clamp(radiationStability, 1, 10);
+        supermatter.Comp.RadiationStability = MathHelper.Clamp(radiationStability, 1.1, 10);
 
         ProcessHeat(supermatter, gas, heatTransfer, heatModifier);
         TryCompensateDamage(supermatter, gas);
@@ -238,6 +245,6 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         supermatter.Comp.AccBreak = MathHelper.Clamp(supermatter.Comp.AccBreak + (trueDamage * Const.BreakPercent), 0, 9999);
         supermatter.Comp.AccHeat = MathHelper.Clamp(supermatter.Comp.AccHeat + (trueDamage * Const.HeatPercent), 0, 9999);
         supermatter.Comp.AccLighting = MathHelper.Clamp(supermatter.Comp.AccLighting + (trueDamage * Const.LightingPercent), 0, 25);
-        supermatter.Comp.AccRadiation = MathHelper.Clamp(supermatter.Comp.AccRadiation + (trueDamage * Const.RadiationPercent), 0, 100);
+        supermatter.Comp.AccRadiation = MathHelper.Clamp(supermatter.Comp.AccRadiation + (trueDamage * Const.RadiationPercent), 0, 50);
     }
 }

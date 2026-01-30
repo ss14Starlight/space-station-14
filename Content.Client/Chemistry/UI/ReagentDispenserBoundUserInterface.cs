@@ -40,7 +40,7 @@ namespace Content.Client.Chemistry.UI
 
             _window.AmountGrid.OnButtonPressed += s => SendMessage(new ReagentDispenserSetDispenseAmountMessage(s));
 
-            _window.OnDispenseReagentButtonPressed += (location) => SendMessage(new ReagentDispenserDispenseReagentMessage(location));
+            _window.OnDispenseReagentButtonPressed += (data) => SendMessage(new ReagentDispenserDispenseReagentMessage(data)); // Starlight-edit
             _window.OnEjectJugButtonPressed += (location) => SendMessage(new ReagentDispenserEjectContainerMessage(location));
         }
 
@@ -58,5 +58,17 @@ namespace Content.Client.Chemistry.UI
             var castState = (ReagentDispenserBoundUserInterfaceState) state;
             _window?.UpdateState(castState); //Update window state
         }
+
+        // Starlight start: Required for cell charging or UI flashes
+        protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+        {
+            base.ReceiveMessage(message);
+
+            if (message is ReagentDispenserEnergyUpdateMessage energyUpdate)
+            {
+                _window?.UpdateEnergyDisplay(energyUpdate.EnergyAmount);
+            }
+        }
+        // Starlight end
     }
 }

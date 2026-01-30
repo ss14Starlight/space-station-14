@@ -4,7 +4,7 @@
   abstract: true
   components:
   - type: Organ
-  - type: Food
+  - type: Edible
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: StaticPrice
@@ -19,6 +19,8 @@
   - type: FlavorProfile
     flavors:
       - chicken # everything kinda tastes like chicken
+  - type: Extractable           # Starlight - let's make some sausage!
+    grindableSolutionName: food # Starlight - let's make some sausage!
   - type: Tag
     tags:
       - Meat
@@ -33,7 +35,7 @@
 - type: entity
   id: OrganAnimalLungs
   parent: BaseAnimalOrgan
-  name: lungs
+  name: animal lungs
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -67,7 +69,7 @@
 - type: entity
   id: OrganAnimalStomach
   parent: BaseAnimalOrgan
-  name: stomach
+  name: animal stomach
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -96,13 +98,17 @@
 - type: entity
   id: OrganMouseStomach
   parent: OrganAnimalStomach
-  name: stomach
   categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
       stomach:
         maxVol: 30
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
   - type: Item
     size: Small
     heldPrefix: stomach
@@ -110,7 +116,7 @@
 - type: entity
   id: OrganAnimalLiver
   parent: [ BaseAnimalOrgan, BaseOrganLiver]
-  name: liver
+  name: animal liver
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -121,7 +127,6 @@
     metabolizerTypes: [ Animal ]
     groups:
     - id: Alcohol
-      rateModifier: 0.1
   - type: Item
     size: Small
     heldPrefix: liver
@@ -129,7 +134,7 @@
 - type: entity
   id: OrganAnimalHeart
   parent: [ BaseAnimalOrgan, BaseOrganHeart]
-  name: heart
+  name: animal heart
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -149,7 +154,7 @@
 - type: entity
   id: OrganAnimalKidneys
   parent: BaseAnimalOrgan
-  name: kidneys
+  name: animal kidneys
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -164,31 +169,3 @@
   - type: Item
     size: Small
     heldPrefix: kidneys
-
-# Borgi Animal Body
-
-- type: entity
-  parent: PartAnimal
-  id: LeftHandAdmemeCorgi
-  name: corgi hand
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: l_hand
-  - type: BodyPart
-    partType: Hand
-    symmetry: Left
-
-- type: entity
-  parent: PartAnimal
-  id: RightHandAdmemeCorgi
-  name: corgi hand
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: r_hand
-  - type: BodyPart
-    partType: Hand
-    symmetry: Right

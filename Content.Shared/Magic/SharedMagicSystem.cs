@@ -1,10 +1,19 @@
+using System.Linq;
 using System.Numerics;
+using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.Language.Components;
+using Content.Shared._Starlight.Language.Systems;
+using Content.Shared._Starlight.Magic.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
+using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -14,9 +23,11 @@ using Content.Shared.Magic.Components;
 using Content.Shared.Magic.Events;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
+using Content.Shared.Ninja.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Speech.Muting;
+using Content.Shared.Station;
 using Content.Shared.Storage;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
@@ -63,8 +74,16 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    //starlight
+    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
+    [Dependency] private readonly ExamineSystemShared _examine= default!;
+
+    #region Starlight
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedStationSystem _station = default!;
+
+    private static readonly EntProtoId TowerOfBabel = "TowerOfBabel";
+    #endregion
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
 
@@ -77,6 +96,7 @@ public abstract class SharedMagicSystem : EntitySystem
         SubscribeLocalEvent<TeleportSpellEvent>(OnTeleportSpell);
         SubscribeLocalEvent<WorldSpawnSpellEvent>(OnWorldSpawn);
         SubscribeLocalEvent<ProjectileSpellEvent>(OnProjectileSpell);
+        SubscribeLocalEvent<MultiProjectileSpellEvent>(OnMultiProjectileSpell); // Starlight: Multi-projectile spread spell
         SubscribeLocalEvent<ChangeComponentsSpellEvent>(OnChangeComponentsSpell);
         SubscribeLocalEvent<SmiteSpellEvent>(OnSmiteSpell);
         SubscribeLocalEvent<KnockSpellEvent>(OnKnockSpell);
@@ -84,6 +104,10 @@ public abstract class SharedMagicSystem : EntitySystem
         SubscribeLocalEvent<RandomGlobalSpawnSpellEvent>(OnRandomGlobalSpawnSpell);
         SubscribeLocalEvent<MindSwapSpellEvent>(OnMindSwapSpell);
         SubscribeLocalEvent<VoidApplauseSpellEvent>(OnVoidApplause);
+        #region Starlight
+        SubscribeLocalEvent<SpawnItemInHandEvent>(OnSpawnItemInHand);
+        SubscribeLocalEvent<TowerOfBabelEvent>(OnTowerOfBabel);
+        #endregion
     }
 
     private void OnBeforeCastSpell(Entity<MagicComponent> ent, ref BeforeCastSpellEvent args)
@@ -145,7 +169,7 @@ public abstract class SharedMagicSystem : EntitySystem
         args.Handled = true;
     }
 
-        /// <summary>
+    /// <summary>
     ///     Gets spawn positions listed on <see cref="InstantSpawnSpellEvent"/>
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
@@ -154,65 +178,65 @@ public abstract class SharedMagicSystem : EntitySystem
         switch (data)
         {
             case TargetCasterPos:
-                return new List<EntityCoordinates>(1) {casterXform.Coordinates};
+                return new List<EntityCoordinates>(1) { casterXform.Coordinates };
             case TargetInFrontSingle:
-            {
-                var directionPos = casterXform.Coordinates.Offset(casterXform.LocalRotation.ToWorldVec().Normalized());
-
-                if (!TryComp<MapGridComponent>(casterXform.GridUid, out var mapGrid))
-                    return new List<EntityCoordinates>();
-                if (!directionPos.TryGetTileRef(out var tileReference, EntityManager, _mapManager))
-                    return new List<EntityCoordinates>();
-
-                var tileIndex = tileReference.Value.GridIndices;
-                return new List<EntityCoordinates>(1) { _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex) };
-            }
-            case TargetInFront:
-            {
-                var directionPos = casterXform.Coordinates.Offset(casterXform.LocalRotation.ToWorldVec().Normalized());
-
-                if (!TryComp<MapGridComponent>(casterXform.GridUid, out var mapGrid))
-                    return new List<EntityCoordinates>();
-
-                if (!directionPos.TryGetTileRef(out var tileReference, EntityManager, _mapManager))
-                    return new List<EntityCoordinates>();
-
-                var tileIndex = tileReference.Value.GridIndices;
-                var coords = _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex);
-                EntityCoordinates coordsPlus;
-                EntityCoordinates coordsMinus;
-
-                var dir = casterXform.LocalRotation.GetCardinalDir();
-                switch (dir)
                 {
-                    case Direction.North:
-                    case Direction.South:
-                    {
-                        coordsPlus = _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex + (1, 0));
-                        coordsMinus = _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex + (-1, 0));
-                        return new List<EntityCoordinates>(3)
-                        {
-                            coords,
-                            coordsPlus,
-                            coordsMinus,
-                        };
-                    }
-                    case Direction.East:
-                    case Direction.West:
-                    {
-                        coordsPlus = _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex + (0, 1));
-                        coordsMinus = _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex + (0, -1));
-                        return new List<EntityCoordinates>(3)
-                        {
-                            coords,
-                            coordsPlus,
-                            coordsMinus,
-                        };
-                    }
-                }
+                    var directionPos = casterXform.Coordinates.Offset(casterXform.LocalRotation.ToWorldVec().Normalized());
 
-                return new List<EntityCoordinates>();
-            }
+                    if (!TryComp<MapGridComponent>(casterXform.GridUid, out var mapGrid))
+                        return new List<EntityCoordinates>();
+                    if (!_turf.TryGetTileRef(directionPos, out var tileReference))
+                        return new List<EntityCoordinates>();
+
+                    var tileIndex = tileReference.Value.GridIndices;
+                    return new List<EntityCoordinates>(1) { _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex) };
+                }
+            case TargetInFront:
+                {
+                    var directionPos = casterXform.Coordinates.Offset(casterXform.LocalRotation.ToWorldVec().Normalized());
+
+                    if (!TryComp<MapGridComponent>(casterXform.GridUid, out var mapGrid))
+                        return new List<EntityCoordinates>();
+
+                    if (!_turf.TryGetTileRef(directionPos, out var tileReference))
+                        return new List<EntityCoordinates>();
+
+                    var tileIndex = tileReference.Value.GridIndices;
+                    var coords = _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex);
+                    EntityCoordinates coordsPlus;
+                    EntityCoordinates coordsMinus;
+
+                    var dir = casterXform.LocalRotation.GetCardinalDir();
+                    switch (dir)
+                    {
+                        case Direction.North:
+                        case Direction.South:
+                            {
+                                coordsPlus = _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex + (1, 0));
+                                coordsMinus = _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex + (-1, 0));
+                                return new List<EntityCoordinates>(3)
+                        {
+                            coords,
+                            coordsPlus,
+                            coordsMinus,
+                        };
+                            }
+                        case Direction.East:
+                        case Direction.West:
+                            {
+                                coordsPlus = _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex + (0, 1));
+                                coordsMinus = _mapSystem.GridTileToLocal(casterXform.GridUid.Value, mapGrid, tileIndex + (0, -1));
+                                return new List<EntityCoordinates>(3)
+                        {
+                            coords,
+                            coordsPlus,
+                            coordsMinus,
+                        };
+                            }
+                    }
+
+                    return new List<EntityCoordinates>();
+                }
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -281,7 +305,50 @@ public abstract class SharedMagicSystem : EntitySystem
         var ent = Spawn(ev.Prototype, fromMap);
         var direction = _transform.ToMapCoordinates(toCoords).Position -
                          fromMap.Position;
-        _gunSystem.ShootProjectile(ent, direction, userVelocity, ev.Performer, ev.Performer);
+        _gunSystem.ShootProjectile(ent, direction, userVelocity, ev.Performer, ev.Performer, 25f);
+    }
+
+    /// <summary>
+    /// Starlight: Fires multiple projectiles in a spread pattern.
+    /// This manually spawns and fires each projectile with an angle offset from the center direction.
+    /// We can't use ProjectileSpreadComponent because it only works in the gun system's ammo handling,
+    /// not with the magic system's direct ShootProjectile calls.
+    /// </summary>
+    private void OnMultiProjectileSpell(MultiProjectileSpellEvent ev)
+    {
+        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer) || !_net.IsServer)
+            return;
+
+        ev.Handled = true;
+
+        var xform = Transform(ev.Performer);
+        var fromCoords = xform.Coordinates;
+        var toCoords = ev.Target;
+        var userVelocity = _physics.GetMapLinearVelocity(ev.Performer);
+
+        // Calculate base direction to target
+        var fromMap = _transform.ToMapCoordinates(fromCoords);
+        var toMap = _transform.ToMapCoordinates(toCoords);
+        var baseDirection = toMap.Position - fromMap.Position;
+        var baseAngle = baseDirection.ToWorldAngle();
+
+        // Convert spread from degrees to radians
+        var spreadRadians = MathHelper.DegreesToRadians(ev.SpreadDegrees);
+
+        // Calculate angle increment between projectiles
+        // For even count, we spread evenly around center
+        var angleIncrement = ev.ProjectileCount > 1 ? spreadRadians / (ev.ProjectileCount - 1) : 0f;
+        var startAngle = baseAngle - spreadRadians / 2f;
+
+        // Spawn and fire each projectile
+        for (var i = 0; i < ev.ProjectileCount; i++)
+        {
+            var projectileAngle = startAngle + (angleIncrement * i);
+            var projectileDirection = projectileAngle.ToWorldVec();
+
+            var ent = Spawn(ev.Prototype, fromMap);
+            _gunSystem.ShootProjectile(ent, projectileDirection, userVelocity, ev.Performer, ev.Performer);
+        }
     }
     // End Projectile Spells
     #endregion
@@ -307,7 +374,7 @@ public abstract class SharedMagicSystem : EntitySystem
     /// <param name="args"></param>
     private void OnTeleportSpell(TeleportSpellEvent args)
     {
-        if ( args.Handled || !PassesSpellPrerequisites(args.Action, args.Performer))
+        if (args.Handled || !PassesSpellPrerequisites(args.Action, args.Performer))
             return;
 
         var transform = Transform(args.Performer);
@@ -362,7 +429,7 @@ public abstract class SharedMagicSystem : EntitySystem
             var component = (Component)Factory.GetComponent(name);
             var temp = (object)component;
             _seriMan.CopyTo(data.Component, ref temp);
-            EntityManager.AddComponent(target, (Component)temp!);
+            AddComp(target, (Component)temp!);
         }
     }
 
@@ -403,22 +470,30 @@ public abstract class SharedMagicSystem : EntitySystem
     #endregion
     #region Knock Spells
     /// <summary>
-    /// Opens all doors and locks within range
+    /// Opens all doors and locks within range.
     /// </summary>
-    /// <param name="args"></param>
     private void OnKnockSpell(KnockSpellEvent args)
     {
         if (args.Handled || !PassesSpellPrerequisites(args.Action, args.Performer))
             return;
 
         args.Handled = true;
+        Knock(args.Performer, args.Range);
+    }
 
-        var transform = Transform(args.Performer);
+    /// <summary>
+    /// Opens all doors and locks within range.
+    /// </summary>
+    /// <param name="performer">Performer of spell. </param>
+    /// <param name="range">Radius around <see cref="performer"/> in which all doors and locks should be opened.</param>
+    public void Knock(EntityUid performer, float range)
+    {
+        var transform = Transform(performer);
 
         // Look for doors and lockers, and don't open/unlock them if they're already opened/unlocked.
-        foreach (var target in _lookup.GetEntitiesInRange(_transform.GetMapCoordinates(args.Performer, transform), args.Range, flags: LookupFlags.Dynamic | LookupFlags.Static))
+        foreach (var target in _lookup.GetEntitiesInRange(_transform.GetMapCoordinates(performer, transform), range, flags: LookupFlags.Dynamic | LookupFlags.Static))
         {
-            if (!_interaction.InRangeUnobstructed(args.Performer, target, range: 0, collisionMask: CollisionGroup.Opaque))
+            if (!_examine.InRangeUnOccluded(performer, target, range: 0))
                 continue;
 
             if (TryComp<DoorBoltComponent>(target, out var doorBoltComp) && doorBoltComp.BoltsDown)
@@ -428,7 +503,7 @@ public abstract class SharedMagicSystem : EntitySystem
                 _door.StartOpening(target);
 
             if (TryComp<LockComponent>(target, out var lockComp) && lockComp.Locked)
-                _lock.Unlock(target, args.Performer, lockComp);
+                _lock.Unlock(target, performer, lockComp);
         }
     }
     // End Knock Spells
@@ -441,7 +516,7 @@ public abstract class SharedMagicSystem : EntitySystem
             return;
 
         EntityUid? wand = null;
-        foreach (var item in _hands.EnumerateHeld(ev.Performer, handsComp))
+        foreach (var item in _hands.EnumerateHeld((ev.Performer, handsComp)))
         {
             if (!_tag.HasTag(item, ev.WandTag))
                 continue;
@@ -451,10 +526,13 @@ public abstract class SharedMagicSystem : EntitySystem
 
         ev.Handled = true;
 
-        if (wand == null || !TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) || basicAmmoComp.Count == null)
+        if (wand == null)
             return;
 
-        _gunSystem.UpdateBasicEntityAmmoCount(wand.Value, basicAmmoComp.Count.Value + ev.Charge, basicAmmoComp);
+        if (TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) && basicAmmoComp.Count != null)
+            _gunSystem.UpdateBasicEntityAmmoCount(wand.Value, basicAmmoComp.Count.Value + ev.Charge, basicAmmoComp);
+        else if (TryComp<LimitedChargesComponent>(wand, out var charges))
+            _charges.AddCharges((wand.Value, charges), ev.Charge);
     }
     // End Charge Spells
     #endregion
@@ -517,9 +595,49 @@ public abstract class SharedMagicSystem : EntitySystem
             _mind.TransferTo(tarMind, ev.Performer);
         }
 
-        _stun.TryParalyze(ev.Target, ev.TargetStunDuration, true);
-        _stun.TryParalyze(ev.Performer, ev.PerformerStunDuration, true);
+        _stun.TryUpdateParalyzeDuration(ev.Target, ev.TargetStunDuration);
+        _stun.TryUpdateParalyzeDuration(ev.Performer, ev.PerformerStunDuration);
     }
+
+    #region Starlight
+    private void OnSpawnItemInHand(SpawnItemInHandEvent ev)
+    {
+        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
+            return;
+        var user = ev.Performer;
+
+        // try to put item in hand, otherwise it goes on the ground
+        var star = Spawn(ev.Spawned, Transform(user).Coordinates);
+        if (IsClientSide(star))
+            Del(star);//event has a tendency to produce client-sided cheese... this cleans those up...
+        else
+            _hands.TryPickupAnyHand(user, star);
+        ev.Handled = true;
+    }
+
+    private void OnTowerOfBabel(TowerOfBabelEvent ev)
+    {
+        if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
+            return;
+        if (_net.IsClient)
+            return;
+        var xform = Transform(ev.Performer);
+
+        foreach (var station in _station.GetStations())
+        {
+            if (_station.GetLargestGrid(station) is not { } grid)
+                continue;
+
+            if (xform.GridUid != grid)
+                continue;
+
+            var ent = PredictedSpawnAtPosition(TowerOfBabel, xform.Coordinates);
+            ev.Handled = true;
+            return;
+        }
+        _popup.PopupClient(Loc.GetString("spell-requirements-failed"), ev.Performer, ev.Performer);
+    }
+    #endregion
 
     #endregion
     // End Spells

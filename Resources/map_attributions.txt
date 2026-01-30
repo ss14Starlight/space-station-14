@@ -1,13 +1,13 @@
 - files: ["aspid.yml"]
   authors: Checkraze
 
-- files: ["bagel.yml", "SL_bagel.yml"]
+- files: ["bagel.yml"]
   authors: Emisse
 
 - files: ["barratry.yml"]
   authors: Emogarbage, Scribbles0
  
-- files: ["box.yml", "SL_box.yml"]
+- files: ["box.yml"]
   authors: ACJM, Emisse
 
 - files: ["centcomm.yml"]
@@ -64,5 +64,5 @@
 - file: ["amber.yml"]
   authors: Southbridge, Flipsie27
 
-- files: ["crescent.yml"]
-  authors: Bequin
+  - files: ["snowball.yml"]
+  authors: Spacemann

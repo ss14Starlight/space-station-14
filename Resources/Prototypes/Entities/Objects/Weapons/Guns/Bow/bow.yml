@@ -49,6 +49,7 @@
 - type: entity
   id: BowImprovised
   parent: BaseBow
+  name: improvised shortbow
   components:
   - type: Sprite
     layers:
@@ -93,3 +94,7 @@
   - type: Construction
     graph: ImprovisedBow
     node: ImprovisedBow
+  # Starlight
+  - type: Tag
+    tags:
+    - Bow

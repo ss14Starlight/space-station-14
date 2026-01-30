@@ -10,14 +10,11 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 72000 # 20 hrs
-    - !type:AnyFlagsRequirement
-      flags:
-      - Staff
-      - Mentor
-      - ExtRoles
-      - Retiree
+    - !type:RolesRequirement
+      proto: ExtRolesReq
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
+  rules: job-rules-corporate-aligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
   access:
@@ -34,15 +31,22 @@
     - Chemistry
     - Engineering
     - Research
+    - Robotics
     - Detective
     - Salvage
     - Security
+    - Brigmedic
     - Brig
+    - Lawyer
     - Cargo
     - Atmospherics
-    - Cargo
     - Medical
+    - IAA
     - BlueShield
+    - Surgery
+    - Paramedic
+    - Mining
+    - SalvageLead
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
@@ -50,12 +54,10 @@
 - type: startingGear
   id: BlueShieldGear
   equipment:
-    shoes: ClothingShoesBootsCombatFilled
-    head: ClothingHeadHatBeretBlueShield
-    outerClothing: ClothingOuterArmorBlueShield
-    id: BlueShieldPDA
+    # head: ClothingHeadHatBeretBlueShield
+    # id: BlueShieldPDA
     ears: ClothingHeadsetAltBSO # Starlight
-    belt: ClothingBeltBlueShieldWebbingFilled
+    # belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat
     pocket1: WeaponMultiphaseGun
     pocket2: HandheldBSOCrewMonitor
@@ -63,3 +65,10 @@
     back:
     - Flash
     - ClothingMaskGasBSO
+
+- type: chameleonOutfit
+  id: BlueShieldChameleonOutfit
+  job: BlueShield
+  equipment:
+    head: ClothingHeadHatBeretBlueShield
+    gloves: ClothingHandsGlovesCombat

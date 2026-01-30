@@ -20,10 +20,10 @@
     graph: ShotgunRiotSawn
     node: start
     deconstructionTarget: null
-    
+
 - type: entity
   name: sawn-off riot shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponShotgun, BaseSecurityContraband]
   id: WeaponShotgunRiotSawn
   description: Come with me if you want to live.
   components:
@@ -37,14 +37,13 @@
   - type: Gun
     spread: 30
     pump: true
-  - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 4
   - type: Construction
     graph: ShotgunRiotSawn
     node: shotgunsawn
     deconstructionTarget: null
-    
+
 - type: entity
   parent: [WeaponShotgunRiotSawn, BaseSecurityContraband]
   id: WeaponShotgunRiotSawnEmpty
@@ -56,12 +55,12 @@
     graph: ShotgunRiotSawn
     node: shotgunsawn
     deconstructionTarget: null
-    
+
 - type: entity
   name: combat shotgun
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunCombat
-  description: A semi automatic shotgun with tactical furniture and a six-shell capacity underneath.
+  description: A semi automatic shotgun with tactical furniture and a seven-shell capacity underneath.
   components:
   - type: Item
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun_inhands_64x.rsi
@@ -74,7 +73,7 @@
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 7
-    
+
 - type: entity
   name: cycler shotgun
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecuritySalvageContraband]
@@ -98,11 +97,16 @@
       - ShellShotgun
       - SpeedLoaderShotgun
     proto: ShellShotgun
-    capacity: 9
-    chambers: [ True, True, True, True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null, null, null, null ]
+    capacity: 7
+    chambers: [ True, True, True, True, True, True, True, ]
+    ammoSlots: [ null, null, null, null, null, null, null, ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      revolver-ammo: !type:Container
+      firing_pin: !type:Container
       
 - type: entity
   name: Tkach Ya-Sui GA 12 revolver
@@ -143,6 +147,11 @@
     ammoSlots: [ null, null, null ]
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      revolver-ammo: !type:Container
+      firing_pin: !type:Container
       
 - type: entity
   name: "AS-12 'Minotaur' Shotgun"
@@ -159,17 +168,19 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/minotaur.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/minotaur.rsi
   - type: GunRequiresWield
   - type: Gun
     spread: 20
-    fireRate: 3
+    fireRate: 2
     burstFireRate: 4
     burstCooldown: 1
     selectedMode: Burst
     shotsPerBurst: 3
     availableModes:
     - Burst
-    - FullAuto
+    - SemiAuto
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/minotaur.ogg
   - type: ItemSlots
@@ -188,6 +199,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container
   - type: ChamberMagazineAmmoProvider
     autoEject: true
   - type: MagazineVisuals
@@ -195,3 +207,191 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: forged double-barrel shotgun
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseMinorContraband]
+  id: WeaponShotgunForged
+  description: Decently made double-barrel shotgun, reinforced with mixed steel and plasteel plates to keep it together. Not as accurate as a real gun.
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun_inhands_64x.rsi
+    size: Normal
+    shape:
+    - 0,0,4,0
+  - type: Gun
+    spread: 15
+    fireRate: 3
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun.rsi
+  - type: GunRequiresWield
+  - type: BallisticAmmoProvider
+    capacity: 2
+    proto: null
+
+- type: entity
+  name: makeshift shotgun
+  parent: [WeaponFlareGunSecurity, BaseMinorContraband]
+  id: WeaponShotgunMakeshift
+  description: A small hand-cannon that fires 12 gauge shotgun shells. Has no cloth to hold it together, so it has a high chance of falling apart with every shot.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/makeshift_shotgun.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/makeshift_shotgun.rsi
+  - type: Construction
+    graph: MakeshiftShotgunGraph
+    node: shotgun
+  - type: WeaponDismantleOnShoot
+    dismantleChance: 0.50
+    selfDamage:
+      types:
+        Blunt: 5
+        Heat: 5
+    items:
+      - id: ModularBarrel
+        launchAngle: 0
+        prob: 1
+      - id: ModularReceiver
+        launchAngle: 90
+        prob: 0.10
+      - id: RifleStock
+        launchAngle: 180
+        prob: 0.80
+  - type: ContainerContainer
+    containers:
+      gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinMakeshift
+  - type: FiringPinHolder
+    supportedPins: [ Makeshift, GunUpgrade ]
+
+# it's the TOZ!
+- type: entity
+  name: ZOZ-106
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband]
+  id: WeaponShotgunToz106
+  description: A cheap Soviet shotgun that received an indifferent welcome from hunters. Aim at the head and eyes for best results. Uses less-powerful 20 gauge shotgun shells.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    spread: 10
+    pump: true
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+    size: Normal
+    shape:
+    - 0,0,3,0
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgunToz
+    capacity: 2
+    proto: ShellShotgunToz
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinMakeshift
+  - type: FiringPinHolder
+    supportedPins: [ Makeshift, GunUpgrade ]
+  - type: Appearance
+  - type: StaticPrice
+    price: 400
+
+# TOZ with extended mag:
+- type: entity
+  parent: WeaponShotgunToz106
+  id: WeaponShotgunToz106Extended
+  description: A cheap Soviet shotgun that received an indifferent welcome from hunters. Aim at the head and eyes for best results. Uses less-powerful 20 gauge shotgun shells. Extended magazine version.
+  suffix: extended mag
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgunToz
+    capacity: 5
+    proto: ShellShotgunToz
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+# fully shitposted TOZ with no mag restrictions!
+- type: entity
+  name: TOZ-106
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband]
+  id: WeaponShotgunToz106Shitpost
+  description: Piotr said his custom ZOZ-106 could accept ANY magazine. No one believed him until it was too late.
+  suffix: Admeme, DO NOT MAP
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    spread: 10
+    pump: true
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+    size: Normal
+    shape:
+    - 0,0,3,0
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: MagazineShotgunTozExtended
+  - type: ChamberMagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinMakeshift
+  - type: FiringPinHolder
+    supportedPins: [ Makeshift, GunUpgrade ]
+  - type: Appearance
+  - type: StaticPrice
+    price: 1

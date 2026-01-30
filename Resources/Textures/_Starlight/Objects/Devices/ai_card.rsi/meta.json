@@ -1,0 +1,288 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taked from Paradise Station.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "fox"
+        },
+        {
+            "name": "alien"
+        },
+        {
+            "name": "angel"
+        },
+        {
+            "name": "bliss"
+        },
+        {
+            "name": "clown"
+        },
+        {
+            "name": "database",
+            "delays": [
+                [
+                    0.4,
+                    0.4,
+                    0.4
+                ]
+            ]
+        },
+        {
+            "name": "dorf",
+            "delays": [
+                [
+                    0.5,
+                    0.5
+                ]
+            ]
+        },
+        {
+            "name": "glitchman",
+            "delays": [
+                [
+                    0.5,
+                    0.3,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "goon"
+        },
+        {
+            "name": "hades",
+            "delays": [
+                [
+                    0.5,
+                    0.2,
+                    0.3,
+                    0.1,
+                    0.3,
+                    0.2,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "heartline",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "helios",
+            "delays": [
+                [
+                    1.6,
+                    0.8
+                ]
+            ]
+        },
+        {
+            "name": "magma"
+        },
+        {
+            "name": "malf",
+            "delays": [
+                [
+                    0.2,
+                    0.5,
+                    0.2,
+                    0.4,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "matrix",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ]
+        },
+        {
+            "name": "mono"
+        },
+        {
+            "name": "murica"
+        },
+        {
+            "name": "nt"
+        },
+        {
+            "name": "president",
+            "delays": [
+                [
+                    2,
+                    0.3,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.3,
+                    1.2,
+                    0.3,
+                    0.1,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "rainbow",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "red"
+        },
+        {
+            "name": "redoctober"
+        },
+        {
+            "name": "smiley"
+        },
+        {
+            "name": "sparkles",
+            "delays": [
+                [
+                    2,
+                    2
+                ]
+            ]
+        },
+        {
+            "name": "static",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "syndicatmeow"
+        },
+        {
+            "name": "text",
+            "delays": [
+                [
+                    0.8,
+                    0.8,
+                    0.8,
+                    0.8
+                ]
+            ]
+        },
+        {
+            "name": "triumvirate",
+            "delays": [
+                [
+                    1.2,
+                    1.2,
+                    1.2,
+                    1.2
+                ]
+            ]
+        },
+        {
+            "name": "u"
+        },
+        {
+            "name": "weird",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "voiddonut",
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "bee"
+        },
+        {
+            "name": "tiger"
+        },
+        {
+            "name": "vox"
+        },
+        {
+            "name": "liz"
+        },
+        {
+            "name": "darkmatter",
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "nadburn",
+            "delays": [
+                [
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "borb"
+        },
+        {
+            "name": "catamari",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ]
+        }
+    ]
+}

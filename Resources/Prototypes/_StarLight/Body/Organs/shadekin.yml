@@ -1,6 +1,7 @@
 - type: entity
   id: OrganShadekinBrain
   parent: OrganHumanBrain
+  description: "The source of incredible, unending intelligence. Marr."
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
@@ -9,21 +10,28 @@
 - type: entity
   id: OrganShadekinEyes
   parent: OrganHumanEyes
+  suffix: Shadekin
+  description: "Eyes of a BlackEye shadekin that can never see their home reality again."
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     layers:
       - state: eyes
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: NightVision
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobShadekinEyes
+    prototypes:
+      Default: MobShadekinEyes
+  - type: Tag
+    tags:
+      - ShadekinEyes
 
 - type: entity
   id: OrganShadekinTongue
   parent: OrganHumanTongue
+  suffix: Shadekin
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
@@ -33,6 +41,7 @@
 - type: entity
   id: OrganShadekinAppendix
   parent: OrganHumanAppendix
+  suffix: Shadekin
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
@@ -43,6 +52,7 @@
 - type: entity
   id: OrganShadekinHeart
   parent: OrganHumanHeart
+  suffix: Shadekin
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
@@ -51,6 +61,7 @@
 - type: entity
   id: OrganShadekinStomach
   parent: OrganHumanStomach
+  suffix: Shadekin
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
@@ -68,6 +79,7 @@
 - type: entity
   id: OrganShadekinLiver
   parent: OrganHumanLiver
+  suffix: Shadekin
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
@@ -76,6 +88,7 @@
 - type: entity
   id: OrganShadekinKidneys
   parent: OrganHumanKidneys
+  suffix: Shadekin
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
@@ -88,8 +101,28 @@
   name: shadekin core
   description: A core of a shadekin, a mysterious and powerful organ that seems to be the source of their energy.
   components:
+  - type: OrganShadekinCore
   - type: Organ
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     layers:
       - state: core
+  - type: Tag
+    tags:
+      - DamagedShadekinCore
+  - type: StaticPrice
+    price: 200
+    
+
+- type: entity
+  id: OrganShadekinCoreUndamaged
+  parent: OrganShadekinCore
+  suffix: Undamaged
+  components:
+  - type: OrganShadekinCore
+    damaged: false
+  - type: Tag
+    tags:
+      - ShadekinCore
+  - type: StaticPrice
+    price: 30000

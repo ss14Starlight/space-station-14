@@ -14,17 +14,15 @@
 
   defaultModules:
   - BorgModuleTool
+  - BorgModuleInflatable
   - BorgModuleArtifact
   - BorgModuleAnomaly
   radioChannels:
   - Science
 
   # Visual
-  inventoryTemplateId: borgShort
-  spriteBodyState: robot
-  spriteHasMindState: robot_e
-  spriteNoMindState: robot_e_r
-  spriteToggleLightState: robot_l
+  inventoryTemplateId: borg # Starlight - why was this not always the case?
+  spritePath: Mobs/Silicon/Chassis/generic.rsi
 
   # Pet
   petSuccessString: petting-success-generic-cyborg
@@ -57,14 +55,18 @@
 
   # Visual
   inventoryTemplateId: borgShort
-  spriteBodyState: engineer
-  spriteHasMindState: engineer_e
-  spriteNoMindState: engineer_e_r
-  spriteToggleLightState: engineer_l
+  spritePath: Mobs/Silicon/Chassis/engineer.rsi
 
   # Pet
   petSuccessString: petting-success-engineer-cyborg
   petFailureString: petting-failure-engineer-cyborg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 3600 # 1 hour in Engineering
+  # Starlight-end
 
 
 # Salvage borg
@@ -80,6 +82,7 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleCargo
+    - BorgModuleMining #STARLIGHT
 
   defaultModules:
   - BorgModuleTool
@@ -93,15 +96,19 @@
 
   # Visual
   inventoryTemplateId: borgTall
-  spriteBodyState: miner
-  spriteBodyMovementState: miner_moving
-  spriteHasMindState: miner_e
-  spriteNoMindState: miner_e_r
-  spriteToggleLightState: miner_l
+  spritePath: Mobs/Silicon/Chassis/miner.rsi
+  spriteBodyMovementState: borg_moving
 
   # Pet
   petSuccessString: petting-success-salvage-cyborg
   petFailureString: petting-failure-salvage-cyborg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Cargo
+    time: 5400 # 1 hour 30 minutes in Cargo
+  # Starlight-end
 
 
 # Janitor borg
@@ -119,7 +126,7 @@
     - BorgModuleJanitor
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModuleTool # Starlight
   - BorgModuleCleaning
   - BorgModuleCustodial
 
@@ -129,11 +136,8 @@
 
   # Visual
   inventoryTemplateId: borgShort
-  spriteBodyState: janitor
-  spriteBodyMovementState: janitor_moving
-  spriteHasMindState: janitor_e
-  spriteNoMindState: janitor_e_r
-  spriteToggleLightState: janitor_l
+  spritePath: Mobs/Silicon/Chassis/janitor.rsi
+  spriteBodyMovementState: borg_moving
 
   # Pet
   petSuccessString: petting-success-janitor-cyborg
@@ -155,7 +159,7 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModuleTool # Starlight
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue
@@ -175,11 +179,8 @@
 
   # Visual
   inventoryTemplateId: borgDutch
-  spriteBodyState: medical
-  spriteBodyMovementState: medical_moving
-  spriteHasMindState: medical_e
-  spriteNoMindState: medical_e_r
-  spriteToggleLightState: medical_l
+  spritePath: Mobs/Silicon/Chassis/medical.rsi
+  spriteBodyMovementState: borg_moving
 
   # Pet
   petSuccessString: petting-success-medical-cyborg
@@ -188,6 +189,13 @@
   # Sounds
   footstepCollection:
     collection: FootstepHoverBorg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 3600 # 1 hour in medical
+  # Starlight-end
 
 
 # Service borg
@@ -205,22 +213,23 @@
     - BorgModuleService
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModuleTool # Starlight
   - BorgModuleMusique
-  - BorgModuleService
+  # Starlight start 
+  - BorgModuleBartending
+  - BorgModuleCooking
+  - BorgModuleBotany
+  - BorgModuleBooks
+  # Starlight end
   - BorgModuleClowning
-  - BorgModuleGardening
-  - BorgModuleHarvesting
+  
   radioChannels:
   - Science
   - Service
 
   # Visual
   inventoryTemplateId: borgTall
-  spriteBodyState: service
-  spriteHasMindState: service_e
-  spriteNoMindState: service_e_r
-  spriteToggleLightState: service_l
+  spritePath: Mobs/Silicon/Chassis/service.rsi
 
   # Pet
   petSuccessString: petting-success-service-cyborg

@@ -1,9 +1,9 @@
 - type: entity
-  id: BoozeDispenser
+  id: BoozeDispenserEmpty
   name: booze dispenser
-  suffix: Filled
+  suffix: Empty
   description: A booze dispenser with a single slot for a container to be filled.
-  parent: ReagentDispenserBase
+  parent: ReagentDispenserBasePowerCell # Starlight edit: power cell booze dispenser
   components:
   - type: Rotatable
   - type: Sprite
@@ -15,20 +15,6 @@
     whitelist:
       tags:
       - DrinkBottle
-  - type: StorageFill
-    contents:
-    - id: DrinkAleBottleFullGrowler
-    - id: DrinkBeerGrowler
-    - id: DrinkCoffeeLiqueurBottleFull
-    - id: DrinkCognacBottleFull
-    - id: DrinkGinBottleFull
-    - id: DrinkMeadJug
-    - id: DrinkRumBottleFull
-    - id: DrinkTequilaBottleFull
-    - id: DrinkVermouthBottleFull
-    - id: DrinkVodkaBottleFull
-    - id: DrinkWhiskeyBottleFull
-    - id: DrinkWineBottleFull
   - type: Transform
     noRot: false
   - type: Machine
@@ -39,13 +25,34 @@
     - Drinks
   - type: StealTarget
     stealGroup: BoozeDispenser
+  # Starlight start: Power Cell Booze dispenser
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  # Starlight end
 
 - type: entity
-  id: BoozeDispenserEmpty
-  suffix: Empty
-  parent: BoozeDispenser
+  id: BoozeDispenser
+  suffix: Filled
+  parent: BoozeDispenserEmpty
   components:
-  - type: Storage
-    whitelist:
-      tags:
-      - DrinkBottle
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkAleBottleFullGrowler
+        - id: DrinkBeerGrowler
+        - id: DrinkCoffeeLiqueurBottleFull
+        - id: DrinkCognacBottleFull
+        - id: DrinkGinBottleFull
+        - id: DrinkMeadJug
+        - id: DrinkRumBottleFull
+        - id: DrinkTequilaBottleFull
+        - id: DrinkVermouthBottleFull
+        - id: DrinkVodkaBottleFull
+        - id: DrinkWhiskeyBottleFull
+        - id: DrinkWineBottleFull

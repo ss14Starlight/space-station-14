@@ -8,6 +8,8 @@
   id: BaseMobAbductor
   abstract: true
   components:
+  - type: Inventory
+    templateId: abductor
   #- type: Absorbable Starlight: Done on purpose so the abductors don't get absorbed.
   - type: Muted
   - type: HumanoidAppearance
@@ -46,7 +48,10 @@
       groups:
         Brute: -0.14
   - type: Bloodstream
-    bloodReagent: AbductorBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: AbductorBlood
+        Quantity: 300
 
 - type: entity
   parent: BaseSpeciesDummy

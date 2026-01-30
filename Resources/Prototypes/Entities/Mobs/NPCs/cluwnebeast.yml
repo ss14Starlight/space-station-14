@@ -3,6 +3,7 @@
   id: MobCluwneBeast
   parent: SimpleMobBase
   description: A cluwne beast, nightmare fuel, time to run!
+  categories: [ Spawner ]
   components:
   - type: CombatMode
   - type: InputMover
@@ -99,8 +100,10 @@
     prototype: Human
     requiredLegs: 2
   - type: Cluwne
+    unremovable: true #Starlight
     isCluwne: false
     emoteId: CluwneBeast
+    outfitId: CluwneBeastGear
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown

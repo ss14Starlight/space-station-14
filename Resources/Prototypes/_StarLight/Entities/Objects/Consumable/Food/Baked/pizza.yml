@@ -1,0 +1,115 @@
+﻿- type: entity
+  name: nutribrick pizza
+  parent: FoodPizzaBase
+  id: FoodPizzaNutribrick
+  description: Topped with chunky, dense nuggets of nutribrick.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nutribrick
+      - sweet
+      - wrong
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/pizza.rsi
+    layers:
+    - state: nutri-pizza
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 70 # 40 from two bricks, 30 from pizza
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: SliceableFood
+    slice: FoodPizzaNutriSlice
+
+- type: entity
+  name: slice of nutribrick pizza
+  parent: FoodPizzaSliceBase
+  id: FoodPizzaNutriSlice
+  description: A nutribrickious slice of pizza.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - nutribrick
+      - sweet
+      - wrong
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/pizza.rsi
+    layers:
+    - state: nutri-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9.5
+        - ReagentId: Vitamin
+          Quantity: 0.5
+  - type: Item
+    heldPrefix: nutri-slice
+
+- type: entity
+  name: wrapper pizza
+  parent: FoodPizzaCotton
+  id: FoodPizzaWrapper
+  description: The phrase 'tastes like cardboard' taken too literally.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - trashy
+      - sadness
+      - struggle
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/pizza.rsi
+    layers:
+    - state: wrapper-pizza
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 120
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Fiber
+          Quantity: 90 # 80 from two wrappers, 10 from pizza
+  - type: SliceableFood
+    slice: FoodPizzaWrapperSlice
+  - type: Edible
+    requiresSpecialDigestion: true
+
+- type: entity
+  name: slice of wrapper pizza
+  parent: FoodPizzaCottonSlice
+  id: FoodPizzaWrapperSlice
+  description: Just one slice of sadness.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - trashy
+      - sadness
+      - struggle
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/pizza.rsi
+    layers:
+    - state: wrapper-slice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4.5
+        - ReagentId: Vitamin
+          Quantity: 0.5
+        - ReagentId: Fiber
+          Quantity: 15
+  - type: Item
+    heldPrefix: wrapper-slice
+  - type: Edible
+    requiresSpecialDigestion: true

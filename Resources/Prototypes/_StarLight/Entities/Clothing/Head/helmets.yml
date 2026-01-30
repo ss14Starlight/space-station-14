@@ -6,6 +6,8 @@
   components:
   - type: Pierceable
     level: Metal
+  - type: FlashImmunity
+  - type: EyeProtection
   - type: Armor
     modifiers:
       coefficients:
@@ -91,7 +93,7 @@
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetReflective
   name: reflective helmet
-  description: A shiny helmet for your equally shiny vest.
+  description: A shiny helmet for your equally shiny vest. Provides 100% reflection when worn with the reflective vest.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Helmets/reflect.rsi
@@ -105,12 +107,16 @@
         Piercing: 0.95
         Heat: 0.80
   - type: Reflect
-    reflectProb: 0.2
+    reflectProb: 0.35 # STARLIGHT: Helmet base reflect probability, adds with vest to 100%
     reflects:
       - Energy  
+  # STARLIGHT: Component for set bonus system. Stores original reflection and tag for helmet piece.
+  - type: ReflectiveSetBonus
+    helmetTag: ReflectiveArmorHelmet
   - type: Tag
     tags:
     - SecurityHelmet
+    - ReflectiveArmorHelmet # STARLIGHT: Tag for set bonus system detection
 
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
@@ -174,17 +180,123 @@
   - type: Tag
     tags:
     - SecurityHelmet
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseMinorContraband]
+  id: ClothingHeadHelmetMakeshift
+  name: makeshift helmet
+  description: Cobbled together steel held together with lv cables in the vauge shape of a helmet. Barely does anything.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.97
+        Slash: 0.96
+        Piercing: 0.97
+        Heat: 0.98
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/makeshift.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/makeshift.rsi
+  - type: Construction
+    graph: ClothingHeadHelmetMakeshiftGraph
+    node: helmet
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseMinorContraband]
+  id: ClothingHeadHelmetImprovised
+  name: improvised helmet
+  description: Interlocking steel plates provides some decent protection, but is still barely better than nothing.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.93
+        Piercing: 0.95
+        Heat: 0.96
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/improvised.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/improvised.rsi
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseMinorContraband]
+  id: ClothingHeadHelmetForged
+  name: forged helmet
+  description: A high-quality helmet made by some of the best Tidersmiths, it is finally worthwhile to have it on your head.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.92
+        Slash: 0.90
+        Piercing: 0.92
+        Heat: 0.94
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/forged.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/forged.rsi
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseMajorContraband]
+  id: ClothingHeadHelmetPaladin
+  name: paladin helmet
+  description: No true paladin can go without their helmet!
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.88
+        Piercing: 0.90
+        Heat: 0.92
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/paladin.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/paladin.rsi
     
 - type: entity
   parent: ClothingHeadHelmetERTLeader
-  id: ClothingHeadHelmetNTCCConsortium
-  name: nt cc consortium helmet
-  description: An in-atmosphere helmet worn by NT-CC Consortium Officers.
+  id: ClothingHeadHelmetNTNCConsortium
+  name: nt-nc naval helmet
+  description: An in-atmosphere helmet worn by NT-NC Naval Officers.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Helmets/ntcc_helmet.rsi
+    sprite: _Starlight/Clothing/Head/Helmets/ntnc_helmet.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Helmets/ntcc_helmet.rsi
+    sprite: _Starlight/Clothing/Head/Helmets/ntnc_helmet.rsi
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetRisk
+  name: station daredevil's helmet
+  description: A strong helmet with a cool red line in the middle.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/riskhelmet.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/riskhelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+
+- type: entity
+  parent: [ ClothingHeadHelmetArmoredBase, BaseSalvageContraband ]
+  id: ClothingHeadHelmetSalvageMerc
+  name: scrapper helmet
+  description: A durable, lightweight helmet favored by salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+    - type: HideLayerClothing
+      layers:
+        Hair: HEAD

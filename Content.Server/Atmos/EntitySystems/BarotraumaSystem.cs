@@ -3,7 +3,8 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
@@ -19,6 +20,7 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger= default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
+        [Dependency] private readonly SharedTransformSystem _sharedTransformSystem = default!; // Starlight
 
         private const float UpdateTimer = 1f;
         private float _timer;
@@ -233,6 +235,10 @@ namespace Content.Server.Atmos.EntitySystems
                     >= Atmospherics.WarningHighPressure => GetFeltHighPressure(uid, barotrauma, pressure),
                     _ => pressure
                 };
+
+                // Starlight - If map has "PressureImmunityComponent", Anything on the map with "BarotraumaComponent" is immune to pressure.
+                if (HasComp<PressureImmunityComponent>(_sharedTransformSystem.GetMap(uid)))
+                    pressure = Atmospherics.OneAtmosphere;
 
                 if (pressure <= Atmospherics.HazardLowPressure)
                 {

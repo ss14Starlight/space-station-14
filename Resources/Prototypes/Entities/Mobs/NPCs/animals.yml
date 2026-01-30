@@ -4,6 +4,15 @@
   id: MobBat
   description: Some cultures find them terrifying, others crunchy on the teeth.
   components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Bat
+    understands:
+    - Bat
+    - GalacticCommon
+  # Starlight-end
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 6
@@ -50,9 +59,10 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: Bloodstream
-    bloodMaxVolume: 50
-  - type: ReplacementAccent
-    accent: mouse
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Effects/bite.ogg
@@ -112,7 +122,8 @@
       0: Alive
       10: Dead
   - type: Stamina
-    critThreshold: 10
+    baseCritThreshold: 10
+    animationThreshold: 1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -139,8 +150,10 @@
     - Bee
     - Trash
   - type: Bloodstream
-    bloodReagent: InsectBlood
-    bloodMaxVolume: 0.1
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 0.1
   - type: MobPrice
     price: 50
   - type: NPCRetaliation
@@ -186,7 +199,10 @@
     factions:
     - SimpleHostile
   - type: Bloodstream
-    bloodMaxVolume: 0.1
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 0.1
   - type: ZombieImmune
 
 
@@ -196,6 +212,13 @@
   id: MobChicken
   description: Comes before an egg, and IS a dinosaur!
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Chicken
+    understands:
+    - Chicken
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -260,13 +283,14 @@
     interactSuccessSound:
       path: /Audio/Animals/chicken_cluck_happy.ogg
   - type: Bloodstream
-    bloodMaxVolume: 100
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
   - type: ExaminableHunger
-  - type: ReplacementAccent
-    accent: chicken
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
@@ -340,7 +364,7 @@
   - type: TimedDespawn #delete the egg after the chicken spawns
     lifetime: 21
 
-- type: entity # TODO: figure out how to make these guys gib when stepped on
+- type: entity
   name: cockroach
   parent: SimpleMobBase
   id: MobCockroach
@@ -388,9 +412,11 @@
       Dead:
         Base: cockroach_dead
   - type: Bloodstream
-    bloodReagent: InsectBlood
-    bloodMaxVolume: 20
-  - type: Food
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 20
+  - type: Edible
   - type: FlavorProfile
     flavors:
     - horrible
@@ -426,8 +452,13 @@
       - !type:GibBehavior
         recursive: false
   - type: NonSpreaderZombie
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-organic
+  - type: StepTrigger
+    requiredTriggeredSpeed: 1
+  - type: TriggerOnStepTrigger
+  - type: RandomChanceTriggerCondition
+    successChance: 0.2
+  - type: GibOnTrigger
+  - type: ProtectedFromStepTriggers
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -475,6 +506,18 @@
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Mothroach
+    understands:
+    - Moffic
+    - Mothroach
+  # Starlight-end
+  # Starlight-start: Body emotes (wing flap!)
+  - type: BodyEmotes
+    soundsId: MothroachBodyEmotes
+  # Starlight-end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -483,7 +526,7 @@
     description: ghost-role-information-mothroach-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleCritterHarmless # Starlight-edit - FreeAgentHarmless -> CritterHarmless
   - type: Fixtures
     fixtures:
       fix1:
@@ -499,7 +542,7 @@
   - type: Speech
     speechVerb: Moth
     speechSounds: Squeak
-    allowedEmotes: ['Chitter', 'Squeak']
+    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: FaxableObject
     insertingState: inserting_mothroach
   - type: MothAccent
@@ -547,7 +590,10 @@
     damageContainer: Biological
     damageModifierSet: Moth
   - type: Bloodstream
-    bloodReagent: InsectBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 20
   - type: Respirator
     damage:
       types:
@@ -562,8 +608,6 @@
       amount: 2
   - type: Extractable
     grindableSolutionName: food
-  - type: ReplacementAccent
-    accent: mothroach
   - type: ZombieAccentOverride
     accent: zombieMoth
   - type: Vocal
@@ -606,6 +650,7 @@
         type: StrippableBoundUserInterface
   - type: InventorySlots
   - type: Inventory
+    forceDisplacements: true # SL
     speciesId: hamster
     templateId: hamster
     displacements:
@@ -645,6 +690,13 @@
   id: MobDuckMallard
   description: An adorable mallard duck, it's fluffy and soft!
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Duck
+    understands:
+    - Duck
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -699,13 +751,14 @@
     interactSuccessSound:
       path: /Audio/Animals/duck_quack_happy.ogg
   - type: Bloodstream
-    bloodMaxVolume: 100
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
   - type: ExaminableHunger
-  - type: ReplacementAccent
-    accent: duck
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
@@ -827,8 +880,10 @@
     tags:
     - Trash
   - type: Bloodstream
-    bloodReagent: InsectBlood
-    bloodMaxVolume: 0.1
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 0.1
   - type: MobPrice
     price: 50
   - type: Destructible
@@ -840,6 +895,7 @@
       behaviors:
       - !type:GibBehavior
         recursive: false
+  - type: ZombieImmune
 
 - type: entity
   name: cow
@@ -984,8 +1040,10 @@
   - type: ReplacementAccent
     accent: crab
   - type: Bloodstream
-    bloodMaxVolume: 50
-    bloodReagent: CopperBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 50
   - type: Tag
     tags:
     - VimPilot
@@ -1055,10 +1113,10 @@
     growthDelay: 20
   - type: ExaminableHunger
   - type: Wooly
-  - type: Food
+  - type: Edible
+    destroyOnEmpty: false
     solution: wool
     requiresSpecialDigestion: true
-    # Wooly prevents eating wool deleting the goat so its fine
     requireDead: false
   - type: FlavorProfile
     flavors:
@@ -1142,7 +1200,10 @@
     interactSuccessSound:
       path: /Audio/Animals/goose_honk.ogg
   - type: Bloodstream
-    bloodMaxVolume: 100
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
   - type: NpcFactionMember
     factions:
     - Passive
@@ -1207,8 +1268,6 @@
   - type: Vocal
     sounds:
       Unsexed: Kangaroo
-  - type: Puller
-    needsHands: false
   - type: StaminaDamageOnHit
     damage: 8 #Stam damage values seem a bit higher than regular damage because of the decay, etc
     # This needs to be moved to boxinggloves
@@ -1249,8 +1308,16 @@
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
-  - type: VentCrawler
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+  # Starlight-end
+  - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
+    canDisarm: true
   - type: Inventory
     templateId: monkey
     speciesId: monkey
@@ -1331,8 +1398,6 @@
     spawned:
     - id: FoodMeat
       amount: 3
-  - type: Puller
-    needsHands: false
   - type: CanHostGuardian
   - type: NPCRetaliation
     attackMemoryLength: 10
@@ -1357,7 +1422,9 @@
     - reagents: [ Water, SpaceCleaner ]
       methods: [ Touch ]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
+  - type: Crawler
+  - type: StatusIcon
 
 
 
@@ -1372,7 +1439,6 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
-  - type: MonkeyAccent
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
   - type: AlwaysRevolutionaryConvertible
@@ -1388,10 +1454,20 @@
       types:
         Blunt: 5
         Piercing: 4
-      groups:
-        Burn: 3
+        Heat: 3
+    catchingFailDamage:
+      types:
+        Blunt: 1
     clumsySound:
       path: /Audio/Animals/monkey_scream.ogg
+# Starlight - Begin
+  - type: Tag
+    tags:
+      - Monkey
+
+- type: Tag
+  id: Monkey
+# Starlight - End
 
 
 - type: entity
@@ -1401,6 +1477,15 @@
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: syndicate base
   components:
+  # Starlight-Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  # Starlight-End
   - type: NameIdentifier
     group: Monkey
   - type: SentienceTarget
@@ -1408,7 +1493,6 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
-  - type: MonkeyAccent
   - type: NpcFactionMember
     factions:
     - Syndicate
@@ -1434,6 +1518,15 @@
   components:
     # make the player a traitor once its taken
   - type: VentCrawler
+  # Starlight-Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  # Starlight-End
   - type: AutoTraitor
     profile: TraitorReinforcement
 
@@ -1443,6 +1536,15 @@
   suffix: NukeOps
   components:
   - type: VentCrawler
+  # Starlight-Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+  # Starlight-End
   - type: NukeOperative
 
 - type: entity
@@ -1452,11 +1554,18 @@
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    - Draconic
+    understands:
+    - Ancestor
+    - Draconic
+  # Starlight-end
   - type: NameIdentifier
     group: Kobold
   - type: LizardAccent
-  - type: ReplacementAccent
-    accent: kobold
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian
@@ -1497,10 +1606,11 @@
         Slash: 5
         Piercing: 4
   - type: Temperature
-    heatDamageThreshold: 360
-    coldDamageThreshold: 285
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 360
+    coldDamageThreshold: 285
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1569,8 +1679,10 @@
       types:
         Blunt: 2
         Piercing: 7
-      groups:
-        Burn: 3
+        Heat: 3
+    catchingFailDamage:
+      types:
+        Blunt: 1
     clumsySound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 
@@ -1579,6 +1691,17 @@
   parent: MobBaseKobold
   suffix: syndicate base
   components:
+  # Starlight-Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    - Draconic
+    understands:
+    - Ancestor
+    - Draconic
+    - GalacticCommon
+  # Starlight-End
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1621,7 +1744,14 @@
   id: MobMouse
   description: Squeak!
   components:
-  - type: VentCrawler
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
+  # Starlight-end
+  - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: Body
     prototype: Mouse
   - type: GhostRole
@@ -1632,7 +1762,7 @@
     description: ghost-role-information-mouse-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleCritterHarmless # Starlight-edit - FreeAgentHarmless -> CritterHarmless
   - type: GhostTakeoverAvailable
   - type: Speech
     speechSounds: Squeak
@@ -1640,7 +1770,7 @@
     allowedEmotes: ['Squeak']
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: Mobs/Animals/mouse.rsi
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mouse-0
@@ -1704,8 +1834,8 @@
       Critical:
         Base: dead-0
       Dead:
-        Base: splat-0
-  - type: Food
+        Base: dead-0
+  - type: Edible
   - type: FlavorProfile
     flavors:
     - meaty
@@ -1738,8 +1868,6 @@
     spawned:
     - id: FoodMeatRat
       amount: 1
-  - type: ReplacementAccent
-    accent: mouse
   - type: Tag
     tags:
     - Trash
@@ -1775,7 +1903,10 @@
       types:
         Piercing: 0
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
   - type: CanEscapeInventory
   - type: MobPrice
     price: 50
@@ -1855,7 +1986,7 @@
       Critical:
         Base: dead-1
       Dead:
-        Base: splat-1
+        Base: dead-1
   - type: Item
     size: Tiny
     heldPrefix: 1
@@ -1865,26 +1996,27 @@
   id: MobMouse2
   components:
   - type: Sprite
+    color: Gray
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-2
+      state: mouse-0
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: mouse-moving-2
+        state: mouse-moving-0
     noMovementLayers:
       movement:
-        state: mouse-2
+        state: mouse-0
   - type: Clothing
     equippedPrefix: 2
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: mouse-2
+        Base: mouse-0
       Critical:
-        Base: dead-2
+        Base: dead-0
       Dead:
-        Base: splat-2
+        Base: dead-0
   - type: Item
     size: Tiny
     heldPrefix: 2
@@ -1895,6 +2027,12 @@
   parent: MobMouse
   id: MobMouseCancer
   components:
+  - type: GhostRole
+    name: ghost-role-information-cancer-mouse-name
+    description: ghost-role-information-cancer-mouse-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: Sprite
     color: LightGreen
   - type: PointLight
@@ -1905,7 +2043,10 @@
   - type: RadiationSource
     intensity: 0.3
   - type: Bloodstream
-    bloodReagent: UnstableMutagen
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: UnstableMutagen
+        Quantity: 50
   - type: SolutionContainerManager
     solutions:
       food:
@@ -1971,7 +2112,10 @@
     interactSuccessSound:
       path: /Audio/Animals/lizard_happy.ogg
   - type: Bloodstream
-    bloodMaxVolume: 150
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 150
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -2026,7 +2170,10 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
 
 - type: entity
   name: frog
@@ -2083,7 +2230,10 @@
     interactSuccessSound:
       path: /Audio/Animals/frog_ribbit.ogg
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
   - type: Tag
     tags:
     - VimPilot
@@ -2099,9 +2249,10 @@
 
 # Would be cool to have some functionality for the parrot to be able to sit on stuff
 - type: entity
-  name: parrot
   parent: [ SimpleMobBase, FlyingMobBase ]
-  id: MobParrot
+  id: MobParrotBase
+  name: parrot
+  abstract: true
   description: Infiltrates your domain, spies on you, and somehow still a cool pet.
   components:
   - type: MovementSpeedModifier
@@ -2112,7 +2263,7 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: parrot
-      sprite: Mobs/Animals/parrot.rsi
+      sprite: Mobs/Animals/parrot/parrot.rsi
   - type: Fixtures
     fixtures:
       fix1:
@@ -2142,7 +2293,29 @@
   - type: Vocal
     sounds:
       Unsexed: Parrot
-  - type: ParrotAccent
+  - type: ActiveListener
+  - type: Vocalizer
+  - type: RadioVocalizer
+  - type: ParrotListener
+  - type: ParrotMemory
+  - type: Inventory
+    templateId: parrot
+    speciesId: parrot
+    # transparent displacement map to hide the headset. this should be an animated displacement map to follow the parrot
+    # as it bobs up and down, but this in turn needs some way to change the displacement map on inventory entities when
+    # the parrot dies, otherwise the visuals will be broken
+    displacements:
+      ears:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/parrot/displacement.rsi
+            state: ears
+  - type: InventorySlots
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: InteractionPopup
     successChance: 0.6
     interactSuccessString: petting-success-bird
@@ -2151,7 +2324,16 @@
     interactSuccessSound:
       path: /Audio/Animals/parrot_raught.ogg
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
+
+- type: entity
+  parent: MobParrotBase
+  id: MobParrot
+  components:
+  - type: ParrotAccent # regular parrots have a parrotaccent. Polly is special and does not
 
 - type: entity
   name: penguin
@@ -2203,10 +2385,11 @@
     factions:
     - Passive
   - type: Temperature
-    heatDamageThreshold: 335
-    coldDamageThreshold: 230
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage
+    heatDamageThreshold: 335
+    coldDamageThreshold: 230
     coldDamage:
       types:
         Cold : 0.05 #per second, scales with temperature & other constants
@@ -2214,6 +2397,7 @@
       types:
         Heat : 0.2 #per second, scales with temperature & other constants
 
+# TODO: Make grenade penguin voice activated like the rest of the stealth items.
 - type: entity
   name: grenade penguin
   parent: [ MobPenguin, MobCombat, BaseSyndicateContraband ]
@@ -2227,7 +2411,7 @@
   - type: MobMover
   - type: HTN
     rootTask:
-      task: SimpleHostileCompound
+      task: GrenadePenguinCompound
   - type: NpcFactionMember
     factions:
     - Syndicate
@@ -2265,7 +2449,8 @@
   - type: Item
     size: Normal
     sprite: Mobs/Animals/grenadepenguin.rsi
-  - type: OnUseTimerTrigger
+  - type: TriggerOnUse
+  - type: TimerTrigger
     delay: 10
     beepSound:
       path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg #funny sfx use
@@ -2274,10 +2459,12 @@
     beepInterval: 1
   - type: Explosive
     explosionType: Default
-    maxIntensity: 20
-    intensitySlope: 20
-    totalIntensity: 225
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 150
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Destructible
     thresholds:
     - trigger:
@@ -2330,7 +2517,10 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
-    bloodMaxVolume: 50
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 50
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -2342,7 +2532,14 @@
   id: MobSpiderBase
   abstract: true
   components:
-  - type: VentCrawler
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Chittin
+    understands:
+    - Chittin
+  # Starlight-end
+  - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2379,8 +2576,6 @@
   - type: MeleeChemicalInjector
     transferAmount: 0.75
     solution: melee
-  - type: ReplacementAccent
-    accent: xeno
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-tarantula
@@ -2388,12 +2583,16 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/snake_hiss.ogg
+  - type: Puller
+    needsHands: false
   - type: NoSlip
   - type: Spider
   - type: IgnoreSpiderWeb
   - type: Bloodstream
-    bloodMaxVolume: 150
-    bloodReagent: CopperBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 150
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
@@ -2456,12 +2655,23 @@
   id: MobGiantSpider
   description: Widely recognized to be the literal worst thing in existence.
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: tarantula
-      sprite: Mobs/Animals/spider.rsi
+  # 🌟Starlight🌟 start
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: Mobs/Animals/spider.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: tarantula
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/spider.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: tarantula
+  # 🌟Starlight🌟 end
   - type: SpriteMovement
     movementLayers:
       movement:
@@ -2499,12 +2709,23 @@
   id: MobClownSpider
   description: Combines the two most terrifying things in existence, spiders and clowns.
   components:
-    - type: Sprite
-      drawdepth: Mobs
-      layers:
-      - map: ["enum.DamageStateVisualLayers.Base"]
-        state: clown
-        sprite: Mobs/Animals/clownspider.rsi
+  # 🌟Starlight🌟 start
+    - type: OptionsVisualizer
+      visuals:
+        base:
+          - options: Default
+            data:
+              drawdepth: Mobs   
+              sprite: Mobs/Animals/clownspider.rsi
+              map: ["enum.DamageStateVisualLayers.Base", "movement"]
+              state: clown
+          - options: Arachnophobia
+            data:
+              drawdepth: Mobs
+              sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/clownspider.rsi
+              map: ["enum.DamageStateVisualLayers.Base", "movement"]
+              state: clown
+  # 🌟Starlight🌟 end
     - type: Butcherable
       spawned:
         - id: MaterialBananium1
@@ -2545,20 +2766,16 @@
     - type: Speech
       speechVerb: Cluwne
     - type: Bloodstream
-      bloodMaxVolume: 150
-      bloodReagent: Laughter
-
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: Laughter
+          Quantity: 150
 - type: entity
   name: wizard spider
   parent: MobGiantSpider
   id: MobGiantSpiderWizard
   description: This spider looks a little magical
   suffix: Wizard
-  components:
-  - type: Accentless
-    removes:
-    - type: ReplacementAccent
-      accent: xeno  #let this wizard speak
 
 - type: entity
   name: possum
@@ -2611,6 +2828,8 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: Puller
+    needsHands: false
 
 - type: entity
   name: possum
@@ -2685,6 +2904,8 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: Puller
+    needsHands: false
 
 - type: entity
   name: fox
@@ -2692,6 +2913,14 @@
   id: MobFox
   description: They're a fox.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Fox
+    understands:
+    - Fox
+    - Canilunzt
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Animals/fox.rsi
@@ -2743,7 +2972,10 @@
     attributes:
       gender: epicene
   - type: Bloodstream
-    bloodMaxVolume: 100
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -2760,6 +2992,9 @@
   - type: HTN
     rootTask:
       task: RuminantHostileCompound
+  - type: MessyDrinker
+  - type: Puller
+    needsHands: false
   - type: Tag
     tags:
     - VimPilot
@@ -2806,11 +3041,43 @@
       gender: epicene
   - type: MobPrice
     price: 200
+  - type: MessyDrinker
+  - type: Puller
+    needsHands: false
+  # Starlight Start
+    pullingAlert: CorgiPulling
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+    stateAlertDict:
+      Alive: CorgiHealth
+      Critical: CorgiCrit
+      Dead: CorgiDead
+  - type: Blindable # why is this not base?
+  - type: ThermalRegulator # Lower radiated heat, Corgis are smaller so their body surface area is also smaller.
+    metabolismHeat: 400 # half of human's
+    radiatedHeat: 35 # This affects them reallistically only when dead in a spaced room, makes the cold damage scale slower.
+    implicitHeatRegulation: 250 # Add implicit heat regulation because they lacked it for some reason
+    sweatHeatRegulation: 500 # Allow corgis to sweat, i dont know if dogs sweat but i am not implementing a different way of regulation just for them
+    shiveringHeatRegulation: 500 # Allow corgis to shiver to warm up
+    normalBodyTemperature: 310.15 # Same as human
+    thermalRegulationTemperatureThreshold: 2 # Same as human
+  # Starlight End
 
 - type: entity
   parent: MobCorgiBase
   id: MobCorgi
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    understands:
+    - Dog
+    - Canilunzt
+  # Starlight-end
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2823,8 +3090,6 @@
     spawned:
     - id: FoodMeat
       amount: 2
-  - type: ReplacementAccent
-    accent: dog
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-corgi
   - type: Tag
@@ -2837,6 +3102,15 @@
   id: MobCorgiNarsi
   description: Ian! No!
   components:
+  # Starlight Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    understands:
+    - Dog
+    - GalacticCommon
+  # Starlight End
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/corgi.rsi
@@ -2876,18 +3150,22 @@
     attributes:
       gender: epicene
   - type: Bloodstream
-    bloodReagent: DemonsBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: DemonsBlood
+        Quantity: 150
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: Infernal
   - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
+  - type: TemperatureDamage
     heatDamageThreshold: 4000 #They come from hell, so..
     coldDamageThreshold: 260
-    currentTemperature: 310.15
     coldDamage:
       types:
         Cold : 1 #per second, scales with temperature & other constants
-    specificHeat: 42
     heatDamage:
       types:
         Heat : 1 #per second, scales with temperature & other constants
@@ -2926,6 +3204,14 @@
   id: MobCat
   description: Feline pet, very funny.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Cat
+    understands:
+    - Cat
+    - Nekomimetic
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/cat.rsi
@@ -2962,8 +3248,6 @@
     spawned:
     - id: FoodMeat
       amount: 3
-  - type: ReplacementAccent
-    accent: cat
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-cat
@@ -2985,6 +3269,8 @@
       gender: epicene
   - type: MobPrice
     price: 200
+  - type: Puller
+    needsHands: false
   - type: Tag
     tags:
     - VimPilot
@@ -3017,6 +3303,14 @@
   parent: MobCatSpace
   description: Explosive kitten.
   components:
+# Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Cat
+    understands:
+    - Cat
+    - GalacticCommon
+# Starlight-end
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -3048,6 +3342,10 @@
   - type: NpcFactionMember
     factions:
     - Syndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -3079,6 +3377,7 @@
       Dead:
         Base: spacecat_dead
   - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 423
     coldDamageThreshold: 0
   - type: Tag
@@ -3203,6 +3502,7 @@
   - type: Grammar
     attributes:
       gender: epicene
+  - type: SlowAccent
   - type: Tag
     tags:
     - VimPilot
@@ -3260,6 +3560,8 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: Puller
+    needsHands: false
 
 - type: entity
   name: hamster
@@ -3267,7 +3569,14 @@
   id: MobHamster
   description: A cute, fluffy, robust hamster.
   components:
-  - type: VentCrawler
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
+  # Starlight-end
+  - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -3336,7 +3645,7 @@
         Base: dead-0
       Dead:
         Base: splat-0
-  - type: Food
+  - type: Edible
   - type: FlavorProfile
     flavors:
     - meaty
@@ -3358,8 +3667,6 @@
     spawned:
     - id: FoodMeat
       amount: 1
-  - type: ReplacementAccent
-    accent: mouse
   - type: Tag
     tags:
     - VimPilot
@@ -3395,7 +3702,10 @@
     interactSuccessSound:
       path: /Audio/Animals/fox_squeak.ogg
   - type: Bloodstream
-    bloodMaxVolume: 60
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 60
   - type: CanEscapeInventory
     baseResistTime: 3
   - type: MobPrice
@@ -3420,6 +3730,13 @@
   id: MobPig
   description: Oink.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Pig
+    understands:
+    - Pig
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -3474,8 +3791,6 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/pig_oink.ogg
-  - type: ReplacementAccent
-    accent: pig
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
@@ -3491,6 +3806,13 @@
   id: MobDionaNymph
   description: It's like a cat, only.... branch-ier.
   components:
+    # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Sylvan
+    understands:
+    - Sylvan
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -3513,8 +3835,10 @@
     speciesId: cat
     templateId: pet
   - type: Bloodstream
-    bloodReagent: Sap
-    bloodMaxVolume: 60
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Sap
+        Quantity: 60
   - type: DamageStateVisuals
     states:
       Alive:
@@ -3571,8 +3895,13 @@
   id: MobDionaNymphAccent # No talky. For non-brain & wild nymphs
   suffix: Accent
   components:
-  - type: ReplacementAccent
-    accent: nymph
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Sylvan
+    understands:
+    - Sylvan
+  # Starlight-end
 
 - type: entity
   name: reindeer buck
@@ -3618,7 +3947,10 @@
     - id: FoodMeat
       amount: 4
   - type: Bloodstream
-    bloodMaxVolume: 300
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 300
     # Horns though
   - type: MeleeWeapon
     damage:
@@ -3633,8 +3965,6 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: Puller
-    needsHands: false
 
 - type: entity
   name: reindeer doe
@@ -3669,34 +3999,31 @@
         Base: reindeer_doe_dead
 
 - type: entity
-  abstract: true
-  parent: [ SimpleMobBase, StripableInventoryBase ]
-  id: MobAdmemeCorgi
-  description: Finally, a space corgi!
+  parent: MobCorgiBase
+  id: MobCorgiSmart
+  name: smart corgi
+  description: An unusually smart dog.
   components:
-  # Use corgi sprite
+  # Use corgi sprite, need to add handcuff layer
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    - GalacticCommon
+    understands:
+    - Dog
+    - GalacticCommon
+    - Canilunzt
+  # Starlight-end
   - type: Sprite
-    drawdepth: Mobs
-    sprite: Mobs/Pets/corgi.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: corgi
-  - type: Physics
-  # Apply canine dog speech
-  - type: Speech
-    speechVerb: Canine
-    speechSounds: Dog
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 50
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi # Would do a custom dog handcuff sprite but unfortunately handcuffs have their overlay baked-in to the cuff itself so this is mostly filler
+      state: body-overlay-2
+      visible: false
   - type: UserInterface
     interfaces:
       enum.StrippingUiKey.Key:
@@ -3706,45 +4033,49 @@
   # Custom inventory template
   - type: Inventory
     speciesId: dog
-    templateId: smartpetborgi
+    templateId: SmartCorgi
+    displacements:
+      belt:
+        sizeMaps:
+          32:
+            sprite: Mobs/Pets/displacements.rsi
+            state: corgi_belt_displacement
+      ears:
+        sizeMaps:
+          32:
+            sprite: Mobs/Pets/displacements.rsi
+            state: corgi_belt_displacement
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Pets/displacements.rsi
+            state: corgi_head_displacement
   - type: Hands # HANDS!
   - type: Puller
+  - type: Cuffable # bad dog!
+  - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth
   - type: Stripping
   - type: ComplexInteraction
+  - type: Dna # Starlight
+  - type: Fingerprint # Starlight
   # Implement custom borgi body type
   - type: Body
-    prototype: BodySmartCorgi
+    prototype: SmartCorgi
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 180
-  - type: Vocal
-    sounds:
-      Unsexed: UnisexSilicon
-  - type: InteractionPopup
-    interactSuccessString: petting-success-dog
-    interactFailureString: petting-failure-generic
-    interactSuccessSpawn: EffectHearts
-    interactSuccessSound:
-      path: /Audio/Animals/small_dog_bark_happy.ogg
   - type: Grammar
     attributes:
       gender: epicene # Gender neutral
       proper: true
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-corgi
-  - type: MobPrice
-    price: 200
   - type: Tag
     tags:
     - VimPilot
     - CanPilot
-    - AnomalyHost
     - DoorBumpOpener
-  - type: Storage #Slime-type storage
-    clickInsert: false
-    openOnActivate: false
-    grid:
-    - 0,0,3,3
-    maxItemSize: Huge
-  - type: StatusIcon
+  - type: StatusIcon # marks them as crew
     bounds: -0.5,-0.5,0.5,0.5
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: AlwaysRevolutionaryConvertible

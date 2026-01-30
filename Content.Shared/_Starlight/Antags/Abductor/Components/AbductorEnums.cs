@@ -12,7 +12,7 @@ public enum AbductorOrganType : byte
 {
     None,
     Health,
-    Plasma,
+    NitrousOxide,
     Gravity,
     Egg,
     Spider,
@@ -23,11 +23,6 @@ public enum AbductorArmorModeType : byte
 {
     Combat,
     Stealth
-}
-[Serializable, NetSerializable]
-public enum AbductorCameraConsoleUIKey
-{
-    Key
 }
 
 [Serializable, NetSerializable]

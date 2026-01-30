@@ -1,0 +1,24 @@
+- type: entity
+  id: ImpactEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - map: ["unshaded"]
+      #shader: unshaded
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer
+
+- type: displacementEffect
+  id: displacementEffect
+  displacement:
+    sizeMaps:
+      32:
+        sprite: _Starlight/Effects/impact.rsi
+        state: impact

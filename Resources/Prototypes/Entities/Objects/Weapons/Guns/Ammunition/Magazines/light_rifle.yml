@@ -1,9 +1,9 @@
 # Empty mags
 - type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazineLightRifle
   name: "magazine (.30 rifle)"
-  parent: [ BaseItem, BaseSecurityContraband ]
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -35,9 +35,9 @@
 
 # Magazines
 - type: entity
+  parent: BaseMagazineLightRifle
   id: MagazineLightRifleBoxSP
   name: "L6 SAW magazine box (.30 rifle SP)"
-  parent: BaseMagazineLightRifle
   description: Box containing a 100-round belt of linked .30 rifle rounds, used by light machine guns such as the L6. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: Tag
@@ -55,26 +55,11 @@
     zeroVisible: false
   - type: Appearance
 
-
 - type: entity
-  id: MagazineLightRifleEmpty
-  name: "magazine (.30 rifle any)"
-  suffix: empty
-  parent: MagazineLightRifleSP
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
+  parent: BaseMagazineLightRifle
   id: MagazineLightRifleSP
   name: "magazine (.30 rifle SP)"
-  parent: BaseMagazineLightRifle
+  description: Curved 30-round double stack magazine for combat rifles. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleSP
@@ -96,7 +81,7 @@
     proto: CartridgeLightRifleHP
   - type: Sprite
     layers:
-    - state: red
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
@@ -104,13 +89,30 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#9b0000"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#9b0000"
 
+- type: entity
+  parent: MagazineLightRifleSP
+  id: MagazineLightRifleEmpty
+  name: "magazine (.30 rifle any)"
+  suffix: empty
+  description: Curved 30-round double stack magazine for combat rifles.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 - type: entity
   id: MagazineLightRifleFMJ
@@ -147,44 +149,48 @@
       - state: inhand-right-mag
 
 - type: entity
+  parent: BaseMagazineLightRifle
   id: MagazineLightRiflePractice
   name: "magazine (.30 rifle practice)"
-  parent: BaseMagazineLightRifle
-  description: Curved 30-round double stack magazine for combat rifles. Intended to hold non-harmful chalk ammunition.
+  description: Curved 30-round double stack magazine for combat rifles. Intended to hold harmless practice ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRiflePractice
   - type: Sprite
     layers:
-    - state: practice
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#dbdbdb"
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-mag
       - state: inhand-left-stripe
-        color: "#ea5800"
+        color: "#dbdbdb"
       right:
       - state: inhand-right-mag
       - state: inhand-right-stripe
-        color: "#ea5800"
+        color: "#dbdbdb"
 
 - type: entity
+  parent: BaseMagazineLightRifle
   id: MagazineLightRifleUranium
   name: "magazine (.30 rifle uranium)"
-  parent: BaseMagazineLightRifle
   description: Curved 30-round double stack magazine for combat rifles. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleUranium
   - type: Sprite
     layers:
-    - state: uranium
+    - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#00cd42"
   - type: Item
     inhandVisuals:
       left:
@@ -197,9 +203,9 @@
         color: "#00cd42"
 
 - type: entity
+  parent: BaseMagazineLightRifle
   id: MagazineLightRifleIncendiary
   name: "magazine (.30 rifle incendiary)"
-  parent: BaseMagazineLightRifle
   description: Curved 30-round double stack magazine for combat rifles. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -237,9 +243,20 @@
     proto: CartridgeLightRifleSP
     capacity: 80
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/pk_box.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 8
-    zeroVisible: false
-  - type: Appearance
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#ff6e52"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff6e52"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff6e52"

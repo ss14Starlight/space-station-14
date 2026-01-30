@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Edit by Conflee, original clown sprites from TG/Goon",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pinata"
+    },
+    {
+      "name": "damaged"
+    },
+    {
+      "name": "destroyed"
+    }
+  ]
+}

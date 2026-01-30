@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: SuperSynthCrate
+  icon:
+    sprite: Objects/Fun/Instruments/h_synthesizer.rsi
+    state: supersynth
+  product: CrateFunSuperSynth
+  cost: 2000
+  category: cargoproduct-category-name-fun
+  group: market

@@ -5,6 +5,16 @@
   id: BaseMobArachnid
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Chittin
+    understands:
+    - GalacticCommon
+    - Chittin
+  - type: IgnoreSpiderWeb
+  # Starlight-end
   - type: Absorbable
   - type: Body
     prototype: Arachnid
@@ -14,7 +24,6 @@
   - type: Hunger
   - type: Thirst
   - type: Sericulture
-    action: ActionSericulture
     productionLength: 2
     entityProduced: MaterialWebSilk1
     hungerCost: 4 # Should total to 25 total silk on full hunger
@@ -36,16 +45,19 @@
     - reagents: [Water]
       methods: [Touch]
       effects:
-      - !type:WearableReaction
+      - !type:SpawnEntityInInventory
         slot: head
-        prototypeID: WaterDropletHat
+        entity: WaterDropletHat
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
   # Damage (Self)
   - type: Bloodstream
-    bloodReagent: CopperBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 300
   # Damage (Others)
   - type: MeleeWeapon
     animation: WeaponArcBite
@@ -98,6 +110,8 @@
       - map: [ "enum.HumanoidVisualLayers.Tail" ] # Mentioned in moth code: This needs renaming lol.
       - map: [ "back" ]
       - map: [ "neck" ]
+      - map: [ "misc" ] # Starlight
+      - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.Hair" ] # Do these need to be here? (arachnid hair arachnid hair)
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -130,7 +144,7 @@
   - type: HumanoidAppearance
     species: Arachnid
   - type: Inventory
-    speciesId: arachnid 
+    speciesId: arachnid
 
 
 #>88w88<

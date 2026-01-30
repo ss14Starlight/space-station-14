@@ -43,7 +43,7 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("tts.radio_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
     
     public static readonly CVarDef<bool> TTSRadioQueueEnabled =
-        CVarDef.Create("tts.radio_queue_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("tts.radio_queue_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> TTSAnnounceVolume =
         CVarDef.Create("tts.announce_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);

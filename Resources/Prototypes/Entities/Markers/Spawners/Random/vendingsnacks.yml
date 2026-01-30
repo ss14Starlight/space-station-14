@@ -19,4 +19,6 @@
       - VendingMachineSnackTeal
       - VendingMachineChang
       - VendingMachineDonut
+      - VendingMachineDonk #SL
+      - VendingMachineIceCream #SL
     chance: 1

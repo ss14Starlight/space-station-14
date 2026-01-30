@@ -1,7 +1,13 @@
-<controls:FancyWindow xmlns="https://spacestation14.io"
-                xmlns:ui="clr-namespace:Content.Client.UserInterface"
-                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                Title="{Loc door-electronics-configuration-title}">
-    <Control Name="AccessLevelControlContainer" />
-
-</controls:FancyWindow>
+<!-- Starlight edit Start: Access Groups for Door electronics -->
+<DefaultWindow xmlns="https://spacestation14.io"
+            xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+            MinSize="500 200">
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal">
+            <Control Name="AccessGroupControlContainer" />
+            <cc:VSeparator Color="#a88b5e" Margin="5 0 5 0" />
+            <Control Name="AccessLevelControlContainer" />
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>
+<!-- Starlight edit End -->

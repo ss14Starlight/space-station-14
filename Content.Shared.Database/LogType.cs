@@ -1,4 +1,4 @@
-namespace Content.Shared.Database;
+﻿namespace Content.Shared.Database;
 
 // DO NOT CHANGE THE NUMERIC VALUES OF THESE
 public enum LogType
@@ -81,9 +81,9 @@ public enum LogType
     ChemicalReaction = 17,
 
     /// <summary>
-    /// Reagent effects related interactions.
+    /// EntityEffect related interactions.
     /// </summary>
-    ReagentEffect = 18,
+    EntityEffect = 18,
 
     /// <summary>
     /// Canister valve was opened or closed.
@@ -472,5 +472,15 @@ public enum LogType
     /// <summary>
     /// Damaging grid collision has occurred.
     /// </summary>
-    ShuttleImpact = 102
+    ShuttleImpact = 102,
+
+    /// <summary>
+    /// Events relating to midi playback.
+    /// </summary>
+    Instrument = 103,
+
+    #region Starlight log flags
+    Railroading = 1000,
+    BugReport = 1001,
+    #endregion
 }

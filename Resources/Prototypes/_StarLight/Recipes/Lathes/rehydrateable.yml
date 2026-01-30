@@ -1,0 +1,7 @@
+- type: latheRecipe
+  parent: BaseCubeRecipe
+  id: BorgiCube
+  result: BorgiCube
+  materials:
+    Biomass: 20
+    Steel: 1000

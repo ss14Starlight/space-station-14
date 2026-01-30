@@ -6,6 +6,7 @@
   - type: Clickable
   - type: InteractionOutline
   - type: MovementIgnoreGravity
+    weightless: true
   - type: Sprite
     sprite: Objects/Fun/immovable_rod.rsi
     state: icon
@@ -19,6 +20,7 @@
       types:
         Blunt: 175 # Damage is applied twice
         Piercing: 25
+  - type: GravityAffected
   - type: Physics
     bodyType: Dynamic
     linearDamping: 0
@@ -100,8 +102,8 @@
     damage:
       types:
         Blunt: 190
-  - type: MovementIgnoreGravity
-    gravityState: true
+  - type: Physics
+    bodyType: KinematicController
   - type: InputMover
   - type: MovementSpeedModifier
     baseWeightlessAcceleration: 5
@@ -142,7 +144,7 @@
   description: SHARK TORNADO!
   components:
   - type: Sprite
-    sprite: Objects/Fun/sharkplush.rsi
+    sprite: Objects/Fun/Plushies/shark.rsi
     state: blue
     rotation: 90
     noRot: false
@@ -213,6 +215,6 @@
   description: WEH!
   components:
   - type: Sprite
-    sprite: Objects/Fun/toys.rsi
-    state: plushie_lizard
+    sprite: Objects/Fun/Plushies/lizard.rsi
+    state: icon
     noRot: false

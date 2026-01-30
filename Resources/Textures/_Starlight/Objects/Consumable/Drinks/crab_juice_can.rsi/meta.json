@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "By Rhetorica for Starlight. Based on beer_can.rsi by #DrMelon and Tiniest Shark.",
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "icon_open"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        }
+    ]
+}

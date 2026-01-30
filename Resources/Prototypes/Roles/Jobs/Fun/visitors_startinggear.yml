@@ -7,7 +7,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitCaptain
     shoes: ClothingShoesBootsLaceup
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesCommand
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCaptain
     neck: ClothingNeckCloakCap
@@ -23,7 +23,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitCapFormal
     shoes: ClothingShoesBootsLaceup
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesCommand
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCapcap
     neck: ClothingNeckMantleCap
@@ -194,7 +194,7 @@
     neck: ClothingNeckCloakQm
     id: VisitorPDA
     back: ClothingBackpackCargo
-    ears: ClothingHeadsetRD
+    ears: ClothingHeadsetQM
     outerClothing: ClothingOuterWinterQM
     pocket1: WeaponDisabler
     pocket2: AppraisalTool
@@ -738,7 +738,7 @@
 - type: startingGear
   id: VisitorParamedic
   equipment:
-    jumpsuit: ClothingUniformJumpsuitParamedicNT
+    jumpsuit: ClothingUniformJumpsuitParamedic
     shoes: ClothingShoesSwat
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadHatParamedicsoft
@@ -859,7 +859,7 @@
     eyes: ClothingEyesHudMedical
     pocket1: RegenerativeMesh
     pocket2: PillCanisterBicaridine
-  inhand: 
+  inhand:
   - ScalpelAdvanced
   - MedicatedSuture
 
@@ -1117,7 +1117,7 @@
     jumpsuit: ClothingUniformJumpsuitLawyerBlack
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatFedoraGrey
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetSecurity
@@ -1132,7 +1132,7 @@
     jumpsuit: ClothingUniformJumpsuitLawyerBlue
     shoes: ClothingShoesLeather
     head: ClothingHeadHatFedoraBrown
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetSecurity
@@ -1147,7 +1147,7 @@
     jumpsuit: ClothingUniformJumpsuitLawyerRed
     shoes: ClothingShoesColorRed
     head: ClothingHeadHatCowboyBrown
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag
@@ -1164,7 +1164,7 @@
     shoes: ClothingShoesSnakeskinBoots
     gloves: ClothingHandsGlovesColorWhite
     head: ClothingHeadHatBeaverHat
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     mask: CigarGold
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
@@ -1181,7 +1181,7 @@
     jumpsuit: ClothingUniformJumpsuitLawyerGood
     shoes: ClothingShoesLeather
     head: ClothingHeadHatCorpsoft
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag
@@ -1198,7 +1198,7 @@
     shoes: ClothingShoesLeather
     gloves: ClothingHandsGlovesLeather
     head: BladedFlatcapBrown
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorLawyerPDA
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag
@@ -1239,7 +1239,7 @@
     pocket1: BookSun
     pocket2: BookRandomStory
   inhand:
-  - BoxFolderClipboard
+  - BoxFolderClipboardThreePapers
 
 - type: startingGear
   id: VisitorMusicianFancyAltA
@@ -1509,7 +1509,7 @@
     back: ClothingBackpackSatchel
     ears: ClothingHeadsetService
     pocket1: MicrophoneInstrument
-    pocket2: BoxFolderClipboard
+    pocket2: BoxFolderClipboardThreePapers
 
 - type: startingGear
   id: VisitorReporterAlt
@@ -1520,7 +1520,7 @@
     back: ClothingBackpackSatchel
     ears: ClothingHeadsetService
     pocket1: MicrophoneInstrument
-    pocket2: BoxFolderClipboard
+    pocket2: BoxFolderClipboardThreePapers
 
 - type: startingGear
   id: VisitorServiceWorker

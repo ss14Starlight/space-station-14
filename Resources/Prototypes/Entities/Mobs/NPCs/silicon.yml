@@ -15,10 +15,6 @@
     bodyType: KinematicController # Same for all inheritors
   - type: StatusEffects
     allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
     - Electrocution
   - type: Repairable
     doAfterDelay: 8
@@ -54,6 +50,15 @@
   - type: ProtectedFromStepTriggers
   - type: NoSlip
   - type: Insulated
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    understands:
+    - GalacticCommon
+    - Machine
+  # Starlight-end
 
 # Used for bots
 - type: entity
@@ -86,7 +91,7 @@
     baseWalkSpeed : 3
     baseSprintSpeed : 4
   - type: Stamina
-    critThreshold: 120
+    baseCritThreshold: 120
   - type: Destructible
     thresholds:
     - trigger:
@@ -127,6 +132,8 @@
   - type: Construction
     graph: FireBot
     node: bot
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-mechanical #Starlight
   - type: HTN
     rootTask:
       task: FirebotCompound
@@ -159,8 +166,9 @@
     interactFailureString: petting-failure-firebot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: Advertise
-    pack: FirebotAd
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: FirebotAd
 
 - type: entity
   parent: MobSiliconBase
@@ -213,7 +221,7 @@
     description: ghost-role-information-honkbot-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleBotHarmless # Starlight-edit - FreeAgentHarmless -> BotHarmless
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -247,7 +255,7 @@
     description: ghost-role-information-jonkbot-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleBotHarmless # Starlight-edit - FreeAgentHarmless -> BotHarmless
     raffle:
       settings: default
   - type: InteractionPopup
@@ -278,6 +286,8 @@
   - type: Construction
     graph: CleanBot
     node: bot
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-mechanical #Starlight
   - type: Absorbent
     pickupAmount: 10
   - type: UseDelay
@@ -310,7 +320,20 @@
     interactFailureString: petting-failure-cleanbot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-
+  #region starlight
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: CleanbotAds
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-cleanbot
+    layoutId: MedibotControls
+    alwaysRandomize: true
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  #end region
 - type: entity
   parent:
   - MobSiliconBase
@@ -349,14 +372,17 @@
   - type: Construction
     graph: MediBot
     node: bot
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-mechanical #Starlight
   - type: Anchorable
   - type: InteractionPopup
     interactSuccessString: petting-success-medibot
     interactFailureString: petting-failure-medibot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: Advertise
-    pack: MedibotAds
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: MedibotAds
   - type: Inventory
     templateId: medibot
   - type: DoAfter
@@ -369,6 +395,8 @@
     interfaces:
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+      enum.StrippingUiKey.Key:              # Starlight
+        type: StrippableBoundUserInterface  # Starlight Readded stipping UI to medibots, wirepanels overwrote them
 
 - type: entity
   parent:
@@ -391,7 +419,7 @@
     description: ghost-role-information-mimebot-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleBotHarmless # Starlight-edit - FreeAgentHarmless -> BotHarmless
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -471,3 +499,40 @@
     - Supply
   - type: Puller
     needsHands: false
+
+- type: entity
+  parent: [ MobSiliconBase, MobCombat ]
+  id: MobHugBot
+  name: hugbot
+  description: Awww, who needs a hug?
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Bots/hugbot.rsi
+    state: hugbot
+  - type: Construction
+    graph: HugBot
+    node: bot
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/boxingpunch1.ogg
+    angle: 30
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 2
+  - type: Anchorable
+  - type: Hands # This probably REALLY needs hand whitelisting, but we NEED hands for hugs, so...
+  - type: ComplexInteraction # Hugging is a complex interaction, apparently.
+  - type: HugBot
+  - type: Body
+    prototype: HugBot
+  - type: HTN
+    rootTask:
+      task: HugBotCompound
+  - type: InteractionPopup
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others

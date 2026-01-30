@@ -136,6 +136,37 @@ namespace Content.Shared.Preferences
             return result;
         }
 
+        /// <summary>
+        /// Get all enabled profiles asking for an antag
+        /// </summary>
+        public Dictionary<int, HumanoidCharacterProfile> GetAllEnabledProfilesForAntag(ProtoId<AntagPrototype> antag)
+        {
+            return GetAllProfilesForAntagInternal(antag, onlyEnabled: true);
+        }
+
+        /// <summary>
+        /// Get all profiles asking for an antag
+        /// </summary>
+        public Dictionary<int, HumanoidCharacterProfile> GetAllProfilesForAntag(ProtoId<AntagPrototype> antag)
+        {
+            return GetAllProfilesForAntagInternal(antag, onlyEnabled: false);
+        }
+
+        private Dictionary<int, HumanoidCharacterProfile> GetAllProfilesForAntagInternal(ProtoId<AntagPrototype> antag, bool onlyEnabled)
+        {
+            var result = new Dictionary<int, HumanoidCharacterProfile>();
+            foreach (var (slot, profile) in Characters)
+            {
+                if (profile is not HumanoidCharacterProfile humanoid)
+                    continue;
+                if (onlyEnabled && !humanoid.Enabled)
+                    continue;
+                if (humanoid.AntagPreferences.Contains(antag))
+                    result.Add(slot, humanoid);
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// Get any random enabled profile
@@ -145,25 +176,6 @@ namespace Content.Shared.Preferences
             var random = IoCManager.Resolve<IRobustRandom>();
             var pool = Characters.Values.Where(p => p is HumanoidCharacterProfile { Enabled: true }).ToList();
             return pool.Count == 0 ? null : random.Pick(pool) as HumanoidCharacterProfile;
-        }
-
-        /// <summary>
-        /// Return true if any enabled character profile is asking for any antag in antagList
-        /// </summary>
-        public bool HasAntagPreference(ICollection<ProtoId<AntagPrototype>> antagList)
-        {
-            foreach (var profile in Characters.Values)
-            {
-                if (profile is not HumanoidCharacterProfile { Enabled: true } humanoid)
-                    continue;
-                foreach (var antag in antagList)
-                {
-                    if (humanoid.AntagPreferences.Contains(antag))
-                        return true;
-                }
-            }
-
-            return false;
         }
 
         /// <summary>

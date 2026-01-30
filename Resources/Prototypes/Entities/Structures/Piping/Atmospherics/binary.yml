@@ -3,7 +3,7 @@
   abstract: true
   id: GasBinaryBase
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
   - type: AtmosDevice
   - type: Tag
@@ -27,6 +27,7 @@
       Primary: Structures/Piping/Atmospherics/pump.rsi
       Secondary: Structures/Piping/Atmospherics/pump_alt1.rsi
       Tertiary: Structures/Piping/Atmospherics/pump_alt2.rsi
+  - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: GasBinaryBase
@@ -34,7 +35,7 @@
   name: gas pump
   description: A pump that moves gas by pressure.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers
   components:
   - type: ExtensionCableReceiver
   - type: LightningTarget
@@ -55,6 +56,11 @@
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: pumpPressure
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasPressurePump
+      Secondary: GasPressurePumpAlt1
+      Tertiary: GasPressurePumpAlt2
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -84,7 +90,6 @@
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasFlowRegulator
   - type: VentCrawTube
-    containerId: VentCrawTube
   - type: VentCrawTransit
   - type: ContainerContainer
     containers:
@@ -99,7 +104,7 @@
   name: volumetric gas pump
   description: A pump that moves gas by volume.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers
   components:
     - type: ExtensionCableReceiver
     - type: LightningTarget
@@ -120,6 +125,11 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: pumpVolume
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasVolumePump
+        Secondary: GasVolumePumpAlt1
+        Tertiary: GasVolumePumpAlt2
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -158,7 +168,6 @@
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
     - type: VentCrawTube
-      containerId: VentCrawTube
     - type: VentCrawTransit
     - type: ContainerContainer
       containers:
@@ -169,11 +178,72 @@
 
 - type: entity
   parent: GasBinaryBase
+  id: GasPressureRegulator
+  name: inlet pressure regulator
+  description: A valve that releases gas when the inlet pressure exceeds a certain threshold.
+  placement:
+    mode: AlignAtmosPipeLayers
+  components:
+  - type: Rotatable
+  - type: Transform
+    noRot: false
+  - type: SubFloorHide
+    visibleLayers:
+    - enum.SubfloorLayers.FirstLayer
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/pump.rsi
+    layers:
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeStraight
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pumpPressureRegulator
+      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasPressureRegulator
+      Secondary: GasPressureRegulatorAlt1
+      Tertiary: GasPressureRegulatorAlt2
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PressureRegulatorVisuals.State:
+        enabled:
+          True: { state: pumpPressureRegulatorOn }
+          False: { state: pumpPressureRegulator }
+  - type: PipeColorVisuals
+  - type: GasPressureRegulator
+    enabled: false
+    threshold: 4500
+  - type: Construction
+    graph: GasBinary
+    node: pressureregulator
+  - type: ActivatableUI
+    key: enum.GasPressureRegulatorUiKey.Key
+    blockSpectators: true
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.GasPressureRegulatorUiKey.Key:
+        type: GasPressureRegulatorBoundUserInterface
+  - type: AmbientSound
+    enabled: false
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/gas_hiss.ogg
+  - type: AtmosMonitoringConsoleDevice
+    navMapBlip: GasFlowRegulator
+  - type: GuideHelp
+    guides:
+    - PressureRegulator
+
+- type: entity
+  parent: GasBinaryBase
   id: GasPassiveGate
   name: passive gate
   description: A one-way air valve that does not require power.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers
   components:
     - type: SubFloorHide
       visibleLayers:
@@ -186,6 +256,11 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: pumpPassiveGate
           map: [ "enum.SubfloorLayers.FirstLayer" ]
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPassiveGate
+        Secondary: GasPassiveGateAlt1
+        Tertiary: GasPassiveGateAlt2
     - type: Appearance
     - type: PipeColorVisuals
     - type: GasPassiveGate
@@ -201,7 +276,6 @@
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasValve
     - type: VentCrawTube
-      containerId: VentCrawTube
     - type: VentCrawTransit
     - type: ContainerContainer
       containers:
@@ -216,7 +290,7 @@
   name: manual valve
   description: A pipe with a valve that can be used to disable the flow of gas through it.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers
   components:
     # TODO ATMOS: Give unique sprite.
     - type: SubFloorHide
@@ -230,6 +304,11 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: pumpManualValve
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasValve
+        Secondary: GasValveAlt1
+        Tertiary: GasValveAlt2
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -263,7 +342,6 @@
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasValve
     - type: VentCrawTube
-      containerId: VentCrawTube
     - type: VentCrawTransit
     - type: ContainerContainer
       containers:
@@ -278,7 +356,7 @@
   name: signal valve
   description: A pipe with a valve that can be controlled with signals.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers
   components:
   - type: StationAiWhitelist
   - type: SubFloorHide
@@ -292,6 +370,11 @@
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: pumpSignalValve
       map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: SignalControlledValve
+      Secondary: SignalControlledValveAlt1
+      Tertiary: SignalControlledValveAlt2
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -336,7 +419,6 @@
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasValve
   - type: VentCrawTube
-    containerId: VentCrawTube
   - type: VentCrawTransit
   - type: ContainerContainer
     containers:
@@ -351,7 +433,7 @@
   name: connector port
   description: For connecting portable devices related to atmospherics control.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: SubFloorHide
       visibleLayers:
@@ -364,8 +446,14 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: gasCanisterPort
           map: [ "enum.SubfloorLayers.FirstLayer" ]
+    # region starlight
     - type: AtmosPipeLayers
       spriteRsiPaths: {}
+      alternativePrototypes:
+        Primary: GasPort
+        Secondary: GasPortAlt1
+        Tertiary: GasPortAlt2
+    # end region
     - type: Appearance
     - type: PipeColorVisuals
     - type: GasPort
@@ -381,7 +469,6 @@
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
     - type: VentCrawTube
-      containerId: VentCrawTube
     - type: VentCrawJunction
       degrees:
         - 0
@@ -398,7 +485,7 @@
   name: dual-port air vent
   description: Has a valve and a pump attached to it. There are two ports, one is an input for releasing air, the other is an output when siphoning.
   placement:
-    mode: SnapgridCenter
+    mode: AlignAtmosPipeLayers # starlight
   components:
     - type: SubFloorHide
       visibleLayers:
@@ -412,8 +499,14 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: vent_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
+    # region starlight
     - type: AtmosPipeLayers
       spriteRsiPaths: {}
+      alternativePrototypes:
+        Primary: GasDualPortVentPump
+        Secondary: GasDualPortVentPumpAlt1
+        Tertiary: GasDualPortVentPumpAlt2
+    # end region
     - type: GenericVisualizer
       visuals:
         enum.VentPumpVisuals.State:
@@ -468,10 +561,13 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/gasrecycler.rsi
+    snapCardinals: true
+    granularLayersRendering: true
     layers:
     - sprite: Structures/Piping/Atmospherics/pipe.rsi
       state: pipeBinaryConnectors
       map: [ "enum.PipeVisualLayers.Pipe" ]
+      renderingStrategy: Default
     - state: running
     - state: unlit
       shader: unshaded
@@ -527,6 +623,12 @@
     board: GasRecyclerMachineCircuitboard
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasValve
+  - type: Transform
+    noRot: false
+  - type: GuideHelp
+    guides:
+    - GasRecycling
+  - type: TegCirculator
 
 - type: entity
   parent: GasBinaryBase

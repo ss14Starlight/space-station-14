@@ -1,0 +1,9 @@
+- type: reagent
+  id: JuiceCrab
+  name: reagent-name-juice-crab
+  parent: BaseJuice
+  desc: reagent-desc-juice-crab
+  physicalDesc: reagent-physical-desc-crab-juice
+  flavor: crabby
+  color: "#c86025"
+  recognizable: true

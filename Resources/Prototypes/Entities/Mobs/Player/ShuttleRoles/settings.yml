@@ -581,6 +581,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimChiefEngineer
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -601,6 +602,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimCMO
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -621,6 +623,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimHeadOfPersonnel
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -641,6 +644,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimHeadOfSecurity
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -661,6 +665,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimResearchDirector
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -681,6 +686,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimQuartermaster
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -748,10 +754,10 @@
       name: ghost-role-information-syndie-soldier-teamlead-name
       description: ghost-role-information-syndie-soldier-teamlead-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+      mindRoles:
+      - MindRoleNukeopsCommander
     - type: Loadout
       prototypes: [ SyndicateFootsoldierTeamLeaderGear ]
       roleLoadout: [ RoleSurvivalSyndicate ]
@@ -768,10 +774,10 @@
       name: ghost-role-information-syndie-soldier-name
       description: ghost-role-information-syndie-soldier-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+      mindRoles:
+      - MindRoleNukeops
     - type: Loadout
       prototypes: [ SyndicateFootsoldierGear ]
       roleLoadout: [ RoleSurvivalSyndicate ]
@@ -806,10 +812,10 @@
       name: ghost-role-information-pirate-name
       description: ghost-role-information-pirate-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+      mindRoles:
+      - MindRolePirate
     - type: Loadout
       prototypes: [ PirateScoonerAltA, PirateScoonerAltB, PirateScoonerAltC, PirateScoonerAltD ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -825,10 +831,10 @@
       name: ghost-role-information-pirate-captain-name
       description: ghost-role-information-pirate-captain-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+      mindRoles:
+      - MindRolePirateCaptain
     - type: Loadout
       prototypes: [ PirateCaptainScooner ]
       roleLoadout: [ RoleSurvivalEVA ]

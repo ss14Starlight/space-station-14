@@ -4,8 +4,17 @@
   parent: [ SimpleMobBase, MobCombat ]
   description: He's da rat. He make da roolz.
   components:
-  - type: ThermalVision
-  - type: VentCrawler
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Mouse
+  # Starlight-end
+  - type: ThermalVision # Starlight-edit: Thermal Vision
+  - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
@@ -24,12 +33,12 @@
     - SimpleHostile
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: Mobs/Animals/regalrat.rsi
+    sprite: _Starlight/Mobs/Animals/rat.rsi # Starlight
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: regalrat
+      state: giantrat
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      state: eyes
+      state: giantrat_eyes
       shader: unshaded
   - type: TypingIndicator
     proto: regal
@@ -63,7 +72,7 @@
         Piercing: 8
   - type: Body
     prototype: Rat
-    requiredLegs: 1 # TODO: More than 1 leg
+    requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 200
@@ -81,22 +90,21 @@
       Dead: 0
     baseDecayRate: 0.1
   - type: DamageStateVisuals
-    rotate: true
     states:
       Alive:
-        Base: regalrat
+        Base: giantrat
         BaseUnshaded: eyes
       Critical:
-        Base: critical
+        Base: giantrat
       Dead:
-        Base: dead
+        Base: giantrat
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-rat-king-name
     description: ghost-role-information-rat-king-description
-    rules: ghost-role-information-freeagent-rules
+    rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleRatKing # Starlight-edit - GhostRoleSoloAntagonist -> RatKing
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -105,6 +113,7 @@
       - CannotSuicide
       - FootstepSound
   - type: NoSlip
+  - type: Rummager
   - type: RatKing
     hungerPerArmyUse: 25
     hungerPerDomainUse: 50
@@ -174,7 +183,15 @@
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
-  - type: VentCrawler
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Mouse
+  # Starlight-end
+  - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
@@ -200,21 +217,22 @@
     - SimpleHostile
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: Mobs/Animals/rat.rsi
+    sprite: _Starlight/Mobs/Animals/rat.rsi # Starlight
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: rat
+      state: smallrat
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
-      state: eyes
+      state: smallrat_eyes
       shader: unshaded
 
-  - type: SpriteMovement
-    movementLayers:
-      movement:
-        state: rat-moving
-    noMovementLayers:
-      movement:
-        state: rat
+  # - type: SpriteMovement // Starlight - Disabled
+  #   movementLayers:
+  #     movement:
+  #       state: rat-moving
+  #   noMovementLayers:
+  #     movement:
+  #       state: rat
+
   - type: Physics
     bodyType: KinematicController
   - type: Fixtures
@@ -244,7 +262,7 @@
       - !type:GibBehavior
         recursive: false
   - type: Stamina
-    critThreshold: 60
+    baseCritThreshold: 60
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
@@ -256,7 +274,7 @@
         Piercing: 3
   - type: Body
     prototype: Rat
-    requiredLegs: 1 # TODO: More than 1 leg
+    requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 200
@@ -276,12 +294,12 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: rat
-        BaseUnshaded: eyes
+        Base: smallrat
+        BaseUnshaded: smallrat_eyes
       Critical:
-        Base: dead
+        Base: smallrat
       Dead:
-        Base: splat
+        Base: smallrat
   - type: Butcherable
     spawned:
     - id: FoodMeatRat
@@ -309,13 +327,22 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: GibOnTrigger
+    gibOrgans: false
 
-- type: weightedRandomEntity
+- type: entityTable
   id: RatKingLoot
-  weights:
-    RandomSpawner100: 66 #garbage
-    FoodCheese: 28 #food
-    IngotGold1: 5 #loot
+  table: !type:GroupSelector
+    children:
+    - id: RandomSpawner100
+      weight: 66
+    - id: FoodCheese
+      weight: 28
+    - id: IngotGold1
+      weight: 5
 
 - type: entity
   parent: BaseAction

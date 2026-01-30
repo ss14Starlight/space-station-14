@@ -1,6 +1,4 @@
 using Content.Server.Antag;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Map;
@@ -26,16 +24,20 @@ public sealed class SpaceSpawnRule : StationEventSystem<SpaceSpawnRuleComponent>
     {
         base.Added(uid, comp, gameRule, args);
 
-        if (!TryGetRandomStation(out var station))
-        {
-            ForceEndSelf(uid, gameRule);
-            return;
-        }
-
-        var stationData = Comp<StationDataComponent>(station.Value);
-
+        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
+        EntityUid? station = null;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        station = stationEvent.TargetStation;
+        if (station is null)
+            if (!TryGetRandomStation(out station))
+            {
+                ForceEndSelf(uid, gameRule);
+                return;
+            }
+        //Starlight end
+        
         // find a station grid
-        var gridUid = StationSystem.GetLargestGrid(stationData);
+        var gridUid = StationSystem.GetLargestGrid(station.Value);
         if (gridUid == null || !TryComp<MapGridComponent>(gridUid, out var grid))
         {
             Sawmill.Warning("Chosen station has no grids, cannot pick location for {ToPrettyString(uid):rule}");

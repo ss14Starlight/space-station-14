@@ -1,4 +1,5 @@
-using Content.Server.GameTicking.Prototypes;
+using Content.Shared.GameTicking.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
@@ -7,25 +8,55 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
-    [ViewVariables]
-    public string? LobbyBackground { get; private set; }
+    // STARLIGHT: Support for conditional lobby backgrounds
+    private ProtoId<LobbyBackgroundPrototype>? _forcedLobbyBackground; //starlight, art credit system
+    public ProtoId<LobbyBackgroundPrototype>? LobbyBackground { get; private set; }
 
     [ViewVariables]
-    private List<ResPath>? _lobbyBackgrounds;
+    private List<ProtoId<LobbyBackgroundPrototype>>? _lobbyBackgrounds;
 
     private static readonly string[] WhitelistedBackgroundExtensions = new string[] {"png", "jpg", "jpeg", "webp"};
 
     private void InitializeLobbyBackground()
     {
-        _lobbyBackgrounds = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>()
-            .Select(x => x.Background)
-            .Where(x => WhitelistedBackgroundExtensions.Contains(x.Extension))
-            .ToList();
+        var allprotos = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>().ToList();
+        _lobbyBackgrounds ??= new List<ProtoId<LobbyBackgroundPrototype>>();
+
+        //create protoids from them
+        foreach (var proto in allprotos)
+        {
+            var ext = proto.Background.Extension;
+            if (!WhitelistedBackgroundExtensions.Contains(ext))
+                continue;
+
+            //create a protoid and add it to the list
+            _lobbyBackgrounds.Add(new ProtoId<LobbyBackgroundPrototype>(proto.ID));
+        }
 
         RandomizeLobbyBackground();
     }
 
     private void RandomizeLobbyBackground() {
-        LobbyBackground = _lobbyBackgrounds!.Any() ? _robustRandom.Pick(_lobbyBackgrounds!).ToString() : null;
+        // STARLIGHT: Check if we have a forced background first
+        if (_forcedLobbyBackground != null)
+        {
+            LobbyBackground = _forcedLobbyBackground;
+            _forcedLobbyBackground = null; // Reset after use
+            return;
+        }
+
+        if (_lobbyBackgrounds != null && _lobbyBackgrounds.Count != 0)
+            LobbyBackground = _robustRandom.Pick(_lobbyBackgrounds);
+        else
+            LobbyBackground = null;
+    }
+
+    /// <summary>
+    /// STARLIGHT: Sets a specific lobby background to be used on the next round restart.
+    /// </summary>
+    /// <param name="lobbyProto">The path to the background image</param>
+    public void SetLobbyBackground(ProtoId<LobbyBackgroundPrototype> lobbyProto) //starlight
+    {
+        _forcedLobbyBackground = lobbyProto; //starlight
     }
 }

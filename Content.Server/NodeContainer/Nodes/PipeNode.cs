@@ -236,5 +236,6 @@ namespace Content.Server.NodeContainer.Nodes
                 }
             }
         }
+        public HashSet<PipeNode>? GetAlwaysReachable() => _alwaysReachable; // Starlight: DockPipeSystem
     }
 }

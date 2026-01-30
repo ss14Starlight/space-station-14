@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Conflee, derived from the Origin Logo by discord: brainfood#7460 / github: brainfood1183.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "circle1"
+    },
+    {
+      "name": "circle2"
+    },
+    {
+      "name": "circle3"
+    },
+    {
+      "name": "circle4"
+    },
+    {
+      "name": "circle5"
+    },
+    {
+      "name": "circle6"
+    },
+    {
+      "name": "circle7"
+    },
+    {
+      "name": "circle8"
+    },
+    {
+      "name": "circle9"
+    }
+  ]
+}

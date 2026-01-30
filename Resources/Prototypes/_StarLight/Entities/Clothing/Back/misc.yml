@@ -1,0 +1,35 @@
+- type: entity
+  parent: [Clothing, BaseSecurityScienceCommandContraband]
+  id: ClothingNullSpaceDrainer
+  name: nullspace drainer
+  description: A Superimposed device that occupies the physical and nullspace. Intaking external and foreign energy into data. This device restrains and blocks entities from entering and or leaving nullspace.
+  components:
+    - type: Tag
+      tags:
+        - WhitelistChameleon
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/nullspaceteleporter.rsi
+      state: icon
+    - type: Item
+      size: Huge
+    - type: Clothing
+      slots: BACK
+      sprite: _Starlight/Clothing/Back/nullspaceteleporter.rsi
+    - type: IdClothingBlocker
+      freezeUser: false
+      allowedJobs:
+        - Security
+        - Cadet
+        - Command
+    - type: NullSpaceDrainer
+    - type: ResearchClient
+    - type: ActivatableUI
+      inHandsOnly: true
+      key: enum.ResearchClientUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.ResearchClientUiKey.Key:
+          type: ResearchClientBoundUserInterface
+    - type: GuideHelp
+      guides:
+        - Brighteye

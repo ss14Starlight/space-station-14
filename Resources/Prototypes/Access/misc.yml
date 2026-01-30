@@ -32,14 +32,23 @@
   - Chapel
   - Hydroponics
   - Atmospherics
-  - Magistrate
-  - Ntrep
-  - Brigmedic
-  - BlueShield
   - GenpopEnter
   - GenpopLeave
+  - Cadet # Starlight start
+  - Magistrate
+  - Ntrep
+  - IAA
+  - Brigmedic
+  - BlueShield
+  - Robotics
+  - Surgery
+  - Paramedic
+  - Mining
+  - SalvageLead # Starlight end
+
 
 - type: accessGroup
   id: General
   tags:
   - Maintenance
+  - External # Starlight-edit

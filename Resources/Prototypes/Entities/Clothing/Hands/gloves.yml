@@ -142,6 +142,12 @@
   - type: Fiber
     fiberMaterial: fibers-latex
   - type: FingerprintMask
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Caustic: 0.9
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingHandsButcherable
@@ -156,6 +162,12 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile
   - type: FingerprintMask
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Caustic: 0.9
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingHandsButcherable
@@ -207,7 +219,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband]
+  parent: [ClothingHandsBase, BaseToggleClothing, BaseHighlyIllegalContraband]
   id: ClothingHandsGlovesSpaceNinja
   name: space ninja gloves
   description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.
@@ -241,6 +253,7 @@
     - components:
       - type: BatteryDrainer
       - type: StunProvider
+        cooldown: 10
         noPowerPopup: ninja-no-power
         whitelist:
           components:
@@ -290,7 +303,7 @@
     fiberColor: fibers-black
 
 - type: entity
-  parent: [ BaseSecurityCargoContraband, ClothingHandsGlovesCombat ]
+  parent: [ BaseEngineeringSecurityContraband, ClothingHandsGlovesCombat ] #Starlight EngSec contra
   id: ClothingHandsMercGlovesCombat
   name: mercenary combat gloves
   description: High-quality combat gloves to protect hands from mechanical damage during combat.
@@ -342,6 +355,12 @@
     damageProtection:
       flatReductions:
         Heat: 0 # no protection
+  - type: Tag #SL start
+    tags:
+      - fingerlessinsuls
+  - type: Construction
+    graph: FingerlessInsuls
+    node: fingerless #SL end
 
 - type: entity
   parent: ClothingHandsButcherable
@@ -382,6 +401,13 @@
   description:  A cursed pair of cluwne hands.
   components:
   - type: Unremoveable
+  #region Starlight
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+  #endregion Starlight
 
 - type: entity
   parent: [ClothingHandsButcherable, BaseSyndicateContraband]
@@ -417,7 +443,7 @@
       enum.MeleeSpeechUiKey.Key:
         type: MeleeSpeechBoundUserInterface
   - type: StaticPrice
-    price: 0
+    price: 2500
   - type: Tag
     tags:
     - Kangaroo
@@ -517,10 +543,12 @@
   - type: Fiber
     fiberColor: fibers-gold
   - type: MeleeWeapon
+    autoAttack: true # starlight
     attackRate: 1.5
     damage:
       types:
         Blunt: 14
+        Structural: 10 #Starlight
     soundHit:
       collection: Knuckles #Starlight
       params:
@@ -561,6 +589,8 @@
     tags:
     - WhitelistChameleon
     - Kangaroo
+  - type: StaticPrice
+    price: 2000
 
 - type: entity
   name: stun knuckle dusters

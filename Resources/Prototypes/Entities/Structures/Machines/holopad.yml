@@ -17,6 +17,8 @@
   - type: ApcPowerReceiver
     powerLoad: 300
   - type: StationAiVision
+    range: 1
+    needsAnchoring: true
   - type: Sprite
     sprite: Structures/Machines/holopad.rsi
     drawdepth: HighFloorObjects
@@ -74,6 +76,7 @@
     speakerVolume: Speak
   - type: AccessReader
     access: [[ "Command" ]]
+    examinationText: access-reader-examination-functionality-restricted
   - type: ActivatableUI
     key: enum.HolopadUiKey.InteractionWindow
   - type: ActivatableUIRequiresPower
@@ -769,7 +772,7 @@
 - type: entity
   parent: Holopad
   id: HolopadServiceChapel
-  suffix: Chapel
+  suffix: Shrine # Starlight: Chapel -> Shrine
   components:
   - type: Label
     currentLabel: holopad-service-chapel

@@ -1,0 +1,89 @@
+- type: loadout
+  id: CargoTechnicianJumpsuitAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoAlt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+
+- type: loadout
+  id: CargoTechnicianJumpsuitFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+
+- type: loadout
+  id: CargoTechnicianJumpskirtFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCargoFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+
+# Hat 
+- type: loadout
+  id: CargoTechnicianBeret
+  equipment:
+    head: ClothingHeadHatBeretCargo
+
+- type: loadout
+  id: CargoTechnicianHeadFormal
+  equipment:
+    head: ClothingHeadHatCargoFormalsoft
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SeniorCargo
+
+- type: loadout
+  id: CargoTechnicianBeretFormal
+  equipment:
+    head: ClothingHeadHatBeretCargoFormal
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SeniorCargo
+
+# Senior Bags
+- type: loadout
+  id: SeniorCourierBackpack
+  equipment:
+    back: ClothingBackpackCargoSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+  
+
+- type: loadout
+  id: SeniorCourierSatchel
+  equipment:
+    back: ClothingBackpackSatchelCargoSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+
+- type: loadout
+  id: SeniorCourierDuffel
+  equipment:
+    back: ClothingBackpackDuffelCargoSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+
+# Senior Winter coat
+- type: loadout
+  id: SeniorCourierWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterCargoSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+
+# Senior Shoes
+- type: loadout
+  id: SeniorCourierWinterBoots
+  equipment:
+    shoes: ClothingShoesBootsWinterSeniorCourier
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo

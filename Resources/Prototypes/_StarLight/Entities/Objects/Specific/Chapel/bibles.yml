@@ -1,0 +1,198 @@
+
+- type: entity
+  parent: Bible
+  name: kitab al-hikma
+  description: "The sacred text of the Druze faith, which promise the faithful will be reincarnated as new Druze."
+  id: BibleAlHikma
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/alhikma.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/alhikma.rsi
+
+- type: entity
+  parent: Bible
+  name: book of ages
+  description: "A collection of fulfilled prophecies, telling of the glories of a bejeweled empire."
+  id: BibleBookOfAges
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/bookofages.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/bookofages.rsi
+
+- type: entity
+  parent: Bible
+  name: book of ancestors
+  description: "The pages are brimming with legendary deeds of stout, mighty heroes of old."
+  id: BibleBookOfAncestors
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/bookofancestors.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/bookofancestors.rsi
+
+- type: entity
+  parent: Bible
+  name: tome of dread
+  description: "Pain is proof that you are alive."
+  id: BibleTomeOfDread
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/tomeofdread.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/tomeofdread.rsi
+
+- type: entity
+  parent: Bible
+  name: book of grudges
+  description: "Each page overflows with complaints about the enemies of Dwarfkind, including several trees."
+  id: BibleBookOfGrudges
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/bookofgrudges.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/bookofgrudges.rsi
+
+- type: entity
+  parent: Bible
+  name: book of mormon
+  description: "A ticket stub for the eponymous Broadway musical has been used as a bookmark."
+  id: BibleBookOfMormon
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/bookofmormon.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/bookofmormon.rsi
+
+- type: entity
+  parent: Bible
+  name: poetic edda
+  description: "The primary source of Norse sagas."
+  id: BibleEdda
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/edda.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/edda.rsi
+
+- type: entity
+  parent: Bible
+  name: zen koans
+  description: "Upon reading this, the Chaplain was enlightened."
+  id: BibleKoans
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/koans.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/koans.rsi
+
+- type: entity
+  parent: Bible
+  name: liber chaotica
+  description: "Why isn't this contraband?"
+  id: BibleLiberChaotica
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/liberchaotica.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/liberchaotica.rsi
+
+- type: entity
+  parent: Bible
+  name: malleus maleficarum
+  description: "The Hammer of Witches by Heinrich Kammer, a definitive guide to persecuting heresy (and also reclusive spinsters.)"
+  id: BibleMalleus
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/malleus.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/malleus.rsi
+
+- type: entity
+  parent: Bible
+  name: orthodox bible
+  description: "A slightly worn-out copy of the Septuagint."
+  id: BibleOrthodox
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/orthodoxbible.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/orthodoxbible.rsi
+
+- type: entity
+  parent: Bible
+  name: principia discordia
+  description: "Be Not Ye Lost Among Precepts of Order..."
+  id: BiblePrincipiaDiscordia
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/principiadiscordia.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/principiadiscordia.rsi
+
+- type: entity
+  parent: Bible
+  name: hadith
+  description: "A collection of wise teachings by ancient Imams."
+  id: BibleHadith
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/hadith.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/hadith.rsi
+
+- type: entity
+  parent: Bible
+  name: tao te ching
+  description: "A classic of Eastern wisdom."
+  id: BibleTaoTeChing
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/taoteching.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/taoteching.rsi
+
+- type: entity
+  parent: Bible
+  name: hebrew torah
+  description: "When the Tanakh alone just isn't enough."
+  id: BibleTorah
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/torah.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/torah.rsi
+
+- type: entity
+  parent: Bible
+  name: tripitaka
+  description: "Space-Buddhism for Space-Hipsters: 2520 Edition"
+  id: BibleTripitaka
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/tripitaka.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/tripitaka.rsi
+
+- type: entity
+  parent: Bible
+  name: rig veda
+  description: "The greatest of the four vedas, sacred to Hinduism."
+  id: BibleRigVeda
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/rigveda.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/rigveda.rsi
+    
+- type: entity
+  parent: Bible
+  name: bibble
+  description: "It's all in here! The bible. Wait, hang on a minute...?"
+  id: BibleBibble
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chapel/bibble.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chapel/bibble.rsi

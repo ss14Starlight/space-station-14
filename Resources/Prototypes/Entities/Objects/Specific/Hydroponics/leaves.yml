@@ -2,7 +2,7 @@
 
 - type: entity
   name: cannabis leaves
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   id: LeavesCannabis
   description: "Recently legalized in most galaxies."
   components:
@@ -10,13 +10,16 @@
     sprite: Objects/Specific/Hydroponics/cannabis.rsi
   - type: Produce
     seedId: cannabis
-  - type: Food
+  - type: Edible # Precursor to the one true edible
   - type: SolutionContainerManager
     solutions:
       food:
         reagents:
         - ReagentId: THC
           Quantity: 15
+  - type: Tag
+    tags:
+    - Smokable
 
 
 - type: entity
@@ -37,6 +40,11 @@
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
     state: dried
+  - type: Tag
+    tags:
+    - Smokable
+  - type: Item
+    size: Tiny
 
 - type: entity
   name: ground cannabis
@@ -62,7 +70,7 @@
     node: ground
   - type: Tag
     tags:
-      - Smokable
+    - Smokable
   - type: Item
     size: Tiny
 
@@ -97,10 +105,13 @@
           Quantity: 2
         - ReagentId: Happiness
           Quantity: 2
-#       - ReagentId: ColorfulReagent
-#         Quantity: 1
+        #       - ReagentId: ColorfulReagent
+        #         Quantity: 1
         - ReagentId: Psicodine
           Quantity: 0.6
+  - type: Tag
+    tags:
+    - Smokable
 
 - type: entity
   name: dried rainbow cannabis leaves
@@ -124,13 +135,18 @@
           Quantity: 1.6
         - ReagentId: Happiness
           Quantity: 1.6
-#       - ReagentId: ColorfulReagent
-#         Quantity: 0.8
+        #       - ReagentId: ColorfulReagent
+        #         Quantity: 0.8
         - ReagentId: Psicodine
           Quantity: 0.48
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
     state: dried
+  - type: Tag
+    tags:
+    - Smokable
+  - type: Item
+    size: Tiny
 
 - type: entity
   name: ground rainbow cannabis
@@ -153,8 +169,8 @@
           Quantity: 2.66
         - ReagentId: Happiness
           Quantity: 2.66
-#       - ReagentId: ColorfulReagent
-#         Quantity: 1.33
+        #       - ReagentId: ColorfulReagent
+        #         Quantity: 1.33
         - ReagentId: Psicodine
           Quantity: 0.8
   - type: Sprite
@@ -164,10 +180,13 @@
   - type: Construction
     graph: smokeableGroundCannabisRainbow
     node: groundRainbow
+  - type: Tag
+    tags:
+    - Smokable
 
 - type: entity
   name: tea leaves
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   id: LeavesTea
   description: "Can be dried out to make tea."
   components:
@@ -184,7 +203,7 @@
 
 - type: entity
   name: dried tea leaves
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   id: LeavesTeaDried
   description: "Dried tea leaves, ready to be ground."
   components:
@@ -200,7 +219,7 @@
 
 - type: entity
   name: tobacco leaves
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   id: LeavesTobacco
   description: "Dry them out to make some smokes."
   components:
@@ -208,6 +227,15 @@
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
   - type: Produce
     seedId: tobacco
+  - type: Tag
+    tags:
+    - Smokable
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 2
 
 - type: entity
   name: dried tobacco leaves
@@ -227,6 +255,11 @@
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
     state: dried
+  - type: Tag
+    tags:
+    - Smokable
+  - type: Item
+    size: Tiny
 
 - type: entity
   name: ground tobacco
@@ -252,6 +285,44 @@
     node: ground
   - type: Tag
     tags:
-      - Smokable
+    - Smokable
   - type: Item
     size: Tiny
+
+#starlight start
+- type: entity
+  parent: GroundTobacco
+  id: GroundTobacco5
+  suffix: 5
+  components:
+  - type: Stack
+    stackType: GroundTobacco
+    count: 5
+
+- type: entity
+  parent: GroundCannabis
+  id: GroundCannabis5
+  suffix: 5
+  components:
+  - type: Stack
+    stackType: GroundCannabis
+    count: 5
+
+- type: entity
+  parent: GroundCannabis
+  id: GroundCannabis10
+  suffix: 10
+  components:
+  - type: Stack
+    stackType: GroundCannabis
+    count: 10
+
+- type: entity
+  parent: LeavesTobaccoDried
+  id: LeavesTobaccoDried5
+  suffix: 5
+  components:
+  - type: Stack
+    stackType: LeavesTobaccoDried
+    count: 5
+#starlight end

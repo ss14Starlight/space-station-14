@@ -1,4 +1,5 @@
 using Content.Shared.Medical.SuitSensor;
+using Robust.Shared.Map; // Starlight
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Medical.CrewMonitoring;
@@ -19,3 +20,15 @@ public sealed class CrewMonitoringState : BoundUserInterfaceState
         Sensors = sensors;
     }
 }
+// Starlight-start
+[Serializable, NetSerializable]
+public sealed partial class CrewMonitoringWarpRequestMessage : BoundUserInterfaceMessage
+{
+    public NetCoordinates Coordinates;
+
+    public CrewMonitoringWarpRequestMessage(NetCoordinates coordinates)
+    {
+        Coordinates = coordinates;
+    }
+}
+// Starlight-end

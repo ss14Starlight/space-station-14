@@ -4,10 +4,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.CCVar;
-using Content.Shared.GameTicking;
+using Content.Shared.GameTicking; // Starlight
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
-using Content.Shared.Roles;
+using Content.Shared.Roles; // Starlight
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -364,7 +364,9 @@ namespace Content.Server.Preferences.Managers
             var prefs = await _db.GetPlayerPreferencesAsync(userId, cancel);
             if (prefs is null)
             {
-                return await _db.InitPrefsAsync(userId, HumanoidCharacterProfile.Random().AsEnabled(), cancel);
+                var speciesToBlacklist =
+                    new HashSet<string>(_cfg.GetCVar(CCVars.ICNewAccountSpeciesBlacklist).Split(","));
+                return await _db.InitPrefsAsync(userId, HumanoidCharacterProfile.Random(speciesToBlacklist).AsEnabled(), cancel);
             }
 
             return prefs;

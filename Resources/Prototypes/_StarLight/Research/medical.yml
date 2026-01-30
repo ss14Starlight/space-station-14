@@ -10,13 +10,29 @@
   tier: 1
   cost: 4000
   recipeUnlocks:
-    - BoneSetter
-    - BoneGel
-    - Scalpel
-    - Retractor
-    - Cautery
-    - Saw
-    - Hemostat
+  - BoneSetter
+  - BoneGel
+  - Scalpel
+  - Retractor
+  - Cautery
+  - Saw
+  - Hemostat
+  - BorgModuleSurgical #Starlight
+  radioChannels:
+  - Medical
+
+- type: technology
+  id: AutoMenderTech
+  name: research-technology-automenders
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/medical.rsi
+    state: mender
+  discipline: Biochemical
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+    - AutoMenderBrute
+    - AutoMenderBurn
   radioChannels:
   - Medical
 
@@ -30,14 +46,36 @@
   tier: 1
   cost: 4000
   recipeUnlocks:
-    - LeftArmCyber
-    - RightArmCyber
-    - LeftHandCyber
-    - RightHandCyber
-    - LeftLegCyber
-    - RightLegCyber
-    - LeftFootCyber
-    - RightFootCyber
+  - LeftArmCyber
+  - RightArmCyber
+  - LeftHandCyber
+  - RightHandCyber
+  - LeftLegCyber
+  - RightLegCyber
+  - LeftFootCyber
+  - RightFootCyber
+  technologyPrerequisites:
+  - SurgeryTech
+  radioChannels:
+  - Medical
+
+- type: technology
+  id: BudgetCyberOrgansTech
+  name: research-technology-budget-cyber-organs
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    state: liver
+  discipline: Biochemical
+  tier: 1
+  cost: 4000
+  recipeUnlocks:
+  - BudgetCyberEyes
+  - BudgetCyberTongue
+  - BudgetCyberLiver
+  - BudgetCyberStomach
+  - BudgetCyberKidneys
+  technologyPrerequisites:
+  - SurgeryTech
   radioChannels:
   - Medical
 
@@ -53,59 +91,99 @@
   tier: 2
   cost: 7000
   recipeUnlocks:
-    - Drill
-    - SawAdvanced
-    - ScalpelAdvanced
-    - BoneSetterAdvanced
-    - RetractorAdvanced
-    - HemostatAdvanced
+  - Drill
+  - SawAdvanced
+  - ScalpelAdvanced
+  - BoneSetterAdvanced
+  - RetractorAdvanced
+  - HemostatAdvanced
   technologyPrerequisites:
-    - SurgeryTech
+  - SurgeryTech
   radioChannels:
   - Medical
 
 - type: technology
   id: CyberImplantsTech
-  name: research-technology-basic-eye-implants
+  name: research-technology-basic-implants
   icon:
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
-    state: eye_implant_welding
+    state: eye_implant_janitor
   discipline: Biochemical
   tier: 2
   cost: 10000
   recipeUnlocks:
-    - EyeImplantWelding
-    - EyeImplantMedical
-    - EyeImplantSecurity
+  - EyeImplantWelding
+  - EyeImplantMedical
+  - EyeImplantChemistry
+  - EyeImplantDiagnostic
+  - EyeImplantSecurity
+  - HandImplantInsulated
+  - HandImplantThrusters
+  - HandImplantForensics
+  - HandImplantClaws
+  - BrainImplantComms
+  - BrainImplantTranslator
+  - CyberRebreather # For now i will be lazy and put it here, not sure if i can excuse making a new pack for just 1 recipe
   technologyPrerequisites:
-    - CyberLimbsTech
+  - CyberLimbsTech
   radioChannels:
   - Security
+  - Medical
+  - Engineering
+  - Supply
+
+#starlight, moved from civilian to medical
+- type: technology
+  id: BiochemicalStasis
+  name: research-technology-biochemical-stasis
+  icon:
+    sprite: Structures/Machines/stasis_bed.rsi
+    state: icon
+  discipline: Biochemical
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - StasisBedMachineCircuitboard
+  - CryoPodMachineCircuitboard
+  - CryostasisBeaker
+  - SyringeCryostasis
+  radioChannels:
+  - Medical
+
+#starlight, moved from civilian to medical
+- type: technology
+  id: MechanizedTreatment
+  name: research-technology-mechanized-treatment
+  icon:
+    sprite: Mobs/Silicon/Chassis/medical.rsi
+    state: borg
+  discipline: Biochemical
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleAdvancedChemical
+  - AdvancedJetInjector
+
+- type: technology
+  id: MedicalCyberLimbsTech
+  name: research-technology-medical-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: autoinjector
+  discipline: Biochemical
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - LeftArmCyberReaper
+  - RightArmCyberReaper
+  - LeftArmCyberAngel
+  - RightArmCyberAngel
+  technologyPrerequisites:
+  - CyberLimbsTech
+  radioChannels:
   - Medical
 
 # Tier 3
-
-- type: technology
-  id: FunctionalCyberLimbsTech
-  name: research-technology-functional-cyberlimbs
-  icon:
-    sprite: _Starlight/Interface/Actions/actions_cyber.rsi
-    state: cyber-hand-left
-  discipline: Biochemical
-  tier: 3
-  cost: 9320
-  recipeUnlocks:
-    - LeftArmCyberReaper
-    - RightArmCyberReaper
-    - LeftArmCyberMechwright
-    - RightArmCyberMechwright
-    - LeftArmCyberBulwark
-    - RightArmCyberBulwark
-  technologyPrerequisites:
-    - CyberLimbsTech
-  radioChannels:
-  - Security
-  - Medical
 
 - type: technology
   id: CyberEyeNightVision
@@ -123,20 +201,53 @@
   radioChannels:
   - Security
   - Medical
-  
+
+#starlight, moved from civilian to medical
 - type: technology
-  id: CyberEyeThermalVision
-  name: research-technology-thermalvision-eyes
+  id: BluespaceChemistry
+  name: research-technology-bluespace-chemistry
   icon:
-    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
-    state: eyes_thermal
+    sprite: Objects/Specific/Chemistry/beaker_bluespace.rsi
+    state: beakerbluespace
   discipline: Biochemical
   tier: 3
-  cost: 9320
+  cost: 10000
   recipeUnlocks:
-    - CyberEyeThermal
-  technologyPrerequisites:
-    - CyberEyeNightVision
+  - BluespaceBeaker
+  - SyringeBluespace
   radioChannels:
-  - Security
+  - Medical
+
+#starlight, moved from civilian to medical
+- type: technology
+  id: LauncherSyringe
+  name: research-technology-launcher-syringe
+  icon:
+    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+    state: syringe_gun
+  discipline: Biochemical
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - LauncherSyringe
+  - MiniSyringe
+  radioChannels:
+  - Medical
+
+- type: technology
+  id: CloningSystems
+  name: research-technology-cloning
+  icon:
+    sprite: Structures/Machines/cloning.rsi
+    state: pod_0
+  discipline: Biochemical
+  tier: 3
+  cost: 25000
+  recipeUnlocks:
+  - CloningConsoleComputerCircuitboard 
+  - CloningPodMachineCircuitboard 
+  - MedicalScannerMachineCircuitboard
+  technologyPrerequisites:
+  - MeatManipulation # you need the biomass reclaimer after all
+  radioChannels:
   - Medical

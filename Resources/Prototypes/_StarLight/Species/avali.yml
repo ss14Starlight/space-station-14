@@ -16,11 +16,20 @@
   youngAge: 103
   oldAge: 257
   maxAge: 430
+  minHeight: 0.8
+  defaultHeight: 0.91
+  maxHeight: 1
+  standardSize: 150 # gives a range of 130-150cm and 27-31kg
+  standardWeight: 31
+  standardDensity: 11
+  customName: true # Starlight
 
 - type: speciesBaseSprites
   id: MobAvaliSprites
   sprites:
     Head: MobAvaliHead
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobAvaliTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -70,6 +79,12 @@
       required: false
     Legs:
       points: 2
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
       required: false
     Arms:
       points: 4
@@ -158,12 +173,3 @@
   baseSprite:
     sprite: _Starlight/Mobs/Species/Avali/parts.rsi
     state: r_foot
-
-- type: entity
-  id: Stasis
-  name: Avali Stasis
-  description: Allows Avali to enter nanite induced stasis.
-  components:
-    - type: Stasis
-      enterStasisAction: ActionStasisEnter
-      exitStasisAction: ActionStasisExit

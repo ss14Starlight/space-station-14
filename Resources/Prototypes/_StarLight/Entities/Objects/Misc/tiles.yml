@@ -1,0 +1,134 @@
+- type: entity
+  name: carpet deco tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemCarpetDeco
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_carpet_deco
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorCarpetDeco
+  - type: Stack
+    stackType: FloorTileCarpetDeco
+
+- type: entity
+  name: dark bitile tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemDarkBitile
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_dark_bitile
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorDarkBitile
+  - type: Stack
+    stackType: FloorTileDarkBitile
+
+- type: entity
+  name: steel bitile tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemSteelBitile
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_steel_bitile
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorSteelBitile
+  - type: Stack
+    stackType: FloorTileSteelBitile
+
+- type: entity
+  name: white bitile tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemWhiteBitile
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_white_bitile
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWhiteBitile
+  - type: Stack
+    stackType: FloorTileWhiteBitile
+
+- type: entity
+  name: hierophant tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemHierophant
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_hierophant
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorHierophant
+  - type: Stack
+    stackType: FloorTileHierophant
+
+- type: entity
+  name: sepia tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemSepia
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_sepia
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorSepia
+  - type: Stack
+    stackType: FloorTileSepia
+
+- type: entity
+  name: terracotta tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemTerracotta
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_terracotta
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorTerracotta
+  - type: Stack
+    stackType: FloorTileTerracotta
+
+- type: entity
+  name: terracotta diagonal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemTerracottaDiagonal
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_terracotta_diagonal
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorTerracottaDiagonal
+  - type: Stack
+    stackType: FloorTileTerracottaDiagonal
+
+- type: entity
+  name: terracotta small tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemTerracottaSmall
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_terracotta_small
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorTerracottaSmall
+  - type: Stack
+    stackType: FloorTileTerracottaSmall

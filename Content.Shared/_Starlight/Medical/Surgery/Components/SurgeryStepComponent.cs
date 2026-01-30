@@ -1,5 +1,7 @@
 ﻿using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared.FixedPoint;
+using Content.Shared.Chemistry.Reagent;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
 namespace Content.Shared.Starlight.Medical.Surgery.Steps;
@@ -26,4 +28,10 @@ public sealed partial class SurgeryStepComponent : Component
 
     [DataField]
     public ComponentRegistry? BodyRemove;
+
+    [DataField]
+    public ProtoId<ReagentPrototype>? ReagentId = null;
+
+    [DataField]
+    public FixedPoint2 ReagentQuantity = FixedPoint2.New(5);
 }

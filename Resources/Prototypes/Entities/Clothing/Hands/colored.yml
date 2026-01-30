@@ -306,10 +306,8 @@
     inhandVisuals:
       left:
       - state: inhand-left
-        color: "#535353"
       right:
       - state: inhand-right
-        color: "#535353"
   - type: Clothing
     sprite: Clothing/Hands/Gloves/Color/black.rsi
   - type: Butcherable
@@ -340,6 +338,9 @@
   - type: Fiber
     fiberMaterial: fibers-insulative
     fiberColor: fibers-yellow
+  - type: Construction #SL start
+    graph: InsulsFinal
+    node: insuls #SL end
 
 # Budget Insulated Gloves
 - type: entity
@@ -367,6 +368,10 @@
   - type: Fiber
     fiberMaterial: fibers-insulative-frayed
     fiberColor: fibers-yellow
+  - type: Butcherable #SL start
+    butcheringType: Knife
+    spawned:
+      - id: CheapInsulatedFabric #SL end
 
 # Conductive Insulated Gloves
 - type: entity

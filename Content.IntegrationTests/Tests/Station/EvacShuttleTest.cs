@@ -2,9 +2,9 @@ using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Station.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 
@@ -32,7 +32,7 @@ public sealed class EvacShuttleTest
         pair.Server.CfgMan.SetCVar(CCVars.EmergencyShuttleEnabled, true);
         pair.Server.CfgMan.SetCVar(CCVars.GameDummyTicker, false);
         var gameMap = pair.Server.CfgMan.GetCVar(CCVars.GameMap);
-        pair.Server.CfgMan.SetCVar(CCVars.GameMap, "Saltern");
+        pair.Server.CfgMan.SetCVar(CCVars.GameMap, "StarlightCog"); //Starlight edit to a map we actually have
 
         await server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(25);

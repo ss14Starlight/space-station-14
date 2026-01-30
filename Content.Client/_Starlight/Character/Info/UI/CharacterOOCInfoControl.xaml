@@ -1,0 +1,23 @@
+﻿<ui:CharacterOOCInfoControl
+    xmlns="https://spacestation14.io"
+    xmlns:ui="clr-namespace:Content.Client._Starlight.Character.Info.UI"
+    xmlns:ui1="clr-namespace:Content.Client._Starlight.Character.UI">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True">
+        <Label VerticalAlignment="Top" Margin="0 6 0 10" HorizontalAlignment="Center" StyleClasses="LabelHeading"
+               Access="Public" Text="Out-Of-Character Info:"/>
+        <ui1:CharacterViewControl Name="CharacterView" Access="Public"/>
+        <BoxContainer Orientation="Vertical" VerticalExpand="True">
+            <Label Text="OOC Notes:"/>
+            <RichTextLabel Name="OOCNotes" Access="Public" MinSize="220 100" Margin="10"
+                           VerticalExpand="True" VerticalAlignment="Top"/>
+        </BoxContainer>
+        <PanelContainer Name="HiddenInfoSection" Access="Public" Visible="False">
+            <BoxContainer Orientation="Vertical" VerticalExpand="True">
+                <Label Text="Hidden Info" StyleClasses="LabelHeading"/>
+                <Label Text="Personal Notes:"/>
+                <RichTextLabel Name="PersonalNotes" Access="Public" MinSize="220 100" Margin="10"
+                       VerticalExpand="True" VerticalAlignment="Top"/>
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</ui:CharacterOOCInfoControl>

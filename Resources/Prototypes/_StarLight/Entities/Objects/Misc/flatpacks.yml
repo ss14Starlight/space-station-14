@@ -6,7 +6,9 @@
   components:
   - type: Flatpack
     entity: PrinterDoc
-    
+  - type: ItemPrice
+    fallbackPrice: 0
+
 - type: entity
   parent: BaseFlatpack
   id: KitchenOvenFlatpack
@@ -33,3 +35,21 @@
   components:
   - type: Flatpack
     entity: KitchenStove
+
+- type: entity
+  parent: BaseFlatpack
+  id: SlopDispenserFlatpack
+  name: nutrient paste dispenser flatpack
+  description: A flatpack used for constructing a nutrient paste dispenser.
+  components:
+  - type: Flatpack
+    entity: SlopDispenser
+
+- type: entity
+  parent: BaseFlatpack
+  id: FloraTreeChristmas02Flatpack
+  name: christmas tree flatpack
+  description: A flatpack used for constructing a christmas tree.
+  components:
+  - type: Flatpack
+    entity: FloraTreeChristmas02

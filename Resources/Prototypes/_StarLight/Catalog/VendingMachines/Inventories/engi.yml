@@ -9,3 +9,56 @@
   - !type:ListingLimitedStockCondition
     stock: 4
   - !type:BuyerAccessCondition
+    access: Engineering
+
+- type: listing
+  id: VendorWelderIndustrial
+  productEntity: WelderIndustrial
+  cost:
+    NTCredit: 150
+  categories:
+  - SLEnginery
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:BuyerAccessCondition
+    access: Engineering
+
+- type: listing
+  id: VendorWelderIndustrialAdvanced
+  productEntity: WelderIndustrialAdvanced
+  cost:
+    NTCredit: 350
+  categories:
+  - SLEnginery
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition
+    access: Engineering
+
+- type: listing
+  id: VendorClothingOuterHardsuitEngineeringGolden
+  productEntity: ClothingOuterHardsuitEngineeringGolden
+  cost:
+    NTCredit: 1140
+  categories:
+  - SLEnginery
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:BuyerAccessCondition
+    access: Engineering
+
+- type: listing
+  id: VendorClothingOuterHardsuitAtmosGolden
+  productEntity: ClothingOuterHardsuitAtmosGolden
+  cost:
+    NTCredit: 1140
+  categories:
+  - SLEnginery
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:BuyerAccessCondition
+    access: Atmospherics

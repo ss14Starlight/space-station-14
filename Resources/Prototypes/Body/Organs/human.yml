@@ -6,7 +6,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
   - type: Organ
-  - type: Food
+  - type: Edible
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionContainerManager
@@ -36,7 +36,7 @@
 
 - type: entity
   id: OrganHumanBrain
-  parent: [BaseHumanOrganUnGibbable, BaseOrganBrain]
+  parent: [BaseOrganBrain, BaseHumanOrganUnGibbable]
   name: brain
   description: "The source of incredible, unending intelligence. Honk."
   components:
@@ -74,7 +74,7 @@
   - type: Item
     size: Small
     heldPrefix: brain
-  
+
 - type: entity
   id: OrganHumanEyes
   parent: [BaseHumanOrgan, BaseOrganEyes]
@@ -90,7 +90,10 @@
     heldPrefix: eyeballs
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobHumanoidEyes
+    # 🌟Starlight🌟 start
+    prototypes:
+      Default: MobHumanoidEyes
+    # 🌟Starlight🌟 end
 
 - type: entity
   id: OrganHumanTongue
@@ -228,7 +231,6 @@
     metabolizerTypes: [Human]
     groups:
     - id: Alcohol
-      rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
 
 - type: entity
   id: OrganHumanKidneys

@@ -3,6 +3,9 @@
   name: job-name-centcomoff
   description: job-description-centcomoff
   playTimeTracker: JobCentralCommandOfficial
+  requirements:
+  - !type:RolesRequirement
+    proto: StaffAndMentorOnlyRolesReq
   setPreference: false
   startingGear: CentcomGear
   icon: "JobIconCentComm"
@@ -19,7 +22,7 @@
 - type: startingGear
   id: CentcomGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCentcomOfficial
+    jumpsuit: ClothingAltUniformJumpsuitCentcomOfficial # alt version
     shoes: ClothingShoesBootsCombatFilled
     head: ClothingHeadHatCentcom
     eyes: ClothingEyesGlassesCentComm
@@ -28,7 +31,7 @@
     id: CentcomPDA
     ears: ClothingHeadsetAltCentCom
     belt: WeaponPistolN1984
-    pocket1: BoxFolderBlack
+    pocket1: BoxFolderCentComClipboardThreePapers
     pocket2: PenCentcom
 
 

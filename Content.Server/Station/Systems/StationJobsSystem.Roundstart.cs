@@ -5,6 +5,7 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
+using Content.Shared.Antag;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Server.Player;
@@ -56,7 +57,7 @@ public sealed partial class StationJobsSystem
     /// as there may end up being more round-start slots than available slots, which can cause weird behavior.
     /// A warning to all who enter ye cursed lands: This function is long and mildly incomprehensible. Best used without touching.
     /// </remarks>
-    public Dictionary<NetUserId, (ProtoId<JobPrototype>?, EntityUid)> AssignJobs(IReadOnlySet<NetUserId> userIdsIn, IReadOnlyList<EntityUid> stations, bool useRoundStartJobs = true)
+    public Dictionary<NetUserId, (ProtoId<JobPrototype>? job, EntityUid station)> AssignJobs(IReadOnlySet<NetUserId> userIdsIn, IReadOnlyList<EntityUid> stations, bool useRoundStartJobs = true)
     {
         DebugTools.Assert(stations.Count > 0);
 
@@ -102,12 +103,14 @@ public sealed partial class StationJobsSystem
         var stationShares = new Dictionary<EntityUid, int>(stations.Count);
 
         // Ok so the general algorithm:
-        // We start with the highest weight jobs and work our way down. We filter jobs by weight when selecting as well.
-        // Weight > Priority > Station.
-        foreach (var weight in _orderedWeights)
+        // Changed by 🌟Starlight🌟
+        // We start with the highest priority jobs and work our way down. We filter jobs by weight when selecting as well. 
+        // Priority > Weight > Station.
+        for (var selectedPriority = JobPriority.High; selectedPriority > JobPriority.Never; selectedPriority--)
         {
-            for (var selectedPriority = JobPriority.High; selectedPriority > JobPriority.Never; selectedPriority--)
+            foreach (var weight in _orderedWeights)
             {
+                // 🌟Starlight🌟 end
                 if (userIds.Count == 0)
                     goto endFunc;
 
@@ -299,8 +302,12 @@ public sealed partial class StationJobsSystem
 
         foreach (var player in players)
         {
+            if (!_player.TryGetSessionById(player, out var session))
+                continue;
+
             var roleBans = _banManager.GetJobBans(player);
-            var antagBlocked = _antag.GetPreSelectedAntagSessions();
+            var isPreselectedAntag = _antag.GetPreSelectedAntagSessions().Contains(session);
+            var preselectedAntags = _antag.GetPreSelectedAntagDefinitions(session);
 
             // Get all the jobs that a player has selected with a priority greater than Never and also that they
             // have an enabled character with that job preference selected
@@ -337,16 +344,23 @@ public sealed partial class StationJobsSystem
                 if (!(priority == selectedPriority || selectedPriority is null))
                     continue;
 
-                if (!_prototypeManager.TryIndex(jobId, out var job))
+                if (!_prototypeManager.Resolve(jobId, out var job))
                     continue;
 
-                if (!job.CanBeAntag && (!_player.TryGetSessionById(player, out var session) || antagBlocked.Contains(session)))
+                // If we're an antag but the job can't be an antag, don't allow this job
+                if (isPreselectedAntag && !job.CanBeAntag)
+                    continue;
+
+                // If we're an antag, make sure that we have a character that is eligible to
+                // become all of our selected antags
+                if (isPreselectedAntag && !preselectedAntags.All(antag =>
+                        _antag.HasPrimaryAntagPreference(session, antag, AntagSelectionTime.IntraPlayerSpawn, job)))
                     continue;
 
                 if (weight is not null && job.Weight != weight.Value)
                     continue;
 
-                if (!(roleBans == null || !roleBans.Contains(jobId)))
+                if (!(roleBans == null || !roleBans.Contains(jobId))) //TODO: Replace with IsRoleBanned
                     continue;
 
                 availableJobs ??= new List<string>(playerJobs.Count);

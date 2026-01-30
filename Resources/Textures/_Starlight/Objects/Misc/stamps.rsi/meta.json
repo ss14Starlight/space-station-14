@@ -21,6 +21,30 @@
     },
     {
       "name": "stamp-bso"
+    },
+    {
+      "name": "stamp-salvagelead",
+      "copyright": "by mikeysaurus"
+    },
+    {
+      "name": "stamp-acknowledged",
+      "copyright": "by mikeysaurus"
+    },
+    {
+      "name": "stamp-incorrectform",
+      "copyright": "by mikeysaurus"
+    },
+    {
+      "name": "stamp-missingstamps",
+      "copyright": "by mikeysaurus"
+    },
+    {
+      "name": "stamp-senttoATS",
+      "copyright": "by mikeysaurus"
+    },
+    {
+      "name": "stamp-standby",
+      "copyright": "by mikeysaurus"
     }
   ]
 }

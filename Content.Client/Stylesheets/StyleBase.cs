@@ -1,4 +1,4 @@
-using System.Numerics;
+﻿using System.Numerics;
 using Content.Client.Resources;
 using Content.Client.UserInterface.Controls;
 using Robust.Client.Graphics;
@@ -10,24 +10,11 @@ using Robust.Shared.Maths;
 
 namespace Content.Client.Stylesheets
 {
+    [Obsolete("Please use the new sheetlet system to define styles, and remove all references to this class as it may be deleted in the future")]
     public abstract class StyleBase
     {
-        public const string ClassHighDivider = "HighDivider";
-        public const string ClassLowDivider = "LowDivider";
-        public const string StyleClassLabelHeading = "LabelHeading";
-        public const string StyleClassLabelSubText = "LabelSubText";
-        public const string StyleClassItalic = "Italic";
-
-        public const string ClassAngleRect = "AngleRect";
-
-        public const string ButtonOpenRight = "OpenRight";
-        public const string ButtonOpenLeft = "OpenLeft";
-        public const string ButtonOpenBoth = "OpenBoth";
-        public const string ButtonSquare = "ButtonSquare";
-
-        public const string ButtonCaution = "Caution";
-
-        public const int DefaultGrabberSize = 10;
+        public const string ClassCardHeader = "CardHeader"; // 🌟Starlight🌟
+        public const string ClassCardBorder = "CardBorder"; // 🌟Starlight🌟
 
         public abstract Stylesheet Stylesheet { get; }
 
@@ -40,6 +27,7 @@ namespace Content.Client.Stylesheets
         protected StyleBoxTexture BaseButtonSquare { get; }
 
         protected StyleBoxTexture BaseAngleRect { get; }
+        protected StyleBoxTexture BaseHeaderRect { get; } // 🌟Starlight🌟
         protected StyleBoxTexture AngleBorderRect { get; }
 
         protected StyleBase(IResourceCache resCache)
@@ -117,40 +105,19 @@ namespace Content.Client.Stylesheets
             };
             BaseAngleRect.SetPatchMargin(StyleBox.Margin.All, 10);
 
+            // 🌟Starlight🌟 start
+            BaseHeaderRect = new StyleBoxTexture
+            {
+                Texture = resCache.GetTexture("/Textures/_Starlight/Interface/Nano/card_header.png"),
+            };
+            BaseHeaderRect.SetPatchMargin(StyleBox.Margin.All, 10);
+            // 🌟Starlight🌟 end
+
             AngleBorderRect = new StyleBoxTexture
             {
                 Texture = resCache.GetTexture("/Textures/Interface/Nano/geometric_panel_border.svg.96dpi.png"),
             };
             AngleBorderRect.SetPatchMargin(StyleBox.Margin.All, 10);
-
-            var vScrollBarGrabberNormal = new StyleBoxFlat
-            {
-                BackgroundColor = Color.Gray.WithAlpha(0.35f), ContentMarginLeftOverride = DefaultGrabberSize,
-                ContentMarginTopOverride = DefaultGrabberSize
-            };
-            var vScrollBarGrabberHover = new StyleBoxFlat
-            {
-                BackgroundColor = new Color(140, 140, 140).WithAlpha(0.35f), ContentMarginLeftOverride = DefaultGrabberSize,
-                ContentMarginTopOverride = DefaultGrabberSize
-            };
-            var vScrollBarGrabberGrabbed = new StyleBoxFlat
-            {
-                BackgroundColor = new Color(160, 160, 160).WithAlpha(0.35f), ContentMarginLeftOverride = DefaultGrabberSize,
-                ContentMarginTopOverride = DefaultGrabberSize
-            };
-
-            var hScrollBarGrabberNormal = new StyleBoxFlat
-            {
-                BackgroundColor = Color.Gray.WithAlpha(0.35f), ContentMarginTopOverride = DefaultGrabberSize
-            };
-            var hScrollBarGrabberHover = new StyleBoxFlat
-            {
-                BackgroundColor = new Color(140, 140, 140).WithAlpha(0.35f), ContentMarginTopOverride = DefaultGrabberSize
-            };
-            var hScrollBarGrabberGrabbed = new StyleBoxFlat
-            {
-                BackgroundColor = new Color(160, 160, 160).WithAlpha(0.35f), ContentMarginTopOverride = DefaultGrabberSize
-            };
 
 
             BaseRules = new[]
@@ -165,7 +132,7 @@ namespace Content.Client.Stylesheets
 
                 // Default font.
                 new StyleRule(
-                    new SelectorElement(null, new[] {StyleClassItalic}, null, null),
+                    new SelectorElement(null, new[] {StyleClass.Italic}, null, null),
                     new[]
                     {
                         new StyleProperty("font", notoSans12Italic),
@@ -195,53 +162,6 @@ namespace Content.Client.Stylesheets
                     new[]
                     {
                         new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#753131")),
-                    }),
-
-                // Scroll bars
-                new StyleRule(new SelectorElement(typeof(VScrollBar), null, null, null),
-                    new[]
-                    {
-                        new StyleProperty(ScrollBar.StylePropertyGrabber,
-                            vScrollBarGrabberNormal),
-                    }),
-
-                new StyleRule(
-                    new SelectorElement(typeof(VScrollBar), null, null, new[] {ScrollBar.StylePseudoClassHover}),
-                    new[]
-                    {
-                        new StyleProperty(ScrollBar.StylePropertyGrabber,
-                            vScrollBarGrabberHover),
-                    }),
-
-                new StyleRule(
-                    new SelectorElement(typeof(VScrollBar), null, null, new[] {ScrollBar.StylePseudoClassGrabbed}),
-                    new[]
-                    {
-                        new StyleProperty(ScrollBar.StylePropertyGrabber,
-                            vScrollBarGrabberGrabbed),
-                    }),
-
-                new StyleRule(new SelectorElement(typeof(HScrollBar), null, null, null),
-                    new[]
-                    {
-                        new StyleProperty(ScrollBar.StylePropertyGrabber,
-                            hScrollBarGrabberNormal),
-                    }),
-
-                new StyleRule(
-                    new SelectorElement(typeof(HScrollBar), null, null, new[] {ScrollBar.StylePseudoClassHover}),
-                    new[]
-                    {
-                        new StyleProperty(ScrollBar.StylePropertyGrabber,
-                            hScrollBarGrabberHover),
-                    }),
-
-                new StyleRule(
-                    new SelectorElement(typeof(HScrollBar), null, null, new[] {ScrollBar.StylePseudoClassGrabbed}),
-                    new[]
-                    {
-                        new StyleProperty(ScrollBar.StylePropertyGrabber,
-                            hScrollBarGrabberGrabbed),
                     }),
             };
         }

@@ -6,6 +6,9 @@
     - !type:GroupSelector
       weight: 75
       children:
+      - !type:NestedSelector
+        weight: 5 # Roughly 7% chance
+        tableId: AllToysTable
       # Smoker's specialty
       - !type:AllSelector
         children:
@@ -56,7 +59,7 @@
       - id: ClothingHeadHatPaper
       - id: ClothingHeadHatPirate
       - id: ClothingMaskSterile
-      - id: ClothingNeckHeadphones
+      - id: ClothingMultipleHeadphones
       - id: ClothingNeckTieRed
       - id: ClothingOuterCoatGentle
       - !type:AllSelector
@@ -89,6 +92,10 @@
       - id: ClothingUniformJumpsuitLoungewear
       - id: ClothingHeadHatCowboyRed
       - id: ClothingNeckOldMantle # Starlight
+      - id: TatteredClothesUniformSuit #SL
+      - id: CamoUniformSuit #SL
+      - id: ClothingOuterBurnedRobes #SL
+      - id: ClothingNeckTatteredHood #SL
     # Uncommon Group
     - !type:GroupSelector
       weight: 23
@@ -112,13 +119,8 @@
         - id: ClothingNeckCloakGay
         - id: ClothingNeckCloakEnby
         - id: ClothingNeckCloakPan
-      - id: ToySkeleton
-      - id: Basketball
-      - id: Football
-      - id: BalloonNT
-      - id: BalloonCorgi
+      - id: ToyFigurineSkeleton
       - id: MysteryFigureBox
-      - id: RubberChicken
       - id: PlushieMimeLizard #starlight
       - id: SnailPlushie #starlight
       - id: AxolotlPlushie #starlight
@@ -167,14 +169,12 @@
     - !type:GroupSelector
       weight: 2
       children:
-      - id: Skub
-      - id: PonderingOrb
-      - id: CluwneHorn
-      - id: ClothingShoesSkates
       - id: DrinkMugDog
       - id: CigarGold
       - id: ClothingUniformJumpsuitFamilyGuy
       - id: WristwatchGold
+      - id: MysteryLighterBox
+      - id: ClothingHeadBowlHelmet #Starlight
 
 - type: entity
   name: Maint Loot Spawner
@@ -228,7 +228,8 @@
       - id: Plunger
       - id: PowerCellMedium
       - id: PowerCellSmall
-      - id: Soap
+      - !type:NestedSelector
+        tableId: AllSoapsTable
       - id: Wirecutter
       - id: Screwdriver
       - id: Wrench
@@ -274,13 +275,14 @@
       - id: trayScanner
       - id: HandheldGPSBasic
       - id: HandLabeler
-      - id: GlowstickBase
+      - id: GlowstickGreen
       - id: Bucket
       - id: RadioHandheld
       - id: AppraisalTool
       - id: ModularReceiver
       - id: WeaponFlareGun
       - id: BarberScissors
+      - id: TwinPointerKit # Starlight: Added twinpointer to maints loot
       - !type:GroupSelector
         children:
         - id: DrinkSpaceGlue
@@ -330,6 +332,7 @@
       weight: 95
       children:
       - id: Machete
+      - id: Claymore
       - id: BaseBallBat
       - id: CombatKnife
       - id: Spear
@@ -363,6 +366,8 @@
       - id: HydroponicsToolMiniHoe
       - id: EmeraldLizitar #starlight
       - id: ClothingHandsKnuckleDusters
+      - !type:NestedSelector
+        tableId: AllToyWeaponsTable
 
 - type: entity
   name: Maint Loot Spawner

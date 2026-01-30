@@ -7,7 +7,8 @@
   guides: [ Zombies ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 3600 # 1h
+    time: 3h # Starlight
+  playTimeTracker: AntagInitialInfected # Starlight
 
 - type: antag
   id: Zombie
@@ -16,3 +17,4 @@
   setPreference: false
   objective: roles-antag-zombie-objective
   guides: [ Zombies ]
+  playTimeTracker: AntagZombie # Starlight

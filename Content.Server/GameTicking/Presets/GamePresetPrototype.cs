@@ -1,8 +1,6 @@
-
 using Content.Server.Maps;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Server.GameTicking.Presets
 {
@@ -33,8 +31,8 @@ namespace Content.Server.GameTicking.Presets
         [DataField("maxPlayers")]
         public int? MaxPlayers;
 
-        [DataField("rules", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
-        public IReadOnlyList<string> Rules { get; private set; } = Array.Empty<string>();
+        [DataField]
+        public IReadOnlyList<EntProtoId> Rules { get; private set; } = Array.Empty<EntProtoId>();
 
         /// <summary>
         /// If specified, the gamemode will only be run with these maps.
@@ -42,5 +40,18 @@ namespace Content.Server.GameTicking.Presets
         /// </summary>
         [DataField("supportedMaps", customTypeSerializer: typeof(PrototypeIdSerializer<GameMapPoolPrototype>))]
         public string? MapPool;
+
+        //starlight start
+        /// <summary>
+        /// How many rounds before this preset can be voted for again.
+        /// For example, a value of 2 will mean
+        /// Picked this preset, cooldown set to 2
+        /// Next round, cooldown set to 1
+        /// Next round, cooldown set to 0
+        /// Now this preset can be voted for again.
+        /// </summary>
+        [DataField("voteCooldown")]
+        public int VoteCooldown = 2; // How many rounds before this preset can be voted for again.
+        //starlight end
     }
 }

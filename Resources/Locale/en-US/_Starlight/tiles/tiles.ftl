@@ -1,0 +1,9 @@
+tiles-carpet-deco-floor = deco carpet
+tiles-dark-bitile-floor = dark bi tile
+tiles-steel-bitile-floor = steel bi tile
+tiles-white-bitile-floor = white bi tile
+tiles-hierophant-floor = hierophant carpet
+tiles-sepia-floor = sepia tile
+tiles-terracotta-floor = terracotta tile
+tiles-terracotta-diagonal-floor = diagonal terracotta tile
+tiles-terracotta-small-floor = small terracotta tile

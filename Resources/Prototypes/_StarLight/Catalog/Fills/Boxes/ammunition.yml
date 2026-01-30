@@ -4,10 +4,12 @@
   id: BoxMagazineCaselessRifleRubber
   description: A box full of
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineCaselessRifleRubber
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineCaselessRifleRubber
+          amount: 4
         
 - type: entity
   name: box of .30 rifle (rubber) magazines
@@ -15,10 +17,12 @@
   id: BoxMagazineLightRifleRubber
   description: A box full of .30 rifle (practice) magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineLightRifleRubber
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineLightRifleRubber
+          amount: 4
        
 - type: entity
   name: box of Vector (rubber) magazines
@@ -26,10 +30,12 @@
   id: BoxMagazineMagnumSubMachineGunRubber
   description: A box full of Vector (rubber) magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineMagnumSubMachineGunRubber
-        amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineMagnumSubMachineGunRubber
+          amount: 3
         
 - type: entity
   name: box of pistol .35 auto (rubber) magazines
@@ -37,10 +43,12 @@
   id: BoxMagazinePistolRubber
   description: A box full of pistol .35 auto (rubber) magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazinePistolRubber
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazinePistolRubber
+          amount: 4
         
 - type: entity
   name: box of machine pistol .35 auto (rubber) magazines
@@ -48,10 +56,12 @@
   id: BoxMagazinePistolHighCapacityRubber
   description: A box full of machine pistol .35 auto (rubber) magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazinePistolHighCapacityRubber
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazinePistolHighCapacityRubber
+          amount: 4
         
 
 - type: entity
@@ -60,10 +70,12 @@
   id: BoxMagazinePistolSubMachineGunRubber
   description: A box full of SMG .35 auto (rubber) magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazinePistolSubMachineGunRubber
-        amount: 3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazinePistolSubMachineGunRubber
+          amount: 3
         
 - type: entity
   name: box of .20 rifle (rubber) magazines
@@ -71,7 +83,9 @@
   id: BoxMagazineRifleRubber
   description: A box full of .20 rifle (rubber) magazines.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineRifleRubber
-        amount: 4
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineRifleRubber
+          amount: 4

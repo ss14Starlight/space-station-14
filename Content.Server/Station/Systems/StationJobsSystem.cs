@@ -500,6 +500,7 @@ public sealed partial class StationJobsSystem : EntitySystem
 
         while (query.MoveNext(out var station, out var comp))
         {
+            if (comp.SetupAvailableJobs.Count == 0) continue; // Starlight: no jobs were created in the first place, don't show this entry.
             var netStation = GetNetEntity(station);
             var list = comp.JobList.ToDictionary(x => x.Key, x => x.Value);
             jobs.Add(netStation, list);

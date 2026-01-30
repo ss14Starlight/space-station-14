@@ -1,4 +1,3 @@
-tts-voice-name-acorn = [YouTuber] Acorn
 tts-voice-name-drekthar = [warcraft] Drek`Thar
 tts-voice-name-stephen = [] Stephen
 tts-voice-name-pudge = [warcraft] Pudge
@@ -114,7 +113,6 @@ tts-voice-name-clementine = [walkingdead] Clementine
 tts-voice-name-lilly = [walkingdead] Lilly
 tts-voice-name-louis = [walkingdead] Louis
 tts-voice-name-barneycalhoun = [hl] Barney Calhoun
-tts-voice-name-elivance-hl-alyx = [hl] Eli Vance
 tts-voice-name-bronya = [honkai] Bronya
 tts-voice-name-clara = [honkai] Clara
 tts-voice-name-himeko = [honkai] Himeko
@@ -190,3 +188,10 @@ tts-voice-name-klaasjeamandou = [disco elysium] Klaasje Amandou
 tts-voice-name-horrificnecktie = [disco elysium] Horrific Necktie
 tts-voice-name-ancientreptilianbrain = [disco elysium] Ancient Reptilian Brain
 tts-voice-name-galadriel = [LOTR] Galadriel
+
+tts-voice-name-cawsforconcern = [SL] CawsForConcern
+tts-voice-name-oliveoffender = [SL] OliveOffender
+tts-voice-name-rinary = [SL] Rinary
+tts-voice-name-felinoid = [SL] Felinoid
+tts-voice-name-blahdos = [SL] Blah-DOS
+tts-voice-name-talkbox = [SL] Talk-Box

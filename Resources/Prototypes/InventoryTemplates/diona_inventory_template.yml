@@ -1,4 +1,4 @@
-﻿#human but no shoes
+#human but no shoes
 - type: inventoryTemplate
   id: diona
   slots:
@@ -28,6 +28,12 @@
       uiWindowPos: 0,2
       strippingWindowPos: 0,1
       displayName: Neck
+    - name: misc # Starlight start
+      slotTexture: misc
+      slotFlags: MISC
+      uiWindowPos: 2,3
+      strippingWindowPos: 2,1
+      displayName: Misc # Starlight end
     - name: mask
       slotTexture: mask
       slotFlags: MASK
@@ -115,3 +121,6 @@
       uiWindowPos: 3,0
       strippingWindowPos: 0,5
       displayName: Back
+      blacklist:
+        tags:
+        - PetOnly

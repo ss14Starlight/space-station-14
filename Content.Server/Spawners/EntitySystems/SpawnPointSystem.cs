@@ -1,7 +1,11 @@
 ﻿using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Roles;
+using Prometheus;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Spawners.EntitySystems;
@@ -27,7 +31,7 @@ public sealed class SpawnPointSystem : EntitySystem
         var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
         var possiblePositions = new List<EntityCoordinates>();
 
-        while ( points.MoveNext(out var uid, out var spawnPoint, out var xform))
+        while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
@@ -39,11 +43,28 @@ public sealed class SpawnPointSystem : EntitySystem
 
             if (_gameTicker.RunLevel != GameRunLevel.InRound &&
                 spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job == args.Job))
+                (args.Job == null || spawnPoint.Job == null || spawnPoint.Job == args.Job))
             {
                 possiblePositions.Add(xform.Coordinates);
             }
         }
+
+        //starlight start, nukie spawn fix
+        if (possiblePositions.Count == 0)
+        {
+            //so we havent found a valid spawn point
+            //try to use a late joiner spawn point exclusively
+            //this will most likely always end up being arrivals
+            points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            while ( points.MoveNext(out var uid, out var spawnPoint, out var xform))
+            {
+                if (spawnPoint.SpawnType == SpawnPointType.LateJoin)
+                {
+                    possiblePositions.Add(xform.Coordinates);
+                }
+            }
+        }
+        //starlight end
 
         if (possiblePositions.Count == 0)
         {
@@ -51,13 +72,14 @@ public sealed class SpawnPointSystem : EntitySystem
             // TODO: Refactor gameticker spawning code so we don't have to do this!
             var points2 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
 
-            if (points2.MoveNext(out var spawnPoint, out var xform))
+            if (points2.MoveNext(out _, out var xform))
             {
+                Log.Error($"Unable to pick a valid spawn point, picking random spawner as a backup.\nRunLevel: {_gameTicker.RunLevel} Station: {ToPrettyString(args.Station)} Job: {args.Job}");
                 possiblePositions.Add(xform.Coordinates);
             }
             else
             {
-                Log.Error("No spawn points were available!");
+                Log.Error($"No spawn points were available!\nRunLevel: {_gameTicker.RunLevel} Station: {ToPrettyString(args.Station)} Job: {args.Job}");
                 return;
             }
         }

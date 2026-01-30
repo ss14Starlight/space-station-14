@@ -1,0 +1,16 @@
+- type: onSignActions
+  id: IonStormInfinite
+  actions:
+    - !type:ActionAddGamerules
+      rules: 
+        - IonStorm
+    - !type:ActionSetCharges
+      charges: 1
+    - !type:ActionClearSigners
+
+- type: onSignActions
+  id: AddSecretRule
+  actions:
+    - !type:ActionAddGamerules
+      rules: 
+        - Secret

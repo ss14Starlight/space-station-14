@@ -5,6 +5,6 @@
     jumpsuit: ClothingUniformJumpsuitReporter
 
 - type: loadout
-  id: JournalistJumpsuit
+  id: ReporterJumpskirt
   equipment:
-    jumpsuit: ClothingUniformJumpsuitJournalist
+    jumpsuit: ClothingUniformJumpskirtReporter

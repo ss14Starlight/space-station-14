@@ -1,0 +1,38 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation, additional attributions available in the Resources/Textures/Tiles/attributions.yml file. Ice tile and Snow tile modifications",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "tile_carpet_deco"
+        },
+        {
+            "name": "tile_dark_bitile"
+        },
+        {
+            "name": "tile_hierophant"
+        },
+        {
+            "name": "tile_sepia"
+        },
+        {
+            "name": "tile_steel_bitile"
+        },
+        {
+            "name": "tile_terracotta"
+        },
+        {
+            "name": "tile_terracotta_diagonal"
+        },
+        {
+            "name": "tile_terracotta_small"
+        },
+        {
+            "name": "tile_white_bitile"
+        }
+    ]
+}

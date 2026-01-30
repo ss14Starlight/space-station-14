@@ -29,7 +29,7 @@
 
 #Basic Helmet (Security Helmet)
 - type: entity
-  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband]
+  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadSuitWithLightBase]
   id: ClothingHeadHelmetBasic
   name: helmet
   description: Standard security gear. Protects the head from impacts.
@@ -38,6 +38,13 @@
     sprite: Clothing/Head/Helmets/security.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/security.rsi
+    clothingVisuals:
+      head:
+      - state: light-equipped-HELMET
+      # - state: shaded
+      head-vox:
+      - state: equipped-HELMET-vox
+      # - state: shaded
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -45,10 +52,18 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+      - state: lighton-equipped-HELMET
+        shader: unshaded
+      head-vox:
+      - state: lighton-equipped-HELMET-vox
+        shader: unshaded
 
 #Mercenary Helmet
 - type: entity
-  parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband ]
+  parent: ClothingHeadHelmetArmoredBase
   id: ClothingHeadHelmetMerc
   name: mercenary helmet
   description: The combat helmet is commonly used by mercenaries, is strong, light and smells like gunpowder and the jungle.
@@ -199,7 +214,7 @@
 
 #Space Ninja Helmet
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
+  parent: [ClothingHeadEVAHelmetBase, BaseHighlyIllegalContraband]
   id: ClothingHeadHelmetSpaceNinja
   name: space ninja helmet
   description: What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet. Standard issue ninja gear.
@@ -229,6 +244,8 @@
     sprite: Clothing/Head/Helmets/templar.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/templar.rsi
+  - type: Item
+    storedRotation: 0
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: HideLayerClothing
@@ -281,8 +298,8 @@
     quickEquip: true
   - type: IngestionBlocker
   - type: TemperatureProtection
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.2
+    heatingCoefficient: 0.5
+    coolingCoefficient: 0.8
   - type: FireProtection
     reduction: 0.15 # not fully sealed so less protection
   - type: IdentityBlocker
@@ -309,8 +326,8 @@
     quickEquip: true
   - type: IngestionBlocker
   - type: TemperatureProtection
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.2
+    heatingCoefficient: 0.3
+    coolingCoefficient: 0.8
   - type: FireProtection
     reduction: 0.2
   - type: PressureProtection
@@ -321,6 +338,7 @@
     tags:
     - WhitelistChameleon
     - FireHelmet
+    - CorgiWearable
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -522,6 +540,13 @@
   - type: Clothing
     sprite: Clothing/Head/Helmets/justice.rsi
     equippedPrefix: off
+    # Starlight begin - inheritance fix
+    clothingVisuals:
+      head:
+        - state: off-equipped-HELMET
+      head-vox:
+        - state: off-equipped-HELMET-vox
+    # Starlight end
   - type: ItemToggle
     predictable: false # issues between ToggleCellDraw and ItemToggleActiveSound
     onUse: false
@@ -538,9 +563,11 @@
         volume: -4
   - type: UseDelay
     delay: 1.0
-  - type: ToggleClothing
-    action: ActionToggleJusticeHelm
-    mustEquip: false
+    # Starlight begin - redundant button, the normal sec helmet has a light toggle already
+    #  - type: ToggleClothing
+    #    action: ActionToggleJusticeHelm
+    #    mustEquip: false
+    # Starlight end
   - type: ItemTogglePointLight
   - type: ToggleableVisuals
     spriteLayer: light
@@ -551,7 +578,7 @@
   - type: PointLight
     enabled: false
     radius: 1.4
-    energy: 1.4
+    energy: 2.5
     color: red
     netsync: false
     mask: /Textures/Effects/LightMasks/double_cone.png
@@ -601,3 +628,23 @@
     itemIconStyle: BigItem
   - type: InstantAction
     event: !type:ToggleActionEvent
+
+#card helmet
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: CardHelmet
+  name: cardboard helmet
+  description: A medieval helmet built from cardboard.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Helmets/card_helmet.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Helmets/card_helmet.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+  - type: Construction
+    graph: cardHelmet
+    node: cardhelmet

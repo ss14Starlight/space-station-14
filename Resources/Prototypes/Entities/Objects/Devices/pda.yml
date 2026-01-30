@@ -64,7 +64,8 @@
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
-    radius: 1.5
+    radius: 1.7
+    falloff: 3
     softness: 5
     autoRot: true
   - type: Ringer
@@ -219,7 +220,7 @@
     state: pda-internmed
   - type: GuideHelp
     guides:
-    - Medical Doctor
+    - MedicalDoctor
 
 - type: entity
   parent: BaseSecurityPDA
@@ -430,7 +431,7 @@
   name: chaplain PDA
   parent: BasePDA
   id: ChaplainPDA
-  description: God's chosen PDA.
+  description: Is the black austere, or luxurious? It's a matter of faith. # Starlight
   components:
   - type: Pda
     id: ChaplainIDCard
@@ -473,6 +474,13 @@
     accentVColor: "#a23e3e"
   - type: Icon
     state: pda-qm
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - AstroNavCartridge
 
 - type: entity
   parent: BasePDA
@@ -752,7 +760,7 @@
     state: pda-medical
   - type: GuideHelp
     guides:
-    - Medical Doctor
+    - MedicalDoctor
 
 - type: entity
   parent: MedicalPDA
@@ -771,6 +779,8 @@
   name: paramedic PDA
   description: Shiny and sterile.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi #Starlight
   - type: Pda
     id: ParamedicIDCard
   - type: Appearance
@@ -782,12 +792,13 @@
     borderColor: "#d7d7d0"
     accentVColor: "#2a4b5b"
   - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi #Starlight
     state: pda-paramedic
 
 - type: entity
   parent: BaseMedicalPDA
   id: ChemistryPDA
-  name: chemistry PDA
+  name: chemist PDA # Starlight
   description: It has a few discolored blotches here and there.
   components:
   - type: Pda
@@ -916,6 +927,7 @@
     id: CentcomIDCard
     penSlot:
       startingItem: PenCentcom
+      priority: -1
       whitelist:
         tags:
         - Write
@@ -968,6 +980,11 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true
+    respectMidiLimits: false
+    handheld: true
 
 - type: entity
   parent: CentcomPDA
@@ -1000,8 +1017,8 @@
   - type: Instrument
     allowPercussion: false
     handheld: true
-    bank: 1
     program: 2
+    bank: 100 # Defined in space-station-14.sf2
 
 - type: entity
   parent: MusicianPDA
@@ -1054,6 +1071,7 @@
 - type: entity
   parent: ClearPDA
   id: VisitorPDA
+  suffix: Visitor # Starlight
   components:
   - type: Pda
     id: VisitorIDCard
@@ -1085,9 +1103,63 @@
       - NanoTaskCartridge
 
 - type: entity
+  parent: [ SyndiPDA, BaseSyndicateContraband ]
+  id: SyndiOperativePDA
+  name: syndicate operative PDA
+  description: Death to NT!
+  components:
+  - type: Pda
+    id: SyndiOperativeIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-syndi-operative
+  - type: Icon
+    state: pda-syndi-operative
+
+- type: entity
+  parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
+  id: SyndiCorpsmanPDA
+  name: syndicate corpsman PDA
+  description: Commander... I need to cook!
+  components:
+  - type: Pda
+    id: SyndiCorpsmanIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-syndi-corpsman
+  - type: Icon
+    state: pda-syndi-corpsman
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - MedTekCartridge
+
+- type: entity
+  parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
+  id: SyndiCommanderPDA
+  name: syndicate commander PDA
+  description: So what are we, some kind of Nukie squad?
+  components:
+  - type: Pda
+    id: SyndiCommanderIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-syndi-commander
+  - type: Icon
+    state: pda-syndi-commander
+
+- type: entity
   parent: BaseSecurityPDA
   id: ERTLeaderPDA
-  name: ERT Leader PDA
+  name: ERT leader PDA # Starlight: capitalization
   suffix: Leader
   description: Red for firepower.
   components:
@@ -1119,9 +1191,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTChaplainPDA
-  name: ERT Chaplain PDA
+  name: ERT chaplain PDA # Starlight: capitalization
   suffix: Chaplain
-  description: Red for firepower, it's blessed.
+  description: Red for the blood of sinners. # Starlight
   components:
   - type: Pda
     id: ERTChaplainIDCard
@@ -1129,9 +1201,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTEngineerPDA
-  name: ERT Engineer PDA
+  name: ERT engineer PDA # Starlight: capitalization
   suffix: Engineer
-  description: Red for firepower, it's well-worn.
+  description: Red for firepower. It's well-worn. # Starlight
   components:
   - type: Pda
     id: ERTEngineerIDCard
@@ -1139,9 +1211,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTJanitorPDA
-  name: ERT Janitor PDA
+  name: ERT janitor PDA # Starlight: capitalization
   suffix: Janitor
-  description: Red for firepower, it's squeaky clean.
+  description: Red for firepower. It's squeaky clean. # Starlight
   components:
   - type: Pda
     id: ERTJanitorIDCard
@@ -1149,9 +1221,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTMedicPDA
-  name: ERT Medic PDA
+  name: ERT medic PDA # Starlight: capitalization
   suffix: Medic
-  description: Red for firepower, it's shiny and sterile.
+  description: Red for firepower. It's shiny and sterile. # Starlight
   components:
   - type: Pda
     id: ERTMedicIDCard
@@ -1159,9 +1231,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTSecurityPDA
-  name: ERT Security PDA
+  name: ERT security PDA # Starlight: capitalization
   suffix: Security
-  description: Red for firepower, it has tally marks etched on the side.
+  description: Red for firepower. It has tally marks etched on the side. # Starlight
   components:
   - type: Pda
     id: ERTSecurityIDCard
@@ -1339,6 +1411,14 @@
   - type: Icon
     state: pda-cluwne
   - type: Unremoveable
+  #region Starlight
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - WhitelistChameleon
+    - WhitelistChameleonPDA
+    - BibleThwackRemovable
+  #endregion Starlight
 
 - type: entity
   parent: ClownPDA
@@ -1349,6 +1429,13 @@
   components:
   - type: Pda
     id: CluwneBeastIDCard
+    penSlot:
+      startingItem: CrayonGreen
+      ejectSound: /Audio/Items/bikehorn.ogg
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -1358,13 +1445,6 @@
     borderColor: "#1c8f4d"
   - type: Icon
     state: pda-cluwne
-    penSlot:
-      startingItem: CrayonGreen
-      ejectSound: /Audio/Items/bikehorn.ogg
-      priority: -1
-      whitelist:
-        tags:
-        - Write
   - type: Unremoveable
 
 - type: entity
@@ -1446,6 +1526,25 @@
     state: pda-seniorofficer
 
 - type: entity
+  parent: BasePDA
+  id: SeniorCourierPDA
+  name: senior courier PDA
+  description: Smells like postage stamps and shuttle fuel.
+  components:
+  - type: Pda
+    id: CargoIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorcourier
+  - type: PdaBorderColor
+    borderColor: "#e39751"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    state: pda-seniorcourier
+
+- type: entity
   parent: [ BaseMajorContraband, SyndiPDA ]
   id: PiratePDA
   name: pirate PDA
@@ -1462,32 +1561,7 @@
     state: pda-pirate
 
 - type: entity
-  parent: [ BaseMedicalPDA, BaseSyndicateContraband ]
-  id: SyndiAgentPDA
-  name: syndicate corpsman PDA
-  description: For those days when healing normal syndicates aren't enough, try healing nuclear operatives instead!
-  components:
-  - type: Pda
-    id: SyndicateAgentIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-syndi-agent
-  - type: PdaBorderColor
-    borderColor: "#891417"
-    accentVColor: "#FFFFFF"
-  - type: Icon
-    state: pda-syndi-agent
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - NotekeeperCartridge
-      - NanoTaskCartridge
-      - MedTekCartridge
-
-- type: entity
-  parent: BasePDA
+  parent: [BasePDA, SelectableLock]
   id: ChameleonPDA
   name: assistant PDA
   description: Why isn't it gray?
@@ -1540,3 +1614,14 @@
     borderColor: "#7F3300"
   - type: Icon
     state: pda-wizard
+
+- type: entity
+  parent: ClearPDA
+  id: ScurretPDA
+  description: A temporary PDA granted to scurret temps. Doesn't do much. Wawa!
+  components:
+  - type: Pda
+    id: VisitorIDCard
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener

@@ -1,6 +1,4 @@
-using Content.Server.Chat.Systems;
-using Content.Server.Emp;
-using Content.Server.Radio.Components;
+using Content.Shared.Chat;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
@@ -8,6 +6,8 @@ using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Starlight.TextToSpeech;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Server.Speech; // Starlight
+using Content.Server._Starlight.Language; // Starlight
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -15,6 +15,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 {
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private readonly LanguageSystem _language = default!; // Starlight
 
     public override void Initialize()
     {
@@ -23,8 +24,6 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         SubscribeLocalEvent<HeadsetComponent, EncryptionChannelsChangedEvent>(OnKeysChanged);
 
         SubscribeLocalEvent<WearingHeadsetComponent, EntitySpokeEvent>(OnSpeak);
-
-        SubscribeLocalEvent<HeadsetComponent, EmpPulseEvent>(OnEmpPulse);
     }
 
     private void OnKeysChanged(EntityUid uid, HeadsetComponent component, EncryptionChannelsChangedEvent args)
@@ -41,10 +40,17 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         if (!Resolve(uid, ref keyHolder))
             return;
 
-        if (keyHolder.Channels.Count == 0)
+        if (keyHolder.Channels.Count == 0 && keyHolder.CustomChannels.Count == 0) // Starlight
             RemComp<ActiveRadioComponent>(uid);
+        //Starlight begin
         else
-            EnsureComp<ActiveRadioComponent>(uid).Channels = new(keyHolder.Channels);
+        {
+            var comp = EnsureComp<ActiveRadioComponent>(uid);
+            comp.Channels = new(keyHolder.Channels);
+            comp.CustomChannels = new(keyHolder.CustomChannels);
+            Dirty(uid, comp);
+        }
+        //Starlight end
     }
 
     private void OnSpeak(EntityUid uid, WearingHeadsetComponent component, EntitySpokeEvent args)
@@ -56,6 +62,10 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
+        //Starlight begin
+        if (args.UsingCustomChannel && args.CustomChannel is not null)
+            _radio.SendCustomRadioMessage(uid, args.Message, args.CustomChannel, component.Headset); // Custom channel data is already confirmed to exist on this headset
+        //Starlight end
     }
 
     protected override void OnGotEquipped(EntityUid uid, HeadsetComponent component, GotEquippedEvent args)
@@ -71,7 +81,6 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     protected override void OnGotUnequipped(EntityUid uid, HeadsetComponent component, GotUnequippedEvent args)
     {
         base.OnGotUnequipped(uid, component, args);
-        component.IsEquipped = false;
         RemComp<ActiveRadioComponent>(uid);
         RemComp<WearingHeadsetComponent>(args.Equipee);
     }
@@ -83,6 +92,9 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
         if (component.Enabled == value)
             return;
+
+        component.Enabled = value;
+        Dirty(uid, component);
 
         if (!value)
         {
@@ -100,19 +112,31 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
-        var actorUid = Transform(uid).ParentUid;
-        if (!TryComp(Transform(uid).ParentUid, out ActorComponent? actor)) return;
-        _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
-        if (actorUid != args.MessageSource && TryComp(args.MessageSource, out TextToSpeechComponent? _))
-            args.Receivers.Add(actorUid);
-    }
+        // TODO: change this when a code refactor is done
+        // this is currently done this way because receiving radio messages on an entity otherwise requires that entity
+        // to have an ActiveRadioComponent
 
-    private void OnEmpPulse(EntityUid uid, HeadsetComponent component, ref EmpPulseEvent args)
-    {
-        if (component.Enabled)
+        var parent = Transform(uid).ParentUid;
+
+        if (parent.IsValid())
         {
-            args.Affected = true;
-            args.Disabled = true;
+            var relayEvent = new HeadsetRadioReceiveRelayEvent(args);
+            RaiseLocalEvent(parent, ref relayEvent);
         }
+        // Starlight - Start
+        if (TryComp(parent, out ActorComponent? actor))
+        {
+            var canUnderstand = _language.CanUnderstand(parent, args.Language.ID);
+            var msg = new MsgChatMessage
+            {
+                Message = canUnderstand ? args.OriginalChatMsg : args.LanguageObfuscatedChatMsg
+            };
+            _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
+        }
+        // Starlight - End
+        #region Starlight
+        if (parent != args.MessageSource && TryComp(args.MessageSource, out TextToSpeechComponent? _))
+            args.Receivers.Add(parent);
+        #endregion Starlight
     }
 }

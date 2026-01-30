@@ -15,6 +15,8 @@
     tags:
     - Sheet
     - Metal
+    - TiderAnvilParts #SL
+    - ConstructionMaterial
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -93,15 +95,6 @@
   - type: Stack
     stackType: Steel
     count: 1
-
-- type: entity
-  parent: SheetSteel
-  id: SheetSteelLingering0
-  suffix: Lingering, 0
-  components:
-  - type: Stack
-    lingering: true
-    count: 0
 
 - type: entity
   parent: SheetMetalBase
@@ -205,6 +198,10 @@
         - ReagentId: Carbon
           Quantity: 1
         canReact: false
+  - type: Butcherable #SL start
+    butcheringType: Knife
+    spawned:
+      - id: PlasteelFilament #SL end
 
 - type: entity
   parent: SheetPlasteel
@@ -229,12 +226,3 @@
   - type: Stack
     stackType: Plasteel
     count: 1
-
-- type: entity
-  parent: SheetPlasteel
-  id: SheetPlasteelLingering0
-  suffix: Lingering, 0
-  components:
-  - type: Stack
-    lingering: true
-    count: 0

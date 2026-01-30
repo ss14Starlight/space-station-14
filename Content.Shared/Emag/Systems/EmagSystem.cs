@@ -51,9 +51,9 @@ public sealed class EmagSystem : EntitySystem
     }
 
     /// <summary>
-    /// Does the emag effect on a specified entity
+    /// Does the emag effect on a specified entity with a specified EmagType. The optional field customEmagType can be used to override the emag type defined in the component.
     /// </summary>
-    public bool TryEmagEffect(Entity<EmagComponent?> ent, EntityUid user, EntityUid target)
+    public bool TryEmagEffect(Entity<EmagComponent?> ent, EntityUid user, EntityUid target, EmagType? customEmagType = null)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
@@ -68,7 +68,9 @@ public sealed class EmagSystem : EntitySystem
             return false;
         }
 
-        var emaggedEvent = new GotEmaggedEvent(user, ent.Comp.EmagType, DestroyTransponder: ent.Comp.DestroyTransponder); // Starlight
+        var typeToUse = customEmagType ?? ent.Comp.EmagType;
+
+        var emaggedEvent = new GotEmaggedEvent(user, typeToUse, EmagComponent: ent.Comp);
         RaiseLocalEvent(target, ref emaggedEvent);
 
         if (!emaggedEvent.Handled)
@@ -78,38 +80,48 @@ public sealed class EmagSystem : EntitySystem
 
         _audio.PlayPredicted(ent.Comp.EmagSound, ent, ent);
 
-        _adminLogger.Add(LogType.Emag, LogImpact.High, $"{ToPrettyString(user):player} emagged {ToPrettyString(target):target} with flag(s): {ent.Comp.EmagType}");
+        _adminLogger.Add(LogType.Emag, LogImpact.High, $"{ToPrettyString(user):player} emagged {ToPrettyString(target):target} with flag(s): {typeToUse}");
 
         if (emaggedEvent.Handled)
             _sharedCharges.TryUseCharge(chargesEnt);
 
+        // Starlight begin
+        EnsureComp<EmaggedComponent>(target, out var emaggedComp);
+        emaggedComp.OwningFaction = ent.Comp.OwningFaction;
+        Dirty(target, emaggedComp);
+        
         if (!emaggedEvent.Repeatable)
         {
-            EnsureComp<EmaggedComponent>(target, out var emaggedComp);
-
-            emaggedComp.EmagType |= ent.Comp.EmagType;
+            emaggedComp.EmagType |= typeToUse;
             Dirty(target, emaggedComp);
         }
+        // Starlight end
 
         return emaggedEvent.Handled;
     }
 
+    // Starlight begin
     /// <summary>
     /// Checks whether an entity has the EmaggedComponent with a set flag.
     /// </summary>
     /// <param name="target">The target entity to check for the flag.</param>
     /// <param name="flag">The EmagType flag to check for.</param>
+    /// <param name="emag">The component of the emag being used. If specified, will bypass the check if the emag factions differ.</param>
     /// <returns>True if entity has EmaggedComponent and the provided flag. False if the entity lacks EmaggedComponent or provided flag.</returns>
-    public bool CheckFlag(EntityUid target, EmagType flag)
+    public bool CheckFlag(EntityUid target, EmagType flag, EmagComponent? emag = null)
     {
         if (!TryComp<EmaggedComponent>(target, out var comp))
             return false;
 
         if ((comp.EmagType & flag) == flag)
-            return true;
+        {
+            if (emag is null) return true;
+            return emag.OwningFaction == comp.OwningFaction;
+        }
 
         return false;
     }
+    // Starlight end
 
     /// <summary>
     /// Compares a flag to the target.
@@ -129,9 +141,10 @@ public sealed class EmagSystem : EntitySystem
 
 [Flags]
 [Serializable, NetSerializable]
-public enum EmagType : byte
+public enum EmagType
 {
     None = 0,
+    All = ~None,
     Interaction = 1 << 1,
     Access = 1 << 2
 }
@@ -144,4 +157,4 @@ public enum EmagType : byte
 /// <param name="Repeatable">Can the entity be emagged more than once? Prevents adding of <see cref="EmaggedComponent"/></param>
 /// <remarks>Needs to be handled in shared/client, not just the server, to actually show the emagging popup</remarks>
 [ByRefEvent]
-public record struct GotEmaggedEvent(EntityUid UserUid, EmagType Type, bool Handled = false, bool Repeatable = false, bool DestroyTransponder = false); // Starlight
+public record struct GotEmaggedEvent(EntityUid UserUid, EmagType Type, EmagComponent? EmagComponent = null, bool Handled = false, bool Repeatable = false); // Starlight

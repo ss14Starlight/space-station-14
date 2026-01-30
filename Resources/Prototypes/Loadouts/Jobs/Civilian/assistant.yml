@@ -6,7 +6,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobPassenger
-      time: 36000 #10 hrs, silly reward for people who play Assistant a lot
+      time: 10h # silly reward for people who play Assistant a lot
 
 # Head of Assistants (for grey mantle)
 - type: loadoutEffectGroup
@@ -16,9 +16,9 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobPassenger
-      time: 72000 #20 hrs, fun mantle for the most experienced assistants
+      time: 20h # fun mantle for the most experienced assistants
 
-# Face
+# Mask
 - type: loadout
   id: AssistantFace
   effects:
@@ -27,8 +27,7 @@
   equipment:
     mask: ClothingMaskGas
 
-# Jumpsuits
-# Basic
+# Jumpsuit
 - type: loadout
   id: BasicJumpsuit
   equipment:
@@ -39,7 +38,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtAssistant
 
-# Rainbow
 - type: loadout
   id: RainbowJumpsuit
   effects:
@@ -48,7 +46,6 @@
   equipment:
     jumpsuit: ClothingUniformColorRainbow
 
-# Rainbow Jumpskirt
 - type: loadout
   id: RainbowJumpskirt
   effects:
@@ -57,7 +54,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorRainbow
 
-# Ancient
 - type: loadout
   id: AncientJumpsuit
   effects:
@@ -96,6 +92,13 @@
   equipment:
     back: ClothingBackpackDuffel
 
+# starlight start
+- type: loadout
+  id: LeatherSatchel
+  equipment:
+    back: ClothingBackpackSatchelLeather
+# starlight end
+
 # Gloves
 - type: loadout
   id: AssistantGloves
@@ -111,7 +114,7 @@
   equipment:
     outerClothing: ClothingOuterWinterCoat
 
-# Shoes
+# Feet
 - type: loadout
   id: BlackShoes
   equipment:

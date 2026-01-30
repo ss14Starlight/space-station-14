@@ -17,6 +17,25 @@
       path: /Audio/_Starlight/Effects/Radio/cc.ogg
 
 - type: entity
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  id: ClothingHeadsetAltCentComNTNC
+  name: centcom over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommand
+      - EncryptionKeyCommon
+      - EncryptionKeySecurity
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/cc.ogg
+
+- type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltAbductor
   name: abductor over-ear headset
@@ -48,9 +67,9 @@
     sprite: Clothing/Ears/Headsets/command.rsi
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  parent: [ClothingHeadsetAlt, BaseBlueShieldContraband]
   id: ClothingHeadsetAltBSO
-  name: officer blue shield over-ear headset
+  name: blue shield over-ear headset
   components:
   - type: ContainerFill
     containers:

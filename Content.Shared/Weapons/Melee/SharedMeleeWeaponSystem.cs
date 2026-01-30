@@ -1,17 +1,21 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Shared._Starlight.Weapons.Melee.Events; // Starlight-edit
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Events;
 using Content.Shared.Administration.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
@@ -51,6 +55,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
     [Dependency] protected readonly ActionBlockerSystem Blocker = default!;
     [Dependency] protected readonly DamageableSystem Damageable = default!;
+    [Dependency] private   readonly SharedHandsSystem _hands = default!;
     [Dependency] private   readonly InventorySystem _inventory = default!;
     [Dependency] private   readonly MeleeSoundSystem _meleeSound = default!;
     [Dependency] protected readonly MobStateSystem MobState = default!;
@@ -61,6 +66,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] protected readonly SharedPopupSystem PopupSystem = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private   readonly DamageExamineSystem _damageExamine = default!;
 
     private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
 
@@ -81,6 +87,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         SubscribeLocalEvent<MeleeWeaponComponent, HandSelectedEvent>(OnMeleeSelected);
         SubscribeLocalEvent<MeleeWeaponComponent, ShotAttemptedEvent>(OnMeleeShotAttempted);
         SubscribeLocalEvent<MeleeWeaponComponent, GunShotEvent>(OnMeleeShot);
+        SubscribeLocalEvent<MeleeWeaponComponent, DamageExamineEvent>(OnMeleeExamineDamage);
         SubscribeLocalEvent<BonusMeleeDamageComponent, GetMeleeDamageEvent>(OnGetBonusMeleeDamage);
         SubscribeLocalEvent<BonusMeleeDamageComponent, GetHeavyDamageModifierEvent>(OnGetBonusHeavyDamageModifier);
         SubscribeLocalEvent<BonusMeleeAttackRateComponent, GetMeleeAttackRateEvent>(OnGetBonusMeleeAttackRate);
@@ -93,8 +100,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         SubscribeAllEvent<StopAttackEvent>(OnStopAttack);
 
 #if DEBUG
-        SubscribeLocalEvent<MeleeWeaponComponent,
-                            MapInitEvent>                   (OnMapInit);
+        SubscribeLocalEvent<MeleeWeaponComponent, MapInitEvent>(OnMapInit);
     }
 
     private void OnMapInit(EntityUid uid, MeleeWeaponComponent component, MapInitEvent args)
@@ -122,6 +128,18 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
     }
 
+    private void OnMeleeExamineDamage(EntityUid uid, MeleeWeaponComponent component, ref DamageExamineEvent args)
+    {
+        if (component.Hidden)
+            return;
+
+        var damageSpec = GetDamage(uid, args.User, component);
+
+        if (damageSpec.Empty)
+            return;
+
+        _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), Loc.GetString("damage-melee"));
+    }
     private void OnMeleeSelected(EntityUid uid, MeleeWeaponComponent component, HandSelectedEvent args)
     {
         var attackRate = GetAttackRate(uid, args.User, component);
@@ -288,15 +306,14 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         }
 
         // Use inhands entity if we got one.
-        if (EntityManager.TryGetComponent(entity, out HandsComponent? hands) &&
-            hands.ActiveHandEntity is { } held)
+        if (_hands.TryGetActiveItem(entity, out var held))
         {
             // Make sure the entity is a weapon AND it doesn't need
             // to be equipped to be used (E.g boxing gloves).
-            if (EntityManager.TryGetComponent(held, out melee) &&
+            if (TryComp(held, out melee) &&
                 !melee.MustBeEquippedToUse)
             {
-                weaponUid = held;
+                weaponUid = held.Value;
                 return true;
             }
 
@@ -409,8 +426,14 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextAttack));
 
         // Do this AFTER attack so it doesn't spam every tick
-        var ev = new AttemptMeleeEvent(user);
+        var ev = new AttemptMeleeEvent
+        {
+            User = user,
+            Weapon = weaponUid,
+        };
         RaiseLocalEvent(weaponUid, ref ev);
+
+        RaiseLocalEvent(user, ref ev); // 🌟Starlight🌟
 
         if (ev.Cancelled)
         {
@@ -526,9 +549,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         RaiseLocalEvent(target.Value, attackedEvent);
 
         var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
-        var damageResult = Damageable.TryChangeDamage(target, modifiedDamage, origin:user, ignoreResistances:resistanceBypass);
 
-        if (damageResult is {Empty: false})
+        if (Damageable.TryChangeDamage(target.Value, modifiedDamage, out var damageResult, origin:user, ignoreResistances:resistanceBypass))
         {
             // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
             if (damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
@@ -553,10 +575,18 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         _meleeSound.PlayHitSound(target.Value, user, GetHighestDamageSound(modifiedDamage, _protoManager), hitEvent.HitSoundOverride, component);
 
-        if (damageResult?.GetTotal() > FixedPoint2.Zero)
+        if (damageResult.GetTotal() > FixedPoint2.Zero)
         {
             DoDamageEffect(targets, user, targetXform);
         }
+
+        // Starlight-start
+        if (damageResult != null)
+        {
+            var afterHitEvent = new AfterMeleeHitEvent(new List<EntityUid> { target.Value }, user, meleeUid, damageResult, null);
+            RaiseLocalEvent(meleeUid, afterHitEvent);
+        }
+        // Starlight-end
     }
 
     protected abstract void DoDamageEffect(List<EntityUid> targets, EntityUid? user,  TransformComponent targetXform);
@@ -577,6 +607,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var distance = Math.Min(component.Range, direction.Length());
 
         var damage = GetDamage(meleeUid, user, component);
+        var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
         var entities = GetEntityList(ev.Entities);
 
         if (entities.Count == 0)
@@ -681,9 +712,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             RaiseLocalEvent(entity, attackedEvent);
             var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
 
-            var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin:user);
+            var damageResult = Damageable.ChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
 
-            if (damageResult != null && damageResult.GetTotal() > FixedPoint2.Zero)
+            if (damageResult.GetTotal() > FixedPoint2.Zero)
             {
                 // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
                 if (damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
@@ -718,6 +749,14 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             DoDamageEffect(targets, user, Transform(targets[0]));
         }
+
+        // Starlight-start
+        if (appliedDamage.GetTotal() > FixedPoint2.Zero)
+        {
+            var afterHitEvent = new AfterMeleeHitEvent(targets, user, meleeUid, appliedDamage, direction);
+            RaiseLocalEvent(meleeUid, afterHitEvent);
+        }
+        // Starlight-end
 
         return true;
     }
@@ -858,9 +897,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         EntityUid? inTargetHand = null;
 
-        if (targetHandsComponent?.ActiveHand is { IsEmpty: false })
+        if (_hands.TryGetActiveItem(target.Value, out var activeHeldEntity))
         {
-            inTargetHand = targetHandsComponent.ActiveHand.HeldEntity!.Value;
+            inTargetHand = activeHeldEntity.Value;
         }
 
         var attemptEvent = new DisarmAttemptEvent(target.Value, user, inTargetHand);

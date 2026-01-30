@@ -8,6 +8,7 @@
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
   customName: true # Starlight
+  roundstartCyberwareCapacity: 5 # Starlight
 
 # The lack of a layer means that
 # this person cannot have round-start anything
@@ -66,13 +67,13 @@
       points: 1
       required: false
     Chest:
-      points: 2
+      points: 4 #SL Edit 2->4
       required: false
     Legs:
-      points: 2
+      points: 4 #SL Edit 2->4
       required: false
     Arms:
-      points: 2
+      points: 4 #SL Edit 2->4
       required: false
 
 - type: humanoidBaseSprite

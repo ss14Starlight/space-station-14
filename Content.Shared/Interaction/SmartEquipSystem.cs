@@ -28,6 +28,7 @@ public sealed class SmartEquipSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    private const string SuitStorageSlot = "suitstorage"; // Starlight edit - Suit storage equip
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -35,6 +36,9 @@ public sealed class SmartEquipSystem : EntitySystem
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.SmartEquipBackpack, InputCmdHandler.FromDelegate(HandleSmartEquipBackpack, handle: false, outsidePrediction: false))
             .Bind(ContentKeyFunctions.SmartEquipBelt, InputCmdHandler.FromDelegate(HandleSmartEquipBelt, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipPocket1, InputCmdHandler.FromDelegate(HandleSmartEquipPocket1, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipPocket2, InputCmdHandler.FromDelegate(HandleSmartEquipPocket2, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipSuitStorage, InputCmdHandler.FromDelegate(HandleSmartEquipSuitStorage, handle: false, outsidePrediction: false))
             .Register<SmartEquipSystem>();
     }
 
@@ -55,6 +59,21 @@ public sealed class SmartEquipSystem : EntitySystem
         HandleSmartEquip(session, "belt");
     }
 
+    private void HandleSmartEquipPocket1(ICommonSession? session)
+    {
+        HandleSmartEquip(session, "pocket1");
+    }
+
+    private void HandleSmartEquipPocket2(ICommonSession? session)
+    {
+        HandleSmartEquip(session, "pocket2");
+    }
+
+    private void HandleSmartEquipSuitStorage(ICommonSession? session)
+    {
+        HandleSmartEquip(session, "suitstorage");
+    }
+
     private void HandleSmartEquip(ICommonSession? session, string equipmentSlot)
     {
         if (session is not { } playerSession)
@@ -64,10 +83,10 @@ public sealed class SmartEquipSystem : EntitySystem
             return;
 
         // early out if we don't have any hands or a valid inventory slot
-        if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHand == null)
+        if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHandId == null)
             return;
 
-        var handItem = hands.ActiveHand.HeldEntity;
+        var handItem = _hands.GetActiveItem((uid, hands));
 
         // can the user interact, and is the item interactable? e.g. virtual items
         if (!_actionBlocker.CanInteract(uid, handItem))
@@ -80,7 +99,7 @@ public sealed class SmartEquipSystem : EntitySystem
         }
 
         // early out if we have an item and cant drop it at all
-        if (handItem != null && !_hands.CanDropHeld(uid, hands.ActiveHand))
+        if (handItem != null && !_hands.CanDropHeld(uid, hands.ActiveHandId))
         {
             _popup.PopupClient(Loc.GetString("smart-equip-cant-drop"), uid, uid);
             return;
@@ -121,7 +140,7 @@ public sealed class SmartEquipSystem : EntitySystem
                 return;
             }
 
-            _hands.TryDrop(uid, hands.ActiveHand, handsComp: hands);
+            _hands.TryDrop((uid, hands), hands.ActiveHandId!);
             _inventory.TryEquip(uid, handItem.Value, equipmentSlot, predicted: true, checkDoafter:true);
             return;
         }
@@ -149,8 +168,8 @@ public sealed class SmartEquipSystem : EntitySystem
                 return;
             }
 
-            _hands.TryDrop(uid, hands.ActiveHand, handsComp: hands);
-            _storage.Insert(slotItem, handItem.Value, out var stacked, out _);
+            _hands.TryDrop((uid, hands), hands.ActiveHandId!);
+            _storage.Insert(slotItem, handItem.Value, out var stacked, out _, user: uid);
 
             // if the hand item stacked with the things in inventory, but there's no more space left for the rest
             // of the stack, place the stack back in hand rather than dropping it on the floor
@@ -166,6 +185,20 @@ public sealed class SmartEquipSystem : EntitySystem
         // case 3 (itemslot item):
         if (TryComp<ItemSlotsComponent>(slotItem, out var slots))
         {
+            // Starlight Start - Suit storage equip
+            if (handItem == null && equipmentSlot == SuitStorageSlot)
+            {
+                if (!_inventory.CanUnequip(uid, equipmentSlot, out var suitStorageReason))
+                {
+                    _popup.PopupClient(Loc.GetString(suitStorageReason), uid, uid);
+                    return;
+                }
+
+                _inventory.TryUnequip(uid, equipmentSlot, inventory: inventory, predicted: true, checkDoafter: true);
+                _hands.TryPickup(uid, slotItem, handsComp: hands);
+                return;
+            }
+            // Starlight End
             if (handItem == null)
             {
                 ItemSlot? toEjectFrom = null;

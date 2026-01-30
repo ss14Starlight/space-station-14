@@ -1,10 +1,10 @@
 - type: gameMap
-  id: Starboard
+  id: StarlightStarboard
   mapName: 'Starboard'
   mapPath: /Maps/_Starlight/Stations/Starboard.yml
   minPlayers: 90
   stations:
-    Starboard:
+    StarlightStarboard:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
@@ -46,7 +46,8 @@
             Roboticist: [ 2, 3 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
-            Warden: [ 2, 2 ]
+            Warden: [ 1, 1 ]
+            DutyOfficer: [ 2, 3 ]
             Detective: [ 1, 1 ]
             SecurityOfficer: [ 6, 10 ]
             SecurityCadet: [ 4, 6 ]
@@ -57,6 +58,7 @@
             CargoTechnician: [ 6, 7 ]
             MiningSpecialist: [ 1, 2]
             MailTech: [ 2, 3 ]
+            SalvageLead: [ 1, 1 ]
             #civillian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
@@ -73,3 +75,4 @@
             #Representives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]

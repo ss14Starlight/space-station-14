@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyrights",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Made by SapphicHaymaker for Starlight"
+    },
+    {
+      "name": "equipped-INNERCLOTHING",
+      "copyright": "Made by SapphicHaymaker for Starlight",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "copyright": "Made by SapphicHaymaker for Starlight",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "copyright": "Made by SapphicHaymaker for Starlight",
+      "directions": 4
+    }
+  ]
+}

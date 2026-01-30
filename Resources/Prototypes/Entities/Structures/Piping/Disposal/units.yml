@@ -39,9 +39,9 @@
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 55
         mask:
-        - TableMask
+        - MachineMask
         layer:
-        - TableLayer
+        - MachineLayer
   - type: Destructible
     thresholds:
     - trigger:
@@ -77,6 +77,7 @@
   - type: StaticPrice
     price: 70
   - type: PowerSwitch
+  - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   id: DisposalUnit
@@ -92,11 +93,14 @@
   - type: DisposalUnit
   - type: ThrowInsertContainer
     containerId: disposals
+    probability: 0.67
   - type: UserInterface
     interfaces:
       enum.DisposalUnitUiKey.Key:
         type: DisposalUnitBoundUserInterface
-  - type: RatKingRummageable
+  - type: Rummageable
+    table: !type:NestedSelector
+      tableId: RatKingLoot
   - type: RequireProjectileTarget
 
 - type: entity

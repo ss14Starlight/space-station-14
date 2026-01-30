@@ -6,9 +6,24 @@
   description: A flying leviathan, loosely related to space carps.
   abstract: true
   components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Carptongue
+    understands:
+    - GalacticCommon
+    - Carptongue
+    - Thaveyan
+  # Starlight-end
   - type: ThermalVision
   - type: Bloodstream
-    bloodMaxVolume: 650
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 650
+  - type: AntagMonsterScaling ## Starlight
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
@@ -89,29 +104,27 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      450: Critical
-      500: Dead
+      350: Critical
+      400: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
+      200: 0.9
       250: 0.7
-      400: 0.5
+      300: 0.5
   # disable taking damage from fire, since its a fire breathing dragon
   - type: Flammable
     damage:
       types: {}
   - type: StatusEffects # Overwriting basesimplemob to remove flash, getting flashed as dragon just feelsbad
     allowed:
-    - SlowedDown
-    - Stutter
     - Electrocution
-    - ForcedSleep
     - TemporaryBlindness
     - Pacified
     - RadiationProtection
-    - Drowsiness
     - Adrenaline
   - type: Temperature
-    heatDamageThreshold: 800
+  - type: TemperatureDamage
+    heatDamageThreshold: 2400
   - type: Metabolizer
     solutionOnBody: false
     updateInterval: 0.25
@@ -139,8 +152,12 @@
         Piercing: 15
         Slash: 15
   - type: Devourer
-    foodPreference: Humanoid
-    shouldStoreDevoured: true
+    foodPreferenceWhitelist:
+      components:
+      - HumanoidAppearance
+    stomachStorageWhitelist:
+      components:
+      - MobState
     chemical: Ichor
     healRate: 7.5
     whitelist:
@@ -149,10 +166,16 @@
       - Door
       tags:
       - Wall
+    # Starlight start - no eating indestructible walls
+    blacklist:
+      tags:
+      - Inedible
+    # Starlight end
   - type: Tag
     tags:
     - CannotSuicide
     - DoorBumpOpener
+    - StunImmune
   - type: Puller
     needsHands: false
   - type: RandomMetadata
@@ -166,6 +189,7 @@
     speedModifier: 2.5 # fast because dragon strong
     useSound:
       path: /Audio/Items/crowbar.ogg
+  - type: AntiRottingContainer # starlight. allow corpses to stay in dragon without rotting.
 
 - type: entity
   parent: BaseMobDragon
@@ -182,6 +206,10 @@
   - type: GuideHelp
     guides:
     - MinorAntagonists
+  #region Starlight
+  - type: Damageable
+    damageModifierSet: DragonResistances 
+  #endregion Starlight
 
 - type: entity
   categories: [ HideSpawnMenu ]

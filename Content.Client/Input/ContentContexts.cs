@@ -27,7 +27,6 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.EscapeContext);
             common.AddFunction(ContentKeyFunctions.ExamineEntity);
             common.AddFunction(ContentKeyFunctions.OpenAHelp);
-            common.AddFunction(ContentKeyFunctions.OpenMHelp);
             common.AddFunction(ContentKeyFunctions.TakeScreenshot);
             common.AddFunction(ContentKeyFunctions.TakeScreenshotNoUI);
             common.AddFunction(ContentKeyFunctions.ToggleFullscreen);
@@ -39,6 +38,8 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.ZoomIn);
             common.AddFunction(ContentKeyFunctions.ResetZoom);
             common.AddFunction(ContentKeyFunctions.InspectEntity);
+            common.AddFunction(ContentKeyFunctions.InspectServerComponent);
+            common.AddFunction(ContentKeyFunctions.InspectClientComponent);
             common.AddFunction(ContentKeyFunctions.ToggleRoundEndSummaryWindow);
 
             // Not in engine, because engine cannot check for sanbox/admin status before starting placement.
@@ -57,6 +58,7 @@ namespace Content.Client.Input
             human.AddFunction(EngineKeyFunctions.MoveRight);
             human.AddFunction(EngineKeyFunctions.Walk);
             human.AddFunction(ContentKeyFunctions.Jump); // 🌟Starlight🌟 
+            human.AddFunction(ContentKeyFunctions.ToggleKnockdown);
             human.AddFunction(ContentKeyFunctions.SwapHands);
             human.AddFunction(ContentKeyFunctions.SwapHandsReverse);
             human.AddFunction(ContentKeyFunctions.Drop);
@@ -64,6 +66,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.AltUseItemInHand);
             human.AddFunction(ContentKeyFunctions.OpenCharacterMenu);
             human.AddFunction(ContentKeyFunctions.OpenEmotesMenu);
+            human.AddFunction(ContentKeyFunctions.OpenLanguageMenu); // Starlight
             human.AddFunction(ContentKeyFunctions.ActivateItemInWorld);
             human.AddFunction(ContentKeyFunctions.ThrowItemInHand);
             human.AddFunction(ContentKeyFunctions.AltActivateItemInWorld);
@@ -74,6 +77,9 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.OpenInventoryMenu);
             human.AddFunction(ContentKeyFunctions.SmartEquipBackpack);
             human.AddFunction(ContentKeyFunctions.SmartEquipBelt);
+            human.AddFunction(ContentKeyFunctions.SmartEquipPocket1);
+            human.AddFunction(ContentKeyFunctions.SmartEquipPocket2);
+            human.AddFunction(ContentKeyFunctions.SmartEquipSuitStorage);
             human.AddFunction(ContentKeyFunctions.OpenBackpack);
             human.AddFunction(ContentKeyFunctions.OpenBelt);
             human.AddFunction(ContentKeyFunctions.MouseMiddle);

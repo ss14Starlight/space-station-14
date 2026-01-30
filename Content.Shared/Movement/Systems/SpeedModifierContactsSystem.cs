@@ -78,14 +78,14 @@ public sealed class SpeedModifierContactsSystem : EntitySystem
 
     private void OnRefreshMovementSpeedModifiers(EntityUid uid, SpeedModifiedByContactComponent component, RefreshMovementSpeedModifiersEvent args)
     {
-        if (!EntityManager.TryGetComponent<PhysicsComponent>(uid, out var physicsComponent))
+        if (!TryComp<PhysicsComponent>(uid, out var physicsComponent))
             return;
 
         var walkSpeed = 0.0f;
         var sprintSpeed = 0.0f;
 
         // Cache the result of the airborne check, as it's expensive and independent of contacting entities, hence need only be done once.
-        var isAirborne = physicsComponent.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(uid, physicsComponent);
+        var isAirborne = physicsComponent.BodyStatus == BodyStatus.InAir || _gravity.IsWeightless(uid);
 
         bool remove = true;
         var entries = 0;
@@ -95,7 +95,7 @@ public sealed class SpeedModifierContactsSystem : EntitySystem
 
             if (TryComp<SpeedModifierContactsComponent>(ent, out var slowContactsComponent))
             {
-                if (_whitelistSystem.IsWhitelistPass(slowContactsComponent.IgnoreWhitelist, uid))
+                if (!_whitelistSystem.CheckBoth(uid, slowContactsComponent.Blacklist, slowContactsComponent.Whitelist)) // 🌟Starlight🌟  
                     continue;
 
                 // Entities that are airborne should not be affected by contact slowdowns that are specified to not affect airborne entities.

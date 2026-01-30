@@ -1,0 +1,89 @@
+# Used for the HappyHonk fill.
+- type: entityTable
+  id: HappyHonkDrinkEntityTable # size: 1x2
+  table: !type:GroupSelector
+    children:
+    - id: DrinkColaCan
+    - id: DrinkIcedTeaCan
+    - id: DrinkLemonLimeCan
+    - id: DrinkLemonLimeCranberryCan
+    - id: DrinkGrapeCan
+    - id: DrinkRootBeerCan
+    - id: DrinkSodaWaterCan
+    - id: DrinkSpaceMountainWindCan
+    - id: DrinkSpaceUpCan
+    - id: DrinkSolDryCan
+    - id: DrinkStarkistCan
+    - id: DrinkTonicWaterCan
+    - id: DrinkFourteenLokoCan
+    - id: DrinkDrGibbCan
+    - id: DrinkNukieCan
+      weight: 0.1
+    - id: DrinkEnergyDrinkCan
+    - id: DrinkPwrGameCan
+
+- type: entityTable
+  id: HappyHonkBurgerEntityTable # size: 1x2
+  table: !type:GroupSelector
+    children:
+    - id: FoodBurgerJelly
+    - id: FoodBurgerBacon
+    - id: FoodBurgerBaseball
+    - id: FoodBurgerBear
+    - id: FoodBurgerBig
+    - id: FoodBurgerCheese
+    - id: FoodBurgerChicken
+    - id: FoodBurgerClown
+    - id: FoodBurgerCrab
+    - id: FoodBurgerCarp
+    - id: FoodBurgerFive
+    - id: FoodBurgerMcguffin
+    - id: FoodBurgerMcrib
+    - id: FoodBurgerPlain
+    - id: FoodBurgerRat
+    - id: FoodBurgerSoy
+    - id: FoodBurgerSuper
+    - id: FoodBurgerMime
+
+- type: entityTable
+  id: HappyHonkDonkEntityTable # size: 1x1
+  table: !type:GroupSelector
+    children:
+    - id: FoodDonkpocket
+    - id: FoodDonkpocketDank
+    - id: FoodDonkpocketSpicy
+    - id: FoodDonkpocketTeriyaki
+    - id: FoodDonkpocketPizza
+    - id: FoodDonkpocketHonk
+    - id: FoodDonkpocketBerry
+    - id: FoodDonkpocketStonk
+    - id: FoodDonkpocketCarp
+    - id: FoodDonkpocketDink
+    - id: FoodDonkpocketMoth
+
+- type: entityTable
+  id: HappyHonkSidesEntityTable # size: 2x2-1
+  table: !type:GroupSelector
+    children:
+    - id: FoodCakeCheeseSlice
+    - id: FoodCakeOrangeSlice
+    - id: FoodCakeChocolateSlice
+    - id: FoodCakeBirthdaySlice
+    - id: FoodCakeSuppermatterSlice
+    - id: FoodCakeCottonSlice
+    - id: FoodCakeBerryDelightSlice
+    - id: FoodDonutPink
+    - id: FoodDonutChocolate
+    - id: FoodBakedMuffinBerry
+    - id: FoodBakedCookie
+    - id: FoodBakedCannoli
+    - id: FoodBakedBrownie
+    - id: FoodBakedCroissant
+    - id: FoodFrozenSundae
+    - id: FoodFrozenCornuto
+    - id: CigPackBlue
+    - id: CigPackSyndicate
+      weight: 0.1
+    - id: CigPackMixed
+    - id: CigPackRollie
+    - id: CigPackMedRollie

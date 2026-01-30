@@ -20,6 +20,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Server.Chat.Systems;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Starlight.Antags.Abductor;
 
@@ -27,7 +28,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 {
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
 
@@ -37,7 +37,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     public void InitializeOrgans()
     {
-        foreach (var specif in _prototypes.EnumeratePrototypes<DamageTypePrototype>())
+        foreach (var specif in _prototypeManager.EnumeratePrototypes<DamageTypePrototype>())
             _passiveHealing.DamageDict.Add(specif.ID, -3);
         _stopwatch.Start();
     }
@@ -68,12 +68,12 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                 victim.LastActivation = _time.CurTime;
                 _damageable.TryChangeDamage(uid, _passiveHealing);
                 break;
-            case AbductorOrganType.Plasma:
+            case AbductorOrganType.NitrousOxide:
                 if (_time.CurTime - victim.LastActivation < TimeSpan.FromSeconds(120))
                     return;
                 victim.LastActivation = _time.CurTime;
                 var mix = _atmos.GetContainingMixture((uid, Transform(uid)), true, true) ?? new();
-                mix.AdjustMoles(Gas.Plasma, 30);
+                mix.AdjustMoles(Gas.NitrousOxide, 30);
                 _chat.TryEmoteWithChat(uid, "Cough");
                 break;
             case AbductorOrganType.Gravity:
@@ -93,7 +93,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
                 if (_time.CurTime - victim.LastActivation < TimeSpan.FromSeconds(240))
                     return;
                 victim.LastActivation = _time.CurTime;
-                SpawnAttachedTo("EggSpiderFertilized", Transform(uid).Coordinates);
+                SpawnAttachedTo("MobSpiderlingSpiderAngry", Transform(uid).Coordinates);
                 break;
             default:
                 break;

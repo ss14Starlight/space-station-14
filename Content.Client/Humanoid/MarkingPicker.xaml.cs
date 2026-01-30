@@ -421,7 +421,7 @@ public sealed partial class MarkingPicker : Control
 
         var stateNames = GetMarkingStateNames(prototype);
         _currentMarkingColors.Clear();
-        CMarkingColors.DisposeAllChildren();
+        CMarkingColors.RemoveAllChildren();
         List<ColorSelectorSliders> colorSliders = new();
         for (int i = 0; i < prototype.Sprites.Count; i++)
         {
@@ -433,6 +433,7 @@ public sealed partial class MarkingPicker : Control
             CMarkingColors.AddChild(colorContainer);
 
             ColorSelectorSliders colorSelector = new ColorSelectorSliders();
+            colorSelector.SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv; // defaults color selector to HSV
             colorSliders.Add(colorSelector);
 
             colorContainer.AddChild(new Label { Text = $"{stateNames[i]} color:" });

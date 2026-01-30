@@ -1,41 +1,44 @@
-using Content.Server.Administration.Commands;
-using Content.Server.Popups;
-using Content.Shared.Popups;
-using Content.Shared.Mobs;
 using Content.Server.Chat;
 using Content.Server.Chat.Systems;
-using Content.Shared.Chat.Prototypes;
-using Robust.Shared.Random;
-using Content.Shared.Stunnable;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.Damage;
-using Robust.Shared.Prototypes;
 using Content.Server.Emoting.Systems;
+using Content.Server.Clothing.Systems;
+using Content.Server.Popups;
 using Content.Server.Speech.EntitySystems;
+using Content.Shared.Chat;
+using Content.Shared.Chat.Prototypes;
+using Content.Shared.Clumsy;
 using Content.Shared.Cluwne;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Mobs;
+using Content.Shared.NameModifier.EntitySystems;
+using Content.Shared.Popups;
+using Content.Shared.Stunnable;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
+
+#region Starlight
 using Content.Shared.Interaction.Components;
 using Content.Shared.NPC.Systems;
-using Robust.Shared.Audio.Systems;
-using Content.Shared.NameModifier.EntitySystems;
-using Content.Shared.Clumsy;
+#endregion Starlight
 
 namespace Content.Server.Cluwne;
 
 public sealed class CluwneSystem : EntitySystem
 {
-    [Dependency] private readonly AutoEmoteSystem _emote = default!;
+
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly NpcFactionSystem _faction = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
 
+    [Dependency] private readonly OutfitSystem _outfitSystem = default!;
 
     public override void Initialize()
     {
@@ -51,15 +54,14 @@ public sealed class CluwneSystem : EntitySystem
     /// <summary>
     /// On death removes active comps and gives genetic damage to prevent cloning, reduce this to allow cloning.
     /// </summary>
-    private void OnMobState(EntityUid uid, CluwneComponent component, MobStateChangedEvent args)
+    private void OnMobState(Entity<CluwneComponent> ent, ref MobStateChangedEvent args)
     {
         if (args.NewMobState == MobState.Dead)
         {
-            RemComp<CluwneComponent>(uid);
-            RemComp<ClumsyComponent>(uid);
-            RemComp<AutoEmoteComponent>(uid);
-            var damageSpec = new DamageSpecifier(_proto.Index<DamageGroupPrototype>("Genetic"), 100);
-            _damageable.TryChangeDamage(uid, damageSpec);
+            RemComp<CluwneComponent>(ent.Owner);
+            RemComp<ClumsyComponent>(ent.Owner);
+            RemComp<AutoEmoteComponent>(ent.Owner);
+            _damageableSystem.TryChangeDamage(ent.Owner, ent.Comp.RevertDamage);
         }
     }
 
@@ -68,63 +70,79 @@ public sealed class CluwneSystem : EntitySystem
     /// <summary>
     /// OnStartup gives the cluwne outfit, ensures clumsy, and makes sure emote sounds are laugh.
     /// </summary>
-    private void OnComponentStartup(EntityUid uid, CluwneComponent component, ComponentStartup args)
+    private void OnComponentStartup(Entity<CluwneComponent> ent, ref ComponentStartup args)
     {
-        if (component.EmoteSoundsId == null)
+        if (ent.Comp.EmoteSoundsId == null)
             return;
-        _proto.TryIndex(component.EmoteSoundsId, out EmoteSounds);
-        
-        var meta = MetaData(uid);
+
+        _prototypeManager.TryIndex(ent.Comp.EmoteSoundsId, out EmoteSounds);
+
+        var meta = MetaData(ent.Owner);
         var name = meta.EntityName;
 
-        EnsureComp<AutoEmoteComponent>(uid);
-        _emote.AddEmote(uid, component.AutoEmoteSound);
-        EnsureComp<ClumsyComponent>(uid);
-
-        if (component.IsCluwne)
+        if (ent.Comp.RandomEmote && ent.Comp.AutoEmoteId != null)
         {
-            _popup.PopupEntity(Loc.GetString("cluwne-transform", ("target", uid)), uid, PopupType.LargeCaution);
-            _audio.PlayPvs(component.SpawnSound, uid);
-            _meta.SetEntityName(uid, Loc.GetString("cluwne-name-prefix", ("baseName", name)), meta);
-            SetOutfitCommand.SetOutfit(uid, "CluwneGear", EntityManager);
-            _faction.RemoveFaction(uid, "NanoTrasen", false);
-            _faction.AddFaction(uid, "HonkNeutral");
+            EnsureComp<AutoEmoteComponent>(ent.Owner);
+            _autoEmote.AddEmote(ent.Owner, ent.Comp.AutoEmoteId);
+        }
+
+        EnsureComp<ClumsyComponent>(ent.Owner);
+
+        var transformMessage = Loc.GetString(ent.Comp.TransformMessage, ("target", ent.Owner));
+
+        #region Starlight
+        if (ent.Comp.IsCluwne)
+        {
+            _popupSystem.PopupEntity(transformMessage, ent.Owner, PopupType.LargeCaution);
+            _audio.PlayPvs(ent.Comp.SpawnSound, ent.Owner);
+
+            _faction.RemoveFaction(ent.Owner, "NanoTrasen", false);
+            _faction.AddFaction(ent.Owner, "HonkNeutral");
         }
         else
         {
-            Spawn(component.Portal, Transform(uid).Coordinates);
-            SetOutfitCommand.SetOutfit(uid, "CluwneBeastGear", EntityManager);
-            _audio.PlayPvs(component.ArrivalSound, uid);
+            Spawn(ent.Comp.Portal, Transform(ent.Owner).Coordinates);
+            _audio.PlayPvs(ent.Comp.ArrivalSound, ent.Owner);
         }
+        #endregion Starlight
+
+        _nameMod.RefreshNameModifiers(ent.Owner);
+
+        _outfitSystem.SetOutfit(ent.Owner, ent.Comp.OutfitId, unremovable: true);
     }
 
     /// <summary>
     /// Handles the timing on autoemote as well as falling over and honking.
     /// </summary>
-    private void OnEmote(EntityUid uid, CluwneComponent component, ref EmoteEvent args)
+    private void OnEmote(Entity<CluwneComponent> ent, ref EmoteEvent args)
     {
         if (args.Handled)
             return;
-        args.Handled = _chat.TryPlayEmoteSound(uid, EmoteSounds, args.Emote);
 
-        if (_random.Prob(component.GiggleRandomChance))
+        if (!ent.Comp.RandomEmote)
+            return;
+
+        args.Handled = _chat.TryPlayEmoteSound(ent.Owner, EmoteSounds, args.Emote);
+
+        if (_random.Prob(ent.Comp.GiggleRandomChance))
         {
-            _audio.PlayPvs(component.SpawnSound, uid);
-            _chat.TrySendInGameICMessage(uid, "honks", InGameICChatType.Emote, ChatTransmitRange.Normal);
+            _audio.PlayPvs(ent.Comp.SpawnSound, ent.Owner);
+            _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString(ent.Comp.GiggleEmote), InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
-        else if (_random.Prob(component.KnockChance))
+
+        else if (_random.Prob(ent.Comp.KnockChance))
         {
-            _audio.PlayPvs(component.KnockSound, uid);
-            _stun.TryParalyze(uid, TimeSpan.FromSeconds(component.ParalyzeTime), true);
-            _chat.TrySendInGameICMessage(uid, "spasms", InGameICChatType.Emote, ChatTransmitRange.Normal);
+            _audio.PlayPvs(ent.Comp.KnockSound, ent.Owner);
+            _stunSystem.TryUpdateParalyzeDuration(ent.Owner, TimeSpan.FromSeconds(ent.Comp.ParalyzeTime));
+            _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString(ent.Comp.KnockEmote), InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
     }
 
     /// <summary>
     /// Applies "Cluwnified" prefix
     /// </summary>
-    private void OnRefreshNameModifiers(Entity<CluwneComponent> entity, ref RefreshNameModifiersEvent args)
+    private void OnRefreshNameModifiers(Entity<CluwneComponent> ent, ref RefreshNameModifiersEvent args)
     {
-        args.AddModifier("cluwne-name-prefix");
+        args.AddModifier(ent.Comp.NamePrefix);
     }
 }

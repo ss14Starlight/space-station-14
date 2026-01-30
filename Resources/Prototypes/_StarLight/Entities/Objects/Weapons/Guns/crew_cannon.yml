@@ -1,0 +1,19 @@
+- type: entity
+  name: improvised pneumatic crew cannon
+  parent: WeaponImprovisedPneumaticCannon
+  id: WeaponImprovisedPneumaticCrewCannon
+  description: Trading variety for the ability to throw smaller crew at people, accept no substitute. Doesn't accept tanks without enough gas.
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,4
+    whitelist:
+      components:
+      - CanEscapeInventory
+    blacklist:
+      tags:
+      - Trash
+  - type: Construction
+    graph: PneumaticCrewCannon
+    node: cannon

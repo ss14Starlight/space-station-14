@@ -26,6 +26,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
+using Content.Server._Starlight.Station; // Starlight
+using Content.Shared.Station.Components; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -100,6 +102,17 @@ public sealed partial class ShuttleSystem
 
     private void OnStationPostInit(ref StationPostInitEvent ev)
     {
+        //Starlight start
+        if (TryComp<StationDataComponent>(ev.Station, out var station))
+            foreach (var grid in station.Grids)
+            {
+                if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                if (!becomesStation.UseArmories)
+                    return;
+                break; // can break, we already found the grid that created this station
+            }
+        //Starlight end
+        
         // Add all grid maps as ftl destinations that anyone can FTL to.
         foreach (var gridUid in ev.Station.Comp.Grids)
         {
@@ -624,10 +637,7 @@ public sealed partial class ShuttleSystem
         {
             foreach (var child in toKnock)
             {
-                if (!_statusQuery.TryGetComponent(child, out var status))
-                    continue;
-
-                _stuns.TryParalyze(child, _hyperspaceKnockdownTime, true, status);
+                _stuns.TryUpdateParalyzeDuration(child, _hyperspaceKnockdownTime);
 
                 // If the guy we knocked down is on a spaced tile, throw them too
                 if (grid != null)
@@ -687,7 +697,7 @@ public sealed partial class ShuttleSystem
         // only toss if its on lattice/space
         var tile = _mapSystem.GetTileRef(shuttleEntity, shuttleGrid, childXform.Coordinates);
 
-        if (!tile.IsSpace(_tileDefManager))
+        if (!_turf.IsSpace(tile))
             return;
 
         var throwDirection = childXform.LocalPosition - shuttleBody.LocalCenter;

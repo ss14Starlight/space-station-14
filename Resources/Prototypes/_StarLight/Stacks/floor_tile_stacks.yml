@@ -1,0 +1,53 @@
+﻿- type: stack
+  id: FloorTileCarpetDeco
+  name: stack-carpet-deco-tile
+  spawn: FloorTileItemCarpetDeco
+  maxCount: 30
+
+- type: stack
+  id: FloorTileDarkBitile
+  name: stack-dark-bitile-tile
+  spawn: FloorTileItemDarkBitile
+  maxCount: 30
+
+- type: stack
+  id: FloorTileSteelBitile
+  name: stack-steel-bitile-tile
+  spawn: FloorTileItemSteelBitile
+  maxCount: 30
+
+- type: stack
+  id: FloorTileWhiteBitile
+  name: stack-white-bitile-tile
+  spawn: FloorTileItemWhiteBitile
+  maxCount: 30
+
+- type: stack
+  id: FloorTileHierophant
+  name: stack-hierophant-tile
+  spawn: FloorTileItemHierophant
+  maxCount: 30
+
+- type: stack
+  id: FloorTileSepia
+  name: stack-sepia-tile
+  spawn: FloorTileItemSepia
+  maxCount: 30
+
+- type: stack
+  id: FloorTileTerracotta
+  name: stack-terracotta-tile
+  spawn: FloorTileItemTerracotta
+  maxCount: 30
+
+- type: stack
+  id: FloorTileTerracottaDiagonal
+  name: stack-terracotta-diagonal-tile
+  spawn: FloorTileItemTerracottaDiagonal
+  maxCount: 30
+
+- type: stack
+  id: FloorTileTerracottaSmall
+  name: stack-terracotta-small-tile
+  spawn: FloorTileItemTerracottaSmall
+  maxCount: 30

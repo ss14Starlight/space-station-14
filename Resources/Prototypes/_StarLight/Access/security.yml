@@ -1,3 +1,7 @@
 - type: accessLevel
   id: Brigmedic
   name: id-card-access-level-brigmedic
+
+- type: accessLevel
+  id: Cadet
+  name: id-card-access-level-cadet

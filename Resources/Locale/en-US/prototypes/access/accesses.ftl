@@ -1,7 +1,8 @@
 id-card-access-level-command = Command
 id-card-access-level-captain = Captain
 id-card-access-level-head-of-personnel = Head of Personnel
-id-card-access-level-cryogenics = Cryogenics
+# Starlight edit: Changed 'Cryogenics' to 'Cryosleep"
+id-card-access-level-cryogenics = Cryosleep
 id-card-access-level-emergency-shuttle-repeal = E.Shuttle Repeal All
 
 id-card-access-level-head-of-security = Head of Security
@@ -34,8 +35,10 @@ id-card-access-level-hydroponics = Hydroponics
 id-card-access-level-service = Service
 id-card-access-level-janitor = Janitor
 id-card-access-level-theatre = Theatre
-id-card-access-level-chapel = Chapel
-id-card-access-level-lawyer = Lawyer
+# Starlight: Chapel -> Shrine
+id-card-access-level-chapel = Shrine
+# Starlight edit: Changed 'Lawyer' to 'Legal"
+id-card-access-level-lawyer = Legal
 
 id-card-access-level-maintenance = Maintenance
 

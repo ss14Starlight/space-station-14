@@ -10,15 +10,22 @@
     - Abductor
     messages:
     - abductor-gun-restricted-1
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
+      Skating:
+        knockback: 1.0
+        staminaMultiplier: 100
       Resomi:
         knockback: 0.1
       Avali:
         knockback: 0.05 # Bigger bird, more sturdy bones.. or something.
+      Felionoid:
+        knockback: 0.05 #half of what resomi take
   - type: Sprite
   - type: Item
     size: Huge
+    shape:
+    - 0,0,3,2
   - type: Clothing
     sprite: Objects/Weapons/Guns/Rifles/ak.rsi
     quickEquip: false
@@ -51,7 +58,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
@@ -60,12 +66,22 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # Starlight
   - type: StaticPrice
     price: 500
+  # Starlight
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPin
+  - type: FiringPinHolder
+    supportedPins: [ Rifle, GunUpgrade ]
+  # Starlight
+  
 
 - type: entity
   name: AKMS
-  parent: [ BaseWeaponRifle, BaseSecurityContraband ]
+  parent: [ BaseWeaponRifle, BaseSovietContraband ]
   id: WeaponRifleAk
   description: A somewhat battered combat rifle of a design originating from old Earth. Favored by criminals, militias, and terrorists due to its famed reliability and easy-to-manufacture design. Feeds from .30 rifle magazines.
   components:
@@ -97,7 +113,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
         priority: 1
         whitelist:
           tags:
@@ -106,6 +121,7 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -113,10 +129,10 @@
   - type: Appearance
 
 - type: entity
-  name: M-90gl
-  parent: [ BaseWeaponRifle, BaseSyndicateContraband ]
+  name: M90 GL
+  parent: [BaseWeaponRifle, BaseSyndicateContraband]
   id: WeaponRifleM90GrenadeLauncher
-  description: An older bullpup carbine model, with an attached underbarrel grenade launcher. Uses .20 rifle ammo.
+  description: "An older bullpup carbine model, with an attached underbarrel grenade launcher.\nFeeds from .20 rifle magazines."
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
@@ -141,7 +157,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifleSP
         priority: 1
         whitelist:
           tags:
@@ -150,6 +165,7 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -160,7 +176,7 @@
   name: Lecter
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRifleLecter
-  description: A high end military grade assault rifle. Uses .20 rifle ammo.
+  description: "Popular gas-operated combat rifle used heavily by Nanotrasen and SolGov. Operating in semi or fully automatic, its accuracy, stopping power, and reliability make it excel in all manner of environments.\nFeeds from .20 rifle magazines."
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
@@ -188,7 +204,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifleSP
         priority: 1
         whitelist:
           tags:
@@ -197,9 +212,105 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
   - type: MagazineVisuals
     magState: mag
     steps: 5
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  parent: WeaponRifleLecter
+  id: WeaponRifleLecterXL8
+  name: XL8
+  description: |-
+    The Experimental Lecter 8
+    An unreasonably expensive military grade assault rifle with integrated optic.
+    Uses .20 rifle ammo.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Rifles/XL8.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Rifles/XL8.rsi
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 0.2
+  - type: StaticPrice
+    price: 1500 #3x lecter
+  - type: Gun
+    shotsPerBurst: 3
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - SemiAuto
+    - FullAuto
+
+- type: entity
+  name: Estoc DMR
+  parent: [BaseWeaponRifle, BaseSyndicateContraband]
+  id: WeaponRifleEstoc
+  description: "A designated marksman rifle firing in 3-round bursts. The Estoc was designed as the Lecter’s long-range counterpart, equipped with an extended 20-inch barrel and telescopic sight.\nFeeds from .20 rifle magazines."
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Rifles/estoc.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    shape:
+    - 0,0,4,2
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Rifles/estoc.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
+    minAngle: 30
+    maxAngle: 43
+    shotsPerBurst: 3
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - SemiAuto
+    burstFireRate: 14
+  - type: GunWieldBonus
+    minAngle: -28
+    maxAngle: -25
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleSP
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeRifle
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
+    pvsIncrease: 0.2
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
     zeroVisible: true
   - type: Appearance
 
@@ -209,16 +320,23 @@
   id: WeaponRifleFoam
   description: A premium foam rifle of the highest quality. Its plastic feels rugged, and its mechanisms sturdy.
   components:
-  - type: KnockbackByUserTag
+  - type: KnockbackByUserTag # Starlight
     doestContain:
       Resomi:
         knockback: 0
+      Avali:
+        knockback: 0
+      Felionoid:
+        knockback: 0
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Rifles/foam_rifle.rsi
+    sprite: Objects/Fun/Foam/foam_rifle.rsi
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Rifles/foam_rifle.rsi
+    sprite: Objects/Fun/Foam/foam_rifle.rsi
   - type: Item
-    sprite: Objects/Weapons/Guns/Rifles/foam_rifle_inhand_64x.rsi
+    sprite: Objects/Fun/Foam/foam_rifle_inhand_64x.rsi
+    size: Normal
+    shape:
+    - 0,0,3,0
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -237,10 +355,20 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     clumsyProof: true
   - type: PacifismAllowedGun
+  - type: StaticPrice
+    price: 100
+  # starlight start
+  - type: FiringPinHolder
+    supportedPins: [ Makeshift ]
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinMakeshift
+  # starlight end
 
 - type: entity
   name: ForceableFollow AKMS
-  parent: [ WeaponRifleAk, BaseSecurityContraband ]
+  parent: [ WeaponRifleAk, BaseSovietContraband ]
   id: WeaponRifleAkAdmeme
   suffix: Admeme
   description: An iconic weapon of war. Uses .30 rifle ammo.

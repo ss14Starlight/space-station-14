@@ -1,8 +1,7 @@
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Components;
-using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Storage.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 
@@ -16,8 +15,14 @@ public sealed class RandomEntityStorageSpawnRule : StationEventSystem<RandomEnti
     {
         base.Started(uid, comp, gameRule, args);
 
-        if (!TryGetRandomStation(out var station))
-            return;
+        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
+        EntityUid? station = null;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        station = stationEvent.TargetStation;
+        if (station is null)
+            if (!TryGetRandomStation(out station))
+                return;
+        //Starlight end
 
         var validLockers = new List<(EntityUid, EntityStorageComponent)>();
         var spawn = Spawn(comp.Prototype, MapCoordinates.Nullspace);

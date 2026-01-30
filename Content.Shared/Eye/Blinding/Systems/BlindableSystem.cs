@@ -1,8 +1,7 @@
-using System.Linq;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Camera;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Rejuvenate;
@@ -21,6 +20,8 @@ public sealed class BlindableSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<BlindableComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BlindableComponent, EyeDamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<BlindableComponent, GetEyePvsScaleAttemptEvent>(OnGetEyePvsScaleAttemptEvent);
+        SubscribeLocalEvent<BlindableComponent, GetEyeOffsetAttemptEvent>(OnGetEyeOffsetAttemptEvent);
     }
 
     private void OnRejuvenate(Entity<BlindableComponent> ent, ref RejuvenateEvent args)
@@ -30,12 +31,24 @@ public sealed class BlindableSystem : EntitySystem
 
     private void OnDamageChanged(Entity<BlindableComponent> ent, ref EyeDamageChangedEvent args)
     {
-        _blurriness.UpdateBlurMagnitude((ent.Owner, ent.Comp));
+        _blurriness.UpdateBlurMagnitude((ent.Owner, ent.Comp), ent.Comp.IsWearingGlasses); // Starlight-edit
         _eyelids.UpdateEyesClosable((ent.Owner, ent.Comp));
     }
 
+    private void OnGetEyePvsScaleAttemptEvent(Entity<BlindableComponent> ent, ref GetEyePvsScaleAttemptEvent args)
+    {
+        if (ent.Comp.IsBlind)
+            args.Cancelled = true;
+    }
+
+    private void OnGetEyeOffsetAttemptEvent(Entity<BlindableComponent> ent, ref GetEyeOffsetAttemptEvent args)
+    {
+        if (ent.Comp.IsBlind)
+            args.Cancelled = true;
+    }
+
     [PublicAPI]
-    public void UpdateIsBlind(Entity<BlindableComponent?> blindable)
+    public void UpdateIsBlind(Entity<BlindableComponent?> blindable, bool bypass = false) // Starlight-edit: add bypass option
     {
         if (!Resolve(blindable, ref blindable.Comp, false))
             return;
@@ -50,7 +63,7 @@ public sealed class BlindableSystem : EntitySystem
         }
 
         // Don't bother raising an event if the eye is too damaged.
-        if (blindable.Comp.EyeDamage >= blindable.Comp.MaxDamage || forceBlind)
+        if ((blindable.Comp.EyeDamage >= blindable.Comp.MaxDamage || forceBlind) && !bypass) // Starlight-edit: add bypass option
         {
             blindable.Comp.IsBlind = true;
         }

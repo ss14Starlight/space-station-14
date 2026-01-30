@@ -1,0 +1,28 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "By Peter Poley (wassuythefourth_47721); inhands reused from .40 magazine by TiniestShark (github)",
+    "states": [
+        {
+            "name": "base"
+        },
+        {
+            "name": "extended"
+        },
+        {
+            "name": "mag-1"
+        },
+        {
+            "name": "inhand-left-mag",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-mag",
+            "directions": 4
+        }
+    ]
+}

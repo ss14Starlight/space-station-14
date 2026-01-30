@@ -7,6 +7,7 @@ namespace Content.Shared.Humanoid
     public enum HumanoidVisualLayers : byte
     {
         Special, // for the cat ears
+        TailExtras, // Starlight
         Tail,
         Hair,
         FacialHair,
@@ -15,6 +16,7 @@ namespace Content.Shared.Humanoid
         Chest,
         Head,
         Snout,
+        SnoutCover, // things layered over snouts (i.e. noses)
         HeadSide, // side parts (i.e., frills)
         HeadTop,  // top parts (i.e., ears)
         Eyes,

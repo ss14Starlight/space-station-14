@@ -23,6 +23,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
@@ -46,6 +47,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
@@ -72,6 +74,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
@@ -83,12 +86,15 @@
       prob: 0.03
     - id: MobMothroach
       prob: 0.008
+    - id: MobMoproach
+      prob: 0.004
 
 - type: entity
   id: MoproachMigration
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
@@ -104,6 +110,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
@@ -123,6 +130,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg

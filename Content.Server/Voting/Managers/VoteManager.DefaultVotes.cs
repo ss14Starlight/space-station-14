@@ -7,13 +7,13 @@ using Content.Server.Administration.Managers;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
-using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.Maps;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
@@ -22,11 +22,26 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Prometheus; //Starlight
 
 namespace Content.Server.Voting.Managers
 {
     public sealed partial class VoteManager
     {
+
+        #region Starlight data collection
+        private static readonly Counter _gamemode_vote = Metrics.CreateCounter(
+            "sl_gamemode_vote",
+            "Gamemode vote results",
+            [ "option" ]
+        );
+
+        private static readonly Counter _map_vote = Metrics.CreateCounter(
+            "sl_map_vote",
+            "Map/Station vote results",
+            [ "option" ]
+        );
+        #endregion
         [Dependency] private readonly IPlayerLocator _locator = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly IBanManager _bans = default!;
@@ -35,6 +50,8 @@ namespace Content.Server.Voting.Managers
         private VotingSystem? _votingSystem;
         private RoleSystem? _roleSystem;
         private GameTicker? _gameTicker;
+
+        private readonly Dictionary<string, int> _presetCooldown = new();
 
         private static readonly Dictionary<StandardVoteType, CVarDef<bool>> VoteTypesToEnableCVars = new()
         {
@@ -220,12 +237,23 @@ namespace Content.Server.Voting.Managers
 
         private void CreatePresetVote(ICommonSession? initiator)
         {
-            var presets = new Dictionary<string, string>();
+            //starlight start
+            var presets = GetGamePresets();
+
+            //add the secret prototype
+            if (_prototypeManager.TryIndex<GamePresetPrototype>("Secret", out var secretPreset))
+            {
+                presets.Add(secretPreset, Loc.GetString("ui-vote-secret-map"));
+            }
+            //starlight end
+
+            /* starlight disable
+            var presets = new Dictionary<GamePresetPrototype, string>();
             presets.Add("Secret", Loc.GetString("ui-vote-secret-map"));
             foreach (var preset in GetGamePresets())
             {
                 presets.Add(preset.Key, preset.Value);
-            }
+            } */
 
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
             var options = new VoteOptions
@@ -252,21 +280,55 @@ namespace Content.Server.Voting.Managers
             vote.OnFinished += (_, args) =>
             {
                 string picked;
+                GamePresetPrototype pickedPreset; //starlight
                 if (args.Winner == null)
                 {
-                    picked = (string) _random.Pick(args.Winners);
+                    pickedPreset = (GamePresetPrototype)_random.Pick(args.Winners); //starlight
+                    picked = pickedPreset.ModeTitle; //starlight
                     _chatManager.DispatchServerAnnouncement(
-                        Loc.GetString("ui-vote-gamemode-tie", ("picked", Loc.GetString(presets[picked]))));
+                        Loc.GetString("ui-vote-gamemode-tie", ("picked", Loc.GetString(pickedPreset.ModeTitle)))); //starlight edit
                 }
                 else
                 {
-                    picked = (string) args.Winner;
+                    pickedPreset = (GamePresetPrototype)args.Winner; //starlight
+                    picked = pickedPreset.ModeTitle; //starlight
                     _chatManager.DispatchServerAnnouncement(
-                        Loc.GetString("ui-vote-gamemode-win", ("winner", Loc.GetString(presets[picked]))));
+                        Loc.GetString("ui-vote-gamemode-win", ("winner", Loc.GetString(pickedPreset.ModeTitle)))); //starlight edit
                 }
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset vote finished: {picked}");
                 var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
-                ticker.SetGamePreset(picked);
+                //starlight, keep track of cooldowns
+                //subtract 1 from all keys EXCEPT the one we picked
+                foreach (var key in _presetCooldown.Keys.ToList())
+                {
+                    if (key != pickedPreset.ID)
+                    {
+                        _presetCooldown[key]--;
+                        if (_presetCooldown[key] <= 0)
+                        {
+                            _presetCooldown.Remove(key);
+                            _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset {key} removed from cooldown.");
+                        }
+                    }
+                }
+
+                #region Starlight
+                for (int i = 0; i < options.Options.Count; i++)
+                {
+                    _gamemode_vote.WithLabels(
+                        options.Options[i].text
+                    ).Inc(args.Votes[i]);
+                }
+                #endregion
+                //add the key we picked to the cooldown list
+                //if its secret, never add it
+                if (!(secretPreset != null && pickedPreset.ID == secretPreset.ID))
+                {
+                    _presetCooldown.Add(pickedPreset.ID, pickedPreset.VoteCooldown);
+                    _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset {pickedPreset.ID} added to cooldown for {pickedPreset.VoteCooldown} votes.");
+                }
+                //starlight end
+                ticker.SetGamePreset(pickedPreset.ID);
             };
         }
 
@@ -322,6 +384,14 @@ namespace Content.Server.Voting.Managers
                 var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
                 if (ticker.CanUpdateMap())
                 {
+                    #region Starlight
+                    for (int i = 0; i < options.Options.Count; i++)
+                    {
+                        _map_vote.WithLabels(
+                            options.Options[i].text
+                        ).Inc(args.Votes[i]);
+                    }
+                    #endregion
                     if (_gameMapManager.TrySelectMapIfEligible(picked.ID))
                     {
                         ticker.UpdateInfoText();
@@ -472,7 +542,7 @@ namespace Content.Server.Voting.Managers
                     (Loc.GetString("ui-vote-votekick-abstain"), "abstain")
                 },
                 Duration = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimer)),
-                InitiatorTimeout = TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.VotekickTimeout)),
+                InitiatorTimeout = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimeout)),
                 VoterEligibility = voterEligibility,
                 DisplayVotes = false,
                 TargetEntity = targetNetEntity
@@ -487,7 +557,7 @@ namespace Content.Server.Voting.Managers
             var webhookState = _voteWebhooks.CreateWebhookIfConfigured(options, _cfg.GetCVar(CCVars.DiscordVotekickWebhook), Loc.GetString("votekick-webhook-name"), options.Title + "\n" + Loc.GetString("votekick-webhook-description", ("initiator", initiatorName), ("target", targetSession)));
 
             // Time out the vote now that we know it will happen
-            TimeoutStandardVote(StandardVoteType.Votekick);
+            TimeoutStandardVote(StandardVoteType.Votekick, TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimeout)));
 
             vote.OnFinished += (_, eventArgs) =>
             {
@@ -594,16 +664,16 @@ namespace Content.Server.Voting.Managers
             }
         }
 
-        private void TimeoutStandardVote(StandardVoteType type)
+        private void TimeoutStandardVote(StandardVoteType type, TimeSpan? timeoutOverride = null)
         {
-            var timeout = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteSameTypeTimeout));
+            var timeout = timeoutOverride ?? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteSameTypeTimeout));
             _standardVoteTimeout[type] = _timing.RealTime + timeout;
             DirtyCanCallVoteAll();
         }
 
-        private Dictionary<string, string> GetGamePresets()
+        private Dictionary<GamePresetPrototype, string> GetGamePresets()
         {
-            var presets = new Dictionary<string, string>();
+            var presets = new Dictionary<GamePresetPrototype, string>();
             
             var prototypeId = _cfg.GetCVar(StarlightCCVars.RoundVotingChancesPrototype);
 
@@ -626,6 +696,20 @@ namespace Content.Server.Voting.Managers
                 if (_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
                     continue;
 
+                //STARLIGHT
+                //check if its on the cooldown list
+                //if the cooldown number is 0 or lower, we dont cooldown this selection anyway
+                if (preset.VoteCooldown > 0)
+                {
+                    if (_presetCooldown.ContainsKey(preset.ID))
+                    {
+                        //admin log it
+                        _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset {preset.ID} skipped for vote selection due to being on cooldown ({_presetCooldown[preset.ID]} votes remaining).");
+                        continue;
+                    }
+                }
+                //STARLIGHT END
+
                 if (chancesPrototype.Chances.TryGetValue(preset.ID, out var chance))
                 {
                     validPresets.Add((preset, chance));
@@ -641,7 +725,7 @@ namespace Content.Server.Voting.Managers
             var selectedPresets = SelectPresetsByChance(validPresets, _cfg.GetCVar(StarlightCCVars.RoundVotingCount));
             foreach (var preset in selectedPresets)
             {
-                presets[preset.preset.ID] = preset.preset.ModeTitle;
+                presets[preset.preset] = preset.preset.ModeTitle;
             }
 
             return presets;

@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Edits by Conflee, taken from TG Station.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "danger_anomaly"
+    },
+    {
+      "name": "danger_clown"
+    },
+    {
+      "name": "danger_fire"
+    },
+    {
+      "name": "danger_gas"
+    },
+    {
+      "name": "danger_rads"
+    },
+    {
+      "name": "danger_shock"
+    },
+    {
+      "name": "flammable_gas"
+    },
+    {
+      "name": "high_pressure"
+    },
+    {
+      "name": "high_temp"
+    },
+    {
+      "name": "hull_breach"
+    },
+    {
+      "name": "low_oxy"
+    },
+    {
+      "name": "low_pressure"
+    },
+    {
+      "name": "low_temp"
+    },
+    {
+      "name": "poison_gas"
+    }
+  ]
+}

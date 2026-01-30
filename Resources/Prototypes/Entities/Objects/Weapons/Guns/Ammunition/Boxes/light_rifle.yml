@@ -59,6 +59,11 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
     - state: sp
+# Starlight-start
+  - type: Tag
+    tags:
+    - MagazineBoxLightRifle
+# Starlight-end
 
 - type: entity
   parent: BaseMagazineBoxLightRifle
@@ -108,7 +113,7 @@
   parent: BaseMagazineBoxLightRifle
   id: MagazineBoxLightRiflePractice
   name: ammunition box (.30 rifle practice)
-  description: A cardboard box of .30 rifle rounds. Intended to hold non-harmful chalk ammunition.
+  description: A cardboard box of .30 rifle rounds. Intended to hold harmless practice ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRiflePractice
@@ -121,8 +126,8 @@
     - state: practice
 
 - type: entity
-  id: MagazineBoxLightRifleIncendiary
   parent: BaseMagazineBoxLightRifle
+  id: MagazineBoxLightRifleIncendiary
   name: ammunition box (.30 rifle incendiary)
   description: A cardboard box of .30 rifle rounds. Intended to hold self-igniting incendiary ammunition.
   components:

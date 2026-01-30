@@ -66,7 +66,6 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly MetaDataSystem _metaData = default!;
         [Dependency] private readonly SharedRoleSystem _roles = default!;
         [Dependency] private readonly ServerDbEntryManager _dbEntryManager = default!;
-        [Dependency] private readonly IServerPreferencesManager _preferences = default!;
         [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
 
         [ViewVariables] private bool _initialized;
@@ -96,7 +95,7 @@ namespace Content.Server.GameTicking
             InitializePlayer();
             InitializeLobbyBackground();
             InitializeGamePreset();
-            DebugTools.Assert(_prototypeManager.Index<JobPrototype>(FallbackOverflowJob).Name == FallbackOverflowJobName,
+            DebugTools.Assert(_prototypeManager.Index(FallbackOverflowJob).Name == FallbackOverflowJobName,
                 "Overflow role does not have the correct name!");
             InitializeGameRules();
             InitializeReplays();

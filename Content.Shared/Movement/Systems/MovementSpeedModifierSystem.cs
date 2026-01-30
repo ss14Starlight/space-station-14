@@ -1,8 +1,7 @@
-using System.Text.Json.Serialization.Metadata;
 using Content.Shared.CCVar;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Events;
+using Content.Shared.Standing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
@@ -11,7 +10,7 @@ namespace Content.Shared.Movement.Systems
     public sealed class MovementSpeedModifierSystem : EntitySystem
     {
         [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private   readonly IConfigurationManager _configManager = default!;
+        [Dependency] private readonly IConfigurationManager _configManager = default!;
 
         private float _frictionModifier;
         private float _airDamping;
@@ -21,6 +20,8 @@ namespace Content.Shared.Movement.Systems
         {
             base.Initialize();
             SubscribeLocalEvent<MovementSpeedModifierComponent, MapInitEvent>(OnModMapInit);
+            SubscribeLocalEvent<MovementSpeedModifierComponent, DownedEvent>(OnDowned);
+            SubscribeLocalEvent<MovementSpeedModifierComponent, StoodEvent>(OnStand);
 
             Subs.CVar(_configManager, CCVars.TileFrictionModifier, value => _frictionModifier = value, true);
             Subs.CVar(_configManager, CCVars.AirFriction, value => _airDamping = value, true);
@@ -39,6 +40,33 @@ namespace Content.Shared.Movement.Systems
             ent.Comp.Friction = _frictionModifier * ent.Comp.BaseFriction;
             ent.Comp.FrictionNoInput = _frictionModifier * ent.Comp.BaseFriction;
             Dirty(ent);
+        }
+
+        private void OnDowned(Entity<MovementSpeedModifierComponent> entity, ref DownedEvent args)
+        {
+            RefreshFrictionModifiers(entity);
+            RefreshMovementSpeedModifiers(entity);
+        }
+
+        private void OnStand(Entity<MovementSpeedModifierComponent> entity, ref StoodEvent args)
+        {
+            RefreshFrictionModifiers(entity);
+            RefreshMovementSpeedModifiers(entity);
+        }
+
+        /// <summary>
+        /// Copy this component's datafields from one entity to another.
+        /// This needs to refresh the modifiers after using CopyComp.
+        /// <summary>
+        public void CopyComponent(Entity<MovementSpeedModifierComponent?> source, EntityUid target)
+        {
+            if (!Resolve(source, ref source.Comp))
+                return;
+
+            CopyComp(source, target, source.Comp);
+            RefreshWeightlessModifiers(target);
+            RefreshMovementSpeedModifiers(target);
+            RefreshFrictionModifiers(target);
         }
 
         public void RefreshWeightlessModifiers(EntityUid uid, MovementSpeedModifierComponent? move = null)
@@ -97,7 +125,8 @@ namespace Content.Shared.Movement.Systems
             Dirty(uid, move);
         }
 
-        public void ChangeBaseSpeed(EntityUid uid, float baseWalkSpeed, float baseSprintSpeed, float acceleration, MovementSpeedModifierComponent? move = null)
+        public void ChangeBaseSpeed(EntityUid uid, float baseWalkSpeed, float baseSprintSpeed, float acceleration, MovementSpeedModifierComponent? move = null,
+         float minSpeed = 0.0f, float maxSpeed = 20.0f) // 🌟Starlight🌟
         {
             if (!Resolve(uid, ref move, false))
                 return;
@@ -105,6 +134,8 @@ namespace Content.Shared.Movement.Systems
             move.BaseWalkSpeed = baseWalkSpeed;
             move.BaseSprintSpeed = baseSprintSpeed;
             move.Acceleration = acceleration;
+            move.MinSpeedMod = minSpeed; // 🌟Starlight🌟
+            move.MaxSpeedMod = maxSpeed; // 🌟Starlight🌟
             Dirty(uid, move);
         }
 

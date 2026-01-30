@@ -10,6 +10,7 @@
   cost: 8500
   recipeUnlocks:
   - PaddyUpgradeKit
+#  - MechEquipmentSecGrabber
   technologyPrerequisites:
   - Ripley2
   radioChannels:
@@ -36,8 +37,7 @@
   - GygaxPeripheralsElectronics
   - GygaxTargetingElectronics
   - WeaponMechCombatUltraRifle
-  technologyPrerequisites:
-  - Paddy
+  - WeaponMechChainSword
   radioChannels:
   - Security
 
@@ -92,8 +92,31 @@
   recipeUnlocks:
   - WeaponIonRifle
   - WeaponIonCarbine
+  - WeaponMechCombatIon
   radioChannels:
   - Security
+
+- type: technology
+  id: SecurityCyberLimbsTech
+  name: research-technology-security-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Weapons/Melee/cybershield.rsi
+    state: cybershield-on
+  discipline: Arsenal
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+    - LeftArmCyberBulwark
+    - RightArmCyberBulwark
+    - LeftArmCyberZeus
+    - RightArmCyberZeus
+    - LeftLegCyberPilebunker
+    - RightLegCyberPilebunker
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Security
+  - Medical
   
 # Tier 3
 
@@ -140,6 +163,23 @@
   radioChannels:
   - Security
 
+- type: technology
+  id: CyberEyeThermalVision
+  name: research-technology-thermalvision-eyes
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eyes_thermal
+  discipline: Arsenal
+  tier: 3
+  cost: 9320
+  recipeUnlocks:
+    - CyberEyeThermal
+  technologyPrerequisites:
+    - CyberEyeNightVision
+  radioChannels:
+  - Security
+  - Medical
+
  # Tier 4 
 
 - type: technology
@@ -156,3 +196,16 @@
   radioChannels:
   - Security
   
+- type: technology
+  id: ScanGateTechnology
+  name: research-technology-scan-gate
+  icon:
+    sprite: _Starlight/Structures/Machines/scan_gate.rsi
+    state: base
+  discipline: Arsenal
+  tier: 4
+  cost: 5000
+  recipeUnlocks:
+  - ScanGateMachineCircuitboard
+  radioChannels:
+  - Security

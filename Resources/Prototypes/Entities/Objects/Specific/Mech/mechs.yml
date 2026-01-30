@@ -7,6 +7,11 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+      - PaddyMech
+# 🌟Starlight-start🌟
+  - type: Prying
+    pryPowered: true
+# 🌟Starlight-end🌟
 
 - type: entity
   id: IndustrialMech
@@ -37,7 +42,7 @@
     equipmentWhitelist:
       tags:
       - SmallMech
-      
+
 - type: entity
   id: NanotrasenMech
   abstract: true
@@ -49,7 +54,7 @@
       path: /Audio/Mecha/lowpowernano.ogg
     nominalSound:
       path: /Audio/Mecha/nominalnano.ogg
-      
+
 - type: entity
   id: SyndieMech
   abstract: true
@@ -130,6 +135,7 @@
   - type: Pullable
   - type: Physics
     bodyType: KinematicController
+  - type: GravityAffected
   - type: Clickable
   - type: WiresPanel
   - type: Fixtures
@@ -174,8 +180,14 @@
         acts: ["Destruction"]
   - type: PowerCellDraw
     enabled: false
-    drawRate: 1
-    delay: 3
+    drawRate: 0.333333333 #Starlight, delay was 3 seconds per draw
+  - type: ActiveInputMover
+# 🌟Starlight-start🌟
+  - type: Prying
+    pryPowered: false
+    force: false
+    useSound: /Audio/Items/jaws_pry.ogg
+# 🌟Starlight-end🌟
 
 # Ripley MK-I
 - type: entity
@@ -241,7 +253,7 @@
   id: MechRipley2
   parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
   name: Ripley APLU MK-II
-  description: The "MK-II" has a pressurized cabin for space operations, but the added weight has slowed it down.
+  description: The "MK-II" has a pressurized cabin for space operations, and stronger clamps are able to force doors open, but the added weight has slowed it down. # 🌟Starlight-Change
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -287,6 +299,10 @@
     graph: PaddyUpgrade
     node: start
     defaultTarget: paddy
+# 🌟Starlight-start🌟
+  - type: Prying
+    pryPowered: true
+# 🌟Starlight-end🌟
 
 - type: entity
   id: MechRipley2Battery
@@ -299,7 +315,7 @@
       - PowerCellHigh
       mech-gas-tank-slot:
       - MechAirTankFilled
-      
+
 # Paddy
 - type: entity
   id: MechPaddy
@@ -323,13 +339,14 @@
   - type: Mech
     equipmentWhitelist:
       tags:
-      - CombatMech
+      - PaddyMech
       - IndustrialMech
     baseState: base
     openState: base-open
     brokenState: base-broken
     mechToPilotDamageMultiplier: 0.60
     airtight: true
+    maxEquipmentAmount: 4 # 🌟Starlight-Change
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -337,9 +354,10 @@
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
+    bluntStaminaDamageFactor: 1.5 # 🌟Starlight-Change
     damage:
       types:
-        Blunt: 30 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. # 
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4
@@ -361,7 +379,7 @@
       - PowerCellHigh
       mech-gas-tank-slot:
       - MechAirTankFilled
-      
+
 - type: entity
   id: MechPaddyFilled
   parent: MechPaddyBattery
@@ -371,6 +389,7 @@
     startingEquipment:
       - WeaponMechCombatDisabler
       - WeaponMechCombatFlashbangLauncher
+#      - MechEquipmentSecGrabber
 
 # Clarke
 - type: entity
@@ -622,6 +641,7 @@
     brokenState: base-broken
     mechToPilotDamageMultiplier: 0.3
     airtight: true
+    maxIntegrity: 325
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -630,11 +650,15 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 25
+        Blunt: 30 #THWACK
         Structural: 180
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2.6
+# 🌟Starlight-start🌟
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.0
+# 🌟Starlight-end🌟
+  - type: Damageable
+    damageModifierSet: GygaxArmor
   - type: MechThrusters
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
@@ -676,9 +700,9 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.15
     airtight: true
-    maxIntegrity: 400
+    maxIntegrity: 465
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -690,10 +714,10 @@
         Blunt: 40
         Structural: 220
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 2
+    baseWalkSpeed: 1.7
+    baseSprintSpeed: 2.2
   - type: Damageable
-    damageModifierSet: MediumArmorNT
+    damageModifierSet: DurandArmor
   - type: MechThrusters
   - type: Repairable
     fuelCost: 30
@@ -742,7 +766,7 @@
     brokenState: marauder-broken
     mechToPilotDamageMultiplier: 0.1
     airtight: true
-    maxIntegrity: 500
+    maxIntegrity: 575
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
@@ -811,7 +835,7 @@
     brokenState: seraph-broken
     mechToPilotDamageMultiplier: 0.05
     airtight: true
-    maxIntegrity: 550
+    maxIntegrity: 700
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
@@ -883,7 +907,7 @@
     brokenState: darkgygax-broken
     mechToPilotDamageMultiplier: 0.15
     airtight: true
-    maxIntegrity: 300
+    maxIntegrity: 375
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
@@ -896,8 +920,8 @@
         Blunt: 30
         Structural: 200
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.7
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 4.5 # 🌟Starlight-Change - Faster than regular Gygax
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: MechThrusters
@@ -958,7 +982,7 @@
     brokenState: mauler-broken
     mechToPilotDamageMultiplier: 0.1
     airtight: true
-    maxIntegrity: 500
+    maxIntegrity: 550
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
@@ -974,11 +998,18 @@
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
   - type: Damageable
-    damageModifierSet: HeavyArmorSyndi
+    damageModifierSet: MaulerArmor
   - type: MechThrusters
   - type: Repairable
     fuelCost: 50
     doAfterDelay: 25
+  - type: PointLight
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
+    energy: 5
+    color: "#ff0000"
+    enabled: false
 
 - type: entity
   id: MechMaulerSyndieBattery

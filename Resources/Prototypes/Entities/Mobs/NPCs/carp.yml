@@ -5,6 +5,15 @@
   description: It's a space carp.
   abstract: true
   components:
+  # Starlight-start: Languages
+    - type: LanguageSpeaker
+    - type: LanguageKnowledge
+      speaks:
+      - Carptongue
+      understands:
+      - Carptongue
+      - Thaveyan
+  # Starlight-end
     - type: InputMover
     - type: MobMover
     - type: HTN
@@ -44,7 +53,7 @@
       baseWalkSpeed: 2.5
       baseSprintSpeed: 3.5
     - type: Stamina
-      critThreshold: 100
+      baseCritThreshold: 100
     - type: DamageStateVisuals
       states:
         Alive:
@@ -76,8 +85,7 @@
       tags:
         - Carp
         - DoorBumpOpener
-    - type: ReplacementAccent
-      accent: genericAggressive
+        - CannotSuicide
     - type: Speech
       speechVerb: LargeMob
     - type: InteractionPopup
@@ -146,7 +154,7 @@
   components:
   - type: PointLight
     radius: 1.5
-    energy: 0.5
+    energy: 2
   - type: RgbLightController
     layers: [ 0 ]
 
@@ -172,12 +180,25 @@
       rules: ghost-role-information-space-dragon-summoned-carp-rules
       mindRoles:
       - MindRoleGhostRoleTeamAntagonistFlock
-      raffle:
-        settings: short
     - type: GhostTakeoverAvailable
     - type: HTN
       rootTask:
         task: DragonCarpCompound
+    - type: Temperature
+    - type: TemperatureDamage
+      heatDamageThreshold: 1200
+   #Starlight
+    - type: Flammable
+      damage:
+        types: {}
+    - type: Damageable
+      damageModifierSet: DragonCarpResistances
+    - type: Prying
+      pryPowered: true
+      force: true
+      speedModifier: 1.5 # faster because carp are kinda strong
+      useSound:
+         path: /Audio/Items/crowbar.ogg 
 
 - type: entity
   id: MobCarpDungeon
@@ -226,7 +247,7 @@
         0: Alive
         150: Dead
     - type: Stamina
-      critThreshold: 150
+      baseCritThreshold: 150
     - type: DamageStateVisuals
       states:
         Alive:

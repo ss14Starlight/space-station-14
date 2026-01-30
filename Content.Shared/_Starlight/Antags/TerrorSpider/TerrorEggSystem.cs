@@ -5,6 +5,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.UserInterface;
 using Robust.Shared.Player;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Shared._Starlight.Antags.TerrorSpider;
 public sealed class TerrorEggSystem : AccUpdateEntitySystem

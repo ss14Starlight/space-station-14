@@ -3,9 +3,12 @@
   parent: SuitStorageBase
   suffix: BlueShield
   components:
-  - type: StorageFill
-    contents:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
         - id: OxygenTankFilled
+        - id: NitrogenTankFilled
         - id: ClothingOuterHardsuitBlueshield
         - id: ClothingMaskBreath
         - id: ClothingShoesBootsMagBSO
@@ -16,6 +19,7 @@
   id: SuitStorageBlueShieldBluespaced
   suffix: BlueShield, Bluespaced
   parent: SuitStorageBlueShield
+  categories: [ Spawner ]
   components:
   - type: TriggerOnSpawn
   - type: SpawnOnTrigger

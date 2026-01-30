@@ -1,4 +1,3 @@
-using Content.Shared.Access.Components;
 using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -19,7 +18,19 @@ public sealed partial class LockComponent : Component
     /// </summary>
     [DataField("locked"), ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
-    public bool Locked  = true;
+    public bool Locked = true;
+
+    /// <summary>
+    /// If true, will show verbs to lock and unlock the item. Otherwise, it will not.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool ShowLockVerbs = true;
+
+    /// <summary>
+    /// If true will show examine text.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool ShowExamine = true;
 
     /// <summary>
     /// Whether or not the lock is locked by simply clicking.
@@ -27,7 +38,7 @@ public sealed partial class LockComponent : Component
     [DataField("lockOnClick"), ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public bool LockOnClick;
-    
+
     [DataField("mindShieldLock"), ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public bool MindShieldLock = false;
@@ -39,16 +50,42 @@ public sealed partial class LockComponent : Component
     public bool UnlockOnClick = true;
 
     /// <summary>
-    /// Whether the lock requires access validation through <see cref="AccessReaderComponent"/>
+    /// Whether or not the lock is locked when used it hand.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool LockInHand;
+
+    /// <summary>
+    /// Whether or not the lock is unlocked when used in hand.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool UnlockInHand;
+
+    /// <summary>
+    /// Whether access requirements should be checked for this lock.
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool UseAccess = true;
 
     /// <summary>
+    /// What readers should be checked to determine if an entity has access.
+    /// If null, all possible readers are checked.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public LockTypes? CheckedLocks;
+
+    /// <summary>
+    /// Whether any reader needs to be accessed to operate this lock.
+    /// By default, all readers need to be able to be accessed.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool CheckForAnyReaders;
+
+    /// <summary>
     /// The sound played when unlocked.
     /// </summary>
     [DataField("unlockingSound"), ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier UnlockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_off.ogg")
+    public SoundSpecifier? UnlockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_off.ogg")
     {
         Params = AudioParams.Default.WithVolume(-5f),
     };
@@ -57,7 +94,7 @@ public sealed partial class LockComponent : Component
     /// The sound played when locked.
     /// </summary>
     [DataField("lockingSound"), ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier LockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_on.ogg")
+    public SoundSpecifier? LockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_on.ogg")
     {
         Params = AudioParams.Default.WithVolume(-5f)
     };
@@ -88,6 +125,32 @@ public sealed partial class LockComponent : Component
     [DataField]
     [AutoNetworkedField]
     public TimeSpan UnlockTime;
+
+    /// <summary>
+    /// Whether this lock can be locked again after being unlocked.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool AllowRepeatedLocking = true;
+
+    // Starlight Start
+    [DataField]
+    public bool PopupMessage = true;
+    
+    [DataField]
+    public bool PowerNeeded = false;
+
+    /// <summary>
+    ///  Whether or not the lock can be auto unlocked when pickuped.
+    /// </summary>
+    [DataField]
+    public bool AutoUnlock = false;
+
+    /// <summary>
+    ///  Whether or not the lock can be auto locked when placed.
+    /// </summary>
+    [DataField]
+    public bool AutoLock = false;
+    // Starlight End
 }
 
 /// <summary>

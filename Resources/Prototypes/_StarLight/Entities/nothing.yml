@@ -1,0 +1,12 @@
+# This is an entity that immediately deletes itself, for cases
+# where you must spawn an entity due to some constraint, but
+# don't really want to, and want to avoid the merge pain from
+# changing the related c#.
+
+- type: entity
+  id: NothingEntity
+  name: nothing object
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: DeleteOnTrigger

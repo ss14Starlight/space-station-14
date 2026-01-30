@@ -6,6 +6,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Cargo.Prototypes;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Prototypes;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
@@ -23,6 +24,8 @@ public sealed class CargoTest
         // This is ignored because it is explicitly intended to be able to sell for more than it costs.
         new("FunCrateGambling")
     ];
+
+    private const float epsilon = 0.01f; // Starlight - reduce test flakiness
 
     [Test]
     public async Task NoCargoOrderArbitrage()
@@ -48,7 +51,7 @@ public sealed class CargoTest
                     var ent = entManager.SpawnEntity(proto.Product, testMap.MapCoords);
                     var price = pricing.GetPrice(ent);
 
-                    Assert.That(price, Is.AtMost(proto.Cost), $"Found arbitrage on {proto.ID} cargo product! Cost is {proto.Cost} but sell is {price}!");
+                    Assert.That(price, Is.AtMost(proto.Cost + epsilon), $"Found arbitrage on {proto.ID} cargo product! Cost is {proto.Cost} but sell is {price}!"); // Starlight-edit - add epsilon to avoid fp precision issues
                     entManager.DeleteEntity(ent);
                 }
             });
@@ -214,13 +217,10 @@ public sealed class CargoTest
 
     [TestPrototypes]
     private const string StackProto = @"
-- type: entity
-  id: A
-
 - type: stack
   id: StackProto
   name: stack-steel
-  spawn: A
+  spawn: StackEnt
 
 - type: entity
   id: StackEnt
@@ -246,6 +246,27 @@ public sealed class CargoTest
             var ent = entManager.SpawnEntity("StackEnt", MapCoordinates.Nullspace);
             var price = priceSystem.GetPrice(ent);
             Assert.That(price, Is.EqualTo(100.0));
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task MobPrice()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+
+        var componentFactory = pair.Server.ResolveDependency<IComponentFactory>();
+
+        await pair.Server.WaitAssertion(() =>
+        {
+            Assert.Multiple(() =>
+            {
+                foreach (var (proto, comp) in pair.GetPrototypesWithComponent<MobPriceComponent>())
+                {
+                    Assert.That(proto.TryGetComponent<MobStateComponent>(out _, componentFactory), $"Found MobPriceComponent on {proto.ID}, but no MobStateComponent!");
+                }
+            });
         });
 
         await pair.CleanReturnAsync();

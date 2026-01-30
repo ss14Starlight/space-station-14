@@ -1,0 +1,106 @@
+- type: entity
+  parent: BaseStructureComputer
+  id: Masterchair
+  name: observation masterchair
+  description: If you think you are safe from prying eyes, you would be dead wrong— Big Brother from 1984 trembles whenever John Nanotrasen sits in this, watching every move, fining you for each inconsistency, and noting down collective failures.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Rotatable
+  - type: Transform
+    anchored: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - TableMask
+  - type: Animateable
+  - type: LightningTarget
+    priority: 1
+  - type: RequireProjectileTarget
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/masterchair.rsi
+    layers:
+    - state: base
+    noRot: true
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,-0.05"
+  - type: RemoteEyeConsole
+    remoteEntityProto: CentcommConsoleEye
+    color: "#00FF00"
+    actions:
+    - SyntrunnerActionExitConsole
+  - type: UserInterface
+    interfaces:
+     enum.RemoteEyeUIKey.Key:
+        type: RemoteEyeConsoleBui
+  - type: ActivateUiOnStrapped
+    key: enum.RemoteEyeUIKey.Key
+  - type: ChildEntities
+    childPrototypes:
+      - prototype: MasterchairOverlay
+        
+- type: entity
+  id: MasterchairOverlay
+  name: observation masterchair
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Structures/Machines/masterchair.rsi
+    layers:
+    - state: overlay
+    noRot: true
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  parent:
+  - Incorporeal
+  - BaseMob
+  id: CentcommConsoleEye
+  name: "???"
+  description: "ERROR"
+  categories: [ HideSpawnMenu ]
+  suffix: DO NOT MAP
+  components:
+  - type: NoFTL
+  - type: WarpPoint
+    follow: true
+  - type: Eye
+    pvsScale: 1.5
+  - type: StationAiOverlay
+    allowCrossGrid: true
+  - type: Visibility
+    layer: 32768
+  - type: Sprite
+    sprite: _Starlight/Mobs/Net/net_eye.rsi
+    layers:
+    - map: ["base"]
+      state: enemy
+      shader: unshaded
+  - type: SpriteWhitelisted
+    localEntityWhitelist:
+      tags:
+        - Syndicate
+        - Abductor
+    passedLayers:
+      base:
+        state: enemy
+    failedLayers:
+      base:
+        state: centcomm
+  - type: Tag
+    tags:
+    - CantInteract

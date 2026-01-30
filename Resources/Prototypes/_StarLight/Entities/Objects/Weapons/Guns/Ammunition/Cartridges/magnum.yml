@@ -3,8 +3,8 @@
   name: cartridge (.45 magnum rubber)
   parent: BaseCartridgeMagnum
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: RubberBulletTrace
+  - type: CartridgeAmmo
+    proto: RubberBulletTrace
   - type: Sprite
     layers:
       - state: base
@@ -12,3 +12,27 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
+
+- type: entity
+  id: CartridgeMagnumImprovised
+  name: improvised cartridge (.45 magnum)
+  description: A handmade revolver bullet, stuffed to the brim with phosphorus for extra 'oomph'. Still not as good as a normal magnum bullet.
+  parent: [BaseCartridgePistol, BaseMinorContraband]
+  components:
+  - type: CartridgeAmmo
+    proto: BulletMagnumTraceImprovised
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Casings/improvised_casing.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#717171"
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeMagnumImprovised
+  - type: Construction
+    graph: ImprovisedMagnumBulletGraph
+    node: shell

@@ -9,7 +9,15 @@
   id: BaseMobSpecies
   abstract: true
   components:
-  - type: SurgeryTarget
+  - type: Railroadable # 🌟Starlight🌟
+  - type: SurgeryTarget # 🌟Starlight🌟
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    understands:
+    - GalacticCommon
+  # Starlight-end
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -36,10 +44,13 @@
     - map: [ "id" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "misc" ] # Starlight
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
     - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.TailExtras" ]
     - map: [ "enum.HumanoidVisualLayers.Tail" ]
     - map: [ "mask" ]
     - map: [ "head" ]
@@ -82,6 +93,7 @@
     horizontalRotation: 90
   - type: HumanoidAppearance
     species: Human
+  - type: TypingIndicator
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7
@@ -117,28 +129,20 @@
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
   - type: StatusEffects
     allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
-    - SeeingRainbows
+    - Friction
     - Electrocution
-    - Drunk
-    - SlurredSpeech
     - RatvarianLanguage
     - PressureImmunity
     - Muted
-    - ForcedSleep
     - TemporaryBlindness
     - Pacified
-    - StaminaModifier
     - Flashed
     - RadiationProtection
-    - Drowsiness
     - Adrenaline
+    - PoliteLanguage # STARLIGHT
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -168,6 +172,7 @@
   - type: SleepEmitSound
   - type: SSDIndicator
   - type: StandingState
+  - type: Crawler
   - type: Dna
   - type: MindContainer
     showExamineInfo: true
@@ -182,6 +187,9 @@
     factions:
     - NanoTrasen
   - type: CreamPied
+  - type: ParcelWrapOverride
+    parcelPrototype: WrappedParcelHumanoid
+    wrapDelay: 5
   - type: Stripping
   - type: UserInterface
     interfaces:
@@ -195,6 +203,9 @@
         type: SurgeryBui
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
+      enum.ThavenMoodsUiKey.Key: # impstation edit
+        type: ThavenMoodsBoundUserInterface
+        requireInputValidation: false
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -219,6 +230,14 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+  - type: ActiveInputMover # Starlight
+  # Starlight Start: Social Interactions
+  - type: PhysicalSocialInteractionGiver
+  - type: PhysicalSocialInteractionReceiver
+    interactionPrototypes:
+    - Pet
+    - Boop
+  # Starlight End
 
 - type: entity
   save: false
@@ -250,10 +269,11 @@
   - type: DarkenedVision
   # Other
   - type: Temperature
-    heatDamageThreshold: 325
-    coldDamageThreshold: 260
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
     coldDamage:
       types:
         Cold: 0.1 #per second, scales with temperature & other constants
@@ -262,9 +282,9 @@
         Heat: 1.5 #per second, scales with temperature & other constants
   - type: TemperatureSpeed
     thresholds:
-      293: 0.8
-      280: 0.6
-      260: 0.4
+      293: 0.9
+      280: 0.8
+      260: 0.7
   - type: ThermalRegulator
     metabolismHeat: 800
     radiatedHeat: 100
@@ -288,6 +308,7 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
+  - type: StunVisuals
 
 - type: entity
   save: false
@@ -335,10 +356,12 @@
     - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
     - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.TailExtras" ] # Starlight
     - map: [ "enum.HumanoidVisualLayers.Tail" ]
     - map: [ "mask" ]
     - map: [ "head" ]

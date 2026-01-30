@@ -1,9 +1,8 @@
 using System.Numerics;
 using Content.Server.Shuttles.Components;
-using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Shared.CCVar;
-using Content.Shared.Salvage;
+using Content.Shared.Random.Helpers; // Starlight
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Station.Components;
 using Robust.Shared.Collections;
@@ -11,6 +10,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._Starlight.Station; // Starlight
+using System.Linq; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -22,6 +23,7 @@ public sealed partial class ShuttleSystem
         SubscribeLocalEvent<StationCargoShuttleComponent, StationPostInitEvent>(OnCargoSpawnPostInit);
 
         SubscribeLocalEvent<GridFillComponent, MapInitEvent>(OnGridFillMapInit);
+        SubscribeLocalEvent<RandomGridFillComponent, MapInitEvent>(OnRandomGridFillMapInit); // Starlight
 
         Subs.CVar(_cfg, CCVars.GridFill, OnGridFillChange);
     }
@@ -54,6 +56,14 @@ public sealed partial class ShuttleSystem
 
     private void OnCargoSpawnPostInit(EntityUid uid, StationCargoShuttleComponent component, ref StationPostInitEvent args)
     {
+        if (TryComp<StationDataComponent>(uid, out var station))
+            foreach (var grid in station.Grids)
+            {
+                if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                if (!becomesStation.AllowCargoShuttle)
+                    return;
+                break; // can break, we already found the grid that created this station
+            }
         CargoSpawn(uid, component);
     }
 
@@ -62,10 +72,7 @@ public sealed partial class ShuttleSystem
         if (!_cfg.GetCVar(CCVars.GridFill))
             return;
 
-        if (!TryComp(uid, out StationDataComponent? dataComp))
-            return;
-
-        var targetGrid = _station.GetLargestGrid(dataComp);
+        var targetGrid = _station.GetLargestGrid(uid);
 
         if (targetGrid == null)
             return;
@@ -94,7 +101,7 @@ public sealed partial class ShuttleSystem
 
         var dungeonProtoId = _random.Pick(group.Protos);
 
-        if (!_protoManager.TryIndex(dungeonProtoId, out var dungeonProto))
+        if (!_protoManager.Resolve(dungeonProtoId, out var dungeonProto))
         {
             return false;
         }
@@ -122,7 +129,7 @@ public sealed partial class ShuttleSystem
     private bool TryGridSpawn(EntityUid targetGrid, EntityUid stationUid, MapId mapId, GridSpawnGroup group, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
-
+        
         if (group.Paths.Count == 0)
         {
             Log.Error($"Found no paths for GridSpawn");
@@ -165,12 +172,7 @@ public sealed partial class ShuttleSystem
         if (!_cfg.GetCVar(CCVars.GridFill))
             return;
 
-        if (!TryComp<StationDataComponent>(uid, out var data))
-        {
-            return;
-        }
-
-        var targetGrid = _station.GetLargestGrid(data);
+        var targetGrid = _station.GetLargestGrid(uid);
 
         if (targetGrid == null)
             return;
@@ -178,22 +180,45 @@ public sealed partial class ShuttleSystem
         // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
         _mapSystem.CreateMap(out var mapId);
 
-        foreach (var group in component.Groups.Values)
+        foreach (var group in component.Groups) // SL edit
         {
-            var count = _random.Next(group.MinCount, group.MaxCount + 1);
+            var count = _random.Next(group.Value.MinCount, group.Value.MaxCount + 1); // SL edit
 
+            // Starlight start
+            BecomesStationMidRoundComponent? station = null;
+            if (TryComp<StationDataComponent>(uid, out var data))
+                foreach (var grid in data.Grids)
+                {
+                    if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
+                    station = becomesStation;
+                    break; // can break, we already found the grid that created this station
+                }
+            // Starlight end
+            
             for (var i = 0; i < count; i++)
             {
                 EntityUid spawned;
 
-                switch (group)
+                switch (group.Value) // SL edit
                 {
                     case DungeonSpawnGroup dungeon:
+                        // Starlight start | block all dungeon spawns
+                        if(station is not null)
+                            if (!station.AllowDungeonSpawn)
+                                continue;
+                        // Starlight end
                         if (!TryDungeonSpawn(targetGrid.Value, dungeon, out spawned))
                             continue;
 
                         break;
                     case GridSpawnGroup grid:
+                        // Starlight start
+                        if (station is not null)
+                        {
+                            if (station.AllowedGridSpawns is null) continue; // safety catch
+                            if (!station.AllowedGridSpawns.Contains(group.Key)) continue; // group name must be whitelisted
+                        }
+                        // Starlight end
                         if (!TryGridSpawn(targetGrid.Value, uid, mapId, grid, out spawned))
                             continue;
 
@@ -202,24 +227,24 @@ public sealed partial class ShuttleSystem
                         throw new NotImplementedException();
                 }
 
-                if (_protoManager.TryIndex(group.NameDataset, out var dataset))
+                if (_protoManager.Resolve(group.Value.NameDataset, out var dataset)) // SL edit
                 {
                     _metadata.SetEntityName(spawned, _salvage.GetFTLName(dataset, _random.Next()));
                 }
 
-                if (group.Hide)
+                if (group.Value.Hide) // SL edit
                 {
                     var iffComp = EnsureComp<IFFComponent>(spawned);
                     iffComp.Flags |= IFFFlags.HideLabel;
                     Dirty(spawned, iffComp);
                 }
 
-                if (group.StationGrid)
+                if (group.Value.StationGrid) // SL edit
                 {
                     _station.AddGridToStation(uid, spawned);
                 }
 
-                EntityManager.AddComponents(spawned, group.AddComponents);
+                EntityManager.AddComponents(spawned, group.Value.AddComponents); // SL edit
             }
         }
 
@@ -283,6 +308,83 @@ public sealed partial class ShuttleSystem
 
         _mapSystem.DeleteMap(mapId);
     }
+
+    // Starlight begin
+    private void OnRandomGridFillMapInit(EntityUid uid, RandomGridFillComponent component, MapInitEvent args)
+    {
+        if (!_cfg.GetCVar(CCVars.GridFill))
+            return;
+
+        if (!TryComp<DockingComponent>(uid, out var dock) ||
+            !TryComp(uid, out TransformComponent? xform) ||
+            xform.GridUid == null)
+        {
+            return;
+        }
+
+        if (component.PathWeights.Count == 0) {
+            Log.Error($"Error loading gridfill dock {ToPrettyString(uid)} due to lacking any PathWeights");
+            return;
+        }
+
+        var untriedGrids = new Dictionary<ResPath, float>(component.PathWeights);
+
+        while (_random.TryPickAndTake(untriedGrids, out var selectedGridPath)) {
+
+            // Spawn on a dummy map and try to dock if possible, otherwise dump it.
+            _mapSystem.CreateMap(out var tempMapId);
+            var valid = false;
+
+            if (_loader.TryLoadGrid(tempMapId, selectedGridPath, out var grid))
+            {
+                var escape = GetSingleDock(grid.Value);
+
+                if (escape != null)
+                {
+                    var config = _dockSystem.GetDockingConfig(grid.Value, xform.GridUid.Value, escape.Value.Entity, escape.Value.Component, uid, dock);
+
+                    if (config != null)
+                    {
+                        var shuttleXform = Transform(grid.Value);
+                        FTLDock((grid.Value, shuttleXform), config);
+
+                        if (TryComp<StationMemberComponent>(xform.GridUid, out var stationMember))
+                        {
+                            _station.AddGridToStation(stationMember.Station, grid.Value);
+                        }
+
+                        valid = true;
+                    }
+                }
+
+                foreach (var compReg in component.AddComponents.Values)
+                {
+                    var compType = compReg.Component.GetType();
+
+                    if (HasComp(grid.Value, compType))
+                        continue;
+
+                    var comp = Factory.GetComponent(compType);
+                    AddComp(grid.Value, comp, true);
+                }
+            }
+            else
+            {
+                Log.Info($"Failed to place {selectedGridPath} for gridfill of dock {ToPrettyString(uid)}, cycling");
+            }
+
+            _mapSystem.DeleteMap(tempMapId);
+
+            if (valid)
+            {
+                return;
+            }
+        }
+
+        Log.Error($"Error placing all possible gridfills for gridfill dock {ToPrettyString(uid)}");
+        DebugTools.Assert($"Error placing all possible gridfills for gridfill dock {ToPrettyString(uid)}");
+    }
+    // Starlight end
 
     private (EntityUid Entity, DockingComponent Component)? GetSingleDock(EntityUid uid)
     {

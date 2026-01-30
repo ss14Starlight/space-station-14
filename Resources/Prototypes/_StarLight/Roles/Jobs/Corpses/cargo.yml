@@ -1,0 +1,54 @@
+- type: startingGear
+  id: MailTechCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargo
+    ears: ClothingHeadsetCargo
+    shoes: ClothingShoesBootsWork
+    head: ClothingHeadHatCargosoft
+    gloves: ClothingHandsGlovesFingerless
+    belt: MailBag
+    pocket1: WeaponMeleeBoxcutter
+
+- type: startingGear
+  id: CargoTechCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargo
+    ears: ClothingHeadsetCargo
+    shoes: ClothingShoesBootsWork
+    head: ClothingHeadHatCargosoft
+    outerClothing: ClothingOuterWinterCargo
+    gloves: ClothingHandsGlovesFingerless
+    belt: ClothingBeltUtility
+    pocket1: AppraisalTool
+
+- type: startingGear
+  id: SalvageSpecialistCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    ears: ClothingHeadsetCargo
+    shoes: ClothingShoesBootsSalvage
+    gloves: ClothingHandsGlovesFingerless
+    belt: ClothingBeltUtility
+    pocket1: RadioHandheldExpedition
+
+- type: startingGear
+  id: MinerCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMiningSpecialist
+    ears: ClothingHeadsetMining
+    shoes: ClothingShoesBootsSalvage
+    gloves: ClothingHandsGlovesFingerless
+    belt: OreBag
+    pocket1: RadioHandheldExpedition
+
+- type: startingGear
+  id: QuartermasterCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitQM
+    ears: ClothingHeadsetCargo
+    shoes: ClothingShoesBootsWork
+    head: ClothingHeadHatBeretQM
+    gloves: ClothingHandsGlovesFingerless
+    belt: ClothingBeltUtility
+    neck: ClothingNeckCloakQm
+    pocket1: CigarGold

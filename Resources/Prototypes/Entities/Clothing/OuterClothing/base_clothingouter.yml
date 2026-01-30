@@ -40,6 +40,7 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+  - type: SwitchableEquipMode # Starlight
   - type: StaticPrice
     price: 70
 
@@ -115,7 +116,7 @@
     heatingCoefficient: 0.01
     coolingCoefficient: 0.01
   - type: ClothingSpeedModifier
-    walkModifier: 0.4
+    walkModifier: 0.6
     sprintModifier: 0.6
   - type: HeldSpeedModifier
   - type: Item
@@ -130,6 +131,9 @@
         Piercing: 0.95
         Heat: 0.90
         Radiation: 0.25
+    # Starlight edit start - ignore knockdown
+    ignoreKnockdown: true
+    # Starlight edit end
   - type: ToggleableClothing
     slot: head
   - type: ContainerContainer
@@ -147,6 +151,12 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+  - type: HardsuitChemicalImmunity #starlight
+  - type: HideLayerClothing
+    slots:
+    - Tail
+  - type: ArmorSparkEffect #starlight
+  - type: HeatRadiationBlocker # Starlight - Prevents the body from radiating heat
 
 - type: entity
   abstract: true
@@ -176,6 +186,10 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+  - type: HideLayerClothing
+    slots:
+    - Tail
+  - type: HeatRadiationBlocker # Starlight - Prevents the body from radiating heat
 
 - type: entity
   parent: ClothingOuterBase

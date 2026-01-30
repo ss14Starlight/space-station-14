@@ -14,8 +14,14 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
     {
         base.Started(uid, comp, gameRule, args);
 
-        if (!TryGetRandomStation(out var chosenStation))
-            return;
+        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
+        EntityUid? chosenStation = null;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        chosenStation = stationEvent.TargetStation;
+        if (chosenStation is null)
+            if (!TryGetRandomStation(out chosenStation))
+                return;
+        //Starlight end
 
         var query = EntityQueryEnumerator<SiliconLawBoundComponent, TransformComponent, IonStormTargetComponent>();
         while (query.MoveNext(out var ent, out var lawBound, out var xform, out var target))

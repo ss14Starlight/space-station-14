@@ -6,8 +6,13 @@ admin-verb-make-nuclear-operative = Make target into a lone Nuclear Operative.
 admin-verb-make-pirate = Make the target into a pirate. Note this doesn't configure the game rule.
 admin-verb-make-head-rev = Make the target into an SKB revolutionary agent.
 admin-verb-make-thief = Make the target into a thief.
-admin-verb-make-changeling = Make the target into a changeling.
 admin-verb-make-paradox-clone = Create a Paradox Clone ghost role of the target.
+admin-verb-make-changeling-wip = Make the target into a (upstream) Changeling.
+admin-verb-make-vampire = Make the target into a vampire.
+admin-verb-make-wizard = Make the target into a Wizard.
+admin-verb-make-space-ninja = Make the target into a Space Ninja.
+admin-verb-make-changeling = Make the target into a Changeling.
+
 
 admin-verb-text-make-traitor = Make Traitor
 admin-verb-text-make-initial-infected = Make Initial Infected
@@ -18,5 +23,8 @@ admin-verb-text-make-head-rev = Make soviet SKB agent
 admin-verb-text-make-thief = Make Thief
 admin-verb-text-make-changeling = Make Changeling
 admin-verb-text-make-paradox-clone = Create Paradox Clone
+admin-verb-text-make-changeling-wip = Make Changeling (Upstream, WIP)
+admin-verb-text-make-wizard = Make Wizard
+admin-verb-text-make-space-ninja = Make Ninja
 
 admin-overlay-antag-classic = ANTAG

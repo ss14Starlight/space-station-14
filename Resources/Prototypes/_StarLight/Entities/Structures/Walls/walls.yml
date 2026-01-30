@@ -90,7 +90,7 @@
 - type: entity
   parent: BaseWall
   id: WallConcrete
-  name: conrete wall
+  name: concrete wall
   suffix: Reinforced
   components:
   - type: Damageable
@@ -122,3 +122,17 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+
+# Xenoborg
+- type: entity
+  parent: WallSolid
+  id: WallXenoborgRCD
+  name: light xenoborg wall
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/xenoborglight.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/xenoborglight.rsi
+  - type: IconSmooth
+    key: walls
+    base: xenoborglight

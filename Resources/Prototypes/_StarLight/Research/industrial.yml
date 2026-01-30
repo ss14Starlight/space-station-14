@@ -18,6 +18,9 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
+  - BorgModuleAdvancedLoading
+  technologyPrerequisites:
+  - CritterMechs
   radioChannels:
   - Supply
 
@@ -61,3 +64,63 @@
   - RipleyAPLU
   radioChannels:
   - Supply
+
+- type: technology
+  id: PointDefenseWeaponry
+  name: research-technology-point-defense
+  icon:
+    sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+    state: base
+  discipline: Industrial
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - WeaponTurretPointDefenseMachineCircuitboard
+  technologyPrerequisites:
+  - SpaceScanning
+  radioChannels:
+  - Engineering
+
+- type: technology
+  id: CargoCyberLimbsTech
+  name: research-technology-cargo-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: ripletclaw
+  discipline: Industrial
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+    - LeftArmCyberSpacer
+    - RightArmCyberSpacer
+    - LeftArmCyberRiplet
+    - RightArmCyberRiplet
+    - LeftLegCyberHydraulic
+    - RightLegCyberHydraulic
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Medical
+  - Supply
+
+# Tier 3
+
+- type: technology
+  id: EngineeringCyberLimbsTech
+  name: research-technology-engineering-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: rcd
+  discipline: Industrial
+  tier: 3
+  cost: 9320
+  recipeUnlocks:
+    - LeftArmCyberEngineer
+    - RightArmCyberEngineer
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Medical
+  - Engineering
+
+# Tier 4

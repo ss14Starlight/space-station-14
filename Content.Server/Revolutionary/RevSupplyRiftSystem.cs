@@ -1,3 +1,4 @@
+using Content.Server.Administration.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Dragon;
 using Content.Server.GameTicking;
@@ -11,6 +12,7 @@ using Content.Shared.Chat;
 using Content.Shared.Dragon;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
+using Content.Shared.Ghost;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -26,9 +28,14 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Server.AlertLevel; // starlight
+using Content.Server.Station.Systems;
+using Content.Shared.Starlight.CCVar; // starlight
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 
 namespace Content.Server.Revolutionary;
 
@@ -46,6 +53,10 @@ public sealed class RevSupplyRiftSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private readonly AlertLevelSystem _alert = default!; // Starlight
+    [Dependency] private readonly StationSystem _station = default!; // starlight
+    [Dependency] private readonly IConfigurationManager _config = default!; // Starlight
 
     private const string RevSupplyRiftListingId = "RevSupplyRiftListing";
     
@@ -473,14 +484,30 @@ public sealed class RevSupplyRiftSystem : EntitySystem
     {
         // Count active rifts (those that are in Finished state)
         int activeRiftCount = 0;
+        EntityUid rift = default; // there has to be a better way to do this? (starlight)
         var riftsQuery = EntityQueryEnumerator<RevSupplyRiftComponent, DragonRiftComponent>();
         while (riftsQuery.MoveNext(out _, out var revRift, out var dragonRift))
         {
             if (revRift.State == DragonRiftState.Finished)
             {
+                rift = revRift.Owner;
                 activeRiftCount++;
             }
+            
         }
+
+        if (activeRiftCount >= _config.GetCVar(StarlightCCVars.AutogammaRiftCount) && _config.GetCVar(StarlightCCVars.AutogammaRiftEnabled)) //#region Starlight Autogamma
+        {
+            var xform = Transform(rift);
+            var station = _station.GetStationInMap(xform.MapID);
+            if (station != null)
+            {
+                _chat.DispatchGlobalAnnouncement(
+                    Loc.GetString("centcomm-revs-gammarift"),
+                    Loc.GetString("cmd-announce-sender"));
+                _alert.SetLevel(station.Value, "gamma", true, true, true, true);
+            }
+        } //#endregion Starlight Autogamma
         
         // Find all store components
         var query = EntityQueryEnumerator<StoreComponent>();
@@ -578,7 +605,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
     }
 
     /// <summary>
-    /// Sends a message to all revolutionaries about the rift being placed.
+    /// Sends a message to all revolutionaries about the rift being placed. And also ghosts
     /// </summary>
     private void SendRiftPlacedMessage(EntityUid riftUid)
     {
@@ -620,6 +647,41 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             }
         }
 
-        Logger.InfoS("rev-supply-rift", $"Sent rift placed message to all revolutionaries: {message}");
+        // Send to ghosts so they don't miss out
+        var nonAdminGhostClients = Filter.Empty()
+            .AddWhereAttachedEntity(HasComp<GhostComponent>)
+            .Recipients
+            .Where(p => !_adminManager.IsAdmin(p))
+            .Select(p => p.Channel);
+        
+        var ghostWrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", 
+            ("sender", sender), 
+            ("message", message));
+        
+        _chatManager.ChatMessageToMany(ChatChannel.Dead, message, ghostWrappedMessage, riftUid, false, true, nonAdminGhostClients.ToList(), Color.Red);
+
+        // Send alert
+        var adminMessage = $"Revolutionary supply rift placed by {placedBy} {locationString}";
+        _chatManager.SendAdminAlert(adminMessage);
+        
+        // And announcement
+        var adminClients = _adminManager.ActiveAdmins.Select(p => p.Channel);
+        var adminWrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", 
+            ("sender", sender), 
+            ("message", message));
+        
+        _chatManager.ChatMessageToMany(ChatChannel.Admin, message, adminWrappedMessage, riftUid, false, true, adminClients.ToList(), Color.Red);
+    }
+
+    /// <summary>
+    /// Gets all clients
+    /// </summary>
+    private IEnumerable<INetChannel> GetDeadChatClients()
+    {
+        return Filter.Empty()
+            .AddWhereAttachedEntity(HasComp<GhostComponent>)
+            .Recipients
+            .Union(_adminManager.ActiveAdmins)
+            .Select(p => p.Channel);
     }
 }

@@ -1,0 +1,21 @@
+- files:
+  - "DonkPockets.ogg"
+  - "Greybull.ogg"
+  - "JOIN_CARGONIA.ogg"
+  - "JOIN_ENGINEERING.ogg"
+  - "JOIN_MEDICAL.ogg"
+  - "JOIN_SECURITY.ogg"
+  - "JOIN_THE_JANITORS2.ogg"
+  - "JoinTheScienceTeamToday.ogg"
+  - "MAGMALE.ogg"
+  - "UncleGitsCommercial.ogg"
+  license: "CC0-1.0"
+  copyright: "Steven Landes"
+  source: "https://m.imdb.com/name/nm13704801/"
+
+- files:
+  - "goon_DiscountDans.ogg"
+  - "goon_SecurityPSA.ogg"
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "GoonStation SS13"
+  source: "https://github.com/goonstation/goonstation/tree/master/sound/radio_station"

@@ -33,6 +33,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._NullLink.PlayerData;
+using Content.Shared._Starlight.Language.Components;
+using Content.Shared._Starlight.Language.Systems;
 
 namespace Content.Server.GameTicking
 {
@@ -42,15 +45,11 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly SharedJobSystem _jobs = default!;
         [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; //🌟Starlight🌟
-        [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!; //🌟Starlight🌟
+        [Dependency] private readonly INullLinkPlayerManager _playerRolesManager = default!; //🌟Starlight🌟
         [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
-        [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
 
-        [ValidatePrototypeId<EntityPrototype>]
-        public const string ObserverPrototypeName = "MobObserver";
-
-        [ValidatePrototypeId<EntityPrototype>]
-        public const string AdminObserverPrototypeName = "AdminObserver";
+        public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
+        public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
 
         /// <summary>
         /// How many players have joined the round through normal methods.
@@ -109,7 +108,7 @@ namespace Content.Server.GameTicking
             var stationJobCounts = spawnableStations.ToDictionary(e => e, _ => 0);
             foreach (var netUser in netUserIds)
             {
-                if(!assignedJobs.TryGetValue(netUser, out var assignedJobAndStation) || assignedJobAndStation.Item1 is null)
+                if(!assignedJobs.TryGetValue(netUser, out var assignment) || assignment.job is null)
                 {
                     var playerSession = _playerManager.GetSessionById(netUser);
                     var evNoJobs = new NoJobsAvailableSpawningEvent(playerSession); // Used by gamerules to wipe their antag slot, if they got one
@@ -119,7 +118,7 @@ namespace Content.Server.GameTicking
                 }
                 else
                 {
-                    stationJobCounts[assignedJobAndStation.Item2] += 1;
+                    stationJobCounts[assignment.station] += 1;
                 }
             }
 
@@ -134,7 +133,7 @@ namespace Content.Server.GameTicking
                 var playerSession = _playerManager.GetSessionById(player);
 
                 // Select a profile for the player
-                var playerPrefs = _preferencesManager.GetPreferences(player);
+                var playerPrefs = _prefsManager.GetPreferences(player);
                 var playerProfiles = playerPrefs.GetAllEnabledProfilesForJob(job.Value);
 
                 // Filter out job requirements
@@ -185,12 +184,13 @@ namespace Content.Server.GameTicking
             bool silent = false)
         {
             var jobBans = _banManager.GetJobBans(player.UserId);
-            if (jobBans == null || jobId != null && jobBans.Contains(jobId))
+            if (jobBans == null || jobId != null && jobBans.Contains(jobId)) //TODO: use IsRoleBanned directly?
                 return;
 
             if (jobId != null)
             {
-                var ev = new IsJobAllowedEvent(player, new ProtoId<JobPrototype>(jobId));
+                var jobs = new List<ProtoId<JobPrototype>> {jobId};
+                var ev = new IsRoleAllowedEvent(player, jobs, null);
                 RaiseLocalEvent(ref ev);
                 if (ev.Cancelled)
                     return;
@@ -277,7 +277,7 @@ namespace Content.Server.GameTicking
                 restrictedRoles.UnionWith(jobBans);
 
             // Pick best job best on prefs.
-            var playerPreferences = _preferencesManager.GetPreferences(player.UserId);
+            var playerPreferences = _prefsManager.GetPreferences(player.UserId);
             var jobPrioritiesFiltered = playerPreferences.JobPrioritiesFiltered();
             jobId ??= _stationJobs.PickBestAvailableJobWithPriority(station,
                 jobPrioritiesFiltered,
@@ -299,6 +299,7 @@ namespace Content.Server.GameTicking
                 return;
             }
 
+            //starlight start
             // Job has been selected concretely, let's make sure the character profile is concrete
             character ??= playerPreferences.SelectProfileForJob(jobId);
             if (character == null)
@@ -311,31 +312,11 @@ namespace Content.Server.GameTicking
                     Loc.GetString("game-ticker-player-no-character-for-job-available-when-joining", ("job", jobId)));
                 return;
             }
-
+            //starlight end
             
             _newLifeSystem.SaveCharacterToUsed(player.UserId, playerPreferences.IndexOfCharacter(character));     //🌟Starlight🌟
-            PlayerJoinGame(player, silent);
 
-            var data = player.ContentData();
-
-            DebugTools.AssertNotNull(data);
-
-            var newMind = _mind.CreateMind(data!.UserId, character.Name);
-            _mind.SetUserId(newMind, data.UserId);
-
-            var jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
-
-            _playTimeTrackings.PlayerRolesChanged(player);
-
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character);
-            DebugTools.AssertNotNull(mobMaybe);
-            var mob = mobMaybe!.Value;
-
-            _mind.TransferTo(newMind, mob);
-
-            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
-            var jobName = _jobs.MindTryGetJobName(newMind);
-            _admin.UpdatePlayerList(player);
+            DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName);
 
             if (lateJoin && !silent)
             {
@@ -364,16 +345,21 @@ namespace Content.Server.GameTicking
 
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))
             {
-                EntityManager.AddComponent<OwOAccentComponent>(mob);
+                AddComp<OwOAccentComponent>(mob);
             }
-            if (player.UserId == new Guid("{c69211d4-1a75-4e57-b539-c90243e2ceda}"))
+            if (player.UserId == new Guid("{c69211d4-1a75-4e57-b539-c90243e2ceda}")) // Sparlight Start
             {
                 EntityManager.EnsureComponent<PolymorphableComponent>(mob);
+                EntityManager.RemoveComponent<LanguageSpeakerComponent>(mob);
+                EntityManager.RemoveComponent<LanguageKnowledgeComponent>(mob);
                 mob = _polymorphSystem.PolymorphEntity(mob, "PermanentCorgiMorph") ?? mob;
                 EntityManager.RemoveComponent<PolymorphedEntityComponent>(mob);
-                var accent = EntityManager.EnsureComponent<ReplacementAccentComponent>(mob);
-                accent.Accent = "dog";
-            }
+                var speaker = EntityManager.EnsureComponent<LanguageSpeakerComponent>(mob);
+                var knowledge = EntityManager.EnsureComponent<LanguageKnowledgeComponent>(mob);
+                speaker.SpokenLanguages.Remove(SharedLanguageSystem.FallbackLanguagePrototype);
+                knowledge.SpokenLanguages = speaker.SpokenLanguages;
+                knowledge.UnderstoodLanguages = speaker.UnderstoodLanguages;
+            } // Starlight End
 
 
             _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
@@ -415,6 +401,49 @@ namespace Content.Server.GameTicking
                 station,
                 character);
             RaiseLocalEvent(mob, aev, true);
+        }
+
+        /// <summary>
+        /// Creates a mob on the specified station, creates the new mind, equips job-specific starting gear and loadout
+        /// </summary>
+        public void DoSpawn(
+            ICommonSession player,
+            HumanoidCharacterProfile character,
+            EntityUid station,
+            string jobId,
+            bool silent,
+            out EntityUid mob,
+            out JobPrototype jobPrototype,
+            out string jobName)
+        {
+            PlayerJoinGame(player, silent);
+
+            var data = player.ContentData();
+
+            DebugTools.AssertNotNull(data);
+
+            var newMind = _mind.CreateMind(data!.UserId, character.Name);
+            _mind.SetUserId(newMind, data.UserId);
+
+            jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
+
+            _playTimeTrackings.PlayerRolesChanged(player);
+
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character);
+            DebugTools.AssertNotNull(mobMaybe);
+            mob = mobMaybe!.Value;
+
+            //starlight start
+            //handle character voices
+            newMind.Comp.Voice = character.Voice;
+            newMind.Comp.SiliconVoice = character.SiliconVoice;
+            //starlight end
+
+            _mind.TransferTo(newMind, mob);
+
+            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
+            jobName = _jobs.MindTryGetJobName(newMind);
+            _admin.UpdatePlayerList(player);
         }
 
         public void Respawn(ICommonSession player)
@@ -518,7 +547,7 @@ namespace Content.Server.GameTicking
         public EntityCoordinates GetObserverSpawnPoint()
         {
             _possiblePositions.Clear();
-            var spawnPointQuery = EntityManager.EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            var spawnPointQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
             while (spawnPointQuery.MoveNext(out var uid, out var point, out var transform))
             {
                 if (point.SpawnType != SpawnPointType.Observer

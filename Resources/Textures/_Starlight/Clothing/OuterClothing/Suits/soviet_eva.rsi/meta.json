@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Conflee for Starlight",
+  "copyright": "Conflee for Starlight. Avali state by DocMoth (Github).",
   "size": {
     "x": 32,
     "y": 32
@@ -24,6 +24,10 @@
     },
     {
       "name": "equipped-OUTERCLOTHING-resomi",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-avali",
       "directions": 4
     },
     {

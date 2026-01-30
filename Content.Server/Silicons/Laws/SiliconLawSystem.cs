@@ -1,19 +1,19 @@
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
-using Content.Server.Radio.Components;
-using Content.Server.Roles;
 using Content.Server.Station.Systems;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.Radio.Components;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
-using Content.Shared.Wires;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -33,6 +33,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private readonly IEntityManager _entMan = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -106,8 +107,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     {
         TryComp(uid, out IntrinsicRadioTransmitterComponent? intrinsicRadio);
         var radioChannels = intrinsicRadio?.Channels;
+        var customRadioChannels = intrinsicRadio?.CustomChannels; // Starlight edit
 
-        var state = new SiliconLawBuiState(GetLaws(uid).Laws, radioChannels);
+        var state = new SiliconLawBuiState(GetLaws(uid).Laws, radioChannels, customRadioChannels); // Starlight edit
         _userInterface.SetUiState(args.Entity, SiliconLawsUiKey.Key, state);
     }
 
@@ -157,9 +159,30 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         // Show the silicon has been subverted.
         component.Subverted = true;
 
+        #region Starlight: Add the new channel to the silicon.
+        var emag = args.emagComp;
+        if (emag != null)
+        {
+            if (TryComp(uid, out ActiveRadioComponent? activeRadio))
+            {
+                activeRadio.Channels.UnionWith(emag.ChannelAdd);
+            }
+            if (TryComp(uid, out IntrinsicRadioTransmitterComponent? transmitter))
+            {
+                transmitter.Channels.UnionWith(emag.ChannelAdd);
+            }
+            var lawset = emag.Lawset;
+            if (lawset != null)
+            {
+                component.Lawset = GetLawset(lawset.Value);
+                return;
+            }
+        }
+        #endregion
+
         // Add the first emag law before the others
         component.Lawset?.Laws.RemoveAt(0);
-        
+
         component.Lawset?.Laws.Insert(0, new SiliconLaw
         {
             LawString = Loc.GetString("law-emag-custom", ("name", Name(args.user)), ("title", Loc.GetString(component.Lawset.ObeysTo))),
@@ -248,6 +271,11 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
     public override void NotifyLawsChanged(EntityUid uid, SoundSpecifier? cue = null)
     {
+        #region Starlight statoin-ai shunt redirection
+        if (TryComp<StationAIShuntableComponent>(uid, out var shuntable) && shuntable.Inhabited.HasValue)
+            uid = shuntable.Inhabited.Value;
+        #endregion
+
         base.NotifyLawsChanged(uid, cue);
 
         if (!TryComp<ActorComponent>(uid, out var actor))
@@ -273,7 +301,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         };
         foreach (var law in proto.Laws)
         {
-            laws.Laws.Add(_prototype.Index<SiliconLawPrototype>(law));
+            laws.Laws.Add(_prototype.Index<SiliconLawPrototype>(law).ShallowClone());
         }
         laws.ObeysTo = proto.ObeysTo;
 
@@ -298,15 +326,18 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     protected override void OnUpdaterInsert(Entity<SiliconLawUpdaterComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
         // TODO: Prediction dump this
-        if (!TryComp(args.Entity, out SiliconLawProviderComponent? provider))
+        if (!TryComp<SiliconLawProviderComponent>(args.Entity, out var provider))
             return;
 
-        var lawset = GetLawset(provider.Laws).Laws;
-        var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components);
+        var lawset = provider.Lawset ?? GetLawset(provider.Laws);
 
+        var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components);
         while (query.MoveNext(out var update))
         {
-            SetLaws(lawset, update, provider.LawUploadSound);
+            SetLaws(lawset.Laws, update, provider.LawUploadSound);
+            // Starlight: Components on lawboards TODO remove components provided by the old board when it is removed.
+            if (provider.Components != null)
+                _entMan.AddComponents(update, provider.Components);
         }
     }
 }

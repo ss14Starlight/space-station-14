@@ -33,7 +33,7 @@
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
   - type: BatteryWeaponFireModes
@@ -71,19 +71,19 @@
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
-    fireCost: 100
+    fireCost: 50
   - type: Appearance
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: DisablerBolt
-      fireCost: 100
+      fireCost: 50
       visualState: disable
       magState: disable
       heldPrefix: disable4
-    - proto: LaserBolt
-      fireCost: 65
+    - proto: RedLaserBeam
+      fireCost: 66.6
       visualState: kill
       magState: kill
       heldPrefix: kill4
@@ -94,6 +94,7 @@
   id: WeaponMiniEnergyGun
   description: An energy gun capable of switching between lethal and debilitating lasers.
   components:
+  - type: StationGridMemory
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/mini.rsi
     layers:
@@ -106,19 +107,24 @@
     - state: mag-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 150
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: DisablerBolt
       fireCost: 150
-    - proto: LaserBolt
+    - proto: RedLaserBeam
       fireCost: 200
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
         - blue
+        - red
+        - gamma
+        - psi
+        - orange
+        - delta
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -149,8 +155,6 @@
       id: blinking
       interpolate: Nearest
       maxDuration: 1.0
-      minValue: 0.1
-      maxValue: 2.0
       isLooped: true
   - type: ToggleableLightVisuals
     spriteLayer: light
@@ -161,6 +165,7 @@
   id: WeaponDominator
   description: A high-tech weapon created by the law enforcement organization Sibyl System, designed specifically to fight crime.
   components:
+  - type: StationGridMemory
   - type: Appearance
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/dominator.rsi
@@ -177,7 +182,7 @@
   - type: Lock
   - type: AccessReader
     access: [["Security"]]
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
   - type: BatteryWeaponFireModes
@@ -196,7 +201,10 @@
         - yellow
         - red
         - gamma
-    - proto: LaserBolt
+        - psi
+        - orange
+        - delta
+    - proto: RedLaserBeam
       fireCost: 66.6
       magState: lethal
       conditions:
@@ -206,6 +214,9 @@
         - yellow
         - red
         - gamma
+        - psi
+        - orange
+        - delta
 
 - type: entity
   name: X-01 multiphase energy gun
@@ -237,7 +248,7 @@
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 40
   - type: BatteryWeaponFireModes
@@ -250,11 +261,11 @@
       fireCost: 100
       magState: stun
       visualState: stun-unshaded
-    - proto: LaserBolt
+    - proto: RedLaserBeam
       fireCost: 75
       magState: kill
       visualState: kill-unshaded
-    - proto: DestroyBolt
+    - proto: DestroyBeam
       fireCost: 750
       magState: destroy
       visualState: destroy-unshaded
@@ -262,8 +273,52 @@
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 20
+
+- type: entity
+  name: MT-7 Magnum
+  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
+  id: WeaponEnergyMagnumGun
+  description: This is an expensive, modern recreation of the Mateba revolver, with several unique fire modes. And a slow self recharging battery. However, it has a slower recharge then most battery related weapons.
+  components:
+  - type: Gun
+    fireRate: 1.6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Small
+    shape:
+    - 0, 0, 1, 1
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi
+  - type: BatteryAmmoProvider
+    proto: DisablerBolt
+    fireCost: 80
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: DisablerBolt
+      fireCost: 125
+      magState: disable
+      visualState: disable-unshaded
+    - proto: RedHeavyLaser # Does slightly more damage but costs more energy.
+      fireCost: 222
+      magState: kill
+      visualState: kill-unshaded
+    - proto: DestroyBeam
+      fireCost: 1000
+      magState: destroy
+      visualState: destroy-unshaded
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
+    autoRechargePauseTime: 44
 
 - type: entity
   parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
@@ -287,11 +342,9 @@
   - type: Gun
     fireRate: 0.6
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePause: true
     autoRechargePauseTime: 60
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: EmpPulse
     fireCost: 250
   - type: MagazineVisuals
@@ -326,11 +379,9 @@
   - type: Gun
     fireRate: 0.6
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePause: true
     autoRechargePauseTime: 60
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: EmpPulse
     fireCost: 250
   - type: MagazineVisuals
@@ -344,7 +395,7 @@
   name: immolator laser gun
   parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecuritySalvageContraband]
   id: WeaponLaserImmolator
-  description: Favoured by Nanotrasen Security for being cheap and easy to use.
+  description: An irregular, unstable firearm. It remains warm to the touch long after it has finished firing.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/immolator.rsi
@@ -358,9 +409,13 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: HitscanBatteryAmmoProvider
+    - FullAuto #Just allows people to hold down left click
+  - type: Battery
+    maxCharge: 1500 # ~2:30 minutes for recharge
+    startingCharge: 1500
+  - type: BatteryAmmoProvider
     proto: IgnitionRedLaser
-    fireCost: 62.5
+    fireCost: 30
   - type: StaticPrice
     price: 300
 
@@ -379,7 +434,7 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DecloneBolt
     fireCost: 200
   - type: MagazineVisuals
@@ -408,13 +463,12 @@
     shape:
     - 0, 0, 1, 1
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 200
   - type: MagazineVisuals
     magState: stun
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TaserBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -422,10 +476,10 @@
     - proto: TaserBolt
       fireCost: 100
       magState: stun
-    - proto: LaserBolt
+    - proto: RedLaserBeam
       fireCost: 100
       magState: kill
-    - proto: DestroyBolt
+    - proto: DestroyBeam
       fireCost: 100
       magState: destroy
 
@@ -454,7 +508,7 @@
     magState: stun
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TaserBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -463,11 +517,11 @@
       fireCost: 100
       magState: stun
       visualState: stun
-    - proto: LaserBolt
+    - proto: RedLaserBeam
       fireCost: 100
       magState: kill
       visualState: kill
-    - proto: DestroyBolt
+    - proto: DestroyBeam
       fireCost: 200
       magState: destroy
       visualState: destroy
@@ -500,7 +554,7 @@
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 75
   - type: BatteryWeaponFireModes
@@ -509,7 +563,7 @@
       fireCost: 75
       magState: disable
       visualState: disable
-    - proto: LaserBolt
+    - proto: RedLaserBeam
       fireCost: 100
       magState: kill
       visualState: kill
@@ -536,7 +590,7 @@
     size: Small
     shape:
     - 0, 0, 1, 1
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -545,7 +599,7 @@
       fireCost: 100
     - proto: AdvancedTaserBolt
       fireCost: 100
-    - proto: LaserBolt
+    - proto: RedLaserBeam
       fireCost: 100
   - type: MagazineVisuals
     magState: mag
@@ -573,8 +627,8 @@
     slots:
     - Back
   - type: Gun
-    fireRate: 0.1
-  - type: HitscanBatteryAmmoProvider
+    fireRate: 0.5
+  - type: BatteryAmmoProvider
     proto: SniperBolt
     fireCost: 100
   - type: MagazineVisuals
@@ -623,7 +677,7 @@
     magState: stun
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TaserBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -632,11 +686,11 @@
       fireCost: 100
       magState: stun
       visualState: stun
-    - proto: LaserBolt
+    - proto: RedLaserBeam
       fireCost: 50
       magState: kill
       visualState: kill
-    - proto: DestroyBolt
+    - proto: DestroyBeam
       fireCost: 100
       magState: destroy
       visualState: destroy
@@ -677,7 +731,7 @@
     magState: stun
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: TaserBolt
     fireCost: 10
   - type: BatteryWeaponFireModes
@@ -686,17 +740,26 @@
       fireCost: 10
       magState: stun
       visualState: stun
-    - proto: LaserBolt
+    - proto: RedLaserBeam
       fireCost: 5
       magState: kill
       visualState: kill
-    - proto: DestroyBolt
+    - proto: DestroyBeam
       fireCost: 10
       magState: destroy
       visualState: destroy
   - type: Battery
     maxCharge: 2640
     startingCharge: 2640
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaser
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
 
 - type: entity
   name: ANNIHILATOR
@@ -717,12 +780,12 @@
     magState: destroy
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
-    proto: DestroyBolt
+  - type: BatteryAmmoProvider
+    proto: DestroyBeam
     fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DestroyBolt
+    - proto: DestroyBeam
       fireCost: 100
       magState: destroy
       visualState: destroy
@@ -730,8 +793,16 @@
     maxCharge: 2000
     startingCharge: 2000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 500
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaser
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
 
 - type: entity
   parent: BaseWeaponBatterySmall
@@ -749,15 +820,139 @@
       - state: mag-unshaded-4
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: ProjectilePolyboltJohnToe
       fireCost: 200
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 40 #every 5 seconds another becomes toe.
-      autoRechargePause: false
     - type: MagazineVisuals
       magState: mag
       steps: 5
       zeroVisible: true
     - type: Appearance
+
+- type: entity
+  name: proto-5x energy gun
+  parent: [BaseWeaponBattery, BaseGrandTheftContraband]
+  id: WeaponEnergySMG
+  description: A one-of-a-kind prototype energy sub-machine gun. It offers high energy firepower and a powerful self recharge.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: laser
+        map: ["enum.FireModesLayers.FireMode"]
+      - state: laser-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
+  - type: MagazineVisuals
+    magState: laser
+    steps: 6
+    zeroVisible: false
+  - type: Gun
+    fireRate: 4.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      params:
+         volume: -2
+  - type: BatteryAmmoProvider
+    proto: BulletEnergySMGLaser
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletEnergySMGLaser
+      fireCost: 50
+      magState: laser
+      visualState: laser
+    - proto: BulletEnergySMGDisabler
+      fireCost: 25
+      magState: disable
+      visualState: disable
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,1
+    #sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
+    #heldPrefix: energy
+  - type: StealTarget
+    stealGroup: Proto5x
+  - type: Tag
+    tags:
+    - HighRiskItem
+  #- type: StealTarget
+    #stealGroup: WeaponEnergyShotgun
+  #- type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: Battery
+    maxCharge: 1500
+    startingCharge: 1500
+  - type: BatterySelfRecharger
+    autoRechargeRate: 80
+    autoRechargePauseTime: 10
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinAdvancedLaser
+  - type: FiringPinHolder
+    supportedPins: [ AdvancedLaser ]
+
+- type: entity
+  name: pulse cannon
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  id: WeaponPulseCannonNTNC
+  description: A weapon meant to blow holes in people with lasers. Like Superman. I like Superman.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/ntnc_pulse.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/ntnc_pulse.rsi
+  - type: Item
+    size: Large
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.5
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: BatteryAmmoProvider
+    proto: DeleteBeam
+    fireCost: 10
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TaserBoltExtreme
+      fireCost: 10
+      #magState: stun
+    - proto: DeleteBeam
+      fireCost: 10
+      #magState: delete
+  - type: Battery
+    maxCharge: 500
+    startingCharge: 500
+  - type: BatterySelfRecharger
+    autoRechargeRate: 50
+    autoRechargePauseTime: 10
+  - type: ContainerContainer
+    containers:
+      firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinLaser
+  - type: FiringPinHolder
+    supportedPins: [ Laser ]

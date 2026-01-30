@@ -56,7 +56,7 @@
       tags:
         - Cake
         - ClothMade
-    - type: Food
+    - type: Edible
       requiresSpecialDigestion: true
 
 - type: entity
@@ -87,7 +87,7 @@
         - Cake
         - Slice
         - ClothMade
-    - type: Food
+    - type: Edible
       requiresSpecialDigestion: true
 
 

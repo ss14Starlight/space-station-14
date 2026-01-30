@@ -1,0 +1,59 @@
+- type: entity
+  name: Random Syndicate Corpse Spawner
+  id: RandomSyndicateCorpseSpawner
+  parent: SalvageHumanCorpseSpawner
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+      - MobRandomSyndicateCorpse
+
+- type: entity
+  name: Random Nukie Corpse Spawner
+  id: RandomNukieCorpseSpawner
+  parent: SalvageHumanCorpseSpawner
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+      - MobRandomNukieCorpse
+
+- type: entity
+  name: Random Soviet Corpse Spawner
+  id: RandomSovietCorpseSpawner
+  parent: SalvageHumanCorpseSpawner
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+      - MobRandomSovietCorpse
+
+- type: entity
+  name: Random Mercenary Corpse Spawner
+  id: RandomMercenaryCorpseSpawner
+  parent: SalvageHumanCorpseSpawner
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+      - MobRandomMercenaryCorpse
+
+- type: entity
+  name: Random Pirate Corpse Spawner
+  id: RandomPirateCorpseSpawner
+  parent: SalvageHumanCorpseSpawner
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+      - MobRandomPirateCorpse

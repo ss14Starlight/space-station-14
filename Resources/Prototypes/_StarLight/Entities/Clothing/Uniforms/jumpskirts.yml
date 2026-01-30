@@ -8,12 +8,23 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrep.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrep.rsi
-    
+
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpskirtNtrepTurtleneck
+  name: nt representive's turtleneck jumpskirt
+  description: For a more casual look while on the job.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrepturtleneckskirt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrepturtleneckskirt.rsi
+    
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtBlueShield
-  name: blueshield officer's skirt
-  description: Skirt of a glorified bodyguard
+  name: blue shield skirt
+  description: The skirt of a glorified bodyguard.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshield.rsi
@@ -21,20 +32,43 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshield.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtEliteBlueShield
-  name: Elite Blueshield Officer's Skirt
-  description: Skirt of an Elite Blueshield. To reach such a level, you must have protected command from a [REDACTED] threat.
+  name: elite blue shield skirt
+  description: The skirt of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
+    
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtBlueShieldSkirt
+  name: blueshield officer's pencil skirt
+  description: A collared shirt and pencil skirt for the blueshield officer who likes to keep it business casual.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshieldskirt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshieldskirt.rsi
+
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSeniorChemist
+  name: senior chemist jumpskirt
+  description: A sign of skill, prestige, and alchemical prowess
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_chemist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_chemist.rsi
 
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseSecurityContraband ]
   id: ClothingUniformJumpskirtCorpsman
-  name: Corpsman's Skirt
+  name: corpsman's skirt
   description: Die in style on the front lines!
   components:
   - type: Sprite
@@ -42,7 +76,41 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman.rsi
 
-# Fashion-O-Mat, not obtainable any other way, unless mapped
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseSecurityContraband ]
+  id: ClothingUniformJumpskirtCorpsmanTrauma
+  name: corpsman's trauma wear
+  description: I've seen worse. I've seen far worse.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman_trauma.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman_trauma.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtSecBlue
+  name: blue skirt and tie
+  description: Stylish and functional.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/security_blue.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/security_blue.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtDutyOfficer
+  name: duty officer's uniform
+  description: A vibrant security skirt for the warden's partner in chains.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/dutyofficer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/dutyofficer.rsi
+
+# Fashion-O-Mat-Start, not obtainable any other way, unless mapped
+# All CC/Synd stuff in Fashion-O-Mat is replica
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -179,7 +247,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCargoSalvage
-  name: salvage jumpskirt
+  name: salvage specialist jumpskirt
   description: Perfectly pairs with a pickaxe, this versatile and durable skirt jumpsuit is designed for tough work, offering both practicality and a rugged, stylish appearance.
   components:
   - type: Sprite
@@ -197,6 +265,29 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/salvageformal.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/salvageformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtSalvageLead
+  name: salvage leads's jumpskirt
+  description: It's a snappy jumpskirt with a sturdy set of overalls. It's very dirty.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/salvagelead.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/salvagelead.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtMiningSpecialist
+  name: mining specialist's jumpskirt
+  description: A suit passed down through many generations. a fine layer of dust trails behind it.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/mining.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/mining.rsi
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -330,7 +421,40 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/rd_classical.rsi
 
-# Fashion-O-Mat-END
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJulianneVA11HALLA
+  name: smoke-scented bartender uniform
+  description: Smoke clings to it, heavy and suffocating. Somehow, it makes you want to cry. Care for another round, sir?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/alt_purplebartender.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/alt_purplebartender.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformElegantLadyDress
+  name: elegant lady's dress
+  description: "A voluminous white blouse with a black skirt-perfect for highlighting your beauty, darling!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lady.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lady.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformPastryDress
+  name: sweet pastry dress
+  description: A delicate pastry dress made from light, comfortable fabric with an elegant cut.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/pastry.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/pastry.rsi
+
+# Fashion-O-Mat-End
 
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
@@ -430,3 +554,35 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommspecialopsformalwear.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommspecialopsformalwear.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: MagistrateUniformSkirt
+  name: Magistrate's Jumpskirt
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSeniorParamedic
+  name: senior paramedic jumpskirt
+  description: These epaulettes mark a paramedic that has walked through fire and void to save those in need
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_paramedic.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_paramedic.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpskirtNCT
+  name: NT Career Trainer's skirt
+  description: A neatly pressed olive green shirt paired with a sleek black skirt, worn by those committed to mentoring the next generation.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/nct.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/nct.rsi

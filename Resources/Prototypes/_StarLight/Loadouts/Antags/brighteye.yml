@@ -1,0 +1,44 @@
+- type: loadout
+  id: BrighteyeTatteredClothes
+  equipment:
+    jumpsuit: TatteredClothesUniformSuit
+
+- type: loadout
+  id: BrighteyeGladiator
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGladiator
+
+- type: loadout
+  id: BrighteyeTatteredHood
+  equipment:
+    neck: ClothingNeckTatteredHood
+
+- type: loadout
+  id: BrighteyeMantle
+  equipment:
+    neck: ClothingNeckMantle
+
+- type: loadout
+  id: BrighteyeOldMantle
+  equipment:
+    neck: ClothingNeckOldMantle
+
+- type: loadout
+  id: BrighteyeGoliathCloak
+  equipment:
+    neck: ClothingNeckCloakGoliathCloak
+
+- type: loadout
+  id: BrighteyeCloakVoid
+  equipment:
+    neck: ClothingNeckCloakVoid
+
+- type: loadout
+  id: BrighteyeClothWrapShoe
+  equipment:
+    shoes: ClothingClothWrap
+
+- type: loadout
+  id: BrighteyeClothWrapGlove
+  equipment:
+    gloves: ClothingClothWrap

@@ -3,6 +3,15 @@
   name: job-name-cburn
   description: job-description-cburn
   playTimeTracker: JobCBURN
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobMedicalDoctor
+    time: 18000 # 5h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 18000 # 5h
   setPreference: false
   startingGear: CBURNGear
   icon: "JobIconCentComm"
@@ -25,16 +34,24 @@
     eyes: ClothingEyesGlassesCentComm
     ears: ClothingHeadsetCentCom #Starlight
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitCBURN
+    outerClothing: ClothingOuterSoftsuitCBURN #Starlight
     shoes: ClothingShoesBootsCombatFilled
     id: CBURNPDA
     pocket1: RadioHandheld
     pocket2: WeaponLaserGun
     belt: ClothingBeltBandolier
+    head: ClothingHeadSoftsuitCBURN # Starlight
   storage:
     back:
-    - WeaponShotgunDoubleBarreled
-    - BoxShotgunIncendiary
+#    - WeaponShotgunDoubleBarreled Starlight: Replaced with starlight weaponry
+#    - BoxShotgunIncendiary
+    # Starlight-start: Starlight incendiary weaponry
+    - WeaponIK60
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    # Starlight-end
     - GrenadeFlashBang
     - PillAmbuzolPlus
     - PillAmbuzol

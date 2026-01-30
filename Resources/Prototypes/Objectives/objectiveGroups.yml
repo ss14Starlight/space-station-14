@@ -5,7 +5,8 @@
     TraitorObjectiveGroupSteal: 1
     TraitorObjectiveGroupKill: 1
     TraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
-    TraitorObjectiveGroupSocial: 1 #Involves helping/harming others without killing them or stealing their stuff
+    TraitorObjectiveGroupSocial: 0.25 #Involves helping/harming others without killing them or stealing their stuff, lowered because the chance of rolling this was enormous when its just one objective in the category
+    TraitorObjectiveGroupStory: 1  # Starlight
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSteal
@@ -13,17 +14,19 @@
     CaptainIDStealObjective: 1
     CMOHyposprayStealObjective: 1
     CMOCrewMonitorStealObjective: 1
-    RDHardsuitStealObjective: 1
-    NukeDiskStealObjective: 1
+    RDHardsuitStealObjective: 0.75  #Starlight edit
+    NukeDiskStealObjective: 0.5  #Starlight edit, you basically besome aos/kos once you have it
     MagbootsStealObjective: 1
     CorgiMeatStealObjective: 1
     ClipboardStealObjective: 1
-    CaptainGunStealObjective: 0.5
-    CaptainJetpackStealObjective: 0.5
-    HandTeleporterStealObjective: 0.5
-    EnergyShotgunStealObjective: 0.5
+    KnuckleDustersStealObjective: 1
+    CaptainGunStealObjective: 0.75  #Starlight edit
+    CaptainJetpackStealObjective: 0.75  #Starlight edit
+    HandTeleporterStealObjective: 1  #Starlight edit
     RDDiplomaStealObjective: 1 #Starlight Unique Targets
     CMOLicenseStealObjective: 1 #Starlight Unique Targets
+    EnergyShotgunStealObjective: 0.5 #Starlight re-targeted
+    Proto5xStealObjective: 0.5 #Starlight Unique Targets
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
@@ -37,7 +40,7 @@
   id: TraitorObjectiveGroupState
   weights:
     EscapeShuttleObjective: 1
-    DieObjective: 0.05
+    DieObjective: 0.2  #Starlight edit, its still massively low, around a 3% chance overall, up from under 0.9% and its a limited objective.
     #HijackShuttleObjective: 0.02
 
 - type: weightedRandom
@@ -66,32 +69,39 @@
     HeadBedsheetStealCollectionObjective: 1
     StampStealCollectionObjective: 1
     DoorRemoteStealCollectionObjective: 1
+    OfficerHandgunsStealCollectionObjective: 1         #sec
     TechnologyDiskStealCollectionObjective: 1           #sci
     MailStealCollectionObjective: 1                     #cargo
     FigurineStealCollectionObjective: 0.3          #service
     IDCardsStealCollectionObjective: 1
-    LAMPStealCollectionObjective: 2                     #only for moth
+    LAMPStealCollectionObjective: 0.1                   #only for moth, weight decreased cause boring and insanely easy
 
 - type: weightedRandom
   id: ThiefObjectiveGroupItem
   weights:
+    ChiefEngineerToolbeltStealObjective: 0.5             #command
+    CaptainSwordStealObjective: 0.5
+    ClothingHeadsetAltMedicalStealObjective: 1
     ForensicScannerStealObjective: 1                    #sec
     FlippoEngravedLighterStealObjective: 0.5
     ClothingHeadHatWardenStealObjective: 1
     WantedListCartridgeStealObjective: 1
+    # Starlight-start
+    Proto5xStealObjective: 1                # HoS Gun
+    FiringPinStealObjective: 1
+    FiringPinAdvancedLaserStealObjective: 1
+    FiringPinSmartLMGStealObjective: 1
+    # Starlight-end
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med
     MedicalTechFabCircuitboardStealObjective: 1
-    ClothingHeadsetAltMedicalStealObjective: 1
     FireAxeStealObjective: 1                            #eng
     AmePartFlatpackStealObjective: 1
     ExpeditionsCircuitboardStealObjective: 1            #sup
     CargoShuttleCircuitboardStealObjective: 1
-    SalvageShuttleCircuitboardStealObjective: 1
-    ClothingEyesHudBeerStealObjective: 1                #srv
+    ClothingEyesHudBeerStealObjective: 0.5              #srv, beer goggles less common cause its so easy
     BibleStealObjective: 1
     ClothingNeckGoldmedalStealObjective: 1              #other
     ClothingNeckClownmedalStealObjective: 0.5
-
 - type: weightedRandom
   id: ThiefObjectiveGroupStructure
   weights:

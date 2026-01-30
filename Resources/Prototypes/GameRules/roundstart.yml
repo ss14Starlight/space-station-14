@@ -21,13 +21,15 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
-    - id: Changeling
+      prob: 0.45 # Starlight, to account for Wizard and Xenoborgs
+    - id: SLChangeling #Starlight lings
       prob: 0.4
-    - id: Vampire
-      prob: 0.25
+#    - id: Vampire # Starlight - disabled until reworked
+#      prob: 0.25
     - id: SubWizard
-      prob: 0.05
+      prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
+    - id: Xenoborgs
+      prob: 0.08 # Starlight. To account for their secret mode being lowered.
 
 - type: entity
   parent: BaseGameRule
@@ -36,11 +38,33 @@
   - type: SubGamemodes
     rules:
     - id: Thief
+      prob: 0.51 # Starlight. To make this add up to 1.
+    - id: SLChangeling # StarlightLings
+      prob: 0.41 # Starlight. To make this add up to 1.
+#    - id: Vampire # Starlight - disabled until reworked
+#      prob: 0.25
+    - id: Xenoborgs
+      prob: 0.08 # Starlight. Space is dangerous, yo.
+
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesRuleNoXenoborg
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
+      prob: 0.58 # Starlight. 87% chance of thieves over wizard.
+    - id: SubWizard
+      prob: 0.07 # Starlight. Same reasoning as prior.
+
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesRuleNoWizardNoXenoborg
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
       prob: 0.5
-    - id: Changeling
-      prob: 0.4
-    - id: Vampire
-      prob: 0.25
 
 - type: entity
   parent: BaseGameRule
@@ -123,8 +147,18 @@
   components:
   - type: GameRule
     minPlayers: 20
-  - type: LoadMapRule
-    mapPath: /Maps/_Starlight/nukieplanet.yml
+    # Starlight Start
+    denyGameRules:
+    - AbductorsSpawn
+  - type: SubRule
+    table: !type:GroupSelector
+      children:
+      - id: NukiePlanetSpawn
+      - id: NukiePlanetSpawnWestern
+  # Starlight end
+  # Starlight - removing the LoadMapRule from here to instead handle it in the dynamic rules above
+  #- type: LoadMapRule
+  #  mapPath: /Maps/_Starlight/nukieplanet.yml
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
     definitions:
@@ -145,6 +179,10 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeopsCommander
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
     - prefRoles: [ NukeopsMedic ]
       fallbackRoles: [ Nukeops, NukeopsCommander ]
       spawnerPrototype: SpawnPointNukeopsMedic
@@ -162,11 +200,15 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeopsMedic
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
     - prefRoles: [ Nukeops ]
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
-      max: 3
-      playerRatio: 10
+      max: 4
+      playerRatio: 16
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
       - RoleSurvivalNukie
@@ -181,6 +223,12 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeops
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
+  - type: DynamicRuleCost
+    cost: 200
 
 - type: entity
   abstract: true
@@ -196,6 +244,8 @@
     maxDifficulty: 5
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
+  - type: DynamicRuleCost
+    cost: 100
 
 - type: entity
   parent: BaseTraitorRule
@@ -210,12 +260,12 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Traitor ]
-      max: 8
-      playerRatio: 10
+      max: 24 # Starlight. More of future proofing. If we ever actually average 252 pop then we'll need to actually do something else.
+      playerRatio: 10 # Starlight. It's this number so Beta doesn't lose out on their 6th traitor.
       blacklist:
         components:
         - AntagImmune
-      lateJoinAdditional: true
+      lateJoinAdditional: false
       mindRoles:
       - MindRoleTraitor
 
@@ -234,24 +284,91 @@
       - MindRoleTraitorReinforcement
 
 - type: entity
+  id: Changeling
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 25
+  - type: AntagSelection
+    agentName: changeling-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 6 # Starlight. Not a huge increase, but allows lings to actually become a force on alpha that doesn't get wiped out immediately.
+      playerRatio: 17 # Starlight. Allows Beta to still keep only 3 lings.
+      briefing:
+        text: changeling-role-greeting
+        color: Red
+        sound: /Audio/Ambience/Antag/changeling_start.ogg
+      components:
+      - type: ChangelingDevour
+      - type: ChangelingIdentity
+      - type: ChangelingTransform
+      - type: ActionGrant
+        actions:
+        - ActionChangelingStore
+      # TODO: Make it so the changeling gamerule changeling can inherit from the changeling store preset somehow
+      - type: Store
+        name: store-preset-name-changeling
+        categories:
+        - ChangelingAbilities
+        currencyWhitelist:
+        - ChangelingDNA
+        balance:
+          ChangelingDNA: 50
+      - type: UserInterface
+        interfaces:
+          enum.StoreUiKey.Key:
+            type: StoreBoundUserInterface
+            requireInputValidation: false
+      mindRoles:
+      - MindRoleChangeling
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
+  - type: AntagObjectives
+    objectives:
+    - ChangelingSurviveObjective
+
+- type: entity
   id: Revolutionary
   parent: BaseGameRule
   components:
   - type: GameRule
     minPlayers: 15
   - type: RevolutionaryRule
+  - type: SpecialLobbyContent
+    music: "/Audio/_Starlight/Music/Lobby/Liberation.ogg"
+    background: RevClown
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ HeadRev ]
+      min: 2 #Starlight edit, made it 2 since one person dying shouldnt end a major gamemode, praying it breaks nothing
       max: 3
       playerRatio: 15
       startingGear: HeadRevGear
       components:
       - type: Revolutionary
       - type: HeadRevolutionary
+        # Starlight-start
+        blacklist:
+          components:
+          - Revolutionary
+          - BorgChassis
+          - MindShield
+          - Zombie
+          tags:
+          - CantBecomeRevolutionary
+        whitelist:
+          components:
+          - HumanoidAppearance
+        # Starlight-end
       mindRoles:
       - MindRoleHeadRevolutionary
+  - type: DynamicRuleCost
+    cost: 200
 
 - type: entity
   id: Sandbox
@@ -275,7 +392,7 @@
     - WizardSurviveObjective
     - WizardDemonstrateObjective
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/wizard.yml
+    mapPath: /Maps/_Starlight/WizardShuttle.yml #Starlight. wizard deserves their shuttle. and it had to be re-saved as a map to get it to work.
   - type: RuleGrids
   - type: AntagSelection
   - type: AntagLoadProfileRule
@@ -286,14 +403,14 @@
   id: Wizard
   components:
   - type: GameRule
-    minPlayers: 10
+    minPlayers: 40 # Starlight. So a Wizard can actually spawn on Beta.
   - type: AntagSelection
     agentName: wizard-round-end-name
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ Wizard ]
-      max: 1
-      playerRatio: 1
+      max: 6 # Starlight. If Wizard is to be its own Gamemode, then...
+      playerRatio: 40 # Starlight, ensures Beta only has 1 wizard.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
        - RoleSurvivalExtended
@@ -305,6 +422,7 @@
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:
+      - type: UniversalLanguageSpeaker # Starlight-edit: Languages
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -315,6 +433,12 @@
         nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
+  - type: DynamicRuleCost
+    cost: 150
 
 - type: entity
   id: Zombie
@@ -347,6 +471,8 @@
       - type: InitialInfected
       mindRoles:
       - MindRoleInitialInfected
+  - type: DynamicRuleCost
+    cost: 200
 
 # This rule makes the chosen players unable to get other antag rules, as a way to prevent metagaming job rolls.
 # Put this before antags assigned to station jobs, but after non-job antags (NukeOps/Wiz).
@@ -375,11 +501,28 @@
       - !type:NestedSelector
         tableId: BasicAntagEventsTable
       - !type:NestedSelector
+        tableId: ModerateAntagEventsTable
+      - !type:NestedSelector
         tableId: CargoGiftsTable
       - !type:NestedSelector
         tableId: CalmPestEventsTable
       - !type:NestedSelector
         tableId: SpicyPestEventsTable
+
+- type: entityTable
+  id: DynamicGameRulesTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - !type:NestedSelector
+      tableId: BasicCalmEventsTable
+    - !type:NestedSelector
+      tableId: BasicAntagEventsTable
+    - !type:NestedSelector
+      tableId: CargoGiftsTable
+    - !type:NestedSelector
+      tableId: CalmPestEventsTable
+    - !type:NestedSelector
+      tableId: SpicyPestEventsTable
 
 - type: entityTable
   id: SpaceTrafficControlTable
@@ -399,6 +542,14 @@
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable
+
+- type: entity
+  id: DynamicStationEventScheduler # this isn't the dynamic mode, but rather the station event scheduler used for dynamic
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: DynamicGameRulesTable
 
 - type: entity
   id: RampingStationEventScheduler
@@ -443,6 +594,7 @@
     - id: BasicTrashVariationPass
     - id: SolidWallRustingVariationPass
     - id: ReinforcedWallRustingVariationPass
+    - id: CutWireVariationPass
     - id: BasicPuddleMessVariationPass
       prob: 0.99
       orGroup: puddleMess
@@ -455,9 +607,13 @@
     - id: SolarPanelEmptyVariationPass
     - id: BasicDecalDirtVariationPass
     - id: BasicDecalGraffitiVariationPass
-    - id: BasicDecalBrunsVariationPass
+    - id: BasicDecalBurnsVariationPass
       prob: 0.50
       orGroup: monospaceDecals
     - id: BasicDecalDirtMonospaceVariationPass
       prob: 0.50
       orGroup: monospaceDecals
+    # Starlight start
+    - id: MaintenanceMonstersVariationPass
+      prob: 0.2
+    # Starlight end

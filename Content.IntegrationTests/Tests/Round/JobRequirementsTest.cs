@@ -91,7 +91,7 @@ public sealed class JobRequirementsTest
                 - type: StationJobs
                   availableJobs:
                     SeniorCitizen: [ -1, -1 ]
-                    Passenger: [ -1, -1 ]
+                    Assistant: [ -1, -1 ]
                     Twenties: [ -1, -1 ]
                     Wehngineer: [ -1, -1 ]
                     FreezerHead: [ -1, -1 ]
@@ -133,7 +133,7 @@ public sealed class JobRequirementsTest
         var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
         {
             { wantedJob, JobPriority.High },
-            { "Passenger", JobPriority.Low },
+            { "Assistant", JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -154,9 +154,11 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob(expectedJob ? wantedJob : "Passenger");
+        pair.AssertJob(expectedJob ? wantedJob : "Assistant");
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(10);
+        await pair.ReallyBeIdle(); // ensure round shutdown completes before disposing the pool
         await pair.CleanReturnAsync();
     }
 
@@ -219,6 +221,8 @@ public sealed class JobRequirementsTest
         Assert.That(appearance.Age, Is.EqualTo(75));
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(10);
+        await pair.ReallyBeIdle(); // allow restart to finish so lingering logs don't fire post-disposal
         await pair.CleanReturnAsync();
     }
 
@@ -254,7 +258,7 @@ public sealed class JobRequirementsTest
         var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
         {
             { wantedJob, JobPriority.High },
-            { "Passenger", JobPriority.Low },
+            { "Assistant", JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -275,9 +279,11 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob(expectedJob ? wantedJob : "Passenger");
+        pair.AssertJob(expectedJob ? wantedJob : "Assistant");
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(10);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 }

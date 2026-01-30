@@ -1,0 +1,146 @@
+- type: tile
+  id: FloorCarpetDeco
+  name: tiles-carpet-deco-floor
+  sprite: /Textures/_Starlight/Tiles/carpet_deco.png
+  variants: 1
+  placementVariants:
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemCarpetDeco
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorDarkBitile
+  name: tiles-dark-bitile-floor
+  sprite: /Textures/_Starlight/Tiles/dark_bitile.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemDarkBitile
+  heatCapacity: 10000
+  allowRotationMirror: true
+
+- type: tile
+  id: FloorSteelBitile
+  name: tiles-steel-bitile-floor
+  sprite: /Textures/_Starlight/Tiles/steel_bitile.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemSteelBitile
+  heatCapacity: 10000
+  allowRotationMirror: true
+
+- type: tile
+  id: FloorWhiteBitile
+  name: tiles-white-bitile-floor
+  sprite: /Textures/_Starlight/Tiles/white_bitile.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemWhiteBitile
+  heatCapacity: 10000
+  allowRotationMirror: true
+
+- type: tile
+  id: FloorHierophant
+  name: tiles-hierophant-floor
+  sprite: /Textures/_Starlight/Tiles/hierophant.png
+  variants: 1
+  placementVariants:
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemHierophant
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorSepia
+  name: tiles-sepia-floor
+  sprite: /Textures/_Starlight/Tiles/sepia.png
+  variants: 1
+  placementVariants:
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemSepia
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorTerracotta
+  name: tiles-terracotta-floor
+  sprite: /Textures/_Starlight/Tiles/terracotta.png
+  variants: 1
+  placementVariants:
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemTerracotta
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorTerracottaDiagonal
+  name: tiles-terracotta-diagonal-floor
+  sprite: /Textures/_Starlight/Tiles/terracotta_diagonal.png
+  variants: 1
+  placementVariants:
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemTerracottaDiagonal
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorTerracottaSmall
+  name: tiles-terracotta-small-floor
+  sprite: /Textures/_Starlight/Tiles/terracotta_small.png
+  variants: 1
+  placementVariants:
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemTerracottaSmall
+  heatCapacity: 10000

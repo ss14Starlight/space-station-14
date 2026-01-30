@@ -17,6 +17,7 @@ using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Audio;
 using Robust.Client.Graphics;
+using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
@@ -27,6 +28,7 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Content.Client._Starlight.MHelp;
 
 namespace Content.Client.UserInterface.Systems.Bwoink;
 
@@ -38,14 +40,16 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    [Dependency] private readonly IInputManager _input = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly StaffHelpUIController _staffHelp = default!;
 
     private BwoinkSystem? _bwoinkSystem;
-    private Controls.MenuButton? GameAHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.AHelpButton;
-    private Button? LobbyAHelpButton => (UIManager.ActiveScreen as LobbyGui)?.AHelpButton;
+    public Controls.MenuButton? GameAHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.AHelpButton;
+    public Button? LobbyAHelpButton => (UIManager.ActiveScreen as LobbyGui)?.AHelpButton;
     public IAHelpUIHandler? UIHelper;
     private bool _discordRelayActive;
-    private bool _hasUnreadAHelp;
+    public bool _hasUnreadAHelp;
     private bool _bwoinkSoundEnabled;
     private string? _aHelpSound;
 
@@ -90,8 +94,10 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
 
     private void AHelpButtonPressed(BaseButton.ButtonEventArgs obj)
     {
-        EnsureUIHelper();
-        UIHelper!.ToggleWindow();
+        // EnsureUIHelper();
+        // UIHelper!.ToggleWindow();
+
+        _staffHelp.ToggleWindow();
     }
 
     public void OnSystemLoaded(BwoinkSystem system)
@@ -99,15 +105,13 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         _bwoinkSystem = system;
         _bwoinkSystem.OnBwoinkTextMessageRecieved += ReceivedBwoink;
 
-        CommandBinds.Builder
-            .Bind(ContentKeyFunctions.OpenAHelp,
-                InputCmdHandler.FromDelegate(_ => ToggleWindow()))
-            .Register<AHelpUIController>();
+        _input.SetInputCommand(ContentKeyFunctions.OpenAHelp,
+            InputCmdHandler.FromDelegate(_ => _staffHelp.ToggleWindow()));
     }
 
     public void OnSystemUnloaded(BwoinkSystem system)
     {
-        CommandBinds.Unregister<AHelpUIController>();
+        _input.SetInputCommand(ContentKeyFunctions.OpenAHelp, null);
 
         DebugTools.Assert(_bwoinkSystem != null);
         _bwoinkSystem!.OnBwoinkTextMessageRecieved -= ReceivedBwoink;
@@ -233,7 +237,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         helper.ClydeWindow = _clyde.CreateWindow(new WindowCreateParameters
         {
             Maximized = false,
-            Title = "Admin Help",
+            Title = Loc.GetString("bwoink-admin-title"),
             Monitor = monitor,
             Width = 900,
             Height = 500
@@ -249,18 +253,20 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         helper.Control.PopOut.Visible = false;
     }
 
-    private void UnreadAHelpReceived()
+    public void UnreadAHelpReceived()
     {
-        GameAHelpButton?.StyleClasses.Add(Controls.MenuButton.StyleClassRedTopButton);
-        LobbyAHelpButton?.StyleClasses.Add(StyleNano.StyleClassButtonColorRed);
+        // GameAHelpButton?.StyleClasses.Add(StyleClass.Negative);
+        // LobbyAHelpButton?.StyleClasses.Add(StyleClass.Negative);
         _hasUnreadAHelp = true;
+        _staffHelp.RefreshAhelpButton();
     }
 
     private void UnreadAHelpRead()
     {
-        GameAHelpButton?.StyleClasses.Remove(Controls.MenuButton.StyleClassRedTopButton);
-        LobbyAHelpButton?.StyleClasses.Remove(StyleNano.StyleClassButtonColorRed);
+        // GameAHelpButton?.StyleClasses.Remove(StyleClass.Negative);
+        // LobbyAHelpButton?.StyleClasses.Remove(StyleClass.Negative);
         _hasUnreadAHelp = false;
+        _staffHelp.RefreshAhelpButton();
     }
 
     public void OnStateEntered(GameplayState state)

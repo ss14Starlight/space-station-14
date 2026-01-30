@@ -121,6 +121,8 @@
     sprite: Clothing/Head/Misc/richard.rsi
   - type: Clothing
     sprite: Clothing/Head/Misc/richard.rsi
+  - type: Item
+    storedRotation: 0
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: HideLayerClothing
@@ -198,26 +200,28 @@
     sprite: Clothing/Head/Misc/fancycrown.rsi
   - type: TypingIndicatorClothing
     proto: regal
-  - type: MobPrice
+  - type: StaticPrice
     price: 3000
   - type: AddAccentClothing
     accent: MobsterAccent
 
 - type: entity
-  parent: [ ClothingHeadBase ]
+  parent: [ ClothingHeadBase, BaseSyndicateContraband ]
   id: ClothingHeadHatCatEars
   name: cat ears
   description: "NYAH!"
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL change
   components:
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: Sprite
-    sprite: Clothing/Head/Hats/catears.rsi
+    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi # Starlight
   - type: Clothing
-    sprite: Clothing/Head/Hats/catears.rsi
+    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi # Starlight
   - type: AddAccentClothing
     accent: OwOAccent
+  - type: StaticPrice
+    price: 15000
 
 - type: entity
   parent: [ClothingHeadHatCatEars, BaseToggleClothing]
@@ -235,9 +239,9 @@
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: Sprite
-    sprite: Clothing/Head/Hats/catears.rsi
+    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi # Starlight
   - type: Clothing
-    sprite: Clothing/Head/Hats/catears.rsi
+    sprite: _Starlight/Clothing/Head/Hats/blackcatears.rsi # Starlight
   - type: AddAccentClothing
     accent: OwOAccent
 
@@ -313,15 +317,17 @@
   - type: Clothing
     slots:
     - HEAD
-  - type: Food
+  - type: Edible
+    edible: Drink
     solution: drink
-    useSound: /Audio/Items/drink.ogg
-    eatMessage: drink-component-try-use-drink-success-slurp
     delay: 0.5
     forceFeedDelay: 1.5
+    utensil: Spoon
   - type: FlavorProfile
     flavors:
       - water
+  - type: DrainableSolution
+    solution: drink
   - type: SolutionContainerManager
     solutions:
       drink:

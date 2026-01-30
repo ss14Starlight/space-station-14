@@ -21,6 +21,7 @@
     shape:
     - 0,0,1,0
     - 0,1,0,1
+    storedOffset: 0,-4
   - type: Tag
     tags:
     - Sidearm
@@ -55,7 +56,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolSP
         priority: 1
         whitelist:
           tags:
@@ -64,6 +64,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # Starlight
   - type: AmmoCounter
   - type: MagazineVisuals
     magState: mag
@@ -72,6 +73,14 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
+  # starlight start
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinPistol
+  - type: FiringPinHolder
+    supportedPins: [ Pistol, GunUpgrade ]
+  # starlight end
 
 - type: entity
   name: viper
@@ -96,7 +105,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolSP
         priority: 1
         whitelist:
           tags:
@@ -105,6 +113,9 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
+  - type: StaticPrice
+    price: 1000
 
 - type: entity
   name: echis
@@ -130,15 +141,16 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletPistol
-    fireCost: 100
-  - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 25
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgePistol
+    capacity: 10
+    proto: CartridgePistolSP
+    cycleable: false # No synthesizing ammo for your syndicate masters.
+  - type: BallisticAmmoSelfRefiller
+    autoRefillRate: 4s
+    affectedByEmp: true
   - type: AmmoCounter
 
 - type: entity
@@ -180,7 +192,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeCaselessRifle
         priority: 1
         whitelist:
           tags:
@@ -189,10 +200,13 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
+  - type: StaticPrice
+    price: 1500
 
 - type: entity
   name: mk 58
-  parent: [BaseWeaponPistol, BaseSecurityContraband]
+  parent: [BaseWeaponPistol, BaseSecuritySalvageContraband]
   id: WeaponPistolMk58
   description: Designed by Nanotrasen’s Small Arms Division, the Mk58 is a conventional semi-automatic pistol with a simple recoil-operated action and excellent reliability. The standard sidearm of Nanotrasen’s station security and emergency response teams. Feeds from .35 pistol magazines.
   components:
@@ -205,12 +219,16 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+  - type: Item
+    storedOffset: 0,-2
   - type: Gun
     fireRate: 5
     availableModes:
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: StealTarget
+    stealGroup: OfficerHandgun
 
 - type: entity
   name: N1984
@@ -251,7 +269,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnumSP
         priority: 1
         whitelist:
           tags:

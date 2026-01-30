@@ -28,12 +28,30 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Duffels/roboticist.rsi
-    
+
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseCommandContraband]
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelCargoSenior
+  name: senior courier duffel bag
+  description: A large duffel bag for the quartermaster's most devoted couriers.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/cargosenior.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelChemistrySenior
+  name: senior chemistry duffel bag
+  description: A large duffel bag for holding a wide assortment of advanced chemical supplies.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/chemistrysenior.rsi
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseBlueShieldContraband]
   id: ClothingBackpackDuffelBlueShield
-  name: blueshield's duffel bag
-  description: The bag for a Blueshield ready for any contingency. 
+  name: blue shield duffel bag
+  description: The bag for a Blue Shield Officer who is ready for any contingency. 
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Duffels/blueshield.rsi

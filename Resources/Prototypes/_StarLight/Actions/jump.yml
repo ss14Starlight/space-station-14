@@ -5,7 +5,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 30
     itemIconStyle: NoItem
     icon:
       sprite: _Starlight/Actions/resomi.rsi
@@ -47,8 +46,9 @@
     rechargeDuration: 30
   - type: WorldTargetAction
     event: !type:JumpActionEvent
-      distance: 4.5
-      speed: 4.5 # Equal to movement speed.
+      distance: 2.25   # about 3 tiles after momentum / friction factors in
+      toPointer: false # moths only get control over direction, not distance
+      speed: 4.5       # equal to movement speed
       sound:
         path: /Audio/_Starlight/Effects/Jump/moth.ogg
 
@@ -86,3 +86,20 @@
       toPointer: false
       sound:
         path: /Audio/_Starlight/Effects/Jump/jetpack.ogg
+
+- type: entity
+  parent: Jump
+  id: JumpPilebunkerLeg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Actions/resomi.rsi
+      state: jump
+  - type: WorldTargetAction
+    event: !type:JumpActionEvent
+      distance: 5
+      sound:
+        path: /Audio/Weapons/block_metal1.ogg

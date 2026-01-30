@@ -97,7 +97,7 @@
   reactants:
     Cognac:
       amount: 1
-    IrishSlammer:
+    IrishCarBomb: #Starlight Change
       amount: 1
     CoffeeLiqueur:
       amount: 1
@@ -633,22 +633,20 @@
   reactants:
     EnergyDrink:
       amount: 1
-    IrishSlammer:
+    IrishCarBomb: #Starlight Change
       amount: 1
   products:
     IrishBool: 2
 
 - type: reaction
-  id: IrishSlammer
+  id: IrishCarBomb #Starlight Change
   reactants:
     Ale:
       amount: 1
     IrishCream:
       amount: 1
   products:
-    IrishSlammer: 2
-  sound:
-    path: /Audio/Animals/penguin_squawk.ogg # Cocktail is called grenade penguin in localisation
+    IrishCarBomb: 2 #Starlight Change
 
 - type: reaction
   id: IrishCoffee
@@ -715,7 +713,7 @@
     Kalimotxo: 2
 
 - type: reaction
-  id: KiraSpecial
+  id: OrangeLimeSoda
   requiredMixerCategories:
   - Stir
   reactants:
@@ -726,7 +724,7 @@
     SodaWater:
       amount: 1
   products:
-    KiraSpecial: 3
+    OrangeLimeSoda: 3
 
 - type: reaction
   id: Lemonade
@@ -982,6 +980,8 @@
 
 - type: reaction
   id: RedMead
+  requiredMixerCategories:
+  - Stir
   reactants:
     Mead:
       amount: 1

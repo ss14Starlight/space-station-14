@@ -2,3 +2,23 @@
   license: "CC-BY-4.0"
   copyright: 'Darkrell, JustAdler'
   source: "https://github.com/ss14Starlight/space-station-14"
+
+- files: ["omega.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "made by stickycheZ101"
+  source: "https://github.com/stickycheZ101"
+  
+- files: ["orange.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by Conflee"
+  source: "https://bsky.app/profile/conflee.bsky.social"
+
+- files: ["psi.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Modified by Bukkataro from xenoborg_buzz-two.ogg"
+  source: "https://github.com/space-wizards/space-station-14/pull/36867"
+
+- files: ["icarus_alarm.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Skyrat"
+  source: "https://github.com/Skyrat-SS13/Skyrat-tg"

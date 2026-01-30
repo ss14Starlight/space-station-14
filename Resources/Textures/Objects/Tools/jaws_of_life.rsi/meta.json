@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "from paradise and modified from tgstation at commit https://github.com/tgstation/tgstation/commit/f07f847706d85b7cfa4b398e5175732212b69a63 by KingFroozy (Github), inhand for syn made by icekot8",
+  "copyright": "from paradise and modified from tgstation at commit https://github.com/tgstation/tgstation/commit/f07f847706d85b7cfa4b398e5175732212b69a63 by KingFroozy (Github), inhand for syn made by icekot8, belt variants for syndicate/proto made by wonderfulnewworld (Github)",
   "size": {
     "x": 32,
     "y": 32
@@ -43,6 +43,14 @@
     },
     {
       "name": "equipped-BELT",
+      "directions": 4
+    },
+	{
+      "name": "syn_equipped-BELT",
+      "directions": 4
+    },
+	{
+      "name": "proto_equipped-BELT",
       "directions": 4
     }
   ]

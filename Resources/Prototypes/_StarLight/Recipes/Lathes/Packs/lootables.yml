@@ -1,0 +1,42 @@
+## Dynamic recipes
+
+- type: latheRecipePack
+  id: StarlightAutolatheLootable
+  recipes:
+  - CowToolboxFilled
+  - AstroNavCartridge
+
+- type: latheRecipePack
+  id: StarlightProtolatheLootable
+  recipes:
+  - AirGrenade
+  - RCDAmmo
+
+- type: latheRecipePack
+  id: StarlightCircuitImprinterLootable
+  recipes:
+  - WallmountGeneratorElectronics
+  - ComputerIFFCircuitboard
+
+- type: latheRecipePack
+  id: StarlightBiofabricatorLootable
+  recipes:
+  - ScurretCube
+
+- type: latheRecipePack
+  id: StarlightSecurityTechFabLootable
+  recipes:
+  - SeismicCharge
+  - C4
+  - LogProbeCartridge
+
+- type: latheRecipePack
+  id: StarlightMedicalTechFabLootable
+  recipes:
+  - MedTekCartridge
+  - DefibrillatorCompact
+
+- type: latheRecipePack
+  id: StarlightUniformPrinterLootable
+  recipes:
+  - AssistantPDA

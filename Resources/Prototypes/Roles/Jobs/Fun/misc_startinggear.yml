@@ -103,6 +103,18 @@
     jumpsuit: ClothingUniformJumpsuitJacketMonkey
     id: PunPunIDCard
 
+- type: startingGear
+  id: MobPollyGear
+  equipment:
+    ears: ClothingHeadsetEngineering
+
+# Emotional Support Scurret
+
+- type: startingGear
+  id: EmotionalSupportScurretGear
+  equipment:
+    id: ScurretPDA
+
 # DeathMatch Gear
 
 - type: startingGear
@@ -119,14 +131,31 @@
 - type: startingGear
   id: MobAghostGear
   equipment:
-    back: ClothingBackpackSatchelHolding
+    back: ClothingBackpackSatchelAdmin
     id: AdminPDA
+    belt: ClothingBeltChiefEngineerFilled #starlight start 
   storage:
     back:
-    - GasAnalyzer
-    - trayScanner
     - AccessConfiguratorUniversal
-    - Multitool
+    - AnomalyScanner
+    - RubberStampCentcom
+    - RubberStampCAD
+    - RubberStampCED
+    - RubberStampCMD
+    - RubberStampCRD
+    - RubberStampCCD
+    - RubberStampCSD
+    - RubberStampCDD 
+    - RubberStampAcknowledged
+    - RubberStampMissingStamps
+    - RubberStampIncorrectStamps
+    - RubberStampIncorrectForm
+    - RubberStampIncompleteForm
+    - RubberStampSentToATS
+    - RubberStampDeferToCommand
+    - RubberStampStandby
+    - RubberStampApproved 
+    - RubberStampDenied #starlight end
 
 #Gladiator with spear
 - type: startingGear

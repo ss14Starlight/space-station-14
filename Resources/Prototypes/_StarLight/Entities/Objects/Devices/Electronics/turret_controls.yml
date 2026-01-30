@@ -1,0 +1,10 @@
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelElectronicsBase
+  id: WeaponEnergyTurretSiliconControlPanelElectronics
+  suffix: Silicon
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: science
+  - type: ElectronicsBoard
+    prototype: WeaponEnergyTurretSiliconControlPanel

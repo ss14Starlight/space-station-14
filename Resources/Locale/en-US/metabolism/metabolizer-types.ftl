@@ -10,6 +10,3 @@ metabolizer-type-plant = Plant
 metabolizer-type-dwarf = Dwarf
 metabolizer-type-moth = Moth
 metabolizer-type-arachnid = Arachnid
-# Starlight
-metabolizer-type-vampire = Vampire
-metabolizer-type-avali = Avali

@@ -1,0 +1,87 @@
+- type: onSignActions
+  id: EndOfQHighpop3
+  actions:
+    - !type:ActionWhitelistCheck
+      whitelist: 
+        components:
+          - MindShield
+    - !type:ActionAddComponent
+      targetPaper: true
+      components:
+        - type: Flammable
+          fireSpread: true
+          alwaysCombustible: true
+          damage:
+            types:
+              Heat: 1
+        - type: Destructible
+          thresholds:
+            - trigger: !type:DamageTrigger # Excess damage, don't spawn entities
+                damage: 100
+              behaviors:
+                - !type:DoActsBehavior
+                  acts: ["Destruction"]
+            - trigger: !type:DamageTrigger
+                damage: 15
+              behaviors:
+                - !type:SpawnEntitiesBehavior
+                  spawn:
+                    Ash:
+                      min: 1
+                      max: 1
+                - !type:DoActsBehavior
+                  acts: ["Destruction"]
+    - !type:ActionGrantAction
+      targetPaper: true
+      actions:
+        - ActionVoidApplause
+    - !type:ActionAddGamerules
+      rules:
+        - AnomalySpawn
+    - !type:ActionSetCharges
+      charges: 3
+    - !type:ActionChangeActionSet
+      actions: EndOfQHighpop6
+
+- type: onSignActions
+  id: EndOfQHighpop6
+  actions:
+  - !type:ActionWhitelistCheck
+    whitelist: 
+      components:
+        - MindShield
+  - !type:ActionGrantAction
+    targetPaper: true
+    actions:
+      - ActionPolymorphJauntIII
+  - !type:ActionAddGamerules
+    targetPaper: true
+    rules:
+      - ParadoxCloneSpawn
+      - ParadoxCloneSpawn
+      - NinjaSpawn
+      - UnknownShuttleHonki
+      - AbductorsSpawn
+  - !type:ActionSetCharges
+    charges: 3
+  - !type:ActionChangeActionSet
+    actions: EndOfQHighpopFinale
+
+- type: onSignActions
+  id: EndOfQHighpopFinale
+  actions:
+  - !type:ActionWhitelistCheck
+    whitelist: 
+      components:
+        - MindShield
+  - !type:ActionAddGamerules
+    targetPaper: true
+    rules:
+        - AnomalySpawn
+        - AnomalySpawn
+        - AnomalySpawn
+        - AnomalySpawn # ATTENTION spam warning but there is no silent anom spawn sadly
+        - LoneOpsSpawn
+        - WizardSpawn
+        - DragonSpawn
+        - NinjaSpawn

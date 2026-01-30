@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by Rhetorica for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "doner"
+    },
+    {
+      "name": "falafel"
+    },
+	{
+      "name": "pita"
+    },
+	{
+      "name": "pitadough"
+    },
+	{
+      "name": "shawarma"
+    },
+	{
+      "name": "souvlaki"
+    }
+  ]
+}

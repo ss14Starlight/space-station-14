@@ -26,6 +26,11 @@
   group: Elements
   desc: reagent-desc-chlorine
   physicalDesc: reagent-physical-desc-gaseous
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedJobs:
+  - Chemist
+  # Starlight End
   flavor: bitter
   color: "#a2ff00"
   meltingPoint: -101.5
@@ -63,9 +68,9 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Arachnid
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Arachnid ]
+          inverted: true
         damage:
           types:
             Poison: 0.1
@@ -73,9 +78,8 @@
       effects:
       - !type:ModifyBloodLevel
         conditions:
-        - !type:OrganType
-          type: Arachnid
-          shouldHave: true
+        - !type:MetabolizerTypeCondition
+          type: [ Arachnid ]
         amount: 0.4
 
 - type: reagent
@@ -84,6 +88,11 @@
   group: Elements
   desc: reagent-desc-fluorine
   physicalDesc: reagent-physical-desc-gaseous
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedJobs:
+  - Chemist
+  # Starlight End
   flavor: bitter
   color: "#ba85cc"
   boilingPoint: -188.11
@@ -154,17 +163,15 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Arachnid
-          shouldHave: true
+        - !type:MetabolizerTypeCondition
+          type: [ Arachnid ]
         damage:
           types:
             Poison: 0.1
       - !type:HealthChange
         conditions:
-        - !type:OrganType
-          type: Avali
-          shouldHave: true
+        - !type:MetabolizerTypeCondition # Starlight
+          type: [ Avali, Resomi ]
         damage:
           types:
             Poison: 2
@@ -172,9 +179,9 @@
       effects:
       - !type:ModifyBloodLevel
         conditions:
-        - !type:OrganType
-          type: Arachnid
-          shouldHave: false
+        - !type:MetabolizerTypeCondition
+          type: [ Arachnid ]
+          inverted: true
         amount: 0.4
   
 - type: reagent
@@ -221,9 +228,9 @@
         damage:
           types:
             Poison: 1
-      - !type:GenericStatusEffect
-        key: Stutter
-        component: ScrambledAccent
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectScrambled
+        type: Update
 
 - type: reagent
   id: Potassium
@@ -231,6 +238,11 @@
   group: Elements
   desc: reagent-desc-potassium
   physicalDesc: reagent-physical-desc-shiny
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedJobs:
+  - Chemist
+  # Starlight End
   flavor: metallic
   color: "#c6c8cc"
   meltingPoint: 65.5
@@ -242,6 +254,11 @@
   group: Elements
   desc: reagent-desc-phosphorus
   physicalDesc: reagent-physical-desc-powdery
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedJobs:
+  - Chemist
+  # Starlight End
   flavor: metallic
   color: "#f5da9a"
   meltingPoint: 44.2
@@ -261,6 +278,11 @@
   parent: Uranium
   desc: reagent-desc-radium
   physicalDesc: reagent-physical-desc-glowing
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedDepartments:
+  - Engineering
+  # Starlight End
   flavor: metallic
   color: "#00ff04"
   meltingPoint: 700.0
@@ -272,6 +294,11 @@
   group: Elements
   desc: reagent-desc-silicon
   physicalDesc: reagent-physical-desc-crystalline
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedJobs:
+  - Chemist
+  # Starlight End
   flavor: metallic
   color: "#364266"
   boilingPoint: 3265.0
@@ -301,6 +328,7 @@
   group: Elements
   desc: reagent-desc-sulfur
   physicalDesc: reagent-physical-desc-powdery
+  contrabandSeverity: Minor # Starlight None -> Minor
   flavor: bitter
   color: "#fff385"
   boilingPoint: 445.0
@@ -330,6 +358,13 @@
   group: Elements
   desc: reagent-desc-uranium
   physicalDesc: reagent-physical-desc-metallic
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedDepartments:
+  - Engineering
+  allowedJobs:
+  - Bartender
+  # Starlight End
   flavor: metallic
   color: "#8fa191"
   meltingPoint: 1133.0

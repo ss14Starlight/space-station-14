@@ -1,67 +1,149 @@
 using Content.Client.Items;
 using Content.Client.Message;
 using Content.Client.Stylesheets;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Crayon;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.GameObjects;
-using Robust.Shared.GameStates;
-using Robust.Shared.Localization;
 using Robust.Shared.Timing;
+
+#region Starlight
+using Content.Client._Starlight.Crayon.Overlays;
+using Content.Client.Decals;
+using Content.Shared.Decals;
+using Content.Shared.GameTicking;
+using Content.Shared.Hands;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
+using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
+using Robust.Client.Player;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+#endregion Starlight
 
 namespace Content.Client.Crayon;
 
 public sealed class CrayonSystem : SharedCrayonSystem
 {
-    // Didn't do in shared because I don't think most of the server stuff can be predicted.
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
+
+    // Starlight-start
+    [Dependency] private readonly IOverlayManager _overlay = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly DecalPlacementSystem _placement = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+    // Starlight-end
+    
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<CrayonComponent, ComponentHandleState>(OnCrayonHandleState);
-        Subs.ItemStatus<CrayonComponent>(ent => new StatusControl(ent));
-    }
 
-    private static void OnCrayonHandleState(EntityUid uid, CrayonComponent component, ref ComponentHandleState args)
-    {
-        if (args.Current is not CrayonComponentState state) return;
+        Subs.ItemStatus<CrayonComponent>(ent => new StatusControl(ent, _charges, _entityManager));
 
-        component.Color = state.Color;
-        component.SelectedState = state.State;
-        component.Charges = state.Charges;
-        component.Capacity = state.Capacity;
-
-        component.UIUpdateNeeded = true;
+        // Starlight-start
+        SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnLocalPlayerDetached);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        SubscribeLocalEvent<CrayonComponent, HandDeselectedEvent>(OnHandDeselected);
+        SubscribeLocalEvent<CrayonComponent, GotUnequippedHandEvent>(OnUnequip);
+        SubscribeLocalEvent<CrayonComponent, ComponentShutdown>(OnComponentShutdown);
+        // Starlight-end
     }
 
     private sealed class StatusControl : Control
     {
-        private readonly CrayonComponent _parent;
+        private readonly Entity<CrayonComponent> _crayon;
+        private readonly SharedChargesSystem _charges;
         private readonly RichTextLabel _label;
+        private readonly int _capacity;
 
-        public StatusControl(CrayonComponent parent)
+        public StatusControl(Entity<CrayonComponent> crayon, SharedChargesSystem charges, EntityManager entityManage)
         {
-            _parent = parent;
-            _label = new RichTextLabel { StyleClasses = { StyleNano.StyleClassItemStatus } };
+            _crayon = crayon;
+            _charges = charges;
+            _capacity = entityManage.GetComponent<LimitedChargesComponent>(_crayon.Owner).MaxCharges;
+            _label = new RichTextLabel { StyleClasses = { StyleClass.ItemStatus } };
             AddChild(_label);
-
-            parent.UIUpdateNeeded = true;
         }
 
         protected override void FrameUpdate(FrameEventArgs args)
         {
             base.FrameUpdate(args);
 
-            if (!_parent.UIUpdateNeeded)
-            {
-                return;
-            }
+            // TODO: This call needs fixingUpdateOverlay(_crayon.Owner, _crayon.Comp, _crayon.Comp.SelectedState, _crayon.Comp.Rotation, _crayon.Comp.Color, _crayon.Comp.PreviewEnabled, _crayon.Comp.PreviewVisible, _crayon.Comp.OpaqueGhost); // Starlight-edit
 
-            _parent.UIUpdateNeeded = false;
             _label.SetMarkup(Robust.Shared.Localization.Loc.GetString("crayon-drawing-label",
-                ("color",_parent.Color),
-                ("state",_parent.SelectedState),
-                ("charges", _parent.Charges),
-                ("capacity",_parent.Capacity)));
+                ("color",_crayon.Comp.Color),
+                // Starlight-start
+                ("rotation",_crayon.Comp.Rotation),
+                ("previewEnabled",_crayon.Comp.PreviewEnabled),
+                ("previewVisible",_crayon.Comp.PreviewVisible),
+                // Starlight-end
+                ("state",_crayon.Comp.SelectedState),
+                ("charges", _charges.GetCurrentCharges(_crayon.Owner)),
+                ("capacity", _capacity)));
         }
     }
+
+    // Starlight-start
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<CrayonComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+            if(comp.PreviewEnabled) UpdateOverlay(uid, comp); // quick bool check here since i assume checking active item is more intensive
+    }
+
+    private void UpdateOverlay(EntityUid uid, CrayonComponent component)
+    {
+        if (_player.LocalEntity == null || _handsSystem.GetActiveItem(_player.LocalEntity.Value) != uid) return;
+        _overlay.RemoveOverlay<CrayonDecalGhostOverlay>();
+        if (!component.PreviewVisible) return;
+        if (!_prototypeManager.HasIndex<DecalPrototype>(component.SelectedState)) return;
+        var decal = _prototypeManager.Index<DecalPrototype>(component.SelectedState);
+        var color = component.Color;
+        if (component.OpaqueGhost)
+            color.A /= 2;
+        _overlay.AddOverlay(new CrayonDecalGhostOverlay(_placement, _transform, _sprite, _interaction, decal,
+            -component.Rotation, color));
+    }
+
+    private void OnLocalPlayerDetached(LocalPlayerDetachedEvent args)
+    {
+        RemoveOverlay();
+    }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent args)
+    {
+        RemoveOverlay();
+    }
+
+    private void OnHandDeselected(EntityUid uid, CrayonComponent component, ref HandDeselectedEvent args)
+    {
+        RemoveOverlay();
+    }
+
+    private void OnUnequip(EntityUid uid, CrayonComponent component, ref GotUnequippedHandEvent args)
+    {
+        if(args.Unequipped==uid) RemoveOverlay();
+    }
+
+    private void OnComponentShutdown(EntityUid uid, CrayonComponent component, ComponentShutdown args)
+    {
+        RemoveOverlay();
+    }
+
+    private void RemoveOverlay()
+    {
+        _overlay.RemoveOverlay<CrayonDecalGhostOverlay>();
+    }
+    // Starlight-end
 }

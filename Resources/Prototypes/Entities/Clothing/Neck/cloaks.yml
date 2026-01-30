@@ -8,6 +8,14 @@
     sprite: Clothing/Neck/Cloaks/centcomcloakformal.rsi
   - type: StealTarget
     stealGroup: HeadCloak # leaving this here because I suppose it might be interesting?
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -19,6 +27,14 @@
     sprite: Clothing/Neck/Cloaks/cap.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -30,6 +46,14 @@
     sprite: Clothing/Neck/Cloaks/hos.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -41,6 +65,14 @@
     sprite: Clothing/Neck/Cloaks/ce.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -52,6 +84,14 @@
     sprite: Clothing/Neck/Cloaks/cmo.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -63,6 +103,14 @@
     sprite: Clothing/Neck/Cloaks/rd.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -74,6 +122,14 @@
     sprite: Clothing/Neck/Cloaks/qm.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -85,6 +141,14 @@
     sprite: Clothing/Neck/Cloaks/hop.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -114,6 +178,14 @@
     sprite: Clothing/Neck/Cloaks/capcloakformal.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -125,6 +197,14 @@
     sprite: Clothing/Neck/Cloaks/admin.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -143,6 +223,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/trans.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -186,7 +274,7 @@
   parent: ClothingNeckBase
   id: ClothingNeckCloakMoth
   name: moth cloak
-  description: A cloak in the form of moth wings is an unusual and original element of the wardrobe that can attract the attention of others. It is made of a thin fabric imitating moth wings, with soft and fluffy edges. The raincoat is fastened around the neck with Velcro, and has a hood in the shape of a moths head.
+  description: A cloak in the form of moth wings is an unusual and original element of the wardrobe that can attract the attention of others. It is made of a thin fabric imitating moth wings, with soft and fluffy edges. The raincoat is fastened around the neck with straps, and has a hood in the shape of a moths head.
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/moth.rsi
@@ -228,6 +316,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/ace.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -237,6 +333,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/aro.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -246,6 +350,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/aroace.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -255,6 +367,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/bi.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -264,6 +384,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/intersex.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -273,6 +401,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/les.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -282,6 +418,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/gay.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -291,6 +435,14 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/enby.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 - type: entity
   parent: ClothingNeckBase
@@ -300,4 +452,12 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/pan.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 

@@ -38,18 +38,21 @@ public sealed class SolutionCommand : ToolshedCommand
     public SolutionRef AdjReagent(
             [PipedArgument] SolutionRef input,
             ProtoId<ReagentPrototype> proto,
-            FixedPoint2 amount
+            float amount
         )
     {
         _solutionContainer ??= GetSys<SharedSolutionContainerSystem>();
 
-        if (amount > 0)
+        // Convert float to FixedPoint2
+        var amountFixed = FixedPoint2.New(amount);
+
+        if (amountFixed > 0)
         {
-            _solutionContainer.TryAddReagent(input.Solution, proto, amount, out _);
+            _solutionContainer.TryAddReagent(input.Solution, proto, amountFixed, out _);
         }
-        else if (amount < 0)
+        else if (amountFixed < 0)
         {
-            _solutionContainer.RemoveReagent(input.Solution, proto, -amount);
+            _solutionContainer.RemoveReagent(input.Solution, proto, -amountFixed);
         }
 
         return input;
@@ -59,9 +62,50 @@ public sealed class SolutionCommand : ToolshedCommand
     public IEnumerable<SolutionRef> AdjReagent(
             [PipedArgument] IEnumerable<SolutionRef> input,
             ProtoId<ReagentPrototype> name,
-            FixedPoint2 amount
+            float amount
         )
         => input.Select(x => AdjReagent(x, name, amount));
+
+    //Starlight begin
+    [CommandImplementation("adjcapacity")]
+    public SolutionRef AdjCapacity([PipedArgument] SolutionRef input, float amount)
+    {
+        if (amount < 0) return input;
+        _solutionContainer ??= GetSys<SharedSolutionContainerSystem>();
+        _solutionContainer.SetCapacity(input.Solution, amount);
+        return input;
+    }
+
+    [CommandImplementation("adjcapacity")]
+    public IEnumerable<SolutionRef> AdjCapacity([PipedArgument] IEnumerable<SolutionRef> input, float amount) =>
+        input.Select(x => AdjCapacity(x, amount));
+
+    [CommandImplementation("adjtemperature")]
+    public SolutionRef AdjTemperature([PipedArgument] SolutionRef input, float temp)
+    {
+        _solutionContainer ??= GetSys<SharedSolutionContainerSystem>();
+        
+        _solutionContainer.SetTemperature(input.Solution, temp);
+        return input;
+    }
+
+    [CommandImplementation("adjtemperature")]
+    public IEnumerable<SolutionRef> AdjTemperature([PipedArgument] IEnumerable<SolutionRef> input, float temp) =>
+        input.Select(x => AdjTemperature(x, temp));
+
+    [CommandImplementation("adjthermalenergy")]
+    public SolutionRef AdjThermalEnergy([PipedArgument] SolutionRef input, float energy)
+    {
+        _solutionContainer ??= GetSys<SharedSolutionContainerSystem>();
+        
+        _solutionContainer.SetThermalEnergy(input.Solution, energy);
+        return input;
+    }
+
+    [CommandImplementation("adjthermalenergy")]
+    public IEnumerable<SolutionRef> AdjThermalEnergy([PipedArgument] IEnumerable<SolutionRef> input, float energy) =>
+        input.Select(x => AdjThermalEnergy(x, energy));
+    //Starlight end
 }
 
 public readonly record struct SolutionRef(Entity<SolutionComponent> Solution)

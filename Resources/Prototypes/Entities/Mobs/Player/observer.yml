@@ -59,17 +59,21 @@
   - type: ShowElectrocutionHUD
   - type: IntrinsicRadioReceiver
   - type: ShowNullSpace # Starlight
+  - type: LanguageSpeaker # Starlight
+  - type: UniversalLanguageSpeaker # Starlight
   - type: ActiveRadio
     receiveAllChannels: true
     globalReceive: true
   - type: Tag
     tags:
     - BypassInteractionRangeChecks
+    - Ghost
   - type: PointLight
     netsync: false
     radius: 6
     castShadows: false
     enabled: false
+  - type: ActiveInputMover # Starlight
 
 # proto for player ghosts specifically
 - type: entity
@@ -78,9 +82,9 @@
   components:
   - type: Spectral
   - type: Tag
-    tags:
+    tags: # BAD: Intentional removal of inherited tag
     - AllowGhostShownByEvent
-
+    - Ghost
 - type: entity
   parent: BaseMentalAction
   id: ActionGhostBoo

@@ -1,0 +1,24 @@
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBase
+  id: WeaponEnergyTurretSiliconControlPanel
+  suffix: Silicon
+  components:
+  - type: AccessReader
+    access: [["StationAi"], ["ResearchDirector"]]
+  - type: ContainerFill
+    containers:
+      board:
+      - WeaponEnergyTurretSiliconControlPanelElectronics
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControlSilicon
+    transmitFrequencyId: TurretSilicon
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - BasicSilicon
+    - Borg
+  - type: DeployableTurretController
+    accessGroups:
+    - Silicon
+    accessLevels:
+    - BasicSilicon
+    - Borg

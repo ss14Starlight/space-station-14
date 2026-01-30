@@ -4,8 +4,14 @@ using System.Threading.Tasks;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Shared.CCVar;
+using Content.Shared.Maps;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
+
+#region Starlight
+using Content.Shared._Starlight.EntityTable;
+using Content.Shared.GameTicking.Components;
+#endregion Starlight
 
 namespace Content.Server.GameTicking;
 
@@ -19,6 +25,11 @@ public sealed partial class GameTicker
     public GamePresetPrototype? Preset { get; private set; }
 
     /// <summary>
+    /// The selected preset that will be shown at the lobby screen to fool players.
+    /// </summary>
+    public GamePresetPrototype? Decoy { get; private set; }
+
+    /// <summary>
     /// The preset that's currently active.
     /// </summary>
     public GamePresetPrototype? CurrentPreset { get; private set; }
@@ -30,6 +41,7 @@ public sealed partial class GameTicker
 
     private bool StartPreset(ICommonSession[] origReadyPlayers, bool force)
     {
+        _sawmill.Info($"Attempting to start preset '{CurrentPreset?.ID}'");
         var startAttempt = new RoundStartAttemptEvent(origReadyPlayers, force);
         RaiseLocalEvent(startAttempt);
 
@@ -46,15 +58,18 @@ public sealed partial class GameTicker
             DelayStart(TimeSpan.FromSeconds(PresetFailedCooldownIncrease));
         }
 
-            if (_cfg.GetCVar(CCVars.GameLobbyFallbackEnabled))
-            {
-                var fallbackPresets = _cfg.GetCVar(CCVars.GameLobbyFallbackPreset).Split(",");
-                var startFailed = true;
+        if (_cfg.GetCVar(CCVars.GameLobbyFallbackEnabled))
+        {
+            var fallbackPresets = _cfg.GetCVar(CCVars.GameLobbyFallbackPreset).Split(",");
+            var startFailed = true;
 
+            _sawmill.Info($"Fallback - Failed to start round, attempting to start fallback presets.");
             foreach (var preset in fallbackPresets)
             {
+                _sawmill.Info($"Fallback - Clearing up gamerules");
                 ClearGameRules();
-                SetGamePreset(preset);
+                _sawmill.Info($"Fallback - Attempting to start '{preset}'");
+                SetGamePreset(preset, resetDelay: 1);
                 AddGamePresetRules();
                 StartGamePresetRules();
 
@@ -71,6 +86,7 @@ public sealed partial class GameTicker
                     startFailed = false;
                     break;
                 }
+                _sawmill.Info($"Fallback - '{preset}' failed to start.");
             }
 
             if (startFailed)
@@ -82,6 +98,7 @@ public sealed partial class GameTicker
 
         else
         {
+            _sawmill.Info($"Fallback - Failed to start preset but fallbacks are disabled. Returning to Lobby.");
             FailedPresetRestart();
             return false;
         }
@@ -89,12 +106,21 @@ public sealed partial class GameTicker
         return true;
     }
 
-        private void InitializeGamePreset()
-        {
-            SetGamePreset(LobbyEnabled ? _cfg.GetCVar(CCVars.GameLobbyDefaultPreset) : "sandbox");
-        }
+    private void InitializeGamePreset()
+    {
+        SetGamePreset(LobbyEnabled ? _cfg.GetCVar(CCVars.GameLobbyDefaultPreset) : "sandbox");
+        //#region Starlight
+        SubscribeAllEvent<PresetConditionCheckEvent>(CheckPresetCondition);
+    }
 
-    public void SetGamePreset(GamePresetPrototype? preset, bool force = false, int? resetDelay = null)
+        private void CheckPresetCondition(PresetConditionCheckEvent ev)
+        {
+            if (CurrentPreset != null)
+                ev.Valid = ev.Presets.Contains(CurrentPreset.ID);
+        }
+        //#endregion Starlight
+
+    public void SetGamePreset(GamePresetPrototype? preset, bool force = false, GamePresetPrototype? decoy = null, int? resetDelay = null)
     {
         // Do nothing if this game ticker is a dummy!
         if (DummyTicker)
@@ -114,6 +140,7 @@ public sealed partial class GameTicker
         }
 
         Preset = preset;
+        Decoy = decoy;
         ValidateMap();
         UpdateInfoText();
 
@@ -123,11 +150,11 @@ public sealed partial class GameTicker
         }
     }
 
-    public void SetGamePreset(string preset, bool force = false)
+    public void SetGamePreset(string preset, bool force = false, int? resetDelay = null)
     {
         var proto = FindGamePreset(preset);
-        if(proto != null)
-            SetGamePreset(proto, force);
+        if (proto != null)
+            SetGamePreset(proto, force, null, resetDelay);
     }
 
     public GamePresetPrototype? FindGamePreset(string preset)
@@ -210,23 +237,63 @@ public sealed partial class GameTicker
         var rules = new List<EntityUid>(GetAddedGameRules());
         foreach (var rule in rules)
         {
+            // Starlight start
+            // We're only handling rules that aren't intentionally delayed. If a rule _is_ supposed to be delayed, ignore it.
+            if (HasComp<DelayedStartRuleComponent>(rule))
+                continue;
+            // Starlight end
             StartGameRule(rule);
         }
+
+        // Starlight start
+        // We're not ingame yet, so if gamerules were added during the StartGameRule pass,
+        // they weren't started automatically. This leads to a bit of a chicken-and-egg
+        // problem, as the engine otherwise assumes that StartGamePresetRules will have
+        // moved any existing GameRule objects to a started state. To make this invariant
+        // hold properly, we continue iterating over the game rules until all are started.
+        var expectedRuleCount = rules.Count;
+        rules = new List<EntityUid>(GetAddedGameRules());
+        // The iteration count limit is supposed to prevent us from infinite looping in
+        // the event that a rule adds a copy of itself.
+        var iteration = 0;
+        const int maxIterations = 5;
+        while (expectedRuleCount != rules.Count && iteration < maxIterations)
+        {
+            Log.Warning($"Rules added while starting preset rules - count updated from {expectedRuleCount} to {rules.Count}. Doing another pass to start extra rule(s)...");
+            foreach (var rule in rules)
+            {
+                // We're only handling rules that aren't intentionally delayed. If a rule _is_ supposed to be delayed, ignore it.
+                if (HasComp<DelayedStartRuleComponent>(rule))
+                    continue;
+                StartGameRule(rule);
+            }
+
+            expectedRuleCount = rules.Count;
+            rules = new List<EntityUid>(GetAddedGameRules());
+
+            iteration += 1;
+        }
+
+        if (iteration == maxIterations && expectedRuleCount != rules.Count)
+        {
+            _sawmill.Error($"Rule startup did not converge within {maxIterations} passes, continuing regardless - unstarted rules: {string.Join(", ", rules.Where(rule => !(HasComp<ActiveGameRuleComponent>(rule) || HasComp<EndedGameRuleComponent>(rule))).Select<EntityUid, string>(rule => ToPrettyString(rule)))}");
+        }
+        // Starlight end
     }
 
-        private void IncrementRoundNumber()
-        {
-            var playerIds = _playerGameStatuses.Keys.Select(player => player.UserId).ToArray();
-            var serverName = _cfg.GetCVar(CCVars.AdminLogsServerName);
-
-    // TODO FIXME AAAAAAAAAAAAAAAAAAAH THIS IS BROKEN
-    // Task.Run as a terrible dirty workaround to avoid synchronization context deadlock from .Result here.
-    // This whole setup logic should be made asynchronous so we can properly wait on the DB AAAAAAAAAAAAAH
-    var task = Task.Run(async () =>
+    private void IncrementRoundNumber()
     {
-        var server = await _dbEntryManager.ServerEntity;
-        return await _db.AddNewRound(server, playerIds);
-    });
+        var playerIds = _playerGameStatuses.Keys.Select(player => player.UserId).ToArray();
+        var serverName = _cfg.GetCVar(CCVars.AdminLogsServerName);
+
+        // TODO FIXME AAAAAAAAAAAAAAAAAAAH THIS IS BROKEN
+        // Task.Run as a terrible dirty workaround to avoid synchronization context deadlock from .Result here.
+        // This whole setup logic should be made asynchronous so we can properly wait on the DB AAAAAAAAAAAAAH
+        var task = Task.Run(async () =>
+        {
+            var server = await _dbEntryManager.ServerEntity;
+            return await _db.AddNewRound(server, playerIds);
+        });
 
         _taskManager.BlockWaitOnTask(task);
         RoundId = task.GetAwaiter().GetResult();

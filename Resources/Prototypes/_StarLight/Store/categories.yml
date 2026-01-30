@@ -39,15 +39,19 @@
   name: Medical
 
 - type: storeCategory
-  id: SLFahsionSkirt
+  id: SLFashionSkirt
   name: Luxury dresses 
 
 - type: storeCategory
-  id: SLFahsionSuit
+  id: SLFashionSuit
   name: Elegant suits
 
 - type: storeCategory
-  id: SLFahsionOther
+  id: SLFashionHead
+  name: Hats & Helmets
+
+- type: storeCategory
+  id: SLFashionOther
   name: Other
 
 # shuttle build uplink
@@ -109,6 +113,23 @@
   
 - type: storeCategory
   id: SalvageConsumeables
+  name: Consumeables
+
+- type: storeCategory
+  id: SalvageMercenaryEquipment
+  name: Scrapper
+
+- type: storeCategory
+  id: SalvageCybernetics
+  name: Cybernetics
+
+# mining
+- type: storeCategory
+  id: MiningEquipment
+  name: Equipment
+
+- type: storeCategory
+  id: MiningConsumeables
   name: Consumeables
 
 # USSP

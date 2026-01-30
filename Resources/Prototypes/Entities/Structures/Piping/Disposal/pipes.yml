@@ -62,12 +62,18 @@
       DisposalTube: !type:Container
   - type: StaticPrice
     price: 30
+  # Starlight-start: add disposal pipe tag
+  - type: Tag
+    tags:
+    - DisposalPipe
+  # Starlight-end: add disposal pipe tag
 
 - type: entity
   id: DisposalHolder
   categories: [ HideSpawnMenu ]
   name: disposal holder
   components:
+  - type: ChildBlockVision # Starlight-edit
   - type: DisposalHolder
   - type: ContainerContainer
     containers:
@@ -228,7 +234,7 @@
   id: DisposalRouter
   parent: DisposalPipeBase
   name: disposal router
-  description: A three-way router. Entities with matching tags get routed to the side via configurable filters.
+  description: A disposal pipe able to filter items based on a tag. Items coming from the exits are not filtered and sent to the entrance instead. # Starlight-edit
   components:
   - type: Sprite
     layers:
@@ -274,7 +280,6 @@
 
 - type: entity
   id: DisposalRouterFlipped
-  description: A three-way router. Entities with matching tags get routed to the side.
   parent: DisposalRouter
   suffix: flipped
   components:
@@ -316,8 +321,8 @@
 - type: entity
   id: DisposalJunction
   parent: DisposalPipeBase
-  name: disposal junction
-  description: A three-way junction. The arrow indicates where items exit.
+  name: disposal 2-1 merger # Starlight-edit
+  description: Merges 2 pipes into one. Items coming from the exit move straight on. # Starlight-edit
   components:
   - type: Sprite
     layers:
@@ -358,7 +363,7 @@
 
 - type: entity
   id: DisposalJunctionFlipped
-  description: A three-way junction. The arrow indicates where items exit.
+  description: Merges 2 pipes into one. Items coming from the exit move straight on. # Starlight-edit
   parent: DisposalJunction
   suffix: flipped
   components:
@@ -401,8 +406,8 @@
 - type: entity
   id: DisposalYJunction
   parent: DisposalPipeBase
-  name: disposal y-junction
-  description: A three-way junction with another exit point.
+  name: disposal alt 2-1 merger # Starlight-edit
+  description: Merges 2 pipes from the side to one. Items coming from the exit leave through the right entrance instead. # Starlight-edit
   components:
   - type: Sprite
     layers:
@@ -441,8 +446,8 @@
 - type: entity
   id: DisposalXJunction
   parent: DisposalPipeBase
-  name: disposal x-junction
-  description: A four-way junction. The arrow indicates where items exit.
+  name: disposal 3-1 Merger # Starlight-edit
+  description: Merges 3 pipes into 1. Items coming from the exit move straight on. # Starlight-edit
   components:
   - type: Sprite
     layers:

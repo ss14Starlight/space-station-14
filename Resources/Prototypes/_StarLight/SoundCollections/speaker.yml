@@ -1,0 +1,16 @@
+- type: soundCollection
+  id: SpeakerAds
+  files:
+  - /Audio/_Starlight/Speaker/DonkPockets.ogg
+  - /Audio/_Starlight/Speaker/Greybull.ogg
+  - /Audio/_Starlight/Speaker/JOIN_CARGONIA.ogg
+  - /Audio/_Starlight/Speaker/JOIN_ENGINEERING.ogg
+  - /Audio/_Starlight/Speaker/JOIN_MEDICAL.ogg
+  - /Audio/_Starlight/Speaker/JOIN_SECURITY.ogg
+  - /Audio/_Starlight/Speaker/JOIN_THE_JANITORS2.ogg
+  - /Audio/_Starlight/Speaker/JoinTheScienceTeamToday.ogg
+  - /Audio/_Starlight/Speaker/MAGMALE.ogg
+  - /Audio/_Starlight/Speaker/UncleGitsCommercial.ogg
+  - /Audio/_Starlight/Speaker/goon_DiscountDans.ogg
+  - /Audio/_Starlight/Speaker/goon_SecurityPSA.ogg
+

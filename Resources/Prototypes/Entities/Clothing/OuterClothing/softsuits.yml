@@ -13,6 +13,7 @@
     tags:
     - SuitEVA
     - MonkeyWearable
+    - CorgiWearable
     - WhitelistChameleon
     - CorgiWearable
 
@@ -32,6 +33,8 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
+  - type: StaticPrice
+    price: 1000 # Helmet is 500
 
 #Emergency EVA
 - type: entity
@@ -60,7 +63,9 @@
   - type: Tag
     tags:
     - CorgiWearable
-    - SuitEVA
+    - ScurretWearable
+    - MonkeyWearable
+    - SuitEVA #Starlight
     - WhitelistChameleon
 
 #Prisoner EVA
@@ -68,12 +73,19 @@
   parent: ClothingOuterEVASuitBase
   id:  ClothingOuterHardsuitEVAPrisoner
   name: prisoner EVA suit
-  description: A lightweight space suit for prisoners to protect them from the vacuum of space during emergencies.
+  description: An emergency EVA suit meant for prisoners. It's horribly slow and lacking in temperature protection, but enough to buy you time from the harsh vacuum of space.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/eva_prisoner.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/eva_prisoner.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: TemperatureProtection
+    heatingCoefficient: 0.75
+    coolingCoefficient: 0.5
   - type: Tag
     tags:
     - SuitEVA
@@ -114,8 +126,9 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 1.0 # Starlight Edit
+    sprintModifier: 1.0 # Starlight Edit
+    requireActivated: false
   - type: HeldSpeedModifier
   - type: TemperatureProtection
     heatingCoefficient: 0.1
@@ -128,6 +141,8 @@
         Heat: 0.90
         Radiation: 0.75
         Caustic: 0.5
+  - type: ZombificationResistance 
+    zombificationResistanceCoefficient: 0.5 # Starlight Edit
   - type: GroupExamine
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitVoidParamed

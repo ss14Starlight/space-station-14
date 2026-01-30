@@ -42,3 +42,6 @@
   - type: Tag
     tags:
     - FakeNukeDisk
+  - type: SentienceTarget #Starlight
+    flavorKind: station-event-random-sentience-flavor-inanimate #Starlight
+    weight: 0.001 #Starlight

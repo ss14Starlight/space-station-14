@@ -35,7 +35,7 @@
     add:
     - type: BleedersClamped
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
   - type: SurgeryClampBleedEffect
 
@@ -62,7 +62,7 @@
     tools:
     - type: BoneSetter
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: setter
 
 - type: entity
@@ -74,13 +74,39 @@
     tools:
     - type: BoneSetter
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: setter
 
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepMendRibcage
   name: Mend ribcage
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: BoneGel
+    reagentId: BoneGel
+    reagentQuantity: 5
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepMendSlime
+  name: Reform slime mass
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: BoneGel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-gel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepMendSkull
+  name: Mend skull
   components:
   - type: SurgeryStep
     tools:
@@ -129,7 +155,7 @@
     tools:
     - type: Retractor
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
 
 - type: entity
@@ -155,6 +181,6 @@
     tools:
     - type: Retractor
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
   - type: SurgeryStepEmoteEffect

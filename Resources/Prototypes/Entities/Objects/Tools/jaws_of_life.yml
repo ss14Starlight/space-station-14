@@ -49,6 +49,16 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
+  # 🌟Starlight-start🌟
+  - type: SurgeryTool
+    successRate: 0.8
+    speed: 0.8
+    startSound:
+      path: /Audio/Items/jaws_cut.ogg
+    endSound:
+      path: /Audio/Items/change_jaws.ogg
+  - type: BoneSaw
+  # 🌟Starlight-end🌟
 
 - type: entity
   name: syndicate jaws of life
@@ -56,6 +66,11 @@
   id: SyndicateJawsOfLife
   description: Useful for entering the station or its departments.
   components:
+  # 🌟Starlight-start🌟
+  - type: Tag
+    tags:
+    - SyndicateJawsOfLife
+  # 🌟Starlight-end🌟
   - type: Sprite
     sprite: Objects/Tools/jaws_of_life.rsi
     state: syn_jaws_pry
@@ -67,6 +82,7 @@
       - state: syn_inhand-right
     size: Normal
   - type: Prying
+    force: true
     speedModifier: 3.0
   - type: MultipleTool
     entries:
@@ -86,3 +102,5 @@
     damage:
       types:
         Blunt: 14
+  - type: StaticPrice
+    price: 1000

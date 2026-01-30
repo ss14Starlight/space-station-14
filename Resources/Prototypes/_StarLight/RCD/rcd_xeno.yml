@@ -1,0 +1,63 @@
+- type: rcd
+  id: XenoWall
+  category: WallsAndFlooring
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/wall_xeno.png
+  mode: ConstructObject
+  prototype: WallXenoborgRCD
+  cost: 4
+  delay: 2
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: XenoWindow
+  category: WindowsAndGrilles
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/window_xeno.png
+  mode: ConstructObject
+  prototype: XenoborgWindowRCD
+  cost: 3
+  delay: 2
+  collisionMask: Impassable
+  rules:
+    - IsWindow
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: XenoDoor
+  category: Airlocks
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/airlock_xeno.png
+  mode: ConstructObject
+  prototype: AirlockXenoborgLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: XenoDoorGlass
+  category: Airlocks
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/airlock_xeno_glass.png
+  mode: ConstructObject
+  prototype: AirlockXenoborgGlassLocked
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
+
+- type: rcd
+  id: FloorXeno
+  name: rcd-floor-xeno
+  category: WallsAndFlooring
+  sprite: /Textures/_Starlight/Interface/Radial/RCD/tiles_xeno.png
+  mode: ConstructTile
+  prototype: FloorXenoborg
+  cost: 1
+  delay: 1
+  collisionMask: InteractImpassable
+  rules:
+    - CanBuildOnEmptyTile
+  fx: EffectRCDConstruct1

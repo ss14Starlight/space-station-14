@@ -1,3 +1,4 @@
+using Content.Shared.Roles;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
@@ -39,9 +40,17 @@ public sealed partial class TraitPrototype : IPrototype
 
     /// <summary>
     /// The components that get added to the player, when they pick this trait.
+    /// NOTE: When implementing a new trait, it's preferable to add it as a status effect instead if possible.
     /// </summary>
     [DataField]
-    public ComponentRegistry Components { get; private set; } = default!;
+    [Obsolete("Use JobSpecial instead.")]
+    public ComponentRegistry Components { get; private set; } = new();
+
+    /// <summary>
+    /// Special effects applied to the player who takes this Trait.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public List<JobSpecial> Specials { get; private set; } = new();
 
     /// <summary>
     /// Gear that is given to the player, when they pick this trait.
@@ -60,4 +69,36 @@ public sealed partial class TraitPrototype : IPrototype
     /// </summary>
     [DataField]
     public ProtoId<TraitCategoryPrototype>? Category;
+
+    // Starlight - Start
+    /// <summary>
+    ///     The list of all Spoken Languages that this trait adds.
+    /// </summary>
+    [DataField]
+    public List<string>? LanguagesSpoken { get; private set; } = default!;
+
+    /// <summary>
+    ///     The list of all Understood Languages that this trait adds.
+    /// </summary>
+    [DataField]
+    public List<string>? LanguagesUnderstood { get; private set; } = default!;
+
+    /// <summary>
+    ///     The list of all Spoken Languages that this trait removes.
+    /// </summary>
+    [DataField]
+    public List<string>? RemoveLanguagesSpoken { get; private set; } = default!;
+
+    /// <summary>
+    ///     The list of all Understood Languages that this trait removes.
+    /// </summary>
+    [DataField]
+    public List<string>? RemoveLanguagesUnderstood { get; private set; } = default!;
+
+    /// <summary>
+    ///     Background of a player, metashield info.
+    /// </summary>
+    [DataField]
+    public string? Background { get; private set; } = default!;
+    // Starlight - End
 }

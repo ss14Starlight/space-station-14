@@ -1,19 +1,19 @@
 - type: gameMap
-  id: Orwell
+  id: StarlightOrwell
   mapName: 'Orwell "Citadel" Station'
   mapPath: /Maps/_Starlight/Stations/Orwell.yml
   minPlayers: 50
   stations:
-    Orwell:
+    StarlightOrwell:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Orwell "Cidatel" Station {1}'
+          mapNameTemplate: '{0} Orwell "Citadel" Station {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'GO'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_delta.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_delta.yml
         - type: StationJobs
           availableJobs:
             #service
@@ -46,6 +46,7 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
+            DutyOfficer: [ 2, 3 ]
             SecurityOfficer: [ 10, 10 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 6, 6 ]
@@ -55,12 +56,14 @@
             SalvageSpecialist: [ 4, 5 ]
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 6, 7 ]
+            SalvageLead: [ 1, 1 ]
             MailTech: [ 1, 2 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
+            Boxer: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 3, 5 ]
@@ -70,3 +73,4 @@
             #Representives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]

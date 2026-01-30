@@ -12,7 +12,9 @@
   id: EventHumanoidMindShielded
   parent: EventHumanoid
   components:
-    - type: MindShield
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
     - type: AntagImmune
 
 - type: randomHumanoidSettings
@@ -22,6 +24,7 @@
   components:
   - type: AutoImplant
     implants:
+    - MindShieldImplant
     - DeathRattleImplantCentcomm
 
 ## Death Squad
@@ -49,18 +52,13 @@
     - type: GhostRole
       name: ghost-role-information-Death-Squad-name
       description: ghost-role-information-Death-Squad-description
-      rules: ghost-role-information-Death-Squad-rules
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: short
       mindRoles:
-      - MindRoleGhostRoleFamiliar
+#      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+      - MindRoleGhostCorporateAligned # Starlight
       job: DeathSquad
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 36000 # 10h
     - type: Loadout
       prototypes: [ DeathSquadGear ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -81,11 +79,6 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertleader
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirstLeader
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTLeader
 
@@ -96,33 +89,23 @@
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: short
       job: ERTLeader
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:DepartmentTimeRequirement
-        department: CentralCommand
-        time: 36000 # 10h
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 36000 # 10h
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirstLeader
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-leader
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVA
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT leader
-  suffix: ERTRole, Armored EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -136,23 +119,23 @@
   components:
     - type: Loadout
       prototypes: [ ERTLeaderGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTLeaderEVALecter
+  id: RandomHumanoidSpawnerERTLeaderArmed
   parent: RandomHumanoidSpawnerERTLeaderEVA
-  suffix: ERTRole, Lecter, EVA
+  suffix: ERTRole, Armed, EVA
   components:
     - type: RandomHumanoidSpawner
-      settings: ERTLeaderEVALecter
+      settings: ERTLeaderArmed
 
 - type: randomHumanoidSettings
-  id: ERTLeaderEVALecter
+  id: ERTLeaderArmed
   parent: ERTLeaderEVA
   components:
     - type: Loadout
-      prototypes: [ ERTLeaderGearEVALecter ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      prototypes: [ ERTLeaderGearArmed ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Chaplain
 
@@ -164,12 +147,7 @@
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
-      state: chaplain #needs an ERT variant once a good suit it made.
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
+      state: ertchaplain
     - type: RandomHumanoidSpawner
       settings: ERTChaplain
 
@@ -181,34 +159,27 @@
     - type: GhostRole
       name: ghost-role-information-ert-chaplain-name
       description: ghost-role-information-ert-chaplain-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: short
       job: ERTChaplain
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobChaplain
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-specialist
     - type: Loadout
       prototypes: [ ERTChaplainGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTChaplainEVA
   parent: RandomHumanoidSpawnerERTChaplain
   name: ERT chaplain
-  suffix: ERTRole, Enviro EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
-      state: chaplain #needs an ERT variant once a good suit it made.
+      state: ertchaplaineva
     - type: RandomHumanoidSpawner
       settings: ERTChaplainEVA
 
@@ -218,8 +189,7 @@
   components:
     - type: Loadout
       prototypes: [ ERTChaplainGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
-    - type: BibleUser
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Janitor
 
@@ -232,11 +202,6 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertjanitor
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTJanitor
 
@@ -247,30 +212,22 @@
     - type: GhostRole
       name: ghost-role-information-ert-janitor-name
       description: ghost-role-information-ert-janitor-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: short
       job: ERTJanitor
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobJanitor
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-specialist
     - type: Loadout
       prototypes: [ ERTJanitorGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTJanitorEVA
   parent: RandomHumanoidSpawnerERTJanitor
-  name: ERT janitor
-  suffix: ERTRole, Enviro EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -284,7 +241,7 @@
   components:
     - type: Loadout
       prototypes: [ ERTJanitorGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Engineer
 
@@ -297,11 +254,6 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertengineer
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTEngineer
 
@@ -312,30 +264,22 @@
     - type: GhostRole
       name: ghost-role-information-ert-engineer-name
       description: ghost-role-information-ert-engineer-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: short
       job: ERTEngineer
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobStationEngineer
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-specialist
     - type: Loadout
       prototypes: [ ERTEngineerGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTEngineerEVA
   parent: RandomHumanoidSpawnerERTEngineer
-  name: ERT engineer
-  suffix: ERTRole, Enviro EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -349,7 +293,27 @@
   components:
     - type: Loadout
       prototypes: [ ERTEngineerGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTEngineerEVA
+  id: RandomHumanoidSpawnerERTEngineerArmed
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTEngineerArmed
+
+- type: randomHumanoidSettings
+  id: ERTEngineerArmed
+  parent: ERTEngineer
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-pointman
+  - type: Loadout
+    prototypes: [ ERTEngineerGearArmed ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Security
 
@@ -362,11 +326,6 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertsecurity
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTSecurity
 
@@ -377,30 +336,23 @@
     - type: GhostRole
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: short
       job: ERTSecurity
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobSecurityOfficer
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-officer
     - type: Loadout
       prototypes: [ ERTSecurityGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityEVA
   parent: RandomHumanoidSpawnerERTSecurity
   name: ERT security
-  suffix: ERTRole, Armored EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -414,23 +366,91 @@
   components:
     - type: Loadout
       prototypes: [ ERTSecurityGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTSecurityEVALecter
+  id: RandomHumanoidSpawnerERTSecurityArmedRifle
   parent: RandomHumanoidSpawnerERTSecurityEVA
-  suffix: ERTRole, Lecter, EVA
+  name: ERT security rifleman
+  suffix: ERTRole, Armed, EVA
   components:
-    - type: RandomHumanoidSpawner
-      settings: ERTSecurityEVALecter
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedRifle
 
 - type: randomHumanoidSettings
-  id: ERTSecurityEVALecter
+  id: ERTSecurityArmedRifle
   parent: ERTSecurityEVA
   components:
-    - type: Loadout
-      prototypes: [ ERTSecurityGearEVALecter ]
-      roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-rifle
+  - type: Loadout
+    prototypes: [ ERTSecurityGearArmedRifle ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTSecurityEVA
+  id: RandomHumanoidSpawnerERTSecurityArmedGrenade
+  name: ERT security grenadier
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedGrenade
+
+- type: randomHumanoidSettings
+  parent: ERTSecurityEVA
+  id: ERTSecurityArmedGrenade
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-grenade
+  - type: Loadout
+    prototypes: [ ERTSecurityGearArmedGrenade ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTSecurityEVA
+  id: RandomHumanoidSpawnerERTSecurityArmedVanguard
+  name: ERT security vanguard
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedVanguard
+
+- type: randomHumanoidSettings
+  parent: ERTSecurityEVA
+  id: ERTSecurityArmedVanguard
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-vanguard
+  - type: Loadout
+    prototypes: [ ERTSecurityGearArmedVanguard ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTSecurityEVA
+  id: RandomHumanoidSpawnerERTSecurityArmedShotgun
+  name: ERT security breacher
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTSecurityArmedShotgun
+
+- type: randomHumanoidSettings
+  parent: ERTSecurityEVA
+  id: ERTSecurityArmedShotgun
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-pointman
+  - type: Loadout
+    prototypes: [ ERTSecurityGearArmedShotgun ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Medic
 
@@ -443,11 +463,6 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertmedical
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst
-      - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTMedical
 
@@ -458,33 +473,22 @@
     - type: GhostRole
       name: ghost-role-information-ert-medical-name
       description: ghost-role-information-ert-medical-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: short
       job: ERTMedical
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobMedicalDoctor
-        time: 18000 # 5h
-      - !type:RoleTimeRequirement
-        role: JobChemist
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
-      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-doctor
     - type: Loadout
       prototypes: [ ERTMedicalGear ]
-      roleLoadout: [ RoleSurvivalExtended ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTMedicalEVA
   parent: RandomHumanoidSpawnerERTMedical
-  name: ERT medic
-  suffix: ERTRole, Armored EVA
+  suffix: ERTRole, EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -498,7 +502,27 @@
   components:
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+
+- type: entity
+  parent: RandomHumanoidSpawnerERTMedicalEVA
+  id: RandomHumanoidSpawnerERTMedicalArmed
+  suffix: ERTRole, Armed, EVA
+  components:
+  - type: RandomHumanoidSpawner
+    settings: ERTMedicalArmed
+
+- type: randomHumanoidSettings
+  parent: ERTMedicalEVA
+  id: ERTMedicalArmed
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesMilitaryLast
+    nameFormat: name-format-ert-corpsman
+  - type: Loadout
+    prototypes: [ ERTMedicalGearArmed ]
+    roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## CBURN
 
@@ -523,19 +547,10 @@
     - type: GhostRole
       name: ghost-role-information-cburn-agent-name
       description: ghost-role-information-cburn-agent-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: short
       job: CBURN
-      requirements:
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
-      - !type:RoleTimeRequirement
-        role: JobMedicalDoctor
-        time: 18000 # 5h
-      - !type:RoleTimeRequirement
-        role: JobSecurityOfficer
-        time: 18000 # 5h
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -561,15 +576,10 @@
     - type: GhostRole
       name: ghost-role-information-centcom-official-name
       description: ghost-role-information-centcom-official-description
-      rules: ghost-role-information-nonantagonist-rules
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
       raffle:
         settings: default
-      requirements:
-      - !type:AnyFlagsRequirement
-        flags:
-        - Staff
-        - Mentor
-        - Retiree
+      job: CentralCommandOfficial
     - type: Loadout
       prototypes: [ CentcomGear ]
       roleLoadout: [ RoleSurvivalStandard ]
@@ -642,3 +652,4 @@
       raffle:
         settings: default
     - type: Cluwne
+      unremovable: true #Starlight

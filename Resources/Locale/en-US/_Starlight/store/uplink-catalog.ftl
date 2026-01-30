@@ -1,5 +1,7 @@
 uplink-contortionist-jumpsuit-name = Contortionist's Jumpsuit
 uplink-contortionist-jumpsuit-desc = It looks like an atmos jumpsuit, but it really is. This jumpsuit allows the agent to slip through the vents.
+uplink-marriage-axe-name = Marriage axe
+uplink-marriage-axe-desc = A charming subtle instrument of chaos—perfect for when diplomacy fails. Screams like a banshee, cuts like a demon, and turns people into regrettable memories. Handle with enthusiasm.
 uplink-mini-energy-crossbow-name = mini energy crossbow
 uplink-mini-energy-crossbow-desc = Fires low-damage kinetic bolts at a short range.
 uplink-minotaur-name = Minotaur bundle
@@ -10,8 +12,18 @@ uplink-stechkin-name = Stechkin pistol
 uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors.
 uplink-pistol-magnum-magazine-name = Pistol Magazine (.45 magnum)
 uplink-pistol-magnum-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Desert Eagle.
+
 uplink-magillitis-serum-implanter-name = Magillitis Serum Implanter
 uplink-magillitis-serum-implanter-desc = An experimental biochip which causes irreversable rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas.
+uplink-gear-acidifier-implant-name = Gear Acidifier Implant
+uplink-gear-acidifier-implant-desc = Melts your equipment on use or death, leaving your body intact. Does not destroy restraints.
+
+uplink-pitbull-bundle-name = Pitbull Bundle
+uplink-pitbull-bundle-desc = A large bullpup rifle with a low fire-rate but excellent accuracy. Chambered in .45 magnum. 
+
+
+uplink-rifle-magazine-pitbull-name = Bullpup magazine (.45 magnum)
+uplink-rifle-magazine-pitbull-desc = Bullpup magazines with 20 cartrides. Compatible with the Pitbull.
 
 uplink-nightvision-eyes = Night Vision Cyber Eyes
 uplink-nightvision-eyes-desc = Allows you to see in the dark but makes you more vulnerable to flashes. (Warning: You will need a surgical assistant for the procedure.)
@@ -19,3 +31,62 @@ uplink-thermalvision-eyes = Thermal Vision Cyber Eyes
 uplink-thermalvision-eyes-desc = Allows you to see in the dark and detect creatures through walls but makes you more vulnerable to flashes. (Warning: You will need a surgical assistant for the procedure.)
 uplink-mantis-blade-arms-name = Mantis Blade Arms Bundle
 uplink-mantis-blade-arms-desc = Originally used as a simple construction tool, now turned into hidden blades that can extend from your arm while still keeping its destructive prying skill. Truly a sight to behold. (Warning: You will need a surgical assistant for the procedure.)
+uplink-advanced-claws-name = Advanced Claws Implant
+uplink-advanced-claws-desc = A cybernetic implant for hands. Allows an agent to extend sharp plasteel claws at will, and hide them away just as quickly. (Warning: You will need a surgical assistant for the procedure.)
+uplink-forensics-implant-name = Forensics Implant
+uplink-forensics-implant-desc = A cybernetic implant for hands. Removes an agent's fingerprints so as to not leave evidence of a crime. Does not work through gloves. (Warning: You will need a surgical assistant for the procedure.)
+uplink-syndie-implant-name = Syndicate Agent Implant
+uplink-syndie-implant-desc = A cybernetic eye implant. Enables an agent to see information about the station crew, humanoids and syndicate without any glasses. (Warning: You will need a surgical assistant for the procedure.)
+
+uplink-uzi-bundle-name = Type U3 Uzi Bundle
+uplink-uzi-bundle-desc = Contains the Type U3 Uzi, with two additional magazines.
+
+uplink-uzi-magazine-name = Uzi Magazine (.35 auto)
+uplink-uzi-magazine-desc = Submachine gun magazine with 32 cartridges. Compatible with the Type U3 Uzi
+
+uplink-breaching-magazine-name = Shotgun Magazine (.50 breaching)
+uplink-breaching-magazine-desc = A magazine loaded with breaching shells, for breaking down airlocks, windows and walls. Less effective on people.
+
+uplink-syndicate-borgi-name = Syndicate Borgi
+uplink-syndicate-borgi-desc = A basic syndicate borgi
+
+uplink-syndicate-borgi-kitted-name = Kitted Syndicate Borgi
+uplink-syndicate-borgi-kitted-desc = A syndicate borgi, outfitted with an L6 module, operative module and E-sword module.
+
+uplink-syndicate-borgi-speed-name = Speed Syndicate Borgi
+uplink-syndicate-borgi-speed-desc = A syndicate borgi, with dagger modules and additional speed
+
+
+uplink-reinforcement-radio-medical-cyborg-name = Syndicate Medical Cyborg Teleporter
+uplink-reinforcement-radio-medical-cyborg-desc = A medical borg, with syndicate variants of items where applicable. Comes with basic weapons.
+
+uplink-reinforcement-radio-saboteur-cyborg-name = Syndicate Saboteur Cyborg Teleporter
+uplink-reinforcement-radio-saboteur-cyborg-desc = A saboteur cyborg, complete with syndicate advanced tools, standard hacking equipment and basic weapons
+
+uplink-reinforcement-radio-stealth-cyborg-name = Syndicate Stealth Cyborg Teleporter
+uplink-reinforcement-radio-stealth-cyborg-desc = A stealth cyborg. Whilst it is incapable of fighting, it has the ability to disguise, go invisible and move through vents. Comes with standard hacking tools.
+
+
+uplink-syndimov-law-name = Syndimov Law Circuit
+uplink-syndimov-law-desc = A modified version of crewismov that defines syndicate agents as crew.
+
+uplink-ecronizer-name = Ecronizer
+uplink-ecronizer-desc = A small device that can be used to bypass most scanning devices, making you and your items invisible to them.
+
+uplink-lube-grenade-name = Lube Grenade
+uplink-lube-grenade-desc = Special grenade for shenanigans, releasing large cloud of lube foam.
+
+uplink-glue-grenade-name = Glue Grenade
+uplink-glue-grenade-desc = Special grenade for shenanigans, releasing large cloud of glue foam.
+
+uplink-pizza-bomb-name = Nefarious Pizza bomb
+uplink-pizza-bomb-desc = Originally developed by covertly by DONK Co to disuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened. 
+
+uplink-shuttle-board-name = Syndicate Shuttle Console Board
+uplink-shuttle-board-desc = A computer printed circuit board for a syndicate shuttle console.
+
+uplink-shuttle-bundle-name = Syndicate Shuttle Crate
+uplink-shuttle-bundle-desc = Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required)
+
+uplink-friendship-bundle-name = Friendship Bundle
+uplink-friendship-bundle-desc = Friendship packaged in a convenient crate*. (Some assembly required)

@@ -1,4 +1,6 @@
+using Content.Server._Starlight.Antags;
 using Content.Server.Administration.Systems;
+using Content.Server.Chat.Managers;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Database;
@@ -15,6 +17,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
     [Dependency] private readonly AdminTestArenaSystem _adminTestArenaSystem = default!;
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
     [Dependency] private readonly IEntityManager _entities = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddVerbs);
@@ -61,6 +64,22 @@ public sealed partial class AdminVerbSystem : EntitySystem
                 Priority = (int)TricksVerbPriorities.SendToTestArena,
             };
             args.Verbs.Add(sendToTestArena);
+
+            Verb preventObjectiveTargeting = new()
+            {
+                Text = "Prevent objective targeting",
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")),
+                Act = () =>
+                {
+                    EnsureComp<NoObjectiveTargetComponent>(args.Target);
+                    _chat.SendAdminAnnouncementMessage(player, $"Added NoObjectiveTarget component to the entity! ({args.Target})");
+                },
+                Impact = LogImpact.Low,
+                Message = "Prevents this entity from being targeted by other player's objectives. Will also prevent paraclones of this player.",
+                Priority = (int)TricksVerbPriorities.BlockObjectiveTargeting
+            };
+            if (HasComp<ActorComponent>(args.Target)) args.Verbs.Add(preventObjectiveTargeting);
         }
     }
 }

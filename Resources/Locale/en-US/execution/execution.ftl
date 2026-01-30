@@ -9,6 +9,8 @@ suicide-verb-message = Use your weapon to suicide.
 # victim (the person being executed)
 # weapon (the weapon used for the execution)
 
+# STARLIGHT CONTROLLED
+# God these need to move to their own file
 execution-popup-melee-initial-internal = You ready {THE($weapon)} against {THE($victim)}'s throat.
 execution-popup-gun-initial-internal = You point the muzzle of {THE($weapon)} at the head of {THE($victim)}.
 
@@ -37,3 +39,4 @@ execution-popup-self-gun-complete-internal = You're shooting yourself in the hea
 
 execution-popup-self-melee-complete-external = { CAPITALIZE(THE($attacker)) } slits their own throat!
 execution-popup-self-gun-complete-external = { CAPITALIZE(THE($attacker)) } shoots himself in the head!
+#Starlight end

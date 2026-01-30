@@ -1,16 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Antag;
-using Content.Server.Audio;
-using Content.Server.Chat.Systems;
-using Content.Server.Containers;
 using Content.Server.EUI;
-using Content.Server.Flash;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Implants;
-using Content.Server.Inventory;
-using Content.Shared.Inventory;
-using Content.Shared.Store.Components;
-using Content.Shared.Hands.EntitySystems;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Revolutionary;
@@ -19,8 +10,8 @@ using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
-using Content.Server.StationEvents.Components;
 using Content.Shared.Database;
+using Content.Shared.Flash;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
@@ -32,24 +23,41 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Revolutionary.Components;
+using Content.Shared.Roles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
+using Robust.Shared.Player;
+
+#region Starlight
+using Content.Server.AlertLevel;
+using Content.Server.Audio;
+using Content.Server.Chat.Systems;
+using Content.Server.Containers;
+using Content.Server.GameTicking.Rules;
+using Content.Server.Implants;
+using Content.Server.Inventory;
+using Content.Server.StationEvents.Components;
+using Content.Server.Store.Systems;
+using Content.Server.Traitor.Uplink;
+using Content.Shared.Whitelist;
+using Content.Shared.FixedPoint;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Implants.Components;
+using Content.Shared.Inventory;
+using Content.Shared.Popups;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Silicons.Laws.Components;
+using Content.Shared.Store.Components;
+using Content.Shared._Starlight.Silicons.Borgs;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 using Robust.Shared.IoC;
 using Robust.Shared.Log;
-using Content.Shared.Popups;
-using Content.Server.GameTicking.Rules;
-using Robust.Shared.Containers;
-using Content.Server.Revolutionary;
-using Content.Server.Traitor.Uplink;
-using Content.Server.Store.Systems;
-using Content.Shared.FixedPoint;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
-using Content.Shared.Implants.Components;
-using Robust.Shared.Player;
+#endregion Starlight
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -62,6 +70,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly EuiManager _euiMan = default!;
     [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -71,10 +80,14 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!; // Starlight
-    [Dependency] private readonly ChatSystem _chatSystem = default!; // Starlight
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Starlight
-    [Dependency] private readonly ContentAudioSystem _contentAudioSystem = default!; // Starlight
+
+    // Starlight-start
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly SpecialLobbyContentSystem _specialLobbyContent = default!;
+    [Dependency] private readonly AlertLevelSystem _alert = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    // Starlight-end
 
     //Used in OnPostFlash, no reference to the rule component is available
     public readonly ProtoId<NpcFactionPrototype> RevolutionaryNpcFaction = "Revolutionary";
@@ -182,9 +195,9 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                         // Wait a short time to ensure the announcement is heard before ending the round
                         Timer.Spawn(TimeSpan.FromSeconds(4), () =>
                         {
-                            // Set the lobby music to play cosmonaut first
-                            _contentAudioSystem.SetLobbyPlaylistWithFirstTrack(ContentAudioSystem.RevVictoryMusic);
-                            
+                            // STARLIGHT: Set special lobby content for revolutionary victory using the modular system
+                            _specialLobbyContent.SetSpecialLobbyContent(uid);
+
                             // End the round
                             // _audioSystem.PlayGlobal("/Audio/_Starlight/Misc/sov_win.ogg", filter, false);
                             _roundEnd.EndRound();
@@ -230,6 +243,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
             // TODO: someone suggested listing all alive? revs maybe implement at some point
         }
+        args.AddLine("");
     }
 
     private void OnGetBriefing(EntityUid uid, RevolutionaryRoleComponent comp, ref GetBriefingEvent args)
@@ -328,17 +342,17 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
     private void OnPostFlash(EntityUid uid, HeadRevolutionaryComponent comp, ref AfterFlashedEvent ev)
     {
+        if (uid != ev.User || !ev.Melee)
+            return;
+
         var alwaysConvertible = HasComp<AlwaysRevolutionaryConvertibleComponent>(ev.Target);
 
         if (!_mind.TryGetMind(ev.Target, out var mindId, out var mind) && !alwaysConvertible)
             return;
 
-        if (HasComp<RevolutionaryComponent>(ev.Target) ||
-            HasComp<MindShieldComponent>(ev.Target) ||
-            !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
+        if (!_whitelistSystem.CheckBoth(ev.Target, comp.Blacklist, comp.Whitelist) && // Starlight-edit: rework all has comp to whitelist & blacklist.
             !alwaysConvertible ||
-            !_mobState.IsAlive(ev.Target) ||
-            HasComp<ZombieComponent>(ev.Target))
+            !_mobState.IsAlive(ev.Target))
         {
             return;
         }
@@ -512,7 +526,10 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             if (_mind.TryGetMind(ev.User.Value, out var revMindId, out _))
             {
                 if (_role.MindHasRole<RevolutionaryRoleComponent>(revMindId, out var role))
+                {
                     role.Value.Comp2.ConvertedCount++;
+                    Dirty(role.Value.Owner, role.Value.Comp2);
+                }
             }
         }
 
@@ -544,7 +561,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         {
             commandList.Add(id);
         }
-    
+
     // STARLIGHT START
         var allCommandDead = IsGroupDetainedOrDead(commandList, true, true, true);
         return allCommandDead;
@@ -600,18 +617,18 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         {
             // STARLIGHT: Delete all USSP uplinks and turn supply rifts and SKB implanters to ash
             DeleteUplinksTurnItemsToAsh();
-            
+
             var rev = AllEntityQuery<RevolutionaryComponent, MindContainerComponent>();
             while (rev.MoveNext(out var uid, out _, out var mc))
             {
-                if (HasComp<HeadRevolutionaryComponent>(uid))
+                if (HasComp<HeadRevolutionaryComponent>(uid)||HasComp<SiliconLawBoundComponent>(uid)) // Starlight silicons cannot be deconverted
                     continue;
 
                 // Play the deconversion sound for the revolutionary
                 _audioSystem.PlayGlobal("/Audio/_Starlight/Misc/rev_end.ogg", Filter.Entities(uid), false, AudioParams.Default.WithVolume(0f));
-                
+
                 _npcFaction.RemoveFaction(uid, RevolutionaryNpcFaction);
-                _stun.TryParalyze(uid, stunTime, true);
+                _stun.TryUpdateParalyzeDuration(uid, stunTime);
                 RemCompDeferred<RevolutionaryComponent>(uid);
                 _popup.PopupEntity(Loc.GetString("rev-break-control", ("name", Identity.Name(uid, EntityManager))), uid); //STARLIGHT
                 _adminLogManager.Add(LogType.Mind, LogImpact.Medium, $"{ToPrettyString(uid)} was deconverted due to all Head Revolutionaries dying.");
@@ -632,16 +649,17 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         return false;
     }
-    
+
     /// <summary>
     /// STARLIGHT: Deletes all USSP uplinks and turns supply rifts and SKB implanters to ash when all head revolutionaries are dead.
     /// </summary>
     private void DeleteUplinksTurnItemsToAsh()
     {
         // Find and delete all USSP uplinks
+        EntityUid uid = default; // This sucks. Has to be a better way.
         var uplinkQuery = EntityManager.EntityQuery<MetaDataComponent>(true);
         var uplinksToDelete = new List<EntityUid>();
-        
+
         foreach (var metadata in uplinkQuery)
         {
             if (metadata.EntityPrototype?.ID == "USSPUplinkImplant")
@@ -649,7 +667,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 uplinksToDelete.Add(metadata.Owner);
             }
         }
-        
+
         // Delete all uplinks
         foreach (var uplink in uplinksToDelete)
         {
@@ -658,16 +676,16 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 EntityManager.QueueDeleteEntity(uplink);
             }
         }
-        
+
         // Find all supply rifts and collect them for deletion
         var riftsToDelete = new List<(EntityUid Entity, Robust.Shared.Map.EntityCoordinates Coordinates)>();
         var riftQuery = EntityManager.EntityQuery<RevSupplyRiftComponent, TransformComponent>();
-        
+
         foreach (var (rift, transform) in riftQuery)
         {
             riftsToDelete.Add((rift.Owner, transform.Coordinates));
         }
-        
+
         // Process all supply rifts
         foreach (var (entity, coordinates) in riftsToDelete)
         {
@@ -675,16 +693,30 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             {
                 // Spawn ash at the rift's location
                 EntityManager.SpawnEntity("Ash", coordinates);
-                
+
+                if (uid == default)
+                {
+                    var xform = Transform(entity);
+                    var station = _stationSystem.GetStationInMap(xform.MapID);
+                    if (station != null)
+                    {
+                        uid = station.Value;
+                        _chatSystem.DispatchGlobalAnnouncement(
+                            Loc.GetString("centcomm-revs-alldead"),
+                            Loc.GetString("cmd-announce-sender"));
+                        _alert.SetLevel(station.Value, "green", true, true, true);
+                    }
+                }
+
                 // Delete the rift
                 EntityManager.QueueDeleteEntity(entity);
             }
         }
-        
+
         // Find all SKB implanters and collect them for deletion
         var implantersToDelete = new List<(EntityUid Entity, Robust.Shared.Map.EntityCoordinates Coordinates)>();
         var implanterQuery = EntityManager.EntityQuery<MetaDataComponent, TransformComponent>(true);
-        
+
         foreach (var (metadata, transform) in implanterQuery)
         {
             if (metadata.EntityPrototype?.ID == "USSPUplinkImplanter")
@@ -692,7 +724,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 implantersToDelete.Add((metadata.Owner, transform.Coordinates));
             }
         }
-        
+
         // Process all SKB implanters
         foreach (var (entity, coordinates) in implantersToDelete)
         {
@@ -700,7 +732,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             {
                 // Spawn ash at the implanter's location
                 EntityManager.SpawnEntity("Ash", coordinates);
-                
+
                 // Delete the implanter
                 EntityManager.QueueDeleteEntity(entity);
             }
@@ -769,7 +801,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         // revs lost and heads died
         "rev-stalemate"
     };
-    
+
     /// <summary>
     /// STARLIGHT: Synchronizes currencies between all uplinks owned by the same head revolutionary.
     /// This ensures that all uplinks have the same amount of telebonds and conversions.
@@ -779,40 +811,40 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         // Find all uplinks owned by this head revolutionary
         var allUplinks = new List<EntityUid>();
         var uplinkQuery = EntityManager.EntityQuery<USSPUplinkOwnerComponent, StoreComponent>();
-        
+
         // Get the current uplink's currencies
         FixedPoint2 currentTelebond = FixedPoint2.Zero;
         FixedPoint2 currentConversion = FixedPoint2.Zero;
-        
+
         if (TryComp<StoreComponent>(currentUplinkUid, out var currentStore))
         {
             currentTelebond = currentStore.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
             currentConversion = currentStore.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
         }
-        
+
         // Find all uplinks owned by this head revolutionary and get the maximum currency values
         foreach (var (uplinkOwner, uplinkStore) in uplinkQuery)
         {
             if (uplinkOwner.OwnerUid == headRevUid)
             {
                 allUplinks.Add(uplinkOwner.Owner);
-                
+
                 // Find the maximum value for each currency across all uplinks
                 var telebonds = uplinkStore.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
                 var conversions = uplinkStore.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
-                
+
                 if (telebonds > currentTelebond)
                 {
                     currentTelebond = telebonds;
                 }
-                
+
                 if (conversions > currentConversion)
                 {
                     currentConversion = conversions;
                 }
             }
         }
-        
+
         // Now update all uplinks with the maximum values
         foreach (var uplink in allUplinks)
         {
@@ -823,18 +855,18 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 {
                     store.Balance["Telebond"] = FixedPoint2.Zero;
                 }
-                
+
                 if (!store.Balance.ContainsKey("Conversion"))
                 {
                     store.Balance["Conversion"] = FixedPoint2.Zero;
                 }
-                
+
                 // Update the currencies if they're lower than the maximum
                 if (store.Balance["Telebond"] < currentTelebond)
                 {
                     store.Balance["Telebond"] = currentTelebond;
                 }
-                
+
                 if (store.Balance["Conversion"] < currentConversion)
                 {
                     store.Balance["Conversion"] = currentConversion;
@@ -842,26 +874,26 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             }
         }
     }
-    
+
     /// <summary>
     /// Synchronizes all uplinks that have a specific head revolutionary as their owner.
     /// This ensures that when a head revolutionary earns telebonds, all uplinks owned by them are updated.
     /// </summary>
     public void SynchronizeAllUplinksByOwner(EntityUid headRevUid)
-    {        
+    {
         // Find all uplinks owned by this head revolutionary
         var allUplinks = new List<EntityUid>();
         var maxTelebond = FixedPoint2.Zero;
         var maxConversion = FixedPoint2.Zero;
-        
+
         // First, check if this head revolutionary has an implant component
-        if (TryComp<HeadRevolutionaryImplantComponent>(headRevUid, out var headRevImplant) && 
-            headRevImplant.ImplantUid != null && 
+        if (TryComp<HeadRevolutionaryImplantComponent>(headRevUid, out var headRevImplant) &&
+            headRevImplant.ImplantUid != null &&
             EntityManager.EntityExists(headRevImplant.ImplantUid.Value))
         {
             var headRevUplinkUid = headRevImplant.ImplantUid.Value;
             allUplinks.Add(headRevUplinkUid);
-            
+
             // Get the currency values from the head revolutionary's uplink
             if (TryComp<StoreComponent>(headRevUplinkUid, out var headRevStore))
             {
@@ -869,7 +901,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 maxConversion = headRevStore.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
             }
         }
-        
+
         // Find all uplinks that have this head revolutionary as their owner
         var uplinkQuery = EntityManager.EntityQuery<USSPUplinkOwnerComponent, StoreComponent>();
         foreach (var (uplinkOwner, uplinkStore) in uplinkQuery)
@@ -877,50 +909,50 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             if (uplinkOwner.OwnerUid == headRevUid && !allUplinks.Contains(uplinkOwner.Owner))
             {
                 allUplinks.Add(uplinkOwner.Owner);
-                
+
                 // Get the currency values
                 var telebonds = uplinkStore.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
                 var conversions = uplinkStore.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
-                                
+
                 // Update the maximum values
                 if (telebonds > maxTelebond)
                 {
                     maxTelebond = telebonds;
                 }
-                
+
                 if (conversions > maxConversion)
                 {
                     maxConversion = conversions;
                 }
             }
         }
-        
+
         // Also check all revolutionaries who have this head revolutionary's uplink
         var revQuery = EntityManager.EntityQuery<RevolutionaryComponent, HeadRevolutionaryImplantComponent>();
         foreach (var (_, revImplant) in revQuery)
         {
-            if (revImplant.ImplantUid != null && 
+            if (revImplant.ImplantUid != null &&
                 EntityManager.EntityExists(revImplant.ImplantUid.Value) &&
                 !allUplinks.Contains(revImplant.ImplantUid.Value))
             {
                 // Check if this uplink is owned by the head revolutionary
-                if (TryComp<USSPUplinkOwnerComponent>(revImplant.ImplantUid.Value, out var uplinkOwner) && 
+                if (TryComp<USSPUplinkOwnerComponent>(revImplant.ImplantUid.Value, out var uplinkOwner) &&
                     uplinkOwner.OwnerUid == headRevUid)
                 {
                     allUplinks.Add(revImplant.ImplantUid.Value);
-                    
+
                     // Get the currency values
                     if (TryComp<StoreComponent>(revImplant.ImplantUid.Value, out var store))
                     {
                         var telebonds = store.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
                         var conversions = store.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
-                                                
+
                         // Update the maximum values
                         if (telebonds > maxTelebond)
                         {
                             maxTelebond = telebonds;
                         }
-                        
+
                         if (conversions > maxConversion)
                         {
                             maxConversion = conversions;
@@ -929,7 +961,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 }
             }
         }
-        
+
         // Check all revolutionaries for implants that might be owned by this head revolutionary
         var allRevs = EntityManager.EntityQuery<RevolutionaryComponent>();
         foreach (var rev in allRevs)
@@ -937,7 +969,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             // Skip the head revolutionary
             if (rev.Owner == headRevUid)
                 continue;
-                
+
             // Check if this revolutionary has implants
             var implantSystem = EntitySystem.Get<SubdermalImplantSystem>();
             if (implantSystem.TryGetImplants(rev.Owner, out var implants))
@@ -947,25 +979,25 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                     // Skip implants we've already processed
                     if (allUplinks.Contains(implant))
                         continue;
-                        
+
                     // Check if this implant is owned by the head revolutionary
-                    if (TryComp<USSPUplinkOwnerComponent>(implant, out var ownerComp) && 
+                    if (TryComp<USSPUplinkOwnerComponent>(implant, out var ownerComp) &&
                         ownerComp.OwnerUid == headRevUid)
                     {
                         allUplinks.Add(implant);
-                        
+
                         // Get the currency values
                         if (TryComp<StoreComponent>(implant, out var store))
                         {
                             var telebonds = store.Balance.GetValueOrDefault("Telebond", FixedPoint2.Zero);
                             var conversions = store.Balance.GetValueOrDefault("Conversion", FixedPoint2.Zero);
-                                                        
+
                             // Update the maximum values
                             if (telebonds > maxTelebond)
                             {
                                 maxTelebond = telebonds;
                             }
-                            
+
                             if (conversions > maxConversion)
                             {
                                 maxConversion = conversions;
@@ -975,7 +1007,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 }
             }
         }
-        
+
         // Also update the global conversion value for all USSP uplinks in the game
         // This ensures that all uplinks have the same conversion value, regardless of owner
         var allUplinkQuery = EntityManager.EntityQuery<MetaDataComponent, StoreComponent>();
@@ -984,28 +1016,28 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             // Skip uplinks we've already processed
             if (allUplinks.Contains(metadata.Owner))
                 continue;
-                
+
             // Only process USSP uplink implants, not PDAs or other store components
             if (metadata.EntityPrototype?.ID != "USSPUplinkImplant")
                 continue;
-                
+
             // Make sure the store has the Conversion currency initialized
             if (!uplinkStore.Balance.ContainsKey("Conversion"))
             {
                 uplinkStore.Balance["Conversion"] = FixedPoint2.Zero;
             }
-            
+
             // Update the Conversion currency if it's lower than the maximum
             if (uplinkStore.Balance["Conversion"] < maxConversion)
             {
                 uplinkStore.Balance["Conversion"] = maxConversion;
             }
-            
+
             // Check if this uplink has a higher Conversion value
             if (uplinkStore.Balance["Conversion"] > maxConversion)
             {
                 maxConversion = uplinkStore.Balance["Conversion"];
-                
+
                 // Update all uplinks we've already processed with this higher value
                 foreach (var processedUplink in allUplinks)
                 {
@@ -1016,21 +1048,21 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 }
             }
         }
-        
+
         // Don't call USSPUplinkSystem.SynchronizeAllUplinks here to avoid stack overflow
         // The USSPUplinkSystem will call this method for each head revolutionary
     }
-    
+
     /// <summary>
     /// Adds Conversion currency to all head revolutionary uplinks.
     /// This is a shared counter that tracks total conversions by all head revolutionaries.
     /// </summary>
     private void AddConversionToAllHeadRevs(StoreSystem storeSystem)
-    {        
+    {
         // Get all USSPUplinkImplant entities in the game
         var query = EntityManager.EntityQuery<MetaDataComponent, StoreComponent>(true);
         var uplinkEntities = new List<EntityUid>();
-        
+
         foreach (var (metadata, _) in query)
         {
             if (metadata.EntityPrototype?.ID == "USSPUplinkImplant")
@@ -1038,20 +1070,20 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 uplinkEntities.Add(metadata.Owner);
             }
         }
-        
+
         // If no uplinks were found, log a warning
         if (uplinkEntities.Count == 0)
         {
             return;
         }
-        
+
         // Add Conversion to all uplinks
         foreach (var uplinkEntity in uplinkEntities)
         {
             var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
             var success = storeSystem.TryAddCurrency(currencyToAdd, uplinkEntity);
         }
-        
+
         // Show popup to all head revolutionaries (private)
         var headRevs = AllEntityQuery<HeadRevolutionaryComponent>();
         while (headRevs.MoveNext(out var headRevUid, out _))

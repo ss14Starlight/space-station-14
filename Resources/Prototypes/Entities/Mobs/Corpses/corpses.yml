@@ -5,16 +5,17 @@
   components:
   - type: Loadout
     prototypes:
-      - HoPGear
-      - ClownGear
-      - MimeGear
-      - JanitorGear
-      - ServiceWorkerGear
-      - MusicianGear
-      - BotanistGear
-      - ChefGear
-      - ChaplainGear
-      - AssistantGear
+      - HoPCorpseGear #SL Edit
+      - ClownCorpseGear #SL Edit
+      - MimeCorpseGear #SL Edit
+      - JanitorCorpseGear #SL Edit
+      - ServiceWorkerCorpseGear #SL Edit
+      - MusicianCorpseGear #SL Edit
+      - BotanistCorpseGear #SL Edit
+      - ChefCorpseGear #SL Edit
+      - ChaplainCorpseGear #SL Edit
+      - AssistantCorpseGear #SL Edit
+      - TiderCorpseGear #SL Edit
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -23,9 +24,9 @@
   components:
   - type: Loadout
     prototypes:
-    - TechnicalAssistantGear
-    - AtmosphericTechnicianGear
-    - StationEngineerGear
+    - TechnicalAssistantCorpseGear #SL Edit
+    - AtmosphericTechnicianCorpseGear #SL Edit
+    - StationEngineerCorpseGear #SL Edit
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -34,8 +35,10 @@
   components:
   - type: Loadout
     prototypes:
-    - CargoTechGear
-    - SalvageSpecialistGear
+    - CargoTechCorpseGear #SL Edit
+    - MailTechCorpseGear #SL Edit
+    - MinerCorpseGear #SL Edit
+    - SalvageSpecialistCorpseGear #SL Edit
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -44,10 +47,12 @@
   components:
   - type: Loadout
     prototypes:
-    - MedicalInternGear
-    - PsychologistGear
-    - ChemistGear
-    - DoctorGear
+    - MedicalInternCorpseGear #SL Edit
+    - PsychologistCorpseGear #SL Edit
+    - ChemistCorpseGear #SL Edit
+    - DoctorCorpseGear #SL Edit
+    - VirologistCorpseGear #SL Edit
+    - GeneticsCorpseGear #SL Edit
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -56,8 +61,9 @@
   components:
   - type: Loadout
     prototypes:
-    - ResearchAssistantGear
-    - ScientistGear
+    - ResearchAssistantCorpseGear #SL Edit
+    - ScientistCorpseGear #SL Edit
+    - RoboticistCorpseGear #SL Edit
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -66,10 +72,12 @@
   components:
   - type: Loadout
     prototypes:
-    - SecurityCadetGear
-    - SecurityOfficerGear
-    - DetectiveGear
-    - WardenGear
+    - SecurityCadetCorpseGear #SL Edit
+    - SecurityOfficerCorpseGear #SL Edit
+    - DetectiveCorpseGear #SL Edit
+    - BrigMedicCorpseGear #SL Edit
+    - WardenCorpseGear #SL Edit
+    - PrisonerCorpseGear #SL Edit
 
 - type: entity
   parent: SalvageHumanCorpse
@@ -78,11 +86,65 @@
   components:
   - type: Loadout
     prototypes:
-    - HoPGear
-    - CentcomGear
-    - CaptainGear
-    - HoSGear
-    - ResearchDirectorGear
-    - CMOGear
-    - ChiefEngineerGear
-    - QuartermasterGear
+    - HoPCorpseGear #SL Edit
+    - CentcomCorpseGear #SL Edit
+    - CaptainCorpseGear #SL Edit
+    - HoSCorpseGear #SL Edit
+    - ResearchDirectorCorpseGear #SL Edit
+    - CMOCorpseGear #SL Edit
+    - ChiefEngineerCorpseGear #SL Edit
+    - QuartermasterCorpseGear #SL Edit
+    - IAACorpseGear #SL Edit
+    - MagistrateCorpseGear #SL Edit
+    - NTRCorpseGear #SL Edit
+    - BSOCorpseGear #SL Edit
+    - NTMarineCorpseGear #SL Edit
+
+#Starlight Region Start (ANTAGS)
+
+- type: entity
+  parent: SalvageHumanCorpse
+  id: MobRandomSyndicateCorpse
+  suffix: Dead, Syndicate
+  components:
+  - type: Loadout
+    prototypes:
+    - SyndicateCorpseGear
+
+- type: entity
+  parent: SalvageHumanCorpse
+  id: MobRandomNukieCorpse
+  suffix: Dead, Nukie
+  components:
+  - type: Loadout
+    prototypes:
+    - NukieCorpseGear
+
+- type: entity
+  parent: SalvageHumanCorpse
+  id: MobRandomSovietCorpse
+  suffix: Dead, Soviet
+  components:
+  - type: Loadout
+    prototypes:
+    - SovietCorpseGear
+
+- type: entity
+  parent: SalvageHumanCorpse
+  id: MobRandomMercenaryCorpse
+  suffix: Dead, Mercenary
+  components:
+  - type: Loadout
+    prototypes:
+    - MercenaryCorpseGear
+
+- type: entity
+  parent: SalvageHumanCorpse
+  id: MobRandomPirateCorpse
+  suffix: Dead, Pirate
+  components:
+  - type: Loadout
+    prototypes:
+    - PirateCorpseGear
+
+#Starlight Region End (ANTAGS)

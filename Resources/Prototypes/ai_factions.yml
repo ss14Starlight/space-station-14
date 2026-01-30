@@ -1,22 +1,26 @@
 - type: npcFaction
   id: Dragon
   hostile:
-    - NanoTrasen
-    - NanoTrasenSilicon # starlight
-    - Syndicate
-    - SyndicateSilicon # starlight
-    - DungeonSyndicate
-    - DungeonSoviet
-    - Xeno
-    - PetsNT
-    - Zombie
-    - Revolutionary
-    - Abyss
-    - Vampire
-    - Changeling
-    - AllHostile
-    - Wizard
-    - Gorilla
+  - NanoTrasen
+  - Syndicate
+  - Xeno
+  - PetsNT
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  #Starlight start
+  - Changeling
+  - DungeonSoviet
+  - DungeonSyndicate
+  - Gorilla
+  - NanoTrasenSilicon
+  - Abductor
+  - Abyss
+  - SyndicateSilicon
+  - Vampire
+  #Starlight end
 
 - type: npcFaction
   id: NanoTrasen
@@ -37,6 +41,7 @@
     - Xenoborg
     - Dragon
     - Gorilla
+    - Abductor # starlight
 
 - type: npcFaction
   id: Mouse
@@ -51,6 +56,8 @@
 
 - type: npcFaction
   id: PetsNT
+  friendly:
+  - NanoTrasen
   hostile:
     - Mouse
     - SimpleHostile
@@ -62,6 +69,7 @@
     - Dragon
     - HonkHostile
     - Gorilla
+    - Abductor # starlight
 
 - type: npcFaction
   id: SimpleHostile
@@ -85,6 +93,7 @@
     - Dragon
     - Xeno
     - Gorilla
+    - Abductor # starlight
 
 - type: npcFaction
   id: SimpleNeutral
@@ -108,6 +117,7 @@
     - Xenoborg
     - Dragon
     - Gorilla
+    - Abductor # starlight
 
 - type: npcFaction
   id: Xeno
@@ -150,6 +160,7 @@
     - Wizard
     - Dragon
     - Gorilla
+    - Abductor # starlight
 
 - type: npcFaction
   id: Revolutionary
@@ -166,6 +177,7 @@
     - Changeling
     - AllHostile
     - Gorilla
+    - Abductor # starlight
 
 - type: npcFaction
   id: Changeling
@@ -218,6 +230,7 @@
     - Zombie
     - AllHostile
     - Gorilla
+    - Abductor # starlight
 
 - type: npcFaction
   id: AllHostile
@@ -242,6 +255,7 @@
     - Wizard
     - Xenoborg
     - Gorilla
+    - Abductor # starlight
 
 - type: npcFaction
   id: Wizard
@@ -262,6 +276,7 @@
     - AllHostile
     - Xenoborg
     - Gorilla
+    - Abductor # starlight
 
 - type: npcFaction
   id: Xenoborg
@@ -281,3 +296,5 @@
     # cause they are hostile to them
     - SimpleHostile
     - AllHostile
+    - Abductor # starlight
+    - Gorilla # starlight

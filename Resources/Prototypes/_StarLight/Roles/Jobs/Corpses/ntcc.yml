@@ -1,0 +1,53 @@
+- type: startingGear
+  id: IAACorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    ears: ClothingHeadsetIAA
+    shoes: ClothingShoesLeather
+    pocket1: LuxuryPen
+
+- type: startingGear
+  id: NTRCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNtrep
+    shoes: ClothingShoesLeather
+    pocket1: LuxuryPen
+
+- type: startingGear
+  id: MagistrateCorpseGear
+  equipment:
+    jumpsuit: MagistrateUniformSuit
+    shoes: ClothingShoesLeather
+    pocket1: LuxuryPen
+    head: ClothingHeadHatPwig
+
+- type: startingGear
+  id: BSOCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueShield
+    shoes: ClothingShoesBootsJackFilled
+    outerClothing: ClothingOuterArmorBlueShield
+    pocket1: Handcuffs
+    pocket2: TrackingImplanter
+
+- type: startingGear
+  id: CentcomCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficial
+    shoes: ClothingShoesBootsJackFilled
+    outerClothing: ClothingOuterVestWebEliteCentcomm
+    head: ClothingHeadHatCentcomcap
+
+- type: startingGear
+  id: NTMarineCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    shoes: ClothingShoesBootsJackFilled
+    outerClothing: ClothingOuterVestNTNC
+
+- type: startingGear
+  id: CaptainCorpseGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCaptain
+    shoes: ClothingShoesLeather
+    head: ClothingHeadHatCapcap

@@ -11,13 +11,16 @@ namespace Content.Shared.Humanoid.Markings
         Head,
         HeadTop,
         HeadSide,
+        Eyes, // Starlight
         Snout,
+        SnoutCover,
         Chest,
         UndergarmentTop,
         UndergarmentBottom,
         Arms,
         Legs,
         Tail,
+        TailExtras, // Starlight
         Overlay
     }
 
@@ -33,6 +36,7 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.Head => MarkingCategories.Head,
                 HumanoidVisualLayers.HeadTop => MarkingCategories.HeadTop,
                 HumanoidVisualLayers.HeadSide => MarkingCategories.HeadSide,
+                HumanoidVisualLayers.Eyes => MarkingCategories.Eyes, // Starlight
                 HumanoidVisualLayers.Snout => MarkingCategories.Snout,
                 HumanoidVisualLayers.Chest => MarkingCategories.Chest,
                 HumanoidVisualLayers.UndergarmentTop => MarkingCategories.UndergarmentTop,
@@ -45,6 +49,7 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.RLeg => MarkingCategories.Legs,
                 HumanoidVisualLayers.LFoot => MarkingCategories.Legs,
                 HumanoidVisualLayers.RFoot => MarkingCategories.Legs,
+                HumanoidVisualLayers.TailExtras => MarkingCategories.TailExtras, // Starlight
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
                 _ => MarkingCategories.Overlay
             };

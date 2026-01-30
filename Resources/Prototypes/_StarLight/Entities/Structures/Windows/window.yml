@@ -1,0 +1,7 @@
+- type: entity
+  parent: TintedWindow
+  id: TintedWindowTransparent
+  suffix: Transparent
+  components:
+  - type: Occluder
+    enabled: false

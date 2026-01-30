@@ -177,3 +177,16 @@
   id: OutpostArm
   mapPath: /Maps/Salvage/outpost-arm.yml
   sizeString: salvage-map-wreck-size-large
+
+
+# STARLIGHT
+
+- type: salvageMap
+  id: SalvCargo01
+  mapPath: /Maps/_Starlight/Salvage/Salv_Cargo_01.yml
+  sizeString: salvage-map-wreck-size-medium
+
+- type: salvageMap
+  id: SalvCargo02
+  mapPath: /Maps/_Starlight/Salvage/Salv_Cargo_02.yml
+  sizeString: salvage-map-wreck-size-medium

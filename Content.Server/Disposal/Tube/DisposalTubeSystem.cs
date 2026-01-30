@@ -102,7 +102,7 @@ namespace Content.Server.Disposal.Tube
         /// <param name="msg">A user interface message from the client.</param>
         private void OnUiAction(EntityUid uid, DisposalRouterComponent router, SharedDisposalRouterComponent.UiActionMessage msg)
         {
-            if (!EntityManager.EntityExists(msg.Actor))
+            if (!Exists(msg.Actor))
                 return;
 
             if (TryComp<PhysicsComponent>(uid, out var physBody) && physBody.BodyType != BodyType.Static)
@@ -197,7 +197,8 @@ namespace Content.Server.Disposal.Tube
             if (args.Holder.PreviousDirectionFrom == Direction.Invalid ||
                 args.Holder.PreviousDirectionFrom == next)
             {
-                args.Next = _random.Pick(directions);
+                // Starlight: Making disposals more consistent. HEAVILY RELIES ON THE '180' BEING DEFINED 2ND.
+                args.Next = ev.Connectable[2];
                 return;
             }
 
@@ -211,8 +212,18 @@ namespace Content.Server.Disposal.Tube
 
         private void OnGetRouterNextDirection(EntityUid uid, DisposalRouterComponent component, ref GetDisposalsNextDirectionEvent args)
         {
+            var next = Transform(uid).LocalRotation.GetDir(); // Starlight
             var ev = new GetDisposalsConnectableDirectionsEvent();
             RaiseLocalEvent(uid, ref ev);
+
+            // region starlight improving dispo consistensy
+            if (args.Holder.PreviousDirectionFrom == Direction.Invalid ||
+                args.Holder.PreviousDirectionFrom != ev.Connectable[2])
+            {
+                args.Next = ev.Connectable[2];
+                return;
+            }
+            // end region starlight
 
             if (args.Holder.Tags.Overlaps(component.Tags) || (args.Holder.Tags.Count != 0 && component.Tags.Contains("*")))// starlight, wildcard support
             {
@@ -220,7 +231,7 @@ namespace Content.Server.Disposal.Tube
                 return;
             }
 
-            args.Next = Transform(uid).LocalRotation.GetDir();
+            args.Next = next;
         }
 
         private void OnGetTransitConnectableDirections(EntityUid uid, DisposalTransitComponent component, ref GetDisposalsConnectableDirectionsEvent args)
@@ -428,7 +439,7 @@ namespace Content.Server.Disposal.Tube
 
             foreach (var entity in from.Container.ContainedEntities.ToArray())
             {
-                _disposableSystem.TryInsert(holder, entity, holderComponent);
+                _containerSystem.Insert(entity, holderComponent.Container);
             }
 
             _atmosSystem.Merge(holderComponent.Air, from.Air);

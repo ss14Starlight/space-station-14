@@ -3,6 +3,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
+using Content.Shared.Starlight.Cybernetics.Components;
 using Content.Shared.StatusIcon;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -10,6 +11,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -23,14 +25,9 @@ public sealed class ThirstSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
 
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconOverhydratedId = "ThirstIconOverhydrated";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconThirstyId = "ThirstIconThirsty";
-
-    [ValidatePrototypeId<SatiationIconPrototype>]
-    private const string ThirstIconParchedId = "ThirstIconParched";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconOverhydratedId = "ThirstIconOverhydrated";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconThirstyId = "ThirstIconThirsty";
+    private static readonly ProtoId<SatiationIconPrototype> ThirstIconParchedId = "ThirstIconParched";
 
     public override void Initialize()
     {
@@ -131,15 +128,15 @@ public sealed class ThirstSystem : EntitySystem
         switch (component.CurrentThirstThreshold)
         {
             case ThirstThreshold.OverHydrated:
-                _prototype.TryIndex(ThirstIconOverhydratedId, out prototype);
+                _prototype.Resolve(ThirstIconOverhydratedId, out prototype);
                 break;
 
             case ThirstThreshold.Thirsty:
-                _prototype.TryIndex(ThirstIconThirstyId, out prototype);
+                _prototype.Resolve(ThirstIconThirstyId, out prototype);
                 break;
 
             case ThirstThreshold.Parched:
-                _prototype.TryIndex(ThirstIconParchedId, out prototype);
+                _prototype.Resolve(ThirstIconParchedId, out prototype);
                 break;
 
             default:
@@ -171,27 +168,34 @@ public sealed class ThirstSystem : EntitySystem
         DirtyField(uid, component, nameof(ThirstComponent.LastThirstThreshold));
         DirtyField(uid, component, nameof(ThirstComponent.ActualDecayRate));
 
+        // Starlight-edit: start
+        var thirstMultiplier = 1f;
+        if (TryComp<ThirstRateMultiplierComponent>(uid, out var increaseThirstRateComp )) {
+            thirstMultiplier = increaseThirstRateComp.Multiplier;
+        }
+        // Starlight-edit: end
+
         switch (component.CurrentThirstThreshold)
         {
             case ThirstThreshold.OverHydrated:
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                component.ActualDecayRate = component.BaseDecayRate * 1.2f;
+                component.ActualDecayRate = thirstMultiplier * component.BaseDecayRate * 1.2f; // Starlight-edit
                 return;
 
             case ThirstThreshold.Okay:
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                component.ActualDecayRate = component.BaseDecayRate;
+                component.ActualDecayRate = thirstMultiplier * component.BaseDecayRate; // Starlight-edit
                 return;
 
             case ThirstThreshold.Thirsty:
                 // Same as okay except with UI icon saying drink soon.
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                component.ActualDecayRate = component.BaseDecayRate * 0.8f;
+                component.ActualDecayRate = thirstMultiplier * component.BaseDecayRate * 0.8f; // Starlight-edit
                 return;
             case ThirstThreshold.Parched:
                 _movement.RefreshMovementSpeedModifiers(uid);
                 component.LastThirstThreshold = component.CurrentThirstThreshold;
-                component.ActualDecayRate = component.BaseDecayRate * 0.6f;
+                component.ActualDecayRate = thirstMultiplier * component.BaseDecayRate * 0.6f; // Starlight-edit
                 return;
 
             case ThirstThreshold.Dead:
@@ -215,7 +219,16 @@ public sealed class ThirstSystem : EntitySystem
 
             thirst.NextUpdateTime += thirst.UpdateRate;
 
-            ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            //Starlight begin
+            if (thirst.ThirstDrains.Count > 0)
+            {
+                var totalDrain =
+                    thirst.ThirstDrains.Aggregate<(EntityUid, float, TimeSpan), float>(1,
+                        (current, modifier) => current * modifier.Item2);
+                ModifyThirst(uid, thirst, -totalDrain * thirst.ActualDecayRate);
+            }
+            else ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            //Starlight end
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 
             if (calculatedThirstThreshold == thirst.CurrentThirstThreshold)

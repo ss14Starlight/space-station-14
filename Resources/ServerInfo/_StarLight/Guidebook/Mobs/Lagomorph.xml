@@ -1,0 +1,23 @@
+<Document>
+  # Lagomorph
+
+  <Box>
+    <GuideEntityEmbed Entity="MobLagomorph" Caption=""/>
+  </Box>
+  An artifically-uplifted species of anthromorphic mammals that have a clear resemblance with Sol's Lagomorpha.
+  Corporate interests saw their uplifting upon first contact as a necessary solution to a labor shortage.
+  
+  - Receive [color=#ffa500]25% more heat damage[/color] and [color=#1e90ff]25% less cold damage[/color] and [color=#1e90ff]10% less blunt damage[/color].
+  - Metabolic Processes engage [color=#ffa500]33% more faster[/color].
+  - Can regenerate stamina faster and gain stamina resistance for [color=yellow]20[/color] seconds, in exchange for increased hunger and thirst drain while active. This ability has a cooldown of [color=yellow]30[/color] seconds between uses.
+  - Deal [color=red]5[/color] slashing damage with claws.
+  - Can hear people speak and whisper from 2 tiles further.
+
+  ## Language
+  - Lagomorph's have a pigeon language of Sol Common adapted for usage in their laryanixcal vocal structure, adapting to certain characters and sounds they make. This is known as Laguine.
+  - Alongside Laguine, this pigeon language is used as a gateway for many to learn Galactic Common as a second language, through intense vocal training.
+
+  ## Age and Names
+  - Their naming structure in wider galactic society due to their origins of being an uplifted laborer species is similar to standard human onomastics.
+  - Through genetic manipulation by corporate interests and wider galactic quasi-governments, their lifespan is comparable to the average human.
+</Document>

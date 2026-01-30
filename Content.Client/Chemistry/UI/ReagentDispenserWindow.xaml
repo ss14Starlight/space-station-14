@@ -18,6 +18,21 @@
                 ButtonList="1,5,10,15,20,25,30,50,100"
                 RadioGroup="True">
             </ui:ButtonGrid>
+            <!-- Starlight-start -->
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <ProgressBar Name="EnergyDisplayBar"
+                                HorizontalExpand="True"
+                                SetHeight="25"
+                                MaxValue="1"
+                                Value="0"
+                                Margin="10">
+                    <Label Name="EnergyDisplay"
+                            Margin="5 0 0 0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"></Label>
+                </ProgressBar>
+            </BoxContainer>
+            <!-- Starlight-end -->
             <Control VerticalExpand="True" />
             <Label Name="ContainerInfoName"
                    Access="Public"

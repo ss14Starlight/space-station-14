@@ -1,14 +1,22 @@
+using System.Linq; // Starlight
 using Content.Shared.Access.Components;
 using Content.Shared.Roles;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+// Starlight begin
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Hands.Components;
+using Robust.Shared.Containers;
+// Starlight end
 
 namespace Content.Shared.Access.Systems
 {
     public abstract class SharedAccessSystem : EntitySystem
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly SharedContainerSystem _container = default!; // Starlight
+        [Dependency] private readonly SharedHandsSystem _hands = default!; // Starlight
 
         public override void Initialize()
         {
@@ -21,12 +29,12 @@ namespace Content.Shared.Access.Systems
         private void OnAccessInit(EntityUid uid, AccessComponent component, MapInitEvent args)
         {
             // Add all tags in groups to the list of tags.
-            foreach (var group in component.Groups)
+            foreach (var group in component.Groups.ToList()) // Starlight-edit
             {
-                if (!_prototypeManager.TryIndex<AccessGroupPrototype>(group, out var proto))
+                if (!_prototypeManager.Resolve<AccessGroupPrototype>(group, out var proto))
                     continue;
 
-                component.Tags.UnionWith(proto.Tags);
+                component.Tags.UnionWith(proto.Tags.ToList()); // Starlight-edit
                 Dirty(uid, component);
             }
         }
@@ -35,6 +43,15 @@ namespace Content.Shared.Access.Systems
         {
             if (!component.Enabled)
                 return;
+            
+            // Starlight begin
+            if (!component.WorksWhileHeld)
+                foreach (var container in _container.GetContainingContainers((uid, Transform(uid))))
+                {
+                    if (!TryComp<HandsComponent>(container.Owner, out var hands)) continue;
+                    if (_hands.IsHolding((container.Owner, hands), uid)) return;
+                }
+            // Starlight end
 
             args.Tags.UnionWith(component.Tags);
         }
@@ -77,12 +94,12 @@ namespace Content.Shared.Access.Systems
             if (!Resolve(uid, ref access))
                 return false;
 
-            foreach (var group in newGroups)
+            foreach (var group in newGroups.ToList()) // Starlight-edit
             {
-                if (!_prototypeManager.TryIndex<AccessGroupPrototype>(group, out var proto))
+                if (!_prototypeManager.Resolve<AccessGroupPrototype>(group, out var proto))
                     continue;
 
-                access.Tags.UnionWith(proto.Tags);
+                access.Tags.UnionWith(proto.Tags.ToList()); // Starlight-edit
             }
 
             Dirty(uid, access);

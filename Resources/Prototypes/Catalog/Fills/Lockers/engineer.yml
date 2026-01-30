@@ -157,8 +157,11 @@
     - id: MedkitOxygenFilled
     - id: HolofanProjector
     - id: RCD
+    - id: RPD # Starlight: RPD
     - id: RCDAmmo
     - id: AirGrenade
+    - id: trayScanner # Starlight: Add t-ray scanner to atmos lockers
+    - id: ClothingHandsGlovesColorYellow # Starlight: Add insulated gloves to atmos lockers
 
 - type: entityTable
   id: FillAtmosphericsHardsuit
@@ -166,6 +169,7 @@
     children:
     - id: ClothingOuterHardsuitAtmos
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
     - id: ClothingMaskBreath
 
 - type: entity
@@ -209,6 +213,7 @@
     children:
     - id: ClothingOuterHardsuitEngineering
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
     - id: ClothingShoesBootsMag
     - id: ClothingMaskBreath
 
@@ -227,11 +232,11 @@
   table: !type:AllSelector
     children:
     - id: ClothingOuterSuitRad
-      amount: !type:ConstantNumberSelector
-        value: 2
+      amount: 2
     - id: GeigerCounter
-      amount: !type:ConstantNumberSelector
-        value: 2
+      amount: 2
+    - id: PillCanisterPotassiumIodide
+      prob: 0.75
 
 - type: entity
   parent: LockerEvacRepair

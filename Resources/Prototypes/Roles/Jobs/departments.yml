@@ -7,6 +7,7 @@
   - CargoTechnician
   - MailTech
   - Quartermaster
+  - SalvageLead # Starlight
   - SalvageSpecialist
   - MiningSpecialist
 
@@ -19,7 +20,6 @@
   roles:
   - Bartender
   - Botanist
-  - Boxer
   - Chaplain
   - Chef
   - Clown
@@ -31,8 +31,11 @@
   - Assistant
   - Reporter
   - Visitor
-  - Zookeeper
   - ServiceWorker
+  # Starlight start
+  - Boxer
+  - Zookeeper
+  # Starlight end
 
 - type: department
   id: CentralCommand
@@ -49,7 +52,8 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
-  - NTCCBlueshield ## Starlight Addition
+  - CentralCommandOperator # Starlight Addition
+  - NTNCBlueshield ## Starlight Addition
   editorHidden: true
   weight: 120
 
@@ -118,6 +122,7 @@
   - Brigmedic
   - Detective
   - Warden
+  - DutyOfficer # Starlight
 
 - type: department
   id: Science

@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Conflee",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ai"
+    },
+    {
+      "name": "bar"
+    },
+    {
+      "name": "bridge"
+    },
+    {
+      "name": "cargo"
+    },
+    {
+      "name": "cct"
+    },
+    {
+      "name": "cybersunt"
+    },
+    {
+      "name": "eng"
+    },
+    {
+      "name": "evact"
+    },
+    {
+      "name": "hop"
+    },
+    {
+      "name": "med"
+    },
+    {
+      "name": "ntt"
+    },
+    {
+      "name": "sci"
+    },
+    {
+      "name": "sec"
+    },
+    {
+      "name": "bold0"
+    },
+    {
+      "name": "bold1"
+    },
+    {
+      "name": "bold2"
+    },
+    {
+      "name": "bold3"
+    },
+    {
+      "name": "bold4"
+    },
+    {
+      "name": "bold5"
+    },
+    {
+      "name": "bold6"
+    },
+    {
+      "name": "bold7"
+    },
+    {
+      "name": "bold8"
+    },
+    {
+      "name": "bold9"
+    }
+  ]
+}

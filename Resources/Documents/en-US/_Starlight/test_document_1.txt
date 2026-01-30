@@ -1,0 +1,3 @@
+this is a test document! Look at all the cool stuff you can do.
+
+[color=blue]this is blue![/color]

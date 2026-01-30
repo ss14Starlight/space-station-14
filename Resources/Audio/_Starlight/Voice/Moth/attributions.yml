@@ -1,0 +1,34 @@
+﻿- files: ["moth_flapwings.ogg"]
+  license: "CC0-1.0"
+  copyright: "Originally sourced from https://freesound.org/people/Godowan/sounds/240476/, converted to mono by @deltanedas (GitHub), and leading silence trimmed and slightly amplified by @redmushie (GitHub)"
+  source: "https://freesound.org/people/Godowan/sounds/240476/"
+
+- files: ["moth.ogg, moth_ask.ogg, moth_exclaim.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "sfx_humanoid_saturn_hawkchat1.ogg (Renamed to moth.ogg), sfx_humanoid_saturn_hawkchat3b (Renamed to moth_ask.ogg), sfx_humanoid_saturn_hawkchat3 (Renamed to moth_exclaim.ogg) all taken from https://github.com/CyanSkyKnight/Cyans-Free-Stuff/tree/main/Bug%20Sounds "
+  source: "https://github.com/CyanSkyKnight/Cyans-Free-Stuff/tree/main/Bug%20Sounds"
+  
+- files: ["moth_cough.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Recorded by elim Guerrero Ruz on iNaturalist.org, modified by Squamatic (Github) and honeyed-lemons (Github)."
+  source: "https://www.inaturalist.org/observations/99285950"
+
+- files: ["moth_cry.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Recorded by Tobias Gratzer on iNaturalist.org, modified by Entings (Github) and honeyed-lemons (Github)."
+  source: "https://www.inaturalist.org/observations/246194812"
+
+- files: ["moth_gasp.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Recorded by Shumik A on iNaturalist.org; modified by Squamatic (Github) and honeyed-lemons (Github)."
+  source: "https://www.inaturalist.org/observations/244114635"
+
+- files: ["moth_sigh.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Recorded by Brad Walker on iNaturalist.org, modified by Squamatic (Github) and honeyed-lemons (Github)."
+  source: "https://www.inaturalist.org/observations/64873292"
+
+- files: ["moth_yawn.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Recorded by Jonathan Fréchette on iNaturalist.org, modified by Squamatic (Github) and honeyed-lemons (Github)."
+  source: "https://www.inaturalist.org/observations/32944727"

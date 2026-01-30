@@ -3,19 +3,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:at="clr-namespace:Content.Client.Administration.UI.Tabs.AdminTab"
+    xmlns:cdAdmin="clr-namespace:Content.Client._CD.Admin.UI"
     Margin="4"
     MinSize="50 50">
     <BoxContainer Orientation="Vertical">
         <GridContainer Columns="3">
-            <cc:UICommandButton Command="kick" Text="{Loc admin-player-actions-window-title}" WindowType="{x:Type at:PlayerActionsWindow}" />
             <cc:CommandButton Command="banpanel" Text="{Loc admin-player-actions-window-ban}" />
             <cc:CommandButton Command="aghost" Text="{Loc admin-player-actions-window-admin-ghost}" />
-            <cc:UICommandButton Command="tpto" Text="{Loc admin-player-actions-window-teleport}" WindowType="{x:Type at:TeleportWindow}" />
             <cc:CommandButton Command="permissions" Text="{Loc admin-player-actions-window-permissions}" />
             <cc:CommandButton Command="announceui" Text="{Loc admin-player-actions-window-announce}"/>
             <cc:UICommandButton Command="callshuttle" Text="{Loc admin-player-actions-window-shuttle}" WindowType="{x:Type at:AdminShuttleWindow}"/>
             <cc:CommandButton Command="adminlogs" Text="{Loc admin-player-actions-window-admin-logs}"/>
             <cc:CommandButton Command="faxui" Text="{Loc admin-player-actions-window-admin-fax}"/>
+            <!-- Cosmatic Drift Record System-start: Provide admin access to the CD record purge tool -->
+            <cc:UICommandButton Command="purgecharacterrecords" Text="{Loc admin-player-actions-window-cd-record-purge}" WindowType="{x:Type cdAdmin:ModifyCharacterRecords}"/>
+            <!-- Cosmatic Drift Record System-end -->
             <cc:CommandButton Command="achatwindow" Text="{Loc admin-player-actions-window-admin-chat}"/>
         </GridContainer>
     </BoxContainer>

@@ -89,6 +89,7 @@
     useSound:
       collection: Welder
     qualities: Welding
+  - type: ToolTileCompatible # Starlight - allow using welders on tiles (e.g. to repair damaged hull plate)
   - type: Welder
   - type: PointLight
     enabled: false
@@ -105,6 +106,18 @@
     price: 40
   - type: IgnitionSource
     temperature: 700
+  # 🌟Starlight-start🌟
+  - type: Tag
+    tags:
+    - ThermiteIgnitor
+  - type: SurgeryTool
+    successRate: 0.75
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+  - type: Cautery
+  # 🌟Starlight-end🌟
 
 - type: entity
   name: industrial welding tool
@@ -200,12 +213,15 @@
     enabled: false
     radius: 1.0
     color: orange
+  - type: Tag
+    tags:
+      - EmergencyWelder #Starlight, distinction needed for use in crafting recipies.
 
 - type: entity
   parent: [ Welder, BaseXenoborgContraband ]
   id: RefuelingWelder
-  name: refuling welding tool
-  description: "An slow welder that can refuel itself over time."
+  name: refueling welding tool
+  description: "A slow welder that can refuel itself over time."
   components:
   - type: Tool
     speedModifier: 0.5

@@ -34,7 +34,7 @@ lanternextrabright: LanternFlash
 
 # 2023-08-04
 BoxMagazineLightRifleHighVelocity: BoxMagazineLightRifle
-BoxMagazineMagnumSubMachineGunHighVelocity: BoxMagazineMagnumSubMachineGun
+BoxMagazineMagnumSubMachineGunHighVelocity: null
 BoxMagazinePistolCaselessRifleHighVelocity: BoxMagazinePistolCaselessRifle
 BoxMagazinePistolHighCapacityHighVelocity: BoxMagazinePistolHighCapacity
 BoxMagazinePistolHighVelocity: BoxMagazinePistol
@@ -55,8 +55,8 @@ MagazineBoxLightRifleHighVelocity: MagazineBoxLightRifleFMJ
 MagazineBoxMagnumHighVelocity: MagazineBoxMagnumSP
 MagazineBoxPistolHighVelocity: MagazineBoxPistolFMJ
 MagazineBoxRifleHighVelocity: MagazineBoxRifleFMJ
-MagazineCaselessRifleHighVelocity: MagazineCaselessRifle
-MagazineCaselessRifleShortHighVelocity: MagazineCaselessRifleShort
+MagazineCaselessRifleHighVelocity: MagazinePistolCaselessRifle
+MagazineCaselessRifleShortHighVelocity: null
 MagazineLightRifleHighVelocity: MagazineLightRifleFMJ
 MagazineMagnumSubMachineGunHighVelocity: MagazineMagnumSubMachineGun
 MagazinePistolCaselessRifleHighVelocity: MagazinePistolCaselessRifle
@@ -65,7 +65,7 @@ MagazinePistolHighVelocity: MagazinePistolFMJ
 MagazinePistolSubMachineGunHighVelocity: MagazinePistolSubMachineGunSP
 MagazineRifleHighVelocity: MagazineRifleFMJ
 SpeedLoaderMagnumHighVelocity: SpeedLoaderMagnumFMJ
-SpeedLoaderPistolHighVelocity: SpeedLoaderPistol
+SpeedLoaderPistolHighVelocity: null
 
 # 2023-08-07
 #If the name is anything to go off of, these are presumably just CEV-Eris versions of the snow rock (which we already have.)
@@ -301,9 +301,9 @@ MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP
 MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
 MagazineMagnumRubber: MagazineMagnum
 MagazineMagnumSubMachineGunRubber: MagazineMagnumSubMachineGun
-MagazineCaselessRifleRubber: MagazineCaselessRifle
-MagazineCaselessRifleShortRubber: MagazineCaselessRifleShort
-SpeedLoaderPistolRubber: SpeedLoaderPistol
+MagazineCaselessRifleRubber: MagazinePistolCaselessRifle
+MagazineCaselessRifleShortRubber: null
+SpeedLoaderPistolRubber: null
 # RIP box of magnum rubbers 202X to 2024
 MagazineBoxMagnumRubber: MagazineBoxMagnumSP
 MagazineBoxRifleRubber: MagazineBoxRifleSP
@@ -314,7 +314,7 @@ BoxMagazinePistolHighCapacityRubber: BoxMagazinePistolHighCapacity
 BoxMagazinePistolSubMachineGunRubber: BoxMagazinePistolSubMachineGun
 BoxMagazineLightRifleRubber: BoxMagazineLightRifle
 BoxMagazineCaselessRifleRubber: BoxMagazinePistolCaselessRifle
-BoxMagazineMagnumSubMachineGunRubber: BoxMagazineMagnumSubMachineGun
+BoxMagazineMagnumSubMachineGunRubber: null
 WeaponPistolMk58Nonlethal: WeaponPistolMk58
 WeaponPistolN1984Nonlethal: WeaponPistolN1984
 WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunDrozd
@@ -347,9 +347,6 @@ LostCargoTechnicianSpawner: VisitorCargoTechnicianSpawner
 ClownTroupeSpawner: VisitorClownSpawner
 TravelingChefSpawner: VisitorChefSpawner
 SyndieDisasterVictimSpawner: SyndieVisitorSpawner
-
-# 2024-06-15
-ClothingOuterCoatInspector: ClothingOuterCoatJensen
 
 # 2024-06-23
 FloorTileItemReinforced: PartRodMetal1
@@ -528,7 +525,7 @@ LightTree05: LightTree
 LightTree06: LightTree
 
 # 2024-12-28
-DrinkIrishCarBomb: DrinkIrishSlammer
+DrinkIrishSlammer: DrinkIrishCarBomb #Starlight Change
 
 # 2025-01-06
 BorgModuleRadiationDetection: null
@@ -642,8 +639,34 @@ ClothingNeckCloakMiner: null
 MatterBinStockPart: MicroManipulatorStockPart
 CapacitorStockPart: MicroManipulatorStockPart
 
+# 2025-05-26 Turrets
+WeaponEnergyTurretStation: WeaponEnergyTurretSecurity
+WeaponEnergyTurretStationControlPanel: WeaponEnergyTurretSecurityControlPanel
+WeaponEnergyTurretStationMachineCircuitboard: WeaponEnergyTurretSecurityMachineCircuitboard
+
 # 2025-05-30
 SpawnHonkBot: SpawnMobHonkBot
+
+# 2025-06-03
+FloorTileItemGCircuit4: FloorTileItemGCircuit
+FloorTileItemBCircuit4: FloorTileItemBCircuit
+FloorTileItemRCircuit4: FloorTileItemRCircuit
+
+# 2025-06-06
+#MagazineLightRifleMaxim: null
+MagazineLightRiflePkBox: null
+MagazineCaselessRifle10x24: null
+BaseMagazineCaselessRifleShort: null
+MagazineCaselessRifleShort: null
+MagazineCaselessRifleShortPractice: null
+BaseMagazineMagnumSubMachineGun: null
+MagazineMagnumSubMachineGunEmpty: null
+MagazineMagnumSubMachineGun: null
+MagazineMagnumSubMachineGunPractice: null
+MagazineMagnumSubMachineGunUranium: null
+MagazineMagnumSubMachineGunPiercing: null
+BoxMagazineMagnumSubMachineGun: null
+BoxMagazineMagnumSubMachineGunPractice: null
 
 # 2025-06-09
 BarSignAlignTile: BarSign
@@ -672,3 +695,56 @@ BarSignEmprahAlignTile: BarSignEmprah
 BarSignSpacebucksAlignTile: BarSignSpacebucks
 BarSignMaltroachAlignTile: BarSignMaltroach
 BarSignWhiskeyEchoesAlignTile: BarSignWhiskeyEchoes
+
+# 2025-06-21
+ClothingNeckHeadphones: ClothingMultipleHeadphones
+
+# 2025-07-17
+RipleyChassis: null
+HonkerChassis: null
+HamtrChassis: null
+VimChassis: null
+
+# 2025-08-01
+FoodDonutJellySlugcat: FoodDonutJellyScurret
+
+# 2025-08-11
+ClothingUniformJumpsuitChiefEngineerNT: ClothingUniformJumpsuitChiefEngineer
+ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
+
+# 2025-08-29
+PrefilledSyringe: Syringe
+
+# 2025-10-08
+ClothingBeltAssault: ClothingBeltMilitaryWebbing
+WarpPointBombing: null
+
+# 2025-10-13
+ToyGriffin: ToyFigurineGriffin
+ToyOwlman: ToyFigurineOwlman
+ToySkeleton: ToyFigurineSkeleton
+
+# 2025-10-28
+DrinkKiraSpecial: DrinkOrangeLimeSodaGlass
+
+# 2025-11-08
+DebugSMES: SMESBasicEmpty
+DebugSubstation: SubstationBasicEmpty
+DebugSubstationWall: BaseSubstationWall
+DebugAPC: BaseAPC
+MagazineCaselessRifle: MagazinePistolCaselessRifle
+MagazineCaselessRiflePractice: MagazinePistolCaselessRiflePractice
+SpeedLoaderPistol: null
+SpeedLoaderPistolPractice: null
+
+# 2025-12-05
+GlowstickBase: GlowstickGreen
+
+# 2025-12-06
+#SpawnPointZookeeper: null # Starlight - we'll keep these
+#SpawnPointBoxer: null # Starlight - we'll keep these
+
+# 2025-12-07
+FigureSpawner: MechFigurineSpawner50
+ToySpawner: PlushieSpawner50
+SpacemenFigureSpawner: SpacemenFigurineSpawner90

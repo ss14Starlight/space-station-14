@@ -5,13 +5,29 @@
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - Chittin
+    - Darktongue
+    understands:
+    - Chittin
+    - Darktongue
   - type: ThermalVision
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: alive
-      sprite: _Starlight/Mobs/Animals/Spiders/terror_red.rsi
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: _Starlight/Mobs/Animals/Spiders/terror_red.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_red.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -68,18 +84,19 @@
   - type: MeleeChemicalInjector
     transferAmount: 0.75
     solution: melee
-  - type: ReplacementAccent
-    accent: xeno
+  - type: LanguageSpeaker
   - type: NoSlip
   - type: Spider
   - type: IgnoreSpiderWeb
   - type: Bloodstream
-    bloodMaxVolume: 150
-    bloodReagent: CopperBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 150
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
-    allowedEmotes: ['Click', 'Chitter']
+    allowedEmotes: ['Click', 'Chitter', 'Hisses']
   - type: Vocal
     sounds:
       Male: UnisexArachnid
@@ -97,7 +114,7 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     damageCap: 89
@@ -129,14 +146,17 @@
 - type: entity
   name: terror red
   parent: MobTerrorSpider
-  id: MobTerrorRed
+  id: MobTerrorRedUnevolvable
+  abstract: true
   components:
+  - type: Spider
+    webPrototype: SpiderWebStrong
   - type: VentCrawler
   - type: MobThresholds
     thresholds:
       0: Alive
       140: Dead
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     damageCap: 139
@@ -162,16 +182,40 @@
     baseSprintSpeed : 4.00
 
 - type: entity
+  name: terror red
+  parent: MobTerrorRedUnevolvable
+  id: MobTerrorRed
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorPurple
+    conditions:
+    - !type:SpiderWebCondition
+      targetWebAmount: 36
+
+- type: entity
   name: terror gray
   parent: MobTerrorSpider
-  id: MobTerrorGray
+  id: MobTerrorGrayUnevolvable
+  abstract: true
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: alive
-      sprite: _Starlight/Mobs/Animals/Spiders/terror_gray2.rsi
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: _Starlight/Mobs/Animals/Spiders/terror_gray2.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_gray2.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+  - type: Spider
+    webPrototype: SpiderWebStealth
+    webSpawnCooldown: 20
   - type: VentCrawler
   - type: StealthOnWeb
   - type: StaminaDamageOnHit
@@ -180,7 +224,7 @@
     thresholds:
       0: Alive
       80: Dead
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     damageCap: 79
@@ -209,24 +253,47 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
     baseSprintSpeed : 5
-    
+
+- type: entity
+  name: terror gray
+  parent: MobTerrorGrayUnevolvable
+  id: MobTerrorGray
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorBlack
+    conditions:
+    - !type:SpiderWebCondition
+      targetWebAmount: 36
+
 - type: entity
   name: terror green
   parent: MobTerrorSpider
-  id: MobTerrorGreen
+  id: MobTerrorGreenUnevolvable
+  abstract: true
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: alive
-      sprite: _Starlight/Mobs/Animals/Spiders/terror_green.rsi
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: _Starlight/Mobs/Animals/Spiders/terror_green.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_green.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+  - type: Spider
+    webPrototype: SpiderWebSlime
   - type: VentCrawler
   - type: MobThresholds
     thresholds:
       0: Alive
       80: Dead
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     damageCap: 79
@@ -263,22 +330,195 @@
     - ActionEggInjection
 
 - type: entity
+  name: terror green
+  parent: MobTerrorGreenUnevolvable
+  id: MobTerrorGreen
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorWhite
+    conditions:
+    - !type:EggsInjectCondition
+
+##########
+# Tier 2 #
+##########
+
+# Black
+
+- type: entity
+  name: terror black
+  parent: MobTerrorGrayUnevolvable
+  id: MobTerrorBlackUnevolvable
+  abstract: true
+  components:
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: _Starlight/Mobs/Animals/Spiders/terror_widow.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_widow.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+  - type: Jump
+    knockdownTargetOnCollision: true
+  - type: Spider
+    webPrototype: SpiderWebPoison
+
+- type: entity
+  name: terror black
+  parent: MobTerrorBlackUnevolvable
+  id: MobTerrorBlack
+
+# Purple
+
+- type: entity
+  name: terror purple
+  parent: MobTerrorRedUnevolvable
+  id: MobTerrorPurple
+  components:
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: _Starlight/Mobs/Animals/Spiders/terror_purple.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_purple.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+  - type: ActionGrant
+    actions:
+    - ActionSpiderEMPScream
+
+# White
+
+- type: entity
+  name: terror white
+  parent: MobTerrorGreenUnevolvable
+  id: MobTerrorWhiteUnevolvable
+  abstract: true
+  components:
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: _Starlight/Mobs/Animals/Spiders/terror_white.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_white.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+  - type: BatteryAmmoProvider
+    proto: BulletAcidHitscan
+    fireCost: 50
+  - type: BatterySelfRecharger
+    autoRechargeRate: 10
+  - type: Battery
+    maxCharge: 150
+    startingCharge: 150
+  - type: Gun
+    fireRate: 0.5
+    useKey: false
+    selectedMode: Burst
+    availableModes:
+      - Burst
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+
+- type: entity
+  name: terror white
+  parent: MobTerrorWhiteUnevolvable
+  id: MobTerrorWhite
+
+# Tier 3
+
+# Prince
+
+- type: entity
+  name: prince of terror
+  parent: MobTerrorRedUnevolvable
+  id: MobTerrorPrince
+  components:
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: _Starlight/Mobs/Animals/Spiders/terror_prince.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_prince.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Critical
+      150: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 25
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 149
+    damage:
+      types:
+        Poison: -0.1
+      groups:
+        Brute: -0.1
+        Burn: -0.1
+
+# Princess
+
+- type: entity
   name: princess of terror
   parent: MobTerrorSpider
   id: MobTerrorPrincess
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: alive
-      sprite: _Starlight/Mobs/Animals/Spiders/terror_princess.rsi
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: _Starlight/Mobs/Animals/Spiders/terror_princess.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_princess.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
   - type: VentCrawler
   - type: MobThresholds
     thresholds:
       0: Alive
       160: Dead
-  - type: PassiveDamage 
+  - type: PassiveDamage
     allowedStates:
     - Alive
     damageCap: 179
@@ -319,56 +559,30 @@
       enum.EggsLayingUiKey.Key:
         type: EggsLayingBui
 
-- type: entity
-  parent: EggSpider
-  id: TerrorGrayEggSpiderFertilized
-  name: egg spider
-  components:
-  - type: Sprite
-    sprite: _Starlight/Mobs/Animals/Spiders/terror_gray2.rsi
-    state: egg
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-    - MobTerrorGray
-    intervalSeconds: 180
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
-    lifetime: 181
+# Mother
 
 - type: entity
-  parent: EggSpider
-  id: TerrorGreenSpiderFertilized
-  name: egg spider
+  name: mother of terror
+  parent: MobTerrorBlackUnevolvable
+  id: MobTerrorMother
   components:
-  - type: Sprite
-    sprite: _Starlight/Mobs/Animals/Spiders/terror_green.rsi
-    state: egg
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-    - MobTerrorGreen
-    intervalSeconds: 180
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
-    lifetime: 181
-    
-- type: entity
-  parent: EggSpider
-  id: TerrorRedEggSpiderFertilized
-  name: egg spider
-  components:
-  - type: Sprite
-    sprite: _Starlight/Mobs/Animals/Spiders/terror_red.rsi
-    state: egg
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-    - MobTerrorRed
-    intervalSeconds: 180
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
-    lifetime: 181
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs   
+            sprite: _Starlight/Mobs/Animals/Spiders/terror_mother.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_mother.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+  - type: Spider
+    webPrototype: SpiderWebSpiderlings
+  - type: SpawnOnAction
+    action: ActionRoyalJelly
+    entityToSpawn: SpiderJelly

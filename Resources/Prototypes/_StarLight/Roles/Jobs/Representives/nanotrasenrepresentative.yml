@@ -7,14 +7,11 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 72000 # 20 hrs
-    - !type:AnyFlagsRequirement
-      flags:
-      - Staff
-      - Mentor
-      - ExtRoles
-      - Retiree
+    - !type:RolesRequirement
+      proto: ExtRolesReq
   startingGear: NanoTrasenRepresentativeGear
   icon: JobIconNanotrasen
+  rules: job-rules-corporate-aligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
   access:
@@ -33,15 +30,21 @@
     - Chemistry
     - Engineering
     - Research
+    - Robotics
     - Detective
     - Salvage
+    - Mining
+    - SalvageLead
     - Security
     - Brig
     - Cargo
     - Atmospherics
-    - Cargo
     - Medical
+    - IAA
     - Ntrep
+    - Brigmedic
+    - Surgery
+    - Paramedic
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
@@ -53,7 +56,7 @@
   id: NanoTrasenRepresentativeGear
   equipment:
     #shoes: ClothingShoesBootsLaceup
-    head: ClothingHeadHatCapNtrep
+    #head: ClothingHeadHatCapNtrep
     id: NanoTrasenRepresentativePDA
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterCoatNtrep
@@ -62,3 +65,9 @@
     back:
     - RubberStampNtrep
     - CaneNT
+
+- type: chameleonOutfit
+  id: NanoTrasenRepresentativeChameleonOutfit
+  job: NanoTrasenRepresentative
+  equipment:
+    outerClothing: ClothingOuterCoatNtrep
