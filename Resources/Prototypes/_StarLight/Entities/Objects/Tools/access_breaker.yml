@@ -1,0 +1,48 @@
+# ERT
+- type: entity
+  parent: [BaseItem, BaseCentcommContraband]
+  id: AccessOveriderUnlimited
+  suffix: Unlimited
+  name: authentication overrider
+  description: A modified access configurator, specialized for ERT breach and clear operations on NT stations
+  components:
+  - type: Emag
+    emagType: Access
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/AccessOverider.rsi
+    state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Tools/AccessOverider.rsi
+
+- type: entity
+  parent: AccessOveriderUnlimited
+  id: AccessOverider
+  suffix: Limited
+  components:
+  - type: LimitedCharges
+
+# Pirates
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: PirateBreakerUnlimited
+  suffix: PirateBreaker
+  name: Pirate Lock Breaker
+  description: A hacked access configurator, held together with pirate curses and gum
+  components:
+  - type: Emag
+    emagType: Access
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/pirate_breaker.rsi
+    state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Tools/pirate_breaker.rsi
+
+- type: entity
+  parent: PirateBreakerUnlimited
+  id: PirateBreaker
+  suffix: Limited
+  components:
+  - type: LimitedCharges
+  - type: AutoRecharge
+
+# Xenoborgs
