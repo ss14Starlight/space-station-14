@@ -46,3 +46,31 @@
   - type: AutoRecharge
 
 # Xenoborgs
+- type: entity
+  parent: [BaseItem, BaseXenoborgContraband]
+  id: XenoborgAccessBreakerUnlimited
+  suffix: Unlimited
+  name: xenoborg authentication disruptor
+  description: A specialized adaptation of the access breaker by the xenoborgs, capable of adding xenoborg access to doors upon hacking
+  components:
+  - type: Emag
+    emagImmuneTag: AccessBreakerImmune
+    emagType: Access
+  - type: Sprite
+    sprite: Objects/Tools/access_breaker.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Tools/access_breaker.rsi
+  - type: AccessProvider
+    groups:
+    - Xenoborg
+
+- type: entity
+  parent: XenoborgAccessBreakerUnlimited
+  id: XenoborgAccessBreaker
+  suffix: Limited
+  components:
+  - type: LimitedCharges
+  - type: AutoRecharge
+  - type: StaticPrice
+    price: 2000
