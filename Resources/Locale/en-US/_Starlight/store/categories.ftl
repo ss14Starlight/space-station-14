@@ -8,3 +8,8 @@ store-category-enginery-main = Enginery
 store-category-service-clown = Clown
 store-category-security-main = Security
 store-category-objectives = Objectives
+
+# Changeling
+store-ling-category-combat = Combat
+store-ling-category-sting = Stings
+store-ling-category-utility = Utility

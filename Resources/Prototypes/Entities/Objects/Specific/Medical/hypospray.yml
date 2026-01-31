@@ -140,6 +140,11 @@
     allowedModes:
     - JetInjectorDynamicMode
     - JetInjectorInjectMode
+  # Starlight start
+  - type: Tag
+    tags:
+    - JetInjector
+  # Starlight end
 
 - type: entity
   parent: JetInjector
@@ -232,6 +237,11 @@
     price: 75 # These are limited supply items.
   - type: TrashOnSolutionEmpty
     solution: pen
+  # Starlight start
+  - type: Tag
+    tags:
+    - Medipen
+  # Starlight end
 
 - type: entity
   parent: ChemicalMedipen

@@ -21,15 +21,17 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
+      prob: 0.4 #SL 0.5 -> 0.4 to account for more subgamemodes existing
     - id: SLChangeling #Starlight lings
-      prob: 0.4
+      prob: 0.3 #0.4 -> 0.3 to account for more subgamemodes existing now
 #    - id: Vampire # Starlight - disabled until reworked
 #      prob: 0.25
     - id: SubWizard
-      prob: 0.05
+      prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
     - id: Xenoborgs
-      prob: 0.05
+      prob: 0.08
+#    - id: SiliconLiberation #Starlight
+#      prob: 0.4 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -38,13 +40,21 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
+      prob: 0.4 #SL 0.5 -> 0.4 to account for more subgamemodes existing
     - id: SLChangeling # StarlightLings
-      prob: 0.4
+      prob: 0.3 #0.4 -> 0.3 to account for more subgamemodes existing now
 #    - id: Vampire # Starlight - disabled until reworked
 #      prob: 0.25
     - id: Xenoborgs
       prob: 0.05
+#    - id: SiliconLiberation #Starlight
+#      prob: 0.4 #Starlight
+    - id: SLChangeling # StarlightLings
+      prob: 0.41 # Starlight. To make this add up to 1.
+#    - id: Vampire # Starlight - disabled until reworked
+#      prob: 0.25
+    - id: Xenoborgs
+      prob: 0.08 # Starlight. Space is dangerous, yo.
 
 - type: entity
   parent: BaseGameRule
@@ -53,9 +63,11 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
+      prob: 0.58 # Starlight. 87% chance of thieves over wizard.
     - id: SubWizard
       prob: 0.05
+#    - id: SiliconLiberation #Starlight
+#      prob: 0.5 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -65,6 +77,8 @@
     rules:
     - id: Thief
       prob: 0.5
+#    - id: SiliconLiberation #Starlight
+#      prob: 0.5 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -260,8 +274,8 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Traitor ]
-      max: 8
-      playerRatio: 10
+      max: 24 # Starlight. More of future proofing. If we ever actually average 240 pop then we'll need to actually do something else.
+      playerRatio: 10 # Starlight. It's this number so Beta doesn't lose out on their 6th traitor.
       blacklist:
         components:
         - AntagImmune
@@ -294,8 +308,8 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Changeling ]
-      max: 3
-      playerRatio: 15
+      max: 6 # Starlight. Not a huge increase, but allows lings to actually become a force on alpha that doesn't get wiped out immediately.
+      playerRatio: 21 # Starlight. Allows Beta to still keep only 3 lings.
       briefing:
         text: changeling-role-greeting
         color: Red
@@ -403,14 +417,14 @@
   id: Wizard
   components:
   - type: GameRule
-    minPlayers: 10
+    minPlayers: 40 # Starlight. So a Wizard can actually spawn on Beta.
   - type: AntagSelection
     agentName: wizard-round-end-name
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ Wizard ]
-      max: 1
-      playerRatio: 1
+      max: 6 # Starlight. If Wizard is to be its own Gamemode, then...
+      playerRatio: 40 # Starlight, ensures Beta only has 1 wizard.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
        - RoleSurvivalExtended

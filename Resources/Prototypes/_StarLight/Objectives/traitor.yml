@@ -53,6 +53,59 @@
   components:
   - type: StealCondition
     stealGroup: CMOLicenseSteal
+
+  # Base Steal NTR / IAA / Magi
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseNTRStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ NanoTrasenRepresentative ]
+  - type: StealCondition
+    owner: job-name-ntrep
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseIAAStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ IAA ]
+  - type: StealCondition
+    owner: job-name-iaa
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseMagistrateStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Magistrate ]
+  - type: StealCondition
+    owner: job-name-magistrate
+
+  # Documents Steal Objective Shit
+- type: entity
+  parent: BaseNTRStealObjective
+  id: CorporateSecretsStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CorporateSecretsSteal
+
+- type: entity
+  parent: BaseIAAStealObjective
+  id: CriminalReportsStealStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CriminalReportsSteal
+
+- type: entity
+  parent: BaseMagistrateStealObjective
+  id: SecureKnowledgeStealStealStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: SecureKnowledgeSteal
     
   # RP OBJECTIVES START
   

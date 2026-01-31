@@ -4,6 +4,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Events;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
+using Content.Shared.Gibbing;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -97,7 +98,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
         SubscribeLocalEvent<BorgChassisComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
         SubscribeLocalEvent<BorgChassisComponent, ActivatableUIOpenAttemptEvent>(OnUIOpenAttempt);
         SubscribeLocalEvent<BorgChassisComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<BorgChassisComponent, BeingGibbedEvent>(OnBeingGibbed);
+        SubscribeLocalEvent<BorgChassisComponent, GibbedBeforeDeletionEvent>(OnBeingGibbed);
         SubscribeLocalEvent<BorgChassisComponent, GetCharactedDeadIcEvent>(OnGetDeadIC);
         SubscribeLocalEvent<BorgChassisComponent, GetCharacterUnrevivableIcEvent>(OnGetUnrevivableIC);
         SubscribeLocalEvent<BorgChassisComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
@@ -356,6 +357,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
                 //Starlight end
             }
         }
+        Dirty(ent);
     }
     // end Starlight
 
@@ -391,7 +393,11 @@ public abstract partial class SharedBorgSystem : EntitySystem
         else
         {
             SetActive(chassis, false, user: args.Origin);
-            
+
+            // This can be null apparently when borg dies before being "witnessed" by a client.
+            if (chassis.Comp.ModuleContainer == null)
+                return;
+
             foreach (var ent in chassis.Comp.ModuleContainer.ContainedEntities.ToList())
             {
                 if (!TryComp<ItemBorgModuleComponent>(ent, out var module)) continue;
@@ -408,7 +414,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
         // Starlight end
     }
 
-    private void OnBeingGibbed(Entity<BorgChassisComponent> chassis, ref BeingGibbedEvent args)
+    private void OnBeingGibbed(Entity<BorgChassisComponent> chassis, ref GibbedBeforeDeletionEvent args)
     {
         // Don't use the ItemSlotsSystem eject method since we don't want to play a sound and want we to eject the battery even if the slot is locked.
         if (TryComp<PowerCellSlotComponent>(chassis, out var slotComp) &&

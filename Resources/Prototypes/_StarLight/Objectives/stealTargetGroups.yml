@@ -15,6 +15,27 @@
     state: cmo-license
 
 - type: stealTargetGroup
+  id: CorporateSecretsSteal
+  name: steal-target-groups-corporate-documents
+  sprite:
+    sprite: _Starlight/Objects/Specific/Documents/document.rsi
+    state: genaric_doc
+
+- type: stealTargetGroup
+  id: CriminalReportsSteal
+  name: steal-target-groups-criminal-documents
+  sprite:
+    sprite: _Starlight/Objects/Specific/Documents/document.rsi
+    state: genaric_doc
+
+- type: stealTargetGroup
+  id: SecureKnowledgeSteal
+  name: steal-target-groups-secure-documents
+  sprite:
+    sprite: _Starlight/Objects/Specific/Documents/document.rsi
+    state: genaric_doc
+
+- type: stealTargetGroup
   id: MiningShuttleConsoleCircuitboard
   name: steal-target-groups-mining-shuttle-console-circuitboard
   sprite:
