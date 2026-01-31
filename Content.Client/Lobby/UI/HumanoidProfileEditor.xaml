@@ -3,6 +3,7 @@
          xmlns:humanoid="clr-namespace:Content.Client.Humanoid"
          xmlns:ui="clr-namespace:Content.Client.Lobby.UI"
          xmlns:ui1="clr-namespace:Content.Client._Starlight.Lobby.UI"
+         xmlns:traits="clr-namespace:Content.Client._Starlight.Traits.UI"
          xmlns:profileEditorControls="clr-namespace:Content.Client.Lobby.UI.ProfileEditorControls"
          HorizontalExpand="True">
         <!-- Left side -->
@@ -157,12 +158,15 @@
                         <BoxContainer Name="AntagList" Orientation="Vertical" />
                     </ScrollContainer>
                 </BoxContainer>
-                <BoxContainer Orientation="Vertical" Margin="10">
+                <!-- Starlight - Start -->
+                <!-- <BoxContainer Orientation="Vertical" Margin="10"> -->
                     <!-- Traits -->
-                    <ScrollContainer VerticalExpand="True">
-                        <BoxContainer Name="TraitsList" Orientation="Vertical" />
-                    </ScrollContainer>
-                </BoxContainer>
+                    <!-- <ScrollContainer VerticalExpand="True"> -->
+                        <!-- <BoxContainer Name="TraitsList" Orientation="Vertical" /> -->
+                    <!-- </ScrollContainer>
+                </BoxContainer> -->
+                <traits:TraitsTab Name="Traits"/>
+                <!-- Starlight - End -->
                 <BoxContainer Name="MarkingsTab" Orientation="Vertical" Margin="10">
                     <!-- Markings -->
                     <ScrollContainer VerticalExpand="True">

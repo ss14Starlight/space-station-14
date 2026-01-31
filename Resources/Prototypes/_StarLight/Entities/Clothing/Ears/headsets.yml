@@ -27,7 +27,7 @@
         - EncryptionKeyCommon
         - EncryptionKeyCommand
     - type: Sprite
-      sprite: Clothing/Ears/Headsets/servicesecurity.rsi
+      sprite: _Starlight/Clothing/Ears/Headsets/magi.rsi
 
 - type: entity
   parent: [ ClothingHeadset, BaseMajorContraband ]

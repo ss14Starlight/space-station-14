@@ -32,3 +32,6 @@ command-description-solution-adjtemperature =
     Adjusts the capacity on the given solution.
 command-description-solution-adjthermalenergy =
     Adjusts the capacity on the given solution.
+### Starlight (upstream #39080)
+command-description-subtlemessage =
+    Sends a subtle message to all the input entities.

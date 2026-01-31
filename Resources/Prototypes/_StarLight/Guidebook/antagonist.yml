@@ -4,6 +4,11 @@
   text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Brighteye.xml"
 
 - type: guideEntry
+  id: SELFAgent
+  name: roles-antag-selfagent-name
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/SiliconLiberation.xml"
+
+- type: guideEntry
   id: Eeeps
   name: guide-entry-impeeeps
   text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Eeeps.xml"

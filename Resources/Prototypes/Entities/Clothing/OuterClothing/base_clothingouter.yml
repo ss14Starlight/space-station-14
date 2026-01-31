@@ -19,10 +19,10 @@
   - type: Clothing
     slots:
     - outerClothing
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
+  # - type: ClothingSpeedModifier # Starlight removal: Why did WizDen do this???
+  #   walkModifier: 0.9
+  #   sprintModifier: 0.9
+  # - type: HeldSpeedModifier
 
 - type: entity
   abstract: true

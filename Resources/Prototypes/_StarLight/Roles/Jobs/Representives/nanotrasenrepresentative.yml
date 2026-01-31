@@ -9,6 +9,10 @@
       time: 72000 # 20 hrs
     - !type:RolesRequirement
       proto: ExtRolesReq
+    - !type:TraitsRequirement
+      traits:
+      - Iterator
+      inverted: true
   startingGear: NanoTrasenRepresentativeGear
   icon: JobIconNanotrasen
   rules: job-rules-corporate-aligned

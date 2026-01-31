@@ -1,5 +1,3 @@
-job-name-warden = Warden
-job-name-assistant = Assistant
 job-name-atmostech = Atmospheric Technician
 job-name-bartender = Bartender
 job-name-borg = Cyborg
@@ -8,17 +6,17 @@ job-name-brigmedic = Brigmedic
 job-name-cadet = Security Cadet
 job-name-captain = Captain
 job-name-cargotech = Cargo Technician
-job-name-cburn = Centcomm Quarantine Officer
+job-name-cburn = CentComm Quarantine Officer
 job-name-ce = Chief Engineer
-job-name-centcomoff = CentComm Official
-job-name-centcomoperator = CentComm Operator
-job-name-chaplain = Chaplain
+job-name-centcommoff = CentComm Official
 job-name-chef = Chef
+job-name-chaplain = Chaplain
 job-name-chemist = Chemist
 job-name-clown = Clown
+job-name-cluwne = Cluwne
 job-name-cmo = Chief Medical Officer
 # Starlight: Capitalization fix:
-job-name-deathsquad = CentCom Agent
+job-name-deathsquad = CentComm Agent
 job-name-detective = Detective
 job-name-doctor = Medical Doctor
 job-name-engineer = Station Engineer
@@ -37,6 +35,7 @@ job-name-librarian = Librarian
 job-name-mime = Mime
 job-name-musician = Musician
 job-name-paramedic = Paramedic
+job-name-passenger = Passenger
 job-name-psychologist = Psychologist
 job-name-qm = Quartermaster
 job-name-rd = Research Director
@@ -49,24 +48,34 @@ job-name-serviceworker = Service Worker
 job-name-station-ai = Station AI
 job-name-technical-assistant = Technical Assistant
 job-name-visitor = Visitor
-job-name-cluwne = Cluwne
+job-name-warden = Warden
 
 # unused jobs
 # these are required for the agent ID job icon tooltips
 # I am keeping them for roleplaying opportunities
 job-name-geneticist = Geneticist
+job-name-boxer = Boxer
 job-name-no-id = No ID
 job-name-prisoner = Prisoner
 job-name-roboticist = Roboticist
-job-name-syndicate = Syndicate
 job-name-unknown = Unknown
 job-name-virologist = Virologist
+job-name-zookeeper = Zookeeper
+
+# antagonist jobs
+job-name-ninja = Ninja
+job-name-syndicate = Syndicate
+job-name-syndicate-commander = Syndicate Commander
+job-name-syndicate-corpsman = Syndicate Corpsman
+job-name-syndicate-operative = Syndicate Operative
+job-name-pirate = Pirate
+job-name-wizard = Wizard
 job-name-zombie = Zombie
 
 # Job titles
-job-title-visitor = Visitor
 job-title-cluwne = Cluwne
 job-title-universal = Universal
+job-title-visitor = Visitor
 
 # Role timers - Make these alphabetical or I cut you
 JobAssistant = Assistant
@@ -104,6 +113,7 @@ JobMedicalIntern = Medical Intern
 JobMime = Mime
 JobMusician = Musician
 JobParamedic = Paramedic
+#JobPassenger = Passenger # Starlight - de-passenger
 JobPsychologist = Psychologist
 JobQuartermaster = Quartermaster
 JobReporter = Reporter
