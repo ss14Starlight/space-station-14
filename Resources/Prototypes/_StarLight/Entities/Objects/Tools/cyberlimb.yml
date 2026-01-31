@@ -203,7 +203,7 @@
     components:
     - type: DisarmMalus
       malus: 0.6
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: flame
     inhandVisuals:
       left:

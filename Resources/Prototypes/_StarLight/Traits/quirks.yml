@@ -1,0 +1,50 @@
+- type: trait
+  id: Pacifist
+  name: trait-pacifist-name
+  description: trait-pacifist-desc
+  category: Quirks
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: Pacified
+
+- type: trait
+  id: LightweightDrunk
+  name: trait-lightweight-name
+  description: trait-lightweight-desc
+  category: Quirks
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: LightweightDrunk
+          boozeStrengthMultiplier: 2
+
+- type: trait
+  id: Snoring
+  name: trait-snoring-name
+  description: trait-snoring-desc
+  category: Quirks
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: Snoring
+
+- type: trait
+  id: Clumsy
+  name: trait-clumsy-name
+  description: trait-clumsy-desc
+  category: Quirks
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: Clumsy
+          gunShootFailDamage:
+            types:
+              Blunt: 5
+              Piercing: 4
+            groups:
+              Burn: 3

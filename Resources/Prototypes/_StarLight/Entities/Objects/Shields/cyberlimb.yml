@@ -35,8 +35,6 @@
       spriteLayer: shield
     - type: UseDelay
       delay: 0.5
-    - type: ToggleableLightVisuals
-      spriteLayer: shield
     - type: PointLight
       netsync: false
       enabled: false

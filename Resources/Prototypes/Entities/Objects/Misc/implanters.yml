@@ -48,6 +48,7 @@
     - RadioImplant
     - ChameleonControllerImplant
     - VoiceMaskImplant
+    - SELFStorageImplant #Starlight
     deimplantFailureDamage:
       types:
         Cellular: 50

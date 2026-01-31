@@ -42,7 +42,8 @@ using static Content.Shared.Configurable.ConfigurationComponent;
 using Content.Shared._Starlight.Thaven.Components; //Starlight
 using Content.Server._Starlight.Thaven; //Starlight
 using Content.Server.Traits; // Starlight
-using Content.Shared._Starlight.Character.Info; //Starlight
+using Content.Shared._Starlight.Character.Info;
+using Content.Server._Starlight.Traits; //Starlight
 
 namespace Content.Server.Administration.Systems
 {
@@ -164,7 +165,7 @@ namespace Content.Server.Administration.Systems
 
                                 var mobUid = _spawning.SpawnPlayerMob(coords.Value, null, humanoid, stationUid);
 
-                                _traitSystem.ApplyTraits(mobUid, humanoid); // Starlight
+                                _traitSystem.ApplyTraits(mobUid, humanoid, targetActor.PlayerSession); // Starlight
                                 _sLSharedCharacterInfoSystem.ApplyCharacterInfo(mobUid, humanoid); // Starlight
 
                                 if (_mindSystem.TryGetMind(args.Target, out var mindId, out var mindComp))
@@ -194,7 +195,7 @@ namespace Content.Server.Administration.Systems
                             var mobUid = _spawning.SpawnPlayerMob(coords.Value, null, profile, stationUid);
                             if (profile is HumanoidCharacterProfile humanoid) // Starlight
                             {
-                                _traitSystem.ApplyTraits(mobUid, humanoid);
+                                _traitSystem.ApplyTraits(mobUid, humanoid, targetActor.PlayerSession);
                                 _sLSharedCharacterInfoSystem.ApplyCharacterInfo(mobUid, humanoid);
                             }
                         },

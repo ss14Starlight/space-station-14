@@ -274,7 +274,32 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: BatteryAmmoProvider
-    proto: BulletLightRifleTraceSP
+    proto: MechAC2FMJ
+    fireCost: 20
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatUltraAC54
+  name: ULTRA AC54 'Hotchkiss' Rotary Cannon
+  description: An advanced rotary autocannon firing FMJ rounds. Admin only.
+  suffix: Mech Weapon, Gun, Combat, Admin Only
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseCentcommContraband ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_uac2
+  - type: Gun
+    fireRate: 5
+    shotsPerBurst: 3
+    burstCooldown: 1.2
+    selectedMode: Burst
+    availableModes:
+      - Burst
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+  - type: BatteryAmmoProvider
+    proto: MechAC2FMJ
     fireCost: 20
   - type: Appearance
   - type: AmmoCounter

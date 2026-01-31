@@ -12,6 +12,10 @@
       time: 36000 # 10h
     - !type:RolesRequirement
       proto: ExtRolesReq
+    - !type:TraitsRequirement
+      traits:
+      - Iterator
+      inverted: true
   startingGear: MagistrateGear
   icon: "JobIconMagistrate"
   rules: job-rules-corporate-aligned
@@ -42,10 +46,10 @@
     #shoes: ClothingShoesBootsLaceup
     #eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesColorWhite
-    outerClothing: ClothingOuterRobesJudge
+    #outerClothing: ClothingOuterRobesJudge
     id: MagistratePDA
     ears: ClothingHeadsetMagistrate
-    head: ClothingHeadHatPwig
+    #head: ClothingHeadHatPwig
     belt: BoxFolderNanoTrasenClipboard
   storage:
     back:
@@ -62,5 +66,5 @@
     head: ClothingHeadHatPwig
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterRobesJudge
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight change slot to misc.
     gloves: ClothingHandsGlovesColorWhite
