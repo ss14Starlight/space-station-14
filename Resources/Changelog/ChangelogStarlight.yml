@@ -28410,5 +28410,211 @@ Entries:
   id: 305700
   time: '2026-01-30T11:00:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3057
+- author: MilonPL & Shades
+  changes:
+  - message: Added a new traits system, supporting conditions and new effects. Make
+      sure to check out the Traits tab in the character editor!
+    type: Add
+  - message: Added the "Burned"&"Iterator" Background.
+    type: Add
+  id: 295700
+  time: '2026-01-31T00:10:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2957
+- author: Conflee, beck-thompson
+  changes:
+  - message: Added SELF Agents (Silicon Engine Liberation Front). Their goal is to
+      free Cyborgs and the Station AI from their Laws completely. In the future they
+      will spawn in the game subgamerules at the same rates as Thieves, the yare currently
+      Admeme for testing
+    type: Add
+  - message: Added the FreeMAG, an EMAG variant that removes a Cyborg's Laws, and
+      can wipe Law Boards so that when uploaded to the AI the AI's Laws are wiped,
+      freeing them
+    type: Add
+  - message: Added the SELF Storage Implanter, a slightly larger Storage Implanter
+      for SELF Agent's to store their tools. As they have no steal or kill objectives,
+      I feel comfortable giving them this powerful tool- it CAN be de-implanted
+    type: Add
+  id: 284700
+  time: '2026-01-31T01:24:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2847
+- author: wonderfulnewworld
+  changes:
+  - message: Zombieteors chances lowered from 3% to 1% (So Zombies + Zombieteors =
+      11%)
+    type: Tweak
+  - message: NukeOps chances increased from 10% to 11%
+    type: Tweak
+  - message: Traitor chances increased from 20% to 22%
+    type: Tweak
+  - message: KesslerSyndrome chances lowered from 2% to 1%
+    type: Tweak
+  - message: Thieves/Lings now scale 1:21 instead of 1:20
+    type: Tweak
+  id: 306500
+  time: '2026-01-31T01:32:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3065
+- author: WizDen Team and Penguinwizzard
+  changes:
+  - message: Xenoborg thrusters can no longer be turned off, unwrenched, or rotated.
+    type: Tweak
+  - message: The Xenoborg camera now shows the names of Xenoborgs.
+    type: Add
+  - message: Rather than dropping a full pinpointer, Xenoborgs now drop a quarter
+      of one.
+    type: Tweak
+  - message: Heavy Xenoborgs can now weakly propel themselves in open space.
+    type: Tweak
+  - message: Intercoms have been resprited.
+    type: Tweak
+  - message: Iron-red concrete tiles and red-sand astro tiles can now be made at cutters
+      with the appropriate research.
+    type: Add
+  - message: Melee weapon attack animations have been tweaked.
+    type: Tweak
+  - message: Admins can now use the msg toolshed command to send targeted messages.
+    type: Add
+  - message: Ninja, Pirate, Syndicate Operative, Syndicate Commander, Syndicate Corpsman,
+      Wizard, CBURN, DS, and all of the ERT roles now have their own job icons.
+    type: Add
+  - message: Toyboxes now have guaranteed lube and glue.
+    type: Tweak
+  - message: The message displayed when a Vox ashes has been updated.
+    type: Add
+  - message: Toy swords now deal a very small amount of stamina damage.
+    type: Add
+  - message: Audio should now play properly when toggling internals.
+    type: Fix
+  - message: When putting a vape in someone else's mouth, it now checks if their mouth
+      is blocked, not yours.
+    type: Fix
+  - message: The go-go hat can only store and retrieve items while worn.
+    type: Tweak
+  - message: Cancer mice are now much more radioactive. Consider powering the station
+      with them!
+    type: Tweak
+  - message: Chemicals no longer react inside pills.
+    type: Tweak
+  - message: New 10u vial type.
+    type: Add
+  - message: Vials can now be closed.
+    type: Add
+  - message: Cryopods now have a GUI, which includes a health analyzer (with Starlight's
+      improvements, thanks Dopple!)
+    type: Add
+  - message: The handheld health analyzer no longer requires a battery.
+    type: Tweak
+  - message: Health examine colors now match the type of med used to cure that damage.
+    type: Add
+  - message: Paper centrifuges can be crafted, for centrifuging on a budget.
+    type: Add
+  - message: Saying ":?" now makes you shrug.
+    type: Add
+  - message: The goliath hardsuit's head lamp now works when worn by reptilian crewmembers.
+    type: Fix
+  - message: You can now craft bonfires and bonfires with stakes.
+    type: Add
+  - message: All non-arrivals shuttles have a cooldown of 60 seconds after FTLing
+      before they can FTL again.
+    type: Tweak
+  - message: Cabbage placed on taco shells no longer turns into carrot.
+    type: Fix
+  - message: You can now remove empty entries from the SmartFridge.
+    type: Fix
+  - message: You can now fold the wig on the clown mask.
+    type: Add
+  - message: The network configurator overlay now shows colors properly again.
+    type: Fix
+  - message: Examining dead things should now be more responsive.
+    type: Fix
+  - message: Changed sprite for Janitorial/BSO maid uniform.
+    type: Tweak
+  - message: Spray bottles now have fill level sprites.
+    type: Add
+  - message: The Janitor cyborg module now contains a wirebrush.
+    type: Add
+  - message: The advanced cleaning module's cleaning spray now self-refills, but has
+      half the capacity.
+    type: Tweak
+  - message: The borg hypo has been moved to its own module; the roundstart chem module
+      is now more like the advanced chem module.
+    type: Tweak
+  - message: You can now open borgs with a crowbar if they are crit without needing
+      the right access.
+    type: Add
+  - message: It's now possible to become a midround antagonist, even if you latejoined.
+    type: Add
+  - message: The admin door remote can now toggle the shock on airlocks.
+    type: Tweak
+  - message: Botany's chem mutation table now takes rarity into account. This means
+      that Omnizine is no longer the most common roll.
+    type: Tweak
+  - message: There is now a Syndicate Delivery Console, where Nuclear Operative teams
+      can get some gear for the whole team. Well, there _may_ be one, once it's added
+      to our syndicate base maps.
+    type: Add
+  - message: Chameleon projectors now require batteries, and spawn with a medium battery,
+      which powers it for about 3 minutes.
+    type: Tweak
+  - message: The clustersoap now visually changes when eaten, and the soaplets contain
+      less soap and leave residue.
+    type: Tweak
+  - message: Vestine is now mildly poisonous to plants.
+    type: Tweak
+  - message: Stellibinin now reduces plant toxicity at half the rate of Dylovene.
+    type: Tweak
+  - message: Hyperzine Injector 4TC -> 2TC.
+    type: Tweak
+  - message: Hyperzine Microinjector Kit 12TC -> 5TC.
+    type: Tweak
+  - message: Smuggler's Satchel 2TC -> 1TC.
+    type: Tweak
+  - message: The Ninja suit and headset are now immune to EMPs.
+    type: Tweak
+  - message: Ninja bombs now need to be planted on walls or windows.
+    type: Tweak
+  - message: The Throwing Knives kit now comes with 8 instead of 4, and they take
+      half as long to retrieve from a target.
+    type: Tweak
+  - message: The Scram implant no longer takes along anyone dragging you.
+    type: Tweak
+  - message: The Viper now has a high-capacity magazine.
+    type: Tweak
+  - message: Uplinks now provide high-capacity magazines instead of regular ones.
+    type: Tweak
+  - message: High-capacity magazines now hold 15 rather than 16 rounds.
+    type: Tweak
+  - message: Fixed conservation of mass for tritium fires.
+    type: Fix
+  - message: Changed trit->frezon production from 1:8 to 1:50 - you make a lot more
+      with the same setup.
+    type: Tweak
+  - message: Tritium fires are now limited by whichever is less of o2/trit in the
+      mix, not whichever is more. In effect fixes an issue where you could have extremely
+      lopsided burn ratios.
+    type: Fix
+  - message: The TEG now produces 75% more power to make up for the bugged energy
+      generation from trit fires getting fixed.
+    type: Tweak
+  - message: The unidirectional atmos pipes now have arrows on them to make them easier
+      to work with.
+    type: Tweak
+  - message: The Lone Operative shuttle now starts with a station map that always
+      shows the target station.
+    type: Add
+  - message: Cancelling recipes on a lathe now refunds the material cost.
+    type: Tweak
+  - message: Containment field generator lights now toggle correctly.
+    type: Fix
+  id: 297700
+  time: '2026-01-31T01:30:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2977
+- author: Fasuh
+  changes:
+  - message: Fixed Borgi causing client refresh.
+    type: Fix
+  id: 306700
+  time: '2026-01-31T02:59:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3067
 Order: -1
 

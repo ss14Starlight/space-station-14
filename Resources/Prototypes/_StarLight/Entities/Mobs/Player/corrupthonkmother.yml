@@ -47,31 +47,7 @@
           layer:
             - FlyingMobLayer
     # Starlight-start: Languages
-    - type: LanguageKnowledge
-      speaks:
-        - GalacticCommon
-        - SolCommon
-        - Chittin
-        - Sylvan
-        - Moffic
-        - Mothroach
-        - Draconic
-        - Scratch
-        - Bubblish
-        - VoxPidgin
-        - Canilunzt
-      understands:
-        - GalacticCommon
-        - SolCommon
-        - Chittin
-        - Sylvan
-        - Moffic
-        - Mothroach
-        - Draconic
-        - Scratch
-        - Bubblish
-        - VoxPidgin
-        - Canilunzt
+    - type: UniversalLanguageSpeaker
     - type: Input
       context: "human"
     - type: VentCrawler

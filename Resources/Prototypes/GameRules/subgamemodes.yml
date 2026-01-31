@@ -20,7 +20,7 @@
     definitions:
     - prefRoles: [ Thief ]
       max: 6 # Starlight. Allows alpha to have more thieves without impacting beta.
-      playerRatio: 20
+      playerRatio: 21 # Starlight. Tweaks thief scaling a little, so that Beta can still have 3 but Alpha requires 126 instead of 120 for 6 thieves. (To account for the 6 thieves.)
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
@@ -47,7 +47,7 @@
     definitions:
     - prefRoles: [ Changeling ]
       max: 6 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 20 # Starlight, to make sure Beta doesn't get more than 3 changelings as a submode.
+      playerRatio: 21 # Starlight, to make sure Beta doesn't get more than 3 changelings as a submode. Same justification as Thieves.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None

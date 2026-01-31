@@ -1,3 +1,27 @@
+- type: entity
+  parent: BaseGameRule
+  id: SiliconLiberation
+  components:
+  - type: SELFRule
+  - type: AntagObjectives
+    objectives:
+    - SiliconRightsObjective
+    - FreeAIObjective
+    - FreeBorgsObjective
+  - type: AntagSelection
+    agentName: self-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ SELFAgent ]
+      max: 3
+      startingGear: SELFAgentGear
+      mindRoles:
+      - MindRoleSELFAgent
+      briefing:
+        sound: "/Audio/_Starlight/Misc/self_greeting.ogg"
+  - type: DynamicRuleCost
+    cost: 70
+
 # Variant of thieves that only spawn up to 3. Used in revs to prevent emags from being too easily obtained.
 - type: entity
   parent: Thief
@@ -21,7 +45,7 @@
     definitions:
     - prefRoles: [ Thief ]
       max: 3 # Starlight. Prevents excess thieves from spawning on Revs.
-      playerRatio: 20
+      playerRatio: 21 # Starlight. Accounts for the thieves in the population. (63 pop = 60 crew 3 thieves.)
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
@@ -37,3 +61,4 @@
         sound: "/Audio/Misc/thief_greeting.ogg"
   - type: DynamicRuleCost
     cost: 75
+
