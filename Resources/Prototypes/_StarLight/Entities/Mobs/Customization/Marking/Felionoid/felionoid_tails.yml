@@ -1,0 +1,26 @@
+# Static
+- type: marking
+  id: FelionoidTail
+  bodyPart: Tail
+  markingCategory: Tail
+  waggingId: FelionoidTailAnimated
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: tail
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: tail_behind # MIKEY wtf is this?
+
+
+# Animated
+- type: marking
+  id: FelionoidTailAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  staticId: FelionoidTail
+  speciesRestriction: []
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: tail_wagging
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: tail_behind # MIKEY wtf is this?
