@@ -8,8 +8,8 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: tail
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: tail_behind # MIKEY wtf is this?
+#    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+#      state: tail_behind # MIKEY wtf is this?
 
 
 # Animated
@@ -22,5 +22,5 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: tail_wagging
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: tail_behind # MIKEY wtf is this?
+#    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+#      state: tail_behind # MIKEY wtf is this?

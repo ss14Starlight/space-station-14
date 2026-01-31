@@ -1,11 +1,11 @@
 - type: localizedDataset
   id: names_felionoid_prefix
-  values:
+  values: # MIKEY - regenerate this list
     prefix: names-felionoid-prefix-dataset-
     count: 101
 
 - type: localizedDataset
   id: names_felionoid_suffix
-  values:
+  values: # MIKEY - regenerate this list
     prefix: names-felionoid-suffix-dataset-
     count: 51
