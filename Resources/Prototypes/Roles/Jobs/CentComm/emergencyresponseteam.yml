@@ -17,7 +17,7 @@
   # Starlight end
   setPreference: false
   startingGear: ERTLeaderGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconERTLeader"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -124,7 +124,7 @@
     time: 5h
   setPreference: false
   startingGear: ERTChaplainGear
-  icon: "JobIconCentComm"
+  icon: "JobIconERTChaplain"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -207,7 +207,7 @@
     time: 5h
   setPreference: false
   startingGear: ERTEngineerGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconERTEngineer"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -302,13 +302,13 @@
   playTimeTracker: JobERTSecurity
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 72000 # 20h
+    time: 20h
   - !type:RoleTimeRequirement
     role: JobSecurityOfficer
-    time: 18000 # 5h
+    time: 5h
   setPreference: false
   startingGear: ERTEngineerGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconERTSecurity"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -495,16 +495,16 @@
   playTimeTracker: JobERTMedical
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 72000 # 20h
+    time: 20h
   - !type:RoleTimeRequirement
     role: JobMedicalDoctor
-    time: 18000 # 5h
+    time: 5h
   - !type:RoleTimeRequirement
     role: JobChemist
-    time: 18000 # 5h
+    time: 5h
   setPreference: false
   startingGear: ERTMedicalGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconERTMedic"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -610,7 +610,7 @@
     time: 5h
   setPreference: false
   startingGear: ERTJanitorGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconERTJanitor"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:

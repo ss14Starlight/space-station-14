@@ -61,6 +61,9 @@
   id: Bow
 
 - type: Tag
+  id: BurnedTraitBackground
+
+- type: Tag
   id: CantInteract
 
 - type: Tag
@@ -187,6 +190,9 @@
   id: Felionoid
 
 - type: Tag
+  id: FreeMag
+
+- type: Tag
   id: FestiveDinner
 
 - type: Tag
@@ -263,6 +269,9 @@
 
 - type: Tag
   id: InsulatedThread
+
+- type: Tag
+  id: IteratorTraitBackground
 
 - type: Tag
   id: L6Saw

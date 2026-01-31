@@ -25,10 +25,14 @@
       prob: 0.85 # Starlight. Adds up to 1.
 #    - id: Vampire # disabled until reworked
 #      prob: 0.25
+      #    - id: Vampire # disabled until reworked
+      #      prob: 0.25
     - id: SubWizard
       prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
     - id: Xenoborgs
       prob: 0.08 # Starlight. To account for their secret mode being lowered.
+#    - id: SiliconLiberation
+#      prob: 0.4
 
 - type: entity
   parent: BaseGameRule
@@ -65,4 +69,13 @@
   - type: SubGamemodes
     rules:
     - id: Thief
+      prob: 1
+
+- type: entity
+  parent: BaseGameRule
+  id: SiliconLiberationGamerule
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: SiliconLiberation
       prob: 1

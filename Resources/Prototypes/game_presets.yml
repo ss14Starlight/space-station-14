@@ -49,6 +49,7 @@
     - SLChangeling #Starlight
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
+#    - SiliconLiberation #Starlight
 
 - type: gamePreset
   id: AllerAtOnce
@@ -76,6 +77,7 @@
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
+#    - SiliconLiberation #Starlight
 
 - type: gamePreset
   id: Extended

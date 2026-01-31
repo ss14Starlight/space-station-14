@@ -21,12 +21,20 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         var prototype = Prototypes.Index(borgType);
 
         // Assign radio channels
+        //Starlight begin
         string[] radioChannels = [.. ent.Comp.InherentRadioChannels, .. prototype.RadioChannels];
         if (TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter))
+        {
             transmitter.Channels = [.. radioChannels];
+            Dirty(ent.Owner, transmitter);
+        }
 
         if (TryComp(ent, out ActiveRadioComponent? activeRadio))
+        {
             activeRadio.Channels = [.. radioChannels];
+            Dirty(ent.Owner, activeRadio);
+        }
+        //Starlight end
 
         // Borg transponder for the robotics console
         if (TryComp(ent, out BorgTransponderComponent? transponder))

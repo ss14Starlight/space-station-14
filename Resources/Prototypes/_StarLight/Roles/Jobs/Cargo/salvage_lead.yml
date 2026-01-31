@@ -7,6 +7,10 @@
     - !type:RoleTimeRequirement
       role: JobQuartermaster
       time: 18000 # 5 hours
+    - !type:TraitsRequirement
+      traits:
+      - Iterator
+      inverted: true
   icon: "JobIconSalvageLead"
   startingGear: SalvageLeadGear
   supervisors: job-supervisors-qm
