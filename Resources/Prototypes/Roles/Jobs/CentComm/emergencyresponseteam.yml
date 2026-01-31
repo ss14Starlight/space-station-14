@@ -273,6 +273,7 @@
   storage:
     back:
     - RCD
+    - RPD # Starlight: RPD
     - GasAnalyzer
     - HolofanProjector
     - MiningDrillDiamond

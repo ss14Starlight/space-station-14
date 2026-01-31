@@ -9,7 +9,7 @@ namespace Content.Server.StationEvents.Components;
 public sealed partial class WreckSwarmComponent : Component
 {
     [DataField]
-    public float Velocity = 20f;
+    public float Velocity = 80f;
 
     /// <summary>
     /// The announcement played when a meteor swarm begins.

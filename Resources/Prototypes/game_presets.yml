@@ -210,7 +210,7 @@
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Revolutionary
-  - SubGamemodesRule
+  - SubGamemodesRuleLessThieves # Starlight. 3 max thieves on revs, so they can't be guaranteed an Emag.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -242,7 +242,7 @@
   rules:
   - Xenoborgs
   # - DummyNonAntagChance 🌟Starlight🌟
-  - SubGamemodesRuleNoWizardNoXenoborg # no two motherships
+  - SubGamemodesRuleNoXenoborg # Starlight. no two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous, yo.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -262,6 +262,7 @@
   showInVote: true # 🌟Starlight🌟
   rules:
   - Zombie
+  - SubGamemodesRuleZombieCompliantAntags # Starlight. I want to trial this, see how it plays out. If it goes poorly, we'll remove Xenoborgs from it.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -279,6 +280,7 @@
   showInVote: true # 🌟Starlight🌟
   rules:
   - Zombie
+  - SubGamemodesRuleZombieCompliantAntags # Starlight. I want to trial this, see how it plays out. If it goes poorly, we'll remove Xenoborgs from it.
   - BasicStationEventScheduler
   - KesslerSyndromeScheduler
   - SpaceTrafficControlEventScheduler
@@ -359,12 +361,17 @@
   minPlayers: 60
   rules:
     - DerelictGenericCyborgSpawn
+    - DerelictGenericCyborgSpawn # Starlight. To account for the ultrapop.
     - BasicStationEventScheduler
+    - BasicStationEventScheduler # Starlight. More events without ramping events. What could go wrong?
     - MeteorSwarmMildScheduler
     - SubGamemodesRule
     - IonStorm
+    - IonStorm # Starlight. They're mostly harmless, and fun to work around.
     - CockroachMigration
     - MouseMigration
     - BasicRoundstartVariation
     - BasicRoundstartVariation
     - BasicRoundstartVariation
+    - BasicRoundstartVariation # Starlight. Dirtier.
+    - BasicRoundstartVariation # Starlight. This is Janitor Kessler.

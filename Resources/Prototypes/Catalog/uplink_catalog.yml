@@ -1724,11 +1724,25 @@
   categories:
   - UplinkWearables
 
+# Starlight, listing disabled and replaced with chameleon crate
+# - type: listing
+#  id: UplinkChameleon
+#  name: uplink-chameleon-name
+#  description: uplink-chameleon-desc
+#  productEntity: ClothingBackpackChameleonFill
+#  icon: { sprite: /Textures/Clothing/Uniforms/Jumpsuit/rainbow.rsi, state: icon }
+#  discountCategory: usualDiscounts
+#  discountDownTo:
+#    Telecrystal: 2
+#  cost:
+#    Telecrystal: 4
+#  categories:
+#    - UplinkWearables
 - type: listing
-  id: UplinkChameleon
-  name: uplink-chameleon-name
-  description: uplink-chameleon-desc
-  productEntity: ClothingBackpackChameleonFill
+  id: UplinkChameleonBundle
+  name: uplink-chameleon-bundle-name
+  description: uplink-chameleon-bundle-desc
+  productEntity: CrateSyndicateChameleonBundle
   icon: { sprite: /Textures/Clothing/Uniforms/Jumpsuit/rainbow.rsi, state: icon }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1737,6 +1751,7 @@
     Telecrystal: 4
   categories:
     - UplinkWearables
+# Starlight End
 
 - type: listing
   id: UplinkClothingNoSlipsShoes

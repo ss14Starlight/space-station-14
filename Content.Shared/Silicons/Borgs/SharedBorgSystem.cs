@@ -356,6 +356,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
                 //Starlight end
             }
         }
+        Dirty(ent);
     }
     // end Starlight
 

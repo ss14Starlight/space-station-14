@@ -271,7 +271,7 @@
         - id: ClothingEyesChameleon
         - id: ClothingHeadsetChameleon
         - id: ClothingShoesChameleon
-        - id: ChameleonControllerImplanter
+        - id: ClothingMiscChameleon # Starlight Removed the Implanter from the backpack to make space for the Medal slot item.
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
