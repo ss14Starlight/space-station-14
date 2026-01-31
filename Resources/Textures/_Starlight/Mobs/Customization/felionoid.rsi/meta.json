@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "license": null,
+    "copyright": null,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "pawmittens_armsL",
+            "directions": 4
+        },
+        {
+            "name": "pawmittens_armsR",
+            "directions": 4
+        },
+        {
+            "name": "pawmittens_footR",
+            "directions": 4
+        },
+        {
+            "name": "pawmittens_footL",
+            "directions": 4
+        },
+        {
+            "name": "pawmittens_handsL",
+            "directions": 4
+        },
+        {
+            "name": "pawmittens_handsR",
+            "directions": 4
+        },
+        {
+            "name": "pawmittens_legsL",
+            "directions": 4
+        },
+        {
+            "name": "pawmittens_legsR",
+            "directions": 4
+        },
+        {
+            "name": "Tabby_LegR",
+            "directions": 4
+        },
+        {
+            "name": "Tabby_armL",
+            "directions": 4
+        },
+        {
+            "name": "Tabby_armR",
+            "directions": 4
+        },
+        {
+            "name": "Tabby_chest",
+            "directions": 4
+        },
+        {
+            "name": "Tabby_head",
+            "directions": 4
+        },
+        {
+            "name": "Tabby_LegL",
+            "directions": 4
+        },
+        {
+            "name": "Tiger_stripes_face",
+            "directions": 4
+        },
+        {
+            "name": "bellymark",
+            "directions": 4
+        }
+    ]
+}

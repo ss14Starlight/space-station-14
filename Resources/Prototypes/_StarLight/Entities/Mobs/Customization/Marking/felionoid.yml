@@ -1,0 +1,134 @@
+﻿- type: marking
+  id: pawmittens_armsL
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  pawmittens_armsL
+- type: marking
+  id: pawmittens_armsR
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  pawmittens_armsR
+- type: marking
+  id: pawmittens_footR
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  pawmittens_footR
+- type: marking
+  id: pawmittens_footL
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  pawmittens_footL
+- type: marking
+  id: pawmittens_handsL
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  pawmittens_handsL
+- type: marking
+  id: pawmittens_handsR
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  pawmittens_handsR
+- type: marking
+  id: pawmittens_legsL
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  pawmittens_legsL
+- type: marking
+  id: felionoidBelly
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: bellymark
+- type: marking
+  id: pawmittens_legsR
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  pawmittens_legsR
+
+- type: marking
+  id: FelionoidTigerHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: Tiger_stripes_face
+# TABBY MARKINGS
+- type: marking
+  id: FelionoidTabbyHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: Tabby_head
+- type: marking
+  id: FelionoidTabby
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: Tabby_chest
+      
+      
+- type: marking
+  id: FelionoidTabby_ArmL
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  Tabby_armL
+- type: marking
+  id: FelionoidTabby_ArmR
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  Tabby_armR
+      
+
+- type: marking
+  id: FelionoidTabby_LegL
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  Tabby_LegL
+- type: marking
+  id: FelionoidTabby_LegR
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  Tabby_LegR
