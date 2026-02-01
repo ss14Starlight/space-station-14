@@ -17,9 +17,9 @@
   - type: GhostRole
     name: ghost-role-information-skeleton-pirate-name
     description: ghost-role-information-skeleton-pirate-description
-    rules: ghost-role-information-freeagent-rules
+    rules: ghost-role-information-nonantagonist-rules # Starlight-edit - Free Agent -> NonAntagonist
     mindRoles:
-    - MindRoleGhostRoleFreeAgentSkeleton # Starlight-edit - FreeAgent -> FreeAgentSkeleton
+    - MindRoleGhostRoleNeutralSkeleton # Starlight-edit - FreeAgent -> NeutralSkeleton
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -36,9 +36,9 @@
   - type: GhostRole
     name: ghost-role-information-skeleton-biker-name
     description: ghost-role-information-skeleton-biker-description
-    rules: ghost-role-information-freeagent-rules
+    rules: ghost-role-information-nonantagonist-rules # Starlight-edit - Free Agent -> NonAntagonist
     mindRoles:
-    - MindRoleGhostRoleFreeAgentSkeleton # Starlight-edit - FreeAgent -> FreeAgentSkeleton
+    - MindRoleGhostRoleNeutralSkeleton # Starlight-edit - FreeAgent -> NeutralSkeleton
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -54,9 +54,9 @@
   - type: GhostRole
     name: ghost-role-information-closet-skeleton-name
     description: ghost-role-information-closet-skeleton-description
-    rules: ghost-role-information-nonantagonist-rules
-    # mindRoles:
-    # - MindRoleGhostRoleFreeAgent
+    rules: ghost-role-information-nonantagonist-rules # Starlight-edit - Free Agent -> NonAntagonist
+    mindRoles:
+    - MindRoleGhostRoleNeutralSkeleton # Starlight-edit - FreeAgent -> NeutralSkeleton
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -64,6 +64,7 @@
     prototypes: [LimitedAssistantGear]
   - type: RandomHumanoidAppearance
 
+# Starlight-edit start
 - type: entity
   parent: MobSkeletonPerson
   id: MobSkeletonClosetFreeAgent
@@ -74,10 +75,11 @@
     description: ghost-role-information-closet-skeleton-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentSkeleton # Starlight-edit - FreeAgent -> FreeAgentSkeleton
+    - MindRoleGhostRoleFreeAgentSkeleton
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [LimitedAssistantGear]
   - type: RandomHumanoidAppearance
+# Starlight-edit end
