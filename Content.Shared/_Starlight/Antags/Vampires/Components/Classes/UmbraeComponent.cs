@@ -28,7 +28,6 @@ public sealed partial class UmbraeComponent : VampireClassComponent
     public EntityUid? SpawnedShadowAnchorBeacon = null;
     public bool ShadowAnchorPlacementInProgress;
     public int ShadowAnchorLoopId;
-    public EntProtoId ShadowAnchorBeaconPrototype = "VampireShadowAnchorBeacon";
 
     /// <summary>
     /// List of placed shadow snare traps
