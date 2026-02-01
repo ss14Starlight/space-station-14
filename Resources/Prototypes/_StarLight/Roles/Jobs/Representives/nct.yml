@@ -6,10 +6,6 @@
   requirements:
     - !type:RolesRequirement
       proto: StaffAndMentorOnlyRolesReq
-    - !type:TraitsRequirement
-      traits:
-      - Iterator
-      inverted: true
   startingGear: NanotrasenCareerTrainerGear
   icon: JobIconNanotrasenCareerTrainer
   rules: job-rules-corporate-aligned

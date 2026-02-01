@@ -1784,6 +1784,7 @@
   - type: Item
     size: Tiny
     heldPrefix: 0
+  - type: VampireDevourable # Starlight-edit: Vampire Devouring
   - type: Clothing
     quickEquip: false
     sprite: Mobs/Animals/mouse.rsi

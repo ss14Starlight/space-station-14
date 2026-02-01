@@ -16,10 +16,6 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 20h # Starlight
-    - !type:TraitsRequirement
-      traits:
-      - Iterator
-      inverted: true
 
   weight: 10
   startingGear: HoSGear

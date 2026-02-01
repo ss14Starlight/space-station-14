@@ -1,6 +1,7 @@
 - type: language
   id: Scratch
   icon: LanguageIconAvali
+  chatPrefix: scr
   speech:
     color: "#fc7921"
     fontId: Scratch

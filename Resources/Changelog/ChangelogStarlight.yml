@@ -28674,5 +28674,98 @@ Entries:
   id: 305100
   time: '2026-01-31T07:33:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3051
+- author: Miracula
+  changes:
+  - message: New season clothes in Fashion-O-Mat
+    type: Add
+  - message: Support for animated job icons
+    type: Add
+  id: 293500
+  time: '2026-01-31T11:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2935
+- author: neomoth
+  changes:
+  - message: Fixes borgis being unable to communicate on binary while wearing a headset
+      (and by extension any other entities with IntrinsicRadioTransmitter who are
+      also wearing a headset)
+    type: Fix
+  id: 306900
+  time: '2026-01-31T12:13:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3069
+- author: Shades
+  changes:
+  - message: Fixed Languages Costs being wired with the new Trait System.
+    type: Fix
+  id: 307000
+  time: '2026-01-31T18:55:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3070
+- author: CringeCursed, Rinary, DocMoth, YourSly
+  changes:
+  - message: New vampires
+    type: Tweak
+  id: 259900
+  time: '2026-02-01T00:08:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2599
+- author: neomoth
+  changes:
+  - message: Borgs that get emagged can now properly use comms again
+    type: Fix
+  - message: Actually fix radio implants this time i swear
+    type: Fix
+  id: 307900
+  time: '2026-02-01T00:12:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3079
+- author: Penguinwizzard
+  changes:
+  - message: Re-inverted command-time requirement for headrev so you need command
+      hours rather than get denied due to having command hours.
+    type: Fix
+  id: 307600
+  time: '2026-02-01T00:15:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3076
+- author: Conflee
+  changes:
+  - message: Fixed FreeMAG'ed borgs getting Syndicate Comms, and gave SELF Agent a
+      description in the antag loadout screen
+    type: Fix
+  id: 307800
+  time: '2026-02-01T00:46:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3078
+- author: neomoth
+  changes:
+  - message: Adds the ability to speak in a given language using a prefix in chat.
+      Check the language menu for each language's chat prefix. If you want to do this
+      with radio, the language prefix comes before the radio prefix.
+    type: Add
+  id: 300600
+  time: '2026-02-01T01:26:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3006
+- author: wonderfulnewworld
+  changes:
+  - message: Adds Vamps and Vamptraitorling back to secret game modes.
+    type: Add
+  - message: Vampires and Changelings can appear in most modes as subantags. (Vamps
+      scale lower as subantag. Neither will spawn in zombies.)
+    type: Tweak
+  - message: Vampires now scale a little better (they were set at a max of 3 before)
+    type: Tweak
+  - message: Vampires cannot be converted, like Changelings
+    type: Tweak
+  - message: More changelings now spawn on the dedicated Changeling gamemode
+    type: Tweak
+  - message: Vampire and Vamptraitorling now have proper titles/descriptions
+    type: Fix
+  id: 308100
+  time: '2026-02-01T03:35:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3081
+- author: AegisShield
+  changes:
+  - message: Moved the largest small wreck to large
+    type: Tweak
+  - message: Made wreck velocity 2.5x base rather than 4x
+    type: Tweak
+  id: 308700
+  time: '2026-02-01T07:27:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3087
 Order: -1
 

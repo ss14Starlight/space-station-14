@@ -332,28 +332,22 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
             if (TryComp(ent, out ActiveRadioComponent? activeRadio))
             {
-                foreach (var channel in key.Channels)
-                {
-                    activeRadio.Channels.Add(channel);
-                }
                 //Starlight begin
+                foreach (var channel in key.Channels)
+                    activeRadio.Channels.Add(channel);
                 foreach (var channel in key.CustomChannels)
-                {
                     activeRadio.CustomChannels.Add(channel);
-                }
+                Dirty(ent, activeRadio);
                 //Starlight end
             }
             if (TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter))
             {
-                foreach (var channel in key.Channels)
-                {
-                    transmitter.Channels.Add(channel);
-                }
                 //Starlight begin
+                foreach (var channel in key.Channels)
+                    transmitter.Channels.Add(channel);
                 foreach (var channel in key.CustomChannels)
-                {
                     transmitter.CustomChannels.Add(channel);
-                }
+                Dirty(ent, transmitter);
                 //Starlight end
             }
         }

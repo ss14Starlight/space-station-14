@@ -62,3 +62,49 @@
   - type: DynamicRuleCost
     cost: 75
 
+#Subgamemode variant of vamps. There's less of them.
+- type: entity
+  parent: Vampire
+  id: VampireLess
+  components:
+  - type: VampireRule
+  - type: AntagSelection
+    agentName: vampire-roundend-name
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 5 # Starlight. Accounting for scaling. Not as many as the full gamemode.
+      playerRatio: 26 # Starlight. Accounting for scaling.
+      lateJoinAdditional: true
+      allowNonHumans: True
+      multiAntagSetting: None
+      mindRoles:
+      - MindRoleVampire
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
+
+#Subgamemode Lings for Vamptraitorlings.
+- type: entity
+  parent: BaseGameRule
+  id: SLChangelingLess
+  components:
+  - type: SLChangelingRule
+  - type: AntagSelection
+    agentName: changeling-roundend-name
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 4 # Starlight, same reasoning as the roundstart changeling change, for alpha.
+      playerRatio: 26 # Starlight, to make sure Beta doesn't get more than 2 changelings as a submode on VTL. Same justification as Thieves.
+      lateJoinAdditional: true
+      allowNonHumans: false
+      multiAntagSetting: None
+      mindRoles:
+      - MindRoleChangeling
+      components:
+        - type: ChangelingDevour
+        - type: ChangelingIdentity
+        - type: ChangelingTransform
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
