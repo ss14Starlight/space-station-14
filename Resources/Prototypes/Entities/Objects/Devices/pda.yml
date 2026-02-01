@@ -431,7 +431,7 @@
   name: chaplain PDA
   parent: BasePDA
   id: ChaplainPDA
-  description: Is the black austere, or luxurious? It's a matter of faith. # Starlight
+  description: God's chosen PDA.
   components:
   - type: Pda
     id: ChaplainIDCard
@@ -1159,7 +1159,7 @@
 - type: entity
   parent: BaseSecurityPDA
   id: ERTLeaderPDA
-  name: ERT leader PDA # Starlight: capitalization
+  name: ERT Leader PDA
   suffix: Leader
   description: Red for firepower.
   components:
@@ -1191,9 +1191,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTChaplainPDA
-  name: ERT chaplain PDA # Starlight: capitalization
+  name: ERT Chaplain PDA
   suffix: Chaplain
-  description: Red for the blood of sinners. # Starlight
+  description: Red for firepower, it's blessed.
   components:
   - type: Pda
     id: ERTChaplainIDCard
@@ -1201,9 +1201,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTEngineerPDA
-  name: ERT engineer PDA # Starlight: capitalization
+  name: ERT Engineer PDA
   suffix: Engineer
-  description: Red for firepower. It's well-worn. # Starlight
+  description: Red for firepower, it's well-worn.
   components:
   - type: Pda
     id: ERTEngineerIDCard
@@ -1211,9 +1211,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTJanitorPDA
-  name: ERT janitor PDA # Starlight: capitalization
+  name: ERT Janitor PDA
   suffix: Janitor
-  description: Red for firepower. It's squeaky clean. # Starlight
+  description: Red for firepower, it's squeaky clean.
   components:
   - type: Pda
     id: ERTJanitorIDCard
@@ -1221,9 +1221,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTMedicPDA
-  name: ERT medic PDA # Starlight: capitalization
+  name: ERT Medic PDA
   suffix: Medic
-  description: Red for firepower. It's shiny and sterile. # Starlight
+  description: Red for firepower, it's shiny and sterile.
   components:
   - type: Pda
     id: ERTMedicIDCard
@@ -1231,9 +1231,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTSecurityPDA
-  name: ERT security PDA # Starlight: capitalization
+  name: ERT Security PDA
   suffix: Security
-  description: Red for firepower. It has tally marks etched on the side. # Starlight
+  description: Red for firepower, it has tally marks etched on the side.
   components:
   - type: Pda
     id: ERTSecurityIDCard
@@ -1543,22 +1543,6 @@
     accentVColor: "#DFDFDF"
   - type: Icon
     state: pda-seniorcourier
-
-- type: entity
-  parent: [ BaseHighlyIllegalContraband, BasePDA ]
-  id: NinjaPDA
-  name: ninja PDA
-  description: You stealthy bastard, you!
-  components:
-  - type: Pda
-    id: NinjaIDCard
-  - type: Appearance
-    appearanceDataInit:
-      enum.PdaVisuals.PdaType:
-        !type:String
-        pda-ninja
-  - type: Icon
-    state: pda-ninja
 
 - type: entity
   parent: [ BaseMajorContraband, SyndiPDA ]

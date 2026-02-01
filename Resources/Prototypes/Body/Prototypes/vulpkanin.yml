@@ -23,7 +23,7 @@
       organs:
         heart: OrganVulpkaninHeart # starlight - temp vulpkanin revert
         lungs: OrganHumanLungs
-        stomach: OrganVulpkaninStomach
+        stomach: OrganVulpkaninStomach # starlight - temp vulpkanin revert
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
         cavity: null #Starlight - surgery

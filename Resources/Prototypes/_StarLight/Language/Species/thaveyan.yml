@@ -1,7 +1,6 @@
 - type: language
   id: Thaveyan
   icon: LanguageIconThaveyan
-  chatPrefix: thv
   speech:
     color: "#0390fc"
     fontId: Thaveyan

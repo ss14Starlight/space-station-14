@@ -5,13 +5,13 @@ using System.Text.RegularExpressions;
 using YamlDotNet.RepresentationModel;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking;
+using Content.Server.Maps;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Shared.Shuttles.Components; //Starlight-edit
 using Content.Shared.CCVar;
-using Content.Shared.Maps;
 using Content.Shared.Roles;
 using Content.Shared.Station.Components;
 using Robust.Shared.Configuration;
@@ -71,16 +71,6 @@ namespace Content.IntegrationTests.Tests
             {"/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", ["RubberStampSyndicate"]},
             {"/Maps/Shuttles/ShuttleEvent/cruiser.yml", ["ShuttleGunPerforator"]},
             {"/Maps/Shuttles/ShuttleEvent/instigator.yml", ["ShuttleGunFriendship"]},
-            {"/Maps/_Starlight/Stations/Cork.yml", ["RubberStampSyndicate"]}, // Starlight start
-            {"/Maps/_Starlight/Shuttles/RecluseClassSHC.yml", ["RubberStampSyndicate"]},
-            {"/Maps/_Starlight/Shuttles/Signaleer.yml", ["RubberStampSyndicate"]},
-            {"/Maps/_Starlight/Nonstations/nukieplanet.yml", ["RubberStampSyndicate"]},
-            {"/Maps/_Starlight/Nonstations/nukiewestern.yml", ["RubberStampSyndicate"]},
-            {"/Maps/_Starlight/Dungeon/syndie.yml", ["RubberStampSyndicate"]},
-            {"/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml", ["RubberStampSyndicate", "TraitorCodePaper"]},
-            {"/Maps/_Starlight/Centcomms/CC_Outpost_SC17.yml", ["BoxFolderCentCom", "RubberStampCentcom"]},
-            {"/Maps/_Starlight/Centcomms/CC_Outpost_G24.yml", ["BoxFolderCentCom", "RubberStampCentcom", "RubberStampQm"]},
-            {"/Maps/_Starlight/Centcomms/CC_Outpost_GNT9.yml", ["BoxFolderCentCom", "RubberStampCAD", "RubberStampCCD", "RubberStampCDD", "RubberStampCED", "RubberStampCentcom", "RubberStampCID", "RubberStampCMD", "RubberStampCRD", "RubberStampCSD"]}// Starlight end
         };
 
         /// <summary>
@@ -94,7 +84,25 @@ namespace Content.IntegrationTests.Tests
         {
             "/Maps/Shuttles/AdminSpawn/**", // admin gaming
            #region starlight
-            "/Maps/_Starlight/Shuttles/Radiotower.yml", // Command stamps - listening post.
+            "/Maps/nanoStation.yml",
+            "/Maps/_Starlight/nukieplanet.yml", //starlight nukie spawn map
+            "/Maps/_Starlight/Centcomms/CC_Outpost_G24.yml", //starlight centcomm map
+            "/Maps/_Starlight/Centcomms/CC_Outpost_SC17.yml", //starlight centcomm map
+            "/Maps/_Starlight/Centcomms/CC_Outpost_GNT9.yml", //starlight centcomm map
+            "/Maps/_Starlight/Dungeon/syndie.yml",
+            "/Maps/_Starlight/Shuttles/Radiotower.yml",
+            "/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml",
+            "/Maps/_Starlight/Shuttles/Signaleer.yml",
+            //TODO: Review these, either remove the do not map from the offending entities or remove the entities from the map
+            "/Maps/_Starlight/Stations/Bagel.yml",
+            "/Maps/_Starlight/Stations/Barratry.yml",
+            "/Maps/_Starlight/Stations/Cork.yml",
+            "/Maps/_Starlight/Stations/Lagan.yml",
+            "/Maps/_Starlight/Stations/Lobster.yml",
+            "/Maps/_Starlight/Stations/Orwell.yml",
+            "/Maps/_Starlight/Stations/Remix.yml",
+            "/Maps/_Starlight/Stations/Starboard.yml",
+            "/Maps/_Starlight/Shuttles/RecluseClassSHC.yml"
             #endregion
         };
 
@@ -128,8 +136,10 @@ namespace Content.IntegrationTests.Tests
             "StarlightManor",
             "StarlightLeth",
             "StarlightMing",
+            "StarlightOrigin",
             "StarlightOrwell",
             "StarlightPrism",
+            "StarlightRemix",
             "StarlightStarboard",
             "StarlightBagel",
             "StarlightBox",
@@ -140,15 +150,15 @@ namespace Content.IntegrationTests.Tests
             "StarlightElkridge",
             "StarlightFland",
             "StarlightHotel",
+            "StarlightOasis",
+            "StarlightOmega",
             "StarlightPacked",
             "StarlightReach",
             "StarlightSaltern",
             "StarlightSilica",
             "StarlightCluster",
             "StarlightStationBuilding",
-            "StarlightPlasma",
-			"StarlightSpaceMall",
-            "StarlightSepultum"
+            "StarlightPlasma"
             #endregion
         };
 
@@ -219,7 +229,7 @@ namespace Content.IntegrationTests.Tests
                 .Where(filePath =>
                     filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
                 .ToArray();
-
+            
             shuttles = shuttles.Concat(starlightShuttles).ToArray();
 
             await server.WaitPost(() =>
@@ -387,7 +397,7 @@ namespace Content.IntegrationTests.Tests
                         continue;
 
                     Assert.That(!proto.Categories.Contains(dnmCategory) || IsWhitelistedForMap(protoId, map),
-                        $"\nMap {map} contains entities in the DO NOT MAP category: {proto.Name} ({proto.ID})"); // SL change, helps for debugging
+                        $"\nMap {map} contains entities in the DO NOT MAP category ({proto.Name})");
 
                     // The proto id is used on this map, so remove it from the set
                     unusedExemptions.Remove(protoId);

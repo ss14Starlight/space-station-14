@@ -53,7 +53,7 @@
       - !type:GibBehavior
         recursive: false
   - type: Stamina
-    baseCritThreshold: 15
+    critThreshold: 15
     animationThreshold: 5
   - type: MovementAlwaysTouching
   - type: DamageStateVisuals
@@ -67,10 +67,7 @@
     - id: FoodMeatXeno
       amount: 1
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 50
+    bloodMaxVolume: 50
   - type: CombatMode
   - type: MeleeWeapon
     soundHit:

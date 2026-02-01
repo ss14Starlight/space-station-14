@@ -18,9 +18,6 @@
   - RipleyCentralElectronics
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
-  - BorgModuleAdvancedLoading
-  technologyPrerequisites:
-  - CritterMechs
   radioChannels:
   - Supply
 
@@ -76,10 +73,10 @@
   cost: 10000
   recipeUnlocks:
   - WeaponTurretPointDefenseMachineCircuitboard
-  technologyPrerequisites:
-  - SpaceScanning
   radioChannels:
   - Engineering
+
+# Tier 3
 
 - type: technology
   id: CargoCyberLimbsTech
@@ -88,8 +85,8 @@
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: ripletclaw
   discipline: Industrial
-  tier: 2
-  cost: 5000
+  tier: 3
+  cost: 9320
   recipeUnlocks:
     - LeftArmCyberSpacer
     - RightArmCyberSpacer
@@ -103,8 +100,7 @@
   - Medical
   - Supply
 
-# Tier 3
-
+# Tier 4
 - type: technology
   id: EngineeringCyberLimbsTech
   name: research-technology-engineering-cyberlimbs
@@ -112,8 +108,8 @@
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: rcd
   discipline: Industrial
-  tier: 3
-  cost: 9320
+  tier: 4
+  cost: 30000
   recipeUnlocks:
     - LeftArmCyberEngineer
     - RightArmCyberEngineer
@@ -122,5 +118,3 @@
   radioChannels:
   - Medical
   - Engineering
-
-# Tier 4

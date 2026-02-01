@@ -9,11 +9,11 @@ namespace Content.Shared.Humanoid.Markings;
 public sealed partial class MarkingPrototype : IInheritingPrototype
 {
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<MarkingPrototype>))]
-    public string[]? Parents { get; private set; }
+    public string[]? Parents { get; }
 
     [AbstractDataField]
     [NeverPushInheritance]
-    public bool Abstract { get; private set; }
+    public bool Abstract { get; }
 
     [DataField]
     public string? WaggingId;

@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Systems;
@@ -269,16 +268,6 @@ public sealed class HungerSystem : EntitySystem
             if (_timing.CurTime < hunger.NextThresholdUpdateTime)
                 continue;
             hunger.NextThresholdUpdateTime = _timing.CurTime + hunger.ThresholdUpdateRate;
-            
-            //Starlight begin
-            if (hunger.HungerDrains.Count > 0)
-            {
-                var totalDrain =
-                    hunger.HungerDrains.Aggregate<(EntityUid, float, TimeSpan), float>(1,
-                        (current, modifier) => current * modifier.Item2);
-                ModifyHunger(uid, -totalDrain * hunger.ActualDecayRate, hunger);
-            }
-            //Starlight end
 
             UpdateCurrentThreshold(uid, hunger);
             DoContinuousHungerEffects(uid, hunger);

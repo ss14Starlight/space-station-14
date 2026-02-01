@@ -3,7 +3,6 @@
   id: BaseSlimeExtractFilled
   abstract: true
   components:
-    - type: FilledSlimeExtract
     - type: SolutionContainerManager
       solutions:
         container:

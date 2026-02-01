@@ -1,7 +1,6 @@
 - type: language
   id: SolCommon
   icon: LanguageIconSolCom
-  chatPrefix: sol
   speech:
     color: "#ffffff"
   obfuscation:

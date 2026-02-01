@@ -128,7 +128,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0 # Starlight Edit
     sprintModifier: 1.0 # Starlight Edit
-    requireActivated: false
   - type: HeldSpeedModifier
   - type: TemperatureProtection
     heatingCoefficient: 0.1

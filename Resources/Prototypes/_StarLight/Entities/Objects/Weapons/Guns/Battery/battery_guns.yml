@@ -156,7 +156,7 @@
       interpolate: Nearest
       maxDuration: 1.0
       isLooped: true
-  - type: ToggleableVisuals
+  - type: ToggleableLightVisuals
     spriteLayer: light
 
 - type: entity
@@ -269,10 +269,10 @@
       fireCost: 750
       magState: destroy
       visualState: destroy-unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1500
     startingCharge: 1500
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 20
 
 - type: entity
@@ -313,10 +313,10 @@
       fireCost: 1000
       magState: destroy
       visualState: destroy-unshaded
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 2000
     startingCharge: 2000
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 100
     autoRechargePauseTime: 44
 
@@ -341,7 +341,7 @@
     - Back
   - type: Gun
     fireRate: 0.6
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 40 #100sec+60Sec Pause
     autoRechargePauseTime: 60
   - type: BatteryAmmoProvider
@@ -378,7 +378,7 @@
     - 0, 0, 3, 1
   - type: Gun
     fireRate: 0.6
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 40 #100sec+60Sec Pause
     autoRechargePauseTime: 60
   - type: BatteryAmmoProvider
@@ -410,7 +410,7 @@
     availableModes:
     - SemiAuto
     - FullAuto #Just allows people to hold down left click
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1500 # ~2:30 minutes for recharge
     startingCharge: 1500
   - type: BatteryAmmoProvider
@@ -462,7 +462,7 @@
     size: Small
     shape:
     - 0, 0, 1, 1
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 200
   - type: MagazineVisuals
     magState: stun
@@ -525,7 +525,7 @@
       fireCost: 200
       magState: destroy
       visualState: destroy
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 2600
     startingCharge: 2600
 
@@ -567,7 +567,7 @@
       fireCost: 100
       magState: kill
       visualState: kill
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1500
     startingCharge: 1500
 
@@ -694,7 +694,7 @@
       fireCost: 100
       magState: destroy
       visualState: destroy
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 3300
     startingCharge: 3300
 
@@ -748,18 +748,9 @@
       fireCost: 10
       magState: destroy
       visualState: destroy
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 2640
     startingCharge: 2640
-  - type: ContainerContainer
-    containers:
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinAdvancedLaser
-  - type: FiringPinHolder
-    supportedPins: [ AdvancedLaser ]
 
 - type: entity
   name: ANNIHILATOR
@@ -789,20 +780,11 @@
       fireCost: 100
       magState: destroy
       visualState: destroy
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 2000
     startingCharge: 2000
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 500
-  - type: ContainerContainer
-    containers:
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinAdvancedLaser
-  - type: FiringPinHolder
-    supportedPins: [ AdvancedLaser ]
 
 - type: entity
   parent: BaseWeaponBatterySmall
@@ -823,7 +805,7 @@
     - type: BatteryAmmoProvider
       proto: ProjectilePolyboltJohnToe
       fireCost: 200
-    - type: BatterySelfRecharger
+    - type: PredictedBatterySelfRecharger
       autoRechargeRate: 40 #every 5 seconds another becomes toe.
     - type: MagazineVisuals
       magState: mag
@@ -890,21 +872,12 @@
   #- type: StealTarget
     #stealGroup: WeaponEnergyShotgun
   #- type: GunRequiresWield #remove when inaccuracy on spreads is fixed
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1500
     startingCharge: 1500
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 80
     autoRechargePauseTime: 10
-  - type: ContainerContainer
-    containers:
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinAdvancedLaser
-  - type: FiringPinHolder
-    supportedPins: [ AdvancedLaser ]
 
 - type: entity
   name: pulse cannon
@@ -941,18 +914,9 @@
     - proto: DeleteBeam
       fireCost: 10
       #magState: delete
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 500
     startingCharge: 500
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 50
     autoRechargePauseTime: 10
-  - type: ContainerContainer
-    containers:
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinLaser
-  - type: FiringPinHolder
-    supportedPins: [ Laser ]

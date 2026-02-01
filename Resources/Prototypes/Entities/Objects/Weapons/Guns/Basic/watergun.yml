@@ -100,7 +100,7 @@
       map: [ "enum.DamageStateVisualLayers.Base" ]
   - type: Item
     sprite: Objects/Weapons/Guns/Pistols/soaker.rsi
-    size: Normal
+    size: Large
     shape:
     - 0,0,2,1
   - type: RandomSprite

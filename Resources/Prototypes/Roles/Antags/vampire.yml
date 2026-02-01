@@ -1,0 +1,10 @@
+- type: antag
+  id: Vampire
+  name: roles-antag-vamire-name
+  antagonist: true
+  setPreference: false # 🌟Starlight🌟 - disabled until reworked
+  objective: roles-antag-vampire-description
+#  guides: [ Changelings ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 10800 # 3h

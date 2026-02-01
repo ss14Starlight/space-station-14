@@ -1,4 +1,5 @@
 using Content.Server.Administration.Logs;
+using Content.Server.Body.Systems;
 using Content.Server.Buckle.Systems;
 using Content.Server.Parallax;
 using Content.Server.Procedural;
@@ -8,7 +9,6 @@ using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Gibbing;
 using Content.Shared.Light.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Salvage;
@@ -43,7 +43,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BiomeSystem _biomes = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private readonly BodySystem _bobby = default!;
     [Dependency] private readonly BuckleSystem _buckle = default!;
     [Dependency] private readonly DamageableSystem _damageSys = default!;
     [Dependency] private readonly DockingSystem _dockSystem = default!;

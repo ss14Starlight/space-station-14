@@ -73,13 +73,17 @@ public sealed class WorldgenConfigSystem : EntitySystem
         if (_enabled == false)
             return;
 
-        var target = _map.GetMapOrInvalid(_gameTicker.DefaultMap);
-        Log.Debug($"Trying to configure {_gameTicker.DefaultMap}, aka {ToPrettyString(target)} aka {target}");
-        var cfg = _proto.Index<WorldgenConfigPrototype>(_worldgenConfig);
+        //starlight, foreach loop added
+        foreach (var map in _gameTicker.DefaultMaps)
+        {
+            var target = _map.GetMapOrInvalid(map);
+            Log.Debug($"Trying to configure {map}, aka {ToPrettyString(target)} aka {target}");
+            var cfg = _proto.Index<WorldgenConfigPrototype>(_worldgenConfig);
 
-        cfg.Apply(target, _ser, EntityManager); // Apply the config to the map.
+            cfg.Apply(target, _ser, EntityManager); // Apply the config to the map.
 
-        DebugTools.Assert(HasComp<WorldControllerComponent>(target));
+            DebugTools.Assert(HasComp<WorldControllerComponent>(target));
+        }
     }
 }
 

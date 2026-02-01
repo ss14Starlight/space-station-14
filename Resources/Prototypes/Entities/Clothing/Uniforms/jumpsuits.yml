@@ -142,7 +142,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitChaplain
-  name: chaplain jumpsuit # Starlight: chaplain's -> chaplain
+  name: chaplain's jumpsuit
   description: It's a black jumpsuit, often worn by religious folk.
   components:
     - type: Sprite
@@ -1014,7 +1014,7 @@
   parent: [ BaseCentcommContraband, ClothingUniformBase ]
   id: ClothingUniformJumpsuitERTChaplain
   name: ERT chaplain uniform
-  description: A special suit made for Central Command's elite Chaplain corps. # Starlight
+  description: A special suit made for Central Command's elite chaplain corps.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/ert_chaplain.rsi

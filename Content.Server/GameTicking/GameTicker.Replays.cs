@@ -123,7 +123,7 @@ public sealed partial class GameTicker
     {
         // Write round info like map and round end summery into the replay_final.yml file. Useful for external parsers.
 
-        metadata["map"] = new ValueDataNode(_gameMapManager.GetSelectedMap()?.MapName);
+        metadata["map"] = new ValueDataNode(_gameMapManager.GetMapString());
         metadata["gamemode"] = new ValueDataNode(CurrentPreset != null ? Loc.GetString(CurrentPreset.ModeTitle) : string.Empty);
         metadata["roundEndPlayers"] = _serialman.WriteValue(_replayRoundPlayerInfo);
         metadata["roundEndText"] = new ValueDataNode(_replayRoundText);

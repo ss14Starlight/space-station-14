@@ -207,8 +207,6 @@ public sealed partial class OrganSystem : EntitySystem
         if (!TryComp<HumanoidAppearanceComponent>(args.Body, out var _)) return;
         
         _humanoidAppearanceSystem.SetLayersVisibility(args.Body, [ent.Comp.Layer], true);
-        _humanoidAppearanceSystem.SetBaseLayerId(args.Body, ent.Comp.Layer, 
-        TryComp(args.Body, out HumanoidAppearanceComponent? humanoid) && ent.Comp.Prototypes.TryGetValue(humanoid.Species, out var layer)? layer :
-        ent.Comp.Prototypes.TryGetValue("Default", out var defaultLayer)? defaultLayer : null);
+        _humanoidAppearanceSystem.SetBaseLayerId(args.Body, ent.Comp.Layer, ent.Comp.Prototype);
     }
 }

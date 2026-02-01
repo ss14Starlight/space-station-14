@@ -85,12 +85,7 @@ public sealed partial class ListenWireAction : BaseToggleWireAction
         // The reason for the override is to make the voice sound like its coming from electrity rather than the intercom.
         voiceOverrideComp.NameOverride = Loc.GetString("wire-listen-pulse-identifier");
         voiceOverrideComp.Enabled = true;
-        //Starlight begin
-        if (_protoMan.TryIndex<RadioChannelPrototype>(radioMicroPhoneComp.BroadcastChannel, out var channel))
-            _radio.SendRadioMessage(wire.Owner, noiseMsg, channel, wire.Owner);
-        else if (_chat.TryGetCustomChannel(wire.Owner, radioMicroPhoneComp.BroadcastChannel, out var customChannel))
-            _radio.SendCustomRadioMessage(wire.Owner, noiseMsg, customChannel, wire.Owner);
-        //Starlight end
+        _radio.SendRadioMessage(wire.Owner, noiseMsg, _protoMan.Index<RadioChannelPrototype>(radioMicroPhoneComp.BroadcastChannel), wire.Owner);
         voiceOverrideComp.Enabled = false;
 
         base.Pulse(user, wire);

@@ -7,7 +7,6 @@
     head: ClothingHeadHatHardhatOrange
     belt: ClothingBeltUtilityFilled
     pocket1: RCD
-    pocket2: RPD
 
 - type: startingGear
   id: StationEngineerCorpseGear
@@ -29,7 +28,6 @@
     belt: ClothingBeltUtilityFilled
     mask: ClothingMaskGasAtmos
     pocket1: GasAnalyzer
-    pocket2: RPD
 
 - type: startingGear
   id: TechnicalAssistantCorpseGear

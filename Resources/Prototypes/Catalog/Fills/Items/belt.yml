@@ -86,8 +86,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - !type:NestedSelector
-          tableId: AllSoapsTable
+        - id: Soap #Make a soap group and pick between when i'm not lazy
         - id: SprayBottleSpaceCleaner
         - id: CleanerGrenade
           amount: 2

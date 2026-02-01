@@ -33,12 +33,12 @@
     - SimpleHostile
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/rat.rsi # Starlight
+    sprite: Mobs/Animals/regalrat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: giantrat
+      state: regalrat
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      state: giantrat_eyes
+      state: eyes
       shader: unshaded
   - type: TypingIndicator
     proto: regal
@@ -92,19 +92,19 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: giantrat
+        Base: regalrat
         BaseUnshaded: eyes
       Critical:
-        Base: giantrat
+        Base: critical
       Dead:
-        Base: giantrat
+        Base: dead
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-rat-king-name
     description: ghost-role-information-rat-king-description
     rules: ghost-role-information-antagonist-rules
     mindRoles:
-    - MindRoleRatKing # Starlight-edit - GhostRoleSoloAntagonist -> RatKing
+    - MindRoleGhostRoleSoloAntagonist
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -217,22 +217,21 @@
     - SimpleHostile
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/rat.rsi # Starlight
+    sprite: Mobs/Animals/rat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: smallrat
+      state: rat
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
-      state: smallrat_eyes
+      state: eyes
       shader: unshaded
 
-  # - type: SpriteMovement // Starlight - Disabled
-  #   movementLayers:
-  #     movement:
-  #       state: rat-moving
-  #   noMovementLayers:
-  #     movement:
-  #       state: rat
-
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: rat-moving
+    noMovementLayers:
+      movement:
+        state: rat
   - type: Physics
     bodyType: KinematicController
   - type: Fixtures
@@ -262,7 +261,7 @@
       - !type:GibBehavior
         recursive: false
   - type: Stamina
-    baseCritThreshold: 60
+    critThreshold: 60
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
@@ -294,12 +293,12 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: smallrat
-        BaseUnshaded: smallrat_eyes
+        Base: rat
+        BaseUnshaded: eyes
       Critical:
-        Base: smallrat
+        Base: dead
       Dead:
-        Base: smallrat
+        Base: splat
   - type: Butcherable
     spawned:
     - id: FoodMeatRat
@@ -327,11 +326,6 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
-  - type: TriggerOnMobstateChange
-    mobState:
-    - Dead
-  - type: GibOnTrigger
-    gibOrgans: false
 
 - type: entityTable
   id: RatKingLoot

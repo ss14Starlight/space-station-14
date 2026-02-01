@@ -10,4 +10,3 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 36000 # 10h
-  playTimeTracker: AntagSSF

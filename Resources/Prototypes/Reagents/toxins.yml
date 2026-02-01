@@ -6,7 +6,7 @@
   flavor: bitter
   color: "#cf3600"
   physicalDesc: reagent-physical-desc-opaque
-  contrabandSeverity: Major # Starlight Minor -> Major
+  contrabandSeverity: Minor
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: 10
@@ -58,10 +58,8 @@
   physicalDesc: reagent-physical-desc-nondescript
   allowedDepartments:
   - Medical
-  # Starlight start
   allowedJobs:
   - Zookeeper
-  # Starlight end
   metabolisms:
     Poison:
       effects:
@@ -93,7 +91,6 @@
   flavor: bitter
   color: "#acc91a"
   physicalDesc: reagent-physical-desc-putrid
-  contrabandSeverity: Minor # Starlight None -> Minor
   metabolisms:
     Poison:
       effects:
@@ -180,7 +177,6 @@
   flavor: sour
   color: "#48b3b8"
   physicalDesc: reagent-physical-desc-ferrous
-  contrabandSeverity: Major # Starlight None -> Major
   metabolisms:
     Drink:
       effects:
@@ -199,7 +195,7 @@
   group: Toxins
   desc: reagent-desc-fluorosulfuric-acid
   physicalDesc: reagent-physical-desc-strong-smelling
-  contrabandSeverity: Major # Starlight Minor -> Major
+  contrabandSeverity: Minor
   flavor: acid
   color: "#5050ff"
   boilingPoint: 165
@@ -347,7 +343,6 @@
   group: Toxins
   desc: reagent-desc-mindbreaker-toxin
   physicalDesc: reagent-physical-desc-opaque
-  contrabandSeverity: Minor # Starlight None -> Minor
   flavor: bitter
   color: "#77b58e"
   plantMetabolism:
@@ -505,23 +500,16 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire ] # Starlight - add Vampire
+          type: [ Animal, Vox, Vampire ] # StarLight - add Vampire
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire ] # Starlight - add Vampire
+          type: [ Animal, Vox, Vampire ] # Starlight - add Vampire
           inverted: true
         damage:
           types:
             Poison: 1
-      - !type:HealthChange
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Plant ]
-        damage:
-          types:
-            Poison: .25
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
@@ -573,10 +561,8 @@
   allowedDepartments:
   - Security
   - Medical
-  # Starlight start
   allowedJobs:
   - Zookeeper
-  # Starlight end
   color: "#AAAAAA"
   metabolisms:
     Poison:
@@ -659,11 +645,6 @@
   contrabandSeverity: Syndicate
   flavor: medicine
   color: "#435166"
-  plantMetabolism:
-  - !type:PlantMutateChemicals
-    randomPickBotanyReagent: EvilRandomFillSolution
-  - !type:PlantAdjustToxins
-    amount: 10
   metabolisms:
     Poison:
       effects:
@@ -701,11 +682,8 @@
   group: Toxins
   desc: reagent-desc-lipolicide
   physicalDesc: reagent-physical-desc-strong-smelling
-  # Starlight Edits
-  contrabandSeverity: Major
-  # allowedDepartments:
-  # - Medical
-  # Starlight End
+  allowedDepartments:
+  - Medical
   flavor: mothballs #why does weightloss juice taste like mothballs
   color: "#F0FFF0"
   metabolisms:
@@ -731,7 +709,6 @@
   flavor: sweet
   color: "#00b408"
   physicalDesc: reagent-physical-desc-nondescript
-  contrabandSeverity: Major # Starlight None -> Major
   metabolisms:
     Poison:
       metabolismRate: 0.2 # Slower metabolism so it can build up over time for slowdown
@@ -780,22 +757,3 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Vox]
-
-- type: reagent
-  id: Hemorrhinol
-  name: reagent-name-hemorrhinol
-  group: Toxins
-  desc: reagent-desc-hemorrhinol
-  physicalDesc: reagent-physical-desc-thin
-  contrabandSeverity: Major
-  flavor: sharp
-  color: "#96424f"
-  metabolisms:
-    Poison:
-      effects:
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectHemorrhage
-        time: 21 # 7 bleed ticks, you bleed every 3 seconds by default.
-        type: Update
-      - !type:ModifyBleed
-        amount: 0.5

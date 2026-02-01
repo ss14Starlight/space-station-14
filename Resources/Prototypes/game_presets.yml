@@ -49,8 +49,6 @@
     - SLChangeling #Starlight
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-    - Vampire #Starlight
-#    - SiliconLiberation #Starlight
 
 - type: gamePreset
   id: AllerAtOnce
@@ -78,7 +76,6 @@
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
-#    - SiliconLiberation #Starlight
 
 - type: gamePreset
   id: Extended
@@ -213,7 +210,7 @@
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Revolutionary
-  - SubGamemodesRuleLessThieves # Starlight. 3 max thieves on revs, so they can't be guaranteed an Emag.
+  - SubGamemodesRule
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -241,11 +238,11 @@
     - xenoborgs
   name: xenoborgs-title
   description: xenoborgs-description
-  showInVote: true # 🌟Starlight🌟
+  showInVote: false
   rules:
   - Xenoborgs
   # - DummyNonAntagChance 🌟Starlight🌟
-  - SubGamemodesRuleNoXenoborg # Starlight. no two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous, yo.
+  - SubGamemodesRuleNoWizardNoXenoborg # no two motherships
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -265,7 +262,6 @@
   showInVote: true # 🌟Starlight🌟
   rules:
   - Zombie
-  - SubGamemodesRuleZombieCompliantAntags # Starlight. I want to trial this, see how it plays out. If it goes poorly, we'll remove Xenoborgs from it.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -283,7 +279,6 @@
   showInVote: true # 🌟Starlight🌟
   rules:
   - Zombie
-  - SubGamemodesRuleZombieCompliantAntags # Starlight. I want to trial this, see how it plays out. If it goes poorly, we'll remove Xenoborgs from it.
   - BasicStationEventScheduler
   - KesslerSyndromeScheduler
   - SpaceTrafficControlEventScheduler
@@ -298,11 +293,11 @@
   - vampires
   name: vampire-gamemode-title
   description: vampire-gamemode-description
-  showInVote: True # 🌟Starlight🌟 - Leave disabled until they are reworked
+  showInVote: false # 🌟Starlight🌟 - Leave disabled until they are reworked
   minPlayers: 50 # 🌟Starlight🌟
   rules:
   - Vampire
-  - SubGamemodesRuleNoVampires
+  - SubGamemodesRule
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - BasicRoundstartVariation
@@ -318,8 +313,7 @@
   showInVote: false
   rules:
     - SLChangeling #Starlight
-    - SLChangelingLess # Starlight. This is their mode after all, and this is how it was prior.
-    - SubGamemodesRuleNoChangelings # Starlight
+    - SubGamemodesRule
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
@@ -338,29 +332,6 @@
     - SubGamemodesRuleNoChangelings #Starlight
     - BasicStationEventScheduler
     - BasicRoundstartVariation
-
-#Starlight start
-- type: gamePreset
-  id: Vamptraitorling
-  alias:
-    - lingtraitorvamp
-    - traitorlingvamp
-    - vamptraitorling
-    - vamplingtraitor
-    - lingvamptraitor
-    - traitorvampling
-  name: vamptraitorling-title
-  description: vamptraitorling-description
-  showInVote: true #Starlight
-  minPlayers: 50 #Starlight
-  rules:
-    - SLChangelingLess # Starlight
-    - TraitorLess #Starlight
-    - VampireLess # Starlight
-    - SubGamemodesRuleVampTraitorLing #Starlight
-    - BasicStationEventScheduler
-    - BasicRoundstartVariation
-#Starlight end
 
 #Starlight EventLight Gamemode for Event Usage 
 - type: gamePreset
@@ -388,17 +359,12 @@
   minPlayers: 60
   rules:
     - DerelictGenericCyborgSpawn
-    - DerelictGenericCyborgSpawn # Starlight. To account for the ultrapop.
     - BasicStationEventScheduler
-    - BasicStationEventScheduler # Starlight. More events without ramping events. What could go wrong?
     - MeteorSwarmMildScheduler
     - SubGamemodesRule
     - IonStorm
-    - IonStorm # Starlight. They're mostly harmless, and fun to work around.
     - CockroachMigration
     - MouseMigration
     - BasicRoundstartVariation
     - BasicRoundstartVariation
     - BasicRoundstartVariation
-    - BasicRoundstartVariation # Starlight. Dirtier.
-    - BasicRoundstartVariation # Starlight. This is Janitor Kessler.

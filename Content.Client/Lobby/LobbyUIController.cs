@@ -136,11 +136,10 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
                 _profileEditor.RefreshSpecies();
             }
 
-            // Starlight
-            // if (obj.WasModified<TraitPrototype>())
-            // {
-            //     _profileEditor.RefreshTraits();
-            // }
+            if (obj.WasModified<TraitPrototype>())
+            {
+                _profileEditor.RefreshTraits();
+            }
         }
         OnAnyCharacterOrJobChange?.Invoke();
     }

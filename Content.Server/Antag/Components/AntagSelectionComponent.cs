@@ -8,10 +8,6 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-// Starlight-start
-using Content.Shared.Tag;
-// Starlight-end
-
 namespace Content.Server.Antag.Components;
 
 [RegisterComponent, Access(typeof(AntagSelectionSystem), typeof(AdminVerbSystem))]
@@ -205,14 +201,6 @@ public partial struct AntagSelectionDefinition()
     /// </remarks>
     [DataField]
     public EntProtoId? SpawnerPrototype;
-
-    #region Starlight
-    /// <summary>
-    /// Tags added to the player.
-    /// </summary>
-    [DataField]
-    public HashSet<ProtoId<TagPrototype>> Tags = new();
-    #endregion
 }
 
 /// <summary>

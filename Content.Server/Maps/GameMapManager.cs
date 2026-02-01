@@ -4,7 +4,7 @@ using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Holiday;
 using Content.Shared.CCVar;
-using Content.Shared.Maps;
+using Content.Shared.Starlight.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
@@ -27,9 +27,9 @@ public sealed class GameMapManager : IGameMapManager
     [ViewVariables(VVAccess.ReadOnly)]
     private readonly Queue<string> _previousMaps = new();
     [ViewVariables(VVAccess.ReadOnly)]
-    private GameMapPrototype? _configSelectedMap;
+    private List<GameMapPrototype?>? _configSelectedMaps;
     [ViewVariables(VVAccess.ReadOnly)]
-    private GameMapPrototype? _selectedMap; // Don't change this value during a round!
+    private List<GameMapPrototype?>? _selectedMaps; // Don't change this value during a round!
     [ViewVariables(VVAccess.ReadOnly)]
     private bool _mapRotationEnabled;
     [ViewVariables(VVAccess.ReadOnly)]
@@ -45,25 +45,32 @@ public sealed class GameMapManager : IGameMapManager
         {
             if (TryLookupMap(value, out GameMapPrototype? map))
             {
-                _configSelectedMap = map;
+                if (map != null)
+                {
+                    _configSelectedMaps = new List<GameMapPrototype?> { map };
+                }
+                else
+                {
+                    _configSelectedMaps = null;
+                }
                 return;
             }
 
             if (string.IsNullOrEmpty(value))
             {
-                _configSelectedMap = default!;
+                _configSelectedMaps = default!;
                 return;
             }
 
             if (_configurationManager.GetCVar<bool>(CCVars.UsePersistence))
             {
                 var startMap = _configurationManager.GetCVar<string>(CCVars.PersistenceMap);
-                _configSelectedMap = _prototypeManager.Index<GameMapPrototype>(startMap);
+                _configSelectedMaps = new List<GameMapPrototype?> { _prototypeManager.Index<GameMapPrototype>(startMap) };
 
                 var mapPath = new ResPath(value);
-                if (_resMan.UserData.Exists(mapPath))
+                if (_resMan.UserData.Exists(mapPath) && _configSelectedMaps != null && _configSelectedMaps[0] != null)
                 {
-                    _configSelectedMap = _configSelectedMap.Persistence(mapPath);
+                    _configSelectedMaps[0] = _configSelectedMaps[0]?.Persistence(mapPath);
                     _log.Info($"Using persistence map from {value}");
                     return;
                 }
@@ -139,58 +146,101 @@ public sealed class GameMapManager : IGameMapManager
         return _prototypeManager.EnumeratePrototypes<GameMapPrototype>();
     }
 
-    public GameMapPrototype? GetSelectedMap()
+    public List<GameMapPrototype?> GetSelectedMaps()
     {
-        return _configSelectedMap ?? _selectedMap;
+        return _configSelectedMaps ?? _selectedMaps ?? new List<GameMapPrototype?>();
     }
 
-    public void ClearSelectedMap()
+    public void ClearSelectedMaps()
     {
-        _selectedMap = default!;
+        _selectedMaps = default!;
     }
 
     public bool TrySelectMapIfEligible(string gameMap)
     {
         if (!TryLookupMap(gameMap, out var map) || !IsMapEligible(map))
             return false;
-        _selectedMap = map;
+        
+        _selectedMaps ??= new List<GameMapPrototype?>();
+
+        _selectedMaps.Add(map);
         return true;
     }
 
-    public void SelectMap(string gameMap)
+    public string GetMapString()
     {
-        if (!TryLookupMap(gameMap, out var map))
-            throw new ArgumentException($"The map \"{gameMap}\" is invalid!");
-        _selectedMap = map;
+        if (_selectedMaps == null || _selectedMaps.Count == 0)
+            return "No map selected";
+
+        return string.Join(", ", _selectedMaps.Select(map => map?.MapName ?? Loc.GetString("discord-round-notifications-unknown-map")));
     }
 
-    public void SelectMapRandom()
+    public int GetStationCount()
+    {
+        return _configurationManager.GetCVar(StarlightCCVars.StationCount);
+    }
+
+    public bool TrySelectMapsIfEligible(List<string> gameMaps)
+    {
+        _selectedMaps = new List<GameMapPrototype?>();
+        foreach (var gameMap in gameMaps)
+        {
+            if (!TryLookupMap(gameMap, out var map) || !IsMapEligible(map))
+                return false;
+            _selectedMaps.Add(map);
+        }
+        return true;
+    }
+
+    public void SelectMaps(List<string> gameMaps)
+    {
+        _selectedMaps = new List<GameMapPrototype?>();
+        foreach (var gameMap in gameMaps)
+        {
+            if (!TryLookupMap(gameMap, out var map))
+                throw new ArgumentException($"The map \"{gameMap}\" is invalid!");
+            _selectedMaps.Add(map);
+        }
+    }
+
+    public void SelectMapsRandom()
     {
         var maps = CurrentlyEligibleMaps().ToList();
-        _selectedMap = _random.Pick(maps);
+        _selectedMaps = new List<GameMapPrototype?>();
+        for (var i = 0; i < GetStationCount(); i++)
+        {
+            if (maps.Count == 0)
+                break;
+            _selectedMaps.Add(_random.Pick(maps));
+        }
     }
 
-    public void SelectMapFromRotationQueue(bool markAsPlayed = false)
+    public void SelectMapsFromRotationQueue(bool markAsPlayed = false)
     {
-        var map = GetFirstInRotationQueue();
+        _selectedMaps = new List<GameMapPrototype?>();
+        for (var i = 0; i < GetStationCount(); i++)
+        {
+            if (_previousMaps.Count == 0)
+                break;
 
-        _selectedMap = map;
-
-        if (markAsPlayed)
-            EnqueueMap(map.ID);
+            var map = GetFirstInRotationQueue();
+            _selectedMaps.Add(map);
+            if (markAsPlayed)
+                EnqueueMap(map.ID);
+        }
     }
 
-    public void SelectMapByConfigRules()
+    public void SelectMapsByConfigRules()
     {
         if (_mapRotationEnabled)
         {
-            _log.Info("selecting the next map from the rotation queue");
-            SelectMapFromRotationQueue(true);
+            _log.Info("selecting the next maps from the rotation queue");
+            SelectMapsFromRotationQueue(true);
         }
         else
         {
-            _log.Info("selecting a random map");
-            SelectMapRandom();
+            _log.Info("selecting random maps");
+            SelectMapsRandom();
         }
     }
 
@@ -201,8 +251,10 @@ public sealed class GameMapManager : IGameMapManager
 
     private bool IsMapEligible(GameMapPrototype map)
     {
-        return map.MaxPlayers >= _playerManager.PlayerCount &&
-               map.MinPlayers <= _playerManager.PlayerCount &&
+        var modifiedPlayerCount = _playerManager.PlayerCount / GetStationCount(); //make sure its minimum 1
+        modifiedPlayerCount = Math.Max(modifiedPlayerCount, 1);
+        return map.MaxPlayers >= modifiedPlayerCount &&
+               map.MinPlayers <= modifiedPlayerCount &&
                map.Conditions.All(x => x.Check(map)) &&
                _entityManager.System<GameTicker>().IsMapEligible(map);
     }

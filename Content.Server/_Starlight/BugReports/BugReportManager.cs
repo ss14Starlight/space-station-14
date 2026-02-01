@@ -107,7 +107,18 @@ public sealed class BugReportManager : IBugReportManager, IPostInjectInit
         {
             metadata.Add("round time", _timing.CurTime.Subtract(ticker.RoundStartTimeSpan).ToString("hh':'mm':'ss"));
             metadata.Add("round type", Loc.GetString(ticker.CurrentPreset?.ModeTitle ?? "bug-report-report-unknown"));
-            metadata.Add("map", _map.GetSelectedMap()?.MapName ?? Loc.GetString("bug-report-report-unknown"));
+            //get possible names
+            var maps = _map.GetSelectedMaps();
+            string mapNames;
+            if (maps != null && maps.Count > 0)
+            {
+                mapNames = string.Join(", ", maps.Select(m => m?.MapName));
+            }
+            else
+            {
+                mapNames = Loc.GetString("bug-report-report-unknown");
+            }
+            metadata.Add("map", mapNames);
         }
 
         serverActor.BugReport(

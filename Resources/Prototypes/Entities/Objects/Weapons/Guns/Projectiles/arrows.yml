@@ -238,9 +238,6 @@
       color: brown
     - state: tip
       color: brown
-    - state: solution1
-      map: ["enum.SolutionContainerLayers.Fill"]
-      visible: false
   - type: Projectile
     damage:
       types:

@@ -3,10 +3,6 @@ using Robust.Shared.GameStates;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 
-// Starlight-start
-using Content.Shared.Whitelist;
-// Starlight-end
-
 namespace Content.Shared.Revolutionary.Components;
 
 /// <summary>
@@ -28,14 +24,4 @@ public sealed partial class HeadRevolutionaryComponent : Component
     public TimeSpan StunTime = TimeSpan.FromSeconds(3);
 
     public override bool SessionSpecific => true;
-
-    #region Starlight
-
-    [DataField]
-    public EntityWhitelist? Whitelist;
-
-    [DataField]
-    public EntityWhitelist? Blacklist;
-    
-    #endregion
 }

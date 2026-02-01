@@ -11,7 +11,7 @@
       proto: ExtRolesReq
   setPreference: false
   startingGear: DecimusGear
-  icon: JobIconDecimus
+  icon: JobIconNanotrasen
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-none
   canBeAntag: false

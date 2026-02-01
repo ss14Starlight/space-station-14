@@ -59,10 +59,7 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 50
+    bloodMaxVolume: 50
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Effects/bite.ogg
@@ -122,7 +119,7 @@
       0: Alive
       10: Dead
   - type: Stamina
-    baseCritThreshold: 10
+    critThreshold: 10
     animationThreshold: 1
   - type: DamageStateVisuals
     states:
@@ -150,10 +147,11 @@
     - Bee
     - Trash
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 0.1
+        Quantity: 1
+    bloodMaxVolume: 0.1
   - type: MobPrice
     price: 50
   - type: NPCRetaliation
@@ -199,10 +197,7 @@
     factions:
     - SimpleHostile
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 0.1
+    bloodMaxVolume: 0.1
   - type: ZombieImmune
 
 
@@ -283,10 +278,7 @@
     interactSuccessSound:
       path: /Audio/Animals/chicken_cluck_happy.ogg
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 100
+    bloodMaxVolume: 100
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
@@ -412,10 +404,11 @@
       Dead:
         Base: cockroach_dead
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 20
+        Quantity: 1
+    bloodMaxVolume: 20
   - type: Edible
   - type: FlavorProfile
     flavors:
@@ -526,7 +519,7 @@
     description: ghost-role-information-mothroach-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleCritterHarmless # Starlight-edit - FreeAgentHarmless -> CritterHarmless
+    - MindRoleGhostRoleFreeAgentHarmless
   - type: Fixtures
     fixtures:
       fix1:
@@ -590,10 +583,10 @@
     damageContainer: Biological
     damageModifierSet: Moth
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 20
+        Quantity: 1
   - type: Respirator
     damage:
       types:
@@ -751,10 +744,7 @@
     interactSuccessSound:
       path: /Audio/Animals/duck_quack_happy.ogg
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 100
+    bloodMaxVolume: 100
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
@@ -880,10 +870,11 @@
     tags:
     - Trash
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 0.1
+        Quantity: 1
+    bloodMaxVolume: 0.1
   - type: MobPrice
     price: 50
   - type: Destructible
@@ -1040,10 +1031,11 @@
   - type: ReplacementAccent
     accent: crab
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodMaxVolume: 50
+    bloodReagents:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 50
+        Quantity: 1
   - type: Tag
     tags:
     - VimPilot
@@ -1200,10 +1192,7 @@
     interactSuccessSound:
       path: /Audio/Animals/goose_honk.ogg
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 100
+    bloodMaxVolume: 100
   - type: NpcFactionMember
     factions:
     - Passive
@@ -1460,14 +1449,6 @@
         Blunt: 1
     clumsySound:
       path: /Audio/Animals/monkey_scream.ogg
-# Starlight - Begin
-  - type: Tag
-    tags:
-      - Monkey
-
-- type: Tag
-  id: Monkey
-# Starlight - End
 
 
 - type: entity
@@ -1606,11 +1587,10 @@
         Slash: 5
         Piercing: 4
   - type: Temperature
-    currentTemperature: 310.15
-    specificHeat: 42
-  - type: TemperatureDamage
     heatDamageThreshold: 360
     coldDamageThreshold: 285
+    currentTemperature: 310.15
+    specificHeat: 42
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1762,7 +1742,7 @@
     description: ghost-role-information-mouse-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleCritterHarmless # Starlight-edit - FreeAgentHarmless -> CritterHarmless
+    - MindRoleGhostRoleFreeAgentHarmless
   - type: GhostTakeoverAvailable
   - type: Speech
     speechSounds: Squeak
@@ -1770,7 +1750,7 @@
     allowedEmotes: ['Squeak']
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    sprite: Mobs/Animals/mouse.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mouse-0
@@ -1784,7 +1764,6 @@
   - type: Item
     size: Tiny
     heldPrefix: 0
-  - type: VampireDevourable # Starlight-edit: Vampire Devouring
   - type: Clothing
     quickEquip: false
     sprite: Mobs/Animals/mouse.rsi
@@ -1835,7 +1814,7 @@
       Critical:
         Base: dead-0
       Dead:
-        Base: dead-0
+        Base: splat-0
   - type: Edible
   - type: FlavorProfile
     flavors:
@@ -1904,10 +1883,7 @@
       types:
         Piercing: 0
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 50
+    bloodMaxVolume: 50
   - type: CanEscapeInventory
   - type: MobPrice
     price: 50
@@ -1987,7 +1963,7 @@
       Critical:
         Base: dead-1
       Dead:
-        Base: dead-1
+        Base: splat-1
   - type: Item
     size: Tiny
     heldPrefix: 1
@@ -1997,27 +1973,26 @@
   id: MobMouse2
   components:
   - type: Sprite
-    color: Gray
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-0
+      state: mouse-2
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: mouse-moving-0
+        state: mouse-moving-2
     noMovementLayers:
       movement:
-        state: mouse-0
+        state: mouse-2
   - type: Clothing
     equippedPrefix: 2
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: mouse-0
+        Base: mouse-2
       Critical:
-        Base: dead-0
+        Base: dead-2
       Dead:
-        Base: dead-0
+        Base: splat-2
   - type: Item
     size: Tiny
     heldPrefix: 2
@@ -2042,13 +2017,12 @@
     energy: 5
     netsync: false
   - type: RadiationSource
-    intensity: 0.5
-    slope: 0.3
+    intensity: 0.3
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: UnstableMutagen
-        Quantity: 50
+        Quantity: 1
   - type: SolutionContainerManager
     solutions:
       food:
@@ -2114,10 +2088,7 @@
     interactSuccessSound:
       path: /Audio/Animals/lizard_happy.ogg
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 150
+    bloodMaxVolume: 150
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -2172,10 +2143,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 50
+    bloodMaxVolume: 50
 
 - type: entity
   name: frog
@@ -2232,10 +2200,7 @@
     interactSuccessSound:
       path: /Audio/Animals/frog_ribbit.ogg
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 50
+    bloodMaxVolume: 50
   - type: Tag
     tags:
     - VimPilot
@@ -2326,10 +2291,7 @@
     interactSuccessSound:
       path: /Audio/Animals/parrot_raught.ogg
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 50
+    bloodMaxVolume: 50
 
 - type: entity
   parent: MobParrotBase
@@ -2387,11 +2349,10 @@
     factions:
     - Passive
   - type: Temperature
-    currentTemperature: 310.15
-    specificHeat: 46
-  - type: TemperatureDamage
     heatDamageThreshold: 335
     coldDamageThreshold: 230
+    currentTemperature: 310.15
+    specificHeat: 46
     coldDamage:
       types:
         Cold : 0.05 #per second, scales with temperature & other constants
@@ -2519,10 +2480,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 50
+    bloodMaxVolume: 50
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -2591,10 +2549,11 @@
   - type: Spider
   - type: IgnoreSpiderWeb
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodMaxVolume: 150
+    bloodReagents:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 150
+        Quantity: 1
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
@@ -2768,10 +2727,11 @@
     - type: Speech
       speechVerb: Cluwne
     - type: Bloodstream
-      bloodReferenceSolution:
+      bloodMaxVolume: 150
+      bloodReagents:
         reagents:
         - ReagentId: Laughter
-          Quantity: 150
+          Quantity: 1
 - type: entity
   name: wizard spider
   parent: MobGiantSpider
@@ -2974,10 +2934,7 @@
     attributes:
       gender: epicene
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 100
+    bloodMaxVolume: 100
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -3046,27 +3003,7 @@
   - type: MessyDrinker
   - type: Puller
     needsHands: false
-  # Starlight Start
-    pullingAlert: CorgiPulling
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Critical
-      200: Dead
-    stateAlertDict:
-      Alive: CorgiHealth
-      Critical: CorgiCrit
-      Dead: CorgiDead
-  - type: Blindable # why is this not base?
-  - type: ThermalRegulator # Lower radiated heat, Corgis are smaller so their body surface area is also smaller.
-    metabolismHeat: 400 # half of human's
-    radiatedHeat: 35 # This affects them reallistically only when dead in a spaced room, makes the cold damage scale slower.
-    implicitHeatRegulation: 250 # Add implicit heat regulation because they lacked it for some reason
-    sweatHeatRegulation: 500 # Allow corgis to sweat, i dont know if dogs sweat but i am not implementing a different way of regulation just for them
-    shiveringHeatRegulation: 500 # Allow corgis to shiver to warm up
-    normalBodyTemperature: 310.15 # Same as human
-    thermalRegulationTemperatureThreshold: 2 # Same as human
-  # Starlight End
+  - type: Blindable # Starlight - why is this not base?
 
 - type: entity
   parent: MobCorgiBase
@@ -3152,22 +3089,21 @@
     attributes:
       gender: epicene
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: DemonsBlood
-        Quantity: 150
+        Quantity: 1
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: Infernal
   - type: Temperature
-    currentTemperature: 310.15
-    specificHeat: 42
-  - type: TemperatureDamage
     heatDamageThreshold: 4000 #They come from hell, so..
     coldDamageThreshold: 260
+    currentTemperature: 310.15
     coldDamage:
       types:
         Cold : 1 #per second, scales with temperature & other constants
+    specificHeat: 42
     heatDamage:
       types:
         Heat : 1 #per second, scales with temperature & other constants
@@ -3379,7 +3315,6 @@
       Dead:
         Base: spacecat_dead
   - type: Temperature
-  - type: TemperatureDamage
     heatDamageThreshold: 423
     coldDamageThreshold: 0
   - type: Tag
@@ -3704,10 +3639,7 @@
     interactSuccessSound:
       path: /Audio/Animals/fox_squeak.ogg
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 60
+    bloodMaxVolume: 60
   - type: CanEscapeInventory
     baseResistTime: 3
   - type: MobPrice
@@ -3837,10 +3769,11 @@
     speciesId: cat
     templateId: pet
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: Sap
-        Quantity: 60
+        Quantity: 1
+    bloodMaxVolume: 60
   - type: DamageStateVisuals
     states:
       Alive:
@@ -3949,10 +3882,7 @@
     - id: FoodMeat
       amount: 4
   - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 300
+    bloodMaxVolume: 300
     # Horns though
   - type: MeleeWeapon
     damage:
@@ -4058,8 +3988,6 @@
   - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth
   - type: Stripping
   - type: ComplexInteraction
-  - type: Dna # Starlight
-  - type: Fingerprint # Starlight
   # Implement custom borgi body type
   - type: Body
     prototype: SmartCorgi

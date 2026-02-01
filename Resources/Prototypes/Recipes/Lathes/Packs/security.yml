@@ -133,7 +133,6 @@
   - WeaponLaserCarbine
   - WeaponXrayCannon
   - WeaponTemperatureGun
-  - FiringPinLaser # Starlight
 
 - type: latheRecipePack
   id: SecurityDisablers

@@ -7,13 +7,13 @@ using Content.Server.Administration.Managers;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
+using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
-using Content.Shared.Maps;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
@@ -22,26 +22,11 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Prometheus; //Starlight
 
 namespace Content.Server.Voting.Managers
 {
     public sealed partial class VoteManager
     {
-
-        #region Starlight data collection
-        private static readonly Counter _gamemode_vote = Metrics.CreateCounter(
-            "sl_gamemode_vote",
-            "Gamemode vote results",
-            [ "option" ]
-        );
-
-        private static readonly Counter _map_vote = Metrics.CreateCounter(
-            "sl_map_vote",
-            "Map/Station vote results",
-            [ "option" ]
-        );
-        #endregion
         [Dependency] private readonly IPlayerLocator _locator = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly IBanManager _bans = default!;
@@ -312,14 +297,6 @@ namespace Content.Server.Voting.Managers
                     }
                 }
 
-                #region Starlight
-                for (int i = 0; i < options.Options.Count; i++)
-                {
-                    _gamemode_vote.WithLabels(
-                        options.Options[i].text
-                    ).Inc(args.Votes[i]);
-                }
-                #endregion
                 //add the key we picked to the cooldown list
                 //if its secret, never add it
                 if (!(secretPreset != null && pickedPreset.ID == secretPreset.ID))
@@ -334,82 +311,91 @@ namespace Content.Server.Voting.Managers
 
         private void CreateMapVote(ICommonSession? initiator)
         {
-            var maps = new Dictionary<string, GameMapPrototype>();
-            var eligibleMaps = _gameMapManager.CurrentlyEligibleMaps().ToList();
-            var selectedMaps = eligibleMaps.OrderBy(_ => _random.Next()).Take(_cfg.GetCVar(StarlightCCVars.MapVotingCount)).ToList();
-            maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(selectedMaps));
-            foreach (var map in selectedMaps)
-            {
-                maps.Add(map.MapName, map);
-            }
-
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
-            var options = new VoteOptions
+            var options = new List<VoteOptions>();
+
+            for (var i = 0; i < _gameMapManager.GetStationCount(); i++)
             {
-                Title = Loc.GetString("ui-vote-map-title"),
-                Duration = alone
+                var opt = new VoteOptions
+                {
+                    Title = Loc.GetString("ui-vote-map-title") + $" (Station {i + 1} of {_gameMapManager.GetStationCount()})",
+                    Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap)),
-                DisplayVotes = _cfg.GetCVar(StarlightCCVars.ShowMapVotes), // 🌟Starlight🌟
+                    DisplayVotes = _cfg.GetCVar(StarlightCCVars.ShowMapVotes), // 🌟Starlight🌟
+                };
+
+                options.Add(opt);
+
+                var maps = new Dictionary<string, GameMapPrototype>();
+                var eligibleMaps = _gameMapManager.CurrentlyEligibleMaps().ToList();
+                var selectedMaps = eligibleMaps.OrderBy(_ => _random.Next()).Take(_cfg.GetCVar(StarlightCCVars.MapVotingCount)).ToList();
+                maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(selectedMaps));
+                foreach (var map in selectedMaps)
+                {
+                    maps.Add(map.MapName, map);
+                }
+                foreach (var (k, v) in maps)
+                {
+                    opt.Options.Add((k, v));
+                }
+
+                if (alone)
+                    opt.InitiatorTimeout = TimeSpan.FromSeconds(10);
+
+                WirePresetVoteInitiator(opt, initiator);
             };
 
-            if (alone)
-                options.InitiatorTimeout = TimeSpan.FromSeconds(10);
 
-            foreach (var (k, v) in maps)
+            var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+            if (ticker.CanUpdateMap())
             {
-                options.Options.Add((k, v));
+                //clear maps
+                _gameMapManager.ClearSelectedMaps();
             }
 
-            WirePresetVoteInitiator(options, initiator);
-
-            var vote = CreateVote(options);
-
-            vote.OnFinished += (_, args) =>
+            foreach (var opt in options)
             {
-                GameMapPrototype picked;
-                if (args.Winner == null)
-                {
-                    picked = (GameMapPrototype) _random.Pick(args.Winners);
-                    _chatManager.DispatchServerAnnouncement(
-                        Loc.GetString("ui-vote-map-tie"));
-                }
-                else
-                {
-                    picked = (GameMapPrototype) args.Winner;
-                }
-                _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-win"));
+                var vote = CreateVote(opt);
 
-                _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Map vote finished: {picked.MapName}");
-                var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
-                if (ticker.CanUpdateMap())
+                vote.OnFinished += (_, args) =>
                 {
-                    #region Starlight
-                    for (int i = 0; i < options.Options.Count; i++)
+                    GameMapPrototype picked;
+                    if (args.Winner == null)
                     {
-                        _map_vote.WithLabels(
-                            options.Options[i].text
-                        ).Inc(args.Votes[i]);
-                    }
-                    #endregion
-                    if (_gameMapManager.TrySelectMapIfEligible(picked.ID))
-                    {
-                        ticker.UpdateInfoText();
-                    }
-                }
-                else
-                {
-                    if (ticker.RoundPreloadTime <= TimeSpan.Zero)
-                    {
-                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-notlobby"));
+                        picked = (GameMapPrototype)_random.Pick(args.Winners);
+                        _chatManager.DispatchServerAnnouncement(
+                            Loc.GetString("ui-vote-map-tie"));
                     }
                     else
                     {
-                        var timeString = $"{ticker.RoundPreloadTime.Minutes:0}:{ticker.RoundPreloadTime.Seconds:00}";
-                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-notlobby-time", ("time", timeString)));
+                        picked = (GameMapPrototype)args.Winner;
                     }
-                }
-            };
+                    _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-win"));
+
+                    _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Map vote finished: {picked.MapName}");
+                    var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+                    if (ticker.CanUpdateMap())
+                    {
+                        if (_gameMapManager.TrySelectMapIfEligible(picked.ID))
+                        {
+                            ticker.UpdateInfoText();
+                        }
+                    }
+                    else
+                    {
+                        if (ticker.RoundPreloadTime <= TimeSpan.Zero)
+                        {
+                            _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-notlobby"));
+                        }
+                        else
+                        {
+                            var timeString = $"{ticker.RoundPreloadTime.Minutes:0}:{ticker.RoundPreloadTime.Seconds:00}";
+                            _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-notlobby-time", ("time", timeString)));
+                        }
+                    }
+                };
+            }
         }
 
         private async void CreateVotekickVote(ICommonSession? initiator, string[]? args)

@@ -44,12 +44,6 @@ using Robust.Shared.Toolshed.TypeParsers;
 using Robust.Shared.Utility;
 using Content.Client._Starlight.Radio.Systems;
 using Content.Client.CollectiveMind;
-//Starlight begin
-using Content.Shared._Starlight.Language;
-using System.Diagnostics.CodeAnalysis;
-using Content.Client._Starlight.Language.Systems;
-using Content.Shared._Starlight.Radio;
-//Starlight end
 
 
 namespace Content.Client.UserInterface.Systems.Chat;
@@ -78,10 +72,8 @@ public sealed partial class ChatUIController : UIController
     [UISystemDependency] private readonly TransformSystem? _transform = default;
     [UISystemDependency] private readonly MindSystem? _mindSystem = default!;
     [UISystemDependency] private readonly RoleCodewordSystem? _roleCodewordSystem = default!;
-    [UISystemDependency] private readonly LanguageSystem? _lang = default!; // Starlight
 
     private static readonly ProtoId<ColorPalettePrototype> ChatNamePalette = "ChatNames";
-    private static readonly string SendingLanguageLocId = "language-chat-confirmation"; // Starlight
     private string[] _chatNameColors = default!;
     private bool _chatNameColorsEnabled;
 
@@ -717,26 +709,8 @@ public sealed partial class ChatUIController : UIController
         radioChannel = null;
         return _player.LocalEntity is EntityUid { Valid: true } uid
            && _chatSys != null
-           && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, out _, quiet: true); // Starlight edit
+           && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, quiet: true);
     }
-    
-    //Starlight begin
-    private bool TryGetLanguage(ref string text, [NotNullWhen(true)] out LanguagePrototype? language)
-    {
-        language = null;
-        if (_player.LocalEntity is not { Valid: true } uid || _lang == null) return false;
-        language = _lang.GetLanguageFromPrefix(uid, ref text, out var parsed);
-        return parsed;
-    }
-    
-    private bool TryGetCustomRadioChannel(string text, out CustomRadioChannelData? radioChannel)
-    {
-        radioChannel = null;
-        return _player.LocalEntity is EntityUid { Valid: true } uid
-               && _chatSys != null
-               && _chatSys.TryProcessRadioMessage(uid, text, out _, out _, out radioChannel, quiet: true);
-    }
-    //Starlight end
     
     private bool TryGetCollectiveMind(string text, out CollectiveMindPrototype? collectiveMind)
     {
@@ -745,92 +719,58 @@ public sealed partial class ChatUIController : UIController
                && _chatSys != null
                && _chatSys.TryProccessCollectiveMindMessage(uid, text, out _, out collectiveMind, quiet: true);
     }
-    
-    //Starlight begin
-    public void UpdateLanguageNotifier(ChatBox box)
-    {
-        var (_, _, _, _, _, language) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
-        if (language is null) box.SelectedLanguage.Visible = false;
-        else
-        {
-            box.SelectedLanguage.Text = Loc.GetString(SendingLanguageLocId, ("lang", language.Name));
-            box.SelectedLanguage.Visible = true;
-        }
-    }
-    //Starlight end
-    
+
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _, radioChannel, collectiveMind, customChannel, _) = SplitInputContents(box.ChatInput.Input.Text.ToLower()); // Starlight edit
+        var (prefixChannel, _, radioChannel, collectiveMind) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
 
         switch (prefixChannel)
         {
             case ChatSelectChannel.None:
-                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null, null, null); // Starlight edit
+                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null, null);
                 break;
             case ChatSelectChannel.CollectiveMind:
-                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, null, collectiveMind, null); // Starlight edit
+                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, null, collectiveMind);
                 break;
             default:
-                //Starlight begin
-                if(customChannel is not null) box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, null, null, customChannel);
-                else box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel, null, null);
-                //Starlight end
+                box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel, null);
                 break;
         }
     }
 
-    public (ChatSelectChannel chatChannel, string text, RadioChannelPrototype? radioChannel, CollectiveMindPrototype? collectiveMind, CustomRadioChannelData? customChannel, LanguagePrototype? language) SplitInputContents(string text) //Starlight edit
+    public (ChatSelectChannel chatChannel, string text, RadioChannelPrototype? radioChannel, CollectiveMindPrototype? collectiveMind) SplitInputContents(string text)
     {
         text = text.Trim();
         if (text.Length == 0)
-            return (ChatSelectChannel.None, text, null, null, null, null); //Starlight edit
-        
-        //Starlight begin - detect language prefix. don't modify text directly here and use modText for radio channel checks.
-        var modText = text;
-        LanguagePrototype? language = null;
-        if (TryGetLanguage(ref text, out var foundLanguage))
-        {
-            language = foundLanguage;
-            if(text.Length<5) return (ChatSelectChannel.None, text, null, null, null, foundLanguage);
-            modText = text[4..];
-        }
-        //Starlight end
-        
+            return (ChatSelectChannel.None, text, null, null);
+
         // We only cut off prefix only if it is not a radio or local channel, which both map to the same /say command
         // because ????????
 
         ChatSelectChannel chatChannel;
-        //Starlight begin
-        //Coding fucking sucks i need this here or the usage of it on the return statement doesn't resolve despite radioChannel resolving just fine.
-        CustomRadioChannelData? customChannel = null;
-        if (TryGetRadioChannel(modText, out var radioChannel))
-        {
+        if (TryGetRadioChannel(text, out var radioChannel))
             chatChannel = ChatSelectChannel.Radio;
-            TryGetCustomRadioChannel(modText, out customChannel);
-        }
         else
-            chatChannel = PrefixToChannel.GetValueOrDefault(modText[0]);
-        //Starlight end
+            chatChannel = PrefixToChannel.GetValueOrDefault(text[0]);
 
         if ((CanSendChannels & chatChannel) == 0)
-            return (ChatSelectChannel.None, text, null, null, null, language); //Starlight edit
+            return (ChatSelectChannel.None, text, null, null);
 
         if (chatChannel == ChatSelectChannel.Radio)
-            return (chatChannel, text, radioChannel, null, customChannel, language); //Starlight edit
+            return (chatChannel, text, radioChannel, null);
         
         if (TryGetCollectiveMind(text, out var collectiveMind) && chatChannel == ChatSelectChannel.CollectiveMind)
-            return (chatChannel, text, radioChannel, collectiveMind, null, language); //Starlight edit
+            return (chatChannel, text, radioChannel, collectiveMind);
 
         if (chatChannel == ChatSelectChannel.Local)
         {
             if (_ghost?.IsGhost != true)
-                return (chatChannel, text, null, null, null, language); //Starlight edit
+                return (chatChannel, text, null, null);
             else
                 chatChannel = ChatSelectChannel.Dead;
         }
 
-        return (chatChannel, text[1..].TrimStart(), null, null, null, language); //Starlight edit
+        return (chatChannel, text[1..].TrimStart(), null, null);
     }
 
     public void SendMessage(ChatBox box, ChatSelectChannel channel)
@@ -841,12 +781,11 @@ public sealed partial class ChatUIController : UIController
         box.ChatInput.Input.Clear();
         box.ChatInput.Input.ReleaseKeyboardFocus();
         UpdateSelectedChannel(box);
-        UpdateLanguageNotifier(box); // Starlight
 
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        (var prefixChannel, text, var _, var _, var _, _) = SplitInputContents(text); // Starlight edit
+        (var prefixChannel, text, var _, var _) = SplitInputContents(text);
 
         // Check if message is longer than the character limit
         if (text.Length > MaxMessageLength)

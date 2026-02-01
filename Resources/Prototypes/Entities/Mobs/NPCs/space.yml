@@ -37,16 +37,16 @@
       0: Alive
       100: Dead
   - type: Stamina
-    baseCritThreshold: 150
+    critThreshold: 150
   - type: MovementAlwaysTouching
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodMaxVolume: 300
+    bloodReagents:
       reagents:
       - ReagentId: Cryoxadone
-        Quantity: 300
+        Quantity: 1
   - type: CombatMode
   - type: Temperature
-  - type: TemperatureDamage
     heatDamageThreshold: 500
     coldDamageThreshold: 0
   - type: MeleeWeapon
@@ -159,7 +159,7 @@
       Dead:
         Base: kangaroo-space-dead
   - type: Stamina
-    baseCritThreshold: 180
+    critThreshold: 180
   - type: Inventory
     speciesId: kangaroo
     templateId: spacekangaroo
@@ -224,7 +224,7 @@
       0: Alive
       90: Dead
   - type: Stamina
-    baseCritThreshold: 150
+    critThreshold: 150
   - type: DamageStateVisuals
     states:
       Alive:
@@ -240,10 +240,11 @@
       amount: 1
       prob: 0.5
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodMaxVolume: 250
+    bloodReagents:
       reagents:
       - ReagentId: Cryoxadone
-        Quantity: 250
+        Quantity: 1
   - type: Fixtures
     fixtures:
       fix1:
@@ -327,7 +328,7 @@
         0: Alive
         100: Dead
     - type: Stamina
-      baseCritThreshold: 150
+      critThreshold: 150
     - type: DamageStateVisuals
       states:
         Alive:
@@ -345,10 +346,11 @@
           amount: 1
           prob: 0.3
     - type: Bloodstream
-      bloodReferenceSolution:
+      bloodMaxVolume: 200
+      bloodReagents:
         reagents:
         - ReagentId: Cryoxadone
-          Quantity: 200
+          Quantity: 1
     - type: Fixtures
       fixtures:
         fix1:
@@ -419,7 +421,7 @@
     description: ghost-role-information-snail-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleCritterHarmless # Starlight-edit - FreeAgentHarmless -> CritterHarmless
+    - MindRoleGhostRoleFreeAgentHarmless
   - type: GhostTakeoverAvailable
   - type: Emoting
   - type: Sprite
@@ -521,10 +523,11 @@
   - type: CombatMode
     combatToggleAction: ActionCombatModeToggleOff
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodMaxVolume: 30
+    bloodReagents:
       reagents:
       - ReagentId: Cryoxadone
-        Quantity: 30
+        Quantity: 1
   - type: CanEscapeInventory
   - type: MobPrice
     price: 50
@@ -534,7 +537,6 @@
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
   - type: Temperature
-  - type: TemperatureDamage
     heatDamageThreshold: 500
     coldDamageThreshold: 0
   - type: Reactive

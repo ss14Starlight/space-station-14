@@ -20,7 +20,6 @@ public sealed partial class ChatWindow : FancyWindow
         Chatbox.Repopulate();
         var controller = UserInterfaceManager.GetUIController<ChatUIController>();
         controller.UpdateSelectedChannel(Chatbox);
-        controller.UpdateLanguageNotifier(Chatbox); // Starlight
     }
 
     /// <summary>

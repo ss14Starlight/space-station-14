@@ -52,10 +52,9 @@
   - ClothingUniformJumpskirtEliteBlueShield
   - ClothingUniformJumpsuitBlueShield
   - ClothingUniformJumpsuitEliteBlueShield
-  - ClothingUniformJumpsuitFormalBlueShield # afterlight end
-  - ClothingUniformJumpsuitBlueShieldShirt # starlight start
-  - ClothingUniformJumpskirtBlueShieldSkirt 
-  # NTR
+  - ClothingUniformJumpsuitBlueShieldCaptain
+  - ClothingUniformJumpsuitFormalBlueShield
+  # NTR ## afterlight end, starlight start
   - ClothingUniformJumpskirtNtrep
   - ClothingUniformJumpsuitNtrep
   - ClothingUniformJumpsuitNtrepFormal # starlight end
@@ -144,10 +143,6 @@
   - ClothingHeadHatBeretBrigmedic
   - ClothingUniformJumpsuitBrigmedic
   - ClothingUniformJumpskirtBrigmedic
-  - ClothingHeadHatBeretDutyOfficer # Starlight
-  - ClothingHeadHatDutyOfficer # Starlight
-  - ClothingUniformJumpsuitDutyOfficer # Starlight
-  - ClothingUniformJumpskirtDutyOfficer # Starlight
   - ClothingHeadHatBeretWarden
   - ClothingHeadHatWarden
   - ClothingUniformJumpsuitWarden

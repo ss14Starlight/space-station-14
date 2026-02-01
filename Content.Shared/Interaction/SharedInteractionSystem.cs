@@ -523,16 +523,12 @@ namespace Content.Shared.Interaction
             }
 
             DebugTools.Assert(!IsDeleted(user) && !IsDeleted(target));
-
             // all interactions should only happen when in range / unobstructed, so no range check is needed
             var message = new InteractHandEvent(user, target);
             RaiseLocalEvent(target, message, true);
-            var userMessage = new UserInteractHandEvent(user, target);
-            RaiseLocalEvent(user, userMessage, true);
-
             _adminLogger.Add(LogType.InteractHand, LogImpact.Low, $"{user} interacted with {target}");
             DoContactInteraction(user, target, message);
-            if (message.Handled || userMessage.Handled)
+            if (message.Handled)
                 return;
 
             DebugTools.Assert(!IsDeleted(user) && !IsDeleted(target));
@@ -1065,14 +1061,10 @@ namespace Content.Shared.Interaction
             // all interactions should only happen when in range / unobstructed, so no range check is needed
             var interactUsingEvent = new InteractUsingEvent(user, used, target, clickLocation);
             RaiseLocalEvent(target, interactUsingEvent, true);
-
-            var userInteractUsingEvent = new UserInteractUsingEvent(user, used, target, clickLocation);
-            RaiseLocalEvent(user, userInteractUsingEvent, true);
-
             DoContactInteraction(user, used, interactUsingEvent);
             DoContactInteraction(user, target, interactUsingEvent);
             // Contact interactions are currently only used for forensics, so we don't raise used -> target
-            if (interactUsingEvent.Handled || userInteractUsingEvent.Handled)
+            if (interactUsingEvent.Handled)
                 return true;
 
             if (InteractDoAfter(user, used, target, clickLocation, canReach: true, checkDeletion: false))

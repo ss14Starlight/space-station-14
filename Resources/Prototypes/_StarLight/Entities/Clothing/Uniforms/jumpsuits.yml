@@ -81,10 +81,10 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepnoble.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpsuitBlueShield
-  name: blue shield suit
-  description: The suit of a glorified bodyguard.
+  name: blueshield officer's suit
+  description: Suit of a glorified bodyguard
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/blueshield.rsi
@@ -92,10 +92,10 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/blueshield.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpsuitEliteBlueShield
-  name: elite blue shield suit
-  description: The suit of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
+  name: elite blueshield officer's suit
+  description: Suit of an elite blueshield. To reach such a level, you must have protected command from a [REDACTED] threat.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/eliteblueshield.rsi
@@ -103,10 +103,10 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/eliteblueshield.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseBlueShieldContraband]
-  id: ClothingUniformJumpsuitBlueShieldShirt
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitBlueShieldCaptain
   name: blueshield officer's shirt
-  description: A collared shirt and pants for the blueshield officer who likes to keep it business casual.
+  description: A classic suit in theme with a blueshield. 
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/blueshieldshirt.rsi
@@ -116,7 +116,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSalvageLead
-  name: salvage lead's jumpsuit
+  name: salvage leads's jumpsuit
   description: It's a snappy jumpsuit with a sturdy set of overalls. It's very dirty.
   components:
   - type: RollUpSleeves
@@ -184,18 +184,6 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suitoflife.rsi
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.95
-
-- type: entity
-  parent: [ClothingUniformBase, BaseSecurityContraband]
-  id: ClothingUniformJumpsuitDutyOfficer
-  name: duty officer's uniform
-  description: A vibrant security suit for the warden's partner in chains.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/dutyofficer.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/dutyofficer.rsi
-
 
 - type: entity
   parent: [ClothingUniformBase, BaseCentcommContraband]
@@ -421,9 +409,9 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/rd_classical.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitFormalBlueShield
-  name: formal blue shield officer suit
+  name: formal blueshield officer suit
   description: A textile jumpsuit, reinforced with thick leather in some areas.
   components:
   - type: Sprite
@@ -565,38 +553,3 @@
       sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagebrown.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagebrown.rsi
-
-- type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
-  id: ClothingUniformJumpsuitNCT
-  name: NT career trainer's uniform
-  description: A neatly pressed olive green shirt paired with black jeans, worn by those dedicated to shaping the future of the workforce.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/nct.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/nct.rsi
-
-# Fashion-O-Mat Start
-- type: entity
-  parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitVampir
-  name: bloodstained aristocrat suit
-  description: An aristocratic suit reeking of blood and lost dreams.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ari.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ari.rsi
-
-- type: entity
-  parent: ClothingUniformBase
-  id: ClothingUniformDama235123
-  name: noble suit
-  description: A blue noble suit that exudes elegance and refinement.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/belpero.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/belpero.rsi
-# Fashion-O-Mat End

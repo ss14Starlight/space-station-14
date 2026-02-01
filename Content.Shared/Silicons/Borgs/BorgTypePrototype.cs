@@ -94,13 +94,11 @@ public sealed partial class BorgTypePrototype : IPrototype
     // Visual information
     //
 
-    // Starlight start
     /// <summary>
     /// The path to the borg type's sprites.
     /// </summary>
     [DataField]
-    public ResPath SpritePath { get; set; } = new("Mobs/Silicon/Chassis/generic.rsi");
-    // Starlight end
+    public string SpritePath { get; set; } = "Mobs/Silicon/Chassis/generic.rsi";
 
     /// <summary>
     /// The sprite state for the main borg body.
@@ -143,14 +141,14 @@ public sealed partial class BorgTypePrototype : IPrototype
     /// </summary>
     /// <seealso cref="InteractionPopupComponent"/>
     [DataField]
-    public LocId PetSuccessString { get; set; } = "petting-success-generic-cyborg";
+    public string PetSuccessString { get; set; } = "petting-success-generic-cyborg";
 
     /// <summary>
     /// String to use on petting failure.
     /// </summary>
     /// <seealso cref="InteractionPopupComponent"/>
     [DataField]
-    public LocId PetFailureString { get; set; } = "petting-failure-generic-cyborg";
+    public string PetFailureString { get; set; } = "petting-failure-generic-cyborg";
 
     //
     // Sounds
@@ -165,8 +163,8 @@ public sealed partial class BorgTypePrototype : IPrototype
     // Starlight-start
     [DataField]
     public string? DefaultSubtype;
-
+    
     [DataField]
-    public HashSet<JobRequirement> Requirements = new ();
+    public HashSet<JobRequirement> Requirements = new (); // Starlight-edit
     // Starlight-end
 }

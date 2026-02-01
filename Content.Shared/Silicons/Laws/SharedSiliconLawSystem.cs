@@ -72,12 +72,7 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
 
         component.OwnerName = Name(args.UserUid);
 
-        //Starlight begin
-        if(args.EmagComponent is not null)
-            NotifyLawsChanged(uid, args.EmagComponent.DoEmaggedSound ? args.EmagComponent.EmaggedSoundOverride ?? component.EmaggedSound : null);
-        else
-            NotifyLawsChanged(uid, component.EmaggedSound);
-        //Starlight end
+        NotifyLawsChanged(uid, component.EmaggedSound);
         if (_mind.TryGetMind(uid, out var mindId, out _))
             EnsureSubvertedSiliconRole(mindId);
 

@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Content.Shared.Gibbing;
+using Content.Shared.Body.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Tag;
@@ -21,19 +21,19 @@ public sealed class TransferMindOnGibSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<TransferMindOnGibComponent, GibbedBeforeDeletionEvent>(OnGib);
+        SubscribeLocalEvent<TransferMindOnGibComponent, BeingGibbedEvent>(OnGib);
     }
 
-    private void OnGib(Entity<TransferMindOnGibComponent> ent, ref GibbedBeforeDeletionEvent args)
+    private void OnGib(EntityUid uid, TransferMindOnGibComponent component, BeingGibbedEvent args)
     {
-        if (!_mindSystem.TryGetMind(ent, out var mindId, out var mind))
+        if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             return;
 
-        var validParts = args.Giblets.Where(p => _tag.HasTag(p, ent.Comp.TargetTag)).ToHashSet();
+        var validParts = args.GibbedParts.Where(p => _tag.HasTag(p, component.TargetTag)).ToHashSet();
         if (!validParts.Any())
             return;
 
-        var transfer = _random.Pick(validParts);
-        _mindSystem.TransferTo(mindId, transfer, mind: mind);
+        var ent = _random.Pick(validParts);
+        _mindSystem.TransferTo(mindId, ent, mind: mind);
     }
 }

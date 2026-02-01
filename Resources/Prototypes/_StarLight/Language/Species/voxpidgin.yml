@@ -1,7 +1,6 @@
 - type: language
   id: VoxPidgin
   icon: LanguageIconVox
-  chatPrefix: vox
   speech:
     color: "#aa00aa"
   obfuscation:

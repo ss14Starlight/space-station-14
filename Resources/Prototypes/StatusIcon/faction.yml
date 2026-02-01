@@ -73,7 +73,7 @@
   showTo:
     components:
       - ShowAntagIcons
-      - Vampire
+      - VampireIcon
   icon:
-    sprite: /Textures/_Starlight/Vampire/hud_icons.rsi
-    state: hudvampire
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Vampire

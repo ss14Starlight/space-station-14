@@ -1,7 +1,6 @@
 - type: language
   id: Nekomimetic
   icon: LanguageIconNeko
-  chatPrefix: nek
   speech:
     color: "#df57aaee"
     fontId: Mangat

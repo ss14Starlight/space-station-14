@@ -29,9 +29,3 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorPhysician
-
-    # Eyewear
-- type: loadout
-  id: MedicalGlassesPrescription
-  equipment:
-    eyes: ClothingEyeGlassesMedicalPrescription

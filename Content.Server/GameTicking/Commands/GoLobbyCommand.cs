@@ -7,7 +7,7 @@ using Robust.Shared.Console;
 
 namespace Content.Server.GameTicking.Commands
 {
-    [AdminCommand(AdminFlags.Danger)] // Starlight-edit
+    [AdminCommand(AdminFlags.Round)]
     public sealed class GoLobbyCommand : LocalizedEntityCommands
     {
         [Dependency] private readonly IConfigurationManager _configManager = default!;

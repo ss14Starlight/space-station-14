@@ -11,11 +11,11 @@ public sealed partial class GunSystem
         SubscribeLocalEvent<MagazineAmmoProviderComponent, AmmoCounterControlEvent>(OnMagazineControl);
     }
 
-    private void OnMagazineAmmoUpdate(Entity<MagazineAmmoProviderComponent> ent, ref UpdateAmmoCounterEvent args)
+    private void OnMagazineAmmoUpdate(EntityUid uid, MagazineAmmoProviderComponent component, UpdateAmmoCounterEvent args)
     {
-        var magEnt = GetMagazineEntity(ent);
+        var ent = GetMagazineEntity(uid);
 
-        if (magEnt == null)
+        if (ent == null)
         {
             if (args.Control is DefaultStatusControl control)
             {
@@ -25,14 +25,14 @@ public sealed partial class GunSystem
             return;
         }
 
-        RaiseLocalEvent(magEnt.Value, args, false);
+        RaiseLocalEvent(ent.Value, args, false);
     }
 
-    private void OnMagazineControl(Entity<MagazineAmmoProviderComponent> ent, ref AmmoCounterControlEvent args)
+    private void OnMagazineControl(EntityUid uid, MagazineAmmoProviderComponent component, AmmoCounterControlEvent args)
     {
-        var magEnt = GetMagazineEntity(ent);
-        if (magEnt == null)
+        var ent = GetMagazineEntity(uid);
+        if (ent == null)
             return;
-        RaiseLocalEvent(magEnt.Value, args, false);
+        RaiseLocalEvent(ent.Value, args, false);
     }
 }

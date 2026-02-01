@@ -11,7 +11,6 @@
 
     BlueShield: 110
     NanoTrasenRepresentative: 165
-    NanotrasenCareerTrainer: 150
 
     Chemist: 90
     Paramedic: 50
@@ -26,7 +25,6 @@
     Warden: 90
     Detective: 80
     Brigmedic: 73
-    DutyOfficer: 70
     SecurityOfficer: 64
     SecurityCadet: 23
 

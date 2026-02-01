@@ -42,8 +42,8 @@
       state: stamp-iaa
 
 - type: entity
-  name: blue shield rubber stamp
-  parent: [ RubberStampBase, BaseBlueShieldContraband ]
+  name: blueshield officer's rubber stamp
+  parent: RubberStampBase
   id: RubberStampBSO
   suffix: DO NOT MAP
   components:

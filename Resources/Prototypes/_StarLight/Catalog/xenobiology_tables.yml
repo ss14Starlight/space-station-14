@@ -476,6 +476,7 @@
       - id: MobCarpDungeon
       - id: MobShark
       - id: MobCluwneBeast
+      - id: MobOreCrab
       - id: MobQuartzCrab
       - id: MobIronCrab
       - id: MobCoalCrab

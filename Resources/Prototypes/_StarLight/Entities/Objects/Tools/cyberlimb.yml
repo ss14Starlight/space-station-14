@@ -203,7 +203,7 @@
     components:
     - type: DisarmMalus
       malus: 0.6
-  - type: ToggleableVisuals
+  - type: ToggleableLightVisuals
     spriteLayer: flame
     inhandVisuals:
       left:
@@ -456,6 +456,7 @@
     - type: StaticPrice
       price: 0
     - type: BatterySelfRecharger
+      autoRecharge: true
       autoRechargeRate: 2 # takes 6 minutes to charge itself back to full
     - type: Tag
       tags:
@@ -507,15 +508,9 @@
           maxVol: 15
     - type: ExaminableSolution
       solution: hypospray
-    - type: Injector
-      solutionName: hypospray
-      ignoreClosed: false
-      activeModeProtoId: HyposprayDynamicMode
-      allowedModes:
-      - HyposprayDynamicMode
-      - HyposprayInjectMode
-      needHand: false
-      currentTransferAmount: 15
+    - type: Hypospray
+      onlyAffectsMobs: false
+      transferAmount: 15
     - type: StaticPrice
       price: 0
     - type: Appearance
@@ -537,15 +532,9 @@
       solutions:
         hypospray:
           maxVol: 15
-    - type: Injector
-      solutionName: hypospray
-      ignoreClosed: false
-      activeModeProtoId: HyposprayDynamicMode
-      allowedModes:
-      - HyposprayDynamicMode
-      - HyposprayInjectMode
-      needHand: false
-      currentTransferAmount: 15
+    - type: Hypospray
+      onlyAffectsMobs: false
+      transferAmount: 15
       reagentWhitelist:
         - Tricordrazine
 
@@ -559,15 +548,9 @@
       solutions:
         hypospray:
           maxVol: 15
-    - type: Injector
-      solutionName: hypospray
-      ignoreClosed: false
-      activeModeProtoId: HyposprayDynamicMode
-      allowedModes:
-      - HyposprayDynamicMode
-      - HyposprayInjectMode
-      needHand: false
-      currentTransferAmount: 15
+    - type: Hypospray
+      onlyAffectsMobs: false
+      transferAmount: 15
       reagentWhitelist:
         - Inaprovaline
 
@@ -647,13 +630,14 @@
       state: tiny
   - type: Item
     size: Small
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 250 #while in theory this could give five uses, in practice it gives 2-3 uses (between charge-up time, cooldown and idle-time). Any lower and the margins are too narrow to get more than 1 use out of the defib.
     startingCharge: 250
   - type: Tag
     tags:
       - PowerCellTiny
   - type: BatterySelfRecharger
+    autoRecharge: true
     autoRechargeRate: 3 # Full charge in two minutes
     autoRechargePauseTime: 30
   - type: GenericVisualizer
@@ -775,8 +759,6 @@
     - type: Tag
       tags:
         - CyberHandItem
-        - BotanyHoe
-        - Hoe
 
 - type: entity
   name: plant clippers cybernetic arm attachment
@@ -790,7 +772,6 @@
     - type: Tag
       tags:
         - CyberHandItem
-        - PlantSampleTaker
 
 - type: entity
   name: scythe cybernetic arm attachment
@@ -817,7 +798,6 @@
     - type: Tag
       tags:
         - CyberHandItem
-        - BotanyHatchet
 
 - type: entity
   name: spade cybernetic arm attachment
@@ -831,7 +811,6 @@
     - type: Tag
       tags:
         - CyberHandItem
-        - BotanyShovel
 
 
 - type: entity
@@ -862,7 +841,7 @@
 
 # Engineer
 - type: entity
-  name: cyber drill
+  name: Cyber drill
   parent: PowerDrill
   id: PowerDrillCyber
   description: A simple powered hand drill.
@@ -943,7 +922,7 @@
 - type: entity
   id: RCDCyber
   parent: RCD
-  name: cybernetic RCD
+  name: Cybernetic RCD
   description: The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function.
   components:
   - type: Sprite

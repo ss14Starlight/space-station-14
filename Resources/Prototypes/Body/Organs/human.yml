@@ -1,5 +1,5 @@
 - type: entity
-  id: BaseHumanOrgan
+  id: BaseHumanOrganUnGibbable
   parent: BaseItem
   abstract: true
   components:
@@ -28,8 +28,15 @@
       - Meat
 
 - type: entity
+  id: BaseHumanOrgan
+  parent: BaseHumanOrganUnGibbable
+  abstract: true
+  components:
+  - type: Gibbable
+
+- type: entity
   id: OrganHumanBrain
-  parent: [BaseOrganBrain, BaseHumanOrgan]
+  parent: [BaseOrganBrain, BaseHumanOrganUnGibbable]
   name: brain
   description: "The source of incredible, unending intelligence. Honk."
   components:
@@ -83,10 +90,7 @@
     heldPrefix: eyeballs
   - type: OrganVisualization
     layer: Eyes
-    # 🌟Starlight🌟 start
-    prototypes:
-      Default: MobHumanoidEyes
-    # 🌟Starlight🌟 end
+    prototype: MobHumanoidEyes
 
 - type: entity
   id: OrganHumanTongue

@@ -95,7 +95,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatHoodChaplainHood
   categories: [ HideSpawnMenu ]
-  name: chaplain hood #Starlight, de-pluralifcation
+  name: chaplain's hood
   description: Maximum piety in this star system.
   components:
   - type: Sprite

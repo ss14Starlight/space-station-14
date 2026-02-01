@@ -53,4 +53,4 @@
 - type: loadout
   id: LawyerNeck
   equipment:
-    misc: ClothingNeckLawyerbadge  # Starlight: Neck -> Misc
+    neck: ClothingNeckLawyerbadge

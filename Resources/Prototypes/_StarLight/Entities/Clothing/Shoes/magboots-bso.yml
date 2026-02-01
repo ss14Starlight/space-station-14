@@ -1,8 +1,8 @@
 - type: entity
-  parent: [ClothingShoesBootsMagBase, BaseBlueShieldContraband, ClothingShoesMilitaryBase ]
+  parent: [ClothingShoesBootsMagBase, BaseCommandContraband, ClothingShoesMilitaryBase ]
   id: ClothingShoesBootsMagBSO
-  name: blue shield magboots
-  description: A pair of standard magnetic boots, issued alongside the BSO hardsuit.
+  name: blueshield magboots
+  description: A pair of standard magnetic boots, issued alongside the BSO Hardsuit.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Shoes/Boots/magboots-bso.rsi
