@@ -106,18 +106,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-3
       map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
-    quickEquip: false
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/Weapons/Guns/Cock/m41_cock.ogg
-    soundBoltClosed: 
-      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
-    soundBoltOpened: 
-      path: /Audio/Weapons/Guns/Cock/shotgun_open.ogg
   - type: Appearance
   - type: StaticPrice
     price: 10000
