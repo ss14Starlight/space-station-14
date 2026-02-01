@@ -1,0 +1,14 @@
+- type: reaction
+  id: HowTheSausageIsMade
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    UncookedAnimalProteins:
+      amount: 5
+    Enzyme:
+      amount: 1
+      catalyst: true
+  effects:
+    - !type:SpawnEntity
+      entity: FoodSausage

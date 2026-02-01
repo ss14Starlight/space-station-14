@@ -41,4 +41,10 @@
   - 714115816819392512 # Patron
   discord: roles-req-discord-wizden
   rolesLoc: roles-req-patron-roles
-  
+
+- type: roleRequirementPrototype
+  id: CarpGamesReq
+  roles:
+  - 1447273163204464862 # Carp Game Winner
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-carpgames-roles

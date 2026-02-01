@@ -21,12 +21,21 @@ public sealed class StationAiCustomizationBoundUserInterface : BoundUserInterfac
         _menu.OnClose += Close;
 
         _menu.SendStationAiCustomizationMessageAction += SendStationAiCustomizationMessage;
+        _menu.SendStationAiRenameMessageAction += SendStationAiRenameMessage; // Starlight
     }
 
     public void SendStationAiCustomizationMessage(ProtoId<StationAiCustomizationGroupPrototype> groupProtoId, ProtoId<StationAiCustomizationPrototype> customizationProtoId)
     {
         SendPredictedMessage(new StationAiCustomizationMessage(groupProtoId, customizationProtoId));
     }
+    
+    // Starlight begin
+    public void SendStationAiRenameMessage(string newName)
+    {
+        SendPredictedMessage(new StationAiRenameMessage(newName));
+        Close();
+    }
+    // Starlight end
 
     protected override void Dispose(bool disposing)
     {

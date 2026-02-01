@@ -173,3 +173,43 @@
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
     state: thaveyan
   allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: LanguageIconAielic
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: high-elven
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: LanguageIconDarktongue
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: darktongue
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: LanguageIconClassical
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: classical
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: LanguageIconGrumbakul
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: dwarvish
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: LanguageIconLagomorph
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: lagomorph
+  allowSelection: false

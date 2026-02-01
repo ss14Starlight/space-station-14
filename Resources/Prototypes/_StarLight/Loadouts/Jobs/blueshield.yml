@@ -1,3 +1,13 @@
+# Senior Time
+- type: loadoutEffectGroup
+  id: VeteranBlueshield
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 60h
+
 - type: loadout
   id: BlueShieldBeret
   equipment:
@@ -51,7 +61,12 @@
 - type: loadout
   id: BlueShieldShirt
   equipment:
-    jumpsuit: ClothingUniformJumpsuitBlueShieldCaptain
+    jumpsuit: ClothingUniformJumpsuitBlueShieldShirt
+
+- type: loadout
+  id: BlueShieldSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBlueShieldSkirt
 
 - type: loadout
   id: BlueShieldGlasses
@@ -62,6 +77,11 @@
   id: BlueShieldHud
   equipment:
     eyes: ClothingEyesHudBlueShield
+
+- type: loadout
+  id: BlueShieldEyePatchHud
+  equipment:
+    eyes: ClothingEyesEyepatchHudBlueShield
 
 - type: loadout
   id: BlueShieldCoat
@@ -88,3 +108,25 @@
   equipment:
     neck: ClothingNeckCloakBsoPoncho
 
+- type: loadout
+  id: BlueShieldWebbing
+  equipment:
+    belt: ClothingBeltBlueShieldWebbingFilled
+
+- type: loadout
+  id: BlueShieldMedicalBelt
+  equipment:
+    belt: ClothingBeltBlueShieldMedicalBeltFilled
+    
+- type: loadout
+  id: BlueShieldPDA
+  equipment:
+    id: BlueShieldPDA
+
+- type: loadout
+  id: VeteranBlueShieldPDA
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBlueshield
+  equipment:
+    id: VeteranBlueShieldPDA

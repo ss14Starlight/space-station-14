@@ -1,7 +1,8 @@
-﻿using Content.Shared.Alert;
+using Content.Shared.Alert;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Robust.Shared.Serialization;
+using Content.Shared.Inventory; // Starlight-edit
 
 namespace Content.Shared.Stunnable;
 
@@ -25,9 +26,13 @@ public record struct StunEndAttemptEvent(bool Cancelled);
 ///     Raised directed on an entity before it is knocked down to see if it should be cancelled, and to determine
 ///     knocked down arguments.
 /// </summary>
+// Starlight edit start -  Make it inventory relayed, add voluntary value to indicate whether the knockdown is voluntary
 [ByRefEvent]
-public record struct KnockDownAttemptEvent(bool AutoStand, bool Drop, TimeSpan? Time)
+public record struct KnockDownAttemptEvent(bool AutoStand, bool Drop, TimeSpan? Time, bool Voluntary = false) : IInventoryRelayEvent
 {
+// Starlight edit end 
+    public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET; // Starlight-edit
+
     public bool Cancelled;
 }
 

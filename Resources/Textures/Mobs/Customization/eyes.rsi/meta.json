@@ -15,10 +15,8 @@
             "name": "eyes",
             "directions": 4
         },
-        { "name": "no_eyes" },
         {
-            "name": "resomi",
-            "directions": 4
+            "name":"no_eyes"
         }
     ]
 }

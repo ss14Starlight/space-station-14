@@ -4,6 +4,14 @@
   name: Nar'Sie
   description: Your mind begins to bubble and ooze as it tries to comprehend what it sees.
   components:
+  # begin starlight
+  - type: LanguageKnowledge
+    speaks:
+    - Darktongue
+    understands:
+    - Darktongue
+  - type: UniversalLanguageSpeaker
+  # end starlight
   - type: Sprite
     sprite: Mobs/Demons/narsie.rsi
     drawdepth: Ghosts
@@ -24,7 +32,7 @@
       shader: unshaded
   # spawn animation lasts 3.5 seconds
   - type: TimedDespawn
-    lifetime: 3.5
+    lifetime: 10
   - type: SpawnOnDespawn
     prototype: MobNarsie
 
@@ -84,7 +92,6 @@
     - Syndicate
     globalReceive: true
   - type: Physics
-    bodyType: Dynamic
     bodyStatus: InAir
   - type: CanMoveInAir
   # singulose components

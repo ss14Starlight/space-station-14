@@ -20,7 +20,6 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingTimerTaskSystem : AccUpdateEntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly RailroadingSystem _railroading = default!;
     public override void Initialize()

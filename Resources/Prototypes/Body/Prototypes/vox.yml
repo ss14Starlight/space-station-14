@@ -12,6 +12,7 @@
         eyes: OrganVoxEyes
         tongue: OrganHumanTongue
         eye_implant: null
+        brain_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoVox
       connections:
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandVox
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     left hand:
       part: LeftHandVox
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     right leg:
       part: RightLegVox
       connections:

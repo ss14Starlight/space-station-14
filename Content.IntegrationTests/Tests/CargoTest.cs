@@ -25,6 +25,8 @@ public sealed class CargoTest
         new("FunCrateGambling")
     ];
 
+    private const float epsilon = 0.01f; // Starlight - reduce test flakiness
+
     [Test]
     public async Task NoCargoOrderArbitrage()
     {
@@ -49,7 +51,7 @@ public sealed class CargoTest
                     var ent = entManager.SpawnEntity(proto.Product, testMap.MapCoords);
                     var price = pricing.GetPrice(ent);
 
-                    Assert.That(price, Is.AtMost(proto.Cost), $"Found arbitrage on {proto.ID} cargo product! Cost is {proto.Cost} but sell is {price}!");
+                    Assert.That(price, Is.AtMost(proto.Cost + epsilon), $"Found arbitrage on {proto.ID} cargo product! Cost is {proto.Cost} but sell is {price}!"); // Starlight-edit - add epsilon to avoid fp precision issues
                     entManager.DeleteEntity(ent);
                 }
             });

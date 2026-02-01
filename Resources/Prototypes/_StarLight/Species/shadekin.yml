@@ -14,8 +14,8 @@
   naming: First
   minAge: 18
   maxAge: 300
-  youngAge: 30
-  oldAge: 250
+  youngAge: 100
+  oldAge: 200
   customName: true
 
 - type: speciesBaseSprites
@@ -25,6 +25,7 @@
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
     Snout: MobShadekinAnyMarkingFollowSkin
+    Hair: MobHumanoidAnyMarking
     Chest: MobShadekinTorso
     HeadTop: MobShadekinAnyMarking
     HeadSide: MobShadekinAnyMarkingFollowSkin
@@ -43,7 +44,7 @@
   id: MobShadekinMarkingLimits
   points:
     Hair:
-      points: 0
+      points: 1
       required: false
     FacialHair:
       points: 0

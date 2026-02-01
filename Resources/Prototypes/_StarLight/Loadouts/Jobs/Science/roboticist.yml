@@ -9,6 +9,11 @@
   id: SkullBandana
   equipment: 
     head: ClothingHeadBandSkull
+
+- type: loadout
+  id: RoboticistBlackCapFlipped
+  equipment: 
+    head: ClothingHeadHatBlacksoftFlipped
     
 # Back
 

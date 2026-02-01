@@ -1,6 +1,7 @@
 - type: language
   id: ScurretSign
   icon: LanguageIconScurret
+  chatPrefix: scs
   speech:
     allowRadio: false
     requireSpeech: false

@@ -8,3 +8,15 @@
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Thaven/organs.rsi
       state: brain-thaven
+
+- type: entity
+  id: OrganThavenEyes
+  parent: OrganHumanEyes
+  name: eyes
+  suffix: Thaven
+  description: "The eyes of a Thaven."
+  components:
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobThavenEyes

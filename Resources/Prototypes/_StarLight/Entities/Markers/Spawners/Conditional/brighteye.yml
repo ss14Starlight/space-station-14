@@ -1,0 +1,11 @@
+- type: entity
+  id: SpawnPointBrighteye
+  parent: MarkerBase
+  name: brighteye
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+      state: full

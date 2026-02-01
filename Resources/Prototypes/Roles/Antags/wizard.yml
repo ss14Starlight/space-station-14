@@ -4,12 +4,13 @@
   antagonist: true
   objective: roles-antag-survivor-objective
   # guides: [  ]
+  playTimeTracker: AntagSurvivor # Starlight
 
 - type: antag
   id: Wizard
   name: roles-antag-wizard-name
   antagonist: true
-  # setPreference: true # Disabled as roundstart gamemode until reworked
+  setPreference: true # Starlight. reenabled to allow for preferences to work on midround wizard
   objective: roles-antag-wizard-objective # TODO: maybe give random objs and stationary ones from AntagObjectives and AntagRandomObjectives
   requirements: # I hate time locked roles but this should be enough time for someone to be acclimated
   - !type:OverallPlaytimeRequirement
@@ -19,5 +20,6 @@
     time: 6h # Starlight
   guides: [ Wizard ]
   previewStartingGear: WizardBlueGear
+  playTimeTracker: AntagWizard # Starlight
 
 # See wizard_startinggear for wiz start gear options

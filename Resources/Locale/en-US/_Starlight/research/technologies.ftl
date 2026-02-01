@@ -3,13 +3,20 @@ research-discipline-biochemical = Biochemical
 research-technology-basic-surgery = Basic surgery
 research-technology-advanced-surgery = Advanced surgery
 
+research-technology-automenders = Automenders
+
 research-technology-basic-cyberlimbs = Basic cyberlimbs
 research-technology-budget-cyber-organs = Budget CyberOrgans
 research-technology-advanced-cyberlimbs = Advanced cyberorgans
 
-research-technology-basic-eye-implants = Basic Eye Implants
+research-technology-basic-implants = Basic Implants
 
-research-technology-functional-cyberlimbs = Functional cyberlimbs
+research-technology-medical-cyberlimbs = Medical cyberlimbs
+research-technology-cargo-cyberlimbs = Logistical cyberlimbs
+research-technology-security-cyberlimbs = Security cyberlimbs
+research-technology-science-cyberlimbs = Scientific cyberlimbs
+research-technology-civilian-cyberlimbs = Civilian cyberlimbs
+research-technology-engineering-cyberlimbs = Engineering cyberlimbs
 research-technology-nightvision-eyes = Night Vision Cyber Eyes
 research-technology-thermalvision-eyes = Thermal Vision Cyber Eyes
 
@@ -27,3 +34,7 @@ research-technology-point-defense = Point Defense Weaponry
 research-technology-loot-only-1 = Loot Only Technologies Tier 1
 research-technology-loot-only-2 = Loot Only Technologies Tier 2
 research-technology-loot-only-3 = Loot Only Technologies Tier 3
+
+research-technology-bluespace-manipulation = Bluespace Manipulation
+
+research-technology-basic-xenobiology = Basic Xenobiology

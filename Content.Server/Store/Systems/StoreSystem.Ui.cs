@@ -30,7 +30,7 @@ namespace Content.Server.Store.Systems;
 public sealed partial class StoreSystem
 {
     #region Starlight
-    private static readonly Histogram _storePurchasesMetric = Metrics.CreateHistogram(
+    private static readonly Counter _storePurchasesMetric = Metrics.CreateCounter(
         "sl_store_purchases",
         "Everything bounght from a \"store\" which include ling upgrades, traitor uplinks, wizard grimoires",
         ["store_name", "purchased_item", "discounted"]
@@ -362,16 +362,11 @@ public sealed partial class StoreSystem
         }
 
         #region Starlight statistics
-        var accu = 0f;
-        foreach (var item in listing.Cost)
-        {
-            accu += item.Value.Float();
-        }
         _storePurchasesMetric.WithLabels([
             Loc.GetString(component.Name),
             listing.ID,
             listing.IsCostModified.ToString()
-        ]).Observe(accu);
+        ]).Inc(1); //we observe *1* purchase of the item.
         #endregion
     }
 

@@ -1,0 +1,22 @@
+[head=1][color=#009100]────────────────────[/color][/head]
+[color=#cc0000]█▀▀ █▀▀ █▀▀▄[/color] [head=3]   [color=#cc0000]CENTRAL SECURITY DIVISION [/color][/head]
+[color=#cc0000]█░░ ▀▀█ █░░█[/color][bolditalic]     [color=#cc0000]Eradicating the enemies of Nanotrasen[/color][/bolditalic]
+[color=#cc0000]▀▀▀ ▀▀▀ ▀▀▀░[/color]   [color=#aaaaaa][italic]OFFICIAL CSD OFFICE DOCUMENT[/italic][/color]
+[head=1][color=#009100]────────────────────[/color][/head]
+[head=1][color=#cc0000]Classified Secure Document[/color][/head]
+[head=1][color=#009100]────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] Vampire Lords
+[bold]Association:[/bold] Vampire Council of Faust
+[bold]Objectives:[/bold] Unknown
+
+Reports of 'Vampires' on board Space Stations in the Starlight Sector have been confirmed. Live specimens have been interrogated and revealed the existence of a supposed 'Vampire Council' composed of 'Vampire Lords'.
+
+While clearly deranged, these 'Vampires' do posses powers and abilities from an as of yet unidentified source and should be treated as a serious security risk.
+
+Attempts to contact these Vampire Lords have proven mostly unsuccessful, bar one brief communication demanding the return of their thralls.
+
+We will keep you apprised on developments, in the meantime be on alert.
+[/mono]
+
+[head=1][color=#009100]────────────────────[/color][/head]

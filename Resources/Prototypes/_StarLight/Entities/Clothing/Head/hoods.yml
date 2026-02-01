@@ -1,0 +1,21 @@
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: ClothingHeadHatHoodWinterChemSenior
+  categories: [ HideSpawnMenu ]
+  name: senior chemistry winter coat hood
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hoods/Coat/hoodchemistsenior.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hoods/Coat/hoodchemistsenior.rsi
+
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: ClothingHeadHatHoodWinterSeniorCourier
+  categories: [ HideSpawnMenu ]
+  name: formal cargo winter coat hood
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hoods/Coat/hoodcargosenior.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hoods/Coat/hoodcargosenior.rsi

@@ -23,7 +23,7 @@
       collection: ResomiChirp
   - type: EmitSoundOnCollide
     sound:
-      path: /Audio/Voice/Resomi/resomi_scream.ogg
+      path: /Audio/_Starlight/Effects/avali_scream.ogg
   - type: EmitSoundOnTrigger
     sound:
       collection: ResomiChirp
@@ -34,7 +34,7 @@
   - type: Edible
     requiresSpecialDigestion: true
     useSound:
-      path: /Audio/Voice/Resomi/resomi_scream.ogg
+      path: /Audio/_Starlight/Effects/avali_scream.ogg
 
 - type: entity
   parent: BasePlushieVocalizer

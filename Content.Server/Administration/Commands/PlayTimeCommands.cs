@@ -195,7 +195,7 @@ public sealed class PlayTimeGetRoleCommand : IConsoleCommand
 
         if (args.Length == 1)
         {
-            var timers = _playTimeTracking.GetTrackerTimes(session);
+            var timers = _playTimeTracking.GetOriginalTrackerTimes(session);
 
             if (timers.Count == 0)
             {

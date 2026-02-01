@@ -35,7 +35,7 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
         if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
             return;
 
-        if (_emag.CheckFlag(uid, EmagType.Interaction))
+        if (_emag.CheckFlag(uid, EmagType.Interaction, args.EmagComponent)) // Starlight edit | allow bypass if differing factions
             return;
 
         // prevent self-emagging
@@ -72,7 +72,12 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
 
         component.OwnerName = Name(args.UserUid);
 
-        NotifyLawsChanged(uid, component.EmaggedSound);
+        //Starlight begin
+        if(args.EmagComponent is not null)
+            NotifyLawsChanged(uid, args.EmagComponent.DoEmaggedSound ? args.EmagComponent.EmaggedSoundOverride ?? component.EmaggedSound : null);
+        else
+            NotifyLawsChanged(uid, component.EmaggedSound);
+        //Starlight end
         if (_mind.TryGetMind(uid, out var mindId, out _))
             EnsureSubvertedSiliconRole(mindId);
 

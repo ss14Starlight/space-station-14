@@ -48,7 +48,7 @@
   group: Toxins
   desc: reagent-desc-buzzochloric-bees
   physicalDesc: reagent-physical-desc-buzzy
-  contrabandSeverity: Minor
+  contrabandSeverity: Major # Starlight Minor -> Major
   flavor: bee
   color: "#FFD35D"
   tileReactions:
@@ -159,7 +159,7 @@
   group: Toxins
   desc: reagent-desc-licoxide
   physicalDesc: reagent-physical-desc-electric
-  contrabandSeverity: Minor
+  contrabandSeverity: Major # Starlight Minor -> Major
   flavor: shocking
   color: "#FDD023"
   metabolisms:
@@ -176,6 +176,7 @@
     requiredSlipSpeed: 3.5
   desc: reagent-desc-razorium
   physicalDesc: reagent-physical-desc-reflective
+  contrabandSeverity: Major # Starlight None -> Major
   flavor: sharp
   color: "#e3fffb"
   reactiveEffects:

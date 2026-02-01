@@ -2,3 +2,33 @@
   id: Thaven
   name: Thaven
   text: "/ServerInfo/_StarLight/Guidebook/Mobs/Thaven.xml"
+
+- type: guideEntry
+  id: Shadekin
+  name: species-name-shadekin
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Shadekin.xml"
+
+- type: guideEntry
+  id: Felionoid
+  name: species-name-felionoid
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Felionoid.xml"
+
+- type: guideEntry
+  id: Cyclorite
+  name: species-name-cyclorite
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Cyclorite.xml"
+
+- type: guideEntry
+  id: Resomi
+  name: species-name-resomi
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Resomi.xml"
+
+- type: guideEntry
+  id: Avali
+  name: species-name-avali
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Avali.xml"
+
+- type: guideEntry
+  id: Lagomorph
+  name: species-name-lagomorph
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Lagomorph.xml"

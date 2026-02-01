@@ -1,0 +1,43 @@
+- type: entityTable
+  id: CrateFillChemicalJugs
+  table: !type:AllSelector
+    children:
+    # Core medicines for treating damage types
+    - id: JugBicaridine      # Brute damage - 15u OD
+    - id: JugDermaline       # Burns (except caustic) - 10u OD
+    - id: JugDylovene        # Poison - 20u OD
+    - id: JugDexalinPlus     # Airloss - 25u OD
+    - id: JugArithrazine     # Radiation (causes minor brute)
+    - id: JugSaline          # Blood restoration - SAFE
+    # Specialized damage medicines
+    - id: JugBruizine        # Blunt - 10.5u OD
+    - id: JugLacerinol       # Slash - 12u OD
+    - id: JugPuncturase      # Piercing - 11u OD
+    # Temperature/Element damage
+    - id: JugPyrazine        # Heat - 20u OD
+    - id: JugInsuzine        # Shock - 12u OD
+    - id: JugLeporazine      # Cold/Bad temp - SAFE
+    - id: JugSigynate        # Caustic - 16u OD
+    # Cryo medicines (require cryopod -60C)
+    - id: JugCryoxadone      # General healing in cryo
+    - id: JugDoxarubixadone  # Genetic damage in cryo
+    - id: JugAloxadone       # Heat/Shock/Caustic in cryo
+    # Other
+    - id: JugDiphenhydramine # Poison treatment - SAFE
+    - id: JugAmoxla          # Ammonia-based airloss/bloodloss (for Avali/Resomi)
+
+- type: entity
+  parent: CrateCentralCommandSecure
+  id: CrateCentralCommandSecureChemicalFilled
+  name: central command medical crate
+  suffix: Chemical, Filled
+  description: A secure crate from Central Command stocked to the brim with medical chemicals.
+  categories: [ Spawner ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: CrateFillChemicalJugs
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: EffectFlashBluespace

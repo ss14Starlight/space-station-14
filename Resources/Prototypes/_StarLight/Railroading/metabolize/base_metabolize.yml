@@ -11,6 +11,9 @@
       blacklist:
       - Abductor
       - Skeleton
+    - !type:SubjectMindAntagCondition
+      blacklist:
+      - Brighteye
       
 - type: entity
   id: MetabolizeDrinkCondition # With bartender blacklist
@@ -27,6 +30,9 @@
       blacklist:
       - Abductor
       - Skeleton
+    - !type:SubjectMindAntagCondition
+      blacklist:
+      - Brighteye
 
 # Example(Smokeable) Prototype
 

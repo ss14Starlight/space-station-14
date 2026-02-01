@@ -19,6 +19,13 @@ public sealed partial class AccessComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public bool Enabled = true;
+    
+    //Starlight begin
+    /// <summary>
+    /// Whether to skip checking this if it is being held by another entity. This is so that creatures with inherent access can't be used to grant the holder said access.
+    /// </summary>
+    [DataField, AutoNetworkedField] public bool WorksWhileHeld = true;
+    //Starlight end
 
     [DataField]
     [Access(typeof(SharedAccessSystem), Other = AccessPermissions.ReadExecute)] // FIXME Friends

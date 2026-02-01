@@ -1,0 +1,26 @@
+- type: entity
+  parent: ClothingHeadHeadHatBaseFlippable
+  id: ClothingHeadHatCargoFormalsoft
+  name: formal cargo cap
+  description: A baseball cap colored to match cargo's formal uniforms.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Soft/cargoformalsoft.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Soft/cargoformalsoft.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatCargoFormalsoft]
+  id: ClothingHeadHatCargoFormalsoftFlipped
+  name: formal cargo cap
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable

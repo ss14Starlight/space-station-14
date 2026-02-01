@@ -1,9 +1,11 @@
 using Content.Server.Body.Systems;
 using Content.Shared._Starlight.Medical.Limbs;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Starlight.Medical.Surgery.Events;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem
@@ -25,18 +27,35 @@ public sealed partial class LimbSystem : SharedLimbSystem
                     foreach (var containedEnt in child.ContainedEntities)
                     {
                         if (TryComp(containedEnt, out BodyPartComponent? innerPart)
-                            && innerPart.PartType == BodyPartType.Hand
-                            && TryComp<HandsComponent>(body, out var hands))
+                            && innerPart.PartType == BodyPartType.Hand)
                         {
-                            _hands.AddHand((body, hands), slotFullId, limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
+                            AddLimb(body, slotId, (containedEnt, innerPart));
                             AddLimbVisual(body, (containedEnt, innerPart));
                         }
                     }
                 }
                 break;
             case BodyPartType.Hand:
-                if (TryComp<HandsComponent>(body, out var hands2))
-                    _hands.AddHand((body, hands2), BodySystem.GetPartSlotContainerId(slot), limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
+                if (limb.Comp.Organs.Keys.Count == 0)
+                    _body.TryCreateOrganSlot(limb, "hand_implant", out _);
+
+                foreach (var slotId in limb.Comp.Organs.Keys)
+                {
+                    if (slotId is null) continue;
+                    var slotFullId = BodySystem.GetOrganContainerId(slotId);
+                    var child = _containers.GetContainer(limb, slotFullId);
+
+                    foreach (var containedEnt in child.ContainedEntities)
+                    {
+                        if (TryComp(containedEnt, out OrganComponent? _))
+                        {
+                            var addedEv = new SurgeryOrganImplantationCompleted(body, limb, containedEnt);
+                            RaiseLocalEvent(containedEnt, ref addedEv);
+                        }
+                    }
+                }
+                if (TryComp<HandsComponent>(body, out var hands))
+                    _hands.AddHand((body, hands), BodySystem.GetPartSlotContainerId(slot), limb.Comp.Symmetry == BodyPartSymmetry.Left ? HandLocation.Left : HandLocation.Right);
                 break;
             case BodyPartType.Leg:
                 if (limb.Comp.Children.Keys.Count == 0)
@@ -88,16 +107,32 @@ public sealed partial class LimbSystem : SharedLimbSystem
                     foreach (var containedEnt in child.ContainedEntities)
                     {
                         if (TryComp(containedEnt, out BodyPartComponent? innerPart)
-                            && innerPart.PartType == BodyPartType.Hand
-                            && TryComp<HandsComponent>(body, out var hands))
-                            _hands.RemoveHand((body, hands), BodySystem.GetPartSlotContainerId(limbSlotId));
+                            && innerPart.PartType == BodyPartType.Hand)
+                            if (TryComp(containedEnt, out TransformComponent? transform) && TryComp(containedEnt, out MetaDataComponent? metaData))
+                            {
+                                RemoveLimb(body, (containedEnt, transform, metaData, innerPart));
+                            }
                     }
                 }
                 break;
             case BodyPartType.Hand:
+                foreach (var organSlotId in limb.Comp3.Organs.Keys)
+                {
+                    if (organSlotId is null) continue;
+                    var child = _containers.GetContainer(limb, BodySystem.GetOrganContainerId(organSlotId));
+
+                    foreach (var containedEnt in child.ContainedEntities)
+                    {
+                        if (TryComp(containedEnt, out OrganComponent? _))if (TryComp(containedEnt, out TransformComponent? transform) && TryComp(containedEnt, out MetaDataComponent? metaData))
+                        {
+                            var ev = new SurgeryOrganExtracted(body, limb, containedEnt);
+                            RaiseLocalEvent(containedEnt, ref ev);
+                        }
+                    }
+                }
                 var parentSlot = _body.GetParentPartAndSlotOrNull(limb);
-                if (parentSlot is not null && TryComp<HandsComponent>(body, out var hands2))
-                    _hands.RemoveHand((body, hands2), BodySystem.GetPartSlotContainerId(parentSlot.Value.Slot));
+                if (parentSlot is not null && TryComp<HandsComponent>(body, out var hands))
+                    _hands.RemoveHand((body, hands), BodySystem.GetPartSlotContainerId(parentSlot.Value.Slot));
                 break;
             case BodyPartType.Leg:
             case BodyPartType.Foot:

@@ -36,3 +36,34 @@
   - type: Tag
     tags:
     - SuitEVA
+
+#Wizard "Robes"
+- type: entity
+  parent: [ ClothingOuterEVASuitBase, BaseMagicalContraband ]
+  id: ClothingOuterSoftsuitWizard
+  name: wizard void robes
+  description: A cumbersome gem-encrusted robe that is magically resistant to the void of space
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Suits/wizard.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Suits/wizard.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Heat: 0.95
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetsoftsuitWizard
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon

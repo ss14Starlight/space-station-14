@@ -3,6 +3,26 @@ namespace Content.Shared.Humanoid;
 public static class EyeColor
 {
     public const float ShadekinBrightness = 0.251f;
+    public const float BrighteyeBrightness = 1;
+
+    public static bool VerifyBrighteye(Color color)
+    {
+        var colorHsv = Color.ToHsv(color);
+
+        if (colorHsv.Z < BrighteyeBrightness)
+            return false;
+
+        return true;
+    }
+
+    public static Color MakeBrighteyeValid(Color color)
+    {
+        var hsv = Color.ToHsv(color);
+
+        hsv.Z = BrighteyeBrightness;
+
+        return Color.FromHsv(hsv);
+    }
 
     public static bool VerifyShadekin(Color color)
     {

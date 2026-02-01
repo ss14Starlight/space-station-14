@@ -1,5 +1,6 @@
 using Content.Server.AlertLevel;
 using Content.Server.Popups;
+using Content.Shared._Starlight.StationGridMemory;
 using Content.Shared.Station.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -31,16 +32,25 @@ public sealed partial class AlertLevelCondition : FireModeCondition
             || !entityManager.TryGetComponent<ActorComponent>(args.Shooter, out var actor))
             return false;
 
-        if (entityManager.TryGetComponent<StationMemberComponent>(transformComp.ParentUid, out var stationMember) &&
-            entityManager.TryGetComponent<AlertLevelComponent>(stationMember.Station, out var alertLevelComp))
-        {
-            var currentAlertLevel = alertSystem.GetLevel(stationMember.Station, alertLevelComp);
-            if (!AlertLevels.Contains(currentAlertLevel))
-                _popupSystem.PopupEntity(Loc.GetString(PopupMessage), args.Shooter, actor.PlayerSession);
-            return AlertLevels.Contains(currentAlertLevel);
-        }
-
+        if (args.Weapon is null) return false; // realistically this should never ever ever be null why the fuck would this be null
+        AlertLevelComponent? alertLevel = null;
+        var allowed = false;
+        if (entityManager.TryGetComponent<StationGridMemoryComponent>(args.Weapon.Value, out var stationMemory) &&
+            entityManager.TryGetComponent<AlertLevelComponent>(stationMemory.LastStation, out alertLevel))
+            allowed = CheckAlertLevel(stationMemory.LastStation, alertLevel, alertSystem);
+        //failsafe
+        else if (entityManager.TryGetComponent<StationMemberComponent>(transformComp.ParentUid, out var stationMember) &&
+            entityManager.TryGetComponent<AlertLevelComponent>(stationMember.Station, out alertLevel))
+            allowed = CheckAlertLevel(stationMember.Station, alertLevel, alertSystem);
+        
+        if(allowed) return true;
         _popupSystem.PopupEntity(Loc.GetString(PopupMessage), args.Shooter, actor.PlayerSession);
         return false;
+    }
+
+    private bool CheckAlertLevel(EntityUid station, AlertLevelComponent alertLevel, AlertLevelSystem alertSystem)
+    {
+        var currentAlertLevel = alertSystem.GetLevel(station, alertLevel);
+        return AlertLevels.Contains(currentAlertLevel);
     }
 }

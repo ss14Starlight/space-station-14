@@ -210,7 +210,7 @@
   id: ClothingHeadHatCatEars
   name: cat ears
   description: "NYAH!"
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL change
   components:
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag

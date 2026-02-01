@@ -4,14 +4,15 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Radio; // Starlight
 
 namespace Content.Shared.Radio.Components;
 
 /// <summary>
 ///     This component is by entities that can contain encryption keys
 /// </summary>
-[RegisterComponent, NetworkedComponent]
-public sealed partial class EncryptionKeyHolderComponent : Component
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState] // Starlight edit
+public sealed partial class EncryptionKeyHolderComponent : Component, ISupportsCustomChannels // Starlight edit
 {
     /// <summary>
     ///     Whether or not encryption keys can be removed from the headset.
@@ -41,12 +42,24 @@ public sealed partial class EncryptionKeyHolderComponent : Component
     /// <summary>
     ///     Combined set of radio channels provided by all contained keys.
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField] // Starlight edit
     public HashSet<ProtoId<RadioChannelPrototype>> Channels = new();
+    
+    //Starlight begin
+    /// <summary>
+    /// Combined set of custom channels provided by all contained keys.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField] public HashSet<CustomRadioChannelData> CustomChannels { get; set; } = [];
+    //Starlight end
 
     /// <summary>
     ///     This is the channel that will be used when using the default/department prefix (<see cref="SharedChatSystem.DefaultChannelKey"/>).
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField] // Starlight edit
     public string? DefaultChannel;
+
+    #region Starlight
+    [DataField]
+    public bool CanBeExamined = true;
+    #endregion Starlight
 }

@@ -17,6 +17,7 @@
   canBeAntag: false
   displayWeight: 40
   access:
+  - IAA
   - Brig
   - Maintenance
   - Lawyer

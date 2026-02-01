@@ -1,8 +1,8 @@
 - type: entity
+  abstract: true
+  parent: [ BaseCartridge, BaseSecurityContraband ]
   id: BaseCartridgeLightRifleSP
   name: cartridge (.30 rifle SP)
-  parent: [ BaseCartridge, BaseSecurityContraband ]
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -18,9 +18,9 @@
   - type: SpentAmmoVisuals
 
 - type: entity
+  parent: BaseCartridgeLightRifleSP
   id: CartridgeLightRifleSP
   name: cartridge (.30 rifle SP)
-  parent: BaseCartridgeLightRifleSP
   components:
   - type: CartridgeAmmo
     proto: BulletLightRifleTraceSP
@@ -78,9 +78,10 @@
         color: "#1A8C1A"
 
 - type: entity
+  parent: BaseCartridgeLightRifleSP
   id: CartridgeLightRiflePractice
   name: cartridge (.30 rifle practice)
-  parent: BaseCartridgeLightRifleSP
+  description: A classic intermediate cartridge used by many combat rifles and LMGs. Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
   components:
   - type: CartridgeAmmo
     proto: BulletLightRifleTracePractice
@@ -93,9 +94,10 @@
         color: "#D86E2C"
 
 - type: entity
+  parent: BaseCartridgeLightRifleSP
   id: CartridgeLightRifleIncendiary
   name: cartridge (.30 rifle incendiary)
-  parent: BaseCartridgeLightRifleSP
+  description: A classic intermediate cartridge used by many combat rifles and LMGs. Incendiary ammunition contains a self-igniting compound that sets targets ablaze.
   components:
   - type: CartridgeAmmo
     proto: BulletLightRifleTraceIncendiary
@@ -108,9 +110,10 @@
         color: "#BFC8CA"
 
 - type: entity
+  parent: BaseCartridgeLightRifleSP
   id: CartridgeLightRifleUranium
   name: cartridge (.30 rifle uranium)
-  parent: BaseCartridgeLightRifleSP
+  description: A classic intermediate cartridge used by many combat rifles and LMGs. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating targets from the inside.
   components:
   - type: CartridgeAmmo
     proto: BulletLightRifleTraceUranium

@@ -1,0 +1,219 @@
+- type: entity
+  parent: AlertsComputerCircuitboard
+  id: AlertsComputerCircuitboardDesktop
+  name: atmospheric alerts desktop computer board
+  description: A circuit board for an atmospheric alerts dekstop computer.
+  components:
+    - type: ComputerBoard
+      prototype: ComputerAlertDesktop
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: alertDesktop
+
+- type: entity
+  parent: AtmosMonitoringComputerCircuitboard
+  id: AtmosMonitoringComputerCircuitboardDesktop
+  name: desktop atmospheric network monitor board
+  description: A circuit board for a desktop atmospheric network monitor.
+  components:
+    - type: ComputerBoard
+      prototype: ComputerAtmosMonitoringDesktop
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: tankDesktop
+
+- type: entity
+  parent: SurveillanceCameraMonitorCircuitboard
+  id: SurveillanceCameraMonitorCircuitboardDesktop
+  name: desktop surveillance camera monitor board
+  description: A circuit board for a desktop surveillance camera monitor.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerSurveillanceCameraMonitorDesktop
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: cameraDesktop
+
+- type: entity
+  parent: CargoBountyComputerCircuitboard
+  id: CargoBountyComputerCircuitboardDesktop
+  name: cargo bounty desktop computer board
+  description: A circuit board for a cargo bounty desktop computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerCargoBountyDesktop
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: cargoBountyDesktop
+
+- type: entity
+  parent: CrewMonitoringComputerCircuitboard
+  id: CrewMonitoringComputerCircuitboardDesktop
+  name: crew monitoring desktop computer board
+  description: A circuit board for a desktop crew monitoring console.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerCrewMonitoringDesktop
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: crewDesktop
+
+- type: entity
+  parent: CriminalRecordsComputerCircuitboard
+  id: CriminalRecordsComputerCircuitboardDesktop
+  name: criminal records desktop computer board
+  description: A circuit board for a criminal records desktop computer.
+  components:
+    - type: ComputerBoard
+      prototype: ComputerCriminalRecordsDesktop
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: crimeDesktop
+
+- type: entity
+  parent: StationRecordsComputerCircuitboard
+  id: StationRecordsComputerCircuitboardDesktop
+  name: employment records desktop computer board
+  description: A circuit board for an employment records desktop computer.
+  components:
+    - type: ComputerBoard
+      prototype: ComputerStationRecordsDesktop
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: stationRecordsDesktop
+
+- type: entity
+  parent: ComputerMassMediaCircuitboard
+  id: ComputerMassMediaCircuitboardDesktop
+  name: news manager desktop computer board
+  description: A circuit board for a news manager desktop computer.
+  components:
+    - type: ComputerBoard
+      prototype: ComputerMassMediaDesktop
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: newsDesktop
+
+- type: entity
+  parent: PowerComputerCircuitboard
+  id: PowerComputerCircuitboardDesktop
+  name: power monitoring desktop computer board
+  description: A circuit board for a power monitoring desktop computer.
+  components:
+    - type: ComputerBoard
+      prototype: ComputerPowerMonitoringDesktop
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: powerDesktop
+
+- type: entity
+  parent: SalvageJobBoardComputerCircuitboard
+  id: SalvageJobBoardComputerCircuitboardDesktop
+  name: salvage job board desktop computer board
+  description: A circuit board for a salvage job board desktop computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerSalvageJobBoardDesktop
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: salvageJobDesktop
+
+- type: entity
+  parent: CargoRequestComputerCircuitboard
+  id: CargoRequestComputerCircuitboardDesktop
+  name: cargo request desktop computer board
+  description: A circuit board for a cargo request desktop computer.
+  components:
+    - type: ComputerBoard
+      prototype: ComputerCargoOrdersDesktop
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: cargoRequestDesktop
+
+- type: entity
+  parent: CargoRequestEngineeringComputerCircuitboard
+  id: CargoRequestEngineeringComputerCircuitboardDesktop
+  name: engineering request desktop computer board
+  description: A circuit board for an engineering request desktop computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerCargoOrdersEngineeringDesktop
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: engineeringRequestDesktop
+
+- type: entity
+  parent: CargoRequestMedicalComputerCircuitboard
+  id: CargoRequestMedicalComputerCircuitboardDesktop
+  name: medical request desktop computer board
+  description: A circuit board for a medical request desktop computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerCargoOrdersMedicalDesktop
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: medicalRequestDesktop
+
+- type: entity
+  parent: CargoRequestScienceComputerCircuitboard
+  id: CargoRequestScienceComputerCircuitboardDesktop
+  name: science request desktop computer board
+  description: A circuit board for a science request desktop computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerCargoOrdersScienceDesktop
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: scienceRequestDesktop
+
+- type: entity
+  parent: CargoRequestSecurityComputerCircuitboard
+  id: CargoRequestSecurityComputerCircuitboardDesktop
+  name: security request desktop computer board
+  description: A circuit board for a security request desktop computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerCargoOrdersSecurityDesktop
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: securityRequestDesktop
+
+- type: entity
+  parent: CargoRequestServiceComputerCircuitboard
+  id: CargoRequestServiceComputerCircuitboardDesktop
+  name: service request desktop computer board
+  description: A circuit board for a service request desktop computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerCargoOrdersServiceDesktop
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: serviceRequestDesktop
+
+# region: Custom Computers
+# Desktop computers without corresponding console
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerPersonalCircuitboardDesktop
+  name: personal desktop computer board
+  description: A circuit board for a personal desktop computer.
+  components:
+    - type: ComputerBoard
+      prototype: ComputerPersonalDesktop
+# endregion: Custom Computers

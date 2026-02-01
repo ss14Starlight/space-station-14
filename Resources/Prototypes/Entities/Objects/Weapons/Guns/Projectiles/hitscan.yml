@@ -16,12 +16,15 @@
       - HideContextMenu
   - type: AnimationPlayer
 
+# starlight start
+# split base laser hitscan into a variant with and without visual beams
+# this is done so that projectiles such as disablers and tasers do not have laser travel visuals
 - type: entity
   id: BasicHitscan
+  parent: BasicHitscanNoBeam
+  name: basic laser ray
   categories: [ HideSpawnMenu ]
   components:
-  - type: HitscanAmmo
-  - type: HitscanBasicRaycast
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -32,12 +35,12 @@
     impactFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_laser
-  - type: HitscanReflect
-  - type: HitscanBasicEffects
+# starlight end
 
 - type: entity
   parent: BasicHitscan
   id: RedLightLaser
+  name: red light laser ray
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -48,6 +51,7 @@
 - type: entity
   parent: BasicHitscan
   id: RedLaser
+  name: red laser ray
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -58,6 +62,7 @@
 - type: entity
   parent: BasicHitscan
   id: RedMediumLaser
+  name: red amplified laser ray
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -68,6 +73,7 @@
 - type: entity
   parent: BasicHitscan
   id: RedHeavyLaser
+  name: red high-energy laser ray
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -88,6 +94,7 @@
 - type: entity
   parent: BasicHitscan
   id: RedLaserPractice
+  name: red practice laser ray
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -98,6 +105,7 @@
 - type: entity
   parent: BasicHitscan
   id: XrayLaser
+  name: X-ray pulse beam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -119,12 +127,13 @@
 - type: entity
   parent: BasicHitscan
   id: Pulse
+  name: blue high-energy laser ray
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 35
+        Heat: 65
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -139,6 +148,7 @@
 - type: entity
   parent: BasicHitscan
   id: RedShuttleLaser
+  name: shuttle class red laser ray
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicRaycast
@@ -162,6 +172,7 @@
 - type: entity
   parent: BasicHitscan
   id: DebugLaser
+  name: debug laser ray
   suffix: DEBUG
   categories: [ HideSpawnMenu ]
   components:
@@ -183,6 +194,7 @@
 - type: entity
   parent: DebugLaser
   id: DebugLaserGib
+  name: debug gibbing ray
   suffix: DEBUG
   categories: [ HideSpawnMenu ]
   components:

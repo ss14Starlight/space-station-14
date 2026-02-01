@@ -772,7 +772,7 @@
 - type: entity
   parent: Holopad
   id: HolopadServiceChapel
-  suffix: Chapel
+  suffix: Shrine # Starlight: Chapel -> Shrine
   components:
   - type: Label
     currentLabel: holopad-service-chapel

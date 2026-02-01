@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by Conflee, themageofmicrosoftpaints. dewlap by DocMoth. socks, mitts, antlers and claws by SevenShades.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "torso_spots",
+      "directions": 4
+    },
+    {
+      "name": "tank_top",
+      "directions": 4
+    },
+    {
+      "name": "tall_ears_piercing_R",
+      "directions": 4
+    },
+    {
+      "name": "tall_ears_piercing_L",
+      "directions": 4
+    },
+    {
+      "name": "tall_ears_cut_R_outer",
+      "directions": 4
+    },
+    {
+      "name": "tall_ears_cut_R_inner",
+      "directions": 4
+    },
+    {
+      "name": "tall_ears_cut_L_outer",
+      "directions": 4
+    },
+    {
+      "name": "tall_ears_cut_L_inner",
+      "directions": 4
+    },
+    {
+      "name": "right_leg_spots",
+      "directions": 4
+    },
+    {
+      "name": "right_arm_spots",
+      "directions": 4
+    },
+    {
+      "name": "panty_bottoms",
+      "directions": 4
+    },
+    {
+      "name": "nose_color",
+      "directions": 4
+    },
+    {
+      "name": "left_leg_spots",
+      "directions": 4
+    },
+    {
+      "name": "left_arm_spots",
+      "directions": 4
+    },
+    {
+      "name": "floppy_ears_piercing_R",
+      "directions": 4
+    },
+    {
+      "name": "floppy_ears_piercing_L",
+      "directions": 4
+    },
+    {
+      "name": "floppy_ears_cut_R",
+      "directions": 4
+    },
+    {
+      "name": "floppy_ears_cut_L",
+      "directions": 4
+    },
+    {
+      "name": "eye_scar_R",
+      "directions": 4
+    },
+    {
+      "name": "eye_scar_L",
+      "directions": 4
+    },
+    {
+      "name": "chest_scar_R",
+      "directions": 4
+    },
+    {
+      "name": "chest_scar_L",
+      "directions": 4
+    },
+    {
+      "name": "bracelet_R",
+      "directions": 4
+    },
+    {
+      "name": "bracelet_L",
+      "directions": 4
+    },
+    {
+      "name": "bra_top",
+      "directions": 4
+    },
+    {
+      "name": "boxer_bottoms",
+      "directions": 4
+    },
+    {
+      "name": "binder_top",
+      "directions": 4
+    },
+    {
+      "name": "belly_color",
+      "directions": 4
+    },
+    {
+      "name": "back_scar_R",
+      "directions": 4
+    },
+    {
+      "name": "back_scar_L",
+      "directions": 4
+    },
+    {
+      "name": "cotton_tail",
+      "directions": 4
+    },
+    {
+      "name": "floppy_ears",
+      "directions": 4
+    },
+    {
+      "name": "fluffy_tail",
+      "directions": 4
+    },
+    {
+      "name": "long_tail",
+      "directions": 4
+    },
+    {
+      "name": "tall_ears_inner",
+      "directions": 4
+    },
+    {
+      "name": "tall_ears_outer",
+      "directions": 4
+    },
+    {
+      "name": "standard",
+      "directions": 4
+    },
+    {
+      "name": "standard_inner",
+      "directions": 4
+    },
+    {
+      "name": "loppy",
+      "directions": 4
+    },
+    {
+      "name": "loppy_inner",
+      "directions": 4
+    },
+    {
+      "name": "loppy_large",
+      "directions": 4
+    },
+    {
+      "name": "loppy_large_inner",
+      "directions": 4
+    },
+    {
+      "name": "rotund",
+      "directions": 4
+    },
+    {
+      "name": "rotund_inner",
+      "directions": 4
+    },
+    {
+      "name": "sharp",
+      "directions": 4
+    },
+    {
+      "name": "sharp_inner",
+      "directions": 4
+    },
+    {
+      "name": "short",
+      "directions": 4
+    },
+    {
+      "name": "short_inner",
+      "directions": 4
+    },
+    {
+      "name": "dewlap",
+      "directions": 4
+    },
+    {
+      "name": "r_hand_mitt",
+      "directions": 4
+    },
+    {
+      "name": "l_hand_mitt",
+      "directions": 4
+    },
+    {
+      "name": "r_arm_mitt",
+      "directions": 4
+    },
+    {
+      "name": "l_arm_mitt",
+      "directions": 4
+    },
+    {
+      "name": "leg_socks",
+      "directions": 4
+    },
+    {
+      "name": "feet_socks",
+      "directions": 4
+    },
+    {
+      "name": "claws",
+      "directions": 4
+    },
+    {
+      "name": "antlers",
+      "directions": 4
+    }
+  ]
+}

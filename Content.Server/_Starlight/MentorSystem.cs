@@ -47,7 +47,6 @@ public sealed partial class MentorSystem : SharedMentorSystem
     private const string RateLimitKey = "MentorHelp";
 
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!;
     [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRoles = default!;
     [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayers = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;

@@ -1,4 +1,4 @@
-﻿using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
@@ -6,6 +6,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
+using Content.Shared.Stunnable; // Starlight-edit
 
 #region Starlight
 using Content.Shared.Stunnable;
@@ -30,7 +31,22 @@ public abstract class SharedArmorSystem : EntitySystem
         SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<StaminaModifyEvent>>(OnStaminaDamageModify);
         SubscribeLocalEvent<ArmorComponent, BorgModuleRelayedEvent<DamageModifyEvent>>(OnBorgDamageModify);
         SubscribeLocalEvent<ArmorComponent, GetVerbsEvent<ExamineVerb>>(OnArmorVerbExamine);
+
+        SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<KnockDownAttemptEvent>>(OnKnockdownAttempt); // Starlight-edit
     }
+
+    #region Starlight
+    /// <summary>
+    /// Tries to cancel knockdown if it's armor ignores it.
+    /// </summary>
+    private void OnKnockdownAttempt(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<KnockDownAttemptEvent> args)
+    {
+        // Starlight edit start - add check for voluntary value, cancel only involuntary knockdown
+        if (component.IgnoreKnockdown && !args.Args.Voluntary)
+            args.Args.Cancelled = true;
+        // Starlight edit end
+    }
+    #endregion
 
     /// <summary>
     /// Get the total Damage reduction value of all equipment caught by the relay.

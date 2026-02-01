@@ -135,126 +135,131 @@
 - type: loadout
   id: ClothingNeckLGBTPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckLGBTPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckAllyPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckAllyPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckAromanticPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckAromanticPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckAsexualPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckAsexualPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckBisexualPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckBisexualPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckGayPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckGayPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckIntersexPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckIntersexPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckLesbianPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckLesbianPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckNonBinaryPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckNonBinaryPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckPansexualPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckPansexualPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckOmnisexualPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckOmnisexualPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckGenderqueerPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckGenderqueerPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckTransPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckTransPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckAutismPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckAutismPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckGoldAutismPin
+  effects: # Starlight addition.
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 360000 # 100 hours - you ain't neurotypical with that much.
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckGoldAutismPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckAroacePin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckAroacePin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckPluralPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckPluralPin
   groupBy: "pin"
 
 - type: loadout
   id: ClothingNeckGenderfluidPin
   storage:
-    back:
+    misc: # Starlight: Move to misc slot
     - ClothingNeckGenderfluidPin
   groupBy: "pin"
 

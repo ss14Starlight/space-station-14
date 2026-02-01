@@ -9,6 +9,10 @@ station-ai-is-too-damaged-for-upload = Upload failed - the AI core must be repai
 station-ai-core-losing-power = Your AI core is now running on reserve battery power.
 station-ai-core-critical-power = Your AI core is critically low on power. External power must be re-established or severe data corruption may occur!
 
+# Ghost role
+station-ai-ghost-role-name = Station AI
+station-ai-ghost-role-description = Serve the station crew as its ever watchful AI.
+
 # Radial actions
 ai-open = Open actions
 ai-close = Close actions
@@ -35,6 +39,10 @@ station-ai-customization-categories = Categories
 station-ai-customization-options = Options (choice of one)
 station-ai-customization-core = AI core displays
 station-ai-customization-hologram = Holographic avatars
+# SL start
+station-ai-customization-menu-label-rename = New name:
+station-ai-customization-name = Rename
+# SL end
 
 # Customizations
 station-ai-icon-ai = Ghost in the machine

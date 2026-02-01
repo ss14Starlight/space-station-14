@@ -9,6 +9,7 @@
     RubberStampDenied: 1
     BoxFolderPlasticClipboardEmpty: 2
     Paper: 10
+    Pen: 8 # Starlight
     Envelope: 10
     HandLabeler: 2
     EncryptionKeyCargo: 2

@@ -1,0 +1,12 @@
+## Static recipes
+
+# ammo types not used by any NT gun whatsoever
+# Added to emagged autolathe, protolathe, secfab, and ammofab
+- type: latheRecipePack
+  id: StarlightSyndicateAmmoStatic
+  recipes:
+  - BoxLethalshotToz
+  - MagazineShotgunToz
+  - MagazineShotgunTozExtended
+  - MagazineShotgunTozEmpty
+  - MagazineShotgunTozExtendedEmpty

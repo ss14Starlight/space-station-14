@@ -43,6 +43,10 @@
         - Abductor
       mindRoles:
       - MindRoleLoneAbductor
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
     - spawnerPrototype: AbductorAgentSpawner
       min: 1
       max: 1
@@ -68,6 +72,10 @@
         - Abductor
       mindRoles:
       - MindRoleLoneAbductor
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
       
 #Conf's Admeme Shuttles 
 - type: entity
@@ -256,6 +264,7 @@
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
     - id: WizardSpawn
+    - id: Xenoborgs
     # Starlight gamerules:
     - id: AbductorsSpawn
 
@@ -264,6 +273,7 @@
   id: DerelictBorgiSpawn
   components:
     - type: StationEvent
+      globalAnnouncement: false # Starlight
       weight: 5
       earliestStart: 15
       reoccurrenceDelay: 20
@@ -288,3 +298,70 @@
     - type: RuleGrids
     - type: LoadMapRule
       gridPath: /Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml
+
+# Brighteye
+- type: entity
+  parent: BaseGameRule
+  id: Brighteye
+  components:
+  - type: StationEvent
+    weight: 1
+    earliestStart: 30
+    reoccurrenceDelay: 60
+    minimumPlayers: 30
+  - type: RuleGrids
+  - type: GameRule
+    minPlayers: 10
+  - type: BrighteyeRule
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/TheDark/Hideout.yml
+    mapTag: TheDark
+  - type: AntagLoadProfileRule
+    speciesHardOverride: Shadekin
+    applyCharacterProfile: true
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ Brighteye ]
+      playerRatio: 1
+      spawnerPrototype: SpawnPointGhostBrighteye
+      roleLoadout:
+      - AntagBrighteye
+      briefing:
+        text: brighteye-role-greeting
+        color: "#F200FF"
+        sound: "/Audio/_Starlight/Ambiance/Antag/brighteye.ogg"
+      components:
+      - type: Brighteye
+        energy: 200 # THIS IS HARDCODED BULLSHIT... i wish i could set this auto to MaxEnergy.
+      - type: NpcFactionMember
+        factions:
+        - SimpleHostile
+      - type: CombatMode
+        disarmFailChance: 0.5
+        canDisarm: true
+      mindRoles:
+      - MindRoleBrighteye
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
+  - type: AntagObjectives
+    objectives:
+    - BirghteyeSurviveObjective
+    - BirghteyePortalObjective
+  - type: SubGamemodes
+    rules:
+    - id: RailroadingBrighteye
+  - type: DynamicRuleCost
+    cost: 150
+
+# This is used for admin/tools to spawn the dark without any antag.
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkMap
+  components:
+  - type: StationEvent
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/TheDark/Hideout.yml
+    mapTag: TheDark

@@ -73,6 +73,8 @@ construction-graph-tag-apron = an apron
 construction-graph-tag-utility-belt = a utility belt
 soil-construction-graph-any-mushroom = any mushroom
 construction-graph-tag-mop-basic = mop
+construction-graph-tag-paper = office paper
+construction-graph-tag-core-pinpointer-piece = piece of core pinpointer
 
 # toys
 construction-graph-tag-rubber-ducky = a rubber ducky
@@ -101,6 +103,7 @@ construction-graph-tag-ripley-central-control-module = ripley central control mo
 construction-graph-tag-ripley-peripherals-control-module = ripley peripherals control module
 
 #SL Start
+
 construction-graph-tag-exosuit-air-tank = exosuit air tank
 construction-graph-tag-exosuit-thruster = exosuit thruster
 
@@ -122,8 +125,6 @@ construction-graph-tag-clarke-peripherals-control = clarke peripherals control m
 
 construction-graph-tag-ripley-central-control = ripley central control module
 construction-graph-tag-ripley-peripherals-control = ripley peripherals control module
-
-
 
 #SL End
 
@@ -179,3 +180,6 @@ construction-graph-tag-spationaut-hardsuit = spationaut hardsuit
 
 # clothing
 construction-graph-tag-backpack = backpack
+
+# chemistry
+construction-graph-tag-centrifuge-compatible = centrifugable container

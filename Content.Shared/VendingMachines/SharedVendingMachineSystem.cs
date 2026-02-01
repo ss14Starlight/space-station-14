@@ -1,8 +1,10 @@
 using System.Linq;
+using Content.Shared._Starlight.IoC;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Advertise.Components;
 using Content.Shared.Advertise.Systems;
+using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
@@ -10,9 +12,11 @@ using Content.Shared.Emp;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -35,6 +39,10 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     [Dependency] protected readonly IRobustRandom Randomizer = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
 
+    // Starlight
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedSLIoCSystem _slIoc = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -43,6 +51,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
         SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnRestockDoAfter);
+        SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
+        SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
 
         SubscribeLocalEvent<VendingMachineRestockComponent, AfterInteractEvent>(OnAfterInteract);
 
@@ -52,7 +62,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             subs.Event<VendingMachineRequestBalanceMessage>(OnRequestBalanceMessage); // 🌟Starlight🌟
         });
     }
-    
+
     //#region starlight
     /// <summary>
     /// Restocks one item from the starting inventory, can also be overriden what is restocked on the VendingMachineComponent
@@ -80,12 +90,12 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             return;
         var theItem = new Dictionary<string, uint>();
         theItem.Add(item, 1);
-        
+
         AddInventoryFromPrototype(uid, theItem, InventoryType.Regular, component);
         Dirty(uid, component);
     }
     //#endregion starlight
-    
+
     private void OnVendingGetState(Entity<VendingMachineComponent> entity, ref ComponentGetState args)
     {
         var component = entity.Comp;
@@ -109,13 +119,22 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             contrabandInventory[weh.Key] = new(weh.Value);
         }
 
-    // 🌟Starlight🌟 Allow server-side systems to calculate prices
-    // If emagged for interaction, the machine becomes free
-    var isEmagged = _emag.CheckFlag(entity.Owner, EmagType.Interaction);
-    var showPricesNow = component.ShowPrices && !isEmagged;
-    CalculateInventoryPrices(inventory, showPricesNow);
-    CalculateInventoryPrices(emaggedInventory, showPricesNow);
-    CalculateInventoryPrices(contrabandInventory, showPricesNow);
+        // 🌟Starlight🌟 Allow server-side systems to calculate prices
+        // If emagged for interaction, the machine becomes free
+
+        // This is a hack, because this method is doing a lot of things it should not be in component get state
+        // EntityPrototype.TryGetComponent called in CalculateInventoryPrices > GuessCategory has a debug assert
+        // that resolves a dependency
+        // This breaks if this method runs on a thread other than the main thread without IoC initialized
+        // TODO STARLIGHT FIXME
+        if (_net.IsServer)
+            _slIoc.ServerInitIoC();
+
+        var isEmagged = _emag.CheckFlag(entity.Owner, EmagType.Interaction);
+        var showPricesNow = component.ShowPrices && !isEmagged;
+        CalculateInventoryPrices(inventory, showPricesNow);
+        CalculateInventoryPrices(emaggedInventory, showPricesNow);
+        CalculateInventoryPrices(contrabandInventory, showPricesNow);
 
         args.State = new VendingMachineComponentState()
         {
@@ -130,7 +149,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             Broken = component.Broken,
         };
     }
-    // 🌟Starlight🌟 
+
+    // 🌟Starlight🌟
     /// <summary>
     /// Virtual method for calculating inventory prices. Override on server for actual pricing logic
     /// </summary>
@@ -182,7 +202,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     }
 
     protected virtual void OnInventoryEjectMessage(Entity<VendingMachineComponent> entity, ref VendingMachineEjectMessage args)
-    { 
+    {
         if (!_receiver.IsPowered(entity.Owner) || Deleted(entity))
             return;
 
@@ -296,7 +316,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         vendComponent.LastBuyer = user; // remember who initiated
         vendComponent.DebitApplied = false; // clear applied flag in case previous op. didnt finish correctly
         vendComponent.VendOperationId++; // bump operation id to mark a new vend
-        entry.Amount--; 
+        entry.Amount--;
         // Starlight-edit end:
 
         if (TryComp(uid, out SpeakOnUIClosedComponent? speakComponent))
@@ -305,7 +325,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         Dirty(uid, vendComponent);
         UpdateUI((uid, vendComponent));
         TryUpdateVisualState((uid, vendComponent));
-        
+
         Audio.PlayPvs(vendComponent.SoundVend, uid); //starlight
     }
 
@@ -492,5 +512,20 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
                     inventory.Add(id, new VendingMachineInventoryEntry(type, id, restock));
             }
         }
+    }
+
+    private void OnActivatableUIOpenAttempt(EntityUid uid, VendingMachineComponent component, ActivatableUIOpenAttemptEvent args)
+    {
+        if (component.Broken)
+            args.Cancel();
+    }
+
+    private void OnBreak(EntityUid uid, VendingMachineComponent vendComponent, BreakageEventArgs eventArgs)
+    {
+        vendComponent.Broken = true;
+        Dirty(uid, vendComponent);
+        TryUpdateVisualState((uid, vendComponent));
+
+        UISystem.CloseUi(uid, VendingMachineUiKey.Key);
     }
 }

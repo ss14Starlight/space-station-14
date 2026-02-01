@@ -91,7 +91,7 @@
     baseWalkSpeed : 3
     baseSprintSpeed : 4
   - type: Stamina
-    critThreshold: 120
+    baseCritThreshold: 120
   - type: Destructible
     thresholds:
     - trigger:
@@ -221,7 +221,7 @@
     description: ghost-role-information-honkbot-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleBotHarmless # Starlight-edit - FreeAgentHarmless -> BotHarmless
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -255,7 +255,7 @@
     description: ghost-role-information-jonkbot-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleBotHarmless # Starlight-edit - FreeAgentHarmless -> BotHarmless
     raffle:
       settings: default
   - type: InteractionPopup
@@ -395,6 +395,8 @@
     interfaces:
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+      enum.StrippingUiKey.Key:              # Starlight
+        type: StrippableBoundUserInterface  # Starlight Readded stipping UI to medibots, wirepanels overwrote them
 
 - type: entity
   parent:
@@ -417,7 +419,7 @@
     description: ghost-role-information-mimebot-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleBotHarmless # Starlight-edit - FreeAgentHarmless -> BotHarmless
     raffle:
       settings: default
   - type: GhostTakeoverAvailable

@@ -262,7 +262,7 @@ public sealed class AdminSystem : EntitySystem
         var overallPlaytime = cachedInfo?.OverallPlaytime;
         // Overwrite with current playtime data, unless it's null (such as if the player just disconnected)
         if (session != null &&
-            _playTime.TryGetTrackerTimes(session, out var playTimes) &&
+            _playTime.TryGetOriginalTrackerTimes(session, out var playTimes) && // Starlight
             playTimes.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out var playTime))
         {
             overallPlaytime = playTime;

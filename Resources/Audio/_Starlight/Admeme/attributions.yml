@@ -1,0 +1,24 @@
+- files: ["announcement_horror.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Goon Station"
+  source: "https://github.com/goonstation/goonstation/tree/master/sound/ambience/industrial"
+
+- files: ["static_horror.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Goon Station"
+  source: "https://github.com/goonstation/goonstation/tree/master/sound/ambience/industrial"
+
+- files: ["station_glitchy.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Goon Station"
+  source: "https://github.com/goonstation/goonstation/tree/master/sound/ambience/industrial"
+
+- files: ["flukie_commander_resignation.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Goon Station"
+  source: "https://github.com/goonstation/goonstation/tree/master/sound/radio_station"
+
+- files: ["flukie_commander_support.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Goon Station"
+  source: "https://github.com/goonstation/goonstation/tree/master/sound/radio_station"

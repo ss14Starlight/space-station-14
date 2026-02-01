@@ -1,8 +1,11 @@
+trait-damaged-throat-name = Damaged Throat
+trait-damaged-throat-desc = Your throat is damaged, causing pain and coughing when you speak normally. Whispering avoids this problem.
+
 trait-archaic-accent-name = Archaic Accent
 trait-archaic-accent-desc = You speak in a way that many others find outdated
 
 trait-chav-accent-name = Cockney Accent
-trait-chav-accent-desc = Oi wankuh, wot did you just say about me nan?
+trait-chav-accent-desc = Oi wanka, wot did you just say about me nan?
 
 trait-nerd-accent-name = Nerd Accent
 trait-nerd-accent-desc = You speak a lot more technical jargon than anyone really wants to hear!

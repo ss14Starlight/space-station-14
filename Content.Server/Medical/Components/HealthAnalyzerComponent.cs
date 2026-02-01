@@ -76,7 +76,7 @@ public sealed partial class HealthAnalyzerComponent : Component
     public bool Talk;
     
     [DataField]
-    public string TalkMessage = "health-analyzer-chat-message";
+    public LocId TalkMessage = "health-analyzer-chat-message";
     
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]

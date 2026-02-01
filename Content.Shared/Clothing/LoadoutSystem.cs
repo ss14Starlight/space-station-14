@@ -146,11 +146,24 @@ public sealed class LoadoutSystem : EntitySystem
     }
 
     public void Equip(EntityUid uid, List<ProtoId<StartingGearPrototype>>? startingGear,
-        List<ProtoId<RoleLoadoutPrototype>>? loadoutGroups)
+        // Starlight edit Start: Antag Loadouts
+        List<ProtoId<RoleLoadoutPrototype>>? loadoutGroups,
+        RoleLoadout? selectedLoadout = null,
+        RoleLoadoutPrototype? selectedLoadoutProto = null)
+        // Starlight edit End
     {
         // First, randomly pick a startingGear profile from those specified, and equip it.
         if (startingGear != null && startingGear.Count > 0)
             _station.EquipStartingGear(uid, _random.Pick(startingGear), false);
+
+        // Starlight Start: Antag Loadouts
+        if (selectedLoadout != null && selectedLoadoutProto != null)
+        {
+            _station.EquipRoleLoadout(uid, selectedLoadout, selectedLoadoutProto);
+            GearEquipped(uid);
+            return;
+        }
+        // Starlight End
 
         if (loadoutGroups == null)
         {

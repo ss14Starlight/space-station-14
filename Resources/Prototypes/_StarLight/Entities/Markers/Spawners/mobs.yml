@@ -40,3 +40,18 @@
     - type: ConditionalSpawner
       prototypes:
         - MobCargorilla
+
+- type: entity
+  name: Gray Xenobiology Slime Spawner
+  id: SpawnGrayXenobiologySlime
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - sprite: _Starlight/Mobs/XenoSlimes/test_sprite.rsi
+          state: test_slime
+        - state: ai
+    - type: ConditionalSpawner
+      prototypes:
+        - XenobiologySlimeGray

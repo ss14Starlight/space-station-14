@@ -674,6 +674,21 @@
         state: sp
 
 - type: entity
+  id: MechAC2FMJ
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 19
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: fmj
+
+- type: entity
   id: BulletLightRifleTraceImprovised
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
@@ -1197,6 +1212,15 @@
 ## energy
 
 - type: entity
+  id: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanAmmo
+  - type: HitscanBasicRaycast
+  - type: HitscanReflect
+  - type: HitscanBasicEffects
+
+- type: entity
   id: EnergyTrace
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
@@ -1243,7 +1267,7 @@
 - type: entity
   id: DestroyBeam
   name: destroying beam
-  parent: LaserTrace
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -1264,7 +1288,7 @@
 - type: entity 
   id: DeleteBeam
   name: erasing beam
-  parent: LaserTrace
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -1286,7 +1310,7 @@
 - type: entity
   id: DisablerBoltPractice
   name: disabler bolt practice
-  parent: EnergyTrace
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicRaycast
@@ -1296,6 +1320,8 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
         state: omnilaser
+  - type: HitscanBasicEffects
+    hitColor: blue
 
 - type: entity
   id: DisablerBolt
@@ -1318,7 +1344,7 @@
 - type: entity
   id: TaserBolt
   name: taser bolt
-  parent: EnergyTrace
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -1454,7 +1480,7 @@
 - type: entity
   id: PointDefenseBeam
   name: Point Defense beam
-  parent: LaserTrace
+  parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicRaycast
@@ -1489,3 +1515,66 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
         state: xeno_toxic
+
+# Energy Magnum
+
+- type: entity
+  name: magnum laser bolt
+  id: BulletLaserMagnumSL
+  categories: [ HideSpawnMenu ]
+  parent:  EnergyTrace
+  components:
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_magnum.rsi
+        state: magnum
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 30
+
+- type: entity
+  name: magnum window-piercing bolt
+  id: BulletLaserWindowPiercingMagnumSL
+  categories: [ HideSpawnMenu ]
+  parent: LaserTrace
+  components:
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_magnum.rsi
+        state: magnum_piercing
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 20
+# USSP maints garbage for Toz (Zoz-106)
+
+- type: entity
+  id: PelletShotgunTozTrace
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 5
+        Structural: 5
+  - type: HitscanPierce
+    chance: 0.03
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: buckshot
+
+- type: entity
+  id: PelletShotgunTozSpreadTrace
+  parent: PelletShotgunTozTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgunTozTrace
+    count: 9
+    spread: 10

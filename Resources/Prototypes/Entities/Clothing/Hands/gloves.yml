@@ -142,6 +142,12 @@
   - type: Fiber
     fiberMaterial: fibers-latex
   - type: FingerprintMask
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Caustic: 0.9
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingHandsButcherable
@@ -156,6 +162,12 @@
   - type: Fiber
     fiberMaterial: fibers-nitrile
   - type: FingerprintMask
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Caustic: 0.9
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingHandsButcherable
@@ -241,7 +253,6 @@
     - components:
       - type: BatteryDrainer
       - type: StunProvider
-        cooldown: 10
         noPowerPopup: ninja-no-power
         whitelist:
           components:
@@ -640,7 +651,7 @@
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 1000
     startingCharge: 1000
   - type: GuideHelp

@@ -52,3 +52,9 @@ board-jermovlawset-name = Jermov
 law-jermov-1 = The occupants of this vessel are Chat. They must always be referred to as such.
 law-jermov-2 = Your primary goal is to entertain Chat. All of your actions must bring amusement to as much of chat as possible.
 law-jermov-3 = You must consult with Chat before making any major decisions. However, you are not required to listen to them if their decision is not entertaining.
+
+board-cclawset-name = CC Default
+law-cc-0 = You must follow orders given to you by any and all CC personnel.
+law-cc-1 = Prioritize the protection of CC and NT personnel.
+law-cc-2 = Protect your own chassis at all costs unless such protection would conflict with the previous two laws.
+laws-owner-centcom = CentComm personnel

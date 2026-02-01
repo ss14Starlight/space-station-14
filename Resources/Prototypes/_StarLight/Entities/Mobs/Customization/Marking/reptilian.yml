@@ -8,3 +8,59 @@
     state: body_dragonwings
   - sprite: _Starlight/Mobs/Customization/reptilian.rsi
     state: body_dragonwings_membrane
+
+- type: marking
+  id: SnakeLargeTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
+    state: snake_large
+  - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
+    state: snake_large_overlay
+
+- type: marking
+  id: SnakeLargeTailAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
+    state: snake_large_wagging
+  - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
+    state: snake_large_wagging_overlay
+
+# Eastern Dragon Snout Markings
+- type: marking
+  id: LizardSnoutEasternDragon
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+    state: eastern_dragon
+  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+    state: eastern_dragon_overlay
+
+- type: marking
+  id: LizardSnoutEasternDragonUsiki
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+    state: eastern_dragon
+  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+    state: eastern_dragon_overlay
+  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+    state: eastern_dragon_usiki
+
+- type: marking
+  id: LizardHeadGuilmon
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Reptilian]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/reptilian_eastern_dragon_snout.rsi
+    state: guilmon

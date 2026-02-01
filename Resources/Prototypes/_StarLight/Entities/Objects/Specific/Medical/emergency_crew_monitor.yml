@@ -7,7 +7,7 @@
   - type: Item
     heldPrefix: scanner
   - type: Sprite
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+    sprite: _Starlight/Objects/Specific/Medical/handheld_para_crewmonitor.rsi
     state: scanner
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key

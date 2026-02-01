@@ -1,6 +1,7 @@
 - type: language
   id: Chittin
   icon: LanguageIconChittin
+  chatPrefix: chi
   speech:
     requireSpeech: false
     color: "#c64c05"

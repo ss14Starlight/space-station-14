@@ -43,9 +43,16 @@ public sealed class CargoGiftsRule : StationEventSystem<CargoGiftsRuleComponent>
 
         component.TimeUntilNextGifts += 30f;
 
-        if (!TryGetRandomStation(out var station, HasComp<StationCargoOrderDatabaseComponent>) ||
-                !TryComp<StationDataComponent>(station, out var stationData))
+        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
+        EntityUid? station = null;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        station = stationEvent.TargetStation;
+        if (station is null)
+            if (!TryGetRandomStation(out station, HasComp<StationCargoOrderDatabaseComponent>)) return;
+
+        if (!TryComp<StationDataComponent>(station, out var stationData))
             return;
+        //Starlight end
 
         if (!TryComp<StationCargoOrderDatabaseComponent>(station, out var cargoDb))
         {

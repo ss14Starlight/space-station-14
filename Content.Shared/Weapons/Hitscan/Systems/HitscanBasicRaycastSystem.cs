@@ -19,6 +19,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Weapons.Reflect;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.NullSpace;
 #endregion Starlight
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
@@ -66,10 +67,12 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
         // Otherwise:
         //  1.) Hit the first entity that you targeted.
         //  2.) Hit the first entity that doesn't require you to aim at it specifically to be hit.
+        // Ignore raycast results that hit a NullSpace entity. // TODO: Do something better?
         var result = _container.IsEntityOrParentInContainer(shooter)
             ? rayCastResults.FirstOrNull()
-            : rayCastResults.FirstOrNull(hit => hit.HitEntity == target
-                                                || CompOrNull<RequireProjectileTargetComponent>(hit.HitEntity)?.Active != true);
+            : rayCastResults.FirstOrNull(hit => (hit.HitEntity == target
+                                                || CompOrNull<RequireProjectileTargetComponent>(hit.HitEntity)?.Active != true)
+                                               && CompOrNull<NullSpaceComponent>(hit.HitEntity) == null);
 
         var distanceTried = result?.Distance ?? ent.Comp.MaxDistance;
 

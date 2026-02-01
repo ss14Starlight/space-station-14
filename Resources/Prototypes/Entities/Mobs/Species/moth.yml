@@ -37,6 +37,7 @@
     accent: zombieMoth
   - type: Speech
     speechVerb: Moth
+    speechSounds: UnisexMoth # Starlight: Add talk sounds
     allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: TypingIndicator
     proto: moth
@@ -46,10 +47,10 @@
     - id: FoodMeat
       amount: 5
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 1
+        Quantity: 300
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -73,11 +74,12 @@
     damage:
       types:
         Heat: 4.5 # #Starlight: bring back the glory days of moths fearing fire
-  - type: Temperature # Moths hate the heat and thrive in the cold.
-    heatDamageThreshold: 320
-    coldDamageThreshold: 230
+  - type: Temperature
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage # Moths hate the heat and thrive in the cold.
+    heatDamageThreshold: 320
+    coldDamageThreshold: 230
     coldDamage:
       types:
         Cold : 0.05 #per second, scales with temperature & other constants
@@ -123,6 +125,7 @@
       - map: [ "enum.HumanoidVisualLayers.Tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
       - map: [ "back" ]
       - map: [ "neck" ]
+      - map: [ "misc" ] # Starlight
       - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.Hair" ]
