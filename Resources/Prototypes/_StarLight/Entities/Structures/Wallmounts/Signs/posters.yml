@@ -407,3 +407,23 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/turret.rsi
     state: turrets
+
+- type: entity
+  parent: PosterBase
+  id: PosterFashionKiller
+  name: "Beautiful Death"
+  description: "No point in killing, if you can't do it in style! - Fasion-O-Mats Co."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/fashion.rsi
+    state: fashion_killer
+
+- type: entity
+  parent: PosterBase
+  id: PosterFashionSing
+  name: "Superstar"
+  description: "You are not a real superstar, when you are not wearing Fashion-O-Mats Co. clothes! - Fasion-O-Mats Co."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/fashion.rsi
+    state: fashion_sing

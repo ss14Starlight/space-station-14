@@ -7,6 +7,7 @@
     state: icon
   content:
   - ClothingBackpackChameleonFill
+  - ChameleonControllerImplanter # Starlight Adding the implanter manually now that it's no longer in the backpack fill.
   - ChameleonProjector
   - FakeMindShieldImplanter
   - AgentIDCard

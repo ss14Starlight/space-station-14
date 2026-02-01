@@ -12,7 +12,7 @@ namespace Content.Shared.Radio.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState] // Starlight edit
 public sealed partial class IntrinsicRadioTransmitterComponent : Component, ISupportsCustomChannels // Starlight edit
 {
-    [DataField]
+    [DataField, AutoNetworkedField] // Starlight-edit
     public HashSet<ProtoId<RadioChannelPrototype>> Channels = new() { SharedChatSystem.CommonChannel };
 
     [DataField, AutoNetworkedField] public HashSet<CustomRadioChannelData> CustomChannels { get; set; } = []; //Starlight

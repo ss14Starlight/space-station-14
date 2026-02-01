@@ -5,6 +5,7 @@
     color: "#80a7d5"
 #    fontId: DefaultItalic
   icon: LanguageIconAielic
+  chatPrefix: aie
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

@@ -1,0 +1,46 @@
+<Document>
+  # Vampire: Hemomancer
+
+  <Box>
+    [color=#990000][italic]"Blood is not evidence - blood is a tool..."[/italic][/color]
+  </Box>
+
+  Hemomancer is the zone control and blood magic class. You shine when you:
+   prepare the arena,
+   manage distance,
+   force fights on your terms.
+
+  ## Role in the Round
+
+   [bold](Trap hunter)[/bold]: cut off routes with barriers and force bad pathing.
+   [bold]Clinical predator[/bold]: you don't always need to finish the job — sometimes a clean bite, reset, repeat is best.
+
+  ## Abilities (Total Blood Threshold | Cost)
+
+  [bold](150 | 30)[/bold] Vampiric Claws
+   You channel blood magics to forge deadly vampiric claws that leech blood and strike rapidly. 
+
+  [bold](250 | 25)[/bold] Blood Tendrils
+   After a short delay, hits a 3×3 area.
+   Heavy slow + poison — perfect for a safe bite or a clean escape.
+
+  [bold](250 | 40)[/bold] Blood Barrier
+   Places multiple blood barriers; vampires can pass through them.
+   Use them to create “pockets” and cutoffs to buy time.
+
+  [bold](400 | 30)[/bold] Sanguine Pool
+   Briefly turns you into a blood puddle.
+   Great for escaping, changing angles, and slipping past obstacles.
+
+  [bold](600 | 20)[/bold] Predator Sense
+   Helps track prey/targets. Especially useful once the station is alert.
+
+  [bold](800 | 100)[/bold] Blood Eruption
+   Causes nearby blood to erupt, severely damaging anyone standing on it.
+   A fightswinger: set up blood beforehand or force bleeding.
+
+  [bold](1000 | (toggle) )[/bold] Blood Bringers Rite
+   Ultimate aura that makes nearby people bleed and rejuvenates you.
+   Requires full power (high total blood and enough unique victims), otherwise it won't activate.
+
+</Document>

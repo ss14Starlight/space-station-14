@@ -74,7 +74,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: BaseChemistryEmptyVial
+        - id: ChemistryEmptyVial
           amount: 6
   - type: ItemCounter
     count:

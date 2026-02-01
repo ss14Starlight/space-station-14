@@ -54,3 +54,6 @@ lobby-state-background-blackfeathers-artist = Gib Schmib
 
 lobby-state-background-mime-title = Mime
 lobby-state-background-mime-artist = Darkrell
+
+lobby-state-background-Dispace-title = Dispace
+lobby-state-background-IQlvlZero-artist = IQlvlZero

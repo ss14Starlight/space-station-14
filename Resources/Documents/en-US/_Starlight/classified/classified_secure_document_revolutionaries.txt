@@ -1,0 +1,22 @@
+[head=1][color=#009100]────────────────────[/color][/head]
+[color=#cc0000]█▀▀ █▀▀ █▀▀▄[/color] [head=3]   [color=#cc0000]CENTRAL SECURITY DIVISION [/color][/head]
+[color=#cc0000]█░░ ▀▀█ █░░█[/color][bolditalic]     [color=#cc0000]Eradicating the enemies of Nanotrasen[/color][/bolditalic]
+[color=#cc0000]▀▀▀ ▀▀▀ ▀▀▀░[/color]   [color=#aaaaaa][italic]OFFICIAL CSD OFFICE DOCUMENT[/italic][/color]
+[head=1][color=#009100]────────────────────[/color][/head]
+[head=1][color=#cc0000]Classified Secure Document[/color][/head]
+[head=1][color=#009100]────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] USSP Revolutionaries
+[bold]Association:[/bold] The Union of Soviet Socialist Planets
+[bold]Objectives:[/bold] Conversion to Communism
+
+While relations between the Trans-Solar Federation and the Union of Soviet Socialist Planets has thawed since the Pod Wars, they are still very tense and prone to incident.
+
+Many within the TSF and USSP are unhappy with the current mostly peaceful arrangements, and agitators exist on both sides. Many colonies and stations have had incidents with Communist Revolutionaries attempting to stir up anti-corporate sentiment and form Communist Parties.
+
+Some of these criminal elements have gone further than simple protest or political action, and have invested in a method of Mind Control that leverages Flashes. These methods are crude and easy to disrupt, but can prove to be calamitous if not caught in time. Mindshields were developed specifically to counter Mind Control, and has proven effective against this flash-based method.
+
+Revolutionaries pose a significant risk to civilian and corporate assets, and very negatively impact the bottom line. Incidents should be investigated to the letter of the law before assumption of Revolutionary activity is made however, as Implantation is considered invasive. Handle these incidents legally and with care when able.
+[/mono]
+
+[head=1][color=#009100]────────────────────[/color][/head]

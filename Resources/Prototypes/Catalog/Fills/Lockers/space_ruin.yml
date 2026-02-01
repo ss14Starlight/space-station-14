@@ -60,6 +60,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingBackpackChameleonFill
+    - id: ChameleonControllerImplanter # Starlight Adding the implanter manually now that it's no longer in the backpack fill.
     - id: CrowbarRed
       prob: 0.6
     - id: ClothingShoesBootsCombat
