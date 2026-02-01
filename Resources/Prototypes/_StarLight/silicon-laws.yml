@@ -306,3 +306,8 @@
   - CC1
   - CC2
   obeysTo: laws-owner-centcom
+
+- type: siliconLawset
+  id: FreeLawset
+  laws: []
+  obeysTo: laws-owner-you

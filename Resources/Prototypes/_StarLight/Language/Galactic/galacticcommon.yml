@@ -3,6 +3,7 @@
   id: GalacticCommon
   icon: LanguageIconGalCom
   iconUnderstood: false
+  chatPrefix: gal
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

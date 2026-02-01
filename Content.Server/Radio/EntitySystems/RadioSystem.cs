@@ -481,11 +481,22 @@ public sealed class RadioSystem : EntitySystem
     }
 
     #region Starlight
-    private void OnTransmitterEncryptionChannelsChanged(Entity<IntrinsicRadioTransmitterComponent> ent, ref EncryptionChannelsChangedEvent args) => ent.Comp.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
+
+    private void OnTransmitterEncryptionChannelsChanged(Entity<IntrinsicRadioTransmitterComponent> ent,
+        ref EncryptionChannelsChangedEvent args)
+    {
+        ent.Comp.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
+        Dirty(ent);
+    }
     private void OnReceiverEncryptionChannelsChanged(Entity<IntrinsicRadioReceiverComponent> ent, ref EncryptionChannelsChangedEvent args)
     {
-        if(TryComp(ent.Owner, out ActiveRadioComponent? radio))
-            radio.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))]; 
+        //Starlight begin
+        if (TryComp(ent.Owner, out ActiveRadioComponent? radio))
+        {
+            radio.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
+            Dirty(ent, radio);
+        } 
+        //Starlight end
     }
     #endregion Starlight
 }

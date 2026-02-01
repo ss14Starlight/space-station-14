@@ -15,5 +15,42 @@
     StalkingObjective: 1
     DisgraceObjective: 1
     MaintsBarObjective: 1
+
+# Vampire
+- type: weightedRandom
+  id: VampireObjectiveGroups
+  weights:
+    VampireObjectiveGroupSteal: 1
+    VampireObjectiveGroupKill: 1
+    VampireObjectiveGroupDrain: 1
+    VampireObjectiveGroupState: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupSteal
+  weights:
+    CMOHyposprayVampireStealObjective: 1
+    RDHardsuitVampireStealObjective: 1
+    EnergyShotgunVampireStealObjective: 1
+    MagbootsVampireStealObjective: 1
+    ClipboardVampireStealObjective: 1
+    CaptainIDVampireStealObjective: 1
+    CaptainJetpackVampireStealObjective: 1
+    CaptainGunVampireStealObjective: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupKill
+  weights:
+    VampireKillRandomPersonObjective: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupDrain
+  weights:
+    VampireDrainObjective: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupState
+  weights:
+    VampireSurviveObjective: 1
+    VampireEscapeObjective: 1
     ReputationObjective: 0.5
     FalseOutbreakObjective: 0.75

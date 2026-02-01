@@ -1,6 +1,7 @@
 - type: language
   id: Carptongue
   icon: LanguageIconFish
+  chatPrefix: crp
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

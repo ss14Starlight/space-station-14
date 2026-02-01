@@ -22,7 +22,7 @@ public sealed partial class StarlightEntitySystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryEntity<T>(EntityUid uid, [NotNullWhen(true)] out Entity<T> entity, bool log = true)
-        where T : class, IComponent?
+        where T : class, IComponent
     {
         entity = default;
         if (!uid.IsValid() || !TryComp(uid, out MetaDataComponent? metadata))
@@ -43,8 +43,8 @@ public sealed partial class StarlightEntitySystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryEntity<T1, T2>(EntityUid uid, [NotNullWhen(true)] out Entity<T1, T2> entity, bool log = true)
-        where T1 : class, IComponent?
-        where T2 : class, IComponent?
+        where T1 : class, IComponent
+        where T2 : class, IComponent
     {
         entity = default;
         if (!uid.IsValid() || !TryComp(uid, out MetaDataComponent? metadata))
@@ -71,9 +71,9 @@ public sealed partial class StarlightEntitySystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryEntity<T1, T2, T3>(EntityUid uid, [NotNullWhen(true)] out Entity<T1, T2, T3> entity, bool log = true)
-        where T1 : class, IComponent?
-        where T2 : class, IComponent?
-        where T3 : class, IComponent?
+        where T1 : class, IComponent
+        where T2 : class, IComponent
+        where T3 : class, IComponent
     {
         entity = default;
         if (!uid.IsValid() || !TryComp(uid, out MetaDataComponent? metadata))
@@ -106,10 +106,10 @@ public sealed partial class StarlightEntitySystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryEntity<T1, T2, T3, T4>(EntityUid uid, [NotNullWhen(true)] out Entity<T1, T2, T3, T4> entity, bool log = true)
-        where T1 : class, IComponent?
-        where T2 : class, IComponent?
-        where T3 : class, IComponent?
-        where T4 : class, IComponent?
+        where T1 : class, IComponent
+        where T2 : class, IComponent
+        where T3 : class, IComponent
+        where T4 : class, IComponent
     {
         entity = default;
         if (!uid.IsValid() || !TryComp(uid, out MetaDataComponent? metadata))
@@ -148,11 +148,11 @@ public sealed partial class StarlightEntitySystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryEntity<T1, T2, T3, T4, T5>(EntityUid uid, [NotNullWhen(true)] out Entity<T1, T2, T3, T4, T5> entity, bool log = true)
-        where T1 : class, IComponent?
-        where T2 : class, IComponent?
-        where T3 : class, IComponent?
-        where T4 : class, IComponent?
-        where T5 : class, IComponent?
+        where T1 : class, IComponent
+        where T2 : class, IComponent
+        where T3 : class, IComponent
+        where T4 : class, IComponent
+        where T5 : class, IComponent
     {
         entity = default;
         if (!uid.IsValid() || !TryComp(uid, out MetaDataComponent? metadata))
@@ -197,12 +197,12 @@ public sealed partial class StarlightEntitySystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryEntity<T1, T2, T3, T4, T5, T6>(EntityUid uid, [NotNullWhen(true)] out Entity<T1, T2, T3, T4, T5, T6> entity, bool log = true)
-        where T1 : class, IComponent?
-        where T2 : class, IComponent?
-        where T3 : class, IComponent?
-        where T4 : class, IComponent?
-        where T5 : class, IComponent?
-        where T6 : class, IComponent?
+        where T1 : class, IComponent
+        where T2 : class, IComponent
+        where T3 : class, IComponent
+        where T4 : class, IComponent
+        where T5 : class, IComponent
+        where T6 : class, IComponent
     {
         entity = default;
         if (!uid.IsValid() || !TryComp(uid, out MetaDataComponent? metadata))
