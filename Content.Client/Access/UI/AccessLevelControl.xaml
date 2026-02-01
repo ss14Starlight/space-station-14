@@ -1,4 +1,4 @@
 <GridContainer xmlns="https://spacestation14.io"
-               Columns="4"
+               Columns="5"
                HorizontalAlignment="Center">
 </GridContainer>

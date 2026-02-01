@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Access.Systems;
 using Content.Server.Forensics;
@@ -10,8 +11,14 @@ using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+// Starlight Start
+using Content.Shared.Silicons.StationAi;
+using Content.Shared.Silicons.Borgs.Components;
+// Starlight End
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -36,6 +43,8 @@ namespace Content.Server.StationRecords.Systems;
 /// </summary>
 public sealed class StationRecordsSystem : SharedStationRecordsSystem
 {
+    private static readonly ISawmill Sawmill = Logger.GetSawmill("stationrecords");
+
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly StationRecordKeyStorageSystem _keyStorage = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -53,7 +62,10 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     private void OnPlayerSpawn(PlayerSpawnCompleteEvent args)
     {
         if (!TryComp<StationRecordsComponent>(args.Station, out var stationRecords))
+        {
+            Sawmill.Warning($"Station {ToPrettyString(args.Station)} is missing {nameof(StationRecordsComponent)}. Unable to create records for {ToPrettyString(args.Mob)}.");
             return;
+        }
 
         CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
     }
@@ -83,16 +95,38 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         }
     }
 
+    /// <summary>
+    /// Validates core spawn details and forwards to the record-creation helper.
+    /// </summary>
     private void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
         string? jobId, StationRecordsComponent records)
     {
-        // TODO make PlayerSpawnCompleteEvent.JobId a ProtoId
-        if (string.IsNullOrEmpty(jobId)
-            || !_prototypeManager.HasIndex<JobPrototype>(jobId))
+        if (profile == null)
+        {
+            Sawmill.Error($"Null profile provided while creating station record for {ToPrettyString(player)}.");
             return;
+        }
 
-        if (!_inventory.TryGetSlotEntity(player, "id", out var idUid))
+        if (string.IsNullOrEmpty(jobId))
+        {
+            Sawmill.Warning($"No job id supplied while creating station record for {profile.Name} ({ToPrettyString(player)}).");
             return;
+        }
+
+        if (!_prototypeManager.HasIndex<JobPrototype>(jobId))
+        {
+            Sawmill.Error($"Invalid job id '{jobId}' while creating station record for {profile.Name} ({ToPrettyString(player)}).");
+            return;
+        }
+
+        // Cache the ID entity if present so we can attach the record key after creation.
+        EntityUid? idUid = null;
+        if (_inventory.TryGetSlotEntity(player, "id", out var idEntity))
+        {
+            idUid = idEntity;
+        }
+        // When players spawn without an ID (e.g. in tests or special scenarios) we still create the record, but the key
+        // will be assigned later once an ID exists.
 
         TryComp<FingerprintComponent>(player, out var fingerprintComponent);
         TryComp<DnaComponent>(player, out var dnaComponent);
@@ -103,9 +137,16 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             specie = profile.CustomSpecieName + " (" + profile.Species + ")";
         /// Starlight - End
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie)
+        // Starlight Start: Silicons use the correct name for mail
+        string characterName = profile.Name;
+        if (HasComp<StationAiHeldComponent>(player) || HasComp<BorgChassisComponent>(player))
+        {
+            var metaData = MetaData(player);
+            characterName = metaData.EntityName;
+        }
+        // Starlight End
+        CreateGeneralRecord(station, idUid, characterName, profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie, profile.Name -> characterName)
     }
-
 
     /// <summary>
     ///     Create a general record to store in a station's record set.
@@ -148,12 +189,16 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         StationRecordsComponent records)
     {
         if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobPrototype))
-            throw new ArgumentException($"Invalid job prototype ID: {jobId}");
+        {
+            Sawmill.Error($"Failed to find job prototype '{jobId}' while creating station record for {name} on {ToPrettyString(station)}.");
+            return;
+        }
 
         // when adding a record that already exists use the old one
         // this happens when respawning as the same character
         if (GetRecordByName(station, name, records) is {} id)
         {
+            Sawmill.Debug($"Reusing existing general record {id} for {name} on {ToPrettyString(station)}.");
             SetIdKey(idUid, new StationRecordKey(id, station));
             return;
         }
@@ -175,11 +220,12 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         var key = AddRecordEntry(station, record);
         if (!key.IsValid())
         {
-            Log.Warning($"Failed to add general record entry for {name}");
+            Sawmill.Error($"Failed to add general record entry for {name} on {ToPrettyString(station)}.");
             return;
         }
 
         SetIdKey(idUid, key);
+        Sawmill.Debug($"Created general station record {key.Id} for {name} on {ToPrettyString(station)}.");
 
         RaiseLocalEvent(new AfterGeneralRecordCreatedEvent(key, record, profile));
     }
@@ -198,7 +244,14 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             keyStorageEntity = id;
         }
 
-        _keyStorage.AssignKey(keyStorageEntity, key);
+        if (!TryComp<StationRecordKeyStorageComponent>(keyStorageEntity, out var storage))
+        {
+            Sawmill.Warning($"Entity {ToPrettyString(keyStorageEntity)} is missing {nameof(StationRecordKeyStorageComponent)}; cannot assign station record key {key.Id}.");
+            return;
+        }
+
+        _keyStorage.AssignKey(keyStorageEntity, key, storage);
+        Sawmill.Debug($"Assigned station record key {key.Id} to {ToPrettyString(keyStorageEntity)}.");
     }
 
     /// <summary>
@@ -210,14 +263,19 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     public bool RemoveRecord(StationRecordKey key, StationRecordsComponent? records = null)
     {
         if (!Resolve(key.OriginStation, ref records))
+        {
+            Sawmill.Warning($"Failed to resolve {nameof(StationRecordsComponent)} for station {ToPrettyString(key.OriginStation)} while removing record {key.Id}.");
             return false;
+        }
 
         if (records.Records.RemoveAllRecords(key.Id))
         {
             RaiseLocalEvent(new RecordRemovedEvent(key));
+            Sawmill.Debug($"Removed station record {key.Id} from {ToPrettyString(key.OriginStation)}.");
             return true;
         }
 
+        Sawmill.Warning($"Attempted to remove non-existent station record {key.Id} from {ToPrettyString(key.OriginStation)}.");
         return false;
     }
 
@@ -332,33 +390,25 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     /// </summary>
     public bool IsSkipped(StationRecordsFilter? filter, GeneralStationRecord someRecord)
     {
-        // if nothing is being filtered, show everything
-        if (filter == null)
-            return false;
-        if (filter.Value.Length == 0)
+        if (StationRecordFilterHelper.IsFilterEmpty(filter, out var filterText))
             return false;
 
-        var filterLowerCaseValue = filter.Value.ToLower();
+        var filterType = filter!.Type;
 
-        return filter.Type switch
+        return filterType switch
         {
             StationRecordFilterType.Name =>
-                !someRecord.Name.ToLower().Contains(filterLowerCaseValue),
+                !StationRecordFilterHelper.ContainsText(someRecord.Name, filterText),
             StationRecordFilterType.Job =>
-                !someRecord.JobTitle.ToLower().Contains(filterLowerCaseValue),
+                !StationRecordFilterHelper.ContainsText(someRecord.JobTitle, filterText),
             StationRecordFilterType.Species =>
-                !someRecord.Species.ToLower().Contains(filterLowerCaseValue),
+                !StationRecordFilterHelper.ContainsText(someRecord.Species, filterText),
             StationRecordFilterType.Prints => someRecord.Fingerprint != null
-                && IsFilterWithSomeCodeValue(someRecord.Fingerprint, filterLowerCaseValue),
+                && !StationRecordFilterHelper.MatchesCodePrefix(someRecord.Fingerprint, filterText),
             StationRecordFilterType.DNA => someRecord.DNA != null
-                && IsFilterWithSomeCodeValue(someRecord.DNA, filterLowerCaseValue),
+                && !StationRecordFilterHelper.MatchesCodePrefix(someRecord.DNA, filterText),
             _ => throw new IndexOutOfRangeException(nameof(filter.Type)),
         };
-    }
-
-    private bool IsFilterWithSomeCodeValue(string value, string filter)
-    {
-        return !value.ToLower().StartsWith(filter);
     }
 
     /// <summary>

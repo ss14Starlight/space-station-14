@@ -1,1 +1,0 @@
-gnomification = {CAPITALIZE(THE($target))} transforms into a gnome!

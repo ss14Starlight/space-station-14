@@ -1,6 +1,5 @@
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Interaction;
-using Content.Shared.Popups;
 using Content.Shared.Radio.Components;
 using Robust.Shared.Prototypes;
 
@@ -9,7 +8,6 @@ namespace Content.Shared._Starlight.Xenobiology.Potions;
 public sealed class SlimeBluespaceRadioPotionSystem : EntitySystem
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
     
     public override void Initialize()
     {
@@ -29,9 +27,8 @@ public sealed class SlimeBluespaceRadioPotionSystem : EntitySystem
             intrinsicRadioTransmitterComponent.Channels.Add(channel);
         }
         intrinsicRadioTransmitterComponent.Channels = ent.Comp.Channels;
-        Dirty(ent.Owner, intrinsicRadioTransmitterComponent);
         _entityManager.AddComponent<IntrinsicRadioReceiverComponent>(args.Target.Value);
-        _sharedPopupSystem.PopupPredicted($"{MetaData(args.Target.Value).EntityName} can now always use the radio.", args.Target.Value, args.Target.Value);
+        
         PredictedQueueDel(args.Used);
         args.Handled = true;
     }

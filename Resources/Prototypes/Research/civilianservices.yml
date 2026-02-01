@@ -92,7 +92,6 @@
   - SlopDispenserMachineCircuitboard #SL
   radioChannels:
   - Service
-  - Medical # starlight
 
 # Tier 2
 
@@ -115,8 +114,6 @@
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
   - FauxTileDesertAstroSand
-  - FauxTileAstroIronsand
-  - FauxTileAstroIronsandBorderless
   radioChannels:
   - Service
 
@@ -146,8 +143,7 @@
 #  tier: 2
 #  cost: 5000
 #  recipeUnlocks:
-#  - BorgModuleAdvancedTopical
-#  - AdvancedJetInjector
+#  - BorgModuleAdvancedChemical
 
 - type: technology
   id: AdvancedCleaning
@@ -184,8 +180,6 @@
   - HonkerPeripheralsElectronics
   - HonkerTargetingElectronics
   - MechEquipmentHorn
-  technologyPrerequisites:
-  - RipleyAPLU # starlight
 
 - type: technology
   id: HONKWeapons
@@ -199,8 +193,6 @@
   recipeUnlocks:
   - MechEquipmentHonkerBananaMortar
   - MechEquipmentHonkerMousetrapMortar
-  technologyPrerequisites:
-  - HONKMech # starlight
 
 - type: technology
   id: AdvancedSpray

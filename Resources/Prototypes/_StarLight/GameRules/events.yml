@@ -43,10 +43,6 @@
         - Abductor
       mindRoles:
       - MindRoleLoneAbductor
-      # Starlight-start
-      tags:
-        - CantBecomeRevolutionary
-      # Starlight-end
     - spawnerPrototype: AbductorAgentSpawner
       min: 1
       max: 1
@@ -72,10 +68,6 @@
         - Abductor
       mindRoles:
       - MindRoleLoneAbductor
-      # Starlight-start
-      tags:
-        - CantBecomeRevolutionary
-      # Starlight-end
       
 #Conf's Admeme Shuttles 
 - type: entity
@@ -342,10 +334,6 @@
         canDisarm: true
       mindRoles:
       - MindRoleBrighteye
-      # Starlight-start
-      tags:
-        - CantBecomeRevolutionary
-      # Starlight-end
   - type: AntagObjectives
     objectives:
     - BirghteyeSurviveObjective

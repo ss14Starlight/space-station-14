@@ -50,6 +50,7 @@
     allowed:
     - Corporeal
     - Electrocution
+    - StaminaModifier
   - type: Fixtures
     fixtures:
       fix1:
@@ -170,10 +171,10 @@
   - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 140
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1000
     startingCharge: 1000
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 50
   - type: Gun
     fireRate: 0.3

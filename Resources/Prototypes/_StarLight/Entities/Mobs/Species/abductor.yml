@@ -48,10 +48,10 @@
       groups:
         Brute: -0.14
   - type: Bloodstream
-    bloodReferenceSolution:
+    bloodReagents:
       reagents:
       - ReagentId: AbductorBlood
-        Quantity: 300
+        Quantity: 1
 
 - type: entity
   parent: BaseSpeciesDummy

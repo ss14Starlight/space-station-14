@@ -26,9 +26,9 @@ public abstract partial class SharedGunSystem
             : Loc.GetString("gun-cartridge-unspent"));
     }
 
-    private void OnCartridgeDamageExamine(Entity<CartridgeAmmoComponent> ent, ref DamageExamineEvent args)
+    private void OnCartridgeDamageExamine(EntityUid uid, CartridgeAmmoComponent component, ref DamageExamineEvent args)
     {
-        var damageSpec = GetProjectileDamage(ent.Comp.Prototype);
+        var damageSpec = GetProjectileDamage(component.Prototype);
 
         if (damageSpec == null)
             return;

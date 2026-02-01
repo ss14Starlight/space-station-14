@@ -2,7 +2,6 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using Content.Client.Verbs;
-using Content.Shared._Starlight.Utility;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Input;
@@ -239,9 +238,8 @@ namespace Content.Client.Examine
 
             if (knowTarget)
             {
-                var itemName = Identity.Name(target, EntityManager, player); // Starlight: Do not blanket escape.
-                var labelMessage = FormattedMessage.FromMarkupPermissive($"[bold]{itemName}[/bold]")
-                        .SanitizeWhitelist(FormattedMessageSanitizer.ItemLabelTags); // Starlight: Instead, sanitize to permitted tags.
+                var itemName = FormattedMessage.EscapeText(Identity.Name(target, EntityManager, player));
+                var labelMessage = FormattedMessage.FromMarkupPermissive($"[bold]{itemName}[/bold]");
                 var label = new RichTextLabel();
                 label.SetMessage(labelMessage);
                 hBox.AddChild(label);

@@ -21,6 +21,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Content.Shared.UserInterface;
+using Serilog;
 using Robust.Shared.Localization;
 using Content.Server.Botany.Systems;
 using Robust.Shared.Prototypes;

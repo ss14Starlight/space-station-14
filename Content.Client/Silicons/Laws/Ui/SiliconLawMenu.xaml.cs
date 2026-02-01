@@ -21,7 +21,7 @@ public sealed partial class SiliconLawMenu : FancyWindow
 
         foreach (var law in state.Laws)
         {
-            var control = new LawDisplay(uid, law, state.RadioChannels, state.CustomRadioChannels); //Starlight edit
+            var control = new LawDisplay(uid, law, state.RadioChannels);
 
             LawDisplayContainer.AddChild(control);
         }

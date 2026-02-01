@@ -1,7 +1,6 @@
 - type: language
   id: Moffic
   icon: LanguageIconMoth
-  chatPrefix: mof
   speech:
     color: "#c7df2edd"
     fontId: Copperplate

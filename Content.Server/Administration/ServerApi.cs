@@ -487,13 +487,26 @@ public sealed partial class ServerApi : IPostInjectInit
             }
 
             InfoResponse.MapInfo? mapInfo = null;
-            if (_gameMapManager.GetSelectedMap() is { } mapPrototype)
+            if (_gameMapManager.GetSelectedMaps() is { } mapPrototypes)
             {
-                mapInfo = new InfoResponse.MapInfo
+                //get the first valid map
+                var mapPrototype = mapPrototypes.FirstOrDefault(m => m != null);
+                if (mapPrototype != null)
                 {
-                    Id = mapPrototype.ID,
-                    Name = mapPrototype.MapName
-                };
+                    mapInfo = new InfoResponse.MapInfo
+                    {
+                        Id = mapPrototype.ID,
+                        Name = mapPrototype.MapName
+                    };
+                }
+                else 
+                {
+                    mapInfo = new InfoResponse.MapInfo
+                    {
+                        Id = Loc.GetString("game-ticker-no-map-selected"),
+                        Name = Loc.GetString("game-ticker-no-map-selected")
+                    };
+                }
             }
 
             var gameRules = new List<string>();

@@ -13,9 +13,6 @@
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
   - MechEquipmentKineticAccelerator
-  - FiringPinExpedition # Starlight
-  technologyPrerequisites:
-  - SalvageEquipment # starlight
   radioChannels:
   - Supply
   # These are roundstart but not replenishable for salvage
@@ -58,7 +55,6 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
-  - FiringPinLaser # Starlight
   - WeaponMechCombatFiredartLaser
   radioChannels:
   - Security
@@ -216,12 +212,6 @@
   - PKAUpgradeDamage
   - PKAUpgradeRange
   - PKAUpgradeFireRate
-  # region starlight
-  technologyPrerequisites:
-  - SalvageWeapons
-  radioChannels:
-  - Supply
-  # end region
 
 - type: technology
   id: BasicShuttleArmament
@@ -237,15 +227,13 @@
   - PowerCageSmall
   - PowerCageMedium
   - MagazineGrenadeEmpty
-  - GrenadeBaton # starlight TODO move to riot control or smth if a sec nade launcher is added?
-  - GrenadeBlast
   - GrenadeFlash
+  - GrenadeBlast
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
-  - Shuttlecraft # starlight
   radioChannels:
   - Security
 
@@ -306,7 +294,6 @@
   cost: 15000
   recipeUnlocks:
   - GrenadeEMP
-#  - GrenadeFrag starlight
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:

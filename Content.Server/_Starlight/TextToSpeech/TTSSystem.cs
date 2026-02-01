@@ -93,8 +93,7 @@ public sealed partial class TTSSystem : EntitySystem
     private void OnRadioReceiveEvent(RadioSpokeEvent args)
     {
         if (!_isEnabled
-            || args.Message.Length > MaxChars
-            || args.SuppressTTS)
+            || args.Message.Length > MaxChars)
             return;
 
         args.Message = StripRichTextTags(args.Message);

@@ -1,37 +1,34 @@
 using Content.Server.Bible.Components;
+using Content.Server.Chat; //Starlight
 using Content.Server.Ghost.Roles.Events;
+using Content.Server.Hands.Systems; //Starlight
 using Content.Server.Popups;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Bible;
+using Content.Shared.Clumsy; //Starlight
+using Content.Shared.Cluwne; //Starlight
+using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Ghost.Roles.Components;
+using Content.Shared.Hands.Components; //Starlight
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Timing;
-using Content.Shared.Verbs;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Player;
-using Robust.Shared.Random;
-
-#region Starlight
-using Content.Server.Chat;
-using Content.Server.Hands.Systems;
-using Content.Shared.Clumsy;
-using Content.Shared.Cluwne;
-using Content.Shared.Damage;
-using Content.Shared.Hands.Components;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
+using Content.Shared.Timing;
 using Content.Shared.Vampire.Components;
+using Content.Shared.Verbs;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Player;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
-#endregion Starlight
 
 namespace Content.Server.Bible
 {
@@ -56,7 +53,7 @@ namespace Content.Server.Bible
             base.Initialize();
 
             SubscribeLocalEvent<BibleComponent, AfterInteractEvent>(OnAfterInteract);
-            SubscribeLocalEvent<BibleComponent, EntGotInsertedIntoContainerMessage>(OnInsertedContainer); // Starlight
+            SubscribeLocalEvent<BibleComponent, EntGotInsertedIntoContainerMessage>(OnInsertedContainer);
             SubscribeLocalEvent<SummonableComponent, GetVerbsEvent<AlternativeVerb>>(AddSummonVerb);
             SubscribeLocalEvent<SummonableComponent, GetItemActionsEvent>(GetSummonAction);
             SubscribeLocalEvent<SummonableComponent, SummonActionEvent>(OnSummon);
@@ -64,7 +61,6 @@ namespace Content.Server.Bible
             SubscribeLocalEvent<FamiliarComponent, GhostRoleSpawnerUsedEvent>(OnSpawned);
         }
 
-        // Starlight start
         private void OnInsertedContainer(EntityUid uid, BibleComponent component, EntGotInsertedIntoContainerMessage args)
         {
             //If an unholy creature picks up the bible, knock them down
@@ -78,7 +74,6 @@ namespace Content.Server.Bible
                 });
             }
         }
-        // Starlight end
 
         private readonly Queue<EntityUid> _addQueue = new();
         private readonly Queue<EntityUid> _remQueue = new();
@@ -149,36 +144,31 @@ namespace Content.Server.Bible
                 return;
             }
 
-            // Starlight start
             //Damage unholy creatures
             if (HasComp<UnholyComponent>(args.Target))
             {
                 _damageableSystem.TryChangeDamage(args.Target.Value, component.DamageUnholy, true, origin: uid);
 
-                var othersUnholyMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
-                _popupSystem.PopupEntity(othersUnholyMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.MediumCaution);
+                var othersMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                _popupSystem.PopupEntity(othersMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.MediumCaution);
 
-                var selfUnholyMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
-                _popupSystem.PopupEntity(selfUnholyMessage, args.User, args.User, PopupType.LargeCaution);
+                var selfMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                _popupSystem.PopupEntity(selfMessage, args.User, args.User, PopupType.LargeCaution);
 
                 _delay.TryResetDelay((uid, useDelay));
 
                 return;
             }
-            // Starlight end
 
-            var userEnt = Identity.Entity(args.User, EntityManager);
-            var targetEnt = Identity.Entity(args.Target.Value, EntityManager);
-
-            // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar.
-            if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out _) && !HasComp<FamiliarComponent>(args.Target.Value))
+            // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar..
+            if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out var _) && !HasComp<FamiliarComponent>(args.Target.Value))
             {
                 if (_random.Prob(component.FailChance))
                 {
-                    var othersFailMessage = Loc.GetString(component.LocPrefix + "-heal-fail-others", ("user", userEnt), ("target", targetEnt), ("bible", uid));
+                    var othersFailMessage = Loc.GetString(component.LocPrefix + "-heal-fail-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
                     _popupSystem.PopupEntity(othersFailMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.SmallCaution);
 
-                    var selfFailMessage = Loc.GetString(component.LocPrefix + "-heal-fail-self", ("target", targetEnt), ("bible", uid));
+                    var selfFailMessage = Loc.GetString(component.LocPrefix + "-heal-fail-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
                     _popupSystem.PopupEntity(selfFailMessage, args.User, args.User, PopupType.MediumCaution);
 
                     _audio.PlayPvs(component.BibleHitSound, args.User);
@@ -223,25 +213,24 @@ namespace Content.Server.Bible
             }
             //#endregion
 
-            string othersMessage;
-            string selfMessage;
-
             if (_damageableSystem.TryChangeDamage(args.Target.Value, component.Damage, true, origin: uid))
             {
-                othersMessage = Loc.GetString(component.LocPrefix + "-heal-success-others", ("user", userEnt), ("target", targetEnt), ("bible", uid));
-                selfMessage = Loc.GetString(component.LocPrefix + "-heal-success-self", ("target", targetEnt), ("bible", uid));
+                var othersMessage = Loc.GetString(component.LocPrefix + "-heal-success-none-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                _popupSystem.PopupEntity(othersMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.Medium);
 
-                _audio.PlayPvs(component.HealSoundPath, args.User);
-                _delay.TryResetDelay((uid, useDelay));
+                var selfMessage = Loc.GetString(component.LocPrefix + "-heal-success-none-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                _popupSystem.PopupEntity(selfMessage, args.User, args.User, PopupType.Large);
             }
             else
             {
-                othersMessage = Loc.GetString(component.LocPrefix + "-heal-success-none-others", ("user", userEnt), ("target", targetEnt), ("bible", uid));
-                selfMessage = Loc.GetString(component.LocPrefix + "-heal-success-none-self", ("target", targetEnt), ("bible", uid));
-            }
+                var othersMessage = Loc.GetString(component.LocPrefix + "-heal-success-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                _popupSystem.PopupEntity(othersMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.Medium);
 
-            _popupSystem.PopupEntity(othersMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.Medium);
-            _popupSystem.PopupEntity(selfMessage, args.User, args.User, PopupType.Large);
+                var selfMessage = Loc.GetString(component.LocPrefix + "-heal-success-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                _popupSystem.PopupEntity(selfMessage, args.User, args.User, PopupType.Large);
+                _audio.PlayPvs(component.HealSoundPath, args.User);
+                _delay.TryResetDelay((uid, useDelay));
+            }
         }
 
         private void AddSummonVerb(EntityUid uid, SummonableComponent component, GetVerbsEvent<AlternativeVerb> args)

@@ -8,6 +8,7 @@
     possibleSpawns:
     - SmartSubwooferBorgiChassis
     - SubwooferBorgiChassis
+    - BaseStationBorgiChassis
     - StationBorgiChassis
     - MobCorgiSmart
 

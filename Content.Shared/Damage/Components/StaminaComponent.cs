@@ -39,15 +39,9 @@ public sealed partial class StaminaComponent : Component
     public float StaminaDamage;
 
     /// <summary>
-    /// The base stamina the entity requires to enter stam crit. Should rarely if ever be modified outside of yaml.
+    /// How much stamina damage is required to enter stam crit.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public float BaseCritThreshold = 100f;
-
-    /// <summary>
-    /// Modified crit threshold for when an entity should enter stamcrit.
-    /// </summary>
-    [ViewVariables, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public float CritThreshold = 100f;
 
     /// <summary>
@@ -95,30 +89,6 @@ public sealed partial class StaminaComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<FixedPoint2, float> StunModifierThresholds = new() { {0, 1f }, { 0.6, 0.7f }, { 0.8, 0.5f } };
-    
-    //Starlight begin
-    /// <summary>
-    /// A base resistance value used in stamina damage calculations
-    /// </summary>
-    [DataField, AutoNetworkedField] public float? BaseResistance;
-
-    // for some strange fucking reason, these next three fail to compile saying EntityUid is not serializable. What?? When the hell are these raised ofer network?? Huh????????
-    
-    /// <summary>
-    /// Modifiers to resistance that apply after calculating total stamina damage resistance from other sources.
-    /// </summary>
-    [ViewVariables, AutoNetworkedField] public List<(NetEntity, float, TimeSpan)> ResistanceModifiers = [];
-    
-    /// <summary>
-    /// Modifiers to the rate of damage decay
-    /// </summary>
-    [ViewVariables, AutoNetworkedField] public List<(NetEntity, float, TimeSpan)> DecayModifiers = [];
-    
-    /// <summary>
-    /// Modifiers to the cooldown length
-    /// </summary>
-    [ViewVariables, AutoNetworkedField] public List<(NetEntity, float, TimeSpan)> CooldownModifiers = [];
-    //Starlight end
 
     #region Animation Data
 

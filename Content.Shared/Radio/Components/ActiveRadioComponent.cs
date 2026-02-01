@@ -1,27 +1,19 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared._Starlight.Radio; // Starlight
 
 namespace Content.Shared.Radio.Components;
 
 /// <summary>
 ///     This component is required to receive radio message events.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState] // Starlight edit
-public sealed partial class ActiveRadioComponent : Component, ISupportsCustomChannels // Starlight edit
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ActiveRadioComponent : Component
 {
     /// <summary>
     ///     The channels that this radio is listening on.
     /// </summary>
-    [DataField, AutoNetworkedField] //Starlight edit
+    [DataField]
     public HashSet<ProtoId<RadioChannelPrototype>> Channels = new();
-    
-    //Starlight begin
-    /// <summary>
-    /// The custom channels that this radio is listening on.
-    /// </summary>
-    [DataField, AutoNetworkedField] public HashSet<CustomRadioChannelData> CustomChannels { get; set; } = [];
-    //Starlight end
 
     /// <summary>
     /// A toggle for globally receiving all radio channels.

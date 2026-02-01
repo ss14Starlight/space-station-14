@@ -161,10 +161,8 @@
   - type: Sprite
     sprite: Structures/Wallmounts/air_monitors_xeno.rsi
     layers:
-    - state: alarmp
-      map: ["airAlarmBase"]  # TODO: fire alarm enum
     - state: alarm0
-      map: ["airAlarmState"]
+      map: ["airAlarmBase"] # TODO: fire alarm enum
     - state: alarmx
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
 

@@ -7,7 +7,7 @@ namespace Content.Shared._Starlight.Railroading;
 public sealed partial class RailroadDarkTaskComponent : Component
 {
     [DataField]
-    public LocId Message = "rr-brighteye-dark-task";
+    public string Message = "rr-brighteye-dark-task";
 
     [DataField]
     public MinMax Amount;

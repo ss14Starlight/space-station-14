@@ -2,12 +2,12 @@
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Systems;
-using Content.Shared.Gibbing;
+using Content.Server.Body.Systems;
 
 namespace Content.Server.Gibbing.Systems;
 public sealed class GibOnRoundEndSystem : EntitySystem
 {
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
 
@@ -49,7 +49,7 @@ public sealed class GibOnRoundEndSystem : EntitySystem
             if (gibComp.SpawnProto != null)
                 SpawnAtPosition(gibComp.SpawnProto, Transform(uid).Coordinates);
 
-            _gibbing.Gib(uid);
+            _body.GibBody(uid, splatModifier: 5f);
         }
     }
 }

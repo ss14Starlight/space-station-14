@@ -1,7 +1,10 @@
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag.Components;
+using Content.Server.Body.Systems;
+using Content.Server.Body.Components;
 using Content.Server.Chat.Managers;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.GameTicking.Rules;
@@ -13,9 +16,11 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
-using Content.Server.Shuttles.Systems;
+using Content.Server.Shuttles.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Antag;
+using Content.Server.Bible.Components; 
+using Content.Shared.Body.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -36,12 +41,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Server.Body.Systems;
-using Content.Server.Body.Components;
-using Content.Server.Bible.Components;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Tag;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
@@ -62,17 +61,12 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly PlayTimeTrackingSystem _playTime = default!;
     [Dependency] private readonly IServerPreferencesManager _pref = default!;
     [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ArrivalsSystem _arrivals = default!;
-
-#region Starlight
     [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-#endregion Starlight
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Starlight
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
@@ -187,15 +181,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (!args.LateJoin)
             return;
 
-        TryMakeLateJoinAntag(args.Player);
-    }
-
-    /// <summary>
-    /// Attempt to make this player be a late-join antag.
-    /// </summary>
-    /// <param name="session">The session to attempt to make antag.</param>
-    public void TryMakeLateJoinAntag(ICommonSession session)
-    {
         // TODO: this really doesn't handle multiple latejoin definitions well
         // eventually this should probably store the players per definition with some kind of unique identifier.
         // something to figure out later.
@@ -225,7 +210,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!TryGetNextAvailableDefinition((uid, antag), out var def, players))
                 continue;
 
-            if (TryMakeAntag((uid, antag), session, def.Value))
+            if (TryMakeAntag((uid, antag), args.Player, def.Value))
                 break;
         }
     }
@@ -329,6 +314,17 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 {
                     Log.Warning($"Somehow picked {session} for an antag when this rule already selected them previously");
                     continue;
+                }
+                
+                if (session != null && HasComp<VampireRuleComponent>(ent))
+                {
+                    var playerEntity = session.AttachedEntity;
+                    
+                    if (playerEntity == null 
+                        || HasComp<BibleUserComponent>(playerEntity)
+                        || !TryComp<BodyComponent>(playerEntity, out var body) 
+                        || !_body.TryGetBodyOrganEntityComps<StomachComponent>((playerEntity.Value, body), out var stomachs))
+                        continue;
                 }
             }
 
@@ -499,10 +495,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // The following is where we apply components, equipment, and other changes to our antagonist entity.
         EntityManager.AddComponents(player, def.Components);
 
-        // Starlight-start
-        _tag.AddTags(player, def.Tags);
-        // Starlight-end
-
         // Equip the entity's RoleLoadout and LoadoutGroup
         List<ProtoId<StartingGearPrototype>> gear = new();
         if (def.StartingGear is not null)
@@ -667,7 +659,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (entity == null)
             return true;
 
-        if (_arrivals.IsOnArrivals((entity.Value, null)))
+        if (HasComp<PendingClockInComponent>(entity))
             return false;
 
         if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(entity))
@@ -693,10 +685,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (_whitelist.IsValid(def.Blacklist, entity.Value))
                 return false;
         }
-
-        // Starlight: Chaplainsusers should never be selected as vampires.
-        if (def.MindRoles != null && def.MindRoles.Contains("MindRoleVampire") && HasComp<BibleUserComponent>(entity.Value))
-            return false;
 
         return true;
     }

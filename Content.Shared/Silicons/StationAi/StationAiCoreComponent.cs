@@ -1,6 +1,5 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared.DeviceLinking; // Starlight-edit
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -48,19 +47,6 @@ public sealed partial class StationAiCoreComponent : Component
     /// Name of the container slot that holds the 'brain' used to construct the AI core
     /// </summary>
     public const string BrainContainer = "station_ai_brain_slot";
-    
-    // Starlight-start: Linking with ai upload console
-    
-    [DataField, AutoNetworkedField]
-    public EntityUid? LawConsole;
-    
-    /// <summary>
-    /// The machine linking port
-    /// </summary>
-    [DataField]
-    public ProtoId<SourcePortPrototype> LinkingPort = "AiLawConsoleSender";
-    
-    // Starlight-end
 }
 
 /// <summary>

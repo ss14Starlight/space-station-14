@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.Railroading;
 public sealed partial class RailroadDeliveryOpenTaskComponent : Component
 {
     [DataField]
-    public LocId Message = "rail-open-delivery-task";
+    public string Message = "rail-open-delivery-task";
 
     /// <summary>
     /// Pieces of mail to open before task completion

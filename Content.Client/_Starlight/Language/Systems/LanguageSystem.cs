@@ -19,7 +19,6 @@ public sealed class LanguageSystem : SharedLanguageSystem
 
     public override void Initialize()
     {
-        base.Initialize();
         _playerManager.LocalPlayerAttached += NotifyUpdate;
         SubscribeLocalEvent<LanguageSpeakerComponent, ComponentHandleState>(OnHandleState);
     }

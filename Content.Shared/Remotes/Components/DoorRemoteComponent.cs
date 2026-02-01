@@ -70,6 +70,5 @@ public enum OperatingMode : byte
 {
     OpenClose,
     ToggleBolts,
-    ToggleEmergencyAccess,
-    ToggleOvercharge
+    ToggleEmergencyAccess
 }

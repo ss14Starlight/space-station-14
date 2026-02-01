@@ -100,9 +100,6 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
     private void OnStartup(Entity<StaminaComponent> entity, ref ComponentStartup args)
     {
-        // Set the base threshold here since ModifiedCritThreshold can't be modified via yaml.
-        entity.Comp.CritThreshold = entity.Comp.BaseCritThreshold;
-
         UpdateStaminaVisuals(entity);
     }
 
@@ -226,7 +223,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         TakeStaminaDamage(target, component.Damage, source: uid, sound: component.Sound);
     }
 
-    public void UpdateStaminaVisuals(Entity<StaminaComponent> entity) // Starlight-edit: Make this public
+    private void UpdateStaminaVisuals(Entity<StaminaComponent> entity)
     {
         SetStaminaAlert(entity, entity.Comp);
         SetStaminaAnimation(entity);
@@ -279,10 +276,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
             value = ev.Value;
         }
 
-        //Starlight begin - apply base component resistance
-        var baseResistance = component.BaseResistance ?? 1;
-        value = UniversalStaminaDamageModifier * baseResistance * value;
-        //Starlight end
+        value = UniversalStaminaDamageModifier * value;
 
         // Have we already reached the point of max stamina damage?
         if (component.Critical)
@@ -294,17 +288,11 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         var oldDamage = component.StaminaDamage;
         component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + (value * staminaModifyEvent.Modifier));
 
-        foreach (var modifier in component.ResistanceModifiers) component.StaminaDamage *= modifier.Item2; //Starlight - apply resistance modifiers from the component itself
-
         // Reset the decay cooldown upon taking damage.
         if (oldDamage < component.StaminaDamage)
         {
-            //Starlight begin
-            var totalCooldownMod =
-                component.CooldownModifiers.Aggregate<(NetEntity, float, TimeSpan), float>(1,
-                    (current, modifier) => current * modifier.Item2);
-            var nextUpdate = Timing.CurTime + TimeSpan.FromSeconds(component.Cooldown * totalCooldownMod);
-            //Starlight end
+            var nextUpdate = Timing.CurTime + TimeSpan.FromSeconds(component.Cooldown);
+
             if (component.NextUpdate < nextUpdate)
                 component.NextUpdate = nextUpdate;
         }
@@ -390,16 +378,10 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
             comp.NextUpdate += TimeSpan.FromSeconds(1f);
 
-            //Starlight begin
-            var totalDecayMod =
-                comp.DecayModifiers.Aggregate<(NetEntity, float, TimeSpan), float>(1,
-                    (current, modifier) => current * modifier.Item2);
-            
             TakeStaminaDamage(
                 uid,
-                comp.AfterCritical ? -comp.Decay * comp.AfterCritDecayMultiplier * totalDecayMod : -comp.Decay * totalDecayMod, // Recover faster after crit
+                comp.AfterCritical ? -comp.Decay * comp.AfterCritDecayMultiplier : -comp.Decay, // Recover faster after crit
                 comp);
-            //Starlight end
 
             Dirty(uid, comp);
         }
@@ -426,7 +408,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         _adminLogger.Add(LogType.Stamina, LogImpact.Medium, $"{ToPrettyString(uid):user} entered stamina crit");
     }
 
-    public void ExitStamCrit(EntityUid uid, StaminaComponent? component = null) // Starlight-edit: Make this public
+    private void ExitStamCrit(EntityUid uid, StaminaComponent? component = null)
     {
         if (!Resolve(uid, ref component) ||
             !component.Critical)
@@ -449,7 +431,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
     /// This modifier is saved to the Stamina Low Status Effect entity's <see cref="MovementModStatusEffectComponent"/>.
     /// </summary>
     /// <param name="ent">Entity to update</param>
-    public void AdjustStatus(Entity<StaminaComponent?> ent) // Starlight-edit: Make this public
+    private void AdjustStatus(Entity<StaminaComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp))
             return;

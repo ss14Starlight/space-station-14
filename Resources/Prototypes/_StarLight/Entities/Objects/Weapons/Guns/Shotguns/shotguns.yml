@@ -106,7 +106,6 @@
     containers:
       ballistic-ammo: !type:Container
       revolver-ammo: !type:Container
-      firing_pin: !type:Container
       
 - type: entity
   name: Tkach Ya-Sui GA 12 revolver
@@ -151,7 +150,6 @@
     containers:
       ballistic-ammo: !type:Container
       revolver-ammo: !type:Container
-      firing_pin: !type:Container
       
 - type: entity
   name: "AS-12 'Minotaur' Shotgun"
@@ -199,7 +197,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container
   - type: ChamberMagazineAmmoProvider
     autoEject: true
   - type: MagazineVisuals
@@ -264,16 +261,6 @@
       - id: RifleStock
         launchAngle: 180
         prob: 0.80
-  - type: ContainerContainer
-    containers:
-      gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinMakeshift
-  - type: FiringPinHolder
-    supportedPins: [ Makeshift, GunUpgrade ]
 
 # it's the TOZ!
 - type: entity
@@ -315,13 +302,7 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinMakeshift
-  - type: FiringPinHolder
-    supportedPins: [ Makeshift, GunUpgrade ]
+        ents: []
   - type: Appearance
   - type: StaticPrice
     price: 400
@@ -385,13 +366,6 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinMakeshift
-  - type: FiringPinHolder
-    supportedPins: [ Makeshift, GunUpgrade ]
   - type: Appearance
   - type: StaticPrice
     price: 1

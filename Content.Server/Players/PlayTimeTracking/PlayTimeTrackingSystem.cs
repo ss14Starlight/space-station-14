@@ -77,9 +77,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         {
             trackers.Add(PlayTimeTrackingShared.TrackerAdmin);
             trackers.Add(PlayTimeTrackingShared.TrackerOverall);
-
-            if (!_cfg.GetCVar(CCVars.GameAdminJobTracking))
-                return;
+            return;
         }
 
         if (!IsPlayerAlive(player))

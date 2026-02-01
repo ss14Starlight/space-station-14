@@ -42,7 +42,7 @@ namespace Content.Server.GameTicking
             lock (_statusShellLock)
             {
                 jObject["name"] = _baseServer.ServerName;
-                jObject["map"] = _gameMapManager.GetSelectedMap()?.MapName;
+                jObject["map"] = _gameMapManager.GetMapString();
                 jObject["round_id"] = _gameTicker.RoundId;
                 jObject["players"] = _cfg.GetCVar(CCVars.AdminsCountInReportedPlayerCount)
                     ? _playerManager.PlayerCount

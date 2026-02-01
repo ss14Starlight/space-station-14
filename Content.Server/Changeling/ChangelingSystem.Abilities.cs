@@ -27,11 +27,7 @@ using Content.Shared.RetractableItemAction;
 using Content.Shared.Changeling.Systems;
 using Content.Shared.Changeling.Components;
 using Content.Server.Changeling.Systems;
-// Starlight edit start
-using Content.Shared.Humanoid;
-using Content.Shared.Body.Components;
-using Content.Shared.Chemistry.Reagent;
-// Starlight edit end
+using Content.Shared.Humanoid; // Starlight edit
 
 namespace Content.Server.Changeling;
 
@@ -131,20 +127,9 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         UpdateBiomass(uid, comp, comp.MaxBiomass - comp.TotalAbsorbedEntities);
 
-        // Starlight edit start - Do not turn the victim's blood into ferrochromic acid permanently
-        // allows for ling tests to still pass despite being hollowed.
-        if (TryComp<BloodstreamComponent>(target, out var bloodstream) && bloodstream.BloodReferenceSolution is { } originalBlood)
-        {
-            var blood = originalBlood.Clone();
-            blood.ScaleTo(originalBlood.Volume);
-            var ferroAcid = new ReagentQuantity("FerrochromicAcid", originalBlood.Volume);
-        
-            _blood.ChangeBloodReagents(target, new Solution([ferroAcid]));
-            _blood.SpillAllSolutions(target);
-            _blood.ChangeBloodReagents(target, blood);
-        }
-        // Starlight edit end
-        
+        _blood.ChangeBloodReagent(target, "FerrochromicAcid");
+        _blood.SpillAllSolutions(target);
+
         EnsureComp<AbsorbedComponent>(target);
 
         var popup = Loc.GetString("changeling-absorb-end-self-ling");

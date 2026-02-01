@@ -49,14 +49,9 @@ public abstract class SharedJobSystem : EntitySystem
     /// </summary>
     /// <param name="trackerProto"></param>
     /// <returns></returns>
-    public string? GetJobPrototype(string trackerProto) // Starlight - make return value nullable
+    public string GetJobPrototype(string trackerProto)
     {
         DebugTools.Assert(_prototypes.HasIndex<PlayTimeTrackerPrototype>(trackerProto));
-        // Starlight start
-        // We have non-job playtimetrackers
-        if (!_inverseTrackerLookup.ContainsKey(trackerProto))
-            return null;
-        // Starlight end
         return _inverseTrackerLookup[trackerProto];
     }
 

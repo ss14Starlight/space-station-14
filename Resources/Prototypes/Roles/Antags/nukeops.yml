@@ -12,7 +12,6 @@
     time: 6h # Starlight
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateOperativeGearFull
-  playTimeTracker: AntagNukeops # Starlight
 
 - type: antag
   id: NukeopsMedic
@@ -34,7 +33,6 @@
     time: 3h # Starlight
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateOperativeMedicFull
-  playTimeTracker: AntagNukeopsMedic # Starlight
 
 - type: antag
   id: NukeopsCommander
@@ -54,7 +52,6 @@
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateCommanderGearFull
-  playTimeTracker: AntagNukeopsCommander # Starlight
 
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink
@@ -74,7 +71,7 @@
     back:
     - WeaponPistolViper
     - PinpointerSyndicateNuclear
-    - GearAcidifierImplanter # Starlight edit
+    - DeathAcidifierImplanter
 
 #Nuclear Operative Gear
 - type: startingGear
@@ -87,7 +84,7 @@
   id: NukeopsOutfit
   name: roles-antag-nuclear-operative-name
   startingGear: SyndicateOperativeGearFullNoUplink
-  icon: "JobIconSyndicate" # Starlight - SyndicateOperative -> Syndicate
+  icon: "JobIconSyndicate"
   equipment:
     head: ClothingHeadHelmetHardsuitSyndie
     neck: ClothingNeckScarfStripedSyndieRed
@@ -108,7 +105,7 @@
   id: NukeopsCommanderOutfit
   name: roles-antag-nuclear-operative-commander-name
   startingGear: SyndicateCommanderGearFull
-  icon: "JobIconSyndicate" # Starlight - SyndicateCommander -> Syndicate
+  icon: "JobIconSyndicate"
   equipment:
     head: ClothingHeadHelmetHardsuitSyndieCommander
     neck: ClothingNeckScarfStripedSyndieGreen
@@ -134,13 +131,13 @@
     - PinpointerSyndicateNuclear
     - HandheldHealthAnalyzer
     - CombatMedipen
-    - GearAcidifierImplanter # Starlight edit
+    - DeathAcidifierImplanter
 
 - type: chameleonOutfit
   id: NukeopsMedicOutfit
   name: roles-antag-nuclear-operative-agent-name
   startingGear: SyndicateOperativeMedicFull
-  icon: "JobIconSyndicate" # Starlight - SyndicateCorpsman -> Syndicate
+  icon: "JobIconSyndicate"
   equipment:
     head: ClothingHeadHelmetHardsuitSyndieMedic
     neck: ClothingNeckScarfStripedLightBlue

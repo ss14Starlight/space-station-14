@@ -12,7 +12,3 @@
   - !type:SpeciesRequirement
     species:
     - Shadekin
-  - !type:TraitsRequirement
-      traits:
-        - Burned
-      inverted: true

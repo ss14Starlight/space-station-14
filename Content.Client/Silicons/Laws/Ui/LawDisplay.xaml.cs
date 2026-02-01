@@ -11,7 +11,6 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Radio; //Starlight
 
 namespace Content.Client.Silicons.Laws.Ui;
 
@@ -27,7 +26,7 @@ public sealed partial class LawDisplay : Control
 
     private readonly Dictionary<Button, TimeSpan> _nextAllowedPress = new();
 
-    public LawDisplay(EntityUid uid, SiliconLaw law, HashSet<ProtoId<RadioChannelPrototype>>? radioChannels, HashSet<CustomRadioChannelData>? customRadioChannels) //Starlight edit
+    public LawDisplay(EntityUid uid, SiliconLaw law, HashSet<ProtoId<RadioChannelPrototype>>? radioChannels)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -64,76 +63,40 @@ public sealed partial class LawDisplay : Control
 
         LawAnnouncementButtons.AddChild(localButton);
 
-        //Starlight begin
-        if (radioChannels is not null)
+        if (radioChannels == null)
+            return;
+
+        foreach (var radioChannel in radioChannels)
         {
-            foreach (var radioChannel in radioChannels)
+            if (!_prototypeManager.TryIndex<RadioChannelPrototype>(radioChannel, out var radioChannelProto))
+                continue;
+
+            var radioChannelButton = new Button
             {
-                if (!_prototypeManager.TryIndex<RadioChannelPrototype>(radioChannel, out var radioChannelProto))
-                    continue;
+                Text = Loc.GetString(radioChannelProto.Name),
+                Modulate = radioChannelProto.Color,
+                StyleClasses = { "chatSelectorOptionButton" },
+                MinHeight = 35,
+                MinWidth = 75,
+            };
 
-                var radioChannelButton = new Button
-                {
-                    Text = Loc.GetString(radioChannelProto.Name),
-                    Modulate = radioChannelProto.Color,
-                    StyleClasses = { "chatSelectorOptionButton" },
-                    MinHeight = 35,
-                    MinWidth = 75,
-                };
+            _nextAllowedPress[radioChannelButton] = TimeSpan.Zero;
 
-                _nextAllowedPress[radioChannelButton] = TimeSpan.Zero;
-
-                radioChannelButton.OnPressed += _ =>
-                {
-                    if (radioChannel == SharedChatSystem.CommonChannel)
-                    {
-                        _chatManager.SendMessage(
-                            $"{SharedChatSystem.RadioCommonPrefix} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}",
-                            ChatSelectChannel.Radio);
-                    }
-                    else
-                    {
-                        _chatManager.SendMessage(
-                            $"{SharedChatSystem.RadioChannelPrefix}{radioChannelProto.KeyCode} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}",
-                            ChatSelectChannel.Radio);
-                    }
-
-                    _nextAllowedPress[radioChannelButton] = _timing.CurTime + PressCooldown;
-                };
-
-                LawAnnouncementButtons.AddChild(radioChannelButton);
-            }
-        }
-
-        if (customRadioChannels is not null)
-        {
-            foreach (var radioChannel in customRadioChannels)
+            radioChannelButton.OnPressed += _ =>
             {
-                var radioChannelButton = new Button
+                if (radioChannel == SharedChatSystem.CommonChannel)
                 {
-                    Text = Loc.GetString(radioChannel.Name),
-                    Modulate = radioChannel.Color,
-                    StyleClasses = { "chatSelectorOptionButton" },
-                    MinHeight = 35,
-                    MinWidth = 75,
-                };
-
-                _nextAllowedPress[radioChannelButton] = TimeSpan.Zero;
-
-                radioChannelButton.OnPressed += _ =>
+                    _chatManager.SendMessage($"{SharedChatSystem.RadioCommonPrefix} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}", ChatSelectChannel.Radio);
+                }
+                else
                 {
-                    _chatManager.SendMessage(
-                        radioChannel.Id == SharedChatSystem.CommonChannel
-                            ? $"{SharedChatSystem.RadioCommonPrefix} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}"
-                            : $"{SharedChatSystem.RadioChannelPrefix}{radioChannel.Keycode} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}",
-                        ChatSelectChannel.Radio);
-                    _nextAllowedPress[radioChannelButton] = _timing.CurTime + PressCooldown;
-                };
+                    _chatManager.SendMessage($"{SharedChatSystem.RadioChannelPrefix}{radioChannelProto.KeyCode} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}", ChatSelectChannel.Radio);
+                }
+                _nextAllowedPress[radioChannelButton] = _timing.CurTime + PressCooldown;
+            };
 
-                LawAnnouncementButtons.AddChild(radioChannelButton);
-            }
+            LawAnnouncementButtons.AddChild(radioChannelButton);
         }
-        //Starlight end
     }
 
     protected override void FrameUpdate(FrameEventArgs args)

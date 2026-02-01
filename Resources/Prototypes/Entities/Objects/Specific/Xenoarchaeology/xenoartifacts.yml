@@ -29,7 +29,7 @@
   - type: Damageable
   - type: Actions
   - type: Physics
-    bodyType: KinematicController
+    bodyType: Dynamic
   - type: MovementSpeedModifier
     baseWalkSpeed: 0.25
     baseSprintSpeed: 0.5

@@ -216,7 +216,6 @@
     - Instruments
     - Equipment
     - StarlightProtolatheLootable # Starlight start
-    - StarlightScienceWeapons
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -277,7 +276,6 @@
     - StarlightVendorBoards # Starlight
     dynamicPacks:
     - SecurityScienceBlueSpace # Starlight
-    - StarlightShuttleBoards # Starlight
     - EngineeringBoards
     - CargoBoards
     - MedicalBoards
@@ -530,7 +528,6 @@
     - StarlightMedicalStatic # Starlight
     dynamicPacks:
     - StarlightSurgeryDynamic
-    - StarlightAutomendersDynamic # Starlight-edit
     - StarlightCyberlimbDynamic
     - StarlightCyberOrgansDynamic
     - StarlightImplantDynamic

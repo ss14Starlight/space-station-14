@@ -7,11 +7,11 @@ public sealed partial class ChargesExamineComponent : Component
     /// what localization string should be used for this component
     /// </summary>
     [DataField]
-    public LocId Loc = "component-chargeexamine-loc";
+    public string Loc = "component-chargeexamine-loc";
 
     /// <summary>
     /// what localization string should be used for this component
     /// </summary>
     [DataField]
-    public LocId LocNoCharges = "component-chargeexamine-loc-finished";
+    public string LocNoCharges = "component-chargeexamine-loc-finished";
 }

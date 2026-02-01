@@ -794,7 +794,7 @@
 - type: entity
   id: DisposalRouterFlippedChapel
   parent: DisposalRouterFlipped
-  suffix: Flipped, Shrine # Starlight: Chapel -> Shrine
+  suffix: Flipped, Chapel
   components:
   - type: DisposalRouter
     degrees:

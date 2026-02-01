@@ -1,4 +1,4 @@
-using Content.Shared.Gibbing;
+using Content.Shared.Body.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Trigger.Components.Effects;
 
@@ -6,7 +6,7 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class GibOnTriggerSystem : XOnTriggerSystem<GibOnTriggerComponent>
 {
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
 
     protected override void OnTrigger(Entity<GibOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
@@ -19,10 +19,8 @@ public sealed class GibOnTriggerSystem : XOnTriggerSystem<GibOnTriggerComponent>
                 PredictedQueueDel(item);
             }
         }
-        // Starlight edit Start: Gear acidifer
-        if (ent.Comp.GibBody)
-            _gibbing.Gib(target, dropGiblets: ent.Comp.GibOrgans, user: args.User);
-        // Starlight edit end
+
+        _body.GibBody(target, true);
         args.Handled = true;
     }
 }

@@ -29,7 +29,6 @@ public partial class ChatBox : UIWidget
     public bool Main { get; set; }
 
     public ChatSelectChannel SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
-    public RichTextLabel SelectedLanguage => LanguageNotifier; // Starlight
 
     public ChatBox()
     {
@@ -135,7 +134,7 @@ public partial class ChatBox : UIWidget
         formatted.PushColor(color);
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
-        Contents.AddMessage(formatted, tagsAllowed: null);
+        Contents.AddMessage(formatted);
     }
 
     public void Focus(ChatSelectChannel? channel = null)
@@ -203,8 +202,6 @@ public partial class ChatBox : UIWidget
     {
         // Update channel select button to correct channel if we have a prefix.
         _controller.UpdateSelectedChannel(this);
-        
-        _controller.UpdateLanguageNotifier(this); // Starlight
 
         // Warn typing indicator about change
         _controller.NotifyChatTextChange();

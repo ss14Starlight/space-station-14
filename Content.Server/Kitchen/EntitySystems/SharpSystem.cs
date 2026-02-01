@@ -1,8 +1,9 @@
-﻿using Content.Shared.Administration.Logs;
+﻿using Content.Server.Body.Systems;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Body.Components;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
-using Content.Shared.Gibbing;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Kitchen;
@@ -23,7 +24,7 @@ namespace Content.Server.Kitchen.EntitySystems;
 
 public sealed class SharpSystem : EntitySystem
 {
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly SharedDestructibleSystem _destructibleSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -133,7 +134,7 @@ public sealed class SharpSystem : EntitySystem
             args.Args.User,
             popupType);
 
-        _gibbing.Gib(args.Args.Target.Value); // does nothing if ent can't be gibbed
+        _bodySystem.GibBody(args.Args.Target.Value); // does nothing if ent can't be gibbed
         _destructibleSystem.DestroyEntity(args.Args.Target.Value);
 
         args.Handled = true;

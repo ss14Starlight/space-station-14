@@ -46,8 +46,7 @@
             Roboticist: [ 2, 3 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
-            Warden: [ 1, 1 ]
-            DutyOfficer: [ 2, 3 ]
+            Warden: [ 2, 2 ]
             Detective: [ 1, 1 ]
             SecurityOfficer: [ 6, 10 ]
             SecurityCadet: [ 4, 6 ]
@@ -75,4 +74,3 @@
             #Representives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
-            NanotrasenCareerTrainer: [ 1, 2 ]

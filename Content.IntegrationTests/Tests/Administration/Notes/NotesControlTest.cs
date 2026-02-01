@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Client._Starlight.MHelp.UI; // Starlight
 using Content.Client.Administration.UI.Bwoink;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Client.Administration.UI.Notes;
@@ -23,12 +22,6 @@ public sealed class NotesControlTest : InteractionTest
     {
         // Click the ahelp button in the menu bar
         await ClickWidgetControl<GameTopMenuBar, MenuButton>(nameof(GameTopMenuBar.AHelpButton));
-
-        // Starlight - Start
-        var staffhelp = GetWindow<StaffHelpWindow>();
-        await ClickControl(staffhelp.AdminHelpButton);
-        // Starlight - End
-        
         var bwoink = GetWindow<BwoinkWindow>();
 
         // Damn, if only I had an excuse to use bwoink.Bwoink.BwoinkArea

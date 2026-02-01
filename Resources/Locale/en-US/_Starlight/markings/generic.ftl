@@ -1,7 +1,3 @@
-# Special
-marking-CatEars-ears_cat_outer = Cat Ears Outer
-marking-CatEars-ears-cat_inner = Cat Ears Inner
-
 # Head
 marking-HeadHeavyTattoos-head_heavy1 = Heavy Neck Tattoos (Lower)
 marking-HeadHeavyTattoos-head_heavy2 = Heavy Neck Tattoos (Upper)

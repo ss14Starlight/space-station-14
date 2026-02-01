@@ -35,10 +35,7 @@
         - id: FoodMeat
           amount: 4
     - type: Bloodstream
-      bloodReferenceSolution:
-        reagents:
-        - ReagentId: Blood
-          Quantity: 300
+      bloodMaxVolume: 300
       # if you fuck with the gorilla he will harambe you
     - type: MeleeWeapon
       altDisarm: false

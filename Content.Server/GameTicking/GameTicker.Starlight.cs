@@ -156,7 +156,7 @@ public sealed partial class GameTicker //🌟Starlight🌟
         StarlightWithAdminStatus();
         if (_statusWebhookIdentifier is null) return;
 
-        var mapName = _gameMapManager.GetSelectedMap()?.MapName ?? Loc.GetString("discord-round-notifications-unknown-map");
+        var mapName = _gameMapManager.GetMapString();
         var preset = CurrentPreset?.ModeTitle is string title && title != "????" ? Loc.GetString(title) : "????";
         var embed = _payload.Embeds![0];
 
@@ -186,7 +186,7 @@ public sealed partial class GameTicker //🌟Starlight🌟
     {
         if (_statusWebhookStaffIdentifier is null) return;
 
-        var mapName = _gameMapManager.GetSelectedMap()?.MapName ?? Loc.GetString("discord-round-notifications-unknown-map");
+        var mapName = _gameMapManager.GetMapString();
         var preset = CurrentPreset?.ModeTitle is string title && title != "????" ? Loc.GetString(title) : "????";
         var embed = _payloadWithAdmins.Embeds![0];
 

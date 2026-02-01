@@ -80,8 +80,7 @@ station-beacon-arrivals = Arrivals
 station-beacon-evac = Evac
 station-beacon-docking-arm = Docking Arm
 station-beacon-eva-storage = EVA Storage
-# Starlight:
-station-beacon-chapel = Shrine
+station-beacon-chapel = Chapel
 station-beacon-library = Library
 station-beacon-reporter = Reporter
 station-beacon-dorms = Dorms
@@ -99,4 +98,3 @@ station-beacon-escape-pod-SW = Escape Pod SW
 station-beacon-escape-pod-W = Escape Pod W
 station-beacon-escape-pod-NW = Escape Pod NW
 station-beacon-vox = Vox Break Room
-station-beacon-nct = NCT Office

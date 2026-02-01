@@ -1,7 +1,6 @@
 - type: language
   id: Terrum
   icon: LanguageIconTerrum
-  chatPrefix: ter
   speech:
     color: "#a3d4eb"
   obfuscation:

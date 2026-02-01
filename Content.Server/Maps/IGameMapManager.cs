@@ -1,5 +1,3 @@
-using Content.Shared.Maps;
-
 namespace Content.Server.Maps;
 
 /// <summary>
@@ -31,12 +29,14 @@ public interface IGameMapManager
     /// Gets the currently selected map
     /// </summary>
     /// <returns>selected map</returns>
-    GameMapPrototype? GetSelectedMap();
+    List<GameMapPrototype?> GetSelectedMaps();
+
+    string GetMapString();
 
     /// <summary>
     /// Clears the selected map, if any
     /// </summary>
-    void ClearSelectedMap();
+    void ClearSelectedMaps();
 
     /// <summary>
     /// Attempts to select the given map, checking eligibility criteria
@@ -44,29 +44,34 @@ public interface IGameMapManager
     /// <param name="gameMap">map prototype</param>
     /// <returns>success or failure</returns>
     bool TrySelectMapIfEligible(string gameMap);
+    bool TrySelectMapsIfEligible(List<string> gameMaps);
+
+    int GetStationCount();
 
     /// <summary>
     /// Select the given map regardless of eligibility
     /// </summary>
     /// <param name="gameMap">map prototype</param>
     /// <returns>success or failure</returns>
-    void SelectMap(string gameMap);
+
+    void SelectMaps(List<string> gameMaps);
 
     /// <summary>
     /// Selects a random map eligible map
     /// </summary>
-    void SelectMapRandom();
+
+    void SelectMapsRandom();
 
     /// <summary>
     /// Selects the map at the front of the rotation queue
     /// </summary>
     /// <returns>selected map</returns>
-    void SelectMapFromRotationQueue(bool markAsPlayed = false);
+    void SelectMapsFromRotationQueue(bool markAsPlayed = false);
 
     /// <summary>
     /// Selects the map by following rules set in the config
     /// </summary>
-    public void SelectMapByConfigRules();
+    public void SelectMapsByConfigRules();
 
     /// <summary>
     /// Checks if the given map exists

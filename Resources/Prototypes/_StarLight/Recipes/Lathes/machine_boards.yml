@@ -7,8 +7,3 @@
   parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
   id: MassDriverCircuitboard
   result: MassDriverCircuitboard
-
-- type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
-  id: XenobiologyConsoleCircuitboard
-  result: XenobiologyConsoleCircuitboard

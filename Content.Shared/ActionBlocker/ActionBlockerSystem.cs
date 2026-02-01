@@ -1,7 +1,6 @@
 ﻿using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Body.Events;
-using Content.Shared._Starlight.Body.Events; // Starlight edit
 using Content.Shared.Emoting;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
@@ -33,11 +32,15 @@ namespace Content.Shared.ActionBlocker
             base.Initialize();
 
             _complexInteractionQuery = GetEntityQuery<ComplexInteractionComponent>();
+
+            SubscribeLocalEvent<InputMoverComponent, ComponentStartup>(OnMoverStartup);
         }
 
-        // These two methods should probably both live in SharedMoverController
-        // but they're called in a million places and I'm not doing that
-        // refactor right now.
+        private void OnMoverStartup(EntityUid uid, InputMoverComponent component, ComponentStartup args)
+        {
+            UpdateCanMove(uid, component);
+        }
+
         public bool CanMove(EntityUid uid, InputMoverComponent? component = null)
         {
             return Resolve(uid, ref component, false) && component.CanMove;
@@ -263,15 +266,5 @@ namespace Content.Shared.ActionBlocker
 
             return !ev.Cancelled;
         }
-
-        // Starlight edit start - Allow us to block heat radiation
-        public bool CanRadiateHeat(EntityUid uid)
-        {
-            var ev = new RadiateHeatAttemptEvent(uid);
-            RaiseLocalEvent(uid, ref ev);
-
-            return !ev.Cancelled;
-        }
-        // Starlight edit end
     }
 }

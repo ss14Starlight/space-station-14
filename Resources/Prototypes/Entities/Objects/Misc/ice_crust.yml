@@ -45,7 +45,6 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - type: Temperature
-    - type: TemperatureDamage
       heatDamage:
         types:
           Heat: 5
