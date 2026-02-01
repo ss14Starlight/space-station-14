@@ -41,11 +41,8 @@
     minAngle: -20
     maxAngle: -20
   - type: Gun
-    minAngle: 24
-    maxAngle: 35
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 6 # Starlight
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -112,16 +109,21 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.90
     sprintModifier: 0.90
-  - type: HeldSpeedModifier
+  - type: ClothingSpeedModifier
+    walkModifier: 0.90
+    sprintModifier: 0.90
   - type: Gun
+    minAngle: 24
+    maxAngle: 35
+    fireRate: 6
     soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/l6.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/l6.ogg #starlight-edit
       params:
         volume: -5
   - type: Item
-    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi #starlight-edit
   - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/LMGs/l6.rsi #starlight-edit
     quickEquip: false
   - type: ChamberMagazineAmmoProvider
     soundRack:
