@@ -238,7 +238,12 @@
       "name": "paper_stamp-brigmedic"
     },
     {
-      "name": "paper_stamp-salvagelead"
+      "name": "paper_stamp-salvagelead",
+      "copyright": "by mikeysaurus"
+    },
+    {
+      "name": "paper_stamp-standby",
+      "copyright": "by mikeysaurus"
     }
   ]
 }

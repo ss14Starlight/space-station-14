@@ -35,7 +35,7 @@
   name: holo-parasite injector
   description: The most intricate piece of art, based on... Oh, wait. It's a fake. The HonkHonkers store logo can be seen on the side.
   id: HoloparasiteFakeInjector
-  parent: BaseItem
+  parent: BaseHypospray
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/hypospray.rsi
@@ -50,11 +50,12 @@
       reagents:
       - ReagentId: Ipecac
         Quantity: 0.1
-  - type: Hypospray
+  - type: Injector
     solutionName: hypospray
-    transferAmount: 10
-    onlyAffectsMobs: false
-    injectOnly: true
+    currentTransferAmount: 10
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
   - type: UseDelay
     delay: 0.5
 
@@ -94,7 +95,7 @@
     color: white
     netsync: false
   - type: Appearance
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: blade
     inhandVisuals:
       left:

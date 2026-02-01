@@ -65,6 +65,9 @@ def __main__():
     diff_output = ""
     only_in_dev = dev_set - stable_set
 
+    #sort
+    only_in_dev = sorted(only_in_dev)
+
     #convert to string
     if only_in_dev:
         diff_output += "Warnings only in starlight-dev build:\n"

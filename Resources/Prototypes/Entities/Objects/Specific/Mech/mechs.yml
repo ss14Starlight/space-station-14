@@ -641,6 +641,7 @@
     brokenState: base-broken
     mechToPilotDamageMultiplier: 0.3
     airtight: true
+    maxIntegrity: 325
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -653,11 +654,11 @@
         Structural: 180
   - type: MovementSpeedModifier
 # 🌟Starlight-start🌟
-    baseWalkSpeed: 2.4
-    baseSprintSpeed: 3.7
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.0
 # 🌟Starlight-end🌟
   - type: Damageable
-    damageModifierSet: LightArmor
+    damageModifierSet: GygaxArmor
   - type: MechThrusters
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
@@ -699,9 +700,9 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.15
     airtight: true
-    maxIntegrity: 400
+    maxIntegrity: 465
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -713,10 +714,10 @@
         Blunt: 40
         Structural: 220
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 2
+    baseWalkSpeed: 1.7
+    baseSprintSpeed: 2.2
   - type: Damageable
-    damageModifierSet: MediumArmorNT
+    damageModifierSet: DurandArmor
   - type: MechThrusters
   - type: Repairable
     fuelCost: 30
@@ -765,7 +766,7 @@
     brokenState: marauder-broken
     mechToPilotDamageMultiplier: 0.1
     airtight: true
-    maxIntegrity: 500
+    maxIntegrity: 575
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
@@ -834,7 +835,7 @@
     brokenState: seraph-broken
     mechToPilotDamageMultiplier: 0.05
     airtight: true
-    maxIntegrity: 550
+    maxIntegrity: 700
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
@@ -906,7 +907,7 @@
     brokenState: darkgygax-broken
     mechToPilotDamageMultiplier: 0.15
     airtight: true
-    maxIntegrity: 300
+    maxIntegrity: 375
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
@@ -919,8 +920,8 @@
         Blunt: 30
         Structural: 200
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 4.0 # 🌟Starlight-Change
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 4.5 # 🌟Starlight-Change - Faster than regular Gygax
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: MechThrusters
@@ -981,7 +982,7 @@
     brokenState: mauler-broken
     mechToPilotDamageMultiplier: 0.1
     airtight: true
-    maxIntegrity: 500
+    maxIntegrity: 550
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
@@ -997,11 +998,18 @@
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
   - type: Damageable
-    damageModifierSet: HeavyArmorSyndi
+    damageModifierSet: MaulerArmor
   - type: MechThrusters
   - type: Repairable
     fuelCost: 50
     doAfterDelay: 25
+  - type: PointLight
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
+    energy: 5
+    color: "#ff0000"
+    enabled: false
 
 - type: entity
   id: MechMaulerSyndieBattery

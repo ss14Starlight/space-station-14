@@ -44,11 +44,13 @@
     - map: [ "id" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "misc" ] # Starlight
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
     - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.TailExtras" ]
     - map: [ "enum.HumanoidVisualLayers.Tail" ]
     - map: [ "mask" ]
     - map: [ "head" ]
@@ -137,7 +139,6 @@
     - Muted
     - TemporaryBlindness
     - Pacified
-    - StaminaModifier
     - Flashed
     - RadiationProtection
     - Adrenaline
@@ -174,7 +175,7 @@
   - type: Crawler
   - type: Dna
   - type: MindContainer
-    showExamineInfo: true
+  - type: MindExaminable
   - type: CanEnterCryostorage
   - type: InteractionPopup
     successChance: 1
@@ -200,8 +201,10 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-      enum.VampireMutationUiKey.Key:
-        type: VampireMutationBoundUserInterface
+      enum.VampireClassUiKey.Key: # SL
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key: # SL
+        type: VampireLocateBui
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
@@ -249,6 +252,27 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: UserInterface
+    interfaces:
+    # Starlight-edit: start
+      enum.HumanoidMarkingModifierKey.Key: 
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key: 
+        type: StrippableBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+    # Starlight-edit: end
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.VampireClassUiKey.Key: # SL
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key: # SL
+        type: VampireLocateBui
+      enum.ThavenMoodsUiKey.Key: # impstation edit
+        type: ThavenMoodsBoundUserInterface
+        requireInputValidation: false
   - type: Barotrauma
     damage:
       types:
@@ -268,10 +292,11 @@
   - type: DarkenedVision
   # Other
   - type: Temperature
-    heatDamageThreshold: 325
-    coldDamageThreshold: 260
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
     coldDamage:
       types:
         Cold: 0.1 #per second, scales with temperature & other constants
@@ -359,6 +384,7 @@
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
     - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.TailExtras" ] # Starlight
     - map: [ "enum.HumanoidVisualLayers.Tail" ]
     - map: [ "mask" ]
     - map: [ "head" ]

@@ -21,24 +21,24 @@
   - BoxFolderBaseThreePapers
   - BoxFolderPlasticClipboardThreePapers
   - BoxFolderClipboardThreePapers
-  - ClothingNeckLGBTPin
-  - ClothingNeckAllyPin
-  - ClothingNeckAromanticPin
-  - ClothingNeckAsexualPin
-  - ClothingNeckAroacePin
-  - ClothingNeckBisexualPin
-  - ClothingNeckGayPin
-  - ClothingNeckIntersexPin
-  - ClothingNeckLesbianPin
-  - ClothingNeckNonBinaryPin
-  - ClothingNeckPansexualPin
-  - ClothingNeckPluralPin
-  - ClothingNeckOmnisexualPin
-  - ClothingNeckGenderqueerPin
-  - ClothingNeckGenderfluidPin
-  - ClothingNeckTransPin
-  - ClothingNeckAutismPin
-  - ClothingNeckGoldAutismPin
+  # - ClothingNeckLGBTPin # SL EDIT: moved to pin tab
+  # - ClothingNeckAllyPin
+  # - ClothingNeckAromanticPin
+  # - ClothingNeckAsexualPin
+  # - ClothingNeckAroacePin
+  # - ClothingNeckBisexualPin
+  # - ClothingNeckGayPin
+  # - ClothingNeckIntersexPin
+  # - ClothingNeckLesbianPin
+  # - ClothingNeckNonBinaryPin
+  # - ClothingNeckPansexualPin
+  # - ClothingNeckPluralPin
+  # - ClothingNeckOmnisexualPin
+  # - ClothingNeckGenderqueerPin
+  # - ClothingNeckGenderfluidPin
+  # - ClothingNeckTransPin
+  # - ClothingNeckAutismPin
+  # - ClothingNeckGoldAutismPin
   - OffsetCane
   - OffsetCaneWood
   - OffsetCaneClown
@@ -104,8 +104,12 @@
   - MagicCrayon #SL
   - HappyHonk #SL
   - leftripperarm #SL
+  - rightmechwrightarm #SL
   - CigPackBub #SL
   - PillCanisterPsicodine #SL
+  - ClothingDogTags # SL
+  - PersonalAI #SL
+  - GoldenPersonalAI #SL
 
 - type: loadoutGroup
   id: Glasses
@@ -202,6 +206,8 @@
 - type: loadoutGroup
   id: CaptainOuterClothing
   name: loadout-group-captain-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - CaptainOuterClothing
   - CaptainWintercoat
@@ -905,6 +911,7 @@
   loadouts:
   - CargoTechnicianHead
   - CargoTechnicianBeret # 🌟Starlight🌟
+  - CargoTechnicianHeadFormal # Starlight
   - CargoTechnicianBeretFormal # 🌟Starlight🌟
 
 - type: loadoutGroup
@@ -925,6 +932,9 @@
   - CargoTechnicianBackpack
   - CargoTechnicianSatchel
   - CargoTechnicianDuffel
+  - SeniorCourierBackpack # Starlight
+  - SeniorCourierSatchel # Starlight
+  - SeniorCourierDuffel # Starlight
   - LeatherSatchel # starlight
 
 - type: loadoutGroup
@@ -933,6 +943,7 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianWintercoat
+  - SeniorCourierWintercoat # Starlight
   - WindbreakerCargo #Starlight
 
 - type: loadoutGroup
@@ -942,6 +953,7 @@
   - BlackShoes
   - YellowShoes # 🌟Starlight🌟
   - CargoWinterBoots
+  - SeniorCourierWinterBoots # Starlight
   - LeatherShoes # 🌟Starlight🌟
   - WorkBoots # 🌟Starlight🌟
   - Heels # 🌟Starlight🌟
@@ -1356,12 +1368,15 @@
   minLimit: 0
   loadouts:
   - ClothingNeckCloakHosVar #STARLIGHT
+  - ClothingNeckCloakHosRetro #STARLIGHT
   - HeadofSecurityCloak
   - HeadofSecurityMantle
 
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing
   name: loadout-group-head-of-security-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
@@ -1392,6 +1407,8 @@
 - type: loadoutGroup
   id: WardenOuterClothing
   name: loadout-group-warden-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - WardenCoat
   - WardenArmoredWinterCoat
@@ -1411,6 +1428,7 @@
   - SecurityGlasses
   - SecurityHud
   - DetectiveNoirGlasses
+  - SecurityGlassesPrescription # Starlight
 
 - type: loadoutGroup
   id: BrigmedicHead
@@ -1418,17 +1436,24 @@
   minLimit: 0
   loadouts:
   - BrigmedicBeret
-  - SecurityHelmet
+  - BrigmedicNurseHat # Starlight
   - CorpsmanBeret #Starlight
+  - CorpsmanNurseHat # Starlight
+  - BrigmedicNurseHatOfLife # Starlight
+  - SecurityHelmet
 
 - type: loadoutGroup
   id: BrigmedicJumpsuit
   name: loadout-group-brigmedic-jumpsuit
   loadouts:
   - JumpsuitBrigmedic
-  - JumpsuitCorpsman
-  - JumpskirtBrigmedic
+  - JumpskirtBrigmedic # Starlight line swap v
+  - JumpsuitCorpsman # Starlight line swap ^
   - JumpskirtCorpsman #Starlight
+  - CorpsmanResponse # Starlight
+  - CorpsmanTrauma # Starlight
+  - BrigmedicJumpsuitOfLife # Starlight
+  - BrigmedicJumpskirtOfLife # Starlight
 
 - type: loadoutGroup
   id: BrigmedicBackpack
@@ -1442,10 +1467,14 @@
 - type: loadoutGroup
   id: BrigmedicOuterClothing
   name: loadout-group-brigmedic-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - BrigmedicCoat
-  - SecurityOfficerWintercoat
+  - BrigmedicLabCoat # Starlight
   - CorpsmanCoat #Starlight
+  - CorpsmanLabCoat # Starlight
+  - SecurityOfficerWintercoat
 
 - type: loadoutGroup
   id: BrigmedicEyewear
@@ -1453,6 +1482,8 @@
   loadouts:
   - BrigmedicGlasses
   - BrigmedicHud
+  - BrigmedicEyePatchHud # Starlight
+  - BrigmeicGlassesPrescription # Starlight
 
 - type: loadoutGroup
   id: BrigmedicBelt
@@ -1469,6 +1500,7 @@
   loadouts:
   - Nitrile
   - BlackNitrile
+  - LatexGloves
 #Starlight End
 
 - type: loadoutGroup
@@ -1496,6 +1528,7 @@
   - SeniorOfficerJumpskirt
   - TrooperUniform
   - SecurityJumpsuitBlue
+  - SecurityJumpskirtBlue # Starlight
   - SecurityTshirt #Starlight
 
 - type: loadoutGroup
@@ -1517,6 +1550,8 @@
 - type: loadoutGroup
   id: SecurityOuterClothing
   name: loadout-group-security-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - ArmorVest
   - ArmorVestSlim
@@ -1577,6 +1612,8 @@
 - type: loadoutGroup
   id: DetectiveOuterClothing
   name: loadout-group-detective-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
   loadouts:
   - DetectiveArmorVest
   - DetectiveCoat
@@ -1775,6 +1812,8 @@
   loadouts:
   - ChemistJumpsuit
   - ChemistJumpskirt
+  - SeniorChemistJumpsuit # Starlight
+  - SeniorChemistJumpskirt # Starlight
 
 - type: loadoutGroup
   id: ChemistOuterClothing
@@ -1784,6 +1823,8 @@
   - RegularLabCoat
   - ChemistLabCoat
   - ChemistWintercoat
+  - SeniorChemistLabCoat # Starlight
+  - SeniorChemistWintercoat # Starlight
 
 - type: loadoutGroup
   id: ChemistBackpack
@@ -1792,6 +1833,9 @@
   - ChemistBackpack
   - ChemistSatchel
   - ChemistDuffel
+  - SeniorChemistBackpack # Starlight
+  - SeniorChemistSatchel # Starlight
+  - SeniorChemistDuffel # Starlight
   - LeatherSatchel # starlight
 
 - type: loadoutGroup
@@ -1814,6 +1858,15 @@
   loadouts:
   - ParamedicJumpsuit
   - ParamedicJumpskirt
+  - SeniorParamedicJumpsuit #Starlight
+  - SeniorParamedicJumpskirt #Starlight
+
+- type: loadoutGroup #Starlight start
+  id: ParamedicPDA
+  name: loadout-group-paramedic-id
+  loadouts:
+  - ParamedicPDA
+  - SeniorParamedicPDA #Starlight end
 
 - type: loadoutGroup
   id: ParamedicOuterClothing
@@ -1831,6 +1884,7 @@
   - WhiteShoes
   - MedicalWinterBoots
   - Heels # 🌟Starlight🌟
+  - HighHeelBoots # Starlight
 
 - type: loadoutGroup
   id: ParamedicJobTrinkets
@@ -1849,6 +1903,7 @@
   - Glasses
   - GlassesJamjar
   - GlassesJensen
+  - MedicalGlassesPrescription # Starlight
 
 - type: loadoutGroup
   id: SurvivalMedical
@@ -1892,36 +1947,6 @@
   loadouts:
   - LizardPlushiePsychologist
 
-- type: loadoutGroup
-  id: BoxerJumpsuit
-  name: loadout-group-boxer-jumpsuit
-  loadouts:
-  - BoxerShorts
-  - BoxerShortsWithTop
-
-- type: loadoutGroup
-  id: BoxerGloves
-  name: loadout-group-boxer-gloves
-  loadouts:
-  - RedBoxingGloves
-  - BlueBoxingGloves
-  - GreenBoxingGloves
-  - YellowBoxingGloves
-
-- type: loadoutGroup
-  id: BoxerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieBoxer
-
-- type: loadoutGroup
-  id: ZookeeperJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieZookeeper
-
 # Other
 - type: loadoutGroup
   id: SurvivalSyndicate
@@ -1933,6 +1958,15 @@
   - EmergencyOxygenSyndicate
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
+
+- type: loadoutGroup
+  id: SurvivalMilitaryDouble
+  name: loadout-group-survival-military
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenMilitaryDouble
+  - EmergencyOxygenMilitaryDouble
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool

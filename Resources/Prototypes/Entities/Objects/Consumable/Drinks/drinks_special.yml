@@ -33,6 +33,8 @@
   - type: Sprite
     sprite: Objects/Consumable/Drinks/icebucket.rsi
     state: icon
+  - type: Item # Starlight
+    size: Normal # Starlight
   - type: PhysicalComposition
     materialComposition:
       Steel: 75
@@ -131,7 +133,7 @@
       Steel: 50
   - type: Shakeable
   - type: ReactionMixer
-    mixOnInteract: false
+    mixerType: None
     reactionTypes:
     - Shake
 

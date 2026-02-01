@@ -55,8 +55,8 @@
 - type: entity
   parent: BaseSignDirectional
   id: SignDirectionalChapel
-  name: chapel sign
-  description: A direction sign, pointing out which way the Chapel is.
+  name: shrine sign # Starlight: Chapel -> Shrine
+  description: A direction sign, pointing out which way the Shrine is. # Starlight: Chapel -> Shrine
   components:
   - type: Sprite
     state: direction_chapel
@@ -451,8 +451,8 @@
 - type: entity
   parent: BaseSign
   id: SignChapel
-  name: chapel sign
-  description: A sign indicating the chapel.
+  name: shrine sign # Starlight: Chapel -> Shrine
+  description: A sign indicating the Shrine. # Starlight: Chapel -> Shrine
   components:
   - type: Sprite
     state: chapel

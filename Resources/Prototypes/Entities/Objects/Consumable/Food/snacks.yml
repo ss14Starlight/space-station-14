@@ -124,6 +124,7 @@
       - id: FoodSnackChocolateBar
     sound:
       path: /Audio/Effects/unwrap.ogg
+    requireHands: false # 🌟Starlight🌟
   # Starlight-start: Vending Machines Prices
   - type: ItemPrice
     priceCategory: food_medium
@@ -176,6 +177,7 @@
       - id: FoodSnackEnergyBar
     sound:
       path: /Audio/Effects/unwrap.ogg
+    requireHands: false # 🌟Starlight🌟
 
 - type: entity
   parent: FoodSnackBase
@@ -473,6 +475,7 @@
       - id: FoodSnackNutribrickOpen
     sound:
       path: /Audio/Effects/unwrap.ogg
+    requireHands: false # 🌟Starlight🌟
   # Starlight-start: Vending Machines Prices
   - type: ItemPrice
     priceCategory: food_medium
@@ -531,6 +534,7 @@
       - id: FoodSnackMREBrownieOpen
     sound:
       path: /Audio/Effects/unwrap.ogg
+    requireHands: false # 🌟Starlight🌟
 
 - type: entity
   parent: FoodSnackBase

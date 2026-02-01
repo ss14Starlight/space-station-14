@@ -1,8 +1,8 @@
 #BSO Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseBlueShieldContraband]
   id: ClothingOuterHardsuitBlueshield
-  name: blueshield officer's hardsuit
+  name: blue shield hardsuit
   description: A high-tech hardsuit perfect for diving in front of Mr. Pre- Er, Captain.
   components:
   - type: Sprite
@@ -169,6 +169,7 @@
   - type: Tag
     tags:
     - Hardsuit
+    - CorgiWearable
     - WhitelistChameleon
     - HardsuitSpatio #can now be used to make goliath hardsuit
 
@@ -558,8 +559,8 @@
 - type: entity
   parent: ClothingOuterHardsuitAtmos
   id: ClothingOuterHardsuitAtmosGolden
-  name: atmos hardsuit
-  description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
+  name: golden atmos hardsuit
+  description: A golden hardsuit that protects against hazardous, low pressure environments. Has thermal shielding.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/atmospherics_golden.rsi
@@ -567,6 +568,19 @@
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/atmospherics_golden.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitAtmosGolden
+
+- type: entity
+  parent: ClothingOuterHardsuitEngineering
+  id: ClothingOuterHardsuitEngineeringGolden
+  name: golden engineering hardsuit
+  description: A golden hardsuit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/engineering_golden.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/engineering_golden.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitEngineeringGolden
 
 # NanoTrasen Special Forces
 
@@ -591,18 +605,18 @@
   - type: FireProtection
     reduction: 0.8
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.25 # Needs 20-ish hits with a disabler to stun :godo:
+    damageCoefficient: 0.0 # 100% stamina resistance
   - type: Pierceable
     level: Rock
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.15 #best armor in the game
-        Slash: 0.15
-        Piercing: 0.15
-        Heat: 0.15
-        Radiation: 0.15
-        Caustic: 0.15
+        Blunt: 0.35 # 65% resistance
+        Slash: 0.35
+        Piercing: 0.30 # 70% pierce resistance
+        Heat: 0.35
+        Radiation: 0.35
+        Caustic: 0.35
     staminaModifier: 0.0
   - type: ClothingSpeedModifier
     walkModifier: 1.0
@@ -639,18 +653,18 @@
   - type: FireProtection
     reduction: 0.8
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.15 # Needs 21 hits with a disabler to stun :godo:
+    damageCoefficient: 0.0 # 100% stamina resistance
   - type: Pierceable
     level: Rock
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.1 #best armor in the game
-        Slash: 0.1
-        Piercing: 0.1
-        Heat: 0.1
-        Radiation: 0.1
-        Caustic: 0.1
+        Blunt: 0.25 # 75% resistance
+        Slash: 0.25
+        Piercing: 0.20 # 80% pierce resistance
+        Heat: 0.25
+        Radiation: 0.25
+        Caustic: 0.25
     staminaModifier: 0.0
   - type: ClothingSpeedModifier
     walkModifier: 1.0
@@ -665,5 +679,47 @@
         variation: 0.025
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDecimus
+
+#Thanatos (Starlight version of Deathsquad with enhanced stats)
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitThanatos
+  name: Thanatos
+  description: An advanced hardsuit favored by commandos for use in special operations.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+    damageCoefficient: 0.0 # 100% stamina resistance
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.05 # 95% resistance
+        Slash: 0.05
+        Piercing: 0.01 # 99% pierce resistance
+        Heat: 0.05
+        Radiation: 0.05
+        Caustic: 0.05
+    staminaModifier: 0.0
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitThanatos
 
 

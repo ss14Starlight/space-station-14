@@ -1,24 +1,17 @@
+using System.Collections.Immutable;
 using System.Linq;
-using Content.Client._Starlight.Managers;
+using Content.Client.Administration.Managers;
 using Content.Shared._NullLink;
-using Content.Shared.NullLink.CCVar;
-using Content.Shared.Starlight;
-using Robust.Client.Console;
-using Robust.Client.UserInterface;
-using Robust.Shared.Configuration;
-using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 
-namespace Content.Client.Administration.Managers;
+namespace Content.Client._NullLink;
 
 public sealed class NullLinkPlayerRolesManager : INullLinkPlayerRolesManager
 {
     [Dependency] private readonly IClientNetManager _netMgr = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
 
-    private HashSet<ulong> _roles = [];
+    private ImmutableHashSet<ulong> _roles = [];
     private string? _discordLink;
     private ISawmill _sawmill = default!;
 

@@ -48,6 +48,7 @@
     - HamsterWearable
     - WhitelistChameleon
     - WeldingMask
+    - CorgiWearable #Starlight
 
 - type: entity
   parent: ClothingHeadHatWelding
@@ -66,6 +67,7 @@
     tags:
     - WhitelistChameleon
     - WeldingMask
+    - CorgiWearable #Starlight
 
 - type: entity
   parent: ClothingHeadHatWelding
@@ -84,6 +86,7 @@
     tags:
     - WhitelistChameleon
     - WeldingMask
+    - CorgiWearable #Starlight
 
 - type: entity
   parent: ClothingHeadHatWelding
@@ -102,6 +105,7 @@
     tags:
     - WhitelistChameleon
     - WeldingMask
+    - CorgiWearable #Starlight
 
 - type: entity
   id: ActionToggleWeldingMask

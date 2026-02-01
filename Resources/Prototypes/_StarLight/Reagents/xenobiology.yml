@@ -1,0 +1,95 @@
+- type: reagent
+  id: OrangeSmokeCauser
+  name: reagent-name-orange-smoke-causer
+  group: Special
+  desc: reagent-desc-orange-smoke-causer
+  physicalDesc: reagent-physical-desc-powdery
+  flavor: metallic
+  color: "#F07A26FF"
+
+- type: reagent
+  id: BlueFoamCauser
+  name: reagent-name-blue-foam-causer
+  group: Special
+  desc: reagent-desc-blue-foam-causer
+  physicalDesc: reagent-physical-desc-powdery
+  flavor: metallic
+  color: "#F07A26FF"
+
+- type: reagent
+  id: RegenerativeJelly
+  name: reagent-name-regenerative-jelly
+  group: Medicine
+  desc: reagent-desc-regenerative-jelly
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#a579b5"
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:EvenHealthChange
+          damage:
+            Burn: -2
+            Toxin: -2
+            Airloss: -2
+            Brute: -2
+
+- type: reagent
+  id: UnstableMutationToxin
+  name: reagent-name-unstable-mutation-toxin
+  group: Medicine
+  desc: reagent-desc-unstable-mutation-toxin
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#50d977"
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:ChangeSpeciesFromList
+          speciesList:
+            - Arachnid
+            - Diona
+            - Dwarf
+            - Gingerbread
+            - Human
+            - Moth
+            - Reptilian
+            - Resomi
+            - Skeleton
+            - SlimePerson
+            - Vox
+            - Vulpkanin
+            - Abductor
+            - Avali
+            - Cyclorite
+            - Felionoid
+            - Shadekin
+            - Thaven
+
+- type: reagent
+  id: ImperfectMutationToxin
+  name: reagent-name-imperfect-mutation-toxin
+  group: Medicine
+  desc: reagent-desc-imperfect-mutation-toxin
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#50d977"
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:ChangeSpecies
+          species: SlimePerson
+
+- type: reagent
+  id: AdvancedMutationToxin
+  name: reagent-name-advanced-mutation-toxin
+  group: Medicine
+  desc: reagent-desc-advanced-mutation-toxin
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#50d977"
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:MutateIntoEntity
+          entity: XenobiologySlimeGray

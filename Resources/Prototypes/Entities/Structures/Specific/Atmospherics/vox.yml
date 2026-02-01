@@ -23,11 +23,26 @@
 - type: entity
   parent: [AirSensorVoxBase, GasVentPump]
   id: GasVentPumpVox
+  components:
+  # Starlight Start
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentPumpVox
+      Secondary: GasVentPumpVoxAlt1
+      Tertiary: GasVentPumpVoxAlt2
+  # Starlight End
 
 - type: entity
   parent: [AirSensorVoxBase, GasVentScrubber]
   id: GasVentScrubberVox
   components:
+  # Starlight Start
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentScrubberVox
+      Secondary: GasVentScrubberVoxAlt1
+      Tertiary: GasVentScrubberVoxAlt2
+  # Starlight End
   - type: GasVentScrubber
     wideNet: true # Air alarm with auto mode overrides filters with hardcoded defaults so default to widenet
     filterGases:

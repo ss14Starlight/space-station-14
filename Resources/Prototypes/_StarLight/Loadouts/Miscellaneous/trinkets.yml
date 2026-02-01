@@ -478,6 +478,18 @@
       - LeftArmCyberRipper
 
 - type: loadout
+  id: rightmechwrightarm
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobStationEngineer
+        time: 72000 # 20 hours of banging wrenches on things
+  storage:
+    back: 
+      - RightArmCyberMechwright
+
+- type: loadout
   id: CigPackBub
   effects:
     - !type:JobRequirementLoadoutEffect
@@ -495,3 +507,35 @@
   storage:
     back:
     - PillCanisterPsicodine
+
+- type: loadout
+  id: ClothingDogTags
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoviceOfficer
+  storage:
+    back:
+    - ClothingDogTags
+
+- type: loadout
+  id: PersonalAI
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 48h
+  storage:
+    back: 
+      - PersonalAI
+
+- type: loadout
+  id: GoldenPersonalAI
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: GhostPAI
+      time: 8h
+  storage:
+    back: 
+      - GoldenPersonalAI

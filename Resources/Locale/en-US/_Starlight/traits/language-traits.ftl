@@ -1,10 +1,10 @@
 trait-category-languages = Languages
 
 trait-language-foreigner-light-name = Foreigner Light
-trait-language-foreigner-light-desc = You understand the common language, but you can't quite speak it yet. You have a translator to help you with your basic understanding of the language, better keep it charged.
+trait-language-foreigner-light-desc = You understand the common language, but you can't quite speak it yet. You have a translator to help you with your basic understanding of the language. Better keep it charged.
 
 trait-language-foreigner-name = Foreigner
-trait-language-foreigner-desc = You can't understand the common language, and you require a translator at all times to talk. You have a translator to help you with your understanding and speaking, make sure to keep it charged.
+trait-language-foreigner-desc = You can't understand the common language, and you require a translator at all times to talk. You have a translator to help you with your understanding and speaking. Make sure to keep it charged.
 
 trait-language-signlanguage-name = Sign Language
 trait-language-signlanguage-desc = A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments.
@@ -41,3 +41,21 @@ trait-language-voxpidgin-desc = You know the language of the Vox, a language mos
 
 trait-language-moffic-name = Moffic
 trait-language-moffic-desc = The language of the moth-people, Moffic is basically completely unintelligible to all but yourself and it's native speakers.
+
+trait-language-thaveyan-name = Thaveyan
+trait-language-thaveyan-desc = You've been around the fish people long enough to master the rhythm of their tongue, though perhaps not their erratic moods.
+
+trait-language-darktongue-name = Darktongue
+trait-language-darktongue-desc = This simple, crude language of ne'er-do-wells and crazed fanatics is easy to pick up, but don't let Security hear you speaking it...
+
+trait-language-classical-name = Classical
+trait-language-classical-desc = Once upon a time, everyone spoke this language. Not as hard to pick up as you might expect.
+
+trait-language-grumbakul-name = Grumbakul
+trait-language-grumbakul-desc = You have mastered the language of Dwarfkind, or at least that's what your Dwarf friends tell you.
+
+trait-language-aielic-name = Aielic
+trait-language-aielic-desc = The musical language of a nearly-extinct species known for its beautiful literature, pointy ears, and once-vast empire.
+
+trait-language-lagomorphian-name = Lagomorphian
+trait-language-lagomorphian-desc = The lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.

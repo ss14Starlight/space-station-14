@@ -1,0 +1,15 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+             Title="{Loc 'slime-name-change-potion-ui-header'}"
+             SetWidth="400"
+             MinWidth="150">
+    <BoxContainer Orientation="Vertical" SeparationOverride="4">
+        <Label Name="CurrentTextLabel" Text="{Loc 'slime-name-change-potion-current-text-label'}" />
+        <LineEdit Name="LabelLineEdit" />
+        <BoxContainer Orientation="Horizontal" Align="Center">
+            <Button Name="ResetLabelButton" Text="{Loc 'slime-name-change-potion-ui-reset-label-text'}" StyleClasses="OpenRight" />
+            <Button Name="ClearLabelButton" Text="{Loc 'slime-name-change-potion-ui-clear-label-text'}" StyleClasses="OpenLeft" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

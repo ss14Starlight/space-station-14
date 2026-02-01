@@ -1,0 +1,52 @@
+- type: entity
+  parent: CrateSyndicate
+  id: CrateNameSyndicateShuttleBundle
+  name: Shuttle Bundle Crate
+  description: Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required)
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: GyroscopeFlatpack
+        - id: ThrusterFlatpack
+          amount: 4
+        - id: CableMVStack
+        - id: CableHVStack
+        - id: CableApcStack
+          amount: 2
+        - id: Multitool
+        - id: WallmountSubstationElectronics
+        - id: APCElectronics
+        - id: WallmountGeneratorAPUElectronics
+          amount: 2
+        - id: SheetSteel
+        - id: PartRodMetal
+        - id: MicroManipulatorStockPart
+        - id: PowerCellSmall
+        - id: SheetGlass1
+          amount: 2
+    
+- type: entity
+  parent: CrateSyndicate
+  id: CrateNameSyndicateFriendshipBundle
+  name: Friendship Bundle Crate
+  description: Friendship in a crate*. (Some assembly required)
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ShuttleGunFriendshipCircuitboard
+        - id: CableHVStack1
+          amount: 5
+        - id: SheetSteel10
+        - id: SheetSteel1
+          amount: 2
+        - id: MicroManipulatorStockPart
+          amount: 5
+        - id: CableApcStack1
+        - id: RemoteSignaller
+        - id: Multitool
+        - id: GrenadeBlast
+          amount: 6

@@ -1,0 +1,56 @@
+- type: job
+  id: NanotrasenCareerTrainer
+  name: job-name-nct
+  description: job-description-nct
+  playTimeTracker: JobNanotrasenCareerTrainer
+  requirements:
+    - !type:RolesRequirement
+      proto: StaffAndMentorOnlyRolesReq
+  startingGear: NanotrasenCareerTrainerGear
+  icon: JobIconNanotrasenCareerTrainer
+  rules: job-rules-corporate-aligned
+  supervisors: job-supervisors-captain
+  weight: -1
+  overrideConsoleVisibility: false
+  canBeAntag: false
+  joinNotifyCrew: true
+  access:
+    - Lawyer
+    - Command
+    - Service
+    - Maintenance
+    - Theatre
+    - External
+    - Engineering
+    - Research
+    - Security
+    - Cargo
+    - Medical
+    - IAA
+  special:
+    - !type:AddImplantSpecial
+      implants: [MindShieldImplant]
+    - !type:AddComponentSpecial
+      components:
+        - type: NoObjectiveTarget
+        - type: NCTAgent
+
+- type: startingGear
+  id: NanotrasenCareerTrainerGear
+  equipment:
+    id: NanotrasenCareerTrainerPDA
+    ears: ClothingHeadsetNCT
+    neck: Whistle
+    pocket1: nctdatachip
+    pocket2: PinpointerUniversal
+    belt: BoxFolderNanoTrasenClipboard
+    gloves: ClothingHandsGlovesColorWhite
+    outerClothing: ClothingOuterCoatNCT
+    suitstorage: Flash
+
+- type: chameleonOutfit
+  id: NanotrasenCareerTrainerChameleonOutfit
+  job: NanotrasenCareerTrainer
+  hasMindShield: true
+  equipment:
+    outerClothing: ClothingOuterCoatNCT

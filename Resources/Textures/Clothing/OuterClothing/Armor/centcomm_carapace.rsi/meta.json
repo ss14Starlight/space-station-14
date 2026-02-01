@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Assets derived from Wizden SS14 at https://github.com/space-wizards/space-station-14/commit/e4a516514f37d26708e676122eb7c6a95f37b5e3, modified by K-Dynamic (github).",
+    "copyright": "Assets derived from Wizden SS14 at https://github.com/space-wizards/space-station-14/commit/e4a516514f37d26708e676122eb7c6a95f37b5e3, modified by K-Dynamic (github). Resomi state created by Huaqas (GitHub).",
     "size": {
         "x": 32,
         "y": 32
@@ -16,6 +16,10 @@
         },
         {
             "name": "equipped-OUTERCLOTHING-vox",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-resomi",
             "directions": 4
         },
         {

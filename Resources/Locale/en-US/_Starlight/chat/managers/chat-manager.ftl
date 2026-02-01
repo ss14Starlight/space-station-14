@@ -14,3 +14,9 @@ chat-speech-verb-thaven-1 = sings
 chat-speech-verb-thaven-2 = chimes
 chat-speech-verb-thaven-3 = says
 chat-speech-verb-thaven-4 = voices
+
+chat-speech-verb-name-lagomorph = Lagomorph
+chat-speech-verb-lagomorph = squeaks
+chat-speech-verb-name-resomi = Resomi
+chat-speech-verb-resomi-1 = squawks
+chat-speech-verb-resomi-2 = chirps

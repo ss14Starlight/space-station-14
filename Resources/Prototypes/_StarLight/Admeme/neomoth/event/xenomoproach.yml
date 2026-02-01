@@ -1,0 +1,538 @@
+- type: entity
+  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages, BaseXenoborgTransponder]
+  id: MobXenomoproach
+  name: xenomoproach
+  suffix: admeme
+  description: This little moproach appears to be part evil robot! How horrifying!
+  components:
+    - type: BorgTransponder
+      name: xenomoproach
+      sprite:
+        sprite: _Starlight/Admeme/neomoth/xenomoproach.rsi
+        state: mothroach
+    - type: VentCrawler
+    - type: Sprite
+      drawdepth: SmallMobs
+      sprite: _Starlight/Admeme/neomoth/xenomoproach.rsi
+      layers:
+        - state: mothroach
+          map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
+        - state: borg_e_r
+          map: [ "enum.BorgVisualLayers.Light" ]
+          shader: unshaded
+          visible: false
+        - state: borg_l
+          shader: unshaded
+          map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+          visible: false
+    - type: Item
+      size: Normal
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.2
+          density: 120
+          mask:
+            - SmallMobMask
+          layer:
+            - SmallMobLayer
+    - type: MobState
+      allowedStates:
+        - Alive
+        - Critical
+        - Dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        125: Critical
+        250: Dead
+      stateAlertDict:
+        Alive: BorgHealth
+        Critical: BorgCrit
+        Dead: BorgDead
+      showOverlays: false
+      allowRevives: true
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.5
+      baseSprintSpeed: 4
+      weightlessAcceleration: 1.5
+      weightlessFriction: 1
+      baseWeightlessModifier: 1
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: mothroach
+        Critical:
+          Base: mothroach_dead
+        Dead:
+          Base: mothroach_dead
+    - type: Extractable
+      grindableSolutionName: food
+    - type: Absorbent
+      pickupAmount: 5 # small feet
+    - type: UseDelay
+      delay: 0.5 # quick feet
+    - type: SolutionRegeneration
+      solution: absorbed
+      generated:
+        reagents:
+          - ReagentId: Water
+            Quantity: 10
+    - type: SolutionContainerManager
+      solutions:
+        absorbed:
+          maxVol: 50
+        food:
+          reagents:
+            - ReagentId: Slime
+              Quantity: 5
+    - type: DrainableSolution
+      solution: drainBuffer
+    - type: SolutionPurge
+      solution: absorbed
+      preserve:
+        - Water
+      quantity: 10
+    - type: InteractionPopup
+      interactSuccessString: petting-success-cleanbot
+      interactFailureString: petting-failure-cleanbot
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: InjectableSolution
+      solution: chemicals
+    - type: Tag
+      tags:
+        - CanPilot
+        - Unimplantable
+        - CannotSuicide
+        - VimPilot
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Piercing: 5
+    - type: LanguageKnowledge
+      speaks:
+        - Mothroach
+        - Machine
+        - GalacticCommon
+      understands:
+        - Moffic
+        - Mothroach
+        - Machine
+        - GalacticCommon
+    - type: BodyEmotes
+      soundsId: MothroachBodyEmotes
+    - type: SpriteMovement
+      movementLayers:
+        movement:
+          state: mothroach-moving
+      noMovementLayers:
+        movement:
+          state: mothroach
+    - type: Clothing
+      quickEquip: false
+      sprite: _Starlight/Admeme/neomoth/xenomoproach.rsi
+      equippedPrefix: 0
+      slots:
+        - HEAD
+    - type: Appearance
+    - type: CombatMode
+    - type: Vocal
+      sounds:
+        Male: UnisexMoth
+        Female: UnisexMoth
+        Unsexed: UnisexMoth
+      wilhelmProbability: 0.001
+    - type: MobPrice
+      price: 150
+    - type: CanEscapeInventory
+      baseResistTime: 0.5
+    - type: Body
+      prototype: Xenomoproach
+    - type: FireVisuals
+      sprite: Mobs/Effects/onfire.rsi
+      normalState: Mouse_burning
+    - type: Strippable
+    - type: UserInterface
+      interfaces:
+        enum.SiliconLawsUiKey.Key:
+          type: SiliconLawBoundUserInterface
+          requireInputValidation: false
+        enum.BorgUiKey.Key:
+          type: BorgBoundUserInterface
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
+        # Only used for NT borgs that can switch type, defined here to avoid copy-pasting the rest of this component.
+        enum.BorgSwitchableTypeUiKey.SelectBorgType:
+          type: BorgSelectTypeUserInterface
+    - type: InventorySlots
+    - type: Inventory
+      forceDisplacements: true
+      speciesId: hamster
+      templateId: xenomoproach
+      displacements:
+        head:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/mothroach/displacement.rsi
+              state: head
+        mask:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/mothroach/displacement.rsi
+              state: mask
+        suitstorage:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/mothroach/displacement.rsi
+              state: suitstorage
+        eyes:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/mothroach/displacement.rsi
+              state: eyes
+        neck:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/mothroach/displacement.rsi
+              state: neck
+        ears:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Admeme/neomoth/xenomoproach-displacements.rsi
+              state: ears
+    - type: TextToSpeech
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        collection: MetalThud
+    - type: NoSlip
+    - type: StaticPrice
+      price: 1250
+    - type: RotationVisuals
+      horizontalRotation: 90
+    - type: HealthExaminable
+      examinableTypes:
+        - Blunt
+        - Slash
+        - Piercing
+        - Heat
+        - Shock
+      locPrefix: silicon
+    - type: ActivatableUI
+      key: enum.BorgUiKey.Key
+    - type: SiliconLawBound
+    - type: ActionGrant
+      actions:
+        - ActionViewLaws
+    - type: IntrinsicRadioReceiver
+    - type: IntrinsicRadioTransmitter
+      channels:
+        - Xenoborg
+    - type: ActiveRadio
+      channels:
+        - Mothership
+        - Xenoborg
+        - Binary
+    - type: ZombieImmune
+    - type: WiresPanel
+    - type: ActivatableUIRequiresPanel
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+      fitsInCharger: true
+    - type: ItemToggle
+      onActivate: false # You should not be able to turn off a borg temporarily.
+      activated: false # gets activated when a mind is added
+      onUse: false # no item-borg toggling sorry
+    - type: AccessToggle
+    # TODO: refactor movement to just be based on toggle like speedboots but for the boots themselves
+    # TODO: or just have sentient speedboots be fast idk
+    - type: PowerCellDraw
+      drawRate: 0.6
+    # no ToggleCellDraw since dont want to lose access when power is gone
+    - type: StatusEffects
+      allowed:
+        - Flashed
+    - type: FlashImmunity
+    - type: Construction
+      graph: Cyborg
+      node: cyborg
+      containers:
+        - part-container
+        - cell_slot
+    - type: Lock
+      locked: true
+      unlockOnClick: false
+      autoUnlock: false
+      autoLock: false
+    - type: LockingWhitelist
+      blacklist:
+        components:
+          - BorgChassis
+          - RoboticsConsole
+    - type: UIRequiresLock
+      userInterfaceKeys:
+        - enum.BorgUiKey.Key
+    - type: LockedWiresPanel
+    - type: Pullable
+    - type: Puller
+      needsHands: false
+    - type: StandingState
+    - type: Emoting
+    - type: ProtectedFromStepTriggers
+    - type: DamageOnInteractProtection
+      damageProtection:
+        flatReductions:
+          Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
+    #region Starlight
+    - type: CyborgSparkEffect
+    - type: StationAIShunt #Starlight allow shunting into all borgs
+    - type: BorgSwitchableSubtype # Afterlight change
+    - type: Crawler
+    - type: Blindable
+    - type: EyeProtection
+    - type: Stripping
+    #endregion
+    - type: NameIdentifier
+      group: Xenoborg
+    
+    - type: EmagSiliconLaw # should xenoborgs be emagable?
+      stunTime: 5
+    - type: SiliconLawProvider
+      laws: XenoborgLawset
+    - type: Repairable
+      doAfterDelay: 13
+      allowSelfRepair: true
+    - type: BorgChassis
+      jobIconOverride: JobIconXenoborg
+      jobTitleOverride: chat-radio-xenoborg
+      maxModules: 7
+      hasMindState: borg_e
+      noMindState: borg_e_r
+      moduleWhitelist:
+        tags:
+          - XenoborgModuleGeneric
+          - XenoborgModuleEngi
+          - BorgModuleMedical
+          - BorgModuleSyndicate
+          - BorgModuleEngineering
+          - BorgModuleGeneric
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - MMIFilled
+        borg_module:
+          - XenoborgModuleBasic
+          - BorgModuleAdvancedTool
+    - type: MovementAlwaysTouching
+    - type: ShowHealthBars
+      damageContainers:
+        - Inorganic
+        - Silicon
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHigh
+    - type: TypingIndicator
+      proto: xenoborg
+    - type: Speech
+      speechVerb: Robotic
+      speechSounds: Xenoborg
+      allowedEmotes: [ 'Chitter', 'Squeak', 'FlapWings', 'Laugh' ]
+    - type: DamagedSiliconAccent
+    - type: UnblockableSpeech
+#    - type: FootstepModifier
+#      footstepSoundCollection:
+#        collection: FootstepXenoborg
+    - type: NpcFactionMember
+      factions:
+        - Xenoborg
+        - Mouse
+    - type: Damageable
+      damageContainer: Silicon
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 90
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Machines/warning_buzzer_xenoborg.ogg
+                params:
+                  volume: 5
+        - trigger:
+            !type:DamageTrigger
+            damage: 375
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:EmptyContainersBehaviour
+              containers:
+                - borg_brain
+                - borg_module
+                - cell_slot
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: HandheldLight
+      toggleOnInteract: false
+      wattage: 0.2
+      blinkingBehaviourId: blinking
+      radiatingBehaviourId: radiating
+    - type: ItemTogglePointLight
+    - type: ToggleableVisuals
+      spriteLayer: light
+    - type: LightBehaviour
+      behaviours:
+        - !type:FadeBehaviour
+          id: radiating
+          maxDuration: 2.0
+          startValue: 3.0
+          endValue: 2.0
+          isLooped: true
+          reverseWhenFinished: true
+        - !type:PulseBehaviour
+          id: blinking
+          interpolate: Nearest
+          maxDuration: 1.0
+          startValue: 0.1
+          endValue: 2.0
+          isLooped: true
+    - type: PointLight
+      color: "#0033ff"
+      enabled: false
+      mask: /Textures/Effects/LightMasks/cone.png
+      autoRot: true
+      radius: 4
+      netsync: false
+    - type: GuideHelp
+      guides:
+        - Cyborgs
+        - Robotics
+      # TODO: add Xenoborg guide (part 7 spoilers)
+    - type: Access
+      enabled: false
+      worksWhileHeld: false
+      tags:
+        - Xenoborg
+    - type: AccessReader
+      access: [ [ "Xenoborg" ] ]
+    - type: ShowJobIcons # not sure if it is needed
+    - type: Loadout
+      prototypes: [ XenomoproachGear ]
+    - type: Hands
+      showInHands: true
+      disableExplosionRecursion: true
+      canBeStripped: false
+    - type: ComplexInteraction
+    - type: Buckle
+    - type: Xenoborg
+
+- type: entity
+  parent: MobXenomoproach
+  suffix: admeme, empty
+  id: MobXenomoproachEmpty
+  components:
+    - type: ContainerFill
+      containers:
+        borg_brain: []
+        borg_module:
+          - XenoborgModuleBasic
+          - BorgModuleAdvancedTool
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHighPrinted
+
+- type: entity
+  parent: MobXenomoproach
+  id: MobXenomoproachPacified
+  suffix: admeme, pacified
+  components:
+    - type: Pacified
+
+- type: entity
+  parent: MobXenomoproachEmpty
+  id: MobXenomoproachEmptyPacified
+  suffix: admeme, empty, pacified
+  components:
+    - type: Pacified
+
+- type: entity
+  parent: MobXenomoproach
+  id: MobXenomoproachPlayer
+  suffix: admeme, ghost role
+  components:
+    - type: GhostRole
+      makeSentient: true
+      allowSpeech: true
+      allowMovement: true
+      name: ghost-role-information-xenomoproach-name
+      description: ghost-role-information-xenomoproach-description
+      rules: ghost-role-information-xenomoproach-rules
+      mindRoles:
+        - MindRoleXenoborg
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: MobXenomoproachPlayer
+  id: MobXenomoproachPlayerPacified
+  suffix: admeme, ghost role, pacified
+  components:
+    - type: Pacified
+
+- type: entity
+  parent: [ClothingBackpack]
+  id: ClothingBackpackXenomoproach
+  suffix: admeme
+  name: backpack
+  description: You wear this on your back and put items into it.
+  components:
+    - type: Clothing
+      clothingVisuals:
+        back:
+        - state: equipped-BACKPACK
+          visible: false
+    - type: Storage
+      grid:
+        - 0,0,5,3
+      maxItemSize: Huge
+    - type: Tag
+      tags:
+        - Backpack
+    - type: Unremoveable
+
+- type: startingGear
+  id: XenomoproachGear
+  equipment:
+    head: ClothingHeadHatPurplesoft
+    back: ClothingBackpackXenomoproach
+  
+- type: body
+  id: Xenomoproach
+  name: "xenomoproach"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+        - righthand
+        - lefthand
+      organs:
+        stomach: OrganMothStomach
+    lefthand:
+      part: LeftHandSmartCorgi
+    righthand:
+      part: RightHandSmartCorgi

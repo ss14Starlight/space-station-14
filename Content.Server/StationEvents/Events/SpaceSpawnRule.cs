@@ -24,12 +24,18 @@ public sealed class SpaceSpawnRule : StationEventSystem<SpaceSpawnRuleComponent>
     {
         base.Added(uid, comp, gameRule, args);
 
-        if (!TryGetRandomStation(out var station))
-        {
-            ForceEndSelf(uid, gameRule);
-            return;
-        }
-
+        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
+        EntityUid? station = null;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        station = stationEvent.TargetStation;
+        if (station is null)
+            if (!TryGetRandomStation(out station))
+            {
+                ForceEndSelf(uid, gameRule);
+                return;
+            }
+        //Starlight end
+        
         // find a station grid
         var gridUid = StationSystem.GetLargestGrid(station.Value);
         if (gridUid == null || !TryComp<MapGridComponent>(gridUid, out var grid))

@@ -4,7 +4,9 @@ using Content.Server.Storage.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Database;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
@@ -26,6 +28,7 @@ namespace Content.Server.Storage.EntitySystems
             base.Initialize();
 
             SubscribeLocalEvent<SpawnItemsOnUseComponent, UseInHandEvent>(OnUseInHand);
+            SubscribeLocalEvent<SpawnItemsOnUseComponent, GetVerbsEvent<AlternativeVerb>>(OnGetWrapperVerbs); // 🌟Starlight🌟
             SubscribeLocalEvent<SpawnItemsOnUseComponent, PriceCalculationEvent>(CalculatePrice, before: new[] { typeof(PricingSystem) });
         }
 
@@ -66,23 +69,31 @@ namespace Content.Server.Storage.EntitySystems
             if (args.Handled)
                 return;
 
+        // 🌟Starlight🌟 start
+        //Functionality was moved and slightly modified
+            var coords = Transform(args.User).Coordinates;
+            SpawnItems(uid, component, args.User, coords);
+            args.Handled = true;
+        }
+
+        private void SpawnItems(EntityUid uid, SpawnItemsOnUseComponent component, EntityUid user, EntityCoordinates coordinates)
+        {
             // If starting with zero or less uses, this component is a no-op
             if (component.Uses <= 0)
                 return;
 
-            var coords = Transform(args.User).Coordinates;
             var spawnEntities = GetSpawns(component.Items, _random);
             EntityUid? entityToPlaceInHands = null;
 
             foreach (var proto in spawnEntities)
             {
-                entityToPlaceInHands = Spawn(proto, coords);
-                _adminLogger.Add(LogType.EntitySpawn, LogImpact.Low, $"{ToPrettyString(args.User)} used {ToPrettyString(uid)} which spawned {ToPrettyString(entityToPlaceInHands.Value)}");
+                entityToPlaceInHands = Spawn(proto, coordinates);
+                _adminLogger.Add(LogType.EntitySpawn, LogImpact.Low, $"{ToPrettyString(user)} used {ToPrettyString(uid)} which spawned {ToPrettyString(entityToPlaceInHands.Value)}");
             }
 
             // The entity is often deleted, so play the sound at its position rather than parenting
             if (component.Sound != null)
-                _audio.PlayPvs(component.Sound, coords);
+                _audio.PlayPvs(component.Sound, coordinates);
 
             component.Uses--;
 
@@ -96,9 +107,27 @@ namespace Content.Server.Storage.EntitySystems
             }
 
             if (entityToPlaceInHands != null)
-                _hands.PickupOrDrop(args.User, entityToPlaceInHands.Value);
+                _hands.PickupOrDrop(user, entityToPlaceInHands.Value);
 
-            args.Handled = true;
         }
+
+        private void OnGetWrapperVerbs(EntityUid uid, SpawnItemsOnUseComponent component, ref GetVerbsEvent<AlternativeVerb> args)
+        {
+            if (!args.CanAccess || !args.CanInteract || (component.RequireHands && args.Hands != null) )
+                return;
+
+            if (_hands.IsHolding(args.User, uid))
+                return;
+
+            var user = args.User;
+            var coords = Transform(uid).Coordinates;
+
+            args.Verbs.Add(new AlternativeVerb()
+            {
+                Act = () => SpawnItems(uid, component, user, coords),
+                Text = Loc.GetString("delivery-open-verb"),
+            });
+        }
+        // 🌟Starlight🌟 end
     }
 }

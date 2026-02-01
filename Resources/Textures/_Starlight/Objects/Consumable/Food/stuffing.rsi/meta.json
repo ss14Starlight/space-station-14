@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Rhetorica for Starlight",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "stuffing"
+        },
+		{
+            "name": "stuffingmoth"
+        }
+    ]
+}

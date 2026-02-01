@@ -134,13 +134,16 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
 
         if (currentDurability > lastDurability)
             _radioSystem.SendRadioMessage(supermatter.Owner, $"The crystal is regenerating. Durability: {currentDurability}%", _engi, supermatter.Owner);
-        else switch (currentDurability)
-            {
-                case > 75: _radioSystem.SendRadioMessage(supermatter.Owner, $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter.Owner); break;
-                case > 50: _chat.DispatchServerAnnouncement($"Attention! The crystal is destabilizing. Durability: {currentDurability}%", Color.Yellow); break;
-                case > 25: _chat.DispatchServerAnnouncement($"Critical state of the crystal! Durability: {currentDurability}%", Color.OrangeRed); break;
-                default: _chat.DispatchServerAnnouncement($"Crystal destruction is inevitable. Current durability: {currentDurability}%", Color.Red); break;
-            }
+        else
+            _radioSystem.SendRadioMessage(supermatter.Owner,
+                $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter.Owner);
+        // else switch (currentDurability)
+        //     {
+        //         case > 75: _radioSystem.SendRadioMessage(supermatter.Owner, $"Attention! The crystal is destabilizing. Durability: {currentDurability}%", _engi, supermatter.Owner); break;
+        //         case > 50: _chat.DispatchServerAnnouncement($"Attention! The crystal is destabilizing. Durability: {currentDurability}%", Color.Yellow); break;
+        //         case > 25: _chat.DispatchServerAnnouncement($"Critical state of the crystal! Durability: {currentDurability}%", Color.OrangeRed); break;
+        //         default: _chat.DispatchServerAnnouncement($"Crystal destruction is inevitable. Current durability: {currentDurability}%", Color.Red); break;
+        //     }
     }
 
     private void HandleDestruction(Entity<SupermatterComponent> supermatter)

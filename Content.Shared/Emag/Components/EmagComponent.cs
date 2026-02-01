@@ -7,6 +7,8 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 using Robust.Shared.Serialization;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Radio; //#Starlight
+using Content.Shared.NPC.Prototypes; // Starlight
+using Content.Shared.Access; // Starlight
 
 namespace Content.Shared.Emag.Components;
 
@@ -38,6 +40,20 @@ public sealed partial class EmagComponent : Component
 
     //#region Starlight
     /// <summary>
+    /// The faction this emag belongs to. Typically, either syndicate or nanotrasen.
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public ProtoId<NpcFactionPrototype>? OwningFaction = "Syndicate"; /// Starlight edit
+    
+    /// <summary>
+    /// The access group to grant to electronics that get emagged
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public List<ProtoId<AccessGroupPrototype>> AccessGroups = [];
+    
+    /// <summary>
     /// should this emag also destroy the transponder
     /// </summary>
     [DataField]
@@ -62,5 +78,15 @@ public sealed partial class EmagComponent : Component
     /// </summary>
     [DataField]
     public HashSet<ProtoId<RadioChannelPrototype>> ChannelAdd = ["Syndicate"];
+
+    /// <summary>
+    /// Overrides borg emagged sound if specified.
+    /// </summary>
+    [DataField] public SoundSpecifier? EmaggedSoundOverride;
+    
+    /// <summary>
+    /// Whether to even play the emagged sound or not.
+    /// </summary>
+    [DataField] public bool DoEmaggedSound = true;
     //#endregion Starlight
 }

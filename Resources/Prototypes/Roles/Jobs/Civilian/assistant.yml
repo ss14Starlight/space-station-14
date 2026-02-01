@@ -11,6 +11,7 @@
 
 - type: job # Just ignore it. It’s a database workaround.
   id: Passenger
+  overrideConsoleVisibility: false # SL - don't show in ID console
   hidden: true
   name: job-name-assistant
   description: job-description-assistant

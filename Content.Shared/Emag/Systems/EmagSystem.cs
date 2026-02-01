@@ -85,33 +85,43 @@ public sealed class EmagSystem : EntitySystem
         if (emaggedEvent.Handled)
             _sharedCharges.TryUseCharge(chargesEnt);
 
+        // Starlight begin
+        EnsureComp<EmaggedComponent>(target, out var emaggedComp);
+        emaggedComp.OwningFaction = ent.Comp.OwningFaction;
+        Dirty(target, emaggedComp);
+        
         if (!emaggedEvent.Repeatable)
         {
-            EnsureComp<EmaggedComponent>(target, out var emaggedComp);
-
             emaggedComp.EmagType |= typeToUse;
             Dirty(target, emaggedComp);
         }
+        // Starlight end
 
         return emaggedEvent.Handled;
     }
 
+    // Starlight begin
     /// <summary>
     /// Checks whether an entity has the EmaggedComponent with a set flag.
     /// </summary>
     /// <param name="target">The target entity to check for the flag.</param>
     /// <param name="flag">The EmagType flag to check for.</param>
+    /// <param name="emag">The component of the emag being used. If specified, will bypass the check if the emag factions differ.</param>
     /// <returns>True if entity has EmaggedComponent and the provided flag. False if the entity lacks EmaggedComponent or provided flag.</returns>
-    public bool CheckFlag(EntityUid target, EmagType flag)
+    public bool CheckFlag(EntityUid target, EmagType flag, EmagComponent? emag = null)
     {
         if (!TryComp<EmaggedComponent>(target, out var comp))
             return false;
 
         if ((comp.EmagType & flag) == flag)
-            return true;
+        {
+            if (emag is null) return true;
+            return emag.OwningFaction == comp.OwningFaction;
+        }
 
         return false;
     }
+    // Starlight end
 
     /// <summary>
     /// Compares a flag to the target.

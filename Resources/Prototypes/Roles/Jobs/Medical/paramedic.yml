@@ -14,6 +14,7 @@
   - Medical
   - Maintenance
   - Paramedic # Starlight
+  - External # Starlight
   extendedAccess:
   - Chemistry
   - Surgery # Starlight
@@ -21,12 +22,13 @@
 - type: startingGear
   id: ParamedicGear
   equipment:
-    id: ParamedicPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalEMTFilled
   storage:
     back:
     - EmergencyRollerBedSpawnFolded
+    - BodyBagLockableFolded #Starlight
+    - DefibrillatorParamed #Starlight
 
 - type: chameleonOutfit
   id: ParamedicChameleonOutfit

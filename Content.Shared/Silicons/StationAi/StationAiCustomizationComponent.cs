@@ -21,6 +21,10 @@ public sealed partial class StationAiCustomizationComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public StationAiState State = StationAiState.Occupied;
+    
+    //Starlight begin
+    [DataField, AutoNetworkedField] public bool RenameAvailable = false;
+    //Starlight end
 }
 
 /// <summary>
@@ -38,6 +42,14 @@ public sealed class StationAiCustomizationMessage : BoundUserInterfaceMessage
         CustomizationProtoId = customizationProtoId;
     }
 }
+
+// Starlight begin
+[Serializable, NetSerializable]
+public sealed class StationAiRenameMessage(string newName) : BoundUserInterfaceMessage
+{
+    public readonly string NewName = newName;
+}
+// Starlight end
 
 /// <summary>
 /// Event raised when the station AI customization visual state changes

@@ -170,7 +170,7 @@
   id: ClosetJanitorBombFilled
   parent: ClosetJanitorBomb
   suffix: DO NOT MAP, Filled
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal
   components:
   - type: EntityTableContainerFill
     containers:

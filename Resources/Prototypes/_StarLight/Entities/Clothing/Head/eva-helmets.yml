@@ -25,7 +25,74 @@
       - state: equipped-head-vox
       - state: equipped-head-unshaded-vox
         shader: unshaded
-    equipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    equipDelay: 3 #starlight
-    unequipDelay: 3 #starlight
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 3
+    unequipDelay: 3
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadBowlHelmet
+  name: fish bowl helmet
+  description: It looks like a fish bowl, but somehow it functions as an EVA helmet.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/wizard_bowl.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 1
+    unequipDelay: 1
+  - type: BreathMask
+  - type: Item
+    size: Normal
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: IngestionBlocker
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HelmetEVA
+  - type: StaticPrice
+    price: 1000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+        Radiation: 0.95
+
+#Wizard "Robes"
+- type: entity
+  parent:  ClothingHeadEVAHelmetBase #, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetsoftsuitWizard
+  name: wizard void hood
+  description: A bizarre gem-encrusted hood that radiates magical energies.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hoods/wizard.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hoods/wizard.rsi
+    equipSound:
+      collection: storageRustle
+    unequipSound: 
+      collection: storageRustle
+  # - type: PointLight
+  #   color: "#ffadfb"
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon

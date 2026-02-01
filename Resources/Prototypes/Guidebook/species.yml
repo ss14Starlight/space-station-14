@@ -10,11 +10,12 @@
   - Dwarf
   - Felionoid
   - Human
+  - Lagomorph #Afterlight
   - SlimePerson
   - Moth
   - Reptilian
   - Resomi
-  - Shadekin
+  - Shadekin # Starlight
   - Vox
   - Vulpkanin
   - Thaven #Starlight
@@ -63,31 +64,3 @@
   id: Vulpkanin
   name: species-name-vulpkanin
   text: "/ServerInfo/Guidebook/Mobs/Vulpkanin.xml"
-
-#TODO: Move below into _Starlight
-- type: guideEntry
-  id: Felionoid
-  name: species-name-felionoid
-  text: "/ServerInfo/Guidebook/Mobs/Felionoid.xml"
-
-- type: guideEntry
-  id: Cyclorite
-  name: species-name-cyclorite
-  text: "/ServerInfo/Guidebook/Mobs/Cyclorite.xml"
-
-- type: guideEntry
-  id: Resomi
-  name: species-name-resomi
-  text: "/ServerInfo/Guidebook/Mobs/Resomi.xml"
-
-- type: guideEntry
-  id: Avali
-  name: species-name-avali
-  text: "/ServerInfo/Guidebook/Mobs/Avali.xml"
-
-- type: guideEntry
-  id: Shadekin
-  name: species-name-shadekin
-  text: "/ServerInfo/Guidebook/Mobs/Shadekin.xml"
-
-

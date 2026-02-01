@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Content.Server.Audio;
+using Content.Server.EnergyDome;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Materials;
 using Content.Server.Popups;
@@ -25,6 +26,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
+    [Dependency] private readonly EnergyDomeSystem _energyDomeSystem = default!; // Starlight
 
     public override void Initialize()
     {
@@ -198,6 +200,8 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
 
         generator.On = on;
         UpdateState(uid, generator);
+        if (HasComp<EnergyDomeGeneratorComponent>(uid)) // Starlight
+            _energyDomeSystem.Toggle(uid, on); // Starlight
         Dirty(uid, generator);
     }
 

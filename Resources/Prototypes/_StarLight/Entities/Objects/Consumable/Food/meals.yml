@@ -130,25 +130,55 @@
   name: khlav kalash
   description: No pizza, only khlav kalash.
   components:
-  - type: Item
-    storedOffset: 0,-2
-  - type: Edible
-    trash:
-    - FoodKebabSkewer
-  - type: FlavorProfile
-    flavors:
-      - chewy
-      - cheap
-  - type: Sprite
-    sprite: _Starlight/Objects/Consumable/Food/khlavkalash.rsi
-    layers:
-      - state: khlavkalash
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 15
-        - ReagentId: TableSalt
-          Quantity: 2
+    - type: Item
+      storedOffset: 0,-2
+    - type: Edible
+      trash:
+        - FoodKebabSkewer
+    - type: FlavorProfile
+      flavors:
+        - chewy
+        - cheap
+    - type: Sprite
+      sprite: _Starlight/Objects/Consumable/Food/khlavkalash.rsi
+      layers:
+        - state: khlavkalash
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 20
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 15
+            - ReagentId: TableSalt
+              Quantity: 2
+    - type: Tag
+      tags:
+      - Meat
+
+# One-Minute Blinding Stew
+# contains a bunch of off-brand norepinephric acid
+- type: entity
+  parent: [ FoodBowlBase, BaseMajorContraband]
+  id: FoodSoupStewBlinding
+  name: one-minute blinding stew
+  description: "My daughter is eating hair! Best way to tell her this is not ok with out being too harsh?"
+  components:
+    - type: FlavorProfile
+      flavors:
+        - punishment
+    - type: Edible
+      transferAmount: 22
+    - type: Sprite
+      sprite: _Starlight/Objects/Consumable/Food/bowl.rsi
+      layers:
+        - state: bowl
+        - state: blindingstew
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 48
+          reagents:
+            - ReagentId: BlindingStew
+              Quantity: 48
+          

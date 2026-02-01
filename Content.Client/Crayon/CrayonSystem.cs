@@ -92,17 +92,28 @@ public sealed class CrayonSystem : SharedCrayonSystem
     }
 
     // Starlight-start
-    private void UpdateOverlay(EntityUid uid, CrayonComponent component, ProtoId<DecalPrototype>? state, float rotation, Color color, bool preview, bool previewVisible, bool opaqueGhost)
+
+    public override void Update(float frameTime)
     {
-        if (_player.LocalEntity == null || _handsSystem.GetActiveItem(_player.LocalEntity.Value) != uid)
-            return;
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<CrayonComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+            if(comp.PreviewEnabled) UpdateOverlay(uid, comp); // quick bool check here since i assume checking active item is more intensive
+    }
+
+    private void UpdateOverlay(EntityUid uid, CrayonComponent component)
+    {
+        if (_player.LocalEntity == null || _handsSystem.GetActiveItem(_player.LocalEntity.Value) != uid) return;
         _overlay.RemoveOverlay<CrayonDecalGhostOverlay>();
-        if (!preview||!previewVisible)
-            return;
-        var decal = state is { } id ? _prototypeManager.Index(id) : null;
-        if (opaqueGhost)
-            color.A = 0.5f;
-        _overlay.AddOverlay(new CrayonDecalGhostOverlay(_placement, _transform, _sprite, _interaction, decal, -rotation, color));
+        if (!component.PreviewVisible) return;
+        if (!_prototypeManager.HasIndex<DecalPrototype>(component.SelectedState)) return;
+        var decal = _prototypeManager.Index<DecalPrototype>(component.SelectedState);
+        var color = component.Color;
+        if (component.OpaqueGhost)
+            color.A /= 2;
+        _overlay.AddOverlay(new CrayonDecalGhostOverlay(_placement, _transform, _sprite, _interaction, decal,
+            -component.Rotation, color));
     }
 
     private void OnLocalPlayerDetached(LocalPlayerDetachedEvent args)

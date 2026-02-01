@@ -1,0 +1,32 @@
+- type: entity
+  parent: BaseAction
+  id: ActionToggleInternalsOrgan
+  name: Toggle Internals
+  description: Breathe from your organ.
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Interface/Alerts/internals.rsi
+      state: internal2
+    iconOn:
+      sprite: Interface/Alerts/internals.rsi
+      state: internal1
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionOpenOrganGasTankUI
+  name: View Organ Gas Tank
+  description: View the gas contents of your organ.
+  components:
+  - type: Action
+    icon:
+      sprite: Interface/Alerts/internals.rsi
+      state: internal2
+    raiseOnUser: true
+  - type: InstantAction
+    event: !type:OpenUiActionEvent
+      key: enum.SharedGasTankUiKey.OrganKey
+

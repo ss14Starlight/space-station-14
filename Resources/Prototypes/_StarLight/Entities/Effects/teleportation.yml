@@ -64,3 +64,51 @@
     netsync: false
   - type: TimedDespawn
     lifetime: 2
+
+- type: entity
+  id: BluespaceImplantEffect
+  parent: Acidifier
+  name: bluespace implant effect
+  description: Bluespace Portal
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/portal_implant.rsi
+    noRot: true
+    layers:
+    - state: bluespace_implant
+      shader: unshaded
+  - type: PointLight
+    color: Blue
+    radius: 2
+    energy: 1
+    netsync: false
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+
+- type: entity
+  id: RedspaceImplantEffect
+  parent: Acidifier
+  name: redspace implant effect
+  description: Redspace Portal
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/portal_implant.rsi
+    noRot: true
+    layers:
+    - state: redspace_implant
+      shader: unshaded
+  - type: PointLight
+    color: Red
+    radius: 2
+    energy: 1
+    netsync: false
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+  - type: Physics
+    bodyType: Static
+    canCollide: false

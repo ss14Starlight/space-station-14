@@ -43,3 +43,95 @@
     amount: 0.75
   pricePerUnit: 3
   
+# The worst part of Christmas. Functionally the same as Syrup.
+- type: reagent
+  id: CranberrySauce
+  name: reagent-name-cranberrysauce
+  group: Foods
+  desc: reagent-desc-cranberrysauce
+  physicalDesc: reagent-physical-desc-sticky
+  flavor: lemonlimecranberrysoda # 'like Christmas'
+  color: "#700620" # dark red, erring on pinkish
+  viscosity: 0.55 #Start using syrup to attach your remote recievers to your microwaves!
+  tileReactions:
+    - !type:SpillTileReaction
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        factor: 6.0
+  pricePerUnit: 5
+  footstepSound:
+    collection: FootstepSlime
+    params:
+      volume: 6
+
+# Personally, I can't stand this stuff. Weaker version of Protein.
+- type: reagent
+  id: Gravy
+  name: reagent-name-gravy
+  group: Foods
+  desc: reagent-desc-gravy
+  physicalDesc: reagent-physical-desc-grainy
+  flavor: greasy
+  color: "#643205" # yup, another generic medium brown
+  metabolisms:
+    Food:
+      effects:
+      - !type:HealthChange
+        probability: 0.25
+        damage:
+          groups:
+            Brute: -0.4
+      - !type:SatiateHunger
+  pricePerUnit: 3
+  footstepSound:
+    collection: FootstepSlime
+    params:
+      volume: 6
+
+# Based on norepinephric acid
+# (adding a separate substance prevents it from being used normally)
+- type: reagent
+  id: BlindingStew
+  name: reagent-name-blindingstew
+  group: Foods
+  desc: reagent-desc-blindingstew
+  physicalDesc: reagent-physical-desc-clumpy
+  contrabandSeverity: Major
+  flavor: punishment
+  color: "#7d7d3c" # ew
+  metabolisms:
+    Poison:
+      effects:
+      - !type:PopupMessage
+        type: Local
+        messages:
+        - blindingstew-effect-eye-pain
+        - blindingstew-effect-eye-burn
+        - blindingstew-effect-hair
+        probability: 0.08
+      - !type:PopupMessage
+        visualType: MediumCaution
+        type: Local
+        messages:
+        - blindingstew-effect-darkness
+        - blindingstew-effect-punished
+        conditions:
+        - !type:ReagentCondition
+          reagent: BlindingStew
+          min: 20
+        probability: 0.03
+      - !type:GenericStatusEffect
+        key: TemporaryBlindness
+        component: TemporaryBlindness
+        conditions:
+        - !type:ReagentCondition
+          reagent: BlindingStew
+          min: 20
+  pricePerUnit: 3
+  footstepSound:
+    collection: FootstepSlime
+    params:
+      volume: 6
+

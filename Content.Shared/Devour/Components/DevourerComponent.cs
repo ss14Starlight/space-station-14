@@ -85,6 +85,14 @@ public sealed partial class DevourerComponent : Component
         }
     };
 
+    // Starlight start
+    /// <summary>
+    /// Determines what things the devourer cannot consume, takes precedence over Whitelist
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityWhitelist? Blacklist = new();
+    // Starlight end
+
     /// <summary>
     /// Determines what things end up in the dragon's stomach if they eat it.
     /// If it isn't in the whitelist, it's deleted.

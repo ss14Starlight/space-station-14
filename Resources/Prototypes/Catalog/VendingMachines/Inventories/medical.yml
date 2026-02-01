@@ -41,6 +41,7 @@
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
     Syringe: 5
+    JetInjector: 2
     BoxBottle: 3
     PillCanisterTricordrazine: 3
     PillCanisterIron: 1
@@ -49,6 +50,7 @@
     SyringeIpecac: 1
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
+    ClothingEyeGlassesMedicalPrescription: 2 #Starlight
     AutoMenderBruteFilled: 1
     AutoMenderBurnFilled: 1
     SpaceMedipen: 1 #Starlight

@@ -16,8 +16,14 @@ public sealed class ClericalErrorRule : StationEventSystem<ClericalErrorRuleComp
     {
         base.Started(uid, component, gameRule, args);
 
-        if (!TryGetRandomStation(out var chosenStation))
-            return;
+        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
+        EntityUid? chosenStation = null;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        chosenStation = stationEvent.TargetStation;
+        if (chosenStation is null)
+            if (!TryGetRandomStation(out chosenStation))
+                return;
+        //Starlight end
 
         if (!TryComp<StationRecordsComponent>(chosenStation, out var stationRecords))
             return;
