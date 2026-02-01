@@ -61,7 +61,7 @@
   name: Ghost Role (Skeleton)
   components:
   - type: MindRole
-    roleType: FreeAgent
+    roleType: Neutral
     sortWeight: 0
     fallbackPlayTimeTracker: GhostSkeleton
 
