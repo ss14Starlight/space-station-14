@@ -579,7 +579,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNCT
-  name: NT Career Trainer's skirt
+  name: NT career trainer's skirt
   description: A neatly pressed olive green shirt paired with a sleek black skirt, worn by those committed to mentoring the next generation.
   components:
   - type: Sprite

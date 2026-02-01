@@ -115,4 +115,5 @@
   components:
   - type: MindRole
     antagPrototype: Vampire
+    roleType: SoloAntagonist
   - type: VampireRole

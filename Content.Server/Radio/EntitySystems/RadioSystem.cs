@@ -490,8 +490,13 @@ public sealed class RadioSystem : EntitySystem
     }
     private void OnReceiverEncryptionChannelsChanged(Entity<IntrinsicRadioReceiverComponent> ent, ref EncryptionChannelsChangedEvent args)
     {
-        if(TryComp(ent.Owner, out ActiveRadioComponent? radio))
-            radio.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))]; 
+        //Starlight begin
+        if (TryComp(ent.Owner, out ActiveRadioComponent? radio))
+        {
+            radio.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
+            Dirty(ent, radio);
+        } 
+        //Starlight end
     }
     #endregion Starlight
 }

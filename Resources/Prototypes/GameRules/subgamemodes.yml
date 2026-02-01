@@ -71,13 +71,17 @@
     agentName: vampire-roundend-name
     definitions:
     - prefRoles: [ Vampire ]
-      max: 7
-      playerRatio: 10
+      max: 9 # Starlight. Full gamemode Vamps scale higher to account for scaling.
+      playerRatio: 16 # Starlight. Accounting for scaling.
       lateJoinAdditional: true
-      allowNonHumans: false
+      allowNonHumans: True
       multiAntagSetting: None
       mindRoles:
       - MindRoleVampire
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary # Same as lings, would be too strong.
+      # Starlight-end
 
 # Needs testing
 - type: entity

@@ -49,6 +49,7 @@
     - SLChangeling #Starlight
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
+    - Vampire #Starlight
 #    - SiliconLiberation #Starlight
 
 - type: gamePreset
@@ -297,11 +298,11 @@
   - vampires
   name: vampire-gamemode-title
   description: vampire-gamemode-description
-  showInVote: false # 🌟Starlight🌟 - Leave disabled until they are reworked
+  showInVote: True # 🌟Starlight🌟 - Leave disabled until they are reworked
   minPlayers: 50 # 🌟Starlight🌟
   rules:
   - Vampire
-  - SubGamemodesRule
+  - SubGamemodesRuleNoVampires
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - BasicRoundstartVariation
@@ -317,7 +318,8 @@
   showInVote: false
   rules:
     - SLChangeling #Starlight
-    - SubGamemodesRule
+    - SLChangelingLess # Starlight. This is their mode after all, and this is how it was prior.
+    - SubGamemodesRuleNoChangelings # Starlight
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
@@ -336,6 +338,29 @@
     - SubGamemodesRuleNoChangelings #Starlight
     - BasicStationEventScheduler
     - BasicRoundstartVariation
+
+#Starlight start
+- type: gamePreset
+  id: Vamptraitorling
+  alias:
+    - lingtraitorvamp
+    - traitorlingvamp
+    - vamptraitorling
+    - vamplingtraitor
+    - lingvamptraitor
+    - traitorvampling
+  name: vamptraitorling-title
+  description: vamptraitorling-description
+  showInVote: true #Starlight
+  minPlayers: 50 #Starlight
+  rules:
+    - SLChangelingLess # Starlight
+    - TraitorLess #Starlight
+    - VampireLess # Starlight
+    - SubGamemodesRuleVampTraitorLing #Starlight
+    - BasicStationEventScheduler
+    - BasicRoundstartVariation
+#Starlight end
 
 #Starlight EventLight Gamemode for Event Usage 
 - type: gamePreset

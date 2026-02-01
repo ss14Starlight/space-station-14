@@ -146,9 +146,9 @@
   components:
   - type: Objective
     icon:
-      sprite: Interface/Actions/actions_vampire.rsi
+      sprite: /Textures/_Starlight/Vampire/actions_vampire.rsi
       state: survive_icon
-
+      
 - type: entity
   parent: [BaseVampireObjective, BaseLivingObjective]
   id: VampireEscapeObjective
@@ -186,11 +186,30 @@
   components:
   - type: Objective
     icon:
-      sprite: Interface/Actions/actions_vampire.rsi
-      state: blood_drain_icon
+      sprite: _Starlight/Vampire/actions_vampire.rsi
+      state: blood_objective
   - type: NumberObjective
-    min: 100
-    max: 500
+    min: 400
+    max: 880
     title: objective-condition-drain-title
     description: objective-condition-drain-description
   - type: BloodDrainCondition
+
+# Thrall
+
+- type: entity
+  parent: BaseObjective
+  id: VampireThrallObeyMasterObjective
+  name:  Obey your master
+  description: You are enthralled. Follow your master's commands.
+  components:
+  - type: Objective
+    issuer: objective-issuer-vampire
+    difficulty: 0.1
+    unique: false
+    icon:
+      sprite: /Textures/_Starlight/Vampire/Dantalion.rsi
+      state: thralls_up
+  - type: FreeObjective
+  - type: TargetObjective
+    title: objective-vampire-thrall-obey-master-title

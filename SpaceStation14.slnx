@@ -42,6 +42,7 @@
   <Project Path="Content.YAMLLinter/Content.YAMLLinter.csproj" />
   <Project Path="Content.Starlight.Codegen/Content.Starlight.Codegen.csproj" />
   <Project Path="Pow3r/Pow3r.csproj" />
+  <Folder Name="/RobustToolbox/.github/" />
   <Folder Name="/RobustToolbox/.github/workflows/">
     <File Path="RobustToolbox/.github/workflows/benchmarks.yml" />
     <File Path="RobustToolbox/.github/workflows/build-all-configurations.yml" />

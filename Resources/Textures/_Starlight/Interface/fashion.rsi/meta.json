@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "bag versions by github.com/fqqf",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Made by DocMoth",
+      "name": "regalia"
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Mew",
+      "name": "ari"
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from shiptest (https://github.com/shiptest-ss13/Shiptest) | Edited by PuroSlavKing (Github) | inhand sprites, monkey and reptilian by vetochka_igrit (Discord)",
+      "name": "belpero"
+    },
+    {
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Mew",
+      "name": "pastry"
+    }
+  ]
+}
