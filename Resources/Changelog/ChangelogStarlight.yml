@@ -28815,5 +28815,24 @@ Entries:
   id: 309000
   time: '2026-02-01T14:58:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3090
+- author: Rinary
+  changes:
+  - message: Added compatibility to download mind from Borg Brains(only from brains,
+      so you need to eject it from borg) with Intellicard(So now you can upload borg
+      into ai core).
+    type: Add
+  - message: Added compatibility to upload mind in Borg Brains(only in brains, so
+      you need to eject it from borg) with Intellicard(So now you can upload ai into
+      borg brain).
+    type: Add
+  - message: Now to upload lawset to ai you need to link(or linked before) ai upload
+      console. You can link it to core with multitool.
+    type: Tweak
+  - message: Now uploaded lawset will be applied only for linked ai core, not for
+      all.
+    type: Tweak
+  id: 135700
+  time: '2026-02-01T15:15:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1357
 Order: -1
 
