@@ -1016,7 +1016,7 @@
       state: SyndicateOperative
   - type: AgentIDCard
   - type: IdCard
-    jobIcon: JobIconSyndicateOperative
+    jobIcon: JobIconSyndicate # Starlight-edit - SyndicateOperative -> Syndicate
 
 - type: entity
   parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
@@ -1034,7 +1034,7 @@
       offset: *icon-offset
       state: SyndicateCorpsman
   - type: IdCard
-    jobIcon: JobIconSyndicateCorpsman
+    jobIcon: JobIconSyndicate # Starlight-edit - SyndicateCorpsman -> Syndicate
 
 - type: entity
   parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
@@ -1052,7 +1052,7 @@
       offset: *icon-offset
       state: SyndicateCommander
   - type: IdCard
-    jobIcon: JobIconSyndicateCommander
+    jobIcon: JobIconSyndicate # Starlight-edit - SyndicateCommander -> Syndicate
 
 - type: entity
   parent: [ IDCardStandard, BaseHighlyIllegalContraband ]

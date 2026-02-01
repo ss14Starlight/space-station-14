@@ -22,7 +22,6 @@ using Content.Shared.Popups;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Temperature.Components;
-using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
@@ -53,6 +52,7 @@ public sealed class UmbraeSystem : EntitySystem
     [Dependency] private readonly TemperatureSystem _temperatureSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
 
     public override void Initialize()
     {
@@ -68,6 +68,7 @@ public sealed class UmbraeSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, VampireShadowSnareActionEvent>(OnShadowSnare);
 
         SubscribeLocalEvent<UmbraeComponent, VampireBloodDrankEvent>(OnBloodDrank);
+        SubscribeLocalEvent<UmbraeComponent, VampireFullPowerAchievedEvent>(OnFullPower);
     }
 
     private void OnBloodDrank(EntityUid uid, UmbraeComponent umbrae, ref VampireBloodDrankEvent args)
@@ -474,12 +475,10 @@ public sealed class UmbraeSystem : EntitySystem
             return;
         }
 
-        umbrae.ShadowAnchorBeaconPrototype = args.BeaconPrototype;
-
         var pressedCoords = Transform(uid).Coordinates;
         var tileCoords = pressedCoords.WithPosition(pressedCoords.Position.Floored() + new Vector2(0.5f, 0.5f));
 
-        var ev = new VampireShadowAnchorDoAfterEvent(GetNetCoordinates(tileCoords), bloodCost, args.AutoReturnDelay);
+        var ev = new VampireShadowAnchorDoAfterEvent(GetNetCoordinates(tileCoords), args.BeaconPrototype, bloodCost, args.AutoReturnDelay);
         var doAfter = new DoAfterArgs(EntityManager, uid, args.PlaceDelay, ev, uid)
         {
             DistanceThreshold = null,
@@ -521,7 +520,7 @@ public sealed class UmbraeSystem : EntitySystem
             return;
 
         var coords = GetCoordinates(args.TargetCoordinates);
-        var newBeacon = EntityManager.SpawnEntity(umbrae.ShadowAnchorBeaconPrototype, coords);
+        var newBeacon = EntityManager.SpawnEntity(args.BeaconPrototype, coords);
         umbrae.SpawnedShadowAnchorBeacon = newBeacon;
         umbrae.ShadowAnchorLoopId++;
         var expectedLoopId = umbrae.ShadowAnchorLoopId;
@@ -694,5 +693,10 @@ public sealed class UmbraeSystem : EntitySystem
         }
 
         args.Handled = true;
+    }
+    private void OnFullPower(EntityUid uid, UmbraeComponent umbrae, VampireFullPowerAchievedEvent args)
+    {
+        _eye.SetDrawFov(uid, false);
+        _popup.PopupEntity(Loc.GetString("vampire-umbrae-full-power-fov"), uid, uid, PopupType.Large);
     }
 }
