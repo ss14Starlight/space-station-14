@@ -1,10 +1,8 @@
 using Content.Server.Bible.Components;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
-using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
 using Content.Shared.Body.Components;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
@@ -676,7 +674,11 @@ public sealed partial class VampireSystem : EntitySystem
         var prev = comp.FullPower;
         comp.FullPower = comp.TotalBlood > 1000 && uniqueHumanoids >= 8;
         if (!prev && comp.FullPower)
+        {
             _popup.PopupEntity(Loc.GetString("vampire-full-power-achieved"), uid, uid);
+            var ev = new VampireFullPowerAchievedEvent();
+            RaiseLocalEvent(uid, ev);
+        }
         Dirty(uid, comp);
     }
 

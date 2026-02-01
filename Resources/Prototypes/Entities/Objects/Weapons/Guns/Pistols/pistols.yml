@@ -255,7 +255,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/MK_Universal.ogg
   - type: ItemSlots
     slots:
       gun_magazine:

@@ -9,7 +9,6 @@ using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Prototypes;
@@ -484,12 +483,15 @@ public sealed class GargantuaSystem : EntitySystem
         for (var i = 1; i <= maxTiles; i++)
         {
             var tileIndex = i;
-            var tileCoords = xform.Coordinates.Offset(direction * tileIndex);
+            var tileMapCoords = _transform.ToMapCoordinates(xform.Coordinates.Offset(direction * tileIndex));
 
             Timer.Spawn(delayPerTile * i, () =>
             {
                 if (!Exists(uid) || stopped)
                     return;
+
+                // Convert back to EntityCoordinates inside the callback
+                var tileCoords = _transform.ToCoordinates(tileMapCoords);
 
                 var blocked = false;
                 var entitiesOnTile = _lookup.GetEntitiesInRange(tileCoords, 0.4f);
@@ -699,7 +701,7 @@ public sealed class GargantuaSystem : EntitySystem
             // Static obstacle
             var obstacleCoords = Transform(other).Coordinates;
 
-            _audio.PlayPvs(chargeEv.Sound, obstacleCoords);
+            _audio.PlayPvs(chargeEv.Sound, obstacleCoords, AudioParams.Default.WithVolume(3f));
 
             if (HasComp<DestructibleComponent>(other))
                 _destructible.DestroyEntity(other);
@@ -714,7 +716,7 @@ public sealed class GargantuaSystem : EntitySystem
             || !TryGetVampireActionEvent<VampireChargeActionEvent>(vampire, ChargeActionId, out var chargeEv))
             return;
 
-        _audio.PlayPvs(chargeEv.Sound, target);
+        _audio.PlayPvs(chargeEv.Sound, target, AudioParams.Default.WithVolume(3f));
 
         var damageSpec = new DamageSpecifier();
         damageSpec.DamageDict["Blunt"] = chargeEv.CreatureDamage;
