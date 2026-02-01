@@ -234,6 +234,7 @@
     - id: DoorRemoteEngineering
     - id: BoxCECircuitboards
     - id: RCD
+    - id: RPD # Starlight: RPD
     - id: RCDAmmo
     - id: RubberStampCE
     - id: MetalFoamGrenade

@@ -35,6 +35,11 @@
   group: Medicine
   desc: reagent-desc-amoxla
   physicalDesc: reagent-physical-desc-opaque
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedDepartments:
+  - Medical
+  # Starlight End
   flavor: medicine
   color: "#51c38c"
   metabolisms:

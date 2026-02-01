@@ -598,7 +598,7 @@
           components:
           - type: DisarmMalus
             malus: 0.6
-        - type: ToggleableLightVisuals
+        - type: ToggleableVisuals
           spriteLayer: flame
         - type: RefillableSolution
           solution: Welder
@@ -844,7 +844,7 @@
           components:
           - type: DisarmMalus
             malus: 0.6
-        - type: ToggleableLightVisuals
+        - type: ToggleableVisuals
           spriteLayer: flame
         - type: RefillableSolution
           solution: Welder
@@ -892,7 +892,76 @@
       - Wrench
       - PlantSampleTaker
       - Wirecutter
-      - Screwdriver 
+      - Screwdriver
+
+- type: entity
+  id: RPD
+  parent: RCD
+  name: RPD
+  description: A device used to rapidly pipe things.
+  components:
+  - type: RCD
+    isRPD: true
+    availablePrototypes:
+    - PipeFourway
+    - PipeStraight
+    - PipeBend
+    - PipeTJunction
+    - OutletInjector
+    - ManualValve
+    - VolumetricPump
+    - PressurePump
+    - VentScrubber
+    - PressureValve
+    - DualPortVent
+    - VentGas
+    - VentPassive
+    - MixerGas
+    - Radiator
+    - RadiatorBend
+    - SignalValve
+    - CanisterPort
+    - FilterGas
+    - PipeHalf
+    - PipeManifold
+    - PressureRegulator
+    - PassiveGate
+    - PipeSensor
+    - Deconstruct
+  - type: LimitedCharges
+    maxCharges: 45
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/rpd.rsi
+
+- type: entity
+  id: RPDEmpty
+  parent: RPD
+  suffix: Empty
+  components:
+  - type: LimitedCharges
+    lastCharges: -1
+
+- type: entity
+  id: RPDRecharging
+  parent: RPD
+  name: experimental RPD
+  description: Cyborg-mounted Rapid Piping Device which creates compressed matter on the fly using an internal fabricator.
+  suffix: AutoRecharge
+  components:
+  - type: LimitedCharges
+    maxCharges: 20
+  - type: AutoRecharge
+    rechargeDuration: 10
+
+- type: entity
+  id: RPDExperimental
+  parent: RPD
+  suffix: Admeme
+  name: experimental RPD
+  description: A bluespace-enhanced rapid piping device that passively generates its own compressed matter.
+  components:
+  - type: AutoRecharge
+    rechargeDuration: 1
 
 - type: entity
   id: RCDXeno

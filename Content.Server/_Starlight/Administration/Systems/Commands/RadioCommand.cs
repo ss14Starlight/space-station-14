@@ -23,7 +23,7 @@ public sealed class RadioCommand : ToolshedCommand
         T? comp;
         if (ensure) comp = EnsureComp<T>(uid);
         else if (!TryComp<T>(uid, out comp)) return uid;
-        if (comp.CustomChannels.Any(x => x.Id == id || x.Keycode == keycode)) return uid;
+        if (comp.CustomChannels.Any(x => x.Id == id)) return uid;
         comp.CustomChannels.Add(new CustomRadioChannelData
         {
             Id = id,

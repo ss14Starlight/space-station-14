@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Prototypes;
@@ -74,6 +74,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
     private void OnApplyMetabolicMultiplier(Entity<MetabolizerComponent> ent, ref ApplyMetabolicMultiplierEvent args)
     {
         ent.Comp.UpdateIntervalMultiplier = args.Multiplier;
+        Dirty(ent);
     }
 
     public override void Update(float frameTime)
@@ -306,29 +307,38 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
         return true;
     }
 
-    public bool TryAddMetabolizerType(MetabolizerComponent component, string metabolizerType)
+    public bool TryAddMetabolizerType(Entity<MetabolizerComponent> ent, string metabolizerType)
     {
         if (!_prototypeManager.HasIndex<MetabolizerTypePrototype>(metabolizerType))
             return false;
 
-        if (component.MetabolizerTypes == null)
-            component.MetabolizerTypes = new();
+        ent.Comp.MetabolizerTypes ??= new();
+        if (!ent.Comp.MetabolizerTypes.Add(metabolizerType))
+            return false;
 
-        return component.MetabolizerTypes.Add(metabolizerType);
+        Dirty(ent);
+        return true;
     }
 
-    public bool TryRemoveMetabolizerType(MetabolizerComponent component, string metabolizerType)
+    public bool TryRemoveMetabolizerType(Entity<MetabolizerComponent> ent, string metabolizerType)
     {
-        if (component.MetabolizerTypes == null)
+        if (ent.Comp.MetabolizerTypes == null)
             return true;
 
-        return component.MetabolizerTypes.Remove(metabolizerType);
+        if (!ent.Comp.MetabolizerTypes.Remove(metabolizerType))
+            return false;
+
+        Dirty(ent);
+        return true;
     }
 
-    public void ClearMetabolizerTypes(MetabolizerComponent component)
+    public void ClearMetabolizerTypes(Entity<MetabolizerComponent> ent)
     {
-        if (component.MetabolizerTypes != null)
-            component.MetabolizerTypes.Clear();
+        if (ent.Comp.MetabolizerTypes == null || ent.Comp.MetabolizerTypes.Count == 0)
+            return;
+
+        ent.Comp.MetabolizerTypes.Clear();
+        Dirty(ent);
     }
 }
 

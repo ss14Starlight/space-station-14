@@ -61,6 +61,9 @@
   id: Bow
 
 - type: Tag
+  id: BurnedTraitBackground
+
+- type: Tag
   id: CantInteract
 
 - type: Tag
@@ -190,6 +193,9 @@
   id: Felionoid
 
 - type: Tag
+  id: FreeMag
+
+- type: Tag
   id: FestiveDinner
 
 - type: Tag
@@ -268,6 +274,13 @@
   id: InsulatedThread
 
 - type: Tag
+  id: IteratorTraitBackground
+
+# Used for the jet injector and advanced jet injector
+- type: Tag
+  id: JetInjector
+
+- type: Tag
   id: L6Saw
 
 - type: Tag
@@ -317,6 +330,10 @@
 
 - type: Tag
   id: MedCyberEyes
+
+# Used for the one-use disposable medipens
+- type: Tag
+  id: Medipen
 
 - type: Tag
   id: Meson

@@ -1,0 +1,18 @@
+- type: entity
+  parent: [ClothingMiscBase, BaseChameleon]
+  id: ClothingMiscChameleon
+  name: gold medal of crewmanship
+  description: Given to crewmates who display excellent crewmanship.
+  suffix: Chameleon
+  components:
+    - type: Tag
+      tags: # ignore "WhitelistChameleon" tag
+      - Medal
+    - type: Sprite
+      sprite: Clothing/Neck/Medals/gold.rsi
+    - type: Clothing
+      sprite: Clothing/Neck/Medals/gold.rsi
+    - type: ChameleonClothing
+      slot: [MISC]
+      default: ClothingNeckGoldmedal
+      

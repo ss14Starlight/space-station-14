@@ -1784,6 +1784,7 @@
   - type: Item
     size: Tiny
     heldPrefix: 0
+  - type: VampireDevourable # Starlight-edit: Vampire Devouring
   - type: Clothing
     quickEquip: false
     sprite: Mobs/Animals/mouse.rsi
@@ -2041,7 +2042,8 @@
     energy: 5
     netsync: false
   - type: RadiationSource
-    intensity: 0.3
+    intensity: 0.5
+    slope: 0.3
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -3057,7 +3059,13 @@
       Dead: CorgiDead
   - type: Blindable # why is this not base?
   - type: ThermalRegulator # Lower radiated heat, Corgis are smaller so their body surface area is also smaller.
+    metabolismHeat: 400 # half of human's
     radiatedHeat: 35 # This affects them reallistically only when dead in a spaced room, makes the cold damage scale slower.
+    implicitHeatRegulation: 250 # Add implicit heat regulation because they lacked it for some reason
+    sweatHeatRegulation: 500 # Allow corgis to sweat, i dont know if dogs sweat but i am not implementing a different way of regulation just for them
+    shiveringHeatRegulation: 500 # Allow corgis to shiver to warm up
+    normalBodyTemperature: 310.15 # Same as human
+    thermalRegulationTemperatureThreshold: 2 # Same as human
   # Starlight End
 
 - type: entity

@@ -107,3 +107,29 @@
     - SubdermalImplant
     - HideContextMenu
     - GearAcidifier
+
+#SELF
+- type: entity
+  parent: BaseSubdermalImplant
+  id: SELFStorageImplant
+  name: S.E.L.F storage implant
+  description: This implant grants hidden storage within a person's body using bluespace technology.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageImplant
+    - type: SubdermalImplant
+      implantAction: ActionOpenStorageImplant
+      whitelist:
+        components:
+        - Hands # no use giving a mouse a storage implant, but a monkey is another story...
+    - type: Storage
+      grid:
+      - 0,0,4,3
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: [ ]
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface

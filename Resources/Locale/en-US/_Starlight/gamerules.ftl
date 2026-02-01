@@ -6,3 +6,9 @@ eventlight-description = Not quite Greenshift, stuff still happens!
 
 shitstation-title = Shit Station
 shitstation-description = The last shift was full of slobs
+
+vampire-gamemode-title = Vampires
+vampire-gamemode-description = Blood-drinkers in space! Don't let it get out of hand...
+
+vamptraitorling-title = Vamptraitorlings
+vamptraitorling-description = What a horrible night to have a curse

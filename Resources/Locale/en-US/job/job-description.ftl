@@ -9,7 +9,7 @@ job-description-cadet = Learn the basics of arresting criminals and managing the
 job-description-captain = Keep the station running, delegate work to the other heads of staff, and exert your will.
 job-description-cargotech = Deal with requisitions and deliveries, pilot the cargo shuttle to the trade station and back, and work with others to make ludicrous amounts of cash and then waste it all gambling.
 job-description-ce = Manage the Engineering department to ensure power, atmospherics, and the hull are in perfect shape.
-job-description-centcomoff = Act as an ambassador to the newest state-of-the-art space station in Nanotrasen's fleet.
+job-description-centcommoff = Act as an ambassador to the newest state-of-the-art space station in Nanotrasen's fleet.
 # Starlight: revised:
 job-description-chaplain = Preach the good word of your deity and religion, and conduct spiritual healing and miracles with your holy book.
 job-description-chef = Keep the station fed with a variety of food items, butcher dead animals to ensure ammonia doesn't leak, and help keep the bar lively.

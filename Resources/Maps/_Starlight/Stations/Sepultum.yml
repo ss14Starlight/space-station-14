@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 268.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 01/25/2026 13:09:20
-  entityCount: 42894
+  time: 01/26/2026 17:34:53
+  entityCount: 42886
 maps:
 - 1
 grids:
@@ -12992,7 +12992,7 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: Door
-      secondsUntilStateChange: -221091.89
+      secondsUntilStateChange: -221263.14
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13287,7 +13287,7 @@ entities:
       pos: -7.5,67.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -175053.86
+      secondsUntilStateChange: -175225.11
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13547,7 +13547,7 @@ entities:
       pos: 7.5,4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -229322.4
+      secondsUntilStateChange: -229493.66
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13609,7 +13609,7 @@ entities:
       pos: 16.5,93.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114250.16
+      secondsUntilStateChange: -114421.41
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13621,7 +13621,7 @@ entities:
       pos: 16.5,89.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114249.555
+      secondsUntilStateChange: -114420.805
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13632,7 +13632,7 @@ entities:
       pos: -60.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114499.92
+      secondsUntilStateChange: -114671.17
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13643,7 +13643,7 @@ entities:
       pos: -56.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114500.35
+      secondsUntilStateChange: -114671.6
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13654,7 +13654,7 @@ entities:
       pos: -52.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114500.89
+      secondsUntilStateChange: -114672.14
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13665,7 +13665,7 @@ entities:
       pos: -48.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114501.625
+      secondsUntilStateChange: -114672.875
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13728,7 +13728,7 @@ entities:
       pos: -60.5,77.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -2519.4043
+      secondsUntilStateChange: -2690.6567
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -14108,7 +14108,7 @@ entities:
       pos: -43.5,-15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -6608.5137
+      secondsUntilStateChange: -6779.766
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14394,6 +14394,13 @@ entities:
     - type: Transform
       pos: -34.5,51.5
       parent: 2
+- proto: AirlockMaintBarLocked
+  entities:
+  - uid: 380
+    components:
+    - type: Transform
+      pos: -42.5,-37.5
+      parent: 2
 - proto: AirlockMaintCargoLocked
   entities:
   - uid: 347
@@ -14584,11 +14591,6 @@ entities:
     components:
     - type: Transform
       pos: -52.5,-26.5
-      parent: 2
-  - uid: 380
-    components:
-    - type: Transform
-      pos: -42.5,-37.5
       parent: 2
   - uid: 381
     components:
@@ -88991,13 +88993,6 @@ entities:
     - type: Transform
       pos: -166.5,29.5
       parent: 2
-- proto: CrateStarterXenobiology
-  entities:
-  - uid: 14690
-    components:
-    - type: Transform
-      pos: -84.5,14.5
-      parent: 2
 - proto: CrateTrashCartJani
   entities:
   - uid: 14691
@@ -89374,7 +89369,7 @@ entities:
       pos: -24.5,66.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -24076.7
+      secondsUntilStateChange: -24247.951
       state: Closing
 - proto: CurtainsPurple
   entities:
@@ -89389,7 +89384,7 @@ entities:
       pos: -122.5,47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -126440.59
+      secondsUntilStateChange: -126611.84
       state: Opening
   - uid: 14758
     components:
@@ -90173,6 +90168,12 @@ entities:
       parent: 2
 - proto: DisposalBend
   entities:
+  - uid: 910
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -44.5,50.5
+      parent: 2
   - uid: 14873
     components:
     - type: Transform
@@ -164415,48 +164416,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -126.5,45.5
-      parent: 2
-- proto: SpawnGrayXenobiologySlime
-  entities:
-  - uid: 25785
-    components:
-    - type: Transform
-      pos: -73.5,16.5
-      parent: 2
-  - uid: 25786
-    components:
-    - type: Transform
-      pos: -73.5,14.5
-      parent: 2
-  - uid: 25787
-    components:
-    - type: Transform
-      pos: -73.5,12.5
-      parent: 2
-  - uid: 25788
-    components:
-    - type: Transform
-      pos: -73.5,10.5
-      parent: 2
-  - uid: 25789
-    components:
-    - type: Transform
-      pos: -73.5,8.5
-      parent: 2
-  - uid: 25790
-    components:
-    - type: Transform
-      pos: -73.5,6.5
-      parent: 2
-  - uid: 25791
-    components:
-    - type: Transform
-      pos: -83.5,11.5
-      parent: 2
-  - uid: 25792
-    components:
-    - type: Transform
-      pos: -82.5,9.5
       parent: 2
 - proto: SpawnMechRipley
   entities:
