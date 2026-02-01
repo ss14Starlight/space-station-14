@@ -39,5 +39,20 @@
    [textlink="Dantalion" link="VampiresDantalion"] — thralls, illusions, social control.
    [textlink="Gargantua" link="VampiresGargantua"] — melee, durability, breaking through.
 
+  ## Holy Weakness
+
+  Vampires are vulnerable to holy forces, but [italic]only after they have fed on at least one victim[/italic].
+
+  [bold]Holy Water[/bold]:
+  - Deals burn damage to vampires who have fed.
+  - If you haven't drained blood from anyone yet, holy water has no effect on you.
+
+  [bold]Holy Place[/bold]
+  - Standing on chapel tiles deals constant burn damage to vampires.
+  - Again, this only activates once you've had at least one victim.
+
+  [bold]The Chaplain[/bold]
+  - Chaplains with an active bible are [bold]immune to vampire abilities[/bold]. 
+    But once you reach [bold]Full Power[/bold], you can bypass faith protection.
 
 </Document>
