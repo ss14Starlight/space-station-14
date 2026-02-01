@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise Station 13",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "bg_vampire"
+        },
+        {
+            "name": "glare"
+        },
+        {
+            "name": "rejuvinate"
+        },
+        {
+            "name": "fangs_retracted"
+        },
+        {
+            "name": "fangs_extended"
+        },
+	    {
+	        "name": "select_class"	
+	    },
+        {
+            "name": "blood_objective"
+        },
+        {
+            "name": "survive_icon"
+        }
+    ]
+}

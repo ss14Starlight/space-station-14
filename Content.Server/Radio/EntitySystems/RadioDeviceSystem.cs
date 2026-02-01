@@ -74,8 +74,13 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnSpeakerInit(EntityUid uid, RadioSpeakerComponent component, ComponentInit args)
     {
+        //Starlight begin
         if (component.Enabled)
-            EnsureComp<ActiveRadioComponent>(uid).Channels.UnionWith(component.Channels);
+        {
+            var radio = EnsureComp<ActiveRadioComponent>(uid);
+            radio.Channels.UnionWith(component.Channels);
+            Dirty(uid, radio);
+        }
         else
             RemCompDeferred<ActiveRadioComponent>(uid);
     }

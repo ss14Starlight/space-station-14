@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise Station 13",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "hudvampire"
+        },
+        {
+            "name": "hudvampirethrall"
+        },
+        {
+            "name": "hudblood_rush"
+        },
+        {
+            "name": "hudblood_swell"
+        }
+    ]
+}

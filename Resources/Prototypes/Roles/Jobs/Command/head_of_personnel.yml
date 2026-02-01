@@ -17,10 +17,6 @@
     - !type:RoleTimeRequirement
       role: JobJanitor
       time: 3h
-    - !type:TraitsRequirement
-      traits:
-      - Iterator
-      inverted: true
 
   weight: 20
   startingGear: HoPGear

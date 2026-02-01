@@ -10,10 +10,6 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 36000 # 10h
-  - !type:TraitsRequirement
-    traits:
-    - Iterator
-    inverted: true
   startingGear: IAAGear
   icon: "JobIconIAA"
   rules: job-rules-corporate-aligned
