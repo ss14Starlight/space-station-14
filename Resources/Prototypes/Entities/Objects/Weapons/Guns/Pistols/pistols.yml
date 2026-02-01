@@ -53,10 +53,10 @@
         whitelist:
           tags:
             - MagazinePistol
+            - MagazinePistolHighCapacity
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolSP
         priority: 1
         whitelist:
           tags:
@@ -65,6 +65,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # Starlight
   - type: AmmoCounter
   - type: MagazineVisuals
     magState: mag
@@ -73,6 +74,14 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
+  # starlight start
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinPistol
+  - type: FiringPinHolder
+    supportedPins: [ Pistol, GunUpgrade ]
+  # starlight end
 
 - type: entity
   name: viper
@@ -93,11 +102,10 @@
         whitelist:
           tags:
             - MagazinePistol
-            - MagazinePistolHighCapacitySP
+            - MagazinePistolHighCapacity
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolSP
         priority: 1
         whitelist:
           tags:
@@ -106,6 +114,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 1000
 
@@ -133,14 +142,16 @@
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
-  - type: BatteryAmmoProvider
-    proto: BulletPistol
-    fireCost: 100
-  - type: PredictedBattery
-    maxCharge: 1000
-    startingCharge: 1000
-  - type: PredictedBatterySelfRecharger
-    autoRechargeRate: 25
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgePistol
+    capacity: 10
+    proto: CartridgePistolSP
+    cycleable: false # No synthesizing ammo for your syndicate masters.
+  - type: BallisticAmmoSelfRefiller
+    autoRefillRate: 4s
+    affectedByEmp: true
   - type: AmmoCounter
 
 - type: entity
@@ -182,7 +193,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeCaselessRifle
         priority: 1
         whitelist:
           tags:
@@ -191,6 +201,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 1500
 
@@ -244,7 +255,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/MK_Universal.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -259,7 +270,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnumSP
         priority: 1
         whitelist:
           tags:

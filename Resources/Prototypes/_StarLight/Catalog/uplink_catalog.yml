@@ -336,6 +336,22 @@
         - Scientist
         - ResearchDirector
 
+- type: listing
+  id: UplinkGearAcidifierImplanter
+  name: uplink-gear-acidifier-implant-name
+  description: uplink-gear-acidifier-implant-desc
+  icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
+  productEntity: GearAcidifierImplanter
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkImplants
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
 # Wearables
 - type: listing
   id: UplinkHardsuitInfiltration
@@ -578,3 +594,80 @@
   categories:
   - UplinkDisruption
 
+- type: listing
+  id: SyndicateShuttleBoard
+  name: uplink-shuttle-board-name
+  description: uplink-shuttle-board-desc
+  productEntity: SyndicateShuttleConsoleCircuitboard
+  icon: { sprite: Objects/Misc/module.rsi, state: cpu_syndicate }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDisruption
+
+- type: listing
+  id: SyndicateShuttleBundle
+  name: uplink-shuttle-bundle-name
+  description: uplink-shuttle-bundle-desc
+  productEntity: CrateNameSyndicateShuttleBundle
+  icon: { sprite: Structures/Shuttles/thruster.rsi, state: base }
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkDisruption
+
+- type: listing
+  id: SyndicateFriendshipBundle
+  name: uplink-friendship-bundle-name
+  description: uplink-friendship-bundle-desc
+  productEntity: CrateNameSyndicateFriendshipBundle
+  icon: { sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi, state: exp-320g }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 11
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkWeaponry
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - NukeOpsUplink          
+
+- type: listing
+  id: uplinkRiggedBoxingGlovesBoxer
+  name: uplink-rigged-boxing-gloves-name
+  description: uplink-rigged-boxing-gloves-desc
+  productEntity: ClothingHandsGlovesBoxingRigged
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Boxer
+        
+#Explosives
+- type: listing
+  id: UplinkPizzaBomb
+  name: uplink-pizza-bomb-name
+  description: uplink-pizza-bomb-desc
+  productEntity: Pizzabomb
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost: 
+    Telecrystal: 4
+  categories:
+      - UplinkExplosives

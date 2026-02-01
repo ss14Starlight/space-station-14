@@ -1,3 +1,19 @@
+# Tier 1
+#TODO: uncomment once xenobio is properly balanced and sprited
+# - type: technology
+#   id: BasicXenobiologyResearch
+#   name: research-technology-basic-xenobiology
+#   icon:
+#     sprite: _Starlight/Mobs/XenoSlimes/test_sprite.rsi
+#     state: test_slime
+#   discipline: Experimental
+#   tier: 1
+#   cost: 1000
+#   recipeUnlocks:
+#   - HandheldSlimeScanner
+#   - SlimeProcessorMachineCircuitboard
+#   - XenobiologyConsoleCircuitboard
+
 # Tier 2
 - type: technology
   id: Lawboards
@@ -39,8 +55,6 @@
   recipeUnlocks:
   - ArtificialBluespaceCrystal
   - NullspaceAnchorMachineCircuitboard
-
-# Tier 3
 - type: technology
   id: ScienceCyberLimbsTech
   name: research-technology-science-cyberlimbs
@@ -48,11 +62,13 @@
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: gorillagauntlet
   discipline: Experimental
-  tier: 3
-  cost: 9320
+  tier: 2
+  cost: 5000
   recipeUnlocks:
     - LeftArmCyberGorilla
     - RightArmCyberGorilla
   technologyPrerequisites:
     - CyberLimbsTech
     - AdvancedAnomalyResearch
+
+# Tier 3

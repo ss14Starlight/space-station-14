@@ -20,7 +20,7 @@ namespace Content.Server.Stunnable.Systems
         [Dependency] private readonly RiggableSystem _riggableSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly PowerCellSystem _powerCell = default!; // 🌟Starlight🌟
-        [Dependency] private readonly PredictedBatterySystem _battery = default!;
+        [Dependency] private readonly SharedBatterySystem _battery = default!;
         [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
 
         public override void Initialize()
@@ -30,16 +30,16 @@ namespace Content.Server.Stunnable.Systems
             SubscribeLocalEvent<StunbatonComponent, ExaminedEvent>(OnExamined);
             SubscribeLocalEvent<StunbatonComponent, SolutionContainerChangedEvent>(OnSolutionChange);
             SubscribeLocalEvent<StunbatonComponent, StaminaDamageOnHitAttemptEvent>(OnStaminaHitAttempt);
-            SubscribeLocalEvent<StunbatonComponent, PredictedBatteryChargeChangedEvent>(OnChargeChanged);
+            SubscribeLocalEvent<StunbatonComponent, ChargeChangedEvent>(OnChargeChanged);
         }
 
         private void OnStaminaHitAttempt(Entity<StunbatonComponent> entity, ref StaminaDamageOnHitAttemptEvent args)
         {
             // 🌟Starlight🌟 start
             // Stunbatons check for power cells if they have no BatteryComponent
-            Entity<PredictedBatteryComponent>? batteryEntity = null;
+            Entity<BatteryComponent>? batteryEntity = null;
             if (!_itemToggle.IsActivated(entity.Owner) ||
-            !(TryComp(entity.Owner, out PredictedBatteryComponent? battery) ||
+            !(TryComp(entity.Owner, out BatteryComponent? battery) ||
             _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEntity)) ||
             !_battery.TryUseCharge(batteryEntity.HasValue ? batteryEntity.Value.AsNullable() : (entity.Owner, battery), entity.Comp.EnergyPerUse))
             {
@@ -56,15 +56,15 @@ namespace Content.Server.Stunnable.Systems
             args.PushMarkup(onMsg);
 
             // 🌟Starlight🌟 start
-            Entity<PredictedBatteryComponent>? batteryEnt = null;
-            if (TryComp<PredictedBatteryComponent>(entity.Owner, out var battery) ||
-             _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt)) // WHY did this get changed to return an entity, aaaa >_<
+            Entity<BatteryComponent>? batteryEnt = null;
+            if (TryComp<BatteryComponent>(entity.Owner, out var battery) ||
+                _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
             {
-                if(batteryEnt.HasValue)
+                if (batteryEnt.HasValue)
                     battery = batteryEnt.Value;
                 if (battery != null)
                 {
-                    var count = (int)(battery.LastCharge / entity.Comp.EnergyPerUse);
+                    var count = (int)(_battery.GetCharge((entity.Owner, battery)) / entity.Comp.EnergyPerUse);
                     args.PushMarkup(Loc.GetString("melee-battery-examine", ("color", "yellow"), ("count", count)));
                 }
             }
@@ -76,23 +76,20 @@ namespace Content.Server.Stunnable.Systems
             base.TryTurnOn(entity, ref args);
 
             // 🌟Starlight🌟 start
-            Entity<PredictedBatteryComponent>? batteryEnt = null;
-            if (TryComp<PredictedBatteryComponent>(entity.Owner, out var battery) ||
-             _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt)) // WHY did this get changed to return an entity, aaaa >_<
+            Entity<BatteryComponent>? batteryEnt = null;
+            if (TryComp<BatteryComponent>(entity.Owner, out var battery) ||
+                _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt))
             {
-                if(batteryEnt.HasValue)
+                if (batteryEnt.HasValue)
                     battery = batteryEnt.Value;
-                if (battery != null)
+                if (battery != null && _battery.GetCharge((entity.Owner, battery)) < entity.Comp.EnergyPerUse)
                 {
-                    if (battery.LastCharge < entity.Comp.EnergyPerUse)
+                    args.Cancelled = true;
+                    if (args.User != null)
                     {
-                        args.Cancelled = true;
-                        if (args.User != null)
-                        {
-                            _popup.PopupEntity(Loc.GetString("stunbaton-component-low-charge"), (EntityUid)args.User, (EntityUid)args.User);
-                        }
-                        return;
+                        _popup.PopupEntity(Loc.GetString("stunbaton-component-low-charge"), (EntityUid)args.User, (EntityUid)args.User);
                     }
+                    return;
                 }
             }
             // 🌟Starlight🌟 end
@@ -108,7 +105,7 @@ namespace Content.Server.Stunnable.Systems
         {
             // Explode if baton is activated and rigged.
             if (!TryComp<RiggableComponent>(entity, out var riggable) ||
-                !TryComp<PredictedBatteryComponent>(entity, out var battery))
+                !TryComp<BatteryComponent>(entity, out var battery))
                 return;
 
             if (_itemToggle.IsActivated(entity.Owner) && riggable.IsRigged)
@@ -125,11 +122,11 @@ namespace Content.Server.Stunnable.Systems
             });
         }
 
-        private void OnChargeChanged(Entity<StunbatonComponent> entity, ref PredictedBatteryChargeChangedEvent args)
+        private void OnChargeChanged(Entity<StunbatonComponent> entity, ref ChargeChangedEvent args)
         {
             // 🌟Starlight🌟 start
-            Entity<PredictedBatteryComponent>? batteryEnt = null;
-            if (TryComp<PredictedBatteryComponent>(entity.Owner, out var battery) ||
+            Entity<BatteryComponent>? batteryEnt = null;
+            if (TryComp<BatteryComponent>(entity.Owner, out var battery) ||
              _powerCell.TryGetBatteryFromSlot(entity.Owner, out batteryEnt)) // WHY did this get changed to return an entity, aaaa >_<
             {
                 if(batteryEnt.HasValue)

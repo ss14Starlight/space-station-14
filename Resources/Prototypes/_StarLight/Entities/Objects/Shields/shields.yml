@@ -67,6 +67,15 @@
                 SheetSteel:
                   min: 5
                   max: 13
+    - type: Repairable # Negative values represent healing
+      damage:
+        groups:
+          Brute: -60 # 20 of each Brute Type - 20% of a basic shield HP
+        types:
+          Heat: -20
+      fuelCost: 10 # 1/2 of a Welder for a full repair
+      doAfterDelay: 5
+      allowSelfRepair: false
 
 - type: entity
   name: paladin greatshield

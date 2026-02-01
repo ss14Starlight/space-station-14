@@ -61,11 +61,10 @@
   - type: NoSlip
   - type: IgnoreSpiderWeb
   - type: Bloodstream
-    bloodMaxVolume: 50
-    bloodReagents:
+    bloodReferenceSolution:
         reagents:
         - ReagentId: CopperBlood
-          Quantity: 1
+          Quantity: 50
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid

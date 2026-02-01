@@ -113,7 +113,8 @@
   # Starlight Start
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobVoxEyes
+    prototypes:
+      Default: MobVoxEyes
   # Starlight End
   - type: Item
     size: Small

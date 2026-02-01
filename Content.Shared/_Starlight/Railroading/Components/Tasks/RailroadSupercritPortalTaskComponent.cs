@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.Railroading;
 public sealed partial class RailroadSupercritPortalTaskComponent : Component
 {
     [DataField]
-    public string Message = "rr-brighteye-portal-crit-desc";
+    public LocId Message = "rr-brighteye-portal-crit-desc";
 
     [DataField]
     public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Structures/Specific/Anomalies/dark.rsi"), "portal");

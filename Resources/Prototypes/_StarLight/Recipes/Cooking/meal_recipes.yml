@@ -120,3 +120,25 @@
     WeldingFuel: 10
   solids:
     FoodSoupStew: 1
+
+- type: microwaveMealRecipe
+  id: RecipeHaggis
+  name: haggis recipe
+  result: FoodHaggis
+  time: 15
+  group: Meat
+  reagents:
+    UncookedAnimalProteins: 10
+  solids:
+    OrganAnimalStomach: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBlackPudding
+  name: black pudding recipe
+  result: FoodBlackPudding
+  time: 15
+  group: Meat
+  reagents:
+    Blood: 10
+    Water: 10
+    Fat: 10

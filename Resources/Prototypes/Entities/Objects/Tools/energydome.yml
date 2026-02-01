@@ -134,6 +134,7 @@
   - type: Battery
     maxCharge: 30000          #<- max supply
     startingCharge: 10000
+    netsync: false
   - type: PowerNetworkBattery
     maxSupply: 30000
     maxChargeRate: 1000       #<- passive charging frow power net
@@ -148,7 +149,6 @@
         !type:CableDeviceNode
         nodeGroupID: MVPower
   - type: BatterySelfRecharger
-    autoRecharge: false # true only when active
     autoRechargeRate: -800   #<- discharge per second while active
   - type: Damageable
     damageContainer: Inorganic

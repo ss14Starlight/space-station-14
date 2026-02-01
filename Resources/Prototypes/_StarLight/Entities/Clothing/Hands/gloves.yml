@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingHandsButcherable
   id: ClothingHandsGlovesBlackNitrile
-  name: Black Nitrile Gloves
+  name: black nitrile gloves
   description: High-quality nitrile gloves. Expensive medical PPE, now in black!
   components:
   - type: Sprite
@@ -21,7 +21,7 @@
 - type: entity
   parent: [ClothingHandsButcherable, BaseSecurityContraband]
   id: ClothingHandsGlovesSecurityRed
-  name: Red Security Gloves
+  name: red security gloves
   description: Black gloves, but slightly red! The detective will LOVE you if you wear these.
   components:
   - type: Sprite
@@ -35,7 +35,7 @@
 - type: entity
   parent: [ClothingHandsButcherable, BaseSecurityContraband]
   id: ClothingHandsGlovesSecurityFingerlessRed
-  name: Fingerless Red Security Gloves
+  name: fingerless red security gloves
   description: Black gloves, but slightly red! The detective will HATE you if you wear these.
   components:
   - type: Sprite
@@ -135,7 +135,7 @@
 - type: entity
   parent: ClothingHandsButcherable
   id: RedRegaliaGloves
-  name: Red Regalia Gloves
+  name: red regalia gloves
   description: A pair of fancy red gloves like a mafiaoso would wear.
   components:
   - type: Sprite

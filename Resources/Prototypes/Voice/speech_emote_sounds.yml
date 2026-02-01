@@ -593,52 +593,6 @@
       path: /Audio/Effects/Cargo/ping.ogg
 
 - type: emoteSounds
-  id: UnisexResomi
-  params:
-    variation: 0.125
-  sounds:
-    Scream:
-      path: /Audio/_Starlight/Effects/avali_scream.ogg
-    Laugh:
-      collection: ResomiLaugh
-    Honk:
-      collection: BikeHorn
-    Whistle:
-      path: /Audio/Voice/Resomi/resomi_whistle.ogg
-    Chirp:
-      collection: ResomiChirp
-    Weh:
-      collection: Weh
-    Hew:
-      collection: Hew
-    Gasp:
-      collection: FemaleGasp
-    DefaultDeathgasp:
-      collection: DeathGasp
-    Sigh:
-      collection: FemaleSigh
-    Crying:
-      collection: ResomiCry
-    Cough:
-      collection: FemaleCoughs
-    Yawn:
-      collection: FemaleYawn
-    Hisses:
-      collection: FelionoidHisses
-    Purr:
-      collection: FelionoidPurrs
-    Growl:
-      collection: FelionoidGrowls
-    Trill:
-      collection: FelionoidTrills
-    Scree:
-      collection: ResomiScrees
-    Call:
-      collection: ResomiCalls
-    Squawk:
-      collection: ResomiSquawk
-
-- type: emoteSounds
   id: UnisexSiliconXenoborg
   params:
     variation: 0.05
@@ -701,6 +655,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    Honk:
+      collection: BikeHorn
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -747,6 +703,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    Honk:
+      collection: BikeHorn
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:

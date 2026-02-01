@@ -1,0 +1,15 @@
+- type: antag
+  id: Pirate
+  name: ghost-role-information-pirate-name
+  antagonist: true
+  setPreference: false
+  objective: never-shown
+  playTimeTracker: AntagPirate
+
+- type: antag
+  id: PirateCaptain
+  name: ghost-role-information-pirate-name
+  antagonist: true
+  setPreference: false
+  objective: never-shown
+  playTimeTracker: AntagPirateCaptain

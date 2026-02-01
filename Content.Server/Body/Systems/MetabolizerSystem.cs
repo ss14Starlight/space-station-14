@@ -1,4 +1,5 @@
-using Content.Server.Body.Components;
+using System.Linq;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Prototypes;
@@ -14,9 +15,7 @@ using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.Effects.Body;
 using Content.Shared.EntityEffects.Effects.Solution;
 using Content.Shared.FixedPoint;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Random.Helpers;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -75,6 +74,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
     private void OnApplyMetabolicMultiplier(Entity<MetabolizerComponent> ent, ref ApplyMetabolicMultiplierEvent args)
     {
         ent.Comp.UpdateIntervalMultiplier = args.Multiplier;
+        Dirty(ent);
     }
 
     public override void Update(float frameTime)
@@ -138,17 +138,29 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
             return;
         }
 
+        // Copy the solution do not edit the original solution list
+        var list = solution.Contents.ToList();
+
+        // Collecting blood reagent for filtering
+        var ev = new MetabolismExclusionEvent();
+        RaiseLocalEvent(solutionEntityUid.Value, ref ev);
+
         // randomize the reagent list so we don't have any weird quirks
         // like alphabetical order or insertion order mattering for processing
-        var list = solution.Contents.ToArray();
         _random.Shuffle(list);
 
-            var actualEntity = ent.Comp2?.Body ?? solutionEntityUid.Value; // Starlight-edit
+        bool isDead = _mobStateSystem.IsDead(solutionEntityUid.Value);
+
+        var actualEntity = ent.Comp2?.Body ?? solutionEntityUid.Value; // Starlight-edit - moved up from below
 
         int reagents = 0;
         foreach (var (reagent, quantity) in list)
         {
             if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var proto))
+                continue;
+
+            // Skip blood reagents
+            if (ev.Reagents.Contains(reagent))
                 continue;
 
             var mostToRemove = FixedPoint2.Zero;
@@ -200,11 +212,8 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 // if it's possible for them to be dead, and they are,
                 // then we shouldn't process any effects, but should probably
                 // still remove reagents
-                if (TryComp<MobStateComponent>(solutionEntityUid.Value, out var state))
-                {
-                    if (!proto.WorksOnTheDead && _mobStateSystem.IsDead(solutionEntityUid.Value, state))
-                        continue;
-                }
+                if (isDead && !proto.WorksOnTheDead)
+                    continue;
 
                 // Starlight-edit: Moved actualEntity up from ForEach to use it in another places.
 
@@ -298,29 +307,38 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
         return true;
     }
 
-    public bool TryAddMetabolizerType(MetabolizerComponent component, string metabolizerType)
+    public bool TryAddMetabolizerType(Entity<MetabolizerComponent> ent, string metabolizerType)
     {
         if (!_prototypeManager.HasIndex<MetabolizerTypePrototype>(metabolizerType))
             return false;
 
-        if (component.MetabolizerTypes == null)
-            component.MetabolizerTypes = new();
+        ent.Comp.MetabolizerTypes ??= new();
+        if (!ent.Comp.MetabolizerTypes.Add(metabolizerType))
+            return false;
 
-        return component.MetabolizerTypes.Add(metabolizerType);
+        Dirty(ent);
+        return true;
     }
 
-    public bool TryRemoveMetabolizerType(MetabolizerComponent component, string metabolizerType)
+    public bool TryRemoveMetabolizerType(Entity<MetabolizerComponent> ent, string metabolizerType)
     {
-        if (component.MetabolizerTypes == null)
+        if (ent.Comp.MetabolizerTypes == null)
             return true;
 
-        return component.MetabolizerTypes.Remove(metabolizerType);
+        if (!ent.Comp.MetabolizerTypes.Remove(metabolizerType))
+            return false;
+
+        Dirty(ent);
+        return true;
     }
 
-    public void ClearMetabolizerTypes(MetabolizerComponent component)
+    public void ClearMetabolizerTypes(Entity<MetabolizerComponent> ent)
     {
-        if (component.MetabolizerTypes != null)
-            component.MetabolizerTypes.Clear();
+        if (ent.Comp.MetabolizerTypes == null || ent.Comp.MetabolizerTypes.Count == 0)
+            return;
+
+        ent.Comp.MetabolizerTypes.Clear();
+        Dirty(ent);
     }
 }
 

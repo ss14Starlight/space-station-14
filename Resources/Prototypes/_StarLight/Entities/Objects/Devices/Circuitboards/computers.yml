@@ -79,3 +79,14 @@
       state: cpu_supply
     - type: ComputerBoard
       prototype: ComputerShuttleSecurity
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: XenobiologyConsoleCircuitboard
+  name: xenobiology console board
+  description: A computer printed circuit board for a xenobiology console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: XenobiologyConsole

@@ -1,5 +1,6 @@
 - type: entity
   id: LockerRepresentativeFilled
+#  categories: [ ShouldMapStation ]
   suffix: Filled
   parent: LockerRepresentative
   components:
@@ -23,6 +24,8 @@
         - id: FaxMachineFlatpack
         - id: PlushieEmmie
         - id: ClothingOuterHardsuitNtrep
+        - !type:NestedSelector
+          tableId: CorporateDocumentTable
   
 - type: entity
   id: LockerRepresentativeFilledBluespaced
@@ -33,6 +36,67 @@
   - type: TriggerOnSpawn
   - type: SpawnOnTrigger
     proto: EffectFlashBluespace
+
+- type: entity
+  id: LockerMagistrateFilled
+#  categories: [ ShouldMapStation ]
+  suffix: Filled
+  parent: LockerMagistrate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingEyesGlassesSecurity
+        - id: ClothingEyesHudSecurity
+        - id: ClothingHeadHatPwig
+        - id: MagistrateUniformSuit
+        - id: MagistrateUniformSkirt
+        - id: ClothingOuterRobesJudge
+        - id: ClothingShoesBootsLaceup
+        - id: ClothingHeadsetMagistrate
+        - id: WeaponDisabler
+        - id: BookSpaceLaw
+        - id: LuxuryPen
+        - id: BoxFolderNanoTrasenClipboard
+        - id: PrinterDocFlatpack
+        - id: FaxMachineFlatpack
+        - !type:NestedSelector
+          tableId: SecureDocumentTable
+
+- type: entity
+  id: LockerMagistrateFilledBluespaced
+  suffix: Filled, Bluespaced
+  parent: LockerMagistrateFilled
+  categories: [ Spawner ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: EffectFlashBluespace
+
+- type: entity
+  id: LockerIAAFilled
+#  categories: [ ShouldMapStation ]
+  suffix: Filled
+  parent: LockerIAA
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingEyesGlassesSunglasses
+        - id: ClothingUniformJumpsuitLawyerBlue
+        - id: ClothingUniformJumpskirtLawyerBlue
+        - id: ClothingUniformJumpsuitLawyerBlack
+        - id: ClothingUniformJumpskirtLawyerBlack
+        - id: ClothingShoesBootsLaceup
+        - id: ClothingHeadsetIAA
+        - id: BookSpaceLaw
+        - id: LuxuryPen
+        - id: BoxFolderNanoTrasenClipboard
+        - id: BriefcaseBrown # Empty
+        - !type:NestedSelector
+          tableId: CriminalDocumentTable
 
 - type: entity
   id: LockerBSOFilled
@@ -62,7 +126,8 @@
         - id: ClothingNeckCloakBsoElite
         - id: ClothingNeckCloakBsoElite
         - id: RadioHandheldSecurity
-        - id: ClothingUniformJumpsuitBlueShieldCaptain
+        - id: ClothingUniformJumpsuitBlueShieldShirt
+        - id: ClothingUniformJumpskirtBlueShieldSkirt
         - id: ClothingOuterCoatBlueShield
         - id: ClothingNeckCloakBsoCape
         - id: RubberStampBSO

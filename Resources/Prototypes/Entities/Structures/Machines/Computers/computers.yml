@@ -284,6 +284,7 @@
     allowedFlags:
       - Hide
       - HideLabel
+    hideOnInit: true
   - type: ActivatableUI
     key: enum.IFFConsoleUiKey.Key
   - type: UserInterface
@@ -563,7 +564,7 @@
   - type: DeviceNetwork
     deviceNetId: Wired
   - type: DeviceLinkSource
-    range: 5
+    range: 9 # Starlight | Requested by Conflee to have a larger range.
     ports:
       - ArtifactAnalyzerSender
   - type: ActivatableUI
@@ -605,6 +606,7 @@
     - Medical
     - Service
     - Engineering
+    - Law
   # Starlight-edit: End
     privilegedIdSlot:
       name: id-card-console-privileged-id
@@ -703,7 +705,7 @@
   - type: DeviceNetwork
     deviceNetId: Wired
   - type: DeviceLinkSource
-    range: 2
+    range: 4
     ports:
       - BodyScannerSender
   # Starlight-end
@@ -1584,7 +1586,7 @@
   parent: BaseComputerAiAccess
   id: ComputerRoboticsControl
   name: robotics control console
-  description: Used to remotely monitor, disable and destroy the station's cyborgs.
+  description: Used to remotely monitor, disable, and destroy the station's cyborgs. # Starlight-edit - add ", disable, and destroy"
   components:
   - type: Sprite
     layers:
@@ -1599,6 +1601,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: RoboticsConsole
+    allowBorgControl: true # Starlight-edit - false -> true, allow disabling/detonating borgs
   - type: ActiveRadio
     channels:
     - Science
@@ -1691,8 +1694,8 @@
   - type: Lock
     unlockOnClick: false
   - type: SiliconLawUpdater
-    components:
-    - type: StationAiHeld
+#    components: Changed to core linking
+#    - type: StationAiHeld
   - type: ItemSlotsLock
     slots:
     - circuit_holder
@@ -1711,6 +1714,14 @@
     containers:
       circuit_holder: !type:ContainerSlot
       board: !type:Container
+# Starlight-start: Link console to core
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSink
+    ports:
+      - AiLawConsoleReceiver
+# Starlight-end
 
 - type: entity
   id: StationAiFixerComputer
@@ -1794,3 +1805,41 @@
         type: StationAiFixerConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerNukieDelivery
+  name: syndicate delivery computer
+  description: "A computer that can bluespace in certain equipment for Nuclear Operations. \nThe circuitboard is integrated into the frame and can't be recovered if deconstructed."
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-syndie
+    - map: ["computerLayerKeys"]
+      state: syndie_generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  # - type: Computer
+  #   board: SyndicateCommsComputerCircuitboard
+  - type: Anchorable
+    flags:
+    - Anchorable # No taking the console along!
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#f71713"
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    name: store-preset-name-nukie-delivery
+    categories:
+    - NukieDelivery

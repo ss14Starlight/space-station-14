@@ -7,12 +7,16 @@ using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Movement.Components;
-using Content.Shared.Starlight.Medical.Surgery.Events;
+using Content.Shared.Standing;
 using Robust.Shared.Containers;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+
+#region Starlight
+using Content.Shared.Starlight.Medical.Surgery.Events;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
+#endregion Starlight
 
 namespace Content.Shared.Body.Systems;
 
@@ -165,17 +169,23 @@ public partial class SharedBodySystem
         if (!Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false))
             return;
 
-        if (legEnt.Comp.PartType == BodyPartType.Leg)
-        {
-            bodyEnt.Comp.LegEntities.Remove(legEnt);
-            UpdateMovementSpeed(bodyEnt);
-            Dirty(bodyEnt, bodyEnt.Comp);
+        if (legEnt.Comp.PartType != BodyPartType.Leg)
+            return;
 
-            if (!bodyEnt.Comp.LegEntities.Any())
-            {
-                Standing.Down(bodyEnt);
-            }
-        }
+        bodyEnt.Comp.LegEntities.Remove(legEnt);
+        UpdateMovementSpeed(bodyEnt);
+        Dirty(bodyEnt, bodyEnt.Comp);
+
+        if (bodyEnt.Comp.LegEntities.Count != 0)
+            return;
+
+        if (!TryComp<StandingStateComponent>(bodyEnt, out var standingState)
+            || !standingState.Standing
+            || !Standing.Down(bodyEnt, standingState: standingState))
+            return;
+
+        var ev = new DropHandItemsEvent();
+        RaiseLocalEvent(bodyEnt, ref ev);
     }
 
     private void PartRemoveDamage(Entity<BodyComponent?> bodyEnt, Entity<BodyPartComponent> partEnt)

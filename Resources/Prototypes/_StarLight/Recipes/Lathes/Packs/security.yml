@@ -60,6 +60,8 @@
   - BoxLethalshot
   - BoxShotgunSlug
   - BoxShellTranquilizer
+# Battery
+  - MagazineBoxBattery
 #####################MAGAZINE#######################
 # LMG
   - LightRifleHeavyMagazineSP
@@ -114,6 +116,8 @@
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug
   - SpeedLoaderShotgunBeanbag
+# Battery
+  - MagazineBatteryLr30
 ####################################################
 
 - type: latheRecipePack
@@ -159,9 +163,11 @@
   - CableDetStack1
   - EmptyDetonator
   - ExplosivePayload
+  - GrenadeBaton
   - GrenadeBlast
   - GrenadeEMP
   - GrenadeFlash
+#  - GrenadeFrag
   - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe
@@ -253,6 +259,7 @@
   - WeaponLaserImmolator
   - WeaponLaserSvalinn
   - WeaponTemperatureGun
+  - FiringPinLaser
 
 - type: latheRecipePack
   id: StarlightSecurityMechsWeapons

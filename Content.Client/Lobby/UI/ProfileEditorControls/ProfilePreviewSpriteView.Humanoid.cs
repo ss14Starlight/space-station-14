@@ -355,17 +355,17 @@ public sealed partial class ProfilePreviewSpriteView
     /// <summary>
     /// Extracts cybernetics IDs from humanoid profile, returns all their visual layers
     /// </summary>
-    private Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> GetCyberneticsLayers(HumanoidCharacterProfile humanoid)
+    private Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> GetCyberneticsLayers(HumanoidCharacterProfile humanoid) => humanoid.Cybernetics.Select(p =>
     {
-        return humanoid.Cybernetics.Select(p =>
+        var _cyberneticEnt = _prototypeManager.Index<EntityPrototype>(p);
+        if (_cyberneticEnt.TryGetComponent<BodyPartComponent>(out var part, EntMan.ComponentFactory) &&
+           _cyberneticEnt.TryGetComponent<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory))
         {
-            var _cyberneticEnt = _prototypeManager.Index<EntityPrototype>(p);
-            if (_cyberneticEnt.TryGetComponent<BodyPartComponent>(out var part, EntMan.ComponentFactory) &&
-               _cyberneticEnt.TryGetComponent<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory))
-            {
-                return (CyberneticImplant.LayerFromBodypart(part), new(layer.Layer));
-            }
-            else { return (HumanoidVisualLayers.Special, new CustomBaseLayerInfo()); }
-        }).Where(p => p.Item1 != HumanoidVisualLayers.Special).ToDictionary();
-    }
+            return (CyberneticImplant.LayerFromBodypart(part), new(
+                !layer.Layers.TryGetValue(humanoid.Species, out var baseLayer) ? // Get layer value by species
+                !layer.Layers.TryGetValue("Default", out baseLayer) ? null : baseLayer : baseLayer // Fall back to default, if it exists and species is undefined
+                ));
+        }
+        else { return (HumanoidVisualLayers.Special, new CustomBaseLayerInfo()); }
+    }).Where(p => p.Item1 != HumanoidVisualLayers.Special).ToDictionary();
 }

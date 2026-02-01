@@ -1,7 +1,7 @@
 - type: entity
-  parent: [ ClothingMaskGas, BaseCommandContraband ]
+  parent: [ ClothingMaskGas, BaseBlueShieldContraband ]
   id: ClothingMaskGasBSO
-  name: Blue Swat Gas Mask
+  name: blue swat gas mask
   description: A elite issue Security gas mask. Now in blue!
   components:
   - type: Sprite

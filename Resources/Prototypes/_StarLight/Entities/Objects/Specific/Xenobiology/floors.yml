@@ -1,0 +1,189 @@
+# Bluespace Tiles
+- type: entity
+  id: FloorBluespaceEntity
+  name: bluespace floor
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Clickable
+    - type: Sprite
+      sprite: _Starlight/Tiles/Xenobiology/bluespace.rsi
+      drawdepth: FloorTiles
+      layers:
+        - state: bluespace
+    - type: Transform
+      anchored: true
+    - type: Tag
+      tags:
+        - Catwalk
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                FloorTileItemBluespace1:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: Physics
+      bodyType: Static
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 2.0
+      sprintSpeedModifier: 2.0
+      affectAirborne: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 1
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+            - MidImpassable
+
+- type: entity
+  name: bluespace tile
+  parent: FloorTileItemBase
+  id: FloorTileItemBluespace
+  components:
+    - type: Sprite
+      sprite: _Starlight/Tiles/Xenobiology/bluespace.rsi
+      layers:
+        - state: bluespace
+    - type: Item
+      heldPrefix: bluespace
+    - type: Stack
+      stackType: FloorTileBluespace
+    - type: XenobiologyFloorTile
+      entity: FloorBluespaceEntity
+
+- type: stack
+  parent: BaseTileStack
+  id: FloorTileBluespace
+  name: stack-bluespace-tile
+  spawn: FloorTileItemBluespace
+  
+- type: entity
+  parent: FloorTileItemBluespace
+  id: FloorTileItemBluespace1
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: FloorTileItemBluespace
+  id: FloorTileItemBluespace25
+  suffix: 25
+  components:
+    - type: Stack
+      count: 25
+
+# Sepia Tiles
+- type: entity
+  id: FloorSepiaXenobiologyEntity
+  name: sepia floor
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Clickable
+    - type: Sprite
+      sprite: _Starlight/Tiles/Xenobiology/sepia.rsi
+      drawdepth: FloorTiles
+      layers:
+        - state: sepia
+    - type: Transform
+      anchored: true
+    - type: Tag
+      tags:
+        - Catwalk
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                FloorTileItemSepiaXenobiology1:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: Physics
+      bodyType: Static
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      affectAirborne: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 1
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+            - MidImpassable
+
+- type: entity
+  name: sepia tile
+  parent: FloorTileItemBase
+  id: FloorTileItemSepiaXenobiology
+  components:
+    - type: Sprite
+      sprite: _Starlight/Tiles/Xenobiology/sepia.rsi
+      layers:
+        - state: sepia
+    - type: Item
+      heldPrefix: sepia
+    - type: Stack
+      stackType: FloorTileSepiaXenobiology
+    - type: XenobiologyFloorTile
+      entity: FloorSepiaXenobiologyEntity
+
+- type: stack
+  parent: BaseTileStack
+  id: FloorTileSepiaXenobiology
+  name: stack-sepia-xenobiology-tile
+  spawn: FloorTileItemSepiaXenobiology
+
+- type: entity
+  parent: FloorTileItemSepiaXenobiology
+  id: FloorTileItemSepiaXenobiology1
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: FloorTileItemSepiaXenobiology
+  id: FloorTileItemSepiaXenobiology25
+  suffix: 25
+  components:
+    - type: Stack
+      count: 25

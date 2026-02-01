@@ -2,28 +2,31 @@
   id: SpaceNinja
   name: roles-antag-space-ninja-name
   antagonist: true
-  setPreference: true
+  setPreference: true # Starlight - allow setting pref for ninja
   objective: roles-antag-space-ninja-objective
   guides: [ SpaceNinja ]
+  # Starlight start
   previewStartingGear: SpaceNinjaGear
   requirements:
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 10800 # 3h STARLIGHT
+    time: 3h
+  playTimeTracker: AntagNinja
+  # Starlight end
 
 #Ninja Gear
 - type: startingGear
   id: SpaceNinjaGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitNinja
-    back: ClothingBackpackSatchel
+    back: ClothingBackpackSatchelNinja
     mask: ClothingMaskNinja
     head: ClothingHeadHelmetSpaceNinja
     eyes: ClothingEyesVisorNinja
     gloves: ClothingHandsGlovesSpaceNinja
     outerClothing: ClothingOuterSuitSpaceNinja
     shoes: ClothingShoesSpaceNinja
-    id: AgentIDCard
+    id: NinjaPDA
     ears: ClothingHeadsetAssistantNinja # Starlight
     pocket1: SpiderCharge
     pocket2: PinpointerStation
@@ -38,11 +41,15 @@
     - Wirecutter
     - Welder
     - Multitool
+    - EmergencyMedipen
+    - Flare
+    - FoodSnackNutribrick
+    - DrinkWaterBottleFull
 
 - type: chameleonOutfit
   id: NinjaChameleonOutfit
   name: roles-antag-space-ninja-name
+  icon: "JobIconNinja"
   startingGear: SpaceNinjaGear
   equipment:
-    id: AssistantPDA
     neck: ClothingNeckGoldmedal

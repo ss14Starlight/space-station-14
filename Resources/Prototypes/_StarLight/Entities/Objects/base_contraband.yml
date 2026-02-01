@@ -90,6 +90,15 @@
     - type: Contraband
       allowedDepartments: [ Engineering, Security ]
 
+- type: entity
+  id: BaseSecurityBartenderZookeeperContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Security ]
+    allowedJobs: [ Bartender, Zookeeper ]
+
 # for ~objective items not held by command
 - type: entity
   id: BaseWardenGrandTheftContraband
@@ -108,3 +117,11 @@
     severity: GrandTheft
     allowedDepartments: [ Command ]
     allowedJobs: [ Detective ]
+
+- type: entity
+  id: BaseBlueShieldContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ BlueShield ]

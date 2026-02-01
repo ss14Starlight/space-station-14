@@ -73,3 +73,63 @@
     targetUser: true
   - type: SpawnOnTrigger
     proto: RedspaceImplantEffect
+
+# Gear Acidifier
+- type: entity
+  parent: BaseSubdermalImplant
+  id: GearAcidifierImplant
+  name: gear-acidifier implant
+  description: This implant melts the user's equipment upon death, leaving the body intact.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateGearAcidifier
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: TriggerOnActivateImplant
+  - type: GibOnTrigger
+    targetUser: true
+    deleteItems: true
+    gibBody: false
+  - type: PopupOnTrigger
+    targetUser: true
+    text: death-acidifier-implant-activate-gear
+  - type: SpawnOnTrigger
+    targetUser: true
+    proto: GearAcidifier
+    predicted: true
+  - type: DeleteOnTrigger
+    targetUser: false
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - GearAcidifier
+
+#SELF
+- type: entity
+  parent: BaseSubdermalImplant
+  id: SELFStorageImplant
+  name: S.E.L.F storage implant
+  description: This implant grants hidden storage within a person's body using bluespace technology.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageImplant
+    - type: SubdermalImplant
+      implantAction: ActionOpenStorageImplant
+      whitelist:
+        components:
+        - Hands # no use giving a mouse a storage implant, but a monkey is another story...
+    - type: Storage
+      grid:
+      - 0,0,4,3
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: [ ]
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface

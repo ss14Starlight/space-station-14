@@ -25,6 +25,10 @@
       - Scratch
       - Thaveyan
       - Darktongue
+      - Classical
+      - Grumbakul
+      - Aielic
+      - Lagomorphian
 
 - type: entity
   id: BaseBorgiLanguages
@@ -55,6 +59,10 @@
       - Thaveyan
       - Dog
       - Darktongue
+      - Classical
+      - Grumbakul
+      - Aielic
+      - Lagomorphian
 
 - type: entity
   id: BaseSiliconBrainLanguages

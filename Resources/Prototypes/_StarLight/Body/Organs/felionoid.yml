@@ -7,4 +7,5 @@
   components:
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobFelionoidEyes
+    prototypes:
+      Default: MobFelionoidEyes

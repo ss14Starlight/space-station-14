@@ -1117,7 +1117,7 @@
     jumpsuit: ClothingUniformJumpsuitLawyerBlack
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatFedoraGrey
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetSecurity
@@ -1132,7 +1132,7 @@
     jumpsuit: ClothingUniformJumpsuitLawyerBlue
     shoes: ClothingShoesLeather
     head: ClothingHeadHatFedoraBrown
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetSecurity
@@ -1147,7 +1147,7 @@
     jumpsuit: ClothingUniformJumpsuitLawyerRed
     shoes: ClothingShoesColorRed
     head: ClothingHeadHatCowboyBrown
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag
@@ -1164,7 +1164,7 @@
     shoes: ClothingShoesSnakeskinBoots
     gloves: ClothingHandsGlovesColorWhite
     head: ClothingHeadHatBeaverHat
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     mask: CigarGold
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
@@ -1181,7 +1181,7 @@
     jumpsuit: ClothingUniformJumpsuitLawyerGood
     shoes: ClothingShoesLeather
     head: ClothingHeadHatCorpsoft
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag
@@ -1198,7 +1198,7 @@
     shoes: ClothingShoesLeather
     gloves: ClothingHandsGlovesLeather
     head: BladedFlatcapBrown
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorLawyerPDA
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag

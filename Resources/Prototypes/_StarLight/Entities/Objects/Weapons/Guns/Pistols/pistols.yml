@@ -42,6 +42,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container
   - type: StaticPrice
     price: 150
 
@@ -407,6 +408,12 @@
       - id: RifleStock
         launchAngle: 180
         prob: 0.80
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinMakeshift
+  - type: FiringPinHolder
+    supportedPins: [ Makeshift, GunUpgrade ]
 
 - type: entity
   name: improvised pistol

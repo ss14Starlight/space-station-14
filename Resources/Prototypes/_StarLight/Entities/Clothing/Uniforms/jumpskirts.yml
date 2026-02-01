@@ -21,10 +21,10 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrepturtleneckskirt.rsi
     
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtBlueShield
-  name: blueshield officer's skirt
-  description: Skirt of a glorified bodyguard
+  name: blue shield skirt
+  description: The skirt of a glorified bodyguard.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshield.rsi
@@ -32,15 +32,27 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshield.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtEliteBlueShield
-  name: elite blueshield officer's skirt
-  description: Skirt of an elite blueshield. To reach such a level, you must have protected command from a [REDACTED] threat.
+  name: elite blue shield skirt
+  description: The skirt of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
+    
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtBlueShieldSkirt
+  name: blueshield officer's pencil skirt
+  description: A collared shirt and pencil skirt for the blueshield officer who likes to keep it business casual.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshieldskirt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshieldskirt.rsi
+
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -74,6 +86,28 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman_trauma.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman_trauma.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtSecBlue
+  name: blue skirt and tie
+  description: Stylish and functional.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/security_blue.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/security_blue.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtDutyOfficer
+  name: duty officer's uniform
+  description: A vibrant security skirt for the warden's partner in chains.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/dutyofficer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/dutyofficer.rsi
 
 # Fashion-O-Mat-Start, not obtainable any other way, unless mapped
 # All CC/Synd stuff in Fashion-O-Mat is replica
@@ -541,3 +575,14 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_paramedic.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_paramedic.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpskirtNCT
+  name: NT career trainer's skirt
+  description: A neatly pressed olive green shirt paired with a sleek black skirt, worn by those committed to mentoring the next generation.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/nct.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/nct.rsi

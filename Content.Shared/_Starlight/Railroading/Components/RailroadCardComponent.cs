@@ -7,10 +7,10 @@ namespace Content.Shared._Starlight.Railroading;
 public sealed partial class RailroadCardComponent : Component
 {
     [DataField(required: true)]
-    public string Title;
+    public LocId Title;
 
     [DataField(required: true)]
-    public string Description;
+    public LocId Description;
 
     [DataField(required: true)]
     public string Icon;

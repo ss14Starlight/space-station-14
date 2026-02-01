@@ -30,3 +30,33 @@
     stealGroup: WeaponEnergyShotgun
   - type: Objective
     difficulty: 1
+
+
+- type: entity
+  parent: BaseThiefStealObjective
+  id: FiringPinStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: FiringPin
+    minCollectionSize: 3
+    maxCollectionSize: 5
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: BaseThiefStealObjective
+  id: FiringPinAdvancedLaserStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: FiringPinAdvancedLaser
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: BaseThiefStealObjective
+  id: FiringPinSmartLMGStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: FiringPinSmartLMG
+  - type: Objective
+    difficulty: 1

@@ -8,6 +8,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 3h # Starlight
+  playTimeTracker: AntagTraitor # Starlight
 
 - type: antag
   id: TraitorSleeper
@@ -19,6 +20,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 3h # Starlight
+  playTimeTracker: AntagTraitor # Starlight
 
 # Syndicate Operative Outfit - Monkey
 - type: startingGear

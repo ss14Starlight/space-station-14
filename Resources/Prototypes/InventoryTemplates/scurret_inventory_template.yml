@@ -33,7 +33,7 @@
     strippingWindowPos: 0,1
     displayName: Neck
   - name: misc # Starlight start
-    slotTexture: neck
+    slotTexture: misc
     slotFlags: MISC
     uiWindowPos: 2,0
     strippingWindowPos: 2,1
