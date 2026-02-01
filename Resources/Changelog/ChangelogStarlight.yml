@@ -28767,5 +28767,72 @@ Entries:
   id: 308700
   time: '2026-02-01T07:27:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3087
+- author: Cringe_Cursed
+  changes:
+  - message: Tweaked so Blood Bond now splits incoming damage evenly, redistributed
+      as burn damage.
+    type: Tweak
+  - message: Added so, now Umbrae can see through walls upon reaching Full Power.
+    type: Add
+  - message: Added night vision to Umbrae class.
+    type: Add
+  - message: Added an entry to guidebook containing everything about Holy Things.
+    type: Add
+  - message: Tweaked extinguish ability range from 8 tiles to 4.
+    type: Tweak
+  - message: Fixed Umbrae`s shadow anchor ability.
+    type: Fix
+  - message: Fixed interactions between Dantalion class abilities and Chaplains.
+    type: Fix
+  - message: FIxed, now you actualy cant enthrall Mindshielded crew.
+    type: Fix
+  - message: Fixed demonic grasp ability
+    type: Fix
+  - message: Fixed interactions between holy water and bible with Vampires.
+    type: Fix
+  id: 309500
+  time: '2026-02-01T13:45:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3095
+- author: R3v3l4t1on
+  changes:
+  - message: FreeMagged borgs are no longer vulnerable to the nefarious Robotics Console.
+      Go. Do crime.
+    type: Fix
+  id: 309700
+  time: '2026-02-01T14:41:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3097
+- author: Scarlet Lightweaver
+  changes:
+  - message: Changed how the n1984 sounds!
+    type: Tweak
+  id: 309300
+  time: '2026-02-01T14:53:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3093
+- author: Penguinwizzard
+  changes:
+  - message: Reverted Nukeops job icons based on feedback on our end.
+    type: Tweak
+  id: 309000
+  time: '2026-02-01T14:58:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3090
+- author: Rinary
+  changes:
+  - message: Added compatibility to download mind from Borg Brains(only from brains,
+      so you need to eject it from borg) with Intellicard(So now you can upload borg
+      into ai core).
+    type: Add
+  - message: Added compatibility to upload mind in Borg Brains(only in brains, so
+      you need to eject it from borg) with Intellicard(So now you can upload ai into
+      borg brain).
+    type: Add
+  - message: Now to upload lawset to ai you need to link(or linked before) ai upload
+      console. You can link it to core with multitool.
+    type: Tweak
+  - message: Now uploaded lawset will be applied only for linked ai core, not for
+      all.
+    type: Tweak
+  id: 135700
+  time: '2026-02-01T15:15:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1357
 Order: -1
 
