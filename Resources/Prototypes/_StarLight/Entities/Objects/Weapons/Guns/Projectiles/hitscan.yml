@@ -674,6 +674,21 @@
         state: sp
 
 - type: entity
+  id: MechAC2FMJ
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 19
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: fmj
+
+- type: entity
   id: BulletLightRifleTraceImprovised
   parent: BulletTrace
   categories: [ HideSpawnMenu ]

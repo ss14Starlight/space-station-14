@@ -13,6 +13,26 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: MonkeyDay
     prototype: MonkeyCubeBox
+  - !type:AddComponentSpecial
+    components:
+    - type: AdditionalLanguageKnowledge # If we just put in LanguageKnowledge, it'd overwrite your normal languages
+      understands:
+      - Ancestor
+      - Bat
+      - Carptongue
+      - Cat
+      - Chicken
+      - Dog
+      - Duck
+      - Fox
+      - Mothroach
+      - Mouse
+      - Pig
+      - ScurretSign
+      - Xeno
+      # While spoken by some crew, these are spoken by slimes and spiders as their language
+      - Bubblish
+      - Chittin
 
 - type: startingGear
   id: ZookeeperGear

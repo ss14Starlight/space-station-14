@@ -1,0 +1,23 @@
+- type: factionIcon
+  id: VampireThrallIcon
+  priority: 1
+  showTo:
+    components:
+      - VampireThrall
+      - Vampire
+  isShaded: true
+  icon:
+    sprite: /Textures/_Starlight/Vampire/hud_icons.rsi
+    state: hudvampirethrall
+
+- type: factionIcon
+  id: VampireMasterIcon
+  priority: 1
+  showTo:
+    components:
+      - VampireThrall
+      - Vampire
+  isShaded: true
+  icon:
+    sprite: /Textures/_Starlight/Vampire/hud_icons.rsi
+    state: hudvampire

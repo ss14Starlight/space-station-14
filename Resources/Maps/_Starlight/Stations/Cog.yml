@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 268.0.0
+  engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 01/20/2026 21:00:21
+  time: 01/30/2026 22:09:19
   entityCount: 32801
 maps:
 - 1
@@ -15364,7 +15364,7 @@ entities:
       pos: 20.5,-15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -68692.77
+      secondsUntilStateChange: -68772.055
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -16651,7 +16651,7 @@ entities:
       pos: 26.5,17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -75859.9
+      secondsUntilStateChange: -75939.18
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1

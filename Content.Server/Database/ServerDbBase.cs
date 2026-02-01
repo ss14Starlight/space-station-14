@@ -28,6 +28,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Traits;
 
 namespace Content.Server.Database
 {

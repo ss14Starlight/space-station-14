@@ -5,6 +5,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Collections.Concurrent; // Starlight
 
 namespace Content.Shared.StatusEffectNew;
 
@@ -23,7 +24,7 @@ public sealed partial class StatusEffectsSystem : EntitySystem
     private EntityQuery<StatusEffectContainerComponent> _containerQuery;
     private EntityQuery<StatusEffectComponent> _effectQuery;
 
-    public static HashSet<string> StatusEffectPrototypes = [];
+    public static ConcurrentDictionary<string, byte> StatusEffectPrototypes = new(); // Starlight
 
     public override void Initialize()
     {
@@ -83,7 +84,7 @@ public sealed partial class StatusEffectsSystem : EntitySystem
         foreach (var ent in _proto.EnumeratePrototypes<EntityPrototype>())
         {
             if (ent.TryGetComponent<StatusEffectComponent>(out _, _factory))
-                StatusEffectPrototypes.Add(ent.ID);
+                StatusEffectPrototypes.TryAdd(ent.ID, 0); // Starlight
         }
     }
 
