@@ -8,25 +8,21 @@ public sealed partial class SpentAmmoVisualsComponent : Component
     /// <summary>
     /// Should we do "{_state}-spent" or just "spent"
     /// </summary>
-    [DataField]
-    public bool Suffix = true;
+    [DataField("suffix")] public bool Suffix = true;
 
     /// <summary>
-    /// Starlight
     /// Should we remove Tip?
     /// </summary>
-    [DataField]
-    public bool Tip = false;
+    [DataField("tip")] public bool Tip = false;
 
-    [DataField]
+    [DataField("state")]
     public string? State = "base";
 
     /// <summary>
     /// Starlight
     /// Is there a hidden layer that should be revealed when spent?
     /// </summary>
-    [DataField]
-    public bool revealSpent = false;
+    [DataField("revealSpent")] public bool revealSpent = false;
 }
 
 public enum AmmoVisualLayers : byte

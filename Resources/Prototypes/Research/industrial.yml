@@ -128,8 +128,6 @@
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
   - WallmountMassScannerElectronics # Starlight
-  technologyPrerequisites:
-  - SpaceScanning # starlight
   radioChannels:
   - Engineering
 
@@ -168,7 +166,6 @@
     - Fulton
     - FultonBeacon
   radioChannels:
-  - Engineering # starlight
   - Supply
 
 - type: technology
@@ -186,8 +183,6 @@
     - AdvancedMineralScannerEmpty
     - MechEquipmentDrillDiamond
     - BorgModuleAdvancedMining
-  technologyPrerequisites:
-  - SalvageEquipment # starlight
   radioChannels:
   - Supply
 
@@ -208,8 +203,6 @@
   - ClothingBackpackDuffelHolding
   technologyPrerequisites:
   - BluespaceManipulation
-  radioChannels:
-  - Supply # starlight
 
 - type: technology
   id: OptimizedMicrogalvanism
@@ -225,6 +218,3 @@
   - PowerCellHyper
   technologyPrerequisites:
   - AdvancedPowercells
-  - PowerGeneration # starlight
-  radioChannels:
-  - Engineering # starlight

@@ -169,7 +169,7 @@
   id: WardrobeChapel
   parent: WardrobeBlack
   name: chaplain's wardrobe
-  description: It's a storage unit for NanoTrasen-approved religious attire. # Starlight
+  description: It's a storage unit for Nanotrasen-approved religious attire.
 
 - type: entity
   id: ClosetLegal

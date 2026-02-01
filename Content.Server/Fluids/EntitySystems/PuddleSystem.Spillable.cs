@@ -29,14 +29,23 @@ public sealed partial class PuddleSystem
 
     private void SpillOnLand(Entity<SpillableComponent> entity, ref LandEvent args)
     {
-        if (!entity.Comp.SpillWhenThrown || Openable.IsClosed(entity.Owner))
+        if (!_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out var soln, out var solution))
             return;
 
-        if (TrySplashSpillAt(entity.Owner, Transform(entity).Coordinates, out _, out var solution) && args.User != null)
+        if (Openable.IsClosed(entity.Owner))
+            return;
+
+        if (!entity.Comp.SpillWhenThrown)
+            return;
+
+        if (args.User != null)
         {
             AdminLogger.Add(LogType.Landed,
                 $"{ToPrettyString(entity.Owner):entity} spilled a solution {SharedSolutionContainerSystem.ToPrettyString(solution):solution} on landing");
         }
+
+        var drainedSolution = _solutionContainerSystem.Drain(entity.Owner, soln.Value, solution.Volume);
+        TrySplashSpillAt(entity.Owner, Transform(entity).Coordinates, drainedSolution, out _);
     }
 
     private void OnDoAfter(Entity<SpillableComponent> entity, ref SpillDoAfterEvent args)

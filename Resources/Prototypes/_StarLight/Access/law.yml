@@ -1,9 +1,0 @@
-- type: accessLevel
-  id: IAA
-  name: id-card-access-level-iaa
-
-- type: accessGroup
-  id: Law
-  tags:
-  - Magistrate
-  - IAA

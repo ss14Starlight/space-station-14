@@ -82,7 +82,6 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleCargo
-    - BorgModuleMining #STARLIGHT
 
   defaultModules:
   - BorgModuleTool
@@ -126,7 +125,7 @@
     - BorgModuleJanitor
 
   defaultModules:
-  - BorgModuleTool # Starlight
+  - BorgModuleTool
   - BorgModuleCleaning
   - BorgModuleCustodial
 
@@ -159,7 +158,7 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleTool # Starlight
+  - BorgModuleTool
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue
@@ -213,7 +212,7 @@
     - BorgModuleService
 
   defaultModules:
-  - BorgModuleTool # Starlight
+  - BorgModuleTool
   - BorgModuleMusique
   # Starlight start 
   - BorgModuleBartending

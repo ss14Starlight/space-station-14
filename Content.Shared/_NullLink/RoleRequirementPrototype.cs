@@ -18,8 +18,8 @@ public sealed partial class RoleRequirementPrototype : IPrototype
     // A loc message specifying which exact role is needed and where.
 
     [DataField(required: true)]
-    public LocId Discord = default!;
+    public string Discord = default!;
 
     [DataField(required: true)]
-    public LocId RolesLoc = default!;
+    public string RolesLoc = default!;
 }

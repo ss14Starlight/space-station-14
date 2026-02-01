@@ -20,7 +20,6 @@
   setPreference: true
   access:
   - Magistrate
-  - IAA
   - Lawyer
   - Brig
   - Security
@@ -38,14 +37,14 @@
 - type: startingGear
   id: MagistrateGear
   equipment:
-    #jumpsuit: MagistrateUniformSuit
+    jumpsuit: MagistrateUniformSuit
     #shoes: ClothingShoesBootsLaceup
-    #eyes: ClothingEyesGlassesSecurity
+    eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesColorWhite
-    #outerClothing: ClothingOuterRobesJudge
+    outerClothing: ClothingOuterRobesJudge
     id: MagistratePDA
     ears: ClothingHeadsetMagistrate
-    #head: ClothingHeadHatPwig
+    head: ClothingHeadHatPwig
     belt: BoxFolderNanoTrasenClipboard
   storage:
     back:
@@ -53,7 +52,7 @@
     - ClothingNeckLawyerbadge
     - GavelHammer
     - GavelBlock
-    #- MagistrateUniformSkirt
+    - MagistrateUniformSkirt
 
 - type: chameleonOutfit
   id: MagistrateChameleonOutfit
@@ -62,5 +61,5 @@
     head: ClothingHeadHatPwig
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterRobesJudge
-    misc: ClothingNeckLawyerbadge # Starlight change slot to misc.
+    neck: ClothingNeckLawyerbadge
     gloves: ClothingHandsGlovesColorWhite

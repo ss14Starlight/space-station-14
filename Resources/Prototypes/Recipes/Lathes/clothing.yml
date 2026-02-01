@@ -413,8 +413,8 @@
 
 - type: latheRecipe
   parent: BaseCommandJumpsuitRecipe
-  id: ClothingUniformJumpsuitBlueShieldShirt  # Starlight
-  result: ClothingUniformJumpsuitBlueShieldShirt # Starlight
+  id: ClothingUniformJumpsuitBlueShieldCaptain
+  result: ClothingUniformJumpsuitBlueShieldCaptain
 
 - type: latheRecipe
   parent: BaseCommandJumpsuitRecipe

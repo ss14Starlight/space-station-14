@@ -1,5 +1,5 @@
 - type: entity
-  id: BaseCycloriteOrgan
+  id: BaseCycloriteOrganUnGibbable
   parent: BaseItem
   abstract: true
   components:
@@ -28,8 +28,16 @@
       - Meat
 
 - type: entity
+  id: BaseCycloriteOrgan
+  parent: BaseCycloriteOrganUnGibbable
+  suffix: Cyclorite
+  abstract: true
+  components:
+  - type: Gibbable
+
+- type: entity
   id: OrganCycloriteBrain
-  parent: [BaseOrganBrain, BaseCycloriteOrgan]
+  parent: [BaseOrganBrain, BaseCycloriteOrganUnGibbable]
   name: brain
   description: "The source of incredible, unending intelligence. Honk."
   components:
@@ -51,8 +59,7 @@
     - type: NightVision
   - type: OrganVisualization
     layer: Eyes
-    prototypes:
-      Default: MobCycloriteEyes
+    prototype: MobCycloriteEyes
 
 - type: entity
   id: OrganCycloriteTongue

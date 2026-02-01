@@ -221,6 +221,7 @@
       - SurgeryTool
       - Dropper
       components:
+      - Hypospray
       - Injector
       - Pill
       - HandLabeler
@@ -233,7 +234,7 @@
           - Bottle
       hypo:
         whitelist:
-          tags:
+          components:
           - Hypospray
       pill:
         whitelist:
@@ -290,6 +291,7 @@
         - BodyBag
         - ParaKnife
       components:
+        - Hypospray
         - Injector
         - Pill
         - HandLabeler #Starlight end

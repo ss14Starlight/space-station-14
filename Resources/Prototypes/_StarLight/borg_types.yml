@@ -53,7 +53,6 @@
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleSyndicateWeapon
-  - BorgModuleSyndicateNukeDisk
 
   radioChannels:
   - Syndicate
@@ -84,7 +83,6 @@
   - BorgModuleRCD
   - BorgModuleOperative
   - BorgModuleSyndicateWeapon
-  - BorgModuleSyndicateNukeDisk
 
   radioChannels:
   - Syndicate
@@ -112,7 +110,6 @@
   defaultModules:
   - BorgModuleTool
   - BorgModuleOperative
-  - BorgModuleSyndicateNukeDisk
 
   radioChannels:
   - Syndicate
@@ -163,37 +160,4 @@
 
   # Pet
   petSuccessString: petting-success-generic-cyborg
-  petFailureString: petting-failure-generic-cyborg
-
-# Cargo borg
-- type: borgType
-  id: cargo
-
-  # Description
-  dummyPrototype: BorgChassisCargo
-
-  # Functional
-  extraModuleCount: 3
-  moduleWhitelist:
-    tags:
-    - BorgModuleGeneric
-    - BorgModuleCargo
-    - BorgModuleSupply
-
-  defaultModules:
-  - BorgModuleTool
-  - BorgModuleAppraisal
-  - BorgModuleHold
-  - BorgModuleMail
-
-  radioChannels:
-  - Supply
-  - Science
-
-  # Visual
-  inventoryTemplateId: borgTall
-  spritePath: Mobs/Silicon/Chassis/cargo.rsi
-
-  # Pet
-  petSuccessString: petting-success-cargo-cyborg
-  petFailureString: petting-failure-cargo-cyborg
+  petFailureString: petting-failure-generic-cyborg# Purrfus borg

@@ -8,7 +8,7 @@
       connections:
       - torso
       organs:
-        brain: OrganResomiBrain
+        brain: OrganHumanBrain
         eyes: OrganResomiEyes
         tongue: OrganHumanTongue
         eye_implant: null
@@ -22,10 +22,10 @@
       - left leg
       organs:
         heart: OrganResomiHeart # Starlight
-        lungs: OrganResomiLungs
-        stomach: OrganResomiStomach
-        liver: OrganResomiLiver
-        kidneys: OrganResomiKidneys
+        lungs: OrganHumanLungs
+        stomach: OrganHumanStomach
+        liver: OrganHumanLiver
+        kidneys: OrganHumanKidneys
         cavity: null
     right arm:
       part: RightArmResomi

@@ -23,7 +23,6 @@ public sealed class SolarFlareRule : StationEventSystem<SolarFlareRuleComponent>
     {
         base.Initialize();
         SubscribeLocalEvent<RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
-        SubscribeLocalEvent<CustomRadioReceiveAttemptEvent>(OnCustomRadioReceiveAttempt); //Starlight
     }
 
     protected override void Started(EntityUid uid, SolarFlareRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -75,22 +74,4 @@ public sealed class SolarFlareRule : StationEventSystem<SolarFlareRuleComponent>
                 args.Cancelled = true;
         }
     }
-    
-    //Starlight begin
-    private void OnCustomRadioReceiveAttempt(ref CustomRadioReceiveAttemptEvent args)
-    {
-        var query = EntityQueryEnumerator<SolarFlareRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var flare, out var gameRule))
-        {
-            if (!GameTicker.IsGameRuleActive(uid, gameRule))
-                continue;
-
-            if (!flare.AffectedChannels.Contains(args.Channel.Id))
-                continue;
-
-            if (!flare.OnlyJamHeadsets || (HasComp<HeadsetComponent>(args.RadioReceiver) || HasComp<HeadsetComponent>(args.RadioSource)))
-                args.Cancelled = true;
-        }
-    }
-    //Starlight end
 }

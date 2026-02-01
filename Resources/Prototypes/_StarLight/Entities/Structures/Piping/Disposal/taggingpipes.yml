@@ -550,7 +550,7 @@
 - type: entity
   id: DisposalTaggerChapel
   parent: DisposalTagger
-  suffix: Shrine # Starlight: Chapel -> Shrine
+  suffix: Chapel
   components:
   - type: DisposalTagger
     tag: Chapel

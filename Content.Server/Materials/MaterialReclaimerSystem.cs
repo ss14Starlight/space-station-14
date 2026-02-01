@@ -4,6 +4,7 @@ using Content.Server.Ghost;
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Server.Wires;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -24,12 +25,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.Gibbing;
-using Content.Shared.Humanoid;
-
-#region Starlight
 using Content.Shared._Starlight.Materials;
-#endregion Starlight
+using Content.Shared.Humanoid;
 
 namespace Content.Server.Materials;
 
@@ -43,7 +40,7 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
     [Dependency] private readonly OpenableSystem _openable = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!; //bobby
     [Dependency] private readonly PuddleSystem _puddle = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
@@ -116,7 +113,7 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
             Filter.PvsExcept(victim, entityManager: EntityManager),
             true);
 
-        _gibbing.Gib(victim);
+        _body.GibBody(victim, true);
         _appearance.SetData(entity.Owner, RecyclerVisuals.Bloody, true);
         args.Handled = true;
     }
@@ -202,7 +199,7 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
             if (component.ReclaimSolutions)
                 SpawnChemicalsFromComposition(uid, item, completion, false, component, xform);
             if (!ev.Handled)
-                _gibbing.Gib(item);
+                _body.GibBody(item, true);
             _appearance.SetData(uid, RecyclerVisuals.Bloody, true);
         }
         else

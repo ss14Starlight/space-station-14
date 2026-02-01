@@ -1,6 +1,5 @@
 - type: language
   id: Universal
-  chatPrefix: uni
   obfuscation:
     !type:ReplacementObfuscation
     replacement:
@@ -11,7 +10,6 @@
 - type: language
   id: Machine
   icon: LanguageIconMachine
-  chatPrefix: eal
   speech:
     color: "#6174ff"
     fontId: Octatrax
@@ -22,7 +20,6 @@
 - type: language
   id: Zombie
   icon: LanguageIconBrain
-  chatPrefix: zed
   speech:
     color: "#508053"
   obfuscation:
@@ -43,7 +40,6 @@
   id: Sign
   iconUnderstood: false
   iconNotUnderstood: false
-  chatPrefix: sgn
   speech:
     allowRadio: false
     requireSpeech: false
@@ -67,5 +63,4 @@
 - type: language
   id: CodeSpeak
   icon: LanguageIconCodeSpeak
-  chatPrefix: cde
   iconNotUnderstood: false

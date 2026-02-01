@@ -26,17 +26,11 @@ public sealed class StationAiVisionSystem : EntitySystem
     private readonly HashSet<Entity<OccluderComponent>> _occluders = new();
     private readonly HashSet<Entity<StationAiVisionComponent>> _seeds = new();
     private readonly HashSet<Vector2i> _viewportTiles = new();
-    // Starlight - start
-    private readonly Dictionary<Vector2i, HashSet<string>> _viewportTileTags = new();
-    // Starlight - end
 
     private EntityQuery<OccluderComponent> _occluderQuery;
 
     // Dummy set
     private readonly HashSet<Vector2i> _singleTiles = new();
-    // Starlight - start
-    private readonly Dictionary<Vector2i, HashSet<string>> _singleTileTags = new();
-    // Starlight - end
 
     // Occupied tiles per-run.
     // For now it's only 1-grid supported but updating to TileRefs if required shouldn't be too hard.
@@ -64,21 +58,15 @@ public sealed class StationAiVisionSystem : EntitySystem
             Maps = _maps,
             System = this,
             VisibleTiles = _singleTiles,
-            // Starlight - start
-            VisibleTileTags = _singleTileTags,
-            // Starlight - end
         };
     }
 
     /// <summary>
     /// Returns whether a tile is accessible based on vision.
     /// </summary>
-    public bool IsAccessible(Entity<BroadphaseComponent, MapGridComponent> grid, Vector2i tile, float expansionSize = 8.5f, bool fastPath = false, HashSet<string>? requiredTags = null)
+    public bool IsAccessible(Entity<BroadphaseComponent, MapGridComponent> grid, Vector2i tile, float expansionSize = 8.5f, bool fastPath = false)
     {
         _viewportTiles.Clear();
-        // Starlight - start
-        _viewportTileTags.Clear();
-        // Starlight - end
         _opaque.Clear();
         _seeds.Clear();
         _viewportTiles.Add(tile);
@@ -132,25 +120,11 @@ public sealed class StationAiVisionSystem : EntitySystem
         }
 
         _singleTiles.Clear();
-        // Starlight - start
-        _singleTileTags.Clear();
-        // Starlight - end
         _job.Grid = (grid.Owner, grid.Comp2);
         _job.VisibleTiles = _singleTiles;
-        // Starlight - start
-        _job.VisibleTileTags = _singleTileTags;
-        // Starlight - end
         _parallel.ProcessNow(_job, _job.Data.Count);
 
-        // Starlight - start
-        var containsTile = _job.VisibleTiles.Contains(tile);
-        if (!containsTile) return false;
-        if (requiredTags is not null)
-            foreach (var tag in requiredTags)
-                if (!_job.VisibleTileTags[tile].Contains(tag))
-                    return false;
-        return true;
-        // Starlight - end
+        return _job.VisibleTiles.Contains(tile);
     }
 
     /// <summary>
@@ -197,13 +171,9 @@ public sealed class StationAiVisionSystem : EntitySystem
     /// Gets a byond-equivalent for tiles in the specified worldAABB.
     /// </summary>
     /// <param name="expansionSize">How much to expand the bounds before to find vision intersecting it. Makes this the largest vision size + 1 tile.</param>
-    /// Starlight: added visibleTileTags
-    public void GetView(Entity<BroadphaseComponent, MapGridComponent> grid, Box2Rotated worldBounds, HashSet<Vector2i> visibleTiles, Dictionary<Vector2i, HashSet<string>> visibleTileTags, float expansionSize = 8.5f)
+    public void GetView(Entity<BroadphaseComponent, MapGridComponent> grid, Box2Rotated worldBounds, HashSet<Vector2i> visibleTiles, float expansionSize = 8.5f)
     {
         _viewportTiles.Clear();
-        // Starlight - start
-        _viewportTileTags.Clear();
-        // Starlight - end
         _opaque.Clear();
         _seeds.Clear();
 
@@ -272,9 +242,6 @@ public sealed class StationAiVisionSystem : EntitySystem
 
         _job.Grid = (grid.Owner, grid.Comp2);
         _job.VisibleTiles = visibleTiles;
-        // Starlight - start
-        _job.VisibleTileTags = visibleTileTags;
-        // Starlight - end
         _parallel.ProcessNow(_job, _job.Data.Count);
     }
 
@@ -369,9 +336,6 @@ public sealed class StationAiVisionSystem : EntitySystem
         public List<Entity<StationAiVisionComponent>> Data = new();
 
         public required HashSet<Vector2i> VisibleTiles;
-        // Starlight - start
-        public required Dictionary<Vector2i, HashSet<string>> VisibleTileTags;
-        // Starlight - end
 
         public readonly List<Dictionary<Vector2i, int>> Vis1 = new();
         public readonly List<Dictionary<Vector2i, int>> Vis2 = new();
@@ -392,21 +356,13 @@ public sealed class StationAiVisionSystem : EntitySystem
                     Grid.Comp,
                     new Circle(System._xforms.GetWorldPosition(seedXform), seed.Comp.Range), ignoreEmpty: false);
 
-                // Starlight - start
                 lock (VisibleTiles)
-                lock (VisibleTileTags)
                 {
                     foreach (var tile in squircles)
                     {
                         VisibleTiles.Add(tile.GridIndices);
-                        
-                        if (!VisibleTileTags.ContainsKey(tile.GridIndices))
-                            VisibleTileTags[tile.GridIndices] = new();
-                        foreach (var tag in seed.Comp.Tags)
-                            VisibleTileTags[tile.GridIndices].Add(tag);
                     }
                 }
-                // Starlight - end
 
                 return;
             }
@@ -539,15 +495,6 @@ public sealed class StationAiVisionSystem : EntitySystem
                     {
                         VisibleTiles.Add(tile);
                     }
-                    // Starlight - start
-                    lock (VisibleTileTags)
-                    {
-                        if (!VisibleTileTags.ContainsKey(tile))
-                            VisibleTileTags[tile] = new();
-                        foreach (var tag in seed.Comp.Tags)
-                            VisibleTileTags[tile].Add(tag);
-                    }
-                    // Starlight - end
                 }
             }
         }

@@ -49,8 +49,3 @@ MagazineBoxMagnum: MagazineBoxMagnumSP
 CartridgeMagnum: CartridgeMagnumSP
 CartridgePistol: CartridgePistolSP
 CartridgeRifle: CartridgeRifleSP
-
-# 2026-01-26
-# quick remove xenobio
-SpawnGrayXenobiologySlime: null
-CrateStarterXenobiology: null

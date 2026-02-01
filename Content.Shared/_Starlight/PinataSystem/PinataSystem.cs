@@ -3,7 +3,7 @@
 
 using Content.Shared.Body.Events;
 using Content.Shared.Damage;
-using Content.Shared.Gibbing;
+using Content.Shared.Gibbing.Events;
 using Content.Shared.Throwing;
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.EntitySelectors;
@@ -28,14 +28,14 @@ public sealed class PinataSystem : EntitySystem
 
         SubscribeLocalEvent<PinataComponent, DamageModifyEvent>(OnHit);
         SubscribeLocalEvent<PinataComponent, BeingGibbedEvent>(OnGib);
-        SubscribeLocalEvent<PinataComponent, GibbedBeforeDeletionEvent>(OnGibAlt);
+        SubscribeLocalEvent<PinataComponent, EntityGibbedEvent>(OnGibAlt);
     }
 
     //This is from most explicit gib effects
-    private void OnGibAlt(Entity<PinataComponent> ent, ref GibbedBeforeDeletionEvent args) => RemoveGibbedParts(ent, args.Giblets);
+    private void OnGibAlt(Entity<PinataComponent> ent, ref EntityGibbedEvent args) => RemoveGibbedParts(ent, args.DroppedEntities);
 
     //This is from taking too much damage and gibbing.
-    private void OnGib(Entity<PinataComponent> ent, ref BeingGibbedEvent args) => RemoveGibbedParts(ent, args.Giblets);
+    private void OnGib(Entity<PinataComponent> ent, ref BeingGibbedEvent args) => RemoveGibbedParts(ent, args.GibbedParts);
 
     private void RemoveGibbedParts(Entity<PinataComponent> ent, ICollection<EntityUid> guts)
     {

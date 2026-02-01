@@ -19,23 +19,22 @@ public sealed partial class TraitPreferenceSelector : Control
 
     public event Action<bool>? PreferenceChanged;
 
-    // Starlight
-    // public TraitPreferenceSelector(TraitPrototype trait)
-    // {
-    //     RobustXamlLoader.Load(this);
+    public TraitPreferenceSelector(TraitPrototype trait)
+    {
+        RobustXamlLoader.Load(this);
 
-    //     var text = trait.Cost != 0 ? $"[{trait.Cost}] " : "";
-    //     text += Loc.GetString(trait.Name);
+        var text = trait.Cost != 0 ? $"[{trait.Cost}] " : "";
+        text += Loc.GetString(trait.Name);
 
-    //     Cost = trait.Cost;
-    //     Checkbox.Text = text;
-    //     Checkbox.OnToggled += OnCheckBoxToggled;
+        Cost = trait.Cost;
+        Checkbox.Text = text;
+        Checkbox.OnToggled += OnCheckBoxToggled;
 
-    //     if (trait.Description is { } desc)
-    //     {
-    //         Checkbox.ToolTip = Loc.GetString(desc);
-    //     }
-    // }
+        if (trait.Description is { } desc)
+        {
+            Checkbox.ToolTip = Loc.GetString(desc);
+        }
+    }
 
     private void OnCheckBoxToggled(BaseButton.ButtonToggledEventArgs args)
     {

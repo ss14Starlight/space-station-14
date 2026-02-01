@@ -1,4 +1,5 @@
-using Content.Server._Starlight.Antags.Vampires.Systems;
+using Content.Server.Vampire;
+using Content.Server.Objectives.Systems;
 
 namespace Content.Server.Objectives.Components;
 

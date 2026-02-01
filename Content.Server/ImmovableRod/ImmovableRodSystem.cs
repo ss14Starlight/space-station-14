@@ -5,7 +5,6 @@ using Content.Server.Popups;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
-using Content.Shared.Gibbing;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -21,7 +20,7 @@ public sealed class ImmovableRodSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -126,7 +125,7 @@ public sealed class ImmovableRodSystem : EntitySystem
                 return;
             }
 
-            _gibbing.Gib(ent);
+            _bodySystem.GibBody(ent, body: body);
             return;
         }
 

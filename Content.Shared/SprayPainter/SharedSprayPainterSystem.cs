@@ -187,13 +187,17 @@ public abstract class SharedSprayPainterSystem : EntitySystem
         // Valid paint target.
         args.Handled = true;
 
-        if (TryComp<LimitedChargesComponent>(args.Used, out var charges)
-            && Charges.GetCurrentCharges((args.Used, charges)) < targetGroup.Cost)
+        // Starlight-edit: Start
+        if (TryComp<LimitedChargesComponent>(args.Used, out var charges))
         {
-            var msg = Loc.GetString("spray-painter-interact-no-charges");
-            _popup.PopupClient(msg, args.User, args.User);
-            return;
+            if (!Charges.TryUseCharges((args.Used, charges), targetGroup.Cost))
+            {
+                var msg = Loc.GetString("spray-painter-interact-no-charges");
+                _popup.PopupClient(msg, args.User, args.User);
+                return;
+            }
         }
+        // Starlight-edit: End
 
         if (!targetGroup.Styles.TryGetValue(selectedStyle, out var proto))
         {

@@ -6,8 +6,7 @@
 1 . Standard [color=#00a933]Code Green[/color] equipment is:
 <Box>
 	<GuideEntityEmbed Entity="Stunbaton"/>
-	<GuideEntityEmbed Entity="WeaponPistolDP"/>
-	<GuideEntityEmbed Entity="WeaponEnergyShotgun"/>
+	<GuideEntityEmbed Entity="WeaponPistolMk58"/>
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="HoloprojectorSecurity"/>

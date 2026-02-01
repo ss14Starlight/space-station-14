@@ -119,9 +119,9 @@ public sealed partial class CargoSystem
         label.Id = bounty.Id;
         label.AssociatedStationId = stationId;
         var msg = new FormattedMessage();
-        msg.AddMarkupOrThrow(Loc.GetString("bounty-manifest-header", ("id", bounty.Id)));
+        msg.AddText(Loc.GetString("bounty-manifest-header", ("id", bounty.Id)));
         msg.PushNewline();
-        msg.AddMarkupOrThrow(Loc.GetString("bounty-manifest-list-start"));
+        msg.AddText(Loc.GetString("bounty-manifest-list-start"));
         msg.PushNewline();
         foreach (var entry in prototype.Entries)
         {

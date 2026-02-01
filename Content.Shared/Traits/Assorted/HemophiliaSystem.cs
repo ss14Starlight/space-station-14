@@ -1,5 +1,4 @@
 ﻿using Content.Shared.Body.Events;
-using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared.Traits.Assorted;
 
@@ -7,14 +6,11 @@ public sealed class HemophiliaSystem : EntitySystem
 {
     public override void Initialize()
     {
-        SubscribeLocalEvent<HemophiliaStatusEffectComponent, StatusEffectRelayedEvent<BleedModifierEvent>>(OnBleedModifier);
+        SubscribeLocalEvent<HemophiliaComponent, BleedModifierEvent>(OnBleedModifier);
     }
 
-    private void OnBleedModifier(Entity<HemophiliaStatusEffectComponent> ent, ref StatusEffectRelayedEvent<BleedModifierEvent> args)
+    private void OnBleedModifier(Entity<HemophiliaComponent> ent, ref BleedModifierEvent args)
     {
-        var ev = args.Args;
-        ev.BleedReductionAmount *= ent.Comp.BleedReductionMultiplier;
-        ev.BleedAmount *= ent.Comp.BleedAmountMultiplier;
-        args.Args = ev;
+        args.BleedReductionAmount *= ent.Comp.HemophiliaBleedReductionMultiplier;
     }
 }

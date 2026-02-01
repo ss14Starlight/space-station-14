@@ -9,25 +9,24 @@ namespace Content.Shared.Fluids.Components;
 [Access(typeof(SharedSpraySystem))]
 public sealed partial class SprayComponent : Component
 {
-    [DataField]
-    public string Solution = "spray";
+    public const string SolutionName = "spray";
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public FixedPoint2 TransferAmount = 10;
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public float SprayDistance = 3.5f;
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public float SprayVelocity = 3.5f;
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public EntProtoId SprayedPrototype = "Vapor";
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public int VaporAmount = 1;
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public float VaporSpread = 90f;
 
     /// <summary>

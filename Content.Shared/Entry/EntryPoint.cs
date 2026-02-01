@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.IoC;
 using Content.Shared.Maps;
 using Robust.Shared;
 using Robust.Shared.Configuration;
@@ -20,15 +21,12 @@ namespace Content.Shared.Entry
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
         [Dependency] private readonly IResourceManager _resMan = default!;
-#if DEBUG
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-#endif
 
         private readonly ResPath _ignoreFileDirectory = new("/IgnoredPrototypes/");
 
         public override void PreInit()
         {
-            Dependencies.InjectDependencies(this);
+            IoCManager.InjectDependencies(this);
         }
 
         public override void Shutdown()
@@ -46,12 +44,13 @@ namespace Content.Shared.Entry
             base.PostInit();
 
             InitTileDefinitions();
-            Dependencies.Resolve<MarkingManager>().Initialize();
+            IoCManager.Resolve<MarkingManager>().Initialize();
 
 #if DEBUG
-            _configurationManager.OverrideDefault(CVars.NetFakeLagMin, 0.075f);
-            _configurationManager.OverrideDefault(CVars.NetFakeLoss, 0.005f);
-            _configurationManager.OverrideDefault(CVars.NetFakeDuplicates, 0.005f);
+            var configMan = IoCManager.Resolve<IConfigurationManager>();
+            configMan.OverrideDefault(CVars.NetFakeLagMin, 0.075f);
+            configMan.OverrideDefault(CVars.NetFakeLoss, 0.005f);
+            configMan.OverrideDefault(CVars.NetFakeDuplicates, 0.005f);
 #endif
         }
 

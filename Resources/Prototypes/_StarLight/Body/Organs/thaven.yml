@@ -18,5 +18,4 @@
   components:
   - type: OrganVisualization
     layer: Eyes
-    prototypes:
-      Default: MobThavenEyes
+    prototype: MobThavenEyes

@@ -69,10 +69,6 @@
   components:
   - type: Sprite
     state: blueointment
-  - type: Item
-    storedSprite:
-      state: blueointment
-      sprite: Objects/Specific/Medical/medical.rsi
   - type: Stack
     stackType: Blueointment
     count: 1
@@ -86,10 +82,6 @@
   components:
   - type: Sprite
     state: blueointment2
-  - type: Item
-    storedSprite:
-      state: blueointment2
-      sprite: Objects/Specific/Medical/medical.rsi
   - type: Stack
     stackType: Blueointment
     count: 10
@@ -103,10 +95,6 @@
   components:
   - type: Sprite
     state: blueointment3
-  - type: Item
-    storedSprite:
-      state: blueointment3
-      sprite: Objects/Specific/Medical/medical.rsi
   - type: Stack
     stackType: Blueointment
     count: 20
@@ -513,10 +501,10 @@
         - Brutepack
         - Bloodpack
         - Gauze
-        - Hypospray
         - Ointment
         - PillCanister
       components:
+        - Hypospray
         - Injector
         - Pill
     grid:

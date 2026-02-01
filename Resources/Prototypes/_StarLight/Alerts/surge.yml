@@ -1,7 +1,0 @@
-- type: alert
-  id: Surge
-  icons:
-    - sprite: Interface/Actions/jump.rsi
-      state: icon
-  name: alerts-surge-name
-  description: alerts-surge-desc

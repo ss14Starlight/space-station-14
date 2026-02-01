@@ -7,13 +7,13 @@ using Content.Server.Administration.Managers;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
+using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
-using Content.Shared.Maps;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
@@ -22,26 +22,11 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Prometheus; //Starlight
 
 namespace Content.Server.Voting.Managers
 {
     public sealed partial class VoteManager
     {
-
-        #region Starlight data collection
-        private static readonly Counter _gamemode_vote = Metrics.CreateCounter(
-            "sl_gamemode_vote",
-            "Gamemode vote results",
-            [ "option" ]
-        );
-
-        private static readonly Counter _map_vote = Metrics.CreateCounter(
-            "sl_map_vote",
-            "Map/Station vote results",
-            [ "option" ]
-        );
-        #endregion
         [Dependency] private readonly IPlayerLocator _locator = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly IBanManager _bans = default!;
@@ -312,14 +297,6 @@ namespace Content.Server.Voting.Managers
                     }
                 }
 
-                #region Starlight
-                for (int i = 0; i < options.Options.Count; i++)
-                {
-                    _gamemode_vote.WithLabels(
-                        options.Options[i].text
-                    ).Inc(args.Votes[i]);
-                }
-                #endregion
                 //add the key we picked to the cooldown list
                 //if its secret, never add it
                 if (!(secretPreset != null && pickedPreset.ID == secretPreset.ID))
@@ -383,15 +360,7 @@ namespace Content.Server.Voting.Managers
 
                 vote.OnFinished += (_, args) =>
                 {
-                    #region Starlight
-                    for (int i = 0; i < options.Count; i++)
-                    {
-                        _map_vote.WithLabels(
-                            options[i].Title
-                        ).Inc(args.Votes[i]);
-                    }
                     GameMapPrototype picked;
-                    #endregion
                     if (args.Winner == null)
                     {
                         picked = (GameMapPrototype)_random.Pick(args.Winners);

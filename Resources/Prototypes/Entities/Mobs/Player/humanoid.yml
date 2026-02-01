@@ -79,6 +79,11 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertleader
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirstLeader
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTLeader
 
@@ -95,17 +100,18 @@
       job: ERTLeader
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalExtended ]
     - type: RandomMetadata
       nameSegments:
+      - NamesMilitaryFirstLeader
       - NamesMilitaryLast
-      nameFormat: name-format-ert-leader
+      nameFormat: name-format-ert
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVA
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT leader
-  suffix: ERTRole, EVA
+  suffix: ERTRole, Armored EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -119,23 +125,23 @@
   components:
     - type: Loadout
       prototypes: [ ERTLeaderGearEVA ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTLeaderArmed
+  id: RandomHumanoidSpawnerERTLeaderEVALecter
   parent: RandomHumanoidSpawnerERTLeaderEVA
-  suffix: ERTRole, Armed, EVA
+  suffix: ERTRole, Lecter, EVA
   components:
     - type: RandomHumanoidSpawner
-      settings: ERTLeaderArmed
+      settings: ERTLeaderEVALecter
 
 - type: randomHumanoidSettings
-  id: ERTLeaderArmed
+  id: ERTLeaderEVALecter
   parent: ERTLeaderEVA
   components:
     - type: Loadout
-      prototypes: [ ERTLeaderGearArmed ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      prototypes: [ ERTLeaderGearEVALecter ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Chaplain
 
@@ -147,7 +153,12 @@
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
-      state: ertchaplain
+      state: chaplain #needs an ERT variant once a good suit it made.
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTChaplain
 
@@ -165,21 +176,22 @@
       job: ERTChaplain
     - type: RandomMetadata
       nameSegments:
+      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert-specialist
+      nameFormat: name-format-ert
     - type: Loadout
       prototypes: [ ERTChaplainGear ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTChaplainEVA
   parent: RandomHumanoidSpawnerERTChaplain
   name: ERT chaplain
-  suffix: ERTRole, EVA
+  suffix: ERTRole, Enviro EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
-      state: ertchaplaineva
+      state: chaplain #needs an ERT variant once a good suit it made.
     - type: RandomHumanoidSpawner
       settings: ERTChaplainEVA
 
@@ -189,7 +201,8 @@
   components:
     - type: Loadout
       prototypes: [ ERTChaplainGearEVA ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalEVA ]
+    - type: BibleUser
 
 ## ERT Janitor
 
@@ -202,6 +215,11 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertjanitor
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTJanitor
 
@@ -218,16 +236,18 @@
       job: ERTJanitor
     - type: RandomMetadata
       nameSegments:
+      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert-specialist
+      nameFormat: name-format-ert
     - type: Loadout
       prototypes: [ ERTJanitorGear ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTJanitorEVA
   parent: RandomHumanoidSpawnerERTJanitor
-  suffix: ERTRole, EVA
+  name: ERT janitor
+  suffix: ERTRole, Enviro EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -241,7 +261,7 @@
   components:
     - type: Loadout
       prototypes: [ ERTJanitorGearEVA ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Engineer
 
@@ -254,6 +274,11 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertengineer
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTEngineer
 
@@ -270,16 +295,18 @@
       job: ERTEngineer
     - type: RandomMetadata
       nameSegments:
+      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert-specialist
+      nameFormat: name-format-ert
     - type: Loadout
       prototypes: [ ERTEngineerGear ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTEngineerEVA
   parent: RandomHumanoidSpawnerERTEngineer
-  suffix: ERTRole, EVA
+  name: ERT engineer
+  suffix: ERTRole, Enviro EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -293,27 +320,7 @@
   components:
     - type: Loadout
       prototypes: [ ERTEngineerGearEVA ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
-
-- type: entity
-  parent: RandomHumanoidSpawnerERTEngineerEVA
-  id: RandomHumanoidSpawnerERTEngineerArmed
-  suffix: ERTRole, Armed, EVA
-  components:
-  - type: RandomHumanoidSpawner
-    settings: ERTEngineerArmed
-
-- type: randomHumanoidSettings
-  id: ERTEngineerArmed
-  parent: ERTEngineer
-  components:
-  - type: RandomMetadata
-    nameSegments:
-    - NamesMilitaryLast
-    nameFormat: name-format-ert-pointman
-  - type: Loadout
-    prototypes: [ ERTEngineerGearArmed ]
-    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Security
 
@@ -326,6 +333,11 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertsecurity
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTSecurity
 
@@ -342,17 +354,18 @@
       job: ERTSecurity
     - type: RandomMetadata
       nameSegments:
+      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert-officer
+      nameFormat: name-format-ert
     - type: Loadout
       prototypes: [ ERTSecurityGear ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityEVA
   parent: RandomHumanoidSpawnerERTSecurity
   name: ERT security
-  suffix: ERTRole, EVA
+  suffix: ERTRole, Armored EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -366,91 +379,23 @@
   components:
     - type: Loadout
       prototypes: [ ERTSecurityGearEVA ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTSecurityArmedRifle
+  id: RandomHumanoidSpawnerERTSecurityEVALecter
   parent: RandomHumanoidSpawnerERTSecurityEVA
-  name: ERT security rifleman
-  suffix: ERTRole, Armed, EVA
+  suffix: ERTRole, Lecter, EVA
   components:
-  - type: RandomHumanoidSpawner
-    settings: ERTSecurityArmedRifle
+    - type: RandomHumanoidSpawner
+      settings: ERTSecurityEVALecter
 
 - type: randomHumanoidSettings
-  id: ERTSecurityArmedRifle
+  id: ERTSecurityEVALecter
   parent: ERTSecurityEVA
   components:
-  - type: RandomMetadata
-    nameSegments:
-    - NamesMilitaryLast
-    nameFormat: name-format-ert-rifle
-  - type: Loadout
-    prototypes: [ ERTSecurityGearArmedRifle ]
-    roleLoadout: [ RoleSurvivalMilitaryDouble ]
-
-- type: entity
-  parent: RandomHumanoidSpawnerERTSecurityEVA
-  id: RandomHumanoidSpawnerERTSecurityArmedGrenade
-  name: ERT security grenadier
-  suffix: ERTRole, Armed, EVA
-  components:
-  - type: RandomHumanoidSpawner
-    settings: ERTSecurityArmedGrenade
-
-- type: randomHumanoidSettings
-  parent: ERTSecurityEVA
-  id: ERTSecurityArmedGrenade
-  components:
-  - type: RandomMetadata
-    nameSegments:
-    - NamesMilitaryLast
-    nameFormat: name-format-ert-grenade
-  - type: Loadout
-    prototypes: [ ERTSecurityGearArmedGrenade ]
-    roleLoadout: [ RoleSurvivalMilitaryDouble ]
-
-- type: entity
-  parent: RandomHumanoidSpawnerERTSecurityEVA
-  id: RandomHumanoidSpawnerERTSecurityArmedVanguard
-  name: ERT security vanguard
-  suffix: ERTRole, Armed, EVA
-  components:
-  - type: RandomHumanoidSpawner
-    settings: ERTSecurityArmedVanguard
-
-- type: randomHumanoidSettings
-  parent: ERTSecurityEVA
-  id: ERTSecurityArmedVanguard
-  components:
-  - type: RandomMetadata
-    nameSegments:
-    - NamesMilitaryLast
-    nameFormat: name-format-ert-vanguard
-  - type: Loadout
-    prototypes: [ ERTSecurityGearArmedVanguard ]
-    roleLoadout: [ RoleSurvivalMilitaryDouble ]
-
-- type: entity
-  parent: RandomHumanoidSpawnerERTSecurityEVA
-  id: RandomHumanoidSpawnerERTSecurityArmedShotgun
-  name: ERT security breacher
-  suffix: ERTRole, Armed, EVA
-  components:
-  - type: RandomHumanoidSpawner
-    settings: ERTSecurityArmedShotgun
-
-- type: randomHumanoidSettings
-  parent: ERTSecurityEVA
-  id: ERTSecurityArmedShotgun
-  components:
-  - type: RandomMetadata
-    nameSegments:
-    - NamesMilitaryLast
-    nameFormat: name-format-ert-pointman
-  - type: Loadout
-    prototypes: [ ERTSecurityGearArmedShotgun ]
-    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+    - type: Loadout
+      prototypes: [ ERTSecurityGearEVALecter ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Medic
 
@@ -463,6 +408,11 @@
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertmedical
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: ERTMedical
 
@@ -479,16 +429,18 @@
       job: ERTMedical
     - type: RandomMetadata
       nameSegments:
+      - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert-doctor
+      nameFormat: name-format-ert
     - type: Loadout
       prototypes: [ ERTMedicalGear ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTMedicalEVA
   parent: RandomHumanoidSpawnerERTMedical
-  suffix: ERTRole, EVA
+  name: ERT medic
+  suffix: ERTRole, Armored EVA
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -502,27 +454,7 @@
   components:
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
-      roleLoadout: [ RoleSurvivalMilitaryDouble ]
-
-- type: entity
-  parent: RandomHumanoidSpawnerERTMedicalEVA
-  id: RandomHumanoidSpawnerERTMedicalArmed
-  suffix: ERTRole, Armed, EVA
-  components:
-  - type: RandomHumanoidSpawner
-    settings: ERTMedicalArmed
-
-- type: randomHumanoidSettings
-  parent: ERTMedicalEVA
-  id: ERTMedicalArmed
-  components:
-  - type: RandomMetadata
-    nameSegments:
-    - NamesMilitaryLast
-    nameFormat: name-format-ert-corpsman
-  - type: Loadout
-    prototypes: [ ERTMedicalGearArmed ]
-    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## CBURN
 
@@ -581,7 +513,7 @@
         settings: default
       job: CentralCommandOfficial
     - type: Loadout
-      prototypes: [ CentcommGear ]
+      prototypes: [ CentcomGear ]
       roleLoadout: [ RoleSurvivalStandard ]
 
 ## Syndicate

@@ -6,22 +6,18 @@
     "x": 32,
     "y": 32
   },
-  "states": [
-    {
-      "name": "box-cc",
-      "copyright": "by mikeysaurus"
-    },
-    {
-      "name": "stamp-cc-departments",
-      "copyright": "by mikeysaurus"
-    },
-    {
-      "name": "stamp-cc-admin",
-      "copyright": "by mikeysaurus"
-    },
-    {
-      "name": "box-twinpointer",
-      "copyright": "Twinpointer edit by @redmushie (discord, github)"
-    }
-  ]
+    "states": [
+        {
+          "name": "box-cc",
+          "copyright": "by mikeysaurus"
+        },
+        {
+            "name": "stamp-cc-departments",
+            "copyright": "by mikeysaurus"
+        },
+        {
+            "name": "stamp-cc-admin",
+            "copyright": "by mikeysaurus"
+        }
+    ]
 }

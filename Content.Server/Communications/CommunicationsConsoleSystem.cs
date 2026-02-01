@@ -265,7 +265,6 @@ namespace Content.Server.Communications
             if (stationUid != null)
             {
                 _alertLevelSystem.SetLevel(stationUid.Value, message.Level, true, true);
-                _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(message.Actor):player} has set {message.Level} alert level");  // Starlight (Far-Horizons)
             }
         }
 

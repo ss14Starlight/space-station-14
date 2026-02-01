@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Commands
 {
-    [AdminCommand(AdminFlags.Danger)] // Starlight-edit
+    [AdminCommand(AdminFlags.Round)]
     public sealed class ForcePresetCommand : LocalizedEntityCommands
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;

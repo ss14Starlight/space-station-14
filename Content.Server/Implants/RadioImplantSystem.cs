@@ -1,7 +1,6 @@
 ﻿using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
 using Content.Shared.Radio.Components;
-using System.Linq; // Starlight
 
 namespace Content.Server.Implants;
 
@@ -21,29 +20,20 @@ public sealed class RadioImplantSystem : EntitySystem
     private void OnImplantImplanted(Entity<RadioImplantComponent> ent, ref ImplantImplantedEvent args)
     {
         var activeRadio = EnsureComp<ActiveRadioComponent>(args.Implanted);
-        //Starlight begin
-        foreach (var channel in ent.Comp.RadioChannels.Where(channel => activeRadio.Channels.Add(channel)))
-            ent.Comp.ActiveAddedChannels.Add(channel);
-
-        foreach (var channel in ent.Comp.CustomChannels.Where(channel => activeRadio.CustomChannels.Add(channel)))
-            ent.Comp.ActiveAddedCustomRadioChannels.Add(channel);
-        Dirty(ent, activeRadio);
-        //Starlight end
+        foreach (var channel in ent.Comp.RadioChannels)
+        {
+            if (activeRadio.Channels.Add(channel))
+                ent.Comp.ActiveAddedChannels.Add(channel);
+        }
 
         EnsureComp<IntrinsicRadioReceiverComponent>(args.Implanted);
 
         var intrinsicRadioTransmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(args.Implanted);
-        
-        //Starlight begin
-        foreach (var channel in
-                 ent.Comp.RadioChannels.Where(channel => intrinsicRadioTransmitter.Channels.Add(channel)))
-            ent.Comp.TransmitterAddedChannels.Add(channel);
-
-        foreach (var channel in ent.Comp.CustomChannels.Where(channel =>
-                     intrinsicRadioTransmitter.CustomChannels.Add(channel)))
-            ent.Comp.TransmitterAddedCustomRadioChannels.Add(channel);
-        Dirty(ent, intrinsicRadioTransmitter);
-        //Starlight end
+        foreach (var channel in ent.Comp.RadioChannels)
+        {
+            if (intrinsicRadioTransmitter.Channels.Add(channel))
+                ent.Comp.TransmitterAddedChannels.Add(channel);
+        }
     }
 
     /// <summary>
@@ -58,18 +48,11 @@ public sealed class RadioImplantSystem : EntitySystem
                 activeRadioComponent.Channels.Remove(channel);
             }
             ent.Comp.ActiveAddedChannels.Clear();
-            //Starlight begin
-            foreach (var channel in ent.Comp.ActiveAddedCustomRadioChannels)
-                activeRadioComponent.CustomChannels.Remove(channel);
-            ent.Comp.ActiveAddedCustomRadioChannels.Clear();
-            //Starlight end
 
-            if (activeRadioComponent.Channels.Count == 0 && activeRadioComponent.CustomChannels.Count == 0) // Starlight edit
+            if (activeRadioComponent.Channels.Count == 0)
             {
                 RemCompDeferred<ActiveRadioComponent>(args.Implanted);
             }
-            
-            Dirty(ent, activeRadioComponent); // Starlight
         }
 
         if (!TryComp<IntrinsicRadioTransmitterComponent>(args.Implanted, out var radioTransmitterComponent))
@@ -79,16 +62,9 @@ public sealed class RadioImplantSystem : EntitySystem
         {
             radioTransmitterComponent.Channels.Remove(channel);
         }
-        Dirty(ent, radioTransmitterComponent); //Starlight
         ent.Comp.TransmitterAddedChannels.Clear();
-        
-        //Starlight begin
-        foreach (var channel in ent.Comp.TransmitterAddedCustomRadioChannels)
-            radioTransmitterComponent.CustomChannels.Remove(channel);
-        ent.Comp.TransmitterAddedCustomRadioChannels.Clear();
-        //Starlight end
 
-        if ((radioTransmitterComponent.Channels.Count == 0 || activeRadioComponent?.Channels.Count == 0) && (radioTransmitterComponent.CustomChannels.Count==0 || activeRadioComponent?.CustomChannels.Count == 0)) // Starlight edit
+        if (radioTransmitterComponent.Channels.Count == 0 || activeRadioComponent?.Channels.Count == 0)
         {
             RemCompDeferred<IntrinsicRadioTransmitterComponent>(args.Implanted);
         }

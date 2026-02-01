@@ -1,29 +1,45 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "State based copyrights",
+  "copyright": "Made by Starlight Dimyell for Starlight Station",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon",
-      "copyright": "Made by SapphicHaymaker for Starlight"
+      "name": "icon"
     },
     {
       "name": "equipped-INNERCLOTHING",
-      "copyright": "Made by SapphicHaymaker for Starlight",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-cyclorite",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-felionoid",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-resomi",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-vox",
+      "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-monkey",
       "directions": 4
     },
     {
       "name": "inhand-left",
-      "copyright": "Made by SapphicHaymaker for Starlight",
       "directions": 4
     },
     {
       "name": "inhand-right",
-      "copyright": "Made by SapphicHaymaker for Starlight",
       "directions": 4
     }
   ]

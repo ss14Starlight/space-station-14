@@ -25,7 +25,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1000
     startingCharge: 1000
   - type: StaticPrice
@@ -59,7 +59,7 @@
     availableModes:
     - SemiAuto
     - FullAuto #Just allows people to hold down left click
-  - type: Battery 
+  - type: PredictedBattery 
     maxCharge: 1500 # ~1:30 minutes for recharge
     startingCharge: 1500
   - type: BatteryAmmoProvider
@@ -70,17 +70,6 @@
   - type: Tag
     tags:
     - LaserWeapon
-  # starlight start
-  - type: ContainerContainer
-    containers:
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinLaser
-  - type: FiringPinHolder
-    supportedPins: [ Laser ]
-  # starlight end
 
 - type: entity
   id: BaseWeaponPowerCell
@@ -214,17 +203,6 @@
     tags:
     - Sidearm
     - LaserWeapon
-  # starlight start
-  - type: ContainerContainer
-    containers:
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinLaser
-  - type: FiringPinHolder
-    supportedPins: [ Laser ]
-  # starlight end
 
 - type: entity
   name: makeshift laser pistol
@@ -252,7 +230,7 @@
   - type: BatteryAmmoProvider
     proto: RedLaser
     fireCost: 62.5
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 500
     startingCharge: 500
   - type: Tag
@@ -350,7 +328,7 @@
 #   - type: BatteryAmmoProvider
 #     proto: Pulse
 #     fireCost: 200
-#   - type: Battery
+#   - type: PredictedBattery
 #     maxCharge: 2000
 #     startingCharge: 2000
 #   - type: Tag
@@ -392,7 +370,7 @@
 #   - type: BatteryAmmoProvider
 #     proto: Pulse
 #     fireCost: 200
-#   - type: Battery
+#   - type: PredictedBattery
 #     maxCharge: 5000
 #     startingCharge: 5000
 
@@ -428,7 +406,7 @@
 #   - type: BatteryAmmoProvider
 #     proto: Pulse
 #     fireCost: 100
-#   - type: Battery
+#   - type: PredictedBattery
 #     maxCharge: 40000
 #     startingCharge: 40000
 
@@ -495,7 +473,7 @@
     - type: BatteryAmmoProvider
       proto: AntiParticlesProjectile
       fireCost: 500
-    - type: Battery
+    - type: PredictedBattery
       maxCharge: 10000
       startingCharge: 10000
 
@@ -672,7 +650,6 @@
     fireRate: 0.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
-    projectileSpeed: 25
   - type: BatteryAmmoProvider
     proto: BulletTaser
     fireCost: 200
@@ -722,7 +699,7 @@
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 100
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 40
   - type: MagazineVisuals
     magState: mag
@@ -743,17 +720,6 @@
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.0002 # 5,000 times less likely than 1 regular animal
     # not putting a BlockMovement component here cause that's funny.
-  # starlight start
-  - type: ContainerContainer
-    containers:
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinAdvancedLaser
-  - type: FiringPinHolder
-    supportedPins: [ AdvancedLaser ]
-  # starlight end
 
 - type: entity
   name: advanced laser pistol
@@ -781,7 +747,7 @@
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 100
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 30
   - type: MagazineVisuals
     magState: mag
@@ -880,7 +846,7 @@
   - type: BatteryAmmoProvider
     proto: RedMediumLaser
     fireCost: 100
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 40
   - type: StaticPrice
     price: 750
@@ -934,7 +900,7 @@
     sprite: Objects/Weapons/Guns/Battery/inhands_64x.rsi
     heldPrefix: energy
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 480
     startingCharge: 480
 
@@ -981,20 +947,9 @@
     - proto: DisablerBolt # Starlight - Hitscan
       fireCost: 62.5
       pacifismAllowedMode: true
-  - type: BatterySelfRecharger
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 48
     autoRechargePauseTime: 10
-  # starlight start
-  - type: ContainerContainer
-    containers:
-      firing_pin: !type:Container
-  - type: ContainerFill
-    containers:
-      firing_pin:
-      - FiringPinAdvancedLaser
-  - type: FiringPinHolder
-    supportedPins: [ AdvancedLaser ]
-  # starlight end
 
 - type: entity
   name: temperature gun
@@ -1034,29 +989,21 @@
       fireCost: 100
     - proto: BoltTempgunHot
       fireCost: 100
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1000
     startingCharge: 1000
   - type: StaticPrice
     price: 100
 
 - type: entity
-  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
-  id: WeaponLaserGunXenoborg
   name: xenoborg laser gun
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
+  id: XenoborgLaserGun
 
 - type: entity
-  parent: [WeaponLaserCannon, BaseXenoborgContraband]
-  id: WeaponLaserCannonXenoborg
-  name: xenoborg laser cannon
+  name: xenoborg heavy laser gun
+  parent: [WeaponAdvancedLaser, BaseXenoborgContraband]
+  id: XenoborgHeavyLaserGun
   components:
-  - type: BatterySelfRecharger
-    autoRechargeRate: 30
-  # "remove" wield bonus and penalty so borgs can use it
-  - type: GunWieldBonus
-    minAngle: 0
-    maxAngle: 0
-  - type: Gun
-    fireRate: 2
-    minAngle: 1
-    maxAngle: 2
+  - type: BatteryAmmoProvider
+    proto: RedHeavyLaser

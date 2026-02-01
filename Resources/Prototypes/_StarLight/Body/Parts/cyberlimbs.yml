@@ -16,9 +16,7 @@
   parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArm
-        Resomi: ResomiCyberLArm
+      layer: CyberLArm
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_arm"
@@ -37,9 +35,7 @@
   parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArm
-        Resomi: ResomiCyberRArm
+      layer: CyberRArm
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_arm"
@@ -58,9 +54,7 @@
   parent: [PartCyber, BaseLeftHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHand
-        Resomi: ResomiCyberLHand
+      layer: CyberLHand
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_hand"
@@ -76,9 +70,7 @@
   parent: [PartCyber, BaseRightHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHand
-        Resomi: ResomiCyberRHand
+      layer: CyberRHand
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_hand"
@@ -94,9 +86,7 @@
   parent: [PartCyber, BaseLeftLeg]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLLeg
-        Resomi: ResomiCyberLLeg
+      layer: CyberLLeg
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg"
@@ -118,9 +108,7 @@
   parent: [PartCyber, BaseRightLeg]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRLeg
-        Resomi: ResomiCyberRLeg
+      layer: CyberRLeg
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg"
@@ -142,9 +130,7 @@
   parent: [PartCyber, BaseLeftFoot]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLFoot
-        Resomi: ResomiCyberLFoot
+      layer: CyberLFoot
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_foot"
@@ -160,9 +146,7 @@
   parent: [PartCyber, BaseRightFoot]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRFoot
-        Resomi: ResomiCyberRFoot
+      layer: "CyberRFoot"
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_foot"
@@ -179,9 +163,7 @@
   parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmSilver
-        Resomi: ResomiCyberLArmSilver
+      layer: CyberLArmSilver
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_silver_arm"
@@ -198,13 +180,9 @@
   parent: [PartCyber, BaseLeftHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandSilver
-        Resomi: ResomiCyberLHandSilver
+      layer: CyberLHandSilver
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandSilverReaper
-        Resomi: ResomiCyberLHandSilverReaper
+      layer: CyberLHandSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_silver_hand"
@@ -235,9 +213,7 @@
   parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmSilver
-        Resomi: ResomiCyberRArmSilver
+      layer: CyberRArmSilver
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_silver_arm"
@@ -254,13 +230,9 @@
   parent: [PartCyber, BaseRightHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandSilver
-        Resomi: ResomiCyberRHandSilver
+      layer: CyberRHandSilver
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandSilverReaper
-        Resomi: ResomiCyberRHandSilverReaper
+      layer: CyberRHandSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_silver_hand"
@@ -292,9 +264,7 @@
   parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmSteel
-        Resomi: ResomiCyberLArmSteel
+      layer: CyberLArmSteel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_steel_arm"
@@ -311,13 +281,9 @@
   parent: [PartCyber, BaseLeftHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandSteel
-        Resomi: ResomiCyberLHandSteel
+      layer: CyberLHandSteel
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandSteelMechwright
-        Resomi: ResomiCyberLHandSteelMechwright
+      layer: CyberLHandSteelMechwright
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_steel_hand"
@@ -345,9 +311,7 @@
   parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmSteel
-        Resomi: ResomiCyberRArmSteel
+      layer: CyberRArmSteel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_steel_arm"
@@ -364,13 +328,9 @@
   parent: [PartCyber, BaseRightHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandSteel
-        Resomi: ResomiCyberRHandSteel
+      layer: CyberRHandSteel
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandSteelMechwright
-        Resomi: ResomiCyberRHandSteelMechwright
+      layer: CyberRHandSteelMechwright
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_steel_hand"
@@ -399,9 +359,7 @@
   parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmEngineer
-        Resomi: ResomiCyberLArmEngineer
+      layer: CyberLArmEngineer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_engineer_arm"
@@ -418,13 +376,9 @@
   parent: [PartCyber, BaseLeftHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandEngineer
-        Resomi: ResomiCyberLHandEngineer
+      layer: CyberLHandEngineer
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandEngineerTools
-        Resomi: ResomiCyberLHandEngineerTools
+      layer: CyberLHandEngineerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_engineer_hand"
@@ -451,9 +405,7 @@
   parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmEngineer
-        Resomi: ResomiCyberRArmEngineer
+      layer: CyberRArmEngineer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_engineer_arm"
@@ -470,13 +422,9 @@
   parent: [PartCyber, BaseRightHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandEngineer
-        Resomi: ResomiCyberRHandEngineer
+      layer: CyberRHandEngineer
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandEngineerTools
-        Resomi: ResomiCyberRHandEngineerTools
+      layer: CyberRHandEngineerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_engineer_hand"
@@ -504,9 +452,7 @@
   parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmBulwark
-        Resomi: ResomiCyberLArmBulwark
+      layer: CyberLArmBulwark
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_arm"
@@ -523,13 +469,9 @@
   parent: [PartCyber, BaseLeftHand, BaseSecurityContraband]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandBulwark
-        Resomi: ResomiCyberLHandBulwark
+      layer: CyberLHandBulwark
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandBulwarkToggled
-        Resomi: ResomiCyberLHandBulwarkToggled
+      layer: CyberLHandBulwarkToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_hand"
@@ -554,9 +496,7 @@
   parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmBulwark
-        Resomi: ResomiCyberRArmBulwark
+      layer: CyberRArmBulwark
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_arm"
@@ -573,13 +513,9 @@
   parent: [PartCyber, BaseRightHand, BaseSecurityContraband]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandBulwark
-        Resomi: ResomiCyberRHandBulwark
+      layer: CyberRHandBulwark
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandBulwarkToggled
-        Resomi: ResomiCyberRHandBulwarkToggled
+      layer: CyberRHandBulwarkToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_hand"
@@ -605,9 +541,7 @@
   parent: [PartCyber, BaseLeftArm, BaseSyndicateContraband]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmMantisBlade
-        Resomi: ResomiCyberLArmMantisBlade
+      layer: CyberLArmMantisBlade
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_mantis_blade_arm"
@@ -624,13 +558,9 @@
   parent: [PartCyber, BaseLeftHand, BaseSyndicateContraband]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandMantisBlade
-        Resomi: ResomiCyberLHandMantisBlade
+      layer: CyberLHandMantisBlade
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandMantisBladeToggled
-        Resomi: ResomiCyberLHandMantisBladeToggled
+      layer: CyberLHandMantisBladeToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_mantis_blade_hand"
@@ -654,9 +584,7 @@
   parent: [PartCyber, BaseRightArm, BaseSyndicateContraband]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmMantisBlade
-        Resomi: ResomiCyberRArmMantisBlade
+      layer: CyberRArmMantisBlade
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_mantis_blade_arm"
@@ -673,13 +601,9 @@
   parent: [PartCyber, BaseRightHand, BaseSyndicateContraband]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandMantisBlade
-        Resomi: ResomiCyberRHandMantisBlade
+      layer: CyberRHandMantisBlade
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandMantisBladeToggled
-        Resomi: ResomiCyberRHandMantisBladeToggled
+      layer: CyberRHandMantisBladeToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_mantis_blade_hand"
@@ -704,9 +628,7 @@
   parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmRipper
-        Resomi: ResomiCyberLArmRipper
+      layer: CyberLArmRipper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_ripper_arm"
@@ -726,13 +648,9 @@
   parent: [PartCyber, BaseLeftHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandRipper
-        Resomi: ResomiCyberLHandRipper
+      layer: CyberLHandRipper
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandRipperRipping
-        Resomi: ResomiCyberLHandRipperRipping
+      layer: CyberLHandRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_ripper_hand"
@@ -763,9 +681,7 @@
   parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmRipper
-        Resomi: ResomiCyberRArmRipper
+      layer: CyberRArmRipper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_ripper_arm"
@@ -785,13 +701,9 @@
   parent: [PartCyber, BaseRightHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandRipper
-        Resomi: ResomiCyberRHandRipper
+      layer: CyberRHandRipper
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandRipperRipping
-        Resomi: ResomiCyberRHandRipperRipping
+      layer: CyberRHandRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_ripper_hand"
@@ -825,9 +737,7 @@
   description: Augmented arm for the salvager of the modern age.
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmSpacer
-        Resomi: ResomiCyberLArmSpacer
+      layer: CyberLArmSpacer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_spacer_arm"
@@ -845,13 +755,9 @@
   description: Augmented hand for the salvager of the modern age.
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandSpacer
-        Resomi: ResomiCyberLHandSpacer
+      layer: CyberLHandSpacer
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandSpacerTools
-        Resomi: ResomiCyberLHandSpacerTools
+      layer: CyberLHandSpacerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_spacer_hand"
@@ -878,9 +784,7 @@
   description: Augmented arm for the salvager of the modern age.
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmSpacer
-        Resomi: ResomiCyberRArmSpacer
+      layer: CyberRArmSpacer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_spacer_arm"
@@ -898,13 +802,9 @@
   description: Augmented hand for the salvager of the modern age.
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandSpacer
-        Resomi: ResomiCyberRHandSpacer
+      layer: CyberRHandSpacer
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandSpacerTools
-        Resomi: ResomiCyberRHandSpacerTools
+      layer: CyberRHandSpacerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_spacer_hand"
@@ -931,9 +831,7 @@
   parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmGorilla
-        Resomi: ResomiCyberLArmGorilla
+      layer: CyberLArmGorilla
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_gorilla_arm"
@@ -950,13 +848,9 @@
   parent: [PartCyber, BaseLeftHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandGorilla
-        Resomi: ResomiCyberLHandGorilla
+      layer: CyberLHandGorilla
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandGorillaTools
-        Resomi: ResomiCyberLHandGorillaTools
+      layer: CyberLHandGorillaTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_gorilla_hand"
@@ -982,9 +876,7 @@
   parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmGorilla
-        Resomi: ResomiCyberRArmGorilla
+      layer: CyberRArmGorilla
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_gorilla_arm"
@@ -1001,13 +893,9 @@
   parent: [PartCyber, BaseRightHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandGorilla
-        Resomi: ResomiCyberRHandGorilla
+      layer: CyberRHandGorilla
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandGorillaTools
-        Resomi: ResomiCyberRHandGorillaTools
+      layer: CyberRHandGorillaTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_gorilla_hand"
@@ -1034,9 +922,7 @@
   parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmAngel
-        Resomi: ResomiCyberLArmAngel
+      layer: CyberLArmAngel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_angel_arm"
@@ -1053,13 +939,9 @@
   parent: [PartCyber, BaseLeftHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandAngel
-        Resomi: ResomiCyberLHandAngel
+      layer: CyberLHandAngel
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandAngelTools
-        Resomi: ResomiCyberLHandAngelTools
+      layer: CyberLHandAngelTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_angel_hand"
@@ -1085,9 +967,7 @@
   parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmAngel
-        Resomi: ResomiCyberRArmAngel
+      layer: CyberRArmAngel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_angel_arm"
@@ -1104,13 +984,9 @@
   parent: [PartCyber, BaseRightHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandAngel
-        Resomi: ResomiCyberRHandAngel
+      layer: CyberRHandAngel
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandAngelTools
-        Resomi: ResomiCyberRHandAngelTools
+      layer: CyberRHandAngelTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_angel_hand"
@@ -1137,9 +1013,7 @@
   parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmZeus
-        Resomi: ResomiCyberLArmZeus
+      layer: CyberLArmZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_zeus_arm"
@@ -1156,13 +1030,9 @@
   parent: [PartCyber, BaseLeftHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandZeus
-        Resomi: ResomiCyberLHandZeus
+      layer: CyberLHandZeus
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandZeus
-        Resomi: ResomiCyberLHandZeus
+      layer: CyberLHandZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_zeus_hand"
@@ -1187,9 +1057,7 @@
   parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmZeus
-        Resomi: ResomiCyberRArmZeus
+      layer: CyberRArmZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_zeus_arm"
@@ -1206,13 +1074,9 @@
   parent: [PartCyber, BaseRightHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandZeus
-        Resomi: ResomiCyberRHandZeus
+      layer: CyberRHandZeus
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandZeus
-        Resomi: ResomiCyberRHandZeus
+      layer: CyberRHandZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_zeus_hand"
@@ -1238,9 +1102,7 @@
   parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmRiplet
-        Resomi: ResomiCyberLArmRiplet
+      layer: CyberLArmRiplet
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_riplet_arm"
@@ -1257,13 +1119,9 @@
   parent: [PartCyber, BaseLeftHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandRiplet
-        Resomi: ResomiCyberLHandRiplet
+      layer: CyberLHandRiplet
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandRipletTools
-        Resomi: ResomiCyberLHandRipletTools
+      layer: CyberLHandRipletTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_riplet_hand"
@@ -1287,9 +1145,7 @@
   parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmRiplet
-        Resomi: ResomiCyberRArmRiplet
+      layer: CyberRArmRiplet
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_riplet_arm"
@@ -1306,13 +1162,9 @@
   parent: [PartCyber, BaseRightHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandRiplet
-        Resomi: ResomiCyberRHandRiplet
+      layer: CyberRHandRiplet
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandRipletTools
-        Resomi: ResomiCyberRHandRipletTools
+      layer: CyberRHandRipletTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_riplet_hand"
@@ -1337,9 +1189,7 @@
   parent: [PartCyber, BaseLeftArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLArmPersephone
-        Resomi: ResomiCyberLArmPersephone
+      layer: CyberLArmPersephone
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_persephone_arm"
@@ -1356,13 +1206,9 @@
   parent: [PartCyber, BaseLeftHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLHandPersephone
-        Resomi: ResomiCyberLHandPersephone
+      layer: CyberLHandPersephone
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberLHandPersephoneTools
-        Resomi: ResomiCyberLHandPersephoneTools
+      layer: CyberLHandPersephoneTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_persephone_hand"
@@ -1392,9 +1238,7 @@
   parent: [PartCyber, BaseRightArm]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRArmPersephone
-        Resomi: ResomiCyberRArmPersephone
+      layer: CyberRArmPersephone
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_persephone_arm"
@@ -1411,13 +1255,9 @@
   parent: [PartCyber, BaseRightHand]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRHandPersephone
-        Resomi: ResomiCyberRHandPersephone
+      layer: CyberRHandPersephone
     - type: BaseLayerIdToggled
-      layers:
-        Default: CyberRHandPersephoneTools
-        Resomi: ResomiCyberRHandPersephoneTools
+      layer: CyberRHandPersephoneTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_persephone_hand"
@@ -1448,9 +1288,7 @@
   parent: [PartCyber, BaseLeftLeg]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLLegHydraulic
-        Resomi: ResomiCyberLLegHydraulic
+      layer: CyberLLegHydraulic
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg_hydraulic"
@@ -1475,9 +1313,7 @@
   parent: [PartCyber, BaseRightLeg]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRLegHydraulic
-        Resomi: ResomiCyberRLegHydraulic
+      layer: CyberRLegHydraulic
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg_hydraulic"
@@ -1503,9 +1339,7 @@
   parent: [PartCyber, BaseLeftLeg]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberLLegPilebunker
-        Resomi: ResomiCyberLLegPilebunker
+      layer: CyberLLegPilebunker
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg_pilebunker"
@@ -1527,9 +1361,7 @@
   parent: [PartCyber, BaseRightLeg]
   components:
     - type: BaseLayerId
-      layers:
-        Default: CyberRLegPilebunker
-        Resomi: ResomiCyberRLegPilebunker
+      layer: CyberRLegPilebunker
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg_pilebunker"

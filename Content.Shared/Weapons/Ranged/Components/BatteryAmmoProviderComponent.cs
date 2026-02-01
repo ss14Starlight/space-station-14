@@ -6,7 +6,7 @@ namespace Content.Shared.Weapons.Ranged.Components;
 
 /// <summary>
 /// Ammo provider that uses electric charge from a battery to provide ammunition to a weapon.
-/// Works in combination with <see cref="BatteryComponent"/>.
+/// This works with both <see cref="BatteryComponent"/> and <see cref="PredictedBatteryComponent"/>
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState(raiseAfterAutoHandleState: true), AutoGenerateComponentPause]

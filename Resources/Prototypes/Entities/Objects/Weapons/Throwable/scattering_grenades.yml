@@ -146,7 +146,6 @@
     sprite: Objects/Specific/Janitorial/soap.rsi
     layers:
     - state: syndie-4
-      map: ["enum.SolutionContainerLayers.Fill"]
   - type: ScatteringGrenade
     fillPrototype: SoapletSyndie
     capacity: 30

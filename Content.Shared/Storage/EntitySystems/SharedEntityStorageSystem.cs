@@ -326,9 +326,6 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         if (!Resolve(container, ref component))
             return false;
 
-        if (xform.MapUid is not { } map || TerminatingOrDeleted(map)) // Starlight-edit
-            return false;
-
         _container.Remove(toRemove, component.Contents);
 
         if (_container.IsEntityInContainer(container)

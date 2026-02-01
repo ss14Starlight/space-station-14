@@ -21,7 +21,7 @@
 - type: startingGear
   id: ChefGear
   equipment:
-    #shoes: ClothingShoesChef # Starlight - disable in favor of loadout
+    #shoes: ClothingShoesColorBlack # 🌟Starlight🌟
     id: ChefPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltChefFilled

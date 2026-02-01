@@ -13,7 +13,7 @@ namespace Content.Shared.Radio.Components;
 public sealed partial class RadioMicrophoneComponent : Component
 {
     [DataField]
-    public string BroadcastChannel = SharedChatSystem.CommonChannel; // Starlight edit
+    public ProtoId<RadioChannelPrototype> BroadcastChannel = SharedChatSystem.CommonChannel;
 
     [DataField]
     public int ListenRange = 4;

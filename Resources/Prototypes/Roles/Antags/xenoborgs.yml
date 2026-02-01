@@ -10,7 +10,6 @@
     role: JobStationAi # Starlight
     time: 18000  # 5 hrs
   guides: [ Xenoborgs ]
-  playTimeTracker: AntagMothershipCore # Starlight
 
 - type: antag
   id: Xenoborg
@@ -24,4 +23,3 @@
     role: JobBorg
     time: 54000  # Starlight 15 hrs
   guides: [ Xenoborgs ]
-  playTimeTracker: AntagXenoborg # Starlight

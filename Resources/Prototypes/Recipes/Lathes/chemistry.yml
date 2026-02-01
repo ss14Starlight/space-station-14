@@ -91,19 +91,11 @@
     Steel: 250
 
 - type: latheRecipe
-  id: ChemistryEmptyVial
-  result: ChemistryEmptyVial
+  id: BaseChemistryEmptyVial
+  result: BaseChemistryEmptyVial
   completetime: 2
   materials:
     Glass: 100
-    Wood: 20
-
-- type: latheRecipe
-  id: ChemistryEmptyVialSmall
-  result: ChemistryEmptyVialSmall
-  completetime: 2
-  materials:
-    Glass: 50
     Wood: 20
 
 - type: latheRecipe

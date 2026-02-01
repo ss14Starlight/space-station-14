@@ -7,7 +7,7 @@
         - NanoTrasen
 
 - type: entity
-  id: StandardNanotrasenStationTestOnly # Starlight - rename from Station to StationTestOnly, so we can add Station below. This lets us avoid spending 0.6 seconds per test spawning in the armories.
+  id: StandardNanotrasenStation
   parent:
     - BaseStation
     - BaseStationNews
@@ -28,20 +28,10 @@
     - BaseStationNanotrasen
     - BaseStationDeliveries
     - BaseStationCryoTeleportation #Starlight
+    - BaseStationAlertArmories #Starlight
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform
-
-# Starlight start
-- type: entity
-  id: StandardNanotrasenStation
-  parent:
-    - StandardNanotrasenStationTestOnly
-    - BaseStationAlertArmories
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: Transform
-# Starlight end
 
 - type: entity
   id: NanotrasenCentralCommand

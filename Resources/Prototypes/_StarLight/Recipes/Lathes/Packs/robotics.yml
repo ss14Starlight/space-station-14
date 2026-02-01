@@ -179,8 +179,6 @@
     - VendingMachineTankDispenserEVACircuitboard
     - VendingMachineTankDispenserEngineeringCircuitboard
     - VendingMachineChemicalsCircuitboard
-    - VendingMachineDonkCircuitboard
-    - VendingMachineIceCreamCircuitboard
 
 
 # Contraband Vendor Boards (Emag only)

@@ -50,7 +50,7 @@
     roleDescription: pai-system-role-description
     roleRules: ghost-role-information-familiar-rules
     mindRoles:
-    - MindRoleGhostRolePAI
+    - MindRoleGhostRoleFamiliar
     wipeVerbText: pai-system-wipe-device-verb-text
     wipeVerbPopup: pai-system-wiped-device
     stopSearchVerbText: pai-system-stop-searching-verb-text
@@ -131,7 +131,7 @@
     roleDescription: pai-system-role-description-syndicate
     roleRules: ghost-role-information-syndicate-pai-rules
     mindRoles:
-    - MindRoleGhostRolePAI
+    - MindRoleGhostRoleFamiliar
   - type: IntrinsicRadioTransmitter
     channels:
     - Syndicate
@@ -166,6 +166,8 @@
       shader: unshaded
       map: ["screen"]
   - type: Appearance
+  - type: StaticPrice
+    price: 5000
 
 - type: entity
   parent: PersonalAI
@@ -186,7 +188,7 @@
     roleDescription: pai-system-role-description-potato
     roleRules: ghost-role-information-familiar-rules
     mindRoles:
-    - MindRoleGhostRolePAI
+    - MindRoleGhostRoleFamiliar
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -198,8 +200,6 @@
   - type: Construction
     graph: PotatoAI
     node: potatoai
-
-# PAI Actions
 
 - type: entity
   parent: ActionIntrinsicStore

@@ -4,19 +4,10 @@
   description: trait-language-foreigner-light-desc
   category: LanguageTraits
   cost: -2
-  effects:
-    - !type:AddCompsEffect
-      components:
-        - type: ForeignerTrait
-          cantUnderstand: false
-          baseTranslator: TranslatorForeigner
-  conflicts:
-    - Foreigner
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+  - type: ForeignerTrait
+    cantUnderstand: false
+    baseTranslator: TranslatorForeigner
 
 - type: trait
   id: Foreigner
@@ -24,68 +15,22 @@
   description: trait-language-foreigner-desc
   category: LanguageTraits
   cost: -4
-  effects:
-    - !type:AddCompsEffect
-      components:
-        - type: ForeignerTrait
-          baseTranslator: TranslatorForeigner
-  conflicts:
-    - ForeignerLight
-
-# Galactic Languages // Should cost: 1
+  components:
+  - type: ForeignerTrait
+    baseTranslator: TranslatorForeigner
 
 - type: trait
   id: SignLanguage
   name: trait-language-signlanguage-name
   description: trait-language-signlanguage-desc
   category: LanguageTraits
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Sign
-      languagesUnderstood:
-        - Sign
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
-
-- type: trait
-  id: Classical
-  name: trait-language-classical-name
-  description: trait-language-classical-desc
-  category: LanguageTraits
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Classical
-      languagesUnderstood:
-        - Classical
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
-
-- type: trait
-  id: Darktongue
-  name: trait-language-darktongue-name
-  description: trait-language-darktongue-desc
-  category: LanguageTraits
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Darktongue
-      languagesUnderstood:
-        - Darktongue
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
-
-# Species Languages // Should cost: 2
+  cost: 2
+  components:
+  - type: LanguageSpeaker
+  languagesSpoken:
+    - Sign
+  languagesUnderstood:
+    - Sign
 
 - type: trait
   id: Nekomimetic
@@ -93,22 +38,13 @@
   description: trait-language-nekomimetic-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Nekomimetic
-      languagesUnderstood:
-        - Nekomimetic
-        - Cat
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Felionoid
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+  - type: LanguageSpeaker
+  languagesSpoken:
+    - Nekomimetic
+  languagesUnderstood:
+    - Nekomimetic
+    - Cat
 
 - type: trait
   id: Canilunzt
@@ -116,23 +52,14 @@
   description: trait-language-canilunzt-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Canilunzt
-      languagesUnderstood:
-        - Canilunzt
-        - Fox
-        - Dog
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Vulpkanin
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Canilunzt
+  languagesUnderstood:
+    - Canilunzt
+    - Fox
+    - Dog
 
 - type: trait
   id: Scratch
@@ -140,22 +67,38 @@
   description: trait-language-scratch-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Scratch
-      languagesUnderstood:
-        - Scratch
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Avali
-        - Resomi
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Scratch
+  languagesUnderstood:
+    - Scratch
+
+- type: trait
+  id: Darktongue
+  name: trait-language-darktongue-name
+  description: trait-language-darktongue-desc
+  category: LanguageTraits
+  cost: 1
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Darktongue
+  languagesUnderstood:
+    - Darktongue
+
+- type: trait
+  id: Classical
+  name: trait-language-classical-name
+  description: trait-language-classical-desc
+  category: LanguageTraits
+  cost: 1
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Classical
+  languagesUnderstood:
+    - Classical
 
 - type: trait
   id: Aielic
@@ -163,17 +106,12 @@
   description: trait-language-aielic-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Aielic
-      languagesUnderstood:
-        - Aielic
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Aielic
+  languagesUnderstood:
+    - Aielic
 
 - type: trait
   id: Grumbakul
@@ -181,21 +119,12 @@
   description: trait-language-grumbakul-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Grumbakul
-      languagesUnderstood:
-        - Grumbakul
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Dwarf
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Grumbakul
+  languagesUnderstood:
+    - Grumbakul
 
 - type: trait
   id: SolCommon
@@ -203,21 +132,12 @@
   description: trait-language-solcommon-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - SolCommon
-      languagesUnderstood:
-        - SolCommon
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Human
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - SolCommon
+  languagesUnderstood:
+    - SolCommon
 
 - type: trait
   id: VoxPidgin
@@ -225,21 +145,12 @@
   description: trait-language-voxpidgin-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - VoxPidgin
-      languagesUnderstood:
-        - VoxPidgin
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Vox
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - VoxPidgin
+  languagesUnderstood:
+    - VoxPidgin
 
 - type: trait
   id: Draconic
@@ -247,21 +158,12 @@
   description: trait-language-draconic-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Draconic
-      languagesUnderstood:
-        - Draconic
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Reptilian
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Draconic
+  languagesUnderstood:
+    - Draconic
 
 - type: trait
   id: Marish
@@ -269,21 +171,12 @@
   description: trait-language-marish-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Marish
-      languagesUnderstood:
-        - Marish
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Shadekin
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Marish
+  languagesUnderstood:
+    - Marish
 
 - type: trait
   id: Bubblish
@@ -291,21 +184,12 @@
   description: trait-language-bubblish-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Bubblish
-      languagesUnderstood:
-        - Bubblish
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - SlimePerson
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Bubblish
+  languagesUnderstood:
+    - Bubblish
 
 - type: trait
   id: Terrum
@@ -313,21 +197,12 @@
   description: trait-language-terrum-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Terrum
-      languagesUnderstood:
-        - Terrum
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Cyclorite
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Terrum
+  languagesUnderstood:
+    - Terrum
 
 - type: trait
   id: Sylvan
@@ -335,21 +210,12 @@
   description: trait-language-sylvan-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Sylvan
-      languagesUnderstood:
-        - Sylvan
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Diona
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Sylvan
+  languagesUnderstood:
+    - Sylvan
 
 - type: trait
   id: Moffic
@@ -357,22 +223,13 @@
   description: trait-language-moffic-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Moffic
-      languagesUnderstood:
-        - Moffic
-        - Mothroach
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Moth
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Moffic
+  languagesUnderstood:
+    - Moffic
+    - Mothroach
 
 - type: trait
   id: Thaveyan
@@ -380,41 +237,10 @@
   description: trait-language-thaveyan-desc
   category: LanguageTraits
   cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Thaveyan
-      languagesUnderstood:
-        - Thaveyan
-        - Carptongue
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Thaven
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
-
-- type: trait
-  id: Lagomorphian
-  name: trait-language-lagomorphian-name
-  description: trait-language-lagomorphian-desc
-  category: LanguageTraits
-  cost: 2
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Lagomorphian
-      languagesUnderstood:
-        - Lagomorphian
-  requirements:
-    - !type:SpeciesRequirement
-      species:
-        - Lagomorph
-      inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  components:
+    - type: LanguageSpeaker
+  languagesSpoken:
+    - Thaveyan
+  languagesUnderstood:
+    - Thaveyan
+    - Carptongue

@@ -8,7 +8,6 @@ using Content.Server.Roles;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
-using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
@@ -431,8 +430,6 @@ namespace Content.Server.GameTicking
 #endif
 
                 readyPlayers.Add(session);
-
-                // Starlight - we've removed some code here for generating a random humanoid profile for players without any profiles on roundstart.
                 readyPlayerIds.Add(userId);
             }
 
@@ -467,11 +464,7 @@ namespace Content.Server.GameTicking
                 _map.InitializeMap(map);
             }
 
-            StartGamePresetRules(); // Starlight - Start any map-attached game rules
-
             SpawnPlayers(readyPlayers, readyPlayerIds, force);
-
-            StartGamePresetRules(); // Starlight - Start any player-attached game rules
 
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
