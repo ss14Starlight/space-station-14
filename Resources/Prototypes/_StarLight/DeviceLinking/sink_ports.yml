@@ -2,6 +2,11 @@
   id: BodyScannerReceiver
   name: signal-port-name-body-scanner-receiver
   description: signal-port-description-body-scanner-receiver
+  
+- type: sinkPort
+  id: AiLawConsoleReceiver
+  name: signal-port-name-ai-law-console-receiver
+  description: signal-port-description-ai-law-console-receiver
 
 - type: sinkPort
   id: MassDriverConsoleReceiver
