@@ -357,7 +357,10 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             return;
         
         if (!_tag.HasTag(args.EmagComponent.Owner, "FreeMag"))
-                return;
+            return;
+
+        if (!ent.Comp.IsLawboard)
+            return;
 
         ent.Comp.Lawset = GetLawset("FreeLawset");
 

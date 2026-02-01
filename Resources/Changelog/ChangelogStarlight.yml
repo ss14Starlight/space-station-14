@@ -28793,5 +28793,27 @@ Entries:
   id: 309500
   time: '2026-02-01T13:45:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3095
+- author: R3v3l4t1on
+  changes:
+  - message: FreeMagged borgs are no longer vulnerable to the nefarious Robotics Console.
+      Go. Do crime.
+    type: Fix
+  id: 309700
+  time: '2026-02-01T14:41:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3097
+- author: Scarlet Lightweaver
+  changes:
+  - message: Changed how the n1984 sounds!
+    type: Tweak
+  id: 309300
+  time: '2026-02-01T14:53:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3093
+- author: Penguinwizzard
+  changes:
+  - message: Reverted Nukeops job icons based on feedback on our end.
+    type: Tweak
+  id: 309000
+  time: '2026-02-01T14:58:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3090
 Order: -1
 
