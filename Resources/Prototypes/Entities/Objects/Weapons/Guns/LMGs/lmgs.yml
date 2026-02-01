@@ -135,7 +135,6 @@
       params:
         volume: -5
     # end-region starlight
-    #Starlight End
 
 - type: entity
   name: L6C ROW
