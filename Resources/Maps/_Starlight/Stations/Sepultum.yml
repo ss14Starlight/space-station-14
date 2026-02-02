@@ -145678,6 +145678,13 @@ entities:
   entities:
   - uid: 22675
     components:
+    - type: StationAiCore
+      lawConsole: 26045
+    - type: DeviceLinkSource
+      linkedPorts:
+        26045:
+        - - AiLawConsoleSender
+          - AiLawConsoleReceiver
     - type: Transform
       pos: 14.5,66.5
       parent: 2
@@ -165898,6 +165905,8 @@ entities:
   entities:
   - uid: 26045
     components:
+    - type: SiliconLawUpdater
+      core: 22675
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 8.5,66.5

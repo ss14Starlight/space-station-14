@@ -273,6 +273,10 @@
 - type: Tag
   id: IteratorTraitBackground
 
+# Used for the jet injector and advanced jet injector
+- type: Tag
+  id: JetInjector
+
 - type: Tag
   id: L6Saw
 
@@ -323,6 +327,10 @@
 
 - type: Tag
   id: MedCyberEyes
+
+# Used for the one-use disposable medipens
+- type: Tag
+  id: Medipen
 
 - type: Tag
   id: Meson

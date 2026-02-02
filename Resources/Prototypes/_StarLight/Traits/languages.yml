@@ -32,12 +32,13 @@
   conflicts:
     - ForeignerLight
 
+# Galactic Languages // Should cost: 1
+
 - type: trait
   id: SignLanguage
   name: trait-language-signlanguage-name
   description: trait-language-signlanguage-desc
   category: LanguageTraits
-  cost: 2
   effects:
     - !type:LanguageEffect
       languagesSpoken:
@@ -49,6 +50,42 @@
       traits:
         - Iterator
       inverted: true
+
+- type: trait
+  id: Classical
+  name: trait-language-classical-name
+  description: trait-language-classical-desc
+  category: LanguageTraits
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Classical
+      languagesUnderstood:
+        - Classical
+  requirements:
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
+
+- type: trait
+  id: Darktongue
+  name: trait-language-darktongue-name
+  description: trait-language-darktongue-desc
+  category: LanguageTraits
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Darktongue
+      languagesUnderstood:
+        - Darktongue
+  requirements:
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
+
+# Species Languages // Should cost: 2
 
 - type: trait
   id: Nekomimetic
@@ -115,40 +152,6 @@
         - Avali
         - Resomi
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
-
-- type: trait
-  id: Darktongue
-  name: trait-language-darktongue-name
-  description: trait-language-darktongue-desc
-  category: LanguageTraits
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Darktongue
-      languagesUnderstood:
-        - Darktongue
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
-
-- type: trait
-  id: Classical
-  name: trait-language-classical-name
-  description: trait-language-classical-desc
-  category: LanguageTraits
-  effects:
-    - !type:LanguageEffect
-      languagesSpoken:
-        - Classical
-      languagesUnderstood:
-        - Classical
-  requirements:
     - !type:TraitsRequirement
       traits:
         - Iterator

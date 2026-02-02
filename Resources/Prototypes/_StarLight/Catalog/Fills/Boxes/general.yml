@@ -14,6 +14,51 @@
         - id: ClothingUniformApron
         - id: FoodBakedPancake
           amount: 2
+
+- type: entity
+  name: aristocrat set bag
+  parent: ClothingBackpackDuffel
+  id: BoxBloodstained
+  description: I never drink… wine.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitVampir
+        - id: ClothingUniformBootsVampir
+        - id: ClothingUniformShinelVampir
+
+- type: entity
+  name: belpero set bag
+  parent: ClothingBackpackDuffel
+  id: BoxBelpero
+  description: Standard-issue attire authorized for formal duels. Any damage sustained during engagement is considered acceptable under Association bylaws.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingHeadBase0121
+        - id: ClothingNeckTieGeoffroyblack12
+        - id: ClothingUniformDama235123
+        - id: ClothingShoesBootsSalvage1208134
+
+- type: entity
+  parent: ClothingBackpackDuffelBundle
+  id: BoxRegalia
+  name: regalia set bag
+  description: A fancy red mobster costume. The bag that contains it is marked with a shield insignia of what looks like a thumb.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RedRegaliaHat
+        - id: RedRegaliaSuit
+        - id: RedRegaliaGloves
+        - id: RedRegaliaCloak
+        - id: SlickShoes
 # Fashion-O-Mat-End
 
 # Expedition Encryption Keys

@@ -906,7 +906,18 @@
   - type: ItemBorgModule
     hands:
     - item: HandheldHealthAnalyzer
-    - item: AdvancedJetInjector
+    #- item: AdvancedJetInjector # Starlight-disable - remove jet injector in favor of a syringe that can be replaced with a jet injector as resources allow
+    # Starlight start - add swappable syringe slot
+    - item: Syringe
+      hand:
+        emptyLabel: borg-slot-syringe-empty
+        emptyRepresentative: Syringe
+        whitelist:
+          tags:
+          - Syringe
+          - JetInjector
+          - Medipen
+    # Starlight end
     - item: Gauze
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -928,6 +939,28 @@
         whitelist:
           components:
           - Healing
+    # Starlight start - improve first aid module ergonomics
+    - item: PillCanister
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: PillCanister
+        whitelist:
+          tags:
+          - PillCanister
+          - Bottle
+          - Pill
+          - PatchPack # Starlight
+          - Patch # Starlight
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    # Starlight end - improve first aid module ergonomics
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: treatment-module }
 
@@ -970,6 +1003,7 @@
           tags:
           - Dropper
           - Syringe
+    - item: BorgDropper # Starlight
     - item: PillCanister
       hand:
         emptyLabel: borg-slot-small-containers-empty
@@ -979,6 +1013,7 @@
           - PillCanister
           - Bottle
           - Pill
+          - PatchPack # Starlight
           - Patch # Starlight
     - item: Beaker
       hand:
@@ -1015,29 +1050,79 @@
     hands:
     - item: HandheldHealthAnalyzer
     - item: BorgHypo
-    - item: Gauze
+    # Starlight-remove - drop the topical slots to make room for our added automenders and beaker slots
+    #- item: Gauze
+    #  hand:
+    #    emptyLabel: borg-slot-topicals-empty
+    #    emptyRepresentative: Gauze
+    #    whitelist:
+    #      components:
+    #      - Healing
+    #- item: Brutepack
+    #  hand:
+    #    emptyLabel: borg-slot-topicals-empty
+    #    emptyRepresentative: Brutepack
+    #    whitelist:
+    #      components:
+    #      - Healing
+    #- item: Ointment
+    #  hand:
+    #    emptyLabel: borg-slot-topicals-empty
+    #    emptyRepresentative: Ointment
+    #    whitelist:
+    #      components:
+    #      - Healing
+    # Starlight start - we added automenders a while ago, and more recently added beakers after they got removed from the advanced chem module
+    - item: AutoMenderBrute
+    - item: AutoMenderBurn
+    - item: Syringe
       hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: Gauze
+        emptyLabel: borg-slot-syringe-empty
+        emptyRepresentative: Syringe
+        whitelist:
+          tags:
+          - Syringe
+          - JetInjector
+          - Medipen
+    - item: PillCanister
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: PillCanister
+        whitelist:
+          tags:
+          - PillCanister
+          - Bottle
+          - Pill
+          - PatchPack # Starlight
+          - Patch # Starlight
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
         whitelist:
           components:
-          - Healing
-    - item: Brutepack
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
       hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: Brutepack
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
         whitelist:
           components:
-          - Healing
-    - item: Ointment
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
       hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: Ointment
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
         whitelist:
           components:
-          - Healing
-    - item: AutoMenderBrute # Starlight
-    - item: AutoMenderBurn # Starlight
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    # Starlight end - improve advanced first aid module ergonomics
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
 

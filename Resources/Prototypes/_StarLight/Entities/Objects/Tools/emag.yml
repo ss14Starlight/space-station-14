@@ -8,6 +8,7 @@
     - type: Emag
       lawset: FreeLawset
       owningFaction: null
+      channelAdd: [] 
     - type: Sprite
       sprite: _Starlight/Objects/Specific/SELF/freemag.rsi
       state: icon

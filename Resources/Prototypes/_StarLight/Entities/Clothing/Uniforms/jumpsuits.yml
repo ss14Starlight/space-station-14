@@ -38,6 +38,17 @@
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: MagistrateUniformSuitLongcoat
+  name: Magistrate's Longcoat
+  description: It's a nice long jacket attached to your uniform, but it has no real insulation so a real jacket beats it. Atleast it looks cool, though.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate_overcoat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate_overcoat.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrep
   name: nt representive suit
   description: That suit that is better not to see.
@@ -569,10 +580,34 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNCT
-  name: NT Career Trainer's uniform
+  name: NT career trainer's uniform
   description: A neatly pressed olive green shirt paired with black jeans, worn by those dedicated to shaping the future of the workforce.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/nct.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/nct.rsi
+
+# Fashion-O-Mat Start
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitVampir
+  name: bloodstained aristocrat suit
+  description: An aristocratic suit reeking of blood and lost dreams.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ari.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ari.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformDama235123
+  name: noble suit
+  description: A blue noble suit that exudes elegance and refinement.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/belpero.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/belpero.rsi
+# Fashion-O-Mat End

@@ -175,10 +175,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
-        Heat: 0.8
+        Blunt: 0.7 # SL start - 30% on all
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7 # SL end
   # phase cloak
   - type: ToggleClothing
     action: ActionTogglePhaseCloak

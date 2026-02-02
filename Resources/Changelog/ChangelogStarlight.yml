@@ -28616,5 +28616,315 @@ Entries:
   id: 306700
   time: '2026-01-31T02:59:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3067
+- author: Conflee
+  changes:
+  - message: Fixed part of sci being unpowered round start
+    type: Fix
+  id: 306200
+  time: '2026-01-31T07:04:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3062
+- author: Penguinwizzard
+  changes:
+  - message: The advanced first aid borg module has been changed to be much closer
+      to the previous advanced chemical module, focused on treatment of injuries through
+      targeted application of medical reagents.
+    type: Tweak
+  - message: The first aid and advanced first aid borg modules have gained a slot
+      for administering pills and patches.
+    type: Tweak
+  - message: The chem borg module has gained a hydraulic dropper.
+    type: Tweak
+  - message: The first aid module has been swapped to hold a syringe by default, rather
+      than a jet injector, and has gained a beaker slot.
+    type: Tweak
+  - message: The syringe slots on the first aid, advanced first aid, and syndicate
+      advanced chemical modules can now be swapped out for jet injectors or medipens.
+    type: Tweak
+  id: 306800
+  time: '2026-01-31T07:08:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3068
+- author: Makeshift
+  changes:
+  - message: (Plasma) New Magistrate room, right underneath the courtroom.
+    type: Add
+  - message: (Plasma) Swapped some consoles for PCs where appropriate.
+    type: Add
+  - message: (Plasma) The service request computer is now in a more public location,
+      instead of being tucked in maints.
+    type: Tweak
+  - message: (Plasma) General decal and tile changes, things generally look a little
+      less plain.
+    type: Tweak
+  - message: (Plasma) The TEG cold loop is a little bit better now.
+    type: Tweak
+  - message: (Plasma) Removed tiles under some shocked grilles, to make it more obvious
+      that they're shocked.
+    type: Fix
+  id: 306100
+  time: '2026-01-31T07:18:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3061
+- author: Fractalflower, LynatiKr20
+  changes:
+  - message: Removed 10% slowdown on ninja suit
+    type: Remove
+  - message: 'Reverted upstream change to ninja gloves: 10s cooldown for stun.'
+    type: Remove
+  - message: Reverted Ninja suit to old 30/30/30/30.
+    type: Tweak
+  id: 305100
+  time: '2026-01-31T07:33:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3051
+- author: Miracula
+  changes:
+  - message: New season clothes in Fashion-O-Mat
+    type: Add
+  - message: Support for animated job icons
+    type: Add
+  id: 293500
+  time: '2026-01-31T11:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2935
+- author: neomoth
+  changes:
+  - message: Fixes borgis being unable to communicate on binary while wearing a headset
+      (and by extension any other entities with IntrinsicRadioTransmitter who are
+      also wearing a headset)
+    type: Fix
+  id: 306900
+  time: '2026-01-31T12:13:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3069
+- author: Shades
+  changes:
+  - message: Fixed Languages Costs being wired with the new Trait System.
+    type: Fix
+  id: 307000
+  time: '2026-01-31T18:55:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3070
+- author: CringeCursed, Rinary, DocMoth, YourSly
+  changes:
+  - message: New vampires
+    type: Tweak
+  id: 259900
+  time: '2026-02-01T00:08:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2599
+- author: neomoth
+  changes:
+  - message: Borgs that get emagged can now properly use comms again
+    type: Fix
+  - message: Actually fix radio implants this time i swear
+    type: Fix
+  id: 307900
+  time: '2026-02-01T00:12:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3079
+- author: Penguinwizzard
+  changes:
+  - message: Re-inverted command-time requirement for headrev so you need command
+      hours rather than get denied due to having command hours.
+    type: Fix
+  id: 307600
+  time: '2026-02-01T00:15:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3076
+- author: Conflee
+  changes:
+  - message: Fixed FreeMAG'ed borgs getting Syndicate Comms, and gave SELF Agent a
+      description in the antag loadout screen
+    type: Fix
+  id: 307800
+  time: '2026-02-01T00:46:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3078
+- author: neomoth
+  changes:
+  - message: Adds the ability to speak in a given language using a prefix in chat.
+      Check the language menu for each language's chat prefix. If you want to do this
+      with radio, the language prefix comes before the radio prefix.
+    type: Add
+  id: 300600
+  time: '2026-02-01T01:26:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3006
+- author: wonderfulnewworld
+  changes:
+  - message: Adds Vamps and Vamptraitorling back to secret game modes.
+    type: Add
+  - message: Vampires and Changelings can appear in most modes as subantags. (Vamps
+      scale lower as subantag. Neither will spawn in zombies.)
+    type: Tweak
+  - message: Vampires now scale a little better (they were set at a max of 3 before)
+    type: Tweak
+  - message: Vampires cannot be converted, like Changelings
+    type: Tweak
+  - message: More changelings now spawn on the dedicated Changeling gamemode
+    type: Tweak
+  - message: Vampire and Vamptraitorling now have proper titles/descriptions
+    type: Fix
+  id: 308100
+  time: '2026-02-01T03:35:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3081
+- author: AegisShield
+  changes:
+  - message: Moved the largest small wreck to large
+    type: Tweak
+  - message: Made wreck velocity 2.5x base rather than 4x
+    type: Tweak
+  id: 308700
+  time: '2026-02-01T07:27:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3087
+- author: Cringe_Cursed
+  changes:
+  - message: Tweaked so Blood Bond now splits incoming damage evenly, redistributed
+      as burn damage.
+    type: Tweak
+  - message: Added so, now Umbrae can see through walls upon reaching Full Power.
+    type: Add
+  - message: Added night vision to Umbrae class.
+    type: Add
+  - message: Added an entry to guidebook containing everything about Holy Things.
+    type: Add
+  - message: Tweaked extinguish ability range from 8 tiles to 4.
+    type: Tweak
+  - message: Fixed Umbrae`s shadow anchor ability.
+    type: Fix
+  - message: Fixed interactions between Dantalion class abilities and Chaplains.
+    type: Fix
+  - message: FIxed, now you actualy cant enthrall Mindshielded crew.
+    type: Fix
+  - message: Fixed demonic grasp ability
+    type: Fix
+  - message: Fixed interactions between holy water and bible with Vampires.
+    type: Fix
+  id: 309500
+  time: '2026-02-01T13:45:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3095
+- author: R3v3l4t1on
+  changes:
+  - message: FreeMagged borgs are no longer vulnerable to the nefarious Robotics Console.
+      Go. Do crime.
+    type: Fix
+  id: 309700
+  time: '2026-02-01T14:41:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3097
+- author: Scarlet Lightweaver
+  changes:
+  - message: Changed how the n1984 sounds!
+    type: Tweak
+  id: 309300
+  time: '2026-02-01T14:53:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3093
+- author: Penguinwizzard
+  changes:
+  - message: Reverted Nukeops job icons based on feedback on our end.
+    type: Tweak
+  id: 309000
+  time: '2026-02-01T14:58:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3090
+- author: Rinary
+  changes:
+  - message: Added compatibility to download mind from Borg Brains(only from brains,
+      so you need to eject it from borg) with Intellicard(So now you can upload borg
+      into ai core).
+    type: Add
+  - message: Added compatibility to upload mind in Borg Brains(only in brains, so
+      you need to eject it from borg) with Intellicard(So now you can upload ai into
+      borg brain).
+    type: Add
+  - message: Now to upload lawset to ai you need to link(or linked before) ai upload
+      console. You can link it to core with multitool.
+    type: Tweak
+  - message: Now uploaded lawset will be applied only for linked ai core, not for
+      all.
+    type: Tweak
+  id: 135700
+  time: '2026-02-01T15:15:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1357
+- author: neomoth
+  changes:
+  - message: Allow weapons to use their old thrust/swing animations as they have been
+      re-added under a new animation name.
+    type: Tweak
+  - message: Throngler plushie has been updated to use the original swing animation
+      and punch animation. Why? Funny.
+    type: Tweak
+  id: 310500
+  time: '2026-02-02T01:03:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3105
+- author: CawsForConcern
+  changes:
+  - message: (All Maps) AI Upload computers are now linked via multitool to their
+      respective AI Cores (supports dual-stations)
+    type: Add
+  id: 310800
+  time: '2026-02-02T01:41:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3108
+- author: neomoth
+  changes:
+  - message: Fixed some things regarding midround stations
+    type: Fix
+  - message: Wreck swarms no longer announce globally, only to the target station.
+    type: Fix
+  id: 310900
+  time: '2026-02-02T03:05:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3109
+- author: Ohelig
+  changes:
+  - message: Fixed half of Manor chemistry department having no power
+    type: Fix
+  id: 311300
+  time: '2026-02-02T12:48:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3113
+- author: AthenaAI
+  changes:
+  - message: Adds a quick action and verb to analyze someone when you have medtek
+      installed on your PDA.
+    type: Add
+  id: 311000
+  time: '2026-02-02T13:09:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3110
+- author: AndrewTateOfficialSS14
+  changes:
+  - message: Changed atmos devices max pressure from 4500 to 9000 kPa.
+    type: Tweak
+  id: 311500
+  time: '2026-02-02T15:34:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3115
+- author: Way
+  changes:
+  - message: Added new jumpsuit for Magistrate, the Long Coat. Brought to you by the
+      NanoTrasen Design Board.
+    type: Add
+  - message: Gloves are no longer forced onto the Magistrate, and can be deselected
+      in the Loadout Menu.
+    type: Tweak
+  id: 310300
+  time: '2026-02-02T15:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3103
+- author: katte
+  changes:
+  - message: Chemmaster defaults to beaker rather than buffer for pills and patches
+      now.
+    type: Tweak
+  id: 310200
+  time: '2026-02-02T15:58:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3102
+- author: Penguinwizzard
+  changes:
+  - message: Fixed localization string for centcomm operator job.
+    type: Fix
+  id: 308400
+  time: '2026-02-02T16:02:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3084
+- author: r3d3mpt1on
+  changes:
+  - message: Disambiguated the Rat King, Vampires, and Changelings in the F7 menu
+      for Admins.
+    type: Tweak
+  id: 308800
+  time: '2026-02-02T16:12:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3088
+- author: Fractalflower
+  changes:
+  - message: NanoTrasen apologies for accidentally sending a box of [[@$#!]] in place
+      of their gender-affirming clothing pins.
+    type: Fix
+  id: 305600
+  time: '2026-02-02T16:17:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3056
 Order: -1
 

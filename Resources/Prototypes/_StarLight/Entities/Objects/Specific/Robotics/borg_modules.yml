@@ -424,6 +424,8 @@
         whitelist:
           tags:
           - Syringe
+          - JetInjector
+          - Medipen
     - item: BorgDropper
     - item: Beaker
       hand:
