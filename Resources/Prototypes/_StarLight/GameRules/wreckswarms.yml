@@ -18,6 +18,7 @@
     reoccurrenceDelay: 1
     earliestStart: 12
     minimumPlayers: 25
+    globalAnnouncement: false
   - type: WreckSwarm
 
 - type: entity
@@ -28,6 +29,7 @@
     weight: 20
     earliestStart: 5
     minimumPlayers: 10
+    globalAnnouncement: false
   - type: WreckSwarm
     sizeFilter: salvage-map-wreck-size-small
 
@@ -39,6 +41,7 @@
     weight: 20
     earliestStart: 15
     minimumPlayers: 30
+    globalAnnouncement: false
   - type: WreckSwarm
     sizeFilter: salvage-map-wreck-size-medium
 
@@ -50,6 +53,7 @@
     weight: 10
     earliestStart: 30
     minimumPlayers: 50
+    globalAnnouncement: false
   - type: WreckSwarm
     announcement: station-event-incoming-wreck-large-announcement
     announcementSound: /Audio/Announcements/attention.ogg

@@ -86,6 +86,7 @@
     antag: true
     antagPrototype: RatKing
     roleType: SoloAntagonist
+    subtype: role-subtype-ratking
     sortWeight: 50
 
 - type: entity
@@ -115,4 +116,6 @@
   components:
   - type: MindRole
     antagPrototype: Vampire
+    roleType: SoloAntagonist
+    subtype: role-subtype-vampire
   - type: VampireRole

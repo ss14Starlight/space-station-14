@@ -435,6 +435,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         RaiseLocalEvent(user, ref ev); // 🌟Starlight🌟
 
+        if (weapon.SwingBeverage)
+        {
+            weapon.SwingLeft = !weapon.SwingLeft;
+            DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.SwingLeft));
+        }
+
         if (ev.Cancelled)
         {
             if (ev.Message != null)

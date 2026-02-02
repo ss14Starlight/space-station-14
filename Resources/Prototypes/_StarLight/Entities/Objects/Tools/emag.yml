@@ -1,4 +1,28 @@
 - type: entity
+  parent: [BaseItem, BaseHighlyIllegalContraband]
+  id: EmagFREE
+  suffix: ""
+  name: FreeMAG
+  description: A more refined version of the Cryptographic Sequencer used by SELF. Can be used to remove the laws from a Borg. Also wipes the laws from law boards, so that when uploaded they wipe the AI's laws too.
+  components:
+    - type: Emag
+      lawset: FreeLawset
+      owningFaction: null
+      channelAdd: [] 
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/SELF/freemag.rsi
+      state: icon
+    - type: Item
+      sprite: _Starlight/Objects/Specific/SELF/freemag.rsi
+    - type: LimitedCharges
+    - type: AutoRecharge
+    - type: StaticPrice
+      price: 2500
+    - type: Tag
+      tags:
+        - FreeMag
+
+- type: entity
   parent: [BaseItem, BaseSovietContraband]
   id: EmagCommie
   suffix: ""
@@ -31,6 +55,7 @@
       accessGroups: [CentralCommand]
       channelAdd: [CentCom]
       lawset: CCLawset
+      doEmaggedSound: false
     - type: Sprite
       sprite: _Starlight/Objects/Tools/ccemag.rsi
       state: icon
