@@ -14,7 +14,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
+public sealed class MeteorSwarmSystem : StationEventSystem<MeteorSwarmComponent> // Starlight-edit: Use station event system
 {
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
@@ -26,14 +26,12 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
         base.Added(uid, component, gameRule, args);
 
         component.WaveCounter = component.Waves.Next(RobustRandom);
-
-        // we don't want to send to players who aren't in game (i.e. in the lobby)
-        Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
-
+        
+        //Starlight begin
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
         if (component.Announcement is { } locId)
-            _chat.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(locId), playSound: false, colorOverride: Color.Gold);
-
-        _audio.PlayGlobal(component.AnnouncementSound, allPlayersInGame, true);
+            Announce(stationEvent, locId, false, colorOverride: Color.Gold);
+        //Starlight end
     }
 
     protected override void ActiveTick(EntityUid uid, MeteorSwarmComponent component, GameRuleComponent gameRule, float frameTime)
@@ -43,13 +41,13 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
 
         component.NextWaveTime += TimeSpan.FromSeconds(component.WaveCooldown.Next(RobustRandom));
 
-
-        if (_station.GetStations().Count == 0)
+        //Starlight begin
+        if(!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        
+        if (stationEvent.TargetStation is null) return;
+        if (_station.GetLargestGrid(stationEvent.TargetStation.Value) is not { } grid)
             return;
-
-        var station = RobustRandom.Pick(_station.GetStations());
-        if (_station.GetLargestGrid(station) is not { } grid)
-            return;
+        //Starlight end
 
         var mapId = Transform(grid).MapID;
         var playableArea = _physics.GetWorldAABB(grid);

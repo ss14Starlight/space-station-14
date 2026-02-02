@@ -1,0 +1,37 @@
+# Starlight mech damage modifier sets
+
+- type: damageModifierSet
+  id: GygaxArmor
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.75
+    Piercing: 0.65
+    Shock: 1.2
+    Heat: 0.8
+  flatReductions:
+    Blunt: 3
+    Heat: 3
+
+- type: damageModifierSet
+  id: DurandArmor
+  coefficients:
+    Blunt: 0.4
+    Slash: 0.6
+    Piercing: 0.55
+    Shock: 1.4
+    Heat: 0.7
+  flatReductions:
+    Blunt: 10
+    Heat: 8
+
+- type: damageModifierSet
+  id: MaulerArmor
+  coefficients:
+    Blunt: 0.35
+    Slash: 0.55
+    Piercing: 0.45
+    Shock: 0.8
+    Heat: 0.65
+  flatReductions:
+    Blunt: 12
+    Heat: 10

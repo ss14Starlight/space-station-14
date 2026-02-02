@@ -235,9 +235,28 @@
 - type: loadoutGroup
   id: MagistrateJumpsuit
   name: loadout-group-magistrate-jumpsuit
+  defaultSelected: 1
+  maxLimit: 1
   loadouts:
   - MagistrateJumpsuit
   - MagistrateJumpskirt
+  - MagistrateJumpsuitLongCoat
+
+- type: loadoutGroup
+  id: MagistrateOuterclothing
+  name: loadout-group-magistrate-outer
+  defaultSelected: 1
+  minLimit: 0
+  loadouts:
+  - MagistrateRobes
+
+- type: loadoutGroup
+  id: MagistrateHead
+  name: loadout-group-magistrate-headwear
+  defaultSelected: 1
+  minLimit: 0
+  loadouts:
+  - MagistrateHeadPwig
 
 - type: loadoutGroup
   id: MagistrateEyewear
@@ -247,8 +266,20 @@
   - MagistrateSkillGlasses
 
 - type: loadoutGroup
+  id: MagistrateHands
+  name: loadout-group-magistrate-hands
+  defaultSelected: 1
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MagistrateWhiteGloves
+  - MagistrateBlackGloves
+
+- type: loadoutGroup
   id: BlueShieldHead
   name: loadout-group-blueshield-head
+  minLimit: 0
+  defaultSelected: 1
   loadouts:
   - BlueShieldBeret
   - BlueShieldBountyHat
@@ -271,22 +302,41 @@
   - EliteBlueShieldJumpsuit
   - EliteBlueShieldJumpskirt
   - BlueShieldShirt
+  - BlueShieldSkirt
   - FormalBlueShieldJumpsuit
 
 - type: loadoutGroup
   id: BlueShieldOuterclothing
-  name: Loadout-group-blueshield-outerclothing
-  minLimit: 0
+  name: loadout-group-blueshield-outerclothing
+  minLimit: 1
   defaultSelected: 1
   loadouts:
   - BlueShieldVest
   - BlueShieldCoat
 
 - type: loadoutGroup
+  id: BlueShieldBelt
+  name: loadout-group-blueshield-belt
+  minLimit: 1
+  defaultSelected: 1
+  loadouts:
+  - BlueShieldWebbing
+  - BlueShieldMedicalBelt
+
+- type: loadoutGroup
+  id: BlueShieldPDA
+  minLimit: 1
+  defaultSelected: 1
+  name: loadout-group-blueshield-id
+  loadouts:
+    - BlueShieldPDA
+    - VeteranBlueShieldPDA
+
+- type: loadoutGroup
   id: BlueShieldNeck
   minLimit: 0
   defaultSelected: 1
-  name: Loadout-group-blueshield-neck
+  name: loadout-group-blueshield-neck
   loadouts:
   - BlueShieldFormalCloak
   - BlueShieldEliteCloak
@@ -294,6 +344,8 @@
 
 - type: loadoutGroup
   id: BlueShieldEyewear
+  minLimit: 1
+  defaultSelected: 1
   name: loadout-group-blueshield-eyewear
   loadouts:
   - BlueShieldGlasses
@@ -405,6 +457,7 @@
 - type: loadoutGroup
   id: BlueShieldShoes
   name: loadout-group-security-shoes
+  minLimit: 1
   loadouts:
   - CombatBoots
   - HighHeelBootsFilled
@@ -692,3 +745,10 @@
   loadouts:
   - NanoTrasenRepresentativeGlasses
   - NanoTrasenRepresentativeHud
+
+- type: loadoutGroup
+  id: JanitorNeck
+  name: loadout-group-janitor-neck
+  minLimit: 0
+  loadouts:
+  - SupremeJanitorCloak

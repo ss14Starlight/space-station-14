@@ -413,7 +413,7 @@
     - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: SyndiBorgHypo
     - item: AutoMenderBrute
     - item: AutoMenderBurn
@@ -424,6 +424,8 @@
         whitelist:
           tags:
           - Syringe
+          - JetInjector
+          - Medipen
     - item: BorgDropper
     - item: Beaker
       hand:
@@ -468,7 +470,7 @@
     - state: icon-defib
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: DefibrillatorSyndicateOneHandedUnpowered
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic
@@ -511,6 +513,33 @@
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
 
+- type: entity
+  id: BorgModuleSyndicateNukeDisk
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: syndicate nuke disk carrier module
+  description: Allows for the transportation of the nuclear authentication disk.
+  components:
+    - type: Sprite
+      layers:
+        - state: syndicate
+        - state: icon-syndicate
+    - type: ItemBorgModule
+      hands:
+        - hand:
+            emptyRepresentative: NukeDisk
+            emptyLabel: borg-slot-nuke-disk-empty
+            whitelist:
+              components:
+                - NukeDisk
+              tags:
+                - FakeNukeDisk
+    - type: BorgModuleIcon
+      icon: { sprite: Objects/Misc/nukedisk.rsi, state: icon }
+    - type: Tag
+      tags:
+        - BorgModuleSyndicate
+
+# xenoborg
 # region Medical
 - type: entity
   id: BorgModuleOrganPlaceholder

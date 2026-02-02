@@ -427,3 +427,118 @@
   - pops.
   - pops!
   - pops?
+
+- type: emote
+  id: Squee
+  name: chat-emote-name-squee
+  category: Vocal
+  available: false
+  icon: _Starlight/Interface/Emotes/emote-neutral.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-squee"]
+  chatTriggers:
+  - squeek
+  - squeek.
+  - squeek?
+  - squeek!
+  - squeeks
+  - squeeks.
+  - squeeks?
+  - squeeks!
+
+- type: emote
+  id: Snort
+  name: chat-emote-name-snort
+  category: Vocal
+  available: false
+  icon: _Starlight/Interface/Emotes/emote-neutral.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-snort"]
+  chatTriggers:
+  - snort
+  - snort.
+  - snort?
+  - snort!
+  - snorts
+  - snorts.
+  - snorts?
+  - snorts!
+
+- type: emote
+  id: LagomorphSnore
+  name: chat-emote-name-snore
+  category: Vocal
+  available: false
+  icon: _Starlight/Interface/Emotes/emote-snore.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-snore"]
+  chatTriggers:
+  - snore
+  - snore.
+  - snore?
+  - snore!
+  - snores
+  - snores.
+  - snores?
+  - snores!
+
+- type: emote
+  id: LagomorphSneeze
+  name: chat-emote-name-sneeze
+  category: Vocal
+  available: false
+  icon: _Starlight/Interface/Emotes/emote-rage.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-sneeze"]
+  chatTriggers:
+  - sneeze
+  - sneeze.
+  - sneeze?
+  - sneeze!
+  - sneezes
+  - sneezes.
+  - sneezes?
+  - sneezes!
+
+- type: emote
+  id: LagomorphStomp
+  name: chat-emote-name-stomp
+  category: Vocal
+  available: false
+  icon: _Starlight/Interface/Emotes/stomp-emote.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-stomp"]
+  chatTriggers:
+  - stomp
+  - stomp.
+  - stomp?
+  - stomp!
+  - stomps
+  - stomps.
+  - stomps?
+  - stomps!

@@ -20,6 +20,9 @@
   groups:
   - MagistrateJumpsuit
   - MagistrateEyewear
+  - MagistrateHands
+  - MagistrateHead
+  - MagistrateOuterclothing
   - CommonBackpack
   - MagistrateShoes
   - Survival
@@ -28,6 +31,7 @@
   - Pins
   - LuxuryPens
   - GroupSpeciesBreathTool
+
 
 - type: roleLoadout
   id: JobSurgeon
@@ -85,9 +89,11 @@
   - BlueShieldJumpsuit
   - BlueShieldBackpack
   - BlueShieldOuterclothing
+  - BlueShieldBelt
   - BlueShieldShoes
   - BlueShieldNeck
   - BlueShieldEyewear
+  - BlueShieldPDA
   - Trinkets
   - Scarves
   - Pins

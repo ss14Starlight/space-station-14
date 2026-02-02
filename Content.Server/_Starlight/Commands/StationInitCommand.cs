@@ -1,3 +1,5 @@
+using System.Linq;
+using Content.Server._Starlight.Station;
 using Content.Server.Administration;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -33,6 +35,20 @@ public sealed class StationInitCommand : LocalizedCommands
         var stationSystem = _entitySystemManager.GetEntitySystem<StationSystem>();
         if (!_entityManager.TryParseNetEntity(args[0], out var grid))
         {
+            if (args[0] == "all")
+            {
+                var query = _entityManager.EntityQueryEnumerator<BecomesStationMidRoundComponent>();
+                var added = new List<EntityUid>();
+                while (query.MoveNext(out var uid, out var comp))
+                {
+                    if (_entityManager.HasComponent<StationMemberComponent>(uid)) continue;
+                    if (comp.BaseStationProtos is null || comp.BaseStationProtos.Count == 0) continue;
+                    stationSystem.MarkMidRoundStationForInitialization(uid, comp);
+                    var id = stationSystem.InitializeNewStationMidRound(uid, comp.BaseStationProtos, comp);
+                    added.Add(id);
+                }
+                shell.WriteLine($"Initialized stations with the following IDs: {string.Join(", ", added)}.");
+            }
             shell.WriteError("Invalid grid entity ID.");
             return;
         }
@@ -45,8 +61,17 @@ public sealed class StationInitCommand : LocalizedCommands
 
         if (!_prototypeManager.TryIndex(args[1], out var prototype))
         {
-            shell.WriteError(
-                "Invalid station prototype ID. Check /Resources/Prototypes/Entities/Stations for valid station prototypes.");
+            if (!_entityManager.TryGetComponent<BecomesStationMidRoundComponent>(grid, out var midround) ||
+                midround.BaseStationProtos is null || midround.BaseStationProtos.Count == 0)
+            {
+                shell.WriteError(
+                    "Invalid station prototype ID. Check /Resources/Prototypes/Entities/Stations for valid station prototypes.");
+                return;
+            }
+
+            stationSystem.MarkMidRoundStationForInitialization(grid.Value, midround);
+            var id = stationSystem.InitializeNewStationMidRound(grid.Value, midround.BaseStationProtos, midround);
+            shell.WriteLine($"Station with ID {id} initialized!");
             return;
         }
 
@@ -76,7 +101,7 @@ public sealed class StationInitCommand : LocalizedCommands
         switch (args.Length)
         {
             case 1:
-                return CompletionResult.FromHintOptions(CompletionHelper.Components<MapGridComponent>(args[0], _entityManager), "Grid ID");
+                return CompletionResult.FromHintOptions(CompletionHelper.Components<MapGridComponent>(args[0], _entityManager), "Grid ID (or \"all\")");
             case 3:
                 return CompletionResult.FromHintOptions(CompletionHelper.Components<StationDataComponent>(args[2], _entityManager), "Station ID");
         }

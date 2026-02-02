@@ -80,6 +80,7 @@
         - Brutepack
         - Bloodpack
         - Gauze
+        - Hypospray
         - Ointment
         - PillCanister
         - Radio
@@ -98,7 +99,6 @@
         - Handcuff
         - BallisticAmmoProvider
         - Ammo
-        - Hypospray
         - Injector
         - Pill
         - HandLabeler
@@ -106,9 +106,9 @@
 
 - type: entity
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseBlueShieldContraband]
-  id: ClothingBeltBlueShield
-  name: blue shield webbing
-  description: A tactical rig that can hold many items to save the lives of Command.
+  id: ClothingBeltBlueShieldWebbing
+  name: blueshield webbing
+  description: A tactical rig that can hold many items to save the lives of command.
   components:
   - type: Storage
     grid:
@@ -118,6 +118,23 @@
     sprite: _Starlight/Clothing/Belt/blueshieldwebbing.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Belt/blueshieldwebbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseBlueShieldContraband]
+  id: ClothingBeltBlueShieldMedicalBelt
+  name: blueshield medical belt
+  description: A tactical belt that can hold many items to save the lives of command.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,7,1
+    - 9,0,10,1 #right
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/blueshieldmedicalbelt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/blueshieldmedicalbelt.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.5
 

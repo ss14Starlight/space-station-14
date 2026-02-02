@@ -111,6 +111,7 @@
         - Brutepack
         - Bloodpack
         - Gauze
+        - Hypospray
         - Ointment
         - CigPack
         - PillCanister
@@ -122,7 +123,6 @@
         - Vial
         - AutoMender
        components:
-        - Hypospray
         - Injector
         - Pill
         - HandLabeler

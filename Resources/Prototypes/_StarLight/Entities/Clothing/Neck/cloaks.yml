@@ -1,7 +1,7 @@
 - type: entity
   parent:  [ClothingNeckBase, BaseCommandContraband ]
   id: ClothingNeckCloakHosFireline
-  name: M-81 Fireline Cloak
+  name: M-81 fireline cloak
   description: A cloak made for the most dedicated head of securities, it comes with durable warming fabric and has a fireline-like glow to it.
   components:
   - type: Sprite
@@ -103,6 +103,19 @@
     radius: 2
     energy: 4
     color: "#DE3A3A"
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakHosRetro
+  name: retro-head of security cloak
+  description: A retro-styled cloak for the head of security, reminiscent of days gone by.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/RetroHos.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
   - type: StaticPrice
     price: 2000
 
@@ -300,7 +313,27 @@
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Cloaks/shuba.rsi
 
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingUniformShinelVampir
+  name: bloodstained aristocrat cloak
+  description: A dark leather greatcoat soaked in blood.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/ari.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Cloaks/ari.rsi
 
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckTieGeoffroyblack12
+  name:  noble mantle
+  description: A light-colored cloak with golden patterns and lush white fur on the shoulders.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/belpero.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Cloaks/belpero.rsi
 # Fashion-O-Mat-End
 
 
@@ -543,7 +576,7 @@
 - type: entity
   parent: [ClothingNeckMantleRD, BaseCentcommContraband]
   id: ClothingNeckCloakCRDMantle
-  name: Central Researching Division Mantle
+  name: Central Researching Division mantle
   description: Rumors say that anomalies stabilize on their own and artifacts start behaving the moment this mantle shows up in the lab.
   components:
   - type: Sprite
@@ -553,7 +586,7 @@
 - type: entity
   parent: [ClothingNeckMantleCMO, BaseCentcommContraband]
   id: ClothingNeckCloakCMDMantle
-  name: Central Medical Division Mantle
+  name: Central Medical Division mantle
   description: No ailment or wound can hide from the gaze of the one draped in this mantle.
   components:
   - type: Sprite
@@ -563,8 +596,17 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: ClothingNeckCloakSupremeJanitor
+  name: supreme janitor cloak
+  description: A magnificent cloak worn only by the most dedicated janitors. Its ethereal glow is said to ward off dirt itself.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/supreme-janitor-cloak.rsi
+    
+- type: entity
+  parent: ClothingNeckBase
   id: RedRegaliaCloak
-  name: Red Regalia Cloak
+  name: red regalia cloak
   description: A fancy red cloak like a mafiaoso would wear.
   components:
   - type: Sprite

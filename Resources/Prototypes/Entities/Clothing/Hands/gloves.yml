@@ -253,7 +253,6 @@
     - components:
       - type: BatteryDrainer
       - type: StunProvider
-        cooldown: 10
         noPowerPopup: ninja-no-power
         whitelist:
           components:
@@ -652,7 +651,7 @@
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 1000
     startingCharge: 1000
   - type: GuideHelp

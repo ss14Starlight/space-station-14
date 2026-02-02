@@ -36,7 +36,28 @@
       "directions": 4
     },
     {
-      "name": "pda-blueshield"
+      "name": "pda-blueshield",
+      "copyright": "Made by SapphicHaymaker for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
+    },
+    {
+      "name": "pda-veteranblueshield",
+      "copyright": "Made by SapphicHaymaker for Starlight",
+      "delays": [
+            [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+            ]
+        ]
     },
     {
       "name": "pda-mining"
@@ -65,73 +86,78 @@
     {
       "name": "pda-paramedic",
       "delays": [
-            [
-            0.3,
-            0.3,
-            0.3,
-            0.3
-            ]
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
+      ]
     },
     {
       "name": "pda-seniorparamedic",
       "delays": [
-            [
-            0.3,
-            0.3,
-            0.3,
-            0.3
-            ]
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
+      ]
     },
-	  {
+    {
       "name": "pda-seniorchemist",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld",
+      "license": "CC-BY-SA-3.0"
     },
     {
       "name": "pda-veteranbrigmedic",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0",
-	    "delays": [
-            [
-            0.3,
-            0.3,
-            0.3,
-            0.3
-            ]
+      "copyright": "wonderfulnewworld",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
+      ]
     },
-	{
+    {
       "name": "pda-corpsman",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0",
-	  "delays": [
-            [
-            0.3,
-            0.3,
-            0.3,
-            0.3
-            ]
+      "copyright": "wonderfulnewworld",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
+      ]
     },
-	{
+    {
       "name": "pda-veterancorpsman",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0",
-	  "delays": [
-            [
-            0.3,
-            0.3,
-            0.3,
-            0.3
-            ]
+      "copyright": "wonderfulnewworld",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
+      ]
     },
-	{
+    {
       "name": "pda-dutyofficer",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "pda-magi",
+      "copyright": "Wayiscute",
+      "license": "CC-BY-SA-3.0"
     }
   ]
 }

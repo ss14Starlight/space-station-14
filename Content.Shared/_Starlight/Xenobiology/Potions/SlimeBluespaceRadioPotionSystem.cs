@@ -29,6 +29,7 @@ public sealed class SlimeBluespaceRadioPotionSystem : EntitySystem
             intrinsicRadioTransmitterComponent.Channels.Add(channel);
         }
         intrinsicRadioTransmitterComponent.Channels = ent.Comp.Channels;
+        Dirty(ent.Owner, intrinsicRadioTransmitterComponent);
         _entityManager.AddComponent<IntrinsicRadioReceiverComponent>(args.Target.Value);
         _sharedPopupSystem.PopupPredicted($"{MetaData(args.Target.Value).EntityName} can now always use the radio.", args.Target.Value, args.Target.Value);
         PredictedQueueDel(args.Used);

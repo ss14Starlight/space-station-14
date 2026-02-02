@@ -58,7 +58,10 @@ using Content.Shared.Mobs.Components;
 using Content.Server.Stunnable;
 using Content.Shared.Jittering;
 using System.Linq;
-using Content.Shared.Radio;
+// Starlight edit start
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.Reagent;
+// Starlight edit end
 using Content.Shared.Zombies;
 
 namespace Content.Server.Changeling;
@@ -578,7 +581,13 @@ public sealed partial class ChangelingSystem : EntitySystem
         UpdateBiomass(uid, comp, 0);
 
         // make their blood unreal
-        _blood.ChangeBloodReagent(uid, "BloodChangeling");
+        // Starlight edit start - remove deprecated method
+        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) &&
+            bloodstream.BloodReferenceSolution is { } originalBlood)
+        {
+            _blood.ChangeBloodReagents(uid, new Solution([new ReagentQuantity("BloodChangeling", originalBlood.Volume)]));
+        }
+        // Starlight edit end
     }
 
     private void OnMobStateChange(EntityUid uid, ChangelingComponent comp, ref MobStateChangedEvent args)

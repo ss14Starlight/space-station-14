@@ -1,3 +1,8 @@
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpskirtBlueShieldSkirt 
+  result: ClothingUniformJumpskirtBlueShieldSkirt 
+
 # Duty Officer
 - type: latheRecipe
   parent: BaseJumpsuitRecipe

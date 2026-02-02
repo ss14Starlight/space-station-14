@@ -111,7 +111,7 @@
       effects:
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrunk
-        time: 6.0
+        time: 20.0 # Starlight: More potent, up from 6
         type: Remove
       - !type:HealthChange
         damage:
@@ -774,6 +774,9 @@
   physicalDesc: reagent-physical-desc-starry
   flavor: medicine
   color: "#2b2f77"
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: -5
   metabolisms:
     Medicine:
       effects:
@@ -795,6 +798,11 @@
   group: Medicine
   desc: reagent-desc-synaptizine
   physicalDesc: reagent-physical-desc-pungent
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedDepartments:
+  - Security
+  # Starlight End
   flavor: medicine
   color: "#d49a2f"
   metabolisms:
@@ -994,6 +1002,7 @@
   desc: reagent-desc-ethyloxyephedrine
   group: Medicine
   physicalDesc: reagent-physical-desc-shiny
+  contrabandSeverity: Minor # Starlight None -> Minor
   flavor: medicine
   color: "#d5d5e4"
   metabolisms:
@@ -1199,21 +1208,6 @@
         factor: 3
     Medicine:  # Starlight
       effects:
-      #If vampire
-      - !type:HealthChange
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Vampire ]
-        damage:
-          types:
-            Heat: 2
-      - !type:Emote
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Vampire ]
-        emote: Scream
-        probability: 0.3
-      #If not vampire
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition
@@ -1474,6 +1468,7 @@
   group: Medicine
   desc: reagent-desc-psicodine
   physicalDesc: reagent-physical-desc-shiny
+  contrabandSeverity: Minor # Starlight None -> Minor
   flavor: bitter
   color: "#07E79E"
   metabolisms:
@@ -1562,7 +1557,7 @@
         type: Remove
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
-        time: 10.0
+        time: 30.0 # Starlight: More potent, up from 10
         type: Remove
       - !type:AdjustReagent
         reagent: Desoxyephedrine

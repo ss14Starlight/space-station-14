@@ -35,6 +35,6 @@
     head: ClothingHeadHatBowlerHat
     eyes: ClothingEyesGlassesCheapSunglasses
     mask: ClothingMaskBreath
-    neck: ClothingNeckLawyerbadge
+    misc: ClothingNeckLawyerbadge # Starlight change slot to misc.
     outerClothing: ClothingOuterWinterColorBlack
     gloves: ClothingHandsGlovesColorBlack
