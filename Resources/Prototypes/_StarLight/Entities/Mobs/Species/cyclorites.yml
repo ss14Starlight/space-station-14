@@ -73,6 +73,9 @@
       reagents:
       - ReagentId: CopperBlood
         Quantity: 300
+  - type: Speech
+    speechSounds: Cyclorite
+    allowedEmotes: ['Vibrate']
   - type: Vocal
     sounds:
       Male: MaleCyclorite

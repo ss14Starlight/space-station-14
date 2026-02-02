@@ -542,3 +542,26 @@
   - stomps.
   - stomps?
   - stomps!
+    
+- type: emote
+  id: Vibrate
+  name: chat-emote-name-vibrate
+  category: Vocal
+  available: false
+  icon: Interface/Actions/scream.png
+  whitelist:
+    components:
+      - Vocal
+  blacklist:
+    components:
+      - BorgChassis
+  chatMessages: ["chat-emote-msg-vibrate"]
+  chatTriggers:
+    - vibrate
+    - vibrate.
+    - vibrate?
+    - vibrate!
+    - vibrates
+    - vibrates.
+    - vibrates?
+    - vibrates!

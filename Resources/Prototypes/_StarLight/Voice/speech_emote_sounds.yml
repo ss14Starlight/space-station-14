@@ -102,9 +102,15 @@
     Crying:
       collection: CycloriteScreams
     Whistle:
-      collection: CycloriteWhistle
+      collection: CycloriteVibrate
+    Vibrate:
+      collection: CycloriteVibrate
     Yawn:
       collection: CycloriteYawn
+    Gasp:
+      collection: CycloriteGasp
+    DefaultDeathgasp:
+      collection: CycloriteDeathGasp
     Weh:
       collection: Weh
     Hew:
@@ -126,9 +132,15 @@
     Crying:
       collection: CycloriteScreams
     Whistle:
-      collection: CycloriteWhistle
+      collection: CycloriteVibrate
+    Vibrate:
+      collection: CycloriteVibrate
     Yawn:
       collection: CycloriteYawn
+    Gasp:
+      collection: CycloriteGasp
+    DefaultDeathgasp:
+      collection: CycloriteDeathGasp
     Weh:
       collection: Weh
     Hew:

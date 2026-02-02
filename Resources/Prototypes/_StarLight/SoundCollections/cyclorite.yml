@@ -21,6 +21,50 @@
   - /Audio/_Starlight/Voice/Cyclorite/laugh.ogg
   
 - type: soundCollection
-  id: CycloriteWhistle
+  id: CycloriteVibrate
   files:
-  - /Audio/_Starlight/Voice/Cyclorite/whistle.ogg
+  - /Audio/_Starlight/Voice/Cyclorite/vibrates.ogg
+    
+- type: soundCollection
+  id: CycloriteGasp
+  files:
+    - /Audio/_Starlight/Voice/Cyclorite/gasp.ogg
+      
+- type: soundCollection
+  id: CycloriteDeathGasp
+  files:
+    - /Audio/_Starlight/Voice/Cyclorite/deathgasp.ogg
+      
+- type: soundCollection
+  id: CycloriteMaleSay
+  files:
+    - /Audio/_Starlight/Voice/Cyclorite/talk4.ogg
+      
+- type: soundCollection
+  id: CycloriteFemaleSay
+  files:
+    - /Audio/_Starlight/Voice/Cyclorite/talk1.ogg
+    - /Audio/_Starlight/Voice/Cyclorite/talk2.ogg
+    - /Audio/_Starlight/Voice/Cyclorite/talk3.ogg
+      
+- type: soundCollection
+  id: CycloriteMaleYell
+  files:
+    - /Audio/_Starlight/Voice/Cyclorite/yell4.ogg
+  
+- type: soundCollection
+  id: CycloriteFemaleYell
+  files:
+    - /Audio/_Starlight/Voice/Cyclorite/yell1.ogg
+    - /Audio/_Starlight/Voice/Cyclorite/yell2.ogg
+    - /Audio/_Starlight/Voice/Cyclorite/yell3.ogg
+    
+- type: soundCollection
+  id: CycloriteMaleWhisper
+  files:
+    - /Audio/_Starlight/Voice/Cyclorite/whisper2.ogg
+      
+- type: soundCollection
+  id: CycloriteFemaleWhisper
+  files:
+    - /Audio/_Starlight/Voice/Cyclorite/whisper1.ogg

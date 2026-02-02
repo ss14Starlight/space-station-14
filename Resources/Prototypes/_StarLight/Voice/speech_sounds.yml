@@ -88,3 +88,12 @@
   id: LagomorphStomp
   files:
     - /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+      
+- type: speechSounds
+  id: Cyclorite
+  saySound:
+    path: /Audio/_Starlight/Voice/Cyclorite/cyclorite.ogg
+  askSound:
+    path: /Audio/_Starlight/Voice/Cyclorite/cyclorite_ask.ogg
+  exclaimSound:
+    path: /Audio/_Starlight/Voice/Cyclorite/cyclorite_exclaim.ogg
