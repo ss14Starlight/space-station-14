@@ -1,29 +1,32 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using Content.Server._NullLink.Core;
-using Content.Server._NullLink.PlayerData;
+using System.Runtime.InteropServices;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection.IPIntel;
 using Content.Server.Database;
-using Content.Server.Discord.DiscordLink;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
-using Content.Shared._NullLink;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
-using Content.Shared.NullLink.CCVar;
 using Content.Shared.Players.PlayTimeTracking;
-using Content.Shared.Starlight;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
+
+#region Starlight
+using Content.Server._NullLink.Core;
+using Content.Server._NullLink.PlayerData;
+using Content.Server.Discord.DiscordLink;
+using Content.Shared._NullLink;
+using Content.Shared.NullLink.CCVar;
+using Content.Shared.Starlight;
+#endregion Starlight
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -59,7 +62,6 @@ namespace Content.Server.Connection
         [Dependency] private readonly IActorRouter _actors = default!; // NullLink
         [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!; // NullLink
         [Dependency] private readonly IPlayerManager _plyMgr = default!;
-        [Dependency] private readonly IPlayerRolesManager _plyRoles = default!;
         [Dependency] private readonly IServerNetManager _netMgr = default!;
         [Dependency] private readonly IServerDbManager _db = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -83,7 +85,7 @@ namespace Content.Server.Connection
         public void PostInit()
         {
             InitializeWhitelist();
-            _cfg.OnValueChanged(NullLinkCCVars.RoleReqPeacefulBypass, reqProtoId 
+            _cfg.OnValueChanged(NullLinkCCVars.RoleReqPeacefulBypass, reqProtoId
                 => _roleReqPeacefulBypass = _prototypeManager.Index<RoleRequirementPrototype>(reqProtoId), true); // NullLink
         }
 
@@ -259,7 +261,7 @@ namespace Content.Server.Connection
 
             var adminData = await _db.GetAdminDataForAsync(e.UserId);
 
-            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null) 
+            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null)
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);

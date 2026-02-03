@@ -118,6 +118,12 @@
   - type: ActivatableUIRequiresPanel
   - type: NameIdentifier
     group: Silicon
+  - type: ContainerContainer
+    containers:
+      borg_brain: !type:ContainerSlot { }
+      cell_slot: !type:ContainerSlot { }
+      borg_module: !type:Container { }
+      part-container: !type:Container
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: true
@@ -241,6 +247,11 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
+  - type: BypassLock
+  - type: BypassLockRequiresMobState
+    requiredMobState:
+    - Critical
+    - Dead
   #region Starlight
   - type: CyborgSparkEffect
   - type: StationAIShunt #Starlight allow shunting into all borgs
@@ -306,6 +317,7 @@
     networkSet: true
     nameSet: True
     id: Xenoborg
+    useEntityNameAsCameraId: true
   - type: Explosive
     explosionType: Minibomb
     deleteAfterExplosion: false # let damage threshold gib the borg
@@ -375,6 +387,8 @@
       Unsexed: UnisexSiliconSyndicate
   - type: PointLight
     color: "#dd200b"
+  - type: BypassLock
+    bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
 
 - type: entity
   id: BaseBorgChassisDerelict
@@ -433,6 +447,8 @@
 #      Unsexed: UnisexSiliconSyndicate
 #  - type: PointLight
 #    color: "#dd200b"
+#  - type: BypassLock
+#    bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
 # end region starlight
 
 - type: entity
@@ -523,7 +539,7 @@
           collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
-          PinpointerMothership: # drop a pinpointer to the mothership upon being destructed
+          PinpointerMothershipPiece: # drop a piece of core pinpointer upon being destructed (4 pieces to make a core pinpointer)
             min: 1
             max: 1
       - !type:EmptyContainersBehaviour
@@ -551,3 +567,5 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: Xenoborg
+  - type: BypassLock
+    bypassDelay: 15 # We don't want people to easily be able to remove xenoborg brains.

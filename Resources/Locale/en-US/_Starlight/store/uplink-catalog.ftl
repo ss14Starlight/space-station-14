@@ -81,3 +81,15 @@ uplink-glue-grenade-desc = Special grenade for shenanigans, releasing large clou
 
 uplink-pizza-bomb-name = Nefarious Pizza bomb
 uplink-pizza-bomb-desc = Originally developed by covertly by DONK Co to disuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened. 
+
+uplink-shuttle-board-name = Syndicate Shuttle Console Board
+uplink-shuttle-board-desc = A computer printed circuit board for a syndicate shuttle console.
+
+uplink-shuttle-bundle-name = Syndicate Shuttle Crate
+uplink-shuttle-bundle-desc = Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required)
+
+uplink-friendship-bundle-name = Friendship Bundle
+uplink-friendship-bundle-desc = Friendship packaged in a convenient crate*. (Some assembly required)
+
+uplink-breaching-hammer-name = Breaching Hammer
+uplink-breaching-hammer-desc = A heavy-duty powered breaching tool disguised as a combat hammer. Functions like jaws of life for prying open doors and airlocks, while also serving as a devastating melee weapon. Can deal massive structural damage to walls and reinforced barriers, making it perfect for forced entry operations.

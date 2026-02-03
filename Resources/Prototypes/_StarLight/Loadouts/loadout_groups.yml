@@ -235,9 +235,28 @@
 - type: loadoutGroup
   id: MagistrateJumpsuit
   name: loadout-group-magistrate-jumpsuit
+  defaultSelected: 1
+  maxLimit: 1
   loadouts:
   - MagistrateJumpsuit
   - MagistrateJumpskirt
+  - MagistrateJumpsuitLongCoat
+
+- type: loadoutGroup
+  id: MagistrateOuterclothing
+  name: loadout-group-magistrate-outer
+  defaultSelected: 1
+  minLimit: 0
+  loadouts:
+  - MagistrateRobes
+
+- type: loadoutGroup
+  id: MagistrateHead
+  name: loadout-group-magistrate-headwear
+  defaultSelected: 1
+  minLimit: 0
+  loadouts:
+  - MagistrateHeadPwig
 
 - type: loadoutGroup
   id: MagistrateEyewear
@@ -245,6 +264,16 @@
   loadouts:
   - MagistrateSecGlasses
   - MagistrateSkillGlasses
+
+- type: loadoutGroup
+  id: MagistrateHands
+  name: loadout-group-magistrate-hands
+  defaultSelected: 1
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MagistrateWhiteGloves
+  - MagistrateBlackGloves
 
 - type: loadoutGroup
   id: BlueShieldHead
@@ -716,3 +745,17 @@
   loadouts:
   - NanoTrasenRepresentativeGlasses
   - NanoTrasenRepresentativeHud
+
+- type: loadoutGroup
+  id: JanitorNeck
+  name: loadout-group-janitor-neck
+  minLimit: 0
+  loadouts:
+  - SupremeJanitorCloak
+
+- type: loadoutGroup
+  id: WardenNeck
+  name: loadout-group-warden-neck
+  minLimit: 0
+  loadouts:
+  - ClothingNeckWarden

@@ -37,6 +37,16 @@
       targetUser: true
 
 - type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantTSF
+  name: TSF death rattle implant
+  description: This implant will inform the TSF radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: TSF
+
+- type: entity
   parent: BaseSubdermalImplant
   id: BluespaceImplant
   name: bluespace implant
@@ -107,3 +117,29 @@
     - SubdermalImplant
     - HideContextMenu
     - GearAcidifier
+
+#SELF
+- type: entity
+  parent: BaseSubdermalImplant
+  id: SELFStorageImplant
+  name: S.E.L.F storage implant
+  description: This implant grants hidden storage within a person's body using bluespace technology.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageImplant
+    - type: SubdermalImplant
+      implantAction: ActionOpenStorageImplant
+      whitelist:
+        components:
+        - Hands # no use giving a mouse a storage implant, but a monkey is another story...
+    - type: Storage
+      grid:
+      - 0,0,4,3
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: [ ]
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface

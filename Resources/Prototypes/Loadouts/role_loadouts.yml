@@ -188,6 +188,7 @@
   - JanitorGloves
   - CommonBackpack
   - JanitorOuterClothing
+  - JanitorNeck # Starlight
   - Glasses
   - Survival
   - Trinkets
@@ -477,6 +478,7 @@
   id: JobWarden
   groups:
   - WardenHead
+  - WardenNeck # Starlight
   - WardenJumpsuit
   - SecurityBackpack
   - SecurityBelt
@@ -757,3 +759,8 @@
   groups:
   - GroupEVATank
   - SurvivalExtended
+
+- type: roleLoadout
+  id: RoleSurvivalSpaceNinja
+  groups:
+  - GroupEVATank

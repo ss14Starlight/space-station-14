@@ -7,23 +7,21 @@ using Content.Server.Vocalization.Systems;
 using Content.Shared.Cargo;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Destructible;
 using Content.Shared.Emp;
 using Content.Shared.Power;
 using Content.Shared.Throwing;
-using Content.Shared.UserInterface;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wall;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-// 🌟Starlight🌟 
+// 🌟Starlight🌟
 using Content.Server.Economy;
 using Content.Shared.Economy;
 using Content.Shared.Emag.Components;
-using Content.Shared.Tag; 
-using Content.Shared.Cargo.Components; 
-using Content.Server.Administration.Managers; 
+using Content.Shared.Tag;
+using Content.Shared.Cargo.Components;
+using Content.Server.Administration.Managers;
 using Content.Shared.Administration.Logs; // Starlight-edit
 using Content.Shared.Database;
 using Robust.Shared.Player; // Starlight-edit
@@ -35,16 +33,15 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly PricingSystem _pricing = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
-        // 🌟Starlight🌟 start 
-        [Dependency] private readonly ItemPriceManager _itemPriceManager = default!; 
-        [Dependency] private readonly IComponentFactory _componentFactory = default!; 
-        [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!; 
-        [Dependency] private readonly TagSystem _tag = default!; 
+        // 🌟Starlight🌟 start
+        [Dependency] private readonly ItemPriceManager _itemPriceManager = default!;
+        [Dependency] private readonly IComponentFactory _componentFactory = default!;
+        [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!;
+        [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly CargoSystem _cargoSystem = default!;
         [Dependency] private readonly Content.Server.Station.Systems.StationSystem _stationSystem = default!;
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        // 🌟Starlight🌟 end 
+        // 🌟Starlight🌟 end
 
         private const float WallVendEjectDistanceFromWall = 1f;
 
@@ -53,12 +50,10 @@ namespace Content.Server.VendingMachines
             base.Initialize();
 
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
-            SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamageChanged);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, TryVocalizeEvent>(OnTryVocalize);
 
-            SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
 
             SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
@@ -98,22 +93,9 @@ namespace Content.Server.VendingMachines
             PersistInventoryPrices(uid, component);
         }
 
-        private void OnActivatableUIOpenAttempt(EntityUid uid, VendingMachineComponent component, ActivatableUIOpenAttemptEvent args)
-        {
-            if (component.Broken)
-                args.Cancel();
-        }
-
         private void OnPowerChanged(EntityUid uid, VendingMachineComponent component, ref PowerChangedEvent args)
         {
             TryUpdateVisualState((uid, component));
-        }
-
-        private void OnBreak(EntityUid uid, VendingMachineComponent vendComponent, BreakageEventArgs eventArgs)
-        {
-            vendComponent.Broken = true;
-            Dirty(uid, vendComponent);
-            TryUpdateVisualState((uid, vendComponent));
         }
 
         private void OnDamageChanged(EntityUid uid, VendingMachineComponent component, DamageChangedEvent args)
@@ -249,7 +231,7 @@ namespace Content.Server.VendingMachines
             // Only charge if prices are shown, not emagged, we have a buyer, and not charged yet this operation
             var buyer = vendComponent.LastBuyer;
             var isEmagged = HasComp<EmaggedComponent>(uid);
-            
+
             if (!isEmagged && vendComponent.ShowPrices && buyer is { } buyerUid && !vendComponent.DebitApplied && itemProto != null)
             {
                 var entry = GetEntry(uid, itemProto, vendComponent.CurrentItemType, vendComponent);
@@ -361,7 +343,7 @@ namespace Content.Server.VendingMachines
             args.Cancelled |= ent.Comp.Broken;
         }
 
-        #region 🌟Starlight🌟 
+        #region 🌟Starlight🌟
         /// <summary>
         /// Persist prices into the live component so clients have prices on first open
         /// </summary>

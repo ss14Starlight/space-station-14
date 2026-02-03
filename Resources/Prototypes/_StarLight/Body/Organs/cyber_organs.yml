@@ -51,7 +51,7 @@
 
 - type: entity
   id: BudgetCyberEyes
-  name: Budget CyberEyes
+  name: budget cyber eyes
   description: Cold and soulless. Just as depressing to look out of as to look into.
   parent: [OrganCyber, BaseOrganEyes]
   components:
@@ -81,7 +81,7 @@
 
 - type: entity
   id: BudgetCyberTongue
-  name: Budget CyberTongue
+  name: budget cyber tongue
   description: An artificial tongue with full range of movement. Taste buds not included.
   parent: [OrganCyber, BaseOrganTongue]
   components:
@@ -94,7 +94,7 @@
 
 - type: entity
   id: BudgetCyberLiver
-  name: Budget CyberLiver
+  name: budget cyber liver
   description: "Design so reliable, it didn't have to be changed for the last 237 years! Warning: This product isn't meant for recreational drinking!"
   parent: [OrganCyber, OrganHumanLiver]
   components:
@@ -110,7 +110,7 @@
 
 - type: entity
   id: BudgetCyberStomach
-  name: Budget CyberStomach
+  name: budget cyber stomach
   description: An artifical stomach. Its lack of elasticity is a desired feature for those who want to control their eating habits.
   parent: [OrganCyber, OrganHumanStomach]
   components:
@@ -135,7 +135,7 @@
 
 - type: entity
   id: BudgetCyberKidneys
-  name: Budget CyberKidneys
+  name: budget cyber kidneys
   description: A pair of artificial kidneys. Due to cheap materials used, they waste significantly more water than organic ones.
   parent: [OrganCyber, OrganHumanKidneys]
   components:
@@ -151,7 +151,7 @@
 
 - type: entity
   id: CyberRebreather
-  name: Cyber Rebreather
+  name: cyber rebreather
   description: Artificial lungs with an integrated gas tank system. Can be filled with any breathable gas mixture.
   parent: [OrganCyber, OrganHumanLungs]
   components:

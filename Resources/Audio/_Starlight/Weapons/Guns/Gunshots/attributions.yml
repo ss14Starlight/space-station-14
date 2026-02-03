@@ -22,3 +22,13 @@
   license: "CC-BY-SA-3.0"
   copyright: "Taken from RU Paradise Station"
   source: "https://github.com/ss220-space/Paradise/commit/7fb130eac5c2c645fc841769c69f7b7a50dfe854"
+
+- files: ["MK_Universal.ogg"]
+  license: "CC0-1.0"
+  copyright: "Taken from delta-v"
+  source: "https://github.com/DeltaV-Station/Delta-v/pull/154"
+
+- files: ["l6.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Starch70 on Monolith"
+  source: "https://github.com/Monolith-Station/Monolith/pull/2369/changes/ff9584192f8d63d21d4ef30b3473209ff771bcaf"

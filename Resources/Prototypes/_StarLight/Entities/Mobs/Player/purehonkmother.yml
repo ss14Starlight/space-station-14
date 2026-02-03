@@ -33,31 +33,7 @@
           layer:
             - FlyingMobLayer
     # Starlight-start: Languages
-    - type: LanguageKnowledge
-      speaks:
-        - GalacticCommon
-        - SolCommon
-        - Chittin
-        - Sylvan
-        - Moffic
-        - Mothroach
-        - Draconic
-        - Scratch
-        - Bubblish
-        - VoxPidgin
-        - Canilunzt
-      understands:
-        - GalacticCommon
-        - SolCommon
-        - Chittin
-        - Sylvan
-        - Moffic
-        - Mothroach
-        - Draconic
-        - Scratch
-        - Bubblish
-        - VoxPidgin
-        - Canilunzt
+    - type: UniversalLanguageSpeaker
     - type: Input
       context: "human"
     - type: MovementIgnoreGravity
@@ -88,10 +64,10 @@
     - type: BatteryAmmoProvider
       proto: RedLaser
       fireCost: 62.5
-    - type: PredictedBattery
+    - type: Battery
       maxCharge: 1000
       startingCharge: 1000
-    - type: PredictedBatterySelfRecharger
+    - type: BatterySelfRecharger
       autoRechargeRate: 40
     - type: Gun
       fireRate: 2

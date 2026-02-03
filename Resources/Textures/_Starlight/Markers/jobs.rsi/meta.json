@@ -37,6 +37,9 @@
     {
       "name": "miningspecialist"
     },
+    {
+      "name": "decimusicon"
+    },
 	{
       "name": "dutyofficer",
 	  "copyright": "BORT",
@@ -47,6 +50,12 @@
     },
     {
       "name": "ntsficon"
+    },
+    {
+      "name": "TSF"
+    },
+    {
+      "name": "MARSOC"
     },
     {
       "name": "nct"

@@ -4,7 +4,7 @@ namespace Content.Shared._Starlight.Radio;
 [DataDefinition]
 public sealed partial class CustomRadioChannelData
 {
-    [DataField] public string Id { get; set; }
+    [DataField] public string Id { get; set; } = string.Empty;
     [DataField] public LocId Name { get; set; } = string.Empty;
     [ViewVariables(VVAccess.ReadOnly)] public string LocalizedName => Loc.GetString(Name);
     [DataField] public char Keycode { get; set; }

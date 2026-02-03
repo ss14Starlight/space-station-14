@@ -37,7 +37,7 @@
 
 - type: entity
   name: twinpointer kit crate
-  description: Contains three twinpointer kits for all your bidirectional wayfinding needs.
+  description: Contains one twinpointer kit for all your bidirectional wayfinding needs.
   id: CrateFunTwinPointer
   parent: CrateGenericSteel
   components:
@@ -46,7 +46,7 @@
         entity_storage: !type:AllSelector
           children:
             - id: TwinPointerKit
-              amount: 3
+              amount: 1
               
 - type: entity
   id: CrateFunMegaShark

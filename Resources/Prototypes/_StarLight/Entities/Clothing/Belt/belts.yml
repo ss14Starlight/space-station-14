@@ -80,6 +80,7 @@
         - Brutepack
         - Bloodpack
         - Gauze
+        - Hypospray
         - Ointment
         - PillCanister
         - Radio
@@ -98,7 +99,6 @@
         - Handcuff
         - BallisticAmmoProvider
         - Ammo
-        - Hypospray
         - Injector
         - Pill
         - HandLabeler
@@ -358,6 +358,19 @@
   - type: StaticPrice
     price: 900
 
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseTSFContraband]
+  id: ClothingBeltTSFMarineWebbing
+  name: federation combat webbing
+  description: A tactical chest rig used by soldiers and marines of the Trans-Solar Federation. It's covered in pouches and attachment points.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/tsf_webbing.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/tsf_webbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+    
 - type: entity
   parent: [ BaseSalvageContraband, ClothingBeltStorageBase ]
   id: ClothingBeltSalvageMercWebbing

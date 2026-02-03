@@ -191,7 +191,15 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
         SetGender((target, targetHumanoid), sourceHumanoid.Gender);
 
+        // Starlight start
+        if (sourceHumanoid.Voice != null)
+            SetTTSVoice(target, sourceHumanoid.Voice, targetHumanoid);
+        // Starlight end
+
         Dirty(target, targetHumanoid);
+
+        var update = new MarkingsUpdateEvent(); //starlight
+        RaiseLocalEvent(target, ref update); //starlight
     }
 
     /// <summary>

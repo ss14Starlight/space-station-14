@@ -150,7 +150,7 @@
       misc: # Starlight start
         sizeMaps:
           32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
             state: neck # Starlight end
       mask:
         sizeMaps:
@@ -216,7 +216,7 @@
       misc: # Starlight start
         sizeMaps:
           32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
             state: neck # Starlight end
       mask:
         sizeMaps:
@@ -276,8 +276,8 @@
     - map: [ "enum.HumanoidVisualLayers.Tail" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
     - map: [ "mask" ]
     - map: [ "head" ]
     - map: [ "pocket1" ]
@@ -368,7 +368,7 @@
       misc: # Starlight start
         sizeMaps:
           32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
             state: neck # Starlight end
       mask:
         sizeMaps:
@@ -434,7 +434,7 @@
       misc: # Starlight start
         sizeMaps:
           32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
+            sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
             state: neck # Starlight end
       mask:
         sizeMaps:
