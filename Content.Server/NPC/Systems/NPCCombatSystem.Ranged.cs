@@ -70,14 +70,14 @@ public sealed partial class NPCCombatSystem
             if (comp.Status == CombatStatus.Unspecified)
                 continue;
 
-            if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
+            if (!_gun.TryGetGun(uid, out var gun))
             {
                 comp.Status = CombatStatus.NoWeapon;
                 comp.ShootAccumulator = 0f;
                 continue;
             }
 
-            if (_steeringQuery.TryGetComponent(uid, out var steering) && steering.Status == SteeringStatus.NoPath && !TryComp<BatteryAmmoProviderComponent>(gunUid, out _))
+            if (_steeringQuery.TryGetComponent(uid, out var steering) && steering.Status == SteeringStatus.NoPath && !HasComp<BatteryAmmoProviderComponent>(gun))
             {
                 comp.Status = CombatStatus.TargetUnreachable;
                 comp.ShootAccumulator = 0f;
@@ -106,19 +106,19 @@ public sealed partial class NPCCombatSystem
 
             //🌟Starlight🌟
             if (!_gun.IsChamberClosed(uid)
-                && TryComp<ChamberMagazineAmmoProviderComponent>(gunUid, out var magazineComp))
+                && TryComp<ChamberMagazineAmmoProviderComponent>(gun, out var magazineComp))
             {
-                _gun.SetBoltClosed(gunUid, magazineComp, true);
+                _gun.SetBoltClosed(gun, magazineComp, true);
             }
 
 
             var ammoEv = new GetAmmoCountEvent();
-            RaiseLocalEvent(gunUid, ref ammoEv);
+            RaiseLocalEvent(gun, ref ammoEv);
 
             if (ammoEv.Count == 0)
             {
                 // Recharging then?
-                if (_rechargeQuery.HasComponent(gunUid))
+                if (_rechargeQuery.HasComponent(gun))
                 {
                     continue;
                 }
@@ -147,7 +147,7 @@ public sealed partial class NPCCombatSystem
                 var collisionGroup = comp.UseOpaqueForLOSChecks ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
 
                 //🌟Starlight🌟 start
-                if(TryComp<BatteryAmmoProviderComponent>(gunUid, out _))
+                if(TryComp<BatteryAmmoProviderComponent>(gun, out _))
                     collisionGroup = CollisionGroup.Opaque;
                 //🌟Starlight🌟 end
                 
@@ -215,12 +215,12 @@ public sealed partial class NPCCombatSystem
 
             comp.Status = CombatStatus.Normal;
 
-            if (gun.NextFire > _timing.CurTime)
+            if (gun.Comp.NextFire > _timing.CurTime)
             {
                 return;
             }
 
-            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates, comp.Target);
+            _gun.AttemptShoot(uid, gun, targetCordinates, comp.Target);
         }
     }
 }

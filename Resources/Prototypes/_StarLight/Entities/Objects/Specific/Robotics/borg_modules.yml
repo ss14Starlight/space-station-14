@@ -413,7 +413,7 @@
     - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: SyndiBorgHypo
     - item: AutoMenderBrute
     - item: AutoMenderBurn
@@ -424,6 +424,8 @@
         whitelist:
           tags:
           - Syringe
+          - JetInjector
+          - Medipen
     - item: BorgDropper
     - item: Beaker
       hand:
@@ -468,7 +470,7 @@
     - state: icon-defib
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: DefibrillatorSyndicateOneHandedUnpowered
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic

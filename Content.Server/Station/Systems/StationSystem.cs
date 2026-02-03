@@ -201,6 +201,7 @@ public sealed partial class StationSystem : SharedStationSystem
     // Starlight Start
     private void OnGridInit(EntityUid uid, BecomesStationMidRoundComponent component, MapInitEvent ev)
     {
+        if (!component.Initialize) return;
         if (!HasComp<MapGridComponent>(uid)) return; // only grids can become stations
         if (component.Id is not null)
         {
@@ -333,8 +334,9 @@ public sealed partial class StationSystem : SharedStationSystem
     public EntityUid InitializeNewStationMidRound(EntityUid gridId, EntProtoId stationProtoId,
         BecomesStationMidRoundComponent? comp = null) => InitializeNewStationMidRound(gridId, [stationProtoId], comp);
     
-    public EntityUid InitializeNewStationMidRound(EntityUid gridId, List<EntProtoId> stationProtoIds, BecomesStationMidRoundComponent? comp = null)
+    public EntityUid InitializeNewStationMidRound(EntityUid gridId, List<EntProtoId>? stationProtoIds, BecomesStationMidRoundComponent? comp = null)
     {
+        if (stationProtoIds is null) return EntityUid.Invalid;
         //logic for if was initialized via BecomesStationMidRoundComponent
         ComponentRegistry? registry = null;
         if (comp is not null)
@@ -360,6 +362,7 @@ public sealed partial class StationSystem : SharedStationSystem
         }
         
         // var station = EntityManager.SpawnEntity(stationProtoId, MapCoordinates.Nullspace, registry);
+        comp ??= EnsureComp<BecomesStationMidRoundComponent>(gridId);
         var station = CreateCustomStation(stationProtoIds, MapCoordinates.Nullspace, registry, comp);
         var data = EnsureComp<StationDataComponent>(station);
         RenameStation(station, MetaData(gridId).EntityName, false);
@@ -367,8 +370,7 @@ public sealed partial class StationSystem : SharedStationSystem
         AddGridToStation(station, gridId, null, data, name);
         var ev = new StationPostInitEvent((station, data));
         RaiseLocalEvent(station, ref ev, true);
-        if (comp is null) return station; // Starlight
-        if (!comp.AllowEvents) // Starlight
+        if (!comp.AllowEvents)
             RemComp<StationEventEligibleComponent>(station);
         return station;
     }
@@ -376,13 +378,13 @@ public sealed partial class StationSystem : SharedStationSystem
     private EntityUid CreateCustomStation(List<EntProtoId> protoIds, MapCoordinates? coords, ComponentRegistry? registry, BecomesStationMidRoundComponent? data = null)
     {
         var ent = EntityManager.CreateEntityUninitialized(null); // dummy entity
-        data ??= EnsureComp<BecomesStationMidRoundComponent>(ent); // just ensure that this exists so that anything made with stationinit command will default to everything being blocked.
         // do parents first
         foreach (var protoId in protoIds)
         {
             if (!_prototype.TryIndex(protoId, out var proto)) continue;
             foreach (var comp in proto.Components.Values.Where(comp => !HasComp(ent, comp.Component.GetType())))
             {
+                if(registry is not null && registry.Values.Any(c=>c.GetType() == comp.GetType())) continue; // this will be overridden later, skip it.
                 var newcomp = _factory.GetComponent(comp);
                 AddComp(ent, newcomp);
             }
@@ -390,6 +392,7 @@ public sealed partial class StationSystem : SharedStationSystem
         // now any of the extra overrides
         if (registry is not null)
         {
+            Log.Log(LogLevel.Info, "NOT NULL!!");
             foreach (var comp in registry.Values.Where(comp => !HasComp(ent, comp.Component.GetType())))
             {
                 var newcomp = _factory.GetComponent(comp);
@@ -399,7 +402,9 @@ public sealed partial class StationSystem : SharedStationSystem
         EntityManager.InitializeAndStartEntity(ent, coords!.Value.MapId);
         return ent;
     }
-    
+
+    public void MarkMidRoundStationForInitialization(EntityUid uid, BecomesStationMidRoundComponent comp) =>
+        comp.Initialize = true;
     //SL end
     
     /// <summary>

@@ -18,3 +18,14 @@
     subtype: roles-antag-brighteye-name
     exclusiveAntag: true
   - type: BrighteyeRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleSELFAgent
+  name: S.E.L.F Agent
+  components:
+  - type: MindRole
+    antagPrototype: SELFAgent
+    subtype: roles-antag-selfagent-name
+    exclusiveAntag: true
+  - type: SELFAgentRole

@@ -9,3 +9,8 @@
   id: TurretSilicon
   name: device-frequency-prototype-name-turret
   frequency: 2156
+
+- type: deviceFrequency
+  id: SurveillanceCameraIsolatedNetwork
+  name: device-frequency-prototype-name-surveillance-camera-isolated-network
+  frequency: 1940

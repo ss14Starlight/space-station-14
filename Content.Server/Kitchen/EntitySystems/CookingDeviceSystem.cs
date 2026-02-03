@@ -77,7 +77,7 @@ namespace Content.Server.Kitchen.EntitySystems
         public override void Initialize()
         {
             base.Initialize();
-            
+
             // Starlight-start: renamed from MicrowaveComponent to CookingDeviceComponent and ActiveMicrowaveComponent to ActiveCookingDeviceComponent
             SubscribeLocalEvent<CookingDeviceComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<CookingDeviceComponent, MapInitEvent>(OnMapInit);
@@ -109,17 +109,17 @@ namespace Content.Server.Kitchen.EntitySystems
             // Starlight-end
 
             SubscribeLocalEvent<FoodRecipeProviderComponent, GetSecretRecipesEvent>(OnGetSecretRecipes);
-            
+
             // Starlight-start
             SubscribeLocalEvent<CookingDeviceComponent, BoundUIOpenedEvent>(OnBuiOpened);
             SubscribeLocalEvent<CookingDeviceComponent, BoundUIClosedEvent>(OnBuiClosed);
             // Starlight-end
-            
+
         }
-        
+
         // Starlight-start
         private void OnBuiOpened(EntityUid uid, CookingDeviceComponent component, BoundUIOpenedEvent args) => SetAppearance(uid, null, component, Opened: true);
-        
+
         private void OnBuiClosed(EntityUid uid, CookingDeviceComponent component, BoundUIClosedEvent args) => SetAppearance(uid, null, component, Opened: false);
         // Starlight-end
 
@@ -136,7 +136,7 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             if (!TryComp<CookingDeviceComponent>(ent, out var CookingDeviceComponent)) // Starlight-edit
                 return;
-            
+
             // Starlight-start
             SetAppearance(ent.Owner, MicrowaveVisualState.Idle, CookingDeviceComponent);
             CookingDeviceComponent.PlayingStream = _audio.Stop(CookingDeviceComponent.PlayingStream);
@@ -185,7 +185,7 @@ namespace Content.Server.Kitchen.EntitySystems
                     }
                 }
             }
-            
+
             // Starlight-end
         }
 
@@ -396,7 +396,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
         private void OnContentUpdate(EntityUid uid, CookingDeviceComponent component, ContainerModifiedMessage args) // Starlight-edit: ContainerModifiedMessage just can't be used at all with Entity<T>, because it's abstract.
         {
-            if (component.Storage == args.Container) 
+            if (component.Storage == args.Container)
                 UpdateUserInterfaceState(uid, component);
         }
 
@@ -525,20 +525,20 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             if (!Resolve(uid, ref component, ref appearanceComponent, false))
                 return;
-            
+
             // Starlight-start
-            
+
             if (Opened != null)
             {
                 var openedState = Opened.Value ? OpenableKitchenDevice.Opened : OpenableKitchenDevice.Closed;
                 _appearance.SetData(uid, PowerDeviceVisuals.VisualState, openedState, appearanceComponent);
             }
-            
+
             if (state == null)
                 return;
-            
+
             // Starlight-end
-            
+
             var display = component.Broken ? MicrowaveVisualState.Broken : state;
             _appearance.SetData(uid, PowerDeviceVisuals.VisualState, display, appearanceComponent);
         }
@@ -677,21 +677,21 @@ namespace Content.Server.Kitchen.EntitySystems
             var portionedRecipes = recipes.Select(r => CanSatisfyRecipe(component, r, solidsDict, reagentDict)).Where(r => r.Item2 > 0).ToList(); // Starlight-edit
 
             _audio.PlayPvs(component.StartCookingSound, uid);
-            
+
             // Starlight-start
             component.StartedCookTime = _gameTiming.CurTime;
             var activeComp = AddComp<ActiveCookingDeviceComponent>(uid); //microwave is now cooking
             // Starlight-end
-            
+
             activeComp.CookTimeRemaining = component.CurrentCookTimerTime * component.CookTimeMultiplier;
             activeComp.TotalTime = component.CurrentCookTimerTime; //this doesn't scale so that we can have the "actual" time
-            
+
             // Starlight-start
             foreach (var recipe in portionedRecipes)
                 if (!activeComp.PortionedRecipes.ContainsKey(recipe.Item1))
                     activeComp.PortionedRecipes.Add(recipe.Item1, recipe.Item2);
             // Starlight-end
-            
+
             //Scale tiems with cook times
             component.CurrentCookTimeEnd = _gameTiming.CurTime + TimeSpan.FromSeconds(component.CurrentCookTimerTime * component.CookTimeMultiplier);
             if (malfunctioning)
@@ -775,7 +775,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
                 //this means the microwave has finished cooking.
                 AddTemperature(cookingDevice, Math.Max(frameTime + active.CookTimeRemaining, 0)); //Though there's still a little bit more heat to pump out
-                
+
                 // Starlight-start
                 if (actualTime >= 60)
                 {
@@ -812,7 +812,7 @@ namespace Content.Server.Kitchen.EntitySystems
                     }
                 }
                 // Starlight-end
-                
+
                 foreach (var (recipe, availableAmount) in active.PortionedRecipes) // Starlight-edit
                 {
                     int targetTime = (int)recipe.CookTime; // Starlight-edit
@@ -855,13 +855,13 @@ namespace Content.Server.Kitchen.EntitySystems
         }
 
         #region ui
-        
+
         // Starlight-start
         private void OnStopMessage(Entity<CookingDeviceComponent> ent, ref MicrowaveStopCookMessage args)
         {
             var uid = ent.Owner;
             var cookingDevice = ent.Comp;
-            
+
             if (!TryComp<ActiveCookingDeviceComponent>(ent.Owner, out var active))
                 return;
             //this means the microwave has finished cooking.
@@ -871,7 +871,7 @@ namespace Content.Server.Kitchen.EntitySystems
             {
                 int targetTime = (int)recipe.CookTime;
                 var coords = Transform(uid).Coordinates;
-                
+
                 if (Math.Abs(targetTime - actualTime) <= 1)
                 {
                     for (var i = 0; i < availableAmount; i++)
@@ -891,7 +891,7 @@ namespace Content.Server.Kitchen.EntitySystems
             StopCooking((uid, cookingDevice));
         }
         // Starlight-end
-        
+
         private void OnEjectMessage(Entity<CookingDeviceComponent> ent, ref MicrowaveEjectMessage args) // Starlight-edit
         {
             if (!HasContents(ent.Comp) || HasComp<ActiveCookingDeviceComponent>(ent)) // Starlight-edit

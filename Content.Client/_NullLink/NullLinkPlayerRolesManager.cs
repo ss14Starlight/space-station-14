@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Linq;
 using Content.Client.Administration.Managers;
 using Content.Shared._NullLink;
@@ -10,7 +11,7 @@ public sealed class NullLinkPlayerRolesManager : INullLinkPlayerRolesManager
     [Dependency] private readonly IClientNetManager _netMgr = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
 
-    private HashSet<ulong> _roles = [];
+    private ImmutableHashSet<ulong> _roles = [];
     private string? _discordLink;
     private ISawmill _sawmill = default!;
 

@@ -80012,6 +80012,13 @@ entities:
   entities:
   - uid: 14506
     components:
+    - type: StationAiCore
+      lawConsole: 11004
+    - type: DeviceLinkSource
+      linkedPorts:
+        11004:
+        - - AiLawConsoleSender
+          - AiLawConsoleReceiver
     - type: Transform
       pos: 94.5,30.5
       parent: 2
@@ -91577,6 +91584,8 @@ entities:
   entities:
   - uid: 11004
     components:
+    - type: SiliconLawUpdater
+      core: 14506
     - type: Transform
       pos: 85.5,32.5
       parent: 2

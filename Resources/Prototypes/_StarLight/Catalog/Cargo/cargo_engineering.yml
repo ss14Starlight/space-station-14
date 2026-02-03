@@ -27,3 +27,13 @@
   cost: 5000
   category: cargoproduct-category-name-engineering
   group: market
+
+- type: cargoProduct
+  id: EngineeringRPD
+  icon:
+    sprite: _Starlight/Objects/Tools/rpd.rsi
+    state: icon
+  product: CrateRPD
+  cost: 800
+  category: cargoproduct-category-name-engineering
+  group: market

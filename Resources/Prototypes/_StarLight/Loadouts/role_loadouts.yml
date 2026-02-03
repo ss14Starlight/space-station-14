@@ -20,6 +20,9 @@
   groups:
   - MagistrateJumpsuit
   - MagistrateEyewear
+  - MagistrateHands
+  - MagistrateHead
+  - MagistrateOuterclothing
   - CommonBackpack
   - MagistrateShoes
   - Survival
@@ -28,6 +31,7 @@
   - Pins
   - LuxuryPens
   - GroupSpeciesBreathTool
+
 
 - type: roleLoadout
   id: JobSurgeon

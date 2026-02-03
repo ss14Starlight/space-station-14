@@ -1,5 +1,4 @@
-job-name-boxer = Boxer
-job-name-zookeeper = Zookeeper
+job-name-assistant = Assistant
 
 # Role timers - Apparently someone from upstream will cut us if these aren't alphabetical?
 JobBoxer = Boxer

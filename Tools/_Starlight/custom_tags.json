@@ -149,6 +149,7 @@
         "!type:DeleteEntitiesInContainer mapping",
         "!type:DeleteEntity mapping",
         "!type:DepartmentTimeRequirement mapping",
+        "!type:TraitsRequirement mapping",
         "!type:DestroyEntity mapping",
         "!type:DevourActionEvent mapping",
         "!type:DisguiseToggleAnchoredEvent mapping",

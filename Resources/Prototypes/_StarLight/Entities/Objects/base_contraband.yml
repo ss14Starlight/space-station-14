@@ -5,6 +5,13 @@
   - type: Contraband
     severity: Soviet
 
+- type: entity
+  id: BaseTSFContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: TSF
+
 #Advanced Cyberlimbs
 - type: entity
   id: BaseAdvancedCyberlimbContraband
