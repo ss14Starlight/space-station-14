@@ -139400,6 +139400,13 @@ entities:
   entities:
   - uid: 21460
     components:
+    - type: StationAiCore
+      lawConsole: 24311
+    - type: DeviceLinkSource
+      linkedPorts:
+        24311:
+        - - AiLawConsoleSender
+          - AiLawConsoleReceiver
     - type: Transform
       pos: 94.5,0.5
       parent: 2
@@ -156168,6 +156175,8 @@ entities:
   entities:
   - uid: 24311
     components:
+    - type: SiliconLawUpdater
+      core: 21460
     - type: Transform
       pos: 93.5,-7.5
       parent: 2

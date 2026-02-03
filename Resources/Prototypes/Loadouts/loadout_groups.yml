@@ -1398,6 +1398,13 @@
   - WardenBeret
 
 - type: loadoutGroup
+  id: WardenNeck
+  name: Warden Neck
+  minLimit: 0
+  loadouts:
+  - ClothingNeckWarden #STARLIGHT
+
+- type: loadoutGroup
   id: WardenJumpsuit
   name: loadout-group-warden-jumpsuit
   loadouts:

@@ -322,6 +322,19 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         records.Records.RemoveFromRecentlyAccessed(key.Id);
     }
 
+    //Starlight begin
+    public void AddPlayer(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
+        string? jobId, StationRecordsComponent records) =>
+        CreateGeneralRecord(station, player, profile, jobId, records);
+
+    public void RemovePlayer(EntityUid station, HumanoidCharacterProfile profile, StationRecordsComponent records)
+    {
+        if (GetRecordByName(station, profile.Name, records) is not { } id) return;
+        var key = new StationRecordKey(id, station);
+        RemoveRecord(key, records);
+    }
+    //Starlight end
+    
     #region Console system helpers
 
     /// <summary>

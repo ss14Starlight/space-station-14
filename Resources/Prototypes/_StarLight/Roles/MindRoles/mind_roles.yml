@@ -65,6 +65,16 @@
     sortWeight: 0
     fallbackPlayTimeTracker: GhostSkeleton
 
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostRoleNeutralSkeleton
+  name: Ghost Role (Skeleton)
+  components:
+  - type: MindRole
+    roleType: Neutral
+    sortWeight: 0
+    fallbackPlayTimeTracker: GhostSkeleton    
+
 # Downstream antagonists
 
 - type: entity
@@ -86,6 +96,7 @@
     antag: true
     antagPrototype: RatKing
     roleType: SoloAntagonist
+    subtype: role-subtype-ratking
     sortWeight: 50
 
 - type: entity
@@ -116,4 +127,5 @@
   - type: MindRole
     antagPrototype: Vampire
     roleType: SoloAntagonist
+    subtype: role-subtype-vampire
   - type: VampireRole

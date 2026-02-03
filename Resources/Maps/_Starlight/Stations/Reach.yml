@@ -14955,6 +14955,13 @@ entities:
   entities:
   - uid: 2028
     components:
+    - type: StationAiCore
+      lawConsole: 2431
+    - type: DeviceLinkSource
+      linkedPorts:
+        2431:
+        - - AiLawConsoleSender
+          - AiLawConsoleReceiver
     - type: Transform
       pos: -9.5,10.5
       parent: 2
@@ -17936,6 +17943,8 @@ entities:
   entities:
   - uid: 2431
     components:
+    - type: SiliconLawUpdater
+      core: 2028
     - type: Transform
       pos: -10.5,10.5
       parent: 2

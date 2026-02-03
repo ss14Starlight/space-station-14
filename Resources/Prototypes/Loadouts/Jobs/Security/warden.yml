@@ -9,6 +9,13 @@
   equipment:
     head: ClothingHeadHatBeretWarden
 
+# Neck
+
+- type: loadout
+  id: ClothingNeckWarden
+  equipment:
+    neck: ClothingNeckCloakwarden
+
 # Jumpsuit
 - type: loadout
   id: WardenJumpsuit

@@ -79,6 +79,7 @@ public sealed partial class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<VampireComponent, VampireProgressionChangedEvent>(OnProgressionChanged);
         SubscribeLocalEvent<ActionsComponent, ComponentStartup>(OnActionsComponentStartup);
+        SubscribeLocalEvent<VampireComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
         InitializeAbilities();
         InitializeObjectives();
@@ -530,6 +531,18 @@ public sealed partial class VampireSystem : EntitySystem
             }
         }
     }
+
+    private void OnComponentRemove(EntityUid uid, VampireComponent comp, ComponentRemove _) 
+        => TryRemoveAbilities(uid, comp);
+     
+    private void TryRemoveAbilities(EntityUid uid, VampireComponent comp)
+    {
+        foreach (var (_, action) in comp.ActionEntities)
+            _actions.RemoveAction(uid, action);
+        comp.ActionEntities.Clear();
+        Dirty(uid, comp);
+    }
+    
 
     private int GetActionBloodThreshold(EntProtoId actionId)
     {

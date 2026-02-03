@@ -38,6 +38,17 @@
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: MagistrateUniformSuitLongcoat
+  name: Magistrate's Longcoat
+  description: It's a nice long jacket attached to your uniform, but it has no real insulation so a real jacket beats it. Atleast it looks cool, though.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate_overcoat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate_overcoat.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrep
   name: nt representive suit
   description: That suit that is better not to see.
