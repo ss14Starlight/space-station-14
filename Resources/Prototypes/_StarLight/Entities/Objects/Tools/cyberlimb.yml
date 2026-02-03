@@ -203,7 +203,7 @@
     components:
     - type: DisarmMalus
       malus: 0.6
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: flame
     inhandVisuals:
       left:
@@ -862,7 +862,7 @@
 
 # Engineer
 - type: entity
-  name: Cyber drill
+  name: cyber drill
   parent: PowerDrill
   id: PowerDrillCyber
   description: A simple powered hand drill.
@@ -943,7 +943,7 @@
 - type: entity
   id: RCDCyber
   parent: RCD
-  name: Cybernetic RCD
+  name: cybernetic RCD
   description: The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function.
   components:
   - type: Sprite

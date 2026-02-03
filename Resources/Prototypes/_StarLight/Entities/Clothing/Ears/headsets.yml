@@ -1,7 +1,7 @@
 - type: entity
   parent: [ ClothingHeadset, BaseLawContraband ]
   id: ClothingHeadsetIAA
-  name: Internal Affairs Agent Headset
+  name: internal affairs agent headset
   description: A headset for internal affairs agent to hear the captain's last words.
   components:
     - type: ContainerFill
@@ -16,7 +16,7 @@
 - type: entity
   parent: [ ClothingHeadset, BaseLawContraband ]
   id: ClothingHeadsetMagistrate
-  name: Magistrate headset
+  name: magistrate headset
   description: A headset for internal affairs agent to hear the captain's last words.
   components:
     - type: ContainerFill
@@ -96,88 +96,28 @@
     sprite: Clothing/Ears/Headsets/mining.rsi
 
 - type: entity
-  parent: ClothingHeadsetAlt
-  id: ClothingHeadsetAltGlobal
-  name: global headset
-  suffix: Admeme
-  description: A headset capable of transmitting globally! Oh wait, that's just the name of the channel.
+  parent: [ClothingHeadset, BaseTSFContraband]
+  id: ClothingHeadsetTSFTrader
+  name: Trans-Solar Trader's headset
   components:
-    - type: Headset
-    - type: ContainerFill
-      containers:
-        key_slots:
-          - EncryptionKeyGlobal
-    - type: Sprite
-      sprite: _Starlight/Clothing/Ears/Headsets/global.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Ears/Headsets/global.rsi
-
-- type: entity
-  parent: ClothingHeadsetAlt
-  id: ClothingHeadsetAltAspace
-  name: aspace headset
-  suffix: Admeme
-  description: A mystical headset bestowed by the deity known as The Admin.
-  components:
-    - type: Headset
-    - type: ContainerFill
-      containers:
-        key_slots:
-          - EncryptionKeyAspace
-    - type: Sprite
-      sprite: _Starlight/Clothing/Ears/Headsets/admeme.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Ears/Headsets/admeme.rsi
-
-- type: entity
-  parent: ClothingHeadsetAlt
-  id: ClothingHeadsetAltMerchant
-  name: merchant headset
-  description: A headset for merchants to communicate with one another.
-  components:
-    - type: Headset
-    - type: ContainerFill
-      containers:
-        key_slots:
-          - EncryptionKeyMerchant
-    - type: Sprite
-      sprite: _Starlight/Clothing/Ears/Headsets/merchant.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Ears/Headsets/merchant.rsi
-
-- type: entity
-  parent: ClothingHeadsetAlt
-  id: ClothingHeadsetAltBlackstar
-  name: blackstar mercenary headset
-  description: A headset used by elite blackstar mercenaries.
-  components:
-    - type: Headset
-    - type: ContainerFill
-      containers:
-        key_slots:
-          - EncryptionKeyBlackstar
-    - type: Sprite
-      sprite: _Starlight/Clothing/Ears/Headsets/merchant.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Ears/Headsets/merchant.rsi
-
-  # literally just the same thing but has headset comp and uses the purple one because yes
-- type: entity
-  parent: ClothingHeadsetAlt
-  id: ClothingHeadsetAltEmpty
-  name: headset
-  description: A standard headset.
-  components:
-    - type: Headset
-    - type: Sprite
-      sprite: _Starlight/Clothing/Ears/Headsets/admeme.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/Ears/Headsets/admeme.rsi
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTSF
+      - EncryptionKeyMerchant
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/cargo.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/cargo.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/qm.ogg
 
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
   id: ClothingHeadsetNCT
-  name: Nanotrasen career trainer radio headset
+  name: nanotrasen career trainer radio headset
   description: This is used by your well-taught corporate training team.
   components:
   - type: ContainerFill

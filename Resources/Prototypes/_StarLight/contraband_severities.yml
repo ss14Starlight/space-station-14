@@ -5,3 +5,7 @@
 - type: contrabandSeverity
   id: AdvancedCyberlimbs
   examineText: contraband-examine-text-advancedcyberlimbs
+
+- type: contrabandSeverity
+  id: TSF
+  examineText: contraband-examine-text-tsf

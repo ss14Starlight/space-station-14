@@ -332,13 +332,10 @@ public abstract partial class SharedChatSystem : EntitySystem
         customChannels = [];
         if (TryComp<WearingHeadsetComponent>(source, out var wearingHeadset))
             if (TryComp<ActiveRadioComponent>(wearingHeadset.Headset, out var headsetRadio))
-            {
                 customChannels.AddRange(headsetRadio.CustomChannels.Where(channel => channel.Keycode == keycode));
-                return customChannels.Count > 0;
-            }
 
-        if (!TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio)) return false;
-        customChannels.AddRange(radio.CustomChannels.Where(channel => channel.Keycode == keycode));
+        if (TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio))
+            customChannels.AddRange(radio.CustomChannels.Where(channel => channel.Keycode == keycode));
         return customChannels.Count > 0;
     }
     
@@ -348,19 +345,16 @@ public abstract partial class SharedChatSystem : EntitySystem
         presentChannels = [];
         if (TryComp<WearingHeadsetComponent>(source, out var wearingHeadset))
             if (TryComp<ActiveRadioComponent>(wearingHeadset.Headset, out var headsetRadio))
-            {
                 presentChannels.AddRange(headsetRadio.Channels
                     .Where(channel => _prototypeManager.HasIndex(channel))
                     .Select(proto => _prototypeManager.Index(proto))
                     .Where(channel => channel.KeyCode == keycode));
-                return presentChannels.Count > 0;
-            }
 
-        if (!TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio)) return false;
-        presentChannels.AddRange(radio.Channels
-            .Where(channel => _prototypeManager.HasIndex(channel))
-            .Select(proto => _prototypeManager.Index(proto))
-            .Where(channel => channel.KeyCode == keycode));
+        if (TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio))
+            presentChannels.AddRange(radio.Channels
+                .Where(channel => _prototypeManager.HasIndex(channel))
+                .Select(proto => _prototypeManager.Index(proto))
+                .Where(channel => channel.KeyCode == keycode));
         return presentChannels.Count > 0;
     }
     //Starlight end

@@ -1,0 +1,77 @@
+# Fashion-o-Mat Start
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesTechnology
+  name: robotic apparatus
+  description: It’s heavy and covered in a mess of wires.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Tech/tech.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Tech/tech.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesTechnologyZero
+  name: robotic oculars
+  description: A pair of oculars crackling with static electricity.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Tech/tech0.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Tech/tech0.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesTechnologyTwo
+  name: robotic eye
+  description: A one-of-a-kind among the old.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Tech/tech2.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Tech/tech2.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesTechnologyLudovic
+  name: insomniac glasses
+  description: With these glasses I see everything! …Oh no, that’s just dust.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Tech/techlou.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Tech/techlou.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesTechnologyX
+  name: screen glasses
+  description: Time to step into the 8-bit world.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Tech/techx.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Tech/techx.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatTechnologyFive
+  name: forehead laser
+  description: A pointer for the lazy.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Tech/tech5.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Tech/tech5.rsi
+# Fashion-o-Mat End

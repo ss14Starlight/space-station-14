@@ -31,7 +31,6 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly LanguageSystem _language = default!; // Starlight
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid, string)> _recentlySent = new(); // Starlight edit
@@ -74,8 +73,13 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnSpeakerInit(EntityUid uid, RadioSpeakerComponent component, ComponentInit args)
     {
+        //Starlight begin
         if (component.Enabled)
-            EnsureComp<ActiveRadioComponent>(uid).Channels.UnionWith(component.Channels);
+        {
+            var radio = EnsureComp<ActiveRadioComponent>(uid);
+            radio.Channels.UnionWith(component.Channels);
+            Dirty(uid, radio);
+        }
         else
             RemCompDeferred<ActiveRadioComponent>(uid);
     }

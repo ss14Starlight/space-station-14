@@ -268,13 +268,13 @@
     children:
     - id: BoxFiringPin # Starlight, firing pins
     - id: WeaponRifleLecter
-      amount: 1
+      amount: 2 # Starlight
     - id: WeaponRifleLeikha
       amount: 1
     - id: MagazineRifleHP
-      amount: 3
+      amount: 4 # Starlight
     - id: MagazineRifleSP
-      amount: 3
+      amount: 4 # Starlight
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
@@ -292,11 +292,11 @@
     children:
     - id: BoxFiringPinPistol # Starlight, firing pins
     - id: WeaponSubMachineGunDrozd
-      amount: 1
+      amount: 2 # Starlight
     - id: WeaponSubMachineGunSP91RC
       amount: 2
     - id: MagazinePistolSubMachineGunSP
-      amount: 4
+      amount: 5 # Starlight
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]

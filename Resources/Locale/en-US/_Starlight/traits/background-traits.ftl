@@ -23,3 +23,9 @@ trait-background-abducted-description = You were once the unfortunate recipient 
 
 trait-background-petty-criminal-name = Petty Criminal
 trait-background-petty-criminal-description = While reformed, more or less, you used to get involved in the types of crowds and businesses you really shouldn't have. Because of these connections, you are aware of what items on the station are likely to be worth a lot, and that they are probably targeted by the Syndicate and other Thieves. You know what all the Steal Objective Targets are. 
+
+trait-background-burned-name = Burned
+trait-background-burned-description = You are a shadekin with the condition that is called "Black-eye", unable to return home, meaning your core has been irreparably damaged in one way or another.
+
+trait-background-iterator-name = Iterator
+trait-background-iterator-description = You were from a colony which was for one reason or another abandoned, however you had the grit or foolhardiness within you to continue the goal your colony was set out to do. During these trials, your only reliable allies came to be the scugs/scuretts, who have thought you their way of communication which was passed down onto them throughout times of eld. The comprehension of this series of intricate noises and gestures made you slowly lose the fundamental basics of your mother language.

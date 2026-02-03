@@ -774,6 +774,9 @@
   physicalDesc: reagent-physical-desc-starry
   flavor: medicine
   color: "#2b2f77"
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: -5
   metabolisms:
     Medicine:
       effects:
@@ -1205,21 +1208,6 @@
         factor: 3
     Medicine:  # Starlight
       effects:
-      #If vampire
-      - !type:HealthChange
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Vampire ]
-        damage:
-          types:
-            Heat: 2
-      - !type:Emote
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Vampire ]
-        emote: Scream
-        probability: 0.3
-      #If not vampire
       - !type:HealthChange
         conditions:
         - !type:TotalDamageCondition

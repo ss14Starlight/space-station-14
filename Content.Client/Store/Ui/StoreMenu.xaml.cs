@@ -30,7 +30,10 @@ public sealed partial class StoreMenu : DefaultWindow
 
     public Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> Balance = new();
     public string CurrentCategory = string.Empty;
-
+    public bool GridMode { get; set; } = false; // Starlight
+    private bool? _clientGridOverride = null; 
+    private const int NamePreviewMax = 40;
+    private const int DescriptionPreviewMax = 180; // Starlight end
     private List<ListingDataWithCostModifiers> _cachedListings = new();
 
     public StoreMenu()
@@ -38,9 +41,11 @@ public sealed partial class StoreMenu : DefaultWindow
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
+        OnResized += ProcessResize; // Starlight
         WithdrawButton.OnButtonDown += OnWithdrawButtonDown;
         RefundButton.OnButtonDown += OnRefundButtonDown;
         SearchBar.OnTextChanged += _ => SearchTextUpdated?.Invoke(this, SearchBar.Text);
+        ToggleViewButton.OnButtonDown += _ => ToggleViewMode(); // Starlight
     }
 
     public void UpdateBalance(Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance)
@@ -79,7 +84,7 @@ public sealed partial class StoreMenu : DefaultWindow
         UpdateListing();
     }
 
-    public void UpdateListing()
+    public void UpdateListing() 
     {
         var sorted = _cachedListings.OrderBy(l => l.Priority)
                                     .ThenBy(l => l.Cost.Values.Sum());
@@ -87,10 +92,86 @@ public sealed partial class StoreMenu : DefaultWindow
         // should probably chunk these out instead. to-do if this clogs the internet tubes.
         // maybe read clients prototypes instead?
         ClearListings();
-        foreach (var item in sorted)
+
+    var useGrid = _clientGridOverride ?? GridMode; // Starlight start
+    ToggleViewButton.Text = useGrid ? "Grid" : "List";
+    HoverDivider.Visible = useGrid;
+    HoverPreview.Visible = useGrid;
+    if (!useGrid)
+    {
+        HoverName.Text = string.Empty;
+        HoverDescription.SetMessage(string.Empty);
+    }
+
+    if (useGrid)
         {
-            AddListingGui(item);
+            StoreListingsScroll.Visible = false;
+            StoreGridScroll.Visible = true;
+            foreach (var item in sorted)
+            {
+                if (!item.Categories.Contains(CurrentCategory))
+                    continue;
+
+                var hasBalance = item.CanBuyWith(Balance);
+
+                var spriteSys = _entityManager.EntitySysManager.GetEntitySystem<SpriteSystem>();
+
+                Texture? texture = null;
+                if (item.Icon != null)
+                    texture = spriteSys.Frame0(item.Icon);
+
+                if (item.ProductEntity != null)
+                {
+                    if (texture == null)
+                        texture = spriteSys.GetPrototypeIcon(item.ProductEntity).Default;
+                }
+                else if (item.ProductAction != null)
+                {
+                    var actionId = _entityManager.Spawn(item.ProductAction);
+                    if (_entityManager.System<ActionsSystem>().GetAction(actionId)?.Comp?.Icon is {} icon)
+                        texture = spriteSys.Frame0(icon);
+                }
+
+                var listingInStock = GetListingPriceString(item);
+                var discount = GetDiscountString(item);
+
+                var newListing = new StoreListingControl(item, listingInStock, discount, hasBalance, texture, compact: true);
+                newListing.StoreItemDivider.Visible = false;
+                newListing.StoreItemBuyButton.OnButtonDown += args => OnListingButtonPressed?.Invoke(args, item);
+                // Only show hover preview for compact/grid items
+                newListing.OnListingHoverEntered += (name, desc) =>
+                {
+                    HoverName.Text = TruncateForPreview(name, NamePreviewMax);
+                    HoverDescription.SetMessage(TruncateForPreview(desc, DescriptionPreviewMax));
+                };
+                newListing.OnListingHoverExited += () =>
+                {
+                    HoverName.Text = string.Empty;
+                    HoverDescription.SetMessage(string.Empty);
+                };
+                StoreGridContainer.AddChild(newListing);
+            }
+            ProcessResize(); // Update grid columns count
         }
+        else
+        {
+            StoreGridScroll.Visible = false;
+            StoreListingsScroll.Visible = true; // Starlight end
+            foreach (var item in sorted)
+            {
+                AddListingGui(item);
+            }
+        }
+    } 
+
+    private void ToggleViewMode() // Starlight
+    {
+        if (_clientGridOverride.HasValue)
+            _clientGridOverride = !_clientGridOverride.Value;
+        else
+            _clientGridOverride = !GridMode;
+
+        UpdateListing();
     }
 
     public void SetFooterVisibility(bool visible)
@@ -226,9 +307,26 @@ public sealed partial class StoreMenu : DefaultWindow
         return discountMessage;
     }
 
+    private static string TruncateForPreview(string? text, int maxChars) // Starlight
+    {
+        if (string.IsNullOrEmpty(text))
+            return string.Empty;
+
+        if (text.Length <= maxChars)
+            return text;
+
+        var truncated = text.Substring(0, maxChars);
+        var lastSpace = truncated.LastIndexOf(' ');
+        if (lastSpace > maxChars / 2)
+            truncated = truncated.Substring(0, lastSpace);
+
+        return truncated.TrimEnd() + "...";
+    }
+
     private void ClearListings()
     {
-        StoreListingsContainer.Children.Clear();
+    StoreListingsContainer.Children.Clear();
+    StoreGridContainer.Children.Clear();
     }
 
     public void PopulateStoreCategoryButtons(HashSet<ListingDataWithCostModifiers> listings)
@@ -290,4 +388,28 @@ public sealed partial class StoreMenu : DefaultWindow
     {
         public string? Id;
     }
+
+    // Starlight-start
+
+    private void ProcessResize()
+    {
+        if (StoreGridContainer.ChildCount == 0)
+            return;
+
+        var currentWidth = StoreGridContainer.Size.X;
+
+        var itemWidth = 0f;
+        foreach (var child in StoreGridContainer.Children)
+            itemWidth = Math.Max(itemWidth, child.Size.X);
+
+        if (itemWidth <= 0)
+            return;
+
+        var columnCount = (int)(currentWidth / itemWidth);
+        columnCount = Math.Max(1, columnCount);
+
+        StoreGridContainer.Columns = columnCount;
+    }
+
+    // Starlight-end
 }

@@ -41,11 +41,11 @@
     #jumpsuit: MagistrateUniformSuit
     #shoes: ClothingShoesBootsLaceup
     #eyes: ClothingEyesGlassesSecurity
-    gloves: ClothingHandsGlovesColorWhite
+    #gloves: ClothingHandsGlovesColorWhite
     #outerClothing: ClothingOuterRobesJudge
     id: MagistratePDA
     ears: ClothingHeadsetMagistrate
-    head: ClothingHeadHatPwig
+    #head: ClothingHeadHatPwig
     belt: BoxFolderNanoTrasenClipboard
   storage:
     back:

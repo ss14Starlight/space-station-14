@@ -156,7 +156,7 @@
       interpolate: Nearest
       maxDuration: 1.0
       isLooped: true
-  - type: ToggleableLightVisuals
+  - type: ToggleableVisuals
     spriteLayer: light
 
 - type: entity

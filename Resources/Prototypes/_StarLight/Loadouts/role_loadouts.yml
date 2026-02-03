@@ -20,6 +20,8 @@
   groups:
   - MagistrateJumpsuit
   - MagistrateEyewear
+  - MagistrateHands
+  - MagistrateHead
   - MagistrateOuterclothing
   - CommonBackpack
   - MagistrateShoes
