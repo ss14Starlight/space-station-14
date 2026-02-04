@@ -22,6 +22,14 @@
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   longRange: true
 
+- type: radioChannel
+  id: TSF
+  name: chat-radio-tsf
+  keycode: "j"
+  frequency: 1922
+  color: "#22a7ff"
+  longRange: true
+
   # For merchant-type admemes/events
 - type: radioChannel
   id: Merchant

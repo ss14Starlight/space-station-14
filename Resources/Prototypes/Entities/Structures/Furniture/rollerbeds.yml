@@ -16,7 +16,7 @@
       - state: rollerbed
         map: ["unfoldedLayer"]
       - state: rollerbed_folded
-        map: ["foldedLayer"]
+        map: ["foldedLayer"] 
         visible: false
       - state: rollerbed_buckled
         map: ["buckledLayer"]

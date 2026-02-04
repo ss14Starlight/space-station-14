@@ -302,7 +302,7 @@
   description: First use, place a shadow anchor beacon (lasts 2 min). Second use while it exists instantly return to it and consume the beacon.
   components:
     - type: Action
-      useDelay: 300 # 5min
+      useDelay: 60 # 1min
       itemIconStyle: NoItem
       priority: 20
       icon:
@@ -348,7 +348,7 @@
   parent: BaseAction
   id: ActionVampireDarkPassage
   name: Dark Passage (20)
-  description: Teleport to target location through shadows. Cannot pass through bright areas.
+  description: Teleport to target location through shadows.
   components:
     - type: Action
       useDelay: 40

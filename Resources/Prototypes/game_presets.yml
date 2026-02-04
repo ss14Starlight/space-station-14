@@ -78,6 +78,7 @@
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
+    - SLChangeling # Starlight
 #    - SiliconLiberation #Starlight
 
 - type: gamePreset
@@ -194,7 +195,7 @@
   rules:
   - Nukeops
   # - DummyNonAntagChance 🌟Starlight🌟
-  - SubGamemodesRule
+  - SubGamemodesRuleNuclearOperativeScaling # Starlight
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -298,7 +299,7 @@
   - vampires
   name: vampire-gamemode-title
   description: vampire-gamemode-description
-  showInVote: True # 🌟Starlight🌟 - Leave disabled until they are reworked
+  showInVote: True # 🌟Starlight🌟 they have been reworked
   minPlayers: 50 # 🌟Starlight🌟
   rules:
   - Vampire

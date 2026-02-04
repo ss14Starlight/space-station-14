@@ -32,11 +32,9 @@ public sealed class BatterySystem : SharedBatterySystem
         if (!ent.Comp.NetSyncEnabled)
             return;
 
-        TryComp(ent, out MetaDataComponent? metadataComponent); //starlight edit, add prototype readout
-
         DebugTools.Assert(!HasComp<ApcPowerReceiverBatteryComponent>(ent), $"{ToPrettyString(ent.Owner)} has a predicted battery connected to the power net. Disable net sync!");
         DebugTools.Assert(!HasComp<PowerNetworkBatteryComponent>(ent), $"{ToPrettyString(ent.Owner)} has a predicted battery connected to the power net. Disable net sync!");
-        DebugTools.Assert(!HasComp<PowerConsumerComponent>(ent), $"{ToPrettyString(ent.Owner)} has a predicted battery connected to the power net. Entity name: {metadataComponent?.EntityPrototype?.ID}. Disable net sync!"); // Starlight-edit - add entity name
+        DebugTools.Assert(!HasComp<PowerConsumerComponent>(ent), $"{ToPrettyString(ent.Owner)} has a predicted battery connected to the power net. Entity name: {MetaData(ent).EntityPrototype?.ID}. Disable net sync!"); // Starlight-edit - add entity name
     }
 
 

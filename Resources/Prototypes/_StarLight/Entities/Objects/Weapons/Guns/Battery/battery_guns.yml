@@ -500,6 +500,9 @@
     - state: stun-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Lock
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
   - type: Item
     size: Small
     shape:
@@ -661,6 +664,9 @@
       shader: unshaded
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Lock
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
   - type: Item
     size: Normal
     shape:
@@ -715,6 +721,9 @@
     - state: stun-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Lock
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse.rsi
   - type: Item
@@ -918,6 +927,9 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+  - type: Lock
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Battery/ntnc_pulse.rsi
   - type: Item

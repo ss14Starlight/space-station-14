@@ -75,7 +75,7 @@
   - MagazineBoxPistol40AP
   - MagazineBoxRifleAP
   - MagazineBoxLightRifleAP
-  - LightRifleHeavyMagazineAP
+  - MagazineDMRAP
   - MagazinePistolSubMachineGunAP
   radioChannels:
   - Security
