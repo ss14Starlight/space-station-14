@@ -186,6 +186,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     var hitscanEv = new HitscanTraceEvent
                     {
                         FromCoordinates = fromCoordinates,
+                        ToCoordinates = toCoordinates, // Starlight-edit
                         ShotDirection = mapDirection.Normalized(),
                         Gun = gun,
                         Shooter = user,
@@ -287,9 +288,11 @@ public sealed partial class GunSystem : SharedGunSystem
         // Starlight start - cartridges can hold hitscans
         if (HasComp<HitscanAmmoComponent>(uid))
         {
+            var coordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates; // Starlight-edit
             var hitscanEv = new HitscanTraceEvent
             {
-                FromCoordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates,
+                FromCoordinates = coordinates,
+                ToCoordinates = coordinates.Offset(mapDirection), // Starlight-edit
                 ShotDirection = mapDirection.Normalized(),
                 Gun = gun,
                 Shooter = user,

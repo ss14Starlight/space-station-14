@@ -184,6 +184,8 @@
           amount: 3
         - id: MagazineDMRFMJ
           amount: 3
+        - id: HammerBreachingNT
+          amount: 1
 
 - type: entity
   parent: [GunSafe, BaseSecurityContraband]

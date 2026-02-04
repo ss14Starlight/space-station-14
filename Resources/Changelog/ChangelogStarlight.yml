@@ -29210,5 +29210,15 @@ Entries:
   id: 313400
   time: '2026-02-04T11:08:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3134
+- author: Rinary
+  changes:
+  - message: Fixed particles when shooting in objects.
+    type: Fix
+  - message: 'Fixed the chance of hitting which depends on the distance from the shooter(For
+      more info check #227).'
+    type: Fix
+  id: 314200
+  time: '2026-02-04T14:39:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3142
 Order: -1
 
