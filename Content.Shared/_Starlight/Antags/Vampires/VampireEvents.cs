@@ -72,6 +72,10 @@ public sealed class VampireBloodDrankEvent : EntityEventArgs
     }
 }
 
+public sealed class VampireFullPowerAchievedEvent : EntityEventArgs
+{
+}
+
 /// <summary>
 /// Raised locally on a vampire when their progression related blood values change
 /// </summary>
@@ -172,7 +176,7 @@ public sealed partial class VampireBloodEruptionActionEvent : InstantActionEvent
     public float Range = 10f;
 
     [DataField]
-    public FixedPoint2 Damage = FixedPoint2.New(15);
+    public FixedPoint2 Damage = FixedPoint2.New(50);
 
     [DataField]
     public float TargetRange = 2f;
@@ -246,6 +250,9 @@ public sealed partial class VampireShadowAnchorDoAfterEvent : SimpleDoAfterEvent
     public NetCoordinates TargetCoordinates;
 
     [DataField]
+    public EntProtoId BeaconPrototype = "VampireShadowAnchorBeacon";
+
+    [DataField]
     public int BloodCost;
 
     [DataField]
@@ -255,9 +262,10 @@ public sealed partial class VampireShadowAnchorDoAfterEvent : SimpleDoAfterEvent
     {
     }
 
-    public VampireShadowAnchorDoAfterEvent(NetCoordinates coords, int bloodCost, TimeSpan autoReturnDelay)
+    public VampireShadowAnchorDoAfterEvent(NetCoordinates coords, EntProtoId beaconPrototype, int bloodCost, TimeSpan autoReturnDelay)
     {
         TargetCoordinates = coords;
+        BeaconPrototype = beaconPrototype;
         BloodCost = bloodCost;
         AutoReturnDelay = autoReturnDelay;
     }
@@ -281,7 +289,7 @@ public sealed partial class VampireDarkPassageActionEvent : WorldTargetActionEve
 public sealed partial class VampireExtinguishActionEvent : InstantActionEvent
 {
     [DataField]
-    public float Radius = 8f;
+    public float Radius = 4f;
 }
 
 // Shadow Boxing
@@ -418,16 +426,16 @@ public sealed partial class VampireBloodBondActionEvent : InstantActionEvent
     public float Range = 3f;
 
     /// <summary>
-    ///     Blood cost per second while active
+    ///     Blood cost per tick while active
     /// </summary>
     [DataField]
-    public float BloodCostPerSecond = 2.5f;
+    public int BloodCostPerTick = 5;
 
     /// <summary>
-    ///     Tick interval in seconds
+    ///     Tick interval
     /// </summary>
     [DataField]
-    public TimeSpan TickInterval = TimeSpan.FromSeconds(1);
+    public TimeSpan TickInterval = TimeSpan.FromSeconds(2);
 }
 
 public sealed partial class VampireMassHysteriaActionEvent : InstantActionEvent

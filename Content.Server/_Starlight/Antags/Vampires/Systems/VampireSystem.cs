@@ -7,6 +7,8 @@ using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.Vampire.Components;
 using Content.Shared.Alert;
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
@@ -19,6 +21,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
+using Content.Server.Body.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
@@ -77,6 +80,7 @@ public sealed partial class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<VampireComponent, VampireProgressionChangedEvent>(OnProgressionChanged);
         SubscribeLocalEvent<ActionsComponent, ComponentStartup>(OnActionsComponentStartup);
+        SubscribeLocalEvent<VampireComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
         InitializeAbilities();
         InitializeObjectives();
@@ -411,6 +415,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, VampireComponent comp, ComponentStartup args)
     {
+        EnsureComp<UnholyComponent>(uid);
         EnsureComp<VampireSunlightComponent>(uid);
         foreach (var actionId in comp.BaseVampireActions)
         {
@@ -423,6 +428,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
+        RemComp<RespiratorComponent>(uid);
 
         _alerts.ClearAlertCategory(uid, "Hunger");
 
@@ -436,6 +442,8 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, VampireComponent comp, ComponentShutdown args)
     {
+        RemComp<UnholyComponent>(uid);
+        RemComp<NightVisionComponent>(uid);
         if (TryComp<VampireDrainBeamComponent>(uid, out var drainBeamComp))
         {
             foreach (var connection in drainBeamComp.ActiveBeams.Values)
@@ -525,6 +533,18 @@ public sealed partial class VampireSystem : EntitySystem
             }
         }
     }
+
+    private void OnComponentRemove(EntityUid uid, VampireComponent comp, ComponentRemove _) 
+        => TryRemoveAbilities(uid, comp);
+     
+    private void TryRemoveAbilities(EntityUid uid, VampireComponent comp)
+    {
+        foreach (var (_, action) in comp.ActionEntities)
+            _actions.RemoveAction(uid, action);
+        comp.ActionEntities.Clear();
+        Dirty(uid, comp);
+    }
+    
 
     private int GetActionBloodThreshold(EntProtoId actionId)
     {
@@ -648,8 +668,13 @@ public sealed partial class VampireSystem : EntitySystem
             if (ent == uid)
                 continue;
 
-            if (HasComp<PrayableComponent>(ent))
-                return true;
+            if (!HasComp<PrayableComponent>(ent))
+                continue;
+
+            if (!Transform(ent).Anchored)
+                continue;
+
+            return true;
         }
 
         return false;
@@ -704,6 +729,9 @@ public sealed partial class VampireSystem : EntitySystem
         var reg = _componentFactory.GetRegistration(classProto.ClassComponent, ignoreCase: true);
         var classComp = _componentFactory.GetComponent(reg.Type);
         EntityManager.AddComponent(uid, classComp);
+
+        if (classProto.ID == "Umbrae")
+            EnsureComp<NightVisionComponent>(uid);
 
         comp.ChosenClassId = classProto.ID;
 

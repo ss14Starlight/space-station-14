@@ -506,7 +506,7 @@ entities:
     - type: Transform
       pos: 9.5,7.5
       parent: 10
-- proto: WallPlastitaniumIndestructible
+- proto: WallPlastitanium
   entities:
   - uid: 2
     components:

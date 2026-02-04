@@ -46,6 +46,8 @@ using Content.Shared.Temperature.Components;
 #region Starlight
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
+using Content.Server._Starlight.Antags.Vampires;
+using Content.Shared._Starlight.Antags.Vampires.Components;
 #endregion Starlight
 
 namespace Content.Server.Zombies;
@@ -162,6 +164,8 @@ public sealed partial class ZombieSystem
         speaker.UnderstoodLanguages.Clear();
 
         _language.AddLanguage(target, "Zombie");
+
+        RemComp<VampireComponent>(target); //De-vamps Vampire zombies
         // Starlight-end
 
         //This is needed for stupid entities that fuck up combat mode component

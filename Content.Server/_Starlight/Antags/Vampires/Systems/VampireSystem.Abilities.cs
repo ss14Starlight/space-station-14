@@ -1,10 +1,8 @@
 using Content.Server.Bible.Components;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
-using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
 using Content.Shared.Body.Components;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
@@ -33,6 +31,7 @@ using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Popups;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -150,9 +149,9 @@ public sealed partial class VampireSystem : EntitySystem
             || !_map.TryGetTileRef(gridUid.Value, gridComp, coords, out var tileRef))
             return false;
 
-        return !_turf.IsSpace(tileRef) &&
-               !_turf.IsTileBlocked(tileRef, CollisionGroup.Impassable | CollisionGroup.Opaque) &&
-               !IsTileBlockedByEntities(coords);
+         return !_turf.IsSpace(tileRef) &&
+             !_turf.IsTileBlocked(tileRef, CollisionGroup.Impassable) &&
+             !IsTileBlockedByEntities(coords);
     }
 
     internal bool HasChosenClass(EntityUid uid)
@@ -225,6 +224,17 @@ public sealed partial class VampireSystem : EntitySystem
     internal bool IsProtectedByFaith(EntityUid target)
         => HasComp<BibleUserComponent>(target);
 
+    private bool IsInvalidDrinkTarget(EntityUid user, EntityUid target, bool showPopup = true)
+    {
+        if (!HasComp<VampireComponent>(target) && !HasComp<VampireThrallComponent>(target))
+            return false;
+
+        if (showPopup)
+            _popup.PopupEntity(Loc.GetString("vampire-drink-invalid-target"), user, user, PopupType.MediumCaution);
+
+        return true;
+    }
+
     /// <summary>
     /// Checks if a tile position is blocked by solid entities(walls etc.)
     /// </summary>
@@ -240,7 +250,7 @@ public sealed partial class VampireSystem : EntitySystem
             // Check if entity has a physics component with impassable collision
             if (TryComp<PhysicsComponent>(ent, out var physics) &&
                 physics.CanCollide &&
-                (physics.CollisionMask & (int)(CollisionGroup.Impassable | CollisionGroup.Opaque)) != 0)
+                (physics.CollisionMask & (int) CollisionGroup.Impassable) != 0)
                 return true;
 
             // Check for door components that typically block movement
@@ -290,6 +300,9 @@ public sealed partial class VampireSystem : EntitySystem
             || !HasComp<HumanoidAppearanceComponent>(target))
             return;
 
+        if (IsInvalidDrinkTarget(uid, target))
+            return;
+
         if (IsProtectedByFaith(target) && comp.FullPower != true)
         {
             _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), uid, uid, Shared.Popups.PopupType.MediumCaution);
@@ -316,6 +329,9 @@ public sealed partial class VampireSystem : EntitySystem
             || target == uid
             || !HasComp<BloodstreamComponent>(target)
             || !HasComp<HumanoidAppearanceComponent>(target))
+            return;
+
+        if (IsInvalidDrinkTarget(uid, target))
             return;
 
         if (IsProtectedByFaith(target) && comp.FullPower != true)
@@ -357,6 +373,12 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         var target = args.Args.Target.Value;
+
+        if (IsInvalidDrinkTarget(uid, target, showPopup: false))
+        {
+            comp.IsDrinking = false;
+            return;
+        }
 
         if (!comp.BloodDrunkFromTargets.TryGetValue(target, out var drunkFromTarget))
             drunkFromTarget = 0;
@@ -676,7 +698,11 @@ public sealed partial class VampireSystem : EntitySystem
         var prev = comp.FullPower;
         comp.FullPower = comp.TotalBlood > 1000 && uniqueHumanoids >= 8;
         if (!prev && comp.FullPower)
+        {
             _popup.PopupEntity(Loc.GetString("vampire-full-power-achieved"), uid, uid);
+            var ev = new VampireFullPowerAchievedEvent();
+            RaiseLocalEvent(uid, ev);
+        }
         Dirty(uid, comp);
     }
 

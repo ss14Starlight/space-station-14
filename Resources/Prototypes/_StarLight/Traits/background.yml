@@ -106,10 +106,7 @@
             - ScurretSign
           understands:
             - ScurretSign
-    - !type:AddCompsEffect
-      components:
-        - type: ForeignerTrait
-          cantUnderstand: false
-          baseTranslator: TranslatorForeigner
+    - !type:SpawnItemInHandEffect
+      item: TranslatorIterator
     - !type:BackgroundEffect
       background: Iterator

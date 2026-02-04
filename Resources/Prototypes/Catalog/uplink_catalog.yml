@@ -1139,6 +1139,19 @@
   - UplinkDisruption
 
 - type: listing
+  id: UplinkBreachingHammer
+  name: uplink-breaching-hammer-name
+  description: uplink-breaching-hammer-desc
+  productEntity: HammerBreachingNT
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkWeaponry
+
+- type: listing
   id: UplinkDuffelSurgery
   name: uplink-duffel-surgery-name
   description: uplink-duffel-surgery-desc
