@@ -37,6 +37,16 @@
       targetUser: true
 
 - type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantTSF
+  name: TSF death rattle implant
+  description: This implant will inform the TSF radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: TSF
+
+- type: entity
   parent: BaseSubdermalImplant
   id: BluespaceImplant
   name: bluespace implant

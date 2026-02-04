@@ -23,7 +23,7 @@
     rules:
     - id: Thief
       prob: 0.60 # Starlight. Adds up to 1.
-    - id: VampireLess # The rework is here.
+    - id: VampireLess # Starlight. The rework is here.
       prob: 0.25
     - id: SubWizard
       prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
@@ -39,9 +39,9 @@
   - type: SubGamemodes
     rules:
     - id: ThiefLess # So that only 3 thieves max spawn in rev games.
-      prob: 0.40 # Starlight, to account for Wizard and Xenoborgs
+      prob: 0.41 # Starlight 
     - id: SLChangeling #Starlight lings
-      prob: 0.23
+      prob: 0.22
     - id: VampireLess # Starlight reworked
       prob: 0.22
     - id: SubWizard
@@ -84,8 +84,27 @@
   - type: SubGamemodes
     rules:
     - id: ThiefLess
-      prob: 0.92
+      prob: 0.50
+    - id: VampireLess # This is probably the most interesting sub-gamemode for them.
+      prob: 0.32
     - id: Xenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
+      prob: 0.08
+
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesRuleNuclearOperativeScaling
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
+      prob: 0.50
+    - id: SLChangelingLess # 6 changelings makes it too hard to arm crew on warops
+      prob: 0.20
+    - id: VampireLess
+      prob: 0.20
+    - id: SubWizard
+      prob: 0.07
+    - id: Xenoborgs
       prob: 0.08
 
 - type: entity

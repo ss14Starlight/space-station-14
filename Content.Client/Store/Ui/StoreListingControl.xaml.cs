@@ -6,12 +6,15 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Text.RegularExpressions; // Starlight
 
 namespace Content.Client.Store.Ui;
 
 [GenerateTypedNameReferences]
 public sealed partial class StoreListingControl : Control
 {
+    public event Action<string, string>? OnListingHoverEntered; // Starlight
+    public event Action? OnListingHoverExited; // Starlight
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -19,10 +22,13 @@ public sealed partial class StoreListingControl : Control
 
     private readonly ListingDataWithCostModifiers _data;
 
+    private static readonly Regex _priceNumberRegex = new("([0-9]+(?:[.,][0-9]+)?)", RegexOptions.Compiled); // Starlight
+
     private readonly bool _hasBalance;
     private readonly string _price;
     private readonly string _discount;
-    public StoreListingControl(ListingDataWithCostModifiers data, string price, string discount, bool hasBalance, Texture? texture = null)
+    private readonly bool _compact; // Starlight
+    public StoreListingControl(ListingDataWithCostModifiers data, string price, string discount, bool hasBalance, Texture? texture = null, bool compact = false) // Starlight
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
@@ -33,14 +39,34 @@ public sealed partial class StoreListingControl : Control
         _hasBalance = hasBalance;
         _price = price;
         _discount = discount;
+        _compact = compact; // Starlight
 
         StoreItemName.Text = ListingLocalisationHelpers.GetLocalisedNameOrEntityName(_data, _prototype);
         StoreItemDescription.SetMessage(ListingLocalisationHelpers.GetLocalisedDescriptionOrEntityDescription(_data, _prototype));
+
+        if (_compact) // Starlight
+        {
+            StoreItemName.Visible = false;
+            StoreItemDescription.Visible = false;
+            DiscountSubText.Visible = false;
+            StoreItemBuyButton.HorizontalAlignment = Robust.Client.UserInterface.Control.HAlignment.Center;
+            StoreItemBuyButton.HorizontalExpand = false;
+        }
 
         UpdateBuyButtonText();
         StoreItemBuyButton.Disabled = !CanBuy();
 
         StoreItemTexture.Texture = texture;
+    // Starlight start
+    OnMouseEntered += _ => OnListingHoverEntered?.Invoke(ListingLocalisationHelpers.GetLocalisedNameOrEntityName(_data, _prototype), ListingLocalisationHelpers.GetLocalisedDescriptionOrEntityDescription(_data, _prototype));
+    OnMouseExited += _ => OnListingHoverExited?.Invoke();
+
+    StoreItemTexture.OnMouseEntered += _ => OnListingHoverEntered?.Invoke(ListingLocalisationHelpers.GetLocalisedNameOrEntityName(_data, _prototype), ListingLocalisationHelpers.GetLocalisedDescriptionOrEntityDescription(_data, _prototype));
+    StoreItemTexture.OnMouseExited += _ => OnListingHoverExited?.Invoke();
+
+    StoreItemBuyButton.OnMouseEntered += _ => OnListingHoverEntered?.Invoke(ListingLocalisationHelpers.GetLocalisedNameOrEntityName(_data, _prototype), ListingLocalisationHelpers.GetLocalisedDescriptionOrEntityDescription(_data, _prototype));
+    StoreItemBuyButton.OnMouseExited += _ => OnListingHoverExited?.Invoke();
+    // Starlight end
     }
 
     private bool CanBuy()
@@ -71,7 +97,23 @@ public sealed partial class StoreListingControl : Control
         else
         {
             DiscountSubText.Text = _discount;
-            StoreItemBuyButton.Text = _price;
+            if (_compact) // Starlight start
+            {
+                // Can be done better
+                var m = _priceNumberRegex.Match(_price);
+                if (m.Success)
+                {
+                    StoreItemBuyButton.Text = $"{m.Groups[1].Value}¢";
+                }
+                else
+                {
+                    StoreItemBuyButton.Text = _price;
+                }
+            }
+            else
+            {
+                StoreItemBuyButton.Text = _price;
+            } // Starlight end
         }
     }
 

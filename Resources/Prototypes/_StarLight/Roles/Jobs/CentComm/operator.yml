@@ -1,6 +1,6 @@
 - type: job
   id: CentralCommandOperator
-  name: job-name-centcomoperator
+  name: job-name-centcommoperator
   description: job-description-centcomoperator
   playTimeTracker: JobCentralCommandOperator
   setPreference: false
@@ -132,7 +132,7 @@
     back: ClothingBackpackSatchelCentcomm
     shoes: ClothingShoesBootsLaceup
     eyes: ClothingEyesGlassesCentComm
-    gloves: ClothingHandsGlovesNitrile 
+    gloves: ClothingHandsGlovesNitrile
     id: CentcomPDA
     ears: ClothingHeadsetAltCentCom
     pocket1: WeaponPistolN1984
@@ -200,4 +200,4 @@
     back:
     - RubberStampCSOD
     - MindShieldImplanter
-    
+

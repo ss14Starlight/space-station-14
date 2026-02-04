@@ -21,6 +21,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
+using Content.Server.Body.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
@@ -79,6 +80,7 @@ public sealed partial class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<VampireComponent, VampireProgressionChangedEvent>(OnProgressionChanged);
         SubscribeLocalEvent<ActionsComponent, ComponentStartup>(OnActionsComponentStartup);
+        SubscribeLocalEvent<VampireComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
         InitializeAbilities();
         InitializeObjectives();
@@ -426,6 +428,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
+        RemComp<RespiratorComponent>(uid);
 
         _alerts.ClearAlertCategory(uid, "Hunger");
 
@@ -530,6 +533,18 @@ public sealed partial class VampireSystem : EntitySystem
             }
         }
     }
+
+    private void OnComponentRemove(EntityUid uid, VampireComponent comp, ComponentRemove _) 
+        => TryRemoveAbilities(uid, comp);
+     
+    private void TryRemoveAbilities(EntityUid uid, VampireComponent comp)
+    {
+        foreach (var (_, action) in comp.ActionEntities)
+            _actions.RemoveAction(uid, action);
+        comp.ActionEntities.Clear();
+        Dirty(uid, comp);
+    }
+    
 
     private int GetActionBloodThreshold(EntProtoId actionId)
     {

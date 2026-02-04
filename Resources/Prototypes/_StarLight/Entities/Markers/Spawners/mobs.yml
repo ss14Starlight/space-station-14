@@ -49,8 +49,8 @@
     - type: Sprite
       layers:
         - state: green
-        - sprite: _Starlight/Mobs/XenoSlimes/test_sprite.rsi
-          state: test_slime
+        - sprite: _Starlight/Mobs/XenoSlimes/slimes.rsi
+          state: base1
         - state: ai
     - type: ConditionalSpawner
       prototypes:
