@@ -117,7 +117,7 @@
     - id: ClothingHeadHatBeretCorpsman #Starlight
     - id: ClothingBeltCorpsmanFilled #Starlight
     - id: ClothingHandsGlovesBlackNitrile #Starlight
-    - id: ClothingEyesGlassesSecurity #Starlight
+    - id: ClothingEyesGlassesBrigmedic #Starlight
     - id: WeaponTaser
     - id: WeaponDisabler
     - id: TrackingImplanter
@@ -129,7 +129,10 @@
     - id: ClothingUniformJumpsuitBrigmedic
     - id: ClothingUniformJumpskirtBrigmedic
     - id: ClothingUniformJumpskirtOfLife
-      prob: 0.1
+    - id: ClothingShoesBootsMagSec
+    - id: BedsheetBrigmedicStrange
+    - id: BedsheetBrigmedic
+    - id: RubberStampBrigmedic
     - id: MedkitFilled
     - !type:GroupSelector
       prob: 0.7
