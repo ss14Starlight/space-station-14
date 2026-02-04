@@ -226,9 +226,7 @@ public sealed partial class PolymorphSystem : EntitySystem
                 || !EntityManager.TryGetComponent(uid, reg.Idx, out var comp))
                 continue;
 
-            var copy = _serialization.CreateCopy(comp, notNullableOverride: true);
-            copy.Owner = child;
-            AddComp(child, copy, true);
+            EntityManager.CopyComponent(uid, child, comp);
         }
         // Startlight - end
 

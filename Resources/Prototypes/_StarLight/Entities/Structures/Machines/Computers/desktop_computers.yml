@@ -167,6 +167,18 @@
     board: SurveillanceCameraMonitorCircuitboardDesktop
 
 - type: entity
+  parent: ComputerSurveillanceCameraMonitorDesktop
+  id: ComputerSurveillanceCameraMonitorDesktopIsolatedNetwork
+  suffix: Isolated Network
+  components:
+  - type: Computer
+    board: null
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCameraIsolatedNetwork
+    transmitFrequencyId: SurveillanceCameraIsolatedNetwork
+
+- type: entity
   parent: [ BaseDesktop, ComputerCargoBounty ]
   id: ComputerCargoBountyDesktop
   name: cargo bounty desktop computer

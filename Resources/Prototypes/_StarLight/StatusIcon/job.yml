@@ -184,6 +184,22 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconSoviet
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Soviet
+  jobName: job-name-Soviet
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconTSF
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: TSF
+  jobName: job-name-TSF
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconNanotrasenCareerTrainer
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi

@@ -41,7 +41,7 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
-  - LightRifleHeavyMagazineIncendiary
+  - MagazineDMRIncendiary # Starlight
   - MagazinePistolSubMachineGunIncendiary
   - SpeedLoaderShotgunIncendiary
   radioChannels:
@@ -111,7 +111,7 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
-  - LightRifleHeavyMagazineUranium
+  - MagazineDMRUranium # Starlight
   - MagazinePistolSubMachineGunUranium
   - SpeedLoaderShotgunUranium
   radioChannels:

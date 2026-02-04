@@ -40,7 +40,7 @@
           shader: unshaded
       color: "#ffeb52ff" # Yes I'm just taking the microreactor sprite and painting it yellow, sue me
     - type: Battery
-      maxCharge: 5000
-      startingCharge: 5000
+      maxCharge: 1080
+      startingCharge: 1080
     - type: BatterySelfRecharger
-      autoRechargeRate: 50
+      autoRechargeRate: 5

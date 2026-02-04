@@ -44,3 +44,8 @@
     damageCoefficient: 0.1
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Backpacks/ntnc_bag.rsi
+
+- type: entity
+  parent: [BaseTSFContraband, ClothingBackpackBlueShield]
+  id: ClothingBackpackTSF
+  name: federation backpack

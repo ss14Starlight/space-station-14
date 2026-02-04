@@ -24,6 +24,7 @@
         - id: FaxMachineFlatpack
         - id: PlushieEmmie
         - id: ClothingOuterHardsuitNtrep
+        - id: BriefcaseSecure
         - !type:NestedSelector
           tableId: CorporateDocumentTable
   

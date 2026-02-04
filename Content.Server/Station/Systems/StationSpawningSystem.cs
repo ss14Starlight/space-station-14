@@ -44,7 +44,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
     [Dependency] private readonly ActorSystem _actors = default!;
     [Dependency] private readonly IdCardSystem _cardSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    //[Dependency] private readonly IConfigurationManager _configurationManager = default!; // Starlight-removed - we dropped the one use of this
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
@@ -149,7 +149,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 EquipRoleLoadout(jobEntity, loadout, roleProto!, profile); // Starlight edit
             }
-            
+
             // Raise gear equipped event for non-humanoid jobs
             var jobEntityGearEv = new StartingGearEquippedEvent(jobEntity);
             RaiseLocalEvent(jobEntity, ref jobEntityGearEv);
@@ -273,8 +273,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         // We don't need to manually attach limbs that are already attached by other limbs
         var filteredCyberlimbs = installedCyberlimbs.Where(p => !installedCyberlimbs.Where(v => v.AttachedParts.Contains(p.ID)).Any())
                                                     .Select(p => p.ID).ToList();
-                                               
-        
+
+
         foreach (var implant in filteredCyberlimbs){
             var implantEnt = _prototypeManager.Index<EntityPrototype>(implant);
 
@@ -307,7 +307,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             _limbSystem.Amputatate(body, oldPart);
             Del(oldPartId.Id);
             _limbSystem.AttachLimb((entity, appearance), slot, (parentUid.Value, parentBodyPart), (newPart, bodyPartComp));
-        }      
+        }
     }
 
     /// <summary>

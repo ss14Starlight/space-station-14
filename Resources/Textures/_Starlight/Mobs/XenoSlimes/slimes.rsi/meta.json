@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base1",
+      "copyright": "Conflee",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "base1_dead",
+      "copyright": "Conflee"
+    },
+    {
+      "name": "base2",
+      "copyright": "Conflee",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "base2_dead",
+      "copyright": "Conflee"
+    },
+    {
+      "name": "eyes_angry",
+      "directions": 4,
+      "copyright": "Conflee"
+    },
+    {
+      "name": "eyes_cat",
+      "directions": 4,
+      "copyright": "Conflee"
+    },
+    {
+      "name": "eyes_clown",
+      "directions": 4,
+      "copyright": "Conflee"
+    },
+    {
+      "name": "eyes_default",
+      "directions": 4,
+      "copyright": "Conflee"
+    },
+    {
+      "name": "eyes_freak",
+      "directions": 4,
+      "copyright": "Conflee"
+    },
+    {
+      "name": "eyes_mischief",
+      "directions": 4,
+      "copyright": "Conflee"
+    },
+    {
+      "name": "eyes_pins",
+      "directions": 4,
+      "copyright": "Conflee"
+    },
+    {
+      "name": "eyes_shocked",
+      "directions": 4,
+      "copyright": "Conflee"
+    },
+    {
+      "name": "eyes_smug",
+      "directions": 4,
+      "copyright": "Conflee"
+    },
+    {
+      "name": "eyes_squint",
+      "directions": 4,
+      "copyright": "Conflee"
+    }
+  ]
+}

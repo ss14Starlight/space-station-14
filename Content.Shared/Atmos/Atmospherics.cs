@@ -346,7 +346,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     The default pressure at which pumps and powered equipment max out at, in kPa.
         /// </summary>
-        public const float MaxOutputPressure = 4500;
+        public const float MaxOutputPressure = 9000; ///Starlight edit
 
         /// <summary>
         ///     The default maximum speed powered equipment can work at, in L/s.

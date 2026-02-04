@@ -201,8 +201,9 @@ public sealed class UmbraeSystem : EntitySystem
             || !_transform.GetGrid(target).HasValue)
             return;
 
-        if (!_vampire.IsValidTile(target) ||
-            !_interaction.InRangeUnobstructed(uid, target, range: 100, collisionMask: CollisionGroup.Opaque, popup: false))
+        if (!_vampire.IsValidTile(target)
+            || (!comp.FullPower
+                && !_interaction.InRangeUnobstructed(uid, target, range: 100, collisionMask: CollisionGroup.Impassable, popup: false)))
         {
             _popup.PopupEntity(Loc.GetString("action-vampire-dark-passage-wrong-place"), uid, uid);
             return;
