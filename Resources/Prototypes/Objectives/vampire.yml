@@ -189,8 +189,8 @@
       sprite: _Starlight/Vampire/actions_vampire.rsi
       state: blood_objective
   - type: NumberObjective
-    min: 400
-    max: 880
+    min: 600
+    max: 1500
     title: objective-condition-drain-title
     description: objective-condition-drain-description
   - type: BloodDrainCondition

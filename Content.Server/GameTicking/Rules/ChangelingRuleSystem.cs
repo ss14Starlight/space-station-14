@@ -52,19 +52,17 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<SLChangelingRu
             return false;
 
         // briefing
-        if (TryComp<MetaDataComponent>(target, out var metaData))
-        {
-            var briefing = Loc.GetString("changeling-role-greeting", ("name", metaData?.EntityName ?? "Unknown"));
-            var briefingShort = Loc.GetString("changeling-role-greeting-short", ("name", metaData?.EntityName ?? "Unknown"));
+        var metaData = MetaData(target);
+        var briefing = Loc.GetString("changeling-role-greeting", ("name", metaData?.EntityName ?? "Unknown"));
+        var briefingShort = Loc.GetString("changeling-role-greeting-short", ("name", metaData?.EntityName ?? "Unknown"));
 
-            _antag.SendBriefing(target, briefing, Color.Yellow, BriefingSound);
-            _role.MindHasRole<SLChangelingRoleComponent>(mindId, out var changelingRole);
-            _role.MindHasRole<RoleBriefingComponent>(mindId, out var briefingComp);
-            if (changelingRole is not null && briefingComp is null)
-            {
-                AddComp<RoleBriefingComponent>(changelingRole.Value.Owner);
-                Comp<RoleBriefingComponent>(changelingRole.Value.Owner).Briefing = briefing;
-            }
+        _antag.SendBriefing(target, briefing, Color.Yellow, BriefingSound);
+        _role.MindHasRole<SLChangelingRoleComponent>(mindId, out var changelingRole);
+        _role.MindHasRole<RoleBriefingComponent>(mindId, out var briefingComp);
+        if (changelingRole is not null && briefingComp is null)
+        {
+            AddComp<RoleBriefingComponent>(changelingRole.Value.Owner);
+            Comp<RoleBriefingComponent>(changelingRole.Value.Owner).Briefing = briefing;
         }
         // hivemind stuff
         _npcFaction.RemoveFaction(target, NanotrasenFactionId, false);
@@ -95,13 +93,14 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<SLChangelingRu
         var mostAbsorbed = 0f;
         var mostStolen = 0f;
 
-        foreach (var ling in EntityQuery<ChangelingComponent>())
+        var query = EntityQueryEnumerator<ChangelingComponent>();
+
+        while(query.MoveNext(out var lingId, out var ling))
         {
-            if (!_mind.TryGetMind(ling.Owner, out var mindId, out var mind))
+            if (!_mind.TryGetMind(lingId, out var mindId, out var mind))
                 continue;
 
-            if (!TryComp<MetaDataComponent>(ling.Owner, out var metaData))
-                continue;
+            var metaData = MetaData(lingId);
 
             if (ling.TotalAbsorbedEntities > mostAbsorbed)
             {

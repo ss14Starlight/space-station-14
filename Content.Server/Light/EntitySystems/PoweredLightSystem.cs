@@ -62,7 +62,7 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
         // need this to update visualizers
         UpdateLight(uid, light);
     }
-    
+
     #region Starlight
     private void OnAlertLevelChanged(AlertLevelChangedEvent args)
     {

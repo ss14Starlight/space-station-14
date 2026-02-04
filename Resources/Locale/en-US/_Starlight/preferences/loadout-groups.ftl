@@ -59,6 +59,7 @@ loadout-group-magistrate-shoes = Magistrate shoes
 loadout-group-iia-shoes = Lawyer shoes
 loadout-group-magistrate-outer = Magistrate Outer Clothing
 loadout-group-magistrate-headwear = Magistrate Head
+loadout-group-magistrate-hands = Magistrate Gloves
 
 # Civilian
 loadout-group-civilian-shoes = Shoes
@@ -103,3 +104,6 @@ loadout-group-NanotrasenCareerTrainer-jumpsuit = Nanotrasen Career Trainer jumps
 loadout-group-NanotrasenCareerTrainer-hat = Nanotrasen Career Trainer hat
 loadout-group-NanotrasenCareerTrainer-shoes = Nanotrasen Career Trainer shoes
 loadout-group-NanotrasenCareerTrainer-eyewear = Nanotrasen Career Trainer eyewear
+
+# Security
+loadout-group-warden-neck = Warden neck

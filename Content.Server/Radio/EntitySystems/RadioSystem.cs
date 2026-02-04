@@ -87,10 +87,9 @@ public sealed class RadioSystem : EntitySystem
         if (TryComp(uid, out ActorComponent? actor))
         {
             // Starlight - Start
-            var listener = component.Owner;
             var msg = args.OriginalChatMsg;
 
-            if (listener != null && !_language.CanUnderstand(listener, args.Language.ID))
+            if (!_language.CanUnderstand(uid, args.Language.ID))
                 msg = args.LanguageObfuscatedChatMsg;
             else if(args.MessageSource != uid)
                 args.Receivers.Add(uid);

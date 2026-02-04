@@ -437,7 +437,6 @@
   table: !type:GroupSelector
     children:
       - id: MobGiantSpider
-      - id: MobGiantSpiderWizard
       - id: MobMimic
       - !type:NestedSelector
         tableId: GoldSlimeHostileTable
@@ -446,9 +445,43 @@
   id: GoldSlimeHostileTable
   table: !type:GroupSelector
     children:
+      #Station Enemies
       - id: MobAngryBee
       - id: MobGiantSpiderAngry
       - id: MobClownSpider
+      - id: MobMimicHostile
+      - id: MobLaserRaptor #Technically only in grand lottery but oh well
+      - id: MobTomatoKiller
+      - id: MobGorilla
+      - id: MobMouseCancer #the glow. the beautiful glow!
+      #Salvage Enemies
+      - id: MobBearSpace
+      - id: MobKangarooSpace
+      - id: MobSpiderSpace
+      - id: MobCobraSpace
+      - id: MobTick
+      #Xenos (Salvage)
+      - id: MobGoliath
+      - id: MobHivelord
+      - id: MobBasilisk
+      #Carps
+      - id: MobCarp
+      - id: MobCarpMagic
+      - id: MobCarpHolo
+      - id: MobCarpRainbow
+      - id: MobShark #Sharkminnow
+      #Floral Anom Mobs
+      - id: MobLuminousPerson
+      - id: MobLuminousObject
+      - id: MobLuminousEntity
+      
+      #Admeme things
+      #Watchers... dont know what they are but they seem to be a basalisk but flying
+      - id: MobWatcherLavaland
+      - id: MobWatcherIcewing
+      - id: MobWatcherMagmawing
+      - id: MobWatcherPride #the gay one (is apperently admeme only?)
+      #Xenos (admeme), todo: reconsider their existence, some of these are really strong
       - id: MobArgocyteSlurva
       - id: MobArgocyteBarrier
       - id: MobArgocyteSkitter
@@ -461,64 +494,16 @@
       - id: MobArgocyteEnforcer
       - id: MobArgocyteFounder
       - id: MobArgocyteLeviathing
-      - id: MobGoliath
-      - id: MobHivelord
-      - id: MobBasilisk
-      - id: MobBehonkerElectrical
-      - id: MobBehonkerPyro
-      - id: MobBehonkerGrav
-      - id: MobBehonkerIce
-      - id: MobCarp
-      - id: MobCarpMagic
-      - id: MobCarpHolo
-      - id: MobCarpRainbow
-      - id: MobCarpDragon
-      - id: MobCarpDungeon
-      - id: MobShark
-      - id: MobCluwneBeast
-      - id: MobQuartzCrab
-      - id: MobIronCrab
-      - id: MobCoalCrab
-      - id: MobUraniumCrab
-      - id: MobBananiumCrab
-      - id: MobSilverCrab
-      - id: MobGoldCrab
-      - id: ReagentSlime
-      - id: ReagentSlimeBeer
-      - id: ReagentSlimePax
-      - id: ReagentSlimeNocturine
-      - id: ReagentSlimeTHC
-      - id: ReagentSlimeBicaridine
-      - id: ReagentSlimeToxin
-      - id: ReagentSlimeNapalm
-      - id: ReagentSlimeOmnizine
-      - id: ReagentSlimeMuteToxin
-      - id: ReagentSlimeNorepinephricAcid
-      - id: ReagentSlimeEphedrine
-      - id: ReagentSlimeRobustHarvest
-      - id: MobFleshJared
-      - id: MobFleshGolem
-      - id: MobFleshClamp
-      - id: MobFleshLover
-      - id: MobAbomination
       - id: MobHellspawn
-      - id: MobWatcherLavaland
-      - id: MobWatcherIcewing
-      - id: MobWatcherMagmawing
-      - id: MobWatcherPride
-      - id: MobLuminousPerson
-      - id: MobLuminousObject
-      - id: MobLuminousEntity
-      - id: MobMimicHostile
-      - id: MobLaserRaptor
-      - id: MobTomatoKiller
-      - id: MobRatKing
-      - id: MobRatKingBuff
-      - id: MobBearSpace
-      - id: MobKangarooSpace
-      - id: MobSpiderSpace
-      - id: MobCobraSpace
-      - id: MobTick
+      #Other admeme hostiles
+      - id: MobCluwneBeast #A even more evil zed
+
+      #Hostile Spawners
+      - id: ReagentSlimeSpawner
+      - id: RandomFleshAnomalySpawner
+      - id: SpawnMobBehonker #admeme. but I think the station can take em
+      - id: SpawnMobOreCrab
+
 
 - type: entityTable
   id: SlimeExtractsNoRainbow

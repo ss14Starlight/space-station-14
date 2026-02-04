@@ -296,6 +296,9 @@
   id: MagazineBattery
 
 - type: Tag
+  id: MagazineL10DMR
+
+- type: Tag
   id: MagazineBoxLightRifle
 
 - type: Tag

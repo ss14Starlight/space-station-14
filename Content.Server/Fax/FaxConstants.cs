@@ -30,4 +30,14 @@ public static class FaxConstants
     public const string FaxPaperStampedByData = "fax_data_stamped_by";
     public const string FaxSyndicateData = "fax_data_i_am_syndicate";
     public const string FaxPaperLockedData = "fax_data_locked";
+    
+    // starlight-start
+    // Cargo Slips Data
+    
+    public const string FaxSlipProduct = "fax_slip_product_id";
+    public const string FaxSlipRequester = "fax_slip_requester";
+    public const string FaxSlipReason = "fax_slip_reason";
+    public const string FaxSlipOrderQuantity = "fax_slip_order_quantity";
+    public const string FaxSlipOrderAccount = "fax_slip_order_account";
+    // starlight-end
 }

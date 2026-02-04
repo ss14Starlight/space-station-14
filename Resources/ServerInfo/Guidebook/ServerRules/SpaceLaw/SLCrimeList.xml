@@ -124,6 +124,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Tampering with Machinery (4)
       </Box>
     </ColorBox>
     <ColorBox Color="#2e422e">
@@ -156,11 +157,12 @@
     </ColorBox>
     <ColorBox Color="#453a59">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Mass Destruction (4)
+        Destruction of Property (4)
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Mass Destruction (4)
       </Box>
     </ColorBox>
     <ColorBox Color="#453a59">
@@ -409,7 +411,7 @@
   
   3. Petty Theft, Grand Theft, and Armed Robbery
   
-  4. Vandalism, Damage of Property, Mass Destruction, Terrorism
+  4. Vandalism, Tampering with Machinery, Damage of Property, Destruction of Property, Mass Destruction, Terrorism
   
   5. Trespass, Secure Trespass
   
@@ -539,7 +541,17 @@
     </ColorBox>
     <ColorBox Color="#453a59">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Damage/Destruction of Property
+        Tampering with Machinery
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#453a59">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        To tamper with a machine such as cutting wires or modifying their functions. Includes but is not limited to; consoles, airlocks, and Silicons.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#453a59">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Damage of Property
       </Box>
     </ColorBox>
     <ColorBox Color="#453a59">
@@ -662,16 +674,6 @@
         	To intentionally resist and flee arrest or detainment by an authorized staff. This only applies if someone is actively being physically arrested. People uncuffing or assisting others out of an arrest can also be charged with this. Breach of custody is a separate crime.
       </Box>
     </ColorBox>
-    <ColorBox Color="#453a59">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Mass Destruction
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#453a59">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-    	  To cause massive damage to an area or major station system. This includes major bombings and sabotage of critical station systems like power, medical, chemistry, substations, and atmospherics.
-      </Box>
-    </ColorBox>
     <ColorBox Color="#2e422e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         Grand Theft
@@ -684,12 +686,12 @@
     </ColorBox>
     <ColorBox Color="#2e422e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-       Mass Destruction
+       Destruction of Property
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      	To cause massive damage to an area or major station system. This includes major bombings and sabotage of critical station systems like power, medical, chemistry, substations, and atmospherics.
+      	To destroy the property of another or the station. This includes but is not limited to work consoles, airlocks, and destroying or critically damaging a Cyborg's chassis.
       </Box>
     </ColorBox>
     <ColorBox Color="#59563a">
@@ -769,6 +771,16 @@
         To make, hold, or use Significant Syndicate contraband. Significant Syndicate contraband may only be used in emergencies, and only to prevent death or gross bodily harm.
         
         Significant Syndicate contraband is any Syndicate contraband that can be used to hinder the station or aid it's enemies in an obvious way. Any syndicate contraband that does not meet this definition is to be considered minor contraband.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2e422e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+       Mass Destruction
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      	To cause massive damage to an area or major station system. This includes major bombings and sabotage of critical station systems like power, medical, chemistry, substations, and atmospherics.
       </Box>
     </ColorBox>
     <ColorBox>

@@ -79,8 +79,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     private static readonly ProtoId<TagPrototype> DockTag = "DockEmergency";
 
     //starlight
-    [ValidatePrototypeId<TagPrototype>]
-    private const string DockEscapeTag = "DockEscape";
+    private static readonly ProtoId<TagPrototype> DockEscapeTag = "DockEscape";
     //starlight end
 
     public override void Initialize()

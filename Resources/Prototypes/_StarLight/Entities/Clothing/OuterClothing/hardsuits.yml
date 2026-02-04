@@ -382,7 +382,7 @@
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.50
   - type: IdClothingBlocker
-    allowedJobs:
+    allowedAccesses:
       - Security
       - Armory
       - HeadOfSecurity
@@ -680,6 +680,44 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDecimus
 
+# TSF
+- type: entity
+  parent: [ BaseTSFContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitTSF
+  name: MARSOC hardsuit
+  description: A suit worn by marines of the Trans-Solar Federation's Marine Special Operations Command. Armored, space ready, and fireproof.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/tsf.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/tsf.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.5
+  - type: FireProtection
+    reduction: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.5
+        Caustic: 0
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTSF
+
 #Thanatos (Starlight version of Deathsquad with enhanced stats)
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
@@ -721,5 +759,3 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitThanatos
-
-
