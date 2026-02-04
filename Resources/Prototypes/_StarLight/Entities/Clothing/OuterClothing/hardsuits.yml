@@ -382,7 +382,7 @@
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.50
   - type: IdClothingBlocker
-    allowedJobs:
+    allowedAccesses:
       - Security
       - Armory
       - HeadOfSecurity

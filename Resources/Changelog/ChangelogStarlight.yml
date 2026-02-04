@@ -29194,5 +29194,21 @@ Entries:
   id: 313900
   time: '2026-02-04T09:01:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3139
+- author: Penguinwizzard
+  changes:
+  - message: Secondary hitscans (from reflects, piercing shots, or ricochets) now
+      use the hit location, rather than the center of the impacted entity, as their
+      starting point.
+    type: Fix
+  id: 314000
+  time: '2026-02-04T11:03:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3140
+- author: mikeysaurus
+  changes:
+  - message: Pulse weaponry now has access locks tied to Central Command access.
+    type: Tweak
+  id: 313400
+  time: '2026-02-04T11:08:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3134
 Order: -1
 
