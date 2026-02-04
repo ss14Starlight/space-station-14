@@ -23,7 +23,7 @@
     - id: Thief
       prob: 0.4 #SL 0.5 -> 0.4 to account for more subgamemodes existing
     - id: SLChangeling #Starlight lings
-      prob: 0.25 #0.4 -> 0.3 to account for more subgamemodes existing now
+      prob: 0.25 #0.4 -> 0.25 to account for more subgamemodes existing now
     - id: VampireLess # Starlight reworked
       prob: 0.25 # Starlight
     - id: SubWizard
@@ -42,7 +42,7 @@
     - id: Thief
       prob: 0.42 #SL 0.5 -> 0.4 to account for more subgamemodes existing
     - id: SLChangeling # StarlightLings
-      prob: 0.25 #0.4 -> 0.3 to account for more subgamemodes existing now
+      prob: 0.25 #0.4 -> 0.25 to account for more subgamemodes existing now
     - id: VampireLess # Starlight reworked
       prob: 0.25 # Starlight
     - id: Xenoborgs

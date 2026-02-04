@@ -5,9 +5,9 @@
   components:
     - type: SlimeSteroidPotion
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#501466ff"
 
 - type: entity
@@ -17,9 +17,9 @@
   components:
     - type: SlimeStabilizerPotion
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#34cfebff"
 
 - type: entity
@@ -30,9 +30,9 @@
     - type: SlimeFireproofPotion
       fireproofDamageSet: SlimeFireproofPotionEffect
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#132b6eff"
 
 - type: entity
@@ -44,9 +44,9 @@
       channels:
         - "Common"
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#ffffffff"
 
 - type: entity
@@ -56,9 +56,9 @@
   components:
     - type: SlimeExtractEnhancerPotion
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#5998b3ff"
 
 - type: entity
@@ -68,9 +68,9 @@
   components:
     - type: SlimeSpeedPotion
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#fc4e4eff"
 
 - type: entity
@@ -80,9 +80,9 @@
   components:
     - type: SlimeMutationPotion
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#fc4e4eff"
 
 - type: entity
@@ -92,9 +92,9 @@
   components:
     - type: SlimeGenderChangePotion
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#fc86cfff"
 
 - type: entity
@@ -111,9 +111,9 @@
         enum.SlimeNameChangePotionUiKey.Key:
           type: SlimeNameChangePotionBoundUserInterface
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#ff94d1ff"
 
 - type: entity
@@ -123,9 +123,9 @@
   components:
     - type: SlimeSentiencePotion
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#ff94d1ff"
 
 - type: entity
@@ -135,7 +135,7 @@
   components:
     - type: SlimeMindTransferencePotion
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_potion.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_potion.rsi
       layers:
-        - state: icon
+        - state: slime_potion
       color: "#300636ff"

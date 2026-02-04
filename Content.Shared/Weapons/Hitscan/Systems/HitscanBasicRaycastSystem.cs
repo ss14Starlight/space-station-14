@@ -106,6 +106,7 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
             Shooter = args.Shooter,
             HitEntity = result?.HitEntity,
             OutputTrace = args.OutputTrace, // Starlight
+            HitPosition = result?.HitPos, // Starlight
         };
 
         var attemptEvent = new AttemptHitscanRaycastFiredEvent { Data = data };

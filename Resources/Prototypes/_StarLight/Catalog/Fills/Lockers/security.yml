@@ -170,10 +170,32 @@
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
-  id: GunSafeHeavyWeapons
+  id: GunSafeHeavyWeapons # To save remapping
+  name: DMR safe 
+  description: Contains a set of L10 DMRs
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRifleL10
+          amount: 2
+        - id: MagazineDMRSP
+          amount: 3
+        - id: MagazineDMRFMJ
+          amount: 3
+        - id: HammerBreachingNT
+          amount: 1
+
+- type: entity
+  parent: [GunSafe, BaseSecurityContraband]
+  id: GunSafeLMG
+  categories: [ DoNotMap ]
   name: heavy weapon safe
   description: For when talking it out just isn't enough.
   components:
+  - type: AccessReader
+    access: [["Armory"]]
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector

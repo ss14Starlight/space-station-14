@@ -17,9 +17,11 @@
         - map: [ "computerLayerKeyboard" ]
           state: generic_keyboard
         - map: [ "computerLayerScreen" ]
-          state: rdcomp
+          sprite: _Starlight/Structures/Machines/slime_computer.rsi
+          state: slime
         - map: [ "computerLayerKeys" ]
-          state: rd_key
+          sprite: _Starlight/Structures/Machines/slime_computer.rsi
+          state: slime_key
         - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
           state: generic_panel_open
     - type: PointLight

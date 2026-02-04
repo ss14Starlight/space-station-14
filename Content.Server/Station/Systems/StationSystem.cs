@@ -362,6 +362,7 @@ public sealed partial class StationSystem : SharedStationSystem
         }
         
         // var station = EntityManager.SpawnEntity(stationProtoId, MapCoordinates.Nullspace, registry);
+        comp ??= EnsureComp<BecomesStationMidRoundComponent>(gridId);
         var station = CreateCustomStation(stationProtoIds, MapCoordinates.Nullspace, registry, comp);
         var data = EnsureComp<StationDataComponent>(station);
         RenameStation(station, MetaData(gridId).EntityName, false);
@@ -369,8 +370,7 @@ public sealed partial class StationSystem : SharedStationSystem
         AddGridToStation(station, gridId, null, data, name);
         var ev = new StationPostInitEvent((station, data));
         RaiseLocalEvent(station, ref ev, true);
-        if (comp is null) return station; // Starlight
-        if (!comp.AllowEvents) // Starlight
+        if (!comp.AllowEvents)
             RemComp<StationEventEligibleComponent>(station);
         return station;
     }
@@ -378,7 +378,6 @@ public sealed partial class StationSystem : SharedStationSystem
     private EntityUid CreateCustomStation(List<EntProtoId> protoIds, MapCoordinates? coords, ComponentRegistry? registry, BecomesStationMidRoundComponent? data = null)
     {
         var ent = EntityManager.CreateEntityUninitialized(null); // dummy entity
-        data ??= EnsureComp<BecomesStationMidRoundComponent>(ent); // just ensure that this exists so that anything made with stationinit command will default to everything being blocked.
         // do parents first
         foreach (var protoId in protoIds)
         {

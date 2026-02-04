@@ -12,6 +12,7 @@ using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared._Starlight.Combat.Ranged.Pierce;
 using Content.Shared._Starlight.Weapon;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -56,6 +57,8 @@ public sealed partial class PierceSystem : EntitySystem
         reflect.CurrentReflections++;
 
         var fromEffect = Transform(data.HitEntity.Value).Coordinates;
+        if (Transform(data.HitEntity.Value).MapUid is { } hitMap && data.HitPosition is { } hitPosition)
+            fromEffect = new EntityCoordinates(hitMap, hitPosition);
 
         // Give it a little bit of swim
         var random = _rand.NextFloat(-hitscan.Comp.Deviation, hitscan.Comp.Deviation);

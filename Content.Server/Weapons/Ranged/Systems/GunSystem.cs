@@ -68,11 +68,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
 #region Starlight
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly DecalSystem _decals = default!;
 #endregion Starlight
 
     private const float DamagePitchVariation = 0.05f;

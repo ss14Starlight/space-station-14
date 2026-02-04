@@ -8,7 +8,7 @@
   components:
     - type: Sprite
       sprite: _Starlight/Structures/Machines/slime_processor.rsi
-      state: icon
+      state: slime_processor_icon
       snapCardinals: true
     - type: SlimeProcessor
       processingTime: 5s

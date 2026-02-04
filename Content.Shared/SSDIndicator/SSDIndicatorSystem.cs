@@ -6,6 +6,14 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
+// Starlight-start
+using Content.Shared.Bed.Sleep;
+using Content.Shared._Starlight.SSDIndicator.Events;
+using Content.Shared.DoAfter;
+using Content.Shared.Movement.Events;
+using Content.Shared.Starlight.CryoTeleportation;
+// Starlight-end
+
 namespace Content.Shared.SSDIndicator;
 
 /// <summary>
@@ -18,6 +26,8 @@ public sealed class SSDIndicatorSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly SleepingSystem _sleep = default!; // Starlight
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!; // Starlight
 
     private bool _icSsdSleep;
     private float _icSsdSleepTime;
@@ -27,37 +37,23 @@ public sealed class SSDIndicatorSystem : EntitySystem
         SubscribeLocalEvent<SSDIndicatorComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<SSDIndicatorComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<SSDIndicatorComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<SSDIndicatorComponent, MoveInputEvent>(OnMoveInput); // Starlight
+        SubscribeLocalEvent<SSDIndicatorComponent, WakeActionEvent>(OnWakeAction); // Starlight
+        SubscribeLocalEvent<SSDIndicatorComponent, SSDTryDoAfterEvent>(OnSSDTry); // Starlight
 
         _cfg.OnValueChanged(CCVars.ICSSDSleep, obj => _icSsdSleep = obj, true);
         _cfg.OnValueChanged(CCVars.ICSSDSleepTime, obj => _icSsdSleepTime = obj, true);
     }
 
-    private void OnPlayerAttached(EntityUid uid, SSDIndicatorComponent component, PlayerAttachedEvent args)
-    {
-        component.IsSSD = false;
+    // Starlight start
+    private void OnPlayerAttached(EntityUid uid, SSDIndicatorComponent component, PlayerAttachedEvent args) => TryRemoveSSD(uid, component);
 
-        // Removes force sleep and resets the time to zero
-        if (_icSsdSleep)
-        {
-            component.FallAsleepTime = TimeSpan.Zero;
-            _statusEffects.TryRemoveStatusEffect(uid, StatusEffectSSDSleeping);
-        }
+    private void OnPlayerDetached(EntityUid uid, SSDIndicatorComponent component, PlayerDetachedEvent args) => TrySSD(uid, component, force: true);
 
-        Dirty(uid, component);
-    }
+    private void OnMoveInput(EntityUid uid, SSDIndicatorComponent comp, MoveInputEvent args) => TryRemoveSSD(uid, comp);
 
-    private void OnPlayerDetached(EntityUid uid, SSDIndicatorComponent component, PlayerDetachedEvent args)
-    {
-        component.IsSSD = true;
-
-        // Sets the time when the entity should fall asleep
-        if (_icSsdSleep)
-        {
-            component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
-        }
-
-        Dirty(uid, component);
-    }
+    private void OnWakeAction(EntityUid uid, SSDIndicatorComponent comp, WakeActionEvent args) => TryRemoveSSD(uid, comp);
+    // Starlight end (for now :P)
 
     // Prevents mapped mobs to go to sleep immediately
     private void OnMapInit(EntityUid uid, SSDIndicatorComponent component, MapInitEvent args)
@@ -95,4 +91,74 @@ public sealed class SSDIndicatorSystem : EntitySystem
             Dirty(uid, ssd);
         }
     }
+
+    #region Starlight
+
+    private void OnSSDTry(EntityUid uid, SSDIndicatorComponent component, SSDTryDoAfterEvent args) => SSD(uid, component);
+
+    /// <summary>
+    /// Attempts to set the entity as SSD.
+    /// </summary>
+    /// <param name="force">bypasses doAfter.</param>
+    /// <returns>True if succesful</returns>
+    public bool TrySSD(EntityUid uid, SSDIndicatorComponent? comp, bool force = false)
+    {
+        if (!Resolve(uid, ref comp) 
+            || comp.IsSSD 
+            || TerminatingOrDeleted(uid))
+            return false;
+
+        if (!force)
+        {
+            var doAfter = new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(10), new SSDTryDoAfterEvent(), uid)
+            {
+                BreakOnMove = true,
+            };
+            _doAfter.TryStartDoAfter(doAfter);
+        }
+        else
+            SSD(uid, comp);
+
+        return true;
+    }
+
+    private void SSD(EntityUid uid, SSDIndicatorComponent component)
+    {
+        component.IsSSD = true;
+
+        if (_icSsdSleep)
+            component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
+
+        _sleep.TrySleeping(uid);
+
+        Dirty(uid, component);
+    }
+
+    /// <summary>
+    /// Attempts to remove the SSD condition from the entity.
+    /// </summary>
+    /// <returns>True if succesful</returns>
+    public bool TryRemoveSSD(EntityUid uid, SSDIndicatorComponent? comp)
+    {
+        if (!Resolve(uid, ref comp)
+            || !comp.IsSSD 
+            || TerminatingOrDeleted(uid))
+            return false;
+
+        comp.IsSSD = false;
+
+        if (_icSsdSleep)
+        {
+            comp.FallAsleepTime = TimeSpan.Zero;
+            _statusEffects.TryRemoveStatusEffect(uid, StatusEffectSSDSleeping);
+        }
+
+        if (TryComp<TargetCryoTeleportationComponent>(uid, out var cryoTeleport) && cryoTeleport.TimeDelay > TimeSpan.FromSeconds(0))
+            cryoTeleport.TimeDelay = TimeSpan.FromSeconds(0); // Reset time delay to 0.
+
+        Dirty(uid, comp);
+        return true;
+    }
+    
+    #endregion
 }

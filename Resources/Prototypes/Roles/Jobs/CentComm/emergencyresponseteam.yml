@@ -459,6 +459,8 @@
   equipment:
     pocket2: WeaponDisabler
     suitstorage: WeaponShotgunEnforcer
+  inhand:
+    - HammerBreachingNT
   storage:
     back:
     - SmokeGrenade

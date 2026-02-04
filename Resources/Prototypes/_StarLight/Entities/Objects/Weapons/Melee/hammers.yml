@@ -1,0 +1,45 @@
+- type: entity
+  name: Breaching Hammer
+  parent: [BaseItem, BaseSecurityContraband]
+  id: HammerBreachingNT
+  description: A robust heavy hammer made for breaching through walls and doors. Its reinforced head and sturdy handle make it ideal for demolition tasks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/BreachingHammer.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 0.7
+    damage:
+      types:
+        Blunt: 15
+        Structural: 20
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 25
+        Structural: 100
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,4
+  - type: Tool
+    qualities:
+    - Prying
+    useSound: /Audio/Items/jaws_pry.ogg
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSound: /Audio/Items/jaws_pry.ogg
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: UseDelay
+    delay: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
