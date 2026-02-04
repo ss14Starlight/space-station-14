@@ -1,0 +1,58 @@
+<Document>
+  # Vampire
+
+  <Box>
+    [color=#999999][italic]"You are not a monster. You are hunger."[/italic][/color]
+  </Box>
+
+  A vampire is a stealth antagonist who starts the round as a normal crewmember, but gains access to a suite of supernatural powers.
+  Your strength scales with your [bold]total drained blood[/bold], while abilities consume your [bold]current blood pool[/bold].
+
+  ## Quick Start
+
+   Use [bold]Toggle Fangs[/bold] to extend your fangs.
+   Get close to a target and bite to drink blood.
+   Track two things: [bold]total blood drained[/bold] and [bold]current fullness[/bold].
+   At [bold]150 total blood[/bold], you unlock class selection.
+
+  [bold]Important Limitation[/bold]
+   Each target has a cap(200u) on how much blood you can drain from them.
+
+  ## Base Abilities Every Vampire Has
+
+  [bold]Glare[/bold] — paralyzes and silences nearby targets while dealing stamina damage over time. Great for creating a fed window.
+
+  [bold]Rejuvenate[/bold] — instantly clears stuns and restores stamina; the stronger version also purges reagents and heals multiple damage types.
+
+  ## Power System: What Actually Matters!
+
+   [bold]Total drained blood[/bold] unlocks new abilities (e.g., 150 / 250 / 400 / 600 / 800 / 1000).
+   [bold]Current blood[/bold] is your “mana” for casting. You can be 1000+ total and still be empty right now.
+   Some high-end effects require [bold]full power[/bold] -> 1000 total blood and 8 unique victims.
+
+  ## Class Selection
+
+  Your class defines your playstyle. You can open these pages any time:
+
+   [textlink="Hemomancer" link="VampiresHemomancer"] — blood magic and zone control.
+   [textlink="Umbrae" link="VampiresUmbrae"] — darkness, mobility, ambushes.
+   [textlink="Dantalion" link="VampiresDantalion"] — thralls, illusions, social control.
+   [textlink="Gargantua" link="VampiresGargantua"] — melee, durability, breaking through.
+
+  ## Holy Weakness
+
+  Vampires are vulnerable to holy forces, but [italic]only after they have fed on at least one victim[/italic].
+
+  [bold]Holy Water[/bold]:
+  - Deals burn damage to vampires who have fed.
+  - If you haven't drained blood from anyone yet, holy water has no effect on you.
+
+  [bold]Holy Place[/bold]
+  - Standing on chapel tiles deals constant burn damage to vampires.
+  - Again, this only activates once you've had at least one victim.
+
+  [bold]The Chaplain[/bold]
+  - Chaplains with an active bible are [bold]immune to vampire abilities[/bold]. 
+    But once you reach [bold]Full Power[/bold], you can bypass faith protection.
+
+</Document>

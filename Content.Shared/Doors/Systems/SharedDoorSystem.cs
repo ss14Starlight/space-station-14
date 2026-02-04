@@ -234,11 +234,19 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (door.State == DoorState.Closed)
         {
             _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.User)} pried {ToPrettyString(uid)} open");
+            // Starlight-start
+            var userEv = new UserPriedDoorEvent(uid, true);
+            RaiseLocalEvent(args.User, ref userEv);
+            // Starlight-end
             StartOpening(uid, door, args.User, true);
         }
         else if (door.State == DoorState.Open)
         {
             _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.User)} pried {ToPrettyString(uid)} closed");
+            // Starlight-start
+            var userEv = new UserPriedDoorEvent(uid, false);
+            RaiseLocalEvent(args.User, ref userEv);
+            // Starlight-end
             StartClosing(uid, door, args.User, true);
         }
     }

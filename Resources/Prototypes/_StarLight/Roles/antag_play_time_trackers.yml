@@ -93,3 +93,7 @@
 - type: playTimeTracker
   id: AntagSSF
   name: ghost-role-information-soviet-marine-name
+
+- type: playTimeTracker
+  id: AntagSELFAgent
+  name: roles-antag-selfagent-name

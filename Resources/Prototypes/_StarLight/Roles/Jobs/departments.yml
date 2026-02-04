@@ -22,3 +22,12 @@
   - NanotrasenCareerTrainer
   primary: false
   weight: 50
+
+- type: department
+  id: TSF
+  name: department-TSF
+  description: department-TSF
+  color: "#22a7ff"
+  roles:
+  - TSFMarine
+  editorHidden: true

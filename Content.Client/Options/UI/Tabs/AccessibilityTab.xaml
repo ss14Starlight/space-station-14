@@ -22,6 +22,7 @@
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="CensorNudityCheckBox" Text="{Loc 'ui-options-censor-nudity'}" />
                 <CheckBox Name="ArachnophobiaCheckBox" Text="{Loc 'ui-options-arachnophobia'}" /> <!-- Starlight -->
+                <CheckBox Name="DisableJobIconAnimationCheckBox" Text="{Loc 'ui-options-disable-job-icon-animation'}" /> <!-- Starlight -->
             </BoxContainer>
         </ScrollContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />

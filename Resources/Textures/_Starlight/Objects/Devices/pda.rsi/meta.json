@@ -86,73 +86,78 @@
     {
       "name": "pda-paramedic",
       "delays": [
-            [
-            0.3,
-            0.3,
-            0.3,
-            0.3
-            ]
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
+      ]
     },
     {
       "name": "pda-seniorparamedic",
       "delays": [
-            [
-            0.3,
-            0.3,
-            0.3,
-            0.3
-            ]
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
+      ]
     },
-	  {
+    {
       "name": "pda-seniorchemist",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld",
+      "license": "CC-BY-SA-3.0"
     },
     {
       "name": "pda-veteranbrigmedic",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0",
-	    "delays": [
-            [
-            0.3,
-            0.3,
-            0.3,
-            0.3
-            ]
+      "copyright": "wonderfulnewworld",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
+      ]
     },
-	{
+    {
       "name": "pda-corpsman",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0",
-	  "delays": [
-            [
-            0.3,
-            0.3,
-            0.3,
-            0.3
-            ]
+      "copyright": "wonderfulnewworld",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
+      ]
     },
-	{
+    {
       "name": "pda-veterancorpsman",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0",
-	  "delays": [
-            [
-            0.3,
-            0.3,
-            0.3,
-            0.3
-            ]
+      "copyright": "wonderfulnewworld",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
         ]
+      ]
     },
-	{
+    {
       "name": "pda-dutyofficer",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "wonderfulnewworld",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "pda-magi",
+      "copyright": "Wayiscute",
+      "license": "CC-BY-SA-3.0"
     }
   ]
 }

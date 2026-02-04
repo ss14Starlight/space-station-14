@@ -22,6 +22,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes; // Starlight
 using Prometheus; //Starlight
 
 namespace Content.Server.Voting.Managers
@@ -60,6 +61,8 @@ namespace Content.Server.Voting.Managers
             {StandardVoteType.Map, CCVars.VoteMapEnabled},
             {StandardVoteType.Votekick, CCVars.VotekickEnabled}
         };
+
+        private static readonly ProtoId<GamePresetPrototype> SecretPrototype = "Secret";
 
         public void CreateStandardVote(ICommonSession? initiator, StandardVoteType voteType, string[]? args = null)
         {
@@ -241,7 +244,7 @@ namespace Content.Server.Voting.Managers
             var presets = GetGamePresets();
 
             //add the secret prototype
-            if (_prototypeManager.TryIndex<GamePresetPrototype>("Secret", out var secretPreset))
+            if (_prototypeManager.TryIndex<GamePresetPrototype>(SecretPrototype, out var secretPreset))
             {
                 presets.Add(secretPreset, Loc.GetString("ui-vote-secret-map"));
             }
