@@ -44,6 +44,9 @@
   id: JobDecimus
   
 - type: playTimeTracker
+  id: JobTSFMarine
+  
+- type: playTimeTracker
   id: JobBoxer
 
 - type: playTimeTracker

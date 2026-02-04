@@ -125,7 +125,7 @@
 
 - type: entity
   name: ARG
-  parent: [ BaseWeaponRifle, BaseSecurityContraband ]
+  parent: [ BaseWeaponRifle, BaseTSFContraband ]
   id: WeaponRifleARG
   description: An old galactic standard assault rifle, used by various paramilitary groups and former SVS militias ever since. Uses .30 rifle ammo.
   components:
@@ -176,12 +176,10 @@
     magState: mag
     steps: 1
     zeroVisible: true
-  - type: Contraband
-    allowedDepartments: [ Security ]
 
 - type: entity
   name: Aussec Armory M-52
-  parent: [WeaponRifleLecter, BaseSecurityContraband]
+  parent: [WeaponRifleLecter, BaseTSFContraband]
   id: WeaponRifleM52
   description: One of the least popular examples of heavy assault rifles. It has impressive firepower.
   components:

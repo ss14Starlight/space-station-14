@@ -35,6 +35,15 @@
     path: /Audio/_Starlight/Voice/Talk/resomi_1_exclaim.ogg
 
 - type: speechSounds
+  id: PhoneSpeak
+  saySound:
+    collection: PhoneSpeak
+  askSound:
+    collection: PhoneSpeak
+  exclaimSound:
+    collection: PhoneSpeak
+  
+- type: speechSounds
   id: UnisexMoth
   saySound:
     path: /Audio/_Starlight/Voice/Moth/moth.ogg

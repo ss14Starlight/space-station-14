@@ -752,3 +752,10 @@
   minLimit: 0
   loadouts:
   - SupremeJanitorCloak
+
+- type: loadoutGroup
+  id: WardenNeck
+  name: loadout-group-warden-neck
+  minLimit: 0
+  loadouts:
+  - ClothingNeckWarden

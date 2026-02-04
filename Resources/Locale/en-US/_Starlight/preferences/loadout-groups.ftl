@@ -104,3 +104,6 @@ loadout-group-NanotrasenCareerTrainer-jumpsuit = Nanotrasen Career Trainer jumps
 loadout-group-NanotrasenCareerTrainer-hat = Nanotrasen Career Trainer hat
 loadout-group-NanotrasenCareerTrainer-shoes = Nanotrasen Career Trainer shoes
 loadout-group-NanotrasenCareerTrainer-eyewear = Nanotrasen Career Trainer eyewear
+
+# Security
+loadout-group-warden-neck = Warden neck

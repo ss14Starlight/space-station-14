@@ -20,47 +20,6 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         SubscribeLocalEvent<HumanoidAppearanceComponent, GetVerbsEvent<Verb>>(OnVerbsRequest);
     }
 
-    // this was done enough times that it only made sense to do it here
-
-    /// <summary>
-    ///     Clones a humanoid's appearance to a target mob, provided they both have humanoid components.
-    /// </summary>
-    /// <param name="source">Source entity to fetch the original appearance from.</param>
-    /// <param name="target">Target entity to apply the source entity's appearance to.</param>
-    /// <param name="sourceHumanoid">Source entity's humanoid component.</param>
-    /// <param name="targetHumanoid">Target entity's humanoid component.</param>
-    public void CloneAppearance(EntityUid source, EntityUid target, HumanoidAppearanceComponent? sourceHumanoid = null,
-        HumanoidAppearanceComponent? targetHumanoid = null)
-    {
-        if (!Resolve(source, ref sourceHumanoid) || !Resolve(target, ref targetHumanoid))
-        {
-            return;
-        }
-
-        targetHumanoid.Species = sourceHumanoid.Species;
-        targetHumanoid.SkinColor = sourceHumanoid.SkinColor;
-        targetHumanoid.EyeColor = sourceHumanoid.EyeColor;
-        targetHumanoid.EyeGlowing = sourceHumanoid.EyeGlowing; //starlight
-        targetHumanoid.Age = sourceHumanoid.Age;
-        targetHumanoid.Width = sourceHumanoid.Width; //starlight
-        targetHumanoid.Height = sourceHumanoid.Height; //starlight
-        SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
-        targetHumanoid.CustomBaseLayers = new(sourceHumanoid.CustomBaseLayers);
-        targetHumanoid.MarkingSet = new(sourceHumanoid.MarkingSet);
-
-        targetHumanoid.Gender = sourceHumanoid.Gender;
-        if (TryComp<GrammarComponent>(target, out var grammar))
-        {
-            grammar.Gender = sourceHumanoid.Gender;
-        }
-        if (sourceHumanoid.Voice != null)
-            SetTTSVoice(target, sourceHumanoid.Voice, targetHumanoid);
-        Dirty(target, targetHumanoid);
-        
-        var ev = new MarkingsUpdateEvent(); //starlight
-        RaiseLocalEvent(target, ref ev); //starlight
-    }
-
     /// <summary>
     ///     Removes a marking from a humanoid by ID.
     /// </summary>
@@ -80,7 +39,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
 
         if (sync)
             Dirty(uid, humanoid);
-        
+
         var ev = new MarkingsUpdateEvent(); //starlight
         RaiseLocalEvent(uid, ref ev); //starlight
     }
@@ -103,7 +62,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         }
 
         humanoid.MarkingSet.Remove(category, index);
-        Dirty(uid, humanoid);        
+        Dirty(uid, humanoid);
 
         var ev = new MarkingsUpdateEvent(); //starlight
         RaiseLocalEvent(uid, ref ev); //starlight
@@ -137,7 +96,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         marking.IsGlowing = markings[index].IsGlowing; //starlight
 
         humanoid.MarkingSet.Replace(category, index, marking);
-        Dirty(uid, humanoid);        
+        Dirty(uid, humanoid);
 
         var ev = new MarkingsUpdateEvent(); //starlight
         RaiseLocalEvent(uid, ref ev); //starlight
@@ -167,7 +126,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             markings[index].SetColor(i, colors[i]);
         }
 
-        Dirty(uid, humanoid);        
+        Dirty(uid, humanoid);
 
         var ev = new MarkingsUpdateEvent(); //starlight
         RaiseLocalEvent(uid, ref ev); //starlight
@@ -187,7 +146,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
 
         markings[index].IsGlowing = glowing;
         Dirty(uid, humanoid);
-                
+
         var ev = new MarkingsUpdateEvent();
         RaiseLocalEvent(uid, ref ev);
     }

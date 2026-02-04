@@ -60,11 +60,10 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly FaxecuteSystem _faxecute = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
-    //starlight
+
+    // Starlight start
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly EntityStorageSystem _storage = default!;
-    //end
+    // Starlight end
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
@@ -711,12 +710,12 @@ public sealed class FaxSystem : EntitySystem
             if (!TryComp<GhostComponent>(client.AttachedEntity.Value, out var ghostComp))
                 continue;
 
-            Logger.Info($"Admin {client.Name} is a ghost, sending fax to them.");
+            Log.Info($"Admin {client.Name} is a ghost, sending fax to them.");
 
             //get their inventory
             if (_inventory.TryGetSlotEntity(client.AttachedEntity.Value, "back", out var worn))
             {
-                Logger.Info($"Admin {client.Name} has a back slot, sending fax to them.");
+                Log.Info($"Admin {client.Name} has a back slot, sending fax to them.");
                 //generate the entity
                 var entityToSpawn = printout.PrototypeId;
                 if (EntityManager.TrySpawnInContainer(entityToSpawn, worn.Value, "storagebase", out var printed))

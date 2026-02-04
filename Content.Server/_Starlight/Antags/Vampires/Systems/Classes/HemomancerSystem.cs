@@ -136,30 +136,25 @@ public sealed class HemomancerSystem : EntitySystem
 
         if (comp.SpawnedClaws != null && EntityManager.EntityExists(comp.SpawnedClaws.Value))
         {
-            EntityManager.QueueDeleteEntity(comp.SpawnedClaws.Value);
-            comp.SpawnedClaws = null;
+            var oldClaws = comp.SpawnedClaws.Value;
+            comp.SpawnedClaws = null; 
+            EntityManager.DeleteEntity(oldClaws);
+        }
+
+        if (TryComp<HandsComponent>(uid, out var handsComp))
+        {
+            _wieldable.UnwieldAll((uid, handsComp), force: true);
+            foreach (var handName in handsComp.Hands.Keys.ToArray())
+                _hands.TryDrop((uid, handsComp), handName, checkActionBlocker: false);
         }
 
         var coords = Transform(uid).Coordinates;
         var claws = EntityManager.SpawnEntity("VampiricClawsItem", coords);
         comp.SpawnedClaws = claws;
 
-        if (!_hands.TryPickupAnyHand(uid, claws))
-        {
-            if (!_hands.TryForcePickupAnyHand(uid, claws))
-            {
-                if (TryComp<HandsComponent>(uid, out var handsComp))
-                {
-                    _wieldable.UnwieldAll((uid, handsComp), force: true);
-                    foreach (var handName in handsComp.Hands.Keys.ToArray())
-                        _hands.TryDrop((uid, handsComp), handName, checkActionBlocker: false);
-                }
+        _hands.TryPickupAnyHand(uid, claws);
 
-                _hands.TryPickupAnyHand(uid, claws);
-            }
-        }
-
-        if (TryComp<WieldableComponent>(claws, out var wieldable) && wieldable != null && _hands.IsHolding(uid, claws, out _))
+        if (TryComp<WieldableComponent>(claws, out var wieldable) && _hands.IsHolding(uid, claws, out _))
             _wieldable.TryWield(claws, wieldable, uid);
 
         args.Handled = true;

@@ -92,6 +92,7 @@ public sealed class GargantuaSystem : EntitySystem
         SubscribeLocalEvent<ActiveBloodSwellComponent, BeforeStaminaDamageEvent>(OnBloodSwellStaminaDamage);
 
         SubscribeLocalEvent<GargantuaComponent, VampireBloodDrankEvent>(OnBloodDrank);
+        SubscribeLocalEvent<GargantuaComponent, UserPriedDoorEvent>(OnDoorPried);
         // Status effects are raised on the status effect entity, so hook globally.
         SubscribeLocalEvent<StatusEffectComponent, StatusEffectAppliedEvent>(OnStatusEffectApplied);
     }
@@ -424,6 +425,26 @@ public sealed class GargantuaSystem : EntitySystem
 
         Dirty(uid, gargantua);
         args.Handled = true;
+    }
+
+    private void OnDoorPried(EntityUid uid, GargantuaComponent component, ref UserPriedDoorEvent args)
+    {
+
+        if (!component.OverwhelmingForceActive)
+            return;
+
+        if (!TryComp<VampireComponent>(uid, out var vampire))
+            return;
+
+        const int BloodCost = 15;
+        var newBlood = Math.Max(0, vampire.DrunkBlood - BloodCost);
+        if (newBlood != vampire.DrunkBlood)
+        {
+            vampire.DrunkBlood = newBlood;
+            Dirty(uid, vampire);
+        }
+
+        _audio.PlayPvs(new SoundPathSpecifier("/Audio/Items/crowbar.ogg"), uid, AudioParams.Default.WithVolume(2f));
     }
 
     private void OnPullAttempt(EntityUid uid, GargantuaComponent component, PullAttemptEvent args)

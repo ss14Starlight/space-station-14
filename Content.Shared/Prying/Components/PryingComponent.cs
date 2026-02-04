@@ -77,6 +77,15 @@ public readonly record struct PriedEvent(EntityUid User)
     public readonly EntityUid User = User;
 }
 
+// Starlight-start
+[ByRefEvent]
+public readonly record struct UserPriedDoorEvent(EntityUid Door, bool Opened)
+{
+    public readonly EntityUid Door = Door;
+    public readonly bool Opened = Opened;
+}
+// Starlight-end
+
 /// <summary>
 /// Raised to determine how long the door's pry time should be modified by.
 /// Multiply PryTimeModifier by the desired amount.

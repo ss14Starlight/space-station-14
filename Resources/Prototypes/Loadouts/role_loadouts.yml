@@ -478,7 +478,7 @@
   id: JobWarden
   groups:
   - WardenHead
-  - WardenNeck
+  - WardenNeck # Starlight
   - WardenJumpsuit
   - SecurityBackpack
   - SecurityBelt
