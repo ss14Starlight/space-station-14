@@ -20,4 +20,12 @@ public sealed partial class HitscanBasicRaycastComponent : Component
     /// </summary>
     [DataField]
     public CollisionGroup CollisionMask = CollisionGroup.Opaque;
+
+    #region Starlight
+    /// <summary>
+    /// How much attempts we will make for reflect.
+    /// </summary>
+    [DataField]
+    public int Steps = 3;
+    #endregion
 }

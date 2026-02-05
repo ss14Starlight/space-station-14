@@ -63,10 +63,13 @@ public sealed partial class PierceSystem : EntitySystem
         // Give it a little bit of swim
         var random = _rand.NextFloat(-hitscan.Comp.Deviation, hitscan.Comp.Deviation);
 
+        var dir = (data.ShotDirection.ToAngle() + random).ToVec(); // Starlight-edit
+
         var hitFiredEvent = new HitscanTraceEvent
         {
             FromCoordinates = fromEffect,
-            ShotDirection = (data.ShotDirection.ToAngle() + random).ToVec(),
+            ToCoordinates = fromEffect.Offset(dir), // Starlight-edit
+            ShotDirection = dir, // Starlight-edit
             Gun = data.Gun,
             Shooter = data.HitEntity.Value,
             OutputTrace = data.OutputTrace,

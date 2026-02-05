@@ -1,0 +1,24 @@
+- type: quickPhrase
+  id: SpeciesLagomorphPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-lagomorph
+
+- type: quickPhrase
+  id: SpeciesFelionoidPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-felionoid
+
+- type: quickPhrase
+  id: SpeciesShadekinPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-shadekin
+
+- type: quickPhrase
+  id: SpeciesThavenPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-thaven
+
+- type: quickPhrase
+  id: SpeciesCycloritePhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-cyclorite

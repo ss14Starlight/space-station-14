@@ -49,6 +49,7 @@ public sealed class HitscanReflectSystem : EntitySystem
         var hitFiredEvent = new HitscanTraceEvent
         {
             FromCoordinates = fromEffect,
+            ToCoordinates = fromEffect.Offset(ev.Direction), // Starlight-edit
             ShotDirection = ev.Direction,
             Gun = data.Gun,
             Shooter = data.HitEntity.Value,

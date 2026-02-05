@@ -110,6 +110,7 @@
   - ClothingDogTags # SL
   - PersonalAI #SL
   - GoldenPersonalAI #SL
+  - AACTablet # DeltaV
 
 - type: loadoutGroup
   id: Glasses

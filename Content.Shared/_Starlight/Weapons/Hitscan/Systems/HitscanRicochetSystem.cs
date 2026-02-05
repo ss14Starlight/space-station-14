@@ -56,6 +56,7 @@ public sealed partial class HitscanRicochetSystem : EntitySystem
         var hitFiredEvent = new HitscanTraceEvent
         {
             FromCoordinates = fromEffect,
+            ToCoordinates = fromEffect.Offset(ev.Dir), // Starlight-edit
             ShotDirection = ev.Dir,
             Gun = data.Gun,
             Shooter = data.HitEntity.Value,

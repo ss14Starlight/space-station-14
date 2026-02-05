@@ -285,6 +285,7 @@
   - Dwarf
   - Moth
   - SlimePerson
+  - Lagomorph
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-marine-name
