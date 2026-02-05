@@ -277,10 +277,10 @@
     pvsIncrease: 0.15
 
 - type: entity
-  name: L10 DMR
+  name: L10 battle rifle
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRifleL10
-  description: "A scoped marksman rifle for medium range engagements, built on the Lecter platform.\nChambered in .30 rifle."
+  description: "A battle rifle for medium range engagements, built on the Lecter platform.\nChambered in .30 rifle."
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
@@ -299,20 +299,17 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
   - type: GunRequiresWield
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.8
-    sprintModifier: 0.8
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineDMRSP
+        startingItem: MagazineBRSP
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineL10DMR
+          - magazinel10BR
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -331,11 +328,6 @@
     steps: 4
     zeroVisible: true
   - type: Appearance
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 2.5
-    pvsIncrease: 0.25
-
 
 - type: entity
   name: Pitbull

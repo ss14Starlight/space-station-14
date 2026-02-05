@@ -91,47 +91,47 @@
   materials:
     Steel: 1600
 
-# region DMR magazines
+# region Battle rifle magazines
 
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
-  id: MagazineDMREmpty
-  result: MagazineDMREmpty
+  id: MagazineBREmpty
+  result: MagazineBREmpty
   materials:
     Steel: 25
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineDMRSP
-  result: MagazineDMRSP
+  id: MagazineBRSP
+  result: MagazineBRSP
   materials:
     Steel: 455
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineDMRHP
-  result: MagazineDMRHP
+  id: MagazineBRHP
+  result: MagazineBRHP
   materials:
     Steel: 425
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineDMRFMJ
-  result: MagazineDMRFMJ
+  id: MagazineBRFMJ
+  result: MagazineBRFMJ
   materials:
     Steel: 555
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineDMRPractice
-  result: MagazineDMRPractice
+  id: MagazineBRPractice
+  result: MagazineBRPractice
   materials:
     Steel: 175
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineDMRUranium
-  result: MagazineDMRUranium
+  id: MagazineBRUranium
+  result: MagazineBRUranium
   materials:
     Steel: 25
     Plastic: 300
@@ -139,16 +139,16 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineDMRIncendiary
-  result: MagazineDMRIncendiary
+  id: MagazineBRIncendiary
+  result: MagazineBRIncendiary
   materials:
     Steel: 50
     Plastic: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineDMRAP
-  result: MagazineDMRAP
+  id: MagazineBRAP
+  result: MagazineBRAP
   materials:
     Plastic: 100
     Steel: 300

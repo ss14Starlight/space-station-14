@@ -24,7 +24,7 @@
   - WeaponDisablerPractice
   - WeaponLaserCarbinePractice
   - WeaponFlareGunSecurity
-  - MagazineDMRPractice
+  - MagazineBRPractice
 
 - type: latheRecipePack
   id: StarlightSecurityAmmoEmagStatic
@@ -71,10 +71,10 @@
   - MagazineLightRifleMaxim
   - SpeedLoaderLightRifle
   - MagazineLightRifleEmpty
-  - MagazineDMRSP
-  - MagazineDMRHP
-  - MagazineDMRFMJ
-  - MagazineDMREmpty
+  - MagazineBRSP
+  - MagazineBRHP
+  - MagazineBRFMJ
+  - MagazineBREmpty
 # Magnum
   - SpeedLoaderMagnumSP
   - SpeedLoaderMagnumHP
@@ -206,9 +206,9 @@
   - MagazineLightRifleIncendiary
   - MagazineLightRifleUranium
   - MagazineLightRifleAP
-  - MagazineDMRIncendiary
-  - MagazineDMRUranium
-  - MagazineDMRAP
+  - MagazineBRIncendiary
+  - MagazineBRUranium
+  - MagazineBRAP
 # Magnum
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium

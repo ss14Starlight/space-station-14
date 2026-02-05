@@ -180,9 +180,9 @@
         children:
         - id: WeaponRifleL10
           amount: 2
-        - id: MagazineDMRSP
+        - id: MagazineBRSP
           amount: 3
-        - id: MagazineDMRFMJ
+        - id: MagazineBRFMJ
           amount: 3
 
 - type: entity
