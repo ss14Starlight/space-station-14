@@ -29256,5 +29256,27 @@ Entries:
   id: 315200
   time: '2026-02-05T05:33:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3152
+- author: Citrea
+  changes:
+  - message: Elder gods no longer give up on life and explode when mildly inconvenienced
+      by a PKA.
+    type: Tweak
+  - message: Elders no longer vomit from a mouth they don't have when they take too
+      much radiation damage.
+    type: Tweak
+  id: 315000
+  time: '2026-02-05T06:04:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3150
+- author: Conflee
+  changes:
+  - message: Added many more Ion ad-lib options, some just expanding on the lists,
+      some are starlight specific like BSO, NTR, Crab Juice, etc.
+    type: Add
+  - message: Added Comitas Systems, JONK Corporation, and Syndicate High Command to
+      potential round start traitor corporation flavor text.
+    type: Add
+  id: 314600
+  time: '2026-02-05T06:10:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3146
 Order: -1
 
