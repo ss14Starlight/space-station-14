@@ -132,3 +132,51 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/felionoid.rsi
       state:  Tabby_LegR
+      
+#CAILCO
+- type: marking
+  id: FelionoidCailco_Chest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: calico1_chest
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: cailco2_chest
+- type: marking
+  id: FelionoidCailco_Head
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: calico1_head
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: calico2_head
+- type: marking
+  id: FelionoidCailco_LLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: calico1_legL
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: cailco2_legL
+- type: marking
+  id: FelionoidCailco_RArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: cailco2_ArmR
+- type: marking
+  id: FelionoidCailco_LArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: cailco2_ArmL

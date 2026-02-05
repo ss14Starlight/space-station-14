@@ -70,6 +70,38 @@
         {
             "name": "bellymark",
             "directions": 4
+        },
+        {
+            "name": "cailco2_ArmL",
+            "directions": 4
+        },
+        {
+            "name": "cailco2_ArmR",
+            "directions": 4
+        },
+        {
+            "name": "cailco2_chest",
+            "directions": 4
+        },
+        {
+            "name": "cailco2_legL",
+            "directions": 4
+        },
+        {
+            "name": "calico1_chest",
+            "directions": 4
+        },
+        {
+            "name": "calico1_head",
+            "directions": 4
+        },
+        {
+            "name": "calico1_legL",
+            "directions": 4
+        },
+        {
+            "name": "calico2_head",
+            "directions": 4
         }
     ]
 }
