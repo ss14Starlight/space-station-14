@@ -35,22 +35,13 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IRobustRandom _rand = default!; // Starlight-edit
 
-#region Starlight
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-#endregion Starlight
-
     private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery;
-
-    private EntityQuery<HitscanReflectComponent> _reflectQuery; // Starlight
-    private EntityQuery<BloodstreamComponent> _bloodQuery; // Starlight
 
     public override void Initialize()
     {
         base.Initialize();
 
         _visualsQuery = GetEntityQuery<HitscanBasicVisualsComponent>();
-
-        _reflectQuery = GetEntityQuery<HitscanReflectComponent>(); // Starlight
 
         SubscribeLocalEvent<HitscanBasicRaycastComponent, HitscanTraceEvent>(OnHitscanFired);
     }

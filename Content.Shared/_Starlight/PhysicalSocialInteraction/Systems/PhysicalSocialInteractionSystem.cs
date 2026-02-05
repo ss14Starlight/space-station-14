@@ -11,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.PhysicalSocialInteraction.Systems;
 
-public class PhysicalSocialInteractionSystem : EntitySystem
+public sealed class PhysicalSocialInteractionSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
