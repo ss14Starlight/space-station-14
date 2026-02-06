@@ -26,33 +26,33 @@
   components:
     - type: CanEscapeInventory
       baseResistTime: 2 # better at escaping grasps
-    - type: Inventory
-      displacements:
-        head:
-          sizeMaps:
-            32:
-              sprite: Mobs/Animals/mothroach/displacement.rsi
-              state: head
-        mask:
-          sizeMaps:
-            32:
-              sprite: Mobs/Animals/mothroach/displacement.rsi
-              state: mask
-        suitstorage:
-          sizeMaps:
-            32:
-              sprite: Mobs/Animals/mothroach/displacement.rsi
-              state: suitstorage
-        eyes:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Animals/mothroach/cc-displacement.rsi
-              state: eyes
-        neck:
-          sizeMaps:
-            32:
-              sprite: Mobs/Animals/mothroach/displacement.rsi
-              state: neck
+#    - type: Inventory
+#      displacements:
+#        head:
+#          sizeMaps:
+#            32:
+#              sprite: Mobs/Animals/mothroach/displacement.rsi
+#              state: head
+#        mask:
+#          sizeMaps:
+#            32:
+#              sprite: Mobs/Animals/mothroach/displacement.rsi
+#              state: mask
+#        suitstorage:
+#          sizeMaps:
+#            32:
+#              sprite: Mobs/Animals/mothroach/displacement.rsi
+#              state: suitstorage
+#        eyes:
+#          sizeMaps:
+#            32:
+#              sprite: Mobs/Animals/mothroach/displacement.rsi
+#              state: eyes
+#        neck:
+#          sizeMaps:
+#            32:
+#              sprite: Mobs/Animals/mothroach/displacement.rsi
+#              state: neck
     - type: ComplexInteraction
     - type: NoSlip
     - type: LanguageKnowledge

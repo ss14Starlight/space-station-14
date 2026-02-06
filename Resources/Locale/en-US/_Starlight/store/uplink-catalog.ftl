@@ -12,11 +12,14 @@ uplink-stechkin-name = Stechkin pistol
 uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors.
 uplink-pistol-magnum-magazine-name = Pistol Magazine (.45 magnum)
 uplink-pistol-magnum-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Desert Eagle.
+
 uplink-magillitis-serum-implanter-name = Magillitis Serum Implanter
 uplink-magillitis-serum-implanter-desc = An experimental biochip which causes irreversable rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas.
+uplink-gear-acidifier-implant-name = Gear Acidifier Implant
+uplink-gear-acidifier-implant-desc = Melts your equipment on use or death, leaving your body intact. Does not destroy restraints.
 
 uplink-pitbull-bundle-name = Pitbull Bundle
-uplink-pitbull-bundle-desc = A large bullpup rifle with a low fire-rate but excellent accuracy. Chambered in .45 magnum. 
+uplink-pitbull-bundle-desc = A large bullpup rifle with a low fire-rate but excellent accuracy. Chambered in .45 magnum.
 
 
 uplink-rifle-magazine-pitbull-name = Bullpup magazine (.45 magnum)
@@ -28,6 +31,12 @@ uplink-thermalvision-eyes = Thermal Vision Cyber Eyes
 uplink-thermalvision-eyes-desc = Allows you to see in the dark and detect creatures through walls but makes you more vulnerable to flashes. (Warning: You will need a surgical assistant for the procedure.)
 uplink-mantis-blade-arms-name = Mantis Blade Arms Bundle
 uplink-mantis-blade-arms-desc = Originally used as a simple construction tool, now turned into hidden blades that can extend from your arm while still keeping its destructive prying skill. Truly a sight to behold. (Warning: You will need a surgical assistant for the procedure.)
+uplink-advanced-claws-name = Advanced Claws Implant
+uplink-advanced-claws-desc = A cybernetic implant for hands. Allows an agent to extend sharp plasteel claws at will, and hide them away just as quickly. (Warning: You will need a surgical assistant for the procedure.)
+uplink-forensics-implant-name = Forensics Implant
+uplink-forensics-implant-desc = A cybernetic implant for hands. Removes an agent's fingerprints so as to not leave evidence of a crime. Does not work through gloves. (Warning: You will need a surgical assistant for the procedure.)
+uplink-syndie-implant-name = Syndicate Agent Implant
+uplink-syndie-implant-desc = A cybernetic eye implant. Enables an agent to see information about the station crew, humanoids and syndicate without any glasses. (Warning: You will need a surgical assistant for the procedure.)
 
 uplink-uzi-bundle-name = Type U3 Uzi Bundle
 uplink-uzi-bundle-desc = Contains the Type U3 Uzi, with two additional magazines.
@@ -46,6 +55,7 @@ uplink-syndicate-borgi-kitted-desc = A syndicate borgi, outfitted with an L6 mod
 
 uplink-syndicate-borgi-speed-name = Speed Syndicate Borgi
 uplink-syndicate-borgi-speed-desc = A syndicate borgi, with dagger modules and additional speed
+
 
 uplink-reinforcement-radio-medical-cyborg-name = Syndicate Medical Cyborg Teleporter
 uplink-reinforcement-radio-medical-cyborg-desc = A medical borg, with syndicate variants of items where applicable. Comes with basic weapons.
@@ -68,3 +78,21 @@ uplink-lube-grenade-desc = Special grenade for shenanigans, releasing large clou
 
 uplink-glue-grenade-name = Glue Grenade
 uplink-glue-grenade-desc = Special grenade for shenanigans, releasing large cloud of glue foam.
+
+uplink-hydra-name = Hydra
+uplink-hydra-desc = A modified Hydra capable of taking both cleanades and standard grenades. Excellent for when you need to clean up the security department. Comes pre-filled with special syndicate cleanades.
+
+uplink-pizza-bomb-name = Nefarious Pizza bomb
+uplink-pizza-bomb-desc = Originally developed by covertly by DONK Co to disuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened. 
+
+uplink-shuttle-board-name = Syndicate Shuttle Console Board
+uplink-shuttle-board-desc = A computer printed circuit board for a syndicate shuttle console.
+
+uplink-shuttle-bundle-name = Syndicate Shuttle Crate
+uplink-shuttle-bundle-desc = Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required)
+
+uplink-friendship-bundle-name = Friendship Bundle
+uplink-friendship-bundle-desc = Friendship packaged in a convenient crate*. (Some assembly required)
+
+uplink-breaching-hammer-name = Breaching Hammer
+uplink-breaching-hammer-desc = A heavy-duty powered breaching tool disguised as a combat hammer. Functions like jaws of life for prying open doors and airlocks, while also serving as a devastating melee weapon. Can deal massive structural damage to walls and reinforced barriers, making it perfect for forced entry operations.

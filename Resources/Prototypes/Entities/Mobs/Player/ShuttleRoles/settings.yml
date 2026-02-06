@@ -572,7 +572,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ChallengeVictimCaptain, ChallengeVictimCaptainAlt ] #!! This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
-      # roleLoadout: [ RoleSurvivalVoxSupport ] - Starlight edit - Should no longer be needed
+      roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
       - NamesFirst
@@ -593,7 +593,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ChallengeVictimCE, ChallengeVictimCEAlt ] #!! This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
-      # roleLoadout: [ RoleSurvivalVoxSupport ] - Starlight edit - Should no longer be needed
+      roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
       - NamesFirst
@@ -614,7 +614,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ChallengeVictimCMO, ChallengeVictimCMOAlt ] #!! This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
-      # roleLoadout: [ RoleSurvivalVoxSupport ] - Starlight edit - Should no longer be needed
+      roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
       - NamesFirst
@@ -635,7 +635,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ChallengeVictimHOP, ChallengeVictimHOPAlt ] #!! This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
-      # roleLoadout: [ RoleSurvivalVoxSupport ] - Starlight edit - Should no longer be needed
+      roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
       - NamesFirst
@@ -656,7 +656,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ChallengeVictimHOS, ChallengeVictimHOSAlt ] #!! This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
-      # roleLoadout: [ RoleSurvivalVoxSupport ] - Starlight edit - Should no longer be needed
+      roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
       - NamesFirst
@@ -677,7 +677,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ChallengeVictimRD, ChallengeVictimRDAlt ] #!! This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
-      # roleLoadout: [ RoleSurvivalVoxSupport ] - Starlight edit - Should no longer be needed
+      roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
       - NamesFirst
@@ -698,7 +698,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ChallengeVictimQM, ChallengeVictimQMAlt ] #!! This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
-      # roleLoadout: [ RoleSurvivalVoxSupport ] - Starlight edit - Should no longer be needed
+      roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
       - NamesFirst
@@ -723,7 +723,7 @@
     - type: GhostTakeoverAvailable
     - type: Loadout
       prototypes: [ ChallengeCargoTechGearSuit, ChallengeCargoTechGearCoat ] #!! This is supposed to be for challenge events. Its intentionally missing QOL gear to make interesting scenarios.
-      # roleLoadout: [ RoleSurvivalVoxSupport ] - Starlight edit - Should no longer be needed
+      roleLoadout: [ RoleSurvivalVoxSupport ]
     - type: RandomMetadata
       nameSegments:
       - NamesFirst
@@ -754,10 +754,10 @@
       name: ghost-role-information-syndie-soldier-teamlead-name
       description: ghost-role-information-syndie-soldier-teamlead-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+      mindRoles:
+      - MindRoleNukeopsCommander
     - type: Loadout
       prototypes: [ SyndicateFootsoldierTeamLeaderGear ]
       roleLoadout: [ RoleSurvivalSyndicate ]
@@ -774,10 +774,10 @@
       name: ghost-role-information-syndie-soldier-name
       description: ghost-role-information-syndie-soldier-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+      mindRoles:
+      - MindRoleNukeops
     - type: Loadout
       prototypes: [ SyndicateFootsoldierGear ]
       roleLoadout: [ RoleSurvivalSyndicate ]
@@ -812,10 +812,10 @@
       name: ghost-role-information-pirate-name
       description: ghost-role-information-pirate-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+      mindRoles:
+      - MindRolePirate
     - type: Loadout
       prototypes: [ PirateScoonerAltA, PirateScoonerAltB, PirateScoonerAltC, PirateScoonerAltD ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -831,10 +831,10 @@
       name: ghost-role-information-pirate-captain-name
       description: ghost-role-information-pirate-captain-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+      mindRoles:
+      - MindRolePirateCaptain
     - type: Loadout
       prototypes: [ PirateCaptainScooner ]
       roleLoadout: [ RoleSurvivalEVA ]

@@ -54,9 +54,18 @@
   keycode: 'n'
   color: "#FF7922"
   requiredTags: 
-  - Resomi
-  - Avali
+  - Nexus
 
+  
+- type: collectiveMind
+  id: VampireThrall
+  name: collective-mind-vampire-thrall
+  keycode: 'p'
+  color: "#066338"
+  requiredComponents:
+  - Dantalion
+  - VampireThrall
+  
 - type: collectiveMind
   id: Empathy
   name: collective-mind-empathy

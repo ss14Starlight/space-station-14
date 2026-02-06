@@ -45,12 +45,12 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly OpenableSystem _openable = default!;
         [Dependency] private readonly HandsSystem _handsSystem = default!;
-        
+
         // Starlight-start
         [Dependency] private readonly PowerCellSystem _powercell = default!;
         [Dependency] private readonly SharedContainerSystem _container = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly PredictedBatterySystem _battery = default!;
+        [Dependency] private readonly SharedBatterySystem _battery = default!;
         private readonly Dictionary<EntityUid, float> _uiUpdateAccumulators = new();
         private const float UiUpdateInterval = 0.5f;
         // Starlight-end
@@ -107,17 +107,17 @@ namespace Content.Server.Chemistry.EntitySystems
                 {
                     // Charge at 5W when connected to power
                     chargeRate = 5f;
-                    
+
                     if (_battery.IsFull((batteryUid.Value, batteryUid.Value.Comp)))
                         continue;
-                    
+
                     isChargingOrDraining = true;
                 }
                 else if (uiOpen)
                 {
                     // Drain at 5W when UI is open and not powered by APC
                     chargeRate = -5f;
-                    
+
                     if (batteryUid.Value.Comp.LastCharge <= 0)
                     {
                         // Close UI if cell is dead
@@ -125,13 +125,15 @@ namespace Content.Server.Chemistry.EntitySystems
                             _userInterfaceSystem.CloseUi(uid, activatableUI.Key);
                         continue;
                     }
-                    
+
                     isChargingOrDraining = true;
                 }
                 else
                 {
                     continue;
                 }
+
+                _battery.ChangeCharge((batteryUid.Value, batteryUid.Value.Comp), chargeRate * frameTime); // Apply charge change before checking if its changed and updating the ui. Helps with making energy bar display accurate.
 
                 if (chargeRate > 0 && batteryUid.Value.Comp.LastCharge + (chargeRate * frameTime) > batteryUid.Value.Comp.LastCharge)
                 {
@@ -150,8 +152,6 @@ namespace Content.Server.Chemistry.EntitySystems
                     continue;
                 }
 
-                _battery.ChangeCharge((batteryUid.Value, batteryUid.Value.Comp), chargeRate * frameTime);
-                
                 if (chargeRate < 0 && batteryUid.Value.Comp.LastCharge <= 0 && uiOpen)
                 {
                     UpdateUiState((uid, dispenser));
@@ -179,7 +179,7 @@ namespace Content.Server.Chemistry.EntitySystems
             if (!_powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery))
                 return;
 
-            var energy = battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge;
+            var energy = _battery.GetChargeLevel(battery.Value.AsNullable()); // Get current energy level for UI with GetChargeLevel.
             var message = new ReagentDispenserEnergyUpdateMessage(energy);
             _userInterfaceSystem.ServerSendUiMessage(reagentDispenser.Owner, ReagentDispenserUiKey.Key, message);
         }
@@ -195,7 +195,7 @@ namespace Content.Server.Chemistry.EntitySystems
                 return;
 
             UpdateUiState(ent);
-            
+
             if (!_powercell.HasActivatableCharge(ent.Owner))
             {
                 if (TryComp<ActivatableUIComponent>(ent.Owner, out var activatable) && activatable.Key != null)
@@ -226,8 +226,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
             var inventory = GetInventory(reagentDispenser);
 
-            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge : 0f; // Starlight-edit: Energy bar
-
+            var energy = _powercell.TryGetBatteryFromSlot(reagentDispenser.Owner, out var battery) ? _battery.GetChargeLevel(battery.Value.AsNullable()) : 0f; // Starlight-edit: Energy bar, get current energy level for UI with GetChargeLevel.
             var state = new ReagentDispenserBoundUserInterfaceState(outputContainerInfo, GetNetEntity(outputContainer), inventory, reagentDispenser.Comp.DispenseAmount, energy); // Starlight-edit: Energy bar
             _userInterfaceSystem.SetUiState(reagentDispenser.Owner, ReagentDispenserUiKey.Key, state);
         }
@@ -277,7 +276,7 @@ namespace Content.Server.Chemistry.EntitySystems
                 var data = new ReagentDispenseData(storageLocation, null); // Starlight-edit
                 inventory.Add(new ReagentInventoryItem(data, reagentLabel, quantity, reagentColor, false)); // Starlight-edit
             }
-            
+
             // Starlight-start: Generatable Reagents
             foreach (var (reagent, powerDrain) in reagentDispenser.Comp.GeneratableReagents)
             {
@@ -316,7 +315,7 @@ namespace Content.Server.Chemistry.EntitySystems
                     && actors.TryGetValue(ReagentDispenserUiKey.Key, out var entities))
                     foreach (var entity in entities)
                         _popup.PopupCursor(Loc.GetString("reagent-dispenser-window-no-container-loaded-text"), entity);
-                
+
                 ClickSound(reagentDispenser);
                 return;
             }
@@ -380,7 +379,7 @@ namespace Content.Server.Chemistry.EntitySystems
                         && actors.TryGetValue(ReagentDispenserUiKey.Key, out var entities))
                         foreach (var entity in entities)
                             _popup.PopupCursor(Loc.GetString("reagent-dispenser-component-cannot-fit-message"), entity);
-                    
+
                     UpdateUiState(reagentDispenser);
                     ClickSound(reagentDispenser);
                     return;
@@ -395,7 +394,7 @@ namespace Content.Server.Chemistry.EntitySystems
                         && actors2.TryGetValue(ReagentDispenserUiKey.Key, out var entities2))
                         foreach (var entity in entities2)
                             _popup.PopupCursor(Loc.GetString(popup), entity);
-                    
+
                     UpdateUiState(reagentDispenser);
                     ClickSound(reagentDispenser);
                     return;
@@ -410,17 +409,17 @@ namespace Content.Server.Chemistry.EntitySystems
                         && actors3.TryGetValue(ReagentDispenserUiKey.Key, out var entities3))
                         foreach (var entity in entities3)
                             _popup.PopupCursor(Loc.GetString("reagent-dispenser-component-cannot-fit-message"), entity);
-                    
+
                     UpdateUiState(reagentDispenser);
                     ClickSound(reagentDispenser);
                     return;
                 }
-                
+
                 // Successfully dispensed, now use the power
                 if (!_powercell.TryUseCharge(reagentDispenser.Owner, powerDrain * (float)reagentDispenser.Comp.DispenseAmount))
                 {
                     // This shouldn't happen since we already checked HasCharge, but log it just in case
-                    Logger.Warning($"Failed to use power charge on dispenser {ToPrettyString(reagentDispenser.Owner)} after dispensing reagent");
+                    Log.Warning($"Failed to use power charge on dispenser {ToPrettyString(reagentDispenser.Owner)} after dispensing reagent");
                 }
             }
 

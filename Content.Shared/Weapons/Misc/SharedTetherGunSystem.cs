@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Starlight.Shadekin;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.Components;
@@ -188,6 +189,10 @@ public abstract partial class SharedTetherGunSystem : EntitySystem
             return false;
 
         if (TryComp<StrapComponent>(target, out var strap) && strap.BuckledEntities.Count > 0)
+            return false;
+
+        // Starlight
+        if (HasComp<DarkPortalComponent>(target))
             return false;
 
         return true;

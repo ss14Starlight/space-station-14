@@ -379,6 +379,15 @@
     - type: Paper
       content: doc-text-printer-surgery-consent-permit
       
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentArtPermit
+  name: Art Permit
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-art-permit
+
 # OrdersAndInstructions
 
 - type: entity

@@ -1,7 +1,6 @@
 // Humanoid EMP System
-// SOURCE: Far-Horizons-SS14
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
 // https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
-// Handles EMP effects on humanoid silicons (IPCs, etc.)
 
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;

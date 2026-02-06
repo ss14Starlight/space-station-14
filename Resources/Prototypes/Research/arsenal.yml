@@ -13,6 +13,9 @@
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
   - MechEquipmentKineticAccelerator
+  - FiringPinExpedition # Starlight
+  technologyPrerequisites:
+  - SalvageEquipment # starlight
   radioChannels:
   - Supply
   # These are roundstart but not replenishable for salvage
@@ -38,7 +41,7 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
-  - LightRifleHeavyMagazineIncendiary
+  - MagazineDMRIncendiary # Starlight
   - MagazinePistolSubMachineGunIncendiary
   - SpeedLoaderShotgunIncendiary
   radioChannels:
@@ -55,6 +58,7 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
+  - FiringPinLaser # Starlight
   - WeaponMechCombatFiredartLaser
   radioChannels:
   - Security
@@ -107,7 +111,7 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
-  - LightRifleHeavyMagazineUranium
+  - MagazineDMRUranium # Starlight
   - MagazinePistolSubMachineGunUranium
   - SpeedLoaderShotgunUranium
   radioChannels:
@@ -147,6 +151,12 @@
   - FlashPayload
   - ExplosivePayload
   - ChemicalPayload
+  - ShuttleGunFriendshipCircuitboard  # SL start
+  - ShuttleGunDusterCircuitboard
+  - MagazineGrenadeEmpty
+  - MagazineGrenadeEMP
+  - MagazineGrenadeBaton
+  - MagazineGrenadeFlash # SL end
   - CableDetStack1
   - EmptyDetonator
   radioChannels:
@@ -198,7 +208,7 @@
   - WeaponMechCombatXray # 🌟Starlight-change🌟
   radioChannels:
   - Security
-  
+
 - type: technology
   id: KineticModifications
   name: research-technology-kinetic-modifications
@@ -212,6 +222,12 @@
   - PKAUpgradeDamage
   - PKAUpgradeRange
   - PKAUpgradeFireRate
+  # region starlight
+  technologyPrerequisites:
+  - SalvageWeapons
+  radioChannels:
+  - Supply
+  # end region
 
 - type: technology
   id: BasicShuttleArmament
@@ -226,14 +242,17 @@
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
   - PowerCageMedium
+  - PowerCageHigh # SL start
+  # - MagazineGrenadeEmpty
+  # - GrenadeFlash
+  # - GrenadeBlast
+  # - ShuttleGunFriendshipCircuitboard # SL end
   - MagazineGrenadeEmpty
-  - GrenadeFlash
-  - GrenadeBlast
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
-  - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
+  - Shuttlecraft # starlight
   radioChannels:
   - Security
 
@@ -283,20 +302,21 @@
   radioChannels:
   - Security
 
-- type: technology
-  id: AdvancedShuttleWeapon
-  name: research-technology-advanced-shuttle-weapon
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
-    state: icon
-  discipline: Arsenal
-  tier: 3
-  cost: 15000
-  recipeUnlocks:
-  - GrenadeEMP
-  - PowerCageHigh
-  - ShuttleGunDusterCircuitboard
-  technologyPrerequisites:
-  - BasicShuttleArmament
-  radioChannels:
-  - Security
+# Removing the EMP and moving the board made this basically useless.
+# - type: technology # SL start
+#   id: AdvancedShuttleWeapon
+#   name: research-technology-advanced-shuttle-weapon
+#   icon:
+#     sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
+#     state: icon
+#   discipline: Arsenal
+#   tier: 3
+#   cost: 15000
+#   recipeUnlocks:
+#   - GrenadeEMP
+#   - PowerCageHigh
+#   - ShuttleGunDusterCircuitboard
+#   technologyPrerequisites:
+#   - BasicShuttleArmament
+#   radioChannels:
+#   - Security # SL end

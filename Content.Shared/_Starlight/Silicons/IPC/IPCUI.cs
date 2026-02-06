@@ -1,7 +1,6 @@
 // IPC UI
-// SOURCE: Far-Horizons-SS14
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
 // https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
-// _STARLIGHT: No modifications
 
 using Content.Shared.Mobs;
 using Robust.Shared.Serialization;

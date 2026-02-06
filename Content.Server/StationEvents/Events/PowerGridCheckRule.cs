@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -21,8 +22,14 @@ namespace Content.Server.StationEvents.Events
         {
             base.Started(uid, component, gameRule, args);
 
-            if (!TryGetRandomStation(out var chosenStation))
-                return;
+            //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
+            EntityUid? chosenStation = null;
+            if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+            chosenStation = stationEvent.TargetStation;
+            if (chosenStation is null)
+                if (!TryGetRandomStation(out chosenStation))
+                    return;
+            //Starlight end
 
             component.AffectedStation = chosenStation.Value;
 
@@ -59,7 +66,18 @@ namespace Content.Server.StationEvents.Events
             component.AnnounceCancelToken = new CancellationTokenSource();
             Timer.Spawn(3000, () =>
             {
-                Audio.PlayGlobal(component.PowerOnSound, Filter.Broadcast(), true);
+                //Starlight begin - dumb.
+                TryComp<StationEventComponent>(uid, out var stationEvent);
+                if (stationEvent is null) return;
+                if (stationEvent.GlobalAnnouncement)
+                    Audio.PlayGlobal(component.PowerOnSound, Filter.Broadcast(), true);
+                else
+                    Audio.PlayGlobal(component.PowerOnSound,
+                        Filter.Empty().AddWhere(session =>
+                            session.AttachedEntity is not null &&
+                            TryComp<StationMemberComponent>(Transform(session.AttachedEntity.Value).GridUid,
+                                out var station) && station.Station == stationEvent.TargetStation), true);
+                //Starlight end
             }, component.AnnounceCancelToken.Token);
             component.Unpowered.Clear();
         }

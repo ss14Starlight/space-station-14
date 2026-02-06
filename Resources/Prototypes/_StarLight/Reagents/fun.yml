@@ -39,6 +39,14 @@
             - !type:ReagentCondition
               reagent: ConcentratedCorgiJuice
               min: 50
+        # Starlight-Start: Cyclorite Metabolism
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: ConcentratedCorgiJuice
+          amount: 0.25
+        # Starlight-End
     Medicine:
       metabolismRate: 0.5
       effects:

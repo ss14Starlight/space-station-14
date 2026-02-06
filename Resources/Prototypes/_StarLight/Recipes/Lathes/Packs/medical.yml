@@ -27,6 +27,14 @@
 #
 
 - type: latheRecipePack
+  id: StarlightAutomendersDynamic
+  recipes:
+  - AutoMenderBrute
+  - AutoMenderBurn
+
+#
+
+- type: latheRecipePack
   id: StarlightCyberlimbDynamic
   recipes:
   - LeftArmCyber
@@ -37,11 +45,27 @@
   - RightLegCyber
   - LeftFootCyber
   - RightFootCyber
+  - LeftLegCyberHydraulic
+  - RightLegCyberHydraulic
+  - LeftLegCyberPilebunker
+  - RightLegCyberPilebunker
 
   - LeftArmCyberReaper
   - RightArmCyberReaper
   - LeftArmCyberMechwright
   - RightArmCyberMechwright
+  - LeftArmCyberSpacer
+  - RightArmCyberSpacer
+  - LeftArmCyberRiplet
+  - RightArmCyberRiplet
+  - LeftArmCyberAngel
+  - RightArmCyberAngel
+  - LeftArmCyberPersephone
+  - RightArmCyberPersephone
+  - LeftArmCyberGorilla
+  - RightArmCyberGorilla
+  - LeftArmCyberEngineer
+  - RightArmCyberEngineer
 
 #
 
@@ -58,7 +82,13 @@
   recipes:
   - EyeImplantWelding
   - EyeImplantMedical
+  - EyeImplantChemistry
+  - EyeImplantDiagnostic
   - EyeImplantSecurity
+  - HandImplantInsulated
+  - HandImplantThrusters
+  - BrainImplantComms
+  - BrainImplantTranslator
   - CyberRebreather # For now i will be lazy and put it here, not sure if i can excuse making a new pack for just 1 recipe
 
 - type: latheRecipePack

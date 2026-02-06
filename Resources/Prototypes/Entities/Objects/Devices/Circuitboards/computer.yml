@@ -29,6 +29,12 @@
       state: cpu_engineering
     - type: ComputerBoard
       prototype: ComputerAlert
+    #Starlight start
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: alert
+    #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -40,6 +46,12 @@
       state: cpu_engineering
     - type: ComputerBoard
       prototype: ComputerAtmosMonitoring
+    #Starlight start
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: tank
+    #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -51,6 +63,12 @@
       state: cpu_engineering
     - type: ComputerBoard
       prototype: ComputerPowerMonitoring
+    #Starlight start
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: power
+    #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -73,6 +91,12 @@
       state: cpu_security
     - type: ComputerBoard
       prototype: ComputerCriminalRecords
+    #Starlight start
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: crime
+    #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -84,6 +108,12 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerStationRecords
+    #Starlight start
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: stationRecords
+    #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -97,6 +127,12 @@
       prototype: ComputerCargoOrders
     - type: StaticPrice
       price: 750
+    #Starlight start
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: cargoRequest
+    #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -110,6 +146,12 @@
     prototype: ComputerCargoOrdersEngineering
   - type: StaticPrice
     price: 750
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: engineeringRequest
+  #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -123,6 +165,12 @@
     prototype: ComputerCargoOrdersMedical
   - type: StaticPrice
     price: 750
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: medicalRequest
+  #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -136,6 +184,12 @@
     prototype: ComputerCargoOrdersScience
   - type: StaticPrice
     price: 750
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: scienceRequest
+  #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -149,6 +203,12 @@
     prototype: ComputerCargoOrdersSecurity
   - type: StaticPrice
     price: 750
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: securityRequest
+  #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -162,6 +222,12 @@
     prototype: ComputerCargoOrdersService
   - type: StaticPrice
     price: 750
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: serviceRequest
+  #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -198,6 +264,12 @@
   - type: ComputerBoard
     prototype: ComputerCargoBounty
   - type: StaticPrice
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: cargoBounty
+  #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -209,6 +281,12 @@
     state: cpu_supply
   - type: ComputerBoard
     prototype: ComputerSalvageJobBoard
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: salvageJob
+  #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -249,6 +327,12 @@
   - type: Tag
     tags:
     - SurveillanceCameraMonitorCircuitboard
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: camera
+  #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -327,6 +411,12 @@
     state: cpu_medical
   - type: ComputerBoard
     prototype: ComputerCrewMonitoring
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: crew
+  #Starlight end
 
 - type: entity
   parent: [BaseComputerCircuitboard, BaseCommandContraband]
@@ -343,6 +433,8 @@
     - type: Tag
       tags:
       - HighRiskItem
+    - type: StealTarget # Starlight
+      stealGroup: IDCardComputerCircuitboard # Starlight
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -365,6 +457,8 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerComms
+    - type: StealTarget # Starlight
+      stealGroup: CommsComputerCircuitboard # Starlight
 
 - type: entity
   parent: [ BaseComputerCircuitboard, BaseSyndicateContraband ]
@@ -516,6 +610,12 @@
       price: 150
     - type: ComputerBoard
       prototype: ComputerMassMedia
+    #Starlight start
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: news
+    #Starlight end
 
 - type: entity
   parent: BaseComputerCircuitboard

@@ -19,7 +19,10 @@
   # Starlight-end
   - type: ThermalVision
   - type: Bloodstream
-    bloodMaxVolume: 600
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 650
   - type: AntagMonsterScaling ## Starlight
   - type: GhostRole
     allowMovement: true
@@ -120,6 +123,7 @@
     - RadiationProtection
     - Adrenaline
   - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 2400
   - type: Metabolizer
     solutionOnBody: false
@@ -162,6 +166,11 @@
       - Door
       tags:
       - Wall
+    # Starlight start - no eating indestructible walls
+    blacklist:
+      tags:
+      - Inedible
+    # Starlight end
   - type: Tag
     tags:
     - CannotSuicide

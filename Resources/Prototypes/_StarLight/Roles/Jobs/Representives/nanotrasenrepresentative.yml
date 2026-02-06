@@ -10,7 +10,7 @@
     - !type:RolesRequirement
       proto: ExtRolesReq
   startingGear: NanoTrasenRepresentativeGear
-  icon: JobIconNanotrasen
+  icon: JobIconNanoTrasenRepresentative
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -39,8 +39,8 @@
     - Brig
     - Cargo
     - Atmospherics
-    - Cargo
     - Medical
+    - IAA
     - Ntrep
     - Brigmedic
     - Surgery
@@ -56,7 +56,7 @@
   id: NanoTrasenRepresentativeGear
   equipment:
     #shoes: ClothingShoesBootsLaceup
-    head: ClothingHeadHatCapNtrep
+    #head: ClothingHeadHatCapNtrep
     id: NanoTrasenRepresentativePDA
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterCoatNtrep

@@ -138,10 +138,41 @@
     - MedTekCartridge
 
 - type: entity
+  parent: BaseSecurityPDA
+  id: DutyOfficerPDA
+  name: duty officer PDA
+  description: Look around, there was never a way out. Every path leads down.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: DutyOfficerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-dutyofficer
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-dutyofficer
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - WantedListCartridge
+
+- type: entity
   parent: BasePDA
   id: MagistratePDA
   name: magistrate PDA
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: MagistrateIDCard
     penSlot:
@@ -154,11 +185,12 @@
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-captain
+       pda-magi
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#3b3b3b"
   - type: Icon
-    state: pda-captain
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-magi
 
 - type: entity
   parent: BasePDA
@@ -211,9 +243,10 @@
     state: pda-lawyer
 
 - type: entity
-  parent: BasePDA
+  parent: [ BasePDA, BaseBlueShieldContraband ]
   id: BlueShieldPDA
-  name: blueshield officer's PDA
+  name: blue shield PDA
+  description: Comes with a built-in medtek to assess command staff's wounds after you heroically save them.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/pda.rsi
@@ -224,6 +257,9 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-blueshield
+  - type: PdaBorderColor
+    borderColor: "#202125"
+    accentHColor: "#004281"
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-blueshield
@@ -235,6 +271,29 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+
+- type: entity
+  parent: BlueShieldPDA
+  id: VeteranBlueShieldPDA
+  name: veteran blue shield PDA
+  description: Comes with a built-in medtek to assess command staff's wounds after you heroically save them.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BlueShieldIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-veteranblueshield
+  - type: PdaBorderColor
+    borderColor: "#202125"
+    accentHColor: "#004281"
+    accentVColor: "#c2c1c9"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-veteranblueshield
 
 - type: entity
   parent: BasePDA
@@ -478,6 +537,28 @@
     - DoorBumpOpener
 
 - type: entity
+  parent: BaseMedicalPDA
+  id: SeniorParamedicPDA
+  name: senior paramedic PDA
+  description: Shiny and sterile, despite the scuffs and scratches
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: ParamedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorparamedic
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#2a4b5b"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-seniorparamedic
+
+- type: entity
   parent: CentcomPDA
   id: NTSFPDA
   suffix: NTSF #starlight
@@ -527,4 +608,31 @@
       - MedTekCartridge
       - WantedListCartridge
       - LogProbeCartridge
+      - AstroNavCartridge
+
+- type: entity
+  parent: BasePDA
+  id: NanotrasenCareerTrainerPDA
+  name: Nanotrasen Career Trainer PDA
+  components:
+  - type: Pda
+    id: NanotrasenCareerTrainerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ntrep
+  - type: PdaBorderColor
+    borderColor: "#1c1c1c"
+    accentHColor: "#ffce5b"
+  - type: Icon
+    state: pda-ntrep
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
       - AstroNavCartridge

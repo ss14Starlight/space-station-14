@@ -16,6 +16,8 @@
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
   - type: Tag
     tags:
     - HamsterWearable
@@ -41,6 +43,28 @@
     - WhitelistChameleon
 
 - type: entity
+  parent: ClothingEyesGlassesCheapSunglasses
+  id: ClothingEyesGlassesMusicianSunglasses
+  name: musician shades
+  description: A stylish pair of purple shades. They function as sunglasses, too.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/musicianglasses.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/musicianglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
+  - type: Tag
+    tags:
+    - Sunglasses
+    - PetWearable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
   parent: ClothingEyesBase
   id: ClothingEyesSunGlassesHudSkill
   name: skills sunglasses
@@ -56,11 +80,13 @@
   - type: ShowCriminalRecordIcons
   - type: EyeProtection
     protectionTime: 5
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
 
 - type: entity
-  parent: [ClothingEyesBase, BaseCommandContraband]
+  parent: [ClothingEyesBase, BaseBlueShieldContraband]
   id: ClothingEyesGlassesBlueShield
-  name: blueshield officer's glasses
+  name: blue shield glasses
   description: The innovative blue lenses hide your eyes from light flashes and have a built-in visor.
   components:
   - type: Sprite
@@ -82,6 +108,8 @@
     - HudMedical
   - type: EyeProtection
     protectionTime: 5
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
 
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
@@ -108,6 +136,72 @@
     - HudMedical
   - type: EyeProtection
     protectionTime: 5
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+
+# Prescription Glasses
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyesGlassesBrigmedicPrescription
+  name: prescription brigmedic glasses
+  description: A set of unshielded prescription glasses for Brigmedics.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionbrigmedicglasses.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionbrigmedicglasses.rsi
+  - type: SolutionScanner
+  - type: VisionCorrection
+  - type: ShowHealthBars
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingEyesBase, ShowMedicalIcons]
+  id: ClothingEyeGlassesMedicalPrescription
+  name: prescription medical glasses
+  description: A set of prescription glasses for Doctors. Not covered under insurance.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionmedical.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionmedical.rsi
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - HudMedical
+    - WhitelistChameleon
+    - HamsterWearable
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyeGlassesSecurityPrescription
+  name: prescription security glasses
+  description: A set of unshielded prescription glasses for Security.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionsecglasses.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionsecglasses.rsi
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - HudSecurity
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesChemical
+  id: ClothingEyeGlassesChemicalPrescription
+  name: prescription chemical analysis glasses
+  description: A set of prescription glasses for chemists.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionscience.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionscience.rsi
+  - type: VisionCorrection
 
 # USSP
 
@@ -133,7 +227,7 @@
 # Shadekin
 
 - type: entity
-  parent: [ClothingEyesBase]
+  parent: [ClothingEyesBase, BaseSecurityScienceCommandContraband]
   id: ClothingEyesGlassesNullSpace
   name: nullspace goggles
   description: An unusual pair of goggles developed during a time of inhumane experimentation involving Shadekin. They are designed to allow the wearer to peer into NullSpace.
@@ -143,6 +237,10 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/nullspacegoogles.rsi
   - type: ShowNullSpace
+    showShader: true
+  - type: Construction
+    graph: ClothingGlassesNullSpace
+    node: glasses
 
 - type: entity
   parent: [ ClothingEyesBase, BaseSalvageContraband ]

@@ -1,8 +1,6 @@
 // IPC Cold Slowdown System
-// _STARLIGHT: Original implementation for Starlight
-//
-// Adds/removes IPCColdSlowedComponent based on temperature alert level.
-// When at maximum cold alert (260K), IPCs perform actions 50% slower.
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
+// https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
 
 using Content.Server.Temperature.Systems;
 using Content.Shared._Starlight.Silicons.IPC.Components;

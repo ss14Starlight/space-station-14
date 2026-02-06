@@ -1,8 +1,6 @@
 // IPC System - Temperature (Server)
-// _STARLIGHT: Original implementation
-// Temperature-based effects for IPCs:
-// - Overheating causes emergency shutdown (knockdown) to prevent death
-// - Alarm sounds play on overheat shutdown
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
+// https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
 
 using Content.Shared._Starlight.Silicons.IPC.Components;
 using Content.Shared.Mobs;
@@ -17,8 +15,6 @@ public sealed partial class IPCSystem
 {
     // IPCs shut down at 360K (~87°C) to prevent heat death (below 373K damage threshold)
     private const float OverheatThreshold = 360f;
-    // Emergency shutdown lasts 8 seconds
-    private const float OverheatKnockdownDuration = 8f;
 
     private void InitializeTemperature()
     {
@@ -43,7 +39,6 @@ public sealed partial class IPCSystem
                 
                 // Apply emergency shutdown (makes IPC unconscious/critical)
                 _state.ChangeMobState(uid, MobState.Critical, mobState);
-                component.LastOverheatKnockdown = _timing.CurTime;
             }
         }
     }

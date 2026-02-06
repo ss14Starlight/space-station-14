@@ -1,7 +1,6 @@
 // IPC Revive System - Server
-// SOURCE: Far-Horizons-SS14
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
 // https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
-// _STARLIGHT: Namespace changes, added additional helpers
 
 using Content.Server.EUI;
 using Content.Server.Electrocution;

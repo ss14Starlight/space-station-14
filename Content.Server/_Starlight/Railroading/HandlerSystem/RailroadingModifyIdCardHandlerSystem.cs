@@ -13,7 +13,6 @@ public sealed partial class RailroadingModifyIdCardHandlerSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly AccessSystem _access = default!;
 
     public override void Initialize()

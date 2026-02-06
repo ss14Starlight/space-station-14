@@ -32,6 +32,13 @@ ghost-role-information-decimus-description = You are a Decimus Operative. Enact 
 
 ghost-role-information-syndicate-cyborg-stealth-name = Syndicate Stealth Cyborg
 
+ghost-role-information-tsf-marine-name = Solar Federation Marine
+ghost-role-information-tsf-leader-name = Solar Federation Marine Team Leader
+ghost-role-information-tsf-MARSOC-name = Solar Federation MARSOC Marine
+ghost-role-information-tsf-marine-desc = You are a Solar Federation Marine. Perform your assigned task.
+
 ghost-role-information-xenomoproach-name = Xenomoproach
 ghost-role-information-xenomoproach-description = You are a small Xenoborg wearing the skin of a moproach as a disguise.
 ghost-role-information-xenomoproach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other xenoborgs. Your goal is not to attack organic beings, rather you are tasked with being cute and distracting the organics while gathering intel.
+
+ghost-role-information-slime-sentience-potion-description = Made conscious with the power of a sentience potion. Don't worry, you can move and speak!

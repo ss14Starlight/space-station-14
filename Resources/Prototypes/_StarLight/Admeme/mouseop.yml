@@ -149,7 +149,7 @@
       80: Critical
       100: Dead
   - type: Stamina
-    critThreshold: 200
+    baseCritThreshold: 200
   - type: Body
     prototype: SindSiliconMouseops
     requiredLegs: 2
@@ -161,7 +161,7 @@
     - CannotSuicide
     - VimPilot
     - AnomalyHost
-  - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 423
     coldDamageThreshold: 0
   - type: MovementAlwaysTouching

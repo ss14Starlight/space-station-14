@@ -1,5 +1,9 @@
-## Static recipes
 - type: latheRecipePack
-  id: StarlightNullspaceStatic
+  id: StarlightScienceWeapons
   recipes:
-  - NullspaceAnchorMachineCircuitboard
+  - FiringPinExpedition
+
+- type: latheRecipePack
+  id: StarlightShuttleBoards
+  recipes:
+  - WallmountMassScannerElectronics

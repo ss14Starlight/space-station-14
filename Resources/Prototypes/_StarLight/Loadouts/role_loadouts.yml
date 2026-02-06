@@ -11,21 +11,32 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
+  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobMagistrate
   groups:
+  - MagistrateJumpsuit
+  - MagistrateEyewear
+  - MagistrateHands
+  - MagistrateHead
+  - MagistrateOuterclothing
   - CommonBackpack
   - MagistrateShoes
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - LuxuryPens
+  - GroupSpeciesBreathTool
+
 
 - type: roleLoadout
   id: JobSurgeon
   groups:
+  - GroupTankHarness
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
@@ -38,7 +49,9 @@
   - SurvivalMedical
   - Trinkets
   - Scarves
+  - Pins
   - Pens
+  - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
   id: JobNanoTrasenRepresentative
@@ -50,8 +63,10 @@
   - NanotrasenRepresentativeShoes
   - Trinkets
   - Scarves
+  - Pins
   - NTRPens
   - Survival
+  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobIAA
@@ -62,8 +77,10 @@
   - LawyerShoes
   - Trinkets
   - Scarves
+  - Pins
   - LuxuryPens
   - Survival
+  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobBlueShield
@@ -72,17 +89,22 @@
   - BlueShieldJumpsuit
   - BlueShieldBackpack
   - BlueShieldOuterclothing
+  - BlueShieldBelt
   - BlueShieldShoes
   - BlueShieldNeck
   - BlueShieldEyewear
+  - BlueShieldPDA
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - SurvivalSecurity
+  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: JobMiningSpecialist
   groups:
+  - GroupTankHarness
   - SalvageSpecialistBackpack
   - MiningSpecialistJumpsuit
   - SalvageSpecialistOuterClothing
@@ -92,11 +114,14 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
+  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobMailTech
   groups:
+  - GroupTankHarness
   - CargoTechnicianHead
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
@@ -106,31 +131,58 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
+  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobBrigmedic
   groups:
-    - BrigmedicHead
-    - BrigmedicMask
-    - BrigmedicJumpsuit
-    - BrigmedicTie
-    - BrigmedicBackpack
-    - BrigmedicOuterClothing
-    - BrigmedicBelt
-    - BrigmedicGloves
-    - BrigmedicEyewear
-    - BrigmedicPDA
-    - BrigmedicBeaker
-    - SecurityShoes
-    - SecurityNonLethalWeapon
-    - SecuritySidearm
-    - SurvivalSecurity
-    - Trinkets
+  - BrigmedicHead
+  - BrigmedicMask
+  - BrigmedicJumpsuit
+  - BrigmedicTie
+  - BrigmedicBackpack
+  - BrigmedicOuterClothing
+  - BrigmedicBelt
+  - BrigmedicGloves
+  - BrigmedicEyewear
+  - BrigmedicPDA
+  - BrigmedicBeaker
+  - SecurityShoes
+  - SecurityNonLethalWeapon
+  - SecuritySidearm
+  - SurvivalSecurity
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobDutyOfficer
+  groups:
+  - DutyOfficerHead
+  - DutyOfficerJumpsuit
+  - SecurityBackpack
+  - SecurityEyewear
+  - DutyOfficerOuterClothing
+  - SecurityShoes
+  - DutyOfficerBelt
+  - SecurityNonLethalWeapon
+  - SurvivalSecurity
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: JobSalvageLead
   groups:
+    - GroupTankHarness
     - SalvageSpecialistBackpack
     - SalvageLeadJumpsuit
     - SalvageLeadNeck
@@ -140,6 +192,40 @@
     - Glasses
     - Survival
     - Trinkets
+    - Scarves
+    - Pins
+    - Pens
+    - GroupSpeciesBreathTool
+
+# Wildcards
+- type: roleLoadout
+  id: JobZookeeper
+  groups:
+  - CommonBackpack
+  - CivilianShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - ZookeeperJobTrinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobBoxer
+  groups:
+  - BoxerJumpsuit
+  - BoxerGloves
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - BoxerJobTrinkets
+  - GroupSpeciesBreathTool
 
 # Antagonist Loadouts
 - type: roleLoadout
@@ -162,3 +248,16 @@
   - BrighteyeShoes
   - BrighteyeGloves
   - Scarves
+  - Pins
+
+- type: roleLoadout
+  id: JobNanotrasenCareerTrainer
+  groups:
+  - NanotrasenCareerTrainerJumpsuit
+  - NanotrasenCareerTrainerHat
+  - NanotrasenCareerTrainerEyewear
+  - NanotrasenCareerTrainerShoes
+  - CommonBackpack
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool

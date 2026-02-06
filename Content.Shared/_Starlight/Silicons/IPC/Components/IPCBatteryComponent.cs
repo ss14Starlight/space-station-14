@@ -1,14 +1,12 @@
 // IPC Battery Component
-// SOURCE: Far-Horizons-SS14
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
 // https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
-// _STARLIGHT: Minor modifications for compatibility
 
 using Content.Shared.Alert;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Ninja.Components;
 using Content.Shared.PowerCell.Components;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -74,21 +72,11 @@ public sealed partial class IPCBatteryComponent : Component
     
     [ViewVariables(VVAccess.ReadWrite)]
     public int WarningsIssued = 0;
-
-    public Entity<AudioComponent>? Playing;
     
     [DataField]
     public TimeSpan AlarmCooldown = TimeSpan.FromSeconds(10);
     
     public TimeSpan NextAlarmTime;
-    
-    // _STARLIGHT: Overheat shutdown tracking
-    /// <summary>
-    /// Last time the IPC was knocked down due to overheating.
-    /// Used to prevent spam knockdowns during sustained high temperature.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan? LastOverheatKnockdown;
 }
 
 [Serializable, NetSerializable]

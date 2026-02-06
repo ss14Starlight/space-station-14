@@ -342,6 +342,8 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
+  - type: StealTarget # Starlight
+    stealGroup: BrigmedicHardsuit # Starlight
 
 #Warden's Hardsuit
 - type: entity
@@ -376,10 +378,12 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWarden
+  - type: StealTarget # Starlight
+    stealGroup: WardenHardsuit # Starlight
 
 #Captain's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, grand theft
   id: ClothingOuterHardsuitCap
   name: captain's armored spacesuit
   description: A formal armored spacesuit, made for the station's captain.
@@ -416,10 +420,12 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: StealTarget # Starlight
+    stealGroup: CaptainHardsuit # Starlight
 
 #Chief Engineer's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, Grand theft
   id: ClothingOuterHardsuitEngineeringWhite
   name: chief engineer's hardsuit
   description: A special hardsuit that protects against hazardous, low pressure environments, made for the chief engineer of the station.
@@ -457,10 +463,12 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: StealTarget # Starlight
+    stealGroup: CEHardsuit # Starlight
 
 #Chief Medical Officer's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, grand theft
   id: ClothingOuterHardsuitMedical
   name: chief medical officer's hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement.
@@ -491,6 +499,8 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: StealTarget # Starlight
+    stealGroup: CMOHardsuit # Starlight
 
 #Research Director's Hardsuit
 - type: entity
@@ -542,7 +552,7 @@
 
 #Head of Security's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, grand theft
   id: ClothingOuterHardsuitSecurityRed
   name: head of security's hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
@@ -598,6 +608,8 @@
     useCharge: 0
   - type: UseDelay
     delay: 10.0
+  - type: StealTarget # Starlight
+    stealGroup: HOSHardsuit # Starlight
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -605,7 +617,7 @@
   id: ClothingOuterHardsuitLuxury #DO NOT MAP - https://github.com/space-wizards/space-station-14/pull/19738#issuecomment-1703486738
   name: luxury mining hardsuit
   description: A refurbished mining hardsuit, fashioned after the Quartermaster's colors. Graphene lining provides less protection, but is much easier to move.
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL change
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi
@@ -668,7 +680,6 @@
         Caustic: 0.5
     # Starlight-start
     staminaModifier: 0.3
-    ignoreKnockdown: true
     # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.9
@@ -742,7 +753,6 @@
         Caustic: 0.5
     # Starlight-start
     staminaModifier: 0.2
-    ignoreKnockdown: true
     # Starlight-end
   - type: Item
     size: Huge
@@ -789,7 +799,6 @@
         Caustic: 0.4
     # Starlight-start
     staminaModifier: 0.1
-    ignoreKnockdown: true
     # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.95
@@ -838,7 +847,6 @@
         Caustic: 0.2
     # Starlight-start
     staminaModifier: 0.1
-    ignoreKnockdown: true
     # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.65
@@ -1035,10 +1043,10 @@
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitJuggernaut ]
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ]
   id: ClothingOuterHardsuitERTChaplain
-  name: ERT chaplain's hardsuit
-  description: A protective hardsuit worn by the chaplains of an Emergency Response Team.
+  name: ERT chaplain hardsuit # Starlight: remove possessive
+  description: A protective hardsuit worn by the Chaplains of an Emergency Response Team. # Starlight: Capitalization
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi #if you change this, please update the humanoid.yml with a better markers sprite.
@@ -1049,7 +1057,7 @@
 
 #ERT Engineer Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ]
   id: ClothingOuterHardsuitERTEngineer
   name: ERT engineer's hardsuit
   description: A protective hardsuit worn by the engineers of an emergency response team.
@@ -1114,7 +1122,7 @@
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ]
   id: ClothingOuterHardsuitERTJanitor
   name: ERT janitor's hardsuit
   description: A protective hardsuit worn by the janitors of an emergency response team.
@@ -1162,7 +1170,6 @@
         Caustic: 0.1
     # Starlight-start
     staminaModifier: 0.0
-    ignoreKnockdown: true
     # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 1.0
@@ -1206,7 +1213,6 @@
         Caustic: 0.1
     # Starlight-start
     staminaModifier: 0.2
-    ignoreKnockdown: true
     # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 1.0

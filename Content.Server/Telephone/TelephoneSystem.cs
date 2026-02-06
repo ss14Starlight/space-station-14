@@ -238,6 +238,11 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         if (TryComp<LabelComponent>(source, out var label))
             deviceName = label.CurrentLabel;
 
+        // Starlight begin - sanitize tags
+        callerInfo.Item1 = callerInfo.Item1?.Replace("[", @"\[");
+        callerInfo.Item2 = callerInfo.Item2?.Replace("]", @"\]");
+        // Starlight end
+        
         receiver.Comp.LastCallerId = (callerInfo.Item1, callerInfo.Item2, deviceName); // This will be networked when the state changes
         receiver.Comp.LinkedTelephones.Add(source);
         receiver.Comp.Muted = options?.MuteReceiver == true;

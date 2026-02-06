@@ -5,6 +5,7 @@ using Robust.Shared.Prototypes;
 
 #region Starlight
 using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.Radio;
 #endregion Starlight
 
 namespace Content.Shared.Chat;
@@ -31,8 +32,9 @@ public sealed class TransformSpeakerNameEvent : EntityEventArgs, IInventoryRelay
 /// <summary>
 /// Raised broadcast in order to transform speech.transmit
 /// </summary>
-public sealed class TransformSpeechEvent : EntityEventArgs
+public sealed class TransformSpeechEvent : CancellableEntityEventArgs, IInventoryRelayEvent
 {
+    public SlotFlags TargetSlots { get; } = SlotFlags.WITHOUT_POCKET;
     public EntityUid Sender;
     public string Message;
 
@@ -71,6 +73,29 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     /// message gets sent on this channel, this should be set to null to prevent duplicate messages.
     /// </summary>
     public RadioChannelPrototype? Channel;
+    
+    //Starlight beign
+    /// <summary>
+    /// Whether to switch to custom channel system or not.
+    /// </summary>
+    public bool UsingCustomChannel;
+    
+    /// <summary>
+    /// If the entity was trying to speak into a radio, this was the custom channel they were trying to access.
+    /// </summary>
+    public CustomRadioChannelData? CustomChannel;
+    
+    public EntitySpokeEvent(EntityUid source, string message, string? obfuscatedMessage, bool isWhisper, LanguagePrototype language, CustomRadioChannelData customChannel)
+    {
+        Source = source;
+        Message = message;
+        CustomChannel = customChannel;
+        UsingCustomChannel = true;
+        ObfuscatedMessage = obfuscatedMessage;
+        IsWhisper = isWhisper;
+        Language = language;
+    }
+    //Starlight end
 
     public EntitySpokeEvent(EntityUid source, string message, RadioChannelPrototype? channel, string? obfuscatedMessage, bool isWhisper, LanguagePrototype language) // Starlight - added isWhisper, language
     {

@@ -447,6 +447,7 @@
 
 - type: listing
   id: BoxPancakes
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: pastry }
   productEntity: BoxPancakes
   cost:
     NTCredit: 990
@@ -457,10 +458,112 @@
       stock: 1
 
 - type: listing
-  id: ClothingBackpackDuffelRegaliaFilled
-  productEntity: ClothingBackpackDuffelRegaliaFilled
+  id: BoxBelpero
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: belpero }
+  productEntity: BoxBelpero
+  cost:
+    NTCredit: 1500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: BoxBloodstained
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: ari }
+  productEntity: BoxBloodstained
+  cost:
+    NTCredit: 1500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: BoxRegalia
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: regalia }
+  productEntity: BoxRegalia
   cost:
     NTCredit: 500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingOuterBrimstoneDT4
+  productEntity: ClothingOuterBrimstoneDT4
+  cost:
+    NTCredit: 2000
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingEyesTechnology
+  productEntity: ClothingEyesTechnology
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingEyesTechnologyZero
+  productEntity: ClothingEyesTechnologyZero
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingEyesTechnologyTwo
+  productEntity: ClothingEyesTechnologyTwo
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingEyesTechnologyLudovic
+  productEntity: ClothingEyesTechnologyLudovic
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingEyesTechnologyX
+  productEntity: ClothingEyesTechnologyX
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingHeadHatTechnologyFive
+  productEntity: ClothingHeadHatTechnologyFive
+  cost:
+    NTCredit: 400
   categories:
     - SLFashionOther
   conditions:

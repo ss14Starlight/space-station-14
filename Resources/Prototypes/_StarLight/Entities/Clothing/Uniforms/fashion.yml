@@ -287,7 +287,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: RedRegaliaSuit
-  name: Red Regalia Suit
+  name: red regalia suit
   description: A fancy red suit like a mafiaoso would wear.
   components:
   - type: Sprite

@@ -1,12 +1,6 @@
 // IPC Component - Marker component for IPC entities
-// _STARLIGHT: Original implementation for Starlight
-//
-// This is a simple marker component (no fields/properties).
-// Purpose: Tag IPC entities so systems can apply IPC-specific logic.
-// Examples: sleep prevention, special death messages, silicon healing, etc.
-//
-// Design choice: Using a dedicated component rather than checking species
-// allows for edge cases like IPC-like borgs or golems with IPC properties.
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
+// https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
 
 namespace Content.Shared._Starlight.Silicons.IPC.Components;
 

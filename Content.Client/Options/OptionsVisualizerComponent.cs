@@ -81,4 +81,11 @@ public enum OptionVisualizerOptions
     /// Corresponds to the <see cref="CCVars.ReducedMotion"/> CVar being set.
     /// </summary>
     ReducedMotion = 1 << 1,
+
+    #region Starlight
+    /// <summary>
+    /// Corresponds to the <see cref="CCVars.AccessibilityArachnophobia"/> CVar being set.
+    /// </summary>
+    Arachnophobia = 1 << 2,
+    #endregion Starlight
 }

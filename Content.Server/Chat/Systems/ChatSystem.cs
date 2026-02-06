@@ -39,8 +39,11 @@ using Robust.Shared.Utility;
 // Starlight Start
 using Content.Shared.Speech;
 using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Chat;
 using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.Language.Systems;
 using Content.Shared.Popups;
+using Content.Shared._Starlight.Radio;
 // Starlight End
 
 namespace Content.Server.Chat.Systems;
@@ -68,7 +71,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
-    [Dependency] private readonly SpeechSystem _speechSystem = default!; // Starlight
     [Dependency] private readonly LanguageSystem _language = default!; // Starlight
     [Dependency] private readonly SharedPopupSystem _popups = default!; // Starlight
 
@@ -211,7 +213,13 @@ public sealed partial class ChatSystem : SharedChatSystem
             message = message[1..];
         }
 
-        var language = languageOverride ?? _language.GetLanguage(source); // Starlight
+        // Starlight begin
+        LanguagePrototype language;
+        
+        if (message.StartsWith(SharedLanguageSystem.ChatPrefixChar))
+            language = _language.GetLanguageFromPrefix(source, ref message, out _, true);
+        else language = languageOverride ?? _language.GetLanguage(source);
+        // Starlight end
 
         bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
         bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation);
@@ -238,11 +246,13 @@ public sealed partial class ChatSystem : SharedChatSystem
         // This message may have a radio prefix, and should then be whispered to the resolved radio channel
         if (checkRadioPrefix)
         {
-            if (TryProcessRadioMessage(source, message, out var modMessage, out var channel))
+            //Starlight begin
+            if (TryProcessRadioMessage(source, message, out var modMessage, out var channel, out var customChannel))
             {
-                SendEntityWhisper(source, modMessage, range, channel, nameOverride, language, hideLog, ignoreActionBlocker); // Starlight
+                SendEntityWhisper(source, modMessage, range, channel, nameOverride, language, hideLog, ignoreActionBlocker, customChannel);
                 return;
             }
+            //Starlight end
         }
 
         if (desiredType == InGameICChatType.CollectiveMind)
@@ -658,7 +668,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         string? nameOverride,
         LanguagePrototype language, // Starlight
         bool hideLog = false,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        CustomRadioChannelData? customChannel = null // Starlight
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -688,8 +699,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
         || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en")); // Starlight
 
-
-        foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange))
+        foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange, true)) // Starlight-edit
         {
             if (session.AttachedEntity is not { Valid: true } listener) // Starlight-edit: Languages
                 continue;
@@ -702,17 +712,25 @@ public sealed partial class ChatSystem : SharedChatSystem
             // How the entity perceives the message depends on whether it can understand its language
             var perceivedMessage = canUnderstandLanguage ? message : languageObfuscatedMessage;
             var obfuscated = canUnderstandLanguage != true;
+            
+            var whisperClearRange = WhisperClearRange;
+            var whisperMuffledRange = WhisperMuffledRange;
+            if (TryComp<ChatListenerRangeComponent>(listener, out var rangeComp))
+            {
+                whisperClearRange = rangeComp.WhisperClearRange;
+                whisperMuffledRange = rangeComp.WhisperMuffledRange;
+            }
 
             // Result is the intermediate message derived from the perceived one via obfuscation
             // Wrapped message is the result wrapped in an "x says y" string
             string result, wrappedMessage;
-            if (data.Range <= WhisperClearRange || data.Observer)
+            if (data.Range <= whisperClearRange || data.Observer)
             {
                 // Scenario 1: the listener can clearly understand the message
                 result = perceivedMessage;
                 wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", name, result, language, obfuscated);
             }
-            else if (_examineSystem.InRangeUnOccluded(source, listener, WhisperMuffledRange))
+            else if (_examineSystem.InRangeUnOccluded(source, listener, whisperMuffledRange))
             {
                 // Scenario 2: if the listener is too far, they only hear fragments of the message
                 result = ObfuscateMessageReadability(perceivedMessage);
@@ -732,7 +750,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         var replayWrap = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", name, message, language); // Starlight-edit: Languages
         _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, replayWrap, GetNetEntity(source), null, MessageRangeHideChatForReplay(range))); // Starlight-edit: Languages
 
-        var ev = new EntitySpokeEvent(source, message, channel, languageObfuscatedMessage, true, language); // Starlight-edit: Languages
+        //Starlight begin
+        var ev = customChannel is not null
+            ? new EntitySpokeEvent(source, message, languageObfuscatedMessage, true, language, customChannel)
+            : new EntitySpokeEvent(source, message, channel, languageObfuscatedMessage, true, language);
+        //Starlight end
         RaiseLocalEvent(source, ev, true);
         if (!hideLog)
             if (originalMessage == message)
@@ -1000,7 +1022,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return message; // Do not apply speech accents if there's no speech involved.
 
         var ev = new TransformSpeechEvent(sender, message);
-        RaiseLocalEvent(ev);
+        RaiseLocalEvent(sender, ev, true);
 
         return ev.Message;
     }
@@ -1109,7 +1131,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     Returns list of players and ranges for all players withing some range. Also returns observers with a range of -1.
     /// </summary>
-    private Dictionary<ICommonSession, ICChatRecipientData> GetRecipients(EntityUid source, float voiceGetRange)
+    private Dictionary<ICommonSession, ICChatRecipientData> GetRecipients(EntityUid source, float voiceGetRange, bool isWhisper = false) // Starlight-edit
     {
         // TODO proper speech occlusion
 
@@ -1132,9 +1154,23 @@ public sealed partial class ChatSystem : SharedChatSystem
                 continue;
 
             var observer = ghostHearing.HasComponent(playerEntity);
+            
+            //Starlight begin | Check what's larger, the passed voice range or, if it exists, the voice range on ChatListenerRangeComponent
+            var distanceToCheck = voiceGetRange;
+            if(TryComp<ChatListenerRangeComponent>(playerEntity, out var rangeComp))
+                if (rangeComp.AllowExtendListenRange)
+                {
+                    distanceToCheck = isWhisper switch
+                    {
+                        true when rangeComp.WhisperMuffledRange > distanceToCheck => rangeComp.WhisperMuffledRange,
+                        false when rangeComp.VoiceRange > distanceToCheck => rangeComp.VoiceRange,
+                        _ => distanceToCheck
+                    };
+                }
+            //Starlight end
 
             // even if they are a ghost hearer, in some situations we still need the range
-            if (sourceCoords.TryDistance(EntityManager, transformEntity.Coordinates, out var distance) && distance < voiceGetRange)
+            if (sourceCoords.TryDistance(EntityManager, transformEntity.Coordinates, out var distance) && distance < distanceToCheck) // Starlight-edit
             {
                 recipients.Add(player, new ICChatRecipientData(distance, observer));
                 continue;

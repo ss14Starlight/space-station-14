@@ -1,8 +1,6 @@
 // IPC Cold Slowdown Component
-// _STARLIGHT: Original implementation for Starlight
-//
-// Tracks when an IPC is performing actions slower due to extreme cold.
-// Other systems can check this component to apply appropriate delays.
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
+// https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
 
 namespace Content.Shared._Starlight.Silicons.IPC.Components;
 

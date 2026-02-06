@@ -93,6 +93,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget # Starlight
+      stealGroup: SecurityTechFabCircuitboard # Starlight
 
 - type: entity
   id: AmmoTechFabCircuitboard
@@ -1050,7 +1052,7 @@
 
 - type: entity
   id: SyndicateMicrowaveMachineCircuitboard
-  parent: BaseMachineCircuitboard
+  parent: [ BaseMachineCircuitboard, BaseSyndicateContraband ]
   name: donk co. microwave machine board
   components:
     - type: Sprite

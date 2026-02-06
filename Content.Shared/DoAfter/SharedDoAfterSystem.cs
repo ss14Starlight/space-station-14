@@ -229,6 +229,8 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         args.NetUsed = GetNetEntity(args.Used);
         args.NetUser = GetNetEntity(args.User);
         args.NetEventTarget = GetNetEntity(args.EventTarget);
+        if (args.DistanceTarget != null)
+            args.NetDistanceTarget = GetNetEntity(args.DistanceTarget.Value); // Starlight-edit
 
         if (args.BreakOnMove)
             doAfter.UserPosition = Transform(args.User).Coordinates;

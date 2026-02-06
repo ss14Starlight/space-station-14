@@ -1,6 +1,6 @@
 // IPC System - Main (Shared)
-// Original implementation for Starlight
-// Handles IPC-specific mechanics: sleep prevention, flash vulnerability, examine text
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
+// https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
 
 using Content.Shared._Starlight.Silicons.IPC.Components;
 using Content.Shared.Bed.Sleep;

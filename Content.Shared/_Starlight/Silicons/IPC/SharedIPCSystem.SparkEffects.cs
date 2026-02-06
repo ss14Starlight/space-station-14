@@ -1,7 +1,6 @@
 // IPC System - Spark Effects (Shared)
-// SOURCE: Far-Horizons-SS14 (Starlight Upstream) PR #135
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
 // https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
-// _STARLIGHT: Ported from upstream ArmorSparkEffectSystem for IPC spark effects
 
 using System.Numerics;
 using Content.Shared._Starlight.Combat.Effects.Components;

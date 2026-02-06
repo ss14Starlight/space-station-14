@@ -15,8 +15,6 @@ namespace Content.Server.Starlight.GameTicking;
 public sealed class PeacefulRoundEndSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ISharedPlayersRoleManager _sharedPlayersRoleManager = default!;
     [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _rolesReq = default!;
 
     private bool _isEnabled = false;

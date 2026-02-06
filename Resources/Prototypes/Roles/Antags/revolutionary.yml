@@ -14,6 +14,7 @@
   - !type:DepartmentTimeRequirement
     department: Command
     time: 6h # Starlight
+  playTimeTracker: AntagHeadRev # Starlight
 
 - type: antag
   id: Rev
@@ -22,6 +23,7 @@
   setPreference: false
   objective: roles-antag-rev-objective
   guides: [ Revolutionaries ]
+  playTimeTracker: AntagRev # Starlight
 
 - type: startingGear
   id: HeadRevGear

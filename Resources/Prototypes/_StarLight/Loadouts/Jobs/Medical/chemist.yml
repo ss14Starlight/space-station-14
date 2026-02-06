@@ -180,6 +180,11 @@
     eyes: ClothingEyesHudChemical
 
 - type: loadout
+  id: ChemicalGlassesPrescription
+  equipment:
+    eyes: ClothingEyeGlassesChemicalPrescription
+
+- type: loadout
   id: ChemicalEyePatchHud
   effects:
     - !type:GroupLoadoutEffect

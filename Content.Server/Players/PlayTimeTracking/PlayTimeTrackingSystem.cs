@@ -37,7 +37,6 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
-    [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!; //🌟Starlight🌟
 
     public override void Initialize()
     {
@@ -77,7 +76,9 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         {
             trackers.Add(PlayTimeTrackingShared.TrackerAdmin);
             trackers.Add(PlayTimeTrackingShared.TrackerOverall);
-            return;
+
+            if (!_cfg.GetCVar(CCVars.GameAdminJobTracking))
+                return;
         }
 
         if (!IsPlayerAlive(player))

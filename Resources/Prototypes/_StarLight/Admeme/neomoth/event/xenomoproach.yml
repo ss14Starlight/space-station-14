@@ -153,6 +153,7 @@
     - type: MobPrice
       price: 150
     - type: CanEscapeInventory
+      baseResistTime: 0.5
     - type: Body
       prototype: Xenomoproach
     - type: FireVisuals
@@ -173,6 +174,7 @@
           type: BorgSelectTypeUserInterface
     - type: InventorySlots
     - type: Inventory
+      forceDisplacements: true
       speciesId: hamster
       templateId: xenomoproach
       displacements:
@@ -201,6 +203,11 @@
             32:
               sprite: Mobs/Animals/mothroach/displacement.rsi
               state: neck
+        ears:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Admeme/neomoth/xenomoproach-displacements.rsi
+              state: ears
     - type: TextToSpeech
     - type: DamageOnHighSpeedImpact
       damage:
@@ -302,11 +309,12 @@
       stunTime: 5
     - type: SiliconLawProvider
       laws: XenoborgLawset
-      subverted: true
     - type: Repairable
       doAfterDelay: 13
       allowSelfRepair: true
     - type: BorgChassis
+      jobIconOverride: JobIconXenoborg
+      jobTitleOverride: chat-radio-xenoborg
       maxModules: 7
       hasMindState: borg_e
       noMindState: borg_e_r
@@ -415,6 +423,7 @@
       # TODO: add Xenoborg guide (part 7 spoilers)
     - type: Access
       enabled: false
+      worksWhileHeld: false
       tags:
         - Xenoborg
     - type: AccessReader
@@ -428,6 +437,7 @@
       canBeStripped: false
     - type: ComplexInteraction
     - type: Buckle
+    - type: Xenoborg
 
 - type: entity
   parent: MobXenomoproach
@@ -457,6 +467,29 @@
   parent: MobXenomoproachEmpty
   id: MobXenomoproachEmptyPacified
   suffix: admeme, empty, pacified
+  components:
+    - type: Pacified
+
+- type: entity
+  parent: MobXenomoproach
+  id: MobXenomoproachPlayer
+  suffix: admeme, ghost role
+  components:
+    - type: GhostRole
+      makeSentient: true
+      allowSpeech: true
+      allowMovement: true
+      name: ghost-role-information-xenomoproach-name
+      description: ghost-role-information-xenomoproach-description
+      rules: ghost-role-information-xenomoproach-rules
+      mindRoles:
+        - MindRoleXenoborg
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: MobXenomoproachPlayer
+  id: MobXenomoproachPlayerPacified
+  suffix: admeme, ghost role, pacified
   components:
     - type: Pacified
 

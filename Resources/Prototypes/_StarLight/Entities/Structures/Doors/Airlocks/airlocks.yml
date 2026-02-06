@@ -210,3 +210,17 @@
       layoutId: AirlockCommand
     - type: Paintable
       group: AirlockGlass
+
+# Xenoborg
+- type: entity
+  parent: AirlockGlass
+  id: AirlockXenoborgGlass
+  name: xenoborg glass airlock
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/xenoborg.rsi
+  - type: Paintable
+    group: null
+  - type: ContainerFill
+    containers:
+      board: [ BaseDoorElectronicsXenoborg ]

@@ -1,0 +1,443 @@
+# region: Base
+- type: entity
+  id: BaseDesktop
+  abstract: true
+  components:
+  - type: Construction
+    graph: DesktopComputer
+    node: computer
+    containers:
+      - board
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/desktop_computers.rsi
+    drawdepth: SmallObjects
+    offset: 0,0.2
+    noRot: true
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer }
+          West: { state: computer }
+          East: { state: computer }
+          East, West: { state: computer }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 500
+        mask:
+        - TabletopMachineMask
+        layer:
+        - BulletImpassable
+  - type: Physics
+    bodyType: Static
+# endregion: Base
+
+# region: Frame
+- type: entity
+  id: BaseStructureDesktopComputer
+  parent: BaseStructure
+  abstract: true
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 500
+        mask:
+        - TabletopMachineMask
+        layer:
+        - BulletImpassable
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Construction
+    graph: DesktopComputer
+    node: frameUnsecured
+  - type: Sprite
+    drawdepth: Objects
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Electronic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: monitorBroken
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: DesktopComputerFrame
+  parent: BaseStructureDesktopComputer
+  name: desktop computer frame
+  description: A desktop computer under construction.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/desktop_frame.rsi
+    drawdepth: SmallObjects
+    offset: 0,0.2
+    noRot: true
+    layers:
+    - state: 0
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          frameUnsecured: { state: 0 }
+          boardUnsecured: { state: 1 }
+          missingWires: { state: 2 }
+          monitorMissing: { state: 3 }
+          monitorUnsecured: { state: 4 }
+
+- type: entity
+  parent: BaseStructureDesktopComputer
+  id: DesktopComputerBroken
+  name: broken desktop computer
+  description: Oh no! Cloopy is dead!
+  components:
+  - type: Construction
+    graph: DesktopComputer
+    node: monitorBroken
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/desktop_computers.rsi
+    drawdepth: SmallObjects
+    offset: 0,0.2
+    noRot: true
+    state: broken
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+# endregion: Frame
+
+# region: Computers
+- type: entity
+  parent: [ BaseDesktop, ComputerAlert ]
+  id: ComputerAlertDesktop
+  name: atmospheric alerts desktop computer
+  description: Used to access the station's atmospheric automated alert system.
+  components:
+  - type: Computer
+    board: AlertsComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerAtmosMonitoring ]
+  id: ComputerAtmosMonitoringDesktop
+  name: desktop atmospheric network monitor
+  description: Used to monitor the station's atmospheric networks.
+  components:
+  - type: Computer
+    board: AtmosMonitoringComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerSurveillanceCameraMonitor ]
+  id: ComputerSurveillanceCameraMonitorDesktop
+  name: camera monitor
+  description: A surveillance camera monitor. You're watching them. Maybe.
+  components:
+  - type: Computer
+    board: SurveillanceCameraMonitorCircuitboardDesktop
+
+- type: entity
+  parent: ComputerSurveillanceCameraMonitorDesktop
+  id: ComputerSurveillanceCameraMonitorDesktopIsolatedNetwork
+  suffix: Isolated Network
+  components:
+  - type: Computer
+    board: null
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCameraIsolatedNetwork
+    transmitFrequencyId: SurveillanceCameraIsolatedNetwork
+
+- type: entity
+  parent: [ BaseDesktop, ComputerCargoBounty ]
+  id: ComputerCargoBountyDesktop
+  name: cargo bounty desktop computer
+  description: Used to manage currently active bounties.
+  components:
+  - type: Computer
+    board: CargoBountyComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerCrewMonitoring ]
+  id: ComputerCrewMonitoringDesktop
+  name: desktop crew monitoring console
+  description: Used to monitor active health sensors built into most of the crew's uniforms.
+  components:
+  - type: Computer
+    board: CrewMonitoringComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerCriminalRecords ]
+  id: ComputerCriminalRecordsDesktop
+  name: security records desktop computer
+  description: This can be used to access security records.
+  components:
+  - type: Computer
+    board: CriminalRecordsComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerStationRecords ]
+  id: ComputerStationRecordsDesktop
+  name: employment records desktop computer
+  description: This can be used to check employment records.
+  components:
+  - type: Computer
+    board: StationRecordsComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerMassMedia ]
+  id: ComputerMassMediaDesktop
+  name: news manager desktop computer
+  components:
+  - type: Computer
+    board: ComputerMassMediaCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerPowerMonitoring ]
+  id: ComputerPowerMonitoringDesktop
+  name: power monitoring desktop computer
+  description: It monitors power levels across the station.
+  components:
+  - type: Computer
+    board: PowerComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerSalvageJobBoard ]
+  id: ComputerSalvageJobBoardDesktop
+  name: salvage job board
+  description: Console for accessing salvage jobs, if you're tough enough.
+  components:
+  - type: Computer
+    board: SalvageJobBoardComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerCargoOrders ]
+  id: ComputerCargoOrdersDesktop
+  name: cargo request desktop computer
+  description: Used to order supplies and approve requests.
+  components:
+  - type: Computer
+    board: CargoRequestComputerCircuitboardDesktop
+
+# Request console variants.
+- type: entity
+  parent: [ BaseDesktop, ComputerCargoOrdersEngineering ]
+  id: ComputerCargoOrdersEngineeringDesktop
+  name: engineering request desktop computer
+  description: Used by the engineering department to order supplies.
+  components:
+  - type: Computer
+    board: CargoRequestEngineeringComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerCargoOrdersMedical ]
+  id: ComputerCargoOrdersMedicalDesktop
+  name: medical request desktop computer
+  description: Used by the medical department to order supplies.
+  components:
+  - type: Computer
+    board: CargoRequestMedicalComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerCargoOrdersScience ]
+  id: ComputerCargoOrdersScienceDesktop
+  name: science request desktop computer
+  description: Used by the science department to order supplies.
+  components:
+  - type: Computer
+    board: CargoRequestScienceComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerCargoOrdersSecurity ]
+  id: ComputerCargoOrdersSecurityDesktop
+  name: security request desktop computer
+  description: Used by the security department to order supplies.
+  components:
+  - type: Computer
+    board: CargoRequestSecurityComputerCircuitboardDesktop
+
+- type: entity
+  parent: [ BaseDesktop, ComputerCargoOrdersService ]
+  id: ComputerCargoOrdersServiceDesktop
+  name: service request desktop computer
+  description: Used by the service department to order supplies.
+  components:
+  - type: Computer
+    board: CargoRequestServiceComputerCircuitboardDesktop
+# endregion: Computers
+
+# region: Custom Computers
+# Desktop computers without corresponding console
+- type: entity
+  parent: [ BaseDesktop, BaseComputerAiAccess, StorePresetUplink ]
+  id: ComputerPersonalDesktop
+  name: personal desktop computer
+  description: For all your stationary computing needs!
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: personal
+    - map: ["computerLayerKeys"]
+      state: service_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda"
+      visible: false
+    - map: [ "enum.PdaVisualLayers.Flashlight" ]
+      state: "pda"
+      shader: "unshaded"
+      visible: false
+    - map: [ "enum.PdaVisualLayers.IdLight" ]
+      state: "pda"
+      shader: "unshaded"
+      visible: false
+  - type: Computer
+    board: ComputerPersonalCircuitboardDesktop
+  - type: DeviceNetworkRequiresPower
+  - type: ActivatableUIRequiresVision
+  - type: Transform
+    anchored: true
+  - type: Instrument
+    program: 2
+    allowPercussion: true
+    allowProgramChange: true # Defined in space-station-14.sf2
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      PDA-id: !type:ContainerSlot {}
+      PDA-pen: !type:ContainerSlot {}
+      PDA-pai: !type:ContainerSlot {}
+      Cartridge-Slot: !type:ContainerSlot {}
+      program-container: !type:Container
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda
+  - type: Icon
+    sprite: _Starlight/Structures/Machines/desktop_computers.rsi
+    state: computer
+  - type: Pda
+    paiSlot:
+      priority: -2
+      whitelist:
+        components:
+        - PAI
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    idSlot:
+      name: access-id-card-component-default
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        components:
+        - IdCard
+  - type: PdaVisuals
+  - type: ItemSlots
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 1.7
+    falloff: 3
+    softness: 5
+    autoRot: true
+  - type: Ringer
+  - type: RingerUplink
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: PDA
+    prefix: device-address-prefix-console
+    savableAddress: false
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+    cartridgeSlot:
+      priority: -1
+      name: device-pda-slot-component-slot-name-cartridge
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        components:
+          - Cartridge
+  - type: ActivatableUI
+    key: enum.PdaUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.PdaUiKey.Key:
+        type: PdaBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.RingerUiKey.Key:
+        type: RingerBoundUserInterface
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface
+  - type: Input
+    context: "human"
+  - type: SentienceTarget # sentient PDA = pAI lite
+    flavorKind: station-event-random-sentience-flavor-mechanical
+    weight: 0.001 # 1,000 PDAs = as likely to be picked as 1 regular animal
+  - type: BlockMovement
+    blockInteraction: false # lets the PDA toggle its own flashlight
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+# endregion: Custom Computers

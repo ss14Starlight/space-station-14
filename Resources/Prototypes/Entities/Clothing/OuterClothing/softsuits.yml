@@ -128,6 +128,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0 # Starlight Edit
     sprintModifier: 1.0 # Starlight Edit
+    requireActivated: false
   - type: HeldSpeedModifier
   - type: TemperatureProtection
     heatingCoefficient: 0.1
@@ -140,6 +141,8 @@
         Heat: 0.90
         Radiation: 0.75
         Caustic: 0.5
+  - type: ZombificationResistance 
+    zombificationResistanceCoefficient: 0.5 # Starlight Edit
   - type: GroupExamine
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitVoidParamed

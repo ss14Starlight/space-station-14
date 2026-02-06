@@ -41,7 +41,12 @@
         altDisarm: false
         soundHit: /Audio/Weapons/smash.ogg
         range: 1.2
-        angle: 0.0
+        # Starlight-start: Increased from 0 to allow animated objects to attack in a wider arc
+        angle: 60
+        # Starlight-end
+        # Starlight-start: Commented out old angle value
+        # angle: 0.0
+        # Starlight-end
         damage:
           types:
             Blunt: 10
@@ -54,17 +59,19 @@
       - type: Damageable
         damageContainer: ManifestedSpirit
         damageModifierSet: ManifestedSpirit
-      - type: Destructible
-        thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 100
-          behaviors:
-          - !type:DoActsBehavior
-            acts: ["Destruction"]
-          - !type:PlaySoundBehavior
-            sound:
-              collection: MetalBreak
+      # Starlight-start: Destructible component is now added dynamically by AnimateSpellSystem with HP based on entity size
+      # - type: Destructible
+      #   thresholds:
+      #   - trigger:
+      #       !type:DamageTrigger
+      #       damage: 100
+      #     behaviors:
+      #     - !type:DoActsBehavior
+      #       acts: ["Destruction"]
+      #     - !type:PlaySoundBehavior
+      #       sound:
+      #         collection: MetalBreak
+      # Starlight-end
       - type: Hands
       - type: CanEscapeInventory
       - type: MobCollision

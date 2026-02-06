@@ -1,4 +1,9 @@
 - type: guideEntry
+  id: Elf
+  name: Elf
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Elf.xml"
+
+- type: guideEntry
   id: Thaven
   name: Thaven
   text: "/ServerInfo/_StarLight/Guidebook/Mobs/Thaven.xml"
@@ -27,3 +32,8 @@
   id: Avali
   name: species-name-avali
   text: "/ServerInfo/_StarLight/Guidebook/Mobs/Avali.xml"
+
+- type: guideEntry
+  id: Lagomorph
+  name: species-name-lagomorph
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Lagomorph.xml"

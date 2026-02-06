@@ -40,7 +40,7 @@ public sealed class ThrusterSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ThrusterComponent, ActivateInWorldEvent>(OnActivateThruster);
+        // SubscribeLocalEvent<ThrusterComponent, ActivateInWorldEvent>(OnActivateThruster); // Starlight; no more toggling thrusters
         SubscribeLocalEvent<ThrusterComponent, ComponentInit>(OnThrusterInit);
         SubscribeLocalEvent<ThrusterComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ThrusterComponent, ComponentShutdown>(OnThrusterShutdown);
@@ -59,11 +59,11 @@ public sealed class ThrusterSystem : EntitySystem
     private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
     {
         // Powered is already handled by other power components
-        var enabled = Loc.GetString(component.Enabled ? "thruster-comp-enabled" : "thruster-comp-disabled");
+        // var enabled = Loc.GetString(component.Enabled ? "thruster-comp-enabled" : "thruster-comp-disabled"); // Starlight; no more toggling thrusters
 
         using (args.PushGroup(nameof(ThrusterComponent)))
         {
-            args.PushMarkup(enabled);
+            // args.PushMarkup(enabled); // Starlight; no more toggling thrusters
 
             if (component.Type == ThrusterType.Linear &&
                 TryComp(uid, out TransformComponent? xform) &&
@@ -133,9 +133,10 @@ public sealed class ThrusterSystem : EntitySystem
 
     }
 
+    // Starlight-note - this method is now unreachable, as we've disabled the only callsite into it.
     private void OnActivateThruster(EntityUid uid, ThrusterComponent component, ActivateInWorldEvent args)
     {
-        if (args.Handled || !args.Complex)
+        if (args.Handled || !args.Complex || !component.CanToggle)
             return;
 
         component.Enabled ^= true;

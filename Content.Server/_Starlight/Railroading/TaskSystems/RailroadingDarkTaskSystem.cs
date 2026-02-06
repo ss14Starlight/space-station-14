@@ -71,6 +71,6 @@ public sealed partial class RailroadDarkTaskSystem : AccUpdateEntitySystem
 
     private void OnTaskPicked(Entity<RailroadDarkTaskComponent> ent, ref RailroadingCardChosenEvent args)
     {
-        ent.Comp.Target = ent.Comp.Amount.Next(_random);
+        ent.Comp.Target = CheckDarkTilesOnStation() + ent.Comp.Amount.Next(_random);
     }
 }

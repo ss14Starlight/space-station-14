@@ -9,6 +9,8 @@ using Content.Shared.GameTicking.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Station.Components;
+using Robust.Shared.Audio; //Starlight
 
 namespace Content.Server.StationEvents.Events;
 
@@ -42,13 +44,16 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
 
         AdminLogManager.Add(LogType.EventAnnounced, $"Event added / announced: {ToPrettyString(uid)}");
 
+        //Starlight begin
+        if (TryGetRandomStation(out var chosenStation))
+            stationEvent.TargetStation = chosenStation;
+        //Starlight end stationEvent.TargetStation = station;
+
+        Announce(stationEvent, stationEvent.StartAnnouncement, false, stationEvent.StartAnnouncementColor, stationEvent.StartAudio);
+        
         // we don't want to send to players who aren't in game (i.e. in the lobby)
-        Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
-
-        if (stationEvent.StartAnnouncement != null)
-            ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.StartAnnouncement), playSound: false, colorOverride: stationEvent.StartAnnouncementColor);
-
-        Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
+        
+        //Starlight end
     }
 
     /// <inheritdoc/>
@@ -81,13 +86,10 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
 
         AdminLogManager.Add(LogType.EventStopped, $"Event ended: {ToPrettyString(uid)}");
 
+        //Starlight begin
         // we don't want to send to players who aren't in game (i.e. in the lobby)
-        Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
-
-        if (stationEvent.EndAnnouncement != null)
-            ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.EndAnnouncement), playSound: false, colorOverride: stationEvent.EndAnnouncementColor);
-
-        Audio.PlayGlobal(stationEvent.EndAudio, allPlayersInGame, true);
+        Announce(stationEvent, stationEvent.EndAnnouncement, false, stationEvent.EndAnnouncementColor, stationEvent.EndAudio);
+        //Starlight end
     }
 
     /// <summary>
@@ -115,4 +117,37 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             }
         }
     }
+    
+    //Starlight begin
+    public void Announce(StationEventComponent stationEvent, LocId? announcementLocId, bool dispatchSound, Color? colorOverride = null, SoundSpecifier? soundOverride = null)
+    {
+        if (announcementLocId is null) return;
+        if (stationEvent.GlobalAnnouncement)
+        {
+            var allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
+
+            ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame,
+                Loc.GetString(announcementLocId), playSound: dispatchSound,
+                colorOverride: colorOverride);
+                
+            if(soundOverride is not null) Audio.PlayGlobal(soundOverride, allPlayersInGame, true);
+        }
+        else
+        {
+            var allPlayersOnStation = Filter.Empty().AddWhere(session =>
+            {
+                if (session.AttachedEntity is null) return false;
+                if (!TryComp<StationMemberComponent>(Transform(session.AttachedEntity.Value).GridUid,
+                        out var stationGrid)) return false;
+                return stationGrid.Station == stationEvent.TargetStation;
+            });
+
+            ChatSystem.DispatchFilteredAnnouncement(allPlayersOnStation,
+                Loc.GetString(announcementLocId), playSound: dispatchSound,
+                colorOverride: colorOverride);
+
+            if(soundOverride is not null) Audio.PlayGlobal(soundOverride, allPlayersOnStation, true);
+        }
+    }
+    //Starlight end
 }

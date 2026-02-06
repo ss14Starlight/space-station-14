@@ -2,6 +2,6 @@
   id: OreBluespace
   replacement: AsteroidRock
   entity: AsteroidRockBluespace
-  count: 2
+  count: 3
   minGroupSize: 1
   maxGroupSize: 2

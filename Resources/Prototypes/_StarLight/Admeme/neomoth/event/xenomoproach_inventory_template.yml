@@ -40,6 +40,16 @@
       whitelist:
         components:
           - GasTank
+    - name: ears
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 3
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,1
+      displayName: Ears
+      whitelist:
+        tags:
+          - XenomoproachWearable
     - name: head
       slotTexture: head
       slotFlags: HEAD

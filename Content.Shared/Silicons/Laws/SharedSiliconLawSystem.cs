@@ -20,8 +20,6 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!; // Starlight
-    [Dependency] private readonly IEntityManager _entMan = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -54,7 +52,6 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
         }
 
         //#region Starlight
-        SiliconLawsetPrototype? proto = null;
         if (args.EmagComponent != null)
         {
             if (args.EmagComponent.DestroyTransponder)
@@ -63,7 +60,7 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
             }
 
             if (args.EmagComponent.Components != null)
-                _entMan.AddComponents(uid, args.EmagComponent.Components);
+                EntityManager.AddComponents(uid, args.EmagComponent.Components);
         }
         //#endregion Starlight
 
@@ -72,7 +69,12 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
 
         component.OwnerName = Name(args.UserUid);
 
-        NotifyLawsChanged(uid, component.EmaggedSound);
+        //Starlight begin
+        if(args.EmagComponent is not null)
+            NotifyLawsChanged(uid, args.EmagComponent.DoEmaggedSound ? args.EmagComponent.EmaggedSoundOverride ?? component.EmaggedSound : null);
+        else
+            NotifyLawsChanged(uid, component.EmaggedSound);
+        //Starlight end
         if (_mind.TryGetMind(uid, out var mindId, out _))
             EnsureSubvertedSiliconRole(mindId);
 

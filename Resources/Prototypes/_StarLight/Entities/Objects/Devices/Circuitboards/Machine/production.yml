@@ -1,4 +1,15 @@
 - type: entity
+  id: SlimeProcessorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: slime processor machine board
+  description: A machine printed circuit board for a slime processor
+  components:
+    - type: MachineBoard
+      prototype: SlimeProcessor
+      stackRequirements:
+        Manipulator: 2
+
+- type: entity
   id: PrinterDocMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: document printer machine board
@@ -172,6 +183,8 @@
         Steel: 5
         Manipulator: 1
         Glass: 2
+    - type: StealTarget
+      stealGroup: PTechCircuitboard
 
 - type: entity
   id: VendingMachineChefvendCircuitboard
@@ -235,6 +248,32 @@
   components:
     - type: MachineBoard
       prototype: VendingMachineCoffeeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineDonkCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Donk on the Go circuitboard
+  description: A machine printed circuit board for a Donk on the Go machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineDonkEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineIceCreamCircuitboard
+  parent: BaseMachineCircuitboard
+  name: I Scream Ice-Cream circuitboard
+  description: A machine printed circuit board for a I Scream Ice-Cream machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineIceCreamEmpty
       stackRequirements:
         Steel: 5
         Manipulator: 1

@@ -1,3 +1,13 @@
+ #Senior time (Starlight)
+- type: loadoutEffectGroup
+  id: SeniorParamedic
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobParamedic
+      time: 216000 # 60 hrs
+
 # Head
 - type: loadout
   id: ParamedicHead
@@ -14,6 +24,38 @@
   id: ParamedicJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtParamedic
+
+#Starlight start
+- type: loadout
+  id: SeniorParamedicJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorParamedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorParamedic
+
+- type: loadout
+  id: SeniorParamedicJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorParamedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorParamedic
+
+# PDA
+- type: loadout
+  id: ParamedicPDA
+  equipment:
+    id: ParamedicPDA
+
+- type: loadout
+  id: SeniorParamedicPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorParamedic
+  equipment:
+    id: SeniorParamedicPDA 
+#Starlight end
 
 # Outer clothing
 - type: loadout

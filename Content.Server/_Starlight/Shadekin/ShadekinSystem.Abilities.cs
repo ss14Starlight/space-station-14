@@ -26,13 +26,22 @@ public sealed partial class ShadekinSystem : EntitySystem
             return;
         }
 
+        bool onStation = false;
         foreach (var station in _station.GetStations()) // Lets make sure the Portal **IS ON STATION!**
         {
             if (_station.GetLargestGrid(station) is not { } grid)
-                return;
+                continue;
 
             if (Transform(uid).GridUid != grid)
-                return;
+                continue;
+
+            onStation = true;
+        }
+
+        if (!onStation)
+        {
+            args.Handled = true;
+            return;
         }
 
         if (OnAttemptEnergyUse(uid, component, component.PortalCost))

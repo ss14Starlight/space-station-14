@@ -1,0 +1,34 @@
+- type: entity
+  parent: BaseItem
+  id: YellowSlimeExtractLight
+  name: yellow slime extract light
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_extract.rsi
+      layers:
+        - state: extract
+      color: "#ffeb52ff"
+    - type: PointLight
+      radius: 2
+      energy: 1
+    - type: ItemSwitch
+      state: off
+      states:
+        off: !type:ItemSwitchState
+          verb: Off
+          sprite:
+            sprite: _Starlight/Objects/Specific/Xenobiology/slime_extract.rsi
+            state: extract
+          components:
+            - type: PointLight
+              radius: 2
+              energy: 1
+        on: !type:ItemSwitchState
+          verb: On
+          sprite:
+            sprite: _Starlight/Objects/Specific/Xenobiology/slime_extract.rsi
+            state: extract
+          components:
+            - type: PointLight
+              radius: 8
+              energy: 5

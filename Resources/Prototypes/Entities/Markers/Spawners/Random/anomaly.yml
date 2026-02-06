@@ -22,8 +22,8 @@
     - AnomalyFlora
     - AnomalyShadow
     - AnomalyTech
-    - AnomalySanta
-    - AnomalyBanana
+    #- AnomalySanta
+    - AnomalyBanana # Starlight
     rareChance: 0.3
     rarePrototypes:
     - RandomAnomalyInjectorSpawner
@@ -73,5 +73,5 @@
     - AnomalyTrapGravity
     - AnomalyTrapTech
     - AnomalyTrapRock
-    - AnomalyTrapSanta
+    #- AnomalyTrapSanta
     chance: 1

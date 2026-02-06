@@ -9,7 +9,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
+using Robust.Shared.Map.Components; // Starlight
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -28,8 +28,8 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
     [Dependency] private readonly EntityManager _entMan = default!;
     [Dependency] private readonly DynamicRuleSystem _dynamicRule = default!;
     #endregion Starlight
-    
-    protected override void Started(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleStartedEvent args) // Starlight-edit - Added -> Started. This allows us to reference the rule tree, as during "added" the parent rule hasn't been told about the child rule yet.
+
+    protected override void Added(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args)
     {
         if (comp.PreloadedGrid != null && !_gridPreloader.PreloadingEnabled)
         {
@@ -39,8 +39,10 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
             return;
         }
 
+        // Starlight start
         if (comp.MapTag.HasValue && LoadMapTag(uid, comp, rule, args, comp.MapTag.Value))
             return;
+        // Starlight end
 
         MapId mapId;
         IReadOnlyList<EntityUid> grids;
@@ -117,16 +119,15 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
 
         PropagateLoadEvent(uid, mapId, grids); // Starlight
 
-        base.Started(uid, comp, rule, args); // Starlight-edit - Added -> Started
+        base.Added(uid, comp, rule, args);
     }
 
-    // Starlight begin
     /// <summary>
     /// Recursively propagate the load event up the rule tree.
     /// </summary>
     private void PropagateLoadEvent(EntityUid child, MapId mapId, IReadOnlyList<EntityUid> grids) {
-        var rules = _entMan.AllEntityQueryEnumerator<DynamicRuleComponent>();
-        while (rules.MoveNext(out var uid, out var comp))
+        var dynamicRules = _entMan.AllEntityQueryEnumerator<DynamicRuleComponent>();
+        while (dynamicRules.MoveNext(out var uid, out var comp))
         {
             if (_dynamicRule.Rules((uid, (DynamicRuleComponent?)comp)).Contains(child)) {
                 var ev = new RuleLoadedGridsEvent(mapId, grids);
@@ -135,9 +136,19 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
                 break;
             }
         }
+        var parentRules = _entMan.AllEntityQueryEnumerator<SubRuleComponent>();
+        while (parentRules.MoveNext(out var uid, out var comp))
+        {
+            if (comp.Rules.Contains(child)) {
+                var ev = new RuleLoadedGridsEvent(mapId, grids);
+                RaiseLocalEvent(uid, ref ev);
+                PropagateLoadEvent(uid, mapId, grids);
+                break;
+            }
+        }
     }
 
-    private bool LoadMapTag(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleStartedEvent args, ProtoId<TagPrototype> MapTag)
+    private bool LoadMapTag(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args, ProtoId<TagPrototype> MapTag)
     {
         MapId mapId;
         IReadOnlyList<EntityUid> grids;
@@ -162,7 +173,7 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
 
                     PropagateLoadEvent(uid, mapId, grids);
 
-                    base.Started(uid, comp, rule, args);
+                    base.Added(uid, comp, rule, args);
 
                     return true;
                 }

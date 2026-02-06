@@ -45,10 +45,10 @@
       color: "#1153cc"
       roles:
       - 1310741799601573960 # Staff Admin
-    - text: "Staff-Mentor"
+    - text: "Staff-Instructor"
       color: "#b3aeff"
       roles:
-      - 1276773207453728841 # Staff Mentor
+      - 1276773207453728841 # Staff Instructor
     - text: "SLN-PL"
       color: "#f1eb58"
       roles:
@@ -61,14 +61,6 @@
       color: "#f1eb58"
       roles:
       - 1272899036571238521 # Developer
-    - text: "Admin"
-      color: "#ff7600"
-      roles:
-      - 1305028815906537482 # Admin
-    - text: "Trialmin"
-      color: "#7ac000"
-      roles:
-      - 1305029272653533268 # Trialmin
     - text: "Event-C."
       color: "#7c58ff"
       roles:
@@ -77,6 +69,14 @@
       color: "#983fc9"
       roles:
       - 1308128839993659422 # Jr. Event Coordinator
+    - text: "Admin"
+      color: "#ff7600"
+      roles:
+      - 1305028815906537482 # Admin
+    - text: "Trialmin"
+      color: "#7ac000"
+      roles:
+      - 1305029272653533268 # Trialmin
     - text: "Prototyper"
       color: "#F1C40F"
       roles:
@@ -89,6 +89,10 @@
       color: "#8ff10f"
       roles:
       - 1299137799693406288 # Spriter
+    - text: "Staff"
+      color: "#ad1457"
+      roles:
+      - 1294130614508716155 # Staff
     - text: "Former"
       color: "#b6599a"
       roles:

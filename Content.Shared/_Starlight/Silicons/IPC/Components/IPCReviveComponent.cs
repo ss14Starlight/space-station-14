@@ -1,7 +1,6 @@
 // IPC Revive Component
-// SOURCE: Far-Horizons-SS14
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
 // https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
-// _STARLIGHT: Namespace changes
 
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;

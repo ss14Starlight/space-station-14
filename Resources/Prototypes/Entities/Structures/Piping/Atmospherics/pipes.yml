@@ -69,6 +69,13 @@
     containers:
       VentCrawTube: !type:Container
   - type: ChildBlockVision # Starlight-edit
+  # Starlight Start: RPD
+  - type: RCDDeconstructable
+    cost: 1
+    delay: 2
+    fx: EffectRCDDeconstruct2
+    rpd: true
+  # Starlight End
 
 - type: entity
   id: VentCrawHolder

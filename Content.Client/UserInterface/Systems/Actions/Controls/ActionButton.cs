@@ -89,8 +89,9 @@ public sealed class ActionButton : Control, IEntityControl
         {
             HorizontalExpand = true,
             VerticalExpand = true,
-            Stretch = StretchMode.Scale,
-            Visible = false
+            MaxSize = new Vector2(64, 64),
+            Stretch = StretchMode.KeepAspectCentered,
+            Visible = false,
         };
         _smallActionIcon = new TextureRect
         {
@@ -198,8 +199,8 @@ public sealed class ActionButton : Control, IEntityControl
         if (!_entities.TryGetComponent(Action, out MetaDataComponent? metadata))
             return null;
 
-        var name = FormattedMessage.FromMarkupPermissive(Loc.GetString(metadata.EntityName));
-        var desc = FormattedMessage.FromMarkupPermissive(Loc.GetString(metadata.EntityDescription));
+        var name = FormattedMessage.FromMarkupPermissive(metadata.EntityName);
+        var desc = FormattedMessage.FromMarkupPermissive(metadata.EntityDescription);
 
         if (_player.LocalEntity is null)
             return null;

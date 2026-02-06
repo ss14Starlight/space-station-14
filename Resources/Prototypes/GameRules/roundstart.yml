@@ -21,15 +21,17 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
+      prob: 0.4 #SL 0.5 -> 0.4 to account for more subgamemodes existing
     - id: SLChangeling #Starlight lings
-      prob: 0.4
-#    - id: Vampire # Starlight - disabled until reworked
-#      prob: 0.25
+      prob: 0.25 #0.4 -> 0.25 to account for more subgamemodes existing now
+    - id: VampireLess # Starlight reworked
+      prob: 0.25 # Starlight
     - id: SubWizard
-      prob: 0.05
+      prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
     - id: Xenoborgs
-      prob: 0.05
+      prob: 0.08 # Starlight
+#    - id: SiliconLiberation #Starlight
+#      prob: 0.4 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -38,13 +40,15 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
+      prob: 0.42 #SL 0.5 -> 0.4 to account for more subgamemodes existing
     - id: SLChangeling # StarlightLings
-      prob: 0.4
-#    - id: Vampire # Starlight - disabled until reworked
-#      prob: 0.25
+      prob: 0.25 #0.4 -> 0.25 to account for more subgamemodes existing now
+    - id: VampireLess # Starlight reworked
+      prob: 0.25 # Starlight
     - id: Xenoborgs
-      prob: 0.05
+      prob: 0.08 # Starlight
+#    - id: SiliconLiberation #Starlight
+#      prob: 0.4 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -53,9 +57,15 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
+      prob: 0.62 # Starlight. Its a tamer mode, high thief chance.
+    - id: SLChangeling # Starlight Lings
+      prob: 0.15 # Starlight
+    - id: VampireLess # Starlight reworked
+      prob: 0.15 # Starlight
     - id: SubWizard
-      prob: 0.05
+      prob: 0.08 # Starlight Space is dangerous, yo.
+#    - id: SiliconLiberation #Starlight
+#      prob: 0.5 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -64,7 +74,13 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
+      prob: 0.70 # Starlight. Most likely
+    - id: SLChangeling # Starlight Lings
+      prob: 0.15 # Starlight
+    - id: VampireLess # Starlight reworked
+      prob: 0.15 # Starlight
+#    - id: SiliconLiberation #Starlight
+#      prob: 0.5 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -150,10 +166,11 @@
     # Starlight Start
     denyGameRules:
     - AbductorsSpawn
-  - type: DynamicRule
+  - type: SubRule
     table: !type:GroupSelector
       children:
       - id: NukiePlanetSpawn
+      - id: NukiePlanetSpawnWestern
   # Starlight end
   # Starlight - removing the LoadMapRule from here to instead handle it in the dynamic rules above
   #- type: LoadMapRule
@@ -178,6 +195,10 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeopsCommander
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
     - prefRoles: [ NukeopsMedic ]
       fallbackRoles: [ Nukeops, NukeopsCommander ]
       spawnerPrototype: SpawnPointNukeopsMedic
@@ -195,6 +216,10 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeopsMedic
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
     - prefRoles: [ Nukeops ]
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
@@ -214,6 +239,10 @@
         - Syndicate
       mindRoles:
       - MindRoleNukeops
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 200
 
@@ -228,7 +257,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: TraitorObjectiveGroups
-    maxDifficulty: 5
+    maxDifficulty: 6 # Starlight. Ultrapop + ton of new targets means some objectives become really easy in the chaos.
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
   - type: DynamicRuleCost
@@ -247,8 +276,8 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Traitor ]
-      max: 8
-      playerRatio: 10
+      max: 24 # Starlight. More of future proofing. If we ever actually average 240 pop then we'll need to actually do something else.
+      playerRatio: 10 # Starlight. It's this number so Beta doesn't lose out on their 6th traitor.
       blacklist:
         components:
         - AntagImmune
@@ -281,8 +310,8 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Changeling ]
-      max: 3
-      playerRatio: 15
+      max: 6 # Starlight. Not a huge increase, but allows lings to actually become a force on alpha that doesn't get wiped out immediately.
+      playerRatio: 21 # Starlight. Allows Beta to still keep only 3 lings.
       briefing:
         text: changeling-role-greeting
         color: Red
@@ -310,6 +339,10 @@
             requireInputValidation: false
       mindRoles:
       - MindRoleChangeling
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: AntagObjectives
     objectives:
     - ChangelingSurviveObjective
@@ -335,6 +368,19 @@
       components:
       - type: Revolutionary
       - type: HeadRevolutionary
+        # Starlight-start
+        blacklist:
+          components:
+          - Revolutionary
+          - BorgChassis
+          - MindShield
+          - Zombie
+          tags:
+          - CantBecomeRevolutionary
+        whitelist:
+          components:
+          - HumanoidAppearance
+        # Starlight-end
       mindRoles:
       - MindRoleHeadRevolutionary
   - type: DynamicRuleCost
@@ -373,14 +419,14 @@
   id: Wizard
   components:
   - type: GameRule
-    minPlayers: 10
+    minPlayers: 40 # Starlight. So a Wizard can actually spawn on Beta.
   - type: AntagSelection
     agentName: wizard-round-end-name
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ Wizard ]
-      max: 1
-      playerRatio: 1
+      max: 6 # Starlight. If Wizard is to be its own Gamemode, then...
+      playerRatio: 40 # Starlight, ensures Beta only has 1 wizard.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
        - RoleSurvivalExtended
@@ -403,6 +449,10 @@
         nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 150
 
@@ -579,3 +629,7 @@
     - id: BasicDecalDirtMonospaceVariationPass
       prob: 0.50
       orGroup: monospaceDecals
+    # Starlight start
+    - id: MaintenanceMonstersVariationPass
+      prob: 0.2
+    # Starlight end

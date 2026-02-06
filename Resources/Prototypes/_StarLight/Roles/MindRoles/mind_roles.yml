@@ -7,6 +7,77 @@
       roleType: CorporateAligned
 
 - type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostRolePAI
+  name: Ghost Role (pAI Familiar)
+  components:
+  - type: MindRole
+    roleType: Familiar
+    fallbackPlayTimeTracker: GhostPAI
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostRoleCritterHarmless
+  name: Ghost Role (Harmless Critter)
+  components:
+  - type: MindRole
+    roleType: FreeAgent
+    sortWeight: 0
+    fallbackPlayTimeTracker: GhostCritterHarmless
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostRoleBotHarmless
+  name: Ghost Role (Harmless Bot)
+  components:
+  - type: MindRole
+    roleType: FreeAgent
+    sortWeight: 0
+    fallbackPlayTimeTracker: GhostBotHarmless
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostRoleNecktie
+  name: Ghost Role (Necktie)
+  components:
+  - type: MindRole
+    roleType: FreeAgent
+    sortWeight: 0
+    fallbackPlayTimeTracker: GhostNecktie
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostRoleXeno
+  name: Ghost Role (Xeno)
+  components:
+  - type: MindRole
+    roleType: FreeAgent
+    sortWeight: 30
+    fallbackPlayTimeTracker: GhostXeno
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostRoleFreeAgentSkeleton
+  name: Ghost Role (Skeleton)
+  components:
+  - type: MindRole
+    roleType: FreeAgent
+    sortWeight: 0
+    fallbackPlayTimeTracker: GhostSkeleton
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostRoleNeutralSkeleton
+  name: Ghost Role (Skeleton)
+  components:
+  - type: MindRole
+    roleType: Neutral
+    sortWeight: 0
+    fallbackPlayTimeTracker: GhostSkeleton    
+
+# Downstream antagonists
+
+- type: entity
   parent: BaseMindRoleAntag
   id: MindRoleSSF
   name: Soviet Special Forces Role
@@ -15,3 +86,46 @@
     antagPrototype: SSF
     roleType: TeamAntagonist
     subtype: role-subtype-revolutionary
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
+  id: MindRoleRatKing
+  name: Ghost Role (Rat King)
+  components:
+  - type: MindRole
+    antag: true
+    antagPrototype: RatKing
+    roleType: SoloAntagonist
+    subtype: role-subtype-ratking
+    sortWeight: 50
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRolePirate
+  name: Pirate Role
+  components:
+  - type: MindRole
+    antag: true
+    antagPrototype: Pirate
+    roleType: TeamAntagonist
+    subtype: role-subtype-pirate
+  - type: PirateRole
+
+- type: entity
+  parent: MindRolePirate
+  id: MindRolePirateCaptain
+  name: Pirate Captain Role
+  components:
+  - type: MindRole
+    antagPrototype: PirateCaptain
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleVampire
+  name: Vampire Role
+  components:
+  - type: MindRole
+    antagPrototype: Vampire
+    roleType: SoloAntagonist
+    subtype: role-subtype-vampire
+  - type: VampireRole

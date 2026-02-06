@@ -14,6 +14,59 @@
     SELFObjective: 1
     StalkingObjective: 1
     DisgraceObjective: 1
+    HarassObjective: 1
+    ImpersonateObjective: 1
+    FeudObjective: 1
+    WasteObjective: 1
     MaintsBarObjective: 1
+    PanicObjective: 1
+    RumorObjective: 1
+
+# Vampire
+- type: weightedRandom
+  id: VampireObjectiveGroups
+  weights:
+    VampireObjectiveGroupSteal: 1
+    VampireObjectiveGroupKill: 1
+    VampireObjectiveGroupDrain: 1
+    VampireObjectiveGroupState: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupSteal
+  weights:
+    CMOHyposprayVampireStealObjective: 1
+    RDHardsuitVampireStealObjective: 1
+    EnergyShotgunVampireStealObjective: 1
+    MagbootsVampireStealObjective: 1
+    ClipboardVampireStealObjective: 1
+    CaptainIDVampireStealObjective: 1
+    CaptainJetpackVampireStealObjective: 1
+    CaptainGunVampireStealObjective: 1
+    # Temp targets beyond this point, until proper vamp ones are made, so vamps don't roll the same 8 targets every shift. Tried to only pick things of value, so just command/nt + wardgun.
+    HOSWeaponVampireStealObjective: 1 #Starlight
+    VampireCMOHardsuitStealObjective: 1 # I'm so sorry CMO
+    VampireCEHardsuitStealObjective: 1 # Where are you going to hide it?
+    VampireHOSHardsuitStealObjective: 1 # Quite defensive.
+    VampireQMHardsuitStealObjective: 1 # Would you believe it was never an objective before?
+    VampireCaptainHardsuitStealObjective: 0.75 # Good luck.
+    VampireNTRepHardsuitStealObjective: 0.75 # Usually in the bridge... hard to get to.
+    VampireBSOHardsuitStealObjective: 0.75 # Same as the above...
+    VampireBSOWeaponStealObjective: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupKill
+  weights:
+    VampireKillRandomPersonObjective: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupDrain
+  weights:
+    VampireDrainObjective: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupState
+  weights:
+    VampireSurviveObjective: 1
+    VampireEscapeObjective: 1
     ReputationObjective: 0.5
     FalseOutbreakObjective: 0.75

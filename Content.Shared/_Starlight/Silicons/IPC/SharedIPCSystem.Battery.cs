@@ -1,7 +1,6 @@
 // IPC System - Battery (Shared)
-// SOURCE: Far-Horizons-SS14
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
 // https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
-// _STARLIGHT: Namespace changes for compatibility
 
 using Content.Shared._Starlight.Silicons.IPC.Components;
 using Content.Shared.Containers.ItemSlots;

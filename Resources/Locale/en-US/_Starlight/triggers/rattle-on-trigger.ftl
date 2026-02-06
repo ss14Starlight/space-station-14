@@ -1,1 +1,1 @@
-rattle-on-trigger-distress-message = DISTRESS ALERT: {$user} is in distress and needs help at {$position}.
+rattle-on-trigger-distress-message = DISTRESS ALERT: {$user} is in distress and needs help {$position}.

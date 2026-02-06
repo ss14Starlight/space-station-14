@@ -70,7 +70,7 @@
       Phosphorus: 5
   - type: WiresVisuals
   - type: Appearance
-  - type: PredictedBatteryVisuals
+  - type: BatteryVisuals
   # Starlight-end
 
 - type: entity

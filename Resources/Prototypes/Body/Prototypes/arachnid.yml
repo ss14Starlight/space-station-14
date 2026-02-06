@@ -12,6 +12,7 @@
         eyes: OrganArachnidEyes
         tongue: OrganHumanTongue
         eye_implant: null
+        brain_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoArachnid
       connections:
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandArachnid
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     left hand:
       part: LeftHandArachnid
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     right leg:
       part: RightLegArachnid
       connections:

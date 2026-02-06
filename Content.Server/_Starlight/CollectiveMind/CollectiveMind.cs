@@ -18,8 +18,6 @@ namespace Content.Server.CollectiveMind;
 
 public sealed partial class CollectiveMind : SharedCollectiveMindSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
     {

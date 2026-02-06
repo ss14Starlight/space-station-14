@@ -1,10 +1,6 @@
 // IPC System - Battery (Server)
-// SOURCE: Far-Horizons-SS14
+// Created by Killer Tamashi and Princess Gurchi for the FH project.
 // https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/135
-// _STARLIGHT MODIFICATIONS:
-// - Namespace changes for compatibility
-// - Added power draw re-enable in UpdateBatteryAlert() to fix battery not draining bug
-// - Added TerminatingOrDeleted() check in StartDeathTimer() to prevent TimeSpan overflow when gibbed
 
 using Content.Server.AlertLevel;
 using Content.Server.Ninja.Systems;

@@ -53,8 +53,19 @@
   equipment:
     jumpsuit: ClothingUniformSecurityTshirt
 
+- type: loadout
+  id: SecurityJumpskirtBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecBlue
+
 #Outerclothes
 - type: loadout
   id: SecurityBomber
   equipment:
     outerClothing: ClothingOuterSecurityBomber
+
+#Eyewear
+- type: loadout
+  id: SecurityGlassesPrescription
+  equipment:
+    eyes: ClothingEyeGlassesSecurityPrescription

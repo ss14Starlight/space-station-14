@@ -260,6 +260,11 @@
       departureSound: /Audio/Items/hiss.ogg
       canTeleportToOtherMaps: true
       randomTeleport: false
+    - type: WarpPoint
+      location: The Dark
+      blacklist:
+        tags:
+        - GhostOnlyWarp
     - type: DarkLight
     - type: GuideHelp
       guides:

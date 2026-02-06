@@ -35,6 +35,7 @@
     - SpiderCraft
     - AnomalyHost
     - Arachnid
+    - Labelable # Starlight
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -54,10 +55,10 @@
       - !type:WashCreamPie
   # Damage (Self)
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 1
+        Quantity: 300
   # Damage (Others)
   - type: MeleeWeapon
     animation: WeaponArcBite
@@ -110,6 +111,7 @@
       - map: [ "enum.HumanoidVisualLayers.Tail" ] # Mentioned in moth code: This needs renaming lol.
       - map: [ "back" ]
       - map: [ "neck" ]
+      - map: [ "misc" ] # Starlight
       - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.Hair" ] # Do these need to be here? (arachnid hair arachnid hair)

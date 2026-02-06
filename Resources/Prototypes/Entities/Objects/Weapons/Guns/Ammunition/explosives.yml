@@ -1,9 +1,9 @@
 # Rockets
 
 - type: entity
+  parent: [BaseItem, BaseMajorContraband]
   id: CartridgeRocket
   name: PG-7VL grenade
-  parent: [BaseItem, BaseMajorContraband]
   description: A 1.5 warhead designed for the RPG-7 launcher. Has tubular shape.
   components:
   - type: Tag
@@ -21,9 +21,9 @@
     price: 20
 
 - type: entity
+  parent: [BaseItem, BaseMajorContraband]
   id: CartridgeRocketSlow
   name: PG-7VL grenade "Snail-Rocket"
-  parent: [BaseItem, BaseMajorContraband]
   description: A 1.5 warhead designed for the RPG-7 launcher. It's unusually slow.
   components:
     - type: Tag
@@ -45,7 +45,7 @@
 - type: entity
   id: BaseGrenade
   name: base grenade
-  parent: [BaseItem, BaseMajorContraband]
+  parent: BaseItem # Starlight edit: Removes major contraband from grenades
   abstract: true
   components:
   - type: Tag
@@ -58,7 +58,7 @@
 - type: entity
   id: GrenadeBaton
   name: baton grenade
-  parent: BaseGrenade
+  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBaton
@@ -75,7 +75,7 @@
 - type: entity
   id: GrenadeBlast
   name: blast grenade
-  parent: BaseGrenade
+  parent: [ BaseGrenade, BaseSyndicateContraband ] # Starlight edit: Major -> Syndicate contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBlast
@@ -92,7 +92,7 @@
 - type: entity
   id: GrenadeFlash
   name: flash grenade
-  parent: BaseGrenade
+  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeFlash
@@ -109,7 +109,7 @@
 - type: entity
   id: GrenadeFrag
   name: frag grenade
-  parent: BaseGrenade
+  parent: [ BaseGrenade, BaseSyndicateContraband ] # Starlight edit: Major -> Syndicate contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeFrag
@@ -124,7 +124,7 @@
     suffix: false
 
 - type: entity
-  parent: BaseGrenade
+  parent: [ BaseGrenade, BaseJanitorContraband ] # Starlight edit: Major -> Janitor contraband
   id: GrenadeCleanade
   name: cleanade grenade round
   components:
@@ -137,13 +137,17 @@
       map: [ "enum.AmmoVisualLayers.Base" ]
   - type: Appearance
   - type: SpentAmmoVisuals
-    state: frag
+    state: cleanade # Starlight edit: frag -> cleanade (bugfix)
     suffix: false
+  - type: Tag # Starlight start
+    tags:
+    - Grenade
+    - Cleanade # Starlight end - hydra whitelist
 
 - type: entity
   id: GrenadeEMP
   name: EMP grenade
-  parent: BaseGrenade
+  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeEMP
@@ -154,16 +158,16 @@
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals
-    state: frag
+    state: emp # Starlight edit: frag -> emp (bugfix)
     suffix: false
 
 # Cannon Balls
 
 - type: entity
+  abstract: true
+  parent: [BaseItem, BaseMajorContraband]
   id: BaseCannonBall
   name: base cannon ball
-  parent: [BaseItem, BaseMajorContraband]
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -173,10 +177,10 @@
   - type: Sprite
 
 - type: entity
+  parent: BaseCannonBall
   id: CannonBall
   name: cannonball
   suffix: Pirate
-  parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
     proto: BulletCannonBall
@@ -186,10 +190,10 @@
     state: ball
 
 - type: entity
+  parent: BaseCannonBall
   id: CannonBallGrapeshot
   name: grapeshot
   suffix: Pirate
-  parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
     proto: PelletGrapeshotSpread
@@ -199,10 +203,10 @@
     state: grapeshot
 
 - type: entity
+  parent: BaseCannonBall
   id: CannonBallGlassshot
   name: glassshot
   suffix: Pirate
-  parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
     proto: PelletGlassSpread

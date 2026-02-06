@@ -7,12 +7,14 @@
     sprite: Objects/Specific/Medical/hypospray.rsi
     state: hypo
 
-- type: stealTargetGroup
-  id: HandheldCrewMonitor
-  name: steal-target-groups-handheld-crew-monitor
-  sprite:
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
-    state: scanner
+# Starlight start
+#- type: stealTargetGroup
+#  id: HandheldCrewMonitor #  Starlight. Disabled in favor of the monitor collection objective, since code doesn't support being in 2 stealGroups.
+#  name: steal-target-groups-handheld-crew-monitor
+#  sprite:
+#    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+#    state: scanner
+# Starlight end
 
 - type: stealTargetGroup
   id: ClothingOuterHardsuitRd
@@ -261,14 +263,14 @@
   name: steal-target-groups-cargo-shuttle-console-circuitboard
   sprite:
     sprite: Objects/Misc/module.rsi
-    state: cpuboard
+    state: cpu_supply # Starlight
 
-- type: stealTargetGroup
-  id: ClothingEyesHudBeer
-  name: steal-target-groups-clothing-eyes-hud-beer
-  sprite:
-    sprite: Clothing/Eyes/Hud/beergoggles.rsi
-    state: icon
+#- type: stealTargetGroup  #Starlight disabled
+#  id: ClothingEyesHudBeer #Starlight disabled
+#  name: steal-target-groups-clothing-eyes-hud-beer #Starlight disabled
+#  sprite: #Starlight disabled
+#    sprite: Clothing/Eyes/Hud/beergoggles.rsi #Starlight disabled
+#    state: icon #Starlight disabled
 
 - type: stealTargetGroup
   id: Bible

@@ -1,0 +1,287 @@
+# Smokesicles
+# They're supposed to be smoking alternatives for vox. You teeeeeechnically shouldn't be able to light a cigarette in an environment without oxygen.
+# Not technically meant to be food so not adding them to random food spawner
+
+- type: entity
+  name: smokesicle
+  parent: FoodFrozenBase
+  id: FoodFrozenPopsicleNicotine
+  description: A nitrogen-chilled popsicle infused with nicotine.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: smokesicle-open
+  - type: Edible
+    trash:
+    - FoodFrozenPopsicleNicotineTrashStick
+  - type: FlavorProfile
+    flavors:
+      - cold
+      - terrible
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Nicotine
+          Quantity: 10
+          
+- type: entity
+  name: spicy smokesicle
+  parent: FoodFrozenBase
+  id: FoodFrozenPopsicleNicotineSpicy
+  description: A nitrogen-chilled popsicle infused with nicotine and capsaicin. 
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: spicy-smokesicle-open
+  - type: Edible
+    trash:
+    - FoodFrozenPopsicleNicotineTrashStick
+  - type: FlavorProfile
+    flavors:
+      - cold
+      - terrible
+      - spicy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Nicotine
+          Quantity: 8
+        - ReagentId: CapsaicinOil
+          Quantity: 2
+
+- type: entity
+  name: legendsicle
+  parent: FoodFrozenBase
+  id: FoodFrozenPopsicleNicotineLegend
+  description: I AM LEGEND
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: legendsicle-open
+  - type: Edible
+    trash:
+    - FoodFrozenPopsicleNicotineTrashStick
+  - type: FlavorProfile
+    flavors:
+      - paintthinner
+      - cold
+      - terrible
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: THC
+          Quantity: 20 # a joint has 20 thc
+          
+# Packaged ice-cream
+# Look, if I had an unpackaged popsicle fall out a vending machine I wouldn't touch that with a mile long stick. Or maybe I would, as long as it didn't crack.
+
+- type: entity
+  parent: BaseItem
+  id: FoodFrozenPopsicleNicotinePackaged
+  name: smokesicle
+  description: A nitrogen-chilled popsicle infused with nicotine.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: smokesicle
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodFrozenPopsicleNicotineTrash
+      - id: FoodFrozenPopsicleNicotine
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+      
+- type: entity
+  parent: BaseItem
+  id: FoodFrozenPopsicleNicotineSpicyPackaged
+  name: spicy smokesicle
+  description: A nitrogen-chilled popsicle infused with nicotine and capsaicin.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: spicy-smokesicle
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodFrozenPopsicleNicotineSpicyTrash
+      - id: FoodFrozenPopsicleNicotineSpicy
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+          
+- type: entity
+  parent: BaseItem
+  id: FoodFrozenPopsicleNicotineLegendPackaged
+  name: legendsicle
+  description: A mostly unmarked popsicle. It has a green and yellow sticker and the words "i am legend" scrawled on it with black marker.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: legendsicle
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodFrozenPopsicleNicotineLegendTrash
+      - id: FoodFrozenPopsicleNicotineLegend
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+      
+- type: entity
+  parent: BaseItem
+  id: FoodFrozenPopsicleOrangePackaged
+  name: orange creamsicle
+  description: A classic orange creamsicle. A sunny frozen treat.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: popsicle-orange-closed
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodFrozenPopsicleOrangeTrash
+      - id: FoodFrozenPopsicleOrange
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+      
+- type: entity
+  parent: BaseItem
+  id: FoodFrozenPopsicleBerryPackaged
+  name: berry creamsicle
+  description: A vibrant berry creamsicle. A berry good frozen treat.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: popsicle-berry-closed
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodFrozenPopsicleBerryTrash
+      - id: FoodFrozenPopsicleBerry
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: BaseItem
+  id: FoodFrozenCornutoPackaged
+  name: cornuto
+  description: A Neapolitan vanilla and chocolate ice-cream cone. It menaces with a sprinkling of caramelized nuts.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: cornuto-closed
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodFrozenCornutoTrash
+      - id: FoodFrozenCornuto
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: BaseItem
+  id: FoodFrozenPopsicleJumboPackaged
+  name: jumbo ice-cream
+  description: A luxurious ice-cream covered in rich chocolate. It's smaller than you remember.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: jumbo-closed
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodFrozenPopsicleJumboTrash
+      - id: FoodFrozenPopsicleJumbo
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+# Trash 
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: FoodPacketTrash
+  id: FoodFrozenPopsicleNicotineTrash
+  name: smokesicle wrapper
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: smokesicle-trash
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: FoodPacketTrash
+  id: FoodFrozenPopsicleNicotineSpicyTrash
+  name: spicy smokesicle wrapper
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: spicy-smokesicle-trash
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: FoodPacketTrash
+  id: FoodFrozenPopsicleNicotineLegendTrash
+  description: Someone's legend.
+  name: legendsicle wrapper
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: legendsicle-trash
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: FoodPacketTrash
+  id: FoodFrozenPopsicleOrangeTrash
+  name: orange creamsicle wrapper
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: popsicle-orange-trash
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: FoodPacketTrash
+  id: FoodFrozenPopsicleBerryTrash
+  name: berry creamsicle wrapper
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: popsicle-berry-trash
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: FoodPacketTrash
+  id: FoodFrozenCornutoTrash
+  name: cornuto wrapper
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: cornuto-trash
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: FoodPacketTrash
+  id: FoodFrozenPopsicleJumboTrash
+  name: jumbo ice-cream wrapper
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: jumbo-trash
+
+- type: entity
+  name: smokesicle stick
+  parent: BaseItem
+  id: FoodFrozenPopsicleNicotineTrashStick
+  description: Once held a disgusting treat. Now, 'tis barren.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/frozen.rsi
+    state: smokesicle-stick
+  - type: Tag
+    tags:
+    - Trash
+  - type: SpaceGarbage

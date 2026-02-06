@@ -55,7 +55,7 @@
 - type: entity
   id: SpawnPointBlueShield
   parent: SpawnPointJobBase
-  name: officer "blue shield"
+  name: blue shield officer
   components:
   - type: SpawnPoint
     job_id: BlueShield
@@ -106,6 +106,20 @@
       - state: mailtech
       - state: jobicon
 
+- type: entity 
+  id: SpawnPointDutyOfficer
+  parent: SpawnPointJobBase
+  name: dutyofficer
+  components:
+    - type: SpawnPoint
+      job_id: DutyOfficer
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      layers:
+        - state: green
+        - state: dutyofficer
+        - state: jobicon
+
 - type: entity
   id: SpawnPointSurgeon
   parent: SpawnPointJobBase
@@ -118,4 +132,42 @@
     layers:
       - state: green
       - state: surgeon
+      - state: jobicon
+
+- type: entity
+  id: SpawnPointBoxer
+  parent: SpawnPointJobBase
+  name: boxer
+  components:
+  - type: SpawnPoint
+    job_id: Boxer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: boxer
+
+- type: entity
+  id: SpawnPointZookeeper
+  parent: SpawnPointJobBase
+  name: zookeeper
+  components:
+  - type: SpawnPoint
+    job_id: Zookeeper
+  - type: Sprite
+    layers:
+      - state: green
+      - state: zookeeper
+
+- type: entity
+  id: SpawnPointNCT
+  parent: SpawnPointJobBase
+  name: Nanotrasen Career Trainer
+  components:
+  - type: SpawnPoint
+    job_id: NanotrasenCareerTrainer
+  - type: Sprite
+    sprite: _Starlight/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: nct
       - state: jobicon

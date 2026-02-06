@@ -3,6 +3,7 @@ using Robust.Server.GameObjects;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared._Starlight.NullSpace;
+using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server._Starlight.NullSpace;
 
@@ -34,7 +35,7 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EnsureComp<ShowNullSpaceComponent>(args.Equipee);
+        EntityManager.CopyComponent(uid, args.Equipee, component);
     }
 
     private void OnUnequipped(EntityUid uid, ShowNullSpaceComponent component, GotUnequippedEvent args)
@@ -49,12 +50,12 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
 
         if (toggle)
         {
-            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) (VisibilityFlags.NullSpace), eye);
+            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int)(VisibilityFlags.NullSpace), eye);
             return;
         }
         else if (HasComp<NullSpaceComponent>(uid))
             return;
 
-        _eye.SetVisibilityMask(uid, (int) VisibilityFlags.Normal, eye);
+        _eye.SetVisibilityMask(uid, (int)VisibilityFlags.Normal, eye);
     }
 }

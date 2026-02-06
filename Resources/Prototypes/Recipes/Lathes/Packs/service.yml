@@ -40,6 +40,7 @@
   - BoozeDispenserMachineCircuitboard
   - SodaDispenserMachineCircuitboard
   - SmartFridgeCircuitboard
+  - PersonalCircuitboardDesktop #Starlight
 
 ## Dynamic
 
@@ -50,6 +51,7 @@
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
   - MegaSprayBottle
+  - Hydra # Starlight
 
 - type: latheRecipePack
   id: Instruments

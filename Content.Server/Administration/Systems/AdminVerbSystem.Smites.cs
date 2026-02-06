@@ -30,6 +30,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Electrocution;
+using Content.Shared.Gibbing;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
@@ -50,6 +51,7 @@ using Content.Shared.Tabletop.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared._Starlight.Gnome; // starlight
 using Content.Shared.Trigger; // Starlight
 using Content.Shared.Trigger.Components.Effects; // Starlight
 using Robust.Shared.Map;
@@ -73,7 +75,6 @@ public sealed partial class AdminVerbSystem
 
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly CreamPieSystem _creamPieSystem = default!;
@@ -98,6 +99,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SuperBonkSystem _superBonkSystem = default!;
     [Dependency] private readonly SlipperySystem _slipperySystem = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
     private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
@@ -134,7 +136,7 @@ public sealed partial class AdminVerbSystem
                         4, 1, 2, args.Target, maxTileBreak: 0), // it gibs, damage doesn't need to be high.
                     CancellationToken.None);
 
-                _bodySystem.GibBody(args.Target);
+                _gibbing.Gib(args.Target);
             },
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", explodeName, Loc.GetString("admin-smite-explode-description")) // we do this so the description tells admins the Text to run it via console.
@@ -598,12 +600,31 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/killsign.rsi"), "icon"),
                 Act = () =>
                 {
-                    EnsureComp<KillSignComponent>(args.Target);
+                    EnsureComp<KillSignComponent>(args.Target, out var comp);
+                    comp.HideFromOwner = false; // We set it to false anyway, in case the hidden smite was used beforehand.
+                    Dirty(args.Target, comp);
                 },
                 Impact = LogImpact.Extreme,
                 Message = string.Join(": ", killSignName, Loc.GetString("admin-smite-kill-sign-description"))
             };
             args.Verbs.Add(killSign);
+
+            var hiddenKillSignName = Loc.GetString("admin-smite-kill-sign-hidden-name").ToLowerInvariant();
+            Verb hiddenKillSign = new()
+            {
+                Text = hiddenKillSignName,
+                Category = VerbCategory.Smite,
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Misc/killsign.rsi"), "icon-hidden"),
+                Act = () =>
+                {
+                    EnsureComp<KillSignComponent>(args.Target, out var comp);
+                    comp.HideFromOwner = true;
+                    Dirty(args.Target, comp);
+                },
+                Impact = LogImpact.Extreme,
+                Message = string.Join(": ", hiddenKillSignName, Loc.GetString("admin-smite-kill-sign-hidden-description"))
+            };
+            args.Verbs.Add(hiddenKillSign);
 
             var cluwneName = Loc.GetString("admin-smite-cluwne-name").ToLowerInvariant();
             Verb cluwne = new()
@@ -622,6 +643,22 @@ public sealed partial class AdminVerbSystem
                 Message = string.Join(": ", cluwneName, Loc.GetString("admin-smite-cluwne-description"))
             };
             args.Verbs.Add(cluwne);
+
+            // starlight start
+            var gnomeName = Loc.GetString("admin-smite-gnome-name").ToLowerInvariant();
+            Verb gnome = new()
+            {
+                Text = gnomeName,
+                Category = VerbCategory.Smite,
+
+                Icon = new SpriteSpecifier.Rsi(new("_Starlight/Objects/Fun/Plushies/gnome_plushie.rsi"), "icon"),
+
+                Act = () => EnsureComp<GnomeComponent>(args.Target),
+                Impact = LogImpact.Extreme,
+                Message = string.Join(": ", gnomeName, Loc.GetString("admin-smite-gnome-description"))
+            };
+            args.Verbs.Add(gnome);
+            // starlight end
 
             var maidenName = Loc.GetString("admin-smite-maid-name").ToLowerInvariant();
             Verb maiden = new()
@@ -1067,6 +1104,23 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", siliconName, Loc.GetString("admin-smite-silicon-laws-bound-description"))
         };
         args.Verbs.Add(silicon);
+        // Far Horizons - Start
+        var fuelRodifyName = Loc.GetString("admin-smite-become-fuelrod-name").ToLowerInvariant();
+        Verb fuelRodify = new()
+        {
+            Text = fuelRodifyName,
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi"), "default_rod"),
+            Act = () =>
+            {
+                _gibbing.Gib(args.Target);
+                _polymorphSystem.PolymorphEntity(args.Target, "AdminFuelRodSmite");
+            },
+            Impact = LogImpact.Extreme,
+            Message = string.Join(": ", fuelRodifyName, Loc.GetString("admin-smite-become-fuelrod-description"))
+        };
+        args.Verbs.Add(fuelRodify);
+        // Far Horizons - End
 
         var homingRodName = Loc.GetString("admin-smite-homing-rod-name").ToLowerInvariant();
         Verb homingRod = new()
