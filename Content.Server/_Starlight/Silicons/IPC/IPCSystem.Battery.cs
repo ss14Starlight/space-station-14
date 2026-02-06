@@ -13,6 +13,7 @@ using Content.Shared.Body.Events;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.Gibbing;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -53,7 +54,6 @@ public sealed partial class IPCSystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly PredictedBatterySystem _predictedBattery = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!; // _STARLIGHT: For power loss knockdown
     [Dependency] private readonly StandingStateSystem _standing = default!; // _STARLIGHT: For power restore stand-up
 
@@ -297,7 +297,7 @@ public sealed partial class IPCSystem
         }
 
         var batteryEnt = battery!.Value;
-        var chargePercent = (short) MathF.Round(_predictedBattery.GetChargeLevel((batteryEnt.Owner, batteryEnt.Comp)) * 10f);
+        var chargePercent = (short) MathF.Round(_battery.GetChargeLevel((batteryEnt.Owner, batteryEnt.Comp)) * 10f);
 
         _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
         _alerts.ShowAlert(ent.Owner, ent.Comp.BatteryAlert, chargePercent);

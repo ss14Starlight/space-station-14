@@ -23,7 +23,7 @@ public sealed partial class IPCSystem
         {
             hasBattery = true;
             var batteryEnt = battery!.Value;
-            chargePercent = _predictedBattery.GetChargeLevel((batteryEnt.Owner, batteryEnt.Comp));
+            chargePercent = _battery.GetChargeLevel((batteryEnt.Owner, batteryEnt.Comp));
         }
 
         if (TryComp<MobStateComponent>(uid, out var mobStateComp))
