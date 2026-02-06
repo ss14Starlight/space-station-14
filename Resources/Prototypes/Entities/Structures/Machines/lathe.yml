@@ -528,6 +528,7 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - StarlightMedicalStatic # Starlight
+    - AACTabletStatic # Moffstation - AAC tablet
     dynamicPacks:
     - StarlightSurgeryDynamic
     - StarlightAutomendersDynamic # Starlight-edit

@@ -10,8 +10,8 @@ namespace Content.Shared._Starlight.Chemistry;
 
 public sealed class SharedOnCollideSystem : EntitySystem
 {
-    [Dependency] protected readonly ReactiveSystem _reactiveSystem = default!;
-    [Dependency] protected readonly SharedSolutionContainerSystem _solutionContainers = default!;
+    [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainers = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     public override void Initialize()

@@ -29210,5 +29210,87 @@ Entries:
   id: 313400
   time: '2026-02-04T11:08:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3134
+- author: Rinary
+  changes:
+  - message: Fixed particles when shooting in objects.
+    type: Fix
+  - message: 'Fixed the chance of hitting which depends on the distance from the shooter(For
+      more info check #227).'
+    type: Fix
+  id: 314200
+  time: '2026-02-04T14:39:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3142
+- author: CrazyPhantom
+  changes:
+  - message: Lawboard Descriptions not showing their name properly.
+    type: Fix
+  id: 314800
+  time: '2026-02-04T18:09:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3148
+- author: CrazyPhantom
+  changes:
+  - message: Computer sprites now connect dynamically based on neighboring computers.
+    type: Tweak
+  id: 312100
+  time: '2026-02-04T18:14:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3121
+- author: Rinary
+  changes:
+  - message: Fixed bug when you can open locked storage with verb.
+    type: Fix
+  id: 312300
+  time: '2026-02-04T18:18:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3123
+- author: CrazyPhantom
+  changes:
+  - message: The "AAC tablet", a device that allows you to press buttons with short
+      phrases on them to make the tablet say it aloud.
+    type: Add
+  id: 274200
+  time: '2026-02-05T01:54:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2742
+- author: mikeysaurus
+  changes:
+  - message: Fixed what role Staff title is linked to.
+    type: Fix
+  id: 315200
+  time: '2026-02-05T05:33:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3152
+- author: Citrea
+  changes:
+  - message: Elder gods no longer give up on life and explode when mildly inconvenienced
+      by a PKA.
+    type: Tweak
+  - message: Elders no longer vomit from a mouth they don't have when they take too
+      much radiation damage.
+    type: Tweak
+  id: 315000
+  time: '2026-02-05T06:04:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3150
+- author: Conflee
+  changes:
+  - message: Added many more Ion ad-lib options, some just expanding on the lists,
+      some are starlight specific like BSO, NTR, Crab Juice, etc.
+    type: Add
+  - message: Added Comitas Systems, JONK Corporation, and Syndicate High Command to
+      potential round start traitor corporation flavor text.
+    type: Add
+  id: 314600
+  time: '2026-02-05T06:10:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3146
+- author: CawsForConcern
+  changes:
+  - message: War Ops can now be declared with 3 nuclear operatives (down from 4)
+    type: Tweak
+  id: 299500
+  time: '2026-02-05T17:47:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2995
+- author: kanopus7
+  changes:
+  - message: Now abductor eye can't be controlled by several entities.
+    type: Tweak
+  id: 120300
+  time: '2026-02-05T20:03:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1203
 Order: -1
 
