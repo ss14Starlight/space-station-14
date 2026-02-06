@@ -1,4 +1,6 @@
-﻿using Robust.Shared.Audio;
+﻿// Moffstation - Moved to our namespace
+/*
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Chasm;
@@ -15,3 +17,4 @@ public sealed partial class ChasmComponent : Component
     [DataField("fallingSound")]
     public SoundSpecifier FallingSound = new SoundPathSpecifier("/Audio/Effects/falling.ogg");
 }
+*/

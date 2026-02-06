@@ -1,0 +1,38 @@
+- type: body
+  id: Replicator1
+  name: "replicator t1"
+  root: torso
+  slots:
+    torso:
+      part: TorsoBorg
+      connections:
+      - hand1
+    hand1:
+      part: LeftArmBorg
+
+- type: body
+  id: Replicator2
+  name: "replicator t2"
+  root: torso
+  slots:
+    torso:
+      part: TorsoBorg
+      connections:
+      - hand1
+      - hand2
+    hand1:
+      part: LeftArmBorg
+    hand2:
+      part: LeftArmBorg
+
+- type: body
+  id: Replicator3
+  name: "replicator t3"
+  root: torso
+  slots:
+    torso:
+      part: TorsoBorg
+      connections:
+      - hand1
+    hand1:
+      part: LeftArmBorg
